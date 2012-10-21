@@ -1,39 +1,39 @@
-From: "Henrik Rydberg" <rydberg@euromail.se>
-Subject: Re: [REGRESSION] nouveau: Severe screen corruption on (0xaf, nv50)
-Date: Sun, 21 Oct 2012 09:10:24 +0200
-Message-ID: <20121021071024.GA731@polaris.bitmath.org>
-References: <20121018095809.GA336@polaris.bitmath.org>
+From: Lekensteyn <lekensteyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Linux 3.7-rc1 (nouveau_bios_score oops).
+Date: Sun, 21 Oct 2012 12:33:38 +0200
+Message-ID: <2111474.XJ0TZDGYZs@al>
+References: <1724445.dN2yMEzN6d@localhost> <1437818.9jlLBUTXHL@al>
+	<20121021090310.GB2403@fritha.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20121018095809.GA336@polaris.bitmath.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: Dave Airlie <airlied@gmail.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20121021090310.GB2403-iEI8Y0CNJBYdnm+yROfE0A@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Heinz Diehl <htd-iEI8Y0CNJBYdnm+yROfE0A@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>
+Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>, =?utf-8?B?UGF3ZcWC?= Sikora <pawel.sikora-PIIpFW8S9c0@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Heinz Diehl <htd-HjJ2MNWy62to6+H+lsi3Gti2O/JbrIOy@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Oct 18, 2012 at 11:58:09AM +0200, Henrik Rydberg wrote:
-> Hi Ben,
+On Sunday 21 October 2012 11:03:10 Heinz Diehl wrote:
+> The machine is the same, the BIOS is updated since then. The output of
+> the actual "acpidump" is here:
 > 
-> 3.7-rc1 messed up the screen on my MacBookAir3,1 (nv50, 0xaf) pretty
-> badly. Not surprisingly,
-> 
-> commit 3863c9bc887e9638a9d905d55f6038641ece78d6
-> Author: Ben Skeggs <bskeggs@redhat.com>
-> Date:   Sat Jul 14 19:09:17 2012 +1000
-> 
->     drm/nouveau/instmem: completely new implementation, as a subdev module
-> 
-> is the first bad commit. Standing on that commit, booting and then
-> starting X yields the output below. Hints are especially appreciated,
-> considering the patch is almost 8000 lines.
+> http://www.fritha.org/acpidump.gz
 
-Going through one suspend/resume cycle makes the corruption go away,
-and there are no more errors in dmesg. Oddly enough, I have seen
-something very similar when using i915 on the MBP10. Builtin modules
-and systemd in both cases. Maybe this is a general drm issue. Any
-thoughts?
+The _ROM method is still the same. It looks like a general issue with Asus
+laptops. Pawel also has the Asus laptop <https://lkml.org/lkml/2012/10/21/11>
+and has the same _ROM method. Some other acpidumps I have checked 
+before also expose this behavior.
 
-Thanks,
-Henrik
+Ben, I am wondering what machine provided a VBIOS > 64KiB?
+
+Regards,
+Peter
