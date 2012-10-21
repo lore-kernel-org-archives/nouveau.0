@@ -1,88 +1,39 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37440] Infinite loop detected in fragment program
-Date: Sat, 20 Oct 2012 17:15:11 +0000
-Message-ID: <bug-37440-8800-05bmgsueD2@http.bugs.freedesktop.org/>
-References: <bug-37440-8800@http.bugs.freedesktop.org/>
+From: "Henrik Rydberg" <rydberg@euromail.se>
+Subject: Re: [REGRESSION] nouveau: Severe screen corruption on (0xaf, nv50)
+Date: Sun, 21 Oct 2012 09:10:24 +0200
+Message-ID: <20121021071024.GA731@polaris.bitmath.org>
+References: <20121018095809.GA336@polaris.bitmath.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2047721717=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37440-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20121018095809.GA336@polaris.bitmath.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: Dave Airlie <airlied@gmail.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
+On Thu, Oct 18, 2012 at 11:58:09AM +0200, Henrik Rydberg wrote:
+> Hi Ben,
+> 
+> 3.7-rc1 messed up the screen on my MacBookAir3,1 (nv50, 0xaf) pretty
+> badly. Not surprisingly,
+> 
+> commit 3863c9bc887e9638a9d905d55f6038641ece78d6
+> Author: Ben Skeggs <bskeggs@redhat.com>
+> Date:   Sat Jul 14 19:09:17 2012 +1000
+> 
+>     drm/nouveau/instmem: completely new implementation, as a subdev module
+> 
+> is the first bad commit. Standing on that commit, booting and then
+> starting X yields the output below. Hints are especially appreciated,
+> considering the patch is almost 8000 lines.
 
---===============2047721717==
-Content-Type: multipart/alternative; boundary="1350753311.7fc40.18790"; charset="us-ascii"
+Going through one suspend/resume cycle makes the corruption go away,
+and there are no more errors in dmesg. Oddly enough, I have seen
+something very similar when using i915 on the MBP10. Builtin modules
+and systemd in both cases. Maybe this is a general drm issue. Any
+thoughts?
 
-
---1350753311.7fc40.18790
-Date: Sat, 20 Oct 2012 17:15:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=37440
-
---- Comment #3 from Andreas Boll <andreas.boll.dev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Benjamin, can you test with a newer version of mesa (8.0.x, 9.0.x or git)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1350753311.7fc40.18790
-Date: Sat, 20 Oct 2012 17:15:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Infinite loop detected in fragment program"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37440#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Infinite loop detected in fragment program"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37440">bug 37440</a>
-              from <span class="vcard"><a class="email" href="mailto:andreas.boll.dev&#64;gmail.com" title="Andreas Boll &lt;andreas.boll.dev&#64;gmail.com&gt;"> <span class="fn">Andreas Boll</span></a>
-</span></b>
-        <pre>Benjamin, can you test with a newer version of mesa (8.0.x, 9.0.x or git)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1350753311.7fc40.18790--
-
---===============2047721717==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============2047721717==--
+Thanks,
+Henrik
