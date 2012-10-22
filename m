@@ -1,59 +1,46 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH 00/10] extract dp helper functions
-Date: Mon, 22 Oct 2012 23:30:14 +0200
-Message-ID: <20121022213014.GI24005@phenom.ffwll.local>
-References: <1350548132-3037-1-git-send-email-daniel.vetter@ffwll.ch>
-	<CADnq5_OuZkS0qO736MWyHRiHiLfD+JX522S7Y6e1o8ZH2bEzgA@mail.gmail.com>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nv41/vm: fix typo in struct name
+Date: Tue, 23 Oct 2012 00:26:39 +0200
+Message-ID: <20121022222639.GA8223@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org>
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <CADnq5_OuZkS0qO736MWyHRiHiLfD+JX522S7Y6e1o8ZH2bEzgA@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/intel-gfx>,
-	<mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
-	<mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Sender: intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org
-Errors-To: intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, xorg-driver-ati@lists.x.org, DRI Development <dri-devel@lists.freedesktop.org>, nouveau@lists.freedesktop.org
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Oct 18, 2012 at 09:30:01AM -0400, Alex Deucher wrote:
-> On Thu, Oct 18, 2012 at 4:15 AM, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> > Hi all,
-> >
-> > I've frustrated myself the last few days yelling at our link training code.
-> > Comparing the i915 code to radeon and nouveau I've noticed the lack of a nice
-> > set of dp helper functions. So I've started to extract a few.
-> >
-> > There's lots more that we can do I think (link configuration selection, the i2c
-> > over aux retry stuff which diverges already between i915 and radeon, maybe more
-> > higher level parts of the training sequence). But there the drivers diverge
-> > quite a bit (e.g. the link configuration is driver by different things in each
-> > driver: coded link bw from the dp spec, link clock or required bw vs avialable
-> > bw), so that's more work and probably best done when reworking these functions
-> > for other reasons.
-> >
-> > I've also tried to put the new helpers a bit to use in nouveau, but due to lack
-> > of hw that part is untested.
-> >
-> > Comments and testing highly welcome.
-> 
-> Looks good to me.  Other than the minor change required in patch7,
-> this series is:
-> 
-> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+It's a miracle it compiles at all - nv04_vm_priv does not exist
+anywhere in the tree.
 
-Slurped into drm-intel-next, with all the nouveau patches and hunks
-dropped (I'll pester Ben once this has landed in drm-next), as discussed
-on irc. Thanks for reviewing this pile.
--Daniel
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+Noticed when adding types to Nouveau APIs.
+---
+ drivers/gpu/drm/nouveau/core/subdev/vm/nv41.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/vm/nv41.c b/drivers/gpu/drm/nouveau/core/subdev/vm/nv41.c
+index 4545b0c..e41ce9b 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/vm/nv41.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/vm/nv41.c
+@@ -67,7 +67,7 @@ nv41_vm_unmap(struct nouveau_gpuobj *pgt, u32 pte, u32 cnt)
+ static int
+ nv41_vm_flush(struct nouveau_vm *vm)
+ {
+-	struct nv04_vm_priv *priv = (void *)vm->vmm;
++	struct nv04_vmmgr_priv *priv = (void *)vm->vmm;
+ 	int ret = 0;
+ 
+ 	mutex_lock(&nv_subdev(priv)->mutex);
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+1.7.12
