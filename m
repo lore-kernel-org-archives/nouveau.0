@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56340] [Ubuntu 10.04.4 LTS 32-bit] Severe
- instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2
- M64 graphics
-Date: Wed, 24 Oct 2012 04:37:54 +0000
-Message-ID: <bug-56340-8800-Hm2QEYPdIo@http.bugs.freedesktop.org/>
-References: <bug-56340-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51409] [NV05] when ubuntu tests the gnome
+ environment the nouveau_vieux_dri (ver) segfaults
+Date: Wed, 24 Oct 2012 04:42:50 +0000
+Message-ID: <bug-51409-8800-b6PsXcOZ80@http.bugs.freedesktop.org/>
+References: <bug-51409-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0212353782=="
+Content-Type: multipart/mixed; boundary="===============0679154661=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56340-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51409-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,29 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0212353782==
-Content-Type: multipart/alternative; boundary="1351053474.4C6331.15735"; charset="us-ascii"
+--===============0679154661==
+Content-Type: multipart/alternative; boundary="1351053770.C4BF2.16335"; charset="us-ascii"
 
 
---1351053474.4C6331.15735
-Date: Wed, 24 Oct 2012 04:37:54 +0000
+--1351053770.C4BF2.16335
+Date: Wed, 24 Oct 2012 04:42:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56340
+https://bugs.freedesktop.org/show_bug.cgi?id=51409
 
 --- Comment #2 from mypersonalmailbox1-O5WfVfzUwx8@public.gmane.org ---
+(In reply to Comment 1)
+
 Hi,
 
-The archive file uploaded are collection of log files from Ubuntu 10.04.4 LTS
-32-bit's ubuntu-bug.
-Because I can upload only one file at a time, I decided to zip it into an
-archive file.
-Because of the severe instability of the system, I was able to collect this
-only once.
-It is very difficult to collect the system data with these two combinations.
-If I don't use NVIDIA RIVA TNT2 M64, the system runs much better, although I do
-get a sudden mysterious freeze once in a while for some reason.
+I just uploaded a bug report regarding NVIDIA RIVA TNT2 M64 graphics chip and
+VIA Technologies Apollo MVP3 chipset.
+
+https://bugs.freedesktop.org/show_bug.cgi?id=56340
 
 Regards,
 
@@ -54,8 +50,8 @@ fpgahardwareengineer
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351053474.4C6331.15735
-Date: Wed, 24 Oct 2012 04:37:54 +0000
+--1351053770.C4BF2.16335
+Date: Wed, 24 Oct 2012 04:42:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,25 +64,25 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340#c2">Comment # 2</a>
+   title="NEW --- - [NV05] when ubuntu tests the gnome environment the nouveau_vieux_dri (ver) segfaults"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51409#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340">bug 56340</a>
+   title="NEW --- - [NV05] when ubuntu tests the gnome environment the nouveau_vieux_dri (ver) segfaults"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51409">bug 51409</a>
               from <span class="vcard"><a class="email" href="mailto:mypersonalmailbox1&#64;mail.com" title="mypersonalmailbox1&#64;mail.com">mypersonalmailbox1&#64;mail.com</a>
 </span></b>
-        <pre>Hi,
+        <pre>(In reply to <a href="show_bug.cgi?id=51409#c1">Comment 1</a>)
 
-The archive file uploaded are collection of log files from Ubuntu 10.04.4 LTS
-32-bit's ubuntu-bug.
-Because I can upload only one file at a time, I decided to zip it into an
-archive file.
-Because of the severe instability of the system, I was able to collect this
-only once.
-It is very difficult to collect the system data with these two combinations.
-If I don't use NVIDIA RIVA TNT2 M64, the system runs much better, although I do
-get a sudden mysterious freeze once in a while for some reason.
+Hi,
+
+I just uploaded a bug report regarding NVIDIA RIVA TNT2 M64 graphics chip and
+VIA Technologies Apollo MVP3 chipset.
+
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
+   href="show_bug.cgi?id=56340">https://bugs.freedesktop.org/show_bug.cgi?id=56340</a>
 
 Regards,
 
@@ -102,9 +98,9 @@ fpgahardwareengineer</pre>
     </body>
 </html>
 
---1351053474.4C6331.15735--
+--1351053770.C4BF2.16335--
 
---===============0212353782==
+--===============0679154661==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +111,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0212353782==--
+--===============0679154661==--
