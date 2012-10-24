@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56340] New: [Ubuntu 10.04.4 LTS 32-bit] Severe
+Subject: [Bug 56340] [Ubuntu 10.04.4 LTS 32-bit] Severe
  instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2
  M64 graphics
-Date: Wed, 24 Oct 2012 04:21:48 +0000
-Message-ID: <bug-56340-8800@http.bugs.freedesktop.org/>
+Date: Wed, 24 Oct 2012 04:22:27 +0000
+Message-ID: <bug-56340-8800-HluT7fdScU@http.bugs.freedesktop.org/>
+References: <bug-56340-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0091259777=="
+Content-Type: multipart/mixed; boundary="===============0781841333=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-56340-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,95 +22,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0091259777==
-Content-Type: multipart/alternative; boundary="1351052508.1a0BB1.13674"; charset="us-ascii"
+--===============0781841333==
+Content-Type: multipart/alternative; boundary="1351052547.16FDa2E1.13825"; charset="us-ascii"
 
 
---1351052508.1a0BB1.13674
-Date: Wed, 24 Oct 2012 04:21:48 +0000
+--1351052547.16FDa2E1.13825
+Date: Wed, 24 Oct 2012 04:22:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56340
 
-          Priority: medium
-            Bug ID: 56340
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA
-                    Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2
-                    M64 graphics
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: critical
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: mypersonalmailbox1-O5WfVfzUwx8@public.gmane.org
-          Hardware: x86 (IA32)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+mypersonalmailbox1-O5WfVfzUwx8@public.gmane.org changed:
 
-Hi,
-
-I have this system with FIC VA-503+ mainboard and NVIDIA RIVA TNT2 M64.
-It is probably the most unreliable computer I have ever had with Ubuntu.
-Here are the symptoms I have seen.
-
-1. Frequent freeze (50% of the time) during boot up (Nouveau displays a message
-saying that GPU has crashed, and several seconds later the computer will
-freeze.)
-2. Sudden freeze during use
-3. Sudden reverting back to log in screen
-
-For 1, note that the freeze during boot up is most severe with NVIDIA RIVA TNT2
-M64 only.
-It seems to not have too many boot up freeze problems with other NVIDIA
-graphics cards (i.e., GeForce 2 MX, GeForce 4 MX, and GeForce FX 5200).
-Same with ATI Technologies graphics cards like Radeon 9250 and Radeon 9800 Pro.
-For 2, sometimes when the computer freezes, I still see some access going on
-with the hard drive, but it will eventually stop.
-Keyboard and mouse will completely freeze.
-For 3, it happens "some times," not frequently, but I have observed it a few
-times.
-I did clean AGP and PCI connectors several times (Frequent cause of system
-instability from my extensive experience of testing hardware with Linux.).
-Is there a bug in the of VIA Technologies device drivers when used with
-relatively older VIA Technologies hardware like Apollo MVP3 or Apollo Pro133?
-Perhaps, VIA Technologies AGP GART device driver or PATA device driver can be
-the culprit here.
-
-System Configuration:
-
-- Ubuntu 10.04.4 LTS 32-bit
-  * All patches issued in the last 2 weeks have been applied
-  * Linux 2.6.32-43-generic
-- FIC VA-503+ mainboard
-  * BIOS Version JE439 (I believe this is the last release version.)
-  * VIA Technologies Apollo MVP3 chipset
-- AMD K6-2 (I know it's old.)
-  * 450 MHz
-  * 100 MHz FSB
-- 512 MB PC100 DDR SDRAM
-  * 256 MB PC100 SDRAM DIMM X 2
-  * Passes Memtest86+ v4.00 test in flying colors
-- NVIDIA RIVA TNT2 M64 graphics card
-  * 32 MB SDRAM
-  * Universal (1.5V/3.3V) AGP
-- Intel 1000 Mbps Ethernet PCI card
-- Maxtor 91360D8 13.6 GB PATA hard drive
-- AT keyboard
-- PS/2 mouse
-
-Regards,
-
-fpgahardwareengineer
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Priority|medium                      |highest
+                URL|                            |https://bugs.launchpad.net/
+                   |                            |ubuntu/+source/xorg/+bug/10
+                   |                            |65300
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351052508.1a0BB1.13674
-Date: Wed, 24 Oct 2012 04:21:48 +0000
+--1351052547.16FDa2E1.13825
+Date: Wed, 24 Oct 2012 04:22:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -116,150 +55,37 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:mypersonalmailbox1&#64;mail.com" title="mypersonalmailbox1&#64;mail.com">mypersonalmailbox1&#64;mail.com</a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340">56340</a>
-          </td>
-        </tr>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340">bug 56340</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
+         <tr>
+           <td style="text-align:right;">Priority</td>
+           <td>medium
+           </td>
+           <td>highest
+           </td>
+         </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>[Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>critical
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>mypersonalmailbox1&#64;mail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86 (IA32)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">URL</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://bugs.launchpad.net/ubuntu/+source/xorg/+bug/1065300
+           </td>
+         </tr></table>
       <p>
-        <div>
-        <pre>Hi,
-
-I have this system with FIC VA-503+ mainboard and NVIDIA RIVA TNT2 M64.
-It is probably the most unreliable computer I have ever had with Ubuntu.
-Here are the symptoms I have seen.
-
-1. Frequent freeze (50% of the time) during boot up (Nouveau displays a message
-saying that GPU has crashed, and several seconds later the computer will
-freeze.)
-2. Sudden freeze during use
-3. Sudden reverting back to log in screen
-
-For 1, note that the freeze during boot up is most severe with NVIDIA RIVA TNT2
-M64 only.
-It seems to not have too many boot up freeze problems with other NVIDIA
-graphics cards (i.e., GeForce 2 MX, GeForce 4 MX, and GeForce FX 5200).
-Same with ATI Technologies graphics cards like Radeon 9250 and Radeon 9800 Pro.
-For 2, sometimes when the computer freezes, I still see some access going on
-with the hard drive, but it will eventually stop.
-Keyboard and mouse will completely freeze.
-For 3, it happens &quot;some times,&quot; not frequently, but I have observed it a few
-times.
-I did clean AGP and PCI connectors several times (Frequent cause of system
-instability from my extensive experience of testing hardware with Linux.).
-Is there a bug in the of VIA Technologies device drivers when used with
-relatively older VIA Technologies hardware like Apollo MVP3 or Apollo Pro133?
-Perhaps, VIA Technologies AGP GART device driver or PATA device driver can be
-the culprit here.
-
-System Configuration:
-
-- Ubuntu 10.04.4 LTS 32-bit
-  * All patches issued in the last 2 weeks have been applied
-  * Linux 2.6.32-43-generic
-- FIC VA-503+ mainboard
-  * BIOS Version JE439 (I believe this is the last release version.)
-  * VIA Technologies Apollo MVP3 chipset
-- AMD K6-2 (I know it's old.)
-  * 450 MHz
-  * 100 MHz FSB
-- 512 MB PC100 DDR SDRAM
-  * 256 MB PC100 SDRAM DIMM X 2
-  * Passes Memtest86+ v4.00 test in flying colors
-- NVIDIA RIVA TNT2 M64 graphics card
-  * 32 MB SDRAM
-  * Universal (1.5V/3.3V) AGP
-- Intel 1000 Mbps Ethernet PCI card
-- Maxtor 91360D8 13.6 GB PATA hard drive
-- AT keyboard
-- PS/2 mouse
-
-Regards,
-
-fpgahardwareengineer</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -270,9 +96,9 @@ fpgahardwareengineer</pre>
     </body>
 </html>
 
---1351052508.1a0BB1.13674--
+--1351052547.16FDa2E1.13825--
 
---===============0091259777==
+--===============0781841333==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -283,4 +109,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0091259777==--
+--===============0781841333==--
