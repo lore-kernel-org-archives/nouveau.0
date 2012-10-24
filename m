@@ -1,10 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56347] New: NVPlatformProbe routine does not mark
- the entity as Shared for ZaphodHeads.
-Date: Wed, 24 Oct 2012 09:11:31 +0000
-Message-ID: <bug-56347-8800@http.bugs.freedesktop.org/>
+From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: [ANNOUNCE] xf86-video-nouveau 1.0.3
+Date: Wed, 24 Oct 2012 11:45:54 +0200
+Message-ID: <5087B8D2.4020000@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1822310955=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,218 +15,62 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: xorg-announce-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
---===============1822310955==
-Content-Type: multipart/alternative; boundary="1351069891.42cc0EbB1.25463"; charset="us-ascii"
+Adam Jackson (1):
+      Remove mibstore.h
 
+Ben Skeggs (1):
+      shadowfb: fix segfault due to reading outside of shadow buffer
 
---1351069891.42cc0EbB1.25463
-Date: Wed, 24 Oct 2012 09:11:31 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Dave Airlie (1):
+      nouveau/dri2: fix pixmap/window offset calcs.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56347
+Maarten Lankhorst (6):
+      nvc0/exa: make solid fill actually work
+      remove unused members from nv_type.h
+      exa: fix up download_from/upload_to screen
+      exa: fix comparison in download_from_screen
+      exa: remove exaMarkSync from download/upload screen
+      bump version to 1.0.3
 
-          Priority: medium
-            Bug ID: 56347
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: NVPlatformProbe routine does not mark the entity as
-                    Shared for ZaphodHeads.
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: exc-7nl8rL9eBqAvJsYlp49lxw@public.gmane.org
-          Hardware: All
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+Mario Kleiner (1):
+      dri2: Fix potential race and crash for swap at next vblank.
 
-NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads.
-It is used by xorg since version 1.13 so there is no possibility to use
-ZaphodHeads.
+Sebastian Keller (1):
+      exa: use CLAMP_TO_EDGE for RepeatPad
 
-This config:
- 75 Section "Device"
- 76     Identifier  "CardA1"
- 77     Screen    0 
- 78         Option     "ZaphodHeads"  "DVI-I-1"
- 79     Option  "Monitor-DVI-I-1" "Monitor0"
- 80         Option     "NoAccel"    "off"           # [<bool>]                  
- 81     Driver      "nouveau"
- 82     BusID       "PCI:1:0:0"
- 83 EndSection
- 84 
- 85 Section "Device"
- 86     Identifier  "CardA2"
- 87         Option     "ZaphodHeads"  "VGA-1"
- 88     Screen     1
- 89     Option  "Monitor-VGA-1" "Monitor1"
- 90         Option     "NoAccel"    "off"           # [<bool>]
- 91     Driver      "nouveau"
- 92     BusID       "PCI:1:0:0"
- 93 EndSection
-causes xorg to print "Requested Entity already in use!" and use PCI:1:0:0 as
-single-head adapter.
+git tag: xf86-video-nouveau-1.0.3
 
-Thanks.
+http://xorg.freedesktop.org/archive/individual/driver/xf86-video-nouveau-1.0.3.tar.bz2
+MD5:  b434a341cb7e0b45ef2cb0107b1fbe2d  xf86-video-nouveau-1.0.3.tar.bz2
+SHA1: b53d985badb19573e659f80eb49d2334012900ea  xf86-video-nouveau-1.0.3.tar.bz2
+SHA256: a2ae34046324e1ec620f5a8dee3c8fe5a295acbb5d51825604c8ad28fb75a559  xf86-video-nouveau-1.0.3.tar.bz2
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+http://xorg.freedesktop.org/archive/individual/driver/xf86-video-nouveau-1.0.3.tar.gz
+MD5:  f37bfe1e841bb1bf1b2272647ecd3c49  xf86-video-nouveau-1.0.3.tar.gz
+SHA1: 9dfde58b02cc1c9be15bf885e7eee59b4f515232  xf86-video-nouveau-1.0.3.tar.gz
+SHA256: 42ccb01b6ae6bc30f81e30e3039af159454d2fa1d718e0ccd8029064261d3f35  xf86-video-nouveau-1.0.3.tar.gz
 
---1351069891.42cc0EbB1.25463
-Date: Wed, 24 Oct 2012 09:11:31 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56347">56347</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads.
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>exc&#64;rbcmail.ru
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads.
-It is used by xorg since version 1.13 so there is no possibility to use
-ZaphodHeads.
-
-This config:
- 75 Section &quot;Device&quot;
- 76     Identifier  &quot;CardA1&quot;
- 77     Screen    0 
- 78         Option     &quot;ZaphodHeads&quot;  &quot;DVI-I-1&quot;
- 79     Option  &quot;Monitor-DVI-I-1&quot; &quot;Monitor0&quot;
- 80         Option     &quot;NoAccel&quot;    &quot;off&quot;           # [&lt;bool&gt;]                  
- 81     Driver      &quot;nouveau&quot;
- 82     BusID       &quot;PCI:1:0:0&quot;
- 83 EndSection
- 84 
- 85 Section &quot;Device&quot;
- 86     Identifier  &quot;CardA2&quot;
- 87         Option     &quot;ZaphodHeads&quot;  &quot;VGA-1&quot;
- 88     Screen     1
- 89     Option  &quot;Monitor-VGA-1&quot; &quot;Monitor1&quot;
- 90         Option     &quot;NoAccel&quot;    &quot;off&quot;           # [&lt;bool&gt;]
- 91     Driver      &quot;nouveau&quot;
- 92     BusID       &quot;PCI:1:0:0&quot;
- 93 EndSection
-causes xorg to print &quot;Requested Entity already in use!&quot; and use PCI:1:0:0 as
-single-head adapter.
-
-Thanks.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1351069891.42cc0EbB1.25463--
-
---===============1822310955==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1822310955==--
+iQIcBAEBAgAGBQJQh7OsAAoJEP5VjHKmcBPDCIYP/36Z+FVEyW1xl+N3AR/Ewpl/
+YUvzTXsZyGkmFzAp7ylrOsZDvEsmo8G2i0oPTuQADszhvG3eCi2rrqaXGXk5GZSp
+Ir171LKDPT+bvuo4RUiQ0AUBNRw/0QM0FWnHp8m2WEWzSOdR4hCgGUxgbFtzfgCM
+VDnrcTxhlfscbww14jBGe+OPBBg46Dt7gbRZfy/Vup7Fuz7J98qE9azl/lDDOsJu
+ZrKkS+BQ79HrLYuu9AgXnOuZy1N56AljvtBhedahf+OgSY6ttJpS/LVU+tc8aa9o
+11xnf9AZBEG2dF8bVrK028bzm1xjR04N8pvblx2iFKq9HTXTD3wl//Tss/J0z768
+tB3pFZqtT6MOSIwk6wZG9RK4FIcjGI2COnU5HTc2aZpWrI71N0hHGsot4I8R8QzZ
+H5IaigY0RojfeAu72vn4+hHlzmz9zHBmMenZc4dNcA3EyxV9Np93QHgzZK1cP1p7
+FDoYVnMGOCUylgRvbVmsOO3LD9unKgqv5GAEp7vO1uISiijzUxjS49KwdM2FDVjE
+X9NdVnekoUVt0OWCwt1b4f5FkBatjqeAa93rJyUcAWQQb5p1+iERs6JwpEiohA1C
+CYq1PKouKbwbb+4ojl2lXJLKvHhgebnKKnHi5fpYtT1yLRoEcOqx8wro7f8R5imi
+OYzSYRJKnEcPAfKdcdji
+=GSr4
+-----END PGP SIGNATURE-----
