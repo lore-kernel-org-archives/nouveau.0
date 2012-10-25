@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 55596] weston-launch causes graphical corruption /
 	lockup
-Date: Thu, 25 Oct 2012 18:57:08 +0000
-Message-ID: <bug-55596-8800-hP2VNoyvXB@http.bugs.freedesktop.org/>
+Date: Thu, 25 Oct 2012 20:21:10 +0000
+Message-ID: <bug-55596-8800-Gt82a427po@http.bugs.freedesktop.org/>
 References: <bug-55596-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1729980727=="
+Content-Type: multipart/mixed; boundary="===============2128651534=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-55596-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1729980727==
-Content-Type: multipart/alternative; boundary="1351191428.81f752.17972"; charset="us-ascii"
+--===============2128651534==
+Content-Type: multipart/alternative; boundary="1351196470.d4e45F1.29550"; charset="us-ascii"
 
 
---1351191428.81f752.17972
-Date: Thu, 25 Oct 2012 18:57:08 +0000
+--1351196470.d4e45F1.29550
+Date: Thu, 25 Oct 2012 20:21:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=55596
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #4 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Above patch had hit Linus' tree 2 days ago. It will be part of Linux 3.7-rc3. 
-Thanks for reporting.
+--- Comment #5 from Darxus <darxus-gf8W+JFHfRr/2OF+hy8yCA@public.gmane.org> ---
+Great, thanks.  I'll add that to the wayland build docs.  Looks like the
+mainline commit is: 
+https://github.com/torvalds/linux/commit/2c14575f99ddd5b8384c5b460687ceba181900d8
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351191428.81f752.17972
-Date: Thu, 25 Oct 2012 18:57:08 +0000
+--1351196470.d4e45F1.29550
+Date: Thu, 25 Oct 2012 20:21:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,49 +50,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - weston-launch causes graphical corruption / lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55596">bug 55596</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - weston-launch causes graphical corruption / lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55596#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55596#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - weston-launch causes graphical corruption / lockup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=55596">bug 55596</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+              from <span class="vcard"><a class="email" href="mailto:darxus&#64;chaosreigns.com" title="Darxus &lt;darxus&#64;chaosreigns.com&gt;"> <span class="fn">Darxus</span></a>
 </span></b>
-        <pre>Above patch had hit Linus' tree 2 days ago. It will be part of Linux 3.7-rc3. 
-Thanks for reporting.</pre>
+        <pre>Great, thanks.  I'll add that to the wayland build docs.  Looks like the
+mainline commit is: 
+<a href="https://github.com/torvalds/linux/commit/2c14575f99ddd5b8384c5b460687ceba181900d8">https://github.com/torvalds/linux/commit/2c14575f99ddd5b8384c5b460687ceba181900d8</a></pre>
         </div>
       </p>
       <hr>
@@ -110,9 +77,9 @@ Thanks for reporting.</pre>
     </body>
 </html>
 
---1351191428.81f752.17972--
+--1351196470.d4e45F1.29550--
 
---===============1729980727==
+--===============2128651534==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1729980727==--
+--===============2128651534==--
