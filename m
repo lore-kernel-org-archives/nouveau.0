@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56474] 3D app segfaults on NV46
-Date: Sun, 28 Oct 2012 01:22:30 +0000
-Message-ID: <bug-56474-8800-YT4aqQmQ5c@http.bugs.freedesktop.org/>
-References: <bug-56474-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54883] Nvidia GLX560M: Display corruption in GTK+
+ apps and unable to wake from sleep
+Date: Sun, 28 Oct 2012 17:41:21 +0000
+Message-ID: <bug-54883-8800-h9wxTXl1mv@http.bugs.freedesktop.org/>
+References: <bug-54883-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1452481942=="
+Content-Type: multipart/mixed; boundary="===============0750082941=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56474-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-54883-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1452481942==
-Content-Type: multipart/alternative; boundary="1351387350.B711a5Ca0.11212"; charset="us-ascii"
+--===============0750082941==
+Content-Type: multipart/alternative; boundary="1351446081.F18430.7048"; charset="us-ascii"
 
 
---1351387350.B711a5Ca0.11212
-Date: Sun, 28 Oct 2012 01:22:30 +0000
+--1351446081.F18430.7048
+Date: Sun, 28 Oct 2012 17:41:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56474
+https://bugs.freedesktop.org/show_bug.cgi?id=54883
 
---- Comment #2 from Gabriele Giacone <1o5g4r8o-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-22:34 < joi> gg0: does it work if you set NV30_SWTNL env var?
-22:39 < gg0> joi: it started but seems stuck and it's taking 100% cpu
-22:47 < joi> if I understand this code correctly, only SWTNL path handles 
-             user buffers, so... someone needs to implement user buffers in 
-             hw path or fix sw path (which is disabled by default and 
-             probably broken)
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+From Gentoo's bugzilla
+
+> Ah... Downgrading kernel to gentoo-sources-3.3* solves the issue.
+> 
+> Looks like my investigation towards mesa regression was wrong. Simply any newer kernel than 3.3* regresses this way.
+> 
+> Now with mesa etc. on 9999 and gentoo-sources-3.3.8-r1 issue is gone.
+> 
+> Any idea what and how I may narrow this down utilizing this discovery?
+> 
+> xf86-video-nouveau-1.0.3 fixed all the issues for me on gentoo-sources-3.6.1
+
+Marking as fixed
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351387350.B711a5Ca0.11212
-Date: Sun, 28 Oct 2012 01:22:30 +0000
+--1351446081.F18430.7048
+Date: Sun, 28 Oct 2012 17:41:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,25 +67,60 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Nvidia GLX560M: Display corruption in GTK+ apps and unable to wake from sleep"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54883">bug 54883</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - 3D app segfaults on NV46"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56474#c2">Comment # 2</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Nvidia GLX560M: Display corruption in GTK+ apps and unable to wake from sleep"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54883#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - 3D app segfaults on NV46"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56474">bug 56474</a>
-              from <span class="vcard"><a class="email" href="mailto:1o5g4r8o&#64;gmail.com" title="Gabriele Giacone &lt;1o5g4r8o&#64;gmail.com&gt;"> <span class="fn">Gabriele Giacone</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Nvidia GLX560M: Display corruption in GTK+ apps and unable to wake from sleep"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54883">bug 54883</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>22:34 &lt; joi&gt; gg0: does it work if you set NV30_SWTNL env var?
-22:39 &lt; gg0&gt; joi: it started but seems stuck and it's taking 100% cpu
-22:47 &lt; joi&gt; if I understand this code correctly, only SWTNL path handles 
-             user buffers, so... someone needs to implement user buffers in 
-             hw path or fix sw path (which is disabled by default and 
-             probably broken)</pre>
+        <pre>From Gentoo's bugzilla
+
+<span class="quote">&gt; Ah... Downgrading kernel to gentoo-sources-3.3* solves the issue.
+&gt; 
+&gt; Looks like my investigation towards mesa regression was wrong. Simply any newer kernel than 3.3* regresses this way.
+&gt; 
+&gt; Now with mesa etc. on 9999 and gentoo-sources-3.3.8-r1 issue is gone.
+&gt; 
+&gt; Any idea what and how I may narrow this down utilizing this discovery?
+&gt; 
+&gt; xf86-video-nouveau-1.0.3 fixed all the issues for me on gentoo-sources-3.6.1</span >
+
+Marking as fixed</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +132,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1351387350.B711a5Ca0.11212--
+--1351446081.F18430.7048--
 
---===============1452481942==
+--===============0750082941==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +145,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1452481942==--
+--===============0750082941==--
