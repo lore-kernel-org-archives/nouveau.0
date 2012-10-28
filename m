@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56474] 3D app segfaults on NV46
-Date: Sun, 28 Oct 2012 01:19:49 +0000
-Message-ID: <bug-56474-8800-OrwohQAo0Y@http.bugs.freedesktop.org/>
+Date: Sun, 28 Oct 2012 01:22:30 +0000
+Message-ID: <bug-56474-8800-YT4aqQmQ5c@http.bugs.freedesktop.org/>
 References: <bug-56474-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1616552580=="
+Content-Type: multipart/mixed; boundary="===============1452481942=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56474-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1616552580==
-Content-Type: multipart/alternative; boundary="1351387189.aaBde0.10938"; charset="us-ascii"
+--===============1452481942==
+Content-Type: multipart/alternative; boundary="1351387350.B711a5Ca0.11212"; charset="us-ascii"
 
 
---1351387189.aaBde0.10938
-Date: Sun, 28 Oct 2012 01:19:49 +0000
+--1351387350.B711a5Ca0.11212
+Date: Sun, 28 Oct 2012 01:22:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56474
 
---- Comment #1 from Gabriele Giacone <1o5g4r8o-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 69170
-  --> https://bugs.freedesktop.org/attachment.cgi?id=69170&action=edit
-supertuxkart backtrace
+--- Comment #2 from Gabriele Giacone <1o5g4r8o-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+22:34 < joi> gg0: does it work if you set NV30_SWTNL env var?
+22:39 < gg0> joi: it started but seems stuck and it's taking 100% cpu
+22:47 < joi> if I understand this code correctly, only SWTNL path handles 
+             user buffers, so... someone needs to implement user buffers in 
+             hw path or fix sw path (which is disabled by default and 
+             probably broken)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351387189.aaBde0.10938
-Date: Sun, 28 Oct 2012 01:19:49 +0000
+--1351387350.B711a5Ca0.11212
+Date: Sun, 28 Oct 2012 01:22:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +58,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - 3D app segfaults on NV46"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56474#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56474#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - 3D app segfaults on NV46"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56474">bug 56474</a>
               from <span class="vcard"><a class="email" href="mailto:1o5g4r8o&#64;gmail.com" title="Gabriele Giacone &lt;1o5g4r8o&#64;gmail.com&gt;"> <span class="fn">Gabriele Giacone</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=69170" name="attach_69170" title="supertuxkart backtrace">attachment 69170</a> <a href="attachment.cgi?id=69170&amp;action=edit" title="supertuxkart backtrace">[details]</a></span>
-supertuxkart backtrace</pre>
+        <pre>22:34 &lt; joi&gt; gg0: does it work if you set NV30_SWTNL env var?
+22:39 &lt; gg0&gt; joi: it started but seems stuck and it's taking 100% cpu
+22:47 &lt; joi&gt; if I understand this code correctly, only SWTNL path handles 
+             user buffers, so... someone needs to implement user buffers in 
+             hw path or fix sw path (which is disabled by default and 
+             probably broken)</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +82,9 @@ supertuxkart backtrace</pre>
     </body>
 </html>
 
---1351387189.aaBde0.10938--
+--1351387350.B711a5Ca0.11212--
 
---===============1616552580==
+--===============1452481942==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1616552580==--
+--===============1452481942==--
