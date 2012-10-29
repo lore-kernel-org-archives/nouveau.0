@@ -1,9 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56535] New: Resident evil 4 with wine: crash
-Date: Mon, 29 Oct 2012 18:17:59 +0000
-Message-ID: <bug-56535-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56546] New: crash at the second render when applying
+ gamma correction
+Date: Mon, 29 Oct 2012 21:23:24 +0000
+Message-ID: <bug-56546-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1759284881=="
+Content-Type: multipart/mixed; boundary="===============0948991828=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,43 +19,82 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1759284881==
-Content-Type: multipart/alternative; boundary="1351534679.1a0cbe640.31458"; charset="us-ascii"
+--===============0948991828==
+Content-Type: multipart/alternative; boundary="1351545804.b3666dD0.25342"; charset="us-ascii"
 
 
---1351534679.1a0cbe640.31458
-Date: Mon, 29 Oct 2012 18:17:59 +0000
+--1351545804.b3666dD0.25342
+Date: Mon, 29 Oct 2012 21:23:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56535
+https://bugs.freedesktop.org/show_bug.cgi?id=56546
 
           Priority: medium
-            Bug ID: 56535
+            Bug ID: 56546
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Resident evil 4 with wine: crash
+           Summary: crash at the second render when applying gamma
+                    correction
           Severity: critical
     Classification: Unclassified
                 OS: Linux (All)
-          Reporter: king.infet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86 (IA32)
+          Reporter: yves-RFxl5bZtqS5Wk0Htik3J/w@public.gmane.org
+          Hardware: x86-64 (AMD64)
             Status: NEW
-           Version: unspecified
+           Version: 8.0
          Component: Drivers/DRI/nouveau
            Product: Mesa
 
-Created attachment 69248
-  --> https://bugs.freedesktop.org/attachment.cgi?id=69248&action=edit
-save complete log wine
+Created attachment 69256
+  --> https://bugs.freedesktop.org/attachment.cgi?id=69256&action=edit
+example of the crash
 
-Bug is here: http://bugs.winehq.org/show_bug.cgi?id=32072
+Here a very simple program which illustrate a bug in
+driver 2.1 Mesa 8.0.4 when applying a gamma value with opengl.
+
+(The program is OK with driver NVIDIA).
+
+In attachment, the file utc24.tga used by the program glut_gamma_bug.cpp.
+
+Compile the program with the command:
+
+g++ -L/usr/lib64 -lGL -lGLU -lglut -lX11 -lXi -lxcb-glx -lxcb-xlib -ldl
+glut_gamma_bug.cpp
+
+Start it with: ./a.out
+
+It will open a small window with an image composed of vertical strips.
+
+Press the enter key (it apply a gamma correction of 3 to the image):
+
+a) it will print a message: KEY_ENTER
+b) it will print another message: current error GL: no error
+c) the same image will be brightness
+d) at the second message: current error GL: no error, it will crash
+
+
+Crash in:
+
+==17340== Invalid read of size 4
+==17340==    at 0xE5D4ABE: set_sampler_views.isra.2 (u_atomic.h:62)
+==17340==    by 0xE5B72E8: draw_textured_quad.isra.8 (st_cb_drawpixels.c:777)
+==17340==    by 0xE5B9596: st_DrawPixels (st_cb_drawpixels.c:1156)
+==17340==    by 0xE56BE98: _mesa_DrawPixels (drawpix.c:131)
+
+=17340==  Address 0x101a95b0 is 0 bytes inside a block of size 96 free'd
+==17340==    at 0x4C2A5C6: free (vg_replace_malloc.c:446)
+==17340==    by 0xE5B95FB: st_DrawPixels (u_inlines.h:134)
+==17340==    by 0xE56BE98: _mesa_DrawPixels (drawpix.c:131)
+
+
+Thanks.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351534679.1a0cbe640.31458
-Date: Mon, 29 Oct 2012 18:17:59 +0000
+--1351545804.b3666dD0.25342
+Date: Mon, 29 Oct 2012 21:23:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,8 +113,8 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Resident evil 4 with wine: crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56535">56535</a>
+   title="NEW --- - crash at the second render when applying gamma correction"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56546">56546</a>
           </td>
         </tr>
 
@@ -86,7 +126,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Summary</th>
-          <td>Resident evil 4 with wine: crash
+          <td>crash at the second render when applying gamma correction
           </td>
         </tr>
 
@@ -110,13 +150,13 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Reporter</th>
-          <td>king.infet&#64;gmail.com
+          <td>yves&#64;3delight.com
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>x86 (IA32)
+          <td>x86-64 (AMD64)
           </td>
         </tr>
 
@@ -128,7 +168,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Version</th>
-          <td>unspecified
+          <td>8.0
           </td>
         </tr>
 
@@ -145,10 +185,48 @@ Content-Type: text/html; charset="UTF-8"
         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=69248" name="attach_69248" title="save complete log wine">attachment 69248</a> <a href="attachment.cgi?id=69248&amp;action=edit" title="save complete log wine">[details]</a></span>
-save complete log wine
+        <pre>Created <span class=""><a href="attachment.cgi?id=69256" name="attach_69256" title="example of the crash">attachment 69256</a> <a href="attachment.cgi?id=69256&amp;action=edit" title="example of the crash">[details]</a></span>
+example of the crash
 
-Bug is here: <a href="http://bugs.winehq.org/show_bug.cgi?id=32072">http://bugs.winehq.org/show_bug.cgi?id=32072</a></pre>
+Here a very simple program which illustrate a bug in
+driver 2.1 Mesa 8.0.4 when applying a gamma value with opengl.
+
+(The program is OK with driver NVIDIA).
+
+In attachment, the file utc24.tga used by the program glut_gamma_bug.cpp.
+
+Compile the program with the command:
+
+g++ -L/usr/lib64 -lGL -lGLU -lglut -lX11 -lXi -lxcb-glx -lxcb-xlib -ldl
+glut_gamma_bug.cpp
+
+Start it with: ./a.out
+
+It will open a small window with an image composed of vertical strips.
+
+Press the enter key (it apply a gamma correction of 3 to the image):
+
+a) it will print a message: KEY_ENTER
+b) it will print another message: current error GL: no error
+c) the same image will be brightness
+d) at the second message: current error GL: no error, it will crash
+
+
+Crash in:
+
+==17340== Invalid read of size 4
+==17340==    at 0xE5D4ABE: set_sampler_views.isra.2 (u_atomic.h:62)
+==17340==    by 0xE5B72E8: draw_textured_quad.isra.8 (st_cb_drawpixels.c:777)
+==17340==    by 0xE5B9596: st_DrawPixels (st_cb_drawpixels.c:1156)
+==17340==    by 0xE56BE98: _mesa_DrawPixels (drawpix.c:131)
+
+=17340==  Address 0x101a95b0 is 0 bytes inside a block of size 96 free'd
+==17340==    at 0x4C2A5C6: free (vg_replace_malloc.c:446)
+==17340==    by 0xE5B95FB: st_DrawPixels (u_inlines.h:134)
+==17340==    by 0xE56BE98: _mesa_DrawPixels (drawpix.c:131)
+
+
+Thanks.</pre>
         </div>
       </p>
       <hr>
@@ -160,9 +238,9 @@ Bug is here: <a href="http://bugs.winehq.org/show_bug.cgi?id=32072">http://bugs.
     </body>
 </html>
 
---1351534679.1a0cbe640.31458--
+--1351545804.b3666dD0.25342--
 
---===============1759284881==
+--===============0948991828==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -173,4 +251,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1759284881==--
+--===============0948991828==--
