@@ -1,92 +1,59 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56546] crash at the second render when applying
- gamma correction
-Date: Mon, 29 Oct 2012 21:26:28 +0000
-Message-ID: <bug-56546-8800-xBjzEMxa8A@http.bugs.freedesktop.org/>
-References: <bug-56546-8800@http.bugs.freedesktop.org/>
+From: Andreas Boll <andreas.boll.dev@gmail.com>
+Subject: [PATCH][8.0] nvfx: handle some unknown PIPE_CAPs
+Date: Tue, 30 Oct 2012 18:03:36 +0100
+Message-ID: <1351616616-29106-1-git-send-email-andreas.boll.dev@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2117968599=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56546-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: mesa-dev@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+fixes these warnings:
 
---===============2117968599==
-Content-Type: multipart/alternative; boundary="1351545988.1dFECD0.25705"; charset="us-ascii"
+nvfx_screen_get_param:95 - Warning: unknown PIPE_CAP 30
+nvfx_screen_get_param:95 - Warning: unknown PIPE_CAP 55
+nvfx_screen_get_param:95 - Warning: unknown PIPE_CAP 56
+nvfx_screen_get_param:95 - Warning: unknown PIPE_CAP 58
+nvfx_screen_get_param:95 - Warning: unknown PIPE_CAP 59
 
+Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=47442
+Bugzilla: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=674965
+Signed-off-by: Andreas Boll <andreas.boll.dev@gmail.com>
+---
 
---1351545988.1dFECD0.25705
-Date: Mon, 29 Oct 2012 21:26:28 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Note: This patch is only for the 8.0 branch.
+Compile tested only.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56546
+ src/gallium/drivers/nvfx/nvfx_screen.c |    6 ++++++
+ 1 files changed, 6 insertions(+), 0 deletions(-)
 
---- Comment #1 from Yves Claude <yves-RFxl5bZtqS5Wk0Htik3J/w@public.gmane.org> ---
-Created attachment 69257
-  --> https://bugs.freedesktop.org/attachment.cgi?id=69257&action=edit
-data image for cpp file
-
+diff --git a/src/gallium/drivers/nvfx/nvfx_screen.c b/src/gallium/drivers/nvfx/nvfx_screen.c
+index b4a1b3a..26c2d8d 100644
+--- a/src/gallium/drivers/nvfx/nvfx_screen.c
++++ b/src/gallium/drivers/nvfx/nvfx_screen.c
+@@ -88,6 +88,12 @@ nvfx_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+ 	case PIPE_CAP_MAX_TEXEL_OFFSET:
+ 	case PIPE_CAP_CONDITIONAL_RENDER:
+ 	case PIPE_CAP_TEXTURE_BARRIER:
++	case PIPE_CAP_MAX_STREAM_OUTPUT_BUFFERS:
++	case PIPE_CAP_MAX_STREAM_OUTPUT_SEPARATE_COMPONENTS:
++	case PIPE_CAP_MAX_STREAM_OUTPUT_INTERLEAVED_COMPONENTS:
++	case PIPE_CAP_STREAM_OUTPUT_PAUSE_RESUME:
++	case PIPE_CAP_TGSI_CAN_COMPACT_VARYINGS:
++	case PIPE_CAP_TGSI_CAN_COMPACT_CONSTANTS:
+                 return 0;
+ 	case PIPE_CAP_MIXED_COLORBUFFER_FORMATS:
+                 return 0;
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1351545988.1dFECD0.25705
-Date: Mon, 29 Oct 2012 21:26:28 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - crash at the second render when applying gamma correction"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56546#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - crash at the second render when applying gamma correction"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56546">bug 56546</a>
-              from <span class="vcard"><a class="email" href="mailto:yves&#64;3delight.com" title="Yves Claude &lt;yves&#64;3delight.com&gt;"> <span class="fn">Yves Claude</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=69257" name="attach_69257" title="data image for cpp file">attachment 69257</a> <a href="attachment.cgi?id=69257&amp;action=edit" title="data image for cpp file">[details]</a></span>
-data image for cpp file</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1351545988.1dFECD0.25705--
-
---===============2117968599==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============2117968599==--
+1.7.4.1
