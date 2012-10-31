@@ -1,12 +1,15 @@
-From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Subject: =?utf-8?q?=5BPATCH=5D_nv50=2Cnvc0=3A_expose_ARB=5Fmap?=
-	=?utf-8?q?=5Fbuffer=5Falignment?=
-Date: Wed, 31 Oct 2012 16:31:12 +0100
-Message-ID: <1351697472-13803-1-git-send-email-dev@lynxeye.de>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Virtualbox 3D accel broken in xf86-video-nouveau 1.0.3
+Date: Wed, 31 Oct 2012 23:27:14 +0100
+Message-ID: <20121031222714.GA4464@joi.lan>
+References: <ae50d07e2ee8ebb3be8f6c1277aaa895@www.spursdown.info>
+	<50901C68.7020605@gmail.com> <50901CDD.7050008@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <50901CDD.7050008-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,77 +19,64 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Pouar <thepouar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QWxsIEhXIGJ1ZmZlcnMgKGFsc28gc3ViYWxsb2NhdGVkIG9uZXMpIGFyZSBhbHJlYWR5IGFsaWdu
-ZWQuCkp1c3QgbWFrZSBzdXJlIHRoYXQgYWxzbyB0aGUgaW5pdGlhbCBzeXNyYW0gYnVmZmVycyBo
-YXZlIHByb3BlcgphbGlnbm1lbnQuCi0tLQpQYXNzZXMgdGhlIEFSQl9tYXBfYnVmZmVyX2FsaWdu
-bWVudCBwaWdsaXQgdGVzdCBvbiBudjUwLgpOb3QgdGVzdGVkIG9uIG52YzAuCi0tLQogc3JjL2dh
-bGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfYnVmZmVyLmMgfCA2ICsrKy0tLQogc3JjL2dh
-bGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfbW0uYyAgICAgfCAyICstCiBzcmMvZ2FsbGl1
-bS9kcml2ZXJzL252NTAvbnY1MF9zY3JlZW4uYyAgICAgICB8IDMgKystCiBzcmMvZ2FsbGl1bS9k
-cml2ZXJzL252YzAvbnZjMF9zY3JlZW4uYyAgICAgICB8IDMgKystCiA0IERhdGVpZW4gZ2XDpG5k
-ZXJ0LCA4IFplaWxlbiBoaW56dWdlZsO8Z3QoKyksIDYgWmVpbGVuIGVudGZlcm50KC0pCgpkaWZm
-IC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfYnVmZmVyLmMgYi9z
-cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9idWZmZXIuYwppbmRleCBmYjkyOWQ2
-Li4wZWNkNTNhIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVh
-dV9idWZmZXIuYworKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9idWZm
-ZXIuYwpAQCAtNDMsNyArNDMsNyBAQCBub3V2ZWF1X2J1ZmZlcl9hbGxvY2F0ZShzdHJ1Y3Qgbm91
-dmVhdV9zY3JlZW4gKnNjcmVlbiwKICAgIH0KICAgIGlmIChkb21haW4gIT0gTk9VVkVBVV9CT19H
-QVJUKSB7CiAgICAgICBpZiAoIWJ1Zi0+ZGF0YSkgewotICAgICAgICAgYnVmLT5kYXRhID0gTUFM
-TE9DKGJ1Zi0+YmFzZS53aWR0aDApOworICAgICAgICAgYnVmLT5kYXRhID0gYWxpZ25fbWFsbG9j
-KGJ1Zi0+YmFzZS53aWR0aDAsIDY0KTsKICAgICAgICAgIGlmICghYnVmLT5kYXRhKQogICAgICAg
-ICAgICAgcmV0dXJuIEZBTFNFOwogICAgICAgfQpAQCAtOTIsNyArOTIsNyBAQCBub3V2ZWF1X2J1
-ZmZlcl9kZXN0cm95KHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwKICAgIG5vdXZlYXVfYnVm
-ZmVyX3JlbGVhc2VfZ3B1X3N0b3JhZ2UocmVzKTsKIAogICAgaWYgKHJlcy0+ZGF0YSAmJiAhKHJl
-cy0+c3RhdHVzICYgTk9VVkVBVV9CVUZGRVJfU1RBVFVTX1VTRVJfTUVNT1JZKSkKLSAgICAgIEZS
-RUUocmVzLT5kYXRhKTsKKyAgICAgIGFsaWduX2ZyZWUocmVzLT5kYXRhKTsKIAogICAgbm91dmVh
-dV9mZW5jZV9yZWYoTlVMTCwgJnJlcy0+ZmVuY2UpOwogICAgbm91dmVhdV9mZW5jZV9yZWYoTlVM
-TCwgJnJlcy0+ZmVuY2Vfd3IpOwpAQCAtNDU3LDcgKzQ1Nyw3IEBAIG5vdXZlYXVfYnVmZmVyX21p
-Z3JhdGUoc3RydWN0IG5vdXZlYXVfY29udGV4dCAqbnYsCiAgICAgICBpZiAocmV0KQogICAgICAg
-ICAgcmV0dXJuIHJldDsKICAgICAgIG1lbWNweSgodWludDhfdCAqKWJ1Zi0+Ym8tPm1hcCArIGJ1
-Zi0+b2Zmc2V0LCBidWYtPmRhdGEsIHNpemUpOwotICAgICAgRlJFRShidWYtPmRhdGEpOworICAg
-ICAgYWxpZ25fZnJlZShidWYtPmRhdGEpOwogICAgfSBlbHNlCiAgICBpZiAob2xkX2RvbWFpbiAh
-PSAwICYmIG5ld19kb21haW4gIT0gMCkgewogICAgICAgc3RydWN0IG5vdXZlYXVfbW1fYWxsb2Nh
-dGlvbiAqbW0gPSBidWYtPm1tOwpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
-ZWF1L25vdXZlYXVfbW0uYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X21t
-LmMKaW5kZXggNDIwNzA4NC4uNjA0NWFmNiAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L25vdXZlYXVfbW0uYworKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-bm91dmVhdV9tbS5jCkBAIC05LDcgKzksNyBAQAogI2luY2x1ZGUgIm5vdXZlYXVfc2NyZWVuLmgi
-CiAjaW5jbHVkZSAibm91dmVhdV9tbS5oIgogCi0jZGVmaW5lIE1NX01JTl9PUkRFUiA3CisjZGVm
-aW5lIE1NX01JTl9PUkRFUiA3IC8qID49IDYgdG8gbm90IHZpb2xhdGUgQVJCX21hcF9idWZmZXJf
-YWxpZ25tZW50ICovCiAjZGVmaW5lIE1NX01BWF9PUkRFUiAyMAogCiAjZGVmaW5lIE1NX05VTV9C
-VUNLRVRTIChNTV9NQVhfT1JERVIgLSBNTV9NSU5fT1JERVIgKyAxKQpkaWZmIC0tZ2l0IGEvc3Jj
-L2dhbGxpdW0vZHJpdmVycy9udjUwL252NTBfc2NyZWVuLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJz
-L252NTAvbnY1MF9zY3JlZW4uYwppbmRleCA5NDYxYWY5Li5kMGEwMjk1IDEwMDY0NAotLS0gYS9z
-cmMvZ2FsbGl1bS9kcml2ZXJzL252NTAvbnY1MF9zY3JlZW4uYworKysgYi9zcmMvZ2FsbGl1bS9k
-cml2ZXJzL252NTAvbnY1MF9zY3JlZW4uYwpAQCAtMTcwLDExICsxNzAsMTIgQEAgbnY1MF9zY3Jl
-ZW5fZ2V0X3BhcmFtKHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwgZW51bSBwaXBlX2NhcCBw
-YXJhbSkKICAgICAgIHJldHVybiAxOwogICAgY2FzZSBQSVBFX0NBUF9DT05TVEFOVF9CVUZGRVJf
-T0ZGU0VUX0FMSUdOTUVOVDoKICAgICAgIHJldHVybiAyNTY7CisgICBjYXNlIFBJUEVfQ0FQX01J
-Tl9NQVBfQlVGRkVSX0FMSUdOTUVOVDoKKyAgICAgIHJldHVybiA2NDsKICAgIGNhc2UgUElQRV9D
-QVBfVkVSVEVYX0JVRkZFUl9PRkZTRVRfNEJZVEVfQUxJR05FRF9PTkxZOgogICAgY2FzZSBQSVBF
-X0NBUF9WRVJURVhfQlVGRkVSX1NUUklERV80QllURV9BTElHTkVEX09OTFk6CiAgICBjYXNlIFBJ
-UEVfQ0FQX1ZFUlRFWF9FTEVNRU5UX1NSQ19PRkZTRVRfNEJZVEVfQUxJR05FRF9PTkxZOgogICAg
-Y2FzZSBQSVBFX0NBUF9URVhUVVJFX01VTFRJU0FNUExFOgotICAgY2FzZSBQSVBFX0NBUF9NSU5f
-TUFQX0JVRkZFUl9BTElHTk1FTlQ6CiAgICAgICByZXR1cm4gMDsKICAgIGRlZmF1bHQ6CiAgICAg
-ICBOT1VWRUFVX0VSUigidW5rbm93biBQSVBFX0NBUCAlZFxuIiwgcGFyYW0pOwpkaWZmIC0tZ2l0
-IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9udmMwL252YzBfc2NyZWVuLmMgYi9zcmMvZ2FsbGl1bS9k
-cml2ZXJzL252YzAvbnZjMF9zY3JlZW4uYwppbmRleCAwZTBiNjY2Li4zYmYyMTkxIDEwMDY0NAot
-LS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL252YzAvbnZjMF9zY3JlZW4uYworKysgYi9zcmMvZ2Fs
-bGl1bS9kcml2ZXJzL252YzAvbnZjMF9zY3JlZW4uYwpAQCAtMTQ4LDExICsxNDgsMTIgQEAgbnZj
-MF9zY3JlZW5fZ2V0X3BhcmFtKHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwgZW51bSBwaXBl
-X2NhcCBwYXJhbSkKICAgICAgIHJldHVybiAxOwogICAgY2FzZSBQSVBFX0NBUF9DT05TVEFOVF9C
-VUZGRVJfT0ZGU0VUX0FMSUdOTUVOVDoKICAgICAgIHJldHVybiAyNTY7CisgICBjYXNlIFBJUEVf
-Q0FQX01JTl9NQVBfQlVGRkVSX0FMSUdOTUVOVDoKKyAgICAgIHJldHVybiA2NDsKICAgIGNhc2Ug
-UElQRV9DQVBfVkVSVEVYX0JVRkZFUl9PRkZTRVRfNEJZVEVfQUxJR05FRF9PTkxZOgogICAgY2Fz
-ZSBQSVBFX0NBUF9WRVJURVhfQlVGRkVSX1NUUklERV80QllURV9BTElHTkVEX09OTFk6CiAgICBj
-YXNlIFBJUEVfQ0FQX1ZFUlRFWF9FTEVNRU5UX1NSQ19PRkZTRVRfNEJZVEVfQUxJR05FRF9PTkxZ
-OgogICAgY2FzZSBQSVBFX0NBUF9URVhUVVJFX01VTFRJU0FNUExFOgotICAgY2FzZSBQSVBFX0NB
-UF9NSU5fTUFQX0JVRkZFUl9BTElHTk1FTlQ6CiAgICAgICByZXR1cm4gMDsKICAgIGRlZmF1bHQ6
-CiAgICAgICBOT1VWRUFVX0VSUigidW5rbm93biBQSVBFX0NBUCAlZFxuIiwgcGFyYW0pOwotLSAK
-MS43LjExLjcKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On Tue, Oct 30, 2012 at 01:30:53PM -0500, Pouar wrote:
+>    On 10/30/2012 01:28 PM, Pouar wrote:
+> 
+>    On 10/28/2012 01:21 PM, Pouar wrote:
+> 
+>    On 10/28/2012 01:18 PM, Emil Velikov wrote:
+> 
+>      On Sun, 28 Oct 2012 01:15:54 -0000, Pouar wrote:
+> 
+>      there's a regression in the xf86-video-nouveau driver that came up
+>      in
+>      1.0.3 that causes the desktop to bounce around in virtualbox
+>      whenever
+>      using HW acceleration in cinnamon and gnome 3, but not in fallback
+>      or
+>      cinnamon 2d, only happens in virtualbox and not the host, I've
+>      confirmed
+>      it was the graphics driver on the host because it happened with the
+>      1.0.3 driver but not the 1.0.2.
+>      anyone else having this problem? I'm using GeForce GTX 560 Ti
+> 
+>      Hi Pouar
+>      Can you open a bug, following these instructions [1]
+>      Ideally you can try bisecting the issue - there are only 10 changes
+>      that may have caused the issue
+>      Cheers
+>      Emil
+>      [1] [1]http://nouveau.freedesktop.org/wiki/Bugs
+> 
+>      I just did
+> 
+>    --
+>    Pouar
+> 
+>      by I just did I meant the bug report, not the bisecting, I have zero
+>      experience with driver programming, much less graphics driver
+>      programming, so I wouldn't know what to look for, I signed up for
+>      this mailing list to keep track of the different driver issues and
+>      bugs and their progress
+
+You don't need to have any experience in driver programming to bisect this bug.
+
+git clone git://anongit.freedesktop.org/git/nouveau/xf86-video-nouveau/
+cd xf86-video-nouveau/
+./autogen.sh
+make
+
+If you can compile successfully, do:
+
+1) git bisect start xf86-video-nouveau-1.0.3 xf86-video-nouveau-1.0.2
+2) make && sudo rm /usr/lib/xorg/modules/drivers/nouveau_drv.so && sudo cp src/.libs/nouveau_drv.so /usr/lib/xorg/modules/drivers
+3) Restart X. Try to reproduce the bug.
+4) If you can't reproduce it - do "git bisect good", if you can - do "git bisect bad".
+5) Go to 2). After ~4 compiles it will tell you about first bad commit - this
+is what we want to see.
+
+Marcin
