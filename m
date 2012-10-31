@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56615] Unable to start X on ThinkPad T420s laptop
-Date: Wed, 31 Oct 2012 13:48:06 +0000
-Message-ID: <bug-56615-8800-KuVJoDmlXO@http.bugs.freedesktop.org/>
-References: <bug-56615-8800@http.bugs.freedesktop.org/>
+From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+Subject: =?utf-8?q?=5BPATCH=5D_nv50=2Cnvc0=3A_expose_ARB=5Fmap?=
+	=?utf-8?q?=5Fbuffer=5Falignment?=
+Date: Wed, 31 Oct 2012 16:31:12 +0100
+Message-ID: <1351697472-13803-1-git-send-email-dev@lynxeye.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2045173988=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,171 +16,77 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============2045173988==
-Content-Type: multipart/alternative; boundary="1351691286.aba2f1.8985"; charset="us-ascii"
-
-
---1351691286.aba2f1.8985
-Date: Wed, 31 Oct 2012 13:48:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=56615
-
---- Comment #2 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
-The output from lspci -vv is included below:
-
-01:00.0 VGA compatible controller: NVIDIA Corporation GF119 [Quadro NVS 4200M]
-(rev a1) (prog-if 00 [VGA controller])
-    Subsystem: Lenovo Device 21d2
-    Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR- FastB2B- DisINTx-
-    Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort-
-<MAbort- >SERR- <PERR- INTx-
-    Latency: 0, Cache Line Size: 64 bytes
-    Interrupt: pin A routed to IRQ 16
-    Region 0: Memory at f2000000 (32-bit, non-prefetchable) [size=16M]
-    Region 1: Memory at e0000000 (64-bit, prefetchable) [size=256M]
-    Region 3: Memory at f0000000 (64-bit, prefetchable) [size=32M]
-    Region 5: I/O ports at 4000 [size=128]
-    Expansion ROM at f3080000 [disabled] [size=512K]
-    Capabilities: [60] Power Management version 3
-        Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA
-PME(D0-,D1-,D2-,D3hot-,D3cold-)
-        Status: D0 NoSoftRst+ PME-Enable- DSel=0 DScale=0 PME-
-    Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
-        Address: 0000000000000000  Data: 0000
-    Capabilities: [78] Express (v2) Endpoint, MSI 00
-        DevCap:    MaxPayload 128 bytes, PhantFunc 0, Latency L0s unlimited, L1
-<64us
-            ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset-
-        DevCtl:    Report errors: Correctable- Non-Fatal- Fatal- Unsupported-
-            RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop+
-            MaxPayload 128 bytes, MaxReadReq 512 bytes
-        DevSta:    CorrErr- UncorrErr- FatalErr- UnsuppReq- AuxPwr- TransPend-
-        LnkCap:    Port #0, Speed 5GT/s, Width x16, ASPM L0s L1, Latency L0
-<256ns, L1 <4us
-            ClockPM+ Surprise- LLActRep- BwNot-
-        LnkCtl:    ASPM L0s L1 Enabled; RCB 64 bytes Disabled- Retrain-
-CommClk+
-            ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
-        LnkSta:    Speed 2.5GT/s, Width x16, TrErr- Train- SlotClk+ DLActive-
-BWMgmt- ABWMgmt-
-        DevCap2: Completion Timeout: Not Supported, TimeoutDis+
-        DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis-
-        LnkCtl2: Target Link Speed: 2.5GT/s, EnterCompliance- SpeedDis-,
-Selectable De-emphasis: -6dB
-             Transmit Margin: Normal Operating Range, EnterModifiedCompliance-
-ComplianceSOS-
-             Compliance De-emphasis: -6dB
-        LnkSta2: Current De-emphasis Level: -6dB, EqualizationComplete-,
-EqualizationPhase1-
-             EqualizationPhase2-, EqualizationPhase3-, LinkEqualizationRequest-
-    Capabilities: [b4] Vendor Specific Information: Len=14 <?>
-    Kernel driver in use: nouveau
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1351691286.aba2f1.8985
-Date: Wed, 31 Oct 2012 13:48:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Unable to start X on ThinkPad T420s laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Unable to start X on ThinkPad T420s laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
-              from <span class="vcard"><a class="email" href="mailto:mark.cave-ayland&#64;ilande.co.uk" title="Mark Cave-Ayland &lt;mark.cave-ayland&#64;ilande.co.uk&gt;"> <span class="fn">Mark Cave-Ayland</span></a>
-</span></b>
-        <pre>The output from lspci -vv is included below:
-
-01:00.0 VGA compatible controller: NVIDIA Corporation GF119 [Quadro NVS 4200M]
-(rev a1) (prog-if 00 [VGA controller])
-    Subsystem: Lenovo Device 21d2
-    Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR- FastB2B- DisINTx-
-    Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast &gt;TAbort- &lt;TAbort-
-&lt;MAbort- &gt;SERR- &lt;PERR- INTx-
-    Latency: 0, Cache Line Size: 64 bytes
-    Interrupt: pin A routed to IRQ 16
-    Region 0: Memory at f2000000 (32-bit, non-prefetchable) [size=16M]
-    Region 1: Memory at e0000000 (64-bit, prefetchable) [size=256M]
-    Region 3: Memory at f0000000 (64-bit, prefetchable) [size=32M]
-    Region 5: I/O ports at 4000 [size=128]
-    Expansion ROM at f3080000 [disabled] [size=512K]
-    Capabilities: [60] Power Management version 3
-        Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA
-PME(D0-,D1-,D2-,D3hot-,D3cold-)
-        Status: D0 NoSoftRst+ PME-Enable- DSel=0 DScale=0 PME-
-    Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
-        Address: 0000000000000000  Data: 0000
-    Capabilities: [78] Express (v2) Endpoint, MSI 00
-        DevCap:    MaxPayload 128 bytes, PhantFunc 0, Latency L0s unlimited, L1
-&lt;64us
-            ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset-
-        DevCtl:    Report errors: Correctable- Non-Fatal- Fatal- Unsupported-
-            RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop+
-            MaxPayload 128 bytes, MaxReadReq 512 bytes
-        DevSta:    CorrErr- UncorrErr- FatalErr- UnsuppReq- AuxPwr- TransPend-
-        LnkCap:    Port #0, Speed 5GT/s, Width x16, ASPM L0s L1, Latency L0
-&lt;256ns, L1 &lt;4us
-            ClockPM+ Surprise- LLActRep- BwNot-
-        LnkCtl:    ASPM L0s L1 Enabled; RCB 64 bytes Disabled- Retrain-
-CommClk+
-            ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
-        LnkSta:    Speed 2.5GT/s, Width x16, TrErr- Train- SlotClk+ DLActive-
-BWMgmt- ABWMgmt-
-        DevCap2: Completion Timeout: Not Supported, TimeoutDis+
-        DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis-
-        LnkCtl2: Target Link Speed: 2.5GT/s, EnterCompliance- SpeedDis-,
-Selectable De-emphasis: -6dB
-             Transmit Margin: Normal Operating Range, EnterModifiedCompliance-
-ComplianceSOS-
-             Compliance De-emphasis: -6dB
-        LnkSta2: Current De-emphasis Level: -6dB, EqualizationComplete-,
-EqualizationPhase1-
-             EqualizationPhase2-, EqualizationPhase3-, LinkEqualizationRequest-
-    Capabilities: [b4] Vendor Specific Information: Len=14 &lt;?&gt;
-    Kernel driver in use: nouveau</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1351691286.aba2f1.8985--
-
---===============2045173988==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============2045173988==--
+QWxsIEhXIGJ1ZmZlcnMgKGFsc28gc3ViYWxsb2NhdGVkIG9uZXMpIGFyZSBhbHJlYWR5IGFsaWdu
+ZWQuCkp1c3QgbWFrZSBzdXJlIHRoYXQgYWxzbyB0aGUgaW5pdGlhbCBzeXNyYW0gYnVmZmVycyBo
+YXZlIHByb3BlcgphbGlnbm1lbnQuCi0tLQpQYXNzZXMgdGhlIEFSQl9tYXBfYnVmZmVyX2FsaWdu
+bWVudCBwaWdsaXQgdGVzdCBvbiBudjUwLgpOb3QgdGVzdGVkIG9uIG52YzAuCi0tLQogc3JjL2dh
+bGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfYnVmZmVyLmMgfCA2ICsrKy0tLQogc3JjL2dh
+bGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfbW0uYyAgICAgfCAyICstCiBzcmMvZ2FsbGl1
+bS9kcml2ZXJzL252NTAvbnY1MF9zY3JlZW4uYyAgICAgICB8IDMgKystCiBzcmMvZ2FsbGl1bS9k
+cml2ZXJzL252YzAvbnZjMF9zY3JlZW4uYyAgICAgICB8IDMgKystCiA0IERhdGVpZW4gZ2XDpG5k
+ZXJ0LCA4IFplaWxlbiBoaW56dWdlZsO8Z3QoKyksIDYgWmVpbGVuIGVudGZlcm50KC0pCgpkaWZm
+IC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfYnVmZmVyLmMgYi9z
+cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9idWZmZXIuYwppbmRleCBmYjkyOWQ2
+Li4wZWNkNTNhIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVh
+dV9idWZmZXIuYworKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9idWZm
+ZXIuYwpAQCAtNDMsNyArNDMsNyBAQCBub3V2ZWF1X2J1ZmZlcl9hbGxvY2F0ZShzdHJ1Y3Qgbm91
+dmVhdV9zY3JlZW4gKnNjcmVlbiwKICAgIH0KICAgIGlmIChkb21haW4gIT0gTk9VVkVBVV9CT19H
+QVJUKSB7CiAgICAgICBpZiAoIWJ1Zi0+ZGF0YSkgewotICAgICAgICAgYnVmLT5kYXRhID0gTUFM
+TE9DKGJ1Zi0+YmFzZS53aWR0aDApOworICAgICAgICAgYnVmLT5kYXRhID0gYWxpZ25fbWFsbG9j
+KGJ1Zi0+YmFzZS53aWR0aDAsIDY0KTsKICAgICAgICAgIGlmICghYnVmLT5kYXRhKQogICAgICAg
+ICAgICAgcmV0dXJuIEZBTFNFOwogICAgICAgfQpAQCAtOTIsNyArOTIsNyBAQCBub3V2ZWF1X2J1
+ZmZlcl9kZXN0cm95KHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwKICAgIG5vdXZlYXVfYnVm
+ZmVyX3JlbGVhc2VfZ3B1X3N0b3JhZ2UocmVzKTsKIAogICAgaWYgKHJlcy0+ZGF0YSAmJiAhKHJl
+cy0+c3RhdHVzICYgTk9VVkVBVV9CVUZGRVJfU1RBVFVTX1VTRVJfTUVNT1JZKSkKLSAgICAgIEZS
+RUUocmVzLT5kYXRhKTsKKyAgICAgIGFsaWduX2ZyZWUocmVzLT5kYXRhKTsKIAogICAgbm91dmVh
+dV9mZW5jZV9yZWYoTlVMTCwgJnJlcy0+ZmVuY2UpOwogICAgbm91dmVhdV9mZW5jZV9yZWYoTlVM
+TCwgJnJlcy0+ZmVuY2Vfd3IpOwpAQCAtNDU3LDcgKzQ1Nyw3IEBAIG5vdXZlYXVfYnVmZmVyX21p
+Z3JhdGUoc3RydWN0IG5vdXZlYXVfY29udGV4dCAqbnYsCiAgICAgICBpZiAocmV0KQogICAgICAg
+ICAgcmV0dXJuIHJldDsKICAgICAgIG1lbWNweSgodWludDhfdCAqKWJ1Zi0+Ym8tPm1hcCArIGJ1
+Zi0+b2Zmc2V0LCBidWYtPmRhdGEsIHNpemUpOwotICAgICAgRlJFRShidWYtPmRhdGEpOworICAg
+ICAgYWxpZ25fZnJlZShidWYtPmRhdGEpOwogICAgfSBlbHNlCiAgICBpZiAob2xkX2RvbWFpbiAh
+PSAwICYmIG5ld19kb21haW4gIT0gMCkgewogICAgICAgc3RydWN0IG5vdXZlYXVfbW1fYWxsb2Nh
+dGlvbiAqbW0gPSBidWYtPm1tOwpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
+ZWF1L25vdXZlYXVfbW0uYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X21t
+LmMKaW5kZXggNDIwNzA4NC4uNjA0NWFmNiAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVy
+cy9ub3V2ZWF1L25vdXZlYXVfbW0uYworKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
+bm91dmVhdV9tbS5jCkBAIC05LDcgKzksNyBAQAogI2luY2x1ZGUgIm5vdXZlYXVfc2NyZWVuLmgi
+CiAjaW5jbHVkZSAibm91dmVhdV9tbS5oIgogCi0jZGVmaW5lIE1NX01JTl9PUkRFUiA3CisjZGVm
+aW5lIE1NX01JTl9PUkRFUiA3IC8qID49IDYgdG8gbm90IHZpb2xhdGUgQVJCX21hcF9idWZmZXJf
+YWxpZ25tZW50ICovCiAjZGVmaW5lIE1NX01BWF9PUkRFUiAyMAogCiAjZGVmaW5lIE1NX05VTV9C
+VUNLRVRTIChNTV9NQVhfT1JERVIgLSBNTV9NSU5fT1JERVIgKyAxKQpkaWZmIC0tZ2l0IGEvc3Jj
+L2dhbGxpdW0vZHJpdmVycy9udjUwL252NTBfc2NyZWVuLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJz
+L252NTAvbnY1MF9zY3JlZW4uYwppbmRleCA5NDYxYWY5Li5kMGEwMjk1IDEwMDY0NAotLS0gYS9z
+cmMvZ2FsbGl1bS9kcml2ZXJzL252NTAvbnY1MF9zY3JlZW4uYworKysgYi9zcmMvZ2FsbGl1bS9k
+cml2ZXJzL252NTAvbnY1MF9zY3JlZW4uYwpAQCAtMTcwLDExICsxNzAsMTIgQEAgbnY1MF9zY3Jl
+ZW5fZ2V0X3BhcmFtKHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwgZW51bSBwaXBlX2NhcCBw
+YXJhbSkKICAgICAgIHJldHVybiAxOwogICAgY2FzZSBQSVBFX0NBUF9DT05TVEFOVF9CVUZGRVJf
+T0ZGU0VUX0FMSUdOTUVOVDoKICAgICAgIHJldHVybiAyNTY7CisgICBjYXNlIFBJUEVfQ0FQX01J
+Tl9NQVBfQlVGRkVSX0FMSUdOTUVOVDoKKyAgICAgIHJldHVybiA2NDsKICAgIGNhc2UgUElQRV9D
+QVBfVkVSVEVYX0JVRkZFUl9PRkZTRVRfNEJZVEVfQUxJR05FRF9PTkxZOgogICAgY2FzZSBQSVBF
+X0NBUF9WRVJURVhfQlVGRkVSX1NUUklERV80QllURV9BTElHTkVEX09OTFk6CiAgICBjYXNlIFBJ
+UEVfQ0FQX1ZFUlRFWF9FTEVNRU5UX1NSQ19PRkZTRVRfNEJZVEVfQUxJR05FRF9PTkxZOgogICAg
+Y2FzZSBQSVBFX0NBUF9URVhUVVJFX01VTFRJU0FNUExFOgotICAgY2FzZSBQSVBFX0NBUF9NSU5f
+TUFQX0JVRkZFUl9BTElHTk1FTlQ6CiAgICAgICByZXR1cm4gMDsKICAgIGRlZmF1bHQ6CiAgICAg
+ICBOT1VWRUFVX0VSUigidW5rbm93biBQSVBFX0NBUCAlZFxuIiwgcGFyYW0pOwpkaWZmIC0tZ2l0
+IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9udmMwL252YzBfc2NyZWVuLmMgYi9zcmMvZ2FsbGl1bS9k
+cml2ZXJzL252YzAvbnZjMF9zY3JlZW4uYwppbmRleCAwZTBiNjY2Li4zYmYyMTkxIDEwMDY0NAot
+LS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL252YzAvbnZjMF9zY3JlZW4uYworKysgYi9zcmMvZ2Fs
+bGl1bS9kcml2ZXJzL252YzAvbnZjMF9zY3JlZW4uYwpAQCAtMTQ4LDExICsxNDgsMTIgQEAgbnZj
+MF9zY3JlZW5fZ2V0X3BhcmFtKHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwgZW51bSBwaXBl
+X2NhcCBwYXJhbSkKICAgICAgIHJldHVybiAxOwogICAgY2FzZSBQSVBFX0NBUF9DT05TVEFOVF9C
+VUZGRVJfT0ZGU0VUX0FMSUdOTUVOVDoKICAgICAgIHJldHVybiAyNTY7CisgICBjYXNlIFBJUEVf
+Q0FQX01JTl9NQVBfQlVGRkVSX0FMSUdOTUVOVDoKKyAgICAgIHJldHVybiA2NDsKICAgIGNhc2Ug
+UElQRV9DQVBfVkVSVEVYX0JVRkZFUl9PRkZTRVRfNEJZVEVfQUxJR05FRF9PTkxZOgogICAgY2Fz
+ZSBQSVBFX0NBUF9WRVJURVhfQlVGRkVSX1NUUklERV80QllURV9BTElHTkVEX09OTFk6CiAgICBj
+YXNlIFBJUEVfQ0FQX1ZFUlRFWF9FTEVNRU5UX1NSQ19PRkZTRVRfNEJZVEVfQUxJR05FRF9PTkxZ
+OgogICAgY2FzZSBQSVBFX0NBUF9URVhUVVJFX01VTFRJU0FNUExFOgotICAgY2FzZSBQSVBFX0NB
+UF9NSU5fTUFQX0JVRkZFUl9BTElHTk1FTlQ6CiAgICAgICByZXR1cm4gMDsKICAgIGRlZmF1bHQ6
+CiAgICAgICBOT1VWRUFVX0VSUigidW5rbm93biBQSVBFX0NBUCAlZFxuIiwgcGFyYW0pOwotLSAK
+MS43LjExLjcKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
