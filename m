@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56615] [NVD9+optimus] Unable to start X on ThinkPad
  T420s laptop
-Date: Thu, 01 Nov 2012 09:29:21 +0000
-Message-ID: <bug-56615-8800-4FrLaL09uI@http.bugs.freedesktop.org/>
+Date: Thu, 01 Nov 2012 09:43:22 +0000
+Message-ID: <bug-56615-8800-Tirm4D8c2M@http.bugs.freedesktop.org/>
 References: <bug-56615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1043855514=="
+Content-Type: multipart/mixed; boundary="===============1743189093=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1043855514==
-Content-Type: multipart/alternative; boundary="1351762161.D1d51.12245"; charset="us-ascii"
+--===============1743189093==
+Content-Type: multipart/alternative; boundary="1351763002.7D6f3FE1.14366"; charset="us-ascii"
 
 
---1351762161.D1d51.12245
-Date: Thu, 1 Nov 2012 09:29:21 +0000
+--1351763002.7D6f3FE1.14366
+Date: Thu, 1 Nov 2012 09:43:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56615
 
---- Comment #3 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
-Hmmm so this could be Optimus related? In the BIOS, the Display has 3 separate
-modes:
+--- Comment #4 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
+Okay it seems that the bug is in the control/initialisation of the DisplayPort. 
 
-- Integrated (works, using Intel driver)
-- Discrete (uses nouveau driver)
-- Optimus
+If I leave the DisplayPort connector disconnected, then I can start X using the
+nouveau driver on the in-built LVDS display. If I then connect the DisplayPort
+connector, it shows up in xrandr but trying to enable it results in the same
+"hang" as trying to boot with the DisplayPort cable connected.
 
-All my attempts so far to get this to work with nouveau have been using the
-"Discrete" setting - I don't really care about switching between cards on the
-fly, I'd just like to be able to use the external DisplayPort connector.
+I can try enabling various bits of debugging within the nouveau driver and
+report back the results if anyone can point me in the right direction?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351762161.D1d51.12245
-Date: Thu, 1 Nov 2012 09:29:21 +0000
+--1351763002.7D6f3FE1.14366
+Date: Thu, 1 Nov 2012 09:43:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,23 +62,22 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9+optimus] Unable to start X on ThinkPad T420s laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9+optimus] Unable to start X on ThinkPad T420s laptop"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
               from <span class="vcard"><a class="email" href="mailto:mark.cave-ayland&#64;ilande.co.uk" title="Mark Cave-Ayland &lt;mark.cave-ayland&#64;ilande.co.uk&gt;"> <span class="fn">Mark Cave-Ayland</span></a>
 </span></b>
-        <pre>Hmmm so this could be Optimus related? In the BIOS, the Display has 3 separate
-modes:
+        <pre>Okay it seems that the bug is in the control/initialisation of the DisplayPort. 
 
-- Integrated (works, using Intel driver)
-- Discrete (uses nouveau driver)
-- Optimus
+If I leave the DisplayPort connector disconnected, then I can start X using the
+nouveau driver on the in-built LVDS display. If I then connect the DisplayPort
+connector, it shows up in xrandr but trying to enable it results in the same
+&quot;hang&quot; as trying to boot with the DisplayPort cable connected.
 
-All my attempts so far to get this to work with nouveau have been using the
-&quot;Discrete&quot; setting - I don't really care about switching between cards on the
-fly, I'd just like to be able to use the external DisplayPort connector.</pre>
+I can try enabling various bits of debugging within the nouveau driver and
+report back the results if anyone can point me in the right direction?</pre>
         </div>
       </p>
       <hr>
@@ -91,9 +89,9 @@ fly, I'd just like to be able to use the external DisplayPort connector.</pre>
     </body>
 </html>
 
---1351762161.D1d51.12245--
+--1351763002.7D6f3FE1.14366--
 
---===============1043855514==
+--===============1743189093==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +102,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1043855514==--
+--===============1743189093==--
