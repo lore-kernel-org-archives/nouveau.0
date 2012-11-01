@@ -1,8 +1,7 @@
 From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/4] nouveau: Use helper function
-	nouveau_kernel_mode_enabled()
-Date: Thu,  1 Nov 2012 14:40:56 +0000
-Message-ID: <1351780858-13631-3-git-send-email-emil.l.velikov@gmail.com>
+Subject: [PATCH 3/4] nouveau: Check for kms in NvPlatformProbe
+Date: Thu,  1 Nov 2012 14:40:57 +0000
+Message-ID: <1351780858-13631-4-git-send-email-emil.l.velikov@gmail.com>
 References: <1351780858-13631-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,98 +22,62 @@ List-Id: nouveau.vger.kernel.org
 
 Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- src/nv_driver.c | 64 ++++++---------------------------------------------------
- 1 file changed, 6 insertions(+), 58 deletions(-)
+ src/nv_driver.c | 18 ++++++++++++++----
+ 1 file changed, 14 insertions(+), 4 deletions(-)
 
 diff --git a/src/nv_driver.c b/src/nv_driver.c
-index eff0d47..911b05d 100644
+index 911b05d..c1a50cd 100644
 --- a/src/nv_driver.c
 +++ b/src/nv_driver.c
-@@ -319,6 +319,7 @@ nouveau_kernel_mode_enabled(ScrnInfoPtr pScrn, struct pci_device *pci_dev)
+@@ -57,6 +57,8 @@ static void    NVFreeScreen(FREE_SCREEN_ARGS_DECL);
  
- 	return TRUE;
- }
-+
+ static Bool	NVMapMem(ScrnInfoPtr pScrn);
+ static Bool	NVUnmapMem(ScrnInfoPtr pScrn);
++static Bool	nouveau_kernel_mode_enabled(ScrnInfoPtr pScrn,
++				   struct pci_device *pci_dev);
+ 
+ #define NOUVEAU_PCI_DEVICE(_vendor_id, _device_id)                             \
+ 	{ (_vendor_id), (_device_id), PCI_MATCH_ANY, PCI_MATCH_ANY,            \
+@@ -76,7 +78,9 @@ static Bool NVPciProbe (	DriverPtr 		drv,
+ #ifdef XSERVER_PLATFORM_BUS
  static Bool
- NVPciProbe(DriverPtr drv, int entity_num, struct pci_device *pci_dev,
- 	   intptr_t match_data)
-@@ -328,72 +329,19 @@ NVPciProbe(DriverPtr drv, int entity_num, struct pci_device *pci_dev,
- 		  (pci_dev->vendor_id << 16) | pci_dev->device_id, NULL },
- 		{ -1, -1, NULL }
- 	};
--	struct nouveau_device *dev = NULL;
- 	EntityInfoPtr pEnt = NULL;
- 	ScrnInfoPtr pScrn = NULL;
--	drmVersion *version;
--	int chipset, ret;
--	char *busid;
--
--	if (!xf86LoaderCheckSymbol("DRICreatePCIBusID")) {
--		xf86DrvMsg(-1, X_ERROR, "[drm] No DRICreatePCIBusID symbol\n");
--		return FALSE;
--	}
--	busid = DRICreatePCIBusID(pci_dev);
--
--	ret = nouveau_device_open(busid, &dev);
--	if (ret) {
--		xf86DrvMsg(-1, X_ERROR, "[drm] failed to open device\n");
--		free(busid);
--		return FALSE;
--	}
--
--	/* Check the version reported by the kernel module.  In theory we
--	 * shouldn't have to do this, as libdrm_nouveau will do its own checks.
--	 * But, we're currently using the kernel patchlevel to also version
--	 * the DRI interface.
--	 */
--	version = drmGetVersion(dev->fd);
--	xf86DrvMsg(-1, X_INFO, "[drm] nouveau interface version: %d.%d.%d\n",
--		   version->version_major, version->version_minor,
--		   version->version_patchlevel);
--	drmFree(version);
--
--	chipset = dev->chipset;
--	nouveau_device_del(&dev);
--
--	ret = drmCheckModesettingSupported(busid);
--	free(busid);
--	if (ret) {
--		xf86DrvMsg(-1, X_ERROR, "[drm] KMS not enabled\n");
--		return FALSE;
--	}
--
--	switch (chipset & 0xf0) {
--	case 0x00:
--	case 0x10:
--	case 0x20:
--	case 0x30:
--	case 0x40:
--	case 0x60:
--	case 0x50:
--	case 0x80:
--	case 0x90:
--	case 0xa0:
--	case 0xc0:
--	case 0xd0:
--	case 0xe0:
--		break;
--	default:
--		xf86DrvMsg(-1, X_ERROR, "Unknown chipset: NV%02x\n", chipset);
--		return FALSE;
--	}
-+	int ret;
- 
- 	pScrn = xf86ConfigPciEntity(pScrn, 0, entity_num, NVChipsets,
- 				    NULL, NULL, NULL, NULL, NULL);
- 	if (!pScrn)
+ NVPlatformProbe(DriverPtr driver,
+-            int entity_num, int flags, struct xf86_platform_device *dev, intptr_t dev_match_data)
++		   int entity_num, int flags,
++		   struct xf86_platform_device *dev,
++		   intptr_t dev_match_data)
+ {
+ 	ScrnInfoPtr scrn = NULL;
+ 	uint32_t scr_flags = 0;
+@@ -84,12 +88,17 @@ NVPlatformProbe(DriverPtr driver,
+ 	if (!dev->pdev)
  		return FALSE;
  
-+	if (!nouveau_kernel_mode_enabled(pScrn, pci_dev)) {
+-        if (flags & PLATFORM_PROBE_GPU_SCREEN)
+-               scr_flags = XF86_ALLOCATE_GPU_SCREEN;
++	if (flags & PLATFORM_PROBE_GPU_SCREEN)
++		scr_flags = XF86_ALLOCATE_GPU_SCREEN;
+ 
+ 	scrn = xf86AllocateScreen(driver, scr_flags);
++	if (!scrn)
 +		return FALSE;
-+	}
+ 	xf86AddEntityToScreen(scrn, entity_num);
+ 
++	if (!nouveau_kernel_mode_enabled(scrn, dev->pdev))
++		return FALSE;
 +
- 	pScrn->driverVersion    = NV_VERSION;
- 	pScrn->driverName       = NV_DRIVER_NAME;
- 	pScrn->name             = NV_NAME;
+ 	scrn->driverVersion    = NV_VERSION;
+ 	scrn->driverName       = NV_DRIVER_NAME;
+ 	scrn->name             = NV_NAME;
+@@ -102,7 +111,8 @@ NVPlatformProbe(DriverPtr driver,
+ 	scrn->EnterVT          = NVEnterVT;
+ 	scrn->LeaveVT          = NVLeaveVT;
+ 	scrn->FreeScreen       = NVFreeScreen;
+-	return scrn != NULL;
++
++	return TRUE;
+ }
+ #endif
+ 
 -- 
 1.8.0
