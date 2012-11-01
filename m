@@ -1,14 +1,13 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 4/4] nouveau: fix entity handling in
-	NvPlatformProbe
-Date: Thu,  1 Nov 2012 14:40:58 +0000
-Message-ID: <1351780858-13631-5-git-send-email-emil.l.velikov@gmail.com>
-References: <1351780858-13631-1-git-send-email-emil.l.velikov@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 56347] NVPlatformProbe routine does not mark the
+ entity as Shared for ZaphodHeads.
+Date: Thu, 01 Nov 2012 14:49:07 +0000
+Message-ID: <bug-56347-8800-7o6aIhLfer@http.bugs.freedesktop.org/>
+References: <bug-56347-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0815380916=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1351780858-13631-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-56347-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +20,80 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ensure that the entity is shareable, making ZaphodHeads work again
-Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=56347
 
-Connect entity to screen - should fix relative screen positioning in xorg.conf
-Reported-by: shox on IRC
+--===============0815380916==
+Content-Type: multipart/alternative; boundary="1351781347.fc6Ab2.22068"; charset="us-ascii"
 
-Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- src/nv_driver.c | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/src/nv_driver.c b/src/nv_driver.c
-index c1a50cd..7c7f822 100644
---- a/src/nv_driver.c
-+++ b/src/nv_driver.c
-@@ -84,6 +84,7 @@ NVPlatformProbe(DriverPtr driver,
- {
- 	ScrnInfoPtr scrn = NULL;
- 	uint32_t scr_flags = 0;
-+	EntityInfoPtr pEnt = NULL;
- 
- 	if (!dev->pdev)
- 		return FALSE;
-@@ -112,6 +113,11 @@ NVPlatformProbe(DriverPtr driver,
- 	scrn->LeaveVT          = NVLeaveVT;
- 	scrn->FreeScreen       = NVFreeScreen;
- 
-+	xf86SetEntitySharable(entity_num);
-+
-+	pEnt = xf86GetEntityInfo(entity_num);
-+	xf86SetEntityInstanceForScreen(scrn, pEnt->index, xf86GetNumEntityInstances(pEnt->index) - 1);
-+	free(pEnt);
- 	return TRUE;
- }
- #endif
+--1351781347.fc6Ab2.22068
+Date: Thu, 1 Nov 2012 14:49:07 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=56347
+
+--- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Guys can you try the patch series as posted in here
+
+http://lists.freedesktop.org/archives/nouveau/2012-November/011347.html
+
+Only the last patch is needed in this case, although I have added a few more
+checks to be on the safe side
+
 -- 
-1.8.0
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1351781347.fc6Ab2.22068
+Date: Thu, 1 Nov 2012 14:49:07 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56347#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56347">bug 56347</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>Guys can you try the patch series as posted in here
+
+<a href="http://lists.freedesktop.org/archives/nouveau/2012-November/011347.html">http://lists.freedesktop.org/archives/nouveau/2012-November/011347.html</a>
+
+Only the last patch is needed in this case, although I have added a few more
+checks to be on the safe side</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1351781347.fc6Ab2.22068--
+
+--===============0815380916==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0815380916==--
