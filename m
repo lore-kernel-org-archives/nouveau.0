@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56601] 9600m GT HDMI output no video or audio.
-Date: Thu, 01 Nov 2012 23:22:17 +0000
-Message-ID: <bug-56601-8800-oMFB9XZl5C@http.bugs.freedesktop.org/>
+Date: Thu, 01 Nov 2012 23:22:48 +0000
+Message-ID: <bug-56601-8800-Xjvc8WH7tQ@http.bugs.freedesktop.org/>
 References: <bug-56601-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0332543734=="
+Content-Type: multipart/mixed; boundary="===============0007392411=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56601-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0332543734==
-Content-Type: multipart/alternative; boundary="1351812137.B6aC2B1.4872"; charset="us-ascii"
+--===============0007392411==
+Content-Type: multipart/alternative; boundary="1351812168.3Bab4ee1.4931"; charset="us-ascii"
 
 
---1351812137.B6aC2B1.4872
-Date: Thu, 1 Nov 2012 23:22:17 +0000
+--1351812168.3Bab4ee1.4931
+Date: Thu, 1 Nov 2012 23:22:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56601
 
---- Comment #6 from Kevin N. <vekinn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 69406
-  --> https://bugs.freedesktop.org/attachment.cgi?id=69406&action=edit
-dmesg hdmi plugged after X
+--- Comment #7 from Kevin N. <vekinn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 69407
+  --> https://bugs.freedesktop.org/attachment.cgi?id=69407&action=edit
+X log hdmi plugged after X
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351812137.B6aC2B1.4872
-Date: Thu, 1 Nov 2012 23:22:17 +0000
+--1351812168.3Bab4ee1.4931
+Date: Thu, 1 Nov 2012 23:22:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEEDINFO "
    title="NEEDINFO --- - 9600m GT HDMI output no video or audio."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56601#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56601#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEEDINFO "
    title="NEEDINFO --- - 9600m GT HDMI output no video or audio."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56601">bug 56601</a>
               from <span class="vcard"><a class="email" href="mailto:vekinn&#64;gmail.com" title="Kevin N. &lt;vekinn&#64;gmail.com&gt;"> <span class="fn">Kevin N.</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=69406" name="attach_69406" title="dmesg hdmi plugged after X">attachment 69406</a> <a href="attachment.cgi?id=69406&amp;action=edit" title="dmesg hdmi plugged after X">[details]</a></span>
-dmesg hdmi plugged after X</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=69407" name="attach_69407" title="X log hdmi plugged after X">attachment 69407</a> <a href="attachment.cgi?id=69407&amp;action=edit" title="X log hdmi plugged after X">[details]</a></span>
+X log hdmi plugged after X</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ dmesg hdmi plugged after X</pre>
     </body>
 </html>
 
---1351812137.B6aC2B1.4872--
+--1351812168.3Bab4ee1.4931--
 
---===============0332543734==
+--===============0007392411==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0332543734==--
+--===============0007392411==--
