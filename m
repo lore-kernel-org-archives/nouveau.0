@@ -1,7 +1,8 @@
 From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 3/4] nouveau: Check for kms in NvPlatformProbe
-Date: Thu,  1 Nov 2012 14:40:57 +0000
-Message-ID: <1351780858-13631-4-git-send-email-emil.l.velikov@gmail.com>
+Subject: [PATCH 4/4] nouveau: fix entity handling in
+	NvPlatformProbe
+Date: Thu,  1 Nov 2012 14:40:58 +0000
+Message-ID: <1351780858-13631-5-git-send-email-emil.l.velikov@gmail.com>
 References: <1351780858-13631-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -20,64 +21,40 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Ensure that the entity is shareable, making ZaphodHeads work again
+Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=56347
+
+Connect entity to screen - should fix relative screen positioning in xorg.conf
+Reported-by: shox on IRC
+
 Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- src/nv_driver.c | 18 ++++++++++++++----
- 1 file changed, 14 insertions(+), 4 deletions(-)
+ src/nv_driver.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/src/nv_driver.c b/src/nv_driver.c
-index 911b05d..c1a50cd 100644
+index c1a50cd..7c7f822 100644
 --- a/src/nv_driver.c
 +++ b/src/nv_driver.c
-@@ -57,6 +57,8 @@ static void    NVFreeScreen(FREE_SCREEN_ARGS_DECL);
- 
- static Bool	NVMapMem(ScrnInfoPtr pScrn);
- static Bool	NVUnmapMem(ScrnInfoPtr pScrn);
-+static Bool	nouveau_kernel_mode_enabled(ScrnInfoPtr pScrn,
-+				   struct pci_device *pci_dev);
- 
- #define NOUVEAU_PCI_DEVICE(_vendor_id, _device_id)                             \
- 	{ (_vendor_id), (_device_id), PCI_MATCH_ANY, PCI_MATCH_ANY,            \
-@@ -76,7 +78,9 @@ static Bool NVPciProbe (	DriverPtr 		drv,
- #ifdef XSERVER_PLATFORM_BUS
- static Bool
- NVPlatformProbe(DriverPtr driver,
--            int entity_num, int flags, struct xf86_platform_device *dev, intptr_t dev_match_data)
-+		   int entity_num, int flags,
-+		   struct xf86_platform_device *dev,
-+		   intptr_t dev_match_data)
+@@ -84,6 +84,7 @@ NVPlatformProbe(DriverPtr driver,
  {
  	ScrnInfoPtr scrn = NULL;
  	uint32_t scr_flags = 0;
-@@ -84,12 +88,17 @@ NVPlatformProbe(DriverPtr driver,
++	EntityInfoPtr pEnt = NULL;
+ 
  	if (!dev->pdev)
  		return FALSE;
- 
--        if (flags & PLATFORM_PROBE_GPU_SCREEN)
--               scr_flags = XF86_ALLOCATE_GPU_SCREEN;
-+	if (flags & PLATFORM_PROBE_GPU_SCREEN)
-+		scr_flags = XF86_ALLOCATE_GPU_SCREEN;
- 
- 	scrn = xf86AllocateScreen(driver, scr_flags);
-+	if (!scrn)
-+		return FALSE;
- 	xf86AddEntityToScreen(scrn, entity_num);
- 
-+	if (!nouveau_kernel_mode_enabled(scrn, dev->pdev))
-+		return FALSE;
-+
- 	scrn->driverVersion    = NV_VERSION;
- 	scrn->driverName       = NV_DRIVER_NAME;
- 	scrn->name             = NV_NAME;
-@@ -102,7 +111,8 @@ NVPlatformProbe(DriverPtr driver,
- 	scrn->EnterVT          = NVEnterVT;
+@@ -112,6 +113,11 @@ NVPlatformProbe(DriverPtr driver,
  	scrn->LeaveVT          = NVLeaveVT;
  	scrn->FreeScreen       = NVFreeScreen;
--	return scrn != NULL;
+ 
++	xf86SetEntitySharable(entity_num);
 +
-+	return TRUE;
++	pEnt = xf86GetEntityInfo(entity_num);
++	xf86SetEntityInstanceForScreen(scrn, pEnt->index, xf86GetNumEntityInstances(pEnt->index) - 1);
++	free(pEnt);
+ 	return TRUE;
  }
  #endif
- 
 -- 
 1.8.0
