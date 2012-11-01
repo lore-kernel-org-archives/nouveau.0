@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49736] piglit quick.driver tests kill X server on
-	nv43
-Date: Thu, 01 Nov 2012 17:38:29 +0000
-Message-ID: <bug-49736-8800-euow46hU8O@http.bugs.freedesktop.org/>
-References: <bug-49736-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 49731] wine 1.5.2 and 3Dmark2001se on nv43 hits
+ assertion in simplify_cmp: Assertion `inst->dst.index < 4096' failed
+Date: Thu, 01 Nov 2012 17:41:10 +0000
+Message-ID: <bug-49731-8800-FCEMuhHsex@http.bugs.freedesktop.org/>
+References: <bug-49731-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1740728502=="
+Content-Type: multipart/mixed; boundary="===============1334466961=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49736-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-49731-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1740728502==
-Content-Type: multipart/alternative; boundary="1351791509.417baAe01.18567"; charset="us-ascii"
+--===============1334466961==
+Content-Type: multipart/alternative; boundary="1351791670.cdDfB1.19051"; charset="us-ascii"
 
 
---1351791509.417baAe01.18567
-Date: Thu, 1 Nov 2012 17:38:29 +0000
+--1351791670.cdDfB1.19051
+Date: Thu, 1 Nov 2012 17:41:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=49736
+https://bugs.freedesktop.org/show_bug.cgi?id=49731
 
 Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
@@ -40,8 +40,7 @@ Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
          Resolution|---                         |WONTFIX
 
 --- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The bug is in the obsolete, unsupported and now missing gallium/nvfx. Consider
-updating Mesa 9.0 or greater that includes gallium/nv30
+This is a bug in the old nvfx driver. Update to mesa 9.0
 
 Marking as Resolved/Wontfix
 
@@ -49,8 +48,8 @@ Marking as Resolved/Wontfix
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351791509.417baAe01.18567
-Date: Thu, 1 Nov 2012 17:38:29 +0000
+--1351791670.cdDfB1.19051
+Date: Thu, 1 Nov 2012 17:41:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,8 +61,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - piglit quick.driver tests kill X server on nv43"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49736">bug 49736</a>
+   title="RESOLVED WONTFIX - wine 1.5.2 and 3Dmark2001se on nv43 hits assertion in simplify_cmp: Assertion `inst-&gt;dst.index &lt; 4096' failed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49731">bug 49731</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -91,16 +90,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - piglit quick.driver tests kill X server on nv43"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49736#c4">Comment # 4</a>
+   title="RESOLVED WONTFIX - wine 1.5.2 and 3Dmark2001se on nv43 hits assertion in simplify_cmp: Assertion `inst-&gt;dst.index &lt; 4096' failed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49731#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - piglit quick.driver tests kill X server on nv43"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49736">bug 49736</a>
+   title="RESOLVED WONTFIX - wine 1.5.2 and 3Dmark2001se on nv43 hits assertion in simplify_cmp: Assertion `inst-&gt;dst.index &lt; 4096' failed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49731">bug 49731</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>The bug is in the obsolete, unsupported and now missing gallium/nvfx. Consider
-updating Mesa 9.0 or greater that includes gallium/nv30
+        <pre>This is a bug in the old nvfx driver. Update to mesa 9.0
 
 Marking as Resolved/Wontfix</pre>
         </div>
@@ -114,9 +112,9 @@ Marking as Resolved/Wontfix</pre>
     </body>
 </html>
 
---1351791509.417baAe01.18567--
+--1351791670.cdDfB1.19051--
 
---===============1740728502==
+--===============1334466961==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,4 +125,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1740728502==--
+--===============1334466961==--
