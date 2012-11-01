@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56535] Resident evil 4 with wine: crash
-Date: Thu, 01 Nov 2012 21:30:24 +0000
-Message-ID: <bug-56535-8800-BI8S1KdU5z@http.bugs.freedesktop.org/>
-References: <bug-56535-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 45299] fullscreen GL window flickering with updates
+ in other windows
+Date: Thu, 01 Nov 2012 21:44:31 +0000
+Message-ID: <bug-45299-8800-YIfJ9rU2mQ@http.bugs.freedesktop.org/>
+References: <bug-45299-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2077085165=="
+Content-Type: multipart/mixed; boundary="===============1563061003=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56535-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-45299-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,63 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2077085165==
-Content-Type: multipart/alternative; boundary="1351805423.FE80630.22383"; charset="us-ascii"
+--===============1563061003==
+Content-Type: multipart/alternative; boundary="1351806271.CeCed2.24543"; charset="us-ascii"
 
 
---1351805423.FE80630.22383
-Date: Thu, 1 Nov 2012 21:30:23 +0000
+--1351806271.CeCed2.24543
+Date: Thu, 1 Nov 2012 21:44:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56535
+https://bugs.freedesktop.org/show_bug.cgi?id=45299
 
---- Comment #3 from KinG-InFeT <king.infet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-perhaps I did:
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-GNU gdb (GDB) 7.5
-Copyright (C) 2012 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
-and "show warranty" for details.
-This GDB was configured as "i686-pc-linux-gnu".
-For bug reporting instructions, please see:
-<http://www.gnu.org/software/gdb/bugs/>...
-Reading symbols from /usr/bin/wine...(no debugging symbols found)...done.
-(gdb) Starting program: /usr/bin/wine game.exe
-warning: Could not load shared library symbols for linux-gate.so.1.
-Do you need "set solib-search-path" or "set sysroot"?
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/usr/lib/libthread_db.so.1".
-[New Thread 0xb7ca9b40 (LWP 1288)]
-[Thread 0xb7ca9b40 (LWP 1288) exited]
-process 1284 is executing new program: /usr/bin/wine-preloader
-fixme:d3d:init_driver_info Unable to find a driver/device info for
-vendor_id=0x10de device_id=0x421 for driver_model=2
-fixme:win:EnumDisplayDevicesW ((null),0,0x7c7f608,0x00000000), stub!
-fixme:d3d_texture:wined3d_texture_generate_mipmaps texture 0x1b55a0 stub!
-[New LWP 1320]
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+            Product|Mesa                        |xorg
+          Component|Drivers/DRI/nouveau         |Driver/nouveau
 
-Program received signal SIGUSR1, User defined signal 1.
-[Switching to LWP 1320]
-0xb7fff424 in ?? ()
-(gdb) #0  0xb7fff424 in ?? ()
-#1  0xb7e84d08 in ?? ()
-#2  0xb7dc13fe in ?? ()
-(gdb) quit
-A debugging session is active.
+--- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This bug was fixed in march on xf86-video-nouveau side.
 
-    Inferior 1 [process 1284] will be killed.
-
-Quit anyway? (y or n) [answered Y; input not from terminal]
+If you can't update xf86-video-nouveau, you can workaround it by disabling
+pageflipping in xorg.conf (see man nouveau).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351805423.FE80630.22383
-Date: Thu, 1 Nov 2012 21:30:23 +0000
+--1351806271.CeCed2.24543
+Date: Thu, 1 Nov 2012 21:44:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -84,57 +61,76 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - fullscreen GL window flickering with updates in other windows"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=45299">bug 45299</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">QA Contact</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>xorg-team&#64;lists.x.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Product</td>
+           <td>Mesa
+           </td>
+           <td>xorg
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>Drivers/DRI/nouveau
+           </td>
+           <td>Driver/nouveau
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Resident evil 4 with wine: crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56535#c3">Comment # 3</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - fullscreen GL window flickering with updates in other windows"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=45299#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Resident evil 4 with wine: crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56535">bug 56535</a>
-              from <span class="vcard"><a class="email" href="mailto:king.infet&#64;gmail.com" title="KinG-InFeT &lt;king.infet&#64;gmail.com&gt;"> <span class="fn">KinG-InFeT</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - fullscreen GL window flickering with updates in other windows"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=45299">bug 45299</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>perhaps I did:
+        <pre>This bug was fixed in march on xf86-video-nouveau side.
 
-GNU gdb (GDB) 7.5
-Copyright (C) 2012 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later &lt;<a href="http://gnu.org/licenses/gpl.html">http://gnu.org/licenses/gpl.html</a>&gt;
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.  Type &quot;show copying&quot;
-and &quot;show warranty&quot; for details.
-This GDB was configured as &quot;i686-pc-linux-gnu&quot;.
-For bug reporting instructions, please see:
-&lt;<a href="http://www.gnu.org/software/gdb/bugs/">http://www.gnu.org/software/gdb/bugs/</a>&gt;...
-Reading symbols from /usr/bin/wine...(no debugging symbols found)...done.
-(gdb) Starting program: /usr/bin/wine game.exe
-warning: Could not load shared library symbols for linux-gate.so.1.
-Do you need &quot;set solib-search-path&quot; or &quot;set sysroot&quot;?
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library &quot;/usr/lib/libthread_db.so.1&quot;.
-[New Thread 0xb7ca9b40 (LWP 1288)]
-[Thread 0xb7ca9b40 (LWP 1288) exited]
-process 1284 is executing new program: /usr/bin/wine-preloader
-fixme:d3d:init_driver_info Unable to find a driver/device info for
-vendor_id=0x10de device_id=0x421 for driver_model=2
-fixme:win:EnumDisplayDevicesW ((null),0,0x7c7f608,0x00000000), stub!
-fixme:d3d_texture:wined3d_texture_generate_mipmaps texture 0x1b55a0 stub!
-[New LWP 1320]
-
-Program received signal SIGUSR1, User defined signal 1.
-[Switching to LWP 1320]
-0xb7fff424 in ?? ()
-(gdb) #0  0xb7fff424 in ?? ()
-#1  0xb7e84d08 in ?? ()
-#2  0xb7dc13fe in ?? ()
-(gdb) quit
-A debugging session is active.
-
-    Inferior 1 [process 1284] will be killed.
-
-Quit anyway? (y or n) [answered Y; input not from terminal]</pre>
+If you can't update xf86-video-nouveau, you can workaround it by disabling
+pageflipping in xorg.conf (see man nouveau).</pre>
         </div>
       </p>
       <hr>
@@ -146,9 +142,9 @@ Quit anyway? (y or n) [answered Y; input not from terminal]</pre>
     </body>
 </html>
 
---1351805423.FE80630.22383--
+--1351806271.CeCed2.24543--
 
---===============2077085165==
+--===============1563061003==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -159,4 +155,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2077085165==--
+--===============1563061003==--
