@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 48464] Crash when GLXVBlank set to true
-Date: Thu, 01 Nov 2012 20:52:59 +0000
-Message-ID: <bug-48464-8800-XBg7xYwMFe@http.bugs.freedesktop.org/>
-References: <bug-48464-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56347] NVPlatformProbe routine does not mark the
+ entity as Shared for ZaphodHeads.
+Date: Thu, 01 Nov 2012 21:12:32 +0000
+Message-ID: <bug-56347-8800-hJXeK8lP8r@http.bugs.freedesktop.org/>
+References: <bug-56347-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0038135086=="
+Content-Type: multipart/mixed; boundary="===============1658071948=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-48464-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-56347-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +21,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0038135086==
-Content-Type: multipart/alternative; boundary="1351803179.Ec837A6E2.16692"; charset="us-ascii"
+--===============1658071948==
+Content-Type: multipart/alternative; boundary="1351804352.Be871e2.19635"; charset="us-ascii"
 
 
---1351803179.Ec837A6E2.16692
-Date: Thu, 1 Nov 2012 20:52:59 +0000
+--1351804352.Be871e2.19635
+Date: Thu, 1 Nov 2012 21:12:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=48464
+https://bugs.freedesktop.org/show_bug.cgi?id=56347
 
---- Comment #4 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This bug should be fixed in xf86-video-nouveau 1.0.3.
+Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org> changed:
 
-http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=b4231dd715a8a7f86b04519b5f4e8a8d93c2f561
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |ASSIGNED
+
+--- Comment #4 from Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org> ---
+Nope, doesn't work. :(
+
+http://upload.nowaker.net/nwkr/1351803759_Xorg.0.log
+[  1809.910] (II) [drm] nouveau interface version: 1.0.0
+[  1809.910] Requested Entity already in use!
+[  1809.910] (II) [drm] nouveau interface version: 1.0.0
+[  1809.910] (II) [drm] nouveau interface version: 1.0.0
+[  1809.910] (EE) Screen 1 deleted because of no matching config section.
+
+I applied all the four patches.
+(full patch: http://upload.nowaker.net/nwkr/1351804213_xexaxo-diff)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351803179.Ec837A6E2.16692
-Date: Thu, 1 Nov 2012 20:52:59 +0000
+--1351804352.Be871e2.19635
+Date: Thu, 1 Nov 2012 21:12:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,22 +64,50 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:nowaker&#64;geozone.pl" title="Damian Nowak &lt;nowaker&#64;geozone.pl&gt;"> <span class="fn">Damian Nowak</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED --- - NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56347">bug 56347</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>ASSIGNED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Crash when GLXVBlank set to true"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48464#c4">Comment # 4</a>
+          bz_status_ASSIGNED "
+   title="ASSIGNED --- - NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56347#c4">Comment # 4</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Crash when GLXVBlank set to true"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48464">bug 48464</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+          bz_status_ASSIGNED "
+   title="ASSIGNED --- - NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56347">bug 56347</a>
+              from <span class="vcard"><a class="email" href="mailto:nowaker&#64;geozone.pl" title="Damian Nowak &lt;nowaker&#64;geozone.pl&gt;"> <span class="fn">Damian Nowak</span></a>
 </span></b>
-        <pre>This bug should be fixed in xf86-video-nouveau 1.0.3.
+        <pre>Nope, doesn't work. :(
 
-<a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=b4231dd715a8a7f86b04519b5f4e8a8d93c2f561">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=b4231dd715a8a7f86b04519b5f4e8a8d93c2f561</a></pre>
+<a href="http://upload.nowaker.net/nwkr/1351803759_Xorg.0.log">http://upload.nowaker.net/nwkr/1351803759_Xorg.0.log</a>
+[  1809.910] (II) [drm] nouveau interface version: 1.0.0
+[  1809.910] Requested Entity already in use!
+[  1809.910] (II) [drm] nouveau interface version: 1.0.0
+[  1809.910] (II) [drm] nouveau interface version: 1.0.0
+[  1809.910] (EE) Screen 1 deleted because of no matching config section.
+
+I applied all the four patches.
+(full patch: <a href="http://upload.nowaker.net/nwkr/1351804213_xexaxo-diff">http://upload.nowaker.net/nwkr/1351804213_xexaxo-diff</a>)</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +119,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1351803179.Ec837A6E2.16692--
+--1351804352.Be871e2.19635--
 
---===============0038135086==
+--===============1658071948==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +132,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0038135086==--
+--===============1658071948==--
