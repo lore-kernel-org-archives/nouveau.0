@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 44670] projectM doesn't work properly with nouveau.
-Date: Thu, 01 Nov 2012 19:19:21 +0000
-Message-ID: <bug-44670-8800-fySWlBdE7n@http.bugs.freedesktop.org/>
-References: <bug-44670-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 48464] Crash when GLXVBlank set to true
+Date: Thu, 01 Nov 2012 20:52:59 +0000
+Message-ID: <bug-48464-8800-XBg7xYwMFe@http.bugs.freedesktop.org/>
+References: <bug-48464-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0509336300=="
+Content-Type: multipart/mixed; boundary="===============0038135086=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-44670-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-48464-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,40 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0509336300==
-Content-Type: multipart/alternative; boundary="1351797561.Dc0f8E1.3644"; charset="us-ascii"
+--===============0038135086==
+Content-Type: multipart/alternative; boundary="1351803179.Ec837A6E2.16692"; charset="us-ascii"
 
 
---1351797561.Dc0f8E1.3644
-Date: Thu, 1 Nov 2012 19:19:21 +0000
+--1351803179.Ec837A6E2.16692
+Date: Thu, 1 Nov 2012 20:52:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=44670
+https://bugs.freedesktop.org/show_bug.cgi?id=48464
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #4 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This bug should be fixed in xf86-video-nouveau 1.0.3.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
-
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Are you still having problems with mesa 9.0 ?
-Does the output differ when using llvmpipe/softpipe
-
-Can you attach the dmesg and Xorg.0.log [1]
-
-
-Cheers
-
-[1] http://nouveau.freedesktop.org/wiki/Bugs
+http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=b4231dd715a8a7f86b04519b5f4e8a8d93c2f561
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351797561.Dc0f8E1.3644
-Date: Thu, 1 Nov 2012 19:19:21 +0000
+--1351803179.Ec837A6E2.16692
+Date: Thu, 1 Nov 2012 20:52:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,48 +49,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - projectM doesn't work properly with nouveau."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=44670">bug 44670</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - projectM doesn't work properly with nouveau."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=44670#c2">Comment # 2</a>
+          bz_status_NEW "
+   title="NEW --- - Crash when GLXVBlank set to true"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48464#c4">Comment # 4</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - projectM doesn't work properly with nouveau."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=44670">bug 44670</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+          bz_status_NEW "
+   title="NEW --- - Crash when GLXVBlank set to true"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48464">bug 48464</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Are you still having problems with mesa 9.0 ?
-Does the output differ when using llvmpipe/softpipe
+        <pre>This bug should be fixed in xf86-video-nouveau 1.0.3.
 
-Can you attach the dmesg and Xorg.0.log [1]
-
-
-Cheers
-
-[1] <a href="http://nouveau.freedesktop.org/wiki/Bugs">http://nouveau.freedesktop.org/wiki/Bugs</a></pre>
+<a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=b4231dd715a8a7f86b04519b5f4e8a8d93c2f561">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=b4231dd715a8a7f86b04519b5f4e8a8d93c2f561</a></pre>
         </div>
       </p>
       <hr>
@@ -114,9 +76,9 @@ Cheers
     </body>
 </html>
 
---1351797561.Dc0f8E1.3644--
+--1351803179.Ec837A6E2.16692--
 
---===============0509336300==
+--===============0038135086==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0509336300==--
+--===============0038135086==--
