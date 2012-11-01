@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56347] NVPlatformProbe routine does not mark the
- entity as Shared for ZaphodHeads.
-Date: Thu, 01 Nov 2012 14:49:07 +0000
-Message-ID: <bug-56347-8800-7o6aIhLfer@http.bugs.freedesktop.org/>
-References: <bug-56347-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51962] Raz's eyes flicker in Psychonauts on nv50
+Date: Thu, 01 Nov 2012 15:41:58 +0000
+Message-ID: <bug-51962-8800-70khCeH8Ed@http.bugs.freedesktop.org/>
+References: <bug-51962-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0815380916=="
+Content-Type: multipart/mixed; boundary="===============0158182042=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56347-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51962-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0815380916==
-Content-Type: multipart/alternative; boundary="1351781347.fc6Ab2.22068"; charset="us-ascii"
+--===============0158182042==
+Content-Type: multipart/alternative; boundary="1351784518.f08E254f1.31459"; charset="us-ascii"
 
 
---1351781347.fc6Ab2.22068
-Date: Thu, 1 Nov 2012 14:49:07 +0000
+--1351784518.f08E254f1.31459
+Date: Thu, 1 Nov 2012 15:41:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56347
+https://bugs.freedesktop.org/show_bug.cgi?id=51962
 
---- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Guys can you try the patch series as posted in here
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-http://lists.freedesktop.org/archives/nouveau/2012-November/011347.html
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-Only the last patch is needed in this case, although I have added a few more
-checks to be on the safe side
+--- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Marking as Resolved/Fixed
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351781347.fc6Ab2.22068
-Date: Thu, 1 Nov 2012 14:49:07 +0000
+--1351784518.f08E254f1.31459
+Date: Thu, 1 Nov 2012 15:41:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,25 +54,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Raz's eyes flicker in Psychonauts on nv50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51962">bug 51962</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56347#c3">Comment # 3</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Raz's eyes flicker in Psychonauts on nv50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51962#c4">Comment # 4</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56347">bug 56347</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Raz's eyes flicker in Psychonauts on nv50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51962">bug 51962</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Guys can you try the patch series as posted in here
-
-<a href="http://lists.freedesktop.org/archives/nouveau/2012-November/011347.html">http://lists.freedesktop.org/archives/nouveau/2012-November/011347.html</a>
-
-Only the last patch is needed in this case, although I have added a few more
-checks to be on the safe side</pre>
+        <pre>Marking as Resolved/Fixed</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +107,9 @@ checks to be on the safe side</pre>
     </body>
 </html>
 
---1351781347.fc6Ab2.22068--
+--1351784518.f08E254f1.31459--
 
---===============0815380916==
+--===============0158182042==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0815380916==--
+--===============0158182042==--
