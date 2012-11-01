@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
 	laptop
-Date: Thu, 01 Nov 2012 11:45:38 +0000
-Message-ID: <bug-56615-8800-pZPziiHzIi@http.bugs.freedesktop.org/>
+Date: Thu, 01 Nov 2012 11:50:35 +0000
+Message-ID: <bug-56615-8800-U76J8oy8PP@http.bugs.freedesktop.org/>
 References: <bug-56615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0192051731=="
+Content-Type: multipart/mixed; boundary="===============1652939482=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0192051731==
-Content-Type: multipart/alternative; boundary="1351770338.f30B42.30799"; charset="us-ascii"
+--===============1652939482==
+Content-Type: multipart/alternative; boundary="1351770635.5bA6e1.31529"; charset="us-ascii"
 
 
---1351770338.f30B42.30799
-Date: Thu, 1 Nov 2012 11:45:38 +0000
+--1351770635.5bA6e1.31529
+Date: Thu, 1 Nov 2012 11:50:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56615
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #7 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
+No - only the 3.2 stock wheezy kernel, and that would often freeze early when
+starting X and while it would find the DisplayPort it kept insisting that it
+wasn't connected.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NVD9+optimus] Unable to    |[NVD9] Unable to start X on
-                   |start X on ThinkPad T420s   |ThinkPad T420s laptop
-                   |laptop                      |
-
---- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Ah, sorry. I'm removing Optimus from bug title.
-
-Did it work correctly with previous kernels? 3.7 contains massive
-rewrite/rework of nouveau module, so it's possible it's a regression.
+I could try building the latest 3.6 kernel if you think that would help?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351770338.f30B42.30799
-Date: Thu, 1 Nov 2012 11:45:38 +0000
+--1351770635.5bA6e1.31529
+Date: Thu, 1 Nov 2012 11:50:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,43 +52,24 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NVD9+optimus] Unable to start X on ThinkPad T420s laptop
-           </td>
-           <td>[NVD9] Unable to start X on ThinkPad T420s laptop
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+              from <span class="vcard"><a class="email" href="mailto:mark.cave-ayland&#64;ilande.co.uk" title="Mark Cave-Ayland &lt;mark.cave-ayland&#64;ilande.co.uk&gt;"> <span class="fn">Mark Cave-Ayland</span></a>
 </span></b>
-        <pre>Ah, sorry. I'm removing Optimus from bug title.
+        <pre>No - only the 3.2 stock wheezy kernel, and that would often freeze early when
+starting X and while it would find the DisplayPort it kept insisting that it
+wasn't connected.
 
-Did it work correctly with previous kernels? 3.7 contains massive
-rewrite/rework of nouveau module, so it's possible it's a regression.</pre>
+I could try building the latest 3.6 kernel if you think that would help?</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +81,9 @@ rewrite/rework of nouveau module, so it's possible it's a regression.</pre>
     </body>
 </html>
 
---1351770338.f30B42.30799--
+--1351770635.5bA6e1.31529--
 
---===============0192051731==
+--===============1652939482==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0192051731==--
+--===============1652939482==--
