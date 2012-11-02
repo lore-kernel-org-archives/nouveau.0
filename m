@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48464] Crash when GLXVBlank set to true
-Date: Fri, 02 Nov 2012 10:42:31 +0000
-Message-ID: <bug-48464-8800-oxeeNvVbxE@http.bugs.freedesktop.org/>
+Date: Fri, 02 Nov 2012 10:42:53 +0000
+Message-ID: <bug-48464-8800-s7j2YlE3Q1@http.bugs.freedesktop.org/>
 References: <bug-48464-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0144962461=="
+Content-Type: multipart/mixed; boundary="===============0233695613=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-48464-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0144962461==
-Content-Type: multipart/alternative; boundary="1351852951.C8162.3185"; charset="us-ascii"
+--===============0233695613==
+Content-Type: multipart/alternative; boundary="1351852973.A608b6C5.3185"; charset="us-ascii"
 
 
---1351852951.C8162.3185
-Date: Fri, 2 Nov 2012 10:42:31 +0000
+--1351852973.A608b6C5.3185
+Date: Fri, 2 Nov 2012 10:42:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48464
 
---- Comment #7 from Kelly Doran <kel.p.doran-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 69425
-  --> https://bugs.freedesktop.org/attachment.cgi?id=69425&action=edit
-dmesg kernel log
+--- Comment #8 from Kelly Doran <kel.p.doran-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 69426
+  --> https://bugs.freedesktop.org/attachment.cgi?id=69426&action=edit
+Xorg server log
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351852951.C8162.3185
-Date: Fri, 2 Nov 2012 10:42:31 +0000
+--1351852973.A608b6C5.3185
+Date: Fri, 2 Nov 2012 10:42:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Crash when GLXVBlank set to true"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48464#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48464#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Crash when GLXVBlank set to true"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=48464">bug 48464</a>
               from <span class="vcard"><a class="email" href="mailto:kel.p.doran&#64;gmail.com" title="Kelly Doran &lt;kel.p.doran&#64;gmail.com&gt;"> <span class="fn">Kelly Doran</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=69425" name="attach_69425" title="dmesg kernel log">attachment 69425</a> <a href="attachment.cgi?id=69425&amp;action=edit" title="dmesg kernel log">[details]</a></span>
-dmesg kernel log</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=69426" name="attach_69426" title="Xorg server log">attachment 69426</a> <a href="attachment.cgi?id=69426&amp;action=edit" title="Xorg server log">[details]</a></span>
+Xorg server log</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ dmesg kernel log</pre>
     </body>
 </html>
 
---1351852951.C8162.3185--
+--1351852973.A608b6C5.3185--
 
---===============0144962461==
+--===============0233695613==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0144962461==--
+--===============0233695613==--
