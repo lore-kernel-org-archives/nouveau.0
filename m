@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 48464] Crash when GLXVBlank set to true
-Date: Fri, 02 Nov 2012 10:41:22 +0000
-Message-ID: <bug-48464-8800-V708o9pHyA@http.bugs.freedesktop.org/>
+Date: Fri, 02 Nov 2012 10:42:31 +0000
+Message-ID: <bug-48464-8800-oxeeNvVbxE@http.bugs.freedesktop.org/>
 References: <bug-48464-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0875282702=="
+Content-Type: multipart/mixed; boundary="===============0144962461=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-48464-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,44 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0875282702==
-Content-Type: multipart/alternative; boundary="1351852882.dC3c02.2927"; charset="us-ascii"
+--===============0144962461==
+Content-Type: multipart/alternative; boundary="1351852951.C8162.3185"; charset="us-ascii"
 
 
---1351852882.dC3c02.2927
-Date: Fri, 2 Nov 2012 10:41:22 +0000
+--1351852951.C8162.3185
+Date: Fri, 2 Nov 2012 10:42:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=48464
 
---- Comment #6 from Kelly Doran <kel.p.doran-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I am using the latest nouveau git kernel sources on top of 3.7.0-rc3,
-xf86-video-nouveau 1.0.3, mesa 9.0, and xorg-server 1.13.0, and still receive
-this error on a gtx580 when GLXVBlank is enabled.
-
-The screen freezes up seemingly when any opengl stuff gets rendered, even
-running glxinfo can freeze it up, but just starting a basic twm session or i3wm
-will not freeze it.  It runs fine when vblank is disabled with opengl...  I
-tried using proprietary firmware as suggested in IRC but that did not help.
-
-The screen just freezes, the mouse starts slowing down and then freezes, and
-then it can be moved again but X is completely frozen.  I can switch to a
-different tty but it only appears in a small box in the upper left hand corner
-and the rest of the screen is what it was when X froze.  The tty is all
-corrupted too... but you can see text changes when you type, and I can copy
-logs and reboot so its sort of working...
-
-Is there anything else I can do to try to help track this bug down?  I will
-attach logs but they don't seem to indicate any errors other than the gpu
-locking up.
+--- Comment #7 from Kelly Doran <kel.p.doran-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 69425
+  --> https://bugs.freedesktop.org/attachment.cgi?id=69425&action=edit
+dmesg kernel log
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351852882.dC3c02.2927
-Date: Fri, 2 Nov 2012 10:41:22 +0000
+--1351852951.C8162.3185
+Date: Fri, 2 Nov 2012 10:42:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,32 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Crash when GLXVBlank set to true"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48464#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48464#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Crash when GLXVBlank set to true"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=48464">bug 48464</a>
               from <span class="vcard"><a class="email" href="mailto:kel.p.doran&#64;gmail.com" title="Kelly Doran &lt;kel.p.doran&#64;gmail.com&gt;"> <span class="fn">Kelly Doran</span></a>
 </span></b>
-        <pre>I am using the latest nouveau git kernel sources on top of 3.7.0-rc3,
-xf86-video-nouveau 1.0.3, mesa 9.0, and xorg-server 1.13.0, and still receive
-this error on a gtx580 when GLXVBlank is enabled.
-
-The screen freezes up seemingly when any opengl stuff gets rendered, even
-running glxinfo can freeze it up, but just starting a basic twm session or i3wm
-will not freeze it.  It runs fine when vblank is disabled with opengl...  I
-tried using proprietary firmware as suggested in IRC but that did not help.
-
-The screen just freezes, the mouse starts slowing down and then freezes, and
-then it can be moved again but X is completely frozen.  I can switch to a
-different tty but it only appears in a small box in the upper left hand corner
-and the rest of the screen is what it was when X froze.  The tty is all
-corrupted too... but you can see text changes when you type, and I can copy
-logs and reboot so its sort of working...
-
-Is there anything else I can do to try to help track this bug down?  I will
-attach logs but they don't seem to indicate any errors other than the gpu
-locking up.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=69425" name="attach_69425" title="dmesg kernel log">attachment 69425</a> <a href="attachment.cgi?id=69425&amp;action=edit" title="dmesg kernel log">[details]</a></span>
+dmesg kernel log</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +75,9 @@ locking up.</pre>
     </body>
 </html>
 
---1351852882.dC3c02.2927--
+--1351852951.C8162.3185--
 
---===============0875282702==
+--===============0144962461==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0875282702==--
+--===============0144962461==--
