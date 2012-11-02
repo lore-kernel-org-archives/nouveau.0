@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56502] regression: gnome 3 & cinnamon desktop moves
- up and down in virtualbox
-Date: Fri, 02 Nov 2012 00:18:41 +0000
-Message-ID: <bug-56502-8800-8vFE3xpBXx@http.bugs.freedesktop.org/>
-References: <bug-56502-8800@http.bugs.freedesktop.org/>
+From: "Emil Velikov" <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 0/4] nouveau: xserver 1.13 compat fixes
+Date: Fri, 02 Nov 2012 00:51:05 -0000
+Message-ID: <op.wm4fbfzs8t7z9u@arch-laptop>
+References: <1351780858-13631-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0333446952=="
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56502-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1351780858-13631-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,105 +20,37 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On Thu, 01 Nov 2012 14:40:54 -0000, Emil Velikov wrote:
 
---===============0333446952==
-Content-Type: multipart/alternative; boundary="1351815521.5aC4d71.11111"; charset="us-ascii"
+> Here are a few patches adding some missing functions in
+> NvPlatformProbe, which iirc is being used as of xserver 1.13
+>
+> First patch adds a nouveau_kernel_mode_enabled helper, similar
+> to xf86-video-radeon
+> Second and third use the function in Nv{Pci,Platform}Probe
+> And last one ensures we can still use ZaphodHead and relative
+> head positioning via xorg.conf
+>
+> The coding style may be a bit off, despite my best attempts
+>
+> Please review and comment
 
+A few notes
+* patch1 - it may be better to split the function to has_kms and
+is_gpu_supported
+* patch2 - introduced a minor memory leak, when has_kms fails
+* patch3 - is ok
+* patch4 - is incomplete, it turns out that we need to explicitly check
+if IsSharable and SetShared() it. Note radeon and others would need a
+similar fix. Intel is OK
 
---1351815521.5aC4d71.11111
-Date: Fri, 2 Nov 2012 00:18:41 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+I'm planning to consolidate the common parts of Nv{Pci,Platform}Probe()
+into a common function, and send another series
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56502
+~Emil
 
-thepouar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #3 from thepouar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-it looks like it got fixed in git
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1351815521.5aC4d71.11111
-Date: Fri, 2 Nov 2012 00:18:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:thepouar&#64;gmail.com" title="thepouar&#64;gmail.com">thepouar&#64;gmail.com</a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - regression: gnome 3 &amp; cinnamon desktop moves up and down in virtualbox"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56502">bug 56502</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - regression: gnome 3 &amp; cinnamon desktop moves up and down in virtualbox"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56502#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - regression: gnome 3 &amp; cinnamon desktop moves up and down in virtualbox"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56502">bug 56502</a>
-              from <span class="vcard"><a class="email" href="mailto:thepouar&#64;gmail.com" title="thepouar&#64;gmail.com">thepouar&#64;gmail.com</a>
-</span></b>
-        <pre>it looks like it got fixed in git</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1351815521.5aC4d71.11111--
-
---===============0333446952==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0333446952==--
+>
+>   [PATCH 1/4] nouveau: add nouveau_kernel_mode_enabled()
+>  [PATCH 2/4] nouveau: Use helper function
+>  [PATCH 3/4] nouveau: Check for kms in NvPlatformProbe
+>  [PATCH 4/4] nouveau: fix entity handling in NvPlatformProbe
