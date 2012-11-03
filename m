@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47442] nvfx_screen_get_param:95 - Warning: unknown
-	PIPE_CAP
-Date: Sat, 03 Nov 2012 17:22:46 +0000
-Message-ID: <bug-47442-8800-wtwZD5tu2e@http.bugs.freedesktop.org/>
-References: <bug-47442-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56347] NVPlatformProbe routine does not mark the
+ entity as Shared for ZaphodHeads.
+Date: Sat, 03 Nov 2012 19:57:55 +0000
+Message-ID: <bug-56347-8800-rSLy2kaCoJ@http.bugs.freedesktop.org/>
+References: <bug-56347-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2032303029=="
+Content-Type: multipart/mixed; boundary="===============0112069181=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47442-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-56347-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2032303029==
-Content-Type: multipart/alternative; boundary="1351963367.3f664.10121"; charset="us-ascii"
+--===============0112069181==
+Content-Type: multipart/alternative; boundary="1351972674.E7EfeE2.31226"; charset="us-ascii"
 
 
---1351963367.3f664.10121
-Date: Sat, 3 Nov 2012 17:22:47 +0000
+--1351972674.E7EfeE2.31226
+Date: Sat, 3 Nov 2012 19:57:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47442
+https://bugs.freedesktop.org/show_bug.cgi?id=56347
 
-Andreas Boll <andreas.boll.dev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #6 from rodrigo <rodrigorivascosta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I have this very same bug and just tested your patch over the master/HEAD of
+today. It works like a charm!
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|NOTABUG                     |FIXED
-
---- Comment #5 from Andreas Boll <andreas.boll.dev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Fixed with d7c9fcf6bfc3398310a4a2503806627ab79d68a5
+You made my day. Thank you.
+--
+Rodrigo
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1351963367.3f664.10121
-Date: Sat, 3 Nov 2012 17:22:47 +0000
+--1351972674.E7EfeE2.31226
+Date: Sat, 3 Nov 2012 19:57:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,40 +53,25 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:andreas.boll.dev&#64;gmail.com" title="Andreas Boll &lt;andreas.boll.dev&#64;gmail.com&gt;"> <span class="fn">Andreas Boll</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nvfx_screen_get_param:95 - Warning: unknown PIPE_CAP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47442">bug 47442</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>NOTABUG
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nvfx_screen_get_param:95 - Warning: unknown PIPE_CAP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47442#c5">Comment # 5</a>
+          bz_status_ASSIGNED "
+   title="ASSIGNED --- - NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56347#c6">Comment # 6</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nvfx_screen_get_param:95 - Warning: unknown PIPE_CAP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47442">bug 47442</a>
-              from <span class="vcard"><a class="email" href="mailto:andreas.boll.dev&#64;gmail.com" title="Andreas Boll &lt;andreas.boll.dev&#64;gmail.com&gt;"> <span class="fn">Andreas Boll</span></a>
+          bz_status_ASSIGNED "
+   title="ASSIGNED --- - NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56347">bug 56347</a>
+              from <span class="vcard"><a class="email" href="mailto:rodrigorivascosta&#64;gmail.com" title="rodrigo &lt;rodrigorivascosta&#64;gmail.com&gt;"> <span class="fn">rodrigo</span></a>
 </span></b>
-        <pre>Fixed with d7c9fcf6bfc3398310a4a2503806627ab79d68a5</pre>
+        <pre>I have this very same bug and just tested your patch over the master/HEAD of
+today. It works like a charm!
+
+You made my day. Thank you.
+--
+Rodrigo</pre>
         </div>
       </p>
       <hr>
@@ -99,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1351963367.3f664.10121--
+--1351972674.E7EfeE2.31226--
 
---===============2032303029==
+--===============0112069181==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -112,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2032303029==--
+--===============0112069181==--
