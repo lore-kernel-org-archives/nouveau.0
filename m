@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56347] NVPlatformProbe routine does not mark the
- entity as Shared for ZaphodHeads.
-Date: Sat, 03 Nov 2012 19:57:55 +0000
-Message-ID: <bug-56347-8800-rSLy2kaCoJ@http.bugs.freedesktop.org/>
-References: <bug-56347-8800@http.bugs.freedesktop.org/>
+From: ht-zOt1CrANNomHCRyBVyKX4rVCufUGDwFn@public.gmane.org
+Subject: DSD Audio Support Over HDMI
+Date: Sat, 03 Nov 2012 23:05:12 +0000
+Message-ID: <E1TUmm8-0008yg-6P@pr-webmail-2.demon.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0112069181=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56347-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,80 +18,4 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0112069181==
-Content-Type: multipart/alternative; boundary="1351972674.E7EfeE2.31226"; charset="us-ascii"
-
-
---1351972674.E7EfeE2.31226
-Date: Sat, 3 Nov 2012 19:57:54 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=56347
-
---- Comment #6 from rodrigo <rodrigorivascosta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I have this very same bug and just tested your patch over the master/HEAD of
-today. It works like a charm!
-
-You made my day. Thank you.
---
-Rodrigo
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1351972674.E7EfeE2.31226
-Date: Sat, 3 Nov 2012 19:57:54 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED --- - NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56347#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED --- - NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56347">bug 56347</a>
-              from <span class="vcard"><a class="email" href="mailto:rodrigorivascosta&#64;gmail.com" title="rodrigo &lt;rodrigorivascosta&#64;gmail.com&gt;"> <span class="fn">rodrigo</span></a>
-</span></b>
-        <pre>I have this very same bug and just tested your patch over the master/HEAD of
-today. It works like a charm!
-
-You made my day. Thank you.
---
-Rodrigo</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1351972674.E7EfeE2.31226--
-
---===============0112069181==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0112069181==--
+Does anyone know if this would be possible to implement within the driver? Is the lack of support within the official drivers a hardware restriction?
