@@ -1,11 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56748] New: [NVAF] Graphic Elements Displayed
-	Partially
-Date: Sun, 04 Nov 2012 17:26:37 +0000
-Message-ID: <bug-56748-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 32341] nouveau only reads half the EDID.
+Date: Sun, 04 Nov 2012 18:05:21 +0000
+Message-ID: <bug-32341-8800-NpxyrJV3Zi@http.bugs.freedesktop.org/>
+References: <bug-32341-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0259314090=="
+Content-Type: multipart/mixed; boundary="===============1472570621=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-32341-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,47 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0259314090==
-Content-Type: multipart/alternative; boundary="1352049997.cd7c3Ad1.4745"; charset="us-ascii"
+--===============1472570621==
+Content-Type: multipart/alternative; boundary="1352052321.14FbDa662.12299"; charset="us-ascii"
 
 
---1352049997.cd7c3Ad1.4745
-Date: Sun, 4 Nov 2012 17:26:37 +0000
+--1352052321.14FbDa662.12299
+Date: Sun, 4 Nov 2012 18:05:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56748
+https://bugs.freedesktop.org/show_bug.cgi?id=32341
 
-          Priority: medium
-            Bug ID: 56748
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NVAF] Graphic Elements Displayed Partially
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: major
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: nihilhill-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 69526
+  --> https://bugs.freedesktop.org/attachment.cgi?id=69526&action=edit
+Make the server aware when the edid is larger than 128 bytes
 
-Created attachment 69525
-  --> https://bugs.freedesktop.org/attachment.cgi?id=69525&action=edit
-dmesg output
+Ever since nouveau has done KMS only, it has been using the drm core to fetch
+the edid.
 
-When X starts things appear partially drawn (the bottom half of the root pixmap
-is black, fonts are invisible).
-
-It makes X unusable.
+With the patch attached, xrandr & X print the complete edid rather than just
+the first block (the header)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1352049997.cd7c3Ad1.4745
-Date: Sun, 4 Nov 2012 17:26:37 +0000
+--1352052321.14FbDa662.12299
+Date: Sun, 4 Nov 2012 18:05:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,102 +55,27 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAF] Graphic Elements Displayed Partially"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56748">56748</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVAF] Graphic Elements Displayed Partially
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>nihilhill&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=69525" name="attach_69525" title="dmesg output">attachment 69525</a> <a href="attachment.cgi?id=69525&amp;action=edit" title="dmesg output">[details]</a></span>
-dmesg output
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nouveau only reads half the EDID."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=32341#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nouveau only reads half the EDID."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=32341">bug 32341</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=69526" name="attach_69526" title="Make the server aware when the edid is larger than 128 bytes">attachment 69526</a> <a href="attachment.cgi?id=69526&amp;action=edit" title="Make the server aware when the edid is larger than 128 bytes">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=32341&amp;attachment=69526'>[review]</a>
+Make the server aware when the edid is larger than 128 bytes
 
-When X starts things appear partially drawn (the bottom half of the root pixmap
-is black, fonts are invisible).
+Ever since nouveau has done KMS only, it has been using the drm core to fetch
+the edid.
 
-It makes X unusable.</pre>
+With the patch attached, xrandr &amp; X print the complete edid rather than just
+the first block (the header)</pre>
         </div>
       </p>
       <hr>
@@ -174,9 +87,9 @@ It makes X unusable.</pre>
     </body>
 </html>
 
---1352049997.cd7c3Ad1.4745--
+--1352052321.14FbDa662.12299--
 
---===============0259314090==
+--===============1472570621==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -187,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0259314090==--
+--===============1472570621==--
