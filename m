@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 48090] Spam of system log with EDID messages
-Date: Sun, 04 Nov 2012 09:23:14 +0000
-Message-ID: <bug-48090-8800-XUDwuURfia@http.bugs.freedesktop.org/>
-References: <bug-48090-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56347] NVPlatformProbe routine does not mark the
+ entity as Shared for ZaphodHeads.
+Date: Sun, 04 Nov 2012 13:53:23 +0000
+Message-ID: <bug-56347-8800-SFxlzIGIql@http.bugs.freedesktop.org/>
+References: <bug-56347-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1153609417=="
+Content-Type: multipart/mixed; boundary="===============1360860946=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-48090-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-56347-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1153609417==
-Content-Type: multipart/alternative; boundary="1352020994.D7aD081.27962"; charset="us-ascii"
+--===============1360860946==
+Content-Type: multipart/alternative; boundary="1352037203.Ef473.29849"; charset="us-ascii"
 
 
---1352020994.D7aD081.27962
-Date: Sun, 4 Nov 2012 09:23:14 +0000
+--1352037203.Ef473.29849
+Date: Sun, 4 Nov 2012 13:53:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=48090
+https://bugs.freedesktop.org/show_bug.cgi?id=56347
 
---- Comment #3 from mieszcz-QwMmmZtx9AKLlq1WhhkdqA@public.gmane.org ---
-Emil thank you for the tip, it acts good as workaround.
-Now I just compiled new kernel with support of nouveau.
-And except of above described log spamming it works perfectly.
-
-But I don't understand one thing. Why the driver is mentioning different EDID
-data in the logs, and different in 
-/sys/class/drm/card0/card0-eDP-1
-
-While status of other video outputs is disabled
+--- Comment #7 from Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org> ---
+Yeah, it works. Just like before, you can add me to Tested-By in the commit.
+Can't wait to see that in the upstream. ;-)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1352020994.D7aD081.27962
-Date: Sun, 4 Nov 2012 09:23:14 +0000
+--1352037203.Ef473.29849
+Date: Sun, 4 Nov 2012 13:53:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,24 +53,17 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - Spam of system log with EDID messages"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48090#c3">Comment # 3</a>
+          bz_status_ASSIGNED "
+   title="ASSIGNED --- - NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56347#c7">Comment # 7</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - Spam of system log with EDID messages"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48090">bug 48090</a>
-              from <span class="vcard"><a class="email" href="mailto:mieszcz&#64;mieszczak.com.pl" title="mieszcz&#64;mieszczak.com.pl">mieszcz&#64;mieszczak.com.pl</a>
+          bz_status_ASSIGNED "
+   title="ASSIGNED --- - NVPlatformProbe routine does not mark the entity as Shared for ZaphodHeads."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56347">bug 56347</a>
+              from <span class="vcard"><a class="email" href="mailto:nowaker&#64;geozone.pl" title="Damian Nowak &lt;nowaker&#64;geozone.pl&gt;"> <span class="fn">Damian Nowak</span></a>
 </span></b>
-        <pre>Emil thank you for the tip, it acts good as workaround.
-Now I just compiled new kernel with support of nouveau.
-And except of above described log spamming it works perfectly.
-
-But I don't understand one thing. Why the driver is mentioning different EDID
-data in the logs, and different in 
-/sys/class/drm/card0/card0-eDP-1
-
-While status of other video outputs is disabled</pre>
+        <pre>Yeah, it works. Just like before, you can add me to Tested-By in the commit.
+Can't wait to see that in the upstream. ;-)</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +75,9 @@ While status of other video outputs is disabled</pre>
     </body>
 </html>
 
---1352020994.D7aD081.27962--
+--1352037203.Ef473.29849--
 
---===============1153609417==
+--===============1360860946==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1153609417==--
+--===============1360860946==--
