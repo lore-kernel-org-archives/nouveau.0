@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56757] [regression][bisected][screenshots] nvfx ->
  nv30 driver rework causes regression in UrbanTerror4.2 (beta5)
-Date: Mon, 05 Nov 2012 07:42:26 +0000
-Message-ID: <bug-56757-8800-jE0HRtO05S@http.bugs.freedesktop.org/>
+Date: Mon, 05 Nov 2012 07:43:24 +0000
+Message-ID: <bug-56757-8800-qm4LrtP6QE@http.bugs.freedesktop.org/>
 References: <bug-56757-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1087222335=="
+Content-Type: multipart/mixed; boundary="===============1327791356=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56757-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1087222335==
-Content-Type: multipart/alternative; boundary="1352101346.AA5eD70.25959"; charset="us-ascii"
+--===============1327791356==
+Content-Type: multipart/alternative; boundary="1352101404.d25C00.26121"; charset="us-ascii"
 
 
---1352101346.AA5eD70.25959
-Date: Mon, 5 Nov 2012 07:42:26 +0000
+--1352101404.d25C00.26121
+Date: Mon, 5 Nov 2012 07:43:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56757
 
---- Comment #5 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 69537
-  --> https://bugs.freedesktop.org/attachment.cgi?id=69537&action=edit
-Loading screen, correct up to this point
+--- Comment #6 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 69538
+  --> https://bugs.freedesktop.org/attachment.cgi?id=69538&action=edit
+Loading screen, text shows first sign of corruption
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1352101346.AA5eD70.25959
-Date: Mon, 5 Nov 2012 07:42:26 +0000
+--1352101404.d25C00.26121
+Date: Mon, 5 Nov 2012 07:43:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][bisected][screenshots] nvfx -&gt; nv30 driver rework causes regression in UrbanTerror4.2 (beta5)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][bisected][screenshots] nvfx -&gt; nv30 driver rework causes regression in UrbanTerror4.2 (beta5)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56757">bug 56757</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=69537" name="attach_69537" title="Loading screen, correct up to this point">attachment 69537</a> <a href="attachment.cgi?id=69537&amp;action=edit" title="Loading screen, correct up to this point">[details]</a></span>
-Loading screen, correct up to this point</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=69538" name="attach_69538" title="Loading screen, text shows first sign of corruption">attachment 69538</a> <a href="attachment.cgi?id=69538&amp;action=edit" title="Loading screen, text shows first sign of corruption">[details]</a></span>
+Loading screen, text shows first sign of corruption</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ Loading screen, correct up to this point</pre>
     </body>
 </html>
 
---1352101346.AA5eD70.25959--
+--1352101404.d25C00.26121--
 
---===============1087222335==
+--===============1327791356==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1087222335==--
+--===============1327791356==--
