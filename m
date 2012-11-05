@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56757] [regression][bisected][screenshots] nvfx ->
  nv30 driver rework causes regression in UrbanTerror4.2 (beta5)
-Date: Mon, 05 Nov 2012 07:44:23 +0000
-Message-ID: <bug-56757-8800-KoLUjX2eiI@http.bugs.freedesktop.org/>
+Date: Mon, 05 Nov 2012 07:45:38 +0000
+Message-ID: <bug-56757-8800-6fFWKBZpUK@http.bugs.freedesktop.org/>
 References: <bug-56757-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1081071984=="
+Content-Type: multipart/mixed; boundary="===============1636263103=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56757-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1081071984==
-Content-Type: multipart/alternative; boundary="1352101463.E4a20.26206"; charset="us-ascii"
+--===============1636263103==
+Content-Type: multipart/alternative; boundary="1352101538.a16B0.26344"; charset="us-ascii"
 
 
---1352101463.E4a20.26206
-Date: Mon, 5 Nov 2012 07:44:23 +0000
+--1352101538.a16B0.26344
+Date: Mon, 5 Nov 2012 07:45:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56757
 
---- Comment #7 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 69539
-  --> https://bugs.freedesktop.org/attachment.cgi?id=69539&action=edit
-Loading screen, text corrupted progress never goes past this point
+--- Comment #8 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 69540
+  --> https://bugs.freedesktop.org/attachment.cgi?id=69540&action=edit
+In game, 80% of screen unusable, game itself seems fine though
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1352101463.E4a20.26206
-Date: Mon, 5 Nov 2012 07:44:23 +0000
+--1352101538.a16B0.26344
+Date: Mon, 5 Nov 2012 07:45:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][bisected][screenshots] nvfx -&gt; nv30 driver rework causes regression in UrbanTerror4.2 (beta5)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][bisected][screenshots] nvfx -&gt; nv30 driver rework causes regression in UrbanTerror4.2 (beta5)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56757">bug 56757</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=69539" name="attach_69539" title="Loading screen, text corrupted progress never goes past this point">attachment 69539</a> <a href="attachment.cgi?id=69539&amp;action=edit" title="Loading screen, text corrupted progress never goes past this point">[details]</a></span>
-Loading screen, text corrupted progress never goes past this point</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=69540" name="attach_69540" title="In game, 80% of screen unusable, game itself seems fine though">attachment 69540</a> <a href="attachment.cgi?id=69540&amp;action=edit" title="In game, 80% of screen unusable, game itself seems fine though">[details]</a></span>
+In game, 80% of screen unusable, game itself seems fine though</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ Loading screen, text corrupted progress never goes past this point</pre>
     </body>
 </html>
 
---1352101463.E4a20.26206--
+--1352101538.a16B0.26344--
 
---===============1081071984==
+--===============1636263103==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1081071984==--
+--===============1636263103==--
