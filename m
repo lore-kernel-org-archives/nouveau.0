@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56757] [regression][bisected][screenshots] nvfx ->
- nv30 driver rework causes regression in UrbanTerror4.2 (beta5)
-Date: Mon, 05 Nov 2012 14:21:55 +0000
-Message-ID: <bug-56757-8800-yHniTRL2sh@http.bugs.freedesktop.org/>
-References: <bug-56757-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56788] [nv96] Dota2 (wine) consistently crashes with
+ "WARNING: out of code space, evicting all shaders"
+Date: Mon, 05 Nov 2012 22:54:23 +0000
+Message-ID: <bug-56788-8800-KphvlUUGwh@http.bugs.freedesktop.org/>
+References: <bug-56788-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1279979025=="
+Content-Type: multipart/mixed; boundary="===============1286571899=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56757-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-56788-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1279979025==
-Content-Type: multipart/alternative; boundary="1352125315.ceEeaaF40.18111"; charset="us-ascii"
+--===============1286571899==
+Content-Type: multipart/alternative; boundary="1352156063.d1A71.23812"; charset="us-ascii"
 
 
---1352125315.ceEeaaF40.18111
-Date: Mon, 5 Nov 2012 14:21:55 +0000
+--1352156063.d1A71.23812
+Date: Mon, 5 Nov 2012 22:54:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56757
+https://bugs.freedesktop.org/show_bug.cgi?id=56788
 
---- Comment #17 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Ow I see, I used environment variables to redirect output in the logfiles.
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |.org                        |rg
+          Component|Drivers/DRI/Radeon          |Drivers/DRI/nouveau
+
+--- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Correcting component
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1352125315.ceEeaaF40.18111
-Date: Mon, 5 Nov 2012 14:21:55 +0000
+--1352156063.d1A71.23812
+Date: Mon, 5 Nov 2012 22:54:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -48,20 +56,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nv96] Dota2 (wine) consistently crashes with &quot;WARNING: out of code space, evicting all shaders&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56788">bug 56788</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>dri-devel&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>Drivers/DRI/Radeon
+           </td>
+           <td>Drivers/DRI/nouveau
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [regression][bisected][screenshots] nvfx -&gt; nv30 driver rework causes regression in UrbanTerror4.2 (beta5)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757#c17">Comment # 17</a>
+   title="NEW --- - [nv96] Dota2 (wine) consistently crashes with &quot;WARNING: out of code space, evicting all shaders&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56788#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [regression][bisected][screenshots] nvfx -&gt; nv30 driver rework causes regression in UrbanTerror4.2 (beta5)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757">bug 56757</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+   title="NEW --- - [nv96] Dota2 (wine) consistently crashes with &quot;WARNING: out of code space, evicting all shaders&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56788">bug 56788</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Ow I see, I used environment variables to redirect output in the logfiles.</pre>
+        <pre>Correcting component</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +109,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1352125315.ceEeaaF40.18111--
+--1352156063.d1A71.23812--
 
---===============1279979025==
+--===============1286571899==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +122,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1279979025==--
+--===============1286571899==--
