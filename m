@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56757] [regression][bisected][screenshots] nvfx ->
  nv30 driver rework causes regression in UrbanTerror4.2 (beta5)
-Date: Mon, 05 Nov 2012 11:54:05 +0000
-Message-ID: <bug-56757-8800-fwb1GY8Kro@http.bugs.freedesktop.org/>
+Date: Mon, 05 Nov 2012 11:54:54 +0000
+Message-ID: <bug-56757-8800-Q5Xtvjb6of@http.bugs.freedesktop.org/>
 References: <bug-56757-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0151326667=="
+Content-Type: multipart/mixed; boundary="===============0933115526=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56757-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0151326667==
-Content-Type: multipart/alternative; boundary="1352116444.aBC23A50.29438"; charset="us-ascii"
+--===============0933115526==
+Content-Type: multipart/alternative; boundary="1352116494.0D58e00.29566"; charset="us-ascii"
 
 
---1352116444.aBC23A50.29438
-Date: Mon, 5 Nov 2012 11:54:04 +0000
+--1352116494.0D58e00.29566
+Date: Mon, 5 Nov 2012 11:54:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56757
 
---- Comment #14 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-No additional output in dmesg. Care to eleborate on the 'nvfx & nv30' part? I'm
-booting the same kernel just different mesa/libdrm versions.
-
-Will it help to increase the kernels verbosity? Is that useful?
-
-I'm attaching a dmesg though...
+--- Comment #15 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 69559
+  --> https://bugs.freedesktop.org/attachment.cgi?id=69559&action=edit
+Dmesg of used kernel (3.7-rc4 + nouveau (which enables zcomp))
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1352116444.aBC23A50.29438
-Date: Mon, 5 Nov 2012 11:54:04 +0000
+--1352116494.0D58e00.29566
+Date: Mon, 5 Nov 2012 11:54:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,19 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][bisected][screenshots] nvfx -&gt; nv30 driver rework causes regression in UrbanTerror4.2 (beta5)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757#c14">Comment # 14</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][bisected][screenshots] nvfx -&gt; nv30 driver rework causes regression in UrbanTerror4.2 (beta5)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56757">bug 56757</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>No additional output in dmesg. Care to eleborate on the 'nvfx &amp; nv30' part? I'm
-booting the same kernel just different mesa/libdrm versions.
-
-Will it help to increase the kernels verbosity? Is that useful?
-
-I'm attaching a dmesg though...</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=69559" name="attach_69559" title="Dmesg of used kernel (3.7-rc4 + nouveau (which enables zcomp))">attachment 69559</a> <a href="attachment.cgi?id=69559&amp;action=edit" title="Dmesg of used kernel (3.7-rc4 + nouveau (which enables zcomp))">[details]</a></span>
+Dmesg of used kernel (3.7-rc4 + nouveau (which enables zcomp))</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +76,9 @@ I'm attaching a dmesg though...</pre>
     </body>
 </html>
 
---1352116444.aBC23A50.29438--
+--1352116494.0D58e00.29566--
 
---===============0151326667==
+--===============0933115526==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0151326667==--
+--===============0933115526==--
