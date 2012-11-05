@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56757] [regression][bisected][screenshots] nvfx ->
  nv30 driver rework causes regression in UrbanTerror4.2 (beta5)
-Date: Mon, 05 Nov 2012 07:40:55 +0000
-Message-ID: <bug-56757-8800-5ue6xUyckM@http.bugs.freedesktop.org/>
+Date: Mon, 05 Nov 2012 07:41:23 +0000
+Message-ID: <bug-56757-8800-Ovyrq9ulEl@http.bugs.freedesktop.org/>
 References: <bug-56757-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0461160817=="
+Content-Type: multipart/mixed; boundary="===============1905014083=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56757-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0461160817==
-Content-Type: multipart/alternative; boundary="1352101255.712a0.25827"; charset="us-ascii"
+--===============1905014083==
+Content-Type: multipart/alternative; boundary="1352101282.AaD1220.25867"; charset="us-ascii"
 
 
---1352101255.712a0.25827
-Date: Mon, 5 Nov 2012 07:40:55 +0000
+--1352101282.AaD1220.25867
+Date: Mon, 5 Nov 2012 07:41:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56757
 
---- Comment #3 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 69536
-  --> https://bugs.freedesktop.org/attachment.cgi?id=69536&action=edit
-Difference between UrbanTerror logs for your viewing convenience
+--- Comment #4 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+P.S. Please note the Mesa errors in the 'bad' log.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1352101255.712a0.25827
-Date: Mon, 5 Nov 2012 07:40:55 +0000
+--1352101282.AaD1220.25867
+Date: Mon, 5 Nov 2012 07:41:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][bisected][screenshots] nvfx -&gt; nv30 driver rework causes regression in UrbanTerror4.2 (beta5)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][bisected][screenshots] nvfx -&gt; nv30 driver rework causes regression in UrbanTerror4.2 (beta5)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56757">bug 56757</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=69536" name="attach_69536" title="Difference between UrbanTerror logs for your viewing convenience">attachment 69536</a> <a href="attachment.cgi?id=69536&amp;action=edit" title="Difference between UrbanTerror logs for your viewing convenience">[details]</a></span>
-Difference between UrbanTerror logs for your viewing convenience</pre>
+        <pre>P.S. Please note the Mesa errors in the 'bad' log.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +73,9 @@ Difference between UrbanTerror logs for your viewing convenience</pre>
     </body>
 </html>
 
---1352101255.712a0.25827--
+--1352101282.AaD1220.25867--
 
---===============0461160817==
+--===============1905014083==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0461160817==--
+--===============1905014083==--
