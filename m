@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56757] [regression][bisected][screenshots] nvfx ->
  nv30 driver rework causes regression in UrbanTerror4.2 (beta5)
-Date: Mon, 05 Nov 2012 07:47:32 +0000
-Message-ID: <bug-56757-8800-JBQlwxSX2K@http.bugs.freedesktop.org/>
+Date: Mon, 05 Nov 2012 07:48:26 +0000
+Message-ID: <bug-56757-8800-xepSe3gDnD@http.bugs.freedesktop.org/>
 References: <bug-56757-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1305340970=="
+Content-Type: multipart/mixed; boundary="===============0653129497=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56757-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1305340970==
-Content-Type: multipart/alternative; boundary="1352101652.D61b80.26641"; charset="us-ascii"
+--===============0653129497==
+Content-Type: multipart/alternative; boundary="1352101706.5F83370.26730"; charset="us-ascii"
 
 
---1352101652.D61b80.26641
-Date: Mon, 5 Nov 2012 07:47:32 +0000
+--1352101706.5F83370.26730
+Date: Mon, 5 Nov 2012 07:48:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56757
 
-Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #69540|0                           |1
-        is obsolete|                            |
-
---- Comment #10 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 69542
-  --> https://bugs.freedesktop.org/attachment.cgi?id=69542&action=edit
-In game, 80% of screen unusable, game itself seems fine though
+--- Comment #11 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 69543
+  --> https://bugs.freedesktop.org/attachment.cgi?id=69543&action=edit
+In game, 80% of screen unusable, game itself seems fine though note that
+loading screen still changes during gameplay
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1352101652.D61b80.26641
-Date: Mon, 5 Nov 2012 07:47:32 +0000
+--1352101706.5F83370.26730
+Date: Mon, 5 Nov 2012 07:48:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,42 +51,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [regression][bisected][screenshots] nvfx -&gt; nv30 driver rework causes regression in UrbanTerror4.2 (beta5)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757">bug 56757</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #69540 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][bisected][screenshots] nvfx -&gt; nv30 driver rework causes regression in UrbanTerror4.2 (beta5)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757#c10">Comment # 10</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][bisected][screenshots] nvfx -&gt; nv30 driver rework causes regression in UrbanTerror4.2 (beta5)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56757">bug 56757</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=69542" name="attach_69542" title="In game, 80% of screen unusable, game itself seems fine though">attachment 69542</a> <a href="attachment.cgi?id=69542&amp;action=edit" title="In game, 80% of screen unusable, game itself seems fine though">[details]</a></span>
-In game, 80% of screen unusable, game itself seems fine though</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=69543" name="attach_69543" title="In game, 80% of screen unusable, game itself seems fine though note that loading screen still changes during gameplay">attachment 69543</a> <a href="attachment.cgi?id=69543&amp;action=edit" title="In game, 80% of screen unusable, game itself seems fine though note that loading screen still changes during gameplay">[details]</a></span>
+In game, 80% of screen unusable, game itself seems fine though note that
+loading screen still changes during gameplay</pre>
         </div>
       </p>
       <hr>
@@ -104,9 +78,9 @@ In game, 80% of screen unusable, game itself seems fine though</pre>
     </body>
 </html>
 
---1352101652.D61b80.26641--
+--1352101706.5F83370.26730--
 
---===============1305340970==
+--===============0653129497==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -117,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1305340970==--
+--===============0653129497==--
