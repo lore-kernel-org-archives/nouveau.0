@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56340] [Ubuntu 10.04.4 LTS 32-bit] Severe
  instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2
  M64 graphics
-Date: Mon, 05 Nov 2012 04:06:58 +0000
-Message-ID: <bug-56340-8800-FwUqWUsXPB@http.bugs.freedesktop.org/>
+Date: Mon, 05 Nov 2012 04:17:09 +0000
+Message-ID: <bug-56340-8800-iQ4ihP9nbx@http.bugs.freedesktop.org/>
 References: <bug-56340-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1959371213=="
+Content-Type: multipart/mixed; boundary="===============1393489646=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56340-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,126 +22,114 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1959371213==
-Content-Type: multipart/alternative; boundary="1352088418.5FDeaB71.30525"; charset="us-ascii"
+--===============1393489646==
+Content-Type: multipart/alternative; boundary="1352089028.cBed0d1.31673"; charset="us-ascii"
 
 
---1352088418.5FDeaB71.30525
-Date: Mon, 5 Nov 2012 04:06:58 +0000
+--1352089028.cBed0d1.31673
+Date: Mon, 5 Nov 2012 04:17:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56340
 
---- Comment #4 from mypersonalmailbox1-O5WfVfzUwx8@public.gmane.org ---
-(In reply to comment #3)
-
+--- Comment #5 from mypersonalmailbox1-O5WfVfzUwx8@public.gmane.org ---
 Hi Emil,
 
-I have done a little more testing with 3 NVIDIA RIVA TNT2 64-based graphics
-cards and 1 Vanta-based graphics card.
-Before I share that information, I will respond to your comments.
+I have done a little more testing with NVIDIA RIVA TNT2 64-based graphics cards
+since I now have 4 of them available for testing.
+Here are my test results.
 
+Compaq desktop computer pulled PWA-G4000PRO:
 
-> To be honest it sounds like your motherboard is dying, not an issue caused
-> by nouveau
+- NV5M64
+- Revision 15 (from lspci -vvv)
+- 16 MB SDRAM
+- VGA BIOS Version: Unknown at this point
+- Manufacturer unknown
+- Likely pulled out of Compaq desktop computer (Compaq spare number on the
+back)
+- Booted fine 3 consecutive times with FIC VA-503+ mainboard without any
+freezes or crashes
 
-I have tested this mainboard with many many, NVIDIA, ATI Technologies, Matrox,
-and SiS graphics cards, and they all boot fine with FIC VA-503+ mainboard.
-I honestly don't think that the mainboard is dying based on this observation.
-I don't have another mainboard with Apollo MVP3 chipset to do comparison,
-either.
+ASUS AGP-3800 COMBAT/16M:
 
+- NV6
+- Revision 15 (from lspci -vvv)
+- 16 MB
+- VGA BIOS Version: V 2.05.13
+- Booted fine 3 consecutive times with FIC VA-503+ mainboard without any
+freezes or crashes
 
-> 
-> Nevertheless there are a few thing you can try
-> 
-> * Try the proprietary driver (aka the blob)? Do you have similar issue with
-> it?
-> Note: Not too sure if your card is supported
+VisionTek RIVA TNT2 64-based graphics card (official graphics card name
+unknown):
 
-You are right that NVIDIA binary device driver doesn't exist for Linux this
-new.
-Nouveau is the only choice I have for RIVA TNT2 64.
+- NV5M64
+- Revision 15 (from lspci -vvv)
+- 16 MB SDRAM
+- VGA BIOS Version: V 2.05.13.04
+- Will almost always crash during boot screen (occasionally, will get past the
+boot screen) with FIC VA-503+ mainboard
 
+Dell desktop computer pulled RIVA TNT2 64-based graphics card (official
+graphics card name unknown):
 
-> 
-> 
-> Ubuntu 10.04 uses quite (almost 3 years) old kernel - 2.6.32
+- NV5M64
+- Revision 15 (from lspci -vvv)
+- 16 MB SDRAM (I think)
+- Manufacturer unknown
+- VGA BIOS Version: Unknown at this point
+- Will almost always crash during boot screen (occasionally, will get past the
+boot screen) with FIC VA-503+ mainboard
 
-Yes, I do understand that.
-But Canonical still supports Ubuntu 10.04 LTS so I am trying to get the bug
-fixes incorporated before support goes out.
-I also don't like the views many Linux developers have, which is that old code
-is useless, and it is okay to keep the bugs there.
-Even if the kernel is old, and cannot support the lastest hardware, I still
-want the bugs in the older software to be fixed.
+Please note that all of these NVIDIA RIVA TNT2 64 and Vanta cards will work
+fine with other systems.
+Regarding the freeze pattern, the Ubuntu startup screen's red dots will stop
+flashing when the freeze occurs.
+However, interestingly, if I press buttons on the keyboard like Esc key often,
+it sometimes doesn't freeze during boot.
+Note that the mainboard is somewhat stable since these AGP graphics cards work
+fine with FIC VA-503+ mainboard.
 
+- NVIDIA
+  * GeForce 2 MX
+  * GeForce 4 MX
+  * GeForce FX 5200
+  * GeForce FX 5700
+  * GeForce FX 5950 Ultra (probably one of the most powerful graphics card that
+can be mated with this old mainboard)
 
-> * Can you try a distro based on a newer kernel. The best choice would be a
-> Fedora LiveCD
-> 
+- ATI Technologies
+  * Rage Pro Turbo
+  * Rage 128
+  * Rage 128 Pro
+  * Radeon
+  * Radeon 9250
+  * Radeon 9800 Pro
 
-Strangely, FIC VA-503+ mainboard doesn't even boot with Ubuntu 12.04 LTS due to
-some new bug of their boot loader code.
-I assume it has some issue with VIA Technologies Apollo MVP3 chipset and its
-southbridge VT82C586B.
-I did have to install a non-PAE version of the 32-bit kernel to a hard driver
-even be able to have a chance to boot with this mainboard, and it won't
-currently boot.
-The same hard drive will boot with another ASUS mainboard with VIA Technologies
-chipset (ASUS A7V266-E mainboard with VIA Technologies KT266A chipset) without
-any issues.
-I am planning to file a bug report regarding this issue soon.
+- SiS
+  * 305
+  * 315
 
+- Matrox
+  * G200
+  * G400
 
-> If you're still having those issues with nouveau and not with the blob
-> 
-> Issue 1. Take an image of the boot messages, during bootup if your system
-> crashes and the logs are not retrieveable
-> 
+Since all of these graphics cards will work fine, I don't think you can
+honestly say that it is on its last leg.
+Also note that one RIVA TNT2 64 and one Vanta card work fine whereas two others
+RIVA TNT2 64 cards will often freeze during boot.
+The one that I managed to file a bug report (the system used to collect all the
+log files) had the VisionTek version of the RIVA TNT2 64 graphics card in it.
+Again, all of these cards will work fine in other mainboards, including the 2
+that tend to cause the freeze with FIC VA-503+ mainboard.
+Regarding the reason for the freeze, I can think of the following.
 
-I believe I attached a .tar.gz file to this bug report.
-I had to do it this way because there are 12+ log files in there, and it was
-impractical to upload that many log files to Bugzilla.
-It just takes too much time to upload that many log files.
-If you want me to upload individual log files to Bugzilla, I will do it, but I
-don't want to.
-That's why I put all of them into 1 archive file.
-If you can download that and analyze it, I will appreciate.
+- Is Nouveau is accessing the VGA BIOS of the card during boot, and the VGA
+BIOS is a little buggy?
+- Does the VGA BIOS's initialization code configuring RIVA TNT2 64 in a certain
+way that contributes to the freeze with Apollo MVP3 chipset?
 
-
-> Issue 2. Try and tiangulate what causes the freeze, specific program,
-> suspend/resume cycle etc.
-> 
-
-The mainboard is so old that its ACPI doesn't support S3 State.
-I am not even sure it even supports S1 State.
-Although VIA Technologies "claims" to support Suspend to RAM in Apollo MVP3 and
-VT82C586B Southbridge (Refer to Apollo MVP3 and VT82C586B datasheet floating
-around the Internet.), I don't know any company that ever bothered to support
-this nice feature.
-This is typical of mainboards made around 1998 to 2001.
-I believe I have done enough testing to be able to reproduce the freeze very
-reliably.
-
-
-> In either case retrieve the logs [1] when the issue occurs
-> (ssh/serialconsole may help)
-> 
-> 
-> [1] http://nouveau.freedesktop.org/wiki/Bugs
-
-I let Ubuntu's ubuntu-bug upload number of log files for a bug report I
-reported to its launchpad.net bug report site.
-If you don't want to open a .tar.gz file, you can view the log files here.
-
-https://bugs.launchpad.net/ubuntu/+source/xorg/+bug/1065300
-
-
-Note that I do put a lot of effort writing these bug reports, trying to get
-Linux developers to fix bugs, and I do my best with my current limited
-knowledge of Linux to provide whatever information the developer needs.
 
 Regards,
 
@@ -151,8 +139,8 @@ fpgahardwareengineer
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1352088418.5FDeaB71.30525
-Date: Mon, 5 Nov 2012 04:06:58 +0000
+--1352089028.cBed0d1.31673
+Date: Mon, 5 Nov 2012 04:17:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -166,121 +154,109 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEEDINFO "
    title="NEEDINFO --- - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEEDINFO "
    title="NEEDINFO --- - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56340">bug 56340</a>
               from <span class="vcard"><a class="email" href="mailto:mypersonalmailbox1&#64;mail.com" title="mypersonalmailbox1&#64;mail.com">mypersonalmailbox1&#64;mail.com</a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=56340#c3">comment #3</a>)
+        <pre>Hi Emil,
 
-Hi Emil,
+I have done a little more testing with NVIDIA RIVA TNT2 64-based graphics cards
+since I now have 4 of them available for testing.
+Here are my test results.
 
-I have done a little more testing with 3 NVIDIA RIVA TNT2 64-based graphics
-cards and 1 Vanta-based graphics card.
-Before I share that information, I will respond to your comments.
+Compaq desktop computer pulled PWA-G4000PRO:
 
+- NV5M64
+- Revision 15 (from lspci -vvv)
+- 16 MB SDRAM
+- VGA BIOS Version: Unknown at this point
+- Manufacturer unknown
+- Likely pulled out of Compaq desktop computer (Compaq spare number on the
+back)
+- Booted fine 3 consecutive times with FIC VA-503+ mainboard without any
+freezes or crashes
 
-<span class="quote">&gt; To be honest it sounds like your motherboard is dying, not an issue caused
-&gt; by nouveau</span >
+ASUS AGP-3800 COMBAT/16M:
 
-I have tested this mainboard with many many, NVIDIA, ATI Technologies, Matrox,
-and SiS graphics cards, and they all boot fine with FIC VA-503+ mainboard.
-I honestly don't think that the mainboard is dying based on this observation.
-I don't have another mainboard with Apollo MVP3 chipset to do comparison,
-either.
+- NV6
+- Revision 15 (from lspci -vvv)
+- 16 MB
+- VGA BIOS Version: V 2.05.13
+- Booted fine 3 consecutive times with FIC VA-503+ mainboard without any
+freezes or crashes
 
+VisionTek RIVA TNT2 64-based graphics card (official graphics card name
+unknown):
 
-<span class="quote">&gt; 
-&gt; Nevertheless there are a few thing you can try
-&gt; 
-&gt; * Try the proprietary driver (aka the blob)? Do you have similar issue with
-&gt; it?
-&gt; Note: Not too sure if your card is supported</span >
+- NV5M64
+- Revision 15 (from lspci -vvv)
+- 16 MB SDRAM
+- VGA BIOS Version: V 2.05.13.04
+- Will almost always crash during boot screen (occasionally, will get past the
+boot screen) with FIC VA-503+ mainboard
 
-You are right that NVIDIA binary device driver doesn't exist for Linux this
-new.
-Nouveau is the only choice I have for RIVA TNT2 64.
+Dell desktop computer pulled RIVA TNT2 64-based graphics card (official
+graphics card name unknown):
 
+- NV5M64
+- Revision 15 (from lspci -vvv)
+- 16 MB SDRAM (I think)
+- Manufacturer unknown
+- VGA BIOS Version: Unknown at this point
+- Will almost always crash during boot screen (occasionally, will get past the
+boot screen) with FIC VA-503+ mainboard
 
-<span class="quote">&gt; 
-&gt; 
-&gt; Ubuntu 10.04 uses quite (almost 3 years) old kernel - 2.6.32</span >
+Please note that all of these NVIDIA RIVA TNT2 64 and Vanta cards will work
+fine with other systems.
+Regarding the freeze pattern, the Ubuntu startup screen's red dots will stop
+flashing when the freeze occurs.
+However, interestingly, if I press buttons on the keyboard like Esc key often,
+it sometimes doesn't freeze during boot.
+Note that the mainboard is somewhat stable since these AGP graphics cards work
+fine with FIC VA-503+ mainboard.
 
-Yes, I do understand that.
-But Canonical still supports Ubuntu 10.04 LTS so I am trying to get the bug
-fixes incorporated before support goes out.
-I also don't like the views many Linux developers have, which is that old code
-is useless, and it is okay to keep the bugs there.
-Even if the kernel is old, and cannot support the lastest hardware, I still
-want the bugs in the older software to be fixed.
+- NVIDIA
+  * GeForce 2 MX
+  * GeForce 4 MX
+  * GeForce FX 5200
+  * GeForce FX 5700
+  * GeForce FX 5950 Ultra (probably one of the most powerful graphics card that
+can be mated with this old mainboard)
 
+- ATI Technologies
+  * Rage Pro Turbo
+  * Rage 128
+  * Rage 128 Pro
+  * Radeon
+  * Radeon 9250
+  * Radeon 9800 Pro
 
-<span class="quote">&gt; * Can you try a distro based on a newer kernel. The best choice would be a
-&gt; Fedora LiveCD
-&gt; </span >
+- SiS
+  * 305
+  * 315
 
-Strangely, FIC VA-503+ mainboard doesn't even boot with Ubuntu 12.04 LTS due to
-some new bug of their boot loader code.
-I assume it has some issue with VIA Technologies Apollo MVP3 chipset and its
-southbridge VT82C586B.
-I did have to install a non-PAE version of the 32-bit kernel to a hard driver
-even be able to have a chance to boot with this mainboard, and it won't
-currently boot.
-The same hard drive will boot with another ASUS mainboard with VIA Technologies
-chipset (ASUS A7V266-E mainboard with VIA Technologies KT266A chipset) without
-any issues.
-I am planning to file a bug report regarding this issue soon.
+- Matrox
+  * G200
+  * G400
 
+Since all of these graphics cards will work fine, I don't think you can
+honestly say that it is on its last leg.
+Also note that one RIVA TNT2 64 and one Vanta card work fine whereas two others
+RIVA TNT2 64 cards will often freeze during boot.
+The one that I managed to file a bug report (the system used to collect all the
+log files) had the VisionTek version of the RIVA TNT2 64 graphics card in it.
+Again, all of these cards will work fine in other mainboards, including the 2
+that tend to cause the freeze with FIC VA-503+ mainboard.
+Regarding the reason for the freeze, I can think of the following.
 
-<span class="quote">&gt; If you're still having those issues with nouveau and not with the blob
-&gt; 
-&gt; Issue 1. Take an image of the boot messages, during bootup if your system
-&gt; crashes and the logs are not retrieveable
-&gt; </span >
+- Is Nouveau is accessing the VGA BIOS of the card during boot, and the VGA
+BIOS is a little buggy?
+- Does the VGA BIOS's initialization code configuring RIVA TNT2 64 in a certain
+way that contributes to the freeze with Apollo MVP3 chipset?
 
-I believe I attached a .tar.gz file to this bug report.
-I had to do it this way because there are 12+ log files in there, and it was
-impractical to upload that many log files to Bugzilla.
-It just takes too much time to upload that many log files.
-If you want me to upload individual log files to Bugzilla, I will do it, but I
-don't want to.
-That's why I put all of them into 1 archive file.
-If you can download that and analyze it, I will appreciate.
-
-
-<span class="quote">&gt; Issue 2. Try and tiangulate what causes the freeze, specific program,
-&gt; suspend/resume cycle etc.
-&gt; </span >
-
-The mainboard is so old that its ACPI doesn't support S3 State.
-I am not even sure it even supports S1 State.
-Although VIA Technologies &quot;claims&quot; to support Suspend to RAM in Apollo MVP3 and
-VT82C586B Southbridge (Refer to Apollo MVP3 and VT82C586B datasheet floating
-around the Internet.), I don't know any company that ever bothered to support
-this nice feature.
-This is typical of mainboards made around 1998 to 2001.
-I believe I have done enough testing to be able to reproduce the freeze very
-reliably.
-
-
-<span class="quote">&gt; In either case retrieve the logs [1] when the issue occurs
-&gt; (ssh/serialconsole may help)
-&gt; 
-&gt; 
-&gt; [1] <a href="http://nouveau.freedesktop.org/wiki/Bugs">http://nouveau.freedesktop.org/wiki/Bugs</a></span >
-
-I let Ubuntu's ubuntu-bug upload number of log files for a bug report I
-reported to its launchpad.net bug report site.
-If you don't want to open a .tar.gz file, you can view the log files here.
-
-<a href="https://bugs.launchpad.net/ubuntu/+source/xorg/+bug/1065300">https://bugs.launchpad.net/ubuntu/+source/xorg/+bug/1065300</a>
-
-
-Note that I do put a lot of effort writing these bug reports, trying to get
-Linux developers to fix bugs, and I do my best with my current limited
-knowledge of Linux to provide whatever information the developer needs.
 
 Regards,
 
@@ -296,9 +272,9 @@ fpgahardwareengineer</pre>
     </body>
 </html>
 
---1352088418.5FDeaB71.30525--
+--1352089028.cBed0d1.31673--
 
---===============1959371213==
+--===============1393489646==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -309,4 +285,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1959371213==--
+--===============1393489646==--
