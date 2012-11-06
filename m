@@ -1,7 +1,7 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v2] drm/nv41/vm: fix typo in type name
-Date: Tue,  6 Nov 2012 22:48:49 +0100
-Message-ID: <1352238533-14920-1-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nv40/graph: fix typo in type names
+Date: Tue,  6 Nov 2012 22:48:50 +0100
+Message-ID: <1352238533-14920-2-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,28 +18,27 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-It's a miracle it compiles at all - nv04_vm_priv does not exist
-anywhere in the tree.
+nv04_graph_priv / nv04_graph_chan are not defined in this context...
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
-v2: rebased on top of nouveau/master
----
- drivers/gpu/drm/nouveau/core/subdev/vm/nv41.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/core/engine/graph/nv40.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/vm/nv41.c b/drivers/gpu/drm/nouveau/core/subdev/vm/nv41.c
-index 49050d9..9474cfc 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/vm/nv41.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/vm/nv41.c
-@@ -67,7 +67,7 @@ nv41_vm_unmap(struct nouveau_gpuobj *pgt, u32 pte, u32 cnt)
- static void
- nv41_vm_flush(struct nouveau_vm *vm)
+diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv40.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv40.c
+index b076678..a3742db 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/graph/nv40.c
++++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv40.c
+@@ -156,8 +156,8 @@ nv40_graph_context_ctor(struct nouveau_object *parent,
+ static int
+ nv40_graph_context_fini(struct nouveau_object *object, bool suspend)
  {
--	struct nv04_vm_priv *priv = (void *)vm->vmm;
-+	struct nv04_vmmgr_priv *priv = (void *)vm->vmm;
+-	struct nv04_graph_priv *priv = (void *)object->engine;
+-	struct nv04_graph_chan *chan = (void *)object;
++	struct nv40_graph_priv *priv = (void *)object->engine;
++	struct nv40_graph_chan *chan = (void *)object;
+ 	u32 inst = 0x01000000 | nv_gpuobj(chan)->addr >> 4;
+ 	int ret = 0;
  
- 	mutex_lock(&nv_subdev(priv)->mutex);
- 	nv_wr32(priv, 0x100810, 0x00000022);
 -- 
 1.7.12
