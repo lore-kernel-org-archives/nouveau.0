@@ -1,7 +1,7 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nv40/graph: fix typo in type names
-Date: Tue,  6 Nov 2012 22:48:50 +0100
-Message-ID: <1352238533-14920-2-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nv40/mpeg: fix context handling
+Date: Tue,  6 Nov 2012 22:48:51 +0100
+Message-ID: <1352238533-14920-3-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,27 +18,25 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-nv04_graph_priv / nv04_graph_chan are not defined in this context...
+It slipped in thanks to typeless API.
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/engine/graph/nv40.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv40.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv40.c
-index b076678..a3742db 100644
---- a/drivers/gpu/drm/nouveau/core/engine/graph/nv40.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv40.c
-@@ -156,8 +156,8 @@ nv40_graph_context_ctor(struct nouveau_object *parent,
- static int
- nv40_graph_context_fini(struct nouveau_object *object, bool suspend)
- {
--	struct nv04_graph_priv *priv = (void *)object->engine;
--	struct nv04_graph_chan *chan = (void *)object;
-+	struct nv40_graph_priv *priv = (void *)object->engine;
-+	struct nv40_graph_chan *chan = (void *)object;
- 	u32 inst = 0x01000000 | nv_gpuobj(chan)->addr >> 4;
- 	int ret = 0;
+diff --git a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c
+index 1241857..f7c581a 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c
++++ b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c
+@@ -38,7 +38,7 @@ struct nv40_mpeg_priv {
+ };
  
+ struct nv40_mpeg_chan {
+-	struct nouveau_mpeg base;
++	struct nouveau_mpeg_chan base;
+ };
+ 
+ /*******************************************************************************
 -- 
 1.7.12
