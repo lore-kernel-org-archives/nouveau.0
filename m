@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50121] [Regression] NV34 Fx5200 & NVC3/Quadro 2000M
  both fail to resume with commit 'convert to exec engine,
  and improve channel sync'
-Date: Tue, 06 Nov 2012 10:21:13 +0000
-Message-ID: <bug-50121-8800-PEvP5D08jI@http.bugs.freedesktop.org/>
+Date: Tue, 06 Nov 2012 10:21:40 +0000
+Message-ID: <bug-50121-8800-cw7U326Tum@http.bugs.freedesktop.org/>
 References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1643229913=="
+Content-Type: multipart/mixed; boundary="===============2093279946=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,37 +22,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1643229913==
-Content-Type: multipart/alternative; boundary="1352197273.6E8e2612.24544"; charset="us-ascii"
+--===============2093279946==
+Content-Type: multipart/alternative; boundary="1352197300.A3A6af52.24658"; charset="us-ascii"
 
 
---1352197273.6E8e2612.24544
-Date: Tue, 6 Nov 2012 10:21:13 +0000
+--1352197300.A3A6af52.24658
+Date: Tue, 6 Nov 2012 10:21:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
---- Comment #23 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I'm also attaching a diff of both logs. I filtered them using sed to get rid of
-the timestamps.
-
-One thing stands out (to me):
-
-The logs of the correct resume mention this:
-
--ACPI: Invalid Power Resource to register!
--agpgart-via 0000:00:00.0: Refused to change power state, currently in D0
-
-The rest of the diff contains errors from the bad resume and subsequent trace
-thereof.
+--- Comment #24 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 69612
+  --> https://bugs.freedesktop.org/attachment.cgi?id=69612&action=edit
+Diff of both resume sessions
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1352197273.6E8e2612.24544
-Date: Tue, 6 Nov 2012 10:21:13 +0000
+--1352197300.A3A6af52.24658
+Date: Tue, 6 Nov 2012 10:21:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,25 +57,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both fail to resume with commit 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c23">Comment # 23</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c24">Comment # 24</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both fail to resume with commit 'convert to exec engine, and improve channel sync'"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>I'm also attaching a diff of both logs. I filtered them using sed to get rid of
-the timestamps.
-
-One thing stands out (to me):
-
-The logs of the correct resume mention this:
-
--ACPI: Invalid Power Resource to register!
--agpgart-via 0000:00:00.0: Refused to change power state, currently in D0
-
-The rest of the diff contains errors from the bad resume and subsequent trace
-thereof.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=69612" name="attach_69612" title="Diff of both resume sessions">attachment 69612</a> <a href="attachment.cgi?id=69612&amp;action=edit" title="Diff of both resume sessions">[details]</a></span>
+Diff of both resume sessions</pre>
         </div>
       </p>
       <hr>
@@ -96,9 +77,9 @@ thereof.</pre>
     </body>
 </html>
 
---1352197273.6E8e2612.24544--
+--1352197300.A3A6af52.24658--
 
---===============1643229913==
+--===============2093279946==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -109,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1643229913==--
+--===============2093279946==--
