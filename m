@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56692] Xorg freezes with vblank enabled on nouveau
 	nvc8
-Date: Tue, 06 Nov 2012 14:13:48 +0000
-Message-ID: <bug-56692-8800-7rYCObigQ4@http.bugs.freedesktop.org/>
+Date: Tue, 06 Nov 2012 14:24:49 +0000
+Message-ID: <bug-56692-8800-EBsgt3eSyn@http.bugs.freedesktop.org/>
 References: <bug-56692-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1932297711=="
+Content-Type: multipart/mixed; boundary="===============0501193191=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56692-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1932297711==
-Content-Type: multipart/alternative; boundary="1352211228.BfBECf1.2115"; charset="us-ascii"
+--===============0501193191==
+Content-Type: multipart/alternative; boundary="1352211889.F72b1.3759"; charset="us-ascii"
 
 
---1352211228.BfBECf1.2115
-Date: Tue, 6 Nov 2012 14:13:48 +0000
+--1352211889.F72b1.3759
+Date: Tue, 6 Nov 2012 14:24:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56692
 
---- Comment #5 from Kelly Doran <kel.p.doran-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Well someone on IRC suggested there was an issue with the nv50_disp_intr_vblank
-function, so I replaced the contents of it with the nvd0_disp_intr_vblank
-function and it fixed the freeze!  Perhaps nvc8 cards should just use the nvd0
-disp class instead?  Anyway I'll leave it to you guys to come up with an
-elegant solution, hopefully this helped.
+--- Comment #6 from m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Wow, good catch!
+
+My original patch for nvc0 used 0x1718 as well. I'll submit a patch for it.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1352211228.BfBECf1.2115
-Date: Tue, 6 Nov 2012 14:13:48 +0000
+--1352211889.F72b1.3759
+Date: Tue, 6 Nov 2012 14:24:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Xorg freezes with vblank enabled on nouveau nvc8"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56692#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56692#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Xorg freezes with vblank enabled on nouveau nvc8"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56692">bug 56692</a>
-              from <span class="vcard"><a class="email" href="mailto:kel.p.doran&#64;gmail.com" title="Kelly Doran &lt;kel.p.doran&#64;gmail.com&gt;"> <span class="fn">Kelly Doran</span></a>
+              from <span class="vcard"><a class="email" href="mailto:m.b.lankhorst&#64;gmail.com" title="m.b.lankhorst&#64;gmail.com">m.b.lankhorst&#64;gmail.com</a>
 </span></b>
-        <pre>Well someone on IRC suggested there was an issue with the nv50_disp_intr_vblank
-function, so I replaced the contents of it with the nvd0_disp_intr_vblank
-function and it fixed the freeze!  Perhaps nvc8 cards should just use the nvd0
-disp class instead?  Anyway I'll leave it to you guys to come up with an
-elegant solution, hopefully this helped.</pre>
+        <pre>Wow, good catch!
+
+My original patch for nvc0 used 0x1718 as well. I'll submit a patch for it.</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +77,9 @@ elegant solution, hopefully this helped.</pre>
     </body>
 </html>
 
---1352211228.BfBECf1.2115--
+--1352211889.F72b1.3759--
 
---===============1932297711==
+--===============0501193191==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1932297711==--
+--===============0501193191==--
