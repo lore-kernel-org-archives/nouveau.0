@@ -1,98 +1,51 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50121] [Regression] NV34 Fx5200 & NVC3/Quadro 2000M
- both fail to resume with commit 'convert to exec engine,
- and improve channel sync'
-Date: Tue, 06 Nov 2012 13:07:09 +0000
-Message-ID: <bug-50121-8800-eQ1M9utcIX@http.bugs.freedesktop.org/>
-References: <bug-50121-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1394999104=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Daniel J Blueman <daniel@quora.org>
+Subject: [PATCH] nouveau: Fix crash after D3
+Date: Tue,  6 Nov 2012 22:03:40 +0800
+Message-ID: <1352210620-4200-1-git-send-email-daniel@quora.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: David Airlie <airlied@linux.ie>
+Cc: Marcin Slusarz <marcin.slusarz@gmail.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, Daniel J Blueman <daniel@quora.org>
 List-Id: nouveau.vger.kernel.org
 
+In 3.7-rc4, when starting X with the integrated GPU and suspending the discrete GPU,
+after one or more 32-bit applications are used (eg Skype) and X is stopped,
+we hit a panic.
 
---===============1394999104==
-Content-Type: multipart/alternative; boundary="1352207229.BbB5a4322.22166"; charset="us-ascii"
+Prevent this by testing if the fini function is valid.
 
+Full panic bootlog is at: http://quora.org/2012/nouveau/dmesg-crash.txt
+Xorg.log is at: http://quora.org/2012/nouveau/Xorg.0.log-crash.txt
+Kernel log after fix is at: http://quora.org/2012/nouveau/dmesg-fix.txt
 
---1352207229.BbB5a4322.22166
-Date: Tue, 6 Nov 2012 13:07:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Signed-off-by: Daniel J Blueman <daniel@quora.org>
+---
+ drivers/gpu/drm/nouveau/core/core/object.c |   10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50121
-
---- Comment #26 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-No dice =) Even hangs at suspend sometimes. Besides, this bug is not slot
-specific. Someone else with a 'NVC3/Quadro 2000M' (PCI-E) also has these
-problems since the mentioned commit:
-
-'drm/nouveau/fence: convert to exec engine, and improve channel sync'.
-
+diff --git a/drivers/gpu/drm/nouveau/core/core/object.c b/drivers/gpu/drm/nouveau/core/core/object.c
+index 0daab62..3da3525 100644
+--- a/drivers/gpu/drm/nouveau/core/core/object.c
++++ b/drivers/gpu/drm/nouveau/core/core/object.c
+@@ -354,12 +354,16 @@ static int
+ nouveau_object_decf(struct nouveau_object *object)
+ {
+ 	int ret;
++	struct nouveau_ofuncs *pfuncs;
+ 
+ 	nv_trace(object, "stopping...\n");
+ 
+-	ret = nv_ofuncs(object)->fini(object, false);
+-	if (ret)
+-		nv_warn(object, "failed fini, %d\n", ret);
++	pfuncs = nv_ofuncs(object);
++	if (pfuncs->fini) {
++		ret = nv_ofuncs(object)->fini(object, false);
++		if (ret)
++			nv_warn(object, "failed fini, %d\n", ret);
++	}
+ 
+ 	if (object->engine) {
+ 		mutex_lock(&nv_subdev(object->engine)->mutex);
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1352207229.BbB5a4322.22166
-Date: Tue, 6 Nov 2012 13:07:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both fail to resume with commit 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c26">Comment # 26</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both fail to resume with commit 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span></b>
-        <pre>No dice =) Even hangs at suspend sometimes. Besides, this bug is not slot
-specific. Someone else with a 'NVC3/Quadro 2000M' (PCI-E) also has these
-problems since the mentioned commit:
-
-'drm/nouveau/fence: convert to exec engine, and improve channel sync'.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1352207229.BbB5a4322.22166--
-
---===============1394999104==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1394999104==--
+1.7.10.4
