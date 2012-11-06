@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nv50: decode PGRAPH status registers on TLB
-	flush fail
-Date: Tue,  6 Nov 2012 22:48:52 +0100
-Message-ID: <1352238533-14920-4-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nv50/evo: store iomem pointer in properly
+	typed field
+Date: Tue,  6 Nov 2012 22:48:53 +0100
+Message-ID: <1352238533-14920-5-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,113 +19,78 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Now it outputs:
-nouveau E[  PGRAPH][0000:02:00.0] PGRAPH TLB flush idle timeout fail
-nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_STATUS: BUSY DISPATCH VFETCH CCACHE_UNK4 STRMOUT_GSCHED_UNK5 UNK14XX UNK1CXX CLIPID ZCULL ENG2D UNK34XX TPRAST TPROP ROP (0x011fde03)
-nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_VSTATUS: CCACHE (0x00145b4d) (0x0000002d) ENG2D ROP (0x0034db40)
-
-instead of:
-[drm] nouveau 0000:02:00.0: PGRAPH TLB flush idle timeout fail: 0x011fde03 0x00145b4d 0x0000002d 0x0034db40
-
-Based on envytools docs.
+Abuse of function pointer was noticed by sparse.
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/engine/graph/nv50.c | 75 ++++++++++++++++++++++--
- 1 file changed, 71 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/nouveau/nv50_evo.c | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-index ab3b9dc..5f1adca 100644
---- a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-@@ -184,6 +184,62 @@ nv50_graph_tlb_flush(struct nouveau_engine *engine)
- 	return 0;
+diff --git a/drivers/gpu/drm/nouveau/nv50_evo.c b/drivers/gpu/drm/nouveau/nv50_evo.c
+index 9f6f55c..ba497fb 100644
+--- a/drivers/gpu/drm/nouveau/nv50_evo.c
++++ b/drivers/gpu/drm/nouveau/nv50_evo.c
+@@ -33,17 +33,22 @@
+ #include <subdev/timer.h>
+ #include <subdev/fb.h>
+ 
++struct evo_object {
++	struct nouveau_object parent;
++	void __iomem *iomem;
++};
++
+ static u32
+ nv50_evo_rd32(struct nouveau_object *object, u32 addr)
+ {
+-	void __iomem *iomem = object->oclass->ofuncs->rd08;
++	void __iomem *iomem = ((struct evo_object *)object)->iomem;
+ 	return ioread32_native(iomem + addr);
  }
  
-+static const struct nouveau_bitfield nv50_pgraph_status[] = {
-+	{ 0x00000001, "BUSY" }, /* set when any bit is set */
-+	{ 0x00000002, "DISPATCH" },
-+	{ 0x00000004, "UNK2" },
-+	{ 0x00000008, "UNK3" },
-+	{ 0x00000010, "UNK4" },
-+	{ 0x00000020, "UNK5" },
-+	{ 0x00000040, "M2MF" },
-+	{ 0x00000080, "UNK7" },
-+	{ 0x00000100, "CTXPROG" },
-+	{ 0x00000200, "VFETCH" },
-+	{ 0x00000400, "CCACHE_UNK4" },
-+	{ 0x00000800, "STRMOUT_GSCHED_UNK5" },
-+	{ 0x00001000, "UNK14XX" },
-+	{ 0x00002000, "UNK24XX_CSCHED" },
-+	{ 0x00004000, "UNK1CXX" },
-+	{ 0x00008000, "CLIPID" },
-+	{ 0x00010000, "ZCULL" },
-+	{ 0x00020000, "ENG2D" },
-+	{ 0x00040000, "UNK34XX" },
-+	{ 0x00080000, "TPRAST" },
-+	{ 0x00100000, "TPROP" },
-+	{ 0x00200000, "TEX" },
-+	{ 0x00400000, "TPVP" },
-+	{ 0x00800000, "MP" },
-+	{ 0x01000000, "ROP" },
-+	{}
-+};
-+
-+static const char *const nv50_pgraph_vstatus_0[] = {
-+	"VFETCH", "CCACHE", "UNK4", "UNK5", "GSCHED", "STRMOUT", "UNK14XX", NULL
-+};
-+
-+static const char *const nv50_pgraph_vstatus_1[] = {
-+	"TPRAST", "TPROP", "TEXTURE", "TPVP", "MP", NULL
-+};
-+
-+static const char *const nv50_pgraph_vstatus_2[] = {
-+	"UNK24XX", "CSCHED", "UNK1CXX", "CLIPID", "ZCULL", "ENG2D", "UNK34XX",
-+	"ROP", NULL
-+};
-+
-+static void nouveau_pgraph_vstatus_print(const char *const units[], u32 status)
-+{
-+	int i;
-+	u32 tmp = status;
-+	for (i = 0; units[i] && tmp; i++) {
-+		if ((tmp & 7) == 1)
-+			pr_cont("%s ", units[i]);
-+		tmp >>= 3;
-+	}
-+	if (tmp)
-+		pr_cont("invalid: %x ", tmp);
-+	pr_cont("(0x%08x) ", status);
-+}
-+
- static int
- nv84_graph_tlb_flush(struct nouveau_engine *engine)
+ static void
+ nv50_evo_wr32(struct nouveau_object *object, u32 addr, u32 data)
  {
-@@ -219,10 +275,21 @@ nv84_graph_tlb_flush(struct nouveau_engine *engine)
- 		 !(timeout = ptimer->read(ptimer) - start > 2000000000));
+-	void __iomem *iomem = object->oclass->ofuncs->rd08;
++	void __iomem *iomem = ((struct evo_object *)object)->iomem;
+ 	iowrite32_native(data, iomem + addr);
+ }
  
- 	if (timeout) {
--		nv_error(priv, "PGRAPH TLB flush idle timeout fail: "
--			      "0x%08x 0x%08x 0x%08x 0x%08x\n",
--			 nv_rd32(priv, 0x400700), nv_rd32(priv, 0x400380),
--			 nv_rd32(priv, 0x400384), nv_rd32(priv, 0x400388));
-+		nv_error(priv, "PGRAPH TLB flush idle timeout fail\n");
-+
-+		nv_error(priv, "PGRAPH_STATUS: ");
-+		tmp = nv_rd32(priv, 0x400700);
-+		nouveau_bitfield_print(nv50_pgraph_status, tmp);
-+		pr_cont(" (0x%08x)\n", tmp);
-+
-+		nv_error(priv, "PGRAPH_VSTATUS: ");
-+		nouveau_pgraph_vstatus_print(nv50_pgraph_vstatus_0,
-+				nv_rd32(priv, 0x400380));
-+		nouveau_pgraph_vstatus_print(nv50_pgraph_vstatus_1,
-+				nv_rd32(priv, 0x400384));
-+		nouveau_pgraph_vstatus_print(nv50_pgraph_vstatus_2,
-+				nv_rd32(priv, 0x400388));
-+		pr_cont("\n");
+@@ -60,7 +65,7 @@ nv50_evo_channel_del(struct nouveau_channel **pevo)
+ 	nouveau_bo_ref(NULL, &evo->push.buffer);
+ 
+ 	if (evo->object)
+-		iounmap(evo->object->oclass->ofuncs);
++		iounmap(((struct evo_object *)evo->object)->iomem);
+ 
+ 	kfree(evo);
+ }
+@@ -112,6 +117,7 @@ nv50_evo_channel_new(struct drm_device *dev, int chid,
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nv50_display *disp = nv50_display(dev);
+ 	struct nouveau_channel *evo;
++	struct evo_object *evo_object;
+ 	int ret;
+ 
+ 	evo = kzalloc(sizeof(struct nouveau_channel), GFP_KERNEL);
+@@ -142,7 +148,8 @@ nv50_evo_channel_new(struct drm_device *dev, int chid,
+ 		return ret;
  	}
  
- 	nv50_vm_flush_engine(&engine->base, 0x00);
+-	evo->object = kzalloc(sizeof(*evo->object), GFP_KERNEL);
++	evo_object = kzalloc(sizeof(*evo_object), GFP_KERNEL);
++	evo->object = &evo_object->parent;
+ #ifdef NOUVEAU_OBJECT_MAGIC
+ 	evo->object->_magic = NOUVEAU_OBJECT_MAGIC;
+ #endif
+@@ -154,8 +161,7 @@ nv50_evo_channel_new(struct drm_device *dev, int chid,
+ 		kzalloc(sizeof(*evo->object->oclass->ofuncs), GFP_KERNEL);
+ 	evo->object->oclass->ofuncs->rd32 = nv50_evo_rd32;
+ 	evo->object->oclass->ofuncs->wr32 = nv50_evo_wr32;
+-	evo->object->oclass->ofuncs->rd08 =
+-		ioremap(pci_resource_start(dev->pdev, 0) +
++	evo_object->iomem = ioremap(pci_resource_start(dev->pdev, 0) +
+ 			NV50_PDISPLAY_USER(evo->handle), PAGE_SIZE);
+ 	return 0;
+ }
 -- 
 1.7.12
