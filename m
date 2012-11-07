@@ -1,63 +1,43 @@
-From: Marcin Slusarz <marcin.slusarz@gmail.com>
-Subject: Re: [PATCH] nouveau: Fix crash after D3
-Date: Wed, 7 Nov 2012 19:48:01 +0100
-Message-ID: <20121107184801.GB24379@joi.lan>
-References: <1352210620-4200-1-git-send-email-daniel@quora.org>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nv50: decode PGRAPH status registers on
+ TLB flush fail
+Date: Wed, 7 Nov 2012 20:04:41 +0100
+Message-ID: <20121107190441.GC24379@joi.lan>
+References: <1352238533-14920-4-git-send-email-marcin.slusarz@gmail.com>
+	<20121107000847.GA21065@turiel.redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <1352210620-4200-1-git-send-email-daniel@quora.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Daniel J Blueman <daniel@quora.org>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
+In-Reply-To: <20121107000847.GA21065-yqdYmcOkqV0XGNroddHbYwC/G2K4zDHf@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Nov 06, 2012 at 10:03:40PM +0800, Daniel J Blueman wrote:
-> In 3.7-rc4, when starting X with the integrated GPU and suspending the discrete GPU,
-> after one or more 32-bit applications are used (eg Skype) and X is stopped,
-> we hit a panic.
+On Wed, Nov 07, 2012 at 10:08:47AM +1000, Ben Skeggs wrote:
+> On Tue, Nov 06, 2012 at 10:48:52PM +0100, Marcin Slusarz wrote:
+> > Now it outputs:
+> > nouveau E[  PGRAPH][0000:02:00.0] PGRAPH TLB flush idle timeout fail
+> > nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_STATUS: BUSY DISPATCH VFETCH CCACHE_UNK4 STRMOUT_GSCHED_UNK5 UNK14XX UNK1CXX CLIPID ZCULL ENG2D UNK34XX TPRAST TPROP ROP (0x011fde03)
+> > nouveau E[  PGRAPH][0000:02:00.0] PGRAPH_VSTATUS: CCACHE (0x00145b4d) (0x0000002d) ENG2D ROP (0x0034db40)
 > 
-> Prevent this by testing if the fini function is valid.
+> How about this instead?
+> 
+> PGRAPH_STATUS  : 0x011fde03 [BUSY DISPATCH VFETCH CCACHE_UNK4 STRMOUT_GSCHED_UNK5 UNK14XX UNK1CXX CLIPID ZCULL ENG2D UNK34XX TPRAST TPROP ROP]
+> PGRAPH_VSTATUS0: 0x00145b4d [CCACHE]
+> PGRAPH_VSTATUS1: 0x0000002d []
+> PGRAPH_VSTATUS2: 0x0034db40 [ENG2D ROP]
 
-It's a bit weird. Can you explain better what is going on?
-Why do we try to destroy this object (with NULL fini) only when GPU is
-suspended? Maybe it means we are leaking this object on normal close/destroy?
-Did you test what happens when you resume nv GPU after stopping X?
+Looks good too. I'll post updated patch tomorrow.
 
-> Full panic bootlog is at: http://quora.org/2012/nouveau/dmesg-crash.txt
-> Xorg.log is at: http://quora.org/2012/nouveau/Xorg.0.log-crash.txt
-> Kernel log after fix is at: http://quora.org/2012/nouveau/dmesg-fix.txt
-> 
-> Signed-off-by: Daniel J Blueman <daniel@quora.org>
-> ---
->  drivers/gpu/drm/nouveau/core/core/object.c |   10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/core/core/object.c b/drivers/gpu/drm/nouveau/core/core/object.c
-> index 0daab62..3da3525 100644
-> --- a/drivers/gpu/drm/nouveau/core/core/object.c
-> +++ b/drivers/gpu/drm/nouveau/core/core/object.c
-> @@ -354,12 +354,16 @@ static int
->  nouveau_object_decf(struct nouveau_object *object)
->  {
->  	int ret;
-> +	struct nouveau_ofuncs *pfuncs;
->  
->  	nv_trace(object, "stopping...\n");
->  
-> -	ret = nv_ofuncs(object)->fini(object, false);
-> -	if (ret)
-> -		nv_warn(object, "failed fini, %d\n", ret);
-> +	pfuncs = nv_ofuncs(object);
-> +	if (pfuncs->fini) {
-> +		ret = nv_ofuncs(object)->fini(object, false);
-> +		if (ret)
-> +			nv_warn(object, "failed fini, %d\n", ret);
-> +	}
->  
->  	if (object->engine) {
->  		mutex_lock(&nv_subdev(object->engine)->mutex);
-> -- 
-> 1.7.10.4
-> 
+Marcin
