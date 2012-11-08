@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 55412] Screen turns black during boot after driver
  tries to set mode on NV50
-Date: Thu, 08 Nov 2012 15:56:22 +0000
-Message-ID: <bug-55412-8800-DEIhfIytNa@http.bugs.freedesktop.org/>
+Date: Thu, 08 Nov 2012 16:14:06 +0000
+Message-ID: <bug-55412-8800-ygF7XJDFj3@http.bugs.freedesktop.org/>
 References: <bug-55412-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0656111535=="
+Content-Type: multipart/mixed; boundary="===============1942965997=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-55412-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,42 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0656111535==
-Content-Type: multipart/alternative; boundary="1352390182.aE6e61.1709"; charset="us-ascii"
+--===============1942965997==
+Content-Type: multipart/alternative; boundary="1352391245.C6CB8Cce1.4600"; charset="us-ascii"
 
 
---1352390182.aE6e61.1709
-Date: Thu, 8 Nov 2012 15:56:22 +0000
+--1352391245.C6CB8Cce1.4600
+Date: Thu, 8 Nov 2012 16:14:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=55412
 
---- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi Lubosz
+--- Comment #4 from m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Very easy to see what regressed, though..
 
-The commit mentioned was part of the big nouveau rework, that landed in the 3.7
-kernel tree. Note that the commit has been rebased thus I cannot check why
-exactly it's causing issues with your system
+upstream commit that made it to mainline is c0077061e7ea, with this:
 
-From what I can see is
-* With the offending commit, nouveau fails to detect any CRTC (outputs)
-connected, thus the issue
-* With the commit and "nouveau.reg_debug=0x600" nouveau complains
-"nouveau: `0x600' invalid for parameter `reg_debug" and does not load (at least
-not mentioned in the log)
+     if (nv_encoder->dcb->lvdsconf.use_acpi_for_edid) {
+-        if (!nouveau_acpi_edid(dev, connector)) {
++        if (!(nv_connector->edid = nouveau_acpi_edid(dev, connector))) {
+             status = connector_status_connected;
+             goto out;
+         }
 
-Can you try the latest nouveau git or linux 3.7 to establish it this regression
-has been fixed or not
+Which looks fine, but is inversion of logic. First it returned 0 on success,
+now it returns NULL on failure.. Fix would presumably be one line only:
 
-Thanks
+-        if (!(nv_connector->edid = nouveau_acpi_edid(dev, connector))) {
++        if ((nv_connector->edid = nouveau_acpi_edid(dev, connector))) {
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1352390182.aE6e61.1709
-Date: Thu, 8 Nov 2012 15:56:22 +0000
+--1352391245.C6CB8Cce1.4600
+Date: Thu, 8 Nov 2012 16:14:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,30 +69,29 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Screen turns black during boot after driver tries to set mode on NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55412#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55412#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Screen turns black during boot after driver tries to set mode on NV50"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=55412">bug 55412</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:m.b.lankhorst&#64;gmail.com" title="m.b.lankhorst&#64;gmail.com">m.b.lankhorst&#64;gmail.com</a>
 </span></b>
-        <pre>Hi Lubosz
+        <pre>Very easy to see what regressed, though..
 
-The commit mentioned was part of the big nouveau rework, that landed in the 3.7
-kernel tree. Note that the commit has been rebased thus I cannot check why
-exactly it's causing issues with your system
+upstream commit that made it to mainline is c0077061e7ea, with this:
 
-From what I can see is
-* With the offending commit, nouveau fails to detect any CRTC (outputs)
-connected, thus the issue
-* With the commit and &quot;nouveau.reg_debug=0x600&quot; nouveau complains
-&quot;nouveau: `0x600' invalid for parameter `reg_debug&quot; and does not load (at least
-not mentioned in the log)
+     if (nv_encoder-&gt;dcb-&gt;lvdsconf.use_acpi_for_edid) {
+-        if (!nouveau_acpi_edid(dev, connector)) {
++        if (!(nv_connector-&gt;edid = nouveau_acpi_edid(dev, connector))) {
+             status = connector_status_connected;
+             goto out;
+         }
 
-Can you try the latest nouveau git or linux 3.7 to establish it this regression
-has been fixed or not
+Which looks fine, but is inversion of logic. First it returned 0 on success,
+now it returns NULL on failure.. Fix would presumably be one line only:
 
-Thanks</pre>
+-        if (!(nv_connector-&gt;edid = nouveau_acpi_edid(dev, connector))) {
++        if ((nv_connector-&gt;edid = nouveau_acpi_edid(dev, connector))) {</pre>
         </div>
       </p>
       <hr>
@@ -105,9 +103,9 @@ Thanks</pre>
     </body>
 </html>
 
---1352390182.aE6e61.1709--
+--1352391245.C6CB8Cce1.4600--
 
---===============0656111535==
+--===============1942965997==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -118,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0656111535==--
+--===============1942965997==--
