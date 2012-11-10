@@ -1,9 +1,11 @@
-From: Rui Salvaterra <rsalvaterra-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Linux 3.7 Nouveau msi module parameter
-Date: Sat, 10 Nov 2012 11:31:09 +0000
-Message-ID: <CALjTZvYmtn6Eirhj=dnK4J3q4-DZUBk-2B8ZfnqmQsnyUKg-sQ@mail.gmail.com>
+From: =?UTF-8?q?Viktor=20Novotn=C3=BD?= <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
+Subject: [PATCH] drm/nouveau/clk: fix crystal frequency retrieval
+	on nv25
+Date: Sat, 10 Nov 2012 19:24:06 +0100
+Message-ID: <1352571846-3872-1-git-send-email-noviktor@seznam.cz>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0494776619=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -14,51 +16,30 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: =?UTF-8?q?Viktor=20Novotn=C3=BD?= <noviktor-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0494776619==
-Content-Type: multipart/alternative; boundary=0016e6d7ebd6a2b20004ce22674f
-
---0016e6d7ebd6a2b20004ce22674f
-Content-Type: text/plain; charset=UTF-8
-
-Hi, everyone
-
-
-I noticed the nouveau module dropped support for the msi parameter on Linux
-3.7. I've been enabling message signaled interrupts on my ION/MCP79 for a
-while with no adverse effects. Is this intended behaviour our just fallout
-from the rewrite? (I'm not subscribed to this mailing list.)
-
-
-Thanks,
-
-Rui Salvaterra
-
---0016e6d7ebd6a2b20004ce22674f
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<br><div>Hi, everyone</div><div><br></div><div><br></div><div>I noticed the=
- nouveau module dropped support for the msi parameter on Linux 3.7. I&#39;v=
-e been enabling message signaled interrupts on my ION/MCP79 for a while wit=
-h no adverse effects. Is this intended behaviour our just fallout from the =
-rewrite? (I&#39;m not subscribed to this mailing list.)</div>
-<div><br></div><div><br></div><div>Thanks,</div><div><br></div><div>Rui Sal=
-vaterra</div>
-
---0016e6d7ebd6a2b20004ce22674f--
-
---===============0494776619==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0494776619==--
+U2lnbmVkLW9mZi1ieTogVmlrdG9yIE5vdm90bsO9IDxub3Zpa3RvckBzZXpuYW0uY3o+Ci0tLQpI
+aSwKCnRoaXMgZml4ZXMgYSByZWdyZXNzaW9uIEkgaGF2ZSBzZWVuIHNpbmNlIHRoZSBrZXJuZWwg
+bW9kdWxlIHJld3JpdGUgaW4gc3VtbWVyLiBBZnRlciBsb2FkaW5nIG5vdXZlYXUsIHNjcmVlbiB3
+b3VsZCBnbyAKYWxsIGJsYWNrIGFuZCBtb25pdG9yIHdvdWxkIHNob3cgIk91dCBvZiByYW5nZSIu
+IEFjY29yZGluZyB0byBlbnZ5dG9vbHMnIGh3ZG9jcy9wc3RyYXBzLnR4dCBudjI1IHNob3VsZCB1
+c2UgYm90aCBwc3RyYXBzCmJpdHMoNiAmIDIyKSBzbyBJIGhvcGUgdGhpcyBmaXggaXMgdmFsaWQg
+Zm9yIGFsbCBudjI1IGNhcmRzLCBub3QganVzdCBtaW5lLgoKQmVzdCByZWdhcmRzClZpa3Rvcgog
+CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1YmRldi9kZXZpY2UvYmFzZS5jIHwgMiAr
+LQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvZGV2aWNlL2Jhc2UuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvc3ViZGV2L2RldmljZS9iYXNlLmMKaW5kZXgg
+Y2E5YTQ2NC4uOWJhZWY0NiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29y
+ZS9zdWJkZXYvZGV2aWNlL2Jhc2UuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3Jl
+L3N1YmRldi9kZXZpY2UvYmFzZS5jCkBAIC0yMDgsNyArMjA4LDcgQEAgbm91dmVhdV9kZXZvYmpf
+Y3RvcihzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKnBhcmVudCwKIAogCQkvKiBkZXRlcm1pbmUgZnJl
+cXVlbmN5IG9mIHRpbWluZyBjcnlzdGFsICovCiAJCWlmICggZGV2aWNlLT5jaGlwc2V0IDwgMHgx
+NyB8fAotCQkgICAgKGRldmljZS0+Y2hpcHNldCA+PSAweDIwICYmIGRldmljZS0+Y2hpcHNldCA8
+PSAweDI1KSkKKwkJICAgIChkZXZpY2UtPmNoaXBzZXQgPj0gMHgyMCAmJiBkZXZpY2UtPmNoaXBz
+ZXQgPCAweDI1KSkKIAkJCXN0cmFwICY9IDB4MDAwMDAwNDA7CiAJCWVsc2UKIAkJCXN0cmFwICY9
+IDB4MDA0MDAwNDA7Ci0tIAoxLjguMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
+dXZlYXUK
