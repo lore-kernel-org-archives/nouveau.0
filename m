@@ -1,72 +1,106 @@
-From: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: xf86-video-nouveau 1.0.4
-Date: Fri,  9 Nov 2012 12:44:35 +1000
-Message-ID: <1352429075-3325-1-git-send-email-airlied@redhat.com>
-Reply-To: xorg-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 56788] [nv96] Dota2 (wine) consistently crashes with
+ "WARNING: out of code space, evicting all shaders"
+Date: Sat, 10 Nov 2012 14:17:11 +0000
+Message-ID: <bug-56788-8800-67Kd2ff9BO@http.bugs.freedesktop.org/>
+References: <bug-56788-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <xorg-announce-bounces+gcfxa-xorg-announce=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
-List-Unsubscribe: <http://lists.x.org/mailman/options/xorg-announce>,
-	<mailto:xorg-announce-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.x.org/archives/xorg-announce>
-List-Post: <mailto:xorg-announce-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
-List-Help: <mailto:xorg-announce-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.x.org/mailman/listinfo/xorg-announce>,
-	<mailto:xorg-announce-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=subscribe>
-Sender: xorg-announce-bounces+gcfxa-xorg-announce=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-Errors-To: xorg-announce-bounces+gcfxa-xorg-announce=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-To: xorg-announce-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============0433323397=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-56788-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+
+--===============0433323397==
+Content-Type: multipart/alternative; boundary="1352557031.FF65e0.25948"; charset="us-ascii"
 
 
-Release to fix Zaphod mode, a rendering regression, and drop some
-old DRI interface usage.
+--1352557031.FF65e0.25948
+Date: Sat, 10 Nov 2012 14:17:11 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-Ben Skeggs (1):
-      bump version to 1.0.4
+https://bugs.freedesktop.org/show_bug.cgi?id=56788
 
-Dave Airlie (3):
-      nouveau: fix regression in virtualbox drawing hopefully.
-      nouveau: drop DRI1 device open interface.
-      nouveau: drop unused nv private members.
+--- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 69862
+  --> https://bugs.freedesktop.org/attachment.cgi?id=69862&action=edit
+NV50_PROG_DEBUG_NO_COLORS=1 NV50_PROG_DEBUG=1
+WINEPREFIX="~/.local/share/wineprefixes/steam" wine
+C:\\\\windows\\\\command\\\\start.exe steam://rungameid/570 1>dota2.log  2>&1
 
-Emil Velikov (4):
-      nouveau: Remove unneeded xf86GetEntityInfo()
-      nouveau: introduce NVInitScrn()
-      nouveau: Factor out common code to NVHasKMS()
-      nouveau: NVPlatformProbe, handle shareable entities
+The shaders, compressed in xz as the raw file is ~19MB
 
-git tag: xf86-video-nouveau-1.0.4
+Note this is unedited output, thus it contains some wine messages
+Most of which can be stripped with grep -v "fixme" logfile
 
-http://xorg.freedesktop.org/archive/individual/driver/xf86-video-nouveau-1.0.4.tar.bz2
-MD5:  cff61597d94a06ddf73c32439437513f  xf86-video-nouveau-1.0.4.tar.bz2
-SHA1: 68d4aa7269f3570938698f6a08b2640626193ea6  xf86-video-nouveau-1.0.4.tar.bz2
-SHA256: 1a8290489cf4f48d2094a541ec9a6b68beb80299741d047e322e650c30ceb7c1  xf86-video-nouveau-1.0.4.tar.bz2
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-http://xorg.freedesktop.org/archive/individual/driver/xf86-video-nouveau-1.0.4.tar.gz
-MD5:  eb58486f3032ff9272cf98a42d1ba643  xf86-video-nouveau-1.0.4.tar.gz
-SHA1: 4b32945f6c5c0d516dee8cfc55e19c4d36be4786  xf86-video-nouveau-1.0.4.tar.gz
-SHA256: ce19830a90124a196f4f630ec6f785466c3a374192645c36801da325a0ff7d19  xf86-video-nouveau-1.0.4.tar.gz
+--1352557031.FF65e0.25948
+Date: Sat, 10 Nov 2012 14:17:11 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.18 (GNU/Linux)
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nv96] Dota2 (wine) consistently crashes with &quot;WARNING: out of code space, evicting all shaders&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56788#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nv96] Dota2 (wine) consistently crashes with &quot;WARNING: out of code space, evicting all shaders&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56788">bug 56788</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=69862" name="attach_69862" title="NV50_PROG_DEBUG_NO_COLORS=1 NV50_PROG_DEBUG=1 WINEPREFIX=&quot;~/.local/share/wineprefixes/steam&quot; wine C:\\\\windows\\\\command\\\\start.exe steam://rungameid/570 1&gt;dota2.log  2&gt;&amp;1">attachment 69862</a> <a href="attachment.cgi?id=69862&amp;action=edit" title="NV50_PROG_DEBUG_NO_COLORS=1 NV50_PROG_DEBUG=1 WINEPREFIX=&quot;~/.local/share/wineprefixes/steam&quot; wine C:\\\\windows\\\\command\\\\start.exe steam://rungameid/570 1&gt;dota2.log  2&gt;&amp;1">[details]</a></span>
+NV50_PROG_DEBUG_NO_COLORS=1 NV50_PROG_DEBUG=1
+WINEPREFIX=&quot;~/.local/share/wineprefixes/steam&quot; wine
+C:\\\\windows\\\\command\\\\start.exe steam://rungameid/570 1&gt;dota2.log  2&gt;&amp;1
 
-iQIcBAEBAgAGBQJQnG3kAAoJEAx081l5xIa+YlAP/1DFBXee4NBpF1CdpdvgAThS
-8AwlhMKHa3qJqpq12pcIH5eRQhWhArFN8klwVSjqEKfvKLKaAjf/7FgAaG4JZidE
-0/7lpMphKXIgSe+4PP0Lar1Z65S621nSZ4eWrxCZLzLE8E2BlfIPji9ZIcvLEN3c
-9cgMmRZBZJENh4SX6yVJvM2+T6vyhcMLCI+NxHaEHHHCwI66GuoN0/lgeVm5gAp0
-o5vcIwhtfgOZmsxitNa52FU9bDm+KXK5/Mm5ak7al6o8GFsxj1JKFERc3vm5FcTD
-oQxUC0BxrTm2NHbFu3qHk4uh+HQvGdUx3zIKbhj1ragaYmm11bkT3MjfdUDY2CJp
-Q+F8FYy4WzNPh8Km+8U/e3l6mnmPwcGcuzgwvu3dfr39osgkqAZx6VF4TEGoHniW
-osr0Ktp/d2seRYKBrAh2ggntpjl7DXOERl8bISZT52nu1SQN7jbiWPThho5TUdSf
-nsOw2X/I7x9mJdw6viwgMl4OkBcMHRnmuwpCjz7vSRI5dFu8UAgttLIoj2y5CHZT
-anmLj9QiLWSRm89po/rmc/8cUEhVsUcDd9olPvg4r64Cl1b4qQRmhdH4+4+1HbrU
-gREn4mJOZqlzubRO8d349dS+Uq9mKn/XfHGIcGUFLY2YXbvXdkBBcQoO9xV2VwSV
-DgFhOlIkREh2DjbfYc0q
-=MEms
------END PGP SIGNATURE-----
+The shaders, compressed in xz as the raw file is ~19MB
+
+Note this is unedited output, thus it contains some wine messages
+Most of which can be stripped with grep -v &quot;fixme&quot; logfile</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1352557031.FF65e0.25948--
+
+--===============0433323397==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0433323397==--
