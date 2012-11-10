@@ -1,11 +1,13 @@
-From: Ove Karlsen <ove.karlsen-AeFHuWNXbuEAvSIxZttfnVaTQe2KTcn/@public.gmane.org>
-Subject: Jittered antialiasing.
-Date: Wed, 07 Nov 2012 15:33:17 +0100
-Message-ID: <509A712D.5070700@paradoxuncreated.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 56788] [nv96] Dota2 (wine) consistently crashes with
+ "WARNING: out of code space, evicting all shaders"
+Date: Sat, 10 Nov 2012 21:48:30 +0000
+Message-ID: <bug-56788-8800-2Ny3oHeDjj@http.bugs.freedesktop.org/>
+References: <bug-56788-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/mixed; boundary="===============1251396752=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-56788-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,67 +20,70 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-In doom 3, there is a function called "jitter the subsampling matrix" =
 
-(r_jitter)
+--===============1251396752==
+Content-Type: multipart/alternative; boundary="1352584109.Bc3F1.19348"; charset="us-ascii"
 
-I thought about doing an improved version of this, but I lack the =
 
-expertise in driver development. But I share the idea with you, so that =
+--1352584109.Bc3F1.19348
+Date: Sat, 10 Nov 2012 21:48:29 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-you may implement it, as a lowest resource antialiasing.
+https://bugs.freedesktop.org/show_bug.cgi?id=56788
 
-Carmack modulates the subsampling with white noise. That gives a =
+--- Comment #5 from Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+you can shut up wine with WINEDEBUG=-all
 
-psychovisual effect, that is a bit noisy, because of low-frequency =
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-variations. This can be improved by modulating with highpassed noise =
+--1352584109.Bc3F1.19348
+Date: Sat, 10 Nov 2012 21:48:29 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
-instead.
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nv96] Dota2 (wine) consistently crashes with &quot;WARNING: out of code space, evicting all shaders&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56788#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nv96] Dota2 (wine) consistently crashes with &quot;WARNING: out of code space, evicting all shaders&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56788">bug 56788</a>
+              from <span class="vcard"><a class="email" href="mailto:m.b.lankhorst&#64;gmail.com" title="Maarten Lankhorst &lt;m.b.lankhorst&#64;gmail.com&gt;"> <span class="fn">Maarten Lankhorst</span></a>
+</span></b>
+        <pre>you can shut up wine with WINEDEBUG=-all</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
 
-Also the technique can be improved by blending frames, say 1 frame is =
+--1352584109.Bc3F1.19348--
 
-blended with 30% of second, 20%=A4 of third 10% of fourth. And probably no =
+--===============1251396752==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-more than that. Ratios and highpass should be tunable also. Maybe a =
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
 
-lowpass on the noise would be good too, to remove extreme high-freqency.
-
-Then you get jittered antialiasing, that combines several frames of =
-
-different subsampling, to an average psychovisual effect, of higher =
-
-resolution, and antialiasing.
-
-Combining it with just a little smoothing from 2xMSAA and 2xAniso, is =
-
-probably perfect. 2xAniso can be sharpened up with -0.5lodbias, and then =
-
-it gives a smoother/more natural result when close, than higher aniso, =
-
-and still sharp at distance.
-
-Also -  Great performance in games, low latency, fast desktop:
-
-A lot of people have been talking about these things lately. These =
-
-things are already solved, and I sum them up, on my blog, as I have been =
-
-researching the same, for quite some time. : =
-
-http://paradoxuncreated.com/Blog/wordpress/?p=3D2268
-
-John Carmack talks about not being able to run doom 3 at 60fps on =
-
-consoles. So it runs at 30.
-
-I am now running it at 72, with LOW Jitter (constant gliding framerate).
-And that is even on what is today a modest dualcore 2.5ghz + a gtx 280.
-
-So this is what you want.
-
--- =
-
-Fred v=E6re med deg / Peace Be with You,
-Ove Karlsen
-http://www.paradoxuncreated.com
+--===============1251396752==--
