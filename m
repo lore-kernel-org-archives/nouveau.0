@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56461] NV11 black screen & kernel hang on loading
-	nouveaufb
-Date: Sun, 11 Nov 2012 20:09:28 +0000
-Message-ID: <bug-56461-8800-XjIVGwlqdZ@http.bugs.freedesktop.org/>
-References: <bug-56461-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] kms: Let the server know if we got more than
+	1 EDID block
+Date: Sun, 11 Nov 2012 20:09:08 +0000
+Message-ID: <50A005E4.10808@gmail.com>
+References: <1352052378-23970-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0462232316=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56461-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1352052378-23970-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,74 +21,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0462232316==
-Content-Type: multipart/alternative; boundary="1352664568.2bd5BF2.3004"; charset="us-ascii"
-
-
---1352664568.2bd5BF2.3004
-Date: Sun, 11 Nov 2012 20:09:28 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=56461
-
---- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Please attach VBIOS image. See
-http://nouveau.freedesktop.org/wiki/DumpingVideoBios for description how to
-obtain it.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1352664568.2bd5BF2.3004
-Date: Sun, 11 Nov 2012 20:09:28 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461">bug 56461</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span></b>
-        <pre>Please attach VBIOS image. See
-<a href="http://nouveau.freedesktop.org/wiki/DumpingVideoBios">http://nouveau.freedesktop.org/wiki/DumpingVideoBios</a> for description how to
-obtain it.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1352664568.2bd5BF2.3004--
-
---===============0462232316==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0462232316==--
+On 04/11/12 18:06, Emil Velikov wrote:
+> Verbatim copy from xf86-video-radeon commit 809cacb
+> 
+> Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=32341
+> Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+>  src/drmmode_display.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/src/drmmode_display.c b/src/drmmode_display.c
+> index 803785d..8ec69f5 100644
+> --- a/src/drmmode_display.c
+> +++ b/src/drmmode_display.c
+> @@ -640,9 +640,12 @@ drmmode_output_get_modes(xf86OutputPtr output)
+>  		drmModeFreeProperty(props);
+>  	}
+>  
+> -	if (drmmode_output->edid_blob)
+> +	if (drmmode_output->edid_blob) {
+>  		ddc_mon = xf86InterpretEDID(output->scrn->scrnIndex,
+>  					    drmmode_output->edid_blob->data);
+> +		if (ddc_mon && drmmode_output->edid_blob->length > 128)
+> +			ddc_mon->flags |= MONITOR_EDID_COMPLETE_RAWDATA;
+> +	}
+>  	xf86OutputSetEDID(output, ddc_mon);
+>  
+>  	/* modes should already be available */
+> 
+ping
