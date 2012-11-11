@@ -1,63 +1,44 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] kms: Let the server know if we got more than
- 1 EDID block
-Date: Sun, 11 Nov 2012 21:24:03 +0100
-Message-ID: <20121111202403.GE3530@joi.lan>
-References: <1352052378-23970-1-git-send-email-emil.l.velikov@gmail.com>
-	<50A005E4.10808@gmail.com>
+From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Subject: Re: Fix for vblank on nvc0
+Date: Sun, 11 Nov 2012 21:25:28 +0100
+Message-ID: <50A009B8.2080107@canonical.com>
+References: <CAES2CiZRdkaOwYUbtp28ZMKu+DqtPOoKRwHPpLWaF2WeB6F8+g@mail.gmail.com>
+	<50995728.8080305@canonical.com> <20121111182617.GA15689@joi.lan>
+	<20121111183519.GA2959@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <50A005E4.10808-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Adam Jackson <ajax-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <20121111183519.GA2959@joi.lan>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Marcin Slusarz <marcin.slusarz@gmail.com>
+Cc: Kelly Doran <kel.p.doran@gmail.com>, nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Nov 11, 2012 at 08:09:08PM +0000, Emil Velikov wrote:
-> On 04/11/12 18:06, Emil Velikov wrote:
-> > Verbatim copy from xf86-video-radeon commit 809cacb
+Op 11-11-12 19:35, Marcin Slusarz schreef:
+> On Sun, Nov 11, 2012 at 07:26:17PM +0100, Marcin Slusarz wrote:
+>> On Tue, Nov 06, 2012 at 07:30:00PM +0100, Maarten Lankhorst wrote:
+>>>
+>>> Op 06-11-12 15:48, Kelly Doran schreef:
+>>>> The vblank on nvc0 was not working correctly and would freeze X, I managed
+>>>> to track it down and fix it with some help from m.b.lankhorst, see
+>>>> https://bugs.freedesktop.org/show_bug.cgi?id=56692 for details.
+>>>>
+>>> Reviewed-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+>>>
+>>> I recommended the bar flush since nvd0 does as well, and there might be a small race
+>>> otherwise.
+>>>
+>>> Can this still get in before final 3.7 release?
+>> This patch breaks vblank here (nv92) completely.
+Does removing the bar flush help?
 
-s/radeon/ati/
-
-Here's direct link: http://cgit.freedesktop.org/xorg/driver/xf86-video-ati/commit/?id=809cacb
-
-> > 
-> > Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=32341
-> > Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > ---
-> >  src/drmmode_display.c | 5 ++++-
-> >  1 file changed, 4 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/src/drmmode_display.c b/src/drmmode_display.c
-> > index 803785d..8ec69f5 100644
-> > --- a/src/drmmode_display.c
-> > +++ b/src/drmmode_display.c
-> > @@ -640,9 +640,12 @@ drmmode_output_get_modes(xf86OutputPtr output)
-> >  		drmModeFreeProperty(props);
-> >  	}
-> >  
-> > -	if (drmmode_output->edid_blob)
-> > +	if (drmmode_output->edid_blob) {
-> >  		ddc_mon = xf86InterpretEDID(output->scrn->scrnIndex,
-> >  					    drmmode_output->edid_blob->data);
-> > +		if (ddc_mon && drmmode_output->edid_blob->length > 128)
-> > +			ddc_mon->flags |= MONITOR_EDID_COMPLETE_RAWDATA;
-> > +	}
-> >  	xf86OutputSetEDID(output, ddc_mon);
-> >  
-> >  	/* modes should already be available */
-> > 
-> ping
-
-Cc'ing Adam.
+~Maarte
