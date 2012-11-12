@@ -1,36 +1,118 @@
-From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: Re: Fix for vblank on nvc0
-Date: Mon, 12 Nov 2012 22:52:38 +0100
-Message-ID: <50A16FA6.5040002@canonical.com>
-References: <CAES2CiZRdkaOwYUbtp28ZMKu+DqtPOoKRwHPpLWaF2WeB6F8+g@mail.gmail.com>
-	<50995728.8080305@canonical.com> <20121111182617.GA15689@joi.lan>
-	<20121111183519.GA2959@joi.lan> <50A009B8.2080107@canonical.com>
-	<CAES2CiYwSChUaDp1Z=5W0t34D54D7HfqH2cqvWXuWxUW69szTw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 47965] I can't modify brightness with nVidia 1000m
+	Quadro
+Date: Mon, 12 Nov 2012 22:06:23 +0000
+Message-ID: <bug-47965-8800-jjTHINsVrz@http.bugs.freedesktop.org/>
+References: <bug-47965-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <CAES2CiYwSChUaDp1Z=5W0t34D54D7HfqH2cqvWXuWxUW69szTw@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Kelly Doran <kel.p.doran@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1813237920=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-47965-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Op 12-11-12 22:30, Kelly Doran schreef:
-> I had Sven test this patch... he said it works.  I think chipset
-> number test was executing code that we thought was only either 0x50 or
-> 0xc0, but was actually more specific with things like 0x92.
->
-Oh right vblank is busted anyway... needs to be nv_device(priv-)>card_type == NV_50 to work.
 
-Your patch is the correct fix.
+--===============1813237920==
+Content-Type: multipart/alternative; boundary="1352757983.F2127561.15219"; charset="us-ascii"
 
-~Maarten
+
+--1352757983.F2127561.15219
+Date: Mon, 12 Nov 2012 22:06:23 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D47965
+
+--- Comment #8 from Charles-Antoine Couret <renault-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> ---
+I have tested this option and the result is :
+-The brightness didn't change
+-The shortcut (Fn+XX) didn't detect by the system, usually the brightness
+didn't change but Gnome display a bar with the =C2=AB new =C2=BB brightness=
+ (but it's
+virtual=E2=80=A6).
+
+I post the vbios with the command line :
+cat /sys/kernel/debug/dri/0/vbios.rom > vbios.rom=20
+
+I tested the tool vbtracetool, but it can't do that and the patch no improve
+the situation.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1352757983.F2127561.15219
+Date: Mon, 12 Nov 2012 22:06:23 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - I can't modify brightness with nVidia 1000m Quadro"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D47965#c8">Comment=
+ # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - I can't modify brightness with nVidia 1000m Quadro"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D47965">bug 47965<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+renault&#64;fedoraproject.org" title=3D"Charles-Antoine Couret &lt;renault&=
+#64;fedoraproject.org&gt;"> <span class=3D"fn">Charles-Antoine Couret</span=
+></a>
+</span></b>
+        <pre>I have tested this option and the result is :
+-The brightness didn't change
+-The shortcut (Fn+XX) didn't detect by the system, usually the brightness
+didn't change but Gnome display a bar with the =C2=AB new =C2=BB brightness=
+ (but it's
+virtual=E2=80=A6).
+
+I post the vbios with the command line :
+cat /sys/kernel/debug/dri/0/vbios.rom &gt; vbios.rom=20
+
+I tested the tool vbtracetool, but it can't do that and the patch no improve
+the situation.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1352757983.F2127561.15219--
+
+--===============1813237920==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1813237920==--
