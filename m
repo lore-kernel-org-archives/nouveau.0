@@ -1,13 +1,18 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56461] NV11 black screen & kernel hang on loading
-	nouveaufb
-Date: Mon, 12 Nov 2012 22:09:48 +0000
-Message-ID: <bug-56461-8800-rKicdQtKo6@http.bugs.freedesktop.org/>
-References: <bug-56461-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Fix for vblank on nvc0
+Date: Tue, 13 Nov 2012 00:01:51 +0100
+Message-ID: <20121112230151.GA3051@joi.lan>
+References: <CAES2CiZRdkaOwYUbtp28ZMKu+DqtPOoKRwHPpLWaF2WeB6F8+g@mail.gmail.com>
+	<50995728.8080305@canonical.com> <20121111182617.GA15689@joi.lan>
+	<20121111183519.GA2959@joi.lan>
+	<CAES2CiZMtsZB6wcAerURtLnTY-F6U8CSrL6YGg0p0A+Zt+SbCQ@mail.gmail.com>
+	<CAES2Cia3Z21ZPmpOA3B1fB5sDv4urHL8pbW+6u7AzPdbHPur4g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0505451094=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56461-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CAES2Cia3Z21ZPmpOA3B1fB5sDv4urHL8pbW+6u7AzPdbHPur4g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,82 +22,14 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Kelly Doran <kel.p.doran-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On Mon, Nov 12, 2012 at 06:14:05AM -0600, Kelly Doran wrote:
+> Okay I have added two patches, one of them should fix the problem...
+> 
 
---===============0505451094==
-Content-Type: multipart/alternative; boundary="1352758188.5Ed7bd01.15687"; charset="us-ascii"
+vblank-fix1.patch works, thanks.
 
-
---1352758188.5Ed7bd01.15687
-Date: Mon, 12 Nov 2012 22:09:48 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=56461
-
---- Comment #4 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> ---
-Created attachment 69965
-  --> https://bugs.freedesktop.org/attachment.cgi?id=69965&action=edit
-Video BIOS as produced by vbtracetool
-
-Video BIOS as requested - thank you for caring about my ancient hardware.
-Chris.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1352758188.5Ed7bd01.15687
-Date: Mon, 12 Nov 2012 22:09:48 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461">bug 56461</a>
-              from <span class="vcard"><a class="email" href="mailto:chris&#64;edesix.com" title="Chris Paulson-Ellis &lt;chris&#64;edesix.com&gt;"> <span class="fn">Chris Paulson-Ellis</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=69965" name="attach_69965" title="Video BIOS as produced by vbtracetool">attachment 69965</a> <a href="attachment.cgi?id=69965&amp;action=edit" title="Video BIOS as produced by vbtracetool">[details]</a></span>
-Video BIOS as produced by vbtracetool
-
-Video BIOS as requested - thank you for caring about my ancient hardware.
-Chris.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1352758188.5Ed7bd01.15687--
-
---===============0505451094==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0505451094==--
+Marcin
