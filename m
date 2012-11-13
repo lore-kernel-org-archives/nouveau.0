@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56461] NV11 black screen & kernel hang on loading
 	nouveaufb
-Date: Mon, 12 Nov 2012 23:24:35 +0000
-Message-ID: <bug-56461-8800-q9solaz8ny@http.bugs.freedesktop.org/>
+Date: Tue, 13 Nov 2012 01:09:56 +0000
+Message-ID: <bug-56461-8800-SBcw5lQt6R@http.bugs.freedesktop.org/>
 References: <bug-56461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0787976910=="
+Content-Type: multipart/mixed; boundary="===============1097498050=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56461-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0787976910==
-Content-Type: multipart/alternative; boundary="1352762675.53202.25819"; charset="us-ascii"
+--===============1097498050==
+Content-Type: multipart/alternative; boundary="1352768996.384f2Ca1.5773"; charset="us-ascii"
 
 
---1352762675.53202.25819
-Date: Mon, 12 Nov 2012 23:24:35 +0000
+--1352768996.384f2Ca1.5773
+Date: Tue, 13 Nov 2012 01:09:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56461
 
---- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 69969
-  --> https://bugs.freedesktop.org/attachment.cgi?id=69969&action=edit
-fix
+--- Comment #6 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> ---
+Created attachment 69973
+  --> https://bugs.freedesktop.org/attachment.cgi?id=69973&action=edit
+console output of hang with patch
 
-This should fix it.
-
-(Condition checking DCB entry sanity was accidentally inverted during rewrite.)
+With that patch it's still hanging the kernel with a black screen. I've
+attached the serial console output from modprobe nouveau.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1352762675.53202.25819
-Date: Mon, 12 Nov 2012 23:24:35 +0000
+--1352768996.384f2Ca1.5773
+Date: Tue, 13 Nov 2012 01:09:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,19 +59,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56461">bug 56461</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+              from <span class="vcard"><a class="email" href="mailto:chris&#64;edesix.com" title="Chris Paulson-Ellis &lt;chris&#64;edesix.com&gt;"> <span class="fn">Chris Paulson-Ellis</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=69969" name="attach_69969" title="fix">attachment 69969</a> <a href="attachment.cgi?id=69969&amp;action=edit" title="fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=56461&amp;attachment=69969'>[review]</a>
-fix
+        <pre>Created <span class=""><a href="attachment.cgi?id=69973" name="attach_69973" title="console output of hang with patch">attachment 69973</a> <a href="attachment.cgi?id=69973&amp;action=edit" title="console output of hang with patch">[details]</a></span>
+console output of hang with patch
 
-This should fix it.
-
-(Condition checking DCB entry sanity was accidentally inverted during rewrite.)</pre>
+With that patch it's still hanging the kernel with a black screen. I've
+attached the serial console output from modprobe nouveau.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +82,9 @@ This should fix it.
     </body>
 </html>
 
---1352762675.53202.25819--
+--1352768996.384f2Ca1.5773--
 
---===============0787976910==
+--===============1097498050==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0787976910==--
+--===============1097498050==--
