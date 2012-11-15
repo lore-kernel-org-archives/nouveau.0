@@ -1,13 +1,18 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57151] repeatable nouveau driver crashes/hangs
- during resume on Dell Latitude E6510 when drm.debug=14
-Date: Thu, 15 Nov 2012 11:20:06 +0000
-Message-ID: <bug-57151-8800-7XeIQHMi3A@http.bugs.freedesktop.org/>
-References: <bug-57151-8800@http.bugs.freedesktop.org/>
+From: Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org>
+Subject: Re: Fix for vblank on nvc0
+Date: Thu, 15 Nov 2012 16:40:16 +0100
+Message-ID: <87vcd6euxr.fsf@turtle.gmx.de>
+References: <CAES2CiZRdkaOwYUbtp28ZMKu+DqtPOoKRwHPpLWaF2WeB6F8+g@mail.gmail.com>
+	<50995728.8080305@canonical.com> <20121111182617.GA15689@joi.lan>
+	<20121111183519.GA2959@joi.lan> <50A009B8.2080107@canonical.com>
+	<CAES2CiYwSChUaDp1Z=5W0t34D54D7HfqH2cqvWXuWxUW69szTw@mail.gmail.com>
+	<50A16FA6.5040002@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1344433641=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57151-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <50A16FA6.5040002-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> (Maarten Lankhorst's message of
+	"Mon, 12 Nov 2012 22:52:38 +0100")
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,84 +22,23 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On 2012-11-12 22:52 +0100, Maarten Lankhorst wrote:
 
---===============1344433641==
-Content-Type: multipart/alternative; boundary="1352978407.fABF2.16195"; charset="us-ascii"
+> Op 12-11-12 22:30, Kelly Doran schreef:
+>> I had Sven test this patch... he said it works.  I think chipset
+>> number test was executing code that we thought was only either 0x50 or
+>> 0xc0, but was actually more specific with things like 0x92.
+>>
+> Oh right vblank is busted anyway... needs to be nv_device(priv-)>card_type == NV_50 to work.
+>
+> Your patch is the correct fix.
 
+The patch has landed in the nouveau/master branch now, but not in
+drm-nouveau-fixes where it is also needed.
 
---1352978407.fABF2.16195
-Date: Thu, 15 Nov 2012 11:20:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=57151
-
-Peter Wu <lekensteyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #70106|text/plain                  |application/zip
-          mime type|                            |
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1352978407.fABF2.16195
-Date: Thu, 15 Nov 2012 11:20:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:lekensteyn&#64;gmail.com" title="Peter Wu &lt;lekensteyn&#64;gmail.com&gt;"> <span class="fn">Peter Wu</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - repeatable nouveau driver crashes/hangs during resume on Dell Latitude E6510 when drm.debug=14"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57151">bug 57151</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #70106 mime type</td>
-           <td>text/plain
-           </td>
-           <td>application/zip
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1352978407.fABF2.16195--
-
---===============1344433641==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1344433641==--
+Cheers,
+       Sven
