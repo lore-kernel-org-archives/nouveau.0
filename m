@@ -1,36 +1,86 @@
-From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/bios: fix DCB v1.5 parsing
-Date: Fri, 16 Nov 2012 21:36:56 +1000
-Message-ID: <CAPM=9tx7nxB1ncQUZrBCh2xyKNxEz77=QMyandzoKmY3yopXEA@mail.gmail.com>
-References: <20121115210914.GA6970@joi.lan>
+From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Subject: [PATCH] drm/nouveau: add voltage workaround for buggy vbioses
+Date: Fri, 16 Nov 2012 17:46:04 +0100
+Message-ID: <50A66DCC.9020809@canonical.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20121115210914.GA6970-OI9uyE9O0yo@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: nouveau@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Nov 16, 2012 at 7:09 AM, Marcin Slusarz
-<marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> memcmp->nv_strncmp conversion should have inverted the return value.
->
-> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
-> See http://git.kernel.org/?p=linux/kernel/git/torvalds/linux.git;a=blob;f=drivers/gpu/drm/nouveau/nouveau_bios.c;h=a0a3fe3c016be86665db1369c44bef832f829a1a;hb=a0d271cbfed1dd50278c6b06bead3d00ba0a88f9#l5652 (3.6)
-> and http://git.kernel.org/?p=linux/kernel/git/torvalds/linux.git;a=blob;f=drivers/gpu/drm/nouveau/core/include/core/object.h;h=818feabbf4a0969f090f897852fe4476a422b1b6;hb=77b67063bb6bce6d475e910d3b886a606d0d91f7#l179 (nv_strncmp definition)
+Required to find all performance levels on my nvc0.
 
-Christ fix that nv_strncmp to act like the C one, or give it a very
-different name!
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
 
-Dave.
+---
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_perf.c b/drivers/gpu/drm/nouveau/nouveau_perf.c
+index 4fe883c..624cbd1 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_perf.c
++++ b/drivers/gpu/drm/nouveau/nouveau_perf.c
+@@ -251,6 +251,7 @@ static void
+ nouveau_perf_voltage(struct drm_device *dev, struct nouveau_pm_level *perflvl)
+ {
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
++	struct nouveau_pm_voltage *volt = &nouveau_pm(dev)->voltage;
+ 	struct bit_entry P;
+ 	u8 *vmap;
+ 	int id;
+@@ -287,6 +288,20 @@ nouveau_perf_voltage(struct drm_device *dev, struct nouveau_pm_level *perflvl)
+ 		perflvl->volt_min = ROM32(vmap[0]);
+ 		perflvl->volt_max = ROM32(vmap[4]);
+ 	}
++
++	/* Adjust for buggy bioses */
++	if (!volt->step_uv || !volt->step_ofs)
++		return;
++
++	if (perflvl->volt_min % volt->step_uv != volt->step_ofs) {
++		perflvl->volt_min -= perflvl->volt_min % volt->step_uv;
++		perflvl->volt_min += volt->step_ofs;
++	}
++
++	if (perflvl->volt_max % volt->step_uv != volt->step_ofs) {
++		perflvl->volt_max -= perflvl->volt_max % volt->step_uv;
++		perflvl->volt_max += volt->step_ofs;
++	}
+ }
+ 
+ void
+diff --git a/drivers/gpu/drm/nouveau/nouveau_pm.h b/drivers/gpu/drm/nouveau/nouveau_pm.h
+index 73b789c..967c27c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_pm.h
++++ b/drivers/gpu/drm/nouveau/nouveau_pm.h
+@@ -40,6 +40,7 @@ struct nouveau_pm_voltage {
+ 
+ 	struct nouveau_pm_voltage_level *level;
+ 	int nr_level;
++	u16 step_uv, step_ofs;
+ };
+ 
+ /* Exclusive upper limits */
+diff --git a/drivers/gpu/drm/nouveau/nouveau_volt.c b/drivers/gpu/drm/nouveau/nouveau_volt.c
+index 9976414..c8d0c00 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_volt.c
++++ b/drivers/gpu/drm/nouveau/nouveau_volt.c
+@@ -236,6 +236,9 @@ nouveau_volt_init(struct drm_device *dev)
+ 			voltage->level[vid].vid = vid;
+ 			volt_uv += step_uv;
+ 		}
++		voltage->step_uv = step_uv >= 0 ? step_uv : -step_uv;
++		if (step_uv)
++			voltage->step_ofs = volt_uv % voltage->step_uv;
+ 	}
+ 
+ 	voltage->supported = true;
