@@ -1,87 +1,54 @@
-From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Subject: [PATCH] drm/nouveau: add missing pll_calc calls
-Date: Fri, 16 Nov 2012 17:47:16 +0100
-Message-ID: <50A66E14.3030709@canonical.com>
+From: "Henrik Rydberg" <rydberg@euromail.se>
+Subject: Re: [REGRESSION] nouveau: Severe screen corruption on (0xaf, nv50)
+Date: Fri, 16 Nov 2012 20:21:59 +0100
+Message-ID: <20121116192159.GA491@polaris.bitmath.org>
+References: <20121018095809.GA336@polaris.bitmath.org>
+ <20121021071024.GA731@polaris.bitmath.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20121021071024.GA731@polaris.bitmath.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: Dave Airlie <airlied@gmail.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Fixes a null pointer dereference when reclocking on my fermi.
+On Sun, Oct 21, 2012 at 09:10:24AM +0200, Henrik Rydberg wrote:
+> On Thu, Oct 18, 2012 at 11:58:09AM +0200, Henrik Rydberg wrote:
+> > Hi Ben,
+> > 
+> > 3.7-rc1 messed up the screen on my MacBookAir3,1 (nv50, 0xaf) pretty
+> > badly. Not surprisingly,
+> > 
+> > commit 3863c9bc887e9638a9d905d55f6038641ece78d6
+> > Author: Ben Skeggs <bskeggs@redhat.com>
+> > Date:   Sat Jul 14 19:09:17 2012 +1000
+> > 
+> >     drm/nouveau/instmem: completely new implementation, as a subdev module
+> > 
+> > is the first bad commit. Standing on that commit, booting and then
+> > starting X yields the output below. Hints are especially appreciated,
+> > considering the patch is almost 8000 lines.
+> 
+> Going through one suspend/resume cycle makes the corruption go away,
+> and there are no more errors in dmesg. Oddly enough, I have seen
+> something very similar when using i915 on the MBP10. Builtin modules
+> and systemd in both cases. Maybe this is a general drm issue. Any
+> thoughts?
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+This is still a problem in Linus' tree. The screen corruption happens
+during boot, in text mode, presumably in conjunction with alloction of
+the nouveaufb device. It is 100% reproducible, and there is no
+advanced graphics involved, just simple text console. Booting from efi
+or bios does not matter. Modules are builtin.
 
----
-diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/clock.h b/drivers/gpu/drm/nouveau/core/include/subdev/clock.h
-index 39e73b9..41b7a6a 100644
---- a/drivers/gpu/drm/nouveau/core/include/subdev/clock.h
-+++ b/drivers/gpu/drm/nouveau/core/include/subdev/clock.h
-@@ -54,6 +54,7 @@ int nv04_clock_pll_calc(struct nouveau_clock *, struct nvbios_pll *,
- 			int clk, struct nouveau_pll_vals *);
- int nv04_clock_pll_prog(struct nouveau_clock *, u32 reg1,
- 			struct nouveau_pll_vals *);
--
-+int nva3_clock_pll_calc(struct nouveau_clock *, struct nvbios_pll *,
-+			int clk, struct nouveau_pll_vals *);
- 
- #endif
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.c b/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.c
-index cc8d7d1..9068c98 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.c
-@@ -66,6 +66,24 @@ nva3_clock_pll_set(struct nouveau_clock *clk, u32 type, u32 freq)
- 	return ret;
- }
- 
-+int
-+nva3_clock_pll_calc(struct nouveau_clock *clock, struct nvbios_pll *info,
-+		    int clk, struct nouveau_pll_vals *pv)
-+{
-+	int ret, N, M, P;
-+
-+	ret = nva3_pll_calc(clock, info, clk, &N, NULL, &M, &P);
-+
-+	if (ret > 0) {
-+		pv->refclk = info->refclk;
-+		pv->N1 = N;
-+		pv->M1 = M;
-+		pv->log2P = P;
-+	}
-+	return ret;
-+}
-+
-+
- static int
- nva3_clock_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 		struct nouveau_oclass *oclass, void *data, u32 size,
-@@ -80,6 +98,7 @@ nva3_clock_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 		return ret;
- 
- 	priv->base.pll_set = nva3_clock_pll_set;
-+	priv->base.pll_calc = nva3_clock_pll_calc;
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c b/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c
-index 5ccce0b..f6962c9 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c
-@@ -79,6 +79,7 @@ nvc0_clock_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 		return ret;
- 
- 	priv->base.pll_set = nvc0_clock_pll_set;
-+	priv->base.pll_calc = nva3_clock_pll_calc;
- 	return 0;
- }
+Suspending and resuming once makes the problem go away every time.
+
+Since this is a simple usecase, and the failing commit has been
+bisected, it ought to be possible to find the problem. Unfortunately,
+I am not familiar enough with the nouveau code to find the problem in
+an 8000-line patch. Please help. :-)
+
+Thanks,
+Henrik
