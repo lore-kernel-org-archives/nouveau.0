@@ -1,14 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56340] [Ubuntu 10.04.4 LTS 32-bit] Severe
- instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2
- M64 graphics
-Date: Sat, 17 Nov 2012 07:21:00 +0000
-Message-ID: <bug-56340-8800-oT9WIzNcu4@http.bugs.freedesktop.org/>
-References: <bug-56340-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/bios: fix DCB v1.5 parsing
+Date: Sat, 17 Nov 2012 21:33:15 +0100
+Message-ID: <20121117203315.GA23587@joi.lan>
+References: <20121115210914.GA6970@joi.lan>
+	<CAPM=9tx7nxB1ncQUZrBCh2xyKNxEz77=QMyandzoKmY3yopXEA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0937310363=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56340-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CAPM=9tx7nxB1ncQUZrBCh2xyKNxEz77=QMyandzoKmY3yopXEA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,167 +19,83 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0937310363==
-Content-Type: multipart/alternative; boundary="1353136860.E17fAA1.3441"; charset="us-ascii"
-
-
---1353136860.E17fAA1.3441
-Date: Sat, 17 Nov 2012 07:21:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=56340
-
---- Comment #12 from mypersonalmailbox1-O5WfVfzUwx8@public.gmane.org ---
-(In reply to comment #11)
-
-Hi Robert,
-
-Yeah, I will speculate that VIA Technologies screwed up their AGP related
-timings like setup time in their actual silicon.
-I believe NVIDIA has mentioned in their binary Linux device driver
-documentation that ALi Alladin V chipset's AGP suffers from timing and signal
-integrity issues.
-They also mentioned that Apollo Pro133A (VT82C694X) and KT266 chipsets' AGP 4X
-Mode is quite buggy, and their device driver turn off AGP 4X Mode, but they
-never mentioned issues with Apollo MVP3 chipset.
-I still remember from 1998 to 1999 that many computer enthusiasts complained
-about Apollo MVP3 and Alladin V chipsets' AGP were buggy, especially when AGP
-specific features get utilized (i.e., Side Band Addressing) during 3D games.
-Considering that, I guess I should not be too surprised that turning off AGP 2X
-Mode stabilized the problem.
-Still, I am surprised that many newer generation graphics cards like GeForce FX
-(see my previous post) have worked with this somewhat buggy chipset's AGP, and
-I believe AGP 2X Mode was on.
-        Robert, you are right that some VIA Technologies chipset do have AGP
-driving value that can be altered in the BIOS setup.
-If I remember correctly, I have seen this in several Apollo
-Pro133A/P4M266A/KT266A-based mainboards.
-NVIDIA also mentions this in their aforementioned documentation.
-The FIC VA-503+ mainboard doesn't have this feature in their BIOS setup.
-Anyway, do you know if there is a way to obtain a log file from Nouveau itself?
-Whenever FIC VA-503+ crashes due to this instability of AGP 2X Mode, the
-previously mentioned GPU lockup error message doesn't seem to get recorded
-inside kern.log.
-I did managed to take somewhat low quality digital camera screen shot of the
-error message, but it doesn't get recorded inside kern.log.
-
-Regards,
-
-fpgahardwareengineer
-
-
-> Most likely in 2X mode some of the data transfers to/from the card are
-> getting corrupted somehow, causing the GPU to not respond as expected and
-> causing the lockup detection.
+On Fri, Nov 16, 2012 at 09:36:56PM +1000, Dave Airlie wrote:
+> On Fri, Nov 16, 2012 at 7:09 AM, Marcin Slusarz
+> <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> > memcmp->nv_strncmp conversion should have inverted the return value.
+> >
+> > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > ---
+> > See http://git.kernel.org/?p=linux/kernel/git/torvalds/linux.git;a=blob;f=drivers/gpu/drm/nouveau/nouveau_bios.c;h=a0a3fe3c016be86665db1369c44bef832f829a1a;hb=a0d271cbfed1dd50278c6b06bead3d00ba0a88f9#l5652 (3.6)
+> > and http://git.kernel.org/?p=linux/kernel/git/torvalds/linux.git;a=blob;f=drivers/gpu/drm/nouveau/core/include/core/object.h;h=818feabbf4a0969f090f897852fe4476a422b1b6;hb=77b67063bb6bce6d475e910d3b886a606d0d91f7#l179 (nv_strncmp definition)
 > 
-> I believe that for AGP problems on VIA chipsets, some people had luck with
-> playing with the "AGP Driving Value" setting in the BIOS, if you have such
-> an option you can try using different settings for this. (As I recall, most
-> AGP chipsets would handle this setting automatically but the crappy VIA AGP
-> implementation used a BIOS setting which sometimes required the user to
-> enter a different value in the hope it would get the card to work properly.)
+> Christ fix that nv_strncmp to act like the C one, or give it a very
+> different name!
 
+Please don't kill the messenger.
+
+---
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH v2] drm/nouveau/bios: fix DCB v1.5 parsing
+
+memcmp->nv_strncmp conversion, in addition to name change, should have
+inverted the return value.
+
+But nv_strncmp does not act like strncmp - it does not check for string
+terminator, returns true/false instead of -1/0/1 and has different
+parameters order.
+Let's rename it to nv_memcmp and let it act like memcmp.
+
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/include/core/object.h | 14 +++++++++-----
+ drivers/gpu/drm/nouveau/core/subdev/bios/dcb.c     |  2 +-
+ 2 files changed, 10 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/core/include/core/object.h b/drivers/gpu/drm/nouveau/core/include/core/object.h
+index 818feab..486f1a9 100644
+--- a/drivers/gpu/drm/nouveau/core/include/core/object.h
++++ b/drivers/gpu/drm/nouveau/core/include/core/object.h
+@@ -175,14 +175,18 @@ nv_mo32(void *obj, u32 addr, u32 mask, u32 data)
+ 	return temp;
+ }
+ 
+-static inline bool
+-nv_strncmp(void *obj, u32 addr, u32 len, const char *str)
++static inline int
++nv_memcmp(void *obj, u32 addr, const char *str, u32 len)
+ {
++	unsigned char c1, c2;
++
+ 	while (len--) {
+-		if (nv_ro08(obj, addr++) != *(str++))
+-			return false;
++		c1 = nv_ro08(obj, addr++);
++		c2 = *(str++);
++		if (c1 != c2)
++			return c1 - c2;
+ 	}
+-	return true;
++	return 0;
+ }
+ 
+ #endif
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/bios/dcb.c b/drivers/gpu/drm/nouveau/core/subdev/bios/dcb.c
+index 7d75038..c511971 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/bios/dcb.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/bios/dcb.c
+@@ -64,7 +64,7 @@ dcb_table(struct nouveau_bios *bios, u8 *ver, u8 *hdr, u8 *cnt, u8 *len)
+ 		}
+ 	} else
+ 	if (*ver >= 0x15) {
+-		if (!nv_strncmp(bios, dcb - 7, 7, "DEV_REC")) {
++		if (!nv_memcmp(bios, dcb - 7, "DEV_REC", 7)) {
+ 			u16 i2c = nv_ro16(bios, dcb + 2);
+ 			*hdr = 4;
+ 			*cnt = (i2c - dcb) / 10;
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1353136860.E17fAA1.3441
-Date: Sat, 17 Nov 2012 07:21:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340#c12">Comment # 12</a>
-              on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340">bug 56340</a>
-              from <span class="vcard"><a class="email" href="mailto:mypersonalmailbox1&#64;mail.com" title="mypersonalmailbox1&#64;mail.com">mypersonalmailbox1&#64;mail.com</a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=56340#c11">comment #11</a>)
-
-Hi Robert,
-
-Yeah, I will speculate that VIA Technologies screwed up their AGP related
-timings like setup time in their actual silicon.
-I believe NVIDIA has mentioned in their binary Linux device driver
-documentation that ALi Alladin V chipset's AGP suffers from timing and signal
-integrity issues.
-They also mentioned that Apollo Pro133A (VT82C694X) and KT266 chipsets' AGP 4X
-Mode is quite buggy, and their device driver turn off AGP 4X Mode, but they
-never mentioned issues with Apollo MVP3 chipset.
-I still remember from 1998 to 1999 that many computer enthusiasts complained
-about Apollo MVP3 and Alladin V chipsets' AGP were buggy, especially when AGP
-specific features get utilized (i.e., Side Band Addressing) during 3D games.
-Considering that, I guess I should not be too surprised that turning off AGP 2X
-Mode stabilized the problem.
-Still, I am surprised that many newer generation graphics cards like GeForce FX
-(see my previous post) have worked with this somewhat buggy chipset's AGP, and
-I believe AGP 2X Mode was on.
-        Robert, you are right that some VIA Technologies chipset do have AGP
-driving value that can be altered in the BIOS setup.
-If I remember correctly, I have seen this in several Apollo
-Pro133A/P4M266A/KT266A-based mainboards.
-NVIDIA also mentions this in their aforementioned documentation.
-The FIC VA-503+ mainboard doesn't have this feature in their BIOS setup.
-Anyway, do you know if there is a way to obtain a log file from Nouveau itself?
-Whenever FIC VA-503+ crashes due to this instability of AGP 2X Mode, the
-previously mentioned GPU lockup error message doesn't seem to get recorded
-inside kern.log.
-I did managed to take somewhat low quality digital camera screen shot of the
-error message, but it doesn't get recorded inside kern.log.
-
-Regards,
-
-fpgahardwareengineer
-
-
-<span class="quote">&gt; Most likely in 2X mode some of the data transfers to/from the card are
-&gt; getting corrupted somehow, causing the GPU to not respond as expected and
-&gt; causing the lockup detection.
-&gt; 
-&gt; I believe that for AGP problems on VIA chipsets, some people had luck with
-&gt; playing with the &quot;AGP Driving Value&quot; setting in the BIOS, if you have such
-&gt; an option you can try using different settings for this. (As I recall, most
-&gt; AGP chipsets would handle this setting automatically but the crappy VIA AGP
-&gt; implementation used a BIOS setting which sometimes required the user to
-&gt; enter a different value in the hope it would get the card to work properly.)</span ></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1353136860.E17fAA1.3441--
-
---===============0937310363==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0937310363==--
+1.7.12
