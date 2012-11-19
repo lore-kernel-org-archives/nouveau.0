@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20466] No borders in Xmonad/Dwm
-Date: Mon, 19 Nov 2012 20:42:17 +0000
-Message-ID: <bug-20466-8800-KgK6TCujYs@http.bugs.freedesktop.org/>
-References: <bug-20466-8800@http.bugs.freedesktop.org/>
+From: Tyler Durden <tylerdu-8Y23ZgqdBYRBDLzU/O5InQ@public.gmane.org>
+Subject: Display not refreshing when not moving mouse
+Date: Mon, 19 Nov 2012 22:58:27 +0100
+Message-ID: <50AAAB83.10301@bounced.me>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1573992492=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20466-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,115 +18,22 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Dear nouveau developers and users!
 
---===============1573992492==
-Content-Type: multipart/alternative; boundary="1353357737.D2172fC1.23100"; charset="us-ascii"
+After many years of dealing with the blob in my kernel, I decided it was time to move to an open source solution. With one of my machines, equipped with 9500GT it went almost flawlessly. I had to patch kernel to get GLXVBlank option working (only because I used the latest and greatest 3.7-rc6), but that is all, and I'm very happy with the result. Nouveau on that particular machine runs really great!
 
+But, after many hours of fighting I must ask for help with another machine, which has 9600GT in it. I'm stuck on a very strange problem, where display doesn't refresh (everything stops) until I move the mouse. Terminal with vmstat 1 in it stops refreshing, video stops, glxgears stops, everything. If I drag mouse around frantically, screen refreshes normally.
 
---1353357737.D2172fC1.23100
-Date: Mon, 19 Nov 2012 20:42:17 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+The machines are quite similar, debian + compiz + xfce, so I went further, searching for some lowlevel or even hw cause for such behaviour. I found that on the problematic one the video card shares interrupts with the PCIe storage device, namely sata_sil24 and I also saw this in dmesg: "sata_sil24: Applying completion IRQ loss on PCI-X errata fix". So, I though, maybe enabling MSI interrupts would solve the problem. Went back to 3.6 kernel where nouveau driver has support for MSI interrupts, enabled it, but it didn't help (same behaviour). I also thought about moving the other card in a different PCIe slot, but it can't be done (both require x16 slot, and I have only two). This is where I lost hope. I must also note that the blob works correctly on the same setup, both with IO-APIC and MSI
+  interrupts. So, I'm not even sure I'm on the right path debugging all this. Maybe it's a dead end, and the problem is elsewhere?
 
-https://bugs.freedesktop.org/show_bug.cgi?id=20466
+Beside kernel, which I compile from Linus' git tree, I have standard Debian packages from sid distribution:
 
-Magnus R <marasgp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+ii  libdrm-nouveau1a:amd64             2.4.33-3
+ii  xserver-xorg-video-nouveau         1:1.0.1-4
+ii  libgl1-mesa-dri:amd64              8.0.5-1
+ii  xserver-xorg-core                  2:1.12.4-3
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|NOTOURBUG                   |---
-
---- Comment #8 from Magnus R <marasgp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I'm reopening this issue as I see it on my MacBook Pro retina running Debian
-Wheezy with kernel 3.7-rc5. Please let me know what more information you want.
-
-Best regards,
-
-Magnus
-
+Any help on this issue would be greatly appreciated. I can provide any additional data needed, or help test experimental patches.
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1353357737.D2172fC1.23100
-Date: Mon, 19 Nov 2012 20:42:17 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:marasgp&#64;gmail.com" title="Magnus R &lt;marasgp&#64;gmail.com&gt;"> <span class="fn">Magnus R</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - No borders in Xmonad/Dwm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=20466">bug 20466</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
-           <td>REOPENED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>NOTOURBUG
-           </td>
-           <td>---
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - No borders in Xmonad/Dwm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=20466#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - No borders in Xmonad/Dwm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=20466">bug 20466</a>
-              from <span class="vcard"><a class="email" href="mailto:marasgp&#64;gmail.com" title="Magnus R &lt;marasgp&#64;gmail.com&gt;"> <span class="fn">Magnus R</span></a>
-</span></b>
-        <pre>I'm reopening this issue as I see it on my MacBook Pro retina running Debian
-Wheezy with kernel 3.7-rc5. Please let me know what more information you want.
-
-Best regards,
-
-Magnus</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1353357737.D2172fC1.23100--
-
---===============1573992492==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1573992492==--
+Tyler
