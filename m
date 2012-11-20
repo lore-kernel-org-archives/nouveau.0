@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
-	laptop
-Date: Tue, 20 Nov 2012 13:11:22 +0000
-Message-ID: <bug-56615-8800-7MqAwgrNlJ@http.bugs.freedesktop.org/>
-References: <bug-56615-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57326] New: gpu lockup when using hardware
+ acceleration in AndroVM
+Date: Tue, 20 Nov 2012 15:22:32 +0000
+Message-ID: <bug-57326-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1762457002=="
+Content-Type: multipart/mixed; boundary="===============1543455810=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,52 +19,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1762457002==
-Content-Type: multipart/alternative; boundary="1353417082.0B2a1.13930"; charset="us-ascii"
+--===============1543455810==
+Content-Type: multipart/alternative; boundary="1353424952.Cf14f110.31872"; charset="us-ascii"
 
 
---1353417082.0B2a1.13930
-Date: Tue, 20 Nov 2012 13:11:22 +0000
+--1353424952.Cf14f110.31872
+Date: Tue, 20 Nov 2012 15:22:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56615
+https://bugs.freedesktop.org/show_bug.cgi?id=57326
 
---- Comment #10 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
-Based upon the suggestions that this is a problem with the kernel module, I've
-now setup and built a full dev environment.
+          Priority: medium
+            Bug ID: 57326
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: gpu lockup when using hardware acceleration in AndroVM
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: thepouar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Drivers/DRI/nouveau
+           Product: Mesa
 
-With this in place, I've just done a build of git master (commit
-cd55d81fdb49c9113792c3b361c125e82091d6c4) from
-git://anongit.freedesktop.org/nouveau/linux-2.6 and unfortunately I see exactly
-the same problem as before :/
+Created attachment 70319
+  --> https://bugs.freedesktop.org/attachment.cgi?id=70319&action=edit
+kernel log from dmesg
 
-Incidentally can anyone explain what the following items in dmesg represent?
-
-[   26.204990] nouveau W[  PGRAPH][0000:01:00.0] disabled, PGRAPH=1 to enable
-[   29.873280] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
-0x00005080 0x0000000d
-[   29.876287] [sched_delayed] sched: RT throttling activated
-[   33.870186] nouveau  [     DRM] EvoCh: chid 2 mthd 0x0080 data 0x00000000
-0x10005080 0x0000000d
-[   57.731616] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
-0x10005080 0x0000000d
-[   73.691785] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
-0x10005080 0x0000000d
-[  118.486621] nouveau W[  PGRAPH][0000:01:00.0] disabled, PGRAPH=1 to enable
-[  120.491687] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
-0x10005080 0x0000000d
-[  127.921298] nouveau E[     DRM] evo 0 dma stalled
-
-Are they any debugging kernel module parameters that can be enabled in order to
-provide more information?
+in case you haven't heard, AndroVM is a project to get Andriod running inside
+VirtualBox http://androvm.org , anyway, when using hardware acceleration, the
+gpu locks up.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1353417082.0B2a1.13930
-Date: Tue, 20 Nov 2012 13:11:22 +0000
+--1353424952.Cf14f110.31872
+Date: Tue, 20 Nov 2012 15:22:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,46 +65,95 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - gpu lockup when using hardware acceleration in AndroVM"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57326">57326</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>gpu lockup when using hardware acceleration in AndroVM
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>thepouar&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
-              from <span class="vcard"><a class="email" href="mailto:mark.cave-ayland&#64;ilande.co.uk" title="Mark Cave-Ayland &lt;mark.cave-ayland&#64;ilande.co.uk&gt;"> <span class="fn">Mark Cave-Ayland</span></a>
-</span></b>
-        <pre>Based upon the suggestions that this is a problem with the kernel module, I've
-now setup and built a full dev environment.
+        <pre>Created <span class=""><a href="attachment.cgi?id=70319" name="attach_70319" title="kernel log from dmesg">attachment 70319</a> <a href="attachment.cgi?id=70319&amp;action=edit" title="kernel log from dmesg">[details]</a></span>
+kernel log from dmesg
 
-With this in place, I've just done a build of git master (commit
-cd55d81fdb49c9113792c3b361c125e82091d6c4) from
-git://anongit.freedesktop.org/nouveau/linux-2.6 and unfortunately I see exactly
-the same problem as before :/
-
-Incidentally can anyone explain what the following items in dmesg represent?
-
-[   26.204990] nouveau W[  PGRAPH][0000:01:00.0] disabled, PGRAPH=1 to enable
-[   29.873280] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
-0x00005080 0x0000000d
-[   29.876287] [sched_delayed] sched: RT throttling activated
-[   33.870186] nouveau  [     DRM] EvoCh: chid 2 mthd 0x0080 data 0x00000000
-0x10005080 0x0000000d
-[   57.731616] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
-0x10005080 0x0000000d
-[   73.691785] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
-0x10005080 0x0000000d
-[  118.486621] nouveau W[  PGRAPH][0000:01:00.0] disabled, PGRAPH=1 to enable
-[  120.491687] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
-0x10005080 0x0000000d
-[  127.921298] nouveau E[     DRM] evo 0 dma stalled
-
-Are they any debugging kernel module parameters that can be enabled in order to
-provide more information?</pre>
+in case you haven't heard, AndroVM is a project to get Andriod running inside
+VirtualBox <a href="http://androvm.org">http://androvm.org</a> , anyway, when using hardware acceleration, the
+gpu locks up.</pre>
         </div>
       </p>
       <hr>
@@ -125,9 +165,9 @@ provide more information?</pre>
     </body>
 </html>
 
---1353417082.0B2a1.13930--
+--1353424952.Cf14f110.31872--
 
---===============1762457002==
+--===============1543455810==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -138,4 +178,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1762457002==--
+--===============1543455810==--
