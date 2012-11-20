@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 48464] Crash when GLXVBlank set to true
-Date: Tue, 20 Nov 2012 08:04:33 +0000
-Message-ID: <bug-48464-8800-0iz3kPDwSn@http.bugs.freedesktop.org/>
-References: <bug-48464-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
+	laptop
+Date: Tue, 20 Nov 2012 13:11:22 +0000
+Message-ID: <bug-56615-8800-7MqAwgrNlJ@http.bugs.freedesktop.org/>
+References: <bug-56615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0098638226=="
+Content-Type: multipart/mixed; boundary="===============1762457002=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-48464-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,52 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0098638226==
-Content-Type: multipart/alternative; boundary="1353398673.a24A71.30251"; charset="us-ascii"
+--===============1762457002==
+Content-Type: multipart/alternative; boundary="1353417082.0B2a1.13930"; charset="us-ascii"
 
 
---1353398673.a24A71.30251
-Date: Tue, 20 Nov 2012 08:04:33 +0000
+--1353417082.0B2a1.13930
+Date: Tue, 20 Nov 2012 13:11:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=48464
+https://bugs.freedesktop.org/show_bug.cgi?id=56615
 
-Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> changed:
+--- Comment #10 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
+Based upon the suggestions that this is a problem with the kernel module, I've
+now setup and built a full dev environment.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |VERIFIED
+With this in place, I've just done a build of git master (commit
+cd55d81fdb49c9113792c3b361c125e82091d6c4) from
+git://anongit.freedesktop.org/nouveau/linux-2.6 and unfortunately I see exactly
+the same problem as before :/
 
---- Comment #10 from Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> ---
-I have just tested it and I can confirm that it really fixed my original issue.
-Now I'm using different MB and CPU but GPU and everything else is the same.
+Incidentally can anyone explain what the following items in dmesg represent?
+
+[   26.204990] nouveau W[  PGRAPH][0000:01:00.0] disabled, PGRAPH=1 to enable
+[   29.873280] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
+0x00005080 0x0000000d
+[   29.876287] [sched_delayed] sched: RT throttling activated
+[   33.870186] nouveau  [     DRM] EvoCh: chid 2 mthd 0x0080 data 0x00000000
+0x10005080 0x0000000d
+[   57.731616] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
+0x10005080 0x0000000d
+[   73.691785] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
+0x10005080 0x0000000d
+[  118.486621] nouveau W[  PGRAPH][0000:01:00.0] disabled, PGRAPH=1 to enable
+[  120.491687] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
+0x10005080 0x0000000d
+[  127.921298] nouveau E[     DRM] evo 0 dma stalled
+
+Are they any debugging kernel module parameters that can be enabled in order to
+provide more information?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1353398673.a24A71.30251
-Date: Tue, 20 Nov 2012 08:04:33 +0000
+--1353417082.0B2a1.13930
+Date: Tue, 20 Nov 2012 13:11:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,41 +74,46 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:mdop&#64;seznam.cz" title="Marcel Dopita &lt;mdop&#64;seznam.cz&gt;"> <span class="fn">Marcel Dopita</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed"
-   title="VERIFIED FIXED - Crash when GLXVBlank set to true"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48464">bug 48464</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
-           <td>VERIFIED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed"
-   title="VERIFIED FIXED - Crash when GLXVBlank set to true"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48464#c10">Comment # 10</a>
+          bz_status_NEW "
+   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c10">Comment # 10</a>
               on <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed"
-   title="VERIFIED FIXED - Crash when GLXVBlank set to true"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48464">bug 48464</a>
-              from <span class="vcard"><a class="email" href="mailto:mdop&#64;seznam.cz" title="Marcel Dopita &lt;mdop&#64;seznam.cz&gt;"> <span class="fn">Marcel Dopita</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
+              from <span class="vcard"><a class="email" href="mailto:mark.cave-ayland&#64;ilande.co.uk" title="Mark Cave-Ayland &lt;mark.cave-ayland&#64;ilande.co.uk&gt;"> <span class="fn">Mark Cave-Ayland</span></a>
 </span></b>
-        <pre>I have just tested it and I can confirm that it really fixed my original issue.
-Now I'm using different MB and CPU but GPU and everything else is the same.</pre>
+        <pre>Based upon the suggestions that this is a problem with the kernel module, I've
+now setup and built a full dev environment.
+
+With this in place, I've just done a build of git master (commit
+cd55d81fdb49c9113792c3b361c125e82091d6c4) from
+git://anongit.freedesktop.org/nouveau/linux-2.6 and unfortunately I see exactly
+the same problem as before :/
+
+Incidentally can anyone explain what the following items in dmesg represent?
+
+[   26.204990] nouveau W[  PGRAPH][0000:01:00.0] disabled, PGRAPH=1 to enable
+[   29.873280] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
+0x00005080 0x0000000d
+[   29.876287] [sched_delayed] sched: RT throttling activated
+[   33.870186] nouveau  [     DRM] EvoCh: chid 2 mthd 0x0080 data 0x00000000
+0x10005080 0x0000000d
+[   57.731616] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
+0x10005080 0x0000000d
+[   73.691785] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
+0x10005080 0x0000000d
+[  118.486621] nouveau W[  PGRAPH][0000:01:00.0] disabled, PGRAPH=1 to enable
+[  120.491687] nouveau  [     DRM] EvoCh: chid 1 mthd 0x0080 data 0x00000000
+0x10005080 0x0000000d
+[  127.921298] nouveau E[     DRM] evo 0 dma stalled
+
+Are they any debugging kernel module parameters that can be enabled in order to
+provide more information?</pre>
         </div>
       </p>
       <hr>
@@ -100,9 +125,9 @@ Now I'm using different MB and CPU but GPU and everything else is the same.</pre
     </body>
 </html>
 
---1353398673.a24A71.30251--
+--1353417082.0B2a1.13930--
 
---===============0098638226==
+--===============1762457002==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -113,4 +138,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0098638226==--
+--===============1762457002==--
