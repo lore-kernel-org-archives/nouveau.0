@@ -1,80 +1,43 @@
-From: Pouar <thepouar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: gpu lockup when using Hardware Acceleration in AndroVM in
-	VirtualBox
-Date: Tue, 20 Nov 2012 18:14:03 -0600
-Message-ID: <50AC1CCB.4050007@gmail.com>
-References: <50AC1B39.6020905@gmail.com>
+From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Subject: [PATCH] drm/nouveau: use the correct fence implementation for nv50
+Date: Wed, 21 Nov 2012 13:21:12 +0100
+Message-ID: <50ACC738.3060505@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0699557159=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <50AC1B39.6020905-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: nouveau@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---===============0699557159==
-Content-Type: multipart/alternative;
- boundary="------------020903040003090809080900"
+Only compile time tested, noticed nv50_fence_create was never used,
+so fix this. This will probably fix vblank on nv50 cards.
 
-This is a multi-part message in MIME format.
---------------020903040003090809080900
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+Hopefully this is still in time for 3.7 final release.
 
-see title
-using gtx 560 Ti
-google AndroVM if you never heard of it
-also filed a bug report
-https://bugs.freedesktop.org/show_bug.cgi?id=57326
--- 
-Pouar
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
 
-
-
---------------020903040003090809080900
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    see title<br>
-    <div class="moz-forward-container"> using gtx 560 Ti<br>
-      google AndroVM if you never heard of it<br>
-      also filed a bug report<br>
-      <a moz-do-not-send="true"
-        href="https://bugs.freedesktop.org/show_bug.cgi?id=57326">https://bugs.freedesktop.org/show_bug.cgi?id=57326</a><br>
-      <div class="moz-signature">-- <br>
-        <font color="000000">Pouar</font></div>
-      <br>
-    </div>
-    <br>
-  </body>
-</html>
-
---------------020903040003090809080900--
-
---===============0699557159==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0699557159==--
+---
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 0910125..8503b2e 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -129,7 +129,8 @@ nouveau_accel_init(struct nouveau_drm *drm)
+ 
+ 	/* initialise synchronisation routines */
+ 	if      (device->card_type < NV_10) ret = nv04_fence_create(drm);
+-	else if (device->chipset   <  0x84) ret = nv10_fence_create(drm);
++	else if (device->card_type < NV_50) ret = nv10_fence_create(drm);
++	else if (device->chipset   <  0x84) ret = nv50_fence_create(drm);
+ 	else if (device->card_type < NV_C0) ret = nv84_fence_create(drm);
+ 	else                                ret = nvc0_fence_create(drm);
+ 	if (ret) {
