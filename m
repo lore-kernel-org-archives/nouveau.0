@@ -1,7 +1,8 @@
 From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Subject: [PATCH 2/3] drm/nouveau: use dp link train request helper
-Date: Wed, 21 Nov 2012 17:03:59 +0100
-Message-ID: <1353513840-30765-3-git-send-email-daniel.vetter@ffwll.ch>
+Subject: [PATCH 3/3] drm/nouveau: use the new
+	drm_dp_max_lane_count helper
+Date: Wed, 21 Nov 2012 17:04:00 +0100
+Message-ID: <1353513840-30765-4-git-send-email-daniel.vetter@ffwll.ch>
 References: <1353513840-30765-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,34 +22,23 @@ To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-nouveau again score with an impressive density of magic numbers.
-
-Again only compile-tested due to lack of hw, but should be equivalent
-code.
-
 Signed-off-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_dp.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
-index 3045a00..ed10c1d 100644
+index ed10c1d..437e26b 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_dp.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
-@@ -137,11 +137,10 @@ dp_link_train_commit(struct drm_device *dev, struct dp_state *dp)
- 	int i;
+@@ -411,7 +411,7 @@ nouveau_dp_detect(struct drm_encoder *encoder)
+ 		return false;
  
- 	for (i = 0; i < dp->link_nr; i++) {
--		u8 lane = (dp->stat[4 + (i >> 1)] >> ((i & 1) * 4)) & 0xf;
--		u8 lpre = (lane & 0x0c) >> 2;
--		u8 lvsw = (lane & 0x03) >> 0;
-+		u8 lpre = drm_dp_get_adjust_request_pre_emphasis(dp->stat, i);
-+		u8 lvsw = drm_dp_get_adjust_request_voltage(dp->stat, i);
+ 	nv_encoder->dp.link_bw = 27000 * dpcd[1];
+-	nv_encoder->dp.link_nr = dpcd[2] & DP_MAX_LANE_COUNT_MASK;
++	nv_encoder->dp.link_nr = drm_dp_max_lane_count(dpcd);
  
--		dp->conf[i] = (lpre << 3) | lvsw;
-+		dp->conf[i] = lpre | lvsw;
- 		if (lvsw == DP_TRAIN_VOLTAGE_SWING_1200)
- 			dp->conf[i] |= DP_TRAIN_MAX_SWING_REACHED;
- 		if ((lpre << 3) == DP_TRAIN_PRE_EMPHASIS_9_5)
+ 	NV_DEBUG(drm, "display: %dx%d dpcd 0x%02x\n",
+ 		     nv_encoder->dp.link_nr, nv_encoder->dp.link_bw, dpcd[0]);
 -- 
 1.7.11.4
