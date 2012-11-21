@@ -1,54 +1,42 @@
-From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: Re: [PATCH] drm/nouveau: fix takedown in move_notify
-Date: Wed, 21 Nov 2012 15:13:12 +0100
-Message-ID: <50ACE178.9090707@canonical.com>
-References: <50ACD3F5.6010007@canonical.com>
+From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Subject: [PATCH 0/3] use the new dp helpers
+Date: Wed, 21 Nov 2012 17:03:57 +0100
+Message-ID: <1353513840-30765-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <50ACD3F5.6010007@canonical.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: nouveau@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Op 21-11-12 14:15, Maarten Lankhorst schreef:
-> With this fix, nouveau_gem_object_close can be safely changed to a noop,
-> forcing the vm bindings to be removed when the original object is. This
-> is not done in this patch since it may lead to the object staying mapped
-> in the vm space until the gem object refcount drops to 0. This shouldn't
-> be a big issue however.
->
-> If we choose to do so does allow us to use ttm's delayed destruction
-> mechanism to unmap vm after object is idle, resulting in ioread32 no
-> longer taking up 30% of cpu in Team Fortress 2 if I don't do the vma
-> unmap in nouveau_gem_object_close.
+Hi Ben,
 
-And for those crazy enough to try, deliberately in the most hacky form possible:
+These are the nouveau patches from my small dp helper refactoring that just
+landed in drm-next. Simply reduces the amount of magic numbers a bit, otherwise
+no functional changes.
 
-drm/nouveau: use ttm delayed destroy for unmapping vm
+Due to lack of hw not really tested beyond checking that the compiler is still
+happy.
 
-According to perf top, drops ioread32 from taking 30% cpu to 3% cpu..
+Cheers, Daniel
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index 5e2f521..bdb99ab 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -111,7 +111,7 @@ nouveau_gem_object_close(struct drm_gem_object *gem, struct drm_file *file_priv)
- 	struct nouveau_vma *vma;
- 	int ret;
- 
--	if (!cli->base.vm)
-+//	if (!cli->base.vm)
- 		return;
- 
- 	ret = ttm_bo_reserve(&nvbo->bo, false, false, false, 0);
+Daniel Vetter (3):
+  drm/nouveau: use the cr_ok/chanel_eq_ok helpers
+  drm/nouveau: use dp link train request helper
+  drm/nouveau: use the new drm_dp_max_lane_count helper
+
+ drivers/gpu/drm/nouveau/nouveau_dp.c | 35 +++++++++--------------------------
+ 1 file changed, 9 insertions(+), 26 deletions(-)
+
+-- 
+1.7.11.4
