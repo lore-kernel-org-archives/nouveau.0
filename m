@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57278] [xf86-video-nouveau] flightgear crash when
- loading scenary
-Date: Tue, 20 Nov 2012 20:06:34 +0000
-Message-ID: <bug-57278-8800-J6BNWujGrd@http.bugs.freedesktop.org/>
-References: <bug-57278-8800@http.bugs.freedesktop.org/>
+From: Pouar <thepouar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: gpu lockup when using Hardware Acceleration in AndroVM in
+	VirtualBox
+Date: Tue, 20 Nov 2012 18:14:03 -0600
+Message-ID: <50AC1CCB.4050007@gmail.com>
+References: <50AC1B39.6020905@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0170202038=="
+Content-Type: multipart/mixed; boundary="===============0699557159=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57278-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <50AC1B39.6020905-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,76 +20,53 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+This is a multi-part message in MIME format.
+--===============0699557159==
+Content-Type: multipart/alternative;
+ boundary="------------020903040003090809080900"
 
---===============0170202038==
-Content-Type: multipart/alternative; boundary="1353441994.454Cda0.8613"; charset="us-ascii"
+This is a multi-part message in MIME format.
+--------------020903040003090809080900
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
---1353441994.454Cda0.8613
-Date: Tue, 20 Nov 2012 20:06:34 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=57278
-
---- Comment #5 from KinG-InFeT <king.infet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-My INFO:
-
-Hardware: GeForce 8500 GT (NV86 (G86))
-Distro: ArchLinux
-Kernel: 3.6.6-1-ARCH
-Mesa: mesa-9.0
-libdrm: 2.4.33
-FlightGear: 2.8.0
-
+see title
+using gtx 560 Ti
+google AndroVM if you never heard of it
+also filed a bug report
+https://bugs.freedesktop.org/show_bug.cgi?id=57326
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
+Pouar
 
---1353441994.454Cda0.8613
-Date: Tue, 20 Nov 2012 20:06:34 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+
+
+--------------020903040003090809080900
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
 <html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [xf86-video-nouveau] flightgear crash when loading scenary"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57278#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [xf86-video-nouveau] flightgear crash when loading scenary"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57278">bug 57278</a>
-              from <span class="vcard"><a class="email" href="mailto:king.infet&#64;gmail.com" title="KinG-InFeT &lt;king.infet&#64;gmail.com&gt;"> <span class="fn">KinG-InFeT</span></a>
-</span></b>
-        <pre>My INFO:
+  <head>
 
-Hardware: GeForce 8500 GT (NV86 (G86))
-Distro: ArchLinux
-Kernel: 3.6.6-1-ARCH
-Mesa: mesa-9.0
-libdrm: 2.4.33
-FlightGear: 2.8.0</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    see title<br>
+    <div class="moz-forward-container"> using gtx 560 Ti<br>
+      google AndroVM if you never heard of it<br>
+      also filed a bug report<br>
+      <a moz-do-not-send="true"
+        href="https://bugs.freedesktop.org/show_bug.cgi?id=57326">https://bugs.freedesktop.org/show_bug.cgi?id=57326</a><br>
+      <div class="moz-signature">-- <br>
+        <font color="000000">Pouar</font></div>
+      <br>
+    </div>
+    <br>
+  </body>
 </html>
 
---1353441994.454Cda0.8613--
+--------------020903040003090809080900--
 
---===============0170202038==
+--===============0699557159==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +77,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0170202038==--
+--===============0699557159==--
