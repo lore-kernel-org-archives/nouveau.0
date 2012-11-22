@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33165] Nouveau + nvidia GT240 = unworkable
-Date: Thu, 22 Nov 2012 05:29:00 +0000
-Message-ID: <bug-33165-8800-EapMU4m0DL@http.bugs.freedesktop.org/>
+Date: Thu, 22 Nov 2012 19:22:27 +0000
+Message-ID: <bug-33165-8800-N1a19D60Q4@http.bugs.freedesktop.org/>
 References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0526419022=="
+Content-Type: multipart/mixed; boundary="===============0186690827=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,31 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0526419022==
-Content-Type: multipart/alternative; boundary="1353562139.a3322.31511"; charset="us-ascii"
+--===============0186690827==
+Content-Type: multipart/alternative; boundary="1353612147.8fB236C2.20082"; charset="us-ascii"
 
 
---1353562139.a3322.31511
-Date: Thu, 22 Nov 2012 05:28:59 +0000
+--1353612147.8fB236C2.20082
+Date: Thu, 22 Nov 2012 19:22:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33165
 
---- Comment #7 from Dinny Wu <dwu-jsEcTtHWC8k@public.gmane.org> ---
-I'm trying to customize a live system based on Debian and it has encoutered the
-same issue with GT240 card. It seems that it works fine with other nVidia
-cards. But only for GT240, it simply boots and freezes when booting into X
-system.
-
-If you need any logs, please let me know how to get them.
+--- Comment #8 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Please follow http://nouveau.freedesktop.org/wiki/Bugs and open new bug report.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1353562139.a3322.31511
-Date: Thu, 22 Nov 2012 05:28:59 +0000
+--1353612147.8fB236C2.20082
+Date: Thu, 22 Nov 2012 19:22:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,19 +53,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau + nvidia GT240 = unworkable"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau + nvidia GT240 = unworkable"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
-              from <span class="vcard"><a class="email" href="mailto:dwu&#64;nero.com" title="Dinny Wu &lt;dwu&#64;nero.com&gt;"> <span class="fn">Dinny Wu</span></a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>I'm trying to customize a live system based on Debian and it has encoutered the
-same issue with GT240 card. It seems that it works fine with other nVidia
-cards. But only for GT240, it simply boots and freezes when booting into X
-system.
-
-If you need any logs, please let me know how to get them.</pre>
+        <pre>Please follow <a href="http://nouveau.freedesktop.org/wiki/Bugs">http://nouveau.freedesktop.org/wiki/Bugs</a> and open new bug report.</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +72,9 @@ If you need any logs, please let me know how to get them.</pre>
     </body>
 </html>
 
---1353562139.a3322.31511--
+--1353612147.8fB236C2.20082--
 
---===============0526419022==
+--===============0186690827==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0526419022==--
+--===============0186690827==--
