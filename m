@@ -1,10 +1,11 @@
-From: Pouar <thepouar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: gpu lockup when using Hardware Acceleration in AndroVM in
-	VirtualBox
-Date: Wed, 21 Nov 2012 12:08:07 -0600
-Message-ID: <50AD1887.20101@gmail.com>
+From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: [resend PATCH] drm/nouveau: unpin buffers before
+ releasing to prevent lockdep warnings
+Date: Thu, 22 Nov 2012 01:12:47 +0100
+Message-ID: <50AD6DFF.9050600@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1010476967=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -16,68 +17,87 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---===============1010476967==
-Content-Type: multipart/alternative;
- boundary="------------030204090703040007040202"
-
-This is a multi-part message in MIME format.
---------------030204090703040007040202
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
-
-see title
-using gtx 560 Ti
-AndroVM is a project to get Android to run in VirtualBox
-Hardware Acceleration is accomplished through running it from a program 
-called AndroVMPlayer on the Host through a virtual network connection 
-from the Guest
-http://androvm.org/blog/androvm-documentation/
-also filed a bug report
-https://bugs.freedesktop.org/show_bug.cgi?id=57326
-I sent an Email before but it didn't show up on the Archives
--- 
-Pouar
-
---------------030204090703040007040202
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    see title<br>
-    using gtx 560 Ti<br>
-    AndroVM is a project to get Android to run in VirtualBox<br>
-    Hardware Acceleration is accomplished through running it from a
-    program called AndroVMPlayer on the Host through a virtual network
-    connection from the Guest<br>
-    <a href="http://androvm.org/blog/androvm-documentation/">http://androvm.org/blog/androvm-documentation/</a><br>
-    also filed a bug report<br>
-    <a moz-do-not-send="true"
-      href="https://bugs.freedesktop.org/show_bug.cgi?id=57326">https://bugs.freedesktop.org/show_bug.cgi?id=57326</a><br>
-    I sent an Email before but it didn't show up on the Archives<br>
-    <div class="moz-signature">-- <br>
-      <font color="000000">Pouar</font></div>
-  </body>
-</html>
-
---------------030204090703040007040202--
-
---===============1010476967==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1010476967==--
+This will otherwise cause a lockdep splat if reservations were a real lock
+type, so warn when nouveau forgets to unpin a buffer, and fix up the ones I've hit.
+    
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+---
+diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+index cc79c79..acc6b08 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
++++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+@@ -123,6 +123,7 @@ nouveau_abi16_chan_fini(struct nouveau_abi16 *abi16,
+ 
+ 	if (chan->ntfy) {
+ 		nouveau_bo_vma_del(chan->ntfy, &chan->ntfy_vma);
++		nouveau_bo_unpin(chan->ntfy);
+ 		drm_gem_object_unreference_unlocked(chan->ntfy->gem);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+index 67a1a06..f337976 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+@@ -429,6 +429,7 @@ nouveau_fbcon_destroy(struct drm_device *dev, struct nouveau_fbdev *fbcon)
+ 	if (nouveau_fb->nvbo) {
+ 		nouveau_bo_unmap(nouveau_fb->nvbo);
+ 		nouveau_bo_vma_del(nouveau_fb->nvbo, &nouveau_fb->vma);
++		nouveau_bo_unpin(nouveau_fb->nvbo);
+ 		drm_gem_object_unreference_unlocked(nouveau_fb->nvbo->gem);
+ 		nouveau_fb->nvbo = NULL;
+ 	}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index 5972ecd..6d8391d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -52,7 +52,8 @@ nouveau_gem_object_del(struct drm_gem_object *gem)
+ 		return;
+ 	nvbo->gem = NULL;
+ 
+-	if (unlikely(nvbo->pin_refcnt)) {
++	/* Lockdep hates you for doing reserve with gem object lock held */
++	if (WARN_ON_ONCE(nvbo->pin_refcnt)) {
+ 		nvbo->pin_refcnt = 1;
+ 		nouveau_bo_unpin(nvbo);
+ 	}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_prime.c b/drivers/gpu/drm/nouveau/nouveau_prime.c
+index 366462c..bd785dd 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_prime.c
++++ b/drivers/gpu/drm/nouveau/nouveau_prime.c
+@@ -57,10 +57,11 @@ static void nouveau_gem_dmabuf_release(struct dma_buf *dma_buf)
+ {
+ 	struct nouveau_bo *nvbo = dma_buf->priv;
+ 
+-	if (nvbo->gem->export_dma_buf == dma_buf) {
++	if (nvbo->gem->export_dma_buf == dma_buf)
+ 		nvbo->gem->export_dma_buf = NULL;
+-		drm_gem_object_unreference_unlocked(nvbo->gem);
+-	}
++
++	nouveau_bo_unpin(nvbo);
++	drm_gem_object_unreference_unlocked(nvbo->gem);
+ }
+ 
+ static void *nouveau_gem_kmap_atomic(struct dma_buf *dma_buf, unsigned long page_num)
+@@ -175,13 +176,17 @@ struct dma_buf *nouveau_gem_prime_export(struct drm_device *dev,
+ {
+ 	struct nouveau_bo *nvbo = nouveau_gem_object(obj);
+ 	int ret = 0;
++	struct dma_buf *buf;
+ 
+ 	/* pin buffer into GTT */
+ 	ret = nouveau_bo_pin(nvbo, TTM_PL_FLAG_TT);
+ 	if (ret)
+ 		return ERR_PTR(-EINVAL);
+ 
+-	return dma_buf_export(nvbo, &nouveau_dmabuf_ops, obj->size, flags);
++	buf = dma_buf_export(nvbo, &nouveau_dmabuf_ops, obj->size, flags);
++	if (IS_ERR(buf))
++		nouveau_bo_unpin(nvbo);
++	return buf;
+ }
+ 
+ struct drm_gem_object *nouveau_gem_prime_import(struct drm_device *dev,
