@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33165] Nouveau + nvidia GT240 = unworkable
-Date: Thu, 22 Nov 2012 19:22:27 +0000
-Message-ID: <bug-33165-8800-N1a19D60Q4@http.bugs.freedesktop.org/>
-References: <bug-33165-8800@http.bugs.freedesktop.org/>
+From: Daniel J Blueman <daniel-JCXMqzvhRcvYtjvyW6yDsg@public.gmane.org>
+Subject: [PATCH] drm/nouveau: prevent log mangling
+Date: Sat, 24 Nov 2012 10:11:46 +0800
+Message-ID: <1353723106-2534-1-git-send-email-daniel@quora.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0186690827=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,72 +16,30 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On 3.7-rc6, add missing newline to to prevent the following kernel log
+line getting appended to the current one after switching the integrated
+GPU and suspending the discrete GPU.
 
---===============0186690827==
-Content-Type: multipart/alternative; boundary="1353612147.8fB236C2.20082"; charset="us-ascii"
+Signed-off-by: Daniel J Blueman <daniel-JCXMqzvhRcvYtjvyW6yDsg@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/subdev/i2c/aux.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
---1353612147.8fB236C2.20082
-Date: Thu, 22 Nov 2012 19:22:27 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=33165
-
---- Comment #8 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Please follow http://nouveau.freedesktop.org/wiki/Bugs and open new bug report.
-
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/i2c/aux.c b/drivers/gpu/drm/nouveau/core/subdev/i2c/aux.c
+index fe1ebf1..dc27e79 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/i2c/aux.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/i2c/aux.c
+@@ -50,7 +50,7 @@ auxch_init(struct nouveau_i2c *aux, int ch)
+ 		ctrl = nv_rd32(aux, 0x00e4e4 + (ch * 0x50));
+ 		udelay(1);
+ 		if (!timeout--) {
+-			AUX_ERR("begin idle timeout 0x%08x", ctrl);
++			AUX_ERR("begin idle timeout 0x%08x\n", ctrl);
+ 			return -EBUSY;
+ 		}
+ 	} while (ctrl & 0x03010000);
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1353612147.8fB236C2.20082
-Date: Thu, 22 Nov 2012 19:22:27 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau + nvidia GT240 = unworkable"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau + nvidia GT240 = unworkable"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span></b>
-        <pre>Please follow <a href="http://nouveau.freedesktop.org/wiki/Bugs">http://nouveau.freedesktop.org/wiki/Bugs</a> and open new bug report.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1353612147.8fB236C2.20082--
-
---===============0186690827==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0186690827==--
+1.7.10.4
