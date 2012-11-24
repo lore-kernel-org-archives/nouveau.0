@@ -1,10 +1,9 @@
-From: Daniel J Blueman <daniel-JCXMqzvhRcvYtjvyW6yDsg@public.gmane.org>
-Subject: [PATCH] drm/nouveau: prevent log mangling
-Date: Sat, 24 Nov 2012 10:11:46 +0800
-Message-ID: <1353723106-2534-1-git-send-email-daniel@quora.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 57484] New: NV43: fail resume after suspend
+Date: Sat, 24 Nov 2012 14:56:59 +0000
+Message-ID: <bug-57484-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1344935206=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -16,30 +15,183 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 3.7-rc6, add missing newline to to prevent the following kernel log
-line getting appended to the current one after switching the integrated
-GPU and suspending the discrete GPU.
 
-Signed-off-by: Daniel J Blueman <daniel-JCXMqzvhRcvYtjvyW6yDsg@public.gmane.org>
----
- drivers/gpu/drm/nouveau/core/subdev/i2c/aux.c |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--===============1344935206==
+Content-Type: multipart/alternative; boundary="1353769019.eC1eE1.26660"; charset="us-ascii"
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/i2c/aux.c b/drivers/gpu/drm/nouveau/core/subdev/i2c/aux.c
-index fe1ebf1..dc27e79 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/i2c/aux.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/i2c/aux.c
-@@ -50,7 +50,7 @@ auxch_init(struct nouveau_i2c *aux, int ch)
- 		ctrl = nv_rd32(aux, 0x00e4e4 + (ch * 0x50));
- 		udelay(1);
- 		if (!timeout--) {
--			AUX_ERR("begin idle timeout 0x%08x", ctrl);
-+			AUX_ERR("begin idle timeout 0x%08x\n", ctrl);
- 			return -EBUSY;
- 		}
- 	} while (ctrl & 0x03010000);
+
+--1353769019.eC1eE1.26660
+Date: Sat, 24 Nov 2012 14:56:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=57484
+
+          Priority: medium
+            Bug ID: 57484
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: NV43: fail resume after suspend
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: xoddark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
+
+Created attachment 70517
+  --> https://bugs.freedesktop.org/attachment.cgi?id=70517&action=edit
+nouveau Call Trace
+
+I have a problem with the suspend on my pc equiped with a nvidia geforce
+6600GT.
+
+My pc run with last ubuntu+ppa xorg-edgers.
+
+When I resume my session, the coputer and system restart, but the screen
+display garbage for a few seconds. After that the sytem display the login
+screen (lightdm) but this one does not respond (event the cursor don't move).
+
 -- 
-1.7.10.4
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1353769019.eC1eE1.26660
+Date: Sat, 24 Nov 2012 14:56:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - NV43: fail resume after suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57484">57484</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>NV43: fail resume after suspend
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>xoddark&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=70517" name="attach_70517" title="nouveau Call Trace">attachment 70517</a> <a href="attachment.cgi?id=70517&amp;action=edit" title="nouveau Call Trace">[details]</a></span>
+nouveau Call Trace
+
+I have a problem with the suspend on my pc equiped with a nvidia geforce
+6600GT.
+
+My pc run with last ubuntu+ppa xorg-edgers.
+
+When I resume my session, the coputer and system restart, but the screen
+display garbage for a few seconds. After that the sytem display the login
+screen (lightdm) but this one does not respond (event the cursor don't move).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1353769019.eC1eE1.26660--
+
+--===============1344935206==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1344935206==--
