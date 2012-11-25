@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57484] NV43: fail resume after suspend
-Date: Sat, 24 Nov 2012 14:58:24 +0000
-Message-ID: <bug-57484-8800-IK8LpynreN@http.bugs.freedesktop.org/>
-References: <bug-57484-8800@http.bugs.freedesktop.org/>
+From: Wade Berrier <wberrier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: SVIDEO and xrandr
+Date: Sun, 25 Nov 2012 01:46:09 -0700
+Message-ID: <20121125084608.GA5165@miniwade>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0467769782=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57484-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,73 +19,88 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Hello,
 
---===============0467769782==
-Content-Type: multipart/alternative; boundary="1353769105.Be3C31.26827"; charset="us-ascii"
+I've been trying to get my n17 card to do SVIDEO tv out
 
+--------------------------
+01:00.0 VGA compatible controller: NVIDIA Corporation NV17 [GeForce4 MX 440] (rev a3)
+--------------------------
 
---1353769105.Be3C31.26827
-Date: Sat, 24 Nov 2012 14:58:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+It is close to working.  The first issue is that it was outputting PAL, and I
+found the module parameter and kernel boot config to change that:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57484
+--------------------------
+nouveau.tv_norm=NTSC-M
+--------------------------
 
---- Comment #2 from XoD <xoddark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 70520
-  --> https://bugs.freedesktop.org/attachment.cgi?id=70520&action=edit
-dmesg return after resume
+That makes the picture look much better, but the colors are still off.
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+Then I notice that the card thinks it's outputting COMPOSITE instead of SVIDEO:
 
---1353769105.Be3C31.26827
-Date: Sat, 24 Nov 2012 14:58:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+--------------------------
+wberrier@myth:~$ xrandr --prop
+Screen 0: minimum 320 x 200, current 640 x 480, maximum 4096 x 4096
+VGA-1 disconnected (normal left inverted right x axis y axis)
+TV-1 connected 640x480+0+0 (normal left inverted right x axis y axis) 0mm x 0mm
+        overscan: 50 (0x00000032)       range:  (0,100)
+        hue: 0 (0x00000000)     range:  (0,100)
+        saturation: 50 (0x00000032)     range:  (0,100)
+        flicker reduction: 50 (0x00000032)      range:  (0,100)
+        mode:   NTSC-M
+                supported: PAL          PAL-M        PAL-N        PAL-Nc      
+                           NTSC-M       NTSC-J      
+        subconnector:   Composite
+                supported: Unknown      Composite    SVIDEO       Component   
+                           SCART       
+        select subconnector:    Automatic
+                supported: Automatic    Composite    SVIDEO       Component   
+                           SCART       
+   720x480        59.9 +
+   1024x768       59.9  
+   800x600        59.9  
+   720x576        59.9  
+   640x480        59.9* 
+   400x300       119.9                                                                                                                                                    
+   320x240       119.9  
+   320x200       119.9  
+--------------------------
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - NV43: fail resume after suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57484#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - NV43: fail resume after suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57484">bug 57484</a>
-              from <span class="vcard"><a class="email" href="mailto:xoddark&#64;gmail.com" title="XoD &lt;xoddark&#64;gmail.com&gt;"> <span class="fn">XoD</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=70520" name="attach_70520" title="dmesg return after resume">attachment 70520</a> <a href="attachment.cgi?id=70520&amp;action=edit" title="dmesg return after resume">[details]</a></span>
-dmesg return after resume</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+When trying to change the subconnector it to SVIDEO, it fails:
 
---1353769105.Be3C31.26827--
+--------------------------
+wberrier@myth:~$ xrandr --output TV-1 --set subconnector SVIDEO
+X Error of failed request:  BadValue (integer parameter out of range for operation)
+  Major opcode of failed request:  149 (RANDR)
+  Minor opcode of failed request:  13 (RRChangeOutputProperty)
+  Value in failed request:  0x52
+  Serial number of failed request:  29
+  Current serial number in output stream:  30
+--------------------------
 
---===============0467769782==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+It appears that other people on the net are also having this issue.
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+I dug around the kernel nouveau/drm source and found where the default for
+COMPOSITE gets set, and also discovered that the "override_conntype" wasn't
+what I was looking for.
 
---===============0467769782==--
+Any help about how to solve this and what the best method is?
+
+An additional module parameter for nouveau may be nice for forcing the
+subconnector.
+
+Fixing xrandr to work would also be nice, as it also fails to set the mode:
+
+--------------------------
+wberrier@myth:~$ xrandr --output TV-1 --set mode PAL
+X Error of failed request:  BadValue (integer parameter out of range for operation)
+  Major opcode of failed request:  149 (RANDR)
+  Minor opcode of failed request:  13 (RRChangeOutputProperty)
+  Value in failed request:  0x52
+  Serial number of failed request:  29
+  Current serial number in output stream:  30
+--------------------------
+
+Help?
+
+Wade
