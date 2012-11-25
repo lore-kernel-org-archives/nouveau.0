@@ -1,7 +1,7 @@
-From: Wade Berrier <wberrier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: SVIDEO and xrandr
-Date: Sun, 25 Nov 2012 01:46:09 -0700
-Message-ID: <20121125084608.GA5165@miniwade>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [ddx PATCH] add some missing newlines in error messages
+Date: Sun, 25 Nov 2012 22:59:49 +0100
+Message-ID: <20121125215949.GA13248@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,88 +19,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello,
 
-I've been trying to get my n17 card to do SVIDEO tv out
+---
+ src/drmmode_display.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
---------------------------
-01:00.0 VGA compatible controller: NVIDIA Corporation NV17 [GeForce4 MX 440] (rev a3)
---------------------------
-
-It is close to working.  The first issue is that it was outputting PAL, and I
-found the module parameter and kernel boot config to change that:
-
---------------------------
-nouveau.tv_norm=NTSC-M
---------------------------
-
-That makes the picture look much better, but the colors are still off.
-
-Then I notice that the card thinks it's outputting COMPOSITE instead of SVIDEO:
-
---------------------------
-wberrier@myth:~$ xrandr --prop
-Screen 0: minimum 320 x 200, current 640 x 480, maximum 4096 x 4096
-VGA-1 disconnected (normal left inverted right x axis y axis)
-TV-1 connected 640x480+0+0 (normal left inverted right x axis y axis) 0mm x 0mm
-        overscan: 50 (0x00000032)       range:  (0,100)
-        hue: 0 (0x00000000)     range:  (0,100)
-        saturation: 50 (0x00000032)     range:  (0,100)
-        flicker reduction: 50 (0x00000032)      range:  (0,100)
-        mode:   NTSC-M
-                supported: PAL          PAL-M        PAL-N        PAL-Nc      
-                           NTSC-M       NTSC-J      
-        subconnector:   Composite
-                supported: Unknown      Composite    SVIDEO       Component   
-                           SCART       
-        select subconnector:    Automatic
-                supported: Automatic    Composite    SVIDEO       Component   
-                           SCART       
-   720x480        59.9 +
-   1024x768       59.9  
-   800x600        59.9  
-   720x576        59.9  
-   640x480        59.9* 
-   400x300       119.9                                                                                                                                                    
-   320x240       119.9  
-   320x200       119.9  
---------------------------
-
-When trying to change the subconnector it to SVIDEO, it fails:
-
---------------------------
-wberrier@myth:~$ xrandr --output TV-1 --set subconnector SVIDEO
-X Error of failed request:  BadValue (integer parameter out of range for operation)
-  Major opcode of failed request:  149 (RANDR)
-  Minor opcode of failed request:  13 (RRChangeOutputProperty)
-  Value in failed request:  0x52
-  Serial number of failed request:  29
-  Current serial number in output stream:  30
---------------------------
-
-It appears that other people on the net are also having this issue.
-
-I dug around the kernel nouveau/drm source and found where the default for
-COMPOSITE gets set, and also discovered that the "override_conntype" wasn't
-what I was looking for.
-
-Any help about how to solve this and what the best method is?
-
-An additional module parameter for nouveau may be nice for forcing the
-subconnector.
-
-Fixing xrandr to work would also be nice, as it also fails to set the mode:
-
---------------------------
-wberrier@myth:~$ xrandr --output TV-1 --set mode PAL
-X Error of failed request:  BadValue (integer parameter out of range for operation)
-  Major opcode of failed request:  149 (RANDR)
-  Minor opcode of failed request:  13 (RRChangeOutputProperty)
-  Value in failed request:  0x52
-  Serial number of failed request:  29
-  Current serial number in output stream:  30
---------------------------
-
-Help?
-
-Wade
+diff --git a/src/drmmode_display.c b/src/drmmode_display.c
+index 803785d..4d2d09d 100644
+--- a/src/drmmode_display.c
++++ b/src/drmmode_display.c
+@@ -357,7 +357,7 @@ drmmode_set_mode_major(xf86CrtcPtr crtc, DisplayModePtr mode,
+ 
+ 	if (ret) {
+ 		xf86DrvMsg(crtc->scrn->scrnIndex, X_ERROR,
+-			   "failed to set mode: %s", strerror(-ret));
++			   "failed to set mode: %s\n", strerror(-ret));
+ 		return FALSE;
+ 	}
+ 
+@@ -532,7 +532,7 @@ drmmode_gamma_set(xf86CrtcPtr crtc, CARD16 *red, CARD16 *green, CARD16 *blue,
+ 				  size, red, green, blue);
+ 	if (ret != 0) {
+ 		xf86DrvMsg(crtc->scrn->scrnIndex, X_ERROR,
+-			   "failed to set gamma: %s", strerror(-ret));
++			   "failed to set gamma: %s\n", strerror(-ret));
+ 	}
+ }
+ 
+-- 
+1.7.12
