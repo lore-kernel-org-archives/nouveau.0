@@ -1,13 +1,13 @@
-From: Tyler Durden <tylerdu-8Y23ZgqdBYRBDLzU/O5InQ@public.gmane.org>
-Subject: Re: kms etc nouveau X failed
-Date: Tue, 27 Nov 2012 16:39:37 +0100
-Message-ID: <50B4DEB9.1050102@bounced.me>
-References: <1354028922.6600.YahooMailNeo@web120404.mail.ne1.yahoo.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 56721] Nouveau driver fails on nv40 with error -12
+ (out of memory)
+Date: Tue, 27 Nov 2012 21:38:40 +0000
+Message-ID: <bug-56721-8800-BQrnxitMvZ@http.bugs.freedesktop.org/>
+References: <bug-56721-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1621262508=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1354028922.6600.YahooMailNeo-l7sgct7Iq2sbWpotXP+qY5OW+3bF1jUfVpNB7YpNyf8@public.gmane.org>
+In-Reply-To: <bug-56721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,20 +17,112 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Sebastian Glita <glseba-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 27.11.2012 16:08, Sebastian Glita wrote:
->      Option        "AutoEnableDevices"    "true"
 
-I had some problems before when I let X (together with udev) 
-autoconfigure devices. So I always have the above option set to false. 
-And I suggest you try that first, too. It might help.
+--===============1621262508==
+Content-Type: multipart/alternative; boundary="1354052320.cfFdfE6d3.12192"; charset="us-ascii"
 
-Generally, the problem is that your device (the GPU itself) goes undetected:
 
-[ 63179.191] (EE) No devices detected.
+--1354052320.cfFdfE6d3.12192
+Date: Tue, 27 Nov 2012 21:38:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=56721
+
+Tollef Fog Heen <tfheen-YAMvcpje2t0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Assignee|sitewranglers-PD4FTy7X32mqWrfYKbYh0A@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |ktop.org                    |rg
+         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+            Product|freedesktop.org             |xorg
+          Component|Bugzilla                    |Driver/nouveau
 
 -- 
-Tyler
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1354052320.cfFdfE6d3.12192
+Date: Tue, 27 Nov 2012 21:38:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:tfheen&#64;err.no" title="Tollef Fog Heen &lt;tfheen&#64;err.no&gt;"> <span class="fn">Tollef Fog Heen</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Nouveau driver fails on nv40 with error -12 (out of memory)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56721">bug 56721</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>sitewranglers&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">QA Contact</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>xorg-team&#64;lists.x.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Product</td>
+           <td>freedesktop.org
+           </td>
+           <td>xorg
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>Bugzilla
+           </td>
+           <td>Driver/nouveau
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1354052320.cfFdfE6d3.12192--
+
+--===============1621262508==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1621262508==--
