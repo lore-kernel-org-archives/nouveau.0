@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56721] Nouveau driver fails on nv40 with error -12
  (out of memory)
-Date: Tue, 27 Nov 2012 21:38:40 +0000
-Message-ID: <bug-56721-8800-BQrnxitMvZ@http.bugs.freedesktop.org/>
+Date: Tue, 27 Nov 2012 22:32:50 +0000
+Message-ID: <bug-56721-8800-OrbnQyaeOi@http.bugs.freedesktop.org/>
 References: <bug-56721-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1621262508=="
+Content-Type: multipart/mixed; boundary="===============1539318383=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1621262508==
-Content-Type: multipart/alternative; boundary="1354052320.cfFdfE6d3.12192"; charset="us-ascii"
+--===============1539318383==
+Content-Type: multipart/alternative; boundary="1354055570.B1c7FDc22.19090"; charset="us-ascii"
 
 
---1354052320.cfFdfE6d3.12192
-Date: Tue, 27 Nov 2012 21:38:40 +0000
+--1354055570.B1c7FDc22.19090
+Date: Tue, 27 Nov 2012 22:32:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56721
 
-Tollef Fog Heen <tfheen-YAMvcpje2t0@public.gmane.org> changed:
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Interesting...
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Assignee|sitewranglers-PD4FTy7X32mqWrfYKbYh0A@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |ktop.org                    |rg
-         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-            Product|freedesktop.org             |xorg
-          Component|Bugzilla                    |Driver/nouveau
+nouveau_mem_init_agp() -> get_agp_mode() appears to return an aperture of zero
+size
+
+Have you tried booting any other kernel. Completely ignore all the userspace
+bits. We're mainly interested it the line
+0 MiB GART (aperture) // the number should be non zero
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1354052320.cfFdfE6d3.12192
-Date: Tue, 27 Nov 2012 21:38:40 +0000
+--1354055570.B1c7FDc22.19090
+Date: Tue, 27 Nov 2012 22:32:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,53 +55,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:tfheen&#64;err.no" title="Tollef Fog Heen &lt;tfheen&#64;err.no&gt;"> <span class="fn">Tollef Fog Heen</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Nouveau driver fails on nv40 with error -12 (out of memory)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56721#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau driver fails on nv40 with error -12 (out of memory)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56721">bug 56721</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>Interesting...
 
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>sitewranglers&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
+nouveau_mem_init_agp() -&gt; get_agp_mode() appears to return an aperture of zero
+size
 
-         <tr>
-           <td style="text-align:right;">QA Contact</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Product</td>
-           <td>freedesktop.org
-           </td>
-           <td>xorg
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Bugzilla
-           </td>
-           <td>Driver/nouveau
-           </td>
-         </tr></table>
-      <p>
+Have you tried booting any other kernel. Completely ignore all the userspace
+bits. We're mainly interested it the line
+0 MiB GART (aperture) // the number should be non zero</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -112,9 +87,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1354052320.cfFdfE6d3.12192--
+--1354055570.B1c7FDc22.19090--
 
---===============1621262508==
+--===============1539318383==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -125,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1621262508==--
+--===============1539318383==--
