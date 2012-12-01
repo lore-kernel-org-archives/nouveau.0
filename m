@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 46557] nouveau: NV4E acceleration corruption when
- DMA above 31-bit (2 Gig barrier)
-Date: Fri, 30 Nov 2012 17:42:41 +0000
-Message-ID: <bug-46557-8800-N59C4O8ZzJ@http.bugs.freedesktop.org/>
-References: <bug-46557-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57777] New: lcd screen of a laptop does not wake up
+	after sleep
+Date: Sat, 01 Dec 2012 15:59:56 +0000
+Message-ID: <bug-57777-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0183044190=="
+Content-Type: multipart/mixed; boundary="===============0811477336=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-46557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,94 +19,196 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0183044190==
-Content-Type: multipart/alternative; boundary="1354297361.Cb76264.19921"; charset="us-ascii"
+--===============0811477336==
+Content-Type: multipart/alternative; boundary="1354377596.8fEE1.27824"; charset="us-ascii"
 
 
---1354297361.Cb76264.19921
-Date: Fri, 30 Nov 2012 17:42:41 +0000
+--1354377596.8fEE1.27824
+Date: Sat, 1 Dec 2012 15:59:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D46557
+https://bugs.freedesktop.org/show_bug.cgi?id=57777
 
---- Comment #27 from Rapha=C3=ABl Droz <gibboris-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 70841
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D70841&action=3Dedit
-nouveau CALL_SUBR_ACTIVE errors using dma_bits=3D32 kernel on NV34
+          Priority: medium
+            Bug ID: 57777
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: lcd screen of a laptop does not wake up after sleep
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: alinm.elena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: 7.6 (2010.12)
+         Component: Driver/nouveau
+           Product: xorg
 
-I tried your suggestion about setting dma_bits to 32 inside
-drivers/gpu/drm/nouveau/core/subdev/vm/nv44.c.
-but sadly the same issue arises (dmesg attached).
-I hope I'm still wise to post those traces (from my NV34) in this bug report
-and hope the root cause is common.
-I currently use the drm kernel module with debug=3D2, debug=3D3 dumps too m=
-uch
-output, but let me know if this can provide additional useful info.
+Created attachment 70883
+  --> https://bugs.freedesktop.org/attachment.cgi?id=70883&action=edit
+dmesg log
 
---=20
+the lcd screen of the laptop remains off after resume... the external display
+comes on as expected...
+Linux abbaton.ucd.ie 3.7.0-rc6-5-desktop #1 SMP PREEMPT Tue Nov 27 14:10:39 UTC
+2012 (f8c5dde) x86_64 x86_64 x86_64 GNU/Linux
+
+
+I have attached the dmesg log.
+
+
+other funny things...
+*if I start only with the lcd... kde would not start just freeze before plasma
+being loaded ( probably another bug to be reported.)
+* I have a last good commit and first bad commit from an older version of the
+nouveau git
+last good
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=f4a75d2eb7b1e2206094b901be09adb31ba63681
+first bad
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=9677f3d63de8f87d8e18a5509c8b18eed468e379
+
+I was trying to bisect but because of the 3.7 rebase I am lost... sorry
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1354297361.Cb76264.19921
-Date: Fri, 30 Nov 2012 17:42:41 +0000
+--1354377596.8fEE1.27824
+Date: Sat, 1 Dec 2012 15:59:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - lcd screen of a laptop does not wake up after sleep"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57777">57777</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>lcd screen of a laptop does not wake up after sleep
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>alinm.elena&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>7.6 (2010.12)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nouveau: NV4E acceleration corruption when DMA above =
-31-bit (2 Gig barrier)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D46557#c27">Commen=
-t # 27</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nouveau: NV4E acceleration corruption when DMA above =
-31-bit (2 Gig barrier)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D46557">bug 46557<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gibboris&#64;gmail.com" title=3D"Rapha=C3=ABl Droz &lt;gibboris&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Rapha=C3=ABl Droz</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D70841"=
- name=3D"attach_70841" title=3D"nouveau CALL_SUBR_ACTIVE errors using dma_b=
-its=3D32 kernel on NV34">attachment 70841</a> <a href=3D"attachment.cgi?id=
-=3D70841&amp;action=3Dedit" title=3D"nouveau CALL_SUBR_ACTIVE errors using =
-dma_bits=3D32 kernel on NV34">[details]</a></span>
-nouveau CALL_SUBR_ACTIVE errors using dma_bits=3D32 kernel on NV34
+        <pre>Created <span class=""><a href="attachment.cgi?id=70883" name="attach_70883" title="dmesg log">attachment 70883</a> <a href="attachment.cgi?id=70883&amp;action=edit" title="dmesg log">[details]</a></span>
+dmesg log
 
-I tried your suggestion about setting dma_bits to 32 inside
-drivers/gpu/drm/nouveau/core/subdev/vm/nv44.c.
-but sadly the same issue arises (dmesg attached).
-I hope I'm still wise to post those traces (from my NV34) in this bug report
-and hope the root cause is common.
-I currently use the drm kernel module with debug=3D2, debug=3D3 dumps too m=
-uch
-output, but let me know if this can provide additional useful info.</pre>
+the lcd screen of the laptop remains off after resume... the external display
+comes on as expected...
+Linux abbaton.ucd.ie 3.7.0-rc6-5-desktop #1 SMP PREEMPT Tue Nov 27 14:10:39 UTC
+2012 (f8c5dde) x86_64 x86_64 x86_64 GNU/Linux
+
+
+I have attached the dmesg log.
+
+
+other funny things...
+*if I start only with the lcd... kde would not start just freeze before plasma
+being loaded ( probably another bug to be reported.)
+* I have a last good commit and first bad commit from an older version of the
+nouveau git
+last good
+<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=f4a75d2eb7b1e2206094b901be09adb31ba63681">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=f4a75d2eb7b1e2206094b901be09adb31ba63681</a>
+first bad
+<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=9677f3d63de8f87d8e18a5509c8b18eed468e379">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=9677f3d63de8f87d8e18a5509c8b18eed468e379</a>
+
+I was trying to bisect but because of the 3.7 rebase I am lost... sorry</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1354297361.Cb76264.19921--
+--1354377596.8fEE1.27824--
 
---===============0183044190==
+--===============0811477336==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -119,4 +219,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0183044190==--
+--===============0811477336==--
