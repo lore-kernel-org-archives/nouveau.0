@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 52089] Wrong resolution on GeForce GT 520
-Date: Sun, 02 Dec 2012 12:13:22 +0000
-Message-ID: <bug-52089-8800-z8HPg9JF2l@http.bugs.freedesktop.org/>
+Date: Sun, 02 Dec 2012 13:31:31 +0000
+Message-ID: <bug-52089-8800-rSi4a1o67Q@http.bugs.freedesktop.org/>
 References: <bug-52089-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0459123639=="
+Content-Type: multipart/mixed; boundary="===============1633137081=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-52089-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,74 +20,92 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0459123639==
-Content-Type: multipart/alternative; boundary="1354450401.a0DcdFD21.22473"; charset="us-ascii"
+--===============1633137081==
+Content-Type: multipart/alternative; boundary="1354455091.BEfCDab1.618"; charset="us-ascii"
 
 
---1354450401.a0DcdFD21.22473
-Date: Sun, 2 Dec 2012 12:13:21 +0000
+--1354455091.BEfCDab1.618
+Date: Sun, 2 Dec 2012 13:31:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D52089
+https://bugs.freedesktop.org/show_bug.cgi?id=52089
 
---- Comment #4 from Nicolas VINOT <aeris+freedesktop-hWKOZrC1dORGWvitb5QawA@public.gmane.org> ---
-Tested with xserver-xorg-video-nouveau 1.0.4-1, the problem is still presen=
-t.
+Nicolas VINOT <aeris+freedesktop-hWKOZrC1dORGWvitb5QawA@public.gmane.org> changed:
 
-Resolution is wrong in console, and from the boot (plymouth=C2=A0KO) too
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #64209|0                           |1
+        is obsolete|                            |
 
---=20
+--- Comment #5 from Nicolas VINOT <aeris+freedesktop-hWKOZrC1dORGWvitb5QawA@public.gmane.org> ---
+Created attachment 70922
+  --> https://bugs.freedesktop.org/attachment.cgi?id=70922&action=edit
+Debug output nouveau
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1354450401.a0DcdFD21.22473
-Date: Sun, 2 Dec 2012 12:13:21 +0000
+--1354455091.BEfCDab1.618
+Date: Sun, 2 Dec 2012 13:31:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:aeris+freedesktop&#64;imirhil.fr" title="Nicolas VINOT &lt;aeris+freedesktop&#64;imirhil.fr&gt;"> <span class="fn">Nicolas VINOT</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Wrong resolution on GeForce GT 520"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=52089">bug 52089</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #64209 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - Wrong resolution on GeForce GT 520"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D52089#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - Wrong resolution on GeForce GT 520"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=52089#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - Wrong resolution on GeForce GT 520"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D52089">bug 52089<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-aeris+freedesktop&#64;imirhil.fr" title=3D"Nicolas VINOT &lt;aeris+freedesk=
-top&#64;imirhil.fr&gt;"> <span class=3D"fn">Nicolas VINOT</span></a>
+   title="NEW --- - Wrong resolution on GeForce GT 520"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=52089">bug 52089</a>
+              from <span class="vcard"><a class="email" href="mailto:aeris+freedesktop&#64;imirhil.fr" title="Nicolas VINOT &lt;aeris+freedesktop&#64;imirhil.fr&gt;"> <span class="fn">Nicolas VINOT</span></a>
 </span></b>
-        <pre>Tested with xserver-xorg-video-nouveau 1.0.4-1, the problem is=
- still present.
-
-Resolution is wrong in console, and from the boot (plymouth=C2=A0KO) too</p=
-re>
+        <pre>Created <span class=""><a href="attachment.cgi?id=70922" name="attach_70922" title="Debug output nouveau">attachment 70922</a> <a href="attachment.cgi?id=70922&amp;action=edit" title="Debug output nouveau">[details]</a></span>
+Debug output nouveau</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1354450401.a0DcdFD21.22473--
+--1354455091.BEfCDab1.618--
 
---===============0459123639==
+--===============1633137081==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0459123639==--
+--===============1633137081==--
