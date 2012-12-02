@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 52089] Wrong resolution on GeForce GT 520
-Date: Sun, 02 Dec 2012 13:51:59 +0000
-Message-ID: <bug-52089-8800-NRTwLZJ7wU@http.bugs.freedesktop.org/>
+Date: Sun, 02 Dec 2012 13:52:21 +0000
+Message-ID: <bug-52089-8800-RrQZNliswM@http.bugs.freedesktop.org/>
 References: <bug-52089-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1384318791=="
+Content-Type: multipart/mixed; boundary="===============0823279987=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-52089-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1384318791==
-Content-Type: multipart/alternative; boundary="1354456318.EDe8371.3761"; charset="us-ascii"
+--===============0823279987==
+Content-Type: multipart/alternative; boundary="1354456341.86dfffB1.3821"; charset="us-ascii"
 
 
---1354456318.EDe8371.3761
-Date: Sun, 2 Dec 2012 13:51:58 +0000
+--1354456341.86dfffB1.3821
+Date: Sun, 2 Dec 2012 13:52:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=52089
 
-Nicolas VINOT <aeris+freedesktop-hWKOZrC1dORGWvitb5QawA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+--- Comment #7 from Nicolas VINOT <aeris+freedesktop-hWKOZrC1dORGWvitb5QawA@public.gmane.org> ---
+Seems the problem is fixed on 3.6 kernel
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1354456318.EDe8371.3761
-Date: Sun, 2 Dec 2012 13:51:58 +0000
+--1354456341.86dfffB1.3821
+Date: Sun, 2 Dec 2012 13:52:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,36 +47,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:aeris+freedesktop&#64;imirhil.fr" title="Nicolas VINOT &lt;aeris+freedesktop&#64;imirhil.fr&gt;"> <span class="fn">Nicolas VINOT</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Wrong resolution on GeForce GT 520"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=52089#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - Wrong resolution on GeForce GT 520"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=52089">bug 52089</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
+              from <span class="vcard"><a class="email" href="mailto:aeris+freedesktop&#64;imirhil.fr" title="Nicolas VINOT &lt;aeris+freedesktop&#64;imirhil.fr&gt;"> <span class="fn">Nicolas VINOT</span></a>
+</span></b>
+        <pre>Seems the problem is fixed on 3.6 kernel</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -91,9 +72,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1354456318.EDe8371.3761--
+--1354456341.86dfffB1.3821--
 
---===============1384318791==
+--===============0823279987==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1384318791==--
+--===============0823279987==--
