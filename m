@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 57988] [regression][bisected][NV4E] LVDS output has
  offset to the right, part falling of is incorrectly painted on the left
-Date: Fri, 07 Dec 2012 16:44:31 +0000
-Message-ID: <bug-57988-8800-DaOX5NH0nL@http.bugs.freedesktop.org/>
+Date: Fri, 07 Dec 2012 16:45:24 +0000
+Message-ID: <bug-57988-8800-XpgYtymdxu@http.bugs.freedesktop.org/>
 References: <bug-57988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1672875882=="
+Content-Type: multipart/mixed; boundary="===============0288888556=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-57988-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1672875882==
-Content-Type: multipart/alternative; boundary="1354898671.f6eE71.20228"; charset="us-ascii"
+--===============0288888556==
+Content-Type: multipart/alternative; boundary="1354898724.e20EE381.20315"; charset="us-ascii"
 
 
---1354898671.f6eE71.20228
-Date: Fri, 7 Dec 2012 16:44:31 +0000
+--1354898724.e20EE381.20315
+Date: Fri, 7 Dec 2012 16:45:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=57988
 
-Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #6 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 71145
+  --> https://bugs.freedesktop.org/attachment.cgi?id=71145&action=edit
+Upper side corruption; shown with e17
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #71142|0                           |1
-        is obsolete|                            |
-
---- Comment #5 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 71144
-  --> https://bugs.freedesktop.org/attachment.cgi?id=71144&action=edit
-Left side corruption; shown with lightdm
-
-grrr
+The two significant dots used to be part of the cursor ... :/
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1354898671.f6eE71.20228
-Date: Fri, 7 Dec 2012 16:44:31 +0000
+--1354898724.e20EE381.20315
+Date: Fri, 7 Dec 2012 16:45:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,44 +52,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [regression][bisected][NV4E] LVDS output has offset to the right, part falling of is incorrectly painted on the left"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57988">bug 57988</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #71142 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][bisected][NV4E] LVDS output has offset to the right, part falling of is incorrectly painted on the left"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57988#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57988#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][bisected][NV4E] LVDS output has offset to the right, part falling of is incorrectly painted on the left"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=57988">bug 57988</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=71144" name="attach_71144" title="Left side corruption; shown with lightdm">attachment 71144</a> <a href="attachment.cgi?id=71144&amp;action=edit" title="Left side corruption; shown with lightdm">[details]</a></span>
-Left side corruption; shown with lightdm
+        <pre>Created <span class=""><a href="attachment.cgi?id=71145" name="attach_71145" title="Upper side corruption; shown with e17">attachment 71145</a> <a href="attachment.cgi?id=71145&amp;action=edit" title="Upper side corruption; shown with e17">[details]</a></span>
+Upper side corruption; shown with e17
 
-grrr</pre>
+The two significant dots used to be part of the cursor ... :/</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +80,9 @@ grrr</pre>
     </body>
 </html>
 
---1354898671.f6eE71.20228--
+--1354898724.e20EE381.20315--
 
---===============1672875882==
+--===============0288888556==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1672875882==--
+--===============0288888556==--
