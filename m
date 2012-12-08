@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57737] Texture sizes > 2048 result in system lockups
- with Nouveau
-Date: Sat, 08 Dec 2012 11:59:38 +0000
-Message-ID: <bug-57737-8800-RnuPPjHm7D@http.bugs.freedesktop.org/>
-References: <bug-57737-8800@http.bugs.freedesktop.org/>
+From: martin.peres-GANU6spQydw@public.gmane.org
+Subject: [PATCH] drm/nouveau/therm: force a minimum hysteresis on
+	temperature alarm thresholds
+Date: Sat,  8 Dec 2012 14:00:38 +0100
+Message-ID: <1354971638-17871-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0756328097=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57737-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,108 +17,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0756328097==
-Content-Type: multipart/alternative; boundary="1354967978.fcc262A83.19283"; charset="us-ascii"
-
-
---1354967978.fcc262A83.19283
-Date: Sat, 8 Dec 2012 11:59:38 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D57737
-
-Jos=C3=A9 Fonseca <jfonseca-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Assignee|jfonseca-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org         |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
-                 CC|                            |jfonseca-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org
-          Component|Other                       |Drivers/DRI/nouveau
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1354967978.fcc262A83.19283
-Date: Sat, 8 Dec 2012 11:59:38 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jfonseca&=
-#64;vmware.com" title=3D"Jos=C3=A9 Fonseca &lt;jfonseca&#64;vmware.com&gt;"=
-> <span class=3D"fn">Jos=C3=A9 Fonseca</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - Texture sizes &gt; 2048 result in system lockups with=
- Nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D57737">bug 57737<=
-/a>
-        <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>jfonseca&#64;vmware.com
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>jfonseca&#64;vmware.com
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>Other
-           </td>
-           <td>Drivers/DRI/nouveau
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1354967978.fcc262A83.19283--
-
---===============0756328097==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0756328097==--
+RnJvbTogTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAbGFicmkuZnI+CgpUaGlzIHNob3VsZCBh
+dm9pZCB0aGUgc2l0dWF0aW9uIHdoZXJlIGEgdXNlciBnZXRzIGl0cyBrZXJuZWwgbG9ncyBmbG9v
+ZGVkIHdoZW4KdGVtcGVyYXR1cmUgb3NjaWxsYXRlcyBhcm91bmQgYSB0aHJlc2hvbGQgd2l0aCAw
+wrBDIGh5c3RlcmVzaXMuCgpUaGlzIHBhdGNoIGlzIGp1c3QgbWVhbnQgdG8gZml4IGJyb2tlbiB2
+YmlvcyAoYXMgcmVwb3J0ZWQgb24gYSBudjRlIG9uCnN5c2ZzIGh3bW9uIGludGVyZmFjZS4KClNp
+Z25lZC1vZmYtYnk6IE1hcnRpbiBQZXJlcyA8bWFydGluLnBlcmVzQGxhYnJpLmZyPgotLS0KIGRy
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvc3ViZGV2L3RoZXJtL3RlbXAuYyB8IDcgKysrKysr
+KwogMSBmaWxlIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L2NvcmUvc3ViZGV2L3RoZXJtL3RlbXAuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L2NvcmUvc3ViZGV2L3RoZXJtL3RlbXAuYwppbmRleCA3NjYyMWNjLi41MGUxN2Yw
+IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1YmRldi90aGVybS90
+ZW1wLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvdGhlcm0vdGVt
+cC5jCkBAIC02MCwxMSArNjAsMTggQEAgc3RhdGljIHZvaWQKIG5vdXZlYXVfdGhlcm1fdGVtcF9z
+YWZldHlfY2hlY2tzKHN0cnVjdCBub3V2ZWF1X3RoZXJtICp0aGVybSkKIHsKIAlzdHJ1Y3Qgbm91
+dmVhdV90aGVybV9wcml2ICpwcml2ID0gKHZvaWQgKil0aGVybTsKKwlzdHJ1Y3QgbnZiaW9zX3Ro
+ZXJtX3NlbnNvciAqcyA9ICZwcml2LT5iaW9zX3NlbnNvcjsKIAogCWlmICghcHJpdi0+Ymlvc19z
+ZW5zb3Iuc2xvcGVfZGl2KQogCQlwcml2LT5iaW9zX3NlbnNvci5zbG9wZV9kaXYgPSAxOwogCWlm
+ICghcHJpdi0+Ymlvc19zZW5zb3Iub2Zmc2V0X2RlbikKIAkJcHJpdi0+Ymlvc19zZW5zb3Iub2Zm
+c2V0X2RlbiA9IDE7CisKKwkvKiBlbmZvcmNlIGEgbWluaW11bSBoeXN0ZXJlc2lzIG9uIHRocmVz
+aG9sZHMgKi8KKwlzLT50aHJzX2Zhbl9ib29zdC5oeXN0ZXJlc2lzID0gbWF4X3QodTgsIHMtPnRo
+cnNfZmFuX2Jvb3N0Lmh5c3RlcmVzaXMsIDIpOworCXMtPnRocnNfZG93bl9jbG9jay5oeXN0ZXJl
+c2lzID0gbWF4X3QodTgsIHMtPnRocnNfZG93bl9jbG9jay5oeXN0ZXJlc2lzLCAyKTsKKwlzLT50
+aHJzX2NyaXRpY2FsLmh5c3RlcmVzaXMgPSBtYXhfdCh1OCwgcy0+dGhyc19jcml0aWNhbC5oeXN0
+ZXJlc2lzLCAyKTsKKwlzLT50aHJzX3NodXRkb3duLmh5c3RlcmVzaXMgPSBtYXhfdCh1OCwgcy0+
+dGhyc19zaHV0ZG93bi5oeXN0ZXJlc2lzLCAyKTsKIH0KIAogLyogbXVzdCBiZSBjYWxsZWQgd2l0
+aCBhbGFybV9wcm9ncmFtX2xvY2sgdGFrZW4gISAqLwotLSAKMS44LjAuMQoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
