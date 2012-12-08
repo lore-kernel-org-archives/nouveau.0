@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57988] [regression][bisected][NV4E] LVDS output has
- offset to the right, part falling of is incorrectly painted on the left
-Date: Sat, 08 Dec 2012 01:00:16 +0000
-Message-ID: <bug-57988-8800-gT0lUgviWH@http.bugs.freedesktop.org/>
-References: <bug-57988-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57737] Texture sizes > 2048 result in system lockups
+ with Nouveau
+Date: Sat, 08 Dec 2012 11:59:38 +0000
+Message-ID: <bug-57737-8800-RnuPPjHm7D@http.bugs.freedesktop.org/>
+References: <bug-57737-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1710555703=="
+Content-Type: multipart/mixed; boundary="===============0756328097=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57988-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57737-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,48 +21,53 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1710555703==
-Content-Type: multipart/alternative; boundary="1354928416.3fBb12.13940"; charset="us-ascii"
+--===============0756328097==
+Content-Type: multipart/alternative; boundary="1354967978.fcc262A83.19283"; charset="us-ascii"
 
 
---1354928416.3fBb12.13940
-Date: Sat, 8 Dec 2012 01:00:16 +0000
+--1354967978.fcc262A83.19283
+Date: Sat, 8 Dec 2012 11:59:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57988
+https://bugs.freedesktop.org/show_bug.cgi?id=3D57737
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Jos=C3=A9 Fonseca <jfonseca-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+           Assignee|jfonseca-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org         |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
+                 CC|                            |jfonseca-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org
+          Component|Other                       |Drivers/DRI/nouveau
 
---- Comment #10 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thanks for the quick bisect and testing :)
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1354928416.3fBb12.13940
-Date: Sat, 8 Dec 2012 01:00:16 +0000
+--1354967978.fcc262A83.19283
+Date: Sat, 8 Dec 2012 11:59:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jfonseca&=
+#64;vmware.com" title=3D"Jos=C3=A9 Fonseca &lt;jfonseca&#64;vmware.com&gt;"=
+> <span class=3D"fn">Jos=C3=A9 Fonseca</span></a>
 </span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [regression][bisected][NV4E] LVDS output has offset to the right, part falling of is incorrectly painted on the left"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57988">bug 57988</a>
+              <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - Texture sizes &gt; 2048 result in system lockups with=
+ Nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D57737">bug 57737<=
+/a>
         <br>
-             <table border="1" cellspacing="0" cellpadding="8">
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
             <th>What</th>
             <th>Removed</th>
@@ -70,47 +75,43 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>jfonseca&#64;vmware.com
            </td>
-           <td>RESOLVED
+           <td>nouveau&#64;lists.freedesktop.org
            </td>
          </tr>
 
          <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>FIXED
+           <td>jfonseca&#64;vmware.com
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>Other
+           </td>
+           <td>Drivers/DRI/nouveau
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [regression][bisected][NV4E] LVDS output has offset to the right, part falling of is incorrectly painted on the left"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57988#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [regression][bisected][NV4E] LVDS output has offset to the right, part falling of is incorrectly painted on the left"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57988">bug 57988</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>Thanks for the quick bisect and testing :)</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1354928416.3fBb12.13940--
+--1354967978.fcc262A83.19283--
 
---===============1710555703==
+--===============0756328097==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +122,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1710555703==--
+--===============0756328097==--
