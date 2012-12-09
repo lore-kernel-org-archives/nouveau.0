@@ -1,12 +1,15 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCHv2 4/4] drm/nouveau: report channel owner in error
+Subject: [PATCHv3 4/4] drm/nouveau: report channel owner in error
 	messages
-Date: Sun,  9 Dec 2012 15:45:22 +0100
-Message-ID: <1355064322-23025-4-git-send-email-marcin.slusarz@gmail.com>
+Date: Sun, 9 Dec 2012 23:00:34 +0100
+Message-ID: <20121209220034.GA4674@joi.lan>
+References: <1355064322-23025-4-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <1355064322-23025-4-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,7 +22,13 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+
+v2: finish, fixes after initial review
+v3: fix reporting of vm_engine when client already went away
+
 ---
  drivers/gpu/drm/nouveau/core/engine/copy/nva3.c  |  6 ++--
  drivers/gpu/drm/nouveau/core/engine/crypt/nv84.c |  6 ++--
@@ -37,9 +46,9 @@ Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gman
  drivers/gpu/drm/nouveau/core/engine/graph/nvc0.c | 24 +++++++------
  drivers/gpu/drm/nouveau/core/engine/graph/nve0.c | 44 ++++++++++++-----------
  drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c  |  7 ++--
- drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c    | 45 ++++++++++++++++++------
+ drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c    | 46 ++++++++++++++++++------
  drivers/gpu/drm/nouveau/nouveau_chan.c           |  3 +-
- 18 files changed, 198 insertions(+), 107 deletions(-)
+ 18 files changed, 199 insertions(+), 107 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/core/engine/copy/nva3.c b/drivers/gpu/drm/nouveau/core/engine/copy/nva3.c
 index 6068f5f..d6dc2a6 100644
@@ -727,7 +736,7 @@ index 9fd8637..49ecbb8 100644
  
  	nouveau_engctx_put(engctx);
 diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c b/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
-index 88bdb02..f33133a 100644
+index 88bdb02..a4338d9 100644
 --- a/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
 +++ b/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
 @@ -22,8 +22,10 @@
@@ -779,7 +788,7 @@ index 88bdb02..f33133a 100644
  	u32 trap[6], idx, chan;
  	u8 st0, st1, st2, st3;
  	int i;
-@@ -366,11 +371,29 @@ nv50_fb_intr(struct nouveau_subdev *subdev)
+@@ -366,11 +371,30 @@ nv50_fb_intr(struct nouveau_subdev *subdev)
  	}
  	chan = (trap[2] << 16) | trap[1];
  
@@ -787,6 +796,7 @@ index 88bdb02..f33133a 100644
 +	en = nouveau_enum_find(vm_engine, st0);
 +
 +	if (en && en->data2) {
++		const struct nouveau_enum *orig_en = en;
 +		while (en->name && en->value == st0 && en->data2) {
 +			engine = nouveau_engine(subdev, en->data2);
 +			if (engine) {
@@ -796,8 +806,8 @@ index 88bdb02..f33133a 100644
 +			}
 +			en++;
 +		}
-+		if (en->value != st0)
-+			en = NULL;
++		if (!engctx)
++			en = orig_en;
 +	}
 +
 +	nv_error(priv, "trapped %s at 0x%02x%04x%04x on channel 0x%08x [%s] ",
