@@ -1,19 +1,11 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [RFC PATCH] drm/nouveau: report channel owner in
- error messages
-Date: Mon, 10 Dec 2012 18:47:41 +1000
-Message-ID: <20121210084741.GA7197@turiel>
-References: <20121205225622.GA2301@joi.lan>
-	<20121207044653.GA5493@turiel.bne.redhat.com>
-	<20121208232642.GA3984@joi.lan>
-	<20121209044849.GA9384@turiel.redhat.com>
-	<20121209110454.GA3059@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 58087] New: [-next] nouveau corrupts kernel mm
+	allocator
+Date: Mon, 10 Dec 2012 14:55:27 +0000
+Message-ID: <bug-58087-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1485948980=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20121209110454.GA3059-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,179 +15,191 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Dec 09, 2012 at 12:04:54PM +0100, Marcin Slusarz wrote:
-> On Sun, Dec 09, 2012 at 02:48:49PM +1000, Ben Skeggs wrote:
-> > > > > diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c b/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
-> > > > > index 487cb8c..d1120fc 100644
-> > > > > --- a/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
-> > > > > +++ b/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
-> > > > > @@ -22,8 +22,13 @@
-> > > > >   * Authors: Ben Skeggs
-> > > > >   */
-> > > > >  
-> > > > > -#include <core/object.h>
-> > > > > +#include <core/client.h>
-> > > > >  #include <core/enum.h>
-> > > > > +#include <core/engctx.h>
-> > > > > +#include <core/object.h>
-> > > > > +
-> > > > > +#include <engine/fifo.h>
-> > > > > +#include <engine/graph.h>
-> > > > >  
-> > > > >  #include <subdev/fb.h>
-> > > > >  #include <subdev/bios.h>
-> > > > > @@ -317,6 +322,19 @@ static const struct nouveau_enum vm_engine[] = {
-> > > > >  	{}
-> > > > >  };
-> > > > >  
-> > > > > +static const struct nouveau_engine_map {
-> > > > > +	u32 value;
-> > > > > +	int engines[3];
-> > > > > +} nvdev_engine_for_vm_engine[] = {
-> > > > > +	{ 0x00000000, {NVDEV_ENGINE_GR, 0} },
-> > > > > +	{ 0x00000001, {NVDEV_ENGINE_VP, 0} },
-> > > > > +	{ 0x00000005, {NVDEV_ENGINE_FIFO, 0} },
-> > > > > +	{ 0x00000008, {NVDEV_ENGINE_PPP, NVDEV_ENGINE_MPEG, 0} },
-> > > > I think it may actually be a good idea to go (in core/device.h):
-> > > > 
-> > > >   NVDEV_ENGINE_MPEG,
-> > > > + NVDEV_ENGINE_PPP = NVDEV_ENGINE_MPEG,
-> > > >   NVDEV_ENGINE_ME,
-> > > > 
-> > > > PPP got introduced when MPEG disappeared.  There's likely a few other
-> > > > engines we can create as aliases for each other too.  What do you think?
-> > > 
-> > > I'm not sure it's such a good idea. Suddenly nouveau_engctx_get(NVDEV_ENGINE_PPP, chan)
-> > > can return nouveau_mpeg_chan and device->subdev[NVDEV_ENGINE_PPP] can point
-> > > to nouveau_mpeg, etc. So in generic code you can't rely on device->subdev[X]
-> > > being NULL on cards which don't have X engine...
-> > This is true for non-engine subdevs, yes.  But, the engines themselves
-> > should *never* *ever* be accessed from anything other than the object
-> > interface, from which it's impossible for a mix-up to happen.
-> 
-> what does this code (in this patch) do then? For me, it does exactly what you
-> want to be forbidden.
-I probably wasn't very clear on what I meant, sorry about that.  What I
-meant is that there should never be any need to access anything specific
-to a certain engine type from code that doesn't belong to that engine,
-*except* for what's exposed by the object interface.
 
-So, accessing the nouveau_object/subdev/engine data is OK, accessing the
-nouveau_graph/copy/whatever should only be done by that module.  Really,
-I should probably consider moving all the relevant structure definitions
-to a priv.h within the engine modules themselves.
+--===============1485948980==
+Content-Type: multipart/alternative; boundary="1355151328.4cEEeB4a1.2232"; charset="us-ascii"
 
-> 
-> What are we going to do when we'll need to look up something in engine specific
-> data (e.g. nouveau_mpeg) to improve error reporting? We'll be screwed if
-> NVDEV_ENGINE_PPP == NVDEV_ENGINE_MPEG.
-What will we possibly need to do here?  The error data we get is
-signalled via an interrupt directly to the specific module, which will
-indeed be able to access its own private information.
 
-> 
-> > If we do the aliasing this point should probably be documented in the
-> > enum list, and the nouveau_whatever() accessors removed.
-> 
-> But what's the point of all of this? Removal of one line from above list
-> is pretty weak upside when there are so many downsides. Maybe I'm missing
-> something obvious...
-> 
-> > > 
-> > > > 
-> > > > I can handle the aliasing if you like, but feel free :)
-> > > > 
-> > > > > +	{ 0x00000009, {NVDEV_ENGINE_BSP, 0} },
-> > > > > +	{ 0x0000000a, {NVDEV_ENGINE_CRYPT, 0} },
-> > > > > +	{ 0x0000000d, {NVDEV_ENGINE_COPY0, NVDEV_ENGINE_COPY1, 0} },
-> > > > COPY1 doesn't exist on NV50.  NVC0 has its own VM engine for the
-> > > > additional copy engines.
-> > > 
-> > > OK.
-> > > 
-> > > > > +};
-> > > > > +
-> > > > >  static const struct nouveau_enum vm_fault[] = {
-> > > > >  	{ 0x00000000, "PT_NOT_PRESENT", NULL },
-> > > > >  	{ 0x00000001, "PT_TOO_SHORT", NULL },
-> > > > > @@ -334,8 +352,12 @@ static void
-> > > > >  nv50_fb_intr(struct nouveau_subdev *subdev)
-> > > > >  {
-> > > > >  	struct nouveau_device *device = nv_device(subdev);
-> > > > > +	struct nouveau_engine *engine = NULL;
-> > > > >  	struct nv50_fb_priv *priv = (void *)subdev;
-> > > > >  	const struct nouveau_enum *en, *cl;
-> > > > > +	struct nouveau_object *engctx = NULL;
-> > > > > +	const int *poss_engines = NULL;
-> > > > > +	const char *client_name = "unk";
-> > > > >  	u32 trap[6], idx, chan;
-> > > > >  	u8 st0, st1, st2, st3;
-> > > > >  	int i;
-> > > > > @@ -366,9 +388,34 @@ nv50_fb_intr(struct nouveau_subdev *subdev)
-> > > > >  	}
-> > > > >  	chan = (trap[2] << 16) | trap[1];
-> > > > >  
-> > > > > -	nv_error(priv, "trapped %s at 0x%02x%04x%04x on channel 0x%08x ",
-> > > > > +	for (i = 0; i < ARRAY_SIZE(nvdev_engine_for_vm_engine); ++i) {
-> > > > > +		if (nvdev_engine_for_vm_engine[i].value == st0) {
-> > > > > +			poss_engines = nvdev_engine_for_vm_engine[i].engines;
-> > > > > +			break;
-> > > > > +		}
-> > > > > +	}
-> > > > > +
-> > > > > +	for (i = 0; poss_engines && poss_engines[i]; ++i) {
-> > > > > +		engine = nv_engine(device->subdev[poss_engines[i]]);
-> > > > engine = nouveau_engine(device, poss_engines[i]);
-> > > 
-> > > OK.
-> > > 
-> > > > Perhaps you can even append another field to nouveau_enum to store the
-> > > > subdev index in too, rather than having to look it up?
-> > > 
-> > > Good idea. Thanks.
-> > > 
-> > > > > +		if (engine) {
-> > > > > +			engctx = nouveau_engctx_get(engine, chan);
-> > > > > +			if (engctx)
-> > > > > +				break;
-> > > > > +		}
-> > > > > +	}
-> > > > > +
-> > > > > +	if (engctx) {
-> > > > > +		struct nouveau_client *client = nouveau_client(engctx);
-> > > > > +		if (client)
-> > > > > +			client_name = client->name;
-> > > > > +	}
-> > > > > +
-> > > > > +	nv_error(priv, "trapped %s at 0x%02x%04x%04x on channel 0x%08x [%s] ",
-> > > > >  		 (trap[5] & 0x00000100) ? "read" : "write",
-> > > > > -		 trap[5] & 0xff, trap[4] & 0xffff, trap[3] & 0xffff, chan);
-> > > > > +		 trap[5] & 0xff, trap[4] & 0xffff, trap[3] & 0xffff, chan,
-> > > > > +		 client_name);
-> > > > > +
-> > > > > +	nouveau_engctx_put(engctx);
-> > > > >  
-> > > > >  	en = nouveau_enum_find(vm_engine, st0);
-> > > > >  	if (en)
-> > > > > diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> > > > > index 38e9a08..a50362e 100644
-> > > > > --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> > > > > +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> > > > > @@ -539,10 +539,11 @@ nouveau_drm_open(struct drm_device *dev, struct drm_file *fpriv)
-> > > > >  	struct pci_dev *pdev = dev->pdev;
-> > > > >  	struct nouveau_drm *drm = nouveau_drm(dev);
-> > > > >  	struct nouveau_cli *cli;
-> > > > > -	char name[16];
-> > > > > +	char name[32], tmpname[TASK_COMM_LEN];
-> > > > >  	int ret;
-> > > > >  
-> > > > > -	snprintf(name, sizeof(name), "%d", pid_nr(fpriv->pid));
-> > > > > +	get_task_comm(tmpname, current);
-> > > > > +	snprintf(name, sizeof(name), "%s[%d]", tmpname, pid_nr(fpriv->pid));
-> > > > >  
-> > > > >  	ret = nouveau_cli_create(pdev, name, sizeof(*cli), (void **)&cli);
-> > > > >  	if (ret)
+--1355151328.4cEEeB4a1.2232
+Date: Mon, 10 Dec 2012 14:55:28 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=58087
+
+          Priority: medium
+            Bug ID: 58087
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [-next] nouveau corrupts kernel mm allocator
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: peter-WaGBZJeGNqdsbIuE7sb01tBPR1lH4CV8@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
+
+Created attachment 71269
+  --> https://bugs.freedesktop.org/attachment.cgi?id=71269&action=edit
+kernel log showing BUG triggered by nouveau
+
+If nouveau_vm_new() fails in nouveau_drm_open(), the cleanup triggered corrupts
+the kernel slab allocator (in this case, SLUB).
+
+Attached is the kernel log showing the page allocation failure and the
+subsequent BUG in mm/slub.c
+
+A similar corruption had previously occurred which triggered a GP fault in the
+mm allocator from the same code path. This was reported as kernel bug #51291
+here
+https://bugzilla.kernel.org/show_bug.cgi?id=51291
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1355151328.4cEEeB4a1.2232
+Date: Mon, 10 Dec 2012 14:55:28 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [-next] nouveau corrupts kernel mm allocator"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58087">58087</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[-next] nouveau corrupts kernel mm allocator
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>peter&#64;hurleysoftware.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=71269" name="attach_71269" title="kernel log showing BUG triggered by nouveau">attachment 71269</a> <a href="attachment.cgi?id=71269&amp;action=edit" title="kernel log showing BUG triggered by nouveau">[details]</a></span>
+kernel log showing BUG triggered by nouveau
+
+If nouveau_vm_new() fails in nouveau_drm_open(), the cleanup triggered corrupts
+the kernel slab allocator (in this case, SLUB).
+
+Attached is the kernel log showing the page allocation failure and the
+subsequent BUG in mm/slub.c
+
+A similar corruption had previously occurred which triggered a GP fault in the
+mm allocator from the same code path. This was reported as kernel <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Segfault with mplayer -vo vdpau: vlVdpVideoSurfaceClear at surface.c:366"
+   href="show_bug.cgi?id=51291">bug #51291</a>
+here
+<a href="https://bugzilla.kernel.org/show_bug.cgi?id=51291">https://bugzilla.kernel.org/show_bug.cgi?id=51291</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1355151328.4cEEeB4a1.2232--
+
+--===============1485948980==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1485948980==--
