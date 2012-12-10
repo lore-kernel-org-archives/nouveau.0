@@ -1,11 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58087] New: [-next] nouveau corrupts kernel mm
-	allocator
-Date: Mon, 10 Dec 2012 14:55:27 +0000
-Message-ID: <bug-58087-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: fix takedown in move_notify
+Date: Mon, 10 Dec 2012 16:39:20 +0000
+Message-ID: <50C61038.1020208@gmail.com>
+References: <50ACD3F5.6010007@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1485948980=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <50ACD3F5.6010007-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,191 +17,86 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On 21/11/12 13:15, Maarten Lankhorst wrote:
+> move_notify is called by ttm after the the object is idle and about
+> to be destroyed. Clean up the vm list properly in that case.
+> 
+> This is not a problem right now, since the list should already be
+> empty, but if it wasn't empty, vm_put was not called which leads to
+> random corruption later.
+> 
+> With this fix, nouveau_gem_object_close can be safely changed to a noop,
+> forcing the vm bindings to be removed when the original object is. This
+> is not done in this patch since it may lead to the object staying mapped
+> in the vm space until the gem object refcount drops to 0. This shouldn't
+> be a big issue however.
+> 
+> If we choose to do so does allow us to use ttm's delayed destruction
+> mechanism to unmap vm after object is idle, resulting in ioread32 no
+> longer taking up 30% of cpu in Team Fortress 2 if I don't do the vma
+> unmap in nouveau_gem_object_close.
+> 
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+> 
+Hi Maarten
 
---===============1485948980==
-Content-Type: multipart/alternative; boundary="1355151328.4cEEeB4a1.2232"; charset="us-ascii"
+I've noticed ioread32 of up-to 40% on of cpu my system. With your patch
+if goes down to ~3% with no side effects. Frame-rate appears to be
+slightly improved, although it's hard to say.
 
+Is there any reason for holding this patch ?
+For what it's worth you can add
 
---1355151328.4cEEeB4a1.2232
-Date: Mon, 10 Dec 2012 14:55:28 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Tested-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58087
-
-          Priority: medium
-            Bug ID: 58087
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [-next] nouveau corrupts kernel mm allocator
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: peter-WaGBZJeGNqdsbIuE7sb01tBPR1lH4CV8@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
-
-Created attachment 71269
-  --> https://bugs.freedesktop.org/attachment.cgi?id=71269&action=edit
-kernel log showing BUG triggered by nouveau
-
-If nouveau_vm_new() fails in nouveau_drm_open(), the cleanup triggered corrupts
-the kernel slab allocator (in this case, SLUB).
-
-Attached is the kernel log showing the page allocation failure and the
-subsequent BUG in mm/slub.c
-
-A similar corruption had previously occurred which triggered a GP fault in the
-mm allocator from the same code path. This was reported as kernel bug #51291
-here
-https://bugzilla.kernel.org/show_bug.cgi?id=51291
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1355151328.4cEEeB4a1.2232
-Date: Mon, 10 Dec 2012 14:55:28 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [-next] nouveau corrupts kernel mm allocator"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58087">58087</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[-next] nouveau corrupts kernel mm allocator
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>peter&#64;hurleysoftware.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=71269" name="attach_71269" title="kernel log showing BUG triggered by nouveau">attachment 71269</a> <a href="attachment.cgi?id=71269&amp;action=edit" title="kernel log showing BUG triggered by nouveau">[details]</a></span>
-kernel log showing BUG triggered by nouveau
-
-If nouveau_vm_new() fails in nouveau_drm_open(), the cleanup triggered corrupts
-the kernel slab allocator (in this case, SLUB).
-
-Attached is the kernel log showing the page allocation failure and the
-subsequent BUG in mm/slub.c
-
-A similar corruption had previously occurred which triggered a GP fault in the
-mm allocator from the same code path. This was reported as kernel <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Segfault with mplayer -vo vdpau: vlVdpVideoSurfaceClear at surface.c:366"
-   href="show_bug.cgi?id=51291">bug #51291</a>
-here
-<a href="https://bugzilla.kernel.org/show_bug.cgi?id=51291">https://bugzilla.kernel.org/show_bug.cgi?id=51291</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1355151328.4cEEeB4a1.2232--
-
---===============1485948980==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1485948980==--
+> ---
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> index 35ac57f..e8a47f0 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> @@ -1139,12 +1139,22 @@ nouveau_bo_move_ntfy(struct ttm_buffer_object *bo, struct ttm_mem_reg *new_mem)
+>  	if (bo->destroy != nouveau_bo_del_ttm)
+>  		return;
+>  
+> +	if (!new_mem) {
+> +		while (!list_empty(&nvbo->vma_list)) {
+> +			vma = list_first_entry(&nvbo->vma_list, struct nouveau_vma, head);
+> +
+> +			nouveau_vm_unmap(vma);
+> +			nouveau_vm_put(vma);
+> +			list_del(&vma->head);
+> +		}
+> +		return;
+> +	}
+> +
+>  	list_for_each_entry(vma, &nvbo->vma_list, head) {
+> -		if (new_mem && new_mem->mem_type == TTM_PL_VRAM) {
+> +		if (new_mem->mem_type == TTM_PL_VRAM) {
+>  			nouveau_vm_map(vma, new_mem->mm_node);
+> -		} else
+> -		if (new_mem && new_mem->mem_type == TTM_PL_TT &&
+> -		    nvbo->page_shift == vma->vm->vmm->spg_shift) {
+> +		} else if (new_mem->mem_type == TTM_PL_TT &&
+> +		           nvbo->page_shift == vma->vm->vmm->spg_shift) {
+>  			if (((struct nouveau_mem *)new_mem->mm_node)->sg)
+>  				nouveau_vm_map_sg_table(vma, 0, new_mem->
+>  						  num_pages << PAGE_SHIFT,
+> @@ -1153,8 +1163,6 @@ nouveau_bo_move_ntfy(struct ttm_buffer_object *bo, struct ttm_mem_reg *new_mem)
+>  				nouveau_vm_map_sg(vma, 0, new_mem->
+>  						  num_pages << PAGE_SHIFT,
+>  						  new_mem->mm_node);
+> -		} else {
+> -			nouveau_vm_unmap(vma);
+>  		}
+>  	}
+>  }
+> 
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+> 
