@@ -1,252 +1,195 @@
-From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Subject: [PATCH 04/37] drm/i915: rework locking for
-	intel_dpio|sbi_read|write
-Date: Wed, 12 Dec 2012 14:06:44 +0100
-Message-ID: <1355317637-16742-5-git-send-email-daniel.vetter@ffwll.ch>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: [PATCH 05/37] drm/i915: use drm_modeset_lock_all
+Date: Wed, 12 Dec 2012 14:06:45 +0100
+Message-ID: <1355317637-16742-6-git-send-email-daniel.vetter@ffwll.ch>
 References: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1355317637-16742-1-git-send-email-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Radeon Dev <xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Radeon Dev <xorg-driver-ati@lists.x.org>, Daniel Vetter <daniel.vetter@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
-Spinning for up to 200 us with interrupts locked out is not good. So
-let's just spin (and even that seems to be excessive).
+Two exceptions:
+- debugfs files only read information which is not related to crtc, so
+  can stay on the modeset_config lock.
+- Same holds for the edp vdd work in intel_dp.c. Add a corresponding
+  WARN_ON and a comment next to the intel_dp struct fields for
+  documentation.
 
-And we don't call these functions from interrupt context, so this is
-not required. Besides that doing anything in interrupt contexts which
-might take a few hundred us is a no-go. So just convert the entire
-thing to a mutex. Also move the mutex-grabbing out of the read/write
-functions (add a WARN_ON(!is_locked)) instead) since all callers are
-nicely grouped together.
-
-Finally the real motivation for this change: Dont grab the modeset
-mutex in the dpio debugfs file, we don't need that consistency. And
-correctness of the dpio interface is ensured with the dpio_lock.
-
-Signed-off-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/i915/i915_debugfs.c  |    4 +--
- drivers/gpu/drm/i915/i915_dma.c      |    2 +-
- drivers/gpu/drm/i915/i915_drv.h      |    2 +-
- drivers/gpu/drm/i915/intel_display.c |   53 ++++++++++++++--------------------
- 4 files changed, 25 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/i915/intel_dp.c      |    2 ++
+ drivers/gpu/drm/i915/intel_fb.c      |    4 ++--
+ drivers/gpu/drm/i915/intel_lvds.c    |    4 ++--
+ drivers/gpu/drm/i915/intel_overlay.c |   14 +++++++-------
+ drivers/gpu/drm/i915/intel_sprite.c  |    8 ++++----
+ 5 files changed, 17 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 58e6676..35d2ace 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -1553,7 +1553,7 @@ static int i915_dpio_info(struct seq_file *m, void *data)
- 		return 0;
- 	}
+diff --git a/drivers/gpu/drm/i915/intel_dp.c b/drivers/gpu/drm/i915/intel_dp.c
+index b51043e..66ec9ca 100644
+--- a/drivers/gpu/drm/i915/intel_dp.c
++++ b/drivers/gpu/drm/i915/intel_dp.c
+@@ -1052,6 +1052,8 @@ static void ironlake_panel_vdd_off_sync(struct intel_dp *intel_dp)
+ 	struct drm_i915_private *dev_priv = dev->dev_private;
+ 	u32 pp;
  
--	ret = mutex_lock_interruptible(&dev->mode_config.mutex);
-+	ret = mutex_lock_interruptible(&dev_priv->dpio_lock);
++	WARN_ON(!mutex_is_locked(&dev->mode_config.mutex));
++
+ 	if (!intel_dp->want_panel_vdd && ironlake_edp_have_panel_vdd(intel_dp)) {
+ 		pp = ironlake_get_pp_control(dev_priv);
+ 		pp &= ~EDP_FORCE_VDD;
+diff --git a/drivers/gpu/drm/i915/intel_fb.c b/drivers/gpu/drm/i915/intel_fb.c
+index b7773e5..ed7bb33 100644
+--- a/drivers/gpu/drm/i915/intel_fb.c
++++ b/drivers/gpu/drm/i915/intel_fb.c
+@@ -282,7 +282,7 @@ void intel_fb_restore_mode(struct drm_device *dev)
+ 	struct drm_mode_config *config = &dev->mode_config;
+ 	struct drm_plane *plane;
+ 
+-	mutex_lock(&dev->mode_config.mutex);
++	drm_modeset_lock_all(dev);
+ 
+ 	ret = drm_fb_helper_restore_fbdev_mode(&dev_priv->fbdev->helper);
  	if (ret)
- 		return ret;
- 
-@@ -1582,7 +1582,7 @@ static int i915_dpio_info(struct seq_file *m, void *data)
- 	seq_printf(m, "DPIO_FASTCLK_DISABLE: 0x%08x\n",
- 		   intel_dpio_read(dev_priv, DPIO_FASTCLK_DISABLE));
+@@ -292,5 +292,5 @@ void intel_fb_restore_mode(struct drm_device *dev)
+ 	list_for_each_entry(plane, &config->plane_list, head)
+ 		plane->funcs->disable_plane(plane);
  
 -	mutex_unlock(&dev->mode_config.mutex);
-+	mutex_unlock(&dev_priv->dpio_lock);
- 
- 	return 0;
++	drm_modeset_unlock_all(dev);
  }
-diff --git a/drivers/gpu/drm/i915/i915_dma.c b/drivers/gpu/drm/i915/i915_dma.c
-index 2635ee6..ad488f6 100644
---- a/drivers/gpu/drm/i915/i915_dma.c
-+++ b/drivers/gpu/drm/i915/i915_dma.c
-@@ -1579,7 +1579,7 @@ int i915_driver_load(struct drm_device *dev, unsigned long flags)
- 	spin_lock_init(&dev_priv->irq_lock);
- 	spin_lock_init(&dev_priv->error_lock);
- 	spin_lock_init(&dev_priv->rps.lock);
--	spin_lock_init(&dev_priv->dpio_lock);
-+	mutex_init(&dev_priv->dpio_lock);
+diff --git a/drivers/gpu/drm/i915/intel_lvds.c b/drivers/gpu/drm/i915/intel_lvds.c
+index 7781069..2719665 100644
+--- a/drivers/gpu/drm/i915/intel_lvds.c
++++ b/drivers/gpu/drm/i915/intel_lvds.c
+@@ -586,9 +586,9 @@ static int intel_lid_notify(struct notifier_block *nb, unsigned long val,
  
- 	mutex_init(&dev_priv->rps.hw_lock);
+ 	dev_priv->modeset_on_lid = 0;
  
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index e2944e9..6fa0c00 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -655,7 +655,7 @@ typedef struct drm_i915_private {
- 	spinlock_t irq_lock;
+-	mutex_lock(&dev->mode_config.mutex);
++	drm_modeset_lock_all(dev);
+ 	intel_modeset_setup_hw_state(dev, true);
+-	mutex_unlock(&dev->mode_config.mutex);
++	drm_modeset_unlock_all(dev);
  
- 	/* DPIO indirect register protection */
--	spinlock_t dpio_lock;
-+	struct mutex dpio_lock;
- 
- 	/** Cached value of IMR to avoid reads in updating the bitfield */
- 	u32 pipestat[2];
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index d303f2a..a0d8869 100644
---- a/drivers/gpu/drm/i915/intel_display.c
-+++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -416,13 +416,11 @@ static const intel_limit_t intel_limits_vlv_dp = {
- 
- u32 intel_dpio_read(struct drm_i915_private *dev_priv, int reg)
- {
--	unsigned long flags;
--	u32 val = 0;
-+	WARN_ON(!mutex_is_locked(&dev_priv->dpio_lock));
- 
--	spin_lock_irqsave(&dev_priv->dpio_lock, flags);
- 	if (wait_for_atomic_us((I915_READ(DPIO_PKT) & DPIO_BUSY) == 0, 100)) {
- 		DRM_ERROR("DPIO idle wait timed out\n");
--		goto out_unlock;
-+		return 0;
- 	}
- 
- 	I915_WRITE(DPIO_REG, reg);
-@@ -430,24 +428,20 @@ u32 intel_dpio_read(struct drm_i915_private *dev_priv, int reg)
- 		   DPIO_BYTE);
- 	if (wait_for_atomic_us((I915_READ(DPIO_PKT) & DPIO_BUSY) == 0, 100)) {
- 		DRM_ERROR("DPIO read wait timed out\n");
--		goto out_unlock;
-+		return 0;
- 	}
--	val = I915_READ(DPIO_DATA);
- 
--out_unlock:
--	spin_unlock_irqrestore(&dev_priv->dpio_lock, flags);
--	return val;
-+	return I915_READ(DPIO_DATA);
+ 	return NOTIFY_OK;
  }
- 
- static void intel_dpio_write(struct drm_i915_private *dev_priv, int reg,
- 			     u32 val)
- {
--	unsigned long flags;
-+	WARN_ON(!mutex_is_locked(&dev_priv->dpio_lock));
- 
--	spin_lock_irqsave(&dev_priv->dpio_lock, flags);
- 	if (wait_for_atomic_us((I915_READ(DPIO_PKT) & DPIO_BUSY) == 0, 100)) {
- 		DRM_ERROR("DPIO idle wait timed out\n");
--		goto out_unlock;
-+		return;
+diff --git a/drivers/gpu/drm/i915/intel_overlay.c b/drivers/gpu/drm/i915/intel_overlay.c
+index fabe0ac..1e901c3 100644
+--- a/drivers/gpu/drm/i915/intel_overlay.c
++++ b/drivers/gpu/drm/i915/intel_overlay.c
+@@ -1045,13 +1045,13 @@ int intel_overlay_put_image(struct drm_device *dev, void *data,
  	}
  
- 	I915_WRITE(DPIO_DATA, val);
-@@ -456,9 +450,6 @@ static void intel_dpio_write(struct drm_i915_private *dev_priv, int reg,
- 		   DPIO_BYTE);
- 	if (wait_for_atomic_us((I915_READ(DPIO_PKT) & DPIO_BUSY) == 0, 100))
- 		DRM_ERROR("DPIO write wait timed out\n");
--
--out_unlock:
--       spin_unlock_irqrestore(&dev_priv->dpio_lock, flags);
+ 	if (!(put_image_rec->flags & I915_OVERLAY_ENABLE)) {
+-		mutex_lock(&dev->mode_config.mutex);
++		drm_modeset_lock_all(dev);
+ 		mutex_lock(&dev->struct_mutex);
+ 
+ 		ret = intel_overlay_switch_off(overlay);
+ 
+ 		mutex_unlock(&dev->struct_mutex);
+-		mutex_unlock(&dev->mode_config.mutex);
++		drm_modeset_unlock_all(dev);
+ 
+ 		return ret;
+ 	}
+@@ -1075,7 +1075,7 @@ int intel_overlay_put_image(struct drm_device *dev, void *data,
+ 		goto out_free;
+ 	}
+ 
+-	mutex_lock(&dev->mode_config.mutex);
++	drm_modeset_lock_all(dev);
+ 	mutex_lock(&dev->struct_mutex);
+ 
+ 	if (new_bo->tiling_mode) {
+@@ -1157,7 +1157,7 @@ int intel_overlay_put_image(struct drm_device *dev, void *data,
+ 		goto out_unlock;
+ 
+ 	mutex_unlock(&dev->struct_mutex);
+-	mutex_unlock(&dev->mode_config.mutex);
++	drm_modeset_unlock_all(dev);
+ 
+ 	kfree(params);
+ 
+@@ -1165,7 +1165,7 @@ int intel_overlay_put_image(struct drm_device *dev, void *data,
+ 
+ out_unlock:
+ 	mutex_unlock(&dev->struct_mutex);
+-	mutex_unlock(&dev->mode_config.mutex);
++	drm_modeset_unlock_all(dev);
+ 	drm_gem_object_unreference_unlocked(&new_bo->base);
+ out_free:
+ 	kfree(params);
+@@ -1241,7 +1241,7 @@ int intel_overlay_attrs(struct drm_device *dev, void *data,
+ 		return -ENODEV;
+ 	}
+ 
+-	mutex_lock(&dev->mode_config.mutex);
++	drm_modeset_lock_all(dev);
+ 	mutex_lock(&dev->struct_mutex);
+ 
+ 	ret = -EINVAL;
+@@ -1307,7 +1307,7 @@ int intel_overlay_attrs(struct drm_device *dev, void *data,
+ 	ret = 0;
+ out_unlock:
+ 	mutex_unlock(&dev->struct_mutex);
+-	mutex_unlock(&dev->mode_config.mutex);
++	drm_modeset_unlock_all(dev);
+ 
+ 	return ret;
  }
+diff --git a/drivers/gpu/drm/i915/intel_sprite.c b/drivers/gpu/drm/i915/intel_sprite.c
+index 827dcd4..d9f45d4c 100644
+--- a/drivers/gpu/drm/i915/intel_sprite.c
++++ b/drivers/gpu/drm/i915/intel_sprite.c
+@@ -595,7 +595,7 @@ int intel_sprite_set_colorkey(struct drm_device *dev, void *data,
+ 	if ((set->flags & (I915_SET_COLORKEY_DESTINATION | I915_SET_COLORKEY_SOURCE)) == (I915_SET_COLORKEY_DESTINATION | I915_SET_COLORKEY_SOURCE))
+ 		return -EINVAL;
  
- static void vlv_init_dpio(struct drm_device *dev)
-@@ -1455,13 +1446,12 @@ static void intel_disable_pll(struct drm_i915_private *dev_priv, enum pipe pipe)
- static void
- intel_sbi_write(struct drm_i915_private *dev_priv, u16 reg, u32 value)
- {
--	unsigned long flags;
-+	WARN_ON(!mutex_is_locked(&dev_priv->dpio_lock));
+-	mutex_lock(&dev->mode_config.mutex);
++	drm_modeset_lock_all(dev);
  
--	spin_lock_irqsave(&dev_priv->dpio_lock, flags);
- 	if (wait_for((I915_READ(SBI_CTL_STAT) & SBI_BUSY) == 0,
- 				100)) {
- 		DRM_ERROR("timeout waiting for SBI to become ready\n");
--		goto out_unlock;
-+		return;
- 	}
+ 	obj = drm_mode_object_find(dev, set->plane_id, DRM_MODE_OBJECT_PLANE);
+ 	if (!obj) {
+@@ -608,7 +608,7 @@ int intel_sprite_set_colorkey(struct drm_device *dev, void *data,
+ 	ret = intel_plane->update_colorkey(plane, set);
  
- 	I915_WRITE(SBI_ADDR,
-@@ -1475,24 +1465,19 @@ intel_sbi_write(struct drm_i915_private *dev_priv, u16 reg, u32 value)
- 	if (wait_for((I915_READ(SBI_CTL_STAT) & (SBI_BUSY | SBI_RESPONSE_FAIL)) == 0,
- 				100)) {
- 		DRM_ERROR("timeout waiting for SBI to complete write transaction\n");
--		goto out_unlock;
-+		return;
- 	}
--
--out_unlock:
--	spin_unlock_irqrestore(&dev_priv->dpio_lock, flags);
+ out_unlock:
+-	mutex_unlock(&dev->mode_config.mutex);
++	drm_modeset_unlock_all(dev);
+ 	return ret;
  }
  
- static u32
- intel_sbi_read(struct drm_i915_private *dev_priv, u16 reg)
- {
--	unsigned long flags;
--	u32 value = 0;
-+	WARN_ON(!mutex_is_locked(&dev_priv->dpio_lock));
+@@ -624,7 +624,7 @@ int intel_sprite_get_colorkey(struct drm_device *dev, void *data,
+ 	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+ 		return -ENODEV;
  
--	spin_lock_irqsave(&dev_priv->dpio_lock, flags);
- 	if (wait_for((I915_READ(SBI_CTL_STAT) & SBI_BUSY) == 0,
- 				100)) {
- 		DRM_ERROR("timeout waiting for SBI to become ready\n");
--		goto out_unlock;
-+		return 0;
- 	}
+-	mutex_lock(&dev->mode_config.mutex);
++	drm_modeset_lock_all(dev);
  
- 	I915_WRITE(SBI_ADDR,
-@@ -1504,14 +1489,10 @@ intel_sbi_read(struct drm_i915_private *dev_priv, u16 reg)
- 	if (wait_for((I915_READ(SBI_CTL_STAT) & (SBI_BUSY | SBI_RESPONSE_FAIL)) == 0,
- 				100)) {
- 		DRM_ERROR("timeout waiting for SBI to complete read transaction\n");
--		goto out_unlock;
-+		return 0;
- 	}
+ 	obj = drm_mode_object_find(dev, get->plane_id, DRM_MODE_OBJECT_PLANE);
+ 	if (!obj) {
+@@ -637,7 +637,7 @@ int intel_sprite_get_colorkey(struct drm_device *dev, void *data,
+ 	intel_plane->get_colorkey(plane, get);
  
--	value = I915_READ(SBI_DATA);
--
--out_unlock:
--	spin_unlock_irqrestore(&dev_priv->dpio_lock, flags);
--	return value;
-+	return I915_READ(SBI_DATA);
+ out_unlock:
+-	mutex_unlock(&dev->mode_config.mutex);
++	drm_modeset_unlock_all(dev);
+ 	return ret;
  }
  
- /**
-@@ -2960,6 +2941,8 @@ static void lpt_program_iclkip(struct drm_crtc *crtc)
- 	u32 divsel, phaseinc, auxdiv, phasedir = 0;
- 	u32 temp;
- 
-+	mutex_lock(&dev_priv->dpio_lock);
-+
- 	/* It is necessary to ungate the pixclk gate prior to programming
- 	 * the divisors, and gate it back when it is done.
- 	 */
-@@ -3041,6 +3024,8 @@ static void lpt_program_iclkip(struct drm_crtc *crtc)
- 	udelay(24);
- 
- 	I915_WRITE(PIXCLK_GATE, PIXCLK_GATE_UNGATE);
-+
-+	mutex_unlock(&dev_priv->dpio_lock);
- }
- 
- /*
-@@ -4268,6 +4253,8 @@ static void vlv_update_pll(struct drm_crtc *crtc,
- 	bool is_sdvo;
- 	u32 temp;
- 
-+	mutex_lock(&dev_priv->dpio_lock);
-+
- 	is_sdvo = intel_pipe_has_type(crtc, INTEL_OUTPUT_SDVO) ||
- 		intel_pipe_has_type(crtc, INTEL_OUTPUT_HDMI);
- 
-@@ -4351,6 +4338,8 @@ static void vlv_update_pll(struct drm_crtc *crtc,
- 			temp |= (1 << 21);
- 		intel_dpio_write(dev_priv, DPIO_DATA_CHANNEL2, temp);
- 	}
-+
-+	mutex_unlock(&dev_priv->dpio_lock);
- }
- 
- static void i9xx_update_pll(struct drm_crtc *crtc,
 -- 
 1.7.10.4
