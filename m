@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56461] NV11 black screen & kernel hang on loading
 	nouveaufb
-Date: Wed, 12 Dec 2012 00:07:18 +0000
-Message-ID: <bug-56461-8800-uVmLnDzk7I@http.bugs.freedesktop.org/>
+Date: Wed, 12 Dec 2012 00:08:39 +0000
+Message-ID: <bug-56461-8800-KAP6hhLHQg@http.bugs.freedesktop.org/>
 References: <bug-56461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0270870356=="
+Content-Type: multipart/mixed; boundary="===============0121493446=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56461-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,44 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0270870356==
-Content-Type: multipart/alternative; boundary="1355270838.B2d1bdd1.9639"; charset="us-ascii"
+--===============0121493446==
+Content-Type: multipart/alternative; boundary="1355270920.AEFC1.9851"; charset="us-ascii"
 
 
---1355270838.B2d1bdd1.9639
-Date: Wed, 12 Dec 2012 00:07:18 +0000
+--1355270920.AEFC1.9851
+Date: Wed, 12 Dec 2012 00:08:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56461
 
---- Comment #15 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> ---
-It still NULL derefd with that patch - in the same place, but with a different
-call stack. However, after looking at where it was happening, I found another
-commit to cherry-pick that fixes it:
-
-afada5e0  drm/nv04/disp: disable vblank interrupts when disabling display
-
-The first of the commits that was previously NULL derefing is now black screen
-hanging instead, so I think I've found the problem commit - 2a44e499.
-
-To recap...
-
-The last working commit is d2edab4a with dea7e0ac & 095f979a cherry-picked.
-
-The first hanging commit is 2a44e499 with dea7e0ac, 095f979a & afada5e0
-cherry-picked.
-
-I'm attaching the console output for these 2 runs.
-
-Chris.
+--- Comment #16 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> ---
+Created attachment 71364
+  --> https://bugs.freedesktop.org/attachment.cgi?id=71364&action=edit
+console output for last working commit
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1355270838.B2d1bdd1.9639
-Date: Wed, 12 Dec 2012 00:07:18 +0000
+--1355270920.AEFC1.9851
+Date: Wed, 12 Dec 2012 00:08:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,32 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56461">bug 56461</a>
               from <span class="vcard"><a class="email" href="mailto:chris&#64;edesix.com" title="Chris Paulson-Ellis &lt;chris&#64;edesix.com&gt;"> <span class="fn">Chris Paulson-Ellis</span></a>
 </span></b>
-        <pre>It still NULL derefd with that patch - in the same place, but with a different
-call stack. However, after looking at where it was happening, I found another
-commit to cherry-pick that fixes it:
-
-afada5e0  drm/nv04/disp: disable vblank interrupts when disabling display
-
-The first of the commits that was previously NULL derefing is now black screen
-hanging instead, so I think I've found the problem commit - 2a44e499.
-
-To recap...
-
-The last working commit is d2edab4a with dea7e0ac &amp; 095f979a cherry-picked.
-
-The first hanging commit is 2a44e499 with dea7e0ac, 095f979a &amp; afada5e0
-cherry-picked.
-
-I'm attaching the console output for these 2 runs.
-
-Chris.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=71364" name="attach_71364" title="console output for last working commit">attachment 71364</a> <a href="attachment.cgi?id=71364&amp;action=edit" title="console output for last working commit">[details]</a></span>
+console output for last working commit</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +76,9 @@ Chris.</pre>
     </body>
 </html>
 
---1355270838.B2d1bdd1.9639--
+--1355270920.AEFC1.9851--
 
---===============0270870356==
+--===============0121493446==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0270870356==--
+--===============0121493446==--
