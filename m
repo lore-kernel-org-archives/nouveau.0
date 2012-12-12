@@ -1,67 +1,78 @@
-From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Subject: [PATCH 30/37] drm/i915: dump refcount into framebuffer
-	debugfs file
-Date: Wed, 12 Dec 2012 14:07:10 +0100
-Message-ID: <1355317637-16742-31-git-send-email-daniel.vetter@ffwll.ch>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: [PATCH 26/37] drm: fb refcounting for dirtyfb_ioctl
+Date: Wed, 12 Dec 2012 14:07:06 +0100
+Message-ID: <1355317637-16742-27-git-send-email-daniel.vetter@ffwll.ch>
 References: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1355317637-16742-1-git-send-email-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Radeon Dev <xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Radeon Dev <xorg-driver-ati@lists.x.org>, Daniel Vetter <daniel.vetter@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
-Useful for checking whether the new refcounting works as advertised.
+We only need to ensure that the fb stays around for long enough. While
+at it, only grab the modeset locks when we need them (since most
+drivers don't implement the dirty callback, this should help jitter
+and stalls when using the generic modeset driver).
 
-Signed-off-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/i915/i915_debugfs.c |   10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/drm_crtc.c |   15 ++++++---------
+ 1 file changed, 6 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index da1c8b6..e2dc77c 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -1369,11 +1369,12 @@ static int i915_gem_framebuffer_info(struct seq_file *m, void *data)
- 	ifbdev = dev_priv->fbdev;
- 	fb = to_intel_framebuffer(ifbdev->helper.fb);
+diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
+index 28838cf..8132e13 100644
+--- a/drivers/gpu/drm/drm_crtc.c
++++ b/drivers/gpu/drm/drm_crtc.c
+@@ -2561,14 +2561,9 @@ int drm_mode_dirtyfb_ioctl(struct drm_device *dev,
+ 	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+ 		return -EINVAL;
  
--	seq_printf(m, "fbcon size: %d x %d, depth %d, %d bpp, obj ",
-+	seq_printf(m, "fbcon size: %d x %d, depth %d, %d bpp, refcount %d, obj ",
- 		   fb->base.width,
- 		   fb->base.height,
- 		   fb->base.depth,
--		   fb->base.bits_per_pixel);
-+		   fb->base.bits_per_pixel,
-+		   atomic_read(&fb->base.refcount.refcount));
- 	describe_obj(m, fb->obj);
- 	seq_printf(m, "\n");
- 	mutex_unlock(&dev->mode_config.mutex);
-@@ -1383,11 +1384,12 @@ static int i915_gem_framebuffer_info(struct seq_file *m, void *data)
- 		if (&fb->base == ifbdev->helper.fb)
- 			continue;
+-	drm_modeset_lock_all(dev);
+ 	fb = drm_framebuffer_lookup(dev, r->fb_id);
+-	if (!fb) {
+-		ret = -EINVAL;
+-		goto out_err1;
+-	}
+-	/* fb is protect by the mode_config lock, so drop the ref immediately */
+-	drm_framebuffer_unreference(fb);
++	if (!fb)
++		return -EINVAL;
  
--		seq_printf(m, "user size: %d x %d, depth %d, %d bpp, obj ",
-+		seq_printf(m, "user size: %d x %d, depth %d, %d bpp, refcount %d, obj ",
- 			   fb->base.width,
- 			   fb->base.height,
- 			   fb->base.depth,
--			   fb->base.bits_per_pixel);
-+			   fb->base.bits_per_pixel,
-+			   atomic_read(&fb->base.refcount.refcount));
- 		describe_obj(m, fb->obj);
- 		seq_printf(m, "\n");
+ 	num_clips = r->num_clips;
+ 	clips_ptr = (struct drm_clip_rect __user *)(unsigned long)r->clips_ptr;
+@@ -2606,17 +2601,19 @@ int drm_mode_dirtyfb_ioctl(struct drm_device *dev,
  	}
+ 
+ 	if (fb->funcs->dirty) {
++		drm_modeset_lock_all(dev);
+ 		ret = fb->funcs->dirty(fb, file_priv, flags, r->color,
+ 				       clips, num_clips);
++		drm_modeset_unlock_all(dev);
+ 	} else {
+ 		ret = -ENOSYS;
+-		goto out_err2;
+ 	}
+ 
+ out_err2:
+ 	kfree(clips);
+ out_err1:
+-	drm_modeset_unlock_all(dev);
++	drm_framebuffer_unreference(fb);
++
+ 	return ret;
+ }
+ 
 -- 
 1.7.10.4
