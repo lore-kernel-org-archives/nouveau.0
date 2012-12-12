@@ -1,119 +1,184 @@
 From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Subject: [PATCH 36/37] drm: only grab the crtc lock for pageflips
-Date: Wed, 12 Dec 2012 14:07:16 +0100
-Message-ID: <1355317637-16742-37-git-send-email-daniel.vetter@ffwll.ch>
+Subject: [PATCH 37/37] drm: don't hold crtc mutexes for connector
+	->detect callbacks
+Date: Wed, 12 Dec 2012 14:07:17 +0100
+Message-ID: <1355317637-16742-38-git-send-email-daniel.vetter@ffwll.ch>
 References: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <xorg-driver-ati-bounces+gcfxda-xorg-driver-ati=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <1355317637-16742-1-git-send-email-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-List-Unsubscribe: <http://lists.x.org/mailman/options/xorg-driver-ati>,
-	<mailto:xorg-driver-ati-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.x.org/archives/xorg-driver-ati>
-List-Post: <mailto:xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
-List-Help: <mailto:xorg-driver-ati-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.x.org/mailman/listinfo/xorg-driver-ati>,
-	<mailto:xorg-driver-ati-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=subscribe>
-Sender: xorg-driver-ati-bounces+gcfxda-xorg-driver-ati=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-Errors-To: xorg-driver-ati-bounces+gcfxda-xorg-driver-ati=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Radeon Dev <xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org>, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Cc: Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Radeon Dev <xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-The pagelip ioctl itself is rather simply, so the hard work for this
-patch is auditing all the drivers:
+The coup de grace of the entire journey. No more dropped frames every
+10s on my testbox!
 
-- exynos: Pageflip is protect with dev->struct_mutex and ...
-  synchronous. But nothing fancy going on, besides a check whether the
-  crtc is enabled, which should probably be somewhere in the drm core
-  so that we have unified behaviour across all drivers.
+I've tried to audit all ->detect and ->get_modes callbacks, but things
+became a bit fuzzy after trying to piece together the umpteenth
+implemenation. Afaict most drivers just have bog-standard output
+register frobbing with a notch of i2c edid reading, nothing which
+could potentially race with the newly concurrent pageflip/set_cursor
+code. The big exception is load-detection code which requires a
+running pipe, but radeon/nouveau seem to to this without touching any
+state which can be observed from page_flip (e.g. disabled crtcs
+temporarily getting enabled and so a pageflip succeeding).
 
-- i915: hw-state is protected with dev->struct_mutex, the delayed
-  unpin work together with the other stuff the pageflip complete irq
-  handler needs is protected by the event_lock spinlock.
+The only special case I could find is the i915 load detect code. That
+uses the normal modeset interface to enable the load-detect crtc, and
+so userspace could try to squeeze in a pageflip on the load-detect
+pipe. So we need to grab the relevant crtc mutex in there, to avoid
+the temporary crtc enabling to sneak out and be visible to userspace.
 
-- nouveau: With the pin/unpin functions fixed, everything looks safe:
-  A bit of ttm wrestling and refcounting, and a few channel accesses.
-  The later are either already proteced sufficiently, or are now safe
-  with the channel locking introduced to make cursor updates safe.
-
-- radeon: The irq_get/put functions look a bit race, since the
-  atomic_inc/dec isn't protect with locks. Otoh they're all per-crtc,
-  so we should be safe with per-crtc locking from the drm core. Then
-  there's tons of per-crtc register access, which could potentially go
-  through the indirect reg acces. But that's fixed to make cursor
-  updates concurrent. Bookeeping for the drm even is also protected
-  with the even_lock, which also protects against the pageflip irq
-  handler since radeon hw seems to have no way to queue these up
-  asynchronously. Otherwise just a bit of ttm-based buffer handling
-  and fencing, which is now safe with the previous patch to hold
-  bdev->fence_lock while grabbing the ttm fence.
-
-- shmob: Only one crtc. That's an easy one ...
-
-- vmwgfx: As usual a bit special with tons different things:
-  - Flippable check using is_implicit and num_implicit. Changes to
-    those seem to be nicely covered with the global modeset lock, so
-    we should be fine.
-  - Some dirty cliprect handling stuff, or at least that is my guess.
-    Looks like it's fine since either it's per-crtc, invariant or
-    (like the execbuf stuff launched) protected otherwise.
-  - Adding the actual flip to the fence_event list. On a quick look
-    this seems to have solid locking in place, too.
-  ... but generally this is all way over my head.
-
-- imx: Impressive display of races between the page_flip
-  implementation and the irq handler. Also, ipu_drm_set_base which
-  gets eventually called from the irq handler to update the display
-  base isn't really protected against concurrent set_config calls from
-  process context.  In any case, going for per-crtc locking won't make
-  this worse, so nothing to do.
-
-- omap: Does just some prep work on per-crtc data and grabs a ref on
-  the backing storage, then calls down into omap_gem_op_async which
-  does some nicely-protected async callback stuff, or directly calls
-  the passed-in page_flip_cb. That seems to lock most of the stuff it
-  touches properly, safe for the eventually called omap_plane_dpms,
-  which updates modeset state. Which will be a problem if this is
-  called asynchronously, since the sync_op waiter callback code in
-  omap_gem.c does not seem to take the right modeset locks. So looks a
-  bit racy already with the old locking, and no worse off with the new
-  per-crtc locks.
+Note that the sysfs files already stopped grabbing the per-crtc locks,
+since I didn't want to bother with doing a interruptible
+modeset_lock_all. But since there's very little in-between breakage
+(essentially just the ability for userspace to pageflip on load-detect
+crtcs when it shouldn't on the i915 driver) I figured I don't need to
+bother.
 
 Signed-off-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
 ---
- drivers/gpu/drm/drm_crtc.c |    7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/drm_crtc.c           |    5 +++--
+ drivers/gpu/drm/drm_crtc_helper.c    |    8 ++++----
+ drivers/gpu/drm/i915/intel_display.c |   10 ++++++++--
+ 3 files changed, 15 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
-index 6dd441c..36c75e6 100644
+index 36c75e6..313d7d2 100644
 --- a/drivers/gpu/drm/drm_crtc.c
 +++ b/drivers/gpu/drm/drm_crtc.c
-@@ -3716,12 +3716,12 @@ int drm_mode_page_flip_ioctl(struct drm_device *dev,
- 	    page_flip->reserved != 0)
- 		return -EINVAL;
+@@ -1616,7 +1616,7 @@ int drm_mode_getconnector(struct drm_device *dev, void *data,
+ 
+ 	DRM_DEBUG_KMS("[CONNECTOR:%d:?]\n", out_resp->connector_id);
  
 -	drm_modeset_lock_all(dev);
- 	obj = drm_mode_object_find(dev, page_flip->crtc_id, DRM_MODE_OBJECT_CRTC);
- 	if (!obj)
--		goto out;
-+		return -EINVAL;
- 	crtc = obj_to_crtc(obj);
++	mutex_lock(&dev->mode_config.mutex);
  
-+	mutex_lock(&crtc->mutex);
- 	if (crtc->fb == NULL) {
- 		/* The framebuffer is currently unbound, presumably
- 		 * due to a hotplug event, that userspace has not
-@@ -3803,7 +3803,8 @@ out:
- 		drm_framebuffer_unreference(fb);
- 	if (old_fb)
- 		drm_framebuffer_unreference(old_fb);
+ 	obj = drm_mode_object_find(dev, out_resp->connector_id,
+ 				   DRM_MODE_OBJECT_CONNECTOR);
+@@ -1713,7 +1713,8 @@ int drm_mode_getconnector(struct drm_device *dev, void *data,
+ 	out_resp->count_encoders = encoders_count;
+ 
+ out:
 -	drm_modeset_unlock_all(dev);
-+	mutex_unlock(&crtc->mutex);
++	mutex_unlock(&dev->mode_config.mutex);
 +
  	return ret;
  }
  
+diff --git a/drivers/gpu/drm/drm_crtc_helper.c b/drivers/gpu/drm/drm_crtc_helper.c
+index 400ef86..7b2d378 100644
+--- a/drivers/gpu/drm/drm_crtc_helper.c
++++ b/drivers/gpu/drm/drm_crtc_helper.c
+@@ -980,7 +980,7 @@ static void output_poll_execute(struct work_struct *work)
+ 	if (!drm_kms_helper_poll)
+ 		return;
+ 
+-	drm_modeset_lock_all(dev);
++	mutex_lock(&dev->mode_config.mutex);
+ 	list_for_each_entry(connector, &dev->mode_config.connector_list, head) {
+ 
+ 		/* Ignore forced connectors. */
+@@ -1010,7 +1010,7 @@ static void output_poll_execute(struct work_struct *work)
+ 			changed = true;
+ 	}
+ 
+-	drm_modeset_unlock_all(dev);
++	mutex_unlock(&dev->mode_config.mutex);
+ 
+ 	if (changed)
+ 		drm_kms_helper_hotplug_event(dev);
+@@ -1070,7 +1070,7 @@ void drm_helper_hpd_irq_event(struct drm_device *dev)
+ 	if (!dev->mode_config.poll_enabled)
+ 		return;
+ 
+-	drm_modeset_lock_all(dev);
++	mutex_lock(&dev->mode_config.mutex);
+ 	list_for_each_entry(connector, &dev->mode_config.connector_list, head) {
+ 
+ 		/* Only handle HPD capable connectors. */
+@@ -1088,7 +1088,7 @@ void drm_helper_hpd_irq_event(struct drm_device *dev)
+ 			changed = true;
+ 	}
+ 
+-	drm_modeset_unlock_all(dev);
++	mutex_unlock(&dev->mode_config.mutex);
+ 
+ 	if (changed)
+ 		drm_kms_helper_hotplug_event(dev);
+diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
+index fd8cfeb..2429d39 100644
+--- a/drivers/gpu/drm/i915/intel_display.c
++++ b/drivers/gpu/drm/i915/intel_display.c
+@@ -6390,6 +6390,8 @@ bool intel_get_load_detect_pipe(struct drm_connector *connector,
+ 	if (encoder->crtc) {
+ 		crtc = encoder->crtc;
+ 
++		mutex_lock(&crtc->mutex);
++
+ 		old->dpms_mode = connector->dpms;
+ 		old->load_detect_temp = false;
+ 
+@@ -6419,6 +6421,7 @@ bool intel_get_load_detect_pipe(struct drm_connector *connector,
+ 		return false;
+ 	}
+ 
++	mutex_lock(&crtc->mutex);
+ 	intel_encoder->new_crtc = to_intel_crtc(crtc);
+ 	to_intel_connector(connector)->new_encoder = intel_encoder;
+ 
+@@ -6446,6 +6449,7 @@ bool intel_get_load_detect_pipe(struct drm_connector *connector,
+ 		DRM_DEBUG_KMS("reusing fbdev for load-detection framebuffer\n");
+ 	if (IS_ERR(fb)) {
+ 		DRM_DEBUG_KMS("failed to allocate framebuffer for load-detection\n");
++		mutex_unlock(&crtc->mutex);
+ 		return false;
+ 	}
+ 
+@@ -6453,6 +6457,7 @@ bool intel_get_load_detect_pipe(struct drm_connector *connector,
+ 		DRM_DEBUG_KMS("failed to set mode on load-detect pipe\n");
+ 		if (old->release_fb)
+ 			old->release_fb->funcs->destroy(old->release_fb);
++		mutex_unlock(&crtc->mutex);
+ 		return false;
+ 	}
+ 
+@@ -6467,14 +6472,13 @@ void intel_release_load_detect_pipe(struct drm_connector *connector,
+ 	struct intel_encoder *intel_encoder =
+ 		intel_attached_encoder(connector);
+ 	struct drm_encoder *encoder = &intel_encoder->base;
++	struct drm_crtc *crtc = encoder->crtc;
+ 
+ 	DRM_DEBUG_KMS("[CONNECTOR:%d:%s], [ENCODER:%d:%s]\n",
+ 		      connector->base.id, drm_get_connector_name(connector),
+ 		      encoder->base.id, drm_get_encoder_name(encoder));
+ 
+ 	if (old->load_detect_temp) {
+-		struct drm_crtc *crtc = encoder->crtc;
+-
+ 		to_intel_connector(connector)->new_encoder = NULL;
+ 		intel_encoder->new_crtc = NULL;
+ 		intel_set_mode(crtc, NULL, 0, 0, NULL);
+@@ -6490,6 +6494,8 @@ void intel_release_load_detect_pipe(struct drm_connector *connector,
+ 	/* Switch crtc and encoder back off if necessary */
+ 	if (old->dpms_mode != DRM_MODE_DPMS_ON)
+ 		connector->funcs->dpms(connector, old->dpms_mode);
++
++	mutex_unlock(&crtc->mutex);
+ }
+ 
+ /* Returns the clock of the currently programmed mode of the given pipe. */
 -- 
 1.7.10.4
