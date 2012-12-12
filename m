@@ -1,60 +1,98 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH 04/37] drm/i915: rework locking for
- intel_dpio|sbi_read|write
-Date: Wed, 12 Dec 2012 23:00:34 +0100
-Message-ID: <20121212220032.GA5690@phenom.ffwll.local>
-References: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
-	<1355317637-16742-5-git-send-email-daniel.vetter@ffwll.ch>
-	<20121212125447.728e791a@jbarnes-desktop>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 58087] [-next] nouveau corrupts kernel mm allocator
+Date: Wed, 12 Dec 2012 22:03:42 +0000
+Message-ID: <bug-58087-8800-hdecMsRrgd@http.bugs.freedesktop.org/>
+References: <bug-58087-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20121212125447.728e791a@jbarnes-desktop>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/intel-gfx>,
-	<mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
-	<mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Sender: intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org
-Errors-To: intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org
-To: Jesse Barnes <jbarnes@virtuousgeek.org>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Radeon Dev <xorg-driver-ati@lists.x.org>, DRI Development <dri-devel@lists.freedesktop.org>, Nouveau Dev <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0838620354=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-58087-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Dec 12, 2012 at 12:54:47PM -0800, Jesse Barnes wrote:
-> On Wed, 12 Dec 2012 14:06:44 +0100
-> Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> 
-> > Spinning for up to 200 us with interrupts locked out is not good. So
-> > let's just spin (and even that seems to be excessive).
-> > 
-> > And we don't call these functions from interrupt context, so this is
-> > not required. Besides that doing anything in interrupt contexts which
-> > might take a few hundred us is a no-go. So just convert the entire
-> > thing to a mutex. Also move the mutex-grabbing out of the read/write
-> > functions (add a WARN_ON(!is_locked)) instead) since all callers are
-> > nicely grouped together.
-> > 
-> > Finally the real motivation for this change: Dont grab the modeset
-> > mutex in the dpio debugfs file, we don't need that consistency. And
-> > correctness of the dpio interface is ensured with the dpio_lock.
-> > 
-> > Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> 
-> Looks fine, I guess you could convert the wait_for_atomic_us to the
-> non-atomic variant now that you have a mutex.  Either way:
 
-I like that _us purely to document the correct timeout ...
+--===============0838620354==
+Content-Type: multipart/alternative; boundary="1355349822.a610E3522.23935"; charset="us-ascii"
 
-> Reviewed-by: Jesse Barnes <jbarnes@virtuousgeek.org>
 
-Queued for -next, thanks for the review.
--Daniel
+--1355349822.a610E3522.23935
+Date: Wed, 12 Dec 2012 22:03:42 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=58087
+
+--- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+It's not a problem with vm allocation. The next one (vm->pgt) fails, so we free
+vm, leaving *pvm pointing at freed memory. When we get to nouveau_drm_open, we
+call nouveau_cli_destroy(cli), which tries to free cli->base.vm again. Oops.
+
+I already checked other places and some of them also have this bug. I'll post
+fixes in a few days.
+
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1355349822.a610E3522.23935
+Date: Wed, 12 Dec 2012 22:03:42 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [-next] nouveau corrupts kernel mm allocator"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58087#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [-next] nouveau corrupts kernel mm allocator"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58087">bug 58087</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span></b>
+        <pre>It's not a problem with vm allocation. The next one (vm-&gt;pgt) fails, so we free
+vm, leaving *pvm pointing at freed memory. When we get to nouveau_drm_open, we
+call nouveau_cli_destroy(cli), which tries to free cli-&gt;base.vm again. Oops.
+
+I already checked other places and some of them also have this bug. I'll post
+fixes in a few days.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1355349822.a610E3522.23935--
+
+--===============0838620354==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0838620354==--
