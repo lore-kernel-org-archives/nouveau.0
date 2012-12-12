@@ -1,165 +1,207 @@
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PATCH 10/37] drm: add per-crtc locks
-Date: Wed, 12 Dec 2012 14:06:50 +0100
-Message-ID: <1355317637-16742-11-git-send-email-daniel.vetter@ffwll.ch>
+Subject: [PATCH 11/37] drm/radeon: add W|RREG32_IDX for MM_INDEX|DATA based
+	mmio accesss
+Date: Wed, 12 Dec 2012 14:06:51 +0100
+Message-ID: <1355317637-16742-12-git-send-email-daniel.vetter@ffwll.ch>
 References: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org>
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
 In-Reply-To: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/intel-gfx>,
-	<mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
-	<mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Sender: intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org
-Errors-To: intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
 To: DRI Development <dri-devel@lists.freedesktop.org>
 Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Radeon Dev <xorg-driver-ati@lists.x.org>, Daniel Vetter <daniel.vetter@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
-*drumroll*
+Just refactoring to make the next patche simpler. Now all indirect register
+access in the new modesetting driver should go through the r100_mm_(w|r)reg
+fucntions.
 
-The basic idea is to protect per-crtc state which can change without
-touching the output configuration with separate mutexes, i.e.  all the
-input side state to a crtc like framebuffers, cursor settings or plane
-configuration. Holding such a crtc lock gives a read-lock on all the
-other crtc state which can be changed by e.g. a modeset.
-
-All non-crtc state is still protected by the mode_config mutex.
-Callers that need to change modeset state of a crtc (e.g. dpms or
-set_mode) need to grab both the mode_config lock and nested within any
-crtc locks.
-
-Note that since there can only ever be one holder of the mode_config
-lock we can grab the subordinate crtc locks in any order (if we need
-to grab more than one of them). Lockdep can handle such nesting with
-the mutex_lock_nest_lock call correctly.
-
-With this functions that only touch connectors/encoders but not crtcs
-only need to take the mode_config lock. The biggest such case is the
-output probing, which means that we can now pageflip and move cursors
-while the output probe code is reading an edid.
-
-Most cases neatly fall into the three buckets:
-- Only touches connectors and similar output state and so only needs
-  the mode_config lock.
-- Touches the global configuration and so needs all locks.
-- Only touches the crtc input side and so only needs the crtc lock.
-
-But a few cases that need special consideration:
-
-- Load detection which requires a crtc. The mode_config lock already
-  prevents a modeset change, so we can use any unused crtc as we like
-  to do load detection. The only thing to consider is that such
-  temporary state changes don't leak out to userspace through ioctls
-  that only take the crtc look (like a pageflip). Hence the load
-  detect code needs to grab the crtc of any output pipes it touches
-  (but only if it touches state used by the pageflip or cursor
-  ioctls).
-
-- Atomic pageflip when moving planes. The first case is sane hw, where
-  planes have a fixed association with crtcs - nothing needs to be
-  done there. More insane^Wflexible hw needs to have plane->crtc
-  mapping which is separately protect with a lock that nests within
-  the crtc lock. If the plane is unused we can just assign it to the
-  current crtc and continue. But if a plane is already in use by
-  another crtc we can't just reassign it.
-
-  Two solution present themselves: Either go back to a slow-path which
-  takes all modeset locks, potentially incure quite a hefty delay. Or
-  simply disallowing such changes in one atomic pageflip - in general
-  the vblanks of two crtcs are not synced, so there's no sane way to
-  atomically flip such plane changes accross more than one crtc. I'd
-  heavily favour the later approach, going as far as mandating it as
-  part of the ABI of such a new a nuclear pageflip.
-
-  And if we _really_ want such semantics, we can always get them by
-  introducing another pageflip mutex between the mode_config.mutex and
-  the individual crtc locks. Pageflips crossing more than one crtc
-  would then need to take that lock first, to lock out concurrent
-  multi-crtc pageflips.
-
-- Optimized global modeset operations: We could just take the
-  mode_config lock and then lazily lock all crtc which are affected by
-  a modeset operation. This has the advantage that pageflip could
-  continue unhampered on unaffected crtc. But if e.g. global resources
-  like plls need to be reassigned and so affect unrelated crtcs we can
-  still do that - nested locking works in any order.
-
-This patch just adds the locks and takes them in drm_modeset_lock_all,
-no real locking changes yet.
-
-v2: Need to initialize the new lock in crtc_init and lock it righ
-away, for otherwise the modeset_unlock_all below will try to unlock a
-not-locked mutex.
+RADEON_READ_MM from the old driver seems to be totally unused, so just kill
+it.
 
 Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/drm_crtc.c |   12 ++++++++++++
- include/drm/drm_crtc.h     |    9 +++++++++
- 2 files changed, 21 insertions(+)
+ drivers/gpu/drm/radeon/r100.c           |   10 ++++++----
+ drivers/gpu/drm/radeon/radeon.h         |   16 ++++++++++------
+ drivers/gpu/drm/radeon/radeon_combios.c |    6 ++----
+ drivers/gpu/drm/radeon/radeon_cp.c      |   14 --------------
+ drivers/gpu/drm/radeon/radeon_cursor.c  |   17 +++++++++--------
+ drivers/gpu/drm/radeon/radeon_drv.h     |    1 -
+ 6 files changed, 27 insertions(+), 37 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
-index 5d223af..91e8068 100644
---- a/drivers/gpu/drm/drm_crtc.c
-+++ b/drivers/gpu/drm/drm_crtc.c
-@@ -46,7 +46,12 @@
-  */
- void drm_modeset_lock_all(struct drm_device *dev)
- {
-+	struct drm_crtc *crtc;
-+
- 	mutex_lock(&dev->mode_config.mutex);
-+
-+	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head)
-+		mutex_lock_nest_lock(&crtc->mutex, &dev->mode_config.mutex);
+diff --git a/drivers/gpu/drm/radeon/r100.c b/drivers/gpu/drm/radeon/r100.c
+index 376884f..ae4c857 100644
+--- a/drivers/gpu/drm/radeon/r100.c
++++ b/drivers/gpu/drm/radeon/r100.c
+@@ -4135,9 +4135,10 @@ int r100_init(struct radeon_device *rdev)
+ 	return 0;
  }
- EXPORT_SYMBOL(drm_modeset_lock_all);
  
-@@ -56,6 +61,11 @@ EXPORT_SYMBOL(drm_modeset_lock_all);
-  */
- void drm_modeset_unlock_all(struct drm_device *dev)
+-uint32_t r100_mm_rreg(struct radeon_device *rdev, uint32_t reg)
++uint32_t r100_mm_rreg(struct radeon_device *rdev, uint32_t reg,
++		      bool always_indirect)
  {
-+	struct drm_crtc *crtc;
-+
-+	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head)
-+		mutex_unlock(&crtc->mutex);
-+
- 	mutex_unlock(&dev->mode_config.mutex);
+-	if (reg < rdev->rmmio_size)
++	if (reg < rdev->rmmio_size && !always_indirect)
+ 		return readl(((void __iomem *)rdev->rmmio) + reg);
+ 	else {
+ 		writel(reg, ((void __iomem *)rdev->rmmio) + RADEON_MM_INDEX);
+@@ -4145,9 +4146,10 @@ uint32_t r100_mm_rreg(struct radeon_device *rdev, uint32_t reg)
+ 	}
  }
- EXPORT_SYMBOL(drm_modeset_unlock_all);
-@@ -451,6 +461,8 @@ int drm_crtc_init(struct drm_device *dev, struct drm_crtc *crtc,
- 	crtc->invert_dimensions = false;
  
- 	drm_modeset_lock_all(dev);
-+	mutex_init(&crtc->mutex);
-+	mutex_lock_nest_lock(&crtc->mutex, &dev->mode_config.mutex);
+-void r100_mm_wreg(struct radeon_device *rdev, uint32_t reg, uint32_t v)
++void r100_mm_wreg(struct radeon_device *rdev, uint32_t reg, uint32_t v,
++		  bool always_indirect)
+ {
+-	if (reg < rdev->rmmio_size)
++	if (reg < rdev->rmmio_size && !always_indirect)
+ 		writel(v, ((void __iomem *)rdev->rmmio) + reg);
+ 	else {
+ 		writel(reg, ((void __iomem *)rdev->rmmio) + RADEON_MM_INDEX);
+diff --git a/drivers/gpu/drm/radeon/radeon.h b/drivers/gpu/drm/radeon/radeon.h
+index 8c42d54..bcb00b8 100644
+--- a/drivers/gpu/drm/radeon/radeon.h
++++ b/drivers/gpu/drm/radeon/radeon.h
+@@ -1614,8 +1614,10 @@ int radeon_device_init(struct radeon_device *rdev,
+ void radeon_device_fini(struct radeon_device *rdev);
+ int radeon_gpu_wait_for_idle(struct radeon_device *rdev);
  
- 	ret = drm_mode_object_get(dev, &crtc->base, DRM_MODE_OBJECT_CRTC);
- 	if (ret)
-diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-index b487922..f1296ce 100644
---- a/include/drm/drm_crtc.h
-+++ b/include/drm/drm_crtc.h
-@@ -390,6 +390,15 @@ struct drm_crtc {
- 	struct drm_device *dev;
- 	struct list_head head;
+-uint32_t r100_mm_rreg(struct radeon_device *rdev, uint32_t reg);
+-void r100_mm_wreg(struct radeon_device *rdev, uint32_t reg, uint32_t v);
++uint32_t r100_mm_rreg(struct radeon_device *rdev, uint32_t reg,
++		      bool always_indirect);
++void r100_mm_wreg(struct radeon_device *rdev, uint32_t reg, uint32_t v,
++		  bool always_indirect);
+ u32 r100_io_rreg(struct radeon_device *rdev, u32 reg);
+ void r100_io_wreg(struct radeon_device *rdev, u32 reg, u32 v);
  
-+	/**
-+	 * crtc mutex
-+	 *
-+	 * This provides a read lock for the overall crtc state (mode, dpms
-+	 * state, ...) and a write lock for everything which can be update
-+	 * without a full modeset (fb, cursor data, ...)
-+	 */
-+	struct mutex mutex;
-+
- 	struct drm_mode_object base;
+@@ -1631,9 +1633,11 @@ void r100_io_wreg(struct radeon_device *rdev, u32 reg, u32 v);
+ #define WREG8(reg, v) writeb(v, (rdev->rmmio) + (reg))
+ #define RREG16(reg) readw((rdev->rmmio) + (reg))
+ #define WREG16(reg, v) writew(v, (rdev->rmmio) + (reg))
+-#define RREG32(reg) r100_mm_rreg(rdev, (reg))
+-#define DREG32(reg) printk(KERN_INFO "REGISTER: " #reg " : 0x%08X\n", r100_mm_rreg(rdev, (reg)))
+-#define WREG32(reg, v) r100_mm_wreg(rdev, (reg), (v))
++#define RREG32(reg) r100_mm_rreg(rdev, (reg), false)
++#define RREG32_IDX(reg) r100_mm_rreg(rdev, (reg), true)
++#define DREG32(reg) printk(KERN_INFO "REGISTER: " #reg " : 0x%08X\n", r100_mm_rreg(rdev, (reg), false))
++#define WREG32(reg, v) r100_mm_wreg(rdev, (reg), (v), false)
++#define WREG32_IDX(reg, v) r100_mm_wreg(rdev, (reg), (v), true)
+ #define REG_SET(FIELD, v) (((v) << FIELD##_SHIFT) & FIELD##_MASK)
+ #define REG_GET(FIELD, v) (((v) << FIELD##_SHIFT) & FIELD##_MASK)
+ #define RREG32_PLL(reg) rdev->pll_rreg(rdev, (reg))
+@@ -1658,7 +1662,7 @@ void r100_io_wreg(struct radeon_device *rdev, u32 reg, u32 v);
+ 		tmp_ |= ((val) & ~(mask));			\
+ 		WREG32_PLL(reg, tmp_);				\
+ 	} while (0)
+-#define DREG32_SYS(sqf, rdev, reg) seq_printf((sqf), #reg " : 0x%08X\n", r100_mm_rreg((rdev), (reg)))
++#define DREG32_SYS(sqf, rdev, reg) seq_printf((sqf), #reg " : 0x%08X\n", r100_mm_rreg((rdev), (reg), false))
+ #define RREG32_IO(reg) r100_io_rreg(rdev, (reg))
+ #define WREG32_IO(reg, v) r100_io_wreg(rdev, (reg), (v))
  
- 	/* framebuffer the connector is currently bound to */
+diff --git a/drivers/gpu/drm/radeon/radeon_combios.c b/drivers/gpu/drm/radeon/radeon_combios.c
+index 45b660b..4af8912 100644
+--- a/drivers/gpu/drm/radeon/radeon_combios.c
++++ b/drivers/gpu/drm/radeon/radeon_combios.c
+@@ -3246,11 +3246,9 @@ static uint32_t combios_detect_ram(struct drm_device *dev, int ram,
+ 	while (ram--) {
+ 		addr = ram * 1024 * 1024;
+ 		/* write to each page */
+-		WREG32(RADEON_MM_INDEX, (addr) | RADEON_MM_APER);
+-		WREG32(RADEON_MM_DATA, 0xdeadbeef);
++		WREG32_IDX((addr) | RADEON_MM_APER, 0xdeadbeef);
+ 		/* read back and verify */
+-		WREG32(RADEON_MM_INDEX, (addr) | RADEON_MM_APER);
+-		if (RREG32(RADEON_MM_DATA) != 0xdeadbeef)
++		if (RREG32_IDX((addr) | RADEON_MM_APER) != 0xdeadbeef)
+ 			return 0;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/radeon/radeon_cp.c b/drivers/gpu/drm/radeon/radeon_cp.c
+index 8b2797d..9143fc4 100644
+--- a/drivers/gpu/drm/radeon/radeon_cp.c
++++ b/drivers/gpu/drm/radeon/radeon_cp.c
+@@ -116,20 +116,6 @@ u32 radeon_get_scratch(drm_radeon_private_t *dev_priv, int index)
+ 	}
+ }
+ 
+-u32 RADEON_READ_MM(drm_radeon_private_t *dev_priv, int addr)
+-{
+-	u32 ret;
+-
+-	if (addr < 0x10000)
+-		ret = DRM_READ32(dev_priv->mmio, addr);
+-	else {
+-		DRM_WRITE32(dev_priv->mmio, RADEON_MM_INDEX, addr);
+-		ret = DRM_READ32(dev_priv->mmio, RADEON_MM_DATA);
+-	}
+-
+-	return ret;
+-}
+-
+ static u32 R500_READ_MCIND(drm_radeon_private_t *dev_priv, int addr)
+ {
+ 	u32 ret;
+diff --git a/drivers/gpu/drm/radeon/radeon_cursor.c b/drivers/gpu/drm/radeon/radeon_cursor.c
+index 0fe56c9..ad6df62 100644
+--- a/drivers/gpu/drm/radeon/radeon_cursor.c
++++ b/drivers/gpu/drm/radeon/radeon_cursor.c
+@@ -66,24 +66,25 @@ static void radeon_hide_cursor(struct drm_crtc *crtc)
+ 	struct radeon_device *rdev = crtc->dev->dev_private;
+ 
+ 	if (ASIC_IS_DCE4(rdev)) {
+-		WREG32(RADEON_MM_INDEX, EVERGREEN_CUR_CONTROL + radeon_crtc->crtc_offset);
+-		WREG32(RADEON_MM_DATA, EVERGREEN_CURSOR_MODE(EVERGREEN_CURSOR_24_8_PRE_MULT) |
+-		       EVERGREEN_CURSOR_URGENT_CONTROL(EVERGREEN_CURSOR_URGENT_1_2));
++		WREG32_IDX(EVERGREEN_CUR_CONTROL + radeon_crtc->crtc_offset,
++			   EVERGREEN_CURSOR_MODE(EVERGREEN_CURSOR_24_8_PRE_MULT) |
++			   EVERGREEN_CURSOR_URGENT_CONTROL(EVERGREEN_CURSOR_URGENT_1_2));
+ 	} else if (ASIC_IS_AVIVO(rdev)) {
+-		WREG32(RADEON_MM_INDEX, AVIVO_D1CUR_CONTROL + radeon_crtc->crtc_offset);
+-		WREG32(RADEON_MM_DATA, (AVIVO_D1CURSOR_MODE_24BPP << AVIVO_D1CURSOR_MODE_SHIFT));
++		WREG32_IDX(AVIVO_D1CUR_CONTROL + radeon_crtc->crtc_offset,
++			   (AVIVO_D1CURSOR_MODE_24BPP << AVIVO_D1CURSOR_MODE_SHIFT));
+ 	} else {
++		u32 reg;
+ 		switch (radeon_crtc->crtc_id) {
+ 		case 0:
+-			WREG32(RADEON_MM_INDEX, RADEON_CRTC_GEN_CNTL);
++			reg = RADEON_CRTC_GEN_CNTL;
+ 			break;
+ 		case 1:
+-			WREG32(RADEON_MM_INDEX, RADEON_CRTC2_GEN_CNTL);
++			reg = RADEON_CRTC2_GEN_CNTL;
+ 			break;
+ 		default:
+ 			return;
+ 		}
+-		WREG32_P(RADEON_MM_DATA, 0, ~RADEON_CRTC_CUR_EN);
++		WREG32_IDX(reg, RREG32_IDX(reg) & ~RADEON_CRTC_CUR_EN);
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/radeon/radeon_drv.h b/drivers/gpu/drm/radeon/radeon_drv.h
+index a1b59ca..e7fdf16 100644
+--- a/drivers/gpu/drm/radeon/radeon_drv.h
++++ b/drivers/gpu/drm/radeon/radeon_drv.h
+@@ -366,7 +366,6 @@ extern int radeon_cp_buffers(struct drm_device *dev, void *data, struct drm_file
+ extern u32 radeon_read_fb_location(drm_radeon_private_t *dev_priv);
+ extern void radeon_write_agp_location(drm_radeon_private_t *dev_priv, u32 agp_loc);
+ extern void radeon_write_agp_base(drm_radeon_private_t *dev_priv, u64 agp_base);
+-extern u32 RADEON_READ_MM(drm_radeon_private_t *dev_priv, int addr);
+ 
+ extern void radeon_freelist_reset(struct drm_device * dev);
+ extern struct drm_buf *radeon_freelist_get(struct drm_device * dev);
 -- 
 1.7.10.4
