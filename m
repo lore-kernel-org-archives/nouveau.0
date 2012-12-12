@@ -1,7 +1,7 @@
 From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Subject: [PATCH 32/37] drm: optimize drm_framebuffer_remove
-Date: Wed, 12 Dec 2012 14:07:12 +0100
-Message-ID: <1355317637-16742-33-git-send-email-daniel.vetter@ffwll.ch>
+Subject: [PATCH 29/37] drm: refcounting for crtc framebuffers
+Date: Wed, 12 Dec 2012 14:07:09 +0100
+Message-ID: <1355317637-16742-30-git-send-email-daniel.vetter@ffwll.ch>
 References: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,130 +21,120 @@ To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Cc: Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Radeon Dev <xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org>, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Now that all framebuffer usage is properly refcounted, we are no
-longer required to hold the modeset locks while dropping the last
-reference. Hence implemented a fastpath which avoids the potential
-stalls associated with grabbing mode_config.lock for the case where
-there's no other reference around.
+With the prep patch to encapsulate ->set_crtc calls, this is now
+rather easy. Hooray for inconsistent semantics between ->set_crtc and
+->page_flip, where the driver callback is supposed to update the fb
+pointer, and ->update_plane, where the drm core does the same.
 
-Explain in a big comment why it is safe. Also update kerneldocs with
-the new locking rules around drm_framebuffer_remove.
+Also, since the drm core functions check crtc->fb before calling into
+driver callbacks, we can't really reduce the critical sections
+protected by the mode_config locks.
 
 Signed-off-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
 ---
- drivers/gpu/drm/drm_crtc.c |   72 +++++++++++++++++++++++++++-----------------
- 1 file changed, 45 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/drm_crtc.c |   37 ++++++++++++++++++++++++++++++-------
+ 1 file changed, 30 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
-index 6562eba..6dd441c 100644
+index 229853e..6562eba 100644
 --- a/drivers/gpu/drm/drm_crtc.c
 +++ b/drivers/gpu/drm/drm_crtc.c
-@@ -516,7 +516,11 @@ EXPORT_SYMBOL(drm_framebuffer_cleanup);
-  *
-  * Scans all the CRTCs and planes in @dev's mode_config.  If they're
-  * using @fb, removes it, setting it to NULL. Then drops the reference to the
-- * passed-in framebuffer.
-+ * passed-in framebuffer. Might take the modeset locks.
-+ *
-+ * Note that this function optimizes the cleanup away if the caller holds the
-+ * last reference to the framebuffer. It is also guaranteed to not take the
-+ * modeset locks in this case.
-  */
- void drm_framebuffer_remove(struct drm_framebuffer *fb)
+@@ -1983,8 +1983,21 @@ out:
+ int drm_mode_set_config_internal(struct drm_mode_set *set)
  {
-@@ -526,33 +530,51 @@ void drm_framebuffer_remove(struct drm_framebuffer *fb)
- 	struct drm_mode_set set;
- 	int ret;
+ 	struct drm_crtc *crtc = set->crtc;
++	struct drm_framebuffer *fb, *old_fb;
++	int ret;
++
++	old_fb = crtc->fb;
++	fb = set->fb;
  
--	WARN_ON(!drm_modeset_is_locked(dev));
- 	WARN_ON(!list_empty(&fb->filp_head));
+-	return crtc->funcs->set_config(set);
++	ret = crtc->funcs->set_config(set);
++	if (ret == 0) {
++		if (old_fb)
++			drm_framebuffer_unreference(old_fb);
++		if (fb)
++			drm_framebuffer_reference(fb);
++	}
++
++	return ret;
+ }
+ EXPORT_SYMBOL(drm_mode_set_config_internal);
  
--	/* remove from any CRTC */
--	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
--		if (crtc->fb == fb) {
--			/* should turn off the crtc */
--			memset(&set, 0, sizeof(struct drm_mode_set));
--			set.crtc = crtc;
--			set.fb = NULL;
--			ret = drm_mode_set_config_internal(&set);
--			if (ret)
--				DRM_ERROR("failed to reset crtc %p when fb was deleted\n", crtc);
-+	/*
-+	 * drm ABI mandates that we remove any deleted framebuffers from active
-+	 * useage. But since most sane clients only remove framebuffers they no
-+	 * longer need, try to optimize this away.
-+	 *
-+	 * Since we're holding a reference ourselves, observing a refcount of 1
-+	 * means that we're the last holder and can skip it. Also, the refcount
-+	 * can never increase from 1 again, so we don't need any barriers or
-+	 * locks.
-+	 *
-+	 * Note that userspace could try to race with use and instate a new
-+	 * usage _after_ we've cleared all current ones. End result will be an
-+	 * in-use fb with fb-id == 0. Userspace is allowed to shoot its own foot
-+	 * in this manner.
-+	 */
-+	if (atomic_read(&fb->refcount.refcount) > 1) {
-+		drm_modeset_lock_all(dev);
-+		/* remove from any CRTC */
-+		list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
-+			if (crtc->fb == fb) {
-+				/* should turn off the crtc */
-+				memset(&set, 0, sizeof(struct drm_mode_set));
-+				set.crtc = crtc;
-+				set.fb = NULL;
-+				ret = drm_mode_set_config_internal(&set);
-+				if (ret)
-+					DRM_ERROR("failed to reset crtc %p when fb was deleted\n", crtc);
-+			}
+@@ -2045,6 +2058,8 @@ int drm_mode_setcrtc(struct drm_device *dev, void *data,
+ 				goto out;
+ 			}
+ 			fb = crtc->fb;
++			/* Make refcounting symmetric with the lookup path. */
++			drm_framebuffer_reference(fb);
+ 		} else {
+ 			fb = drm_framebuffer_lookup(dev, crtc_req->fb_id);
+ 			if (!fb) {
+@@ -2053,9 +2068,6 @@ int drm_mode_setcrtc(struct drm_device *dev, void *data,
+ 				ret = -EINVAL;
+ 				goto out;
+ 			}
+-			/* fb is protect by the mode_config lock, so drop the
+-			 * ref immediately */
+-			drm_framebuffer_unreference(fb);
  		}
--	}
  
--	list_for_each_entry(plane, &dev->mode_config.plane_list, head) {
--		if (plane->fb == fb) {
--			/* should turn off the crtc */
--			ret = plane->funcs->disable_plane(plane);
--			if (ret)
--				DRM_ERROR("failed to disable plane with busy fb\n");
--			/* disconnect the plane from the fb and crtc: */
--			__drm_framebuffer_unreference(plane->fb);
--			plane->fb = NULL;
--			plane->crtc = NULL;
-+		list_for_each_entry(plane, &dev->mode_config.plane_list, head) {
-+			if (plane->fb == fb) {
-+				/* should turn off the crtc */
-+				ret = plane->funcs->disable_plane(plane);
-+				if (ret)
-+					DRM_ERROR("failed to disable plane with busy fb\n");
-+				/* disconnect the plane from the fb and crtc: */
-+				__drm_framebuffer_unreference(plane->fb);
-+				plane->fb = NULL;
-+				plane->crtc = NULL;
-+			}
- 		}
-+		drm_modeset_unlock_all(dev);
+ 		mode = drm_mode_create(dev);
+@@ -2155,6 +2167,9 @@ int drm_mode_setcrtc(struct drm_device *dev, void *data,
+ 	ret = drm_mode_set_config_internal(&set);
+ 
+ out:
++	if (fb)
++		drm_framebuffer_unreference(fb);
++
+ 	kfree(connector_set);
+ 	drm_mode_destroy(dev, mode);
+ 	drm_modeset_unlock_all(dev);
+@@ -3673,7 +3688,7 @@ int drm_mode_page_flip_ioctl(struct drm_device *dev,
+ 	struct drm_mode_crtc_page_flip *page_flip = data;
+ 	struct drm_mode_object *obj;
+ 	struct drm_crtc *crtc;
+-	struct drm_framebuffer *fb;
++	struct drm_framebuffer *fb = NULL, *old_fb = NULL;
+ 	struct drm_pending_vblank_event *e = NULL;
+ 	unsigned long flags;
+ 	int hdisplay, vdisplay;
+@@ -3704,8 +3719,6 @@ int drm_mode_page_flip_ioctl(struct drm_device *dev,
+ 	fb = drm_framebuffer_lookup(dev, page_flip->fb_id);
+ 	if (!fb)
+ 		goto out;
+-	/* fb is protect by the mode_config lock, so drop the ref immediately */
+-	drm_framebuffer_unreference(fb);
+ 
+ 	hdisplay = crtc->mode.hdisplay;
+ 	vdisplay = crtc->mode.vdisplay;
+@@ -3751,6 +3764,7 @@ int drm_mode_page_flip_ioctl(struct drm_device *dev,
+ 			(void (*) (struct drm_pending_event *)) kfree;
  	}
  
- 	drm_framebuffer_unreference(fb);
-@@ -2537,9 +2559,7 @@ int drm_mode_rmfb(struct drm_device *dev,
- 	mutex_unlock(&dev->mode_config.fb_lock);
- 	mutex_unlock(&file_priv->fbs_lock);
- 
--	drm_modeset_lock_all(dev);
- 	drm_framebuffer_remove(fb);
--	drm_modeset_unlock_all(dev);
- 
- 	return 0;
- 
-@@ -2687,9 +2707,7 @@ void drm_fb_release(struct drm_file *priv)
- 		list_del_init(&fb->filp_head);
- 
- 		/* This will also drop the fpriv->fbs reference. */
--		drm_modeset_lock_all(dev);
- 		drm_framebuffer_remove(fb);
--		drm_modeset_unlock_all(dev);
++	old_fb = crtc->fb;
+ 	ret = crtc->funcs->page_flip(crtc, fb, e);
+ 	if (ret) {
+ 		if (page_flip->flags & DRM_MODE_PAGE_FLIP_EVENT) {
+@@ -3759,9 +3773,18 @@ int drm_mode_page_flip_ioctl(struct drm_device *dev,
+ 			spin_unlock_irqrestore(&dev->event_lock, flags);
+ 			kfree(e);
+ 		}
++		/* Keep the old fb, don't unref it. */
++		old_fb = NULL;
++	} else {
++		/* Unref only the old framebuffer. */
++		fb = NULL;
  	}
- 	mutex_unlock(&priv->fbs_lock);
+ 
+ out:
++	if (fb)
++		drm_framebuffer_unreference(fb);
++	if (old_fb)
++		drm_framebuffer_unreference(old_fb);
+ 	drm_modeset_unlock_all(dev);
+ 	return ret;
  }
 -- 
 1.7.10.4
