@@ -1,7 +1,7 @@
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PATCH 31/37] drm/vmwgfx: add proper framebuffer refcounting
-Date: Wed, 12 Dec 2012 14:07:11 +0100
-Message-ID: <1355317637-16742-32-git-send-email-daniel.vetter@ffwll.ch>
+Subject: [PATCH 33/37] drm/nouveau: try to protect nbo->pin_refcount
+Date: Wed, 12 Dec 2012 14:07:13 +0100
+Message-ID: <1355317637-16742-34-git-send-email-daniel.vetter@ffwll.ch>
 References: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,60 +21,103 @@ To: DRI Development <dri-devel@lists.freedesktop.org>
 Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Radeon Dev <xorg-driver-ati@lists.x.org>, Daniel Vetter <daniel.vetter@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
-Afact vmwgfx already has all the right refcounting implemented on the
-backing storage, and we only need to ensure that the drm fb doesn't
-disappear untimely. So holding onto the fb reference from _lookup
-until vmw_kms_present has completed should be enough.
+... by moving the bo_pin/bo_unpin manipulation of the pin_refcount
+under the protection of the ttm reservation lock. pin/unpin seems
+to get called from all over the place, so atm this is completely racy.
+
+After this patch there are only a few places in cleanup functions
+left which access ->pin_refcount without locking. But I'm hoping that
+those are safe and some other code invariant guarantees that this
+won't blow up.
+
+In any case, I only need to fix up pin/unpin to make ->pageflip work
+safely, so let's keep it at that.
+
+Add a comment to the header to explain the new locking rule.
 
 Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c |    8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_bo.c |   22 +++++++++++-----------
+ drivers/gpu/drm/nouveau/nouveau_bo.h |    2 ++
+ 2 files changed, 13 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c
-index 4a73e9e..4a16b79 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c
-@@ -169,8 +169,6 @@ int vmw_present_ioctl(struct drm_device *dev, void *data,
- 		ret = -EINVAL;
- 		goto out_no_fb;
- 	}
--	/* fb is protect by the mode_config lock, so drop the ref immediately */
--	drm_framebuffer_unreference(fb);
- 	vfb = vmw_framebuffer_to_vfb(fb);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 4c950b4..2aa4745 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -300,17 +300,18 @@ nouveau_bo_pin(struct nouveau_bo *nvbo, uint32_t memtype)
+ 	struct ttm_buffer_object *bo = &nvbo->bo;
+ 	int ret;
  
- 	ret = ttm_read_lock(&vmaster->lock, true);
-@@ -195,6 +193,7 @@ int vmw_present_ioctl(struct drm_device *dev, void *data,
- out_no_surface:
- 	ttm_read_unlock(&vmaster->lock);
- out_no_ttm_lock:
-+	drm_framebuffer_unreference(fb);
- out_no_fb:
- 	drm_modeset_unlock_all(dev);
- out_no_copy:
-@@ -254,14 +253,12 @@ int vmw_present_readback_ioctl(struct drm_device *dev, void *data,
- 		ret = -EINVAL;
- 		goto out_no_fb;
- 	}
--	/* fb is protect by the mode_config lock, so drop the ref immediately */
--	drm_framebuffer_unreference(fb);
- 
- 	vfb = vmw_framebuffer_to_vfb(fb);
- 	if (!vfb->dmabuf) {
- 		DRM_ERROR("Framebuffer not dmabuf backed.\n");
- 		ret = -EINVAL;
--		goto out_no_fb;
-+		goto out_no_ttm_lock;
++	ret = ttm_bo_reserve(bo, false, false, false, 0);
++	if (ret)
++		goto out;
++
+ 	if (nvbo->pin_refcnt && !(memtype & (1 << bo->mem.mem_type))) {
+ 		NV_ERROR(drm, "bo %p pinned elsewhere: 0x%08x vs 0x%08x\n", bo,
+ 			 1 << bo->mem.mem_type, memtype);
+-		return -EINVAL;
++		ret = -EINVAL;
++		goto out;
  	}
  
- 	ret = ttm_read_lock(&vmaster->lock, true);
-@@ -274,6 +271,7 @@ int vmw_present_readback_ioctl(struct drm_device *dev, void *data,
+ 	if (nvbo->pin_refcnt++)
+-		return 0;
+-
+-	ret = ttm_bo_reserve(bo, false, false, false, 0);
+-	if (ret)
+ 		goto out;
  
- 	ttm_read_unlock(&vmaster->lock);
- out_no_ttm_lock:
-+	drm_framebuffer_unreference(fb);
- out_no_fb:
- 	drm_modeset_unlock_all(dev);
- out_no_copy:
+ 	nouveau_bo_placement_set(nvbo, memtype, 0);
+@@ -328,10 +329,8 @@ nouveau_bo_pin(struct nouveau_bo *nvbo, uint32_t memtype)
+ 			break;
+ 		}
+ 	}
+-	ttm_bo_unreserve(bo);
+ out:
+-	if (unlikely(ret))
+-		nvbo->pin_refcnt--;
++	ttm_bo_unreserve(bo);
+ 	return ret;
+ }
+ 
+@@ -342,13 +341,13 @@ nouveau_bo_unpin(struct nouveau_bo *nvbo)
+ 	struct ttm_buffer_object *bo = &nvbo->bo;
+ 	int ret;
+ 
+-	if (--nvbo->pin_refcnt)
+-		return 0;
+-
+ 	ret = ttm_bo_reserve(bo, false, false, false, 0);
+ 	if (ret)
+ 		return ret;
+ 
++	if (--nvbo->pin_refcnt)
++		goto out;
++
+ 	nouveau_bo_placement_set(nvbo, bo->mem.placement, 0);
+ 
+ 	ret = nouveau_bo_validate(nvbo, false, false, false);
+@@ -365,6 +364,7 @@ nouveau_bo_unpin(struct nouveau_bo *nvbo)
+ 		}
+ 	}
+ 
++out:
+ 	ttm_bo_unreserve(bo);
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau/nouveau_bo.h
+index dec51b1..cd5631b 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.h
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
+@@ -28,6 +28,8 @@ struct nouveau_bo {
+ 	struct nouveau_drm_tile *tile;
+ 
+ 	struct drm_gem_object *gem;
++
++	/* protect by the ttm reservation lock */
+ 	int pin_refcnt;
+ 
+ 	struct ttm_bo_kmap_obj dma_buf_vmap;
 -- 
 1.7.10.4
