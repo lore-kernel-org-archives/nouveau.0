@@ -1,7 +1,7 @@
 From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Subject: [PATCH 20/37] drm: revamp framebuffer cleanup interfaces
-Date: Wed, 12 Dec 2012 14:07:00 +0100
-Message-ID: <1355317637-16742-21-git-send-email-daniel.vetter@ffwll.ch>
+Subject: [PATCH 21/37] drm: reference framebuffers which are on the idr
+Date: Wed, 12 Dec 2012 14:07:01 +0100
+Message-ID: <1355317637-16742-22-git-send-email-daniel.vetter@ffwll.ch>
 References: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,325 +21,257 @@ To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Cc: Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Radeon Dev <xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org>, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-We have two classes of framebuffer
-- Created by the driver (atm only for fbdev), and the driver holds
-  onto the last reference count until destruction.
-- Created by userspace and associated with a given fd. These
-  framebuffers will be reaped when their assoiciated fb is closed.
+Since otherwise looking and reference-counting around
+drm_framebuffer_lookup will be an unmanageable mess. With this change,
+an object can either be found in the idr and will stay around once we
+incremented the reference counter. Or it will be gone for good and
+can't be looked up using its id any more.
 
-Now these two cases are set up differently, the framebuffers are on
-different lists and hence destruction needs to clean up different
-things. Also, for userspace framebuffers we remove them from any
-current usage, whereas for internal framebuffers it is assumed that
-the driver has done this already.
+Atomicity is guaranteed by the dev->mode_config.fb_lock. The
+newly-introduce fpriv->fbs_lock looks a bit redundant, but the next
+patch will shuffle the locking order between these two locks and all
+the modeset locks taken in modeset_lock_all, so we'll need it.
 
-Long story short, we need two different ways to cleanup such drivers.
-Three functions are involved in total:
-- drm_framebuffer_remove: Convenience function which removes the fb
-  from all active usage and then drops the passed-in reference.
-- drm_framebuffer_unregister_private: Will remove driver-private
-  framebuffers from relevant lists and drop the corresponding
-  references. Should be called for driver-private framebuffers before
-  dropping the last reference (or like for a lot of the drivers where
-  the fbdev is embedded someplace else, before doing the cleanup
-  manually).
-- drm_framebuffer_cleanup: Final cleanup for both classes of fbs,
-  should be called by the driver's ->destroy callback once the last
-  reference is gone.
+Also, since userspace could do really funky stuff and race e.g. a
+getresources with an rmfb, we need to make sure that the kernel
+doesn't fall over trying to look-up an inexistent fb, or causing
+confusion by having two fbs around with the same id. Simply reset the
+framebuffer id to 0, which marks it as reaped. Any lookups of that id
+will fail, so the object is really gone for good from userspace's pov.
 
-This patch just rolls out the new interfaces and updates all drivers
-(by adding calls to drm_framebuffer_unregister_private at all the
-right places)- no functional changes yet. Follow-on patches will move
-drm core code around and update the lifetime management for
-framebuffers, so that we are no longer required to keep framebuffers
-alive by locking mode_config.mutex.
+Note that we still need to protect the "remove framebuffer from all
+use-cases" and the final unreference with the modeset-lock, since most
+framebuffer use-sites don't implement proper reference counting yet.
+We can only lift this once _all_ users are converted.
 
-I've also updated the kerneldoc already.
+With this change, two references are held on alife, but unused
+framebuffers:
+- The reference for the idr lookup, created in this patch.
+- For user-created framebuffers the fpriv->fbs reference, for
+  driver-private fbs the driver is supposed to hold it's own last
+  reference.
 
-vmwgfx seems to again be a bit special, at least I haven't figured out
-how the fbdev support in that driver works. It smells like it's
-external though.
+Note that the dev->mode_config.fb_list itself does _not_ hold a
+reference onto the framebuffers (this list is essentially only used
+for debugfs files). Hence if there's anything left there when the
+driver has cleaned up all it's modeset resources, this is a ref-leak.
+WARN about it.
 
-v2: The i915 driver creates another private framebuffer in the
-load-detect code. Adjust its cleanup code, too.
+Now we only need to fix up all other places to properly reference
+count framebuffers.
 
 Signed-off-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
 ---
- drivers/gpu/drm/ast/ast_fb.c              |    1 +
- drivers/gpu/drm/cirrus/cirrus_fbdev.c     |    1 +
- drivers/gpu/drm/drm_crtc.c                |   31 ++++++++++++++++++++++++++---
- drivers/gpu/drm/drm_fb_cma_helper.c       |    5 ++++-
- drivers/gpu/drm/exynos/exynos_drm_fbdev.c |    4 +++-
- drivers/gpu/drm/gma500/framebuffer.c      |    1 +
- drivers/gpu/drm/i915/intel_display.c      |    6 ++++--
- drivers/gpu/drm/i915/intel_fb.c           |    1 +
- drivers/gpu/drm/mgag200/mgag200_fb.c      |    1 +
- drivers/gpu/drm/nouveau/nouveau_fbcon.c   |    1 +
- drivers/gpu/drm/radeon/radeon_fb.c        |    2 ++
- drivers/gpu/drm/udl/udl_fb.c              |    1 +
- drivers/staging/omapdrm/omap_fbdev.c      |    8 ++++++--
- include/drm/drm_crtc.h                    |    1 +
- 14 files changed, 55 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/drm_crtc.c |  118 ++++++++++++++++++++++++++++++--------------
+ 1 file changed, 80 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/ast/ast_fb.c b/drivers/gpu/drm/ast/ast_fb.c
-index d9ec779..3e6584b 100644
---- a/drivers/gpu/drm/ast/ast_fb.c
-+++ b/drivers/gpu/drm/ast/ast_fb.c
-@@ -290,6 +290,7 @@ static void ast_fbdev_destroy(struct drm_device *dev,
- 	drm_fb_helper_fini(&afbdev->helper);
- 
- 	vfree(afbdev->sysram);
-+	drm_framebuffer_unregister_private(&afb->base);
- 	drm_framebuffer_cleanup(&afb->base);
- }
- 
-diff --git a/drivers/gpu/drm/cirrus/cirrus_fbdev.c b/drivers/gpu/drm/cirrus/cirrus_fbdev.c
-index 6c6b4c8..3daea0f 100644
---- a/drivers/gpu/drm/cirrus/cirrus_fbdev.c
-+++ b/drivers/gpu/drm/cirrus/cirrus_fbdev.c
-@@ -258,6 +258,7 @@ static int cirrus_fbdev_destroy(struct drm_device *dev,
- 
- 	vfree(gfbdev->sysram);
- 	drm_fb_helper_fini(&gfbdev->helper);
-+	drm_framebuffer_unregister_private(&gfb->base);
- 	drm_framebuffer_cleanup(&gfb->base);
- 
- 	return 0;
 diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
-index 17cdd32..e2d70f6 100644
+index e2d70f6..20ccdc4 100644
 --- a/drivers/gpu/drm/drm_crtc.c
 +++ b/drivers/gpu/drm/drm_crtc.c
-@@ -68,6 +68,7 @@ void drm_modeset_unlock_all(struct drm_device *dev)
+@@ -356,6 +356,9 @@ int drm_framebuffer_init(struct drm_device *dev, struct drm_framebuffer *fb,
+ 	if (ret)
+ 		return ret;
  
- 	mutex_unlock(&dev->mode_config.mutex);
- }
++	/* Grab the idr reference. */
++	drm_framebuffer_reference(fb);
 +
- EXPORT_SYMBOL(drm_modeset_unlock_all);
+ 	dev->mode_config.num_fb++;
+ 	list_add(&fb->head, &dev->mode_config.fb_list);
+ 	mutex_unlock(&dev->mode_config.fb_lock);
+@@ -371,6 +374,23 @@ static void drm_framebuffer_free(struct kref *kref)
+ 	fb->funcs->destroy(fb);
+ }
  
- /* Avoid boilerplate.  I'm tired of typing. */
-@@ -429,11 +430,34 @@ void drm_framebuffer_reference(struct drm_framebuffer *fb)
++static struct drm_framebuffer *__drm_framebuffer_lookup(struct drm_device *dev,
++							uint32_t id)
++{
++	struct drm_mode_object *obj = NULL;
++	struct drm_framebuffer *fb;
++
++	mutex_lock(&dev->mode_config.idr_mutex);
++	obj = idr_find(&dev->mode_config.crtc_idr, id);
++	if (!obj || (obj->type != DRM_MODE_OBJECT_FB) || (obj->id != id))
++		fb = NULL;
++	else
++		fb = obj_to_fb(obj);
++	mutex_unlock(&dev->mode_config.idr_mutex);
++
++	return fb;
++}
++
+ /**
+  * drm_framebuffer_lookup - look up a drm framebuffer and grab a reference
+  * @dev: drm device
+@@ -383,22 +403,12 @@ static void drm_framebuffer_free(struct kref *kref)
+ struct drm_framebuffer *drm_framebuffer_lookup(struct drm_device *dev,
+ 					       uint32_t id)
+ {
+-	struct drm_mode_object *obj = NULL;
+ 	struct drm_framebuffer *fb;
+ 
+ 	mutex_lock(&dev->mode_config.fb_lock);
+-
+-	mutex_lock(&dev->mode_config.idr_mutex);
+-	obj = idr_find(&dev->mode_config.crtc_idr, id);
+-	if (!obj || (obj->type != DRM_MODE_OBJECT_FB) || (obj->id != id))
+-		fb = NULL;
+-	else
+-		fb = obj_to_fb(obj);
+-	mutex_unlock(&dev->mode_config.idr_mutex);
+-
++	fb = __drm_framebuffer_lookup(dev, id);
+ 	if (fb)
+ 		kref_get(&fb->refcount);
+-
+ 	mutex_unlock(&dev->mode_config.fb_lock);
+ 
+ 	return fb;
+@@ -429,6 +439,24 @@ void drm_framebuffer_reference(struct drm_framebuffer *fb)
+ }
  EXPORT_SYMBOL(drm_framebuffer_reference);
  
- /**
-+ * drm_framebuffer_unregister_private - unregister a private fb from the lookup idr
-+ * @fb: fb to unregister
-+ *
-+ * Drivers need to call this when cleaning up driver-private framebuffers, e.g.
-+ * those used for fbdev. Note that the caller must hold a reference of it's own,
-+ * i.e. the object may not be destroyed through this call (since it'll lead to a
-+ * locking inversion).
-+ */
-+void drm_framebuffer_unregister_private(struct drm_framebuffer *fb)
++static void drm_framebuffer_free_bug(struct kref *kref)
 +{
++	BUG();
 +}
-+EXPORT_SYMBOL(drm_framebuffer_unregister_private);
 +
-+/**
-  * drm_framebuffer_cleanup - remove a framebuffer object
-  * @fb: framebuffer to remove
-  *
-- * Scans all the CRTCs in @dev's mode_config.  If they're using @fb, removes
-- * it, setting it to NULL.
-+ * Cleanup references to a user-created framebuffer. This function is intended
-+ * to be used from the drivers ->destroy callback.
-+ *
-+ * Note that this function does not remove the fb from active usuage - if it is
-+ * still used anywhere, hilarity can ensue since userspace could call getfb on
-+ * the id and get back -EINVAL. Obviously no concern at driver unload time.
-+ *
-+ * Also, the framebuffer will not be removed from the lookup idr - for
-+ * user-created framebuffers this will happen in in the rmfb ioctl. For
-+ * driver-private objects (e.g. for fbdev) drivers need to explicitly call
-+ * drm_framebuffer_unregister_private.
++/* dev->mode_config.fb_lock must be held! */
++static void __drm_framebuffer_unregister(struct drm_device *dev,
++					 struct drm_framebuffer *fb)
++{
++	mutex_lock(&dev->mode_config.idr_mutex);
++	idr_remove(&dev->mode_config.crtc_idr, fb->base.id);
++	mutex_unlock(&dev->mode_config.idr_mutex);
++
++	fb->base.id = 0;
++
++	kref_put(&fb->refcount, drm_framebuffer_free_bug);
++}
++
+ /**
+  * drm_framebuffer_unregister_private - unregister a private fb from the lookup idr
+  * @fb: fb to unregister
+@@ -440,6 +468,12 @@ EXPORT_SYMBOL(drm_framebuffer_reference);
   */
- void drm_framebuffer_cleanup(struct drm_framebuffer *fb)
+ void drm_framebuffer_unregister_private(struct drm_framebuffer *fb)
  {
-@@ -459,7 +483,8 @@ EXPORT_SYMBOL(drm_framebuffer_cleanup);
-  * @fb: framebuffer to remove
-  *
-  * Scans all the CRTCs and planes in @dev's mode_config.  If they're
-- * using @fb, removes it, setting it to NULL.
-+ * using @fb, removes it, setting it to NULL. Then drops the reference to the
-+ * passed-in framebuffer.
-  */
- void drm_framebuffer_remove(struct drm_framebuffer *fb)
++	struct drm_device *dev = fb->dev;
++
++	mutex_lock(&dev->mode_config.fb_lock);
++	/* Mark fb as reaped and drop idr ref. */
++	__drm_framebuffer_unregister(dev, fb);
++	mutex_unlock(&dev->mode_config.fb_lock);
+ }
+ EXPORT_SYMBOL(drm_framebuffer_unregister_private);
+ 
+@@ -463,14 +497,6 @@ void drm_framebuffer_cleanup(struct drm_framebuffer *fb)
  {
-diff --git a/drivers/gpu/drm/drm_fb_cma_helper.c b/drivers/gpu/drm/drm_fb_cma_helper.c
-index e1e0cb0..3742bc9 100644
---- a/drivers/gpu/drm/drm_fb_cma_helper.c
-+++ b/drivers/gpu/drm/drm_fb_cma_helper.c
-@@ -266,6 +266,7 @@ static int drm_fbdev_cma_create(struct drm_fb_helper *helper,
- 	return 0;
+ 	struct drm_device *dev = fb->dev;
  
- err_drm_fb_cma_destroy:
-+	drm_framebuffer_unregister_private(fb);
- 	drm_fb_cma_destroy(fb);
- err_framebuffer_release:
- 	framebuffer_release(fbi);
-@@ -370,8 +371,10 @@ void drm_fbdev_cma_fini(struct drm_fbdev_cma *fbdev_cma)
- 		framebuffer_release(info);
+-	/*
+-	 * This could be moved to drm_framebuffer_remove(), but for
+-	 * debugging is nice to keep around the list of fb's that are
+-	 * no longer associated w/ a drm_file but are not unreferenced
+-	 * yet.  (i915 and omapdrm have debugfs files which will show
+-	 * this.)
+-	 */
+-	drm_mode_object_put(dev, &fb->base);
+ 	mutex_lock(&dev->mode_config.fb_lock);
+ 	list_del(&fb->head);
+ 	dev->mode_config.num_fb--;
+@@ -1180,9 +1206,15 @@ void drm_mode_config_cleanup(struct drm_device *dev)
+ 		drm_property_destroy(dev, property);
  	}
  
--	if (fbdev_cma->fb)
-+	if (fbdev_cma->fb) {
-+		drm_framebuffer_unregister_private(&fbdev_cma->fb->fb);
- 		drm_fb_cma_destroy(&fbdev_cma->fb->fb);
-+	}
- 
- 	drm_fb_helper_fini(&fbdev_cma->fb_helper);
- 	kfree(fbdev_cma);
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-index 67eb6ba..d333e9b 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-@@ -269,8 +269,10 @@ static void exynos_drm_fbdev_destroy(struct drm_device *dev,
- 	/* release drm framebuffer and real buffer */
- 	if (fb_helper->fb && fb_helper->fb->funcs) {
- 		fb = fb_helper->fb;
--		if (fb)
-+		if (fb) {
-+			drm_framebuffer_unregister_private(fb);
- 			drm_framebuffer_remove(fb);
-+		}
+-	/* Single-threaded teardown context, so it's not requied to grab the
++	/*
++	 * Single-threaded teardown context, so it's not requied to grab the
+ 	 * fb_lock to protect against concurrent fb_list access. Contrary, it
+-	 * would actually deadlock with the drm_framebuffer_cleanup function. */
++	 * would actually deadlock with the drm_framebuffer_cleanup function.
++	 *
++	 * Also, if there are any framebuffers left, that's a driver leak now,
++	 * so politely WARN about this.
++	 */
++	WARN_ON(!list_empty(&dev->mode_config.fb_list));
+ 	list_for_each_entry_safe(fb, fbt, &dev->mode_config.fb_list, head) {
+ 		drm_framebuffer_remove(fb);
  	}
+@@ -2448,39 +2480,41 @@ int drm_mode_rmfb(struct drm_device *dev,
+ 	struct drm_framebuffer *fb = NULL;
+ 	struct drm_framebuffer *fbl = NULL;
+ 	uint32_t *id = data;
+-	int ret = 0;
+ 	int found = 0;
  
- 	/* release linux framebuffer */
-diff --git a/drivers/gpu/drm/gma500/framebuffer.c b/drivers/gpu/drm/gma500/framebuffer.c
-index 49800d2..c1ef37e 100644
---- a/drivers/gpu/drm/gma500/framebuffer.c
-+++ b/drivers/gpu/drm/gma500/framebuffer.c
-@@ -590,6 +590,7 @@ static int psb_fbdev_destroy(struct drm_device *dev, struct psb_fbdev *fbdev)
- 		framebuffer_release(info);
- 	}
- 	drm_fb_helper_fini(&fbdev->psb_fb_helper);
-+	drm_framebuffer_unregister_private(&psbfb->base);
- 	drm_framebuffer_cleanup(&psbfb->base);
+ 	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+ 		return -EINVAL;
  
- 	if (psbfb->gtt)
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 65f5362..fd8cfeb 100644
---- a/drivers/gpu/drm/i915/intel_display.c
-+++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -6479,8 +6479,10 @@ void intel_release_load_detect_pipe(struct drm_connector *connector,
- 		intel_encoder->new_crtc = NULL;
- 		intel_set_mode(crtc, NULL, 0, 0, NULL);
+-	drm_modeset_lock_all(dev);
+-	fb = drm_framebuffer_lookup(dev, *id);
+-	if (!fb) {
+-		ret = -EINVAL;
+-		goto out;
+-	}
+-	/* fb is protect by the mode_config lock, so drop the ref immediately */
+-	drm_framebuffer_unreference(fb);
+-
+ 	mutex_lock(&file_priv->fbs_lock);
++	mutex_lock(&dev->mode_config.fb_lock);
++	fb = __drm_framebuffer_lookup(dev, *id);
++	if (!fb)
++		goto fail_lookup;
++
+ 	list_for_each_entry(fbl, &file_priv->fbs, filp_head)
+ 		if (fb == fbl)
+ 			found = 1;
+-	if (!found) {
+-		ret = -EINVAL;
+-		mutex_unlock(&file_priv->fbs_lock);
+-		goto out;
+-	}
++	if (!found)
++		goto fail_lookup;
++
++	/* Mark fb as reaped, we still have a ref from fpriv->fbs. */
++	__drm_framebuffer_unregister(dev, fb);
  
--		if (old->release_fb)
--			old->release_fb->funcs->destroy(old->release_fb);
-+		if (old->release_fb) {
-+			drm_framebuffer_unregister_private(old->release_fb);
-+			drm_framebuffer_unreference(old->release_fb);
-+		}
+ 	list_del_init(&fb->filp_head);
++	mutex_unlock(&dev->mode_config.fb_lock);
+ 	mutex_unlock(&file_priv->fbs_lock);
  
- 		return;
- 	}
-diff --git a/drivers/gpu/drm/i915/intel_fb.c b/drivers/gpu/drm/i915/intel_fb.c
-index ed7bb33..dca62dd 100644
---- a/drivers/gpu/drm/i915/intel_fb.c
-+++ b/drivers/gpu/drm/i915/intel_fb.c
-@@ -214,6 +214,7 @@ static void intel_fbdev_destroy(struct drm_device *dev,
++	drm_modeset_lock_all(dev);
+ 	drm_framebuffer_remove(fb);
+-out:
+ 	drm_modeset_unlock_all(dev);
  
- 	drm_fb_helper_fini(&ifbdev->helper);
- 
-+	drm_framebuffer_unregister_private(&ifb->base);
- 	drm_framebuffer_cleanup(&ifb->base);
- 	if (ifb->obj) {
- 		drm_gem_object_unreference_unlocked(&ifb->obj->base);
-diff --git a/drivers/gpu/drm/mgag200/mgag200_fb.c b/drivers/gpu/drm/mgag200/mgag200_fb.c
-index 2f48648..5c69b43 100644
---- a/drivers/gpu/drm/mgag200/mgag200_fb.c
-+++ b/drivers/gpu/drm/mgag200/mgag200_fb.c
-@@ -247,6 +247,7 @@ static int mga_fbdev_destroy(struct drm_device *dev,
- 	}
- 	drm_fb_helper_fini(&mfbdev->helper);
- 	vfree(mfbdev->sysram);
-+	drm_framebuffer_unregister_private(&mfb->base);
- 	drm_framebuffer_cleanup(&mfb->base);
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-index 67a1a06..d4ecb4d 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-@@ -433,6 +433,7 @@ nouveau_fbcon_destroy(struct drm_device *dev, struct nouveau_fbdev *fbcon)
- 		nouveau_fb->nvbo = NULL;
- 	}
- 	drm_fb_helper_fini(&fbcon->helper);
-+	drm_framebuffer_unregister_private(&nouveau_fb->base);
- 	drm_framebuffer_cleanup(&nouveau_fb->base);
- 	return 0;
+-	return ret;
++	return 0;
++
++fail_lookup:
++	mutex_unlock(&dev->mode_config.fb_lock);
++	mutex_unlock(&file_priv->fbs_lock);
++
++	return -EINVAL;
  }
-diff --git a/drivers/gpu/drm/radeon/radeon_fb.c b/drivers/gpu/drm/radeon/radeon_fb.c
-index cc8489d..515e5ee 100644
---- a/drivers/gpu/drm/radeon/radeon_fb.c
-+++ b/drivers/gpu/drm/radeon/radeon_fb.c
-@@ -293,6 +293,7 @@ out_unref:
- 	}
- 	if (fb && ret) {
- 		drm_gem_object_unreference(gobj);
-+		drm_framebuffer_unregister_private(fb);
- 		drm_framebuffer_cleanup(fb);
- 		kfree(fb);
- 	}
-@@ -339,6 +340,7 @@ static int radeon_fbdev_destroy(struct drm_device *dev, struct radeon_fbdev *rfb
- 		rfb->obj = NULL;
- 	}
- 	drm_fb_helper_fini(&rfbdev->helper);
-+	drm_framebuffer_unregister_private(&rfb->base);
- 	drm_framebuffer_cleanup(&rfb->base);
  
- 	return 0;
-diff --git a/drivers/gpu/drm/udl/udl_fb.c b/drivers/gpu/drm/udl/udl_fb.c
-index 829c4a7..c09c04e 100644
---- a/drivers/gpu/drm/udl/udl_fb.c
-+++ b/drivers/gpu/drm/udl/udl_fb.c
-@@ -556,6 +556,7 @@ static void udl_fbdev_destroy(struct drm_device *dev,
- 		framebuffer_release(info);
+ /**
+@@ -2620,7 +2654,15 @@ void drm_fb_release(struct drm_file *priv)
+ 	drm_modeset_lock_all(dev);
+ 	mutex_lock(&priv->fbs_lock);
+ 	list_for_each_entry_safe(fb, tfb, &priv->fbs, filp_head) {
++
++		mutex_lock(&dev->mode_config.fb_lock);
++		/* Mark fb as reaped, we still have a ref from fpriv->fbs. */
++		__drm_framebuffer_unregister(dev, fb);
++		mutex_unlock(&dev->mode_config.fb_lock);
++
+ 		list_del_init(&fb->filp_head);
++
++		/* This will also drop the fpriv->fbs reference. */
+ 		drm_framebuffer_remove(fb);
  	}
- 	drm_fb_helper_fini(&ufbdev->helper);
-+	drm_framebuffer_unregister_private(&ufbdev->ufb.base);
- 	drm_framebuffer_cleanup(&ufbdev->ufb.base);
- 	drm_gem_object_unreference_unlocked(&ufbdev->ufb.obj->base);
- }
-diff --git a/drivers/staging/omapdrm/omap_fbdev.c b/drivers/staging/omapdrm/omap_fbdev.c
-index 8a027bb..2728e37 100644
---- a/drivers/staging/omapdrm/omap_fbdev.c
-+++ b/drivers/staging/omapdrm/omap_fbdev.c
-@@ -275,8 +275,10 @@ fail:
- 	if (ret) {
- 		if (fbi)
- 			framebuffer_release(fbi);
--		if (fb)
-+		if (fb) {
-+			drm_framebuffer_unregister_private(fb);
- 			drm_framebuffer_remove(fb);
-+		}
- 	}
- 
- 	return ret;
-@@ -400,8 +402,10 @@ void omap_fbdev_free(struct drm_device *dev)
- 	fbdev = to_omap_fbdev(priv->fbdev);
- 
- 	/* this will free the backing object */
--	if (fbdev->fb)
-+	if (fbdev->fb) {
-+		drm_framebuffer_unregister_private(fbdev->fb);
- 		drm_framebuffer_remove(fbdev->fb);
-+	}
- 
- 	kfree(fbdev);
- 
-diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-index 77b6a2d..b24ad78 100644
---- a/include/drm/drm_crtc.h
-+++ b/include/drm/drm_crtc.h
-@@ -970,6 +970,7 @@ extern void drm_framebuffer_unreference(struct drm_framebuffer *fb);
- extern void drm_framebuffer_reference(struct drm_framebuffer *fb);
- extern void drm_framebuffer_remove(struct drm_framebuffer *fb);
- extern void drm_framebuffer_cleanup(struct drm_framebuffer *fb);
-+extern void drm_framebuffer_unregister_private(struct drm_framebuffer *fb);
- extern int drmfb_probe(struct drm_device *dev, struct drm_crtc *crtc);
- extern int drmfb_remove(struct drm_device *dev, struct drm_framebuffer *fb);
- extern void drm_crtc_probe_connector_modes(struct drm_device *dev, int maxX, int maxY);
+ 	mutex_unlock(&priv->fbs_lock);
 -- 
 1.7.10.4
