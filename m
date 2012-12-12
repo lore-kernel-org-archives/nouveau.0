@@ -1,418 +1,528 @@
 From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Subject: [PATCH 16/37] drm/<drivers>: reorder framebuffer init sequence
-Date: Wed, 12 Dec 2012 14:06:56 +0100
-Message-ID: <1355317637-16742-17-git-send-email-daniel.vetter@ffwll.ch>
+Subject: [PATCH 17/37] drm: revamp locking around fb
+	creation/destruction
+Date: Wed, 12 Dec 2012 14:06:57 +0100
+Message-ID: <1355317637-16742-18-git-send-email-daniel.vetter@ffwll.ch>
 References: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <xorg-driver-ati-bounces+gcfxda-xorg-driver-ati=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <1355317637-16742-1-git-send-email-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-List-Unsubscribe: <http://lists.x.org/mailman/options/xorg-driver-ati>,
-	<mailto:xorg-driver-ati-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.x.org/archives/xorg-driver-ati>
-List-Post: <mailto:xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
-List-Help: <mailto:xorg-driver-ati-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.x.org/mailman/listinfo/xorg-driver-ati>,
-	<mailto:xorg-driver-ati-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=subscribe>
-Sender: xorg-driver-ati-bounces+gcfxda-xorg-driver-ati=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-Errors-To: xorg-driver-ati-bounces+gcfxda-xorg-driver-ati=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Radeon Dev <xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org>, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Cc: Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Radeon Dev <xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-With more fine-grained locking we can no longer rely on the big
-mode_config lock to prevent concurrent access to mode resources
-like framebuffers. Instead a framebuffer becomes accessible to
-other threads as soon as it is added to the relevant lookup
-structures. Hence it needs to be fully set up by the time drivers
-call drm_framebuffer_init.
+Well, at least step 1. The goal here is that framebuffer objects can
+survive outside of the mode_config lock, with just a reference held
+as protection. The first step to get there is to introduce a special
+fb_lock which protects fb lookup, creation and destruction, to make
+them appear atomic.
 
-This patch here is the drivers part of that reorg. Nothing really fancy
-going on safe for three special cases.
+This new fb_lock can nest within the mode_config lock. But the idea is
+(once the reference counting part is completed) that we only quickly
+take that fb_lock to lookup a framebuffer and grab a reference,
+without any other locks involved.
 
-- exynos needs to be careful to properly unref all handles.
-- nouveau gets a resource leak fixed for free: one of the error
-  cases didn't cleanup the framebuffer, which is now moot since
-  the framebuffer is only registered once it is fully set up.
-- vmwgfx requires a slight reordering of operations, I'm hoping I didn't
-  break anything (but it's refcount management only, so should be safe).
+vmwgfx is the only driver which does framebuffer lookups itself, also
+wrap those calls to drm_mode_object_find with the new lock.
+
+Also protect the fb_list walking in i915 and omapdrm with the new lock.
+
+As a slight complication there's also the list of user-created fbs
+attached to the file private. The problem now is that at fclose() time
+we need to walk that list, eventually do a modeset call to remove the
+fb from active usage (and are required to be able to take the
+mode_config lock), but in the end we need to grab the new fb_lock to
+remove the fb from the list. The easiest solution is to add another
+mutex to protect this per-file list.
+
+Currently that new fbs_lock nests within the modeset locks and so
+appears redudant. But later patches will switch around this sequence
+so that taking the modeset locks in the fb destruction path is
+optional in the fastpath. Ultimately the goal is that addfb and rmfb
+do not require the mode_config lock, since otherwise they have the
+potential to introduce stalls in the pageflip sequence of a compositor
+(if the compositor e.g. switches to a fullscreen client or if it
+enables a plane). But that requires a few more steps and hoops to jump
+through.
+
+Note that framebuffer creation/destruction is now double-protected -
+once by the fb_lock and in parts by the idr_lock. The later would be
+unnecessariy if framebuffers would have their own idr allocator. But
+that's material for another patch (series).
+
+v2: Properly initialize the fb->filp_head list in _init, otherwise the
+newly added WARN to check whether the fb isn't on a fpriv list any
+more will fail for driver-private objects.
 
 Signed-off-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
 ---
- drivers/gpu/drm/ast/ast_main.c            |    4 ++--
- drivers/gpu/drm/cirrus/cirrus_main.c      |    9 +++++++--
- drivers/gpu/drm/drm_fb_cma_helper.c       |   10 +++++-----
- drivers/gpu/drm/exynos/exynos_drm_fb.c    |   20 +++++++++++---------
- drivers/gpu/drm/gma500/framebuffer.c      |    4 ++--
- drivers/gpu/drm/i915/intel_display.c      |    5 +++--
- drivers/gpu/drm/mgag200/mgag200_main.c    |    8 +++++---
- drivers/gpu/drm/nouveau/nouveau_display.c |   10 +++++-----
- drivers/gpu/drm/radeon/radeon_display.c   |    2 +-
- drivers/gpu/drm/udl/udl_fb.c              |    2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.c       |   28 ++++++++++++++--------------
- drivers/staging/omapdrm/omap_fb.c         |   16 ++++++++--------
- 12 files changed, 64 insertions(+), 54 deletions(-)
+ drivers/gpu/drm/drm_crtc.c             |  113 ++++++++++++++++++++++----------
+ drivers/gpu/drm/drm_fops.c             |    1 +
+ drivers/gpu/drm/i915/i915_debugfs.c    |    5 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c  |    4 ++
+ drivers/staging/omapdrm/omap_debugfs.c |    2 +
+ include/drm/drmP.h                     |    8 +++
+ include/drm/drm_crtc.h                 |   14 ++++
+ 7 files changed, 111 insertions(+), 36 deletions(-)
 
-diff --git a/drivers/gpu/drm/ast/ast_main.c b/drivers/gpu/drm/ast/ast_main.c
-index f668e6c..d5ba709 100644
---- a/drivers/gpu/drm/ast/ast_main.c
-+++ b/drivers/gpu/drm/ast/ast_main.c
-@@ -266,13 +266,13 @@ int ast_framebuffer_init(struct drm_device *dev,
- {
- 	int ret;
+diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
+index 3b2f25d..5a46ea1 100644
+--- a/drivers/gpu/drm/drm_crtc.c
++++ b/drivers/gpu/drm/drm_crtc.c
+@@ -262,15 +262,21 @@ again:
  
-+	drm_helper_mode_fill_fb_struct(&ast_fb->base, mode_cmd);
-+	ast_fb->obj = obj;
- 	ret = drm_framebuffer_init(dev, &ast_fb->base, &ast_fb_funcs);
- 	if (ret) {
- 		DRM_ERROR("framebuffer init failed %d\n", ret);
- 		return ret;
- 	}
--	drm_helper_mode_fill_fb_struct(&ast_fb->base, mode_cmd);
--	ast_fb->obj = obj;
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/cirrus/cirrus_main.c b/drivers/gpu/drm/cirrus/cirrus_main.c
-index 6a9b12e..2eac87b 100644
---- a/drivers/gpu/drm/cirrus/cirrus_main.c
-+++ b/drivers/gpu/drm/cirrus/cirrus_main.c
-@@ -42,13 +42,13 @@ int cirrus_framebuffer_init(struct drm_device *dev,
- {
- 	int ret;
- 
-+	drm_helper_mode_fill_fb_struct(&gfb->base, mode_cmd);
-+	gfb->obj = obj;
- 	ret = drm_framebuffer_init(dev, &gfb->base, &cirrus_fb_funcs);
- 	if (ret) {
- 		DRM_ERROR("drm_framebuffer_init failed: %d\n", ret);
- 		return ret;
- 	}
--	drm_helper_mode_fill_fb_struct(&gfb->base, mode_cmd);
--	gfb->obj = obj;
- 	return 0;
- }
- 
-@@ -79,6 +79,11 @@ cirrus_user_framebuffer_create(struct drm_device *dev,
- 
- 	ret = cirrus_framebuffer_init(dev, cirrus_fb, mode_cmd, obj);
- 	if (ret) {
-+	ret = drm_framebuffer_init(dev, &gfb->base, &cirrus_fb_funcs);
-+	if (ret) {
-+		DRM_ERROR("drm_framebuffer_init failed: %d\n", ret);
-+		return ret;
+ 	mutex_lock(&dev->mode_config.idr_mutex);
+ 	ret = idr_get_new_above(&dev->mode_config.crtc_idr, obj, 1, &new_id);
++
++	if (!ret) {
++		/*
++		 * Set up the object linking under the protection of the idr
++		 * lock so that other users can't see inconsistent state.
++		 */
++		obj->id = new_id;
++		obj->type = obj_type;
 +	}
- 		drm_gem_object_unreference_unlocked(obj);
- 		kfree(cirrus_fb);
- 		return ERR_PTR(ret);
-diff --git a/drivers/gpu/drm/drm_fb_cma_helper.c b/drivers/gpu/drm/drm_fb_cma_helper.c
-index fd9d0af..e1e0cb0 100644
---- a/drivers/gpu/drm/drm_fb_cma_helper.c
-+++ b/drivers/gpu/drm/drm_fb_cma_helper.c
-@@ -85,6 +85,11 @@ static struct drm_fb_cma *drm_fb_cma_alloc(struct drm_device *dev,
- 	if (!fb_cma)
- 		return ERR_PTR(-ENOMEM);
- 
-+	drm_helper_mode_fill_fb_struct(&fb_cma->fb, mode_cmd);
+ 	mutex_unlock(&dev->mode_config.idr_mutex);
 +
-+	for (i = 0; i < num_planes; i++)
-+		fb_cma->obj[i] = obj[i];
-+
- 	ret = drm_framebuffer_init(dev, &fb_cma->fb, &drm_fb_cma_funcs);
- 	if (ret) {
- 		dev_err(dev->dev, "Failed to initalize framebuffer: %d\n", ret);
-@@ -92,11 +97,6 @@ static struct drm_fb_cma *drm_fb_cma_alloc(struct drm_device *dev,
- 		return ERR_PTR(ret);
- 	}
- 
--	drm_helper_mode_fill_fb_struct(&fb_cma->fb, mode_cmd);
--
--	for (i = 0; i < num_planes; i++)
--		fb_cma->obj[i] = obj[i];
--
- 	return fb_cma;
- }
- 
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_fb.c b/drivers/gpu/drm/exynos/exynos_drm_fb.c
-index 4ef4cd3..179c177 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_fb.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_fb.c
-@@ -136,15 +136,15 @@ exynos_drm_framebuffer_init(struct drm_device *dev,
- 		return ERR_PTR(-ENOMEM);
- 	}
- 
-+	drm_helper_mode_fill_fb_struct(&exynos_fb->fb, mode_cmd);
-+	exynos_fb->exynos_gem_obj[0] = to_exynos_gem_obj(obj);
-+
- 	ret = drm_framebuffer_init(dev, &exynos_fb->fb, &exynos_drm_fb_funcs);
- 	if (ret) {
- 		DRM_ERROR("failed to initialize framebuffer\n");
- 		return ERR_PTR(ret);
- 	}
- 
--	drm_helper_mode_fill_fb_struct(&exynos_fb->fb, mode_cmd);
--	exynos_fb->exynos_gem_obj[0] = to_exynos_gem_obj(obj);
--
- 	return &exynos_fb->fb;
- }
- 
-@@ -202,12 +202,6 @@ exynos_user_fb_create(struct drm_device *dev, struct drm_file *file_priv,
- 		return ERR_PTR(-ENOENT);
- 	}
- 
--	fb = exynos_drm_framebuffer_init(dev, mode_cmd, obj);
--	if (IS_ERR(fb)) {
--		drm_gem_object_unreference_unlocked(obj);
--		return fb;
--	}
--
- 	exynos_fb = to_exynos_fb(fb);
- 	exynos_fb->buf_cnt = exynos_drm_format_num_buffers(mode_cmd);
- 
-@@ -225,6 +219,14 @@ exynos_user_fb_create(struct drm_device *dev, struct drm_file *file_priv,
- 		exynos_fb->exynos_gem_obj[i] = to_exynos_gem_obj(obj);
- 	}
- 
-+	fb = exynos_drm_framebuffer_init(dev, mode_cmd, obj);
-+	if (IS_ERR(fb)) {
-+		for (i = 0; i < exynos_fb->buf_cnt; i++)
-+			drm_gem_object_unreference_unlocked(&exynos_fb->exynos_gem_obj[i]->base);
-+
-+		return fb;
-+	}
-+
- 	return fb;
- }
- 
-diff --git a/drivers/gpu/drm/gma500/framebuffer.c b/drivers/gpu/drm/gma500/framebuffer.c
-index afded54..38e7e75 100644
---- a/drivers/gpu/drm/gma500/framebuffer.c
-+++ b/drivers/gpu/drm/gma500/framebuffer.c
-@@ -260,13 +260,13 @@ static int psb_framebuffer_init(struct drm_device *dev,
- 	default:
- 		return -EINVAL;
- 	}
-+	drm_helper_mode_fill_fb_struct(&fb->base, mode_cmd);
-+	fb->gtt = gt;
- 	ret = drm_framebuffer_init(dev, &fb->base, &psb_fb_funcs);
- 	if (ret) {
- 		dev_err(dev->dev, "framebuffer init failed: %d\n", ret);
- 		return ret;
- 	}
--	drm_helper_mode_fill_fb_struct(&fb->base, mode_cmd);
--	fb->gtt = gt;
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index a0d8869..65f5362 100644
---- a/drivers/gpu/drm/i915/intel_display.c
-+++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -8311,14 +8311,15 @@ int intel_framebuffer_init(struct drm_device *dev,
- 	if (mode_cmd->offsets[0] != 0)
- 		return -EINVAL;
- 
-+	drm_helper_mode_fill_fb_struct(&intel_fb->base, mode_cmd);
-+	intel_fb->obj = obj;
-+
- 	ret = drm_framebuffer_init(dev, &intel_fb->base, &intel_fb_funcs);
- 	if (ret) {
- 		DRM_ERROR("framebuffer init failed %d\n", ret);
- 		return ret;
- 	}
- 
--	drm_helper_mode_fill_fb_struct(&intel_fb->base, mode_cmd);
--	intel_fb->obj = obj;
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/mgag200/mgag200_main.c b/drivers/gpu/drm/mgag200/mgag200_main.c
-index 70dd3c5..266438a 100644
---- a/drivers/gpu/drm/mgag200/mgag200_main.c
-+++ b/drivers/gpu/drm/mgag200/mgag200_main.c
-@@ -40,13 +40,15 @@ int mgag200_framebuffer_init(struct drm_device *dev,
- 			     struct drm_mode_fb_cmd2 *mode_cmd,
- 			     struct drm_gem_object *obj)
- {
--	int ret = drm_framebuffer_init(dev, &gfb->base, &mga_fb_funcs);
-+	int ret;
-+	
-+	drm_helper_mode_fill_fb_struct(&gfb->base, mode_cmd);
-+	gfb->obj = obj;
-+	ret = drm_framebuffer_init(dev, &gfb->base, &mga_fb_funcs);
- 	if (ret) {
- 		DRM_ERROR("drm_framebuffer_init failed: %d\n", ret);
- 		return ret;
- 	}
--	drm_helper_mode_fill_fb_struct(&gfb->base, mode_cmd);
--	gfb->obj = obj;
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index e4188f2..2591ff2 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -78,11 +78,6 @@ nouveau_framebuffer_init(struct drm_device *dev,
- 	struct drm_framebuffer *fb = &nv_fb->base;
- 	int ret;
- 
--	ret = drm_framebuffer_init(dev, fb, &nouveau_framebuffer_funcs);
--	if (ret) {
+ 	if (ret == -EAGAIN)
+ 		goto again;
+-	else if (ret)
 -		return ret;
--	}
--
- 	drm_helper_mode_fill_fb_struct(fb, mode_cmd);
- 	nv_fb->nvbo = nvbo;
  
-@@ -125,6 +120,11 @@ nouveau_framebuffer_init(struct drm_device *dev,
+-	obj->id = new_id;
+-	obj->type = obj_type;
+-	return 0;
++	return ret;
+ }
+ 
+ /**
+@@ -312,6 +318,12 @@ EXPORT_SYMBOL(drm_mode_object_find);
+  * Allocates an ID for the framebuffer's parent mode object, sets its mode
+  * functions & device file and adds it to the master fd list.
+  *
++ * IMPORTANT:
++ * This functions publishes the fb and makes it available for concurrent access
++ * by other users. Which means by this point the fb _must_ be fully set up -
++ * since all the fb attributes are invariant over its lifetime, no further
++ * locking but only correct reference counting is required.
++ *
+  * RETURNS:
+  * Zero on success, error code on failure.
+  */
+@@ -320,16 +332,19 @@ int drm_framebuffer_init(struct drm_device *dev, struct drm_framebuffer *fb,
+ {
+ 	int ret;
+ 
++	mutex_lock(&dev->mode_config.fb_lock);
+ 	kref_init(&fb->refcount);
++	INIT_LIST_HEAD(&fb->filp_head);
++	fb->dev = dev;
++	fb->funcs = funcs;
+ 
+ 	ret = drm_mode_object_get(dev, &fb->base, DRM_MODE_OBJECT_FB);
+ 	if (ret)
+ 		return ret;
+ 
+-	fb->dev = dev;
+-	fb->funcs = funcs;
+ 	dev->mode_config.num_fb++;
+ 	list_add(&fb->head, &dev->mode_config.fb_list);
++	mutex_unlock(&dev->mode_config.fb_lock);
+ 
+ 	return 0;
+ }
+@@ -387,8 +402,10 @@ void drm_framebuffer_cleanup(struct drm_framebuffer *fb)
+ 	 * this.)
+ 	 */
+ 	drm_mode_object_put(dev, &fb->base);
++	mutex_lock(&dev->mode_config.fb_lock);
+ 	list_del(&fb->head);
+ 	dev->mode_config.num_fb--;
++	mutex_unlock(&dev->mode_config.fb_lock);
+ }
+ EXPORT_SYMBOL(drm_framebuffer_cleanup);
+ 
+@@ -408,6 +425,7 @@ void drm_framebuffer_remove(struct drm_framebuffer *fb)
+ 	int ret;
+ 
+ 	WARN_ON(!drm_modeset_is_locked(dev));
++	WARN_ON(!list_empty(&fb->filp_head));
+ 
+ 	/* remove from any CRTC */
+ 	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
+@@ -434,8 +452,6 @@ void drm_framebuffer_remove(struct drm_framebuffer *fb)
  		}
  	}
  
-+	ret = drm_framebuffer_init(dev, fb, &nouveau_framebuffer_funcs);
-+	if (ret) {
-+		return ret;
-+	}
-+
- 	return 0;
+-	list_del(&fb->filp_head);
+-
+ 	drm_framebuffer_unreference(fb);
  }
- 
-diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
-index bfa2a60..8724196 100644
---- a/drivers/gpu/drm/radeon/radeon_display.c
-+++ b/drivers/gpu/drm/radeon/radeon_display.c
-@@ -1080,12 +1080,12 @@ radeon_framebuffer_init(struct drm_device *dev,
+ EXPORT_SYMBOL(drm_framebuffer_remove);
+@@ -991,6 +1007,7 @@ void drm_mode_config_init(struct drm_device *dev)
  {
- 	int ret;
- 	rfb->obj = obj;
-+	drm_helper_mode_fill_fb_struct(&rfb->base, mode_cmd);
- 	ret = drm_framebuffer_init(dev, &rfb->base, &radeon_fb_funcs);
- 	if (ret) {
- 		rfb->obj = NULL;
- 		return ret;
+ 	mutex_init(&dev->mode_config.mutex);
+ 	mutex_init(&dev->mode_config.idr_mutex);
++	mutex_init(&dev->mode_config.fb_lock);
+ 	INIT_LIST_HEAD(&dev->mode_config.fb_list);
+ 	INIT_LIST_HEAD(&dev->mode_config.crtc_list);
+ 	INIT_LIST_HEAD(&dev->mode_config.connector_list);
+@@ -1093,6 +1110,9 @@ void drm_mode_config_cleanup(struct drm_device *dev)
+ 		drm_property_destroy(dev, property);
  	}
--	drm_helper_mode_fill_fb_struct(&rfb->base, mode_cmd);
- 	return 0;
- }
  
-diff --git a/drivers/gpu/drm/udl/udl_fb.c b/drivers/gpu/drm/udl/udl_fb.c
-index d4ab3be..829c4a7 100644
---- a/drivers/gpu/drm/udl/udl_fb.c
-+++ b/drivers/gpu/drm/udl/udl_fb.c
-@@ -435,8 +435,8 @@ udl_framebuffer_init(struct drm_device *dev,
- 	int ret;
++	/* Single-threaded teardown context, so it's not requied to grab the
++	 * fb_lock to protect against concurrent fb_list access. Contrary, it
++	 * would actually deadlock with the drm_framebuffer_cleanup function. */
+ 	list_for_each_entry_safe(fb, fbt, &dev->mode_config.fb_list, head) {
+ 		drm_framebuffer_remove(fb);
+ 	}
+@@ -1222,8 +1242,8 @@ int drm_mode_getresources(struct drm_device *dev, void *data,
+ 	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+ 		return -EINVAL;
  
- 	ufb->obj = obj;
--	ret = drm_framebuffer_init(dev, &ufb->base, &udlfb_funcs);
- 	drm_helper_mode_fill_fb_struct(&ufb->base, mode_cmd);
-+	ret = drm_framebuffer_init(dev, &ufb->base, &udlfb_funcs);
+-	drm_modeset_lock_all(dev);
+ 
++	mutex_lock(&file_priv->fbs_lock);
+ 	/*
+ 	 * For the non-control nodes we need to limit the list of resources
+ 	 * by IDs in the group list for this node
+@@ -1231,6 +1251,23 @@ int drm_mode_getresources(struct drm_device *dev, void *data,
+ 	list_for_each(lh, &file_priv->fbs)
+ 		fb_count++;
+ 
++	/* handle this in 4 parts */
++	/* FBs */
++	if (card_res->count_fbs >= fb_count) {
++		copied = 0;
++		fb_id = (uint32_t __user *)(unsigned long)card_res->fb_id_ptr;
++		list_for_each_entry(fb, &file_priv->fbs, filp_head) {
++			if (put_user(fb->base.id, fb_id + copied)) {
++				ret = -EFAULT;
++				goto out;
++			}
++			copied++;
++		}
++	}
++	card_res->count_fbs = fb_count;
++	mutex_unlock(&file_priv->fbs_lock);
++
++	drm_modeset_lock_all(dev);
+ 	mode_group = &file_priv->master->minor->mode_group;
+ 	if (file_priv->master->minor->type == DRM_MINOR_CONTROL) {
+ 
+@@ -1254,21 +1291,6 @@ int drm_mode_getresources(struct drm_device *dev, void *data,
+ 	card_res->max_width = dev->mode_config.max_width;
+ 	card_res->min_width = dev->mode_config.min_width;
+ 
+-	/* handle this in 4 parts */
+-	/* FBs */
+-	if (card_res->count_fbs >= fb_count) {
+-		copied = 0;
+-		fb_id = (uint32_t __user *)(unsigned long)card_res->fb_id_ptr;
+-		list_for_each_entry(fb, &file_priv->fbs, filp_head) {
+-			if (put_user(fb->base.id, fb_id + copied)) {
+-				ret = -EFAULT;
+-				goto out;
+-			}
+-			copied++;
+-		}
+-	}
+-	card_res->count_fbs = fb_count;
+-
+ 	/* CRTCs */
+ 	if (card_res->count_crtcs >= crtc_count) {
+ 		copied = 0;
+@@ -1767,8 +1789,10 @@ int drm_mode_setplane(struct drm_device *dev, void *data,
+ 	}
+ 	crtc = obj_to_crtc(obj);
+ 
++	mutex_lock(&dev->mode_config.fb_lock);
+ 	obj = drm_mode_object_find(dev, plane_req->fb_id,
+ 				   DRM_MODE_OBJECT_FB);
++	mutex_unlock(&dev->mode_config.fb_lock);
+ 	if (!obj) {
+ 		DRM_DEBUG_KMS("Unknown framebuffer ID %d\n",
+ 			      plane_req->fb_id);
+@@ -1895,8 +1919,10 @@ int drm_mode_setcrtc(struct drm_device *dev, void *data,
+ 			}
+ 			fb = crtc->fb;
+ 		} else {
++			mutex_lock(&dev->mode_config.fb_lock);
+ 			obj = drm_mode_object_find(dev, crtc_req->fb_id,
+ 						   DRM_MODE_OBJECT_FB);
++			mutex_unlock(&dev->mode_config.fb_lock);
+ 			if (!obj) {
+ 				DRM_DEBUG_KMS("Unknown FB ID%d\n",
+ 						crtc_req->fb_id);
+@@ -2138,16 +2164,17 @@ int drm_mode_addfb(struct drm_device *dev,
+ 	fb = dev->mode_config.funcs->fb_create(dev, file_priv, &r);
+ 	if (IS_ERR(fb)) {
+ 		DRM_DEBUG_KMS("could not create framebuffer\n");
+-		ret = PTR_ERR(fb);
+-		goto out;
++		drm_modeset_unlock_all(dev);
++		return PTR_ERR(fb);
+ 	}
+ 
++	mutex_lock(&file_priv->fbs_lock);
+ 	or->fb_id = fb->base.id;
+ 	list_add(&fb->filp_head, &file_priv->fbs);
+ 	DRM_DEBUG_KMS("[FB:%d]\n", fb->base.id);
+-
+-out:
++	mutex_unlock(&file_priv->fbs_lock);
+ 	drm_modeset_unlock_all(dev);
++
  	return ret;
  }
  
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
-index 385b8849..d2e2d49 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
-@@ -714,14 +714,9 @@ static int vmw_kms_new_framebuffer_surface(struct vmw_private *dev_priv,
+@@ -2320,16 +2347,18 @@ int drm_mode_addfb2(struct drm_device *dev,
+ 	fb = dev->mode_config.funcs->fb_create(dev, file_priv, r);
+ 	if (IS_ERR(fb)) {
+ 		DRM_DEBUG_KMS("could not create framebuffer\n");
+-		ret = PTR_ERR(fb);
+-		goto out;
++		drm_modeset_unlock_all(dev);
++		return PTR_ERR(fb);
+ 	}
+ 
++	mutex_lock(&file_priv->fbs_lock);
+ 	r->fb_id = fb->base.id;
+ 	list_add(&fb->filp_head, &file_priv->fbs);
+ 	DRM_DEBUG_KMS("[FB:%d]\n", fb->base.id);
++	mutex_unlock(&file_priv->fbs_lock);
+ 
+-out:
+ 	drm_modeset_unlock_all(dev);
++
+ 	return ret;
+ }
+ 
+@@ -2360,27 +2389,34 @@ int drm_mode_rmfb(struct drm_device *dev,
+ 		return -EINVAL;
+ 
+ 	drm_modeset_lock_all(dev);
++	mutex_lock(&dev->mode_config.fb_lock);
+ 	obj = drm_mode_object_find(dev, *id, DRM_MODE_OBJECT_FB);
+ 	/* TODO check that we really get a framebuffer back. */
+ 	if (!obj) {
++		mutex_unlock(&dev->mode_config.fb_lock);
+ 		ret = -EINVAL;
+ 		goto out;
+ 	}
+ 	fb = obj_to_fb(obj);
++	mutex_unlock(&dev->mode_config.fb_lock);
+ 
++	mutex_lock(&file_priv->fbs_lock);
+ 	list_for_each_entry(fbl, &file_priv->fbs, filp_head)
+ 		if (fb == fbl)
+ 			found = 1;
+-
+ 	if (!found) {
+ 		ret = -EINVAL;
++		mutex_unlock(&file_priv->fbs_lock);
+ 		goto out;
+ 	}
+ 
+-	drm_framebuffer_remove(fb);
++	list_del_init(&fb->filp_head);
++	mutex_unlock(&file_priv->fbs_lock);
+ 
++	drm_framebuffer_remove(fb);
+ out:
+ 	drm_modeset_unlock_all(dev);
++
+ 	return ret;
+ }
+ 
+@@ -2409,7 +2445,9 @@ int drm_mode_getfb(struct drm_device *dev,
+ 		return -EINVAL;
+ 
+ 	drm_modeset_lock_all(dev);
++	mutex_lock(&dev->mode_config.fb_lock);
+ 	obj = drm_mode_object_find(dev, r->fb_id, DRM_MODE_OBJECT_FB);
++	mutex_unlock(&dev->mode_config.fb_lock);
+ 	if (!obj) {
+ 		ret = -EINVAL;
+ 		goto out;
+@@ -2444,7 +2482,9 @@ int drm_mode_dirtyfb_ioctl(struct drm_device *dev,
+ 		return -EINVAL;
+ 
+ 	drm_modeset_lock_all(dev);
++	mutex_lock(&dev->mode_config.fb_lock);
+ 	obj = drm_mode_object_find(dev, r->fb_id, DRM_MODE_OBJECT_FB);
++	mutex_unlock(&dev->mode_config.fb_lock);
+ 	if (!obj) {
+ 		ret = -EINVAL;
  		goto out_err1;
- 	}
+@@ -2519,9 +2559,12 @@ void drm_fb_release(struct drm_file *priv)
+ 	struct drm_framebuffer *fb, *tfb;
  
--	ret = drm_framebuffer_init(dev, &vfbs->base.base,
--				   &vmw_framebuffer_surface_funcs);
--	if (ret)
--		goto out_err2;
+ 	drm_modeset_lock_all(dev);
++	mutex_lock(&priv->fbs_lock);
+ 	list_for_each_entry_safe(fb, tfb, &priv->fbs, filp_head) {
++		list_del_init(&fb->filp_head);
+ 		drm_framebuffer_remove(fb);
+ 	}
++	mutex_unlock(&priv->fbs_lock);
+ 	drm_modeset_unlock_all(dev);
+ }
+ 
+@@ -3547,7 +3590,9 @@ int drm_mode_page_flip_ioctl(struct drm_device *dev,
+ 	if (crtc->funcs->page_flip == NULL)
+ 		goto out;
+ 
++	mutex_lock(&dev->mode_config.fb_lock);
+ 	obj = drm_mode_object_find(dev, page_flip->fb_id, DRM_MODE_OBJECT_FB);
++	mutex_unlock(&dev->mode_config.fb_lock);
+ 	if (!obj)
+ 		goto out;
+ 	fb = obj_to_fb(obj);
+diff --git a/drivers/gpu/drm/drm_fops.c b/drivers/gpu/drm/drm_fops.c
+index 7ef1b67..e06c492 100644
+--- a/drivers/gpu/drm/drm_fops.c
++++ b/drivers/gpu/drm/drm_fops.c
+@@ -260,6 +260,7 @@ static int drm_open_helper(struct inode *inode, struct file *filp,
+ 
+ 	INIT_LIST_HEAD(&priv->lhead);
+ 	INIT_LIST_HEAD(&priv->fbs);
++	mutex_init(&priv->fbs_lock);
+ 	INIT_LIST_HEAD(&priv->event_list);
+ 	init_waitqueue_head(&priv->event_wait);
+ 	priv->event_space = 4096; /* set aside 4k for event buffer */
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index 35d2ace..da1c8b6 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -1376,7 +1376,9 @@ static int i915_gem_framebuffer_info(struct seq_file *m, void *data)
+ 		   fb->base.bits_per_pixel);
+ 	describe_obj(m, fb->obj);
+ 	seq_printf(m, "\n");
++	mutex_unlock(&dev->mode_config.mutex);
+ 
++	mutex_lock(&dev->mode_config.fb_lock);
+ 	list_for_each_entry(fb, &dev->mode_config.fb_list, base.head) {
+ 		if (&fb->base == ifbdev->helper.fb)
+ 			continue;
+@@ -1389,8 +1391,7 @@ static int i915_gem_framebuffer_info(struct seq_file *m, void *data)
+ 		describe_obj(m, fb->obj);
+ 		seq_printf(m, "\n");
+ 	}
 -
- 	if (!vmw_surface_reference(surface)) {
- 		DRM_ERROR("failed to reference surface %p\n", surface);
--		goto out_err3;
-+		goto out_err2;
- 	}
+-	mutex_unlock(&dev->mode_config.mutex);
++	mutex_unlock(&dev->mode_config.fb_lock);
  
- 	/* XXX get the first 3 from the surface info */
-@@ -740,10 +735,15 @@ static int vmw_kms_new_framebuffer_surface(struct vmw_private *dev_priv,
- 
- 	*out = &vfbs->base;
- 
-+	ret = drm_framebuffer_init(dev, &vfbs->base.base,
-+				   &vmw_framebuffer_surface_funcs);
-+	if (ret)
-+		goto out_err3;
-+
  	return 0;
+ }
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c
+index 13e4371..84c2c44 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c
+@@ -163,7 +163,9 @@ int vmw_present_ioctl(struct drm_device *dev, void *data,
  
- out_err3:
--	drm_framebuffer_cleanup(&vfbs->base.base);
-+	vmw_surface_unreference(&surface);
- out_err2:
- 	kfree(vfbs);
- out_err1:
-@@ -1086,14 +1086,9 @@ static int vmw_kms_new_framebuffer_dmabuf(struct vmw_private *dev_priv,
- 		goto out_err1;
+ 	drm_modeset_lock_all(dev);
+ 
++	mutex_lock(&dev->mode_config.fb_lock);
+ 	obj = drm_mode_object_find(dev, arg->fb_id, DRM_MODE_OBJECT_FB);
++	mutex_unlock(&dev->mode_config.fb_lock);
+ 	if (!obj) {
+ 		DRM_ERROR("Invalid framebuffer id.\n");
+ 		ret = -EINVAL;
+@@ -246,7 +248,9 @@ int vmw_present_readback_ioctl(struct drm_device *dev, void *data,
+ 
+ 	drm_modeset_lock_all(dev);
+ 
++	mutex_lock(&dev->mode_config.fb_lock);
+ 	obj = drm_mode_object_find(dev, arg->fb_id, DRM_MODE_OBJECT_FB);
++	mutex_unlock(&dev->mode_config.fb_lock);
+ 	if (!obj) {
+ 		DRM_ERROR("Invalid framebuffer id.\n");
+ 		ret = -EINVAL;
+diff --git a/drivers/staging/omapdrm/omap_debugfs.c b/drivers/staging/omapdrm/omap_debugfs.c
+index 2f122e0..e95540b 100644
+--- a/drivers/staging/omapdrm/omap_debugfs.c
++++ b/drivers/staging/omapdrm/omap_debugfs.c
+@@ -72,6 +72,7 @@ static int fb_show(struct seq_file *m, void *arg)
+ 	seq_printf(m, "fbcon ");
+ 	omap_framebuffer_describe(priv->fbdev->fb, m);
+ 
++	mutex_lock(&dev->mode_config.fb_lock);
+ 	list_for_each_entry(fb, &dev->mode_config.fb_list, head) {
+ 		if (fb == priv->fbdev->fb)
+ 			continue;
+@@ -79,6 +80,7 @@ static int fb_show(struct seq_file *m, void *arg)
+ 		seq_printf(m, "user ");
+ 		omap_framebuffer_describe(fb, m);
  	}
++	mutex_unlock(&dev->mode_config.fb_lock);
  
--	ret = drm_framebuffer_init(dev, &vfbd->base.base,
--				   &vmw_framebuffer_dmabuf_funcs);
--	if (ret)
--		goto out_err2;
--
- 	if (!vmw_dmabuf_reference(dmabuf)) {
- 		DRM_ERROR("failed to reference dmabuf %p\n", dmabuf);
--		goto out_err3;
-+		goto out_err2;
- 	}
- 
- 	vfbd->base.base.bits_per_pixel = mode_cmd->bpp;
-@@ -1110,10 +1105,15 @@ static int vmw_kms_new_framebuffer_dmabuf(struct vmw_private *dev_priv,
- 	vfbd->base.user_handle = mode_cmd->handle;
- 	*out = &vfbd->base;
- 
-+	ret = drm_framebuffer_init(dev, &vfbd->base.base,
-+				   &vmw_framebuffer_dmabuf_funcs);
-+	if (ret)
-+		goto out_err3;
+ 	mutex_unlock(&dev->struct_mutex);
+ 	mutex_unlock(&dev->mode_config.mutex);
+diff --git a/include/drm/drmP.h b/include/drm/drmP.h
+index 3c609ab..e74731c 100644
+--- a/include/drm/drmP.h
++++ b/include/drm/drmP.h
+@@ -446,7 +446,15 @@ struct drm_file {
+ 	int is_master; /* this file private is a master for a minor */
+ 	struct drm_master *master; /* master this node is currently associated with
+ 				      N.B. not always minor->master */
 +
- 	return 0;
++	/**
++	 * fbs - List of framebuffers associated with this file.
++	 *
++	 * Protected by fbs_lock. Note that the fbs list holds a reference on
++	 * the fb object to prevent it from untimely disappearing.
++	 */
+ 	struct list_head fbs;
++	struct mutex fbs_lock;
  
- out_err3:
--	drm_framebuffer_cleanup(&vfbd->base.base);
-+	vmw_dmabuf_unreference(&dmabuf);
- out_err2:
- 	kfree(vfbd);
- out_err1:
-diff --git a/drivers/staging/omapdrm/omap_fb.c b/drivers/staging/omapdrm/omap_fb.c
-index 446801d..5090547 100644
---- a/drivers/staging/omapdrm/omap_fb.c
-+++ b/drivers/staging/omapdrm/omap_fb.c
-@@ -425,14 +425,6 @@ struct drm_framebuffer *omap_framebuffer_init(struct drm_device *dev,
- 	}
- 
- 	fb = &omap_fb->base;
--	ret = drm_framebuffer_init(dev, fb, &omap_framebuffer_funcs);
--	if (ret) {
--		dev_err(dev->dev, "framebuffer init failed: %d\n", ret);
--		goto fail;
--	}
--
--	DBG("create: FB ID: %d (%p)", fb->base.id, fb);
--
- 	omap_fb->format = format;
- 
- 	for (i = 0; i < n; i++) {
-@@ -463,6 +455,14 @@ struct drm_framebuffer *omap_framebuffer_init(struct drm_device *dev,
- 
- 	drm_helper_mode_fill_fb_struct(fb, mode_cmd);
- 
-+	ret = drm_framebuffer_init(dev, fb, &omap_framebuffer_funcs);
-+	if (ret) {
-+		dev_err(dev->dev, "framebuffer init failed: %d\n", ret);
-+		goto fail;
-+	}
+ 	wait_queue_head_t event_wait;
+ 	struct list_head event_list;
+diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
+index f1296ce..334765a 100644
+--- a/include/drm/drm_crtc.h
++++ b/include/drm/drm_crtc.h
+@@ -254,6 +254,10 @@ struct drm_framebuffer {
+ 	 * userspace perspective.
+ 	 */
+ 	struct kref refcount;
++	/*
++	 * Place on the dev->mode_config.fb_list, access protected by
++	 * dev->mode_config.fb_lock.
++	 */
+ 	struct list_head head;
+ 	struct drm_mode_object base;
+ 	const struct drm_framebuffer_funcs *funcs;
+@@ -780,8 +784,18 @@ struct drm_mode_config {
+ 	struct mutex idr_mutex; /* for IDR management */
+ 	struct idr crtc_idr; /* use this idr for all IDs, fb, crtc, connector, modes - just makes life easier */
+ 	/* this is limited to one for now */
 +
-+	DBG("create: FB ID: %d (%p)", fb->base.id, fb);
 +
- 	return fb;
- 
- fail:
++	/**
++	 * fb_lock - mutex to protect fb state
++	 *
++	 * Besides the global fb list his also protects the fbs list in the
++	 * file_priv
++	 */
++	struct mutex fb_lock;
+ 	int num_fb;
+ 	struct list_head fb_list;
++
+ 	int num_connector;
+ 	struct list_head connector_list;
+ 	int num_encoder;
 -- 
 1.7.10.4
