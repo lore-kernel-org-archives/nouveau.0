@@ -1,79 +1,66 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH 00/37] [RFC] revamped modeset locking
-Date: Wed, 12 Dec 2012 15:18:37 +0100
-Message-ID: <20121212141837.GU11556@phenom.ffwll.local>
+From: Jerome Glisse <j.glisse@gmail.com>
+Subject: Re: [PATCH 34/37] drm/ttm: fix fence locking in
+	ttm_buffer_object_transfer
+Date: Wed, 12 Dec 2012 09:48:22 -0500
+Message-ID: <CAH3drwbL34+omj2S3ArOPgoYRQ3uzPEiRPFLn7YkP3cOMnPiZg@mail.gmail.com>
 References: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
+	<1355317637-16742-35-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/intel-gfx>,
-	<mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
-	<mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Sender: intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org
-Errors-To: intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Radeon Dev <xorg-driver-ati@lists.x.org>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <1355317637-16742-35-git-send-email-daniel.vetter@ffwll.ch>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Radeon Dev <xorg-driver-ati@lists.x.org>, DRI Development <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Dec 12, 2012 at 02:06:40PM +0100, Daniel Vetter wrote:
-> Hi all,
-> 
-> First thing first: It works, I now no longer have a few dropped frames every 10s
-> on my testbox here with the pageflip i-g-t tests.
-> 
-> Random notes:
-> 
-> - New design has per-crtc locks to protect the crtc input-side (pageflip,
->   cursor) for r/w and the output state of the crtc (mode, dpms) as read-only. It
->   also required completely revamped fb lifecycle management, those are now
->   refcounted for real (which is a nice cleanup). Imo the proposed rwsem hack
->   from Dave/Ajax is too ugly to life in comparison.
-> 
-> - Smoke tested on i915, compile tested for x86 drivers, probably all arm drivers
->   trivially broken. I plan add tons of i-g-t testscases to exercise all the
->   cornercases with i915 (so that lockdep has full coverage among other things)
->   and at least run radeon/nouveau a bit. I also need to set up an arm
->   crosscompiler. Generally testing feedback on !i915 highly welcome.
-> 
-> - Driver audit: I've tried to not break anything more than it already is, and
->   for the big three desktop drivers fixup any related breakage I've noticed. Big
->   unknown is vmwgfx since that driver is over my head. Generally review from
->   driver devs is required to check all corner-cases.
-> 
-> - Merging, presuming people like this idea here: I think it'd be good to slurp
->   in the driver changes as early as possible. The big rework probably has to go
->   in with a separate pull directly to drm-next for all drivers - there are
->   simply too many sync-points in this rework where all drivers need to follow
->   the new rules before core drm changes can be applied.
-> 
-> - Having a global lock which synchronizing object destruction is a royal pain,
->   since it reliably results in that locking getting in the way almost everywhere
->   when trying to implement refcounting.  It's fixed now for fb & the mode_config
->   mutex, but I'm already eagerly looking forward to simplifying dev->struct_mutex
->   gem_bo cleanup rules.
-> 
-> - drm teardown/setup synchronization and locking is terminally broken. Insane
->   volunteers welcome, I don't want to do this.
-> 
-> - I've mentioned that reading too much driver code causes nightmares, right?
->   vmwgfx ...
-> 
-> Please bring on the flames.
+On Wed, Dec 12, 2012 at 8:07 AM, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> Noticed while reviewing the fence locking in the radone pageflip
+> handler.
+>
+> Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> ---
+>  drivers/gpu/drm/ttm/ttm_bo_util.c |    2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> index b9c4e51..5c8b207 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> @@ -441,7 +441,9 @@ static int ttm_buffer_object_transfer(struct ttm_buffer_object *bo,
+>         fbo->vm_node = NULL;
+>         atomic_set(&fbo->cpu_writers, 0);
+>
+> +       spin_lock(&bdev->fence_lock);
+>         fbo->sync_obj = driver->sync_obj_ref(bo->sync_obj);
+> +       spin_unlock(&bdev->fence_lock);
+>         kref_init(&fbo->list_kref);
+>         kref_init(&fbo->kref);
+>         fbo->destroy = &ttm_transfered_destroy;
+> --
 
-I've forgotten to add: Patch series pushed out to the drm-kms-locking
-branch in my personal fdo repo:
+Instead of that i would just move the call to
+ttm_buffer_object_transfer to happen before releasing the fence_lock
+in ttm_bo_move_accel_cleanup , something like :
 
-http://cgit.freedesktop.org/~danvet/drm/log/?h=drm-kms-locking
 
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+set_bit(TTM_BO_PRIV_FLAG_MOVING, &bo->priv_flags);
+ret = ttm_buffer_object_transfer(bo, &ghost_obj);
+spin_unlock(&bdev->fence_lock);
+if (tmp_obj)
+  driver->sync_obj_unref(&tmp_obj);
+
+if (ret)
+   return ret;
+
+Cheers,
+Jerome
