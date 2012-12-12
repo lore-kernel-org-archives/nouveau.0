@@ -1,47 +1,160 @@
-From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Subject: [PATCH 34/37] drm/ttm: fix fence locking in ttm_buffer_object_transfer
-Date: Wed, 12 Dec 2012 14:07:14 +0100
-Message-ID: <1355317637-16742-35-git-send-email-daniel.vetter@ffwll.ch>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: [PATCH 25/37] drm: don't take modeset locks in getfb ioctl
+Date: Wed, 12 Dec 2012 14:07:05 +0100
+Message-ID: <1355317637-16742-26-git-send-email-daniel.vetter@ffwll.ch>
 References: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <xorg-driver-ati-bounces+gcfxda-xorg-driver-ati=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
-In-Reply-To: <1355317637-16742-1-git-send-email-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-List-Unsubscribe: <http://lists.x.org/mailman/options/xorg-driver-ati>,
-	<mailto:xorg-driver-ati-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.x.org/archives/xorg-driver-ati>
-List-Post: <mailto:xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
-List-Help: <mailto:xorg-driver-ati-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.x.org/mailman/listinfo/xorg-driver-ati>,
-	<mailto:xorg-driver-ati-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=subscribe>
-Sender: xorg-driver-ati-bounces+gcfxda-xorg-driver-ati=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-Errors-To: xorg-driver-ati-bounces+gcfxda-xorg-driver-ati=m.gmane.org-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Radeon Dev <xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org>, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Radeon Dev <xorg-driver-ati@lists.x.org>, Daniel Vetter <daniel.vetter@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
-Noticed while reviewing the fence locking in the radone pageflip
-handler.
+We only need to push the fb unreference a bit down. While at it,
+properly pass the return value from ->create_handle back to userspace.
 
-Signed-off-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Most drivers either return -ENODEV if they don't have a concept of
+buffer objects (ast, cirrus, ...) or just install a handle for the
+underlying gem object (which is ok since we hold a reference on that
+through the framebuffer). But a few drivers needed tiny fixups:
+
+- cirrus/ast/mga200: Return a consistent -ENODEV to signal to
+  userspace that these drivers don't bother with implementing the
+  ->create_handle callback, since it's rather pointless for them to do
+  so with no accel support.
+
+- udl: Didn't even bother with a callback, leading to a nice
+  userspace-triggerable OOPS. Nice work. Fix this up and return
+  -ENODEV like the other simple drivers. It could be somewhat useful
+  to implement the real ->create_handle since udl buffers could be
+  used with prime, but alas ...
+
+- vmwgfx: This driver bothered with an implementation to return 0 as
+  the handle (which is the canonical nofb handle). Dunno what this is
+  for, but I've lost myself in vmwgfx too often. Just leave this
+  as-is.
+
+Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/ttm/ttm_bo_util.c |    2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/ast/ast_main.c         |    2 +-
+ drivers/gpu/drm/cirrus/cirrus_main.c   |    2 +-
+ drivers/gpu/drm/drm_crtc.c             |   17 ++++++-----------
+ drivers/gpu/drm/mgag200/mgag200_main.c |    2 +-
+ drivers/gpu/drm/udl/udl_fb.c           |    9 ++++++++-
+ 5 files changed, 17 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index b9c4e51..5c8b207 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -441,7 +441,9 @@ static int ttm_buffer_object_transfer(struct ttm_buffer_object *bo,
- 	fbo->vm_node = NULL;
- 	atomic_set(&fbo->cpu_writers, 0);
+diff --git a/drivers/gpu/drm/ast/ast_main.c b/drivers/gpu/drm/ast/ast_main.c
+index d5ba709..a94f13e 100644
+--- a/drivers/gpu/drm/ast/ast_main.c
++++ b/drivers/gpu/drm/ast/ast_main.c
+@@ -250,7 +250,7 @@ static int ast_user_framebuffer_create_handle(struct drm_framebuffer *fb,
+ 					      struct drm_file *file,
+ 					      unsigned int *handle)
+ {
+-	return -EINVAL;
++	return -ENODEV;
+ }
  
-+	spin_lock(&bdev->fence_lock);
- 	fbo->sync_obj = driver->sync_obj_ref(bo->sync_obj);
-+	spin_unlock(&bdev->fence_lock);
- 	kref_init(&fbo->list_kref);
- 	kref_init(&fbo->kref);
- 	fbo->destroy = &ttm_transfered_destroy;
+ static const struct drm_framebuffer_funcs ast_fb_funcs = {
+diff --git a/drivers/gpu/drm/cirrus/cirrus_main.c b/drivers/gpu/drm/cirrus/cirrus_main.c
+index 2eac87b..e9de084 100644
+--- a/drivers/gpu/drm/cirrus/cirrus_main.c
++++ b/drivers/gpu/drm/cirrus/cirrus_main.c
+@@ -27,7 +27,7 @@ static int cirrus_user_framebuffer_create_handle(struct drm_framebuffer *fb,
+ 						 struct drm_file *file_priv,
+ 						 unsigned int *handle)
+ {
+-	return 0;
++	return -NODEV;
+ }
+ 
+ static const struct drm_framebuffer_funcs cirrus_fb_funcs = {
+diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
+index 9ad807d..28838cf 100644
+--- a/drivers/gpu/drm/drm_crtc.c
++++ b/drivers/gpu/drm/drm_crtc.c
+@@ -2526,29 +2526,24 @@ int drm_mode_getfb(struct drm_device *dev,
+ {
+ 	struct drm_mode_fb_cmd *r = data;
+ 	struct drm_framebuffer *fb;
+-	int ret = 0;
++	int ret;
+ 
+ 	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+ 		return -EINVAL;
+ 
+-	drm_modeset_lock_all(dev);
+ 	fb = drm_framebuffer_lookup(dev, r->fb_id);
+-	if (!fb) {
+-		ret = -EINVAL;
+-		goto out;
+-	}
+-	/* fb is protect by the mode_config lock, so drop the ref immediately */
+-	drm_framebuffer_unreference(fb);
++	if (!fb)
++		return -EINVAL;
+ 
+ 	r->height = fb->height;
+ 	r->width = fb->width;
+ 	r->depth = fb->depth;
+ 	r->bpp = fb->bits_per_pixel;
+ 	r->pitch = fb->pitches[0];
+-	fb->funcs->create_handle(fb, file_priv, &r->handle);
++	ret = fb->funcs->create_handle(fb, file_priv, &r->handle);
++
++	drm_framebuffer_unreference(fb);
+ 
+-out:
+-	drm_modeset_unlock_all(dev);
+ 	return ret;
+ }
+ 
+diff --git a/drivers/gpu/drm/mgag200/mgag200_main.c b/drivers/gpu/drm/mgag200/mgag200_main.c
+index 266438a..90fd681 100644
+--- a/drivers/gpu/drm/mgag200/mgag200_main.c
++++ b/drivers/gpu/drm/mgag200/mgag200_main.c
+@@ -27,7 +27,7 @@ static int mga_user_framebuffer_create_handle(struct drm_framebuffer *fb,
+ 						 struct drm_file *file_priv,
+ 						 unsigned int *handle)
+ {
+-	return 0;
++	return -ENODEV;
+ }
+ 
+ static const struct drm_framebuffer_funcs mga_fb_funcs = {
+diff --git a/drivers/gpu/drm/udl/udl_fb.c b/drivers/gpu/drm/udl/udl_fb.c
+index c09c04e..cb61ff7 100644
+--- a/drivers/gpu/drm/udl/udl_fb.c
++++ b/drivers/gpu/drm/udl/udl_fb.c
+@@ -419,10 +419,17 @@ static void udl_user_framebuffer_destroy(struct drm_framebuffer *fb)
+ 	kfree(ufb);
+ }
+ 
++static int udl_user_framebuffer_create_handle(struct drm_framebuffer *fb,
++					      struct drm_file *file_priv,
++					      unsigned int *handle)
++{
++	return -ENODEV;
++}
++
+ static const struct drm_framebuffer_funcs udlfb_funcs = {
+ 	.destroy = udl_user_framebuffer_destroy,
+ 	.dirty = udl_user_framebuffer_dirty,
+-	.create_handle = NULL,
++	.create_handle = udl_user_framebuffer_create_handle,
+ };
+ 
+ 
 -- 
 1.7.10.4
