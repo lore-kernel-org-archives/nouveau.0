@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56461] NV11 black screen & kernel hang on loading
 	nouveaufb
-Date: Thu, 13 Dec 2012 22:04:11 +0000
-Message-ID: <bug-56461-8800-V77QyFU5KF@http.bugs.freedesktop.org/>
+Date: Thu, 13 Dec 2012 22:05:16 +0000
+Message-ID: <bug-56461-8800-Q4VPK9X3Gx@http.bugs.freedesktop.org/>
 References: <bug-56461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1335729947=="
+Content-Type: multipart/mixed; boundary="===============0433435061=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56461-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1335729947==
-Content-Type: multipart/alternative; boundary="1355436251.68fd5fD1.22216"; charset="us-ascii"
+--===============0433435061==
+Content-Type: multipart/alternative; boundary="1355436316.8dae01.22354"; charset="us-ascii"
 
 
---1355436251.68fd5fD1.22216
-Date: Thu, 13 Dec 2012 22:04:11 +0000
+--1355436316.8dae01.22354
+Date: Thu, 13 Dec 2012 22:05:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56461
 
---- Comment #20 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> ---
-We're getting there!
-
-Your fix worked - for a few minutes - when applied to the previously hanging
-2a44e499 with dea7e0ac, 095f979a & afada5e0 cherry-picked.
-
-When applied to the nouveau HEAD, Linux no longer hangs, but the display isn't
-driven properly - the LCD goes white, then fades to black.
-
-I'll attach my current patch to nouveau HEAD and the corresponding console
-output.
-
-Chris.
+--- Comment #21 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> ---
+Created attachment 71471
+  --> https://bugs.freedesktop.org/attachment.cgi?id=71471&action=edit
+fixes currently being applied to nouveau HEAD
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1355436251.68fd5fD1.22216
-Date: Thu, 13 Dec 2012 22:04:11 +0000
+--1355436316.8dae01.22354
+Date: Thu, 13 Dec 2012 22:05:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,25 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c20">Comment # 20</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56461">bug 56461</a>
               from <span class="vcard"><a class="email" href="mailto:chris&#64;edesix.com" title="Chris Paulson-Ellis &lt;chris&#64;edesix.com&gt;"> <span class="fn">Chris Paulson-Ellis</span></a>
 </span></b>
-        <pre>We're getting there!
-
-Your fix worked - for a few minutes - when applied to the previously hanging
-2a44e499 with dea7e0ac, 095f979a &amp; afada5e0 cherry-picked.
-
-When applied to the nouveau HEAD, Linux no longer hangs, but the display isn't
-driven properly - the LCD goes white, then fades to black.
-
-I'll attach my current patch to nouveau HEAD and the corresponding console
-output.
-
-Chris.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=71471" name="attach_71471" title="fixes currently being applied to nouveau HEAD">attachment 71471</a> <a href="attachment.cgi?id=71471&amp;action=edit" title="fixes currently being applied to nouveau HEAD">[details]</a></span>
+fixes currently being applied to nouveau HEAD</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +76,9 @@ Chris.</pre>
     </body>
 </html>
 
---1355436251.68fd5fD1.22216--
+--1355436316.8dae01.22354--
 
---===============1335729947==
+--===============0433435061==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1335729947==--
+--===============0433435061==--
