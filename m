@@ -1,10 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58261] New: [NV34] Display all whited out
-Date: Thu, 13 Dec 2012 20:35:58 +0000
-Message-ID: <bug-58261-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56461] NV11 black screen & kernel hang on loading
+	nouveaufb
+Date: Thu, 13 Dec 2012 22:04:11 +0000
+Message-ID: <bug-56461-8800-V77QyFU5KF@http.bugs.freedesktop.org/>
+References: <bug-56461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0946451510=="
+Content-Type: multipart/mixed; boundary="===============1335729947=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-56461-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,47 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0946451510==
-Content-Type: multipart/alternative; boundary="1355430958.Fee31.9367"; charset="us-ascii"
+--===============1335729947==
+Content-Type: multipart/alternative; boundary="1355436251.68fd5fD1.22216"; charset="us-ascii"
 
 
---1355430958.Fee31.9367
-Date: Thu, 13 Dec 2012 20:35:58 +0000
+--1355436251.68fd5fD1.22216
+Date: Thu, 13 Dec 2012 22:04:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58261
+https://bugs.freedesktop.org/show_bug.cgi?id=56461
 
-          Priority: medium
-            Bug ID: 58261
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NV34] Display all whited out
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: critical
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: alex.buell-jGvEqXBO6G6HXe+LvDLADg@public.gmane.org
-          Hardware: x86 (IA32)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #20 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> ---
+We're getting there!
 
-Booting 3.7.0 on my laptop w/ NV34 64MB graphic adapter results in display
-totally whited out, but system still operative and was able to use ssh to log
-in and reboot. 
+Your fix worked - for a few minutes - when applied to the previously hanging
+2a44e499 with dea7e0ac, 095f979a & afada5e0 cherry-picked.
 
-If there is anything you need, please let me know and I will be quite happy to
-supply the information required to solve this problem. 
+When applied to the nouveau HEAD, Linux no longer hangs, but the display isn't
+driven properly - the LCD goes white, then fades to black.
 
-Booting with 3.6.0 is working perfectly.
+I'll attach my current patch to nouveau HEAD and the corresponding console
+output.
+
+Chris.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1355430958.Fee31.9367
-Date: Thu, 13 Dec 2012 20:35:58 +0000
+--1355436251.68fd5fD1.22216
+Date: Thu, 13 Dec 2012 22:04:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,103 +59,31 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV34] Display all whited out"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58261">58261</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NV34] Display all whited out
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>critical
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>alex.buell&#64;munted.eu
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86 (IA32)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Booting 3.7.0 on my laptop w/ NV34 64MB graphic adapter results in display
-totally whited out, but system still operative and was able to use ssh to log
-in and reboot. 
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c20">Comment # 20</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461">bug 56461</a>
+              from <span class="vcard"><a class="email" href="mailto:chris&#64;edesix.com" title="Chris Paulson-Ellis &lt;chris&#64;edesix.com&gt;"> <span class="fn">Chris Paulson-Ellis</span></a>
+</span></b>
+        <pre>We're getting there!
 
-If there is anything you need, please let me know and I will be quite happy to
-supply the information required to solve this problem. 
+Your fix worked - for a few minutes - when applied to the previously hanging
+2a44e499 with dea7e0ac, 095f979a &amp; afada5e0 cherry-picked.
 
-Booting with 3.6.0 is working perfectly.</pre>
+When applied to the nouveau HEAD, Linux no longer hangs, but the display isn't
+driven properly - the LCD goes white, then fades to black.
+
+I'll attach my current patch to nouveau HEAD and the corresponding console
+output.
+
+Chris.</pre>
         </div>
       </p>
       <hr>
@@ -174,9 +95,9 @@ Booting with 3.6.0 is working perfectly.</pre>
     </body>
 </html>
 
---1355430958.Fee31.9367--
+--1355436251.68fd5fD1.22216--
 
---===============0946451510==
+--===============1335729947==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -187,4 +108,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0946451510==--
+--===============1335729947==--
