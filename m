@@ -1,368 +1,116 @@
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PATCH 1/2] drm/<drivers>: reorder framebuffer init sequence
-Date: Thu, 13 Dec 2012 12:05:18 +0100
-Message-ID: <1355396719-25286-1-git-send-email-daniel.vetter@ffwll.ch>
+From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Subject: [PATCH 2/2] drm/exynos: reorder framebuffer init sequence
+Date: Thu, 13 Dec 2012 12:05:19 +0100
+Message-ID: <1355396719-25286-2-git-send-email-daniel.vetter@ffwll.ch>
 References: <1355317637-16742-17-git-send-email-daniel.vetter@ffwll.ch>
+	<1355396719-25286-1-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <1355317637-16742-17-git-send-email-daniel.vetter@ffwll.ch>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1355396719-25286-1-git-send-email-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-With more fine-grained locking we can no longer rely on the big
-mode_config lock to prevent concurrent access to mode resources
-like framebuffers. Instead a framebuffer becomes accessible to
-other threads as soon as it is added to the relevant lookup
-structures. Hence it needs to be fully set up by the time drivers
-call drm_framebuffer_init.
+For user framebuffers it's easier to just inline the
+exynos_drm_framebuffer_init helper instead of trying to adjust it -
+most of the things that helper sets up need to be overwritten anyway
+again due to the multiple backing storage objects support exynos has,
+but does not use for the fbdev.
 
-This patch here is the drivers part of that reorg. Nothing really fancy
-going on safe for three special cases.
-
-- exynos needs to be careful to properly unref all handles.
-- nouveau gets a resource leak fixed for free: one of the error
-  cases didn't cleanup the framebuffer, which is now moot since
-  the framebuffer is only registered once it is fully set up.
-- vmwgfx requires a slight reordering of operations, I'm hoping I didn't
-  break anything (but it's refcount management only, so should be safe).
-
-v2: Split out exynos, since it's a bit more hairy than expected.
-
-Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Signed-off-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
 ---
- drivers/gpu/drm/ast/ast_main.c            |    4 ++--
- drivers/gpu/drm/cirrus/cirrus_main.c      |    9 +++++++--
- drivers/gpu/drm/drm_fb_cma_helper.c       |   10 +++++-----
- drivers/gpu/drm/gma500/framebuffer.c      |    4 ++--
- drivers/gpu/drm/i915/intel_display.c      |    5 +++--
- drivers/gpu/drm/mgag200/mgag200_main.c    |    8 +++++---
- drivers/gpu/drm/nouveau/nouveau_display.c |   10 +++++-----
- drivers/gpu/drm/radeon/radeon_display.c   |    2 +-
- drivers/gpu/drm/udl/udl_fb.c              |    2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.c       |   28 ++++++++++++++--------------
- drivers/staging/omapdrm/omap_fb.c         |   16 ++++++++--------
- 11 files changed, 53 insertions(+), 45 deletions(-)
+ drivers/gpu/drm/exynos/exynos_drm_fb.c |   32 ++++++++++++++++++++------------
+ 1 file changed, 20 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/ast/ast_main.c b/drivers/gpu/drm/ast/ast_main.c
-index f668e6c..d5ba709 100644
---- a/drivers/gpu/drm/ast/ast_main.c
-+++ b/drivers/gpu/drm/ast/ast_main.c
-@@ -266,13 +266,13 @@ int ast_framebuffer_init(struct drm_device *dev,
- {
- 	int ret;
- 
-+	drm_helper_mode_fill_fb_struct(&ast_fb->base, mode_cmd);
-+	ast_fb->obj = obj;
- 	ret = drm_framebuffer_init(dev, &ast_fb->base, &ast_fb_funcs);
- 	if (ret) {
- 		DRM_ERROR("framebuffer init failed %d\n", ret);
- 		return ret;
- 	}
--	drm_helper_mode_fill_fb_struct(&ast_fb->base, mode_cmd);
--	ast_fb->obj = obj;
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/cirrus/cirrus_main.c b/drivers/gpu/drm/cirrus/cirrus_main.c
-index 6a9b12e..2eac87b 100644
---- a/drivers/gpu/drm/cirrus/cirrus_main.c
-+++ b/drivers/gpu/drm/cirrus/cirrus_main.c
-@@ -42,13 +42,13 @@ int cirrus_framebuffer_init(struct drm_device *dev,
- {
- 	int ret;
- 
-+	drm_helper_mode_fill_fb_struct(&gfb->base, mode_cmd);
-+	gfb->obj = obj;
- 	ret = drm_framebuffer_init(dev, &gfb->base, &cirrus_fb_funcs);
- 	if (ret) {
- 		DRM_ERROR("drm_framebuffer_init failed: %d\n", ret);
- 		return ret;
- 	}
--	drm_helper_mode_fill_fb_struct(&gfb->base, mode_cmd);
--	gfb->obj = obj;
- 	return 0;
- }
- 
-@@ -79,6 +79,11 @@ cirrus_user_framebuffer_create(struct drm_device *dev,
- 
- 	ret = cirrus_framebuffer_init(dev, cirrus_fb, mode_cmd, obj);
- 	if (ret) {
-+	ret = drm_framebuffer_init(dev, &gfb->base, &cirrus_fb_funcs);
-+	if (ret) {
-+		DRM_ERROR("drm_framebuffer_init failed: %d\n", ret);
-+		return ret;
-+	}
- 		drm_gem_object_unreference_unlocked(obj);
- 		kfree(cirrus_fb);
- 		return ERR_PTR(ret);
-diff --git a/drivers/gpu/drm/drm_fb_cma_helper.c b/drivers/gpu/drm/drm_fb_cma_helper.c
-index fd9d0af..e1e0cb0 100644
---- a/drivers/gpu/drm/drm_fb_cma_helper.c
-+++ b/drivers/gpu/drm/drm_fb_cma_helper.c
-@@ -85,6 +85,11 @@ static struct drm_fb_cma *drm_fb_cma_alloc(struct drm_device *dev,
- 	if (!fb_cma)
+diff --git a/drivers/gpu/drm/exynos/exynos_drm_fb.c b/drivers/gpu/drm/exynos/exynos_drm_fb.c
+index 4ef4cd3..aea6500 100644
+--- a/drivers/gpu/drm/exynos/exynos_drm_fb.c
++++ b/drivers/gpu/drm/exynos/exynos_drm_fb.c
+@@ -136,15 +136,15 @@ exynos_drm_framebuffer_init(struct drm_device *dev,
  		return ERR_PTR(-ENOMEM);
+ 	}
  
-+	drm_helper_mode_fill_fb_struct(&fb_cma->fb, mode_cmd);
++	drm_helper_mode_fill_fb_struct(&exynos_fb->fb, mode_cmd);
++	exynos_fb->exynos_gem_obj[0] = to_exynos_gem_obj(obj);
 +
-+	for (i = 0; i < num_planes; i++)
-+		fb_cma->obj[i] = obj[i];
-+
- 	ret = drm_framebuffer_init(dev, &fb_cma->fb, &drm_fb_cma_funcs);
+ 	ret = drm_framebuffer_init(dev, &exynos_fb->fb, &exynos_drm_fb_funcs);
  	if (ret) {
- 		dev_err(dev->dev, "Failed to initalize framebuffer: %d\n", ret);
-@@ -92,11 +97,6 @@ static struct drm_fb_cma *drm_fb_cma_alloc(struct drm_device *dev,
+ 		DRM_ERROR("failed to initialize framebuffer\n");
  		return ERR_PTR(ret);
  	}
  
--	drm_helper_mode_fill_fb_struct(&fb_cma->fb, mode_cmd);
+-	drm_helper_mode_fill_fb_struct(&exynos_fb->fb, mode_cmd);
+-	exynos_fb->exynos_gem_obj[0] = to_exynos_gem_obj(obj);
 -
--	for (i = 0; i < num_planes; i++)
--		fb_cma->obj[i] = obj[i];
--
- 	return fb_cma;
+ 	return &exynos_fb->fb;
  }
  
-diff --git a/drivers/gpu/drm/gma500/framebuffer.c b/drivers/gpu/drm/gma500/framebuffer.c
-index afded54..38e7e75 100644
---- a/drivers/gpu/drm/gma500/framebuffer.c
-+++ b/drivers/gpu/drm/gma500/framebuffer.c
-@@ -260,13 +260,13 @@ static int psb_framebuffer_init(struct drm_device *dev,
- 	default:
- 		return -EINVAL;
- 	}
-+	drm_helper_mode_fill_fb_struct(&fb->base, mode_cmd);
-+	fb->gtt = gt;
- 	ret = drm_framebuffer_init(dev, &fb->base, &psb_fb_funcs);
- 	if (ret) {
- 		dev_err(dev->dev, "framebuffer init failed: %d\n", ret);
- 		return ret;
- 	}
--	drm_helper_mode_fill_fb_struct(&fb->base, mode_cmd);
--	fb->gtt = gt;
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index a0d8869..65f5362 100644
---- a/drivers/gpu/drm/i915/intel_display.c
-+++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -8311,14 +8311,15 @@ int intel_framebuffer_init(struct drm_device *dev,
- 	if (mode_cmd->offsets[0] != 0)
- 		return -EINVAL;
- 
-+	drm_helper_mode_fill_fb_struct(&intel_fb->base, mode_cmd);
-+	intel_fb->obj = obj;
-+
- 	ret = drm_framebuffer_init(dev, &intel_fb->base, &intel_fb_funcs);
- 	if (ret) {
- 		DRM_ERROR("framebuffer init failed %d\n", ret);
- 		return ret;
- 	}
- 
--	drm_helper_mode_fill_fb_struct(&intel_fb->base, mode_cmd);
--	intel_fb->obj = obj;
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/mgag200/mgag200_main.c b/drivers/gpu/drm/mgag200/mgag200_main.c
-index 70dd3c5..266438a 100644
---- a/drivers/gpu/drm/mgag200/mgag200_main.c
-+++ b/drivers/gpu/drm/mgag200/mgag200_main.c
-@@ -40,13 +40,15 @@ int mgag200_framebuffer_init(struct drm_device *dev,
- 			     struct drm_mode_fb_cmd2 *mode_cmd,
- 			     struct drm_gem_object *obj)
+@@ -190,9 +190,8 @@ exynos_user_fb_create(struct drm_device *dev, struct drm_file *file_priv,
+ 		      struct drm_mode_fb_cmd2 *mode_cmd)
  {
--	int ret = drm_framebuffer_init(dev, &gfb->base, &mga_fb_funcs);
-+	int ret;
-+	
-+	drm_helper_mode_fill_fb_struct(&gfb->base, mode_cmd);
-+	gfb->obj = obj;
-+	ret = drm_framebuffer_init(dev, &gfb->base, &mga_fb_funcs);
- 	if (ret) {
- 		DRM_ERROR("drm_framebuffer_init failed: %d\n", ret);
- 		return ret;
+ 	struct drm_gem_object *obj;
+-	struct drm_framebuffer *fb;
+ 	struct exynos_drm_fb *exynos_fb;
+-	int i;
++	int i, ret;
+ 
+ 	DRM_DEBUG_KMS("%s\n", __FILE__);
+ 
+@@ -202,13 +201,13 @@ exynos_user_fb_create(struct drm_device *dev, struct drm_file *file_priv,
+ 		return ERR_PTR(-ENOENT);
  	}
--	drm_helper_mode_fill_fb_struct(&gfb->base, mode_cmd);
--	gfb->obj = obj;
- 	return 0;
- }
  
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index e4188f2..2591ff2 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -78,11 +78,6 @@ nouveau_framebuffer_init(struct drm_device *dev,
- 	struct drm_framebuffer *fb = &nv_fb->base;
- 	int ret;
+-	fb = exynos_drm_framebuffer_init(dev, mode_cmd, obj);
+-	if (IS_ERR(fb)) {
+-		drm_gem_object_unreference_unlocked(obj);
+-		return fb;
++	exynos_fb = kzalloc(sizeof(*exynos_fb), GFP_KERNEL);
++	if (!exynos_fb) {
++		DRM_ERROR("failed to allocate exynos drm framebuffer\n");
++		return ERR_PTR(-ENOMEM);
+ 	}
  
--	ret = drm_framebuffer_init(dev, fb, &nouveau_framebuffer_funcs);
--	if (ret) {
--		return ret;
--	}
--
- 	drm_helper_mode_fill_fb_struct(fb, mode_cmd);
- 	nv_fb->nvbo = nvbo;
+-	exynos_fb = to_exynos_fb(fb);
++	drm_helper_mode_fill_fb_struct(&exynos_fb->fb, mode_cmd);
+ 	exynos_fb->buf_cnt = exynos_drm_format_num_buffers(mode_cmd);
  
-@@ -125,6 +120,11 @@ nouveau_framebuffer_init(struct drm_device *dev,
+ 	DRM_DEBUG_KMS("buf_cnt = %d\n", exynos_fb->buf_cnt);
+@@ -218,14 +217,23 @@ exynos_user_fb_create(struct drm_device *dev, struct drm_file *file_priv,
+ 				mode_cmd->handles[i]);
+ 		if (!obj) {
+ 			DRM_ERROR("failed to lookup gem object\n");
+-			exynos_drm_fb_destroy(fb);
++			kfree(exynos_fb);
+ 			return ERR_PTR(-ENOENT);
  		}
+ 
+ 		exynos_fb->exynos_gem_obj[i] = to_exynos_gem_obj(obj);
  	}
  
-+	ret = drm_framebuffer_init(dev, fb, &nouveau_framebuffer_funcs);
+-	return fb;
++	ret = drm_framebuffer_init(dev, &exynos_fb->fb, &exynos_drm_fb_funcs);
 +	if (ret) {
-+		return ret;
++		for (i = 0; i < exynos_fb->buf_cnt; i++)
++			drm_gem_object_unreference_unlocked(&exynos_fb->exynos_gem_obj[i]->base);
++
++		kfree(exynos_fb);
++		return ERR_PTR(ret);
 +	}
 +
- 	return 0;
++	return &exynos_fb->fb;
  }
  
-diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
-index bfa2a60..8724196 100644
---- a/drivers/gpu/drm/radeon/radeon_display.c
-+++ b/drivers/gpu/drm/radeon/radeon_display.c
-@@ -1080,12 +1080,12 @@ radeon_framebuffer_init(struct drm_device *dev,
- {
- 	int ret;
- 	rfb->obj = obj;
-+	drm_helper_mode_fill_fb_struct(&rfb->base, mode_cmd);
- 	ret = drm_framebuffer_init(dev, &rfb->base, &radeon_fb_funcs);
- 	if (ret) {
- 		rfb->obj = NULL;
- 		return ret;
- 	}
--	drm_helper_mode_fill_fb_struct(&rfb->base, mode_cmd);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/udl/udl_fb.c b/drivers/gpu/drm/udl/udl_fb.c
-index d4ab3be..829c4a7 100644
---- a/drivers/gpu/drm/udl/udl_fb.c
-+++ b/drivers/gpu/drm/udl/udl_fb.c
-@@ -435,8 +435,8 @@ udl_framebuffer_init(struct drm_device *dev,
- 	int ret;
- 
- 	ufb->obj = obj;
--	ret = drm_framebuffer_init(dev, &ufb->base, &udlfb_funcs);
- 	drm_helper_mode_fill_fb_struct(&ufb->base, mode_cmd);
-+	ret = drm_framebuffer_init(dev, &ufb->base, &udlfb_funcs);
- 	return ret;
- }
- 
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
-index 385b8849..d2e2d49 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
-@@ -714,14 +714,9 @@ static int vmw_kms_new_framebuffer_surface(struct vmw_private *dev_priv,
- 		goto out_err1;
- 	}
- 
--	ret = drm_framebuffer_init(dev, &vfbs->base.base,
--				   &vmw_framebuffer_surface_funcs);
--	if (ret)
--		goto out_err2;
--
- 	if (!vmw_surface_reference(surface)) {
- 		DRM_ERROR("failed to reference surface %p\n", surface);
--		goto out_err3;
-+		goto out_err2;
- 	}
- 
- 	/* XXX get the first 3 from the surface info */
-@@ -740,10 +735,15 @@ static int vmw_kms_new_framebuffer_surface(struct vmw_private *dev_priv,
- 
- 	*out = &vfbs->base;
- 
-+	ret = drm_framebuffer_init(dev, &vfbs->base.base,
-+				   &vmw_framebuffer_surface_funcs);
-+	if (ret)
-+		goto out_err3;
-+
- 	return 0;
- 
- out_err3:
--	drm_framebuffer_cleanup(&vfbs->base.base);
-+	vmw_surface_unreference(&surface);
- out_err2:
- 	kfree(vfbs);
- out_err1:
-@@ -1086,14 +1086,9 @@ static int vmw_kms_new_framebuffer_dmabuf(struct vmw_private *dev_priv,
- 		goto out_err1;
- 	}
- 
--	ret = drm_framebuffer_init(dev, &vfbd->base.base,
--				   &vmw_framebuffer_dmabuf_funcs);
--	if (ret)
--		goto out_err2;
--
- 	if (!vmw_dmabuf_reference(dmabuf)) {
- 		DRM_ERROR("failed to reference dmabuf %p\n", dmabuf);
--		goto out_err3;
-+		goto out_err2;
- 	}
- 
- 	vfbd->base.base.bits_per_pixel = mode_cmd->bpp;
-@@ -1110,10 +1105,15 @@ static int vmw_kms_new_framebuffer_dmabuf(struct vmw_private *dev_priv,
- 	vfbd->base.user_handle = mode_cmd->handle;
- 	*out = &vfbd->base;
- 
-+	ret = drm_framebuffer_init(dev, &vfbd->base.base,
-+				   &vmw_framebuffer_dmabuf_funcs);
-+	if (ret)
-+		goto out_err3;
-+
- 	return 0;
- 
- out_err3:
--	drm_framebuffer_cleanup(&vfbd->base.base);
-+	vmw_dmabuf_unreference(&dmabuf);
- out_err2:
- 	kfree(vfbd);
- out_err1:
-diff --git a/drivers/staging/omapdrm/omap_fb.c b/drivers/staging/omapdrm/omap_fb.c
-index 446801d..5090547 100644
---- a/drivers/staging/omapdrm/omap_fb.c
-+++ b/drivers/staging/omapdrm/omap_fb.c
-@@ -425,14 +425,6 @@ struct drm_framebuffer *omap_framebuffer_init(struct drm_device *dev,
- 	}
- 
- 	fb = &omap_fb->base;
--	ret = drm_framebuffer_init(dev, fb, &omap_framebuffer_funcs);
--	if (ret) {
--		dev_err(dev->dev, "framebuffer init failed: %d\n", ret);
--		goto fail;
--	}
--
--	DBG("create: FB ID: %d (%p)", fb->base.id, fb);
--
- 	omap_fb->format = format;
- 
- 	for (i = 0; i < n; i++) {
-@@ -463,6 +455,14 @@ struct drm_framebuffer *omap_framebuffer_init(struct drm_device *dev,
- 
- 	drm_helper_mode_fill_fb_struct(fb, mode_cmd);
- 
-+	ret = drm_framebuffer_init(dev, fb, &omap_framebuffer_funcs);
-+	if (ret) {
-+		dev_err(dev->dev, "framebuffer init failed: %d\n", ret);
-+		goto fail;
-+	}
-+
-+	DBG("create: FB ID: %d (%p)", fb->base.id, fb);
-+
- 	return fb;
- 
- fail:
+ struct exynos_drm_gem_buf *exynos_drm_fb_buffer(struct drm_framebuffer *fb,
 -- 
 1.7.10.4
