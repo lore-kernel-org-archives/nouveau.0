@@ -1,67 +1,74 @@
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [PATCH 2/2] drm/exynos: reorder framebuffer init sequence
-Date: Thu, 13 Dec 2012 13:43:29 +0100
-Message-ID: <CAKMK7uHOqmKu+tQMWeBHayP_zSBFynWmfHomhxB+p1huptSRxQ@mail.gmail.com>
-References: <1355317637-16742-17-git-send-email-daniel.vetter@ffwll.ch>
-	<1355396719-25286-1-git-send-email-daniel.vetter@ffwll.ch>
-	<1355396719-25286-2-git-send-email-daniel.vetter@ffwll.ch>
-	<00a001cdd92d$09cf2ae0$1d6d80a0$%dae@samsung.com>
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 10/37] drm: add per-crtc locks
+Date: Thu, 13 Dec 2012 16:25:30 +0200
+Message-ID: <20121213142530.GG29018@intel.com>
+References: <1355317637-16742-1-git-send-email-daniel.vetter@ffwll.ch>
+	<1355317637-16742-11-git-send-email-daniel.vetter@ffwll.ch>
+	<20121213113812.GF29018@intel.com>
+	<CAKMK7uEPQQ6Yttf1upttTE0WVKJmo3bSn-xRUQvKyQCUDZySJw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <00a001cdd92d$09cf2ae0$1d6d80a0$%dae@samsung.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Inki Dae <inki.dae@samsung.com>
-Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uEPQQ6Yttf1upttTE0WVKJmo3bSn-xRUQvKyQCUDZySJw@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/intel-gfx>,
+	<mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+	<mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Sender: intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org
+Errors-To: intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Radeon Dev <xorg-driver-ati@lists.x.org>, DRI Development <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi Inki,
+On Thu, Dec 13, 2012 at 12:54:44PM +0100, Daniel Vetter wrote:
+> On Thu, Dec 13, 2012 at 12:38 PM, Ville Syrj=E4l=E4
+> <ville.syrjala@linux.intel.com> wrote:
+> >>   And if we _really_ want such semantics, we can always get them by
+> >>   introducing another pageflip mutex between the mode_config.mutex and
+> >>   the individual crtc locks. Pageflips crossing more than one crtc
+> >>   would then need to take that lock first, to lock out concurrent
+> >>   multi-crtc pageflips.
+> >
+> > I'm actually concerned with multi CRTC page flips, not for moving planes
+> > between CRTCs, but mainly for updating content on genlocked displays
+> > atomically. We need to avoid deadlocks between multiple CRTC locks. Try=
+ing
+> > to take the CRTC locks in the same order would be a solution, but since
+> > user space can send the props in any order, it's going to require extra
+> > of work.
+> =
 
-I've pushed out the latest bits to
-http://cgit.freedesktop.org/~danvet/drm/log/?h=drm-kms-locking with
-some hacks on top to be able to compile all the arm drivers. Testing
-feedback of the entire pile would be awesome, especially since you've
-had some issues with framebuffer lifecycle and those should now be
-correctly fixable with the proper refcounting. If you have too many
-conflicts pls yell so that I can include your base into mine and
-rebase the entire series.
+> Ordering CRTC locks should also work - modeset_lock_all takes them
+> always in the same order, and as long as you only take a single crtc
+> nested within the modeset lock that's still ok (e.g. the load-detect
+> code). We don't have many CRTCs, so even the dumbest sort will be fast
+> enough. A bit of work will be required to make lockdep happy. But we
+> can achieve this by nesting CRTCs within a fake lock encapsulated by
+> the lock/unlock helper functions.
 
-Thanks, Daniel
+Yeah it would mean pre-processing the object ID list in the atomic
+ioctl. Currently there is at most num_crtc+num_plane object IDs in the
+list, assuming userspace didn't send any duplicates. For each of those
+we'd need to take the CRTC lock. So a bit of a change to my code, but
+not too bad I suppose.
 
-On Thu, Dec 13, 2012 at 1:26 PM, Inki Dae <inki.dae@samsung.com> wrote:
->> -----Original Message-----
->> From: dri-devel-bounces+inki.dae=samsung.com@lists.freedesktop.org
->> [mailto:dri-devel-bounces+inki.dae=samsung.com@lists.freedesktop.org] On
->> Behalf Of Daniel Vetter
->> Sent: Thursday, December 13, 2012 8:05 PM
->> To: DRI Development
->> Cc: Nouveau Dev; Intel Graphics Development; Daniel Vetter
->> Subject: [PATCH 2/2] drm/exynos: reorder framebuffer init sequence
->>
->> For user framebuffers it's easier to just inline the
->> exynos_drm_framebuffer_init helper instead of trying to adjust it -
->> most of the things that helper sets up need to be overwritten anyway
->> again due to the multiple backing storage objects support exynos has,
->> but does not use for the fbdev.
->>
->
-> Hi Daniel,
->
-> I'd rebase this patch to -next. This patch is conflicted with -next.
-> And if there is no any problem after test, will apply it.
+But this also has to handle planes that can move between CRTCs, so
+it's not quite as simple as that. Maybe grab the lock for
+plane->crtc, and once you have the lock re-check that plane->crtc
+didn't change before we got the lock.
 
+We also need to change things so that plane->crtc can never be NULL.
+Currently when a plane is disabled, we set plane->crtc to NULL, but
+since we need that information for taking the lock, and to prevent
+two guys from accessing the same disabled plane, we can no longer
+allow that.
 
+-- =
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+Ville Syrj=E4l=E4
+Intel OTC
