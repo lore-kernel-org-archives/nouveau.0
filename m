@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56461] NV11 black screen & kernel hang on loading
 	nouveaufb
-Date: Thu, 13 Dec 2012 22:06:01 +0000
-Message-ID: <bug-56461-8800-3f4MSSx1t1@http.bugs.freedesktop.org/>
+Date: Thu, 13 Dec 2012 22:42:49 +0000
+Message-ID: <bug-56461-8800-y8ehR6hUt9@http.bugs.freedesktop.org/>
 References: <bug-56461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0594662101=="
+Content-Type: multipart/mixed; boundary="===============0921133888=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56461-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0594662101==
-Content-Type: multipart/alternative; boundary="1355436361.48471.22488"; charset="us-ascii"
+--===============0921133888==
+Content-Type: multipart/alternative; boundary="1355438569.d8DcD2.26818"; charset="us-ascii"
 
 
---1355436361.48471.22488
-Date: Thu, 13 Dec 2012 22:06:01 +0000
+--1355438569.d8DcD2.26818
+Date: Thu, 13 Dec 2012 22:42:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56461
 
---- Comment #22 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> ---
-Created attachment 71472
-  --> https://bugs.freedesktop.org/attachment.cgi?id=71472&action=edit
-console output with current HEAD + fixes
+--- Comment #23 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This is probably another bug (you are really lucky ;). I don't see anything
+obvious in your latest log, so you could bisect it again - now between 2a44e499
+with nv04_dfp.c fix (and other cherry-picks when necessary) and nouveau HEAD.
+
+Is timer/nv04.c change needed for 2a44e499 to light up your monitor?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1355436361.48471.22488
-Date: Thu, 13 Dec 2012 22:06:01 +0000
+--1355438569.d8DcD2.26818
+Date: Thu, 13 Dec 2012 22:42:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c22">Comment # 22</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c23">Comment # 23</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56461">bug 56461</a>
-              from <span class="vcard"><a class="email" href="mailto:chris&#64;edesix.com" title="Chris Paulson-Ellis &lt;chris&#64;edesix.com&gt;"> <span class="fn">Chris Paulson-Ellis</span></a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=71472" name="attach_71472" title="console output with current HEAD + fixes">attachment 71472</a> <a href="attachment.cgi?id=71472&amp;action=edit" title="console output with current HEAD + fixes">[details]</a></span>
-console output with current HEAD + fixes</pre>
+        <pre>This is probably another bug (you are really lucky ;). I don't see anything
+obvious in your latest log, so you could bisect it again - now between 2a44e499
+with nv04_dfp.c fix (and other cherry-picks when necessary) and nouveau HEAD.
+
+Is timer/nv04.c change needed for 2a44e499 to light up your monitor?</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +81,9 @@ console output with current HEAD + fixes</pre>
     </body>
 </html>
 
---1355436361.48471.22488--
+--1355438569.d8DcD2.26818--
 
---===============0594662101==
+--===============0921133888==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0594662101==--
+--===============0921133888==--
