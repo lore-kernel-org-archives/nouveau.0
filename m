@@ -1,7 +1,7 @@
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 Subject: [PATCH] allow shmob+imx drm drivers to be compiled
-Date: Thu, 13 Dec 2012 12:06:02 +0100
-Message-ID: <1355396762-25330-1-git-send-email-daniel.vetter@ffwll.ch>
+Date: Thu, 13 Dec 2012 12:18:38 +0100
+Message-ID: <1355397518-25569-1-git-send-email-daniel.vetter@ffwll.ch>
 References: <1355317637-16742-35-git-send-email-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
