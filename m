@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58305] New: Kernel crashes if nVidia card is powered
- off and X restartted
-Date: Fri, 14 Dec 2012 16:45:08 +0000
-Message-ID: <bug-58305-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58316] New: fedora 17 kernel 3.7.0-1.PAE failed
+ plymouth and enable msi error
+Date: Fri, 14 Dec 2012 21:49:43 +0000
+Message-ID: <bug-58316-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2085350133=="
+Content-Type: multipart/mixed; boundary="===============1383759828=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,58 +19,57 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2085350133==
-Content-Type: multipart/alternative; boundary="1355503508.ADD2e1.2296"; charset="us-ascii"
+--===============1383759828==
+Content-Type: multipart/alternative; boundary="1355521784.7D5fe7c1.10728"; charset="us-ascii"
 
 
---1355503508.ADD2e1.2296
-Date: Fri, 14 Dec 2012 16:45:08 +0000
+--1355521784.7D5fe7c1.10728
+Date: Fri, 14 Dec 2012 21:49:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58305
+https://bugs.freedesktop.org/show_bug.cgi?id=58316
 
           Priority: medium
-            Bug ID: 58305
+            Bug ID: 58316
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Kernel crashes if nVidia card is powered off and X
-                    restartted
+           Summary: fedora 17 kernel 3.7.0-1.PAE failed plymouth and
+                    enable msi error
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
+          Severity: critical
     Classification: Unclassified
                 OS: Linux (All)
-          Reporter: buboleck-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: Other
+          Reporter: jsanza-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86 (IA32)
             Status: NEW
            Version: unspecified
          Component: Driver/nouveau
            Product: xorg
 
-Created attachment 71512
-  --> https://bugs.freedesktop.org/attachment.cgi?id=71512&action=edit
-Kernel message for the crash
+Hello,
 
-In Optimus system if the Nvidia card is powered off and X is restarted kernel
-crashes. 
+I am testing lastest kernel 3.7 into a fedora 17 , i686, nouveau , kde
 
-Info:
+The same problem using vanilla 3.7 and fedora rpmtools kernel 3.7.0-1
 
-Distribution: Gentoo x86_64, stable up to date.
-Kernel: Gentoo 3.7 
-System: Acer Aspire 5742G (RAM 8G ,CPU Intel Core i5 480M, nVidia GT540 with 1G
-RAM, latest BIOS v1.30)
+Boots starts, and it shows,
 
-In the kernel messages when the nouveu driver is loaded it reports that the
-nVidia card is with 512MB of ram.
+[]nouveau, enable msi not supported
+[]Failed to start Wait for Plymouth Boot Screen to Quit
 
-I can provide full dmesg if needed.
+system totally freezed ...
+
+dmesg logs don't show any info message
+
+i can't start X from level 3 ... if i remove all nouveau files the problem
+appears too
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1355503508.ADD2e1.2296
-Date: Fri, 14 Dec 2012 16:45:08 +0000
+--1355521784.7D5fe7c1.10728
+Date: Fri, 14 Dec 2012 21:49:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -89,8 +88,8 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Kernel crashes if nVidia card is powered off and X restartted"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305">58305</a>
+   title="NEW --- - fedora 17 kernel 3.7.0-1.PAE failed plymouth and enable msi error"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58316">58316</a>
           </td>
         </tr>
 
@@ -102,7 +101,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Summary</th>
-          <td>Kernel crashes if nVidia card is powered off and X restartted
+          <td>fedora 17 kernel 3.7.0-1.PAE failed plymouth and enable msi error
           </td>
         </tr>
 
@@ -114,7 +113,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Severity</th>
-          <td>normal
+          <td>critical
           </td>
         </tr>
 
@@ -132,13 +131,13 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Reporter</th>
-          <td>buboleck&#64;gmail.com
+          <td>jsanza&#64;gmail.com
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>Other
+          <td>x86 (IA32)
           </td>
         </tr>
 
@@ -167,23 +166,23 @@ Content-Type: text/html; charset="UTF-8"
         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=71512" name="attach_71512" title="Kernel message for the crash">attachment 71512</a> <a href="attachment.cgi?id=71512&amp;action=edit" title="Kernel message for the crash">[details]</a></span>
-Kernel message for the crash
+        <pre>Hello,
 
-In Optimus system if the Nvidia card is powered off and X is restarted kernel
-crashes. 
+I am testing lastest kernel 3.7 into a fedora 17 , i686, nouveau , kde
 
-Info:
+The same problem using vanilla 3.7 and fedora rpmtools kernel 3.7.0-1
 
-Distribution: Gentoo x86_64, stable up to date.
-Kernel: Gentoo 3.7 
-System: Acer Aspire 5742G (RAM 8G ,CPU Intel Core i5 480M, nVidia GT540 with 1G
-RAM, latest BIOS v1.30)
+Boots starts, and it shows,
 
-In the kernel messages when the nouveu driver is loaded it reports that the
-nVidia card is with 512MB of ram.
+[]nouveau, enable msi not supported
+[]Failed to start Wait for Plymouth Boot Screen to Quit
 
-I can provide full dmesg if needed.</pre>
+system totally freezed ...
+
+dmesg logs don't show any info message
+
+i can't start X from level 3 ... if i remove all nouveau files the problem
+appears too</pre>
         </div>
       </p>
       <hr>
@@ -195,9 +194,9 @@ I can provide full dmesg if needed.</pre>
     </body>
 </html>
 
---1355503508.ADD2e1.2296--
+--1355521784.7D5fe7c1.10728--
 
---===============2085350133==
+--===============1383759828==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -208,4 +207,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2085350133==--
+--===============1383759828==--
