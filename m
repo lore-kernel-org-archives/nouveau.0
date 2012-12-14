@@ -1,97 +1,143 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56461] NV11 black screen & kernel hang on loading
-	nouveaufb
-Date: Thu, 13 Dec 2012 22:42:49 +0000
-Message-ID: <bug-56461-8800-y8ehR6hUt9@http.bugs.freedesktop.org/>
-References: <bug-56461-8800@http.bugs.freedesktop.org/>
+From: Inki Dae <inki.dae@samsung.com>
+Subject: Re: [PATCH 2/2] drm/exynos: reorder framebuffer init sequence
+Date: Fri, 14 Dec 2012 13:57:02 +0900
+Message-ID: <CAAQKjZM1_bDQoRdrFaDwLm6d0A5wyVfAOD7KFxUK2VZMPf5kRg@mail.gmail.com>
+References: <1355317637-16742-17-git-send-email-daniel.vetter@ffwll.ch>
+	<1355396719-25286-1-git-send-email-daniel.vetter@ffwll.ch>
+	<1355396719-25286-2-git-send-email-daniel.vetter@ffwll.ch>
+	<00a001cdd92d$09cf2ae0$1d6d80a0$%dae@samsung.com>
+	<CAKMK7uHOqmKu+tQMWeBHayP_zSBFynWmfHomhxB+p1huptSRxQ@mail.gmail.com>
+	<CAAQKjZP7KFsqLhZ3fPiZp4qEbvkgUhcm+Q0+1nHbKbwXngV0bg@mail.gmail.com>
+	<CAKMK7uE6=taCeErFSvn-eUhG7+C0BxOCKELTara=XiGwmAticA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0921133888=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56461-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============0736070329=="
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <CAKMK7uE6=taCeErFSvn-eUhG7+C0BxOCKELTara=XiGwmAticA@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, DRI Development <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
+--===============0736070329==
+Content-Type: multipart/alternative; boundary=e89a8fb1fd7ec0826304d0c8dce0
 
---===============0921133888==
-Content-Type: multipart/alternative; boundary="1355438569.d8DcD2.26818"; charset="us-ascii"
+--e89a8fb1fd7ec0826304d0c8dce0
+Content-Type: text/plain; charset=ISO-8859-1
+
+2012/12/14 Daniel Vetter <daniel.vetter@ffwll.ch>
+
+> On Thu, Dec 13, 2012 at 4:16 PM, Inki Dae <inki.dae@samsung.com> wrote:
+> > How about rebasing this patch to top of
+> > git://people.freedesktop.org/~airlied/linux.git drm-next?
+> > Exynos's many patches have already been merged to drm-next. Or if you are
+> > ok, I'd like to rebase your patch to -next and test it. I don't care
+> either
+> > way. :)
+>
+> I've pushed out a rebased version, but somehow I can't compile-test
+> exynos any more :( Probably missing some other stuff from linux-next.
+> Anyway, I don't mind which patch you pick or whether you just roll
+> your own, the important thing is that drm_framebuffer_init is called
+> _after_ everything is set up and initialized. Everything else doesn't
+> really matter.
+>
+
+I've rebase your patch to -next and tested it. But your patch had null
+pointer issue to gem object so I fixed it.
+For this, you can refer to the below link,
+
+http://git.kernel.org/?p=linux/kernel/git/daeinki/drm-exynos.git;a=shortlog;h=refs/heads/exynos-drm-next
+
+And I gonna request git pull to -next including that patch today. If there
+is any problem, please let me know.
+
+Thanks,
+Inki Dae.
 
 
---1355438569.d8DcD2.26818
-Date: Thu, 13 Dec 2012 22:42:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56461
+> -Daniel
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> +41 (0) 79 365 57 48 - http://blog.ffwll.ch
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
+>
 
---- Comment #23 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This is probably another bug (you are really lucky ;). I don't see anything
-obvious in your latest log, so you could bisect it again - now between 2a44e499
-with nv04_dfp.c fix (and other cherry-picks when necessary) and nouveau HEAD.
+--e89a8fb1fd7ec0826304d0c8dce0
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Is timer/nv04.c change needed for 2a44e499 to light up your monitor?
+<br><br><div class=3D"gmail_quote">2012/12/14 Daniel Vetter <span dir=3D"lt=
+r">&lt;<a href=3D"mailto:daniel.vetter@ffwll.ch" target=3D"_blank">daniel.v=
+etter@ffwll.ch</a>&gt;</span><br><blockquote class=3D"gmail_quote" style=3D=
+"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+<div class=3D"im">On Thu, Dec 13, 2012 at 4:16 PM, Inki Dae &lt;<a href=3D"=
+mailto:inki.dae@samsung.com">inki.dae@samsung.com</a>&gt; wrote:<br>
+&gt; How about rebasing this patch to top of<br>
+&gt; git://<a href=3D"http://people.freedesktop.org/~airlied/linux.git" tar=
+get=3D"_blank">people.freedesktop.org/~airlied/linux.git</a> drm-next?<br>
+&gt; Exynos&#39;s many patches have already been merged to drm-next. Or if =
+you are<br>
+&gt; ok, I&#39;d like to rebase your patch to -next and test it. I don&#39;=
+t care either<br>
+&gt; way. :)<br>
+<br>
+</div>I&#39;ve pushed out a rebased version, but somehow I can&#39;t compil=
+e-test<br>
+exynos any more :( Probably missing some other stuff from linux-next.<br>
+Anyway, I don&#39;t mind which patch you pick or whether you just roll<br>
+your own, the important thing is that drm_framebuffer_init is called<br>
+_after_ everything is set up and initialized. Everything else doesn&#39;t<b=
+r>
+really matter.<br></blockquote><div><br>I&#39;ve rebase your patch to -next=
+ and tested it. But your patch had null pointer issue to gem object so I fi=
+xed it.<br>For this, you can refer to the below link,<br>=A0=A0=A0=A0=A0=A0=
+=A0 <a href=3D"http://git.kernel.org/?p=3Dlinux/kernel/git/daeinki/drm-exyn=
+os.git;a=3Dshortlog;h=3Drefs/heads/exynos-drm-next">http://git.kernel.org/?=
+p=3Dlinux/kernel/git/daeinki/drm-exynos.git;a=3Dshortlog;h=3Drefs/heads/exy=
+nos-drm-next</a><br>
+<br>And I gonna request git pull to -next including that patch today. If th=
+ere is any problem, please let me know.<br><br>Thanks,<br>Inki Dae.<br><br>=
+=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex">
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+<span class=3D"HOEnZb"><font color=3D"#888888">-Daniel<br>
+</font></span><div class=3D"HOEnZb"><div class=3D"h5">--<br>
+Daniel Vetter<br>
+Software Engineer, Intel Corporation<br>
++41 (0) 79 365 57 48 - <a href=3D"http://blog.ffwll.ch" target=3D"_blank">h=
+ttp://blog.ffwll.ch</a><br>
+_______________________________________________<br>
+dri-devel mailing list<br>
+<a href=3D"mailto:dri-devel@lists.freedesktop.org">dri-devel@lists.freedesk=
+top.org</a><br>
+<a href=3D"http://lists.freedesktop.org/mailman/listinfo/dri-devel" target=
+=3D"_blank">http://lists.freedesktop.org/mailman/listinfo/dri-devel</a><br>
+</div></div></blockquote></div><br>
 
---1355438569.d8DcD2.26818
-Date: Thu, 13 Dec 2012 22:42:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+--e89a8fb1fd7ec0826304d0c8dce0--
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c23">Comment # 23</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461">bug 56461</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span></b>
-        <pre>This is probably another bug (you are really lucky ;). I don't see anything
-obvious in your latest log, so you could bisect it again - now between 2a44e499
-with nv04_dfp.c fix (and other cherry-picks when necessary) and nouveau HEAD.
-
-Is timer/nv04.c change needed for 2a44e499 to light up your monitor?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1355438569.d8DcD2.26818--
-
---===============0921133888==
+--===============0736070329==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Content-Disposition: inline
 
 _______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+dri-devel mailing list
+dri-devel@lists.freedesktop.org
+http://lists.freedesktop.org/mailman/listinfo/dri-devel
 
---===============0921133888==--
+--===============0736070329==--
