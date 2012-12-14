@@ -1,67 +1,211 @@
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [PATCH 2/2] drm/exynos: reorder framebuffer init
-	sequence
-Date: Fri, 14 Dec 2012 09:40:41 +0100
-Message-ID: <CAKMK7uHB1h=Fdg7j86ff_DBppQ5RiD3XHQji2N5Ar9wYQW902Q@mail.gmail.com>
-References: <1355317637-16742-17-git-send-email-daniel.vetter@ffwll.ch>
-	<1355396719-25286-1-git-send-email-daniel.vetter@ffwll.ch>
-	<1355396719-25286-2-git-send-email-daniel.vetter@ffwll.ch>
-	<00a001cdd92d$09cf2ae0$1d6d80a0$%dae@samsung.com>
-	<CAKMK7uHOqmKu+tQMWeBHayP_zSBFynWmfHomhxB+p1huptSRxQ@mail.gmail.com>
-	<CAAQKjZP7KFsqLhZ3fPiZp4qEbvkgUhcm+Q0+1nHbKbwXngV0bg@mail.gmail.com>
-	<CAKMK7uE6=taCeErFSvn-eUhG7+C0BxOCKELTara=XiGwmAticA@mail.gmail.com>
-	<CAAQKjZM1_bDQoRdrFaDwLm6d0A5wyVfAOD7KFxUK2VZMPf5kRg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 58305] New: Kernel crashes if nVidia card is powered
+ off and X restartted
+Date: Fri, 14 Dec 2012 16:45:08 +0000
+Message-ID: <bug-58305-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <CAAQKjZM1_bDQoRdrFaDwLm6d0A5wyVfAOD7KFxUK2VZMPf5kRg@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/intel-gfx>,
-	<mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
-	<mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Sender: intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org
-Errors-To: intel-gfx-bounces+gcfxdi-intel-gfx=m.gmane.org@lists.freedesktop.org
-To: Inki Dae <inki.dae@samsung.com>
-Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============2085350133=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Dec 14, 2012 at 5:57 AM, Inki Dae <inki.dae@samsung.com> wrote:
-> 2012/12/14 Daniel Vetter <daniel.vetter@ffwll.ch>
->>
->> On Thu, Dec 13, 2012 at 4:16 PM, Inki Dae <inki.dae@samsung.com> wrote:
->> > How about rebasing this patch to top of
->> > git://people.freedesktop.org/~airlied/linux.git drm-next?
->> > Exynos's many patches have already been merged to drm-next. Or if you
->> > are
->> > ok, I'd like to rebase your patch to -next and test it. I don't care
->> > either
->> > way. :)
->>
->> I've pushed out a rebased version, but somehow I can't compile-test
->> exynos any more :( Probably missing some other stuff from linux-next.
->> Anyway, I don't mind which patch you pick or whether you just roll
->> your own, the important thing is that drm_framebuffer_init is called
->> _after_ everything is set up and initialized. Everything else doesn't
->> really matter.
->
->
-> I've rebase your patch to -next and tested it. But your patch had null
-> pointer issue to gem object so I fixed it.
-> For this, you can refer to the below link,
->
-> http://git.kernel.org/?p=linux/kernel/git/daeinki/drm-exynos.git;a=shortlog;h=refs/heads/exynos-drm-next
->
-> And I gonna request git pull to -next including that patch today. If there
-> is any problem, please let me know.
 
-Oops, sorry for missing the gem obj assignment, your updated version
-looks good. Thanks for fixing it up.
--Daniel
+--===============2085350133==
+Content-Type: multipart/alternative; boundary="1355503508.ADD2e1.2296"; charset="us-ascii"
+
+
+--1355503508.ADD2e1.2296
+Date: Fri, 14 Dec 2012 16:45:08 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=58305
+
+          Priority: medium
+            Bug ID: 58305
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Kernel crashes if nVidia card is powered off and X
+                    restartted
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: buboleck-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
+
+Created attachment 71512
+  --> https://bugs.freedesktop.org/attachment.cgi?id=71512&action=edit
+Kernel message for the crash
+
+In Optimus system if the Nvidia card is powered off and X is restarted kernel
+crashes. 
+
+Info:
+
+Distribution: Gentoo x86_64, stable up to date.
+Kernel: Gentoo 3.7 
+System: Acer Aspire 5742G (RAM 8G ,CPU Intel Core i5 480M, nVidia GT540 with 1G
+RAM, latest BIOS v1.30)
+
+In the kernel messages when the nouveu driver is loaded it reports that the
+nVidia card is with 512MB of ram.
+
+I can provide full dmesg if needed.
+
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1355503508.ADD2e1.2296
+Date: Fri, 14 Dec 2012 16:45:08 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Kernel crashes if nVidia card is powered off and X restartted"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305">58305</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Kernel crashes if nVidia card is powered off and X restartted
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>buboleck&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=71512" name="attach_71512" title="Kernel message for the crash">attachment 71512</a> <a href="attachment.cgi?id=71512&amp;action=edit" title="Kernel message for the crash">[details]</a></span>
+Kernel message for the crash
+
+In Optimus system if the Nvidia card is powered off and X is restarted kernel
+crashes. 
+
+Info:
+
+Distribution: Gentoo x86_64, stable up to date.
+Kernel: Gentoo 3.7 
+System: Acer Aspire 5742G (RAM 8G ,CPU Intel Core i5 480M, nVidia GT540 with 1G
+RAM, latest BIOS v1.30)
+
+In the kernel messages when the nouveu driver is loaded it reports that the
+nVidia card is with 512MB of ram.
+
+I can provide full dmesg if needed.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1355503508.ADD2e1.2296--
+
+--===============2085350133==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2085350133==--
