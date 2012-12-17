@@ -1,72 +1,91 @@
-From: Martin Peres <martin.peres@free.fr>
-Subject: Request for nv40-c0 testing thermal/fan management
-Date: Mon, 17 Dec 2012 03:36:16 +0100
-Message-ID: <50CE8520.1010500@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 56461] NV11 black screen & kernel hang on loading
+	nouveaufb
+Date: Mon, 17 Dec 2012 17:11:16 +0000
+Message-ID: <bug-56461-8800-ARdbjCSuwJ@http.bugs.freedesktop.org/>
+References: <bug-56461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: nouveau <Nouveau@lists.freedesktop.org>
-Cc: dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0431074152=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-56461-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi Nouveau enthusiasts,
 
-One week ago was merged the thermal/fan management code for most nvidia 
-cards.
+--===============0431074152==
+Content-Type: multipart/alternative; boundary="1355764276.Dd82e42.32231"; charset="us-ascii"
 
-So far, no major issue arose but we would like to have more testing as 
-soon as possible to deliver a nice and solid support when Linux 3.8 is 
-released.
 
-Thermal management is split into two parts:
+--1355764276.Dd82e42.32231
+Date: Mon, 17 Dec 2012 17:11:16 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-- Temperature monitoring: Making sure your card doesn't overheat
-- Fan management: Driving the fan speed according to the temperature
+https://bugs.freedesktop.org/show_bug.cgi?id=56461
 
-Thermal monitoring should be working on all chipsets that support it 
-(nv43+). However, some cards use an external (i2c) monitoring chip. 
-Because of the limitations of the hwmon interface, we cannot access this 
-information and thus, cannot monitor the temperature of your card 
-ourselves. However, we should be able to load the right kernel module so 
-as you can monitor it for us.
+--- Comment #28 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+BTW, did you remember to cherry-pick 3bb076af2ae571a48465972d5747175cec3564cd
+(upstream version of the fix from comment 5) during bisection?
 
-As for fan management, the situation is the same as thermal mangement 
-with the additional limitation that nvc0+ (Fermi+) chipsets are not 
-supported for fan management. The reason is that nvc0+ chipset use an 
-internal engine (PDAEMON) that is already set up by the vbios to do fan 
-management and we didn't feel like getting rid of it just yet even 
-though some experimental code for its replacement is already available.
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-What we are trying to avoid is:
+--1355764276.Dd82e42.32231
+Date: Mon, 17 Dec 2012 17:11:16 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
-VERY IMPORTANT:
-- No temperature at all while the blob reports one!
-- Inaccurate temperature (we already have a bug report for that on nv4x)
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c28">Comment # 28</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461">bug 56461</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span></b>
+        <pre>BTW, did you remember to cherry-pick 3bb076af2ae571a48465972d5747175cec3564cd
+(upstream version of the fix from <a href="show_bug.cgi?id=56461#c5">comment 5</a>) during bisection?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
 
-IMPORTANT:
-- The fan/card makes a strange noise while driving the fan
-- You manage to stop the fan without fiddling with pwm_min
-- Non-linear fan speed with PWM value
+--1355764276.Dd82e42.32231--
 
-Please report if one of these issues occur. If you experience something 
-strange that isn't on the list, please inform us too :)
+--===============0431074152==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Complete documentation for thermal management is available at 
-/Documentation/thermal/nouveau_thermal 
-(http://cgit.freedesktop.org/nouveau/linux-2.6/tree/Documentation/thermal/nouveau_thermal).
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
 
-Looking forward to your feedback!
-
-Cheers,
-
-Martin (AKA mupuf)
+--===============0431074152==--
