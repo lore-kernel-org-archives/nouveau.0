@@ -1,88 +1,72 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58261] [NV34] Display all whited out
-Date: Sun, 16 Dec 2012 22:50:39 +0000
-Message-ID: <bug-58261-8800-REghXwiwnc@http.bugs.freedesktop.org/>
-References: <bug-58261-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres@free.fr>
+Subject: Request for nv40-c0 testing thermal/fan management
+Date: Mon, 17 Dec 2012 03:36:16 +0100
+Message-ID: <50CE8520.1010500@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0285647649=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58261-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: nouveau <Nouveau@lists.freedesktop.org>
+Cc: dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+Hi Nouveau enthusiasts,
 
---===============0285647649==
-Content-Type: multipart/alternative; boundary="1355698239.7C6be12.21373"; charset="us-ascii"
+One week ago was merged the thermal/fan management code for most nvidia 
+cards.
 
+So far, no major issue arose but we would like to have more testing as 
+soon as possible to deliver a nice and solid support when Linux 3.8 is 
+released.
 
---1355698239.7C6be12.21373
-Date: Sun, 16 Dec 2012 22:50:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Thermal management is split into two parts:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58261
+- Temperature monitoring: Making sure your card doesn't overheat
+- Fan management: Driving the fan speed according to the temperature
 
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Can you post your dmesg output with the messed up display?
+Thermal monitoring should be working on all chipsets that support it 
+(nv43+). However, some cards use an external (i2c) monitoring chip. 
+Because of the limitations of the hwmon interface, we cannot access this 
+information and thus, cannot monitor the temperature of your card 
+ourselves. However, we should be able to load the right kernel module so 
+as you can monitor it for us.
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+As for fan management, the situation is the same as thermal mangement 
+with the additional limitation that nvc0+ (Fermi+) chipsets are not 
+supported for fan management. The reason is that nvc0+ chipset use an 
+internal engine (PDAEMON) that is already set up by the vbios to do fan 
+management and we didn't feel like getting rid of it just yet even 
+though some experimental code for its replacement is already available.
 
---1355698239.7C6be12.21373
-Date: Sun, 16 Dec 2012 22:50:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+What we are trying to avoid is:
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV34] Display all whited out"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58261#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV34] Display all whited out"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58261">bug 58261</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>Can you post your dmesg output with the messed up display?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+VERY IMPORTANT:
+- No temperature at all while the blob reports one!
+- Inaccurate temperature (we already have a bug report for that on nv4x)
 
---1355698239.7C6be12.21373--
+IMPORTANT:
+- The fan/card makes a strange noise while driving the fan
+- You manage to stop the fan without fiddling with pwm_min
+- Non-linear fan speed with PWM value
 
---===============0285647649==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Please report if one of these issues occur. If you experience something 
+strange that isn't on the list, please inform us too :)
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+Complete documentation for thermal management is available at 
+/Documentation/thermal/nouveau_thermal 
+(http://cgit.freedesktop.org/nouveau/linux-2.6/tree/Documentation/thermal/nouveau_thermal).
 
---===============0285647649==--
+Looking forward to your feedback!
+
+Cheers,
+
+Martin (AKA mupuf)
