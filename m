@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58428] X crashes when running opengl application
  after reclocking nouveau driver to use highest speed
-Date: Mon, 17 Dec 2012 19:37:28 +0000
-Message-ID: <bug-58428-8800-XZ2GMmV8Z6@http.bugs.freedesktop.org/>
+Date: Mon, 17 Dec 2012 19:38:13 +0000
+Message-ID: <bug-58428-8800-vNx1BBSrcg@http.bugs.freedesktop.org/>
 References: <bug-58428-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2056261582=="
+Content-Type: multipart/mixed; boundary="===============0869882630=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58428-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2056261582==
-Content-Type: multipart/alternative; boundary="1355773048.ad7A1.22201"; charset="us-ascii"
+--===============0869882630==
+Content-Type: multipart/alternative; boundary="1355773093.c7B0bE1.22323"; charset="us-ascii"
 
 
---1355773048.ad7A1.22201
-Date: Mon, 17 Dec 2012 19:37:28 +0000
+--1355773093.c7B0bE1.22323
+Date: Mon, 17 Dec 2012 19:38:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,23 +36,20 @@ Amadeusz <amade-dvG7DYx+7LWsTnJN9+BGXg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #71678|0                           |1
+  Attachment #71679|0                           |1
         is obsolete|                            |
 
---- Comment #5 from Amadeusz <amade-dvG7DYx+7LWsTnJN9+BGXg@public.gmane.org> ---
-Created attachment 71684
-  --> https://bugs.freedesktop.org/attachment.cgi?id=71684&action=edit
-X log from vanilla kernel
-
-Just noticed that for whatever reason my bootloader decided that if it can't
-load kernel it will just load another one... vanilla for real this time
+--- Comment #6 from Amadeusz <amade-dvG7DYx+7LWsTnJN9+BGXg@public.gmane.org> ---
+Created attachment 71685
+  --> https://bugs.freedesktop.org/attachment.cgi?id=71685&action=edit
+dmesg | grep nouveau from vanilla kernel
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1355773048.ad7A1.22201
-Date: Mon, 17 Dec 2012 19:37:28 +0000
+--1355773093.c7B0bE1.22323
+Date: Mon, 17 Dec 2012 19:38:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -75,7 +72,7 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #71678 is obsolete</td>
+           <td style="text-align:right;">Attachment #71679 is obsolete</td>
            <td>
                &nbsp;
            </td>
@@ -87,18 +84,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - X crashes when running opengl application after reclocking nouveau driver to use highest speed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58428#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58428#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - X crashes when running opengl application after reclocking nouveau driver to use highest speed"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58428">bug 58428</a>
               from <span class="vcard"><a class="email" href="mailto:amade&#64;asmblr.net" title="Amadeusz &lt;amade&#64;asmblr.net&gt;"> <span class="fn">Amadeusz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=71684" name="attach_71684" title="X log from vanilla kernel">attachment 71684</a> <a href="attachment.cgi?id=71684&amp;action=edit" title="X log from vanilla kernel">[details]</a></span>
-X log from vanilla kernel
-
-Just noticed that for whatever reason my bootloader decided that if it can't
-load kernel it will just load another one... vanilla for real this time</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=71685" name="attach_71685" title="dmesg | grep nouveau from vanilla kernel">attachment 71685</a> <a href="attachment.cgi?id=71685&amp;action=edit" title="dmesg | grep nouveau from vanilla kernel">[details]</a></span>
+dmesg | grep nouveau from vanilla kernel</pre>
         </div>
       </p>
       <hr>
@@ -110,9 +104,9 @@ load kernel it will just load another one... vanilla for real this time</pre>
     </body>
 </html>
 
---1355773048.ad7A1.22201--
+--1355773093.c7B0bE1.22323--
 
---===============2056261582==
+--===============0869882630==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +117,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2056261582==--
+--===============0869882630==--
