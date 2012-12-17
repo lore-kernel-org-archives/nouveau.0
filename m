@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58428] X crashes when running opengl application
  after reclocking nouveau driver to use highest speed
-Date: Mon, 17 Dec 2012 19:19:14 +0000
-Message-ID: <bug-58428-8800-lmi2eKPQjl@http.bugs.freedesktop.org/>
+Date: Mon, 17 Dec 2012 19:37:28 +0000
+Message-ID: <bug-58428-8800-XZ2GMmV8Z6@http.bugs.freedesktop.org/>
 References: <bug-58428-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0108668682=="
+Content-Type: multipart/mixed; boundary="===============2056261582=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58428-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0108668682==
-Content-Type: multipart/alternative; boundary="1355771954.a13d1.19391"; charset="us-ascii"
+--===============2056261582==
+Content-Type: multipart/alternative; boundary="1355773048.ad7A1.22201"; charset="us-ascii"
 
 
---1355771954.a13d1.19391
-Date: Mon, 17 Dec 2012 19:19:14 +0000
+--1355773048.ad7A1.22201
+Date: Mon, 17 Dec 2012 19:37:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58428
 
---- Comment #4 from Amadeusz <amade-dvG7DYx+7LWsTnJN9+BGXg@public.gmane.org> ---
-Created attachment 71681
-  --> https://bugs.freedesktop.org/attachment.cgi?id=71681&action=edit
-dmesg | grep nouveau from hardened kernel
+Amadeusz <amade-dvG7DYx+7LWsTnJN9+BGXg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #71678|0                           |1
+        is obsolete|                            |
+
+--- Comment #5 from Amadeusz <amade-dvG7DYx+7LWsTnJN9+BGXg@public.gmane.org> ---
+Created attachment 71684
+  --> https://bugs.freedesktop.org/attachment.cgi?id=71684&action=edit
+X log from vanilla kernel
+
+Just noticed that for whatever reason my bootloader decided that if it can't
+load kernel it will just load another one... vanilla for real this time
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1355771954.a13d1.19391
-Date: Mon, 17 Dec 2012 19:19:14 +0000
+--1355773048.ad7A1.22201
+Date: Mon, 17 Dec 2012 19:37:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,21 +60,45 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:amade&#64;asmblr.net" title="Amadeusz &lt;amade&#64;asmblr.net&gt;"> <span class="fn">Amadeusz</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - X crashes when running opengl application after reclocking nouveau driver to use highest speed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58428">bug 58428</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #71678 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - X crashes when running opengl application after reclocking nouveau driver to use highest speed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58428#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58428#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - X crashes when running opengl application after reclocking nouveau driver to use highest speed"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58428">bug 58428</a>
               from <span class="vcard"><a class="email" href="mailto:amade&#64;asmblr.net" title="Amadeusz &lt;amade&#64;asmblr.net&gt;"> <span class="fn">Amadeusz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=71681" name="attach_71681" title="dmesg | grep nouveau from hardened kernel">attachment 71681</a> <a href="attachment.cgi?id=71681&amp;action=edit" title="dmesg | grep nouveau from hardened kernel">[details]</a></span>
-dmesg | grep nouveau from hardened kernel</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=71684" name="attach_71684" title="X log from vanilla kernel">attachment 71684</a> <a href="attachment.cgi?id=71684&amp;action=edit" title="X log from vanilla kernel">[details]</a></span>
+X log from vanilla kernel
+
+Just noticed that for whatever reason my bootloader decided that if it can't
+load kernel it will just load another one... vanilla for real this time</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +110,9 @@ dmesg | grep nouveau from hardened kernel</pre>
     </body>
 </html>
 
---1355771954.a13d1.19391--
+--1355773048.ad7A1.22201--
 
---===============0108668682==
+--===============2056261582==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +123,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0108668682==--
+--===============2056261582==--
