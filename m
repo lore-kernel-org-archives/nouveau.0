@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58428] X crashes when running opengl application
  after reclocking nouveau driver to use highest speed
-Date: Mon, 17 Dec 2012 19:17:42 +0000
-Message-ID: <bug-58428-8800-Vw7QPr7pAO@http.bugs.freedesktop.org/>
+Date: Mon, 17 Dec 2012 19:18:40 +0000
+Message-ID: <bug-58428-8800-npP3BTsWdd@http.bugs.freedesktop.org/>
 References: <bug-58428-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2022108370=="
+Content-Type: multipart/mixed; boundary="===============1670509228=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58428-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2022108370==
-Content-Type: multipart/alternative; boundary="1355771862.cf4C1.19177"; charset="us-ascii"
+--===============1670509228==
+Content-Type: multipart/alternative; boundary="1355771920.2B8Cd31.19319"; charset="us-ascii"
 
 
---1355771862.cf4C1.19177
-Date: Mon, 17 Dec 2012 19:17:42 +0000
+--1355771920.2B8Cd31.19319
+Date: Mon, 17 Dec 2012 19:18:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58428
 
---- Comment #2 from Amadeusz <amade-dvG7DYx+7LWsTnJN9+BGXg@public.gmane.org> ---
-Created attachment 71679
-  --> https://bugs.freedesktop.org/attachment.cgi?id=71679&action=edit
-dmesg | grep nouveau from vanilla kernel
+--- Comment #3 from Amadeusz <amade-dvG7DYx+7LWsTnJN9+BGXg@public.gmane.org> ---
+Created attachment 71680
+  --> https://bugs.freedesktop.org/attachment.cgi?id=71680&action=edit
+X log from hardened kernel
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1355771862.cf4C1.19177
-Date: Mon, 17 Dec 2012 19:17:42 +0000
+--1355771920.2B8Cd31.19319
+Date: Mon, 17 Dec 2012 19:18:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - X crashes when running opengl application after reclocking nouveau driver to use highest speed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58428#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58428#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - X crashes when running opengl application after reclocking nouveau driver to use highest speed"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58428">bug 58428</a>
               from <span class="vcard"><a class="email" href="mailto:amade&#64;asmblr.net" title="Amadeusz &lt;amade&#64;asmblr.net&gt;"> <span class="fn">Amadeusz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=71679" name="attach_71679" title="dmesg | grep nouveau from vanilla kernel">attachment 71679</a> <a href="attachment.cgi?id=71679&amp;action=edit" title="dmesg | grep nouveau from vanilla kernel">[details]</a></span>
-dmesg | grep nouveau from vanilla kernel</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=71680" name="attach_71680" title="X log from hardened kernel">attachment 71680</a> <a href="attachment.cgi?id=71680&amp;action=edit" title="X log from hardened kernel">[details]</a></span>
+X log from hardened kernel</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ dmesg | grep nouveau from vanilla kernel</pre>
     </body>
 </html>
 
---1355771862.cf4C1.19177--
+--1355771920.2B8Cd31.19319--
 
---===============2022108370==
+--===============1670509228==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2022108370==--
+--===============1670509228==--
