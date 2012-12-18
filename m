@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58378] Distorted graphics on NVIDIA GeForce 8400M G
- after upgrade the kernel to 3.7.0 version
-Date: Tue, 18 Dec 2012 18:46:11 +0000
-Message-ID: <bug-58378-8800-0wnkJc9QLW@http.bugs.freedesktop.org/>
-References: <bug-58378-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57350] [nouveau,
+ linux-3.7-rc] Broken cursor and kernel log swamped with trapped
+ reads/writes from BAR/PFIFO_READ/FB
+Date: Tue, 18 Dec 2012 18:58:31 +0000
+Message-ID: <bug-57350-8800-gx0OZOI9RS@http.bugs.freedesktop.org/>
+References: <bug-57350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1914788029=="
+Content-Type: multipart/mixed; boundary="===============1622978795=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +22,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1914788029==
-Content-Type: multipart/alternative; boundary="1355856371.daeB82534.9885"; charset="us-ascii"
+--===============1622978795==
+Content-Type: multipart/alternative; boundary="1355857111.B6EdCB5.12176"; charset="us-ascii"
 
 
---1355856371.daeB82534.9885
-Date: Tue, 18 Dec 2012 18:46:11 +0000
+--1355857111.B6EdCB5.12176
+Date: Tue, 18 Dec 2012 18:58:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58378
+https://bugs.freedesktop.org/show_bug.cgi?id=57350
 
 Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
@@ -40,14 +41,15 @@ Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
                    |.org                        |rg
          QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
             Product|DRI                         |xorg
+            Version|XOrg CVS                    |unspecified
           Component|DRM/other                   |Driver/nouveau
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1355856371.daeB82534.9885
-Date: Tue, 18 Dec 2012 18:46:11 +0000
+--1355857111.B6EdCB5.12176
+Date: Tue, 18 Dec 2012 18:58:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,8 +61,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
+   title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350">bug 57350</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -95,6 +97,14 @@ Content-Type: text/html; charset="UTF-8"
          </tr>
 
          <tr>
+           <td style="text-align:right;">Version</td>
+           <td>XOrg CVS
+           </td>
+           <td>unspecified
+           </td>
+         </tr>
+
+         <tr>
            <td style="text-align:right;">Component</td>
            <td>DRM/other
            </td>
@@ -112,9 +122,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1355856371.daeB82534.9885--
+--1355857111.B6EdCB5.12176--
 
---===============1914788029==
+--===============1622978795==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -125,4 +135,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1914788029==--
+--===============1622978795==--
