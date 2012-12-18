@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56461] NV11 black screen & kernel hang on loading
 	nouveaufb
-Date: Tue, 18 Dec 2012 21:52:57 +0000
-Message-ID: <bug-56461-8800-eqewtGhUJl@http.bugs.freedesktop.org/>
+Date: Tue, 18 Dec 2012 21:54:11 +0000
+Message-ID: <bug-56461-8800-XdcYUEQGGu@http.bugs.freedesktop.org/>
 References: <bug-56461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0432876518=="
+Content-Type: multipart/mixed; boundary="===============1317976121=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56461-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,46 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0432876518==
-Content-Type: multipart/alternative; boundary="1355867577.4bc7c5F81.11628"; charset="us-ascii"
+--===============1317976121==
+Content-Type: multipart/alternative; boundary="1355867651.86Bd21.12023"; charset="us-ascii"
 
 
---1355867577.4bc7c5F81.11628
-Date: Tue, 18 Dec 2012 21:52:57 +0000
+--1355867651.86Bd21.12023
+Date: Tue, 18 Dec 2012 21:54:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56461
 
---- Comment #29 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> ---
-I didn't include 3bb076af during this bisect on the basis that it made no
-difference when running nouveau HEAD. I have now retested the problem commit
-cb75d97e and it's parent 70790f4f, both with 3bb076af cherry-picked.
-
-Things just get more complicated... Although the fade-to-black problem hasn't
-changed, including 3bb076af makes the previously working parent commit exhibit
-the 'hsync' problem I described before!
-
-All tests include the dpms-fix patch from comment 19 to prevent the original
-hard-hang problem.
-
-In summary:
-
-1) 70790f4f + dpms-fix             -  works
-2) 70790f4f + 3bb076af + dpms-fix  -  the 'hsync' problem reappears!
-3) cb75d97e + dpms-fix             -  fades to black
-4) cb75d97e + 3bb076af + dpms-fix  -  fades to black
-
-There's quite a bit of difference in the console logs between 70790f4f &
-cb75d97e, but nothing obvious (to me). I'm attaching console logs for cases 1,
-2 & 4.
+--- Comment #30 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> ---
+Created attachment 71755
+  --> https://bugs.freedesktop.org/attachment.cgi?id=71755&action=edit
+console output for working 70790f4f + dpms fix
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1355867577.4bc7c5F81.11628
-Date: Tue, 18 Dec 2012 21:52:57 +0000
+--1355867651.86Bd21.12023
+Date: Tue, 18 Dec 2012 21:54:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,34 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c29">Comment # 29</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c30">Comment # 30</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56461">bug 56461</a>
               from <span class="vcard"><a class="email" href="mailto:chris&#64;edesix.com" title="Chris Paulson-Ellis &lt;chris&#64;edesix.com&gt;"> <span class="fn">Chris Paulson-Ellis</span></a>
 </span></b>
-        <pre>I didn't include 3bb076af during this bisect on the basis that it made no
-difference when running nouveau HEAD. I have now retested the problem commit
-cb75d97e and it's parent 70790f4f, both with 3bb076af cherry-picked.
-
-Things just get more complicated... Although the fade-to-black problem hasn't
-changed, including 3bb076af makes the previously working parent commit exhibit
-the 'hsync' problem I described before!
-
-All tests include the dpms-fix patch from <a href="show_bug.cgi?id=56461#c19">comment 19</a> to prevent the original
-hard-hang problem.
-
-In summary:
-
-1) 70790f4f + dpms-fix             -  works
-2) 70790f4f + 3bb076af + dpms-fix  -  the 'hsync' problem reappears!
-3) cb75d97e + dpms-fix             -  fades to black
-4) cb75d97e + 3bb076af + dpms-fix  -  fades to black
-
-There's quite a bit of difference in the console logs between 70790f4f &amp;
-cb75d97e, but nothing obvious (to me). I'm attaching console logs for cases 1,
-2 &amp; 4.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=71755" name="attach_71755" title="console output for working 70790f4f + dpms fix">attachment 71755</a> <a href="attachment.cgi?id=71755&amp;action=edit" title="console output for working 70790f4f + dpms fix">[details]</a></span>
+console output for working 70790f4f + dpms fix</pre>
         </div>
       </p>
       <hr>
@@ -113,9 +76,9 @@ cb75d97e, but nothing obvious (to me). I'm attaching console logs for cases 1,
     </body>
 </html>
 
---1355867577.4bc7c5F81.11628--
+--1355867651.86Bd21.12023--
 
---===============0432876518==
+--===============1317976121==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -126,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0432876518==--
+--===============1317976121==--
