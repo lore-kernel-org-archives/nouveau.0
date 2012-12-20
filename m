@@ -1,11 +1,11 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: improve reporting of fifo errors
-Date: Thu, 20 Dec 2012 23:37:14 +0100
-Message-ID: <1356043034-25739-7-git-send-email-marcin.slusarz@gmail.com>
+Subject: reproducible CACHE_ERRORS
+Date: Thu, 20 Dec 2012 23:59:27 +0100
+Message-ID: <20121220225927.GA3496@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="OXfL5xGRrasGEqWY"
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,236 +18,104 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Note: bar faults and semaphore errors were previously silently acked.
 
-Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- drivers/gpu/drm/nouveau/core/engine/fifo/nv04.c | 142 ++++++++++++++++++++++--
- drivers/gpu/drm/nouveau/core/engine/fifo/nv04.h |   5 +-
- 2 files changed, 139 insertions(+), 8 deletions(-)
+--OXfL5xGRrasGEqWY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/nv04.c b/drivers/gpu/drm/nouveau/core/engine/fifo/nv04.c
-index e34ab40..9c73bc1 100644
---- a/drivers/gpu/drm/nouveau/core/engine/fifo/nv04.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/fifo/nv04.c
-@@ -25,6 +25,7 @@
- #include <core/os.h>
- #include <core/class.h>
- #include <core/engctx.h>
-+#include <core/enum.h>
- #include <core/namedb.h>
- #include <core/handle.h>
- #include <core/ramht.h>
-@@ -398,6 +399,73 @@ out:
- 	return handled;
- }
- 
-+static struct nouveau_bitfield
-+nv04_cache1_pull0_bits[] = {
-+	{0x00000001, "ACCESS"},
-+	{0x00000010, "HASH_FAILED"},
-+	{0x00000100, "DEVICE_SOFTWARE"},
-+	{0x00001000, "HASH_BUSY"},
-+	{0x00010000, "ACQUIRE_BUSY"},
-+	{}
-+};
-+
-+static struct nouveau_bitfield
-+nv50_cache1_pull0_bits[] = {
-+	{0x00000001, "ACCESS"},
-+	{0x00000010, "HASH_FAILED"},
-+	{0x00000100, "DEVICE_SOFTWARE"},
-+	{0x00001000, "HASH_BUSY"},
-+	{0x00010000, "ACQUIRE_BUSY"},
-+	{0x01000000, "INVALID_ENGINE"},
-+	{}
-+};
-+
-+static const char * const
-+nv11_sem_error_codes[] = {
-+	"NONE", "INVALID_OPERAND", "INVALID_STATE"
-+};
-+
-+static const char * const
-+nv50_sem_error_codes[] = {
-+	"NONE", "ADDRESS_UNALIGNED", "INVALID_STATE",
-+	"ADDRESS_TOO_LARGE", "MEM_FAULT"
-+};
-+
-+static void
-+nv_decode_cache1_pull0(struct nouveau_device *device, u32 reg)
-+{
-+	const char * const *sem_error_codes;
-+	int error_codes_size;
-+	struct nouveau_bitfield *pull0_bits;
-+	u8 sem_error;
-+
-+	pr_cont(" cache1_pull0 0x%08x", reg);
-+
-+	sem_error = (reg & 0x00F00000) >> 20;
-+	reg &= ~0x00F00000;
-+
-+	if (device->card_type == NV_50) {
-+		pull0_bits = nv50_cache1_pull0_bits;
-+		sem_error_codes = nv50_sem_error_codes;
-+		error_codes_size = ARRAY_SIZE(nv50_sem_error_codes);
-+	} else {
-+		pull0_bits = nv04_cache1_pull0_bits;
-+		sem_error_codes = nv11_sem_error_codes;
-+		error_codes_size = ARRAY_SIZE(nv11_sem_error_codes);
-+	}
-+
-+	nouveau_bitfield_print(pull0_bits, reg);
-+
-+	if (sem_error) {
-+		pr_cont(" SEMAPHORE_ERROR=");
-+
-+		if (sem_error < error_codes_size)
-+			pr_cont("%s", sem_error_codes[sem_error]);
-+		else
-+			pr_cont("UNK%d", sem_error);
-+	}
-+}
-+
- static void
- nv04_fifo_cache_error(struct nouveau_device *device,
- 		struct nv04_fifo_priv *priv, u32 chid, u32 get)
-@@ -423,10 +491,16 @@ nv04_fifo_cache_error(struct nouveau_device *device,
- 	if (!nv04_fifo_swmthd(priv, chid, mthd, data)) {
- 		const char *client_name =
- 			nouveau_client_name_for_fifo_chid(&priv->base, chid);
-+		u32 c1p0 = nv_rd32(priv, NV04_PFIFO_CACHE1_PULL0);
- 		nv_error(priv,
--			 "CACHE_ERROR - ch %d [%s] subc %d mthd 0x%04x data 0x%08x\n",
-+			 "CACHE_ERROR - ch %d [%s] subc %d mthd 0x%04x data 0x%08x",
- 			 chid, client_name, (mthd >> 13) & 7, mthd & 0x1ffc,
- 			 data);
-+		nv_decode_cache1_pull0(device, c1p0);
-+		if (c1p0 & 0x00000010) /* HASH_FAILED */
-+			pr_cont(" cache1_hash 0x%08x",
-+				nv_rd32(priv, NV04_PFIFO_CACHE1_HASH));
-+		pr_cont("\n");
- 	}
- 
- 	nv_wr32(priv, NV04_PFIFO_CACHE1_DMA_PUSH, 0);
-@@ -496,6 +570,7 @@ nv04_fifo_intr(struct nouveau_subdev *subdev)
- 	struct nouveau_device *device = nv_device(subdev);
- 	struct nv04_fifo_priv *priv = (void *)subdev;
- 	uint32_t status, reassign;
-+	const char *client_name = NULL;
- 	int cnt = 0;
- 
- 	reassign = nv_rd32(priv, NV03_PFIFO_CACHES) & 1;
-@@ -517,9 +592,19 @@ nv04_fifo_intr(struct nouveau_subdev *subdev)
- 			status &= ~NV_PFIFO_INTR_DMA_PUSHER;
- 		}
- 
-+		if (status)
-+			client_name = nouveau_client_name_for_fifo_chid(
-+					&priv->base, chid);
-+
- 		if (status & NV_PFIFO_INTR_SEMAPHORE) {
- 			uint32_t sem;
- 
-+			nv_error(priv, "SEM_ERROR - ch %d [%s]", chid,
-+				 client_name);
-+			nv_decode_cache1_pull0(device,
-+					nv_rd32(priv, NV04_PFIFO_CACHE1_PULL0));
-+			pr_cont("\n");
-+
- 			status &= ~NV_PFIFO_INTR_SEMAPHORE;
- 			nv_wr32(priv, NV03_PFIFO_INTR_0,
- 				NV_PFIFO_INTR_SEMAPHORE);
-@@ -532,15 +617,56 @@ nv04_fifo_intr(struct nouveau_subdev *subdev)
- 		}
- 
- 		if (device->card_type == NV_50) {
--			if (status & 0x00000010) {
--				status &= ~0x00000010;
--				nv_wr32(priv, 0x002100, 0x00000010);
-+			if (status & NV50_PFIFO_INTR_BAR_FAULT) {
-+				nv_error(priv, "BAR_FAULT ch %d [%s]\n",
-+					 chid, client_name);
-+				status &= ~NV50_PFIFO_INTR_BAR_FAULT;
-+				nv_wr32(priv, 0x002100,
-+					NV50_PFIFO_INTR_BAR_FAULT);
-+			}
-+
-+			if (status & NV50_PFIFO_INTR_PEEPHOLE_FAULT) {
-+				nv_error(priv, "PEEPHOLE_FAULT ch %d [%s]\n",
-+					 chid, client_name);
-+				status &= ~NV50_PFIFO_INTR_PEEPHOLE_FAULT;
-+				nv_wr32(priv, 0x002100,
-+					NV50_PFIFO_INTR_PEEPHOLE_FAULT);
-+			}
-+
-+			if (status & NV50_PFIFO_INTR_PIO_ERROR) {
-+				nv_error(priv, "PIO_ERROR ch %d [%s]\n",
-+					 chid, client_name);
-+				status &= ~NV50_PFIFO_INTR_PIO_ERROR;
-+				nv_wr32(priv, 0x002100,
-+					NV50_PFIFO_INTR_PIO_ERROR);
-+			}
-+		} else if (device->card_type < NV_50) {
-+			if (status & NV_PFIFO_INTR_RUNOUT) {
-+				nv_error(priv, "RUNOUT ch %d [%s]\n",
-+					 chid, client_name);
-+				status &= ~NV_PFIFO_INTR_RUNOUT;
-+				nv_wr32(priv, 0x002100, NV_PFIFO_INTR_RUNOUT);
-+			}
-+
-+			if (status & NV_PFIFO_INTR_RUNOUT_OVERFLOW) {
-+				nv_error(priv, "RUNOUT_OVERFLOW ch %d [%s]\n",
-+					 chid, client_name);
-+				status &= ~NV_PFIFO_INTR_RUNOUT_OVERFLOW;
-+				nv_wr32(priv, 0x002100,
-+					NV_PFIFO_INTR_RUNOUT_OVERFLOW);
-+			}
-+
-+			if (status & NV_PFIFO_INTR_DMA_PTE) {
-+				nv_error(priv, "DMA_PTE ch %d [%s]\n",
-+					 chid, client_name);
-+				status &= ~NV_PFIFO_INTR_DMA_PTE;
-+				nv_wr32(priv, 0x002100, NV_PFIFO_INTR_DMA_PTE);
- 			}
- 		}
- 
- 		if (status) {
--			nv_warn(priv, "unknown intr 0x%08x, ch %d\n",
--				status, chid);
-+			nv_warn(priv, "unknown intr 0x%08x, ch %d [%s]\n",
-+				status, chid, client_name);
- 			nv_wr32(priv, NV03_PFIFO_INTR_0, status);
- 			status = 0;
- 		}
-@@ -549,7 +675,9 @@ nv04_fifo_intr(struct nouveau_subdev *subdev)
- 	}
- 
- 	if (status) {
--		nv_error(priv, "still angry after %d spins, halt\n", cnt);
-+		nv_error(priv,
-+			 "still angry after %d spins (status 0x%08x), halt\n",
-+			 cnt, status);
- 		nv_wr32(priv, 0x002140, 0);
- 		nv_wr32(priv, 0x000140, 0);
- 	}
-diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/nv04.h b/drivers/gpu/drm/nouveau/core/engine/fifo/nv04.h
-index 496a4b4..467e31d 100644
---- a/drivers/gpu/drm/nouveau/core/engine/fifo/nv04.h
-+++ b/drivers/gpu/drm/nouveau/core/engine/fifo/nv04.h
-@@ -10,9 +10,12 @@
- #define NV03_PFIFO_INTR_EN_0                               0x00002140
- #    define NV_PFIFO_INTR_CACHE_ERROR                          (1<<0)
- #    define NV_PFIFO_INTR_RUNOUT                               (1<<4)
-+#    define NV50_PFIFO_INTR_BAR_FAULT                          (1<<4)
-+#    define NV50_PFIFO_INTR_PEEPHOLE_FAULT                     (1<<6)
- #    define NV_PFIFO_INTR_RUNOUT_OVERFLOW                      (1<<8)
-+#    define NV50_PFIFO_INTR_PIO_ERROR                          (1<<8)
- #    define NV_PFIFO_INTR_DMA_PUSHER                          (1<<12)
--#    define NV_PFIFO_INTR_DMA_PT                              (1<<16)
-+#    define NV_PFIFO_INTR_DMA_PTE                             (1<<16)
- #    define NV_PFIFO_INTR_SEMAPHORE                           (1<<20)
- #    define NV_PFIFO_INTR_ACQUIRE_TIMEOUT                     (1<<24)
- #define NV03_PFIFO_RAMHT                                   0x00002210
--- 
-1.8.0.2
+Hi
+
+I found a way to reliably reproduce PFIFO CACHE_ERRORS, but I don't see why.
+
+How to reproduce them:
+1) Run a couple of glxinfo loops - 3 is usually enough.
+   while [ true ]; do nvgl glxinfo >/dev/null 2>/dev/null; done
+2) Run glxgears.
+3) If you can't see it now, resize glxgears window or add more glxinfos.
+Note: you need at least 2 CPUs.
+
+Usually the error looks like this (with a bit improved logging):
+nouveau E[   PFIFO][0000:02:00.0] CACHE_ERROR - ch 6 [glxgears[15559]] subc 0 mthd 0x0060 data 0x8000000f c1p0 0x20000010 HASH_FAILED (unknown bits 0x20000000) c1_hash 0x00000436
+
+What I found so far:
+1) It's triggered by setting of NV11_SUBCHAN_DMA_SEMAPHORE to NvSema
+   (0x8000000f) in nv84_fence_emit. Hw tells us it cannot find ramht entry
+   for NvSema object (NV04_PFIFO_CACHE1_PULL0 == HASH_FAILED, frequently
+   unknown 30th bit is set)
+2) In 95% cases CACHE_ERRORs are triggered on glxgears channel.
+3) RAMHT entry was definitely created and used many times before reporting
+   an error. Next use of NvSema usually does NOT trigger another CACHE_ERROR.
+4) NV04_PFIFO_CACHE1_HASH has the same value as was written to ramht.
+5) I can replace glxinfo loops with application which creates and destroys
+   PGRAPH objects. PCRYPT, PMPEG and SW objects do NOT provoke this bug.
+   (program attached)
+6) There are no interrupts between CACHE_ERRORs, so it's not caused by race in
+   cache_error/software method handling.
+
+Any ideas how to debug it?
+
+Marcin
+
+--OXfL5xGRrasGEqWY
+Content-Type: application/octet-stream
+Content-Disposition: attachment; filename="test_objects.tar.gz"
+Content-Transfer-Encoding: base64
+
+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
+PBZvJuSmbdqmbdpfqv0HMkrQbgAoAAA=
+
+--OXfL5xGRrasGEqWY
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--OXfL5xGRrasGEqWY--
