@@ -1,48 +1,54 @@
-From: Marcin Slusarz <marcin.slusarz@gmail.com>
-Subject: [PATCH] drm/nouveau: fix blank LVDS screen regression on pre-nv50 cards
-Date: Thu, 20 Dec 2012 23:37:13 +0100
-Message-ID: <1356043034-25739-6-git-send-email-marcin.slusarz@gmail.com>
-Return-path: <stable-owner@vger.kernel.org>
-Sender: stable-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau/vm: fix memory corruption when pgt
+	allocation fails
+Date: Thu, 20 Dec 2012 23:37:09 +0100
+Message-ID: <1356043034-25739-2-git-send-email-marcin.slusarz@gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Commit 2a44e499 ("drm/nouveau/disp: introduce proper init/fini, separate
-from create/destroy") started to call display init routines on pre-nv50
-hardware on module load. But LVDS init code sets driver state in a way
-which prevents modesetting code from operating properly.
+If we return freed vm, nouveau_drm_open will happily call nouveau_cli_destroy,
+which will try to free it again.
 
-nv04_display_init calls nv04_dfp_restore, which sets encoder->last_dpms to
-NV_DPMS_CLEARED.
-
-drm_crtc_helper_set_mode
-  nv04_dfp_prepare
-    nv04_lvds_dpms(DRM_MODE_DPMS_OFF)
-
-nv04_lvds_dpms checks last_dpms mode (which is NV_DPMS_CLEARED) and wrongly
-assumes it's a "powersaving mode", the new one (DRM_MODE_DPMS_OFF) is too,
-so it skips calling some crucial lvds scripts.
-
-Reported-by: Chris Paulson-Ellis <chris@edesix.com>
-Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
-Cc: stable@vger.kernel.org
+Reported-by: Peter Hurley <peter-WaGBZJeGNqdsbIuE7sb01tBPR1lH4CV8@public.gmane.org>
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nv04_dfp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/core/subdev/vm/base.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nv04_dfp.c b/drivers/gpu/drm/nouveau/nv04_dfp.c
-index 184cdf8..39ffc07 100644
---- a/drivers/gpu/drm/nouveau/nv04_dfp.c
-+++ b/drivers/gpu/drm/nouveau/nv04_dfp.c
-@@ -505,7 +505,7 @@ static void nv04_dfp_update_backlight(struct drm_encoder *encoder, int mode)
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/vm/base.c b/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
+index 082c11b..77c67fc 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
+@@ -352,7 +352,7 @@ nouveau_vm_create(struct nouveau_vmmgr *vmm, u64 offset, u64 length,
+ 	u64 mm_length = (offset + length) - mm_offset;
+ 	int ret;
  
- static inline bool is_powersaving_dpms(int mode)
- {
--	return (mode != DRM_MODE_DPMS_ON);
-+	return mode != DRM_MODE_DPMS_ON && mode != NV_DPMS_CLEARED;
+-	vm = *pvm = kzalloc(sizeof(*vm), GFP_KERNEL);
++	vm = kzalloc(sizeof(*vm), GFP_KERNEL);
+ 	if (!vm)
+ 		return -ENOMEM;
+ 
+@@ -376,6 +376,8 @@ nouveau_vm_create(struct nouveau_vmmgr *vmm, u64 offset, u64 length,
+ 		return ret;
+ 	}
+ 
++	*pvm = vm;
++
+ 	return 0;
  }
  
- static void nv04_lvds_dpms(struct drm_encoder *encoder, int mode)
 -- 
 1.8.0.2
