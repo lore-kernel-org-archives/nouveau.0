@@ -1,100 +1,48 @@
 From: Marcin Slusarz <marcin.slusarz@gmail.com>
-Subject: [PATCH RESEND] drm/nouveau: add locking around instobj list operations
-Date: Thu, 20 Dec 2012 23:37:08 +0100
-Message-ID: <1356043034-25739-1-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nouveau: fix blank LVDS screen regression on pre-nv50 cards
+Date: Thu, 20 Dec 2012 23:37:13 +0100
+Message-ID: <1356043034-25739-6-git-send-email-marcin.slusarz@gmail.com>
 Return-path: <stable-owner@vger.kernel.org>
 Sender: stable-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org
 Cc: stable@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Fixes memory corruptions, oopses, etc. when multiple gpuobjs are
-simultaneously created or destroyed.
+Commit 2a44e499 ("drm/nouveau/disp: introduce proper init/fini, separate
+from create/destroy") started to call display init routines on pre-nv50
+hardware on module load. But LVDS init code sets driver state in a way
+which prevents modesetting code from operating properly.
 
+nv04_display_init calls nv04_dfp_restore, which sets encoder->last_dpms to
+NV_DPMS_CLEARED.
+
+drm_crtc_helper_set_mode
+  nv04_dfp_prepare
+    nv04_lvds_dpms(DRM_MODE_DPMS_OFF)
+
+nv04_lvds_dpms checks last_dpms mode (which is NV_DPMS_CLEARED) and wrongly
+assumes it's a "powersaving mode", the new one (DRM_MODE_DPMS_OFF) is too,
+so it skips calling some crucial lvds scripts.
+
+Reported-by: Chris Paulson-Ellis <chris@edesix.com>
 Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
 Cc: stable@vger.kernel.org
 ---
- drivers/gpu/drm/nouveau/core/subdev/instmem/base.c | 35 +++++++++++++++++-----
- 1 file changed, 27 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/nouveau/nv04_dfp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/instmem/base.c b/drivers/gpu/drm/nouveau/core/subdev/instmem/base.c
-index 1188227..6565f3d 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/instmem/base.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/instmem/base.c
-@@ -40,15 +40,21 @@ nouveau_instobj_create_(struct nouveau_object *parent,
- 	if (ret)
- 		return ret;
+diff --git a/drivers/gpu/drm/nouveau/nv04_dfp.c b/drivers/gpu/drm/nouveau/nv04_dfp.c
+index 184cdf8..39ffc07 100644
+--- a/drivers/gpu/drm/nouveau/nv04_dfp.c
++++ b/drivers/gpu/drm/nouveau/nv04_dfp.c
+@@ -505,7 +505,7 @@ static void nv04_dfp_update_backlight(struct drm_encoder *encoder, int mode)
  
-+	mutex_lock(&imem->base.mutex);
- 	list_add(&iobj->head, &imem->list);
-+	mutex_unlock(&imem->base.mutex);
- 	return 0;
- }
- 
- void
- nouveau_instobj_destroy(struct nouveau_instobj *iobj)
+ static inline bool is_powersaving_dpms(int mode)
  {
--	if (iobj->head.prev)
--		list_del(&iobj->head);
-+	struct nouveau_subdev *subdev = nv_subdev(iobj->base.engine);
-+
-+	mutex_lock(&subdev->mutex);
-+	list_del(&iobj->head);
-+	mutex_unlock(&subdev->mutex);
-+
- 	return nouveau_object_destroy(&iobj->base);
+-	return (mode != DRM_MODE_DPMS_ON);
++	return mode != DRM_MODE_DPMS_ON && mode != NV_DPMS_CLEARED;
  }
  
-@@ -88,6 +94,8 @@ nouveau_instmem_init(struct nouveau_instmem *imem)
- 	if (ret)
- 		return ret;
- 
-+	mutex_lock(&imem->base.mutex);
-+
- 	list_for_each_entry(iobj, &imem->list, head) {
- 		if (iobj->suspend) {
- 			for (i = 0; i < iobj->size; i += 4)
-@@ -97,6 +105,8 @@ nouveau_instmem_init(struct nouveau_instmem *imem)
- 		}
- 	}
- 
-+	mutex_unlock(&imem->base.mutex);
-+
- 	return 0;
- }
- 
-@@ -104,17 +114,26 @@ int
- nouveau_instmem_fini(struct nouveau_instmem *imem, bool suspend)
- {
- 	struct nouveau_instobj *iobj;
--	int i;
-+	int i, ret = 0;
- 
- 	if (suspend) {
-+		mutex_lock(&imem->base.mutex);
-+
- 		list_for_each_entry(iobj, &imem->list, head) {
- 			iobj->suspend = vmalloc(iobj->size);
--			if (iobj->suspend) {
--				for (i = 0; i < iobj->size; i += 4)
--					iobj->suspend[i / 4] = nv_ro32(iobj, i);
--			} else
--				return -ENOMEM;
-+			if (!iobj->suspend) {
-+				ret = -ENOMEM;
-+				break;
-+			}
-+
-+			for (i = 0; i < iobj->size; i += 4)
-+				iobj->suspend[i / 4] = nv_ro32(iobj, i);
- 		}
-+
-+		mutex_unlock(&imem->base.mutex);
-+
-+		if (ret)
-+			return ret;
- 	}
- 
- 	return nouveau_subdev_fini(&imem->base, suspend);
+ static void nv04_lvds_dpms(struct drm_encoder *encoder, int mode)
 -- 
 1.8.0.2
