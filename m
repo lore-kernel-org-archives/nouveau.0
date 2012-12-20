@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58378] Distorted graphics on NVIDIA GeForce 8400M G
- after upgrade the kernel to 3.7.0 version
-Date: Wed, 19 Dec 2012 10:23:48 +0000
-Message-ID: <bug-58378-8800-UVGzfZjbCq@http.bugs.freedesktop.org/>
-References: <bug-58378-8800@http.bugs.freedesktop.org/>
+From: martin.peres-GANU6spQydw@public.gmane.org
+Subject: [PATCH] drm/nouveau/fan: handle the cases where we are
+	outside of the linear zone
+Date: Thu, 20 Dec 2012 01:32:09 +0100
+Message-ID: <1355963529-12734-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1052057424=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,72 +17,31 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1052057424==
-Content-Type: multipart/alternative; boundary="1355912628.07AADC762.15753"; charset="us-ascii"
-
-
---1355912628.07AADC762.15753
-Date: Wed, 19 Dec 2012 10:23:48 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=58378
-
---- Comment #7 from Henrique Dias <henrique.ribeiro.dias-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The problem persist with 3.7.1 kernel.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1355912628.07AADC762.15753
-Date: Wed, 19 Dec 2012 10:23:48 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:henrique.ribeiro.dias&#64;gmail.com" title="Henrique Dias &lt;henrique.ribeiro.dias&#64;gmail.com&gt;"> <span class="fn">Henrique Dias</span></a>
-</span></b>
-        <pre>The problem persist with 3.7.1 kernel.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1355912628.07AADC762.15753--
-
---===============1052057424==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1052057424==--
+RnJvbTogTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAbGFicmkuZnI+CgpUaGlzIGZpeGVzIGEg
+YnVnIHdoZXJlLCB3aGVuIHRlbXBlcmF0dXJlIGlzIG91dHNpZGUgb2YgdGhlIGxpbmVhciByYW5n
+ZSwgZmFuCnB3bSB3b3VsZCBiZSBvdXRzaWRlIG9mIHRoZSBhbGxvd2VkIHJhbmdlIChbMCwgMTAw
+XSkgYW5kIGNvdWxkIGdldCBuZWdhdGl2ZSBpbgpzb21lIGNhc2VzLgoKSXQgc2VlbXMgbGlrZSBh
+IHJlZ3Jlc3Npb24gdGhhdCBoYXBwZW5lZCB3aGVuIHdlIHJlLXdvcmtlZCB0aGUgZmFuIG1hbmFn
+ZW1lbnQKbG9naWMgYmVmb3JlIG1lcmdpbmcuCgpUZXN0ZWQtYnk6IE96YW4gw4dhxJ9sYXlhbiA8
+b3phbmNhZ0BnbWFpbC5jb20+ClNpZ25lZC1vZmYtYnk6IE1hcnRpbiBQZXJlcyA8bWFydGluLnBl
+cmVzQGxhYnJpLmZyPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvc3ViZGV2L3Ro
+ZXJtL2Jhc2UuYyB8IDcgKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKQoK
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvc3ViZGV2L3RoZXJtL2Jh
+c2UuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvc3ViZGV2L3RoZXJtL2Jhc2UuYwpp
+bmRleCBiMzViNGEyLi4yNWI3ZjZhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9jb3JlL3N1YmRldi90aGVybS9iYXNlLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+Y29yZS9zdWJkZXYvdGhlcm0vYmFzZS5jCkBAIC03MSw2ICs3MSwxMyBAQCBub3V2ZWF1X3RoZXJt
+X3VwZGF0ZV9saW5lYXIoc3RydWN0IG5vdXZlYXVfdGhlcm0gKnRoZXJtKQogCXU4ICB0ZW1wID0g
+dGhlcm0tPnRlbXBfZ2V0KHRoZXJtKTsKIAl1MTYgZHV0eTsKIAorCS8qIGhhbmRsZSB0aGUgbm9u
+LWxpbmVhciBwYXJ0IGZpcnN0ICovCisJaWYgKHRlbXAgPCBsaW5lYXJfbWluX3RlbXApCisJCXJl
+dHVybiBwcml2LT5mYW4tPmJpb3MubWluX2R1dHk7CisJZWxzZSBpZiAodGVtcCA+IGxpbmVhcl9t
+YXhfdGVtcCkKKwkJcmV0dXJuIHByaXYtPmZhbi0+Ymlvcy5tYXhfZHV0eTsKKworCS8qIHdlIGFy
+ZSBpbiB0aGUgbGluZWFyIHpvbmUgKi8KIAlkdXR5ICA9ICh0ZW1wIC0gbGluZWFyX21pbl90ZW1w
+KTsKIAlkdXR5ICo9IChwcml2LT5mYW4tPmJpb3MubWF4X2R1dHkgLSBwcml2LT5mYW4tPmJpb3Mu
+bWluX2R1dHkpOwogCWR1dHkgLz0gKGxpbmVhcl9tYXhfdGVtcCAtIGxpbmVhcl9taW5fdGVtcCk7
+Ci0tIAoxLjguMC4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
