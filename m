@@ -1,244 +1,100 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58556] New: MacBook Pro 5,
- 1 with nVidia 9400m and 9600m, scrambled screen
-Date: Thu, 20 Dec 2012 07:23:51 +0000
-Message-ID: <bug-58556-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0818605020=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: [PATCH RESEND] drm/nouveau: add locking around instobj list operations
+Date: Thu, 20 Dec 2012 23:37:08 +0100
+Message-ID: <1356043034-25739-1-git-send-email-marcin.slusarz@gmail.com>
+Return-path: <stable-owner@vger.kernel.org>
+Sender: stable-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: stable@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
+Fixes memory corruptions, oopses, etc. when multiple gpuobjs are
+simultaneously created or destroyed.
 
---===============0818605020==
-Content-Type: multipart/alternative; boundary="1355988232.077CAb1.29280"; charset="us-ascii"
+Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
+Cc: stable@vger.kernel.org
+---
+ drivers/gpu/drm/nouveau/core/subdev/instmem/base.c | 35 +++++++++++++++++-----
+ 1 file changed, 27 insertions(+), 8 deletions(-)
 
-
---1355988232.077CAb1.29280
-Date: Thu, 20 Dec 2012 07:23:52 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=58556
-
-          Priority: medium
-            Bug ID: 58556
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled
-                    screen
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: major
-    Classification: Unclassified
-                OS: other
-          Reporter: MacGyver031-S0/GAf8tV78@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
-
-System:
-MacBook Pro 15", late 2008 (Core2 duo, 4GB RAM, 500GB HDD)
-nVidia 9600m GT at PCI=02:00.0
-nVidia 9400m at PCI=03:00.0
-
-OS:
-Gentoo Linux, kernel gentoo-sources-3.7.1
-Booting with EFI-Stub (by copying kernel-image to first
-fat-partition/EFI/BOOT/BOOTX86.efi)
-
-Problems:
-- System "crashes" when nouveau is loaded without any parameters. It would be
-nice if one can set individual parameters for each hardware (as in "modprobe
-nouveau -dev-pci=03:00.0 -noaccel=1" and "modprobe nouveau -dev-pci=02:00.0").
-- EFIFB is required to get nouveau to bind panel to graphic-adapter(s). If
-EFIFB is not loaded, nouveau selects no graphic adapter and swiches off display
-on "echo OFF > ...".
-- EFIFB handover seems to be broken: As soon as nouveau loads, screen gets
-scrambled on the graphic adapter which is active. Swiching to the other (e.g.
-"echo DIGD > /sys...") the screen is working fine. Swiching back does not solve
-the problem.
-
-
-Kernel is compiled with EFIFB, otherwise nouveau is unable to bind panel to any
-of the two adapters.
-
-Resolution for kernels < 3.4.9: I made use of gpupwr to disable the discrete
-adapter and then loaded nouveau (without any parameters). The system was
-"programmed" to use 9400m as it starts. This worked quite fine over long time.
-
-Temporary resolution for 3.7.1: Use MacOSX to change the default adapter to the
-one which is "not" desired. Reboot, load nouveau with noaccel=1 (now screen
-gets scrambled), switch to the other device (in my case "echo DIGD >
-/sys/kernel/debug/vgaswitcheroo/switch"). Voila you have a readable screen.
-
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/instmem/base.c b/drivers/gpu/drm/nouveau/core/subdev/instmem/base.c
+index 1188227..6565f3d 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/instmem/base.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/instmem/base.c
+@@ -40,15 +40,21 @@ nouveau_instobj_create_(struct nouveau_object *parent,
+ 	if (ret)
+ 		return ret;
+ 
++	mutex_lock(&imem->base.mutex);
+ 	list_add(&iobj->head, &imem->list);
++	mutex_unlock(&imem->base.mutex);
+ 	return 0;
+ }
+ 
+ void
+ nouveau_instobj_destroy(struct nouveau_instobj *iobj)
+ {
+-	if (iobj->head.prev)
+-		list_del(&iobj->head);
++	struct nouveau_subdev *subdev = nv_subdev(iobj->base.engine);
++
++	mutex_lock(&subdev->mutex);
++	list_del(&iobj->head);
++	mutex_unlock(&subdev->mutex);
++
+ 	return nouveau_object_destroy(&iobj->base);
+ }
+ 
+@@ -88,6 +94,8 @@ nouveau_instmem_init(struct nouveau_instmem *imem)
+ 	if (ret)
+ 		return ret;
+ 
++	mutex_lock(&imem->base.mutex);
++
+ 	list_for_each_entry(iobj, &imem->list, head) {
+ 		if (iobj->suspend) {
+ 			for (i = 0; i < iobj->size; i += 4)
+@@ -97,6 +105,8 @@ nouveau_instmem_init(struct nouveau_instmem *imem)
+ 		}
+ 	}
+ 
++	mutex_unlock(&imem->base.mutex);
++
+ 	return 0;
+ }
+ 
+@@ -104,17 +114,26 @@ int
+ nouveau_instmem_fini(struct nouveau_instmem *imem, bool suspend)
+ {
+ 	struct nouveau_instobj *iobj;
+-	int i;
++	int i, ret = 0;
+ 
+ 	if (suspend) {
++		mutex_lock(&imem->base.mutex);
++
+ 		list_for_each_entry(iobj, &imem->list, head) {
+ 			iobj->suspend = vmalloc(iobj->size);
+-			if (iobj->suspend) {
+-				for (i = 0; i < iobj->size; i += 4)
+-					iobj->suspend[i / 4] = nv_ro32(iobj, i);
+-			} else
+-				return -ENOMEM;
++			if (!iobj->suspend) {
++				ret = -ENOMEM;
++				break;
++			}
++
++			for (i = 0; i < iobj->size; i += 4)
++				iobj->suspend[i / 4] = nv_ro32(iobj, i);
+ 		}
++
++		mutex_unlock(&imem->base.mutex);
++
++		if (ret)
++			return ret;
+ 	}
+ 
+ 	return nouveau_subdev_fini(&imem->base, suspend);
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1355988232.077CAb1.29280
-Date: Thu, 20 Dec 2012 07:23:52 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">58556</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>MacGyver031&#64;web.de
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>System:
-MacBook Pro 15&quot;, late 2008 (Core2 duo, 4GB RAM, 500GB HDD)
-nVidia 9600m GT at PCI=02:00.0
-nVidia 9400m at PCI=03:00.0
-
-OS:
-Gentoo Linux, kernel gentoo-sources-3.7.1
-Booting with EFI-Stub (by copying kernel-image to first
-fat-partition/EFI/BOOT/BOOTX86.efi)
-
-Problems:
-- System &quot;crashes&quot; when nouveau is loaded without any parameters. It would be
-nice if one can set individual parameters for each hardware (as in &quot;modprobe
-nouveau -dev-pci=03:00.0 -noaccel=1&quot; and &quot;modprobe nouveau -dev-pci=02:00.0&quot;).
-- EFIFB is required to get nouveau to bind panel to graphic-adapter(s). If
-EFIFB is not loaded, nouveau selects no graphic adapter and swiches off display
-on &quot;echo OFF &gt; ...&quot;.
-- EFIFB handover seems to be broken: As soon as nouveau loads, screen gets
-scrambled on the graphic adapter which is active. Swiching to the other (e.g.
-&quot;echo DIGD &gt; /sys...&quot;) the screen is working fine. Swiching back does not solve
-the problem.
-
-
-Kernel is compiled with EFIFB, otherwise nouveau is unable to bind panel to any
-of the two adapters.
-
-Resolution for kernels &lt; 3.4.9: I made use of gpupwr to disable the discrete
-adapter and then loaded nouveau (without any parameters). The system was
-&quot;programmed&quot; to use 9400m as it starts. This worked quite fine over long time.
-
-Temporary resolution for 3.7.1: Use MacOSX to change the default adapter to the
-one which is &quot;not&quot; desired. Reboot, load nouveau with noaccel=1 (now screen
-gets scrambled), switch to the other device (in my case &quot;echo DIGD &gt;
-/sys/kernel/debug/vgaswitcheroo/switch&quot;). Voila you have a readable screen.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1355988232.077CAb1.29280--
-
---===============0818605020==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0818605020==--
+1.8.0.2
