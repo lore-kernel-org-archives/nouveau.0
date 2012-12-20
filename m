@@ -1,8 +1,7 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: fix nouveau_client allocation
-	failure path
-Date: Thu, 20 Dec 2012 23:37:11 +0100
-Message-ID: <1356043034-25739-4-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nouveau: fix ramht wraparound
+Date: Thu, 20 Dec 2012 23:37:12 +0100
+Message-ID: <1356043034-25739-5-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -17,69 +16,30 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Depending on the point of failure, freed object would be returned
-or memory leak would happen.
+When hash collision occurs and it's near ramht object boundary, we could
+read and possibly overwrite some memory after ramht object.
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 ---
- drivers/gpu/drm/nouveau/core/core/client.c         | 4 +---
- drivers/gpu/drm/nouveau/core/include/core/client.h | 3 +++
- drivers/gpu/drm/nouveau/nouveau_drm.c              | 7 ++++++-
- 3 files changed, 10 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/nouveau/core/core/ramht.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/core/client.c b/drivers/gpu/drm/nouveau/core/core/client.c
-index 762e4fc..295c221 100644
---- a/drivers/gpu/drm/nouveau/core/core/client.c
-+++ b/drivers/gpu/drm/nouveau/core/core/client.c
-@@ -66,10 +66,8 @@ nouveau_client_create_(const char *name, u64 devname, const char *cfg,
+diff --git a/drivers/gpu/drm/nouveau/core/core/ramht.c b/drivers/gpu/drm/nouveau/core/core/ramht.c
+index 86a6404..6da314c 100644
+--- a/drivers/gpu/drm/nouveau/core/core/ramht.c
++++ b/drivers/gpu/drm/nouveau/core/core/ramht.c
+@@ -59,7 +59,7 @@ nouveau_ramht_insert(struct nouveau_ramht *ramht, int chid,
+ 		}
  
- 	ret = nouveau_handle_create(nv_object(client), ~0, ~0,
- 				    nv_object(client), &client->root);
--	if (ret) {
--		nouveau_namedb_destroy(&client->base);
-+	if (ret)
- 		return ret;
--	}
+ 		co += 8;
+-		if (co >= nv_gpuobj(ramht)->size)
++		if (co + 8 > nv_gpuobj(ramht)->size)
+ 			co = 0;
+ 	} while (co != ho);
  
- 	/* prevent init/fini being called, os in in charge of this */
- 	atomic_set(&nv_object(client)->usecount, 2);
-diff --git a/drivers/gpu/drm/nouveau/core/include/core/client.h b/drivers/gpu/drm/nouveau/core/include/core/client.h
-index b8d0457..c66eac5 100644
---- a/drivers/gpu/drm/nouveau/core/include/core/client.h
-+++ b/drivers/gpu/drm/nouveau/core/include/core/client.h
-@@ -36,6 +36,9 @@ nouveau_client(void *obj)
- 
- int  nouveau_client_create_(const char *name, u64 device, const char *cfg,
- 			    const char *dbg, int, void **);
-+#define nouveau_client_destroy(p)                                              \
-+	nouveau_namedb_destroy(&(p)->base)
-+
- int  nouveau_client_init(struct nouveau_client *);
- int  nouveau_client_fini(struct nouveau_client *, bool suspend);
- const char *nouveau_client_name(void *obj);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index ab85a89..83a38d8 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -84,11 +84,16 @@ nouveau_cli_create(struct pci_dev *pdev, const char *name,
- 	struct nouveau_cli *cli;
- 	int ret;
- 
-+	*pcli = NULL;
- 	ret = nouveau_client_create_(name, nouveau_name(pdev), nouveau_config,
- 				     nouveau_debug, size, pcli);
- 	cli = *pcli;
--	if (ret)
-+	if (ret) {
-+		if (cli)
-+			nouveau_client_destroy(&cli->base);
-+		*pcli = NULL;
- 		return ret;
-+	}
- 
- 	mutex_init(&cli->mutex);
- 	return 0;
 -- 
 1.8.0.2
