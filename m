@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58615] nv43 hangs with direct rendering since 3.7
 	rework
-Date: Fri, 21 Dec 2012 13:14:03 +0000
-Message-ID: <bug-58615-8800-st0Szxibdu@http.bugs.freedesktop.org/>
+Date: Fri, 21 Dec 2012 13:16:29 +0000
+Message-ID: <bug-58615-8800-UI7dnxKiyO@http.bugs.freedesktop.org/>
 References: <bug-58615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1421083597=="
+Content-Type: multipart/mixed; boundary="===============2130387540=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1421083597==
-Content-Type: multipart/alternative; boundary="1356095643.A7CFDe1.19144"; charset="us-ascii"
+--===============2130387540==
+Content-Type: multipart/alternative; boundary="1356095790.cAc17e21.19750"; charset="us-ascii"
 
 
---1356095643.A7CFDe1.19144
-Date: Fri, 21 Dec 2012 13:14:03 +0000
+--1356095790.cAc17e21.19750
+Date: Fri, 21 Dec 2012 13:16:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58615
 
---- Comment #5 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Created attachment 71927
-  --> https://bugs.freedesktop.org/attachment.cgi?id=71927&action=edit
-X log for  affected  kernel
+--- Comment #6 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Created attachment 71928
+  --> https://bugs.freedesktop.org/attachment.cgi?id=71928&action=edit
+dmesg after X  start  and launching gears
+
+Note:  I switched  away  from X's  vt  shortly  after black glxgears window
+appear -  and  captured this dmesg  from  another  vt.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356095643.A7CFDe1.19144
-Date: Fri, 21 Dec 2012 13:14:03 +0000
+--1356095790.cAc17e21.19750
+Date: Fri, 21 Dec 2012 13:16:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +59,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nv43 hangs with direct rendering since 3.7 rework"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58615#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58615#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nv43 hangs with direct rendering since 3.7 rework"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58615">bug 58615</a>
               from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=71927" name="attach_71927" title="X log for  affected  kernel">attachment 71927</a> <a href="attachment.cgi?id=71927&amp;action=edit" title="X log for  affected  kernel">[details]</a></span>
-X log for  affected  kernel</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=71928" name="attach_71928" title="dmesg after X  start  and launching gears">attachment 71928</a> <a href="attachment.cgi?id=71928&amp;action=edit" title="dmesg after X  start  and launching gears">[details]</a></span>
+dmesg after X  start  and launching gears
+
+Note:  I switched  away  from X's  vt  shortly  after black glxgears window
+appear -  and  captured this dmesg  from  another  vt.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +82,9 @@ X log for  affected  kernel</pre>
     </body>
 </html>
 
---1356095643.A7CFDe1.19144--
+--1356095790.cAc17e21.19750--
 
---===============1421083597==
+--===============2130387540==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1421083597==--
+--===============2130387540==--
