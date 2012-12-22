@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40275] DPMS Blank screen turn into white mess
-Date: Sat, 22 Dec 2012 15:44:57 +0000
-Message-ID: <bug-40275-8800-6TYk53VhvD@http.bugs.freedesktop.org/>
+Date: Sat, 22 Dec 2012 15:53:35 +0000
+Message-ID: <bug-40275-8800-NfAYopfveG@http.bugs.freedesktop.org/>
 References: <bug-40275-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0698669027=="
+Content-Type: multipart/mixed; boundary="===============1390280608=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-40275-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0698669027==
-Content-Type: multipart/alternative; boundary="1356191097.4CCa1.29921"; charset="us-ascii"
+--===============1390280608==
+Content-Type: multipart/alternative; boundary="1356191615.2d52A4f1.31040"; charset="us-ascii"
 
 
---1356191097.4CCa1.29921
-Date: Sat, 22 Dec 2012 15:44:57 +0000
+--1356191615.2d52A4f1.31040
+Date: Sat, 22 Dec 2012 15:53:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40275
 
---- Comment #5 from Stefan de Konink <stefan-01bSGNrlLMOzQB+pC5nmwQ@public.gmane.org> ---
-Created attachment 71979
-  --> https://bugs.freedesktop.org/attachment.cgi?id=71979&action=edit
-dmesg with nouveau.debug=debug
+--- Comment #6 from Stefan de Konink <stefan-01bSGNrlLMOzQB+pC5nmwQ@public.gmane.org> ---
+Created attachment 71981
+  --> https://bugs.freedesktop.org/attachment.cgi?id=71981&action=edit
+dmesg with trace, as requested
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356191097.4CCa1.29921
-Date: Sat, 22 Dec 2012 15:44:57 +0000
+--1356191615.2d52A4f1.31040
+Date: Sat, 22 Dec 2012 15:53:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - DPMS Blank screen turn into white mess"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40275#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40275#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - DPMS Blank screen turn into white mess"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=40275">bug 40275</a>
               from <span class="vcard"><a class="email" href="mailto:stefan&#64;konink.de" title="Stefan de Konink &lt;stefan&#64;konink.de&gt;"> <span class="fn">Stefan de Konink</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=71979" name="attach_71979" title="dmesg with nouveau.debug=debug">attachment 71979</a> <a href="attachment.cgi?id=71979&amp;action=edit" title="dmesg with nouveau.debug=debug">[details]</a></span>
-dmesg with nouveau.debug=debug</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=71981" name="attach_71981" title="dmesg with trace, as requested">attachment 71981</a> <a href="attachment.cgi?id=71981&amp;action=edit" title="dmesg with trace, as requested">[details]</a></span>
+dmesg with trace, as requested</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ dmesg with nouveau.debug=debug</pre>
     </body>
 </html>
 
---1356191097.4CCa1.29921--
+--1356191615.2d52A4f1.31040--
 
---===============0698669027==
+--===============1390280608==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0698669027==--
+--===============1390280608==--
