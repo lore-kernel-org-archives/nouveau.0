@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40275] DPMS Blank screen turn into white mess
-Date: Sat, 22 Dec 2012 14:27:57 +0000
-Message-ID: <bug-40275-8800-MyHfHXX5sS@http.bugs.freedesktop.org/>
+Date: Sat, 22 Dec 2012 15:44:57 +0000
+Message-ID: <bug-40275-8800-6TYk53VhvD@http.bugs.freedesktop.org/>
 References: <bug-40275-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1494574015=="
+Content-Type: multipart/mixed; boundary="===============0698669027=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-40275-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1494574015==
-Content-Type: multipart/alternative; boundary="1356186477.feb51.20506"; charset="us-ascii"
+--===============0698669027==
+Content-Type: multipart/alternative; boundary="1356191097.4CCa1.29921"; charset="us-ascii"
 
 
---1356186477.feb51.20506
-Date: Sat, 22 Dec 2012 14:27:57 +0000
+--1356191097.4CCa1.29921
+Date: Sat, 22 Dec 2012 15:44:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40275
 
---- Comment #4 from Stefan de Konink <stefan-01bSGNrlLMOzQB+pC5nmwQ@public.gmane.org> ---
-Created attachment 71974
-  --> https://bugs.freedesktop.org/attachment.cgi?id=71974&action=edit
-Dmesg of Linux 3.6.6
+--- Comment #5 from Stefan de Konink <stefan-01bSGNrlLMOzQB+pC5nmwQ@public.gmane.org> ---
+Created attachment 71979
+  --> https://bugs.freedesktop.org/attachment.cgi?id=71979&action=edit
+dmesg with nouveau.debug=debug
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356186477.feb51.20506
-Date: Sat, 22 Dec 2012 14:27:57 +0000
+--1356191097.4CCa1.29921
+Date: Sat, 22 Dec 2012 15:44:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - DPMS Blank screen turn into white mess"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40275#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40275#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - DPMS Blank screen turn into white mess"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=40275">bug 40275</a>
               from <span class="vcard"><a class="email" href="mailto:stefan&#64;konink.de" title="Stefan de Konink &lt;stefan&#64;konink.de&gt;"> <span class="fn">Stefan de Konink</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=71974" name="attach_71974" title="Dmesg of Linux 3.6.6">attachment 71974</a> <a href="attachment.cgi?id=71974&amp;action=edit" title="Dmesg of Linux 3.6.6">[details]</a></span>
-Dmesg of Linux 3.6.6</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=71979" name="attach_71979" title="dmesg with nouveau.debug=debug">attachment 71979</a> <a href="attachment.cgi?id=71979&amp;action=edit" title="dmesg with nouveau.debug=debug">[details]</a></span>
+dmesg with nouveau.debug=debug</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ Dmesg of Linux 3.6.6</pre>
     </body>
 </html>
 
---1356186477.feb51.20506--
+--1356191097.4CCa1.29921--
 
---===============1494574015==
+--===============0698669027==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1494574015==--
+--===============0698669027==--
