@@ -1,14 +1,12 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: G4 Snowball DPMS 1 fix
-Date: Sat, 22 Dec 2012 18:46:42 +0100
-Message-ID: <20121222174642.GA3109@joi.lan>
-References: <50D5ED01.2030206@konink.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 55980] X Segfault on second screen resize
+Date: Sun, 23 Dec 2012 13:43:01 +0000
+Message-ID: <bug-55980-8800-ti1QBZIgGg@http.bugs.freedesktop.org/>
+References: <bug-55980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0740689826=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <50D5ED01.2030206-01bSGNrlLMOzQB+pC5nmwQ@public.gmane.org>
+In-Reply-To: <bug-55980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,43 +16,177 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Stefan de Konink <stefan-01bSGNrlLMOzQB+pC5nmwQ@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Dec 22, 2012 at 06:25:21PM +0100, Stefan de Konink wrote:
-> Hi,
-> 
-> Since I am a proud owner of a G4 Snowball, and the screen did some
-> strange things in DPMS 1 (blanking), I thought it was a good idea to fix
-> it. With some help from IRC I made the attached patch.
-> 
-> Stefan
 
-> commit 4e2b7e05ceb5afb2f1a0b9e5bfd405bbef11a723
-> Author: Stefan de Konink <stefan-01bSGNrlLMOzQB+pC5nmwQ@public.gmane.org>
-> Date:   Sat Dec 22 18:04:37 2012 +0100
-> 
->     drm/nouveau: Fix DPMS 1 on G4 Snowball, from snow white to coal black.
->     
->     This fixes bug <https://bugs.freedesktop.org/show_bug.cgi?id=40275>
->     
->     Signed-off-by: Stefan de Konink <stefan-01bSGNrlLMOzQB+pC5nmwQ@public.gmane.org>
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nv04_dfp.c b/drivers/gpu/drm/nouveau/nv04_dfp.c
-> index 184cdf8..eb76b69 100644
-> --- a/drivers/gpu/drm/nouveau/nv04_dfp.c
-> +++ b/drivers/gpu/drm/nouveau/nv04_dfp.c
-> @@ -490,8 +490,8 @@ static void nv04_dfp_update_backlight(struct drm_encoder *encoder, int mode)
->  	/* BIOS scripts usually take care of the backlight, thanks
->  	 * Apple for your consistency.
->  	 */
-> -	if (dev->pci_device == 0x0179 || dev->pci_device == 0x0189 ||
-> -	    dev->pci_device == 0x0329) {
-> +	if (dev->pci_device == 0x0174 || dev->pci_device == 0x0179 ||
-> +	    dev->pci_device == 0x0189 || dev->pci_device == 0x0329) {
->  		if (mode == DRM_MODE_DPMS_ON) {
->  			nv_mask(device, NV_PBUS_DEBUG_DUALHEAD_CTL, 0, 1 << 31);
->  			nv_mask(device, NV_PCRTC_GPIO_EXT, 3, 1);
+--===============0740689826==
+Content-Type: multipart/alternative; boundary="1356270181.Efa61.522"; charset="us-ascii"
 
-Reviewed-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+
+--1356270181.Efa61.522
+Date: Sun, 23 Dec 2012 13:43:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=55980
+
+Ge@@ru <geaaru-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Assignee|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
+          Component|Server/Acceleration/EXA     |Driver/nouveau
+
+--- Comment #6 from Ge@@ru <geaaru-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi, i do other test about this problem and I found that problem is relative to
+kernel nouveau driver and not to X.
+
+I test this with different xorg-server versions:
+- 1.12.4,
+- 1.13.0
+- 1.13.1 (current installed version)
+
+and with xf86-video-nouveau:
+
+- 1.0.1
+- 1.0.2
+- 1.0.3
+- 1.0.4
+
+and with different kernel:
+
+- 3.7.0
+- 3.6.8
+- 3.6.4
+- 3.5.7
+- 3.4.24
+- 3.2.35
+- 3.0.17
+
+With my test i see that only with 3.0.17 and 3.2.35 all works fine.
+
+I'm sure that problems is on kernel driver.
+
+Are there big changes between 3.2.35 and > 3.4 for nouveau kernel driver ?
+
+I move this bug again to nouveau/driver but I'm not sure that is right. Sorry
+if is wrong.
+
+Thanks
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1356270181.Efa61.522
+Date: Sun, 23 Dec 2012 13:43:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:geaaru&#64;gmail.com" title="Ge&#64;&#64;ru &lt;geaaru&#64;gmail.com&gt;"> <span class="fn">Ge&#64;&#64;ru</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - X Segfault on second screen resize"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55980">bug 55980</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>xorg-team&#64;lists.x.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>Server/Acceleration/EXA
+           </td>
+           <td>Driver/nouveau
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - X Segfault on second screen resize"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55980#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - X Segfault on second screen resize"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55980">bug 55980</a>
+              from <span class="vcard"><a class="email" href="mailto:geaaru&#64;gmail.com" title="Ge&#64;&#64;ru &lt;geaaru&#64;gmail.com&gt;"> <span class="fn">Ge&#64;&#64;ru</span></a>
+</span></b>
+        <pre>Hi, i do other test about this problem and I found that problem is relative to
+kernel nouveau driver and not to X.
+
+I test this with different xorg-server versions:
+- 1.12.4,
+- 1.13.0
+- 1.13.1 (current installed version)
+
+and with xf86-video-nouveau:
+
+- 1.0.1
+- 1.0.2
+- 1.0.3
+- 1.0.4
+
+and with different kernel:
+
+- 3.7.0
+- 3.6.8
+- 3.6.4
+- 3.5.7
+- 3.4.24
+- 3.2.35
+- 3.0.17
+
+With my test i see that only with 3.0.17 and 3.2.35 all works fine.
+
+I'm sure that problems is on kernel driver.
+
+Are there big changes between 3.2.35 and &gt; 3.4 for nouveau kernel driver ?
+
+I move this bug again to nouveau/driver but I'm not sure that is right. Sorry
+if is wrong.
+
+Thanks</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1356270181.Efa61.522--
+
+--===============0740689826==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0740689826==--
