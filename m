@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55980] X Segfault on second screen resize
-Date: Sun, 23 Dec 2012 13:43:01 +0000
-Message-ID: <bug-55980-8800-ti1QBZIgGg@http.bugs.freedesktop.org/>
-References: <bug-55980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 55258] nouveau failure on resume (reloc wait_idle
+	failed)
+Date: Sun, 23 Dec 2012 21:55:08 +0000
+Message-ID: <bug-55258-8800-U8kfqyfEz7@http.bugs.freedesktop.org/>
+References: <bug-55258-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0740689826=="
+Content-Type: multipart/mixed; boundary="===============1826461231=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-55980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-55258-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,83 +21,100 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0740689826==
-Content-Type: multipart/alternative; boundary="1356270181.Efa61.522"; charset="us-ascii"
+--===============1826461231==
+Content-Type: multipart/alternative; boundary="1356299708.03AFEcF22.1321"; charset="us-ascii"
 
 
---1356270181.Efa61.522
-Date: Sun, 23 Dec 2012 13:43:01 +0000
+--1356299708.03AFEcF22.1321
+Date: Sun, 23 Dec 2012 21:55:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=55980
+https://bugs.freedesktop.org/show_bug.cgi?id=3D55258
 
-Ge@@ru <geaaru-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Rapha=C3=ABl Droz <gibboris-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Assignee|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
-          Component|Server/Acceleration/EXA     |Driver/nouveau
+                 CC|                            |gibboris-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
---- Comment #6 from Ge@@ru <geaaru-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi, i do other test about this problem and I found that problem is relative to
-kernel nouveau driver and not to X.
+--- Comment #1 from Rapha=C3=ABl Droz <gibboris-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Happens here, using a NV34 [GeForce FX 5200] on AMD64
+suspend works, hibernate works using the console (but didn't try several
+attempts yet).
+But when hibernate resumes X is a bit garbled then I'm stuck.
 
-I test this with different xorg-server versions:
-- 1.12.4,
-- 1.13.0
-- 1.13.1 (current installed version)
 
-and with xf86-video-nouveau:
+Dec 23 22:36:47 b1b1 kernel: [  130.943828] EXT4-fs (sda1): re-mounted. Opt=
+s:
+commit=3D0
+Dec 23 22:36:49 b1b1 kernel: [  133.624015] nouveau E[     DRM] reloc wait_=
+idle
+failed: -16
+Dec 23 22:36:49 b1b1 kernel: [  133.624025] nouveau E[     DRM] reloc apply:
+-16
+Dec 23 22:36:49 b1b1 acpid: client connected from 1429[0:0]
+Dec 23 22:36:49 b1b1 acpid: 1 client rule loaded
+Dec 23 22:36:49 b1b1 kernel: [  133.626369] nouveau  [     DRM] index 0
+Dec 23 22:36:49 b1b1 kernel: [  133.663802] nouveau  [     DRM] native mode
+from largest: 1280x1024@75
+Dec 23 22:36:52 b1b1 kernel: [  136.720020] nouveau E[     DRM] reloc wait_=
+idle
+failed: -16
+Dec 23 22:36:52 b1b1 kernel: [  136.720027] nouveau E[     DRM] reloc apply:
+-16
+Dec 23 22:37:01 b1b1 kernel: [  145.725096] nouveau E[     DRM] reloc wait_=
+idle
+failed: -16
+Dec 23 22:37:01 b1b1 kernel: [  145.725109] nouveau E[     DRM] reloc apply:
+-16
+Dec 23 22:37:04 b1b1 kernel: [  148.724012] nouveau E[     DRM] reloc wait_=
+idle
+failed: -16
+Dec 23 22:37:04 b1b1 kernel: [  148.724015] nouveau E[     DRM] reloc apply:
+-16
+Dec 23 22:37:07 b1b1 kernel: [  151.724018] nouveau E[     DRM] reloc wait_=
+idle
+failed: -16
+Dec 23 22:37:07 b1b1 kernel: [  151.724027] nouveau E[     DRM] reloc apply:
+-16
+Dec 23 22:37:08 b1b1 kernel: [  152.467763] SysRq : Emergency Sync
 
-- 1.0.1
-- 1.0.2
-- 1.0.3
-- 1.0.4
+pm_trace wasn't very helpful here (resume *is* successful)
+[    0.807743]   Magic number: 0:455:740
+[    0.807803]   hash matches drivers/base/power/main.c:645
 
-and with different kernel:
+x11-drivers/xf86-video-nouveau 1.0.4
+media-libs/mesa 9.0
 
-- 3.7.0
-- 3.6.8
-- 3.6.4
-- 3.5.7
-- 3.4.24
-- 3.2.35
-- 3.0.17
+maybe related to bug #50121
 
-With my test i see that only with 3.0.17 and 3.2.35 all works fine.
-
-I'm sure that problems is on kernel driver.
-
-Are there big changes between 3.2.35 and > 3.4 for nouveau kernel driver ?
-
-I move this bug again to nouveau/driver but I'm not sure that is right. Sorry
-if is wrong.
-
-Thanks
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356270181.Efa61.522
-Date: Sun, 23 Dec 2012 13:43:01 +0000
+--1356299708.03AFEcF22.1321
+Date: Sun, 23 Dec 2012 21:55:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:geaaru&#64;gmail.com" title="Ge&#64;&#64;ru &lt;geaaru&#64;gmail.com&gt;"> <span class="fn">Ge&#64;&#64;ru</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gibboris&=
+#64;gmail.com" title=3D"Rapha=C3=ABl Droz &lt;gibboris&#64;gmail.com&gt;"> =
+<span class=3D"fn">Rapha=C3=ABl Droz</span></a>
 </span> changed
-              <a class="bz_bug_link 
+              <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - X Segfault on second screen resize"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55980">bug 55980</a>
+   title=3D"NEW --- - nouveau failure on resume (reloc wait_idle failed)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D55258">bug 55258<=
+/a>
         <br>
-             <table border="1" cellspacing="0" cellpadding="8">
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
             <th>What</th>
             <th>Removed</th>
@@ -104,81 +122,97 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>xorg-team&#64;lists.x.org
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Server/Acceleration/EXA
-           </td>
-           <td>Driver/nouveau
+           <td>gibboris&#64;gmail.com
            </td>
          </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - X Segfault on second screen resize"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55980#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - nouveau failure on resume (reloc wait_idle failed)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D55258#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - X Segfault on second screen resize"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55980">bug 55980</a>
-              from <span class="vcard"><a class="email" href="mailto:geaaru&#64;gmail.com" title="Ge&#64;&#64;ru &lt;geaaru&#64;gmail.com&gt;"> <span class="fn">Ge&#64;&#64;ru</span></a>
+   title=3D"NEW --- - nouveau failure on resume (reloc wait_idle failed)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D55258">bug 55258<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+gibboris&#64;gmail.com" title=3D"Rapha=C3=ABl Droz &lt;gibboris&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Rapha=C3=ABl Droz</span></a>
 </span></b>
-        <pre>Hi, i do other test about this problem and I found that problem is relative to
-kernel nouveau driver and not to X.
+        <pre>Happens here, using a NV34 [GeForce FX 5200] on AMD64
+suspend works, hibernate works using the console (but didn't try several
+attempts yet).
+But when hibernate resumes X is a bit garbled then I'm stuck.
 
-I test this with different xorg-server versions:
-- 1.12.4,
-- 1.13.0
-- 1.13.1 (current installed version)
 
-and with xf86-video-nouveau:
+Dec 23 22:36:47 b1b1 kernel: [  130.943828] EXT4-fs (sda1): re-mounted. Opt=
+s:
+commit=3D0
+Dec 23 22:36:49 b1b1 kernel: [  133.624015] nouveau E[     DRM] reloc wait_=
+idle
+failed: -16
+Dec 23 22:36:49 b1b1 kernel: [  133.624025] nouveau E[     DRM] reloc apply:
+-16
+Dec 23 22:36:49 b1b1 acpid: client connected from 1429[0:0]
+Dec 23 22:36:49 b1b1 acpid: 1 client rule loaded
+Dec 23 22:36:49 b1b1 kernel: [  133.626369] nouveau  [     DRM] index 0
+Dec 23 22:36:49 b1b1 kernel: [  133.663802] nouveau  [     DRM] native mode
+from largest: 1280x1024&#64;75
+Dec 23 22:36:52 b1b1 kernel: [  136.720020] nouveau E[     DRM] reloc wait_=
+idle
+failed: -16
+Dec 23 22:36:52 b1b1 kernel: [  136.720027] nouveau E[     DRM] reloc apply:
+-16
+Dec 23 22:37:01 b1b1 kernel: [  145.725096] nouveau E[     DRM] reloc wait_=
+idle
+failed: -16
+Dec 23 22:37:01 b1b1 kernel: [  145.725109] nouveau E[     DRM] reloc apply:
+-16
+Dec 23 22:37:04 b1b1 kernel: [  148.724012] nouveau E[     DRM] reloc wait_=
+idle
+failed: -16
+Dec 23 22:37:04 b1b1 kernel: [  148.724015] nouveau E[     DRM] reloc apply:
+-16
+Dec 23 22:37:07 b1b1 kernel: [  151.724018] nouveau E[     DRM] reloc wait_=
+idle
+failed: -16
+Dec 23 22:37:07 b1b1 kernel: [  151.724027] nouveau E[     DRM] reloc apply:
+-16
+Dec 23 22:37:08 b1b1 kernel: [  152.467763] SysRq : Emergency Sync
 
-- 1.0.1
-- 1.0.2
-- 1.0.3
-- 1.0.4
+pm_trace wasn't very helpful here (resume *is* successful)
+[    0.807743]   Magic number: 0:455:740
+[    0.807803]   hash matches drivers/base/power/main.c:645
 
-and with different kernel:
+x11-drivers/xf86-video-nouveau 1.0.4
+media-libs/mesa 9.0
 
-- 3.7.0
-- 3.6.8
-- 3.6.4
-- 3.5.7
-- 3.4.24
-- 3.2.35
-- 3.0.17
-
-With my test i see that only with 3.0.17 and 3.2.35 all works fine.
-
-I'm sure that problems is on kernel driver.
-
-Are there big changes between 3.2.35 and &gt; 3.4 for nouveau kernel driver ?
-
-I move this bug again to nouveau/driver but I'm not sure that is right. Sorry
-if is wrong.
-
-Thanks</pre>
+maybe related to <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both=
+ fail to resume with commit 'convert to exec engine, and improve channel sy=
+nc'"
+   href=3D"show_bug.cgi?id=3D50121">bug #50121</a></pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1356270181.Efa61.522--
+--1356299708.03AFEcF22.1321--
 
---===============0740689826==
+--===============1826461231==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -189,4 +223,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0740689826==--
+--===============1826461231==--
