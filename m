@@ -1,15 +1,14 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/vm: fix memory corruption when
- pgt allocation fails
-Date: Mon, 24 Dec 2012 21:52:00 +0100
-Message-ID: <20121224205200.GA3127@joi.lan>
-References: <1356043034-25739-2-git-send-email-marcin.slusarz@gmail.com>
+Subject: Re: DRM NOUVEAU: cannot boot with kernel >=3.7
+Date: Mon, 24 Dec 2012 22:03:51 +0100
+Message-ID: <20121224210351.GB3127@joi.lan>
+References: <29887.1356380801@dschgrazlin2.units.it>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <1356043034-25739-2-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <29887.1356380801-kxnQuhtYantLT78x9S+moD0NalFo2+mf@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,42 +18,46 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: balducci-KqplAB4qOuE@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Dec 20, 2012 at 11:37:09PM +0100, Marcin Slusarz wrote:
-> If we return freed vm, nouveau_drm_open will happily call nouveau_cli_destroy,
-> which will try to free it again.
+On Mon, Dec 24, 2012 at 09:26:17PM +0100, balducci-KqplAB4qOuE@public.gmane.org wrote:
+> hello everybody,
 > 
-> Reported-by: Peter Hurley <peter-WaGBZJeGNqdsbIuE7sb01tBPR1lH4CV8@public.gmane.org>
-> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
-
-BTW, this fixes https://bugs.freedesktop.org/show_bug.cgi?id=58087
-
->  drivers/gpu/drm/nouveau/core/subdev/vm/base.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> apologies if I am missing any blatant point; my knowledge about
+> KMS/DRM etc. is very poor, so I am asking for help here (hoping to be
+> at the right place)
 > 
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/vm/base.c b/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
-> index 082c11b..77c67fc 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
-> @@ -352,7 +352,7 @@ nouveau_vm_create(struct nouveau_vmmgr *vmm, u64 offset, u64 length,
->  	u64 mm_length = (offset + length) - mm_offset;
->  	int ret;
->  
-> -	vm = *pvm = kzalloc(sizeof(*vm), GFP_KERNEL);
-> +	vm = kzalloc(sizeof(*vm), GFP_KERNEL);
->  	if (!vm)
->  		return -ENOMEM;
->  
-> @@ -376,6 +376,8 @@ nouveau_vm_create(struct nouveau_vmmgr *vmm, u64 offset, u64 length,
->  		return ret;
->  	}
->  
-> +	*pvm = vm;
-> +
->  	return 0;
->  }
->  
-> --
+> Starting with kernel-3.7 I am not able to boot any more in KMS: as
+> soon as the screen resolution changes in the very early stage of the
+> boot, the machine freezes and the only option I'm left with is to
+> press a physical reset button.
+> 
+> I am on an athlon64 dual core machine and using DRM/NOUVEAU with a
+> NVIDIA GeForce 6200 LE GPU
+> 
+> Here are some facts:
+> 
+> => while kernel-3.7.x gives the problems mentioned above,
+>    kernel-3.6.{8-10} boots just fine (and X11 works nicely)
+> => if it can be of any use: if I reboot from a running 3.6.x kernel
+>    into a 3.7.x, the obtained freezed console screen shows the (somewhat
+>    misplaced) lines which were printed during the shutdown phase of
+>    the reboot process (I can send a screen photo, if needed)
+> => kernel-3.7.x boots just fine on another box (another athlon64 dual core with
+>    a GeForce 6150SE nForce 430 (rev a2) GPU); kernel is 32bit there,
+>    if it matters
+> 
+> I am attaching lspci output and my kernel config below.
+> 
+> I will warmly appreciate any hint and will be more than happy to send
+> in any other information which might be useful
+
+Thanks for reporting.
+
+Please follow instructions from http://nouveau.freedesktop.org/wiki/Bugs and
+open new bug report. You may need to compile nouveau as module to catch full
+kernel log.
+
+Marcin
