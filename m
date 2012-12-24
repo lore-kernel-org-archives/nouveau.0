@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55258] nouveau failure on resume (reloc wait_idle
-	failed)
-Date: Sun, 23 Dec 2012 21:55:08 +0000
-Message-ID: <bug-55258-8800-U8kfqyfEz7@http.bugs.freedesktop.org/>
-References: <bug-55258-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 50121] [Regression] NV34 Fx5200 & NVC3/Quadro 2000M
+ both fail to resume with commit 'convert to exec engine,
+ and improve channel sync'
+Date: Mon, 24 Dec 2012 08:36:25 +0000
+Message-ID: <bug-50121-8800-5H9E93iZjA@http.bugs.freedesktop.org/>
+References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1826461231=="
+Content-Type: multipart/mixed; boundary="===============0178549408=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-55258-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,198 +22,95 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1826461231==
-Content-Type: multipart/alternative; boundary="1356299708.03AFEcF22.1321"; charset="us-ascii"
+--===============0178549408==
+Content-Type: multipart/alternative; boundary="1356338185.17f0de3.16902"; charset="us-ascii"
 
 
---1356299708.03AFEcF22.1321
-Date: Sun, 23 Dec 2012 21:55:08 +0000
+--1356338185.17f0de3.16902
+Date: Mon, 24 Dec 2012 08:36:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D55258
+https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
-Rapha=C3=ABl Droz <gibboris-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #27 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Just tested v3.8-rc1 + nouveau @ 'drm/nouveau/fan: handle the cases where we
+are outside of the linear zone' on this FX5200.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |gibboris-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Especially 'drm/nouveau/bios: cache ramcfg strap on later chipsets' looked
+promising (even though I don't have a recent chipset... there was hope...).
 
---- Comment #1 from Rapha=C3=ABl Droz <gibboris-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Happens here, using a NV34 [GeForce FX 5200] on AMD64
-suspend works, hibernate works using the console (but didn't try several
-attempts yet).
-But when hibernate resumes X is a bit garbled then I'm stuck.
+Things did not regress further. First suspend works most of the time, second
+suspend crashes. Symptoms did change a bit. When resume eventually completes, I
+do not see a frozen/unresponsive desktop but the screen goes black with
+red/green (I don't think i saw any blue) pixels scattered all over it. Density
+was really low, so maybe 200 pixels on the entire screen? These pixels did not
+move or alterate or anything, it was pretty static and boring actually.
 
+But I recommend Michael and francoism to test latest HEAD as the mentioned
+commit might fix your issue's???
 
-Dec 23 22:36:47 b1b1 kernel: [  130.943828] EXT4-fs (sda1): re-mounted. Opt=
-s:
-commit=3D0
-Dec 23 22:36:49 b1b1 kernel: [  133.624015] nouveau E[     DRM] reloc wait_=
-idle
-failed: -16
-Dec 23 22:36:49 b1b1 kernel: [  133.624025] nouveau E[     DRM] reloc apply:
--16
-Dec 23 22:36:49 b1b1 acpid: client connected from 1429[0:0]
-Dec 23 22:36:49 b1b1 acpid: 1 client rule loaded
-Dec 23 22:36:49 b1b1 kernel: [  133.626369] nouveau  [     DRM] index 0
-Dec 23 22:36:49 b1b1 kernel: [  133.663802] nouveau  [     DRM] native mode
-from largest: 1280x1024@75
-Dec 23 22:36:52 b1b1 kernel: [  136.720020] nouveau E[     DRM] reloc wait_=
-idle
-failed: -16
-Dec 23 22:36:52 b1b1 kernel: [  136.720027] nouveau E[     DRM] reloc apply:
--16
-Dec 23 22:37:01 b1b1 kernel: [  145.725096] nouveau E[     DRM] reloc wait_=
-idle
-failed: -16
-Dec 23 22:37:01 b1b1 kernel: [  145.725109] nouveau E[     DRM] reloc apply:
--16
-Dec 23 22:37:04 b1b1 kernel: [  148.724012] nouveau E[     DRM] reloc wait_=
-idle
-failed: -16
-Dec 23 22:37:04 b1b1 kernel: [  148.724015] nouveau E[     DRM] reloc apply:
--16
-Dec 23 22:37:07 b1b1 kernel: [  151.724018] nouveau E[     DRM] reloc wait_=
-idle
-failed: -16
-Dec 23 22:37:07 b1b1 kernel: [  151.724027] nouveau E[     DRM] reloc apply:
--16
-Dec 23 22:37:08 b1b1 kernel: [  152.467763] SysRq : Emergency Sync
+I will add a dmesg from v3.8rc1 kernel for your viewing convenience. This is a
+dmesg from syslog, not from the 'dmesg' command!
 
-pm_trace wasn't very helpful here (resume *is* successful)
-[    0.807743]   Magic number: 0:455:740
-[    0.807803]   hash matches drivers/base/power/main.c:645
-
-x11-drivers/xf86-video-nouveau 1.0.4
-media-libs/mesa 9.0
-
-maybe related to bug #50121
-
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356299708.03AFEcF22.1321
-Date: Sun, 23 Dec 2012 21:55:08 +0000
+--1356338185.17f0de3.16902
+Date: Mon, 24 Dec 2012 08:36:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gibboris&=
-#64;gmail.com" title=3D"Rapha=C3=ABl Droz &lt;gibboris&#64;gmail.com&gt;"> =
-<span class=3D"fn">Rapha=C3=ABl Droz</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nouveau failure on resume (reloc wait_idle failed)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D55258">bug 55258<=
-/a>
-        <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>gibboris&#64;gmail.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - nouveau failure on resume (reloc wait_idle failed)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D55258#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - [Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both fail to resume with commit 'convert to exec engine, and improve channel sync'"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c27">Comment # 27</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - nouveau failure on resume (reloc wait_idle failed)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D55258">bug 55258<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gibboris&#64;gmail.com" title=3D"Rapha=C3=ABl Droz &lt;gibboris&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Rapha=C3=ABl Droz</span></a>
+   title="NEW --- - [Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both fail to resume with commit 'convert to exec engine, and improve channel sync'"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Happens here, using a NV34 [GeForce FX 5200] on AMD64
-suspend works, hibernate works using the console (but didn't try several
-attempts yet).
-But when hibernate resumes X is a bit garbled then I'm stuck.
+        <pre>Just tested v3.8-rc1 + nouveau &#64; 'drm/nouveau/fan: handle the cases where we
+are outside of the linear zone' on this FX5200.
 
+Especially 'drm/nouveau/bios: cache ramcfg strap on later chipsets' looked
+promising (even though I don't have a recent chipset... there was hope...).
 
-Dec 23 22:36:47 b1b1 kernel: [  130.943828] EXT4-fs (sda1): re-mounted. Opt=
-s:
-commit=3D0
-Dec 23 22:36:49 b1b1 kernel: [  133.624015] nouveau E[     DRM] reloc wait_=
-idle
-failed: -16
-Dec 23 22:36:49 b1b1 kernel: [  133.624025] nouveau E[     DRM] reloc apply:
--16
-Dec 23 22:36:49 b1b1 acpid: client connected from 1429[0:0]
-Dec 23 22:36:49 b1b1 acpid: 1 client rule loaded
-Dec 23 22:36:49 b1b1 kernel: [  133.626369] nouveau  [     DRM] index 0
-Dec 23 22:36:49 b1b1 kernel: [  133.663802] nouveau  [     DRM] native mode
-from largest: 1280x1024&#64;75
-Dec 23 22:36:52 b1b1 kernel: [  136.720020] nouveau E[     DRM] reloc wait_=
-idle
-failed: -16
-Dec 23 22:36:52 b1b1 kernel: [  136.720027] nouveau E[     DRM] reloc apply:
--16
-Dec 23 22:37:01 b1b1 kernel: [  145.725096] nouveau E[     DRM] reloc wait_=
-idle
-failed: -16
-Dec 23 22:37:01 b1b1 kernel: [  145.725109] nouveau E[     DRM] reloc apply:
--16
-Dec 23 22:37:04 b1b1 kernel: [  148.724012] nouveau E[     DRM] reloc wait_=
-idle
-failed: -16
-Dec 23 22:37:04 b1b1 kernel: [  148.724015] nouveau E[     DRM] reloc apply:
--16
-Dec 23 22:37:07 b1b1 kernel: [  151.724018] nouveau E[     DRM] reloc wait_=
-idle
-failed: -16
-Dec 23 22:37:07 b1b1 kernel: [  151.724027] nouveau E[     DRM] reloc apply:
--16
-Dec 23 22:37:08 b1b1 kernel: [  152.467763] SysRq : Emergency Sync
+Things did not regress further. First suspend works most of the time, second
+suspend crashes. Symptoms did change a bit. When resume eventually completes, I
+do not see a frozen/unresponsive desktop but the screen goes black with
+red/green (I don't think i saw any blue) pixels scattered all over it. Density
+was really low, so maybe 200 pixels on the entire screen? These pixels did not
+move or alterate or anything, it was pretty static and boring actually.
 
-pm_trace wasn't very helpful here (resume *is* successful)
-[    0.807743]   Magic number: 0:455:740
-[    0.807803]   hash matches drivers/base/power/main.c:645
+But I recommend Michael and francoism to test latest HEAD as the mentioned
+commit might fix your issue's???
 
-x11-drivers/xf86-video-nouveau 1.0.4
-media-libs/mesa 9.0
-
-maybe related to <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both=
- fail to resume with commit 'convert to exec engine, and improve channel sy=
-nc'"
-   href=3D"show_bug.cgi?id=3D50121">bug #50121</a></pre>
+I will add a dmesg from v3.8rc1 kernel for your viewing convenience. This is a
+dmesg from syslog, not from the 'dmesg' command!</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1356299708.03AFEcF22.1321--
+--1356338185.17f0de3.16902--
 
---===============1826461231==
+--===============0178549408==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -223,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1826461231==--
+--===============0178549408==--
