@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58735] GeForce 680,
  HDMI output no good after passing through HDMI-to-DVI converter
-Date: Tue, 25 Dec 2012 07:11:28 +0000
-Message-ID: <bug-58735-8800-YlrFJXp3Ox@http.bugs.freedesktop.org/>
+Date: Tue, 25 Dec 2012 07:12:33 +0000
+Message-ID: <bug-58735-8800-Gr7T0FY02N@http.bugs.freedesktop.org/>
 References: <bug-58735-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0182968471=="
+Content-Type: multipart/mixed; boundary="===============0692258927=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58735-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0182968471==
-Content-Type: multipart/alternative; boundary="1356419488.Bcd511.19694"; charset="us-ascii"
+--===============0692258927==
+Content-Type: multipart/alternative; boundary="1356419553.b5e844c1.19815"; charset="us-ascii"
 
 
---1356419488.Bcd511.19694
-Date: Tue, 25 Dec 2012 07:11:28 +0000
+--1356419553.b5e844c1.19815
+Date: Tue, 25 Dec 2012 07:12:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58735
 
---- Comment #2 from Sean Santos <quantheory-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Ah, noticed on reboot that this is visible even on the console. When booting, I
-get the flicker and resolution increase from nouveau, then the second monitor
-starts working, but the third starts getting the "Input Not Supported" message
-before X even starts.
-
-Attaching dmesg.
+--- Comment #3 from Sean Santos <quantheory-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 72097
+  --> https://bugs.freedesktop.org/attachment.cgi?id=72097&action=edit
+Output of "dmesg >dmesg.log"
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356419488.Bcd511.19694
-Date: Tue, 25 Dec 2012 07:11:28 +0000
+--1356419553.b5e844c1.19815
+Date: Tue, 25 Dec 2012 07:12:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,19 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - GeForce 680, HDMI output no good after passing through HDMI-to-DVI converter"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58735#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58735#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - GeForce 680, HDMI output no good after passing through HDMI-to-DVI converter"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58735">bug 58735</a>
               from <span class="vcard"><a class="email" href="mailto:quantheory&#64;gmail.com" title="Sean Santos &lt;quantheory&#64;gmail.com&gt;"> <span class="fn">Sean Santos</span></a>
 </span></b>
-        <pre>Ah, noticed on reboot that this is visible even on the console. When booting, I
-get the flicker and resolution increase from nouveau, then the second monitor
-starts working, but the third starts getting the &quot;Input Not Supported&quot; message
-before X even starts.
-
-Attaching dmesg.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=72097" name="attach_72097" title="Output of &quot;dmesg &gt;dmesg.log&quot;">attachment 72097</a> <a href="attachment.cgi?id=72097&amp;action=edit" title="Output of &quot;dmesg &gt;dmesg.log&quot;">[details]</a></span>
+Output of &quot;dmesg &gt;dmesg.log&quot;</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +76,9 @@ Attaching dmesg.</pre>
     </body>
 </html>
 
---1356419488.Bcd511.19694--
+--1356419553.b5e844c1.19815--
 
---===============0182968471==
+--===============0692258927==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0182968471==--
+--===============0692258927==--
