@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50121] [Regression] Since kernel v3.5 several cards
  fail to resume, introduced by: 'convert to exec engine,
  and improve channel sync'
-Date: Tue, 25 Dec 2012 09:25:47 +0000
-Message-ID: <bug-50121-8800-1IigOVDPSQ@http.bugs.freedesktop.org/>
+Date: Tue, 25 Dec 2012 11:17:33 +0000
+Message-ID: <bug-50121-8800-FyKBXNHFOx@http.bugs.freedesktop.org/>
 References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0294937330=="
+Content-Type: multipart/mixed; boundary="===============1230701067=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,36 +22,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0294937330==
-Content-Type: multipart/alternative; boundary="1356427547.E5f42A3.32600"; charset="us-ascii"
+--===============1230701067==
+Content-Type: multipart/alternative; boundary="1356434253.c8c3eBbf3.13435"; charset="us-ascii"
 
 
---1356427547.E5f42A3.32600
-Date: Tue, 25 Dec 2012 09:25:47 +0000
+--1356434253.c8c3eBbf3.13435
+Date: Tue, 25 Dec 2012 11:17:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
---- Comment #32 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Seems to have fixed the bug. It has survived three consecutive suspend and
-resume cycles in a row. This was not possible after v3.5 without your supplied
-fix.
+--- Comment #33 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+The FX5200 still functions and survived another cycle.
 
-So it seems that the direct symptoms have been resolved with this patch. But if
-you don't mind, I would like to test it somewhat further for these days.
+I went ahead and tested your patch on a 'G73 (NV4B)' as well. Since modeset
+became mandatory suspend/resume never worked (anymore). It suspended, but
+resumed with a garbled console where some colors are off. Eventually, the card
+looks up.
 
-And I suggest that everyone else with this hardware (Raphael and Mr-4) to test
-as well.
+Recent rework made the screen completely black. So the regression regressed
+even further. Current head with your patch restores the second regression back
+to where the display is garbled after resume (after which it looks up again).
 
-Guess I won't be telling my parents they are running an rc1 kernel hehe...
+So I'm fairly confident that your patch restores pre rework (v3.5) behaviour on
+these cards with respect to suspend and resume cycles.
+
+I'm going to test an NV4E laptop later, when I have time.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356427547.E5f42A3.32600
-Date: Tue, 25 Dec 2012 09:25:47 +0000
+--1356434253.c8c3eBbf3.13435
+Date: Tue, 25 Dec 2012 11:17:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,24 +69,28 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c32">Comment # 32</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c33">Comment # 33</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Seems to have fixed the bug. It has survived three consecutive suspend and
-resume cycles in a row. This was not possible after v3.5 without your supplied
-fix.
+        <pre>The FX5200 still functions and survived another cycle.
 
-So it seems that the direct symptoms have been resolved with this patch. But if
-you don't mind, I would like to test it somewhat further for these days.
+I went ahead and tested your patch on a 'G73 (NV4B)' as well. Since modeset
+became mandatory suspend/resume never worked (anymore). It suspended, but
+resumed with a garbled console where some colors are off. Eventually, the card
+looks up.
 
-And I suggest that everyone else with this hardware (Raphael and Mr-4) to test
-as well.
+Recent rework made the screen completely black. So the regression regressed
+even further. Current head with your patch restores the second regression back
+to where the display is garbled after resume (after which it looks up again).
 
-Guess I won't be telling my parents they are running an rc1 kernel hehe...</pre>
+So I'm fairly confident that your patch restores pre rework (v3.5) behaviour on
+these cards with respect to suspend and resume cycles.
+
+I'm going to test an NV4E laptop later, when I have time.</pre>
         </div>
       </p>
       <hr>
@@ -94,9 +102,9 @@ Guess I won't be telling my parents they are running an rc1 kernel hehe...</pre>
     </body>
 </html>
 
---1356427547.E5f42A3.32600--
+--1356434253.c8c3eBbf3.13435--
 
---===============0294937330==
+--===============1230701067==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -107,4 +115,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0294937330==--
+--===============1230701067==--
