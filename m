@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50121] [Regression] Since kernel v3.5 several cards
  fail to resume, introduced by: 'convert to exec engine,
  and improve channel sync'
-Date: Tue, 25 Dec 2012 08:27:10 +0000
-Message-ID: <bug-50121-8800-Xmegn0l3xb@http.bugs.freedesktop.org/>
+Date: Tue, 25 Dec 2012 09:25:47 +0000
+Message-ID: <bug-50121-8800-1IigOVDPSQ@http.bugs.freedesktop.org/>
 References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1694942409=="
+Content-Type: multipart/mixed; boundary="===============0294937330=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,34 +22,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1694942409==
-Content-Type: multipart/alternative; boundary="1356424030.A5bf20C83.26481"; charset="us-ascii"
+--===============0294937330==
+Content-Type: multipart/alternative; boundary="1356427547.E5f42A3.32600"; charset="us-ascii"
 
 
---1356424030.A5bf20C83.26481
-Date: Tue, 25 Dec 2012 08:27:10 +0000
+--1356427547.E5f42A3.32600
+Date: Tue, 25 Dec 2012 09:25:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
-Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #32 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Seems to have fixed the bug. It has survived three consecutive suspend and
+resume cycles in a row. This was not possible after v3.5 without your supplied
+fix.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[Regression] NV34 Fx5200 &  |[Regression] Since kernel
-                   |NVC3/Quadro 2000M both fail |v3.5 several cards fail to
-                   |to resume with commit       |resume, introduced by:
-                   |'convert to exec engine,    |'convert to exec engine,
-                   |and improve channel sync'   |and improve channel sync'
-           Keywords|                            |regression
+So it seems that the direct symptoms have been resolved with this patch. But if
+you don't mind, I would like to test it somewhat further for these days.
+
+And I suggest that everyone else with this hardware (Raphael and Mr-4) to test
+as well.
+
+Guess I won't be telling my parents they are running an rc1 kernel hehe...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356424030.A5bf20C83.26481
-Date: Tue, 25 Dec 2012 08:27:10 +0000
+--1356427547.E5f42A3.32600
+Date: Tue, 25 Dec 2012 09:25:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,37 +59,31 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c32">Comment # 32</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+</span></b>
+        <pre>Seems to have fixed the bug. It has survived three consecutive suspend and
+resume cycles in a row. This was not possible after v3.5 without your supplied
+fix.
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both fail to resume with commit 'convert to exec engine, and improve channel sync'
-           </td>
-           <td>[Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'
-           </td>
-         </tr>
+So it seems that the direct symptoms have been resolved with this patch. But if
+you don't mind, I would like to test it somewhat further for these days.
 
-         <tr>
-           <td style="text-align:right;">Keywords</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>regression
-           </td>
-         </tr></table>
-      <p>
+And I suggest that everyone else with this hardware (Raphael and Mr-4) to test
+as well.
+
+Guess I won't be telling my parents they are running an rc1 kernel hehe...</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -98,9 +94,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1356424030.A5bf20C83.26481--
+--1356427547.E5f42A3.32600--
 
---===============1694942409==
+--===============0294937330==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +107,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1694942409==--
+--===============0294937330==--
