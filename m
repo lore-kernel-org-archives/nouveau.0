@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58735] GeForce 680,
  HDMI output no good after passing through HDMI-to-DVI converter
-Date: Tue, 25 Dec 2012 06:57:10 +0000
-Message-ID: <bug-58735-8800-QODn2gTVUt@http.bugs.freedesktop.org/>
+Date: Tue, 25 Dec 2012 07:11:28 +0000
+Message-ID: <bug-58735-8800-YlrFJXp3Ox@http.bugs.freedesktop.org/>
 References: <bug-58735-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1845645000=="
+Content-Type: multipart/mixed; boundary="===============0182968471=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58735-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1845645000==
-Content-Type: multipart/alternative; boundary="1356418630.24FF1.17367"; charset="us-ascii"
+--===============0182968471==
+Content-Type: multipart/alternative; boundary="1356419488.Bcd511.19694"; charset="us-ascii"
 
 
---1356418630.24FF1.17367
-Date: Tue, 25 Dec 2012 06:57:10 +0000
+--1356419488.Bcd511.19694
+Date: Tue, 25 Dec 2012 07:11:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58735
 
---- Comment #1 from Sean Santos <quantheory-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Oops. Some errata:
+--- Comment #2 from Sean Santos <quantheory-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Ah, noticed on reboot that this is visible even on the console. When booting, I
+get the flicker and resolution increase from nouveau, then the second monitor
+starts working, but the third starts getting the "Input Not Supported" message
+before X even starts.
 
-- When I said "DVI cards", I meant "DVI cords". The card has two DVI, an HDMI,
-and a DisplayPort output. The DVI monitors seem OK, the HDMI with the converter
-is not working (all monitors are identical and only have DVI in).
-
-- The first bug should have been Bug 17185.
-
-- I doubt it's relevant, but I may as well mention that the only thing in
-xorg.conf is a section about my keyboard. I do multihead entirely using Randr
-and have not used the proprietary driver since the last time I wiped the disk
-on this box (but it worked before that).
+Attaching dmesg.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356418630.24FF1.17367
-Date: Tue, 25 Dec 2012 06:57:10 +0000
+--1356419488.Bcd511.19694
+Date: Tue, 25 Dec 2012 07:11:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,28 +59,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - GeForce 680, HDMI output no good after passing through HDMI-to-DVI converter"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58735#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58735#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - GeForce 680, HDMI output no good after passing through HDMI-to-DVI converter"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58735">bug 58735</a>
               from <span class="vcard"><a class="email" href="mailto:quantheory&#64;gmail.com" title="Sean Santos &lt;quantheory&#64;gmail.com&gt;"> <span class="fn">Sean Santos</span></a>
 </span></b>
-        <pre>Oops. Some errata:
+        <pre>Ah, noticed on reboot that this is visible even on the console. When booting, I
+get the flicker and resolution increase from nouveau, then the second monitor
+starts working, but the third starts getting the &quot;Input Not Supported&quot; message
+before X even starts.
 
-- When I said &quot;DVI cards&quot;, I meant &quot;DVI cords&quot;. The card has two DVI, an HDMI,
-and a DisplayPort output. The DVI monitors seem OK, the HDMI with the converter
-is not working (all monitors are identical and only have DVI in).
-
-- The first bug should have been <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Black Display when using Nouveau on 7300gt with dvi to hdmi attached Sony 32W4000"
-   href="show_bug.cgi?id=17185">Bug 17185</a>.
-
-- I doubt it's relevant, but I may as well mention that the only thing in
-xorg.conf is a section about my keyboard. I do multihead entirely using Randr
-and have not used the proprietary driver since the last time I wiped the disk
-on this box (but it worked before that).</pre>
+Attaching dmesg.</pre>
         </div>
       </p>
       <hr>
@@ -98,9 +83,9 @@ on this box (but it worked before that).</pre>
     </body>
 </html>
 
---1356418630.24FF1.17367--
+--1356419488.Bcd511.19694--
 
---===============1845645000==
+--===============0182968471==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1845645000==--
+--===============0182968471==--
