@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58729] [bisected] Display fails to turn on after
- suspend/resume (NV86)
-Date: Mon, 24 Dec 2012 21:32:47 +0000
-Message-ID: <bug-58729-8800-es545aWIAc@http.bugs.freedesktop.org/>
-References: <bug-58729-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 50121] [Regression] NV34 Fx5200 & NVC3/Quadro 2000M
+ both fail to resume with commit 'convert to exec engine,
+ and improve channel sync'
+Date: Tue, 25 Dec 2012 00:31:56 +0000
+Message-ID: <bug-50121-8800-e9Padbyvkd@http.bugs.freedesktop.org/>
+References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0930687047=="
+Content-Type: multipart/mixed; boundary="===============1716299615=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +22,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0930687047==
-Content-Type: multipart/alternative; boundary="1356384767.Fc650C20.18016"; charset="us-ascii"
+--===============1716299615==
+Content-Type: multipart/alternative; boundary="1356395517.cDEAd54.3083"; charset="us-ascii"
 
 
---1356384767.Fc650C20.18016
-Date: Mon, 24 Dec 2012 21:32:46 +0000
+--1356395517.cDEAd54.3083
+Date: Tue, 25 Dec 2012 00:31:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58729
+https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
---- Comment #1 from J Binder <wheel-pGoT+mvyLdp4LYgiJMQgWbNAH6kLmebB@public.gmane.org> ---
-Versions of other components:
+--- Comment #31 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 72085
+  --> https://bugs.freedesktop.org/attachment.cgi?id=72085&action=edit
+fix
 
-libdrm-nouveau: 2.4.33
-mesa:           8.0.5
-xserver-xorg:   1.12.4
-xserver-xorg-video-nouveau: 1.0.1
+does this patch fix it?
+
+nvc3 should be already fixed in 3.7
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356384767.Fc650C20.18016
-Date: Mon, 24 Dec 2012 21:32:47 +0000
+--1356395517.cDEAd54.3083
+Date: Tue, 25 Dec 2012 00:31:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,20 +60,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729#c1">Comment # 1</a>
+   title="NEW --- - [Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both fail to resume with commit 'convert to exec engine, and improve channel sync'"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c31">Comment # 31</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729">bug 58729</a>
-              from <span class="vcard"><a class="email" href="mailto:wheel&#64;herr-der-mails.de" title="J Binder &lt;wheel&#64;herr-der-mails.de&gt;"> <span class="fn">J Binder</span></a>
+   title="NEW --- - [Regression] NV34 Fx5200 &amp; NVC3/Quadro 2000M both fail to resume with commit 'convert to exec engine, and improve channel sync'"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Versions of other components:
+        <pre>Created <span class=""><a href="attachment.cgi?id=72085" name="attach_72085" title="fix">attachment 72085</a> <a href="attachment.cgi?id=72085&amp;action=edit" title="fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=50121&amp;attachment=72085'>[review]</a>
+fix
 
-libdrm-nouveau: 2.4.33
-mesa:           8.0.5
-xserver-xorg:   1.12.4
-xserver-xorg-video-nouveau: 1.0.1</pre>
+does this patch fix it?
+
+nvc3 should be already fixed in 3.7</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +85,9 @@ xserver-xorg-video-nouveau: 1.0.1</pre>
     </body>
 </html>
 
---1356384767.Fc650C20.18016--
+--1356395517.cDEAd54.3083--
 
---===============0930687047==
+--===============1716299615==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0930687047==--
+--===============1716299615==--
