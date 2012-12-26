@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50121] [Regression] Since kernel v3.5 several cards
- fail to resume, introduced by: 'convert to exec engine,
- and improve channel sync'
-Date: Wed, 26 Dec 2012 19:39:58 +0000
-Message-ID: <bug-50121-8800-d2EXbhYLQC@http.bugs.freedesktop.org/>
-References: <bug-50121-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nv17-50: restore fence buffer on resume
+Date: Wed, 26 Dec 2012 20:57:56 +0100
+Message-ID: <20121226195756.GA3156@joi.lan>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0594724542=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,100 +19,77 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Since commit 5e120f6e4b3f35b741c5445dfc755f50128c3c44 "drm/nouveau/fence:
+convert to exec engine, and improve channel sync" nouveau fence sync
+implementation for nv17-50 and nvc0+ started to rely on state of fence buffer
+left by previous sync operation. But as pinned bo's (where fence state is
+stored) are not saved+restored across suspend/resume, we need to do it
+manually.
 
---===============0594724542==
-Content-Type: multipart/alternative; boundary="1356550799.3deeB9.28400"; charset="us-ascii"
+nvc0+ was fixed by commit d6ba6d215a538a58f0f0026f0961b0b9125e8042
+"drm/nvc0/fence: restore pre-suspend fence buffer context on resume".
 
+Fixes: https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
---1356550799.3deeB9.28400
-Date: Wed, 26 Dec 2012 19:39:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+---
+ drivers/gpu/drm/nouveau/nouveau_fence.h | 1 +
+ drivers/gpu/drm/nouveau/nv10_fence.c    | 9 +++++++++
+ drivers/gpu/drm/nouveau/nv50_fence.c    | 2 ++
+ 3 files changed, 12 insertions(+)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50121
-
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org
-
---- Comment #43 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-*** Bug 55258 has been marked as a duplicate of this bug. ***
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.h b/drivers/gpu/drm/nouveau/nouveau_fence.h
+index bedafd1..cdb83ac 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.h
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.h
+@@ -60,6 +60,7 @@ u32  nv10_fence_read(struct nouveau_channel *);
+ void nv10_fence_context_del(struct nouveau_channel *);
+ void nv10_fence_destroy(struct nouveau_drm *);
+ int  nv10_fence_create(struct nouveau_drm *);
++void nv17_fence_resume(struct nouveau_drm *drm);
+ 
+ int nv50_fence_create(struct nouveau_drm *);
+ int nv84_fence_create(struct nouveau_drm *);
+diff --git a/drivers/gpu/drm/nouveau/nv10_fence.c b/drivers/gpu/drm/nouveau/nv10_fence.c
+index 7ae7f97..0619c02 100644
+--- a/drivers/gpu/drm/nouveau/nv10_fence.c
++++ b/drivers/gpu/drm/nouveau/nv10_fence.c
+@@ -162,6 +162,13 @@ nv10_fence_destroy(struct nouveau_drm *drm)
+ 	kfree(priv);
+ }
+ 
++void nv17_fence_resume(struct nouveau_drm *drm)
++{
++	struct nv10_fence_priv *priv = drm->fence;
++
++	nouveau_bo_wr32(priv->bo, 0, priv->sequence);
++}
++
+ int
+ nv10_fence_create(struct nouveau_drm *drm)
+ {
+@@ -197,6 +204,8 @@ nv10_fence_create(struct nouveau_drm *drm)
+ 		if (ret == 0) {
+ 			nouveau_bo_wr32(priv->bo, 0x000, 0x00000000);
+ 			priv->base.sync = nv17_fence_sync;
++
++			priv->base.resume = nv17_fence_resume;
+ 		}
+ 	}
+ 
+diff --git a/drivers/gpu/drm/nouveau/nv50_fence.c b/drivers/gpu/drm/nouveau/nv50_fence.c
+index c20f272..4cc0ce6 100644
+--- a/drivers/gpu/drm/nouveau/nv50_fence.c
++++ b/drivers/gpu/drm/nouveau/nv50_fence.c
+@@ -122,6 +122,8 @@ nv50_fence_create(struct nouveau_drm *drm)
+ 	if (ret == 0) {
+ 		nouveau_bo_wr32(priv->bo, 0x000, 0x00000000);
+ 		priv->base.sync = nv17_fence_sync;
++
++		priv->base.resume = nv17_fence_resume;
+ 	}
+ 
+ 	if (ret)
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1356550799.3deeB9.28400
-Date: Wed, 26 Dec 2012 19:39:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>mr.dash.four&#64;googlemail.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c43">Comment # 43</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span></b>
-        <pre>*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - nouveau failure on resume (reloc wait_idle failed)"
-   href="show_bug.cgi?id=55258">Bug 55258</a> has been marked as a duplicate of this bug. ***</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1356550799.3deeB9.28400--
-
---===============0594724542==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0594724542==--
+1.8.0.2
