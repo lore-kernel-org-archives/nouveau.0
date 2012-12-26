@@ -1,7 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nv17-50: restore fence buffer on resume
-Date: Wed, 26 Dec 2012 20:57:56 +0100
-Message-ID: <20121226195756.GA3156@joi.lan>
+Subject: [PATCH] drm/nouveau: share fence structures between nv10+
+ and nv50 implementations
+Date: Wed, 26 Dec 2012 20:58:59 +0100
+Message-ID: <20121226195859.GB3156@joi.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,77 +20,108 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Since commit 5e120f6e4b3f35b741c5445dfc755f50128c3c44 "drm/nouveau/fence:
-convert to exec engine, and improve channel sync" nouveau fence sync
-implementation for nv17-50 and nvc0+ started to rely on state of fence buffer
-left by previous sync operation. But as pinned bo's (where fence state is
-stored) are not saved+restored across suspend/resume, we need to do it
-manually.
-
-nvc0+ was fixed by commit d6ba6d215a538a58f0f0026f0961b0b9125e8042
-"drm/nvc0/fence: restore pre-suspend fence buffer context on resume".
-
-Fixes: https://bugs.freedesktop.org/show_bug.cgi?id=50121
+We already rely on them having the same fields and layout.
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 ---
- drivers/gpu/drm/nouveau/nouveau_fence.h | 1 +
- drivers/gpu/drm/nouveau/nv10_fence.c    | 9 +++++++++
- drivers/gpu/drm/nouveau/nv50_fence.c    | 2 ++
- 3 files changed, 12 insertions(+)
+ drivers/gpu/drm/nouveau/nv10_fence.c | 13 +------------
+ drivers/gpu/drm/nouveau/nv10_fence.h | 19 +++++++++++++++++++
+ drivers/gpu/drm/nouveau/nv50_fence.c | 19 ++++---------------
+ 3 files changed, 24 insertions(+), 27 deletions(-)
+ create mode 100644 drivers/gpu/drm/nouveau/nv10_fence.h
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.h b/drivers/gpu/drm/nouveau/nouveau_fence.h
-index bedafd1..cdb83ac 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fence.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_fence.h
-@@ -60,6 +60,7 @@ u32  nv10_fence_read(struct nouveau_channel *);
- void nv10_fence_context_del(struct nouveau_channel *);
- void nv10_fence_destroy(struct nouveau_drm *);
- int  nv10_fence_create(struct nouveau_drm *);
-+void nv17_fence_resume(struct nouveau_drm *drm);
- 
- int nv50_fence_create(struct nouveau_drm *);
- int nv84_fence_create(struct nouveau_drm *);
 diff --git a/drivers/gpu/drm/nouveau/nv10_fence.c b/drivers/gpu/drm/nouveau/nv10_fence.c
-index 7ae7f97..0619c02 100644
+index 0619c02..2ad4cd5 100644
 --- a/drivers/gpu/drm/nouveau/nv10_fence.c
 +++ b/drivers/gpu/drm/nouveau/nv10_fence.c
-@@ -162,6 +162,13 @@ nv10_fence_destroy(struct nouveau_drm *drm)
- 	kfree(priv);
- }
+@@ -27,18 +27,7 @@
  
-+void nv17_fence_resume(struct nouveau_drm *drm)
-+{
-+	struct nv10_fence_priv *priv = drm->fence;
-+
-+	nouveau_bo_wr32(priv->bo, 0, priv->sequence);
-+}
-+
+ #include "nouveau_drm.h"
+ #include "nouveau_dma.h"
+-#include "nouveau_fence.h"
+-
+-struct nv10_fence_chan {
+-	struct nouveau_fence_chan base;
+-};
+-
+-struct nv10_fence_priv {
+-	struct nouveau_fence_priv base;
+-	struct nouveau_bo *bo;
+-	spinlock_t lock;
+-	u32 sequence;
+-};
++#include "nv10_fence.h"
+ 
  int
- nv10_fence_create(struct nouveau_drm *drm)
- {
-@@ -197,6 +204,8 @@ nv10_fence_create(struct nouveau_drm *drm)
- 		if (ret == 0) {
- 			nouveau_bo_wr32(priv->bo, 0x000, 0x00000000);
- 			priv->base.sync = nv17_fence_sync;
+ nv10_fence_emit(struct nouveau_fence *fence)
+diff --git a/drivers/gpu/drm/nouveau/nv10_fence.h b/drivers/gpu/drm/nouveau/nv10_fence.h
+new file mode 100644
+index 0000000..e5d9204
+--- /dev/null
++++ b/drivers/gpu/drm/nouveau/nv10_fence.h
+@@ -0,0 +1,19 @@
++#ifndef __NV10_FENCE_H_
++#define __NV10_FENCE_H_
 +
-+			priv->base.resume = nv17_fence_resume;
- 		}
- 	}
- 
++#include <core/os.h>
++#include "nouveau_fence.h"
++#include "nouveau_bo.h"
++
++struct nv10_fence_chan {
++	struct nouveau_fence_chan base;
++};
++
++struct nv10_fence_priv {
++	struct nouveau_fence_priv base;
++	struct nouveau_bo *bo;
++	spinlock_t lock;
++	u32 sequence;
++};
++
++#endif
 diff --git a/drivers/gpu/drm/nouveau/nv50_fence.c b/drivers/gpu/drm/nouveau/nv50_fence.c
-index c20f272..4cc0ce6 100644
+index 4cc0ce6..4bef67c 100644
 --- a/drivers/gpu/drm/nouveau/nv50_fence.c
 +++ b/drivers/gpu/drm/nouveau/nv50_fence.c
-@@ -122,6 +122,8 @@ nv50_fence_create(struct nouveau_drm *drm)
- 	if (ret == 0) {
- 		nouveau_bo_wr32(priv->bo, 0x000, 0x00000000);
- 		priv->base.sync = nv17_fence_sync;
-+
-+		priv->base.resume = nv17_fence_resume;
- 	}
+@@ -27,27 +27,16 @@
  
- 	if (ret)
+ #include "nouveau_drm.h"
+ #include "nouveau_dma.h"
+-#include "nouveau_fence.h"
++#include "nv10_fence.h"
+ 
+ #include "nv50_display.h"
+ 
+-struct nv50_fence_chan {
+-	struct nouveau_fence_chan base;
+-};
+-
+-struct nv50_fence_priv {
+-	struct nouveau_fence_priv base;
+-	struct nouveau_bo *bo;
+-	spinlock_t lock;
+-	u32 sequence;
+-};
+-
+ static int
+ nv50_fence_context_new(struct nouveau_channel *chan)
+ {
+ 	struct drm_device *dev = chan->drm->dev;
+-	struct nv50_fence_priv *priv = chan->drm->fence;
+-	struct nv50_fence_chan *fctx;
++	struct nv10_fence_priv *priv = chan->drm->fence;
++	struct nv10_fence_chan *fctx;
+ 	struct ttm_mem_reg *mem = &priv->bo->bo.mem;
+ 	struct nouveau_object *object;
+ 	int ret, i;
+@@ -91,7 +80,7 @@ nv50_fence_context_new(struct nouveau_channel *chan)
+ int
+ nv50_fence_create(struct nouveau_drm *drm)
+ {
+-	struct nv50_fence_priv *priv;
++	struct nv10_fence_priv *priv;
+ 	int ret = 0;
+ 
+ 	priv = drm->fence = kzalloc(sizeof(*priv), GFP_KERNEL);
 -- 
 1.8.0.2
