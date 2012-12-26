@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 46557] nouveau: NV4E acceleration corruption when
- DMA above 31-bit (2 Gig barrier)
-Date: Wed, 26 Dec 2012 17:15:55 +0000
-Message-ID: <bug-46557-8800-pbUU4l2dfg@http.bugs.freedesktop.org/>
-References: <bug-46557-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 55258] nouveau failure on resume (reloc wait_idle
+	failed)
+Date: Wed, 26 Dec 2012 19:39:58 +0000
+Message-ID: <bug-55258-8800-dRP5XsKzL7@http.bugs.freedesktop.org/>
+References: <bug-55258-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1718996579=="
+Content-Type: multipart/mixed; boundary="===============0940711422=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-46557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-55258-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,72 +21,103 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1718996579==
-Content-Type: multipart/alternative; boundary="1356542156.e36CBAA4.12273"; charset="us-ascii"
+--===============0940711422==
+Content-Type: multipart/alternative; boundary="1356550799.2b0b6A3.28400"; charset="us-ascii"
 
 
---1356542156.e36CBAA4.12273
-Date: Wed, 26 Dec 2012 17:15:56 +0000
+--1356550799.2b0b6A3.28400
+Date: Wed, 26 Dec 2012 19:39:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D46557
+https://bugs.freedesktop.org/show_bug.cgi?id=55258
 
---- Comment #28 from Rapha=C3=ABl Droz <gibboris-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I should add that I've no problem with 3GB. Problem arises when I add 1 more
-GB.
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
---=20
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
+
+--- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+
+
+*** This bug has been marked as a duplicate of bug 50121 ***
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356542156.e36CBAA4.12273
-Date: Wed, 26 Dec 2012 17:15:56 +0000
+--1356550799.2b0b6A3.28400
+Date: Wed, 26 Dec 2012 19:39:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - nouveau failure on resume (reloc wait_idle failed)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55258">bug 55258</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
+           </td>
+         </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nouveau: NV4E acceleration corruption when DMA above =
-31-bit (2 Gig barrier)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D46557#c28">Commen=
-t # 28</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nouveau: NV4E acceleration corruption when DMA above =
-31-bit (2 Gig barrier)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D46557">bug 46557<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gibboris&#64;gmail.com" title=3D"Rapha=C3=ABl Droz &lt;gibboris&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Rapha=C3=ABl Droz</span></a>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - nouveau failure on resume (reloc wait_idle failed)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55258#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - nouveau failure on resume (reloc wait_idle failed)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55258">bug 55258</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>I should add that I've no problem with 3GB. Problem arises whe=
-n I add 1 more
-GB.</pre>
+        <pre>
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
+   href="show_bug.cgi?id=50121">bug 50121</a> ***</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1356542156.e36CBAA4.12273--
+--1356550799.2b0b6A3.28400--
 
---===============1718996579==
+--===============0940711422==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +128,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1718996579==--
+--===============0940711422==--
