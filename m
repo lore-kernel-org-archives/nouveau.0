@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 (NV4B) fails to
+Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 fails to properly
 	resume
-Date: Wed, 26 Dec 2012 12:02:11 +0000
-Message-ID: <bug-23223-8800-DyebgKiuWP@http.bugs.freedesktop.org/>
+Date: Wed, 26 Dec 2012 12:03:05 +0000
+Message-ID: <bug-23223-8800-2bay5WYxsA@http.bugs.freedesktop.org/>
 References: <bug-23223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0683598870=="
+Content-Type: multipart/mixed; boundary="===============0431636853=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0683598870==
-Content-Type: multipart/alternative; boundary="1356523331.Dff63f1.4388"; charset="us-ascii"
+--===============0431636853==
+Content-Type: multipart/alternative; boundary="1356523385.Cb7D41.4473"; charset="us-ascii"
 
 
---1356523331.Dff63f1.4388
-Date: Wed, 26 Dec 2012 12:02:11 +0000
+--1356523385.Cb7D41.4473
+Date: Wed, 26 Dec 2012 12:03:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=23223
 
---- Comment #9 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 72138
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72138&action=edit
-Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 (s2disk cycle)
+Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Suspend and resume cycle:
-
-echo disk > /sys/power/state; dmesg -c >& v3.8rc1_nouveaudebug_cycle.txt
-
-I see some errors in there. Hope it helps. Purged all the other old data, I
-hope that's okay since this is new.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NV4B] nVidia Geforce 7300  |[NV4B] nVidia Geforce 7300
+                   |(NV4B) fails to resume      |fails to properly resume
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356523331.Dff63f1.4388
-Date: Wed, 26 Dec 2012 12:02:11 +0000
+--1356523385.Cb7D41.4473
+Date: Wed, 26 Dec 2012 12:03:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,29 +52,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV4B] nVidia Geforce 7300 (NV4B) fails to resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV4B] nVidia Geforce 7300 (NV4B) fails to resume"
+   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72138" name="attach_72138" title="Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 (s2disk cycle)">attachment 72138</a> <a href="attachment.cgi?id=72138&amp;action=edit" title="Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 (s2disk cycle)">[details]</a></span>
-Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 (s2disk cycle)
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-Suspend and resume cycle:
-
-echo disk &gt; /sys/power/state; dmesg -c &gt;&amp; v3.8rc1_nouveaudebug_cycle.txt
-
-I see some errors in there. Hope it helps. Purged all the other old data, I
-hope that's okay since this is new.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NV4B] nVidia Geforce 7300 (NV4B) fails to resume
+           </td>
+           <td>[NV4B] nVidia Geforce 7300 fails to properly resume
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -90,9 +84,9 @@ hope that's okay since this is new.</pre>
     </body>
 </html>
 
---1356523331.Dff63f1.4388--
+--1356523385.Cb7D41.4473--
 
---===============0683598870==
+--===============0431636853==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0683598870==--
+--===============0431636853==--
