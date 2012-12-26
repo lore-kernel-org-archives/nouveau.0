@@ -1,13 +1,11 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: share fence structures between nv10+
- and nv50 implementations
-Date: Wed, 26 Dec 2012 20:58:59 +0100
-Message-ID: <20121226195859.GB3156@joi.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 58784] New: Nouveau on NVCE,
+ reclocking: memory type not supported?
+Date: Wed, 26 Dec 2012 20:12:18 +0000
+Message-ID: <bug-58784-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2138256701=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,108 +18,208 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-We already rely on them having the same fields and layout.
 
-Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nv10_fence.c | 13 +------------
- drivers/gpu/drm/nouveau/nv10_fence.h | 19 +++++++++++++++++++
- drivers/gpu/drm/nouveau/nv50_fence.c | 19 ++++---------------
- 3 files changed, 24 insertions(+), 27 deletions(-)
- create mode 100644 drivers/gpu/drm/nouveau/nv10_fence.h
+--===============2138256701==
+Content-Type: multipart/alternative; boundary="1356552738.42ACc51.31927"; charset="us-ascii"
 
-diff --git a/drivers/gpu/drm/nouveau/nv10_fence.c b/drivers/gpu/drm/nouveau/nv10_fence.c
-index 0619c02..2ad4cd5 100644
---- a/drivers/gpu/drm/nouveau/nv10_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv10_fence.c
-@@ -27,18 +27,7 @@
- 
- #include "nouveau_drm.h"
- #include "nouveau_dma.h"
--#include "nouveau_fence.h"
--
--struct nv10_fence_chan {
--	struct nouveau_fence_chan base;
--};
--
--struct nv10_fence_priv {
--	struct nouveau_fence_priv base;
--	struct nouveau_bo *bo;
--	spinlock_t lock;
--	u32 sequence;
--};
-+#include "nv10_fence.h"
- 
- int
- nv10_fence_emit(struct nouveau_fence *fence)
-diff --git a/drivers/gpu/drm/nouveau/nv10_fence.h b/drivers/gpu/drm/nouveau/nv10_fence.h
-new file mode 100644
-index 0000000..e5d9204
---- /dev/null
-+++ b/drivers/gpu/drm/nouveau/nv10_fence.h
-@@ -0,0 +1,19 @@
-+#ifndef __NV10_FENCE_H_
-+#define __NV10_FENCE_H_
-+
-+#include <core/os.h>
-+#include "nouveau_fence.h"
-+#include "nouveau_bo.h"
-+
-+struct nv10_fence_chan {
-+	struct nouveau_fence_chan base;
-+};
-+
-+struct nv10_fence_priv {
-+	struct nouveau_fence_priv base;
-+	struct nouveau_bo *bo;
-+	spinlock_t lock;
-+	u32 sequence;
-+};
-+
-+#endif
-diff --git a/drivers/gpu/drm/nouveau/nv50_fence.c b/drivers/gpu/drm/nouveau/nv50_fence.c
-index 4cc0ce6..4bef67c 100644
---- a/drivers/gpu/drm/nouveau/nv50_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv50_fence.c
-@@ -27,27 +27,16 @@
- 
- #include "nouveau_drm.h"
- #include "nouveau_dma.h"
--#include "nouveau_fence.h"
-+#include "nv10_fence.h"
- 
- #include "nv50_display.h"
- 
--struct nv50_fence_chan {
--	struct nouveau_fence_chan base;
--};
--
--struct nv50_fence_priv {
--	struct nouveau_fence_priv base;
--	struct nouveau_bo *bo;
--	spinlock_t lock;
--	u32 sequence;
--};
--
- static int
- nv50_fence_context_new(struct nouveau_channel *chan)
- {
- 	struct drm_device *dev = chan->drm->dev;
--	struct nv50_fence_priv *priv = chan->drm->fence;
--	struct nv50_fence_chan *fctx;
-+	struct nv10_fence_priv *priv = chan->drm->fence;
-+	struct nv10_fence_chan *fctx;
- 	struct ttm_mem_reg *mem = &priv->bo->bo.mem;
- 	struct nouveau_object *object;
- 	int ret, i;
-@@ -91,7 +80,7 @@ nv50_fence_context_new(struct nouveau_channel *chan)
- int
- nv50_fence_create(struct nouveau_drm *drm)
- {
--	struct nv50_fence_priv *priv;
-+	struct nv10_fence_priv *priv;
- 	int ret = 0;
- 
- 	priv = drm->fence = kzalloc(sizeof(*priv), GFP_KERNEL);
+
+--1356552738.42ACc51.31927
+Date: Wed, 26 Dec 2012 20:12:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=58784
+
+          Priority: medium
+            Bug ID: 58784
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Nouveau on NVCE, reclocking: memory type not
+                    supported?
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: miga-anyandall-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
+
+Created attachment 72144
+  --> https://bugs.freedesktop.org/attachment.cgi?id=72144&action=edit
+lspci_output, nvce_strap_peek, nvce_timing_peek, nvce_bios.rom, and
+nvce_vbios_parsed
+
+I understand reclocking on Nouveau is very experimental still, but I figured I
+might as well send in this bug report anyway.
+
+On my NVCE (GTX 560 from EVGA), the standard (boot) clock speeds are 50 MHz
+core, 100 MHz shader, and 135 MHz memory. Naturally because of this, OpenGL
+performance is terrible (possibly worse than older Intel chips like the
+4500HD), about 15-20 FPS in Red Eclipse and about 5 FPS in Xonotic.
+
+I am able to reclock the card, however, upon doing so, it comes up with this
+error in dmesg:
+[11245.600378] nouveau E[     DRM] cannot reclock unsupported memtype
+
+So, I'm able to get the GPU core and shader to run at their highest speeds (850
+MHz and 1701 MHz respectively), but the memory speed stays at 135 MHz (when it
+should be at 2052 MHz). Even though I can change the clock speeds, after a
+while, the card will crash, forcing me to have to reboot.
+
+I'm also uploading things such as my lspci_output, nvce_strap_peek,
+nvce_timing_peek, nvce_bios.rom, and nvce_vbios_parsed, so it'll hopefully help
+you guys out on getting things working.
+
 -- 
-1.8.0.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1356552738.42ACc51.31927
+Date: Wed, 26 Dec 2012 20:12:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Nouveau on NVCE, reclocking: memory type not supported?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58784">58784</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nouveau on NVCE, reclocking: memory type not supported?
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>miga-anyandall&#64;hotmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=72144" name="attach_72144" title="lspci_output, nvce_strap_peek, nvce_timing_peek, nvce_bios.rom, and nvce_vbios_parsed">attachment 72144</a> <a href="attachment.cgi?id=72144&amp;action=edit" title="lspci_output, nvce_strap_peek, nvce_timing_peek, nvce_bios.rom, and nvce_vbios_parsed">[details]</a></span>
+lspci_output, nvce_strap_peek, nvce_timing_peek, nvce_bios.rom, and
+nvce_vbios_parsed
+
+I understand reclocking on Nouveau is very experimental still, but I figured I
+might as well send in this bug report anyway.
+
+On my NVCE (GTX 560 from EVGA), the standard (boot) clock speeds are 50 MHz
+core, 100 MHz shader, and 135 MHz memory. Naturally because of this, OpenGL
+performance is terrible (possibly worse than older Intel chips like the
+4500HD), about 15-20 FPS in Red Eclipse and about 5 FPS in Xonotic.
+
+I am able to reclock the card, however, upon doing so, it comes up with this
+error in dmesg:
+[11245.600378] nouveau E[     DRM] cannot reclock unsupported memtype
+
+So, I'm able to get the GPU core and shader to run at their highest speeds (850
+MHz and 1701 MHz respectively), but the memory speed stays at 135 MHz (when it
+should be at 2052 MHz). Even though I can change the clock speeds, after a
+while, the card will crash, forcing me to have to reboot.
+
+I'm also uploading things such as my lspci_output, nvce_strap_peek,
+nvce_timing_peek, nvce_bios.rom, and nvce_vbios_parsed, so it'll hopefully help
+you guys out on getting things working.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1356552738.42ACc51.31927--
+
+--===============2138256701==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2138256701==--
