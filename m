@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 (NV4B) fails to
 	resume
-Date: Wed, 26 Dec 2012 11:42:38 +0000
-Message-ID: <bug-23223-8800-KEZbAqpTB6@http.bugs.freedesktop.org/>
+Date: Wed, 26 Dec 2012 12:00:45 +0000
+Message-ID: <bug-23223-8800-022cRG07lF@http.bugs.freedesktop.org/>
 References: <bug-23223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0268205269=="
+Content-Type: multipart/mixed; boundary="===============1860568765=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0268205269==
-Content-Type: multipart/alternative; boundary="1356522158.e817bF1.1916"; charset="us-ascii"
+--===============1860568765==
+Content-Type: multipart/alternative; boundary="1356523245.dC618b431.4207"; charset="us-ascii"
 
 
---1356522158.e817bF1.1916
-Date: Wed, 26 Dec 2012 11:42:38 +0000
+--1356523245.dC618b431.4207
+Date: Wed, 26 Dec 2012 12:00:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,20 +36,26 @@ Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Hardware|Other                       |x86-64 (AMD64)
-                 OS|All                         |Linux (All)
-            Summary|Regression: Nvidia Geforce  |[NV4B] nVidia Geforce 7300
-                   |7300 (NV4B) fails to        |(NV4B) fails to resume
-                   |suspend                     |
-            Version|7.2 (2007.02)               |git
-           Keywords|                            |regression
+  Attachment #28444|0                           |1
+        is obsolete|                            |
+  Attachment #28445|0                           |1
+        is obsolete|                            |
+  Attachment #28446|0                           |1
+        is obsolete|                            |
+  Attachment #28447|0                           |1
+        is obsolete|                            |
+
+--- Comment #8 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 72137
+  --> https://bugs.freedesktop.org/attachment.cgi?id=72137&action=edit
+Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 (boot)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356522158.e817bF1.1916
-Date: Wed, 26 Dec 2012 11:42:38 +0000
+--1356523245.dC618b431.4207
+Date: Wed, 26 Dec 2012 12:00:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,46 +78,55 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">OS</td>
-           <td>All
-           </td>
-           <td>Linux (All)
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Regression: Nvidia Geforce 7300 (NV4B) fails to suspend
-           </td>
-           <td>[NV4B] nVidia Geforce 7300 (NV4B) fails to resume
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Version</td>
-           <td>7.2 (2007.02)
-           </td>
-           <td>git
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Keywords</td>
+           <td style="text-align:right;">Attachment #28444 is obsolete</td>
            <td>
                &nbsp;
            </td>
-           <td>regression
+           <td>1
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #28445 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #28446 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #28447 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV4B] nVidia Geforce 7300 (NV4B) fails to resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV4B] nVidia Geforce 7300 (NV4B) fails to resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=72137" name="attach_72137" title="Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 (boot)">attachment 72137</a> <a href="attachment.cgi?id=72137&amp;action=edit" title="Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 (boot)">[details]</a></span>
+Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 (boot)</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -122,9 +137,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1356522158.e817bF1.1916--
+--1356523245.dC618b431.4207--
 
---===============0268205269==
+--===============1860568765==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -135,4 +150,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0268205269==--
+--===============1860568765==--
