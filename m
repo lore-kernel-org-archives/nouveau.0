@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50121] [Regression] Since kernel v3.5 several cards
  fail to resume, introduced by: 'convert to exec engine,
  and improve channel sync'
-Date: Wed, 26 Dec 2012 11:31:57 +0000
-Message-ID: <bug-50121-8800-VMBDOxTety@http.bugs.freedesktop.org/>
+Date: Wed, 26 Dec 2012 11:38:09 +0000
+Message-ID: <bug-50121-8800-lpP6aaBrYM@http.bugs.freedesktop.org/>
 References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0764823196=="
+Content-Type: multipart/mixed; boundary="===============0678200862=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,28 +22,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0764823196==
-Content-Type: multipart/alternative; boundary="1356521517.70E4d3.561"; charset="us-ascii"
+--===============0678200862==
+Content-Type: multipart/alternative; boundary="1356521889.0a4ba3.1306"; charset="us-ascii"
 
 
---1356521517.70E4d3.561
-Date: Wed, 26 Dec 2012 11:31:57 +0000
+--1356521889.0a4ba3.1306
+Date: Wed, 26 Dec 2012 11:38:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
---- Comment #39 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Ok, I will file seperate bugs for these cards.
-
-FYI, the FX5200 survived 11 cycles so far without a hitch. Thanks a lot =)
+--- Comment #40 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Marcin, I already filed bug #23223 for the NV4B, I'll update that one. It's
+quite old, but I'll continue from there. I'll open a new one for the NV4E.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356521517.70E4d3.561
-Date: Wed, 26 Dec 2012 11:31:57 +0000
+--1356521889.0a4ba3.1306
+Date: Wed, 26 Dec 2012 11:38:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,16 +56,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c39">Comment # 39</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c40">Comment # 40</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Ok, I will file seperate bugs for these cards.
-
-FYI, the FX5200 survived 11 cycles so far without a hitch. Thanks a lot =)</pre>
+        <pre>Marcin, I already filed <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Regression: Nvidia Geforce 7300 (NV4B) fails to suspend"
+   href="show_bug.cgi?id=23223">bug #23223</a> for the NV4B, I'll update that one. It's
+quite old, but I'll continue from there. I'll open a new one for the NV4E.</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +79,9 @@ FYI, the FX5200 survived 11 cycles so far without a hitch. Thanks a lot =)</pre>
     </body>
 </html>
 
---1356521517.70E4d3.561--
+--1356521889.0a4ba3.1306--
 
---===============0764823196==
+--===============0678200862==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0764823196==--
+--===============0678200862==--
