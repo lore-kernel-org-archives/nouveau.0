@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23223] Regression: Nvidia Geforce 7300 (NV4B) fails
-	to suspend
-Date: Wed, 26 Dec 2012 11:41:43 +0000
-Message-ID: <bug-23223-8800-zW1FIoFTrY@http.bugs.freedesktop.org/>
+Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 (NV4B) fails to
+	resume
+Date: Wed, 26 Dec 2012 11:42:38 +0000
+Message-ID: <bug-23223-8800-KEZbAqpTB6@http.bugs.freedesktop.org/>
 References: <bug-23223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0141126654=="
+Content-Type: multipart/mixed; boundary="===============0268205269=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0141126654==
-Content-Type: multipart/alternative; boundary="1356522103.f7b2F721.1816"; charset="us-ascii"
+--===============0268205269==
+Content-Type: multipart/alternative; boundary="1356522158.e817bF1.1916"; charset="us-ascii"
 
 
---1356522103.f7b2F721.1816
-Date: Wed, 26 Dec 2012 11:41:43 +0000
+--1356522158.e817bF1.1916
+Date: Wed, 26 Dec 2012 11:42:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=23223
 
---- Comment #7 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Just tried v3.8rc1 + nouveau HEAD and a patch from:
+Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50121#c31 . It suspends now,
-altough it takes a while. I hear stuff power down twice, I don't think that's
-correct...
-
-Recent rework made things worse, the screen resumed with a black screen. Latest
-HEAD with mentioned patch makes stuff regress like pre kernel v3.5 rework: The
-screen comes up, slightly garbled. It won't respond, and eventually the entire
-screen locks-up.
-
-Any pointers on what to do next??
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Hardware|Other                       |x86-64 (AMD64)
+                 OS|All                         |Linux (All)
+            Summary|Regression: Nvidia Geforce  |[NV4B] nVidia Geforce 7300
+                   |7300 (NV4B) fails to        |(NV4B) fails to resume
+                   |suspend                     |
+            Version|7.2 (2007.02)               |git
+           Keywords|                            |regression
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356522103.f7b2F721.1816
-Date: Wed, 26 Dec 2012 11:41:43 +0000
+--1356522158.e817bF1.1916
+Date: Wed, 26 Dec 2012 11:42:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,35 +57,61 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Regression: Nvidia Geforce 7300 (NV4B) fails to suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Regression: Nvidia Geforce 7300 (NV4B) fails to suspend"
+   title="NEW --- - [NV4B] nVidia Geforce 7300 (NV4B) fails to resume"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span></b>
-        <pre>Just tried v3.8rc1 + nouveau HEAD and a patch from:
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="show_bug.cgi?id=50121#c31">https://bugs.freedesktop.org/show_bug.cgi?id=50121#c31</a> . It suspends now,
-altough it takes a while. I hear stuff power down twice, I don't think that's
-correct...
+         <tr>
+           <td style="text-align:right;">Hardware</td>
+           <td>Other
+           </td>
+           <td>x86-64 (AMD64)
+           </td>
+         </tr>
 
-Recent rework made things worse, the screen resumed with a black screen. Latest
-HEAD with mentioned patch makes stuff regress like pre kernel v3.5 rework: The
-screen comes up, slightly garbled. It won't respond, and eventually the entire
-screen locks-up.
+         <tr>
+           <td style="text-align:right;">OS</td>
+           <td>All
+           </td>
+           <td>Linux (All)
+           </td>
+         </tr>
 
-Any pointers on what to do next??</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Regression: Nvidia Geforce 7300 (NV4B) fails to suspend
+           </td>
+           <td>[NV4B] nVidia Geforce 7300 (NV4B) fails to resume
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Version</td>
+           <td>7.2 (2007.02)
+           </td>
+           <td>git
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Keywords</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>regression
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -98,9 +122,9 @@ Any pointers on what to do next??</pre>
     </body>
 </html>
 
---1356522103.f7b2F721.1816--
+--1356522158.e817bF1.1916--
 
---===============0141126654==
+--===============0268205269==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +135,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0141126654==--
+--===============0268205269==--
