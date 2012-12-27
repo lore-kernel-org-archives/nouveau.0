@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 52398] nouveau: DPMS permanently turns off display
- when starting X.org, text console works fine
-Date: Thu, 27 Dec 2012 19:55:35 +0000
-Message-ID: <bug-52398-8800-0OHBtHeqgW@http.bugs.freedesktop.org/>
-References: <bug-52398-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31120] Backlight off after suspend-to-disk on
+	Powerbook
+Date: Thu, 27 Dec 2012 19:57:03 +0000
+Message-ID: <bug-31120-8800-dz8qTraynF@http.bugs.freedesktop.org/>
+References: <bug-31120-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2031290975=="
+Content-Type: multipart/mixed; boundary="===============1665439423=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-52398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31120-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,18 +21,18 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2031290975==
-Content-Type: multipart/alternative; boundary="1356638135.B08f71.4596"; charset="us-ascii"
+--===============1665439423==
+Content-Type: multipart/alternative; boundary="1356638223.E1fBbb42.4843"; charset="us-ascii"
 
 
---1356638135.B08f71.4596
-Date: Thu, 27 Dec 2012 19:55:35 +0000
+--1356638223.E1fBbb42.4843
+Date: Thu, 27 Dec 2012 19:57:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=52398
+https://bugs.freedesktop.org/show_bug.cgi?id=31120
 
---- Comment #6 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+--- Comment #1 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 What I posted here may be useful for this bug:
 
 https://bugs.freedesktop.org/show_bug.cgi?id=31122#c4
@@ -41,8 +41,8 @@ https://bugs.freedesktop.org/show_bug.cgi?id=31122#c4
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356638135.B08f71.4596
-Date: Thu, 27 Dec 2012 19:55:35 +0000
+--1356638223.E1fBbb42.4843
+Date: Thu, 27 Dec 2012 19:57:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,12 +55,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau: DPMS permanently turns off display when starting X.org, text console works fine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=52398#c6">Comment # 6</a>
+   title="NEW --- - Backlight off after suspend-to-disk on Powerbook"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau: DPMS permanently turns off display when starting X.org, text console works fine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=52398">bug 52398</a>
+   title="NEW --- - Backlight off after suspend-to-disk on Powerbook"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120">bug 31120</a>
               from <span class="vcard"><a class="email" href="mailto:moondrake&#64;gmail.com" title="Danny &lt;moondrake&#64;gmail.com&gt;"> <span class="fn">Danny</span></a>
 </span></b>
         <pre>What I posted here may be useful for this bug:
@@ -80,9 +80,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1356638135.B08f71.4596--
+--1356638223.E1fBbb42.4843--
 
---===============2031290975==
+--===============1665439423==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2031290975==--
+--===============1665439423==--
