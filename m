@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56461] NV11 black screen & kernel hang on loading
 	nouveaufb
-Date: Thu, 27 Dec 2012 13:16:59 +0000
-Message-ID: <bug-56461-8800-LwTRYFiBax@http.bugs.freedesktop.org/>
+Date: Thu, 27 Dec 2012 13:17:56 +0000
+Message-ID: <bug-56461-8800-IfDV1BNmey@http.bugs.freedesktop.org/>
 References: <bug-56461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0859175476=="
+Content-Type: multipart/mixed; boundary="===============1366047257=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56461-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0859175476==
-Content-Type: multipart/alternative; boundary="1356614219.e46bcb4b1.10455"; charset="us-ascii"
+--===============1366047257==
+Content-Type: multipart/alternative; boundary="1356614276.2de6Ae1.10696"; charset="us-ascii"
 
 
---1356614219.e46bcb4b1.10455
-Date: Thu, 27 Dec 2012 13:16:59 +0000
+--1356614276.2de6Ae1.10696
+Date: Thu, 27 Dec 2012 13:17:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56461
 
---- Comment #37 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> ---
-Created attachment 72178
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72178&action=edit
-console output for plain modprobe nouveau
+--- Comment #38 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> ---
+Created attachment 72179
+  --> https://bugs.freedesktop.org/attachment.cgi?id=72179&action=edit
+console output for modprobe nouveau apgmode=0
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356614219.e46bcb4b1.10455
-Date: Thu, 27 Dec 2012 13:16:59 +0000
+--1356614276.2de6Ae1.10696
+Date: Thu, 27 Dec 2012 13:17:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c37">Comment # 37</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c38">Comment # 38</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56461">bug 56461</a>
               from <span class="vcard"><a class="email" href="mailto:chris&#64;edesix.com" title="Chris Paulson-Ellis &lt;chris&#64;edesix.com&gt;"> <span class="fn">Chris Paulson-Ellis</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72178" name="attach_72178" title="console output for plain modprobe nouveau">attachment 72178</a> <a href="attachment.cgi?id=72178&amp;action=edit" title="console output for plain modprobe nouveau">[details]</a></span>
-console output for plain modprobe nouveau</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=72179" name="attach_72179" title="console output for modprobe nouveau apgmode=0">attachment 72179</a> <a href="attachment.cgi?id=72179&amp;action=edit" title="console output for modprobe nouveau apgmode=0">[details]</a></span>
+console output for modprobe nouveau apgmode=0</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ console output for plain modprobe nouveau</pre>
     </body>
 </html>
 
---1356614219.e46bcb4b1.10455--
+--1356614276.2de6Ae1.10696--
 
---===============0859175476==
+--===============1366047257==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0859175476==--
+--===============1366047257==--
