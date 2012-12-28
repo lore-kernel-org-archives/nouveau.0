@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31120] Backlight off after suspend-to-disk on
-	Powerbook
-Date: Thu, 27 Dec 2012 19:57:03 +0000
-Message-ID: <bug-31120-8800-dz8qTraynF@http.bugs.freedesktop.org/>
-References: <bug-31120-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 46557] nouveau: NV4E acceleration corruption when
+ DMA above 31-bit (2 Gig barrier)
+Date: Fri, 28 Dec 2012 01:33:39 +0000
+Message-ID: <bug-46557-8800-VNBld21NsG@http.bugs.freedesktop.org/>
+References: <bug-46557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1665439423=="
+Content-Type: multipart/mixed; boundary="===============1137238781=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31120-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-46557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,68 +21,99 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1665439423==
-Content-Type: multipart/alternative; boundary="1356638223.E1fBbb42.4843"; charset="us-ascii"
+--===============1137238781==
+Content-Type: multipart/alternative; boundary="1356658420.58A1Cc5.23907"; charset="us-ascii"
 
 
---1356638223.E1fBbb42.4843
-Date: Thu, 27 Dec 2012 19:57:03 +0000
+--1356658420.58A1Cc5.23907
+Date: Fri, 28 Dec 2012 01:33:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31120
+https://bugs.freedesktop.org/show_bug.cgi?id=3D46557
 
---- Comment #1 from Danny <moondrake-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-What I posted here may be useful for this bug:
+--- Comment #29 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 72201
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D72201&action=3Dedit
+limit vm size to 31 bits (nv04-nv40,nv45)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31122#c4
+Ok, original Salah's issue seems to be fixed. Xorg crashes and CACHE_ERRORs
+look like separate bugs - please open new bug reports for them (note that f=
+or
+CACHE_ERRORs I advise running nouveau git kernel with
+http://lists.freedesktop.org/archives/nouveau/2012-December/011780.html).
 
--- 
+Rapha=C3=ABl Droz's: you have nv34, so changing something in *nv44.c* obvio=
+usly
+won't fix anything for you... Does the above patch help?
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356638223.E1fBbb42.4843
-Date: Thu, 27 Dec 2012 19:57:03 +0000
+--1356658420.58A1Cc5.23907
+Date: Fri, 28 Dec 2012 01:33:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - Backlight off after suspend-to-disk on Powerbook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - nouveau: NV4E acceleration corruption when DMA above =
+31-bit (2 Gig barrier)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D46557#c29">Commen=
+t # 29</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - Backlight off after suspend-to-disk on Powerbook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120">bug 31120</a>
-              from <span class="vcard"><a class="email" href="mailto:moondrake&#64;gmail.com" title="Danny &lt;moondrake&#64;gmail.com&gt;"> <span class="fn">Danny</span></a>
+   title=3D"NEW --- - nouveau: NV4E acceleration corruption when DMA above =
+31-bit (2 Gig barrier)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D46557">bug 46557<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+marcin.slusarz&#64;gmail.com" title=3D"Marcin Slusarz &lt;marcin.slusarz&#6=
+4;gmail.com&gt;"> <span class=3D"fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>What I posted here may be useful for this bug:
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D72201"=
+ name=3D"attach_72201" title=3D"limit vm size to 31 bits (nv04-nv40,nv45)">=
+attachment 72201</a> <a href=3D"attachment.cgi?id=3D72201&amp;action=3Dedit=
+" title=3D"limit vm size to 31 bits (nv04-nv40,nv45)">[details]</a></span> =
+<a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D46557&amp;attachment=3D722=
+01'>[review]</a>
+limit vm size to 31 bits (nv04-nv40,nv45)
 
-<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Cannot control backlight intensity on Powerbook"
-   href="show_bug.cgi?id=31122#c4">https://bugs.freedesktop.org/show_bug.cgi?id=31122#c4</a></pre>
+Ok, original Salah's issue seems to be fixed. Xorg crashes and CACHE_ERRORs
+look like separate bugs - please open new bug reports for them (note that f=
+or
+CACHE_ERRORs I advise running nouveau git kernel with
+<a href=3D"http://lists.freedesktop.org/archives/nouveau/2012-December/0117=
+80.html">http://lists.freedesktop.org/archives/nouveau/2012-December/011780=
+.html</a>).
+
+Rapha=C3=ABl Droz's: you have nv34, so changing something in *nv44.c* obvio=
+usly
+won't fix anything for you... Does the above patch help?</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1356638223.E1fBbb42.4843--
+--1356658420.58A1Cc5.23907--
 
---===============1665439423==
+--===============1137238781==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +124,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1665439423==--
+--===============1137238781==--
