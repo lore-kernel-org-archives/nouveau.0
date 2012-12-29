@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58735] GeForce 680, currently driver works on two,
  but not three monitors
-Date: Sat, 29 Dec 2012 19:45:28 +0000
-Message-ID: <bug-58735-8800-180NTgCfid@http.bugs.freedesktop.org/>
+Date: Sat, 29 Dec 2012 21:50:16 +0000
+Message-ID: <bug-58735-8800-pVt7dH9pRN@http.bugs.freedesktop.org/>
 References: <bug-58735-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2073372797=="
+Content-Type: multipart/mixed; boundary="===============0070262453=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58735-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,43 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2073372797==
-Content-Type: multipart/alternative; boundary="1356810328.bCD61.19752"; charset="us-ascii"
+--===============0070262453==
+Content-Type: multipart/alternative; boundary="1356817816.Df2dB00c2.4712"; charset="us-ascii"
 
 
---1356810328.bCD61.19752
-Date: Sat, 29 Dec 2012 19:45:28 +0000
+--1356817816.Df2dB00c2.4712
+Date: Sat, 29 Dec 2012 21:50:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58735
 
---- Comment #6 from Sean Santos <quantheory-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I played around with xrandr and found that this is an issue with CRTC 2 and 3.
+--- Comment #7 from Aleksi Torhamo <alexerion-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 72277
+  --> https://bugs.freedesktop.org/attachment.cgi?id=72277&action=edit
+patch to fix the regression
 
-With two monitors:
-
-> xrandr --output DVI-I-1 --auto --crtc 2
-
-[ No good. Monitor says "Input Not Supported".]
-
-> xrandr --output DVI-I-1 --auto --crtc 3
-
-[ No good. Monitor says "Input Not Supported".]
-
-> xrandr --output DVI-I-1 --auto --crtc 1
-
-[ Works fine. ]
-
-Of course, with three monitors, one will always have one of the values that
-doesn't work.
+I bisected yesterday and found that the regression was introduced in commit
+70790f4f. Patch attached.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356810328.bCD61.19752
-Date: Sat, 29 Dec 2012 19:45:28 +0000
+--1356817816.Df2dB00c2.4712
+Date: Sat, 29 Dec 2012 21:50:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,31 +59,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - GeForce 680, currently driver works on two, but not three monitors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58735#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58735#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - GeForce 680, currently driver works on two, but not three monitors"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58735">bug 58735</a>
-              from <span class="vcard"><a class="email" href="mailto:quantheory&#64;gmail.com" title="Sean Santos &lt;quantheory&#64;gmail.com&gt;"> <span class="fn">Sean Santos</span></a>
+              from <span class="vcard"><a class="email" href="mailto:alexerion&#64;gmail.com" title="Aleksi Torhamo &lt;alexerion&#64;gmail.com&gt;"> <span class="fn">Aleksi Torhamo</span></a>
 </span></b>
-        <pre>I played around with xrandr and found that this is an issue with CRTC 2 and 3.
+        <pre>Created <span class=""><a href="attachment.cgi?id=72277" name="attach_72277" title="patch to fix the regression">attachment 72277</a> <a href="attachment.cgi?id=72277&amp;action=edit" title="patch to fix the regression">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=58735&amp;attachment=72277'>[review]</a>
+patch to fix the regression
 
-With two monitors:
-
-<span class="quote">&gt; xrandr --output DVI-I-1 --auto --crtc 2</span >
-
-[ No good. Monitor says &quot;Input Not Supported&quot;.]
-
-<span class="quote">&gt; xrandr --output DVI-I-1 --auto --crtc 3</span >
-
-[ No good. Monitor says &quot;Input Not Supported&quot;.]
-
-<span class="quote">&gt; xrandr --output DVI-I-1 --auto --crtc 1</span >
-
-[ Works fine. ]
-
-Of course, with three monitors, one will always have one of the values that
-doesn't work.</pre>
+I bisected yesterday and found that the regression was introduced in commit
+70790f4f. Patch attached.</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +82,9 @@ doesn't work.</pre>
     </body>
 </html>
 
---1356810328.bCD61.19752--
+--1356817816.Df2dB00c2.4712--
 
---===============2073372797==
+--===============0070262453==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2073372797==--
+--===============0070262453==--
