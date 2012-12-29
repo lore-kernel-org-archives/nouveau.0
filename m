@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 fails to properly
 	resume
-Date: Sat, 29 Dec 2012 16:27:22 +0000
-Message-ID: <bug-23223-8800-zLaiZ3HFxi@http.bugs.freedesktop.org/>
+Date: Sat, 29 Dec 2012 16:59:58 +0000
+Message-ID: <bug-23223-8800-BeWHEL3PJK@http.bugs.freedesktop.org/>
 References: <bug-23223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0183803029=="
+Content-Type: multipart/mixed; boundary="===============0796170543=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0183803029==
-Content-Type: multipart/alternative; boundary="1356798442.dbf731.20535"; charset="us-ascii"
+--===============0796170543==
+Content-Type: multipart/alternative; boundary="1356800398.BBA02.25286"; charset="us-ascii"
 
 
---1356798442.dbf731.20535
-Date: Sat, 29 Dec 2012 16:27:22 +0000
+--1356800398.BBA02.25286
+Date: Sat, 29 Dec 2012 16:59:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=23223
 
---- Comment #14 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 72262
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72262&action=edit
-G73 (NV4B) VBIOS, version 05.73.22.54.00 retrieved with DebugFS and kernel
-v3.6.9
-
-I tried to update the Wiki to reflect the current situation but my account
-(Rexilion) is not allowed to do so... . So this is the VBIOS retrieved from a
-v3.6.9 kernel.
+--- Comment #15 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Please attach boot log with above option and nouveau.debug=trace
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356798442.dbf731.20535
-Date: Sat, 29 Dec 2012 16:27:22 +0000
+--1356800398.BBA02.25286
+Date: Sat, 29 Dec 2012 16:59:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,20 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c14">Comment # 14</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72262" name="attach_72262" title="G73 (NV4B) VBIOS, version 05.73.22.54.00 retrieved with DebugFS and kernel v3.6.9">attachment 72262</a> <a href="attachment.cgi?id=72262&amp;action=edit" title="G73 (NV4B) VBIOS, version 05.73.22.54.00 retrieved with DebugFS and kernel v3.6.9">[details]</a></span>
-G73 (NV4B) VBIOS, version 05.73.22.54.00 retrieved with DebugFS and kernel
-v3.6.9
-
-I tried to update the Wiki to reflect the current situation but my account
-(Rexilion) is not allowed to do so... . So this is the VBIOS retrieved from a
-v3.6.9 kernel.</pre>
+        <pre>Please attach boot log with above option and nouveau.debug=trace</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +73,9 @@ v3.6.9 kernel.</pre>
     </body>
 </html>
 
---1356798442.dbf731.20535--
+--1356800398.BBA02.25286--
 
---===============0183803029==
+--===============0796170543==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0183803029==--
+--===============0796170543==--
