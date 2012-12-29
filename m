@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 46557] nouveau: NV4E acceleration corruption when
- DMA above 31-bit (2 Gig barrier)
-Date: Fri, 28 Dec 2012 23:38:51 +0000
-Message-ID: <bug-46557-8800-QB0Wl8gjTh@http.bugs.freedesktop.org/>
-References: <bug-46557-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58735] GeForce 680, currently driver works on two,
+ but not three monitors
+Date: Sat, 29 Dec 2012 06:44:42 +0000
+Message-ID: <bug-58735-8800-B82DVfKs65@http.bugs.freedesktop.org/>
+References: <bug-58735-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0359794079=="
+Content-Type: multipart/mixed; boundary="===============1076212003=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-46557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58735-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0359794079==
-Content-Type: multipart/alternative; boundary="1356737931.eC10C3aD4.24147"; charset="us-ascii"
+--===============1076212003==
+Content-Type: multipart/alternative; boundary="1356763482.Adb4ac12.7921"; charset="us-ascii"
 
 
---1356737931.eC10C3aD4.24147
-Date: Fri, 28 Dec 2012 23:38:51 +0000
+--1356763482.Adb4ac12.7921
+Date: Sat, 29 Dec 2012 06:44:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=46557
+https://bugs.freedesktop.org/show_bug.cgi?id=58735
 
---- Comment #30 from Salah Coronya <salah.coronya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-As of kernel 3.7, xorg-1.13, nouveau DDX 1.0.4, mesa-9.0 all the errors related
-to ths bug are gone for me - no distortion, no crashes, and no CACHE_ERROR,
-even after switching VT and running accelerated programs for over a week.
+--- Comment #5 from Aleksi Torhamo <alexerion-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I can confirm this. Tested with the latest nouveau kernel (commit
+73e5cf2d9af6bb32b91f8a2f6d7c44c8e9b4e785) and a GeForce GTX 660 (nve6). All
+three screens worked with nouveau on kernel 3.6.11, but on this one, one stays
+blank.
+
+If I disable one of the outputs that work by default, the one that didn't work
+comes to life instead:
+
+  Section "Device"
+    ...
+    Option "monitor-OUTPUT" "MonitorX"
+  EndSection
+
+  Section "Monitor"
+    Identifier "MonitorX"
+    Option "Ignore" "true"
+  EndSection
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356737931.eC10C3aD4.24147
-Date: Fri, 28 Dec 2012 23:38:51 +0000
+--1356763482.Adb4ac12.7921
+Date: Sat, 29 Dec 2012 06:44:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,17 +69,31 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau: NV4E acceleration corruption when DMA above 31-bit (2 Gig barrier)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=46557#c30">Comment # 30</a>
+   title="NEW --- - GeForce 680, currently driver works on two, but not three monitors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58735#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau: NV4E acceleration corruption when DMA above 31-bit (2 Gig barrier)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=46557">bug 46557</a>
-              from <span class="vcard"><a class="email" href="mailto:salah.coronya&#64;gmail.com" title="Salah Coronya &lt;salah.coronya&#64;gmail.com&gt;"> <span class="fn">Salah Coronya</span></a>
+   title="NEW --- - GeForce 680, currently driver works on two, but not three monitors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58735">bug 58735</a>
+              from <span class="vcard"><a class="email" href="mailto:alexerion&#64;gmail.com" title="Aleksi Torhamo &lt;alexerion&#64;gmail.com&gt;"> <span class="fn">Aleksi Torhamo</span></a>
 </span></b>
-        <pre>As of kernel 3.7, xorg-1.13, nouveau DDX 1.0.4, mesa-9.0 all the errors related
-to ths bug are gone for me - no distortion, no crashes, and no CACHE_ERROR,
-even after switching VT and running accelerated programs for over a week.</pre>
+        <pre>I can confirm this. Tested with the latest nouveau kernel (commit
+73e5cf2d9af6bb32b91f8a2f6d7c44c8e9b4e785) and a GeForce GTX 660 (nve6). All
+three screens worked with nouveau on kernel 3.6.11, but on this one, one stays
+blank.
+
+If I disable one of the outputs that work by default, the one that didn't work
+comes to life instead:
+
+  Section &quot;Device&quot;
+    ...
+    Option &quot;monitor-OUTPUT&quot; &quot;MonitorX&quot;
+  EndSection
+
+  Section &quot;Monitor&quot;
+    Identifier &quot;MonitorX&quot;
+    Option &quot;Ignore&quot; &quot;true&quot;
+  EndSection</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +105,9 @@ even after switching VT and running accelerated programs for over a week.</pre>
     </body>
 </html>
 
---1356737931.eC10C3aD4.24147--
+--1356763482.Adb4ac12.7921--
 
---===============0359794079==
+--===============1076212003==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +118,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0359794079==--
+--===============1076212003==--
