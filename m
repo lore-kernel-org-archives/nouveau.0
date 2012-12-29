@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 fails to properly
 	resume
-Date: Sat, 29 Dec 2012 14:24:27 +0000
-Message-ID: <bug-23223-8800-cTEmkdSCmu@http.bugs.freedesktop.org/>
+Date: Sat, 29 Dec 2012 14:25:17 +0000
+Message-ID: <bug-23223-8800-3LNIWtROCA@http.bugs.freedesktop.org/>
 References: <bug-23223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2101878328=="
+Content-Type: multipart/mixed; boundary="===============1487324865=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2101878328==
-Content-Type: multipart/alternative; boundary="1356791067.678A1.1943"; charset="us-ascii"
+--===============1487324865==
+Content-Type: multipart/alternative; boundary="1356791117.aBCe48BB1.2051"; charset="us-ascii"
 
 
---1356791067.678A1.1943
-Date: Sat, 29 Dec 2012 14:24:27 +0000
+--1356791117.aBCe48BB1.2051
+Date: Sat, 29 Dec 2012 14:25:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=23223
 
---- Comment #11 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Yes, it boots. But that is it, actually. By passing that kernel paremeter it
-seems to reproduce the exact same screen distortion if I resume: lot's of stuff
-is a little off (both in location and color). But I could see what I typed and
-recognize my splash screen wallpaper. It just had this local distorted area's
-that flipped state every once in a while...
-
-I'm attaching a dmesg for your viewing pleasure. Lot's of errors...
+--- Comment #12 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 72251
+  --> https://bugs.freedesktop.org/attachment.cgi?id=72251&action=edit
+Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 +
+nouveau.config=DEVINIT=NvForcePost=1
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356791067.678A1.1943
-Date: Sat, 29 Dec 2012 14:24:27 +0000
+--1356791117.aBCe48BB1.2051
+Date: Sat, 29 Dec 2012 14:25:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,20 +57,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Yes, it boots. But that is it, actually. By passing that kernel paremeter it
-seems to reproduce the exact same screen distortion if I resume: lot's of stuff
-is a little off (both in location and color). But I could see what I typed and
-recognize my splash screen wallpaper. It just had this local distorted area's
-that flipped state every once in a while...
-
-I'm attaching a dmesg for your viewing pleasure. Lot's of errors...</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=72251" name="attach_72251" title="Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 + nouveau.config=DEVINIT=NvForcePost=1">attachment 72251</a> <a href="attachment.cgi?id=72251&amp;action=edit" title="Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 + nouveau.config=DEVINIT=NvForcePost=1">[details]</a></span>
+Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 +
+nouveau.config=DEVINIT=NvForcePost=1</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +78,9 @@ I'm attaching a dmesg for your viewing pleasure. Lot's of errors...</pre>
     </body>
 </html>
 
---1356791067.678A1.1943--
+--1356791117.aBCe48BB1.2051--
 
---===============2101878328==
+--===============1487324865==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2101878328==--
+--===============1487324865==--
