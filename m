@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 fails to properly
-	resume
-Date: Sat, 29 Dec 2012 17:25:28 +0000
-Message-ID: <bug-23223-8800-iMgIDcYcpr@http.bugs.freedesktop.org/>
-References: <bug-23223-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58735] GeForce 680, currently driver works on two,
+ but not three monitors
+Date: Sat, 29 Dec 2012 19:45:28 +0000
+Message-ID: <bug-58735-8800-180NTgCfid@http.bugs.freedesktop.org/>
+References: <bug-58735-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0193002467=="
+Content-Type: multipart/mixed; boundary="===============2073372797=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58735-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0193002467==
-Content-Type: multipart/alternative; boundary="1356801928.B8BCC1.28859"; charset="us-ascii"
+--===============2073372797==
+Content-Type: multipart/alternative; boundary="1356810328.bCD61.19752"; charset="us-ascii"
 
 
---1356801928.B8BCC1.28859
-Date: Sat, 29 Dec 2012 17:25:28 +0000
+--1356810328.bCD61.19752
+Date: Sat, 29 Dec 2012 19:45:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=23223
+https://bugs.freedesktop.org/show_bug.cgi?id=58735
 
-Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #6 from Sean Santos <quantheory-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I played around with xrandr and found that this is an issue with CRTC 2 and 3.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #72251|0                           |1
-        is obsolete|                            |
+With two monitors:
 
---- Comment #16 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 72265
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72265&action=edit
-Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 +
-nouveau.config=DEVINIT=NvForcePost=1 + nouveau.debug=trace
+> xrandr --output DVI-I-1 --auto --crtc 2
+
+[ No good. Monitor says "Input Not Supported".]
+
+> xrandr --output DVI-I-1 --auto --crtc 3
+
+[ No good. Monitor says "Input Not Supported".]
+
+> xrandr --output DVI-I-1 --auto --crtc 1
+
+[ Works fine. ]
+
+Of course, with three monitors, one will always have one of the values that
+doesn't work.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356801928.B8BCC1.28859
-Date: Sat, 29 Dec 2012 17:25:28 +0000
+--1356810328.bCD61.19752
+Date: Sat, 29 Dec 2012 19:45:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,43 +65,37 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #72251 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c16">Comment # 16</a>
+   title="NEW --- - GeForce 680, currently driver works on two, but not three monitors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58735#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+   title="NEW --- - GeForce 680, currently driver works on two, but not three monitors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58735">bug 58735</a>
+              from <span class="vcard"><a class="email" href="mailto:quantheory&#64;gmail.com" title="Sean Santos &lt;quantheory&#64;gmail.com&gt;"> <span class="fn">Sean Santos</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72265" name="attach_72265" title="Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 + nouveau.config=DEVINIT=NvForcePost=1 + nouveau.debug=trace">attachment 72265</a> <a href="attachment.cgi?id=72265&amp;action=edit" title="Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 + nouveau.config=DEVINIT=NvForcePost=1 + nouveau.debug=trace">[details]</a></span>
-Dmesg v3.8rc1+Nouveau_HEAD+patch from #50121#c31 +
-nouveau.config=DEVINIT=NvForcePost=1 + nouveau.debug=trace</pre>
+        <pre>I played around with xrandr and found that this is an issue with CRTC 2 and 3.
+
+With two monitors:
+
+<span class="quote">&gt; xrandr --output DVI-I-1 --auto --crtc 2</span >
+
+[ No good. Monitor says &quot;Input Not Supported&quot;.]
+
+<span class="quote">&gt; xrandr --output DVI-I-1 --auto --crtc 3</span >
+
+[ No good. Monitor says &quot;Input Not Supported&quot;.]
+
+<span class="quote">&gt; xrandr --output DVI-I-1 --auto --crtc 1</span >
+
+[ Works fine. ]
+
+Of course, with three monitors, one will always have one of the values that
+doesn't work.</pre>
         </div>
       </p>
       <hr>
@@ -106,9 +107,9 @@ nouveau.config=DEVINIT=NvForcePost=1 + nouveau.debug=trace</pre>
     </body>
 </html>
 
---1356801928.B8BCC1.28859--
+--1356810328.bCD61.19752--
 
---===============0193002467==
+--===============2073372797==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -119,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0193002467==--
+--===============2073372797==--
