@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58806] failed to create kernel channel, -12 on G4 PPC
-Date: Mon, 31 Dec 2012 15:02:39 +0000
-Message-ID: <bug-58806-8800-tdVcHWRXtR@http.bugs.freedesktop.org/>
+Date: Mon, 31 Dec 2012 18:53:52 +0000
+Message-ID: <bug-58806-8800-I7Lr7oIXQg@http.bugs.freedesktop.org/>
 References: <bug-58806-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0772893470=="
+Content-Type: multipart/mixed; boundary="===============0361079469=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58806-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,26 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0772893470==
-Content-Type: multipart/alternative; boundary="1356966158.aAd2C61.20679"; charset="us-ascii"
+--===============0361079469==
+Content-Type: multipart/alternative; boundary="1356980032.C1d72651.10285"; charset="us-ascii"
 
 
---1356966158.aAd2C61.20679
-Date: Mon, 31 Dec 2012 15:02:38 +0000
+--1356980032.C1d72651.10285
+Date: Mon, 31 Dec 2012 18:53:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58806
 
---- Comment #4 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-http://lists.freedesktop.org/archives/dri-devel/2012-December/032740.html
+--- Comment #5 from Stefan de Konink <stefan-01bSGNrlLMOzQB+pC5nmwQ@public.gmane.org> ---
+I confirm that the fix works on 3.8-rc1
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1356966158.aAd2C61.20679
-Date: Mon, 31 Dec 2012 15:02:38 +0000
+--1356980032.C1d72651.10285
+Date: Mon, 31 Dec 2012 18:53:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,14 +53,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - failed to create kernel channel, -12 on G4 PPC"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58806#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58806#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - failed to create kernel channel, -12 on G4 PPC"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58806">bug 58806</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+              from <span class="vcard"><a class="email" href="mailto:stefan&#64;konink.de" title="Stefan de Konink &lt;stefan&#64;konink.de&gt;"> <span class="fn">Stefan de Konink</span></a>
 </span></b>
-        <pre><a href="http://lists.freedesktop.org/archives/dri-devel/2012-December/032740.html">http://lists.freedesktop.org/archives/dri-devel/2012-December/032740.html</a></pre>
+        <pre>I confirm that the fix works on 3.8-rc1</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +72,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1356966158.aAd2C61.20679--
+--1356980032.C1d72651.10285--
 
---===============0772893470==
+--===============0361079469==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -85,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0772893470==--
+--===============0361079469==--
