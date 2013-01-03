@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58776] DRM NOUVEAU: cannot boot with kernel >=3.7
-Date: Thu, 03 Jan 2013 14:27:26 +0000
-Message-ID: <bug-58776-8800-eHYPBVQ1uM@http.bugs.freedesktop.org/>
+Date: Thu, 03 Jan 2013 14:30:19 +0000
+Message-ID: <bug-58776-8800-kFYbkKF38F@http.bugs.freedesktop.org/>
 References: <bug-58776-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0874246012=="
+Content-Type: multipart/mixed; boundary="===============0025109114=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0874246012==
-Content-Type: multipart/alternative; boundary="1357223246.6EcE1.19605"; charset="us-ascii"
+--===============0025109114==
+Content-Type: multipart/alternative; boundary="1357223419.4320D1.19964"; charset="us-ascii"
 
 
---1357223246.6EcE1.19605
-Date: Thu, 3 Jan 2013 14:27:26 +0000
+--1357223419.4320D1.19964
+Date: Thu, 3 Jan 2013 14:30:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58776
 
---- Comment #11 from gabriele balducci <balducci-KqplAB4qOuE@public.gmane.org> ---
-Created attachment 72455
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72455&action=edit
-Xorg.0.log for kernel-3.6.10
+--- Comment #12 from gabriele balducci <balducci-KqplAB4qOuE@public.gmane.org> ---
+Created attachment 72456
+  --> https://bugs.freedesktop.org/attachment.cgi?id=72456&action=edit
+Xorg.0.log for kernel-3.7.1 without acceleration
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357223246.6EcE1.19605
-Date: Thu, 3 Jan 2013 14:27:26 +0000
+--1357223419.4320D1.19964
+Date: Thu, 3 Jan 2013 14:30:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - DRM NOUVEAU: cannot boot with kernel &gt;=3.7"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58776#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58776#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - DRM NOUVEAU: cannot boot with kernel &gt;=3.7"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58776">bug 58776</a>
               from <span class="vcard"><a class="email" href="mailto:balducci&#64;units.it" title="gabriele balducci &lt;balducci&#64;units.it&gt;"> <span class="fn">gabriele balducci</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72455" name="attach_72455" title="Xorg.0.log for kernel-3.6.10">attachment 72455</a> <a href="attachment.cgi?id=72455&amp;action=edit" title="Xorg.0.log for kernel-3.6.10">[details]</a></span>
-Xorg.0.log for kernel-3.6.10</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=72456" name="attach_72456" title="Xorg.0.log for kernel-3.7.1 without acceleration">attachment 72456</a> <a href="attachment.cgi?id=72456&amp;action=edit" title="Xorg.0.log for kernel-3.7.1 without acceleration">[details]</a></span>
+Xorg.0.log for kernel-3.7.1 without acceleration</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ Xorg.0.log for kernel-3.6.10</pre>
     </body>
 </html>
 
---1357223246.6EcE1.19605--
+--1357223419.4320D1.19964--
 
---===============0874246012==
+--===============0025109114==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0874246012==--
+--===============0025109114==--
