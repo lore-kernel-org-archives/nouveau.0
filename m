@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58984] DRM NOUVEAU: probe of 0001:01:00.0 failed
-	with error -12
-Date: Thu, 03 Jan 2013 15:23:29 +0000
-Message-ID: <bug-58984-8800-UtHWrl6xlc@http.bugs.freedesktop.org/>
-References: <bug-58984-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58729] [bisected] Display fails to turn on after
+ suspend/resume (NV86)
+Date: Thu, 03 Jan 2013 19:01:21 +0000
+Message-ID: <bug-58729-8800-OsKfJ8dHMx@http.bugs.freedesktop.org/>
+References: <bug-58729-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1316468135=="
+Content-Type: multipart/mixed; boundary="===============1847663889=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58984-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1316468135==
-Content-Type: multipart/alternative; boundary="1357226609.5A2eB1.27375"; charset="us-ascii"
+--===============1847663889==
+Content-Type: multipart/alternative; boundary="1357239681.4CAb741.23314"; charset="us-ascii"
 
 
---1357226609.5A2eB1.27375
-Date: Thu, 3 Jan 2013 15:23:29 +0000
+--1357239681.4CAb741.23314
+Date: Thu, 3 Jan 2013 19:01:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58984
+https://bugs.freedesktop.org/show_bug.cgi?id=58729
 
---- Comment #1 from Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Doh, dmesg.log didn't attach. I'll get that later today.
+--- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 72473
+  --> https://bugs.freedesktop.org/attachment.cgi?id=72473&action=edit
+fix
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357226609.5A2eB1.27375
-Date: Thu, 3 Jan 2013 15:23:29 +0000
+--1357239681.4CAb741.23314
+Date: Thu, 3 Jan 2013 19:01:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,15 +55,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984#c1">Comment # 1</a>
+   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984">bug 58984</a>
-              from <span class="vcard"><a class="email" href="mailto:baggett.patrick&#64;gmail.com" title="Patrick Baggett &lt;baggett.patrick&#64;gmail.com&gt;"> <span class="fn">Patrick Baggett</span></a>
+   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729">bug 58729</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Doh, dmesg.log didn't attach. I'll get that later today.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=72473" name="attach_72473" title="fix">attachment 72473</a> <a href="attachment.cgi?id=72473&amp;action=edit" title="fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=58729&amp;attachment=72473'>[review]</a>
+fix</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1357226609.5A2eB1.27375--
+--1357239681.4CAb741.23314--
 
---===============1316468135==
+--===============1847663889==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1316468135==--
+--===============1847663889==--
