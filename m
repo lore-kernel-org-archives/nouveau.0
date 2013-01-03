@@ -1,92 +1,45 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58729] [bisected] Display fails to turn on after
- suspend/resume (NV86)
-Date: Thu, 03 Jan 2013 19:01:21 +0000
-Message-ID: <bug-58729-8800-OsKfJ8dHMx@http.bugs.freedesktop.org/>
-References: <bug-58729-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: Re: Resume regression with nouveau 3.8rc1 (bisected)
+Date: Thu, 3 Jan 2013 20:12:01 +0100
+Message-ID: <20130103191201.GA25680@joi.lan>
+References: <50E45007.5080706@gmail.com>
+ <20130103125810.GA3198@joi.lan>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1847663889=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20130103125810.GA3198@joi.lan>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Pontus Fuchs <pontus.fuchs@gmail.com>
+Cc: nouveau@lists.freedesktop.org, bskeggs@redhat.com, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+On Thu, Jan 03, 2013 at 01:58:10PM +0100, Marcin Slusarz wrote:
+> On Wed, Jan 02, 2013 at 04:19:35PM +0100, Pontus Fuchs wrote:
+> > Hi,
+> > 
+> > Starting with 3.8rc1 I get a black screen when resuming after suspend. 
+> > The kernel is alive because I can switch to VT1 and reboot with 
+> > ctrl-alt-delete.
+> > 
+> > I bisected the problem down to this commit:
+> > 
+> > 186ecad21: drm/nv50/disp: move remaining interrupt handling into core
+> > 
+> > Hardware is 8400M GS (10de:0427) in a Dell XPS M1330.
+> 
+> There's already open bug report for that:
+> https://bugs.freedesktop.org/show_bug.cgi?id=58729
 
---===============1847663889==
-Content-Type: multipart/alternative; boundary="1357239681.4CAb741.23314"; charset="us-ascii"
+Yay, a bug fix was just posted there ;).
 
-
---1357239681.4CAb741.23314
-Date: Thu, 3 Jan 2013 19:01:21 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=58729
-
---- Comment #2 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 72473
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72473&action=edit
-fix
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1357239681.4CAb741.23314
-Date: Thu, 3 Jan 2013 19:01:21 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729">bug 58729</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72473" name="attach_72473" title="fix">attachment 72473</a> <a href="attachment.cgi?id=72473&amp;action=edit" title="fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=58729&amp;attachment=72473'>[review]</a>
-fix</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1357239681.4CAb741.23314--
-
---===============1847663889==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1847663889==--
+Marcin
