@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58776] DRM NOUVEAU: cannot boot with kernel >=3.7
-Date: Wed, 02 Jan 2013 13:54:28 +0000
-Message-ID: <bug-58776-8800-V9onnPpwVb@http.bugs.freedesktop.org/>
-References: <bug-58776-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 41114] nouveau module crashes on boot
+Date: Thu, 03 Jan 2013 03:37:02 +0000
+Message-ID: <bug-41114-8800-LrbCj92ObN@http.bugs.freedesktop.org/>
+References: <bug-41114-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0527776070=="
+Content-Type: multipart/mixed; boundary="===============0039864128=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-41114-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,38 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0527776070==
-Content-Type: multipart/alternative; boundary="1357134868.dA8364bC2.23067"; charset="us-ascii"
+--===============0039864128==
+Content-Type: multipart/alternative; boundary="1357184222.E1fEC25.1346"; charset="us-ascii"
 
 
---1357134868.dA8364bC2.23067
-Date: Wed, 2 Jan 2013 13:54:28 +0000
+--1357184222.E1fEC25.1346
+Date: Thu, 3 Jan 2013 03:37:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58776
+https://bugs.freedesktop.org/show_bug.cgi?id=41114
 
---- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Please attach dmesg from 3.6 kernel.
-
-2 things to try:
-1) Dealing with this:
-[    0.000000] No AGP bridge found
-[    0.000000] Node 0: aperture @ c4000000 size 32 MB
-[    0.000000] Aperture pointing to e820 RAM. Ignoring.
-[    0.000000] Your BIOS doesn't leave a aperture memory hole
-[    0.000000] Please enable the IOMMU option in the BIOS setup
-[    0.000000] This costs you 64 MB of RAM
-[    0.000000] Mapping aperture over 65536 KB of RAM @ c4000000
-
-2) Booting with nouveau.vram_pushbuf=1
+--- Comment #15 from Robert Riches <rm.riches-BRax14MUi1YI9MI5TlNUSA@public.gmane.org> ---
+Unfortunately, installed Mageia 2 doesn't work properly with Nouveau and the
+ENGTX560 DC/2DI/1GD5 card.  According to observation and dmesg timestamps, the
+kernel appears to go out to lunch for about four minutes.  Later, when
+attempting startx, keyboard input becomes extremely unresponsive, and video
+output is blacked out.  This is with kernel 3.3.8-desktop-2.mga2.  The same
+installation and kernel work well with an ENGT430 card.  What information
+(dmesg, Xorg log) would be useful?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357134868.dA8364bC2.23067
-Date: Wed, 2 Jan 2013 13:54:28 +0000
+--1357184222.E1fEC25.1346
+Date: Thu, 3 Jan 2013 03:37:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,27 +58,21 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - DRM NOUVEAU: cannot boot with kernel &gt;=3.7"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58776#c6">Comment # 6</a>
+   title="NEW --- - nouveau module crashes on boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=41114#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - DRM NOUVEAU: cannot boot with kernel &gt;=3.7"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58776">bug 58776</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+   title="NEW --- - nouveau module crashes on boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=41114">bug 41114</a>
+              from <span class="vcard"><a class="email" href="mailto:rm.riches&#64;jacob21819.net" title="Robert Riches &lt;rm.riches&#64;jacob21819.net&gt;"> <span class="fn">Robert Riches</span></a>
 </span></b>
-        <pre>Please attach dmesg from 3.6 kernel.
-
-2 things to try:
-1) Dealing with this:
-[    0.000000] No AGP bridge found
-[    0.000000] Node 0: aperture &#64; c4000000 size 32 MB
-[    0.000000] Aperture pointing to e820 RAM. Ignoring.
-[    0.000000] Your BIOS doesn't leave a aperture memory hole
-[    0.000000] Please enable the IOMMU option in the BIOS setup
-[    0.000000] This costs you 64 MB of RAM
-[    0.000000] Mapping aperture over 65536 KB of RAM &#64; c4000000
-
-2) Booting with nouveau.vram_pushbuf=1</pre>
+        <pre>Unfortunately, installed Mageia 2 doesn't work properly with Nouveau and the
+ENGTX560 DC/2DI/1GD5 card.  According to observation and dmesg timestamps, the
+kernel appears to go out to lunch for about four minutes.  Later, when
+attempting startx, keyboard input becomes extremely unresponsive, and video
+output is blacked out.  This is with kernel 3.3.8-desktop-2.mga2.  The same
+installation and kernel work well with an ENGT430 card.  What information
+(dmesg, Xorg log) would be useful?</pre>
         </div>
       </p>
       <hr>
@@ -96,9 +84,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1357134868.dA8364bC2.23067--
+--1357184222.E1fEC25.1346--
 
---===============0527776070==
+--===============0039864128==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -109,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0527776070==--
+--===============0039864128==--
