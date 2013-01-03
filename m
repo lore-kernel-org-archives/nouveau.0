@@ -1,44 +1,31 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Resume regression with nouveau 3.8rc1 (bisected)
-Date: Thu, 3 Jan 2013 13:58:10 +0100
-Message-ID: <20130103125810.GA3198@joi.lan>
-References: <50E45007.5080706@gmail.com>
+From: Alan Cox <alan@lxorguk.ukuu.org.uk>
+Subject: Re: 3.8-rc2: EFI framebuffer lock inversion...
+Date: Thu, 3 Jan 2013 13:11:56 +0000
+Message-ID: <20130103131156.214bd7a5@pyramind.ukuu.org.uk>
+References: <CAMVG2ssA-B6s+F-g4mL0dbBSVsNupzT1nm1Kc70dXHGsNQuNYA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <50E45007.5080706-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Pontus Fuchs <pontus.fuchs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAMVG2ssA-B6s+F-g4mL0dbBSVsNupzT1nm1Kc70dXHGsNQuNYA@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Daniel J Blueman <daniel@quora.org>
+Cc: Peter Jones <pjones@redhat.com>, linux-fbdev@vger.kernel.org, nouveau@lists.freedesktop.org, Linux Kernel <linux-kernel@vger.kernel.org>, akpm@linux-foundation.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jan 02, 2013 at 04:19:35PM +0100, Pontus Fuchs wrote:
-> Hi,
-> 
-> Starting with 3.8rc1 I get a black screen when resuming after suspend. 
-> The kernel is alive because I can switch to VT1 and reboot with 
-> ctrl-alt-delete.
-> 
-> I bisected the problem down to this commit:
-> 
-> 186ecad21: drm/nv50/disp: move remaining interrupt handling into core
-> 
-> Hardware is 8400M GS (10de:0427) in a Dell XPS M1330.
+On Thu, 3 Jan 2013 20:56:30 +0800
+Daniel J Blueman <daniel@quora.org> wrote:
 
-There's already open bug report for that:
-https://bugs.freedesktop.org/show_bug.cgi?id=58729
+> On 3.8-rc2 with lockdep enabled and dual-GPU setup (Macbook Pro
+> Retina), I see two releated lock inversion issues with the EFI
+> framebuffer, leading to possible deadlock: when X takes over from the
+> EFI framebuffer [1] and when nouveau releases the framebuffer when
+> being vgaswitcherood [2].
+> 
+> Let me know if you'd like any testing or analysis when I can get the time.
 
-And my nv92 does not resume too, with similar symptoms, since nouveau display
-rework hit the tree.
+The fb layer locking was broken. I posted patches early December which
+should have fixed the ones we know about. ('fb: Rework locking to fix
+lock ordering on takeover').
 
-Marcin
+Alan
