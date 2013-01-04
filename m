@@ -1,12 +1,12 @@
-From: Aleksi Torhamo <aleksi-P/PbomOFYFrR7s880joybQ@public.gmane.org>
-Subject: [PATCH] drm/nouveau/clock: fix support for more than 2
-	monitors on nve0
-Date: Fri,  4 Jan 2013 18:39:13 +0200
-Message-ID: <1357317553-30296-1-git-send-email-aleksi@torhamo.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 58806] failed to create kernel channel, -12 on G4 PPC
+Date: Fri, 04 Jan 2013 19:46:28 +0000
+Message-ID: <bug-58806-8800-ynRTYosyDc@http.bugs.freedesktop.org/>
+References: <bug-58806-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0165538243=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-58806-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,55 +19,105 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Fixes regression introduced in commit 70790f4f
-"drm/nouveau/clock: pull in the implementation from all over the place"
 
-When code was moved from nv50_crtc_set_clock to nvc0_clock_pll_set,
-the PLLs it is used for got limited to only the first two VPLLs.
+--===============0165538243==
+Content-Type: multipart/alternative; boundary="1357328788.B5AC831.27475"; charset="us-ascii"
 
-nv50_crtc_set_clock was only called to change VPLLs, so it didn't
-limit what it was used for in any way. Since nvc0_clock_pll_set is
-used for all PLLs, it has to specify which PLLs the code is used for,
-and only listed the first two VPLLs.
 
-Fixes: https://bugs.freedesktop.org/show_bug.cgi?id=58735
+--1357328788.B5AC831.27475
+Date: Fri, 4 Jan 2013 19:46:28 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-This patch is a -stable candidate for 3.7.
+https://bugs.freedesktop.org/show_bug.cgi?id=58806
 
-Signed-off-by: Aleksi Torhamo <aleksi-P/PbomOFYFrR7s880joybQ@public.gmane.org>
-Tested-by: Aleksi Torhamo <aleksi-P/PbomOFYFrR7s880joybQ@public.gmane.org>
-Tested-by: Sean Santos <quantheory-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
----
- .../gpu/drm/nouveau/core/include/subdev/bios/pll.h |    2 ++
- drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c   |    2 ++
- 2 files changed, 4 insertions(+), 0 deletions(-)
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/bios/pll.h b/drivers/gpu/drm/nouveau/core/include/subdev/bios/pll.h
-index c345097..b2f3d4d 100644
---- a/drivers/gpu/drm/nouveau/core/include/subdev/bios/pll.h
-+++ b/drivers/gpu/drm/nouveau/core/include/subdev/bios/pll.h
-@@ -38,6 +38,8 @@ enum nvbios_pll_type {
- 	PLL_UNK42  = 0x42,
- 	PLL_VPLL0  = 0x80,
- 	PLL_VPLL1  = 0x81,
-+	PLL_VPLL2  = 0x82,
-+	PLL_VPLL3  = 0x83,
- 	PLL_MAX    = 0xff
- };
- 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c b/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c
-index f6962c9..7c96262 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c
-@@ -52,6 +52,8 @@ nvc0_clock_pll_set(struct nouveau_clock *clk, u32 type, u32 freq)
- 	switch (info.type) {
- 	case PLL_VPLL0:
- 	case PLL_VPLL1:
-+	case PLL_VPLL2:
-+	case PLL_VPLL3:
- 		nv_mask(priv, info.reg + 0x0c, 0x00000000, 0x00000100);
- 		nv_wr32(priv, info.reg + 0x04, (P << 16) | (N << 8) | M);
- 		nv_wr32(priv, info.reg + 0x10, fN << 16);
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This fix just hit Linus' tree.
+
 -- 
-1.7.8.6
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1357328788.B5AC831.27475
+Date: Fri, 4 Jan 2013 19:46:28 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - failed to create kernel channel, -12 on G4 PPC"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58806">bug 58806</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - failed to create kernel channel, -12 on G4 PPC"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58806#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - failed to create kernel channel, -12 on G4 PPC"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58806">bug 58806</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span></b>
+        <pre>This fix just hit Linus' tree.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1357328788.B5AC831.27475--
+
+--===============0165538243==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0165538243==--
