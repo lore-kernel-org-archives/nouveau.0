@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58984] DRM NOUVEAU: probe of 0001:01:00.0 failed
-	with error -12
-Date: Fri, 04 Jan 2013 14:08:41 +0000
-Message-ID: <bug-58984-8800-FcyT6BcDf2@http.bugs.freedesktop.org/>
-References: <bug-58984-8800@http.bugs.freedesktop.org/>
+From: Aleksi Torhamo <aleksi-P/PbomOFYFrR7s880joybQ@public.gmane.org>
+Subject: [PATCH] drm/nouveau/clock: fix support for more than 2
+	monitors on nve0
+Date: Fri,  4 Jan 2013 18:39:13 +0200
+Message-ID: <1357317553-30296-1-git-send-email-aleksi@torhamo.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0255016653=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58984-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,70 +19,55 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Fixes regression introduced in commit 70790f4f
+"drm/nouveau/clock: pull in the implementation from all over the place"
 
---===============0255016653==
-Content-Type: multipart/alternative; boundary="1357308521.e62A2.9656"; charset="us-ascii"
+When code was moved from nv50_crtc_set_clock to nvc0_clock_pll_set,
+the PLLs it is used for got limited to only the first two VPLLs.
 
+nv50_crtc_set_clock was only called to change VPLLs, so it didn't
+limit what it was used for in any way. Since nvc0_clock_pll_set is
+used for all PLLs, it has to specify which PLLs the code is used for,
+and only listed the first two VPLLs.
 
---1357308521.e62A2.9656
-Date: Fri, 4 Jan 2013 14:08:41 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Fixes: https://bugs.freedesktop.org/show_bug.cgi?id=58735
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58984
+This patch is a -stable candidate for 3.7.
 
---- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Please attach kernel log with nouveau.debug=trace.
+Signed-off-by: Aleksi Torhamo <aleksi-P/PbomOFYFrR7s880joybQ@public.gmane.org>
+Tested-by: Aleksi Torhamo <aleksi-P/PbomOFYFrR7s880joybQ@public.gmane.org>
+Tested-by: Sean Santos <quantheory-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+---
+ .../gpu/drm/nouveau/core/include/subdev/bios/pll.h |    2 ++
+ drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c   |    2 ++
+ 2 files changed, 4 insertions(+), 0 deletions(-)
 
+diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/bios/pll.h b/drivers/gpu/drm/nouveau/core/include/subdev/bios/pll.h
+index c345097..b2f3d4d 100644
+--- a/drivers/gpu/drm/nouveau/core/include/subdev/bios/pll.h
++++ b/drivers/gpu/drm/nouveau/core/include/subdev/bios/pll.h
+@@ -38,6 +38,8 @@ enum nvbios_pll_type {
+ 	PLL_UNK42  = 0x42,
+ 	PLL_VPLL0  = 0x80,
+ 	PLL_VPLL1  = 0x81,
++	PLL_VPLL2  = 0x82,
++	PLL_VPLL3  = 0x83,
+ 	PLL_MAX    = 0xff
+ };
+ 
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c b/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c
+index f6962c9..7c96262 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c
+@@ -52,6 +52,8 @@ nvc0_clock_pll_set(struct nouveau_clock *clk, u32 type, u32 freq)
+ 	switch (info.type) {
+ 	case PLL_VPLL0:
+ 	case PLL_VPLL1:
++	case PLL_VPLL2:
++	case PLL_VPLL3:
+ 		nv_mask(priv, info.reg + 0x0c, 0x00000000, 0x00000100);
+ 		nv_wr32(priv, info.reg + 0x04, (P << 16) | (N << 8) | M);
+ 		nv_wr32(priv, info.reg + 0x10, fN << 16);
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1357308521.e62A2.9656
-Date: Fri, 4 Jan 2013 14:08:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984">bug 58984</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span></b>
-        <pre>Please attach kernel log with nouveau.debug=trace.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1357308521.e62A2.9656--
-
---===============0255016653==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0255016653==--
+1.7.8.6
