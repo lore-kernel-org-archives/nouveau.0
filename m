@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50121] [Regression] Since kernel v3.5 several cards
  fail to resume, introduced by: 'convert to exec engine,
  and improve channel sync'
-Date: Fri, 04 Jan 2013 11:23:07 +0000
-Message-ID: <bug-50121-8800-oefYxCv5f6@http.bugs.freedesktop.org/>
+Date: Fri, 04 Jan 2013 14:04:10 +0000
+Message-ID: <bug-50121-8800-C4JS9iQzpl@http.bugs.freedesktop.org/>
 References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1718834194=="
+Content-Type: multipart/mixed; boundary="===============2028432544=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,34 +22,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1718834194==
-Content-Type: multipart/alternative; boundary="1357298588.d076D545.18671"; charset="us-ascii"
+--===============2028432544==
+Content-Type: multipart/alternative; boundary="1357308250.4Fff5Eb5.8773"; charset="us-ascii"
 
 
---1357298588.d076D545.18671
-Date: Fri, 4 Jan 2013 11:23:08 +0000
+--1357308250.4Fff5Eb5.8773
+Date: Fri, 4 Jan 2013 14:04:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
---- Comment #46 from Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> ---
-(In reply to comment #45)
-> I am currently waiting for 3.7 to become mainstream for my distro (I am
-> using Fedora) so that I could give it a go, but I don't hold my breath to be
-> honest.
-> 
-It will be a while until Fedora ships 3.7+ kernels by default. If you want to
-help test vanilla kernels there is a well maintained repo to do so.
-
-See https://fedoraproject.org/wiki/Kernel_Vanilla_Repositories
+--- Comment #47 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+michael.weirauch: this seems to be another bug
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357298588.d076D545.18671
-Date: Fri, 4 Jan 2013 11:23:08 +0000
+--1357308250.4Fff5Eb5.8773
+Date: Fri, 4 Jan 2013 14:04:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,22 +55,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c46">Comment # 46</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c47">Comment # 47</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
-              from <span class="vcard"><a class="email" href="mailto:dev&#64;lynxeye.de" title="Lucas Stach &lt;dev&#64;lynxeye.de&gt;"> <span class="fn">Lucas Stach</span></a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=50121#c45">comment #45</a>)
-<span class="quote">&gt; I am currently waiting for 3.7 to become mainstream for my distro (I am
-&gt; using Fedora) so that I could give it a go, but I don't hold my breath to be
-&gt; honest.
-&gt; </span >
-It will be a while until Fedora ships 3.7+ kernels by default. If you want to
-help test vanilla kernels there is a well maintained repo to do so.
-
-See <a href="https://fedoraproject.org/wiki/Kernel_Vanilla_Repositories">https://fedoraproject.org/wiki/Kernel_Vanilla_Repositories</a></pre>
+        <pre>michael.weirauch: this seems to be another bug</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +74,9 @@ See <a href="https://fedoraproject.org/wiki/Kernel_Vanilla_Repositories">https:/
     </body>
 </html>
 
---1357298588.d076D545.18671--
+--1357308250.4Fff5Eb5.8773--
 
---===============1718834194==
+--===============2028432544==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1718834194==--
+--===============2028432544==--
