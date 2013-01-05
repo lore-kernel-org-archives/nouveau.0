@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58984] DRM NOUVEAU: probe of 0001:01:00.0 failed
 	with error -12
-Date: Sat, 05 Jan 2013 00:15:44 +0000
-Message-ID: <bug-58984-8800-FQYsjQkI0n@http.bugs.freedesktop.org/>
+Date: Sat, 05 Jan 2013 00:52:10 +0000
+Message-ID: <bug-58984-8800-AZC00NhTDB@http.bugs.freedesktop.org/>
 References: <bug-58984-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1507309411=="
+Content-Type: multipart/mixed; boundary="===============1869236631=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58984-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1507309411==
-Content-Type: multipart/alternative; boundary="1357344944.0d4871.24134"; charset="us-ascii"
+--===============1869236631==
+Content-Type: multipart/alternative; boundary="1357347130.a8DdFe7d2.27721"; charset="us-ascii"
 
 
---1357344944.0d4871.24134
-Date: Sat, 5 Jan 2013 00:15:44 +0000
+--1357347130.a8DdFe7d2.27721
+Date: Sat, 5 Jan 2013 00:52:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58984
 
---- Comment #5 from Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It's odd, I don't see any obvious errors, it just finalizes after the DCB
-messages.
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           See Also|                            |https://bugs.freedesktop.or
+                   |                            |g/show_bug.cgi?id=58087
+
+--- Comment #6 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Appears to be failing in nouveau_display.c
+
+nouveau_display_create(struct drm_device *dev)
+...
+296:    disp = drm->display = kzalloc(sizeof(*disp), GFP_KERNEL);
+    if (!disp)
+        return -ENOMEM;
+...
+
+See
+https://bugzilla.kernel.org/show_bug.cgi?id=51301
+https://lkml.org/lkml/2012/11/27/486
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357344944.0d4871.24134
-Date: Sat, 5 Jan 2013 00:15:44 +0000
+--1357347130.a8DdFe7d2.27721
+Date: Sat, 5 Jan 2013 00:52:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,21 +66,52 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984">bug 58984</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">See Also</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=58087
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58984">bug 58984</a>
-              from <span class="vcard"><a class="email" href="mailto:baggett.patrick&#64;gmail.com" title="Patrick Baggett &lt;baggett.patrick&#64;gmail.com&gt;"> <span class="fn">Patrick Baggett</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>It's odd, I don't see any obvious errors, it just finalizes after the DCB
-messages.</pre>
+        <pre>Appears to be failing in nouveau_display.c
+
+nouveau_display_create(struct drm_device *dev)
+...
+296:    disp = drm-&gt;display = kzalloc(sizeof(*disp), GFP_KERNEL);
+    if (!disp)
+        return -ENOMEM;
+...
+
+See
+<a href="https://bugzilla.kernel.org/show_bug.cgi?id=51301">https://bugzilla.kernel.org/show_bug.cgi?id=51301</a>
+<a href="https://lkml.org/lkml/2012/11/27/486">https://lkml.org/lkml/2012/11/27/486</a></pre>
         </div>
       </p>
       <hr>
@@ -75,9 +123,9 @@ messages.</pre>
     </body>
 </html>
 
---1357344944.0d4871.24134--
+--1357347130.a8DdFe7d2.27721--
 
---===============1507309411==
+--===============1869236631==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +136,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1507309411==--
+--===============1869236631==--
