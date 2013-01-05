@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58729] [bisected] Display fails to turn on after
- suspend/resume (NV86)
-Date: Sat, 05 Jan 2013 15:13:47 +0000
-Message-ID: <bug-58729-8800-WwwRoyeiun@http.bugs.freedesktop.org/>
-References: <bug-58729-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59057] Black screen after resume from s2ram
+Date: Sat, 05 Jan 2013 19:27:03 +0000
+Message-ID: <bug-59057-8800-xfpL5axj1X@http.bugs.freedesktop.org/>
+References: <bug-59057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0706722011=="
+Content-Type: multipart/mixed; boundary="===============1754902600=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0706722011==
-Content-Type: multipart/alternative; boundary="1357398828.a7ccBF04.23807"; charset="us-ascii"
+--===============1754902600==
+Content-Type: multipart/alternative; boundary="1357414023.0EFBEe1.26896"; charset="us-ascii"
 
 
---1357398828.a7ccBF04.23807
-Date: Sat, 5 Jan 2013 15:13:48 +0000
+--1357414023.0EFBEe1.26896
+Date: Sat, 5 Jan 2013 19:27:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58729
+https://bugs.freedesktop.org/show_bug.cgi?id=59057
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #2 from Pontus Fuchs <pontus.fuchs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 72556
+  --> https://bugs.freedesktop.org/attachment.cgi?id=72556&action=edit
+Kernel logs 3.8-rc2 and 3.7.0
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=59057
+Logs for working and non working kernels.
+
+Commit "drm/nv50/disp: fix resume from s2ram for analog output" does not change
+the behaviour.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357398828.a7ccBF04.23807
-Date: Sat, 5 Jan 2013 15:13:48 +0000
+--1357414023.0EFBEe1.26896
+Date: Sat, 5 Jan 2013 19:27:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,29 +54,27 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729">bug 58729</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=59057
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Black screen after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Black screen after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
+              from <span class="vcard"><a class="email" href="mailto:pontus.fuchs&#64;gmail.com" title="Pontus Fuchs &lt;pontus.fuchs&#64;gmail.com&gt;"> <span class="fn">Pontus Fuchs</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=72556" name="attach_72556" title="Kernel logs 3.8-rc2 and 3.7.0">attachment 72556</a> <a href="attachment.cgi?id=72556&amp;action=edit" title="Kernel logs 3.8-rc2 and 3.7.0">[details]</a></span>
+Kernel logs 3.8-rc2 and 3.7.0
+
+Logs for working and non working kernels.
+
+Commit &quot;drm/nv50/disp: fix resume from s2ram for analog output&quot; does not change
+the behaviour.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1357398828.a7ccBF04.23807--
+--1357414023.0EFBEe1.26896--
 
---===============0706722011==
+--===============1754902600==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0706722011==--
+--===============1754902600==--
