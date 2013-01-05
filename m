@@ -1,14 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50121] [Regression] Since kernel v3.5 several cards
- fail to resume, introduced by: 'convert to exec engine,
- and improve channel sync'
-Date: Sat, 05 Jan 2013 14:56:19 +0000
-Message-ID: <bug-50121-8800-xnKazWwWf1@http.bugs.freedesktop.org/>
-References: <bug-50121-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59057] New: Black screen after resume from s2ram
+Date: Sat, 05 Jan 2013 15:06:28 +0000
+Message-ID: <bug-59057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2125895162=="
+Content-Type: multipart/mixed; boundary="===============2091837040=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,39 +18,57 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2125895162==
-Content-Type: multipart/alternative; boundary="1357397779.d4cBD5bd4.21063"; charset="us-ascii"
+--===============2091837040==
+Content-Type: multipart/alternative; boundary="1357398388.FC8b61.22541"; charset="us-ascii"
 
 
---1357397779.d4cBD5bd4.21063
-Date: Sat, 5 Jan 2013 14:56:19 +0000
+--1357398388.FC8b61.22541
+Date: Sat, 5 Jan 2013 15:06:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50121
+https://bugs.freedesktop.org/show_bug.cgi?id=59057
 
---- Comment #51 from Mr-4 <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-(In reply to comment #50)
-> Maybe you can send a patch to Fedora? Maybe they will happily backport it
-> for you. Especially since they try to be bleeding edge and all...
-I would have if I knew how to fix it and make it work, since I assumed the
-changes will be ... (ahem) quite "trivial".
+          Priority: medium
+            Bug ID: 59057
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Black screen after resume from s2ram
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: pontus.fuchs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
 
-As it turns out, they aren't and my knowledge of this driver's inner workings
-isn't enough for me to re-create the patch for 3.6, which, incidentally, is
-still the latest mainstream-supported kernel by my distro. 
+Starting with 3.8rc1 I get a black screen when resuming after suspend. 
+The kernel is alive because I can switch to VT1 and reboot with 
+ctrl-alt-delete.
 
-Ben Skeggs, who is responsible for the nvidia branch at Fedora (and who also
-appears listed in this bug) could do that - whether he chooses to is up to him,
-though given my past experiences with nvidia team @Fedora, I am not holding my
-breath.
+I bisected the problem down to this commit:
+
+186ecad21: drm/nv50/disp: move remaining interrupt handling into core
+
+Hardware is 8400M GS (10de:0427) in a Dell XPS M1330.
+
+I see this in my kernel log after resume:
+
+nouveau E[     PFB][0000:01:00.0] trapped read at 0x002001a020 on 
+channel 0x00007b23 SEMAPHORE_BG/PFIFO_READ/00 reason: PAGE_NOT_PRESENT
+nouveau E[    1177] failed to idle channel 0xcccc0000
+[TTM] Failed to expire sync object before buffer eviction
+[TTM] Failed to expire sync object before buffer eviction
+[TTM] Failed to expire sync object before buffer eviction
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357397779.d4cBD5bd4.21063
-Date: Sat, 5 Jan 2013 14:56:19 +0000
+--1357398388.FC8b61.22541
+Date: Sat, 5 Jan 2013 15:06:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,33 +76,113 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Black screen after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">59057</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Black screen after resume from s2ram
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>pontus.fuchs&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c51">Comment # 51</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
-              from <span class="vcard"><a class="email" href="mailto:mr.dash.four&#64;googlemail.com" title="Mr-4 &lt;mr.dash.four&#64;googlemail.com&gt;"> <span class="fn">Mr-4</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=50121#c50">comment #50</a>)
-<span class="quote">&gt; Maybe you can send a patch to Fedora? Maybe they will happily backport it
-&gt; for you. Especially since they try to be bleeding edge and all...</span >
-I would have if I knew how to fix it and make it work, since I assumed the
-changes will be ... (ahem) quite &quot;trivial&quot;.
+        <pre>Starting with 3.8rc1 I get a black screen when resuming after suspend. 
+The kernel is alive because I can switch to VT1 and reboot with 
+ctrl-alt-delete.
 
-As it turns out, they aren't and my knowledge of this driver's inner workings
-isn't enough for me to re-create the patch for 3.6, which, incidentally, is
-still the latest mainstream-supported kernel by my distro. 
+I bisected the problem down to this commit:
 
-Ben Skeggs, who is responsible for the nvidia branch at Fedora (and who also
-appears listed in this bug) could do that - whether he chooses to is up to him,
-though given my past experiences with nvidia team &#64;Fedora, I am not holding my
-breath.</pre>
+186ecad21: drm/nv50/disp: move remaining interrupt handling into core
+
+Hardware is 8400M GS (10de:0427) in a Dell XPS M1330.
+
+I see this in my kernel log after resume:
+
+nouveau E[     PFB][0000:01:00.0] trapped read at 0x002001a020 on 
+channel 0x00007b23 SEMAPHORE_BG/PFIFO_READ/00 reason: PAGE_NOT_PRESENT
+nouveau E[    1177] failed to idle channel 0xcccc0000
+[TTM] Failed to expire sync object before buffer eviction
+[TTM] Failed to expire sync object before buffer eviction
+[TTM] Failed to expire sync object before buffer eviction</pre>
         </div>
       </p>
       <hr>
@@ -100,9 +194,9 @@ breath.</pre>
     </body>
 </html>
 
---1357397779.d4cBD5bd4.21063--
+--1357398388.FC8b61.22541--
 
---===============2125895162==
+--===============2091837040==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -113,4 +207,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2125895162==--
+--===============2091837040==--
