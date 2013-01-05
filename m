@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 59057] Black screen after resume from s2ram
-Date: Sat, 05 Jan 2013 20:33:18 +0000
-Message-ID: <bug-59057-8800-rkeYM69Ms9@http.bugs.freedesktop.org/>
+Date: Sat, 05 Jan 2013 20:33:39 +0000
+Message-ID: <bug-59057-8800-5bxxxfLfcl@http.bugs.freedesktop.org/>
 References: <bug-59057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0154948358=="
+Content-Type: multipart/mixed; boundary="===============1152931646=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,35 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0154948358==
-Content-Type: multipart/alternative; boundary="1357417998.Bdec634b2.3199"; charset="us-ascii"
+--===============1152931646==
+Content-Type: multipart/alternative; boundary="1357418019.caC58c15.3199"; charset="us-ascii"
 
 
---1357417998.Bdec634b2.3199
-Date: Sat, 5 Jan 2013 20:33:18 +0000
+--1357418019.caC58c15.3199
+Date: Sat, 5 Jan 2013 20:33:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=59057
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #72556|0                           |1
-        is obsolete|                            |
-
---- Comment #4 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 72566
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72566&action=edit
-3.7.0
+--- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 72567
+  --> https://bugs.freedesktop.org/attachment.cgi?id=72567&action=edit
+3.8.0-rc2
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357417998.Bdec634b2.3199
-Date: Sat, 5 Jan 2013 20:33:18 +0000
+--1357418019.caC58c15.3199
+Date: Sat, 5 Jan 2013 20:33:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,42 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #72556 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Black screen after resume from s2ram"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
               from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72566" name="attach_72566" title="3.7.0">attachment 72566</a> <a href="attachment.cgi?id=72566&amp;action=edit" title="3.7.0">[details]</a></span>
-3.7.0</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=72567" name="attach_72567" title="3.8.0-rc2">attachment 72567</a> <a href="attachment.cgi?id=72567&amp;action=edit" title="3.8.0-rc2">[details]</a></span>
+3.8.0-rc2</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +75,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1357417998.Bdec634b2.3199--
+--1357418019.caC58c15.3199--
 
---===============0154948358==
+--===============1152931646==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -116,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0154948358==--
+--===============1152931646==--
