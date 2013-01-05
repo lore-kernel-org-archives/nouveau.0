@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 59057] Black screen after resume from s2ram
-Date: Sat, 05 Jan 2013 20:33:54 +0000
-Message-ID: <bug-59057-8800-gfIsMIVkaY@http.bugs.freedesktop.org/>
+Date: Sat, 05 Jan 2013 20:34:36 +0000
+Message-ID: <bug-59057-8800-O3HDYG2UYw@http.bugs.freedesktop.org/>
 References: <bug-59057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0077991097=="
+Content-Type: multipart/mixed; boundary="===============0798689105=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0077991097==
-Content-Type: multipart/alternative; boundary="1357418035.E03A5238.3199"; charset="us-ascii"
+--===============0798689105==
+Content-Type: multipart/alternative; boundary="1357418076.a2bB502.3420"; charset="us-ascii"
 
 
---1357418035.E03A5238.3199
-Date: Sat, 5 Jan 2013 20:33:55 +0000
+--1357418076.a2bB502.3420
+Date: Sat, 5 Jan 2013 20:34:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=59057
 
---- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 72568
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72568&action=edit
-3.8.0-rc2+drm-nv50-disp-fix-resume-from-s2ram-for-analog-outpu.txt
+--- Comment #7 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Quoting http://nouveau.freedesktop.org/wiki/Bugs:
+"Please, do not compress files you attach to bug reports, especially plain text
+files such as logs, unless the file is so huge bugzilla refuses to take it.
+Gzipping files makes taking a quick look impossible".
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357418035.E03A5238.3199
-Date: Sat, 5 Jan 2013 20:33:55 +0000
+--1357418076.a2bB502.3420
+Date: Sat, 5 Jan 2013 20:34:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Black screen after resume from s2ram"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
               from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72568" name="attach_72568" title="3.8.0-rc2+drm-nv50-disp-fix-resume-from-s2ram-for-analog-outpu.txt">attachment 72568</a> <a href="attachment.cgi?id=72568&amp;action=edit" title="3.8.0-rc2+drm-nv50-disp-fix-resume-from-s2ram-for-analog-outpu.txt">[details]</a></span>
-3.8.0-rc2+drm-nv50-disp-fix-resume-from-s2ram-for-analog-outpu.txt</pre>
+        <pre>Quoting <a href="http://nouveau.freedesktop.org/wiki/Bugs">http://nouveau.freedesktop.org/wiki/Bugs</a>:
+&quot;Please, do not compress files you attach to bug reports, especially plain text
+files such as logs, unless the file is so huge bugzilla refuses to take it.
+Gzipping files makes taking a quick look impossible&quot;.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +78,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1357418035.E03A5238.3199--
+--1357418076.a2bB502.3420--
 
---===============0077991097==
+--===============0798689105==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0077991097==--
+--===============0798689105==--
