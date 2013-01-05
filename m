@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 59057] Black screen after resume from s2ram
-Date: Sat, 05 Jan 2013 20:34:36 +0000
-Message-ID: <bug-59057-8800-O3HDYG2UYw@http.bugs.freedesktop.org/>
+Date: Sat, 05 Jan 2013 20:37:50 +0000
+Message-ID: <bug-59057-8800-UN9Yq0bpPE@http.bugs.freedesktop.org/>
 References: <bug-59057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0798689105=="
+Content-Type: multipart/mixed; boundary="===============1598768953=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0798689105==
-Content-Type: multipart/alternative; boundary="1357418076.a2bB502.3420"; charset="us-ascii"
+--===============1598768953==
+Content-Type: multipart/alternative; boundary="1357418270.416a2.3742"; charset="us-ascii"
 
 
---1357418076.a2bB502.3420
-Date: Sat, 5 Jan 2013 20:34:36 +0000
+--1357418270.416a2.3742
+Date: Sat, 5 Jan 2013 20:37:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=59057
 
---- Comment #7 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Quoting http://nouveau.freedesktop.org/wiki/Bugs:
-"Please, do not compress files you attach to bug reports, especially plain text
-files such as logs, unless the file is so huge bugzilla refuses to take it.
-Gzipping files makes taking a quick look impossible".
+--- Comment #8 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Now, can you verify that with commit 186ecad21 and the fix from bug 58729 you
+still see black screen on resume? I'm asking because I think you hit 2 issues
+and you bisected the first one. If above combination work, can you bisect
+between 186ecad21 and 3.8rc1, applying fix from bug 58729 at each bisection
+step?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357418076.a2bB502.3420
-Date: Sat, 5 Jan 2013 20:34:36 +0000
+--1357418270.416a2.3742
+Date: Sat, 5 Jan 2013 20:37:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,17 +57,24 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Black screen after resume from s2ram"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
               from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Quoting <a href="http://nouveau.freedesktop.org/wiki/Bugs">http://nouveau.freedesktop.org/wiki/Bugs</a>:
-&quot;Please, do not compress files you attach to bug reports, especially plain text
-files such as logs, unless the file is so huge bugzilla refuses to take it.
-Gzipping files makes taking a quick look impossible&quot;.</pre>
+        <pre>Now, can you verify that with commit 186ecad21 and the fix from <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
+   href="show_bug.cgi?id=58729">bug 58729</a> you
+still see black screen on resume? I'm asking because I think you hit 2 issues
+and you bisected the first one. If above combination work, can you bisect
+between 186ecad21 and 3.8rc1, applying fix from <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
+   href="show_bug.cgi?id=58729">bug 58729</a> at each bisection
+step?</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +86,9 @@ Gzipping files makes taking a quick look impossible&quot;.</pre>
     </body>
 </html>
 
---1357418076.a2bB502.3420--
+--1357418270.416a2.3742--
 
---===============0798689105==
+--===============1598768953==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0798689105==--
+--===============1598768953==--
