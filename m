@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58984] DRM NOUVEAU: probe of 0001:01:00.0 failed
-	with error -12
-Date: Sat, 05 Jan 2013 01:37:17 +0000
-Message-ID: <bug-58984-8800-OT8s5zC8l1@http.bugs.freedesktop.org/>
-References: <bug-58984-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 50121] [Regression] Since kernel v3.5 several cards
+ fail to resume, introduced by: 'convert to exec engine,
+ and improve channel sync'
+Date: Sat, 05 Jan 2013 07:20:55 +0000
+Message-ID: <bug-50121-8800-zfuo56lTCy@http.bugs.freedesktop.org/>
+References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0696519099=="
+Content-Type: multipart/mixed; boundary="===============2045825298=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58984-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +22,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0696519099==
-Content-Type: multipart/alternative; boundary="1357349837.8D42cE1.31939"; charset="us-ascii"
+--===============2045825298==
+Content-Type: multipart/alternative; boundary="1357370456.0FF7bA7b4.32040"; charset="us-ascii"
 
 
---1357349837.8D42cE1.31939
-Date: Sat, 5 Jan 2013 01:37:17 +0000
+--1357370456.0FF7bA7b4.32040
+Date: Sat, 5 Jan 2013 07:20:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58984
+https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
---- Comment #7 from Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This is still present in 3.8 RC kernels? I saw a bunch of patches posted.
+--- Comment #49 from Mr-4 <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
+(In reply to comment #38)
+> This patch is not directly applicable to kernels < 3.7, although porting it
+> is trivial.
+"Porting" of that patch against 3.6 is far from "trivial" - exercise in
+futility more like!
+
+There is no "nv50_fence.c" to start off with, "nouveau_drm" struct isn't there
+either, let alone that "nv10_fence_priv" doesn't seem to have "base.resume"
+defined at all.
+
+I think I am going to stick with 3.3 until 3.7 comes out and then decide what
+to do next...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357349837.8D42cE1.31939
-Date: Sat, 5 Jan 2013 01:37:17 +0000
+--1357370456.0FF7bA7b4.32040
+Date: Sat, 5 Jan 2013 07:20:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,15 +65,26 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984#c7">Comment # 7</a>
+   title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c49">Comment # 49</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984">bug 58984</a>
-              from <span class="vcard"><a class="email" href="mailto:baggett.patrick&#64;gmail.com" title="Patrick Baggett &lt;baggett.patrick&#64;gmail.com&gt;"> <span class="fn">Patrick Baggett</span></a>
+   title="NEW --- - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
+              from <span class="vcard"><a class="email" href="mailto:mr.dash.four&#64;googlemail.com" title="Mr-4 &lt;mr.dash.four&#64;googlemail.com&gt;"> <span class="fn">Mr-4</span></a>
 </span></b>
-        <pre>This is still present in 3.8 RC kernels? I saw a bunch of patches posted.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=50121#c38">comment #38</a>)
+<span class="quote">&gt; This patch is not directly applicable to kernels &lt; 3.7, although porting it
+&gt; is trivial.</span >
+&quot;Porting&quot; of that patch against 3.6 is far from &quot;trivial&quot; - exercise in
+futility more like!
+
+There is no &quot;nv50_fence.c&quot; to start off with, &quot;nouveau_drm&quot; struct isn't there
+either, let alone that &quot;nv10_fence_priv&quot; doesn't seem to have &quot;base.resume&quot;
+defined at all.
+
+I think I am going to stick with 3.3 until 3.7 comes out and then decide what
+to do next...</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +96,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1357349837.8D42cE1.31939--
+--1357370456.0FF7bA7b4.32040--
 
---===============0696519099==
+--===============2045825298==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +109,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0696519099==--
+--===============2045825298==--
