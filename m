@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59057] New: Black screen after resume from s2ram
-Date: Sat, 05 Jan 2013 15:06:28 +0000
-Message-ID: <bug-59057-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59057] Black screen after resume from s2ram
+Date: Sat, 05 Jan 2013 15:13:47 +0000
+Message-ID: <bug-59057-8800-iTJyZHLUml@http.bugs.freedesktop.org/>
+References: <bug-59057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2091837040=="
+Content-Type: multipart/mixed; boundary="===============0833069591=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,57 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2091837040==
-Content-Type: multipart/alternative; boundary="1357398388.FC8b61.22541"; charset="us-ascii"
+--===============0833069591==
+Content-Type: multipart/alternative; boundary="1357398828.CfcdF2.23807"; charset="us-ascii"
 
 
---1357398388.FC8b61.22541
-Date: Sat, 5 Jan 2013 15:06:28 +0000
+--1357398828.CfcdF2.23807
+Date: Sat, 5 Jan 2013 15:13:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=59057
 
-          Priority: medium
-            Bug ID: 59057
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Black screen after resume from s2ram
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: pontus.fuchs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: git
-         Component: Driver/nouveau
-           Product: xorg
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Starting with 3.8rc1 I get a black screen when resuming after suspend. 
-The kernel is alive because I can switch to VT1 and reboot with 
-ctrl-alt-delete.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           See Also|                            |https://bugs.freedesktop.or
+                   |                            |g/show_bug.cgi?id=58729
 
-I bisected the problem down to this commit:
+--- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Are symptoms exactly the same with and without the patch from bug 58729?
 
-186ecad21: drm/nv50/disp: move remaining interrupt handling into core
-
-Hardware is 8400M GS (10de:0427) in a Dell XPS M1330.
-
-I see this in my kernel log after resume:
-
-nouveau E[     PFB][0000:01:00.0] trapped read at 0x002001a020 on 
-channel 0x00007b23 SEMAPHORE_BG/PFIFO_READ/00 reason: PAGE_NOT_PRESENT
-nouveau E[    1177] failed to idle channel 0xcccc0000
-[TTM] Failed to expire sync object before buffer eviction
-[TTM] Failed to expire sync object before buffer eviction
-[TTM] Failed to expire sync object before buffer eviction
+Please attach full dmesg from 3.8-rcX and 3.7.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357398388.FC8b61.22541
-Date: Sat, 5 Jan 2013 15:06:28 +0000
+--1357398828.CfcdF2.23807
+Date: Sat, 5 Jan 2013 15:13:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -76,113 +56,46 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">59057</a>
-          </td>
-        </tr>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Black screen after resume from s2ram
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>pontus.fuchs&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">See Also</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=58729
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Starting with 3.8rc1 I get a black screen when resuming after suspend. 
-The kernel is alive because I can switch to VT1 and reboot with 
-ctrl-alt-delete.
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Black screen after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Black screen after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span></b>
+        <pre>Are symptoms exactly the same with and without the patch from <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
+   href="show_bug.cgi?id=58729">bug 58729</a>?
 
-I bisected the problem down to this commit:
-
-186ecad21: drm/nv50/disp: move remaining interrupt handling into core
-
-Hardware is 8400M GS (10de:0427) in a Dell XPS M1330.
-
-I see this in my kernel log after resume:
-
-nouveau E[     PFB][0000:01:00.0] trapped read at 0x002001a020 on 
-channel 0x00007b23 SEMAPHORE_BG/PFIFO_READ/00 reason: PAGE_NOT_PRESENT
-nouveau E[    1177] failed to idle channel 0xcccc0000
-[TTM] Failed to expire sync object before buffer eviction
-[TTM] Failed to expire sync object before buffer eviction
-[TTM] Failed to expire sync object before buffer eviction</pre>
+Please attach full dmesg from 3.8-rcX and 3.7.</pre>
         </div>
       </p>
       <hr>
@@ -194,9 +107,9 @@ nouveau E[    1177] failed to idle channel 0xcccc0000
     </body>
 </html>
 
---1357398388.FC8b61.22541--
+--1357398828.CfcdF2.23807--
 
---===============2091837040==
+--===============0833069591==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -207,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2091837040==--
+--===============0833069591==--
