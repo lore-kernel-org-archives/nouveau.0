@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59057] Black screen after resume from s2ram
-Date: Sat, 05 Jan 2013 23:34:16 +0000
-Message-ID: <bug-59057-8800-LaODKSu9bS@http.bugs.freedesktop.org/>
-References: <bug-59057-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
+Date: Sun, 06 Jan 2013 13:27:41 +0000
+Message-ID: <bug-59069-8800-Yq2yeBIu3h@http.bugs.freedesktop.org/>
+References: <bug-59069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0117689468=="
+Content-Type: multipart/mixed; boundary="===============1350780460=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0117689468==
-Content-Type: multipart/alternative; boundary="1357428856.DA15cFfa2.27848"; charset="us-ascii"
+--===============1350780460==
+Content-Type: multipart/alternative; boundary="1357478861.8EF6e611.7823"; charset="us-ascii"
 
 
---1357428856.DA15cFfa2.27848
-Date: Sat, 5 Jan 2013 23:34:16 +0000
+--1357478861.8EF6e611.7823
+Date: Sun, 6 Jan 2013 13:27:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59057
+https://bugs.freedesktop.org/show_bug.cgi?id=59069
 
---- Comment #10 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Please attach dmesg:
-from 3.7 with drm.debug=4
-from 3.8-rc2 (+patch) with nouveau.debug=trace
+--- Comment #5 from Kees Bakker <kees.bakker-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org> ---
+Mesa version 9.0 (i.e. on Ubuntu quantal it's called 9.0-0ubuntu1)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357428856.DA15cFfa2.27848
-Date: Sat, 5 Jan 2013 23:34:16 +0000
+--1357478861.8EF6e611.7823
+Date: Sun, 6 Jan 2013 13:27:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,17 +52,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c10">Comment # 10</a>
+   title="NEW --- - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+   title="NEW --- - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
+              from <span class="vcard"><a class="email" href="mailto:kees.bakker&#64;xs4all.nl" title="Kees Bakker &lt;kees.bakker&#64;xs4all.nl&gt;"> <span class="fn">Kees Bakker</span></a>
 </span></b>
-        <pre>Please attach dmesg:
-from 3.7 with drm.debug=4
-from 3.8-rc2 (+patch) with nouveau.debug=trace</pre>
+        <pre>Mesa version 9.0 (i.e. on Ubuntu quantal it's called 9.0-0ubuntu1)</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +72,9 @@ from 3.8-rc2 (+patch) with nouveau.debug=trace</pre>
     </body>
 </html>
 
---1357428856.DA15cFfa2.27848--
+--1357478861.8EF6e611.7823--
 
---===============0117689468==
+--===============1350780460==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0117689468==--
+--===============1350780460==--
