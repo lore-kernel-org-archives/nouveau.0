@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57777] lcd screen of a laptop does not wake up after
-	sleep
-Date: Mon, 07 Jan 2013 20:15:08 +0000
-Message-ID: <bug-57777-8800-C9pUdMFBw2@http.bugs.freedesktop.org/>
-References: <bug-57777-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 fails to properly
+	resume
+Date: Mon, 07 Jan 2013 20:20:41 +0000
+Message-ID: <bug-23223-8800-Zygw0CFTJo@http.bugs.freedesktop.org/>
+References: <bug-23223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0963522896=="
+Content-Type: multipart/mixed; boundary="===============0176662824=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57777-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0963522896==
-Content-Type: multipart/alternative; boundary="1357589708.Eda11.7652"; charset="us-ascii"
+--===============0176662824==
+Content-Type: multipart/alternative; boundary="1357590041.02D4Da2.8659"; charset="us-ascii"
 
 
---1357589708.Eda11.7652
-Date: Mon, 7 Jan 2013 20:15:08 +0000
+--1357590041.02D4Da2.8659
+Date: Mon, 7 Jan 2013 20:20:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57777
+https://bugs.freedesktop.org/show_bug.cgi?id=23223
 
---- Comment #4 from Alin M Elena <alinm.elena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 72649
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72649&action=edit
-log for 3.8rc2 with debug activated
+--- Comment #20 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Argh, I made a mistake in this patch - I subtracted 1 from printed indexes.
+So the only failing combination are 0-3 and 0-4, which means something about
+script 3 is not ok (4th script is empty).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357589708.Eda11.7652
-Date: Mon, 7 Jan 2013 20:15:08 +0000
+--1357590041.02D4Da2.8659
+Date: Mon, 7 Jan 2013 20:20:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +55,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - lcd screen of a laptop does not wake up after sleep"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57777#c4">Comment # 4</a>
+   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c20">Comment # 20</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - lcd screen of a laptop does not wake up after sleep"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57777">bug 57777</a>
-              from <span class="vcard"><a class="email" href="mailto:alinm.elena&#64;gmail.com" title="Alin M Elena &lt;alinm.elena&#64;gmail.com&gt;"> <span class="fn">Alin M Elena</span></a>
+   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72649" name="attach_72649" title="log for 3.8rc2 with debug activated">attachment 72649</a> <a href="attachment.cgi?id=72649&amp;action=edit" title="log for 3.8rc2 with debug activated">[details]</a></span>
-log for 3.8rc2 with debug activated</pre>
+        <pre>Argh, I made a mistake in this patch - I subtracted 1 from printed indexes.
+So the only failing combination are 0-3 and 0-4, which means something about
+script 3 is not ok (4th script is empty).</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +77,9 @@ log for 3.8rc2 with debug activated</pre>
     </body>
 </html>
 
---1357589708.Eda11.7652--
+--1357590041.02D4Da2.8659--
 
---===============0963522896==
+--===============0176662824==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0963522896==--
+--===============0176662824==--
