@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 fails to properly
-	resume
-Date: Mon, 07 Jan 2013 19:42:53 +0000
-Message-ID: <bug-23223-8800-eqnB6BMF2g@http.bugs.freedesktop.org/>
-References: <bug-23223-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59057] Black screen after resume from s2ram
+Date: Mon, 07 Jan 2013 19:58:43 +0000
+Message-ID: <bug-59057-8800-jG6rfV9x9A@http.bugs.freedesktop.org/>
+References: <bug-59057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0031716889=="
+Content-Type: multipart/mixed; boundary="===============2008226863=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,64 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0031716889==
-Content-Type: multipart/alternative; boundary="1357587773.fe0Af1.3820"; charset="us-ascii"
+--===============2008226863==
+Content-Type: multipart/alternative; boundary="1357588723.Ed22D21.6063"; charset="us-ascii"
 
 
---1357587773.fe0Af1.3820
-Date: Mon, 7 Jan 2013 19:42:53 +0000
+--1357588723.Ed22D21.6063
+Date: Mon, 7 Jan 2013 19:58:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=23223
+https://bugs.freedesktop.org/show_bug.cgi?id=59057
 
---- Comment #19 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 72648
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72648&action=edit
-Cat'ed dmesg logs
+--- Comment #16 from Pontus Fuchs <pontus.fuchs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #15)
+> Created attachment 72603 [details] [review]
+> possible fix
+> 
+> Does it make a difference?
 
-Yay, script bisect! I did every combination (assuming order does not  matter)
-since I could not find any apparent pattern. Too bad...
+I tried this patch on top of 3.8rc2 and 3.8rc2+"drm/nv50/disp: fix resume from
+s2ram for analog output" but no improvement :(
 
-I have scripts -1,0,1,2 and 3 on this card.
-
-Combinations that work:
-
-- -1
-- -1,0
-- -1,0,1
-- 0
-- 0,1
-- 0,1,2
-- 0,1,2,3
-- 1
-- 1,2
-- 1,2,3
-- 2
-- 2,3
-- 3
-
-Combinations that fail:
-- -1,0,1,2
-- -1,0,1,2,3 (normal)
-
-Weird thing is that the only other failing combination is the regular boot
-without script 3. Do you see any patterns?
-
-I will attach dmesg of all combo's in one file.
-
-Please note that: minscript=2 will execute script 1,2,3. Maxscript 2 will
-execute -1,0,1. So minscript=2 and maxscript=2 will execute script 1 only.
-
-If boot is scrambled, nouveau will give fbcon messages on each lockup. If it's
-not scrambled it won't, so it's directly related.
+I use only the laptop's panel. I have no external monitor.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357587773.fe0Af1.3820
-Date: Mon, 7 Jan 2013 19:42:53 +0000
+--1357588723.Ed22D21.6063
+Date: Mon, 7 Jan 2013 19:58:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -91,52 +61,24 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c19">Comment # 19</a>
+   title="NEW --- - Black screen after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+   title="NEW --- - Black screen after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
+              from <span class="vcard"><a class="email" href="mailto:pontus.fuchs&#64;gmail.com" title="Pontus Fuchs &lt;pontus.fuchs&#64;gmail.com&gt;"> <span class="fn">Pontus Fuchs</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72648" name="attach_72648" title="Cat'ed dmesg logs">attachment 72648</a> <a href="attachment.cgi?id=72648&amp;action=edit" title="Cat'ed dmesg logs">[details]</a></span>
-Cat'ed dmesg logs
+        <pre>(In reply to <a href="show_bug.cgi?id=59057#c15">comment #15</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=72603" name="attach_72603" title="possible fix">attachment 72603</a> <a href="attachment.cgi?id=72603&amp;action=edit" title="possible fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=59057&amp;attachment=72603'>[review]</a> [review]
+&gt; possible fix
+&gt; 
+&gt; Does it make a difference?</span >
 
-Yay, script bisect! I did every combination (assuming order does not  matter)
-since I could not find any apparent pattern. Too bad...
+I tried this patch on top of 3.8rc2 and 3.8rc2+&quot;drm/nv50/disp: fix resume from
+s2ram for analog output&quot; but no improvement :(
 
-I have scripts -1,0,1,2 and 3 on this card.
-
-Combinations that work:
-
-- -1
-- -1,0
-- -1,0,1
-- 0
-- 0,1
-- 0,1,2
-- 0,1,2,3
-- 1
-- 1,2
-- 1,2,3
-- 2
-- 2,3
-- 3
-
-Combinations that fail:
-- -1,0,1,2
-- -1,0,1,2,3 (normal)
-
-Weird thing is that the only other failing combination is the regular boot
-without script 3. Do you see any patterns?
-
-I will attach dmesg of all combo's in one file.
-
-Please note that: minscript=2 will execute script 1,2,3. Maxscript 2 will
-execute -1,0,1. So minscript=2 and maxscript=2 will execute script 1 only.
-
-If boot is scrambled, nouveau will give fbcon messages on each lockup. If it's
-not scrambled it won't, so it's directly related.</pre>
+I use only the laptop's panel. I have no external monitor.</pre>
         </div>
       </p>
       <hr>
@@ -148,9 +90,9 @@ not scrambled it won't, so it's directly related.</pre>
     </body>
 </html>
 
---1357587773.fe0Af1.3820--
+--1357588723.Ed22D21.6063--
 
---===============0031716889==
+--===============2008226863==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -161,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0031716889==--
+--===============2008226863==--
