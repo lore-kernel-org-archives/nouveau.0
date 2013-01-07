@@ -1,15 +1,11 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/clock: fix support for more than
- 2 monitors on nve0
-Date: Mon, 7 Jan 2013 13:53:40 +1000
-Message-ID: <20130107035340.GA5401@turiel.bne.redhat.com>
-References: <1357317553-30296-1-git-send-email-aleksi@torhamo.net>
+From: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [ANNOUNCE] xf86-video-nouveau 1.0.6
+Date: Mon,  7 Jan 2013 14:17:15 +1000
+Message-ID: <1357532235-20315-1-git-send-email-airlied@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1357317553-30296-1-git-send-email-aleksi-P/PbomOFYFrR7s880joybQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,67 +15,57 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Aleksi Torhamo <aleksi-P/PbomOFYFrR7s880joybQ@public.gmane.org>, h@turiel.bne.redhat.com
+To: xorg-announce-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Jan 04, 2013 at 06:39:13PM +0200, Aleksi Torhamo wrote:
-> Fixes regression introduced in commit 70790f4f
-> "drm/nouveau/clock: pull in the implementation from all over the place"
-> 
-> When code was moved from nv50_crtc_set_clock to nvc0_clock_pll_set,
-> the PLLs it is used for got limited to only the first two VPLLs.
-> 
-> nv50_crtc_set_clock was only called to change VPLLs, so it didn't
-> limit what it was used for in any way. Since nvc0_clock_pll_set is
-> used for all PLLs, it has to specify which PLLs the code is used for,
-> and only listed the first two VPLLs.
-Thanks, queued in nouveau's kernel tree.
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-> 
-> Fixes: https://bugs.freedesktop.org/show_bug.cgi?id=58735
-> 
-> This patch is a -stable candidate for 3.7.
-> 
-> Signed-off-by: Aleksi Torhamo <aleksi-P/PbomOFYFrR7s880joybQ@public.gmane.org>
-> Tested-by: Aleksi Torhamo <aleksi-P/PbomOFYFrR7s880joybQ@public.gmane.org>
-> Tested-by: Sean Santos <quantheory-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-> ---
->  .../gpu/drm/nouveau/core/include/subdev/bios/pll.h |    2 ++
->  drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c   |    2 ++
->  2 files changed, 4 insertions(+), 0 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/bios/pll.h b/drivers/gpu/drm/nouveau/core/include/subdev/bios/pll.h
-> index c345097..b2f3d4d 100644
-> --- a/drivers/gpu/drm/nouveau/core/include/subdev/bios/pll.h
-> +++ b/drivers/gpu/drm/nouveau/core/include/subdev/bios/pll.h
-> @@ -38,6 +38,8 @@ enum nvbios_pll_type {
->  	PLL_UNK42  = 0x42,
->  	PLL_VPLL0  = 0x80,
->  	PLL_VPLL1  = 0x81,
-> +	PLL_VPLL2  = 0x82,
-> +	PLL_VPLL3  = 0x83,
->  	PLL_MAX    = 0xff
->  };
->  
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c b/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c
-> index f6962c9..7c96262 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c
-> @@ -52,6 +52,8 @@ nvc0_clock_pll_set(struct nouveau_clock *clk, u32 type, u32 freq)
->  	switch (info.type) {
->  	case PLL_VPLL0:
->  	case PLL_VPLL1:
-> +	case PLL_VPLL2:
-> +	case PLL_VPLL3:
->  		nv_mask(priv, info.reg + 0x0c, 0x00000000, 0x00000100);
->  		nv_wr32(priv, info.reg + 0x04, (P << 16) | (N << 8) | M);
->  		nv_wr32(priv, info.reg + 0x10, fN << 16);
-> -- 
-> 1.7.8.6
-> 
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+1.0.6 release of nouveau, fixes some misrendering on rendercheck, and
+edid.
+
+Ben Skeggs (2):
+      nvc0-/exa: fix typo which caused breakage in rendercheck tmcoords test
+      bump to 1.0.5
+
+Dave Airlie (2):
+      nouveau: fix dirty redisplay damage handling
+      bump to 1.0.6
+
+Emil Velikov (1):
+      kms: Let the server know if we got more than 1 EDID block
+
+Marcin Slusarz (1):
+      add some missing newlines in error messages
+
+git tag: xf86-video-nouveau-1.0.6
+
+http://xorg.freedesktop.org/archive/individual/driver/xf86-video-nouveau-1.0.6.tar.bz2
+MD5:  140e819c983fc01ed7a52d915dcffd74  xf86-video-nouveau-1.0.6.tar.bz2
+SHA1: 602f47934f303e5b93ac25d91987d7519c6d80ab  xf86-video-nouveau-1.0.6.tar.bz2
+SHA256: e3e1522d08134da74cb1796e8863fd3ad3caad9eb5e9d27f4cee3dfa7c75341f  xf86-video-nouveau-1.0.6.tar.bz2
+
+http://xorg.freedesktop.org/archive/individual/driver/xf86-video-nouveau-1.0.6.tar.gz
+MD5:  9787ce13569d20bf5302d0a7ad27e3ed  xf86-video-nouveau-1.0.6.tar.gz
+SHA1: 86feffc53af5e7ea45a93498c88cd07fac1e6059  xf86-video-nouveau-1.0.6.tar.gz
+SHA256: 8ae09090ebeb914a63697a5789848fdcc1d58ff6611fe6654e0941499b7936e6  xf86-video-nouveau-1.0.6.tar.gz
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.19 (GNU/Linux)
+
+iQIcBAEBAgAGBQJQ6kwgAAoJEAx081l5xIa+ut8P/Rvurb7CPEgq0kkUie6u1PLM
+5E5gJtXVsJp0kk2a7T5tclSlODSjWqe2AJ2O9eNKcPeeEGV78fF14Rn3YGPSzLpD
+cnQMoX3AELH3xn9+T9D2I1l5L6Qklnd2JN+YGhwJCW5S/rE8UkgbzYNZMOWiU5dz
++jdvRpjww5AzVBLgBkVm8V4OFV2r0gsAInI9ctlV1T4Ohz7aLhINfVw27cgi8tUX
+w7YCfGWCbCC4+iGNY+63+uOJMy99LykmuKjRy+BajNfnaWc2bpPXBxE5h2SvWhKF
+QW+CzG2o8L9k2rEL5DTDaSgfNtXN6TY8XB0TgrMdagvQWt0z2X9LmdnKHUKD0ySa
+qjquE/kXdqGHBHfNKZNbJ3ZEOsGjrA9L79UUtd2U2BOSOl8B4Yevgp0L3QnpLlvA
+cQWk0ClGcjEfZzsMEZE4EMXVj3ZIlwIq3YK+g87jFxmLPCp8FW7MHAkrAUK0sEqN
+S+us9+ruEDq9ze2Vx9eSYIOy0o3IrDsTar+m22A4TJyv5zLVMu/5itye/IB6ccBN
+KiOnRypxU83+sYYCzZOVSzvHYwRq1OMFu6RKk6/sHMepALYP8AdsrxJZbtjUIvZF
+YhOfJPdK8lW7V16hI21EioM95F+NyYi2HasILhBqWD7lsv/UdXBPQMnbUTEC8xAd
+oUPy08h5jd5o3b1wJfWT
+=hrXe
+-----END PGP SIGNATURE-----
