@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58776] DRM NOUVEAU: cannot boot with kernel >=3.7
-Date: Mon, 07 Jan 2013 18:03:33 +0000
-Message-ID: <bug-58776-8800-YrMhzZbOi5@http.bugs.freedesktop.org/>
-References: <bug-58776-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57777] lcd screen of a laptop does not wake up after
+	sleep
+Date: Mon, 07 Jan 2013 19:16:09 +0000
+Message-ID: <bug-57777-8800-skdIM3VmBO@http.bugs.freedesktop.org/>
+References: <bug-57777-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0082970804=="
+Content-Type: multipart/mixed; boundary="===============1851207089=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57777-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,42 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0082970804==
-Content-Type: multipart/alternative; boundary="1357581813.e75A2.17083"; charset="us-ascii"
+--===============1851207089==
+Content-Type: multipart/alternative; boundary="1357586169.cD5601.31422"; charset="us-ascii"
 
 
---1357581813.e75A2.17083
-Date: Mon, 7 Jan 2013 18:03:33 +0000
+--1357586169.cD5601.31422
+Date: Mon, 7 Jan 2013 19:16:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58776
+https://bugs.freedesktop.org/show_bug.cgi?id=57777
 
---- Comment #17 from gabriele balducci <balducci-KqplAB4qOuE@public.gmane.org> ---
-(In reply to comment #16)
-> Lovely, the fix for bug 46557 breaks your card.
-> I guess booting with nouveau.config=NvPCIE=0 works?
-> 
+--- Comment #1 from Alin M Elena <alinm.elena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I have tested with 3.8rc2 both default driver and 3.8rc2 with the nouveau
+master compiled... both show the same behaviour as described above.
+The 3.7.1 kernel with the driver that comes works...but fills my log with
+trapped read and write errors.
 
-yep!
-
-With nouveau.config=NvPCIE=0 I can boot 3.7.1 without problems and also X11
-(with acceleration, as far as I can say) works fine
-
-thanks a lot
-
-I'll be happy to make any other test and/or gather any other piece of
-information if needed
-
-ciao
-gabriele
+Alin
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357581813.e75A2.17083
-Date: Mon, 7 Jan 2013 18:03:33 +0000
+--1357586169.cD5601.31422
+Date: Mon, 7 Jan 2013 19:16:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,34 +58,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - DRM NOUVEAU: cannot boot with kernel &gt;=3.7"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58776#c17">Comment # 17</a>
+   title="NEW --- - lcd screen of a laptop does not wake up after sleep"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57777#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - DRM NOUVEAU: cannot boot with kernel &gt;=3.7"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58776">bug 58776</a>
-              from <span class="vcard"><a class="email" href="mailto:balducci&#64;units.it" title="gabriele balducci &lt;balducci&#64;units.it&gt;"> <span class="fn">gabriele balducci</span></a>
+   title="NEW --- - lcd screen of a laptop does not wake up after sleep"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57777">bug 57777</a>
+              from <span class="vcard"><a class="email" href="mailto:alinm.elena&#64;gmail.com" title="Alin M Elena &lt;alinm.elena&#64;gmail.com&gt;"> <span class="fn">Alin M Elena</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=58776#c16">comment #16</a>)
-<span class="quote">&gt; Lovely, the fix for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nouveau: NV4E acceleration corruption when DMA above 31-bit (2 Gig barrier)"
-   href="show_bug.cgi?id=46557">bug 46557</a> breaks your card.
-&gt; I guess booting with nouveau.config=NvPCIE=0 works?
-&gt; </span >
+        <pre>I have tested with 3.8rc2 both default driver and 3.8rc2 with the nouveau
+master compiled... both show the same behaviour as described above.
+The 3.7.1 kernel with the driver that comes works...but fills my log with
+trapped read and write errors.
 
-yep!
-
-With nouveau.config=NvPCIE=0 I can boot 3.7.1 without problems and also X11
-(with acceleration, as far as I can say) works fine
-
-thanks a lot
-
-I'll be happy to make any other test and/or gather any other piece of
-information if needed
-
-ciao
-gabriele</pre>
+Alin</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +83,9 @@ gabriele</pre>
     </body>
 </html>
 
---1357581813.e75A2.17083--
+--1357586169.cD5601.31422--
 
---===============0082970804==
+--===============1851207089==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0082970804==--
+--===============1851207089==--
