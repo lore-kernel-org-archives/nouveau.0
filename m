@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 fails to properly
-	resume
-Date: Mon, 07 Jan 2013 16:56:40 +0000
-Message-ID: <bug-23223-8800-qMl2YI5F7b@http.bugs.freedesktop.org/>
-References: <bug-23223-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58729] [bisected] Display fails to turn on after
+ suspend/resume (NV86)
+Date: Mon, 07 Jan 2013 17:06:20 +0000
+Message-ID: <bug-58729-8800-gK3rAX5veL@http.bugs.freedesktop.org/>
+References: <bug-58729-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1702140355=="
+Content-Type: multipart/mixed; boundary="===============1829758346=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,44 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1702140355==
-Content-Type: multipart/alternative; boundary="1357577800.1bAFC2C82.6686"; charset="us-ascii"
+--===============1829758346==
+Content-Type: multipart/alternative; boundary="1357578380.EFD741.8309"; charset="us-ascii"
 
 
---1357577800.1bAFC2C82.6686
-Date: Mon, 7 Jan 2013 16:56:40 +0000
+--1357578380.EFD741.8309
+Date: Mon, 7 Jan 2013 17:06:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=23223
+https://bugs.freedesktop.org/show_bug.cgi?id=58729
 
---- Comment #18 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 72637
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72637&action=edit
-script limitter
-
-VBIOS contains some scripts, which are normally run by BIOS.
-Nouveau executes those scripts:
-1) when it detects the card is uninitialized
-2) when NvForcePost=1 option is passed
-3) on resume
-
-It seems Nouveau does something wrong on your card when it executes those
-scripts. So, if we will fix boot with NvForcePost=1, we will also fix the
-resume issue.
-
-Now, how to fix boot with NvForcePost=1? Good question ;).
-Figuring out which script makes the trouble will probably make it easier.
-With the above patch you will be able to tell how many scripts are executed and
-then limit which one to execute by passing module parameters: minscript and
-maxscript. Try it. (start by setting maxscript only)
+--- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+You can try the patch from bug 59057, comment 15.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357577800.1bAFC2C82.6686
-Date: Mon, 7 Jan 2013 16:56:40 +0000
+--1357578380.EFD741.8309
+Date: Mon, 7 Jan 2013 17:06:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,32 +53,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c18">Comment # 18</a>
+   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
+   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729">bug 58729</a>
               from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72637" name="attach_72637" title="script limitter">attachment 72637</a> <a href="attachment.cgi?id=72637&amp;action=edit" title="script limitter">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=23223&amp;attachment=72637'>[review]</a>
-script limitter
-
-VBIOS contains some scripts, which are normally run by BIOS.
-Nouveau executes those scripts:
-1) when it detects the card is uninitialized
-2) when NvForcePost=1 option is passed
-3) on resume
-
-It seems Nouveau does something wrong on your card when it executes those
-scripts. So, if we will fix boot with NvForcePost=1, we will also fix the
-resume issue.
-
-Now, how to fix boot with NvForcePost=1? Good question ;).
-Figuring out which script makes the trouble will probably make it easier.
-With the above patch you will be able to tell how many scripts are executed and
-then limit which one to execute by passing module parameters: minscript and
-maxscript. Try it. (start by setting maxscript only)</pre>
+        <pre>You can try the patch from <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Black screen after resume from s2ram"
+   href="show_bug.cgi?id=59057#c15">bug 59057, comment 15</a>.</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +76,9 @@ maxscript. Try it. (start by setting maxscript only)</pre>
     </body>
 </html>
 
---1357577800.1bAFC2C82.6686--
+--1357578380.EFD741.8309--
 
---===============1702140355==
+--===============1829758346==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1702140355==--
+--===============1829758346==--
