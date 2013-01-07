@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58729] [bisected] Display fails to turn on after
- suspend/resume (NV86)
+Subject: [Bug 59057] Black screen after resume from s2ram
 Date: Mon, 07 Jan 2013 21:38:23 +0000
-Message-ID: <bug-58729-8800-vexp2ypLmm@http.bugs.freedesktop.org/>
-References: <bug-58729-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-59057-8800-WZpgMELsBI@http.bugs.freedesktop.org/>
+References: <bug-59057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0981886493=="
+Content-Type: multipart/mixed; boundary="===============1635424722=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0981886493==
-Content-Type: multipart/alternative; boundary="1357594703.d8dBEd1.18240"; charset="us-ascii"
+--===============1635424722==
+Content-Type: multipart/alternative; boundary="1357594704.4ceB75.18240"; charset="us-ascii"
 
 
---1357594703.d8dBEd1.18240
-Date: Mon, 7 Jan 2013 21:38:23 +0000
+--1357594704.4ceB75.18240
+Date: Mon, 7 Jan 2013 21:38:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58729
+https://bugs.freedesktop.org/show_bug.cgi?id=59057
 
 Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
+                 CC|                            |wheel-pGoT+mvyLdp4LYgiJMQgWbNAH6kLmebB@public.gmane.org
 
---- Comment #7 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Ok. Bug 59057 seems to have more informations, so let's close this one as
-duplicate.
-
-*** This bug has been marked as a duplicate of bug 59057 ***
+--- Comment #17 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+*** Bug 58729 has been marked as a duplicate of this bug. ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357594703.d8dBEd1.18240
-Date: Mon, 7 Jan 2013 21:38:23 +0000
+--1357594704.4ceB75.18240
+Date: Mon, 7 Jan 2013 21:38:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,9 +56,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [bisected] Display fails to turn on after suspend/resume (NV86)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729">bug 58729</a>
+          bz_status_NEW "
+   title="NEW --- - Black screen after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -73,42 +68,29 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
+           <td>wheel&#64;herr-der-mails.de
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [bisected] Display fails to turn on after suspend/resume (NV86)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729#c7">Comment # 7</a>
+          bz_status_NEW "
+   title="NEW --- - Black screen after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c17">Comment # 17</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [bisected] Display fails to turn on after suspend/resume (NV86)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729">bug 58729</a>
+          bz_status_NEW "
+   title="NEW --- - Black screen after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
               from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Ok. <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Black screen after resume from s2ram"
-   href="show_bug.cgi?id=59057">Bug 59057</a> seems to have more informations, so let's close this one as
-duplicate.
-
-*** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Black screen after resume from s2ram"
-   href="show_bug.cgi?id=59057">bug 59057</a> ***</pre>
+        <pre>*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [bisected] Display fails to turn on after suspend/resume (NV86)"
+   href="show_bug.cgi?id=58729">Bug 58729</a> has been marked as a duplicate of this bug. ***</pre>
         </div>
       </p>
       <hr>
@@ -120,9 +102,9 @@ duplicate.
     </body>
 </html>
 
---1357594703.d8dBEd1.18240--
+--1357594704.4ceB75.18240--
 
---===============0981886493==
+--===============1635424722==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -133,4 +115,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0981886493==--
+--===============1635424722==--
