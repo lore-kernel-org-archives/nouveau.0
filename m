@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58729] [bisected] Display fails to turn on after
- suspend/resume (NV86)
-Date: Mon, 07 Jan 2013 16:23:59 +0000
-Message-ID: <bug-58729-8800-rZSIyPo8Rd@http.bugs.freedesktop.org/>
-References: <bug-58729-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 fails to properly
+	resume
+Date: Mon, 07 Jan 2013 16:56:40 +0000
+Message-ID: <bug-23223-8800-qMl2YI5F7b@http.bugs.freedesktop.org/>
+References: <bug-23223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1532659163=="
+Content-Type: multipart/mixed; boundary="===============1702140355=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +21,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1532659163==
-Content-Type: multipart/alternative; boundary="1357575840.7B2A00.2612"; charset="us-ascii"
+--===============1702140355==
+Content-Type: multipart/alternative; boundary="1357577800.1bAFC2C82.6686"; charset="us-ascii"
 
 
---1357575840.7B2A00.2612
-Date: Mon, 7 Jan 2013 16:23:59 +0000
+--1357577800.1bAFC2C82.6686
+Date: Mon, 7 Jan 2013 16:56:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58729
+https://bugs.freedesktop.org/show_bug.cgi?id=23223
 
-J Binder <wheel-pGoT+mvyLdp4LYgiJMQgWbNAH6kLmebB@public.gmane.org> changed:
+--- Comment #18 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 72637
+  --> https://bugs.freedesktop.org/attachment.cgi?id=72637&action=edit
+script limitter
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #72634|0                           |1
-        is obsolete|                            |
+VBIOS contains some scripts, which are normally run by BIOS.
+Nouveau executes those scripts:
+1) when it detects the card is uninitialized
+2) when NvForcePost=1 option is passed
+3) on resume
 
---- Comment #4 from J Binder <wheel-pGoT+mvyLdp4LYgiJMQgWbNAH6kLmebB@public.gmane.org> ---
-Created attachment 72636
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72636&action=edit
-correct dmesg for boot and one suspend/resume cycle with 3.8.0-rc2 form today's
-git master
+It seems Nouveau does something wrong on your card when it executes those
+scripts. So, if we will fix boot with NvForcePost=1, we will also fix the
+resume issue.
 
-Attached incorrectly collected dmesg. Correct dmesg appended.
+Now, how to fix boot with NvForcePost=1? Good question ;).
+Figuring out which script makes the trouble will probably make it easier.
+With the above patch you will be able to tell how many scripts are executed and
+then limit which one to execute by passing module parameters: minscript and
+maxscript. Try it. (start by setting maxscript only)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357575840.7B2A00.2612
-Date: Mon, 7 Jan 2013 16:24:00 +0000
+--1357577800.1bAFC2C82.6686
+Date: Mon, 7 Jan 2013 16:56:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,45 +66,37 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:wheel&#64;herr-der-mails.de" title="J Binder &lt;wheel&#64;herr-der-mails.de&gt;"> <span class="fn">J Binder</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729">bug 58729</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #72634 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729#c4">Comment # 4</a>
+   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [bisected] Display fails to turn on after suspend/resume (NV86)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729">bug 58729</a>
-              from <span class="vcard"><a class="email" href="mailto:wheel&#64;herr-der-mails.de" title="J Binder &lt;wheel&#64;herr-der-mails.de&gt;"> <span class="fn">J Binder</span></a>
+   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72636" name="attach_72636" title="correct dmesg for boot and one suspend/resume cycle with 3.8.0-rc2 form today's git master">attachment 72636</a> <a href="attachment.cgi?id=72636&amp;action=edit" title="correct dmesg for boot and one suspend/resume cycle with 3.8.0-rc2 form today's git master">[details]</a></span>
-correct dmesg for boot and one suspend/resume cycle with 3.8.0-rc2 form today's
-git master
+        <pre>Created <span class=""><a href="attachment.cgi?id=72637" name="attach_72637" title="script limitter">attachment 72637</a> <a href="attachment.cgi?id=72637&amp;action=edit" title="script limitter">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=23223&amp;attachment=72637'>[review]</a>
+script limitter
 
-Attached incorrectly collected dmesg. Correct dmesg appended.</pre>
+VBIOS contains some scripts, which are normally run by BIOS.
+Nouveau executes those scripts:
+1) when it detects the card is uninitialized
+2) when NvForcePost=1 option is passed
+3) on resume
+
+It seems Nouveau does something wrong on your card when it executes those
+scripts. So, if we will fix boot with NvForcePost=1, we will also fix the
+resume issue.
+
+Now, how to fix boot with NvForcePost=1? Good question ;).
+Figuring out which script makes the trouble will probably make it easier.
+With the above patch you will be able to tell how many scripts are executed and
+then limit which one to execute by passing module parameters: minscript and
+maxscript. Try it. (start by setting maxscript only)</pre>
         </div>
       </p>
       <hr>
@@ -110,9 +108,9 @@ Attached incorrectly collected dmesg. Correct dmesg appended.</pre>
     </body>
 </html>
 
---1357575840.7B2A00.2612--
+--1357577800.1bAFC2C82.6686--
 
---===============1532659163==
+--===============1702140355==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1532659163==--
+--===============1702140355==--
