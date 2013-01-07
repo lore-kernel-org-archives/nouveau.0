@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 fails to properly
-	resume
-Date: Mon, 07 Jan 2013 21:30:49 +0000
-Message-ID: <bug-23223-8800-PxmSGhqdji@http.bugs.freedesktop.org/>
-References: <bug-23223-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58729] [bisected] Display fails to turn on after
+ suspend/resume (NV86)
+Date: Mon, 07 Jan 2013 21:38:23 +0000
+Message-ID: <bug-58729-8800-vexp2ypLmm@http.bugs.freedesktop.org/>
+References: <bug-58729-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0138965444=="
+Content-Type: multipart/mixed; boundary="===============0981886493=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0138965444==
-Content-Type: multipart/alternative; boundary="1357594249.6dBc2.17362"; charset="us-ascii"
+--===============0981886493==
+Content-Type: multipart/alternative; boundary="1357594703.d8dBEd1.18240"; charset="us-ascii"
 
 
---1357594249.6dBc2.17362
-Date: Mon, 7 Jan 2013 21:30:49 +0000
+--1357594703.d8dBEd1.18240
+Date: Mon, 7 Jan 2013 21:38:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=23223
+https://bugs.freedesktop.org/show_bug.cgi?id=58729
 
---- Comment #22 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Please attach an mmiotrace [1] of binary driver handling suspend & resume.
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-[1] http://nouveau.freedesktop.org/wiki/MmioTrace
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
+
+--- Comment #7 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Ok. Bug 59057 seems to have more informations, so let's close this one as
+duplicate.
+
+*** This bug has been marked as a duplicate of bug 59057 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357594249.6dBc2.17362
-Date: Mon, 7 Jan 2013 21:30:49 +0000
+--1357594703.d8dBEd1.18240
+Date: Mon, 7 Jan 2013 21:38:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +58,57 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [bisected] Display fails to turn on after suspend/resume (NV86)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729">bug 58729</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c22">Comment # 22</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [bisected] Display fails to turn on after suspend/resume (NV86)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729#c7">Comment # 7</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [bisected] Display fails to turn on after suspend/resume (NV86)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729">bug 58729</a>
               from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Please attach an mmiotrace [1] of binary driver handling suspend &amp; resume.
+        <pre>Ok. <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Black screen after resume from s2ram"
+   href="show_bug.cgi?id=59057">Bug 59057</a> seems to have more informations, so let's close this one as
+duplicate.
 
-[1] <a href="http://nouveau.freedesktop.org/wiki/MmioTrace">http://nouveau.freedesktop.org/wiki/MmioTrace</a></pre>
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Black screen after resume from s2ram"
+   href="show_bug.cgi?id=59057">bug 59057</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +120,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1357594249.6dBc2.17362--
+--1357594703.d8dBEd1.18240--
 
---===============0138965444==
+--===============0981886493==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +133,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0138965444==--
+--===============0981886493==--
