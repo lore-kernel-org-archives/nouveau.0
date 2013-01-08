@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 fails to properly
 	resume
-Date: Tue, 08 Jan 2013 08:30:59 +0000
-Message-ID: <bug-23223-8800-CYMmPsmrpt@http.bugs.freedesktop.org/>
+Date: Tue, 08 Jan 2013 09:00:34 +0000
+Message-ID: <bug-23223-8800-nJbL2uSB1f@http.bugs.freedesktop.org/>
 References: <bug-23223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0758036303=="
+Content-Type: multipart/mixed; boundary="===============2005789734=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0758036303==
-Content-Type: multipart/alternative; boundary="1357633859.32147011.31573"; charset="us-ascii"
+--===============2005789734==
+Content-Type: multipart/alternative; boundary="1357635634.a4d0F1.2371"; charset="us-ascii"
 
 
---1357633859.32147011.31573
-Date: Tue, 8 Jan 2013 08:30:59 +0000
+--1357635634.a4d0F1.2371
+Date: Tue, 8 Jan 2013 09:00:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=23223
 
---- Comment #23 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 72669
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72669&action=edit
-Mmiotrace of NV4B s2disk cycle, kernel v3.7.1 and nVidia 304.64
+--- Comment #24 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Yes it worked out properly. The difference was that udev is started if I use
+init and seems to change something with my display. If I then do an s2disk
+cycle, everything is peachy and the mmiotrace is 30MB.
 
-I think it worked out. Weird thing is: I tried booting with init=/bin/bash,
-setting up the mounts myself and making root rw and all that. Then I get a
-750kb uncompressed file. So I tried again, booting using Gentoo, but without X
-and terminal only, and it's 30MB uncompressed.
-
-What is the difference? I think it worked out okay though.
+I started in single mode and started udev as well, I got the same result. Sorry
+for bothering you, thought it was a driver issue. At least I can confirm that
+the above mmiotrace should be okay for use.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357633859.32147011.31573
-Date: Tue, 8 Jan 2013 08:30:59 +0000
+--1357635634.a4d0F1.2371
+Date: Tue, 8 Jan 2013 09:00:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,22 +60,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c23">Comment # 23</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c24">Comment # 24</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72669" name="attach_72669" title="Mmiotrace of NV4B s2disk cycle, kernel v3.7.1 and nVidia 304.64">attachment 72669</a> <a href="attachment.cgi?id=72669&amp;action=edit" title="Mmiotrace of NV4B s2disk cycle, kernel v3.7.1 and nVidia 304.64">[details]</a></span>
-Mmiotrace of NV4B s2disk cycle, kernel v3.7.1 and nVidia 304.64
+        <pre>Yes it worked out properly. The difference was that udev is started if I use
+init and seems to change something with my display. If I then do an s2disk
+cycle, everything is peachy and the mmiotrace is 30MB.
 
-I think it worked out. Weird thing is: I tried booting with init=/bin/bash,
-setting up the mounts myself and making root rw and all that. Then I get a
-750kb uncompressed file. So I tried again, booting using Gentoo, but without X
-and terminal only, and it's 30MB uncompressed.
-
-What is the difference? I think it worked out okay though.</pre>
+I started in single mode and started udev as well, I got the same result. Sorry
+for bothering you, thought it was a driver issue. At least I can confirm that
+the above mmiotrace should be okay for use.</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +85,9 @@ What is the difference? I think it worked out okay though.</pre>
     </body>
 </html>
 
---1357633859.32147011.31573--
+--1357635634.a4d0F1.2371--
 
---===============0758036303==
+--===============2005789734==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0758036303==--
+--===============2005789734==--
