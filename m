@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58316] fedora 17 kernel 3.7.0-1.PAE failed plymouth
- and enable msi error
-Date: Wed, 09 Jan 2013 14:51:53 +0000
-Message-ID: <bug-58316-8800-dnC0Yt1jCI@http.bugs.freedesktop.org/>
-References: <bug-58316-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58984] DRM NOUVEAU: probe of 0001:01:00.0 failed
+	with error -12
+Date: Wed, 09 Jan 2013 15:13:25 +0000
+Message-ID: <bug-58984-8800-rH63p7JwzQ@http.bugs.freedesktop.org/>
+References: <bug-58984-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1846773303=="
+Content-Type: multipart/mixed; boundary="===============1307365276=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58316-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58984-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1846773303==
-Content-Type: multipart/alternative; boundary="1357743113.71a8f1.25873"; charset="us-ascii"
+--===============1307365276==
+Content-Type: multipart/alternative; boundary="1357744405.4Fb5c1.29265"; charset="us-ascii"
 
 
---1357743113.71a8f1.25873
-Date: Wed, 9 Jan 2013 14:51:53 +0000
+--1357744405.4Fb5c1.29265
+Date: Wed, 9 Jan 2013 15:13:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58316
+https://bugs.freedesktop.org/show_bug.cgi?id=58984
 
---- Comment #5 from javier sanz <jsanza-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-kernel 3.7.1
-shows the message , two or three times .. why? 
-but it boots
-
-why kernel 3.6.11 i can see nouveau using msi interrupts and with 3.7.1
-io-apic?
+--- Comment #9 from Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I added some printk()s starting from nouveau_drm_load(), and
+nouveau_display_create() is returning -12.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357743113.71a8f1.25873
-Date: Wed, 9 Jan 2013 14:51:53 +0000
+--1357744405.4Fb5c1.29265
+Date: Wed, 9 Jan 2013 15:13:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,20 +54,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - fedora 17 kernel 3.7.0-1.PAE failed plymouth and enable msi error"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58316#c5">Comment # 5</a>
+   title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - fedora 17 kernel 3.7.0-1.PAE failed plymouth and enable msi error"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58316">bug 58316</a>
-              from <span class="vcard"><a class="email" href="mailto:jsanza&#64;gmail.com" title="javier sanz &lt;jsanza&#64;gmail.com&gt;"> <span class="fn">javier sanz</span></a>
+   title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984">bug 58984</a>
+              from <span class="vcard"><a class="email" href="mailto:baggett.patrick&#64;gmail.com" title="Patrick Baggett &lt;baggett.patrick&#64;gmail.com&gt;"> <span class="fn">Patrick Baggett</span></a>
 </span></b>
-        <pre>kernel 3.7.1
-shows the message , two or three times .. why? 
-but it boots
-
-why kernel 3.6.11 i can see nouveau using msi interrupts and with 3.7.1
-io-apic?</pre>
+        <pre>I added some printk()s starting from nouveau_drm_load(), and
+nouveau_display_create() is returning -12.</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +75,9 @@ io-apic?</pre>
     </body>
 </html>
 
---1357743113.71a8f1.25873--
+--1357744405.4Fb5c1.29265--
 
---===============1846773303==
+--===============1307365276==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1846773303==--
+--===============1307365276==--
