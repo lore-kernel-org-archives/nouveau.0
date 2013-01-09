@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
-Date: Tue, 08 Jan 2013 15:19:55 +0000
-Message-ID: <bug-59069-8800-uAzOctzeVB@http.bugs.freedesktop.org/>
-References: <bug-59069-8800@http.bugs.freedesktop.org/>
+From: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
+Subject: [PATCH] drm/nv50/fb: Fix nullptr-deref on IGPs
+Date: Wed,  9 Jan 2013 03:36:36 +0100
+Message-ID: <1357698996-27147-1-git-send-email-r.spliet@student.tudelft.nl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0357121803=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,116 +15,67 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau devlist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+When COMP_MAX_TAG == 0, the tags mm was uninitialised. Fixed by initialising with zero length.
 
---===============0357121803==
-Content-Type: multipart/alternative; boundary="1357658396.E7A8b52.25523"; charset="us-ascii"
+Signed-off-by: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
+Tested-by: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/subdev/fb/base.c | 11 ++++++++---
+ drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c |  5 +++--
+ 2 files changed, 11 insertions(+), 5 deletions(-)
 
-
---1357658396.E7A8b52.25523
-Date: Tue, 8 Jan 2013 15:19:56 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=59069
-
---- Comment #9 from Kees Bakker <kees.bakker-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org> ---
-Created attachment 72680
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72680&action=edit
-Another dmesg with an early PROTECTION_FAULT but still functional X
-
-Today no reboot boot yet. The X server is still up, but for a moment I thought
-it got stuck. Last messages are:
-
-[20361.350868] nouveau E[     DRM] fail ttm_validate
-[20361.350875] nouveau E[     DRM] validate vram_list, vram_list_size:
-183160832, gart_list_size: 4780032, both_list_size: 0
-[20361.350959] nouveau E[     DRM] validate: -12 [compiz[5399]]
-[20364.892611] nouveau E[     DRM] reloc wait_idle failed: -16
-[20364.892618] nouveau E[     DRM] reloc apply: -16 [compiz[5399]]
-[20365.091459] nouveau E[     DRM] fail ttm_validate
-[20365.091465] nouveau E[     DRM] vram
-[20365.091491] nouveau E[     DRM] validate: -16 [compiz[5399]]
-[20374.260008] nouveau E[     DRM] reloc wait_idle failed: -16
-[20374.260015] nouveau E[     DRM] reloc apply: -16 [Xorg[3542]]
-[20377.261006] nouveau E[     DRM] reloc wait_idle failed: -16
-[20377.261013] nouveau E[     DRM] reloc apply: -16 [Xorg[3542]]
-[20377.262000] [sched_delayed] sched: RT throttling activated
-[20380.951008] nouveau E[     DRM] reloc wait_idle failed: -16
-[20380.951015] nouveau E[     DRM] reloc apply: -16 [Xorg[3542]]
-
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/base.c b/drivers/gpu/drm/nouveau/core/subdev/fb/base.c
+index d6d1600..695dde8 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/fb/base.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/fb/base.c
+@@ -86,10 +86,15 @@ nouveau_fb_preinit(struct nouveau_fb *pfb)
+ 			return ret;
+ 	}
+ 
+-	if (!nouveau_mm_initialised(&pfb->tags) && tags) {
+-		ret = nouveau_mm_init(&pfb->tags, 0, ++tags, 1);
++	if (!nouveau_mm_initialised(&pfb->tags)) {
++		if(tags) {
++			ret = nouveau_mm_init(&pfb->tags, 0, ++tags, 1);
++		} else {
++			ret = nouveau_mm_init(&pfb->tags, 0, 0, 1);
++		}
++
+ 		if (ret)
+-			return ret;
++					return ret;
+ 	}
+ 
+ 	nv_info(pfb, "RAM type: %s\n", name[pfb->ram.type]);
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c b/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
+index a4338d9..0772ec9 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
+@@ -101,7 +101,7 @@ nv50_fb_vram_init(struct nouveau_fb *pfb)
+ 	struct nouveau_bios *bios = nouveau_bios(device);
+ 	const u32 rsvd_head = ( 256 * 1024) >> 12; /* vga memory */
+ 	const u32 rsvd_tail = (1024 * 1024) >> 12; /* vbios etc */
+-	u32 size;
++	u32 size, tags = 0;
+ 	int ret;
+ 
+ 	pfb->ram.size = nv_rd32(pfb, 0x10020c);
+@@ -142,10 +142,11 @@ nv50_fb_vram_init(struct nouveau_fb *pfb)
+ 			return ret;
+ 
+ 		pfb->ram.ranks = (nv_rd32(pfb, 0x100200) & 0x4) ? 2 : 1;
++		tags = nv_rd32(pfb, 0x100320);
+ 		break;
+ 	}
+ 
+-	return nv_rd32(pfb, 0x100320);
++	return tags;
+ }
+ 
+ static int
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1357658396.E7A8b52.25523
-Date: Tue, 8 Jan 2013 15:19:56 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau E[ DRM] fail ttm_validate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau E[ DRM] fail ttm_validate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
-              from <span class="vcard"><a class="email" href="mailto:kees.bakker&#64;xs4all.nl" title="Kees Bakker &lt;kees.bakker&#64;xs4all.nl&gt;"> <span class="fn">Kees Bakker</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72680" name="attach_72680" title="Another dmesg with an early PROTECTION_FAULT but still functional X">attachment 72680</a> <a href="attachment.cgi?id=72680&amp;action=edit" title="Another dmesg with an early PROTECTION_FAULT but still functional X">[details]</a></span>
-Another dmesg with an early PROTECTION_FAULT but still functional X
-
-Today no reboot boot yet. The X server is still up, but for a moment I thought
-it got stuck. Last messages are:
-
-[20361.350868] nouveau E[     DRM] fail ttm_validate
-[20361.350875] nouveau E[     DRM] validate vram_list, vram_list_size:
-183160832, gart_list_size: 4780032, both_list_size: 0
-[20361.350959] nouveau E[     DRM] validate: -12 [compiz[5399]]
-[20364.892611] nouveau E[     DRM] reloc wait_idle failed: -16
-[20364.892618] nouveau E[     DRM] reloc apply: -16 [compiz[5399]]
-[20365.091459] nouveau E[     DRM] fail ttm_validate
-[20365.091465] nouveau E[     DRM] vram
-[20365.091491] nouveau E[     DRM] validate: -16 [compiz[5399]]
-[20374.260008] nouveau E[     DRM] reloc wait_idle failed: -16
-[20374.260015] nouveau E[     DRM] reloc apply: -16 [Xorg[3542]]
-[20377.261006] nouveau E[     DRM] reloc wait_idle failed: -16
-[20377.261013] nouveau E[     DRM] reloc apply: -16 [Xorg[3542]]
-[20377.262000] [sched_delayed] sched: RT throttling activated
-[20380.951008] nouveau E[     DRM] reloc wait_idle failed: -16
-[20380.951015] nouveau E[     DRM] reloc apply: -16 [Xorg[3542]]</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1357658396.E7A8b52.25523--
-
---===============0357121803==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0357121803==--
+1.8.0.1
