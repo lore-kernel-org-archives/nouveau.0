@@ -1,7 +1,7 @@
 From: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
 Subject: [PATCH] drm/nv50/fb: Fix nullptr-deref on IGPs
-Date: Wed,  9 Jan 2013 03:36:36 +0100
-Message-ID: <1357698996-27147-1-git-send-email-r.spliet@student.tudelft.nl>
+Date: Wed,  9 Jan 2013 03:40:33 +0100
+Message-ID: <1357699233-29046-1-git-send-email-r.spliet@student.tudelft.nl>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -21,18 +21,20 @@ List-Id: nouveau.vger.kernel.org
 
 When COMP_MAX_TAG == 0, the tags mm was uninitialised. Fixed by initialising with zero length.
 
+v2: Fix style error
+
 Signed-off-by: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
 Tested-by: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/subdev/fb/base.c | 11 ++++++++---
- drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c |  5 +++--
- 2 files changed, 11 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/nouveau/core/subdev/fb/base.c | 9 +++++++--
+ drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c | 5 +++--
+ 2 files changed, 10 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/base.c b/drivers/gpu/drm/nouveau/core/subdev/fb/base.c
-index d6d1600..695dde8 100644
+index d6d1600..e1b5773 100644
 --- a/drivers/gpu/drm/nouveau/core/subdev/fb/base.c
 +++ b/drivers/gpu/drm/nouveau/core/subdev/fb/base.c
-@@ -86,10 +86,15 @@ nouveau_fb_preinit(struct nouveau_fb *pfb)
+@@ -86,8 +86,13 @@ nouveau_fb_preinit(struct nouveau_fb *pfb)
  			return ret;
  	}
  
@@ -46,11 +48,8 @@ index d6d1600..695dde8 100644
 +		}
 +
  		if (ret)
--			return ret;
-+					return ret;
+ 			return ret;
  	}
- 
- 	nv_info(pfb, "RAM type: %s\n", name[pfb->ram.type]);
 diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c b/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
 index a4338d9..0772ec9 100644
 --- a/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
