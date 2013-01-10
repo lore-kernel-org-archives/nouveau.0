@@ -1,12 +1,13 @@
-From: Aleksi Torhamo <aleksi-P/PbomOFYFrR7s880joybQ@public.gmane.org>
-Subject: [PATCH] drm/nvc0/fb: fix crash when different mutex is
-	used to protect same list
-Date: Wed,  9 Jan 2013 20:08:48 +0200
-Message-ID: <1357754928-5357-1-git-send-email-aleksi@torhamo.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 58984] DRM NOUVEAU: probe of 0001:01:00.0 failed
+	with error -12
+Date: Thu, 10 Jan 2013 16:48:18 +0000
+Message-ID: <bug-58984-8800-hQqUuPrQi9@http.bugs.freedesktop.org/>
+References: <bug-58984-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1545239490=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-58984-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,55 +20,74 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Fixes regression introduced in commit 861d2107
-"drm/nouveau/fb: merge fb/vram and port to subdev interfaces"
 
-nv50_fb_vram_{new,del} functions were changed to use
-nouveau_subdev->mutex instead of the old nouveau_mm->mutex.
-nvc0_fb_vram_new still uses the nouveau_mm->mutex, but nvc0 doesn't
-have its own fb_vram_del function, using nv50_fb_vram_del instead.
-Because of this, on nvc0 a different mutex ends up being used to protect
-additions and deletions to the same list.
+--===============1545239490==
+Content-Type: multipart/alternative; boundary="1357836498.21aDACD71.16929"; charset="us-ascii"
 
-This patch is a -stable candidate for 3.7.
 
-Signed-off-by: Aleksi Torhamo <aleksi-P/PbomOFYFrR7s880joybQ@public.gmane.org>
-Reported-by: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
-Tested-by: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
-Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
----
- drivers/gpu/drm/nouveau/core/subdev/fb/nvc0.c |    6 +++---
- 1 files changed, 3 insertions(+), 3 deletions(-)
+--1357836498.21aDACD71.16929
+Date: Thu, 10 Jan 2013 16:48:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/nvc0.c b/drivers/gpu/drm/nouveau/core/subdev/fb/nvc0.c
-index 306bdf1..7606ed1 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/fb/nvc0.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/fb/nvc0.c
-@@ -145,14 +145,14 @@ nvc0_fb_vram_new(struct nouveau_fb *pfb, u64 size, u32 align, u32 ncmin,
- 	mem->memtype = type;
- 	mem->size = size;
- 
--	mutex_lock(&mm->mutex);
-+	mutex_lock(&pfb->base.mutex);
- 	do {
- 		if (back)
- 			ret = nouveau_mm_tail(mm, 1, size, ncmin, align, &r);
- 		else
- 			ret = nouveau_mm_head(mm, 1, size, ncmin, align, &r);
- 		if (ret) {
--			mutex_unlock(&mm->mutex);
-+			mutex_unlock(&pfb->base.mutex);
- 			pfb->ram.put(pfb, &mem);
- 			return ret;
- 		}
-@@ -160,7 +160,7 @@ nvc0_fb_vram_new(struct nouveau_fb *pfb, u64 size, u32 align, u32 ncmin,
- 		list_add_tail(&r->rl_entry, &mem->regions);
- 		size -= r->length;
- 	} while (size);
--	mutex_unlock(&mm->mutex);
-+	mutex_unlock(&pfb->base.mutex);
- 
- 	r = list_first_entry(&mem->regions, struct nouveau_mm_node, rl_entry);
- 	mem->offset = (u64)r->offset << 12;
+https://bugs.freedesktop.org/show_bug.cgi?id=58984
+
+--- Comment #10 from Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Do you need me to go further and add some printk()s in
+nouveau_display_create()? It looks like Emil may be correct. If so -- is there
+a fix for this issue applied to the kernel git yet?
+
 -- 
-1.7.8.6
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1357836498.21aDACD71.16929
+Date: Thu, 10 Jan 2013 16:48:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984">bug 58984</a>
+              from <span class="vcard"><a class="email" href="mailto:baggett.patrick&#64;gmail.com" title="Patrick Baggett &lt;baggett.patrick&#64;gmail.com&gt;"> <span class="fn">Patrick Baggett</span></a>
+</span></b>
+        <pre>Do you need me to go further and add some printk()s in
+nouveau_display_create()? It looks like Emil may be correct. If so -- is there
+a fix for this issue applied to the kernel git yet?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1357836498.21aDACD71.16929--
+
+--===============1545239490==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1545239490==--
