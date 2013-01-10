@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58984] DRM NOUVEAU: probe of 0001:01:00.0 failed
 	with error -12
-Date: Thu, 10 Jan 2013 16:48:18 +0000
-Message-ID: <bug-58984-8800-hQqUuPrQi9@http.bugs.freedesktop.org/>
+Date: Thu, 10 Jan 2013 17:07:52 +0000
+Message-ID: <bug-58984-8800-d7WTqsTRFX@http.bugs.freedesktop.org/>
 References: <bug-58984-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1545239490=="
+Content-Type: multipart/mixed; boundary="===============1202446300=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58984-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1545239490==
-Content-Type: multipart/alternative; boundary="1357836498.21aDACD71.16929"; charset="us-ascii"
+--===============1202446300==
+Content-Type: multipart/alternative; boundary="1357837672.B5Fa2.19814"; charset="us-ascii"
 
 
---1357836498.21aDACD71.16929
-Date: Thu, 10 Jan 2013 16:48:18 +0000
+--1357837672.B5Fa2.19814
+Date: Thu, 10 Jan 2013 17:07:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58984
 
---- Comment #10 from Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Do you need me to go further and add some printk()s in
-nouveau_display_create()? It looks like Emil may be correct. If so -- is there
-a fix for this issue applied to the kernel git yet?
+--- Comment #11 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Yes, please go further.
+I'm not aware of any patch fixing this.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1357836498.21aDACD71.16929
-Date: Thu, 10 Jan 2013 16:48:18 +0000
+--1357837672.B5Fa2.19814
+Date: Thu, 10 Jan 2013 17:07:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,16 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984#c10">Comment # 10</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58984">bug 58984</a>
-              from <span class="vcard"><a class="email" href="mailto:baggett.patrick&#64;gmail.com" title="Patrick Baggett &lt;baggett.patrick&#64;gmail.com&gt;"> <span class="fn">Patrick Baggett</span></a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Do you need me to go further and add some printk()s in
-nouveau_display_create()? It looks like Emil may be correct. If so -- is there
-a fix for this issue applied to the kernel git yet?</pre>
+        <pre>Yes, please go further.
+I'm not aware of any patch fixing this.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +75,9 @@ a fix for this issue applied to the kernel git yet?</pre>
     </body>
 </html>
 
---1357836498.21aDACD71.16929--
+--1357837672.B5Fa2.19814--
 
---===============1545239490==
+--===============1202446300==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1545239490==--
+--===============1202446300==--
