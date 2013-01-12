@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59057] Black screen after resume from s2ram
-Date: Sat, 12 Jan 2013 15:58:37 +0000
-Message-ID: <bug-59057-8800-XhXFbhTcJK@http.bugs.freedesktop.org/>
-References: <bug-59057-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
+Date: Sat, 12 Jan 2013 23:19:14 +0000
+Message-ID: <bug-59069-8800-eTvEpzYM2q@http.bugs.freedesktop.org/>
+References: <bug-59069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0708042367=="
+Content-Type: multipart/mixed; boundary="===============1437095999=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0708042367==
-Content-Type: multipart/alternative; boundary="1358006317.6FF4D1fA3.3865"; charset="us-ascii"
+--===============1437095999==
+Content-Type: multipart/alternative; boundary="1358032753.b2c6ADD2.20021"; charset="us-ascii"
 
 
---1358006317.6FF4D1fA3.3865
-Date: Sat, 12 Jan 2013 15:58:37 +0000
+--1358032753.b2c6ADD2.20021
+Date: Sat, 12 Jan 2013 23:19:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59057
+https://bugs.freedesktop.org/show_bug.cgi?id=59069
 
---- Comment #20 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 72906
-  --> https://bugs.freedesktop.org/attachment.cgi?id=72906&action=edit
-possible fix v3
+--- Comment #10 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Compiz (through Mesa) asks for 180MB of VRAM and the card has 256MB.
 
-Please test this one.
+So, there seems to be 2 bugs here:
+- 3D driver asks for too much VRAM (180MB for compositor?)
+- kernel should handle applications asking for 180MB out of 256MB (pinned
+buffers should not take 76MB)
+
+Let's figure out what's wrong on the kernel side first.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1358006317.6FF4D1fA3.3865
-Date: Sat, 12 Jan 2013 15:58:37 +0000
+--1358032753.b2c6ADD2.20021
+Date: Sat, 12 Jan 2013 23:19:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,18 +59,22 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c20">Comment # 20</a>
+   title="NEW --- - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
+   title="NEW --- - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
               from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=72906" name="attach_72906" title="possible fix v3">attachment 72906</a> <a href="attachment.cgi?id=72906&amp;action=edit" title="possible fix v3">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=59057&amp;attachment=72906'>[review]</a>
-possible fix v3
+        <pre>Compiz (through Mesa) asks for 180MB of VRAM and the card has 256MB.
 
-Please test this one.</pre>
+So, there seems to be 2 bugs here:
+- 3D driver asks for too much VRAM (180MB for compositor?)
+- kernel should handle applications asking for 180MB out of 256MB (pinned
+buffers should not take 76MB)
+
+Let's figure out what's wrong on the kernel side first.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +86,9 @@ Please test this one.</pre>
     </body>
 </html>
 
---1358006317.6FF4D1fA3.3865--
+--1358032753.b2c6ADD2.20021--
 
---===============0708042367==
+--===============1437095999==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0708042367==--
+--===============1437095999==--
