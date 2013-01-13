@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39550] Brightness stuck to low value after
-	suspend/resume
-Date: Sun, 13 Jan 2013 08:10:30 +0000
-Message-ID: <bug-39550-8800-POYzfiZFlN@http.bugs.freedesktop.org/>
-References: <bug-39550-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59057] Black screen after resume from s2ram
+Date: Sun, 13 Jan 2013 09:15:33 +0000
+Message-ID: <bug-59057-8800-Kz8SnWylUv@http.bugs.freedesktop.org/>
+References: <bug-59057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1404344272=="
+Content-Type: multipart/mixed; boundary="===============0198165721=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1404344272==
-Content-Type: multipart/alternative; boundary="1358064630.8FA5B8.32237"; charset="us-ascii"
+--===============0198165721==
+Content-Type: multipart/alternative; boundary="1358068533.B71D51f2.6031"; charset="us-ascii"
 
 
---1358064630.8FA5B8.32237
-Date: Sun, 13 Jan 2013 08:10:30 +0000
+--1358068533.B71D51f2.6031
+Date: Sun, 13 Jan 2013 09:15:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39550
+https://bugs.freedesktop.org/show_bug.cgi?id=59057
 
---- Comment #38 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This bug is likely fixed in current nouveau kernel git.
+--- Comment #21 from Pontus Fuchs <pontus.fuchs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #20)
+> Created attachment 72906 [details] [review]
+> possible fix v3
+> 
+> Please test this one.
+
+Tested on top of 3.8-rc3. No improvement seen.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1358064630.8FA5B8.32237
-Date: Sun, 13 Jan 2013 08:10:30 +0000
+--1358068533.B71D51f2.6031
+Date: Sun, 13 Jan 2013 09:15:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,15 +58,21 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Brightness stuck to low value after suspend/resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=39550#c38">Comment # 38</a>
+   title="NEW --- - Black screen after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Brightness stuck to low value after suspend/resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=39550">bug 39550</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
+   title="NEW --- - Black screen after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
+              from <span class="vcard"><a class="email" href="mailto:pontus.fuchs&#64;gmail.com" title="Pontus Fuchs &lt;pontus.fuchs&#64;gmail.com&gt;"> <span class="fn">Pontus Fuchs</span></a>
 </span></b>
-        <pre>This bug is likely fixed in current nouveau kernel git.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=59057#c20">comment #20</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=72906" name="attach_72906" title="possible fix v3">attachment 72906</a> <a href="attachment.cgi?id=72906&amp;action=edit" title="possible fix v3">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=59057&amp;attachment=72906'>[review]</a> [review]
+&gt; possible fix v3
+&gt; 
+&gt; Please test this one.</span >
+
+Tested on top of 3.8-rc3. No improvement seen.</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +84,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1358064630.8FA5B8.32237--
+--1358068533.B71D51f2.6031--
 
---===============1404344272==
+--===============0198165721==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1404344272==--
+--===============0198165721==--
