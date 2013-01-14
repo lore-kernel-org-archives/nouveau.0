@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
-Date: Sun, 13 Jan 2013 21:56:10 +0000
-Message-ID: <bug-59069-8800-2flBJ22vqt@http.bugs.freedesktop.org/>
+Date: Mon, 14 Jan 2013 07:05:42 +0000
+Message-ID: <bug-59069-8800-rJ575q3CG2@http.bugs.freedesktop.org/>
 References: <bug-59069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0169562031=="
+Content-Type: multipart/mixed; boundary="===============1725514475=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,27 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0169562031==
-Content-Type: multipart/alternative; boundary="1358114170.b7B106ca1.10990"; charset="us-ascii"
+--===============1725514475==
+Content-Type: multipart/alternative; boundary="1358147142.cbDB2.13872"; charset="us-ascii"
 
 
---1358114170.b7B106ca1.10990
-Date: Sun, 13 Jan 2013 21:56:10 +0000
+--1358147142.cbDB2.13872
+Date: Mon, 14 Jan 2013 07:05:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=59069
 
---- Comment #13 from Jacopo <jmoronat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I'm experiencing the same bug on a laptop with Nvidia 8400M GS.
-So I could help with the log, if necessary.
+--- Comment #14 from Kees Bakker <kees.bakker-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org> ---
+(In reply to comment #13)
+> I'm experiencing the same bug on a laptop with Nvidia 8400M GS.
+> So I could help with the log, if necessary.
+
+Yes please do, that would be great. Thanks
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1358114170.b7B106ca1.10990
-Date: Sun, 13 Jan 2013 21:56:10 +0000
+--1358147142.cbDB2.13872
+Date: Mon, 14 Jan 2013 07:05:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,15 +57,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau E[ DRM] fail ttm_validate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c13">Comment # 13</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau E[ DRM] fail ttm_validate"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
-              from <span class="vcard"><a class="email" href="mailto:jmoronat&#64;gmail.com" title="Jacopo &lt;jmoronat&#64;gmail.com&gt;"> <span class="fn">Jacopo</span></a>
+              from <span class="vcard"><a class="email" href="mailto:kees.bakker&#64;xs4all.nl" title="Kees Bakker &lt;kees.bakker&#64;xs4all.nl&gt;"> <span class="fn">Kees Bakker</span></a>
 </span></b>
-        <pre>I'm experiencing the same bug on a laptop with Nvidia 8400M GS.
-So I could help with the log, if necessary.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=59069#c13">comment #13</a>)
+<span class="quote">&gt; I'm experiencing the same bug on a laptop with Nvidia 8400M GS.
+&gt; So I could help with the log, if necessary.</span >
+
+Yes please do, that would be great. Thanks</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +80,9 @@ So I could help with the log, if necessary.</pre>
     </body>
 </html>
 
---1358114170.b7B106ca1.10990--
+--1358147142.cbDB2.13872--
 
---===============0169562031==
+--===============1725514475==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0169562031==--
+--===============1725514475==--
