@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
-Date: Tue, 15 Jan 2013 11:34:33 +0000
-Message-ID: <bug-59069-8800-st3iHi1vVX@http.bugs.freedesktop.org/>
+Date: Tue, 15 Jan 2013 11:35:01 +0000
+Message-ID: <bug-59069-8800-IlzEOF8K30@http.bugs.freedesktop.org/>
 References: <bug-59069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0662182732=="
+Content-Type: multipart/mixed; boundary="===============1574625529=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,38 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0662182732==
-Content-Type: multipart/alternative; boundary="1358249673.cF6B7FE2.30042"; charset="us-ascii"
+--===============1574625529==
+Content-Type: multipart/alternative; boundary="1358249701.3f5A42.30086"; charset="us-ascii"
 
 
---1358249673.cF6B7FE2.30042
-Date: Tue, 15 Jan 2013 11:34:33 +0000
+--1358249701.3f5A42.30086
+Date: Tue, 15 Jan 2013 11:35:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=59069
 
-Alexander Stein <alexander.stein-jNDFPZUTrfQ+B2oLq8eQJv4efur1V5z/s0AfqQuZ5sE@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |alexander.stein@informatik.
-                   |                            |tu-chemnitz.de
-
---- Comment #16 from Alexander Stein <alexander.stein-jNDFPZUTrfQ+B2oLq8eQJv4efur1V5z/s0AfqQuZ5sE@public.gmane.org> ---
-I get the same warning/errors when switching the KDE graphics settings in
-systemsetting. Sometimes the systemlocks up and I need a hard reset and
-sometimes just X segfaults and it restarts (but here sometimes the GPU is
-locked and I need to reboot).
-I'm running 00:0d.0 VGA compatible controller: NVIDIA Corporation C61 [GeForce
-6150SE nForce 430] (rev a2)
+--- Comment #17 from Alexander Stein <alexander.stein-jNDFPZUTrfQ+B2oLq8eQJv4efur1V5z/s0AfqQuZ5sE@public.gmane.org> ---
+Created attachment 73073
+  --> https://bugs.freedesktop.org/attachment.cgi?id=73073&action=edit
+my lspci -vv
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1358249673.cF6B7FE2.30042
-Date: Tue, 15 Jan 2013 11:34:33 +0000
+--1358249701.3f5A42.30086
+Date: Tue, 15 Jan 2013 11:35:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,46 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:alexander.stein&#64;informatik.tu-chemnitz.de" title="Alexander Stein &lt;alexander.stein&#64;informatik.tu-chemnitz.de&gt;"> <span class="fn">Alexander Stein</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau E[ DRM] fail ttm_validate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>alexander.stein&#64;informatik.tu-chemnitz.de
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau E[ DRM] fail ttm_validate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c16">Comment # 16</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c17">Comment # 17</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau E[ DRM] fail ttm_validate"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
               from <span class="vcard"><a class="email" href="mailto:alexander.stein&#64;informatik.tu-chemnitz.de" title="Alexander Stein &lt;alexander.stein&#64;informatik.tu-chemnitz.de&gt;"> <span class="fn">Alexander Stein</span></a>
 </span></b>
-        <pre>I get the same warning/errors when switching the KDE graphics settings in
-systemsetting. Sometimes the systemlocks up and I need a hard reset and
-sometimes just X segfaults and it restarts (but here sometimes the GPU is
-locked and I need to reboot).
-I'm running 00:0d.0 VGA compatible controller: NVIDIA Corporation C61 [GeForce
-6150SE nForce 430] (rev a2)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=73073" name="attach_73073" title="my lspci -vv">attachment 73073</a> <a href="attachment.cgi?id=73073&amp;action=edit" title="my lspci -vv">[details]</a></span>
+my lspci -vv</pre>
         </div>
       </p>
       <hr>
@@ -110,9 +75,9 @@ I'm running 00:0d.0 VGA compatible controller: NVIDIA Corporation C61 [GeForce
     </body>
 </html>
 
---1358249673.cF6B7FE2.30042--
+--1358249701.3f5A42.30086--
 
---===============0662182732==
+--===============1574625529==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0662182732==--
+--===============1574625529==--
