@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
-Date: Mon, 14 Jan 2013 16:27:13 +0000
-Message-ID: <bug-59069-8800-3EQRIYmL8w@http.bugs.freedesktop.org/>
+Date: Tue, 15 Jan 2013 11:34:33 +0000
+Message-ID: <bug-59069-8800-st3iHi1vVX@http.bugs.freedesktop.org/>
 References: <bug-59069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1470784054=="
+Content-Type: multipart/mixed; boundary="===============0662182732=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,37 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1470784054==
-Content-Type: multipart/alternative; boundary="1358180833.46e561.1205"; charset="us-ascii"
+--===============0662182732==
+Content-Type: multipart/alternative; boundary="1358249673.cF6B7FE2.30042"; charset="us-ascii"
 
 
---1358180833.46e561.1205
-Date: Mon, 14 Jan 2013 16:27:13 +0000
+--1358249673.cF6B7FE2.30042
+Date: Tue, 15 Jan 2013 11:34:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=59069
 
---- Comment #15 from Jacopo <jmoronat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #11)
-> Created attachment 72932 [details] [review]
-> better logging v2
-> 
-> please attach kernel log with this patch applied
+Alexander Stein <alexander.stein-jNDFPZUTrfQ+B2oLq8eQJv4efur1V5z/s0AfqQuZ5sE@public.gmane.org> changed:
 
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |alexander.stein@informatik.
+                   |                            |tu-chemnitz.de
 
-Hi Marcin,
-I'm on Raring (Ubuntu +1), which is now based on 3.8.0 kernel. The bug is the
-same, and it's anyway reproducible.
-My question is: does your patch apply to 3.8 ? Cause patch -p1 gives me some
-"Hunk FAILED".
+--- Comment #16 from Alexander Stein <alexander.stein-jNDFPZUTrfQ+B2oLq8eQJv4efur1V5z/s0AfqQuZ5sE@public.gmane.org> ---
+I get the same warning/errors when switching the KDE graphics settings in
+systemsetting. Sometimes the systemlocks up and I need a hard reset and
+sometimes just X segfaults and it restarts (but here sometimes the GPU is
+locked and I need to reboot).
+I'm running 00:0d.0 VGA compatible controller: NVIDIA Corporation C61 [GeForce
+6150SE nForce 430] (rev a2)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1358180833.46e561.1205
-Date: Mon, 14 Jan 2013 16:27:13 +0000
+--1358249673.cF6B7FE2.30042
+Date: Tue, 15 Jan 2013 11:34:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,31 +59,46 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:alexander.stein&#64;informatik.tu-chemnitz.de" title="Alexander Stein &lt;alexander.stein&#64;informatik.tu-chemnitz.de&gt;"> <span class="fn">Alexander Stein</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>alexander.stein&#64;informatik.tu-chemnitz.de
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau E[ DRM] fail ttm_validate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau E[ DRM] fail ttm_validate"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
-              from <span class="vcard"><a class="email" href="mailto:jmoronat&#64;gmail.com" title="Jacopo &lt;jmoronat&#64;gmail.com&gt;"> <span class="fn">Jacopo</span></a>
+              from <span class="vcard"><a class="email" href="mailto:alexander.stein&#64;informatik.tu-chemnitz.de" title="Alexander Stein &lt;alexander.stein&#64;informatik.tu-chemnitz.de&gt;"> <span class="fn">Alexander Stein</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=59069#c11">comment #11</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=72932" name="attach_72932" title="better logging v2">attachment 72932</a> <a href="attachment.cgi?id=72932&amp;action=edit" title="better logging v2">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=59069&amp;attachment=72932'>[review]</a> [review]
-&gt; better logging v2
-&gt; 
-&gt; please attach kernel log with this patch applied</span >
-
-
-Hi Marcin,
-I'm on Raring (Ubuntu +1), which is now based on 3.8.0 kernel. The bug is the
-same, and it's anyway reproducible.
-My question is: does your patch apply to 3.8 ? Cause patch -p1 gives me some
-&quot;Hunk FAILED&quot;.</pre>
+        <pre>I get the same warning/errors when switching the KDE graphics settings in
+systemsetting. Sometimes the systemlocks up and I need a hard reset and
+sometimes just X segfaults and it restarts (but here sometimes the GPU is
+locked and I need to reboot).
+I'm running 00:0d.0 VGA compatible controller: NVIDIA Corporation C61 [GeForce
+6150SE nForce 430] (rev a2)</pre>
         </div>
       </p>
       <hr>
@@ -94,9 +110,9 @@ My question is: does your patch apply to 3.8 ? Cause patch -p1 gives me some
     </body>
 </html>
 
---1358180833.46e561.1205--
+--1358249673.cF6B7FE2.30042--
 
---===============1470784054==
+--===============0662182732==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -107,4 +123,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1470784054==--
+--===============0662182732==--
