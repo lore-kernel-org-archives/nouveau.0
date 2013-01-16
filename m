@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 59474] fedora 18 X server crashes after boot
-Date: Wed, 16 Jan 2013 16:32:21 +0000
-Message-ID: <bug-59474-8800-2KtsPpPaHn@http.bugs.freedesktop.org/>
+Date: Wed, 16 Jan 2013 16:32:35 +0000
+Message-ID: <bug-59474-8800-fJHcorjR2q@http.bugs.freedesktop.org/>
 References: <bug-59474-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1431805532=="
+Content-Type: multipart/mixed; boundary="===============2009393028=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-59474-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1431805532==
-Content-Type: multipart/alternative; boundary="1358353941.6B7e36Cb1.32171"; charset="us-ascii"
+--===============2009393028==
+Content-Type: multipart/alternative; boundary="1358353954.0DEDb5c3.32171"; charset="us-ascii"
 
 
---1358353941.6B7e36Cb1.32171
-Date: Wed, 16 Jan 2013 16:32:21 +0000
+--1358353954.0DEDb5c3.32171
+Date: Wed, 16 Jan 2013 16:32:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,15 +35,14 @@ Philippe Dax <dax-jpENlDPnyY8@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Hardware|Other                       |x86-64 (AMD64)
-                 OS|Solaris                     |Linux (All)
+            Version|unspecified                 |7.7 (2011)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1358353941.6B7e36Cb1.32171
-Date: Wed, 16 Jan 2013 16:32:21 +0000
+--1358353954.0DEDb5c3.32171
+Date: Wed, 16 Jan 2013 16:32:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,18 +65,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Hardware</td>
-           <td>Other
+           <td style="text-align:right;">Version</td>
+           <td>unspecified
            </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">OS</td>
-           <td>Solaris
-           </td>
-           <td>Linux (All)
+           <td>7.7 (2011)
            </td>
          </tr></table>
       <p>
@@ -91,9 +82,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1358353941.6B7e36Cb1.32171--
+--1358353954.0DEDb5c3.32171--
 
---===============1431805532==
+--===============2009393028==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1431805532==--
+--===============2009393028==--
