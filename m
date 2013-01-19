@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58735] GeForce 680, currently driver works on two,
- but not three monitors
-Date: Sat, 19 Jan 2013 22:57:51 +0000
-Message-ID: <bug-58735-8800-5rsMjwlS5Z@http.bugs.freedesktop.org/>
-References: <bug-58735-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58729] [bisected] Display fails to turn on after
+ suspend/resume (NV86)
+Date: Sat, 19 Jan 2013 22:58:29 +0000
+Message-ID: <bug-58729-8800-NO2qD9bdQU@http.bugs.freedesktop.org/>
+References: <bug-58729-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0960714193=="
+Content-Type: multipart/mixed; boundary="===============0100877173=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58735-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0960714193==
-Content-Type: multipart/alternative; boundary="1358636271.4A402.20857"; charset="us-ascii"
+--===============0100877173==
+Content-Type: multipart/alternative; boundary="1358636308.C0c581.20954"; charset="us-ascii"
 
 
---1358636271.4A402.20857
-Date: Sat, 19 Jan 2013 22:57:51 +0000
+--1358636308.C0c581.20954
+Date: Sat, 19 Jan 2013 22:58:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58735
+https://bugs.freedesktop.org/show_bug.cgi?id=58729
 
 Florian Mickler <florian-sVu6HhrpSfRAfugRpC6u6w@public.gmane.org> changed:
 
@@ -38,21 +38,21 @@ Florian Mickler <florian-sVu6HhrpSfRAfugRpC6u6w@public.gmane.org> changed:
 ----------------------------------------------------------------------------
                  CC|                            |florian-sVu6HhrpSfRAfugRpC6u6w@public.gmane.org
 
---- Comment #9 from Florian Mickler <florian-sVu6HhrpSfRAfugRpC6u6w@public.gmane.org> ---
+--- Comment #8 from Florian Mickler <florian-sVu6HhrpSfRAfugRpC6u6w@public.gmane.org> ---
 A patch referencing this bug report has been merged in Linux v3.8-rc4:
 
-commit d19528a9e4f220519c2cb3f56ef0c84ead3ee440
-Author: Aleksi Torhamo <aleksi-P/PbomOFYFrR7s880joybQ@public.gmane.org>
-Date:   Fri Jan 4 18:39:13 2013 +0200
+commit c684cef795cb5356ae7f6a7ad613946eef14265f
+Author: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Date:   Thu Jan 3 19:38:45 2013 +0100
 
-    drm/nouveau/clock: fix support for more than 2 monitors on nve0
+    drm/nv50/disp: fix selection of bios script for analog outputs
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1358636271.4A402.20857
-Date: Sat, 19 Jan 2013 22:57:51 +0000
+--1358636308.C0c581.20954
+Date: Sat, 19 Jan 2013 22:58:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,8 +64,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - GeForce 680, currently driver works on two, but not three monitors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58735">bug 58735</a>
+   title="RESOLVED DUPLICATE - [bisected] Display fails to turn on after suspend/resume (NV86)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729">bug 58729</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -86,21 +86,21 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - GeForce 680, currently driver works on two, but not three monitors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58735#c9">Comment # 9</a>
+   title="RESOLVED DUPLICATE - [bisected] Display fails to turn on after suspend/resume (NV86)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - GeForce 680, currently driver works on two, but not three monitors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58735">bug 58735</a>
+   title="RESOLVED DUPLICATE - [bisected] Display fails to turn on after suspend/resume (NV86)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58729">bug 58729</a>
               from <span class="vcard"><a class="email" href="mailto:florian&#64;mickler.org" title="Florian Mickler &lt;florian&#64;mickler.org&gt;"> <span class="fn">Florian Mickler</span></a>
 </span></b>
         <pre>A patch referencing this bug report has been merged in Linux v3.8-rc4:
 
-commit d19528a9e4f220519c2cb3f56ef0c84ead3ee440
-Author: Aleksi Torhamo &lt;<a href="mailto:aleksi&#64;torhamo.net">aleksi&#64;torhamo.net</a>&gt;
-Date:   Fri Jan 4 18:39:13 2013 +0200
+commit c684cef795cb5356ae7f6a7ad613946eef14265f
+Author: Marcin Slusarz &lt;<a href="mailto:marcin.slusarz&#64;gmail.com">marcin.slusarz&#64;gmail.com</a>&gt;
+Date:   Thu Jan 3 19:38:45 2013 +0100
 
-    drm/nouveau/clock: fix support for more than 2 monitors on nve0</pre>
+    drm/nv50/disp: fix selection of bios script for analog outputs</pre>
         </div>
       </p>
       <hr>
@@ -112,9 +112,9 @@ Date:   Fri Jan 4 18:39:13 2013 +0200
     </body>
 </html>
 
---1358636271.4A402.20857--
+--1358636308.C0c581.20954--
 
---===============0960714193==
+--===============0100877173==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -125,4 +125,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0960714193==--
+--===============0100877173==--
