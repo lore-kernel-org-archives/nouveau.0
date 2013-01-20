@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59597] Segmentation fault when moving (part of)
- window outside screen area
-Date: Sun, 20 Jan 2013 10:26:16 +0000
-Message-ID: <bug-59597-8800-3avRFohPDK@http.bugs.freedesktop.org/>
-References: <bug-59597-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59474] fedora 18 X fatal server error no screens
+ found after boot
+Date: Sun, 20 Jan 2013 22:34:47 +0000
+Message-ID: <bug-59474-8800-ZEv5Wwcnz9@http.bugs.freedesktop.org/>
+References: <bug-59474-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0548039116=="
+Content-Type: multipart/mixed; boundary="===============1190080947=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59597-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59474-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,45 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0548039116==
-Content-Type: multipart/alternative; boundary="1358677576.bB2Fcd6F0.19207"; charset="us-ascii"
+--===============1190080947==
+Content-Type: multipart/alternative; boundary="1358721287.Af7d3E1.12385"; charset="us-ascii"
 
 
---1358677576.bB2Fcd6F0.19207
-Date: Sun, 20 Jan 2013 10:26:16 +0000
+--1358721287.Af7d3E1.12385
+Date: Sun, 20 Jan 2013 22:34:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59597
+https://bugs.freedesktop.org/show_bug.cgi?id=59474
 
---- Comment #4 from bugs.freedesktop-AKmYONJMgVsEZ6m2XrtfIFpr/1R2p/CL@public.gmane.org ---
-Adding to the information originally posted.
+--- Comment #8 from Trek <trek00-aPYA7nAdAYY@public.gmane.org> ---
+Probably this is an installation problem and you should talk with the Fedora
+support first. The evidence is that you can manually start X from the terminal.
 
-The crash only occurs when moving a window down below the bottom of the screen
-area, not right or left. 
+As suggestion may be that you have too many video drivers installed for the
+same device: nouveau, nv and nvidia.
 
-My graphics card is produced by Zotac.
-I intended to write: Zotac GeForce GTX 660 Ti Amp Edition, as the graphics
-card.
+Please to close this bug when the issue is resolved.
 
-I've been trying to install a version 1.0.3 driver to see if that fixes the
-issue, but so far I can't find it (nouveau.freedesktop.org responds with a HTTP
-503 Service Unavailable).
-
-
-Let me know if I can do anything to give a better backtrace. I've tried to
-install the xserver-xorg-video-nouveau-dbg package, but that didn't seem to
-give any better backtrace. 
-
-
-Thanks
+Ciao
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1358677576.bB2Fcd6F0.19207
-Date: Sun, 20 Jan 2013 10:26:16 +0000
+--1358721287.Af7d3E1.12385
+Date: Sun, 20 Jan 2013 22:34:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,34 +61,23 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Segmentation fault when moving (part of) window outside screen area"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59597#c4">Comment # 4</a>
+   title="NEW --- - fedora 18 X fatal server error no screens found after boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59474#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Segmentation fault when moving (part of) window outside screen area"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59597">bug 59597</a>
-              from <span class="vcard"><a class="email" href="mailto:bugs.freedesktop&#64;lindbergonline.dk" title="bugs.freedesktop&#64;lindbergonline.dk">bugs.freedesktop&#64;lindbergonline.dk</a>
+   title="NEW --- - fedora 18 X fatal server error no screens found after boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59474">bug 59474</a>
+              from <span class="vcard"><a class="email" href="mailto:trek00&#64;inbox.ru" title="Trek &lt;trek00&#64;inbox.ru&gt;"> <span class="fn">Trek</span></a>
 </span></b>
-        <pre>Adding to the information originally posted.
+        <pre>Probably this is an installation problem and you should talk with the Fedora
+support first. The evidence is that you can manually start X from the terminal.
 
-The crash only occurs when moving a window down below the bottom of the screen
-area, not right or left. 
+As suggestion may be that you have too many video drivers installed for the
+same device: nouveau, nv and nvidia.
 
-My graphics card is produced by Zotac.
-I intended to write: Zotac GeForce GTX 660 Ti Amp Edition, as the graphics
-card.
+Please to close this bug when the issue is resolved.
 
-I've been trying to install a version 1.0.3 driver to see if that fixes the
-issue, but so far I can't find it (nouveau.freedesktop.org responds with a HTTP
-503 Service Unavailable).
-
-
-Let me know if I can do anything to give a better backtrace. I've tried to
-install the xserver-xorg-video-nouveau-dbg package, but that didn't seem to
-give any better backtrace. 
-
-
-Thanks</pre>
+Ciao</pre>
         </div>
       </p>
       <hr>
@@ -111,9 +89,9 @@ Thanks</pre>
     </body>
 </html>
 
---1358677576.bB2Fcd6F0.19207--
+--1358721287.Af7d3E1.12385--
 
---===============0548039116==
+--===============1190080947==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,4 +102,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0548039116==--
+--===============1190080947==--
