@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50121] [Regression] Since kernel v3.5 several cards
- fail to resume, introduced by: 'convert to exec engine,
- and improve channel sync'
-Date: Tue, 22 Jan 2013 04:14:57 +0000
-Message-ID: <bug-50121-8800-x1f2nQ95ah@http.bugs.freedesktop.org/>
-References: <bug-50121-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59242] some mesa demos start to segfault after
+ "nouveau: improve buffer transfers" on nv43
+Date: Tue, 22 Jan 2013 06:37:31 +0000
+Message-ID: <bug-59242-8800-YjgEaTe40y@http.bugs.freedesktop.org/>
+References: <bug-59242-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0268921957=="
+Content-Type: multipart/mixed; boundary="===============0307293268=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59242-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,32 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0268921957==
-Content-Type: multipart/alternative; boundary="1358828098.bdcA5cCa5.24908"; charset="us-ascii"
+--===============0307293268==
+Content-Type: multipart/alternative; boundary="1358836651.3EAEF81.15159"; charset="us-ascii"
 
 
---1358828098.bdcA5cCa5.24908
-Date: Tue, 22 Jan 2013 04:14:58 +0000
+--1358836651.3EAEF81.15159
+Date: Tue, 22 Jan 2013 06:37:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50121
+https://bugs.freedesktop.org/show_bug.cgi?id=59242
 
---- Comment #53 from Herton Krzesinski <herton-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> ---
-Created attachment 73421
-  --> https://bugs.freedesktop.org/attachment.cgi?id=73421&action=edit
-Backport for 3.5 (and may be 3.6)
+MASAO TAKAHASHI <masao-takahashi-D/ILkEkFJBd3+QwDJ9on6Q@public.gmane.org> changed:
 
-For who is still using or interested in kernel 3.5 or 3.6, can you try/verify
-the attached patch? I checked and hope that it works, ended up being a simpler
-diff.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |masao-takahashi-D/ILkEkFJBd3+QwDJ9on6Q@public.gmane.org
+
+--- Comment #1 from MASAO TAKAHASHI <masao-takahashi-D/ILkEkFJBd3+QwDJ9on6Q@public.gmane.org> ---
+I have a same problem.
+segfault position is the same location as this issue.
+
+SIGSEGV is occurred in gnome-shell.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1358828098.bdcA5cCa5.24908
-Date: Tue, 22 Jan 2013 04:14:58 +0000
+--1358836651.3EAEF81.15159
+Date: Tue, 22 Jan 2013 06:37:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,25 +57,44 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:masao-takahashi&#64;kanno.co.jp" title="MASAO TAKAHASHI &lt;masao-takahashi&#64;kanno.co.jp&gt;"> <span class="fn">MASAO TAKAHASHI</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - some mesa demos start to segfault after &quot;nouveau: improve buffer transfers&quot; on nv43"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59242">bug 59242</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>masao-takahashi&#64;kanno.co.jp
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c53">Comment # 53</a>
+          bz_status_NEW "
+   title="NEW --- - some mesa demos start to segfault after &quot;nouveau: improve buffer transfers&quot; on nv43"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59242#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
-              from <span class="vcard"><a class="email" href="mailto:herton&#64;canonical.com" title="Herton Krzesinski &lt;herton&#64;canonical.com&gt;"> <span class="fn">Herton Krzesinski</span></a>
+          bz_status_NEW "
+   title="NEW --- - some mesa demos start to segfault after &quot;nouveau: improve buffer transfers&quot; on nv43"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59242">bug 59242</a>
+              from <span class="vcard"><a class="email" href="mailto:masao-takahashi&#64;kanno.co.jp" title="MASAO TAKAHASHI &lt;masao-takahashi&#64;kanno.co.jp&gt;"> <span class="fn">MASAO TAKAHASHI</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=73421" name="attach_73421" title="Backport for 3.5 (and may be 3.6)">attachment 73421</a> <a href="attachment.cgi?id=73421&amp;action=edit" title="Backport for 3.5 (and may be 3.6)">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=50121&amp;attachment=73421'>[review]</a>
-Backport for 3.5 (and may be 3.6)
+        <pre>I have a same problem.
+segfault position is the same location as this issue.
 
-For who is still using or interested in kernel 3.5 or 3.6, can you try/verify
-the attached patch? I checked and hope that it works, ended up being a simpler
-diff.</pre>
+SIGSEGV is occurred in gnome-shell.</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +106,9 @@ diff.</pre>
     </body>
 </html>
 
---1358828098.bdcA5cCa5.24908--
+--1358836651.3EAEF81.15159--
 
---===============0268921957==
+--===============0307293268==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +119,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0268921957==--
+--===============0307293268==--
