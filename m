@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50121] [Regression] Since kernel v3.5 several cards
- fail to resume, introduced by: 'convert to exec engine,
- and improve channel sync'
-Date: Wed, 23 Jan 2013 17:24:35 +0000
-Message-ID: <bug-50121-8800-Lb2tciw2ht@http.bugs.freedesktop.org/>
-References: <bug-50121-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59742] Displayport attached monitor stopped working
+ in xorg and init 3, after kernel upgrade
+Date: Wed, 23 Jan 2013 17:30:46 +0000
+Message-ID: <bug-59742-8800-LYsgdnevVw@http.bugs.freedesktop.org/>
+References: <bug-59742-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0760433602=="
+Content-Type: multipart/mixed; boundary="===============0253751725=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59742-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,27 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0760433602==
-Content-Type: multipart/alternative; boundary="1358961875.2Cffcd5.32170"; charset="us-ascii"
+--===============0253751725==
+Content-Type: multipart/alternative; boundary="1358962246.Cbd41.534"; charset="us-ascii"
 
 
---1358961875.2Cffcd5.32170
-Date: Wed, 23 Jan 2013 17:24:35 +0000
+--1358962246.Cbd41.534
+Date: Wed, 23 Jan 2013 17:30:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50121
+https://bugs.freedesktop.org/show_bug.cgi?id=59742
 
---- Comment #57 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This backported patch will crash on nv10-nv17 - priv->bo is only created for
-chipsets >= nv17.
+--- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Should be fixed in 3.7.3 / 3.8-rc4
+
+https://bugs.freedesktop.org/show_bug.cgi?id=58735
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1358961875.2Cffcd5.32170
-Date: Wed, 23 Jan 2013 17:24:35 +0000
+--1358962246.Cbd41.534
+Date: Wed, 23 Jan 2013 17:30:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,17 +54,21 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c57">Comment # 57</a>
+          bz_status_NEW "
+   title="NEW --- - Displayport attached monitor stopped working in xorg and init 3, after kernel upgrade"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59742#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
+          bz_status_NEW "
+   title="NEW --- - Displayport attached monitor stopped working in xorg and init 3, after kernel upgrade"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59742">bug 59742</a>
               from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>This backported patch will crash on nv10-nv17 - priv-&gt;bo is only created for
-chipsets &gt;= nv17.</pre>
+        <pre>Should be fixed in 3.7.3 / 3.8-rc4
+
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - GeForce 680, currently driver works on two, but not three monitors"
+   href="show_bug.cgi?id=58735">https://bugs.freedesktop.org/show_bug.cgi?id=58735</a></pre>
         </div>
       </p>
       <hr>
@@ -76,9 +80,9 @@ chipsets &gt;= nv17.</pre>
     </body>
 </html>
 
---1358961875.2Cffcd5.32170--
+--1358962246.Cbd41.534--
 
---===============0760433602==
+--===============0253751725==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0760433602==--
+--===============0253751725==--
