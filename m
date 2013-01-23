@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59742] Displayport attached monitor stopped working
- in xorg and init 3, after kernel upgrade
-Date: Wed, 23 Jan 2013 17:30:46 +0000
-Message-ID: <bug-59742-8800-LYsgdnevVw@http.bugs.freedesktop.org/>
-References: <bug-59742-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59597] Segmentation fault when moving (part of)
+ window outside screen area
+Date: Wed, 23 Jan 2013 17:38:35 +0000
+Message-ID: <bug-59597-8800-sPOZ3ZqNBL@http.bugs.freedesktop.org/>
+References: <bug-59597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0253751725=="
+Content-Type: multipart/mixed; boundary="===============1426543322=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59742-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59597-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0253751725==
-Content-Type: multipart/alternative; boundary="1358962246.Cbd41.534"; charset="us-ascii"
+--===============1426543322==
+Content-Type: multipart/alternative; boundary="1358962715.DaB10A51.1440"; charset="us-ascii"
 
 
---1358962246.Cbd41.534
-Date: Wed, 23 Jan 2013 17:30:46 +0000
+--1358962715.DaB10A51.1440
+Date: Wed, 23 Jan 2013 17:38:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59742
+https://bugs.freedesktop.org/show_bug.cgi?id=59597
 
---- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Should be fixed in 3.7.3 / 3.8-rc4
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58735
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #6 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Ok, let's assume it's fixed. Please reopen if you can reproduce it on
+xf86-video-nouveau >= 1.0.3.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1358962246.Cbd41.534
-Date: Wed, 23 Jan 2013 17:30:46 +0000
+--1358962715.DaB10A51.1440
+Date: Wed, 23 Jan 2013 17:38:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,25 +56,49 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Segmentation fault when moving (part of) window outside screen area"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59597">bug 59597</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Displayport attached monitor stopped working in xorg and init 3, after kernel upgrade"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59742#c5">Comment # 5</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Segmentation fault when moving (part of) window outside screen area"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59597#c6">Comment # 6</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Displayport attached monitor stopped working in xorg and init 3, after kernel upgrade"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59742">bug 59742</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Segmentation fault when moving (part of) window outside screen area"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59597">bug 59597</a>
               from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Should be fixed in 3.7.3 / 3.8-rc4
-
-<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - GeForce 680, currently driver works on two, but not three monitors"
-   href="show_bug.cgi?id=58735">https://bugs.freedesktop.org/show_bug.cgi?id=58735</a></pre>
+        <pre>Ok, let's assume it's fixed. Please reopen if you can reproduce it on
+xf86-video-nouveau &gt;= 1.0.3.</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +110,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1358962246.Cbd41.534--
+--1358962715.DaB10A51.1440--
 
---===============0253751725==
+--===============1426543322==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +123,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0253751725==--
+--===============1426543322==--
