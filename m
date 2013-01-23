@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 59742] Displayport attached monitor stopped working
  in xorg and init 3, after kernel upgrade
-Date: Wed, 23 Jan 2013 06:26:25 +0000
-Message-ID: <bug-59742-8800-kShqbyFAkI@http.bugs.freedesktop.org/>
+Date: Wed, 23 Jan 2013 06:27:42 +0000
+Message-ID: <bug-59742-8800-3M17VIUYM2@http.bugs.freedesktop.org/>
 References: <bug-59742-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0297816230=="
+Content-Type: multipart/mixed; boundary="===============1001998095=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-59742-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0297816230==
-Content-Type: multipart/alternative; boundary="1358922386.8b6e1.32466"; charset="us-ascii"
+--===============1001998095==
+Content-Type: multipart/alternative; boundary="1358922462.4EcaD6361.32562"; charset="us-ascii"
 
 
---1358922386.8b6e1.32466
-Date: Wed, 23 Jan 2013 06:26:26 +0000
+--1358922462.4EcaD6361.32562
+Date: Wed, 23 Jan 2013 06:27:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=59742
 
---- Comment #2 from Shawn Sterling <shawn-2Sme3GpZbHwAHsbooYhBx9i2O/JbrIOy@public.gmane.org> ---
-Created attachment 73494
-  --> https://bugs.freedesktop.org/attachment.cgi?id=73494&action=edit
-lspci -vv on the card itself.
+--- Comment #3 from Shawn Sterling <shawn-2Sme3GpZbHwAHsbooYhBx9i2O/JbrIOy@public.gmane.org> ---
+Created attachment 73495
+  --> https://bugs.freedesktop.org/attachment.cgi?id=73495&action=edit
+full kernel_log, with 3.6.10-4
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1358922386.8b6e1.32466
-Date: Wed, 23 Jan 2013 06:26:26 +0000
+--1358922462.4EcaD6361.32562
+Date: Wed, 23 Jan 2013 06:27:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Displayport attached monitor stopped working in xorg and init 3, after kernel upgrade"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59742#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59742#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Displayport attached monitor stopped working in xorg and init 3, after kernel upgrade"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=59742">bug 59742</a>
               from <span class="vcard"><a class="email" href="mailto:shawn&#64;systemtemplar.org" title="Shawn Sterling &lt;shawn&#64;systemtemplar.org&gt;"> <span class="fn">Shawn Sterling</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=73494" name="attach_73494" title="lspci -vv on the card itself.">attachment 73494</a> <a href="attachment.cgi?id=73494&amp;action=edit" title="lspci -vv on the card itself.">[details]</a></span>
-lspci -vv on the card itself.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=73495" name="attach_73495" title="full kernel_log, with 3.6.10-4">attachment 73495</a> <a href="attachment.cgi?id=73495&amp;action=edit" title="full kernel_log, with 3.6.10-4">[details]</a></span>
+full kernel_log, with 3.6.10-4</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ lspci -vv on the card itself.</pre>
     </body>
 </html>
 
---1358922386.8b6e1.32466--
+--1358922462.4EcaD6361.32562--
 
---===============0297816230==
+--===============1001998095==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0297816230==--
+--===============1001998095==--
