@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50121] [Regression] Since kernel v3.5 several cards
- fail to resume, introduced by: 'convert to exec engine,
- and improve channel sync'
-Date: Wed, 23 Jan 2013 04:36:37 +0000
-Message-ID: <bug-50121-8800-u9ITatTEKc@http.bugs.freedesktop.org/>
-References: <bug-50121-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59742] New: Displayport attached monitor stopped
+ working in xorg and init 3, after kernel upgrade
+Date: Wed, 23 Jan 2013 06:24:58 +0000
+Message-ID: <bug-59742-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1457508203=="
+Content-Type: multipart/mixed; boundary="===============0933582311=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,37 +19,60 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1457508203==
-Content-Type: multipart/alternative; boundary="1358915797.fD17E5.17587"; charset="us-ascii"
+--===============0933582311==
+Content-Type: multipart/alternative; boundary="1358922299.dCc4c5E1.31306"; charset="us-ascii"
 
 
---1358915797.fD17E5.17587
-Date: Wed, 23 Jan 2013 04:36:37 +0000
+--1358922299.dCc4c5E1.31306
+Date: Wed, 23 Jan 2013 06:24:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50121
+https://bugs.freedesktop.org/show_bug.cgi?id=59742
 
-Herton Krzesinski <herton-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> changed:
+          Priority: medium
+            Bug ID: 59742
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Displayport attached monitor stopped working in xorg
+                    and init 3, after kernel upgrade
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: major
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: shawn-2Sme3GpZbHwAHsbooYhBx9i2O/JbrIOy@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: 7.7 (2011)
+         Component: Driver/nouveau
+           Product: xorg
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #73421|0                           |1
-        is obsolete|                            |
+Created attachment 73492
+  --> https://bugs.freedesktop.org/attachment.cgi?id=73492&action=edit
+dmesg | grep nouvea, with 3.6.10-4
 
---- Comment #54 from Herton Krzesinski <herton-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> ---
-Created attachment 73488
-  --> https://bugs.freedesktop.org/attachment.cgi?id=73488&action=edit
-Backport for 3.5 (and may be 3.6) - fixed
+Hello, I am running fedora 18. I have 3 monitors hooked up to a geforce gtx 660
+ti, 2 via the DVI connectors, and 1 via the displayport connector. With Kernel
+3.6.10-4, everything works fine. Upon upgrading to 3.7.2-201, the displayport
+connected monitor stops working and says unsupported display mode, optimal
+resolution is xx (the monitor is set to that resolution and hz).
 
-Sorry, the patch I posted had a small typo, this one is ok...
+The unsupported display mode is displayed even in runlevel 3. I have changed
+the monitor connectors around and whichever is connected via displayport stops
+working. 
+
+If I boot back to 3.6.10-4, everything works fine.
+
+If I do a dmesg |grep nouveau , on 3.7.2-201, I see: 
+  2.012167] nouveau E[     DRM] failed to create kernel channel, -22            
+
+This message does not get displayed with 3.6.10-4.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1358915797.fD17E5.17587
-Date: Wed, 23 Jan 2013 04:36:37 +0000
+--1358922299.dCc4c5E1.31306
+Date: Wed, 23 Jan 2013 06:24:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,44 +80,114 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:herton&#64;canonical.com" title="Herton Krzesinski &lt;herton&#64;canonical.com&gt;"> <span class="fn">Herton Krzesinski</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Attachment #73421 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Displayport attached monitor stopped working in xorg and init 3, after kernel upgrade"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59742">59742</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Displayport attached monitor stopped working in xorg and init 3, after kernel upgrade
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>shawn&#64;systemtemplar.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>7.7 (2011)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c54">Comment # 54</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
-              from <span class="vcard"><a class="email" href="mailto:herton&#64;canonical.com" title="Herton Krzesinski &lt;herton&#64;canonical.com&gt;"> <span class="fn">Herton Krzesinski</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=73488" name="attach_73488" title="Backport for 3.5 (and may be 3.6) - fixed">attachment 73488</a> <a href="attachment.cgi?id=73488&amp;action=edit" title="Backport for 3.5 (and may be 3.6) - fixed">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=50121&amp;attachment=73488'>[review]</a>
-Backport for 3.5 (and may be 3.6) - fixed
+        <pre>Created <span class=""><a href="attachment.cgi?id=73492" name="attach_73492" title="dmesg | grep nouvea, with 3.6.10-4">attachment 73492</a> <a href="attachment.cgi?id=73492&amp;action=edit" title="dmesg | grep nouvea, with 3.6.10-4">[details]</a></span>
+dmesg | grep nouvea, with 3.6.10-4
 
-Sorry, the patch I posted had a small typo, this one is ok...</pre>
+Hello, I am running fedora 18. I have 3 monitors hooked up to a geforce gtx 660
+ti, 2 via the DVI connectors, and 1 via the displayport connector. With Kernel
+3.6.10-4, everything works fine. Upon upgrading to 3.7.2-201, the displayport
+connected monitor stops working and says unsupported display mode, optimal
+resolution is xx (the monitor is set to that resolution and hz).
+
+The unsupported display mode is displayed even in runlevel 3. I have changed
+the monitor connectors around and whichever is connected via displayport stops
+working. 
+
+If I boot back to 3.6.10-4, everything works fine.
+
+If I do a dmesg |grep nouveau , on 3.7.2-201, I see: 
+  2.012167] nouveau E[     DRM] failed to create kernel channel, -22            
+
+This message does not get displayed with 3.6.10-4.</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +199,9 @@ Sorry, the patch I posted had a small typo, this one is ok...</pre>
     </body>
 </html>
 
---1358915797.fD17E5.17587--
+--1358922299.dCc4c5E1.31306--
 
---===============1457508203==
+--===============0933582311==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +212,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1457508203==--
+--===============0933582311==--
