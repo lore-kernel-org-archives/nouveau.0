@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60007] New: BUG: nouveau crashes in various ways in
+Subject: [Bug 60007] BUG: nouveau crashes in various ways in
  32-bits Fedora 18
-Date: Tue, 29 Jan 2013 09:47:19 +0000
-Message-ID: <bug-60007-8800@http.bugs.freedesktop.org/>
+Date: Tue, 29 Jan 2013 09:53:46 +0000
+Message-ID: <bug-60007-8800-dIY8reea1A@http.bugs.freedesktop.org/>
+References: <bug-60007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0103840645=="
+Content-Type: multipart/mixed; boundary="===============0793544075=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-60007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,60 +21,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0103840645==
-Content-Type: multipart/alternative; boundary="1359452840.4efEbe431.16386"; charset="us-ascii"
+--===============0793544075==
+Content-Type: multipart/alternative; boundary="1359453226.030C21.17237"; charset="us-ascii"
 
 
---1359452840.4efEbe431.16386
-Date: Tue, 29 Jan 2013 09:47:20 +0000
+--1359453226.030C21.17237
+Date: Tue, 29 Jan 2013 09:53:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=60007
 
-          Priority: medium
-            Bug ID: 60007
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: BUG: nouveau crashes in various ways in 32-bits Fedora
-                    18
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: critical
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86 (IA32)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #1 from Cornel Panceac <cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+all right, i've forgot some things:
 
-Created attachment 73815
-  --> https://bugs.freedesktop.org/attachment.cgi?id=73815&action=edit
-messages
+a line interesting in the messages file:
 
-During normal usage, xorg crashes in various ways. In dmesg and Xorg.0.log i
-didn't find anything. In /var/log/messages, i did found various messages from
-nouveau. I'll attach the file. This happens often: xorg restarts, or just
-temprarily loses the "display" function, or artefacts are shown whenever i lock
-gnome. 
+BUG: unable to handle kernel paging request at fb880000
 
-Roy Spliet says that nv_wo32() has a problem, on 32-bit version.
+and later:
 
-From #nouveau: 
+ WARNING: at drivers/gpu/drm/nouveau/core/core/mm.c:242
+nouveau_mm_fini+0x47/0x50 [nouveau]()
 
-<RSpliet> nouveau_gpuobj_create:134 says nv_wo32(gpuobj, i, 0x00000000);
-<RSpliet> the second parameter is supposed to be 64-bit, but i is 32-bits
+Video card is:
 
-Hopefully this will be fixed soon. Most of my family computers have NVIDIA
-video cards and all that were migrated to Fedora 18 have these kinds of
-problems :)
+$ lspci -nn | grep -i vga
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation G98M [Quadro NVS
+160M] [10de:06eb] (rev a1)
+
+kernel is:
+
+$ uname -a
+Linux localhost.localdomain 3.7.4-204.fc18.i686.PAE #1 SMP Wed Jan 23 16:58:41
+UTC 2013 i686 i686 i386 GNU/Linux
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359452840.4efEbe431.16386
-Date: Tue, 29 Jan 2013 09:47:20 +0000
+--1359453226.030C21.17237
+Date: Tue, 29 Jan 2013 09:53:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -80,114 +69,41 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">60007</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>BUG: nouveau crashes in various ways in 32-bits Fedora 18
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>critical
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>cpanceac&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86 (IA32)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=73815" name="attach_73815" title="messages">attachment 73815</a> <a href="attachment.cgi?id=73815&amp;action=edit" title="messages">[details]</a></span>
-messages
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">bug 60007</a>
+              from <span class="vcard"><a class="email" href="mailto:cpanceac&#64;gmail.com" title="Cornel Panceac &lt;cpanceac&#64;gmail.com&gt;"> <span class="fn">Cornel Panceac</span></a>
+</span></b>
+        <pre>all right, i've forgot some things:
 
-During normal usage, xorg crashes in various ways. In dmesg and Xorg.0.log i
-didn't find anything. In /var/log/messages, i did found various messages from
-nouveau. I'll attach the file. This happens often: xorg restarts, or just
-temprarily loses the &quot;display&quot; function, or artefacts are shown whenever i lock
-gnome. 
+a line interesting in the messages file:
 
-Roy Spliet says that nv_wo32() has a problem, on 32-bit version.
+BUG: unable to handle kernel paging request at fb880000
 
-From #nouveau: 
+and later:
 
-&lt;RSpliet&gt; nouveau_gpuobj_create:134 says nv_wo32(gpuobj, i, 0x00000000);
-&lt;RSpliet&gt; the second parameter is supposed to be 64-bit, but i is 32-bits
+ WARNING: at drivers/gpu/drm/nouveau/core/core/mm.c:242
+nouveau_mm_fini+0x47/0x50 [nouveau]()
 
-Hopefully this will be fixed soon. Most of my family computers have NVIDIA
-video cards and all that were migrated to Fedora 18 have these kinds of
-problems :)</pre>
+Video card is:
+
+$ lspci -nn | grep -i vga
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation G98M [Quadro NVS
+160M] [10de:06eb] (rev a1)
+
+kernel is:
+
+$ uname -a
+Linux localhost.localdomain 3.7.4-204.fc18.i686.PAE #1 SMP Wed Jan 23 16:58:41
+UTC 2013 i686 i686 i386 GNU/Linux</pre>
         </div>
       </p>
       <hr>
@@ -199,9 +115,9 @@ problems :)</pre>
     </body>
 </html>
 
---1359452840.4efEbe431.16386--
+--1359453226.030C21.17237--
 
---===============0103840645==
+--===============0793544075==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -212,4 +128,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0103840645==--
+--===============0793544075==--
