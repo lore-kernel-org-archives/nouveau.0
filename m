@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60020] Resuming Dell Precision M70 crashes
-Date: Tue, 29 Jan 2013 14:05:38 +0000
-Message-ID: <bug-60020-8800-eVkjES2k0A@http.bugs.freedesktop.org/>
-References: <bug-60020-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 52244] [ 4.876531] [drm] nouveau 0000:01:00.0: GPU
+ lockup - switching to software fbcon
+Date: Tue, 29 Jan 2013 14:57:33 +0000
+Message-ID: <bug-52244-8800-JzC12HdDIv@http.bugs.freedesktop.org/>
+References: <bug-52244-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1741041591=="
+Content-Type: multipart/mixed; boundary="===============0442369414=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60020-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-52244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1741041591==
-Content-Type: multipart/alternative; boundary="1359468338.eEfef51.15133"; charset="us-ascii"
+--===============0442369414==
+Content-Type: multipart/alternative; boundary="1359471453.7fD0C8463.22816"; charset="us-ascii"
 
 
---1359468338.eEfef51.15133
-Date: Tue, 29 Jan 2013 14:05:38 +0000
+--1359471453.7fD0C8463.22816
+Date: Tue, 29 Jan 2013 14:57:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60020
+https://bugs.freedesktop.org/show_bug.cgi?id=52244
 
---- Comment #1 from Roy Bixler <rcbixler-0BtJm3PWb0s@public.gmane.org> ---
-Created attachment 73831
-  --> https://bugs.freedesktop.org/attachment.cgi?id=73831&action=edit
-"dmesg" output on rebooting after crash
+--- Comment #18 from Alex Nick <rage_vou-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+I can confirm this bug for kernel 3.7.3
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359468338.eEfef51.15133
-Date: Tue, 29 Jan 2013 14:05:38 +0000
+--1359471453.7fD0C8463.22816
+Date: Tue, 29 Jan 2013 14:57:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,17 +52,16 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Resuming Dell Precision M70 crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60020#c1">Comment # 1</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [ 4.876531] [drm] nouveau 0000:01:00.0: GPU lockup - switching to software fbcon"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=52244#c18">Comment # 18</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Resuming Dell Precision M70 crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60020">bug 60020</a>
-              from <span class="vcard"><a class="email" href="mailto:rcbixler&#64;nyx.net" title="Roy Bixler &lt;rcbixler&#64;nyx.net&gt;"> <span class="fn">Roy Bixler</span></a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [ 4.876531] [drm] nouveau 0000:01:00.0: GPU lockup - switching to software fbcon"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=52244">bug 52244</a>
+              from <span class="vcard"><a class="email" href="mailto:rage_vou&#64;hotmail.com" title="Alex Nick &lt;rage_vou&#64;hotmail.com&gt;"> <span class="fn">Alex Nick</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=73831" name="attach_73831" title="&quot;dmesg&quot; output on rebooting after crash">attachment 73831</a> <a href="attachment.cgi?id=73831&amp;action=edit" title="&quot;dmesg&quot; output on rebooting after crash">[details]</a></span>
-&quot;dmesg&quot; output on rebooting after crash</pre>
+        <pre>I can confirm this bug for kernel 3.7.3</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +73,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1359468338.eEfef51.15133--
+--1359471453.7fD0C8463.22816--
 
---===============1741041591==
+--===============0442369414==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1741041591==--
+--===============0442369414==--
