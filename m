@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59858] nvidia Quadro 1000m - White screen after
-	suspend
-Date: Mon, 28 Jan 2013 12:44:22 +0000
-Message-ID: <bug-59858-8800-OWup6MUHeP@http.bugs.freedesktop.org/>
-References: <bug-59858-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60007] New: BUG: nouveau crashes in various ways in
+ 32-bits Fedora 18
+Date: Tue, 29 Jan 2013 09:47:19 +0000
+Message-ID: <bug-60007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1551016358=="
+Content-Type: multipart/mixed; boundary="===============0103840645=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59858-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,50 +19,60 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1551016358==
-Content-Type: multipart/alternative; boundary="1359377062.af115EBa2.31131"; charset="us-ascii"
+--===============0103840645==
+Content-Type: multipart/alternative; boundary="1359452840.4efEbe431.16386"; charset="us-ascii"
 
 
---1359377062.af115EBa2.31131
-Date: Mon, 28 Jan 2013 12:44:22 +0000
+--1359452840.4efEbe431.16386
+Date: Tue, 29 Jan 2013 09:47:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59858
+https://bugs.freedesktop.org/show_bug.cgi?id=60007
 
---- Comment #2 from Andrew Meredith <andrew-WRb9RK/hc+jYtjvyW6yDsg@public.gmane.org> ---
-I have the same issue with F18:
+          Priority: medium
+            Bug ID: 60007
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: BUG: nouveau crashes in various ways in 32-bits Fedora
+                    18
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: critical
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86 (IA32)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-xorg-x11-server-Xorg-1.13.1-4.fc18.x86_64
-xorg-x11-drv-nouveau-1.0.6-1.fc18.x86_64
-kernel-3.7.2-204.fc18.x86_64
-gdm-3.6.2-5.fc18.x86_64
-gdm-libs-3.6.2-5.fc18.x86_64
+Created attachment 73815
+  --> https://bugs.freedesktop.org/attachment.cgi?id=73815&action=edit
+messages
 
-It all works fine until I resume after a suspend, when I get a speckled white
-screen with no mouse. I can switch to a tty console. If I then log in as root
-on the tty console and run:
+During normal usage, xorg crashes in various ways. In dmesg and Xorg.0.log i
+didn't find anything. In /var/log/messages, i did found various messages from
+nouveau. I'll attach the file. This happens often: xorg restarts, or just
+temprarily loses the "display" function, or artefacts are shown whenever i lock
+gnome. 
 
-     init 3 ; sleep 5 ; init 5
+Roy Spliet says that nv_wo32() has a problem, on 32-bit version.
 
-It gives me back a functional login page and all works fine from then on ...
-until the next suspend/resume.
+From #nouveau: 
 
-Any keyboard or mouse activity produces another spurt of the following lines in
-the messages log. I include one of each below, but there are dozens of each on
-every movement.
+<RSpliet> nouveau_gpuobj_create:134 says nv_wo32(gpuobj, i, 0x00000000);
+<RSpliet> the second parameter is supposed to be 64-bit, but i is 32-bits
 
-
-[71595.275820] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fcfa000]
-[71595.276698] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
-......
+Hopefully this will be fixed soon. Most of my family computers have NVIDIA
+video cards and all that were migrated to Fedora 18 have these kinds of
+problems :)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359377062.af115EBa2.31131
-Date: Mon, 28 Jan 2013 12:44:22 +0000
+--1359452840.4efEbe431.16386
+Date: Tue, 29 Jan 2013 09:47:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,44 +80,114 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">60007</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>BUG: nouveau crashes in various ways in 32-bits Fedora 18
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>cpanceac&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nvidia Quadro 1000m - White screen after suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59858#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nvidia Quadro 1000m - White screen after suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59858">bug 59858</a>
-              from <span class="vcard"><a class="email" href="mailto:andrew&#64;anvil.org" title="Andrew Meredith &lt;andrew&#64;anvil.org&gt;"> <span class="fn">Andrew Meredith</span></a>
-</span></b>
-        <pre>I have the same issue with F18:
+        <pre>Created <span class=""><a href="attachment.cgi?id=73815" name="attach_73815" title="messages">attachment 73815</a> <a href="attachment.cgi?id=73815&amp;action=edit" title="messages">[details]</a></span>
+messages
 
-xorg-x11-server-Xorg-1.13.1-4.fc18.x86_64
-xorg-x11-drv-nouveau-1.0.6-1.fc18.x86_64
-kernel-3.7.2-204.fc18.x86_64
-gdm-3.6.2-5.fc18.x86_64
-gdm-libs-3.6.2-5.fc18.x86_64
+During normal usage, xorg crashes in various ways. In dmesg and Xorg.0.log i
+didn't find anything. In /var/log/messages, i did found various messages from
+nouveau. I'll attach the file. This happens often: xorg restarts, or just
+temprarily loses the &quot;display&quot; function, or artefacts are shown whenever i lock
+gnome. 
 
-It all works fine until I resume after a suspend, when I get a speckled white
-screen with no mouse. I can switch to a tty console. If I then log in as root
-on the tty console and run:
+Roy Spliet says that nv_wo32() has a problem, on 32-bit version.
 
-     init 3 ; sleep 5 ; init 5
+From #nouveau: 
 
-It gives me back a functional login page and all works fine from then on ...
-until the next suspend/resume.
+&lt;RSpliet&gt; nouveau_gpuobj_create:134 says nv_wo32(gpuobj, i, 0x00000000);
+&lt;RSpliet&gt; the second parameter is supposed to be 64-bit, but i is 32-bits
 
-Any keyboard or mouse activity produces another spurt of the following lines in
-the messages log. I include one of each below, but there are dozens of each on
-every movement.
-
-
-[71595.275820] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fcfa000]
-[71595.276698] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
-......</pre>
+Hopefully this will be fixed soon. Most of my family computers have NVIDIA
+video cards and all that were migrated to Fedora 18 have these kinds of
+problems :)</pre>
         </div>
       </p>
       <hr>
@@ -121,9 +199,9 @@ every movement.
     </body>
 </html>
 
---1359377062.af115EBa2.31131--
+--1359452840.4efEbe431.16386--
 
---===============1551016358==
+--===============0103840645==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -134,4 +212,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1551016358==--
+--===============0103840645==--
