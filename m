@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58261] [NV34] Display all whited out
-Date: Wed, 30 Jan 2013 16:48:00 +0000
-Message-ID: <bug-58261-8800-pIvtX3tqJU@http.bugs.freedesktop.org/>
+Date: Wed, 30 Jan 2013 16:52:50 +0000
+Message-ID: <bug-58261-8800-SXgKpCkXL1@http.bugs.freedesktop.org/>
 References: <bug-58261-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1541771655=="
+Content-Type: multipart/mixed; boundary="===============1374373608=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58261-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1541771655==
-Content-Type: multipart/alternative; boundary="1359564480.830a2.25476"; charset="us-ascii"
+--===============1374373608==
+Content-Type: multipart/alternative; boundary="1359564770.C4B3Fc2.26072"; charset="us-ascii"
 
 
---1359564480.830a2.25476
-Date: Wed, 30 Jan 2013 16:48:00 +0000
+--1359564770.C4B3Fc2.26072
+Date: Wed, 30 Jan 2013 16:52:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58261
 
---- Comment #3 from Orion Poplawski <orion-CVdf0l11yl+B+jHODAdFcQ@public.gmane.org> ---
-I think I'm experiencing the same in Fedora, see:
-https://bugzilla.redhat.com/show_bug.cgi?id=905631 I've attached dmesg outputs
-there.
+--- Comment #4 from Orion Poplawski <orion-CVdf0l11yl+B+jHODAdFcQ@public.gmane.org> ---
+This looks a little suspicious:
+
+nouveau W[  PTIMER][0000:01:00.0] unknown input clock freq
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359564480.830a2.25476
-Date: Wed, 30 Jan 2013 16:48:00 +0000
+--1359564770.C4B3Fc2.26072
+Date: Wed, 30 Jan 2013 16:52:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +55,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV34] Display all whited out"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58261#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58261#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV34] Display all whited out"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58261">bug 58261</a>
               from <span class="vcard"><a class="email" href="mailto:orion&#64;cora.nwra.com" title="Orion Poplawski &lt;orion&#64;cora.nwra.com&gt;"> <span class="fn">Orion Poplawski</span></a>
 </span></b>
-        <pre>I think I'm experiencing the same in Fedora, see:
-<a href="https://bugzilla.redhat.com/show_bug.cgi?id=905631">https://bugzilla.redhat.com/show_bug.cgi?id=905631</a> I've attached dmesg outputs
-there.</pre>
+        <pre>This looks a little suspicious:
+
+nouveau W[  PTIMER][0000:01:00.0] unknown input clock freq</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ there.</pre>
     </body>
 </html>
 
---1359564480.830a2.25476--
+--1359564770.C4B3Fc2.26072--
 
---===============1541771655==
+--===============1374373608==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1541771655==--
+--===============1374373608==--
