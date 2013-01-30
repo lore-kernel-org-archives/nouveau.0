@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60050] Fonts not displayed
-Date: Wed, 30 Jan 2013 16:44:48 +0000
-Message-ID: <bug-60050-8800-Y4QT7I8C2c@http.bugs.freedesktop.org/>
-References: <bug-60050-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58261] [NV34] Display all whited out
+Date: Wed, 30 Jan 2013 16:48:00 +0000
+Message-ID: <bug-58261-8800-pIvtX3tqJU@http.bugs.freedesktop.org/>
+References: <bug-58261-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1371453467=="
+Content-Type: multipart/mixed; boundary="===============1541771655=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60050-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58261-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1371453467==
-Content-Type: multipart/alternative; boundary="1359564288.B8BD72.24994"; charset="us-ascii"
+--===============1541771655==
+Content-Type: multipart/alternative; boundary="1359564480.830a2.25476"; charset="us-ascii"
 
 
---1359564288.B8BD72.24994
-Date: Wed, 30 Jan 2013 16:44:48 +0000
+--1359564480.830a2.25476
+Date: Wed, 30 Jan 2013 16:48:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60050
+https://bugs.freedesktop.org/show_bug.cgi?id=58261
 
-Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |http://bugs.debian.org/6921
-                   |                            |56,
-                   |                            |http://bugs.debian.org/6992
-                   |                            |14
-
---- Comment #4 from Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> ---
-For the record: this bug has also been reported in Debian, both Julio and the
-other submitter have an NV34 card on PowerPC.
+--- Comment #3 from Orion Poplawski <orion-CVdf0l11yl+B+jHODAdFcQ@public.gmane.org> ---
+I think I'm experiencing the same in Fedora, see:
+https://bugzilla.redhat.com/show_bug.cgi?id=905631 I've attached dmesg outputs
+there.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359564288.B8BD72.24994
-Date: Wed, 30 Jan 2013 16:44:48 +0000
+--1359564480.830a2.25476
+Date: Wed, 30 Jan 2013 16:48:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,42 +49,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:svenjoac&#64;gmx.de" title="Sven Joachim &lt;svenjoac&#64;gmx.de&gt;"> <span class="fn">Sven Joachim</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Fonts not displayed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60050">bug 60050</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>http://bugs.debian.org/692156, http://bugs.debian.org/699214
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Fonts not displayed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60050#c4">Comment # 4</a>
+   title="NEW --- - [NV34] Display all whited out"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58261#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Fonts not displayed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60050">bug 60050</a>
-              from <span class="vcard"><a class="email" href="mailto:svenjoac&#64;gmx.de" title="Sven Joachim &lt;svenjoac&#64;gmx.de&gt;"> <span class="fn">Sven Joachim</span></a>
+   title="NEW --- - [NV34] Display all whited out"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58261">bug 58261</a>
+              from <span class="vcard"><a class="email" href="mailto:orion&#64;cora.nwra.com" title="Orion Poplawski &lt;orion&#64;cora.nwra.com&gt;"> <span class="fn">Orion Poplawski</span></a>
 </span></b>
-        <pre>For the record: this bug has also been reported in Debian, both Julio and the
-other submitter have an NV34 card on PowerPC.</pre>
+        <pre>I think I'm experiencing the same in Fedora, see:
+<a href="https://bugzilla.redhat.com/show_bug.cgi?id=905631">https://bugzilla.redhat.com/show_bug.cgi?id=905631</a> I've attached dmesg outputs
+there.</pre>
         </div>
       </p>
       <hr>
@@ -104,9 +76,9 @@ other submitter have an NV34 card on PowerPC.</pre>
     </body>
 </html>
 
---1359564288.B8BD72.24994--
+--1359564480.830a2.25476--
 
---===============1371453467==
+--===============1541771655==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -117,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1371453467==--
+--===============1541771655==--
