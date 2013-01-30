@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 60007] BUG: nouveau crashes in various ways in
  32-bits Fedora 18
-Date: Wed, 30 Jan 2013 09:46:29 +0000
-Message-ID: <bug-60007-8800-AI0RHYhKfl@http.bugs.freedesktop.org/>
+Date: Wed, 30 Jan 2013 15:12:53 +0000
+Message-ID: <bug-60007-8800-gFmYHcPjCl@http.bugs.freedesktop.org/>
 References: <bug-60007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2082481414=="
+Content-Type: multipart/mixed; boundary="===============0271298832=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-60007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2082481414==
-Content-Type: multipart/alternative; boundary="1359539189.B4dDfb1.2173"; charset="us-ascii"
+--===============0271298832==
+Content-Type: multipart/alternative; boundary="1359558773.783D1.12039"; charset="us-ascii"
 
 
---1359539189.B4dDfb1.2173
-Date: Wed, 30 Jan 2013 09:46:29 +0000
+--1359558773.783D1.12039
+Date: Wed, 30 Jan 2013 15:12:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=60007
 
---- Comment #5 from Cornel Panceac <cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 73915
-  --> https://bugs.freedesktop.org/attachment.cgi?id=73915&action=edit
-dmesg, after the crash
+--- Comment #6 from Cornel Panceac <cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thank you very much, Marcin. The new kernel is working perfectly for an hour,
+now. I'll report back as soon as i'll have more info.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359539189.B4dDfb1.2173
-Date: Wed, 30 Jan 2013 09:46:29 +0000
+--1359558773.783D1.12039
+Date: Wed, 30 Jan 2013 15:12:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">bug 60007</a>
               from <span class="vcard"><a class="email" href="mailto:cpanceac&#64;gmail.com" title="Cornel Panceac &lt;cpanceac&#64;gmail.com&gt;"> <span class="fn">Cornel Panceac</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=73915" name="attach_73915" title="dmesg, after the crash">attachment 73915</a> <a href="attachment.cgi?id=73915&amp;action=edit" title="dmesg, after the crash">[details]</a></span>
-dmesg, after the crash</pre>
+        <pre>Thank you very much, Marcin. The new kernel is working perfectly for an hour,
+now. I'll report back as soon as i'll have more info.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +75,9 @@ dmesg, after the crash</pre>
     </body>
 </html>
 
---1359539189.B4dDfb1.2173--
+--1359558773.783D1.12039--
 
---===============2082481414==
+--===============0271298832==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2082481414==--
+--===============0271298832==--
