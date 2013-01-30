@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 60050] Fonts not displayed
-Date: Wed, 30 Jan 2013 02:59:08 +0000
-Message-ID: <bug-60050-8800-X0fkICwpth@http.bugs.freedesktop.org/>
+Date: Wed, 30 Jan 2013 03:00:34 +0000
+Message-ID: <bug-60050-8800-z7Us21cTJd@http.bugs.freedesktop.org/>
 References: <bug-60050-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1294777655=="
+Content-Type: multipart/mixed; boundary="===============1150446529=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-60050-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1294777655==
-Content-Type: multipart/alternative; boundary="1359514748.Ef5c5cD3.17876"; charset="us-ascii"
+--===============1150446529==
+Content-Type: multipart/alternative; boundary="1359514834.dc3442.18048"; charset="us-ascii"
 
 
---1359514748.Ef5c5cD3.17876
-Date: Wed, 30 Jan 2013 02:59:08 +0000
+--1359514834.dc3442.18048
+Date: Wed, 30 Jan 2013 03:00:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,16 +35,15 @@ Alan Coopersmith <alan.coopersmith-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org> chan
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Assignee|aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org        |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
-          Component|Driver/nVidia (open)        |Driver/nouveau
+  Attachment #73899|text/plain                  |image/jpeg
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359514748.Ef5c5cD3.17876
-Date: Wed, 30 Jan 2013 02:59:08 +0000
+--1359514834.dc3442.18048
+Date: Wed, 30 Jan 2013 03:00:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,18 +66,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>aplattner&#64;nvidia.com
+           <td style="text-align:right;">Attachment #73899 mime type</td>
+           <td>text/plain
            </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Driver/nVidia (open)
-           </td>
-           <td>Driver/nouveau
+           <td>image/jpeg
            </td>
          </tr></table>
       <p>
@@ -92,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1359514748.Ef5c5cD3.17876--
+--1359514834.dc3442.18048--
 
---===============1294777655==
+--===============1150446529==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1294777655==--
+--===============1150446529==--
