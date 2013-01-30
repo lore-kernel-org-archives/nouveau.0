@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 60050] Fonts not displayed
-Date: Wed, 30 Jan 2013 20:54:15 +0000
-Message-ID: <bug-60050-8800-1luC53VhAi@http.bugs.freedesktop.org/>
+Date: Wed, 30 Jan 2013 22:00:28 +0000
+Message-ID: <bug-60050-8800-WN3r08sjvR@http.bugs.freedesktop.org/>
 References: <bug-60050-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1985633868=="
+Content-Type: multipart/mixed; boundary="===============0947429644=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-60050-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1985633868==
-Content-Type: multipart/alternative; boundary="1359579255.f46E2.29045"; charset="us-ascii"
+--===============0947429644==
+Content-Type: multipart/alternative; boundary="1359583228.fF8fFEC12.5758"; charset="us-ascii"
 
 
---1359579255.f46E2.29045
-Date: Wed, 30 Jan 2013 20:54:15 +0000
+--1359583228.fF8fFEC12.5758
+Date: Wed, 30 Jan 2013 22:00:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=60050
 
---- Comment #6 from Julio Merino <jmmv-qavaossjCcEdnm+yROfE0A@public.gmane.org> ---
-As mentioned above, and as the screenshot depicts, this issue affects xterm
-too. xterm does not depend on cairo. Downgrading cairo would not (and does not)
-help (but I tried it anyway).
+--- Comment #7 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 73961
+  --> https://bugs.freedesktop.org/attachment.cgi?id=73961&action=edit
+swap shaders on nv30
+
+Oh, sorry, somehow I skimmed through xterm remark.
+
+Maybe something as simple as attached patch will help?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359579255.f46E2.29045
-Date: Wed, 30 Jan 2013 20:54:15 +0000
+--1359583228.fF8fFEC12.5758
+Date: Wed, 30 Jan 2013 22:00:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +59,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Fonts not displayed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60050#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60050#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Fonts not displayed"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=60050">bug 60050</a>
-              from <span class="vcard"><a class="email" href="mailto:jmmv&#64;NetBSD.org" title="Julio Merino &lt;jmmv&#64;NetBSD.org&gt;"> <span class="fn">Julio Merino</span></a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>As mentioned above, and as the screenshot depicts, this issue affects xterm
-too. xterm does not depend on cairo. Downgrading cairo would not (and does not)
-help (but I tried it anyway).</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=73961" name="attach_73961" title="swap shaders on nv30">attachment 73961</a> <a href="attachment.cgi?id=73961&amp;action=edit" title="swap shaders on nv30">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=60050&amp;attachment=73961'>[review]</a>
+swap shaders on nv30
+
+Oh, sorry, somehow I skimmed through xterm remark.
+
+Maybe something as simple as attached patch will help?</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +83,9 @@ help (but I tried it anyway).</pre>
     </body>
 </html>
 
---1359579255.f46E2.29045--
+--1359583228.fF8fFEC12.5758--
 
---===============1985633868==
+--===============0947429644==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1985633868==--
+--===============0947429644==--
