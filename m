@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60050] Fonts not displayed
-Date: Wed, 30 Jan 2013 03:00:34 +0000
-Message-ID: <bug-60050-8800-z7Us21cTJd@http.bugs.freedesktop.org/>
-References: <bug-60050-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60007] BUG: nouveau crashes in various ways in
+ 32-bits Fedora 18
+Date: Wed, 30 Jan 2013 09:46:29 +0000
+Message-ID: <bug-60007-8800-AI0RHYhKfl@http.bugs.freedesktop.org/>
+References: <bug-60007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1150446529=="
+Content-Type: multipart/mixed; boundary="===============2082481414=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60050-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-60007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1150446529==
-Content-Type: multipart/alternative; boundary="1359514834.dc3442.18048"; charset="us-ascii"
+--===============2082481414==
+Content-Type: multipart/alternative; boundary="1359539189.B4dDfb1.2173"; charset="us-ascii"
 
 
---1359514834.dc3442.18048
-Date: Wed, 30 Jan 2013 03:00:34 +0000
+--1359539189.B4dDfb1.2173
+Date: Wed, 30 Jan 2013 09:46:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60050
+https://bugs.freedesktop.org/show_bug.cgi?id=60007
 
-Alan Coopersmith <alan.coopersmith-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #73899|text/plain                  |image/jpeg
-          mime type|                            |
+--- Comment #5 from Cornel Panceac <cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 73915
+  --> https://bugs.freedesktop.org/attachment.cgi?id=73915&action=edit
+dmesg, after the crash
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359514834.dc3442.18048
-Date: Wed, 30 Jan 2013 03:00:34 +0000
+--1359539189.B4dDfb1.2173
+Date: Wed, 30 Jan 2013 09:46:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,28 +50,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:alan.coopersmith&#64;oracle.com" title="Alan Coopersmith &lt;alan.coopersmith&#64;oracle.com&gt;"> <span class="fn">Alan Coopersmith</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Fonts not displayed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60050">bug 60050</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #73899 mime type</td>
-           <td>text/plain
-           </td>
-           <td>image/jpeg
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">bug 60007</a>
+              from <span class="vcard"><a class="email" href="mailto:cpanceac&#64;gmail.com" title="Cornel Panceac &lt;cpanceac&#64;gmail.com&gt;"> <span class="fn">Cornel Panceac</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=73915" name="attach_73915" title="dmesg, after the crash">attachment 73915</a> <a href="attachment.cgi?id=73915&amp;action=edit" title="dmesg, after the crash">[details]</a></span>
+dmesg, after the crash</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1359514834.dc3442.18048--
+--1359539189.B4dDfb1.2173--
 
---===============1150446529==
+--===============2082481414==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1150446529==--
+--===============2082481414==--
