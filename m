@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
- garbage/corruption/noise on resume
-Date: Fri, 01 Feb 2013 10:40:25 +0000
-Message-ID: <bug-59168-8800-AWaCrjQi8A@http.bugs.freedesktop.org/>
-References: <bug-59168-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51477] bad/missing graphics with NV11 / GeForce
+	2MX/MX400
+Date: Fri, 01 Feb 2013 17:06:30 +0000
+Message-ID: <bug-51477-8800-fPwYeng8w0@http.bugs.freedesktop.org/>
+References: <bug-51477-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0594086918=="
+Content-Type: multipart/mixed; boundary="===============0604420341=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0594086918==
-Content-Type: multipart/alternative; boundary="1359715225.b5475Be3.15344"; charset="us-ascii"
+--===============0604420341==
+Content-Type: multipart/alternative; boundary="1359738390.eE6Bc4B2.30304"; charset="us-ascii"
 
 
---1359715225.b5475Be3.15344
-Date: Fri, 1 Feb 2013 10:40:25 +0000
+--1359738390.eE6Bc4B2.30304
+Date: Fri, 1 Feb 2013 17:06:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59168
+https://bugs.freedesktop.org/show_bug.cgi?id=51477
 
-michael.weirauch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+Matthias Dienstbier <matthias_dienstbier-LWAfsSFWpa4@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Priority|medium                      |high
+                 CC|                            |matthias_dienstbier@yahoo.d
+                   |                            |e
+
+--- Comment #14 from Matthias Dienstbier <matthias_dienstbier-LWAfsSFWpa4@public.gmane.org> ---
+This bug gets much more intense if RGB subpixel hinting is enabled but it
+rarely appears if only grayscale antialiasing is used. Disabling the
+acceleration makes it completely disappear.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359715225.b5475Be3.15344
-Date: Fri, 1 Feb 2013 10:40:25 +0000
+--1359738390.eE6Bc4B2.30304
+Date: Fri, 1 Feb 2013 17:06:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,12 +57,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:michael.weirauch&#64;gmail.com" title="michael.weirauch&#64;gmail.com">michael.weirauch&#64;gmail.com</a>
+    <body><span class="vcard"><a class="email" href="mailto:matthias_dienstbier&#64;yahoo.de" title="Matthias Dienstbier &lt;matthias_dienstbier&#64;yahoo.de&gt;"> <span class="fn">Matthias Dienstbier</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
+   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -66,13 +72,29 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Priority</td>
-           <td>medium
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>high
+           <td>matthias_dienstbier&#64;yahoo.de
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
+              from <span class="vcard"><a class="email" href="mailto:matthias_dienstbier&#64;yahoo.de" title="Matthias Dienstbier &lt;matthias_dienstbier&#64;yahoo.de&gt;"> <span class="fn">Matthias Dienstbier</span></a>
+</span></b>
+        <pre>This bug gets much more intense if RGB subpixel hinting is enabled but it
+rarely appears if only grayscale antialiasing is used. Disabling the
+acceleration makes it completely disappear.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +105,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1359715225.b5475Be3.15344--
+--1359738390.eE6Bc4B2.30304--
 
---===============0594086918==
+--===============0604420341==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +118,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0594086918==--
+--===============0604420341==--
