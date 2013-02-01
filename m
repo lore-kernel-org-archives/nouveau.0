@@ -1,10 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60150] New: [NVAF] Garbled Screen
-Date: Fri, 01 Feb 2013 10:23:56 +0000
-Message-ID: <bug-60150-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59168] [nvc3/Quadro2000M] graphic
+ garbage/corruption/noise on resume
+Date: Fri, 01 Feb 2013 10:31:57 +0000
+Message-ID: <bug-59168-8800-qoWFHjIz8U@http.bugs.freedesktop.org/>
+References: <bug-59168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0007985422=="
+Content-Type: multipart/mixed; boundary="===============0198594446=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,46 +21,54 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0007985422==
-Content-Type: multipart/alternative; boundary="1359714237.573C1.13057"; charset="us-ascii"
+--===============0198594446==
+Content-Type: multipart/alternative; boundary="1359714717.2bEbE61.14317"; charset="us-ascii"
 
 
---1359714237.573C1.13057
-Date: Fri, 1 Feb 2013 10:23:57 +0000
+--1359714717.2bEbE61.14317
+Date: Fri, 1 Feb 2013 10:31:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60150
+https://bugs.freedesktop.org/show_bug.cgi?id=59168
 
-          Priority: medium
-            Bug ID: 60150
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NVAF] Garbled Screen
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: nihilhill-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #3 from michael.weirauch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 74037
+  --> https://bugs.freedesktop.org/attachment.cgi?id=74037&action=edit
+gdm 3.8.0-rc5 resume garbage/noise nvc3
 
-Created attachment 74036
-  --> https://bugs.freedesktop.org/attachment.cgi?id=74036&action=edit
-dmesg's output
+Still the same on 3.8.0-rc5.
 
-The problem appeared when I upgraded to the 3.7 kernel.
+dmesg excerpt:
+[  124.859583] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 3 [0x007fd18000
+gnome-shell[1472]]
+[  124.859603] nouveau E[  PGRAPH][0000:01:00.0] GPC0/TPC2/MP: 0x001beff2
+0x0000000f
+[  124.860408] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 3 [0x007fd18000
+gnome-shell[1472]]
+[  124.860414] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa204021e
+[  125.169451] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 3 [0x007fd18000
+gnome-shell[1472]]
+[  125.169460] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa204021e
+[  125.169536] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 3 [0x007fd18000
+gnome-shell[1472]]
+[  125.169544] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa204021e
 
-I have to specify 'nouveau.noaccel=1' otherwise X is not reached.
+Components:
+Name                          | Typ   | Version                           
+------------------------------+-------+-----------------------------------
+Mesa                          | Paket | 9.0.2-210.1                       
+kernel                        | Paket | 3.8.0_rc5_1_desktop_nouveau01+-15 
+libdrm_nouveau2               | Paket | 2.4.41-105.1                      
+xorg-x11-driver-video-nouveau | Paket | 1.0.6+git@2013-01-29                    
+xorg-x11-server               | Paket | 7.6_1.13.2-223.1
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359714237.573C1.13057
-Date: Fri, 1 Feb 2013 10:23:57 +0000
+--1359714717.2bEbE61.14317
+Date: Fri, 1 Feb 2013 10:31:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,101 +76,47 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAF] Garbled Screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60150">60150</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVAF] Garbled Screen
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>nihilhill&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=74036" name="attach_74036" title="dmesg's output">attachment 74036</a> <a href="attachment.cgi?id=74036&amp;action=edit" title="dmesg's output">[details]</a></span>
-dmesg's output
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
+              from <span class="vcard"><a class="email" href="mailto:michael.weirauch&#64;gmail.com" title="michael.weirauch&#64;gmail.com">michael.weirauch&#64;gmail.com</a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=74037" name="attach_74037" title="gdm 3.8.0-rc5 resume garbage/noise nvc3">attachment 74037</a> <a href="attachment.cgi?id=74037&amp;action=edit" title="gdm 3.8.0-rc5 resume garbage/noise nvc3">[details]</a></span>
+gdm 3.8.0-rc5 resume garbage/noise nvc3
 
-The problem appeared when I upgraded to the 3.7 kernel.
+Still the same on 3.8.0-rc5.
 
-I have to specify 'nouveau.noaccel=1' otherwise X is not reached.</pre>
+dmesg excerpt:
+[  124.859583] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 3 [0x007fd18000
+gnome-shell[1472]]
+[  124.859603] nouveau E[  PGRAPH][0000:01:00.0] GPC0/TPC2/MP: 0x001beff2
+0x0000000f
+[  124.860408] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 3 [0x007fd18000
+gnome-shell[1472]]
+[  124.860414] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa204021e
+[  125.169451] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 3 [0x007fd18000
+gnome-shell[1472]]
+[  125.169460] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa204021e
+[  125.169536] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 3 [0x007fd18000
+gnome-shell[1472]]
+[  125.169544] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa204021e
+
+Components:
+Name                          | Typ   | Version                           
+------------------------------+-------+-----------------------------------
+Mesa                          | Paket | 9.0.2-210.1                       
+kernel                        | Paket | 3.8.0_rc5_1_desktop_nouveau01+-15 
+libdrm_nouveau2               | Paket | 2.4.41-105.1                      
+xorg-x11-driver-video-nouveau | Paket | 1.0.6+git&#64;2013-01-29                    
+xorg-x11-server               | Paket | 7.6_1.13.2-223.1</pre>
         </div>
       </p>
       <hr>
@@ -171,9 +128,9 @@ I have to specify 'nouveau.noaccel=1' otherwise X is not reached.</pre>
     </body>
 </html>
 
---1359714237.573C1.13057--
+--1359714717.2bEbE61.14317--
 
---===============0007985422==
+--===============0198594446==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -184,4 +141,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0007985422==--
+--===============0198594446==--
