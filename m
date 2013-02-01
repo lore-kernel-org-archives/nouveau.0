@@ -1,12 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60020] Resuming Dell Precision M70 crashes
-Date: Thu, 31 Jan 2013 18:29:14 +0000
-Message-ID: <bug-60020-8800-9iVfm5Z29a@http.bugs.freedesktop.org/>
-References: <bug-60020-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60150] New: [NVAF] Garbled Screen
+Date: Fri, 01 Feb 2013 10:23:56 +0000
+Message-ID: <bug-60150-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1436144692=="
+Content-Type: multipart/mixed; boundary="===============0007985422=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60020-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +18,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1436144692==
-Content-Type: multipart/alternative; boundary="1359656954.2B0cA1.4236"; charset="us-ascii"
+--===============0007985422==
+Content-Type: multipart/alternative; boundary="1359714237.573C1.13057"; charset="us-ascii"
 
 
---1359656954.2B0cA1.4236
-Date: Thu, 31 Jan 2013 18:29:14 +0000
+--1359714237.573C1.13057
+Date: Fri, 1 Feb 2013 10:23:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60020
+https://bugs.freedesktop.org/show_bug.cgi?id=60150
 
---- Comment #2 from Roy Bixler <rcbixler-0BtJm3PWb0s@public.gmane.org> ---
-I just wanted to add some clarification about reproducing the bug.  I find that
-resume crashes if nouveau is loaded early as the framebuffer.  In that case,
-the trick of removing the nouveau driver after stopping the X server and before
-invoking pm-suspend has no effect (i.e. resume still results in a hung system).
- What does make a difference is if I blacklist the nouveau driver so that the
-initial framebuffer console only uses standard VGA mode. When the X server
-starts, the module is loaded.  In this case, stopping the X server, removing
-the nouveau module and invoking pm-suspend results in a system that resumes
-more or less correctly.  In fact, on the first resume, the video is even
-restored.  On subsequent resumes, the video is not restored, but it is possible
-to get it back by starting the X server.  Going back to the console using
-Control-Alt-Fn also works.
+          Priority: medium
+            Bug ID: 60150
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [NVAF] Garbled Screen
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: nihilhill-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
+
+Created attachment 74036
+  --> https://bugs.freedesktop.org/attachment.cgi?id=74036&action=edit
+dmesg's output
+
+The problem appeared when I upgraded to the 3.7 kernel.
+
+I have to specify 'nouveau.noaccel=1' otherwise X is not reached.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359656954.2B0cA1.4236
-Date: Thu, 31 Jan 2013 18:29:14 +0000
+--1359714237.573C1.13057
+Date: Fri, 1 Feb 2013 10:23:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,31 +65,101 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVAF] Garbled Screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60150">60150</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVAF] Garbled Screen
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>nihilhill&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Resuming Dell Precision M70 crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60020#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Resuming Dell Precision M70 crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60020">bug 60020</a>
-              from <span class="vcard"><a class="email" href="mailto:rcbixler&#64;nyx.net" title="Roy Bixler &lt;rcbixler&#64;nyx.net&gt;"> <span class="fn">Roy Bixler</span></a>
-</span></b>
-        <pre>I just wanted to add some clarification about reproducing the bug.  I find that
-resume crashes if nouveau is loaded early as the framebuffer.  In that case,
-the trick of removing the nouveau driver after stopping the X server and before
-invoking pm-suspend has no effect (i.e. resume still results in a hung system).
- What does make a difference is if I blacklist the nouveau driver so that the
-initial framebuffer console only uses standard VGA mode. When the X server
-starts, the module is loaded.  In this case, stopping the X server, removing
-the nouveau module and invoking pm-suspend results in a system that resumes
-more or less correctly.  In fact, on the first resume, the video is even
-restored.  On subsequent resumes, the video is not restored, but it is possible
-to get it back by starting the X server.  Going back to the console using
-Control-Alt-Fn also works.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=74036" name="attach_74036" title="dmesg's output">attachment 74036</a> <a href="attachment.cgi?id=74036&amp;action=edit" title="dmesg's output">[details]</a></span>
+dmesg's output
+
+The problem appeared when I upgraded to the 3.7 kernel.
+
+I have to specify 'nouveau.noaccel=1' otherwise X is not reached.</pre>
         </div>
       </p>
       <hr>
@@ -94,9 +171,9 @@ Control-Alt-Fn also works.</pre>
     </body>
 </html>
 
---1359656954.2B0cA1.4236--
+--1359714237.573C1.13057--
 
---===============1436144692==
+--===============0007985422==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -107,4 +184,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1436144692==--
+--===============0007985422==--
