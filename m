@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58556] MacBook Pro 5, 1 with nVidia 9400m and 9600m,
- scrambled screen
-Date: Fri, 01 Feb 2013 18:31:03 +0000
-Message-ID: <bug-58556-8800-q0X6AEjpEY@http.bugs.freedesktop.org/>
-References: <bug-58556-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60175] New: Repeatable kernel panics when visiting
+ websites with adobe flash enabled
+Date: Fri, 01 Feb 2013 20:19:24 +0000
+Message-ID: <bug-60175-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0860614691=="
+Content-Type: multipart/mixed; boundary="===============0714735527=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +19,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0860614691==
-Content-Type: multipart/alternative; boundary="1359743463.aFD5ac2.9200"; charset="us-ascii"
+--===============0714735527==
+Content-Type: multipart/alternative; boundary="1359749965.45fFfaC1.23709"; charset="us-ascii"
 
 
---1359743463.aFD5ac2.9200
-Date: Fri, 1 Feb 2013 18:31:03 +0000
+--1359749965.45fFfaC1.23709
+Date: Fri, 1 Feb 2013 20:19:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58556
+https://bugs.freedesktop.org/show_bug.cgi?id=60175
 
-John Flatness <john-A00MZEC2jljaVm2ux5mvEw@public.gmane.org> changed:
+          Priority: medium
+            Bug ID: 60175
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Repeatable kernel panics when visiting websites with
+                    adobe flash enabled
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: amade-dvG7DYx+7LWsTnJN9+BGXg@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |john-A00MZEC2jljaVm2ux5mvEw@public.gmane.org
+Created attachment 74069
+  --> https://bugs.freedesktop.org/attachment.cgi?id=74069&action=edit
+one of the crashes from kern.log
 
---- Comment #1 from John Flatness <john-A00MZEC2jljaVm2ux5mvEw@public.gmane.org> ---
-I have the exact same symptoms on kernel 3.7.4, and nouveau has been that way
-for many kernel versions. It's never worked with this system (9600M GT/9400M),
-whether in-tree or out.
+Seems like I can repeteably crash my machine by visiting some websites
 
-My setup is slightly different, as I'm booting with grub2, not the EFI stub,
-but the behavior is exactly the same: a scrambled, non-updating screen after
-the handover from efifb. I've never tried using vgaswitcheroo by typing
-blindly, though.
+Log attached
+
+I've seen it also on vanilla kernel
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359743463.aFD5ac2.9200
-Date: Fri, 1 Feb 2013 18:31:03 +0000
+--1359749965.45fFfaC1.23709
+Date: Fri, 1 Feb 2013 20:19:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,48 +69,103 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:john&#64;zerocrates.org" title="John Flatness &lt;john&#64;zerocrates.org&gt;"> <span class="fn">John Flatness</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>john&#64;zerocrates.org
-           </td>
-         </tr></table>
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Repeatable kernel panics when visiting websites with adobe flash enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60175">60175</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Repeatable kernel panics when visiting websites with adobe flash enabled
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>amade&#64;asmblr.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
-              from <span class="vcard"><a class="email" href="mailto:john&#64;zerocrates.org" title="John Flatness &lt;john&#64;zerocrates.org&gt;"> <span class="fn">John Flatness</span></a>
-</span></b>
-        <pre>I have the exact same symptoms on kernel 3.7.4, and nouveau has been that way
-for many kernel versions. It's never worked with this system (9600M GT/9400M),
-whether in-tree or out.
+        <pre>Created <span class=""><a href="attachment.cgi?id=74069" name="attach_74069" title="one of the crashes from kern.log">attachment 74069</a> <a href="attachment.cgi?id=74069&amp;action=edit" title="one of the crashes from kern.log">[details]</a></span>
+one of the crashes from kern.log
 
-My setup is slightly different, as I'm booting with grub2, not the EFI stub,
-but the behavior is exactly the same: a scrambled, non-updating screen after
-the handover from efifb. I've never tried using vgaswitcheroo by typing
-blindly, though.</pre>
+Seems like I can repeteably crash my machine by visiting some websites
+
+Log attached
+
+I've seen it also on vanilla kernel</pre>
         </div>
       </p>
       <hr>
@@ -114,9 +177,9 @@ blindly, though.</pre>
     </body>
 </html>
 
---1359743463.aFD5ac2.9200--
+--1359749965.45fFfaC1.23709--
 
---===============0860614691==
+--===============0714735527==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,4 +190,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0860614691==--
+--===============0714735527==--
