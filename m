@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60175] New: Repeatable kernel panics when visiting
- websites with adobe flash enabled
-Date: Fri, 01 Feb 2013 20:19:24 +0000
-Message-ID: <bug-60175-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60007] BUG: nouveau crashes in various ways in
+ 32-bits Fedora 18
+Date: Fri, 01 Feb 2013 20:52:33 +0000
+Message-ID: <bug-60007-8800-1b4EFlIaTV@http.bugs.freedesktop.org/>
+References: <bug-60007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0714735527=="
+Content-Type: multipart/mixed; boundary="===============1595550877=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-60007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,49 +21,48 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0714735527==
-Content-Type: multipart/alternative; boundary="1359749965.45fFfaC1.23709"; charset="us-ascii"
+--===============1595550877==
+Content-Type: multipart/alternative; boundary="1359751953.575D1.27447"; charset="us-ascii"
 
 
---1359749965.45fFfaC1.23709
-Date: Fri, 1 Feb 2013 20:19:25 +0000
+--1359751953.575D1.27447
+Date: Fri, 1 Feb 2013 20:52:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60175
+https://bugs.freedesktop.org/show_bug.cgi?id=60007
 
-          Priority: medium
-            Bug ID: 60175
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Repeatable kernel panics when visiting websites with
-                    adobe flash enabled
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: amade-dvG7DYx+7LWsTnJN9+BGXg@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #7 from Cornel Panceac <cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+with 3.7 kernel, patched or unpatched, it doesn't matter, on nvidia 6150, the
+screen becomes full of garbage (displayed in an order not easy to describe),
+and the system freezes.
 
-Created attachment 74069
-  --> https://bugs.freedesktop.org/attachment.cgi?id=74069&action=edit
-one of the crashes from kern.log
+Steps to reporduce: open pidgin, enter yahoo account, select "Open inbox" from
+"Accounts".
 
-Seems like I can repeteably crash my machine by visiting some websites
+This does not happen on 3.6 kernel.
 
-Log attached
+in /var/log/messages, if i boot with 3.6 kernel i see: 
 
-I've seen it also on vanilla kernel
+Feb  2 00:39:47 logalhost kernel: [    1.076939] [drm] nouveau 0000:00:0d.0:
+======= misaligned reg 0x0060081D =======
+
+The kernel that does work:
+
+# uname -a
+Linux logalhost.logaldomain 3.6.11-5.fc17.i686.PAE #1 SMP Tue Jan 8 21:49:19
+UTC 2013 i686 i686 i386 GNU/Linux
+
+# lspci -nn | grep VGA
+00:0d.0 VGA compatible controller [0300]: nVidia Corporation C61 [GeForce
+6150SE nForce 430] [10de:03d0] (rev a2)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359749965.45fFfaC1.23709
-Date: Fri, 1 Feb 2013 20:19:25 +0000
+--1359751953.575D1.27447
+Date: Fri, 1 Feb 2013 20:52:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,103 +70,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Repeatable kernel panics when visiting websites with adobe flash enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60175">60175</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Repeatable kernel panics when visiting websites with adobe flash enabled
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>amade&#64;asmblr.net
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=74069" name="attach_74069" title="one of the crashes from kern.log">attachment 74069</a> <a href="attachment.cgi?id=74069&amp;action=edit" title="one of the crashes from kern.log">[details]</a></span>
-one of the crashes from kern.log
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">bug 60007</a>
+              from <span class="vcard"><a class="email" href="mailto:cpanceac&#64;gmail.com" title="Cornel Panceac &lt;cpanceac&#64;gmail.com&gt;"> <span class="fn">Cornel Panceac</span></a>
+</span></b>
+        <pre>with 3.7 kernel, patched or unpatched, it doesn't matter, on nvidia 6150, the
+screen becomes full of garbage (displayed in an order not easy to describe),
+and the system freezes.
 
-Seems like I can repeteably crash my machine by visiting some websites
+Steps to reporduce: open pidgin, enter yahoo account, select &quot;Open inbox&quot; from
+&quot;Accounts&quot;.
 
-Log attached
+This does not happen on 3.6 kernel.
 
-I've seen it also on vanilla kernel</pre>
+in /var/log/messages, if i boot with 3.6 kernel i see: 
+
+Feb  2 00:39:47 logalhost kernel: [    1.076939] [drm] nouveau 0000:00:0d.0:
+======= misaligned reg 0x0060081D =======
+
+The kernel that does work:
+
+# uname -a
+Linux logalhost.logaldomain 3.6.11-5.fc17.i686.PAE #1 SMP Tue Jan 8 21:49:19
+UTC 2013 i686 i686 i386 GNU/Linux
+
+# lspci -nn | grep VGA
+00:0d.0 VGA compatible controller [0300]: nVidia Corporation C61 [GeForce
+6150SE nForce 430] [10de:03d0] (rev a2)</pre>
         </div>
       </p>
       <hr>
@@ -177,9 +117,9 @@ I've seen it also on vanilla kernel</pre>
     </body>
 </html>
 
---1359749965.45fFfaC1.23709--
+--1359751953.575D1.27447--
 
---===============0714735527==
+--===============1595550877==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -190,4 +130,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0714735527==--
+--===============1595550877==--
