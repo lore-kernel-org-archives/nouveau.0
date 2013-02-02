@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60007] BUG: nouveau crashes in various ways in
- 32-bits Fedora 18
-Date: Fri, 01 Feb 2013 20:52:33 +0000
-Message-ID: <bug-60007-8800-1b4EFlIaTV@http.bugs.freedesktop.org/>
-References: <bug-60007-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58087] [-next] nouveau corrupts kernel mm allocator
+Date: Sat, 02 Feb 2013 22:55:23 +0000
+Message-ID: <bug-58087-8800-qWLPdLvsBY@http.bugs.freedesktop.org/>
+References: <bug-58087-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1595550877=="
+Content-Type: multipart/mixed; boundary="===============1632270580=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58087-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,48 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1595550877==
-Content-Type: multipart/alternative; boundary="1359751953.575D1.27447"; charset="us-ascii"
+--===============1632270580==
+Content-Type: multipart/alternative; boundary="1359845723.dBbAD2.1713"; charset="us-ascii"
 
 
---1359751953.575D1.27447
-Date: Fri, 1 Feb 2013 20:52:33 +0000
+--1359845723.dBbAD2.1713
+Date: Sat, 2 Feb 2013 22:55:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60007
+https://bugs.freedesktop.org/show_bug.cgi?id=58087
 
---- Comment #7 from Cornel Panceac <cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-with 3.7 kernel, patched or unpatched, it doesn't matter, on nvidia 6150, the
-screen becomes full of garbage (displayed in an order not easy to describe),
-and the system freezes.
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Steps to reporduce: open pidgin, enter yahoo account, select "Open inbox" from
-"Accounts".
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-This does not happen on 3.6 kernel.
-
-in /var/log/messages, if i boot with 3.6 kernel i see: 
-
-Feb  2 00:39:47 logalhost kernel: [    1.076939] [drm] nouveau 0000:00:0d.0:
-======= misaligned reg 0x0060081D =======
-
-The kernel that does work:
-
-# uname -a
-Linux logalhost.logaldomain 3.6.11-5.fc17.i686.PAE #1 SMP Tue Jan 8 21:49:19
-UTC 2013 i686 i686 i386 GNU/Linux
-
-# lspci -nn | grep VGA
-00:0d.0 VGA compatible controller [0300]: nVidia Corporation C61 [GeForce
-6150SE nForce 430] [10de:03d0] (rev a2)
+--- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Fixed in 3.8-rc2.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359751953.575D1.27447
-Date: Fri, 1 Feb 2013 20:52:33 +0000
+--1359845723.dBbAD2.1713
+Date: Sat, 2 Feb 2013 22:55:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,42 +54,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [-next] nouveau corrupts kernel mm allocator"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58087">bug 58087</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c7">Comment # 7</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [-next] nouveau corrupts kernel mm allocator"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58087#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">bug 60007</a>
-              from <span class="vcard"><a class="email" href="mailto:cpanceac&#64;gmail.com" title="Cornel Panceac &lt;cpanceac&#64;gmail.com&gt;"> <span class="fn">Cornel Panceac</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [-next] nouveau corrupts kernel mm allocator"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58087">bug 58087</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>with 3.7 kernel, patched or unpatched, it doesn't matter, on nvidia 6150, the
-screen becomes full of garbage (displayed in an order not easy to describe),
-and the system freezes.
-
-Steps to reporduce: open pidgin, enter yahoo account, select &quot;Open inbox&quot; from
-&quot;Accounts&quot;.
-
-This does not happen on 3.6 kernel.
-
-in /var/log/messages, if i boot with 3.6 kernel i see: 
-
-Feb  2 00:39:47 logalhost kernel: [    1.076939] [drm] nouveau 0000:00:0d.0:
-======= misaligned reg 0x0060081D =======
-
-The kernel that does work:
-
-# uname -a
-Linux logalhost.logaldomain 3.6.11-5.fc17.i686.PAE #1 SMP Tue Jan 8 21:49:19
-UTC 2013 i686 i686 i386 GNU/Linux
-
-# lspci -nn | grep VGA
-00:0d.0 VGA compatible controller [0300]: nVidia Corporation C61 [GeForce
-6150SE nForce 430] [10de:03d0] (rev a2)</pre>
+        <pre>Fixed in 3.8-rc2.</pre>
         </div>
       </p>
       <hr>
@@ -117,9 +107,9 @@ UTC 2013 i686 i686 i386 GNU/Linux
     </body>
 </html>
 
---1359751953.575D1.27447--
+--1359845723.dBbAD2.1713--
 
---===============1595550877==
+--===============1632270580==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -130,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1595550877==--
+--===============1632270580==--
