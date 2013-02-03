@@ -1,11 +1,11 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/3] drm/nv40/therm: reset temperature sensor on
-	init
-Date: Sun,  3 Feb 2013 21:07:56 +0100
-Message-ID: <1359922077-3347-2-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH 3/3] drm/nouveau/therm: use workqueue to shutdown
+	the machine
+Date: Sun,  3 Feb 2013 21:07:57 +0100
+Message-ID: <1359922077-3347-3-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -20,28 +20,48 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Q3VycmVudCB1bmluaXRpYWxpemVkIHNlbnNvciBkZXRlY3Rpb24gZG9lcyBub3Qgd29yayBmb3Ig
-bWUgb24gbnY0YiBhbmQKc2Vuc29yIHJldHVybnMgY3JhenkgdmFsdWVzICg+MTkwwrBDKS4gSXQg
-c3RhYmlsaXNlcyBsYXRlciwgYnV0IGl0J3MgdG9vCmxhdGUgLSB0aGVybSBjb2RlIHNodXRkb3du
-cyB0aGUgbWFjaGluZS4uLgoKTGV0J3MganVzdCByZXNldCBpdCBvbiBpbml0LgoKU2lnbmVkLW9m
-Zi1ieTogTWFyY2luIFNsdXNhcnogPG1hcmNpbi5zbHVzYXJ6QGdtYWlsLmNvbT4KLS0tCiBkcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1YmRldi90aGVybS9udjQwLmMgfCAxMiArKysrKysr
-KysrKy0KIDEgZmlsZSBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvdGhlcm0vbnY0
-MC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvdGhlcm0vbnY0MC5jCmlu
-ZGV4IGFjY2M2MjguLjdkOTA4NDQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L2NvcmUvc3ViZGV2L3RoZXJtL252NDAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9j
-b3JlL3N1YmRldi90aGVybS9udjQwLmMKQEAgLTE3MywxMyArMTczLDIzIEBAIG52NDBfdGhlcm1f
-Y3RvcihzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKnBhcmVudCwKIAlyZXR1cm4gbm91dmVhdV90aGVy
-bV9wcmVpbml0KCZwcml2LT5iYXNlLmJhc2UpOwogfQogCitpbnQKK252NDBfdGhlcm1faW5pdChz
-dHJ1Y3Qgbm91dmVhdV9vYmplY3QgKm9iamVjdCkKK3sKKwlzdHJ1Y3Qgbm91dmVhdV90aGVybSAq
-dGhlcm0gPSAodm9pZCAqKW9iamVjdDsKKworCW52NDBfc2Vuc29yX3NldHVwKHRoZXJtKTsKKwor
-CXJldHVybiBfbm91dmVhdV90aGVybV9pbml0KG9iamVjdCk7Cit9CisKIHN0cnVjdCBub3V2ZWF1
-X29jbGFzcwogbnY0MF90aGVybV9vY2xhc3MgPSB7CiAJLmhhbmRsZSA9IE5WX1NVQkRFVihUSEVS
-TSwgMHg0MCksCiAJLm9mdW5jcyA9ICYoc3RydWN0IG5vdXZlYXVfb2Z1bmNzKSB7CiAJCS5jdG9y
-ID0gbnY0MF90aGVybV9jdG9yLAogCQkuZHRvciA9IF9ub3V2ZWF1X3RoZXJtX2R0b3IsCi0JCS5p
-bml0ID0gX25vdXZlYXVfdGhlcm1faW5pdCwKKwkJLmluaXQgPSBudjQwX3RoZXJtX2luaXQsCiAJ
-CS5maW5pID0gX25vdXZlYXVfdGhlcm1fZmluaSwKIAl9LAogfTsKLS0gCjEuOC4xCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+orderly_poweroff cannot be called from atomic context.
+
+Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/subdev/therm/temp.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c b/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c
+index 8f27b44..b37624a 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c
+@@ -90,6 +90,13 @@ nouveau_therm_sensor_get_threshold_state(struct nouveau_therm *therm,
+ 	return priv->sensor.alarm_state[thrs];
+ }
+ 
++static void
++nv_poweroff_work(struct work_struct *work)
++{
++	orderly_poweroff(true);
++	kfree(work);
++}
++
+ void nouveau_therm_sensor_event(struct nouveau_therm *therm,
+ 			        enum nouveau_therm_thrs thrs,
+ 			        enum nouveau_therm_thrs_direction dir)
+@@ -128,8 +135,15 @@ void nouveau_therm_sensor_event(struct nouveau_therm *therm,
+ 			priv->emergency.pause(therm, active);
+ 		break;
+ 	case NOUVEAU_THERM_THRS_SHUTDOWN:
+-		if (active)
+-			orderly_poweroff(true);
++		if (active) {
++			struct work_struct *work;
++
++			work = kmalloc(sizeof(*work), GFP_ATOMIC);
++			if (work) {
++				INIT_WORK(work, nv_poweroff_work);
++				schedule_work(work);
++			}
++		}
+ 		break;
+ 	case NOUVEAU_THERM_THRS_NR:
+ 		break;
+-- 
+1.8.1
