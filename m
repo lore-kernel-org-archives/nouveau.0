@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 60007] BUG: nouveau crashes in various ways in
  32-bits Fedora 18
-Date: Sun, 03 Feb 2013 07:30:25 +0000
-Message-ID: <bug-60007-8800-VpSc6Uwafx@http.bugs.freedesktop.org/>
+Date: Sun, 03 Feb 2013 07:32:00 +0000
+Message-ID: <bug-60007-8800-u6PfrVg8LK@http.bugs.freedesktop.org/>
 References: <bug-60007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1750022785=="
+Content-Type: multipart/mixed; boundary="===============1731623967=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-60007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1750022785==
-Content-Type: multipart/alternative; boundary="1359876625.8230dfD13.15180"; charset="us-ascii"
+--===============1731623967==
+Content-Type: multipart/alternative; boundary="1359876720.A4Ba1.15404"; charset="us-ascii"
 
 
---1359876625.8230dfD13.15180
-Date: Sun, 3 Feb 2013 07:30:25 +0000
+--1359876720.A4Ba1.15404
+Date: Sun, 3 Feb 2013 07:32:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=60007
 
---- Comment #13 from Cornel Panceac <cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 74118
-  --> https://bugs.freedesktop.org/attachment.cgi?id=74118&action=edit
-crash patched kernel
+--- Comment #14 from Cornel Panceac <cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+meanwhile ben skeggs started working on 
+
+https://bugzilla.redhat.com/show_bug.cgi?id=905629
+
+thank you all very much for help in fixing these nasty crashes.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359876625.8230dfD13.15180
-Date: Sun, 3 Feb 2013 07:30:25 +0000
+--1359876720.A4Ba1.15404
+Date: Sun, 3 Feb 2013 07:32:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c13">Comment # 13</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">bug 60007</a>
               from <span class="vcard"><a class="email" href="mailto:cpanceac&#64;gmail.com" title="Cornel Panceac &lt;cpanceac&#64;gmail.com&gt;"> <span class="fn">Cornel Panceac</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=74118" name="attach_74118" title="crash patched kernel">attachment 74118</a> <a href="attachment.cgi?id=74118&amp;action=edit" title="crash patched kernel">[details]</a></span>
-crash patched kernel</pre>
+        <pre>meanwhile ben skeggs started working on 
+
+<a href="https://bugzilla.redhat.com/show_bug.cgi?id=905629">https://bugzilla.redhat.com/show_bug.cgi?id=905629</a>
+
+thank you all very much for help in fixing these nasty crashes.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +81,9 @@ crash patched kernel</pre>
     </body>
 </html>
 
---1359876625.8230dfD13.15180--
+--1359876720.A4Ba1.15404--
 
---===============1750022785==
+--===============1731623967==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1750022785==--
+--===============1731623967==--
