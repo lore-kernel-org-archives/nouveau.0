@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60007] BUG: nouveau crashes in various ways in
- 32-bits Fedora 18
-Date: Sun, 03 Feb 2013 20:30:00 +0000
-Message-ID: <bug-60007-8800-SwdlWNloZw@http.bugs.freedesktop.org/>
-References: <bug-60007-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 2/3] drm/nv40/therm: reset temperature sensor
+	on init
+Date: Sun, 3 Feb 2013 21:33:12 +0100
+Message-ID: <20130203203312.GB3138@joi.lan>
+References: <1359922077-3347-2-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2001758827=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <1359922077-3347-2-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,78 +20,34 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2001758827==
-Content-Type: multipart/alternative; boundary="1359923400.A250f1.18675"; charset="us-ascii"
-
-
---1359923400.A250f1.18675
-Date: Sun, 3 Feb 2013 20:30:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=60007
-
---- Comment #15 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This is totally different issue - different card generations (nv4x vs nv5x) and
-different symptoms (garbage on screen vs kernel crash). 
-
-The patch I posted pertains only to nv50/kernel crash issue.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1359923400.A250f1.18675
-Date: Sun, 3 Feb 2013 20:30:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c15">Comment # 15</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">bug 60007</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span></b>
-        <pre>This is totally different issue - different card generations (nv4x vs nv5x) and
-different symptoms (garbage on screen vs kernel crash). 
-
-The patch I posted pertains only to nv50/kernel crash issue.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1359923400.A250f1.18675--
-
---===============2001758827==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============2001758827==--
+T24gU3VuLCBGZWIgMDMsIDIwMTMgYXQgMDk6MDc6NTZQTSArMDEwMCwgTWFyY2luIFNsdXNhcnog
+d3JvdGU6Cj4gQ3VycmVudCB1bmluaXRpYWxpemVkIHNlbnNvciBkZXRlY3Rpb24gZG9lcyBub3Qg
+d29yayBmb3IgbWUgb24gbnY0YiBhbmQKPiBzZW5zb3IgcmV0dXJucyBjcmF6eSB2YWx1ZXMgKD4x
+OTDCsEMpLiBJdCBzdGFiaWxpc2VzIGxhdGVyLCBidXQgaXQncyB0b28KPiBsYXRlIC0gdGhlcm0g
+Y29kZSBzaHV0ZG93bnMgdGhlIG1hY2hpbmUuLi4KPiAKPiBMZXQncyBqdXN0IHJlc2V0IGl0IG9u
+IGluaXQuCj4gCj4gU2lnbmVkLW9mZi1ieTogTWFyY2luIFNsdXNhcnogPG1hcmNpbi5zbHVzYXJ6
+QGdtYWlsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYv
+dGhlcm0vbnY0MC5jIHwgMTIgKysrKysrKysrKystCj4gIDEgZmlsZSBjaGFuZ2VkLCAxMSBpbnNl
+cnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L2NvcmUvc3ViZGV2L3RoZXJtL252NDAuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L2NvcmUvc3ViZGV2L3RoZXJtL252NDAuYwo+IGluZGV4IGFjY2M2MjguLjdkOTA4NDQgMTAw
+NjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvdGhlcm0vbnY0
+MC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvdGhlcm0vbnY0
+MC5jCj4gQEAgLTE3MywxMyArMTczLDIzIEBAIG52NDBfdGhlcm1fY3RvcihzdHJ1Y3Qgbm91dmVh
+dV9vYmplY3QgKnBhcmVudCwKPiAgCXJldHVybiBub3V2ZWF1X3RoZXJtX3ByZWluaXQoJnByaXYt
+PmJhc2UuYmFzZSk7Cj4gIH0KPiAgCj4gK2ludAo+ICtudjQwX3RoZXJtX2luaXQoc3RydWN0IG5v
+dXZlYXVfb2JqZWN0ICpvYmplY3QpCgpUaW55IGlzc3VlOiB0aGlzIGZ1bmN0aW9uIHNob3VsZCBi
+ZSBzdGF0aWMuCgo+ICt7Cj4gKwlzdHJ1Y3Qgbm91dmVhdV90aGVybSAqdGhlcm0gPSAodm9pZCAq
+KW9iamVjdDsKPiArCj4gKwludjQwX3NlbnNvcl9zZXR1cCh0aGVybSk7Cj4gKwo+ICsJcmV0dXJu
+IF9ub3V2ZWF1X3RoZXJtX2luaXQob2JqZWN0KTsKPiArfQo+ICsKPiAgc3RydWN0IG5vdXZlYXVf
+b2NsYXNzCj4gIG52NDBfdGhlcm1fb2NsYXNzID0gewo+ICAJLmhhbmRsZSA9IE5WX1NVQkRFVihU
+SEVSTSwgMHg0MCksCj4gIAkub2Z1bmNzID0gJihzdHJ1Y3Qgbm91dmVhdV9vZnVuY3MpIHsKPiAg
+CQkuY3RvciA9IG52NDBfdGhlcm1fY3RvciwKPiAgCQkuZHRvciA9IF9ub3V2ZWF1X3RoZXJtX2R0
+b3IsCj4gLQkJLmluaXQgPSBfbm91dmVhdV90aGVybV9pbml0LAo+ICsJCS5pbml0ID0gbnY0MF90
+aGVybV9pbml0LAo+ICAJCS5maW5pID0gX25vdXZlYXVfdGhlcm1fZmluaSwKPiAgCX0sCj4gIH07
+Cj4gLS0gCj4gMS44LjEKPiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
