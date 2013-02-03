@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 60007] BUG: nouveau crashes in various ways in
  32-bits Fedora 18
-Date: Sun, 03 Feb 2013 07:28:29 +0000
-Message-ID: <bug-60007-8800-7T1tgFdJZK@http.bugs.freedesktop.org/>
+Date: Sun, 03 Feb 2013 07:29:16 +0000
+Message-ID: <bug-60007-8800-JwlCdCqKS2@http.bugs.freedesktop.org/>
 References: <bug-60007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1380923642=="
+Content-Type: multipart/mixed; boundary="===============0708221923=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-60007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1380923642==
-Content-Type: multipart/alternative; boundary="1359876509.BfC331.14928"; charset="us-ascii"
+--===============0708221923==
+Content-Type: multipart/alternative; boundary="1359876556.ED67EC1.15091"; charset="us-ascii"
 
 
---1359876509.BfC331.14928
-Date: Sun, 3 Feb 2013 07:28:29 +0000
+--1359876556.ED67EC1.15091
+Date: Sun, 3 Feb 2013 07:29:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=60007
 
---- Comment #9 from Cornel Panceac <cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-i'll attach Xorg logs and tail -f /var/log/messages with the native, working
-3.6 f17 kernel, and with the patched crashing f18 kernel.
+--- Comment #10 from Cornel Panceac <cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 74115
+  --> https://bugs.freedesktop.org/attachment.cgi?id=74115&action=edit
+crash xorg log
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359876509.BfC331.14928
-Date: Sun, 3 Feb 2013 07:28:29 +0000
+--1359876556.ED67EC1.15091
+Date: Sun, 3 Feb 2013 07:29:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">bug 60007</a>
               from <span class="vcard"><a class="email" href="mailto:cpanceac&#64;gmail.com" title="Cornel Panceac &lt;cpanceac&#64;gmail.com&gt;"> <span class="fn">Cornel Panceac</span></a>
 </span></b>
-        <pre>i'll attach Xorg logs and tail -f /var/log/messages with the native, working
-3.6 f17 kernel, and with the patched crashing f18 kernel.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=74115" name="attach_74115" title="crash xorg log">attachment 74115</a> <a href="attachment.cgi?id=74115&amp;action=edit" title="crash xorg log">[details]</a></span>
+crash xorg log</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1359876509.BfC331.14928--
+--1359876556.ED67EC1.15091--
 
---===============1380923642==
+--===============0708221923==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1380923642==--
+--===============0708221923==--
