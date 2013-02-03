@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58087] [-next] nouveau corrupts kernel mm allocator
-Date: Sat, 02 Feb 2013 22:55:23 +0000
-Message-ID: <bug-58087-8800-qWLPdLvsBY@http.bugs.freedesktop.org/>
-References: <bug-58087-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60007] BUG: nouveau crashes in various ways in
+ 32-bits Fedora 18
+Date: Sun, 03 Feb 2013 06:32:22 +0000
+Message-ID: <bug-60007-8800-hUK02sPMeo@http.bugs.freedesktop.org/>
+References: <bug-60007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1632270580=="
+Content-Type: multipart/mixed; boundary="===============0476343527=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58087-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-60007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1632270580==
-Content-Type: multipart/alternative; boundary="1359845723.dBbAD2.1713"; charset="us-ascii"
+--===============0476343527==
+Content-Type: multipart/alternative; boundary="1359873142.Db741.10199"; charset="us-ascii"
 
 
---1359845723.dBbAD2.1713
-Date: Sat, 2 Feb 2013 22:55:23 +0000
+--1359873142.Db741.10199
+Date: Sun, 3 Feb 2013 06:32:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58087
+https://bugs.freedesktop.org/show_bug.cgi?id=60007
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Fixed in 3.8-rc2.
+--- Comment #8 from Cornel Panceac <cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 74114
+  --> https://bugs.freedesktop.org/attachment.cgi?id=74114&action=edit
+locked f17 system screen, and what is occasionally displayed in f18's eye of
+gnome
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359845723.dBbAD2.1713
-Date: Sat, 2 Feb 2013 22:55:23 +0000
+--1359873142.Db741.10199
+Date: Sun, 3 Feb 2013 06:32:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,48 +51,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [-next] nouveau corrupts kernel mm allocator"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58087">bug 58087</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [-next] nouveau corrupts kernel mm allocator"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58087#c5">Comment # 5</a>
+          bz_status_NEW "
+   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c8">Comment # 8</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [-next] nouveau corrupts kernel mm allocator"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58087">bug 58087</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+          bz_status_NEW "
+   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">bug 60007</a>
+              from <span class="vcard"><a class="email" href="mailto:cpanceac&#64;gmail.com" title="Cornel Panceac &lt;cpanceac&#64;gmail.com&gt;"> <span class="fn">Cornel Panceac</span></a>
 </span></b>
-        <pre>Fixed in 3.8-rc2.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=74114" name="attach_74114" title="locked f17 system screen, and what is occasionally displayed in f18's eye of gnome">attachment 74114</a> <a href="attachment.cgi?id=74114&amp;action=edit" title="locked f17 system screen, and what is occasionally displayed in f18's eye of gnome">[details]</a></span>
+locked f17 system screen, and what is occasionally displayed in f18's eye of
+gnome</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +78,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1359845723.dBbAD2.1713--
+--1359873142.Db741.10199--
 
---===============1632270580==
+--===============0476343527==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1632270580==--
+--===============0476343527==--
