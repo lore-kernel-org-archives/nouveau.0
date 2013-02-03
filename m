@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 60007] BUG: nouveau crashes in various ways in
  32-bits Fedora 18
-Date: Sun, 03 Feb 2013 06:32:22 +0000
-Message-ID: <bug-60007-8800-hUK02sPMeo@http.bugs.freedesktop.org/>
+Date: Sun, 03 Feb 2013 07:28:29 +0000
+Message-ID: <bug-60007-8800-7T1tgFdJZK@http.bugs.freedesktop.org/>
 References: <bug-60007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0476343527=="
+Content-Type: multipart/mixed; boundary="===============1380923642=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-60007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0476343527==
-Content-Type: multipart/alternative; boundary="1359873142.Db741.10199"; charset="us-ascii"
+--===============1380923642==
+Content-Type: multipart/alternative; boundary="1359876509.BfC331.14928"; charset="us-ascii"
 
 
---1359873142.Db741.10199
-Date: Sun, 3 Feb 2013 06:32:22 +0000
+--1359876509.BfC331.14928
+Date: Sun, 3 Feb 2013 07:28:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=60007
 
---- Comment #8 from Cornel Panceac <cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 74114
-  --> https://bugs.freedesktop.org/attachment.cgi?id=74114&action=edit
-locked f17 system screen, and what is occasionally displayed in f18's eye of
-gnome
+--- Comment #9 from Cornel Panceac <cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+i'll attach Xorg logs and tail -f /var/log/messages with the native, working
+3.6 f17 kernel, and with the patched crashing f18 kernel.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359873142.Db741.10199
-Date: Sun, 3 Feb 2013 06:32:22 +0000
+--1359876509.BfC331.14928
+Date: Sun, 3 Feb 2013 07:28:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,16 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">bug 60007</a>
               from <span class="vcard"><a class="email" href="mailto:cpanceac&#64;gmail.com" title="Cornel Panceac &lt;cpanceac&#64;gmail.com&gt;"> <span class="fn">Cornel Panceac</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=74114" name="attach_74114" title="locked f17 system screen, and what is occasionally displayed in f18's eye of gnome">attachment 74114</a> <a href="attachment.cgi?id=74114&amp;action=edit" title="locked f17 system screen, and what is occasionally displayed in f18's eye of gnome">[details]</a></span>
-locked f17 system screen, and what is occasionally displayed in f18's eye of
-gnome</pre>
+        <pre>i'll attach Xorg logs and tail -f /var/log/messages with the native, working
+3.6 f17 kernel, and with the patched crashing f18 kernel.</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +75,9 @@ gnome</pre>
     </body>
 </html>
 
---1359873142.Db741.10199--
+--1359876509.BfC331.14928--
 
---===============0476343527==
+--===============1380923642==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0476343527==--
+--===============1380923642==--
