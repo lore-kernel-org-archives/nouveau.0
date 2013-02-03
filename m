@@ -1,15 +1,13 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 2/3] drm/nv40/therm: reset temperature sensor
-	on init
-Date: Sun, 3 Feb 2013 21:33:12 +0100
-Message-ID: <20130203203312.GB3138@joi.lan>
-References: <1359922077-3347-2-git-send-email-marcin.slusarz@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 56461] NV11 black screen & kernel hang on loading
+	nouveaufb
+Date: Sun, 03 Feb 2013 20:44:37 +0000
+Message-ID: <bug-56461-8800-293Sjx3Wo6@http.bugs.freedesktop.org/>
+References: <bug-56461-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1895534731=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1359922077-3347-2-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-56461-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +18,126 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBGZWIgMDMsIDIwMTMgYXQgMDk6MDc6NTZQTSArMDEwMCwgTWFyY2luIFNsdXNhcnog
-d3JvdGU6Cj4gQ3VycmVudCB1bmluaXRpYWxpemVkIHNlbnNvciBkZXRlY3Rpb24gZG9lcyBub3Qg
-d29yayBmb3IgbWUgb24gbnY0YiBhbmQKPiBzZW5zb3IgcmV0dXJucyBjcmF6eSB2YWx1ZXMgKD4x
-OTDCsEMpLiBJdCBzdGFiaWxpc2VzIGxhdGVyLCBidXQgaXQncyB0b28KPiBsYXRlIC0gdGhlcm0g
-Y29kZSBzaHV0ZG93bnMgdGhlIG1hY2hpbmUuLi4KPiAKPiBMZXQncyBqdXN0IHJlc2V0IGl0IG9u
-IGluaXQuCj4gCj4gU2lnbmVkLW9mZi1ieTogTWFyY2luIFNsdXNhcnogPG1hcmNpbi5zbHVzYXJ6
-QGdtYWlsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYv
-dGhlcm0vbnY0MC5jIHwgMTIgKysrKysrKysrKystCj4gIDEgZmlsZSBjaGFuZ2VkLCAxMSBpbnNl
-cnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L2NvcmUvc3ViZGV2L3RoZXJtL252NDAuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L2NvcmUvc3ViZGV2L3RoZXJtL252NDAuYwo+IGluZGV4IGFjY2M2MjguLjdkOTA4NDQgMTAw
-NjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvdGhlcm0vbnY0
-MC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvdGhlcm0vbnY0
-MC5jCj4gQEAgLTE3MywxMyArMTczLDIzIEBAIG52NDBfdGhlcm1fY3RvcihzdHJ1Y3Qgbm91dmVh
-dV9vYmplY3QgKnBhcmVudCwKPiAgCXJldHVybiBub3V2ZWF1X3RoZXJtX3ByZWluaXQoJnByaXYt
-PmJhc2UuYmFzZSk7Cj4gIH0KPiAgCj4gK2ludAo+ICtudjQwX3RoZXJtX2luaXQoc3RydWN0IG5v
-dXZlYXVfb2JqZWN0ICpvYmplY3QpCgpUaW55IGlzc3VlOiB0aGlzIGZ1bmN0aW9uIHNob3VsZCBi
-ZSBzdGF0aWMuCgo+ICt7Cj4gKwlzdHJ1Y3Qgbm91dmVhdV90aGVybSAqdGhlcm0gPSAodm9pZCAq
-KW9iamVjdDsKPiArCj4gKwludjQwX3NlbnNvcl9zZXR1cCh0aGVybSk7Cj4gKwo+ICsJcmV0dXJu
-IF9ub3V2ZWF1X3RoZXJtX2luaXQob2JqZWN0KTsKPiArfQo+ICsKPiAgc3RydWN0IG5vdXZlYXVf
-b2NsYXNzCj4gIG52NDBfdGhlcm1fb2NsYXNzID0gewo+ICAJLmhhbmRsZSA9IE5WX1NVQkRFVihU
-SEVSTSwgMHg0MCksCj4gIAkub2Z1bmNzID0gJihzdHJ1Y3Qgbm91dmVhdV9vZnVuY3MpIHsKPiAg
-CQkuY3RvciA9IG52NDBfdGhlcm1fY3RvciwKPiAgCQkuZHRvciA9IF9ub3V2ZWF1X3RoZXJtX2R0
-b3IsCj4gLQkJLmluaXQgPSBfbm91dmVhdV90aGVybV9pbml0LAo+ICsJCS5pbml0ID0gbnY0MF90
-aGVybV9pbml0LAo+ICAJCS5maW5pID0gX25vdXZlYXVfdGhlcm1fZmluaSwKPiAgCX0sCj4gIH07
-Cj4gLS0gCj4gMS44LjEKPiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1895534731==
+Content-Type: multipart/alternative; boundary="1359924277.7023CFAe2.20607"; charset="us-ascii"
+
+
+--1359924277.7023CFAe2.20607
+Date: Sun, 3 Feb 2013 20:44:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=56461
+
+--- Comment #42 from Chris Paulson-Ellis <chris-Tc38MJj1weLQT0dZR+AlfA@public.gmane.org> ---
+I found the bug in commit cb75d97e that results in the incorrect GART aperture
+and fixed it with this patch:
+
+--- a/drivers/gpu/drm/nouveau/nouveau_compat.c
++++ b/drivers/gpu/drm/nouveau/nouveau_compat.c
+@@ -17,7 +17,7 @@ nvdrm_gart_init(struct drm_device *dev, u64 *base, u64 *size)
+     struct nouveau_drm *drm = nouveau_newpriv(dev);
+     if (drm->agp.stat == ENABLED) {
+         *base = drm->agp.base;
+-        *size = drm->agp.base;
++        *size = drm->agp.size;
+         return 0;
+     }
+     return -ENODEV;
+
+However, the display still fades to black. I now get an error that I didn't get
+with the parent commit:
+
+PFIFO_DMA_PUSHER - Ch 0 Get 0x04000000 Put 0x00001088 State 0xc0000000 (err:
+MEM_FAULT) Push 0x00000000
+
+This message appears at the end of enabling the LDVS output, so it's probably
+related (I'll attach the console log).
+
+I'm not sure how to debug further. I'm wondering in particular how to trace the
+effect of various changes in commit cb75d97e, such as those made to
+run_digital_op_script()? Perhaps I need to trace all register read/writes
+during the devinit phase and compare to the parent commit? How would I do this?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1359924277.7023CFAe2.20607
+Date: Sun, 3 Feb 2013 20:44:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461#c42">Comment # 42</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - NV11 black screen &amp; kernel hang on loading nouveaufb"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56461">bug 56461</a>
+              from <span class="vcard"><a class="email" href="mailto:chris&#64;edesix.com" title="Chris Paulson-Ellis &lt;chris&#64;edesix.com&gt;"> <span class="fn">Chris Paulson-Ellis</span></a>
+</span></b>
+        <pre>I found the bug in commit cb75d97e that results in the incorrect GART aperture
+and fixed it with this patch:
+
+--- a/drivers/gpu/drm/nouveau/nouveau_compat.c
++++ b/drivers/gpu/drm/nouveau/nouveau_compat.c
+&#64;&#64; -17,7 +17,7 &#64;&#64; nvdrm_gart_init(struct drm_device *dev, u64 *base, u64 *size)
+     struct nouveau_drm *drm = nouveau_newpriv(dev);
+     if (drm-&gt;agp.stat == ENABLED) {
+         *base = drm-&gt;agp.base;
+-        *size = drm-&gt;agp.base;
++        *size = drm-&gt;agp.size;
+         return 0;
+     }
+     return -ENODEV;
+
+However, the display still fades to black. I now get an error that I didn't get
+with the parent commit:
+
+PFIFO_DMA_PUSHER - Ch 0 Get 0x04000000 Put 0x00001088 State 0xc0000000 (err:
+MEM_FAULT) Push 0x00000000
+
+This message appears at the end of enabling the LDVS output, so it's probably
+related (I'll attach the console log).
+
+I'm not sure how to debug further. I'm wondering in particular how to trace the
+effect of various changes in commit cb75d97e, such as those made to
+run_digital_op_script()? Perhaps I need to trace all register read/writes
+during the devinit phase and compare to the parent commit? How would I do this?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1359924277.7023CFAe2.20607--
+
+--===============1895534731==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1895534731==--
