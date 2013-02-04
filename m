@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59242] some mesa demos start to segfault after
- "nouveau: improve buffer transfers" on nv43
-Date: Mon, 04 Feb 2013 05:00:48 +0000
-Message-ID: <bug-59242-8800-VqZpaUpsRG@http.bugs.freedesktop.org/>
-References: <bug-59242-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60175] Repeatable kernel panics when visiting
+ websites with adobe flash enabled
+Date: Mon, 04 Feb 2013 09:11:09 +0000
+Message-ID: <bug-60175-8800-dfhq3w6VjI@http.bugs.freedesktop.org/>
+References: <bug-60175-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1603993964=="
+Content-Type: multipart/mixed; boundary="===============0954991908=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59242-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-60175-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1603993964==
-Content-Type: multipart/alternative; boundary="1359954048.bA526CA0.11226"; charset="us-ascii"
+--===============0954991908==
+Content-Type: multipart/alternative; boundary="1359969069.b4cA2102.11535"; charset="us-ascii"
 
 
---1359954048.bA526CA0.11226
-Date: Mon, 4 Feb 2013 05:00:48 +0000
+--1359969069.b4cA2102.11535
+Date: Mon, 4 Feb 2013 09:11:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59242
+https://bugs.freedesktop.org/show_bug.cgi?id=60175
 
-Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Probably  fixed with  mesa  update. (currently at Mesa 9.2-devel (git-8a4d952))
+--- Comment #1 from Roy <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org> ---
+Please try the patch proposed on
+https://bugs.freedesktop.org/show_bug.cgi?id=60007#c5 .
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359954048.bA526CA0.11226
-Date: Mon, 4 Feb 2013 05:00:48 +0000
+--1359969069.b4cA2102.11535
+Date: Mon, 4 Feb 2013 09:11:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,48 +49,24 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - some mesa demos start to segfault after &quot;nouveau: improve buffer transfers&quot; on nv43"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59242">bug 59242</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - some mesa demos start to segfault after &quot;nouveau: improve buffer transfers&quot; on nv43"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59242#c2">Comment # 2</a>
+          bz_status_NEW "
+   title="NEW --- - Repeatable kernel panics when visiting websites with adobe flash enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60175#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - some mesa demos start to segfault after &quot;nouveau: improve buffer transfers&quot; on nv43"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59242">bug 59242</a>
-              from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
+          bz_status_NEW "
+   title="NEW --- - Repeatable kernel panics when visiting websites with adobe flash enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60175">bug 60175</a>
+              from <span class="vcard"><a class="email" href="mailto:r.spliet&#64;student.tudelft.nl" title="Roy &lt;r.spliet&#64;student.tudelft.nl&gt;"> <span class="fn">Roy</span></a>
 </span></b>
-        <pre>Probably  fixed with  mesa  update. (currently at Mesa 9.2-devel (git-8a4d952))</pre>
+        <pre>Please try the patch proposed on
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="show_bug.cgi?id=60007#c5">https://bugs.freedesktop.org/show_bug.cgi?id=60007#c5</a> .</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +78,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1359954048.bA526CA0.11226--
+--1359969069.b4cA2102.11535--
 
---===============1603993964==
+--===============0954991908==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1603993964==--
+--===============0954991908==--
