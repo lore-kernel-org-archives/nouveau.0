@@ -1,13 +1,14 @@
-From: mwesten <mwesten-H+0wwilmMs3R7s880joybQ@public.gmane.org>
-Subject: Re: Monitor with corrupted EDID
-Date: Thu, 07 Feb 2013 14:37:41 -0500
-Message-ID: <51140285.4000108@verizon.net>
-References: <CAAs+i9J0jFhD1==NYEGtwJDUPCH4oaxH7_9rdOsgU-R7iu=Gtg@mail.gmail.com>
+From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
+Subject: Re: [PATCH 1/3] drm/nouveau/therm: turn on a fan only
+ when crossing threshold in positive direction
+Date: Mon, 04 Feb 2013 13:22:30 +0100
+Message-ID: <510FA806.3000701@labri.fr>
+References: <1359922077-3347-1-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-reply-to: <CAAs+i9J0jFhD1==NYEGtwJDUPCH4oaxH7_9rdOsgU-R7iu=Gtg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <1359922077-3347-1-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,61 +18,54 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 02/07/2013 10:16 AM, Flavio Castelli wrote:
-> For an unknown reason both my monitors ended up with a corrupted EDID.
-> They both provide VGA and DVI input. The VGA input works fine, while
-> DVI is broken because of the EDID issue.
+On 03/02/2013 21:07, Marcin Slusarz wrote:
+> + the same for shutdown threshold - seems impossible, but shutdown can fail.
 >
-> Using these [1] instructions I have been able to read the EDID and fix
-> it. Unfortunately I'm not able to write it back to the eeprom.
-> I always get this message:
->    i2c i2c-1: sendbytes: NAK bailout.
->
-> This is what I usually see in /var/log/message
-> [dump of the EDID]
-> nouveau 0000:01:00.0: DVI-D-1: EDID block 0 invalid.
-> [drm] nouveau 0000:01:00.0: DDC responded, but no EDID for DVI-D-1
->
-> Do you know why writing to the monitor does not work? I suspect the
-> eeprom is write protected
->
-> Googling a bit I noticed the nvidia driver allows to ignore the EDID
-> returned by the monitor and use a custom one. I looks like the nouveau
-> drivers do not offer this feature. Am I wrong?
->
-> These are my specs:
->    * kernel: 3.4.11-2.16-desktop
->    * architecture: x86_64
->    * distribution: openSUSE 12.2
->    * xorg-x11-driver-video-nouveau-0.0.16_20120321_ab7291d-3.5.1.x86_64
->    * X.Org X Server 1.12.3
->    * NVIDIA Corporation G84M [Quadro FX 570M]
->    * Monitor 1: lenovo l220x wide
->    * Monitor 2: lenovo l2440p
->
->
-> What should I do?
->
-> Thanks in advance
-> Flavio
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
+> Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Looks good. Please add my signed-off-by
 
-I recently used a DOS program called ddcw.exe to fix the corrupted EDID 
-on one of my monitors.
-
-See this site, http://byuu.org/articles/computing/edid
-and get it here, http://www.komeil.com/download/2984
-
-If that doesn't work, the drm_kms_helper module in newer kernels should 
-have a parameter to get around the problem.
-
-See https://www.osadl.org/Single-View.111+M50eaf2f2c66.0.html
-
--Mike
+Signed-off-by: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
+> ---
+>   drivers/gpu/drm/nouveau/core/subdev/therm/temp.c | 11 +++++++----
+>   1 file changed, 7 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c b/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c
+> index bf9b3ce..8f27b44 100644
+> --- a/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c
+> +++ b/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c
+> @@ -105,7 +105,7 @@ void nouveau_therm_sensor_event(struct nouveau_therm *therm,
+>   		return;
+>   
+>   	if (dir == NOUVEAU_THERM_THRS_FALLING)
+> -		nv_info(therm, "temperature (%u C) went bellow the '%s' threshold\n",
+> +		nv_info(therm, "temperature (%u C) went below the '%s' threshold\n",
+>   			temperature, thresolds[thrs]);
+>   	else
+>   		nv_info(therm, "temperature (%u C) hit the '%s' threshold\n",
+> @@ -114,8 +114,10 @@ void nouveau_therm_sensor_event(struct nouveau_therm *therm,
+>   	active = (dir == NOUVEAU_THERM_THRS_RISING);
+>   	switch (thrs) {
+>   	case NOUVEAU_THERM_THRS_FANBOOST:
+> -		nouveau_therm_fan_set(therm, true, 100);
+> -		nouveau_therm_mode(therm, NOUVEAU_THERM_CTRL_AUTO);
+> +		if (active) {
+> +			nouveau_therm_fan_set(therm, true, 100);
+> +			nouveau_therm_mode(therm, NOUVEAU_THERM_CTRL_AUTO);
+> +		}
+>   		break;
+>   	case NOUVEAU_THERM_THRS_DOWNCLOCK:
+>   		if (priv->emergency.downclock)
+> @@ -126,7 +128,8 @@ void nouveau_therm_sensor_event(struct nouveau_therm *therm,
+>   			priv->emergency.pause(therm, active);
+>   		break;
+>   	case NOUVEAU_THERM_THRS_SHUTDOWN:
+> -		orderly_poweroff(true);
+> +		if (active)
+> +			orderly_poweroff(true);
+>   		break;
+>   	case NOUVEAU_THERM_THRS_NR:
+>   		break;
