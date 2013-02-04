@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60150] [NVAF] Garbled Screen
-Date: Mon, 04 Feb 2013 09:32:44 +0000
-Message-ID: <bug-60150-8800-0T96oiUba2@http.bugs.freedesktop.org/>
-References: <bug-60150-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60175] Repeatable kernel panics when visiting
+ websites with adobe flash enabled
+Date: Mon, 04 Feb 2013 14:08:33 +0000
+Message-ID: <bug-60175-8800-ocyoD7ErRh@http.bugs.freedesktop.org/>
+References: <bug-60175-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1530739101=="
+Content-Type: multipart/mixed; boundary="===============0738210549=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60150-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-60175-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1530739101==
-Content-Type: multipart/alternative; boundary="1359970364.66600e12.14448"; charset="us-ascii"
+--===============0738210549==
+Content-Type: multipart/alternative; boundary="1359986913.CEC26F1.21019"; charset="us-ascii"
 
 
---1359970364.66600e12.14448
-Date: Mon, 4 Feb 2013 09:32:44 +0000
+--1359986913.CEC26F1.21019
+Date: Mon, 4 Feb 2013 14:08:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60150
+https://bugs.freedesktop.org/show_bug.cgi?id=60175
 
---- Comment #1 from Roy <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org> ---
-(In reply to comment #0)
-> Created attachment 74036 [details]
-> dmesg's output
->
-> I have to specify 'nouveau.noaccel=1' otherwise X is not reached.
-
-There's no problem visible in your dmesg now. Could you please post your dmesg
-output when acceleration is not disabled?
+--- Comment #3 from Amadeusz <amade-dvG7DYx+7LWsTnJN9+BGXg@public.gmane.org> ---
+The only patch I see is in comment 4, I already tried it as per suggestions on
+irc, it didn't work. Also there is no mention of barobj in my crash log, so it
+is probably some other issue.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1359970364.66600e12.14448
-Date: Mon, 4 Feb 2013 09:32:44 +0000
+--1359986913.CEC26F1.21019
+Date: Mon, 4 Feb 2013 14:08:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,22 +55,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVAF] Garbled Screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60150#c1">Comment # 1</a>
+   title="NEW --- - Repeatable kernel panics when visiting websites with adobe flash enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60175#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVAF] Garbled Screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60150">bug 60150</a>
-              from <span class="vcard"><a class="email" href="mailto:r.spliet&#64;student.tudelft.nl" title="Roy &lt;r.spliet&#64;student.tudelft.nl&gt;"> <span class="fn">Roy</span></a>
+   title="NEW --- - Repeatable kernel panics when visiting websites with adobe flash enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60175">bug 60175</a>
+              from <span class="vcard"><a class="email" href="mailto:amade&#64;asmblr.net" title="Amadeusz &lt;amade&#64;asmblr.net&gt;"> <span class="fn">Amadeusz</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=60150#c0">comment #0</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=74036" name="attach_74036" title="dmesg's output">attachment 74036</a> <a href="attachment.cgi?id=74036&amp;action=edit" title="dmesg's output">[details]</a></span>
-&gt; dmesg's output</span >
-&gt;
-<span class="quote">&gt; I have to specify 'nouveau.noaccel=1' otherwise X is not reached.</span >
-
-There's no problem visible in your dmesg now. Could you please post your dmesg
-output when acceleration is not disabled?</pre>
+        <pre>The only patch I see is in <a href="show_bug.cgi?id=60175#c4">comment 4</a>, I already tried it as per suggestions on
+irc, it didn't work. Also there is no mention of barobj in my crash log, so it
+is probably some other issue.</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +77,9 @@ output when acceleration is not disabled?</pre>
     </body>
 </html>
 
---1359970364.66600e12.14448--
+--1359986913.CEC26F1.21019--
 
---===============1530739101==
+--===============0738210549==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1530739101==--
+--===============0738210549==--
