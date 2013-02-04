@@ -1,93 +1,91 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60175] Repeatable kernel panics when visiting
- websites with adobe flash enabled
-Date: Mon, 04 Feb 2013 14:08:33 +0000
-Message-ID: <bug-60175-8800-ocyoD7ErRh@http.bugs.freedesktop.org/>
-References: <bug-60175-8800@http.bugs.freedesktop.org/>
+From: Marcin Slusarz <marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nouveau: add lockdep annotations
+Date: Mon, 4 Feb 2013 22:30:41 +0100
+Message-ID: <20130204213041.GA3433@joi.lan>
+References: <CAMVG2svkJruzveuozb8RFK_j1BxqDOwBco=Aida9S680_toNiQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0738210549=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60175-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CAMVG2svkJruzveuozb8RFK_j1BxqDOwBco=Aida9S680_toNiQ@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Linux Kernel <linux-kernel@vger.kernel.org>, Dave Airlie <airlied@linux.ie>, Daniel J Blueman <daniel@quora.org>, Maarten Lankhorst <maarten.lankhorst@canonical.com>, Peter Hurley <peter@hurleysoftware.com>, Arend van Spriel <arend@broadcom.com>
 List-Id: nouveau.vger.kernel.org
 
+1) Lockdep thinks all nouveau subdevs belong to the same class and can be
+locked in arbitrary order, which is not true (at least in general case).
+Tell it to distinguish subdevs by (o)class type.
+2) DRM client can be locked under user client lock - tell lockdep to put DRM
+client lock in a separate class.
 
---===============0738210549==
-Content-Type: multipart/alternative; boundary="1359986913.CEC26F1.21019"; charset="us-ascii"
+Reported-by: Arend van Spriel <arend@broadcom.com>
+Reported-by: Peter Hurley <peter@hurleysoftware.com>
+Reported-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Reported-by: Daniel J Blueman <daniel@quora.org>
+Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
+Cc: stable@vger.kernel.org [3.7, but needs s/const ofuncs/ofuncs/ to build]
+---
+Lightly tested, only on NV4B and NVC1.
+---
+ drivers/gpu/drm/nouveau/core/core/subdev.c         | 2 +-
+ drivers/gpu/drm/nouveau/core/include/core/object.h | 7 +++++--
+ drivers/gpu/drm/nouveau/nouveau_drm.c              | 3 +++
+ 3 files changed, 9 insertions(+), 3 deletions(-)
 
-
---1359986913.CEC26F1.21019
-Date: Mon, 4 Feb 2013 14:08:33 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=60175
-
---- Comment #3 from Amadeusz <amade-dvG7DYx+7LWsTnJN9+BGXg@public.gmane.org> ---
-The only patch I see is in comment 4, I already tried it as per suggestions on
-irc, it didn't work. Also there is no mention of barobj in my crash log, so it
-is probably some other issue.
-
+diff --git a/drivers/gpu/drm/nouveau/core/core/subdev.c b/drivers/gpu/drm/nouveau/core/core/subdev.c
+index f74c30a..48f0637 100644
+--- a/drivers/gpu/drm/nouveau/core/core/subdev.c
++++ b/drivers/gpu/drm/nouveau/core/core/subdev.c
+@@ -99,7 +99,7 @@ nouveau_subdev_create_(struct nouveau_object *parent,
+ 	if (ret)
+ 		return ret;
+ 
+-	mutex_init(&subdev->mutex);
++	__mutex_init(&subdev->mutex, subname, &oclass->lock_class_key);
+ 	subdev->name = subname;
+ 
+ 	if (parent) {
+diff --git a/drivers/gpu/drm/nouveau/core/include/core/object.h b/drivers/gpu/drm/nouveau/core/include/core/object.h
+index 6a90267..62e68ba 100644
+--- a/drivers/gpu/drm/nouveau/core/include/core/object.h
++++ b/drivers/gpu/drm/nouveau/core/include/core/object.h
+@@ -50,10 +50,13 @@ int  nouveau_object_fini(struct nouveau_object *, bool suspend);
+ 
+ extern struct nouveau_ofuncs nouveau_object_ofuncs;
+ 
++/* Don't allocate dynamically, because lockdep needs lock_class_keys to be in
++ * ".data". */
+ struct nouveau_oclass {
+ 	u32 handle;
+-	struct nouveau_ofuncs *ofuncs;
+-	struct nouveau_omthds *omthds;
++	struct nouveau_ofuncs * const ofuncs;
++	struct nouveau_omthds * const omthds;
++	struct lock_class_key lock_class_key;
+ };
+ 
+ #define nv_oclass(o)    nv_object(o)->oclass
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index ef1ad21..bc00587 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -245,6 +245,8 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+ 	return 0;
+ }
+ 
++static struct lock_class_key drm_client_lock_class_key;
++
+ static int
+ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+ {
+@@ -256,6 +258,7 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+ 	ret = nouveau_cli_create(pdev, "DRM", sizeof(*drm), (void**)&drm);
+ 	if (ret)
+ 		return ret;
++	lockdep_set_class(&drm->client.mutex, &drm_client_lock_class_key);
+ 
+ 	dev->dev_private = drm;
+ 	drm->dev = dev;
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1359986913.CEC26F1.21019
-Date: Mon, 4 Feb 2013 14:08:33 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Repeatable kernel panics when visiting websites with adobe flash enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60175#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Repeatable kernel panics when visiting websites with adobe flash enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60175">bug 60175</a>
-              from <span class="vcard"><a class="email" href="mailto:amade&#64;asmblr.net" title="Amadeusz &lt;amade&#64;asmblr.net&gt;"> <span class="fn">Amadeusz</span></a>
-</span></b>
-        <pre>The only patch I see is in <a href="show_bug.cgi?id=60175#c4">comment 4</a>, I already tried it as per suggestions on
-irc, it didn't work. Also there is no mention of barobj in my crash log, so it
-is probably some other issue.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1359986913.CEC26F1.21019--
-
---===============0738210549==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0738210549==--
+1.8.1
