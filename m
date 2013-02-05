@@ -1,96 +1,111 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60150] [NVAF] Garbled Screen
-Date: Tue, 05 Feb 2013 17:17:30 +0000
-Message-ID: <bug-60150-8800-N8a74HKAaM@http.bugs.freedesktop.org/>
-References: <bug-60150-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [PATCH] drm/nouveau: add lockdep annotations
+Date: Wed, 6 Feb 2013 06:52:55 +1000
+Message-ID: <20130205205255.GA10051@localhost.bne.redhat.com>
+References: <CAMVG2svkJruzveuozb8RFK_j1BxqDOwBco=Aida9S680_toNiQ@mail.gmail.com>
+ <20130204213041.GA3433@joi.lan>
+ <51102F40.2090008@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0485960127=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60150-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <51102F40.2090008@canonical.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Cc: Marcin Slusarz <marcin.slusarz@gmail.com>, Peter Hurley <peter@hurleysoftware.com>, nouveau@lists.freedesktop.org, Linux Kernel <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org, Daniel J Blueman <daniel@quora.org>, Ben Skeggs <bskeggs@redhat.com>, Arend van Spriel <arend@broadcom.com>
 List-Id: nouveau.vger.kernel.org
 
+On Mon, Feb 04, 2013 at 10:59:28PM +0100, Maarten Lankhorst wrote:
+> Op 04-02-13 22:30, Marcin Slusarz schreef:
+> > 1) Lockdep thinks all nouveau subdevs belong to the same class and can be
+> > locked in arbitrary order, which is not true (at least in general case).
+> > Tell it to distinguish subdevs by (o)class type.
+> Apart from this specific case, is there any other reason why we require being able to nest 2 subdev locks?
+I think I tend to prefer Marcin's fix for this actually.  The subdev's
+are completely separate classes of objects and as interaction between
+them increases (PM will be very much like this), we may very well
+require holding multiple subdev mutexes at once.
 
---===============0485960127==
-Content-Type: multipart/alternative; boundary="1360084650.53eC1.26588"; charset="us-ascii"
+Ben.
 
-
---1360084650.53eC1.26588
-Date: Tue, 5 Feb 2013 17:17:30 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=60150
-
---- Comment #2 from Bastien Dejean <nihilhill-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I'd be willing to, but:
-- The screen is garbled with and without acceleration.
-- When acceleration is disabled, the boot process interrupts: I can't
-  read anything though and I don't know how to get debug informations
-  under those circumstances...
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1360084650.53eC1.26588
-Date: Tue, 5 Feb 2013 17:17:30 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAF] Garbled Screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60150#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAF] Garbled Screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60150">bug 60150</a>
-              from <span class="vcard"><a class="email" href="mailto:nihilhill&#64;gmail.com" title="Bastien Dejean &lt;nihilhill&#64;gmail.com&gt;"> <span class="fn">Bastien Dejean</span></a>
-</span></b>
-        <pre>I'd be willing to, but:
-- The screen is garbled with and without acceleration.
-- When acceleration is disabled, the boot process interrupts: I can't
-  read anything though and I don't know how to get debug informations
-  under those circumstances...</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1360084650.53eC1.26588--
-
---===============0485960127==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0485960127==--
+> 
+> Add a NVOBJ_FLAG_CREATE_EXCLUSIVE flag to nouveau_engctx_create and return -EBUSY if there is any existing object. Problem solved, and lockdep is still generic.
+> 
+> > 2) DRM client can be locked under user client lock - tell lockdep to put DRM
+> > client lock in a separate class.
+> Can you copy paste a typical lockdep splat for this? Also this should be a separate patch. :-)
+> 
+> 
+> > Reported-by: Arend van Spriel <arend@broadcom.com>
+> > Reported-by: Peter Hurley <peter@hurleysoftware.com>
+> > Reported-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+> > Reported-by: Daniel J Blueman <daniel@quora.org>
+> > Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
+> > Cc: stable@vger.kernel.org [3.7, but needs s/const ofuncs/ofuncs/ to build]
+> > ---
+> > Lightly tested, only on NV4B and NVC1.
+> > ---
+> >  drivers/gpu/drm/nouveau/core/core/subdev.c         | 2 +-
+> >  drivers/gpu/drm/nouveau/core/include/core/object.h | 7 +++++--
+> >  drivers/gpu/drm/nouveau/nouveau_drm.c              | 3 +++
+> >  3 files changed, 9 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/core/core/subdev.c b/drivers/gpu/drm/nouveau/core/core/subdev.c
+> > index f74c30a..48f0637 100644
+> > --- a/drivers/gpu/drm/nouveau/core/core/subdev.c
+> > +++ b/drivers/gpu/drm/nouveau/core/core/subdev.c
+> > @@ -99,7 +99,7 @@ nouveau_subdev_create_(struct nouveau_object *parent,
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > -	mutex_init(&subdev->mutex);
+> > +	__mutex_init(&subdev->mutex, subname, &oclass->lock_class_key);
+> >  	subdev->name = subname;
+> >  
+> >  	if (parent) {
+> > diff --git a/drivers/gpu/drm/nouveau/core/include/core/object.h b/drivers/gpu/drm/nouveau/core/include/core/object.h
+> > index 6a90267..62e68ba 100644
+> > --- a/drivers/gpu/drm/nouveau/core/include/core/object.h
+> > +++ b/drivers/gpu/drm/nouveau/core/include/core/object.h
+> > @@ -50,10 +50,13 @@ int  nouveau_object_fini(struct nouveau_object *, bool suspend);
+> >  
+> >  extern struct nouveau_ofuncs nouveau_object_ofuncs;
+> >  
+> > +/* Don't allocate dynamically, because lockdep needs lock_class_keys to be in
+> > + * ".data". */
+> >  struct nouveau_oclass {
+> >  	u32 handle;
+> > -	struct nouveau_ofuncs *ofuncs;
+> > -	struct nouveau_omthds *omthds;
+> > +	struct nouveau_ofuncs * const ofuncs;
+> > +	struct nouveau_omthds * const omthds;
+> > +	struct lock_class_key lock_class_key;
+> >  };
+> >  
+> >  #define nv_oclass(o)    nv_object(o)->oclass
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> > index ef1ad21..bc00587 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> > @@ -245,6 +245,8 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+> >  	return 0;
+> >  }
+> >  
+> > +static struct lock_class_key drm_client_lock_class_key;
+> > +
+> >  static int
+> >  nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+> >  {
+> > @@ -256,6 +258,7 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+> >  	ret = nouveau_cli_create(pdev, "DRM", sizeof(*drm), (void**)&drm);
+> >  	if (ret)
+> >  		return ret;
+> > +	lockdep_set_class(&drm->client.mutex, &drm_client_lock_class_key);
+> >  
+> >  	dev->dev_private = drm;
+> >  	drm->dev = dev;
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
