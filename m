@@ -1,111 +1,216 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH] drm/nouveau: add lockdep annotations
-Date: Wed, 6 Feb 2013 06:52:55 +1000
-Message-ID: <20130205205255.GA10051@localhost.bne.redhat.com>
-References: <CAMVG2svkJruzveuozb8RFK_j1BxqDOwBco=Aida9S680_toNiQ@mail.gmail.com>
- <20130204213041.GA3433@joi.lan>
- <51102F40.2090008@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 60369] New: src/nouveau_exa.c:142:31: error:
+ 'CREATE_PIXMAP_USAGE_SHARED' undeclared (first use in this function)
+Date: Wed, 06 Feb 2013 14:52:16 +0000
+Message-ID: <bug-60369-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <51102F40.2090008@canonical.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Cc: Marcin Slusarz <marcin.slusarz@gmail.com>, Peter Hurley <peter@hurleysoftware.com>, nouveau@lists.freedesktop.org, Linux Kernel <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org, Daniel J Blueman <daniel@quora.org>, Ben Skeggs <bskeggs@redhat.com>, Arend van Spriel <arend@broadcom.com>
+Content-Type: multipart/mixed; boundary="===============2004417643=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Feb 04, 2013 at 10:59:28PM +0100, Maarten Lankhorst wrote:
-> Op 04-02-13 22:30, Marcin Slusarz schreef:
-> > 1) Lockdep thinks all nouveau subdevs belong to the same class and can be
-> > locked in arbitrary order, which is not true (at least in general case).
-> > Tell it to distinguish subdevs by (o)class type.
-> Apart from this specific case, is there any other reason why we require being able to nest 2 subdev locks?
-I think I tend to prefer Marcin's fix for this actually.  The subdev's
-are completely separate classes of objects and as interaction between
-them increases (PM will be very much like this), we may very well
-require holding multiple subdev mutexes at once.
 
-Ben.
+--===============2004417643==
+Content-Type: multipart/alternative; boundary="1360162336.ab3b5b52.26364"; charset="us-ascii"
 
-> 
-> Add a NVOBJ_FLAG_CREATE_EXCLUSIVE flag to nouveau_engctx_create and return -EBUSY if there is any existing object. Problem solved, and lockdep is still generic.
-> 
-> > 2) DRM client can be locked under user client lock - tell lockdep to put DRM
-> > client lock in a separate class.
-> Can you copy paste a typical lockdep splat for this? Also this should be a separate patch. :-)
-> 
-> 
-> > Reported-by: Arend van Spriel <arend@broadcom.com>
-> > Reported-by: Peter Hurley <peter@hurleysoftware.com>
-> > Reported-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-> > Reported-by: Daniel J Blueman <daniel@quora.org>
-> > Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
-> > Cc: stable@vger.kernel.org [3.7, but needs s/const ofuncs/ofuncs/ to build]
-> > ---
-> > Lightly tested, only on NV4B and NVC1.
-> > ---
-> >  drivers/gpu/drm/nouveau/core/core/subdev.c         | 2 +-
-> >  drivers/gpu/drm/nouveau/core/include/core/object.h | 7 +++++--
-> >  drivers/gpu/drm/nouveau/nouveau_drm.c              | 3 +++
-> >  3 files changed, 9 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/nouveau/core/core/subdev.c b/drivers/gpu/drm/nouveau/core/core/subdev.c
-> > index f74c30a..48f0637 100644
-> > --- a/drivers/gpu/drm/nouveau/core/core/subdev.c
-> > +++ b/drivers/gpu/drm/nouveau/core/core/subdev.c
-> > @@ -99,7 +99,7 @@ nouveau_subdev_create_(struct nouveau_object *parent,
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > -	mutex_init(&subdev->mutex);
-> > +	__mutex_init(&subdev->mutex, subname, &oclass->lock_class_key);
-> >  	subdev->name = subname;
-> >  
-> >  	if (parent) {
-> > diff --git a/drivers/gpu/drm/nouveau/core/include/core/object.h b/drivers/gpu/drm/nouveau/core/include/core/object.h
-> > index 6a90267..62e68ba 100644
-> > --- a/drivers/gpu/drm/nouveau/core/include/core/object.h
-> > +++ b/drivers/gpu/drm/nouveau/core/include/core/object.h
-> > @@ -50,10 +50,13 @@ int  nouveau_object_fini(struct nouveau_object *, bool suspend);
-> >  
-> >  extern struct nouveau_ofuncs nouveau_object_ofuncs;
-> >  
-> > +/* Don't allocate dynamically, because lockdep needs lock_class_keys to be in
-> > + * ".data". */
-> >  struct nouveau_oclass {
-> >  	u32 handle;
-> > -	struct nouveau_ofuncs *ofuncs;
-> > -	struct nouveau_omthds *omthds;
-> > +	struct nouveau_ofuncs * const ofuncs;
-> > +	struct nouveau_omthds * const omthds;
-> > +	struct lock_class_key lock_class_key;
-> >  };
-> >  
-> >  #define nv_oclass(o)    nv_object(o)->oclass
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> > index ef1ad21..bc00587 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> > @@ -245,6 +245,8 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
-> >  	return 0;
-> >  }
-> >  
-> > +static struct lock_class_key drm_client_lock_class_key;
-> > +
-> >  static int
-> >  nouveau_drm_load(struct drm_device *dev, unsigned long flags)
-> >  {
-> > @@ -256,6 +258,7 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
-> >  	ret = nouveau_cli_create(pdev, "DRM", sizeof(*drm), (void**)&drm);
-> >  	if (ret)
-> >  		return ret;
-> > +	lockdep_set_class(&drm->client.mutex, &drm_client_lock_class_key);
-> >  
-> >  	dev->dev_private = drm;
-> >  	drm->dev = dev;
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+--1360162336.ab3b5b52.26364
+Date: Wed, 6 Feb 2013 14:52:16 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=60369
+
+          Priority: medium
+            Bug ID: 60369
+                CC: airlied-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: src/nouveau_exa.c:142:31: error:
+                    'CREATE_PIXMAP_USAGE_SHARED' undeclared (first use in
+                    this function)
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: fabio.ped-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org
+          Hardware: x86 (IA32)
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
+
+Compiling on Ubuntu 12.04 leads to this error:
+
+make[3]: Entering directory
+`/build/buildd/xserver-xorg-video-nouveau-1.0.6+git1302061522.e8f222~gd~p/build/src'
+  CC     nouveau_exa.lo
+../../src/nouveau_exa.c: In function 'nouveau_exa_create_pixmap':
+../../src/nouveau_exa.c:142:31: error: 'CREATE_PIXMAP_USAGE_SHARED' undeclared
+(first use in this function)
+../../src/nouveau_exa.c:142:31: note: each undeclared identifier is reported
+only once for each function it appears in
+make[3]: *** [nouveau_exa.lo] Error 1
+
+Full log here:
+https://launchpadlibrarian.net/130533746/buildlog_ubuntu-precise-i386.xserver-xorg-video-nouveau_1%3A1.0.6%2Bgit1302061522.e8f222~gd~p_FAILEDTOBUILD.txt.gz
+
+Compiles fine on Ubuntu 12.10.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1360162336.ab3b5b52.26364
+Date: Wed, 6 Feb 2013 14:52:16 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - src/nouveau_exa.c:142:31: error: 'CREATE_PIXMAP_USAGE_SHARED' undeclared (first use in this function)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60369">60369</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>CC</th>
+          <td>airlied&#64;freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>src/nouveau_exa.c:142:31: error: 'CREATE_PIXMAP_USAGE_SHARED' undeclared (first use in this function)
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>fabio.ped&#64;libero.it
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Compiling on Ubuntu 12.04 leads to this error:
+
+make[3]: Entering directory
+`/build/buildd/xserver-xorg-video-nouveau-1.0.6+git1302061522.e8f222~gd~p/build/src'
+  CC     nouveau_exa.lo
+../../src/nouveau_exa.c: In function 'nouveau_exa_create_pixmap':
+../../src/nouveau_exa.c:142:31: error: 'CREATE_PIXMAP_USAGE_SHARED' undeclared
+(first use in this function)
+../../src/nouveau_exa.c:142:31: note: each undeclared identifier is reported
+only once for each function it appears in
+make[3]: *** [nouveau_exa.lo] Error 1
+
+Full log here:
+<a href="https://launchpadlibrarian.net/130533746/buildlog_ubuntu-precise-i386.xserver-xorg-video-nouveau_1%3A1.0.6%2Bgit1302061522.e8f222~gd~p_FAILEDTOBUILD.txt.gz">https://launchpadlibrarian.net/130533746/buildlog_ubuntu-precise-i386.xserver-xorg-video-nouveau_1%3A1.0.6%2Bgit1302061522.e8f222~gd~p_FAILEDTOBUILD.txt.gz</a>
+
+Compiles fine on Ubuntu 12.10.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1360162336.ab3b5b52.26364--
+
+--===============2004417643==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2004417643==--
