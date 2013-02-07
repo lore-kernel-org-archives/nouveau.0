@@ -1,41 +1,91 @@
-From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: Re: [PATCH] drm/nouveau: add lockdep annotations
-Date: Thu, 07 Feb 2013 17:19:11 +0100
-Message-ID: <5113D3FF.6060009@canonical.com>
-References: <CAMVG2svkJruzveuozb8RFK_j1BxqDOwBco=Aida9S680_toNiQ@mail.gmail.com> <20130204213041.GA3433@joi.lan> <51102F40.2090008@canonical.com> <20130205205255.GA10051@localhost.bne.redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
+ garbage/corruption/noise on resume
+Date: Thu, 07 Feb 2013 16:44:14 +0000
+Message-ID: <bug-59168-8800-g7jn74RZXN@http.bugs.freedesktop.org/>
+References: <bug-59168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20130205205255.GA10051@localhost.bne.redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <skeggsb@gmail.com>
-Cc: Marcin Slusarz <marcin.slusarz@gmail.com>, Peter Hurley <peter@hurleysoftware.com>, nouveau@lists.freedesktop.org, Linux Kernel <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org, Daniel J Blueman <daniel@quora.org>, Ben Skeggs <bskeggs@redhat.com>, Arend van Spriel <arend@broadcom.com>
+Content-Type: multipart/mixed; boundary="===============1466054276=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hey,
 
-Op 05-02-13 21:52, Ben Skeggs schreef:
-> On Mon, Feb 04, 2013 at 10:59:28PM +0100, Maarten Lankhorst wrote:
->> Op 04-02-13 22:30, Marcin Slusarz schreef:
->>> 1) Lockdep thinks all nouveau subdevs belong to the same class and can be
->>> locked in arbitrary order, which is not true (at least in general case).
->>> Tell it to distinguish subdevs by (o)class type.
->> Apart from this specific case, is there any other reason why we require being able to nest 2 subdev locks?
-> I think I tend to prefer Marcin's fix for this actually.  The subdev's
-> are completely separate classes of objects and as interaction between
-> them increases (PM will be very much like this), we may very well
-> require holding multiple subdev mutexes at once.
->
-> Ben.
-Depends, I think for this specific example I think my cleanup is better.
+--===============1466054276==
+Content-Type: multipart/alternative; boundary="1360255454.FA3A3.25668"; charset="us-ascii"
 
-For the generic case you could use nested mutexes, which will give you a
-different lockdep class when you need it. It's probably better to have those
-cases where you do need to nest locking annotated:
 
-mutex_lock_nested(&mutex, SINGLE_DEPTH_NESTING);
+--1360255454.FA3A3.25668
+Date: Thu, 7 Feb 2013 16:44:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-See also Documentation/lockdep-design.txt
+https://bugs.freedesktop.org/show_bug.cgi?id=59168
 
-~Maarten
+--- Comment #6 from Tom Callaway <tcallawa-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
+For what it is worth, I can reproduce this as well on Fedora 18, ThinkPad W520
+4270CTO - NVIDIA Corporation GF108GLM [Quadro 1000M]
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1360255454.FA3A3.25668
+Date: Thu, 7 Feb 2013 16:44:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
+              from <span class="vcard"><a class="email" href="mailto:tcallawa&#64;redhat.com" title="Tom Callaway &lt;tcallawa&#64;redhat.com&gt;"> <span class="fn">Tom Callaway</span></a>
+</span></b>
+        <pre>For what it is worth, I can reproduce this as well on Fedora 18, ThinkPad W520
+4270CTO - NVIDIA Corporation GF108GLM [Quadro 1000M]</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1360255454.FA3A3.25668--
+
+--===============1466054276==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1466054276==--
