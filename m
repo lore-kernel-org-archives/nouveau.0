@@ -1,56 +1,41 @@
-From: Flavio Castelli <flavio-2uVk4PVEUg6lnMjI0IkVqw@public.gmane.org>
-Subject: Monitor with corrupted EDID
-Date: Thu, 7 Feb 2013 16:16:54 +0100
-Message-ID: <CAAs+i9J0jFhD1==NYEGtwJDUPCH4oaxH7_9rdOsgU-R7iu=Gtg@mail.gmail.com>
+From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Subject: Re: [PATCH] drm/nouveau: add lockdep annotations
+Date: Thu, 07 Feb 2013 17:19:11 +0100
+Message-ID: <5113D3FF.6060009@canonical.com>
+References: <CAMVG2svkJruzveuozb8RFK_j1BxqDOwBco=Aida9S680_toNiQ@mail.gmail.com> <20130204213041.GA3433@joi.lan> <51102F40.2090008@canonical.com> <20130205205255.GA10051@localhost.bne.redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20130205205255.GA10051@localhost.bne.redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <skeggsb@gmail.com>
+Cc: Marcin Slusarz <marcin.slusarz@gmail.com>, Peter Hurley <peter@hurleysoftware.com>, nouveau@lists.freedesktop.org, Linux Kernel <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org, Daniel J Blueman <daniel@quora.org>, Ben Skeggs <bskeggs@redhat.com>, Arend van Spriel <arend@broadcom.com>
 List-Id: nouveau.vger.kernel.org
 
-For an unknown reason both my monitors ended up with a corrupted EDID.
-They both provide VGA and DVI input. The VGA input works fine, while
-DVI is broken because of the EDID issue.
+Hey,
 
-Using these [1] instructions I have been able to read the EDID and fix
-it. Unfortunately I'm not able to write it back to the eeprom.
-I always get this message:
-  i2c i2c-1: sendbytes: NAK bailout.
+Op 05-02-13 21:52, Ben Skeggs schreef:
+> On Mon, Feb 04, 2013 at 10:59:28PM +0100, Maarten Lankhorst wrote:
+>> Op 04-02-13 22:30, Marcin Slusarz schreef:
+>>> 1) Lockdep thinks all nouveau subdevs belong to the same class and can be
+>>> locked in arbitrary order, which is not true (at least in general case).
+>>> Tell it to distinguish subdevs by (o)class type.
+>> Apart from this specific case, is there any other reason why we require being able to nest 2 subdev locks?
+> I think I tend to prefer Marcin's fix for this actually.  The subdev's
+> are completely separate classes of objects and as interaction between
+> them increases (PM will be very much like this), we may very well
+> require holding multiple subdev mutexes at once.
+>
+> Ben.
+Depends, I think for this specific example I think my cleanup is better.
 
-This is what I usually see in /var/log/message
-[dump of the EDID]
-nouveau 0000:01:00.0: DVI-D-1: EDID block 0 invalid.
-[drm] nouveau 0000:01:00.0: DDC responded, but no EDID for DVI-D-1
+For the generic case you could use nested mutexes, which will give you a
+different lockdep class when you need it. It's probably better to have those
+cases where you do need to nest locking annotated:
 
-Do you know why writing to the monitor does not work? I suspect the
-eeprom is write protected
+mutex_lock_nested(&mutex, SINGLE_DEPTH_NESTING);
 
-Googling a bit I noticed the nvidia driver allows to ignore the EDID
-returned by the monitor and use a custom one. I looks like the nouveau
-drivers do not offer this feature. Am I wrong?
+See also Documentation/lockdep-design.txt
 
-These are my specs:
-  * kernel: 3.4.11-2.16-desktop
-  * architecture: x86_64
-  * distribution: openSUSE 12.2
-  * xorg-x11-driver-video-nouveau-0.0.16_20120321_ab7291d-3.5.1.x86_64
-  * X.Org X Server 1.12.3
-  * NVIDIA Corporation G84M [Quadro FX 570M]
-  * Monitor 1: lenovo l220x wide
-  * Monitor 2: lenovo l2440p
-
-
-What should I do?
-
-Thanks in advance
-Flavio
+~Maarten
