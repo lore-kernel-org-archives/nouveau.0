@@ -1,9 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60510] New: Firefox 18.0.2 Crash On Nvidia GeForce2
-Date: Fri, 08 Feb 2013 18:40:09 +0000
-Message-ID: <bug-60510-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60516] New: nouveau driver graphics corrupted in 3.7
+ kernel for nvidia FX5200 [NV34] hardware
+Date: Fri, 08 Feb 2013 20:50:11 +0000
+Message-ID: <bug-60516-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1130736052=="
+Content-Type: multipart/mixed; boundary="===============0773006504=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,57 +19,82 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1130736052==
-Content-Type: multipart/alternative; boundary="1360348810.6cdb51.13717"; charset="us-ascii"
+--===============0773006504==
+Content-Type: multipart/alternative; boundary="1360356611.8eeDe1.30902"; charset="us-ascii"
 
 
---1360348810.6cdb51.13717
-Date: Fri, 8 Feb 2013 18:40:10 +0000
+--1360356611.8eeDe1.30902
+Date: Fri, 8 Feb 2013 20:50:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60510
+https://bugs.freedesktop.org/show_bug.cgi?id=60516
 
           Priority: medium
-            Bug ID: 60510
+            Bug ID: 60516
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Firefox 18.0.2 Crash On Nvidia GeForce2
+           Summary: nouveau driver graphics corrupted in 3.7 kernel for
+                    nvidia FX5200 [NV34] hardware
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
           Severity: normal
     Classification: Unclassified
                 OS: Linux (All)
-          Reporter: sacanti.ernesto-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Reporter: lee_matheson-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
           Hardware: x86 (IA32)
             Status: NEW
            Version: unspecified
          Component: Driver/nouveau
            Product: xorg
 
-Firefox 18.0.2 and Thunderbird 17.0.2 crashes randomly.
+The 3.7 kernel nouveau driver provides a corrupted display when booting to a PC
+with an older nvidia FX5200 graphic card.  This was tested with:
+* openSUSE-12.3 32-bit beta1 KDE liveCD and 3.7.1 kernel
+* openSUSE-12.3 32-bit RC1 KDE liveCD and 3.7.6-1.2 kernel
+* openSUSE-12.2 with the 32-bit Tumbleweed 3.7.2-18 kernel (on an LXDE desktop)
+* Porteus-1.2 (release candidate version) which has the 3.7.5 kernel (and is
+slackware based).
+* Bodhi-2.2.0-32 which has the 3.7.0-7 kernel (and is Ubuntu based)
 
-Error Report:GLXtest process failed (exited with status 1): X error occurred in
-GLX probe, error_code=11, request_code=154, minor_code=3
+I rolled back the openSUSE-12.2 with the 32-bit Tumbleweed 3.7.2-18 kernel
+(which I noted had the graphics corruption) to a 3.4.6 kernel (with nouveau)
+and it works fine on this same PC with both a KDE and an LXDE desktop.  I
+tested a Knoppix-7.0.5 with its 3.6.11 kernel which booted fine to superb
+graphics with the nouveau driver, to a nice 1680x1050 resolution on this old
+FX5200 (NV34) hardware (with special desktop effects working nicely).  
 
-lspci command:
-02:00.0 VGA compatible controller: nVidia Corporation NVCrush11 [GeForce2 MX
-Integrated Graphics] (rev b1) (prog-if 00 [VGA controller])
-    Subsystem: nVidia Corporation Device 0c11
-    Flags: bus master, 66MHz, medium devsel, latency 32, IRQ 19
-    Memory at ec000000 (32-bit, non-prefetchable) [size=16M]
-    Memory at f0000000 (32-bit, prefetchable) [size=128M]
-    Expansion ROM at efff0000 [disabled] [size=64K]
-    Capabilities: <access denied>
-    Kernel driver in use: nouveau
-    Kernel modules: nouveau, nvidiafb, rivafb
+Ergo I believe the 3.7 kernel is at fault.
 
-I'm using Linux Mint 12 Lisa (GNU/Linux 3.0.0-12-generic i686)
+I have raised a bug report on openSUSE here:
+https://bugzilla.novell.com/show_bug.cgi?id=800686 but I believe the problem to
+be upstream with the nouveau driver. 
+
+The graphics look like this:  http://www.imagebam.com/image/aaa1db233074551 and
+that is pretty much the same appearance across all GNU/Linux distribution
+versions that I have tested with the 3.7.x kernel and the nouveau driver.
+
+dmesg of openSUSE-12.3 B1 w/3.7.1 kernel :
+https://bugzilla.novell.com/attachment.cgi?id=522124
+
+xorg.0.log of openSUSE-12.3 B1 w/3.7.1 kernel:
+https://bugzilla.novell.com/attachment.cgi?id=522125
+
+/var/log/messages of openSUSE-12.3 B1 w/3.7.1 kernel:
+https://bugzilla.novell.com/attachment.cgi?id=522126
+
+xsesson errors of openSUSE-12.3 B1 w/3.7.1 kernel:
+https://bugzilla.novell.com/attachment.cgi?id=522127
+
+I looked at the image of the corruption (with the 3.7 kernel) on NVIDIA GeForce
+8400M G graphics card in this bug report
+https://bugs.freedesktop.org/show_bug.cgi?id=58378 and it looks difference,
+hence I believe that 'may' be a different problem.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1360348810.6cdb51.13717
-Date: Fri, 8 Feb 2013 18:40:10 +0000
+--1360356611.8eeDe1.30902
+Date: Fri, 8 Feb 2013 20:50:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -87,8 +113,8 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Firefox 18.0.2 Crash On Nvidia GeForce2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60510">60510</a>
+   title="NEW --- - nouveau driver graphics corrupted in 3.7 kernel for nvidia FX5200 [NV34] hardware"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60516">60516</a>
           </td>
         </tr>
 
@@ -100,7 +126,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Summary</th>
-          <td>Firefox 18.0.2 Crash On Nvidia GeForce2
+          <td>nouveau driver graphics corrupted in 3.7 kernel for nvidia FX5200 [NV34] hardware
           </td>
         </tr>
 
@@ -130,7 +156,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Reporter</th>
-          <td>sacanti.ernesto&#64;gmail.com
+          <td>lee_matheson&#64;hotmail.com
           </td>
         </tr>
 
@@ -165,24 +191,51 @@ Content-Type: text/html; charset="UTF-8"
         </tr></table>
       <p>
         <div>
-        <pre>Firefox 18.0.2 and Thunderbird 17.0.2 crashes randomly.
+        <pre>The 3.7 kernel nouveau driver provides a corrupted display when booting to a PC
+with an older nvidia FX5200 graphic card.  This was tested with:
+* openSUSE-12.3 32-bit beta1 KDE liveCD and 3.7.1 kernel
+* openSUSE-12.3 32-bit RC1 KDE liveCD and 3.7.6-1.2 kernel
+* openSUSE-12.2 with the 32-bit Tumbleweed 3.7.2-18 kernel (on an LXDE desktop)
+* Porteus-1.2 (release candidate version) which has the 3.7.5 kernel (and is
+slackware based).
+* Bodhi-2.2.0-32 which has the 3.7.0-7 kernel (and is Ubuntu based)
 
-Error Report:GLXtest process failed (exited with status 1): X error occurred in
-GLX probe, error_code=11, request_code=154, minor_code=3
+I rolled back the openSUSE-12.2 with the 32-bit Tumbleweed 3.7.2-18 kernel
+(which I noted had the graphics corruption) to a 3.4.6 kernel (with nouveau)
+and it works fine on this same PC with both a KDE and an LXDE desktop.  I
+tested a Knoppix-7.0.5 with its 3.6.11 kernel which booted fine to superb
+graphics with the nouveau driver, to a nice 1680x1050 resolution on this old
+FX5200 (NV34) hardware (with special desktop effects working nicely).  
 
-lspci command:
-02:00.0 VGA compatible controller: nVidia Corporation NVCrush11 [GeForce2 MX
-Integrated Graphics] (rev b1) (prog-if 00 [VGA controller])
-    Subsystem: nVidia Corporation Device 0c11
-    Flags: bus master, 66MHz, medium devsel, latency 32, IRQ 19
-    Memory at ec000000 (32-bit, non-prefetchable) [size=16M]
-    Memory at f0000000 (32-bit, prefetchable) [size=128M]
-    Expansion ROM at efff0000 [disabled] [size=64K]
-    Capabilities: &lt;access denied&gt;
-    Kernel driver in use: nouveau
-    Kernel modules: nouveau, nvidiafb, rivafb
+Ergo I believe the 3.7 kernel is at fault.
 
-I'm using Linux Mint 12 Lisa (GNU/Linux 3.0.0-12-generic i686)</pre>
+I have raised a bug report on openSUSE here:
+<a href="https://bugzilla.novell.com/show_bug.cgi?id=800686">https://bugzilla.novell.com/show_bug.cgi?id=800686</a> but I believe the problem to
+be upstream with the nouveau driver. 
+
+The graphics look like this:  <a href="http://www.imagebam.com/image/aaa1db233074551">http://www.imagebam.com/image/aaa1db233074551</a> and
+that is pretty much the same appearance across all GNU/Linux distribution
+versions that I have tested with the 3.7.x kernel and the nouveau driver.
+
+dmesg of openSUSE-12.3 B1 w/3.7.1 kernel :
+<a href="https://bugzilla.novell.com/attachment.cgi?id=522124">https://bugzilla.novell.com/attachment.cgi?id=522124</a>
+
+xorg.0.log of openSUSE-12.3 B1 w/3.7.1 kernel:
+<a href="https://bugzilla.novell.com/attachment.cgi?id=522125">https://bugzilla.novell.com/attachment.cgi?id=522125</a>
+
+/var/log/messages of openSUSE-12.3 B1 w/3.7.1 kernel:
+<a href="https://bugzilla.novell.com/attachment.cgi?id=522126">https://bugzilla.novell.com/attachment.cgi?id=522126</a>
+
+xsesson errors of openSUSE-12.3 B1 w/3.7.1 kernel:
+<a href="https://bugzilla.novell.com/attachment.cgi?id=522127">https://bugzilla.novell.com/attachment.cgi?id=522127</a>
+
+I looked at the image of the corruption (with the 3.7 kernel) on NVIDIA GeForce
+8400M G graphics card in this bug report
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="show_bug.cgi?id=58378">https://bugs.freedesktop.org/show_bug.cgi?id=58378</a> and it looks difference,
+hence I believe that 'may' be a different problem.</pre>
         </div>
       </p>
       <hr>
@@ -194,9 +247,9 @@ I'm using Linux Mint 12 Lisa (GNU/Linux 3.0.0-12-generic i686)</pre>
     </body>
 </html>
 
---1360348810.6cdb51.13717--
+--1360356611.8eeDe1.30902--
 
---===============1130736052==
+--===============0773006504==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -207,4 +260,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1130736052==--
+--===============0773006504==--
