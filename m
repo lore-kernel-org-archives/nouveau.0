@@ -1,15 +1,13 @@
-From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Monitor with corrupted EDID
-Date: Mon, 11 Feb 2013 09:33:58 +1000
-Message-ID: <CAPM=9tzoj=QiOts0qEqL+Q34VEa8cBd4fNoX6sm+bTw_ob2t8w@mail.gmail.com>
-References: <CAAs+i9J0jFhD1==NYEGtwJDUPCH4oaxH7_9rdOsgU-R7iu=Gtg@mail.gmail.com>
-	<51140285.4000108@verizon.net> <5114B61C.40308@castelli.me>
-	<5114D712.4060600@verizon.net> <5114F991.3030703@castelli.me>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 60369] src/nouveau_exa.c:142:31: error:
+ 'CREATE_PIXMAP_USAGE_SHARED' undeclared (first use in this function)
+Date: Sun, 10 Feb 2013 23:58:59 +0000
+Message-ID: <bug-60369-8800-RUu4bYhH9u@http.bugs.freedesktop.org/>
+References: <bug-60369-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1508227910=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5114F991.3030703-2uVk4PVEUg6lnMjI0IkVqw@public.gmane.org>
+In-Reply-To: <bug-60369-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,26 +17,108 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Flavio Castelli <flavio-2uVk4PVEUg6lnMjI0IkVqw@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
->>
->> My suspicion is that if the EDID data got corrupted in the first place,
->> then it's not protected.  I don't know about i2cset, or any other methods.
->
->
-> That's exactly what I'm thinking. I'm trying to overwrite the EEPROM using a
-> DVI cable (since it's the DVI EDID which is broken). I saw other people used
-> a vga -> dvi cable to do that because some pins could not be "exposed" by
-> the DVI cable. I'm don't fully believe in this explanation.
 
-I've found with some monitors, that unplugging everything, power, and
-all monitor cables, and leaving it for a few minutes, then plugging it
-all back in, can sometimes restore the EDID. Some EDID chips stop a
-copy in RAM that gets powered from both mains and the ddc lines, so
-you really need to disconnect everything.
+--===============1508227910==
+Content-Type: multipart/alternative; boundary="1360540739.BEe8e462.17865"; charset="us-ascii"
 
-(though I'm not sure how common this configuration is in monitors).
 
-Dave.
+--1360540739.BEe8e462.17865
+Date: Sun, 10 Feb 2013 23:58:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=60369
+
+Dave Airlie <airlied-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|REOPENED                    |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #3 from Dave Airlie <airlied-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> ---
+okay try again :-)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1360540739.BEe8e462.17865
+Date: Sun, 10 Feb 2013 23:58:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:airlied&#64;freedesktop.org" title="Dave Airlie &lt;airlied&#64;freedesktop.org&gt;"> <span class="fn">Dave Airlie</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - src/nouveau_exa.c:142:31: error: 'CREATE_PIXMAP_USAGE_SHARED' undeclared (first use in this function)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60369">bug 60369</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>REOPENED
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - src/nouveau_exa.c:142:31: error: 'CREATE_PIXMAP_USAGE_SHARED' undeclared (first use in this function)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60369#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - src/nouveau_exa.c:142:31: error: 'CREATE_PIXMAP_USAGE_SHARED' undeclared (first use in this function)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60369">bug 60369</a>
+              from <span class="vcard"><a class="email" href="mailto:airlied&#64;freedesktop.org" title="Dave Airlie &lt;airlied&#64;freedesktop.org&gt;"> <span class="fn">Dave Airlie</span></a>
+</span></b>
+        <pre>okay try again :-)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1360540739.BEe8e462.17865--
+
+--===============1508227910==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1508227910==--
