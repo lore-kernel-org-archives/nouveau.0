@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 57350] [nouveau,
  linux-3.7-rc] Broken cursor and kernel log swamped with trapped
  reads/writes from BAR/PFIFO_READ/FB
-Date: Sun, 10 Feb 2013 13:58:34 +0000
-Message-ID: <bug-57350-8800-Sx6APGIzVn@http.bugs.freedesktop.org/>
+Date: Sun, 10 Feb 2013 15:24:21 +0000
+Message-ID: <bug-57350-8800-t7iT5j3e31@http.bugs.freedesktop.org/>
 References: <bug-57350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0088348672=="
+Content-Type: multipart/mixed; boundary="===============1544922731=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-57350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,37 +22,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0088348672==
-Content-Type: multipart/alternative; boundary="1360504714.ADE54.18436"; charset="us-ascii"
+--===============1544922731==
+Content-Type: multipart/alternative; boundary="1360509861.6e0E4.29953"; charset="us-ascii"
 
 
---1360504714.ADE54.18436
-Date: Sun, 10 Feb 2013 13:58:34 +0000
+--1360509861.6e0E4.29953
+Date: Sun, 10 Feb 2013 15:24:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=57350
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #15 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org> ---
+(In reply to comment #14)
+> Created attachment 74545 [details] [review]
+> initialize pmem offset
+> 
+> what about this one?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #74513|0                           |1
-        is obsolete|                            |
+No change with this one (instead of the previous one) either.
 
---- Comment #14 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 74545
-  --> https://bugs.freedesktop.org/attachment.cgi?id=74545&action=edit
-initialize pmem offset
 
-what about this one?
+Now as well as since the bug appeared there is sporadically a write error
+between the many ready errors. (same error message but s/read/write/)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1360504714.ADE54.18436
-Date: Sun, 10 Feb 2013 13:58:34 +0000
+--1360509861.6e0E4.29953
+Date: Sun, 10 Feb 2013 15:24:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,44 +59,30 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350">bug 57350</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #74513 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350#c14">Comment # 14</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=57350">bug 57350</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+              from <span class="vcard"><a class="email" href="mailto:bonbons67&#64;internet.lu" title="Bruno &lt;bonbons67&#64;internet.lu&gt;"> <span class="fn">Bruno</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=74545" name="attach_74545" title="initialize pmem offset">attachment 74545</a> <a href="attachment.cgi?id=74545&amp;action=edit" title="initialize pmem offset">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=57350&amp;attachment=74545'>[review]</a>
-initialize pmem offset
+        <pre>(In reply to <a href="show_bug.cgi?id=57350#c14">comment #14</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=74545" name="attach_74545" title="initialize pmem offset">attachment 74545</a> <a href="attachment.cgi?id=74545&amp;action=edit" title="initialize pmem offset">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=57350&amp;attachment=74545'>[review]</a> [review]
+&gt; initialize pmem offset
+&gt; 
+&gt; what about this one?</span >
 
-what about this one?</pre>
+No change with this one (instead of the previous one) either.
+
+
+Now as well as since the bug appeared there is sporadically a write error
+between the many ready errors. (same error message but s/read/write/)</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +94,9 @@ what about this one?</pre>
     </body>
 </html>
 
---1360504714.ADE54.18436--
+--1360509861.6e0E4.29953--
 
---===============0088348672==
+--===============1544922731==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +107,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0088348672==--
+--===============1544922731==--
