@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60369] src/nouveau_exa.c:142:31: error:
- 'CREATE_PIXMAP_USAGE_SHARED' undeclared (first use in this function)
-Date: Sun, 10 Feb 2013 23:58:59 +0000
-Message-ID: <bug-60369-8800-RUu4bYhH9u@http.bugs.freedesktop.org/>
-References: <bug-60369-8800@http.bugs.freedesktop.org/>
+From: Anca Emanuel <anca.emanuel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: INVALID_CMD and DATA_ERROR INVALID_VALUE
+Date: Mon, 11 Feb 2013 10:49:28 +0200
+Message-ID: <CAJL_dMuHb8fYdhLSELrC4kZpALn1eLb1TwLmi6nRusZcxufK4w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1508227910=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60369-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,105 +18,21 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Hi.
+I am running 3.8-rc6 (Ubuntu Raring). I have an GeForce 8800GT.
 
---===============1508227910==
-Content-Type: multipart/alternative; boundary="1360540739.BEe8e462.17865"; charset="us-ascii"
+I found this in dmesg:
+
+[  807.862867] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - Ch 2 Get
+0x0020030b48 Put 0x0020032dec IbGet 0x00000089 IbPut 0x0000008a State
+0x8000f240 (err: INVALID_CMD) Push 0x00704031
+[ 1469.668718] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR INVALID_VALUE
+[ 1469.668725] nouveau E[  PGRAPH][0000:01:00.0]  DATA_ERROR
+[ 1469.668731] nouveau E[  PGRAPH][0000:01:00.0] ch 2 [0x001fad9000]
+subc 7 class 0x8297 mthd 0x1288 data 0x00044110
+[ 1520.790060] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - Ch 2 Get
+0x002003472c Put 0x0020036208 IbGet 0x000003bc IbPut 0x000003bd State
+0x80004861 (err: INVALID_CMD) Push 0x00406040
 
 
---1360540739.BEe8e462.17865
-Date: Sun, 10 Feb 2013 23:58:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=60369
-
-Dave Airlie <airlied-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|REOPENED                    |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #3 from Dave Airlie <airlied-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> ---
-okay try again :-)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1360540739.BEe8e462.17865
-Date: Sun, 10 Feb 2013 23:58:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:airlied&#64;freedesktop.org" title="Dave Airlie &lt;airlied&#64;freedesktop.org&gt;"> <span class="fn">Dave Airlie</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - src/nouveau_exa.c:142:31: error: 'CREATE_PIXMAP_USAGE_SHARED' undeclared (first use in this function)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60369">bug 60369</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>REOPENED
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - src/nouveau_exa.c:142:31: error: 'CREATE_PIXMAP_USAGE_SHARED' undeclared (first use in this function)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60369#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - src/nouveau_exa.c:142:31: error: 'CREATE_PIXMAP_USAGE_SHARED' undeclared (first use in this function)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60369">bug 60369</a>
-              from <span class="vcard"><a class="email" href="mailto:airlied&#64;freedesktop.org" title="Dave Airlie &lt;airlied&#64;freedesktop.org&gt;"> <span class="fn">Dave Airlie</span></a>
-</span></b>
-        <pre>okay try again :-)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1360540739.BEe8e462.17865--
-
---===============1508227910==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1508227910==--
+This is normal ? (I think not)
