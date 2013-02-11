@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 60704] [nouveau,
  git regression] - I2C PWM fan control broken on nv50 adt7475 on
  kernels 3.3.x+
-Date: Mon, 11 Feb 2013 23:37:45 +0000
-Message-ID: <bug-60704-8800-DJCQmhOj9k@http.bugs.freedesktop.org/>
+Date: Mon, 11 Feb 2013 23:39:09 +0000
+Message-ID: <bug-60704-8800-6g5UxpmBcQ@http.bugs.freedesktop.org/>
 References: <bug-60704-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0874846228=="
+Content-Type: multipart/mixed; boundary="===============1326897883=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-60704-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,28 +22,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0874846228==
-Content-Type: multipart/alternative; boundary="1360625866.E0BAC1.17156"; charset="us-ascii"
+--===============1326897883==
+Content-Type: multipart/alternative; boundary="1360625949.c6aeCE1.17255"; charset="us-ascii"
 
 
---1360625866.E0BAC1.17156
-Date: Mon, 11 Feb 2013 23:37:45 +0000
+--1360625949.c6aeCE1.17255
+Date: Mon, 11 Feb 2013 23:39:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=60704
 
---- Comment #3 from Marc Meledandri <m.meledandri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 74660
-  --> https://bugs.freedesktop.org/attachment.cgi?id=74660&action=edit
-video-bios-gtx-260-nv50.rom
+Marc Meledandri <m.meledandri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #74660|text/plain                  |application/octet-stream
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1360625866.E0BAC1.17156
-Date: Mon, 11 Feb 2013 23:37:46 +0000
+--1360625949.c6aeCE1.17255
+Date: Mon, 11 Feb 2013 23:39:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,22 +53,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60704#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:m.meledandri&#64;gmail.com" title="Marc Meledandri &lt;m.meledandri&#64;gmail.com&gt;"> <span class="fn">Marc Meledandri</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=60704">bug 60704</a>
-              from <span class="vcard"><a class="email" href="mailto:m.meledandri&#64;gmail.com" title="Marc Meledandri &lt;m.meledandri&#64;gmail.com&gt;"> <span class="fn">Marc Meledandri</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=74660" name="attach_74660" title="video-bios-gtx-260-nv50.rom">attachment 74660</a> <a href="attachment.cgi?id=74660&amp;action=edit" title="video-bios-gtx-260-nv50.rom">[details]</a></span>
-video-bios-gtx-260-nv50.rom</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #74660 mime type</td>
+           <td>text/plain
+           </td>
+           <td>application/octet-stream
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -77,9 +85,9 @@ video-bios-gtx-260-nv50.rom</pre>
     </body>
 </html>
 
---1360625866.E0BAC1.17156--
+--1360625949.c6aeCE1.17255--
 
---===============0874846228==
+--===============1326897883==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0874846228==--
+--===============1326897883==--
