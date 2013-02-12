@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 60704] [nouveau,
  git regression] - I2C PWM fan control broken on nv50 adt7475 on
  kernels 3.3.x+
-Date: Tue, 12 Feb 2013 01:52:27 +0000
-Message-ID: <bug-60704-8800-EJpzoiwf10@http.bugs.freedesktop.org/>
+Date: Tue, 12 Feb 2013 07:11:31 +0000
+Message-ID: <bug-60704-8800-PLo3RxFXdF@http.bugs.freedesktop.org/>
 References: <bug-60704-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0107412652=="
+Content-Type: multipart/mixed; boundary="===============0748892295=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-60704-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,34 +22,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0107412652==
-Content-Type: multipart/alternative; boundary="1360633947.7d1BaC31.30792"; charset="us-ascii"
+--===============0748892295==
+Content-Type: multipart/alternative; boundary="1360653091.616f2.3406"; charset="us-ascii"
 
 
---1360633947.7d1BaC31.30792
-Date: Tue, 12 Feb 2013 01:52:27 +0000
+--1360653091.616f2.3406
+Date: Tue, 12 Feb 2013 07:11:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=60704
 
---- Comment #4 from Marc Meledandri <m.meledandri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 74661
-  --> https://bugs.freedesktop.org/attachment.cgi?id=74661&action=edit
-git-master-NAK-Bailout-dmesg.log
-
-With kernels 3.4.29, 3.7.3 and the nouveau git master observing:
-
-i2c i2c-4: sendbytes: NAK bailout.
-
-messages in syslog.
+--- Comment #5 from Vincent Pelletier <plr.vincent-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I looked into this issue a year ago, reported the breakage, bisect result and
+my attempts to fix in this thread:
+http://lists.freedesktop.org/archives/nouveau/2012-January/009779.html
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1360633947.7d1BaC31.30792
-Date: Tue, 12 Feb 2013 01:52:27 +0000
+--1360653091.616f2.3406
+Date: Tue, 12 Feb 2013 07:11:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,21 +57,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60704#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60704#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=60704">bug 60704</a>
-              from <span class="vcard"><a class="email" href="mailto:m.meledandri&#64;gmail.com" title="Marc Meledandri &lt;m.meledandri&#64;gmail.com&gt;"> <span class="fn">Marc Meledandri</span></a>
+              from <span class="vcard"><a class="email" href="mailto:plr.vincent&#64;gmail.com" title="Vincent Pelletier &lt;plr.vincent&#64;gmail.com&gt;"> <span class="fn">Vincent Pelletier</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=74661" name="attach_74661" title="git-master-NAK-Bailout-dmesg.log">attachment 74661</a> <a href="attachment.cgi?id=74661&amp;action=edit" title="git-master-NAK-Bailout-dmesg.log">[details]</a></span>
-git-master-NAK-Bailout-dmesg.log
-
-With kernels 3.4.29, 3.7.3 and the nouveau git master observing:
-
-i2c i2c-4: sendbytes: NAK bailout.
-
-messages in syslog.</pre>
+        <pre>I looked into this issue a year ago, reported the breakage, bisect result and
+my attempts to fix in this thread:
+<a href="http://lists.freedesktop.org/archives/nouveau/2012-January/009779.html">http://lists.freedesktop.org/archives/nouveau/2012-January/009779.html</a></pre>
         </div>
       </p>
       <hr>
@@ -89,9 +78,9 @@ messages in syslog.</pre>
     </body>
 </html>
 
---1360633947.7d1BaC31.30792--
+--1360653091.616f2.3406--
 
---===============0107412652==
+--===============0748892295==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0107412652==--
+--===============0748892295==--
