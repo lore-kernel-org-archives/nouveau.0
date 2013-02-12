@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60680] HDMI is connected and has mode,
-	TV says "no signal"
-Date: Tue, 12 Feb 2013 08:50:05 +0000
-Message-ID: <bug-60680-8800-Zv4E3ZzWcc@http.bugs.freedesktop.org/>
-References: <bug-60680-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57350] [nouveau,
+ linux-3.7-rc] Broken cursor and kernel log swamped with trapped
+ reads/writes from BAR/PFIFO_READ/FB
+Date: Tue, 12 Feb 2013 20:08:45 +0000
+Message-ID: <bug-57350-8800-vvvetq6ERI@http.bugs.freedesktop.org/>
+References: <bug-57350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1848857927=="
+Content-Type: multipart/mixed; boundary="===============1728918766=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60680-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +22,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1848857927==
-Content-Type: multipart/alternative; boundary="1360659005.80eEF2.18546"; charset="us-ascii"
+--===============1728918766==
+Content-Type: multipart/alternative; boundary="1360699725.CbDEAC4.1534"; charset="us-ascii"
 
 
---1360659005.80eEF2.18546
-Date: Tue, 12 Feb 2013 08:50:05 +0000
+--1360699725.CbDEAC4.1534
+Date: Tue, 12 Feb 2013 20:08:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60680
+https://bugs.freedesktop.org/show_bug.cgi?id=57350
 
---- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I'm not sure if it'll help, but there's an additional commit (fix missing sor
-modectrl sync flags) which might be related sitting in git.
+--- Comment #16 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Just to be sure we are not chasing two different bugs - can you confirm
+3863c9bc887e9638a9d905d55f6038641ece78d6 is the commit which introduced *this*
+bug?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1360659005.80eEF2.18546
-Date: Tue, 12 Feb 2013 08:50:05 +0000
+--1360699725.CbDEAC4.1534
+Date: Tue, 12 Feb 2013 20:08:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +56,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - HDMI is connected and has mode, TV says &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60680#c4">Comment # 4</a>
+   title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - HDMI is connected and has mode, TV says &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60680">bug 60680</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
+   title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350">bug 57350</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>I'm not sure if it'll help, but there's an additional commit (fix missing sor
-modectrl sync flags) which might be related sitting in git.</pre>
+        <pre>Just to be sure we are not chasing two different bugs - can you confirm
+3863c9bc887e9638a9d905d55f6038641ece78d6 is the commit which introduced *this*
+bug?</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +78,9 @@ modectrl sync flags) which might be related sitting in git.</pre>
     </body>
 </html>
 
---1360659005.80eEF2.18546--
+--1360699725.CbDEAC4.1534--
 
---===============1848857927==
+--===============1728918766==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1848857927==--
+--===============1728918766==--
