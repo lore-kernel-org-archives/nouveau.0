@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57350] [nouveau,
- linux-3.7-rc] Broken cursor and kernel log swamped with trapped
- reads/writes from BAR/PFIFO_READ/FB
-Date: Tue, 12 Feb 2013 21:41:23 +0000
-Message-ID: <bug-57350-8800-qIzH4R8T3C@http.bugs.freedesktop.org/>
-References: <bug-57350-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60772] New: xf86-video-nouveau fails to modprobe
+ nouveau: KMS not enabled
+Date: Wed, 13 Feb 2013 08:59:57 +0000
+Message-ID: <bug-60772-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1823839929=="
+Content-Type: multipart/mixed; boundary="===============0199441287=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,40 +19,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1823839929==
-Content-Type: multipart/alternative; boundary="1360705283.5ebe3a34.19396"; charset="us-ascii"
+--===============0199441287==
+Content-Type: multipart/alternative; boundary="1360745997.db2cb5c01.21638"; charset="us-ascii"
 
 
---1360705283.5ebe3a34.19396
-Date: Tue, 12 Feb 2013 21:41:23 +0000
+--1360745997.db2cb5c01.21638
+Date: Wed, 13 Feb 2013 08:59:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57350
+https://bugs.freedesktop.org/show_bug.cgi?id=60772
 
---- Comment #17 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org> ---
-(In reply to comment #16)
-> Just to be sure we are not chasing two different bugs - can you confirm
-> 3863c9bc887e9638a9d905d55f6038641ece78d6 is the commit which introduced
-> *this* bug?
+          Priority: medium
+            Bug ID: 60772
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: xf86-video-nouveau fails to modprobe nouveau: KMS not
+                    enabled
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: hkmaly-jG/AHqQBv7lBDgjK7y7TUQ@public.gmane.org
+          Hardware: x86 (IA32)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-I can't quickly check, both 3863c9bc887e9638a9d905d55f6038641ece78d6 and
-preceding 8a9b889e668a5bc2f4031015fe4893005c43403d don't compile here (gcc
-4.6.3).
+When nouveau kernel module is build as module and not inserted manually, X
+server won't start with message "[drm] KMS not enabled".
 
-They are failing on redeclaration of NV_* enums in nouveau_drv.h which were
-previously declared in core/include/core/device.h and struct nouveau_engine
-which was previously declared in core/include/core/engine.h
+Older versions (like xf86-video-nouveau-0.0.16) didn't have that problem.
 
-Will look tomorrow evening (CET) at GIT history around those commits in order
-to get it compiling so I can check.
+Reason is in function NVHasKMS, where you FIRST call
+drmCheckModesettingSupported and THEN nouveau_device_open, meaning
+drmCheckModesettingSupported will fail.
+
+When the calls are switched, nouveau_device_open will call modprobe and insert
+the nouveau module, so later drmCheckModesettingSupported works correctly.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1360705283.5ebe3a34.19396
-Date: Tue, 12 Feb 2013 21:41:23 +0000
+--1360745997.db2cb5c01.21638
+Date: Wed, 13 Feb 2013 08:59:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,34 +71,106 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772">60772</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>xf86-video-nouveau fails to modprobe nouveau: KMS not enabled
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>hkmaly&#64;bigfoot.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350#c17">Comment # 17</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350">bug 57350</a>
-              from <span class="vcard"><a class="email" href="mailto:bonbons67&#64;internet.lu" title="Bruno &lt;bonbons67&#64;internet.lu&gt;"> <span class="fn">Bruno</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=57350#c16">comment #16</a>)
-<span class="quote">&gt; Just to be sure we are not chasing two different bugs - can you confirm
-&gt; 3863c9bc887e9638a9d905d55f6038641ece78d6 is the commit which introduced
-&gt; *this* bug?</span >
+        <pre>When nouveau kernel module is build as module and not inserted manually, X
+server won't start with message &quot;[drm] KMS not enabled&quot;.
 
-I can't quickly check, both 3863c9bc887e9638a9d905d55f6038641ece78d6 and
-preceding 8a9b889e668a5bc2f4031015fe4893005c43403d don't compile here (gcc
-4.6.3).
+Older versions (like xf86-video-nouveau-0.0.16) didn't have that problem.
 
-They are failing on redeclaration of NV_* enums in nouveau_drv.h which were
-previously declared in core/include/core/device.h and struct nouveau_engine
-which was previously declared in core/include/core/engine.h
+Reason is in function NVHasKMS, where you FIRST call
+drmCheckModesettingSupported and THEN nouveau_device_open, meaning
+drmCheckModesettingSupported will fail.
 
-Will look tomorrow evening (CET) at GIT history around those commits in order
-to get it compiling so I can check.</pre>
+When the calls are switched, nouveau_device_open will call modprobe and insert
+the nouveau module, so later drmCheckModesettingSupported works correctly.</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +182,9 @@ to get it compiling so I can check.</pre>
     </body>
 </html>
 
---1360705283.5ebe3a34.19396--
+--1360745997.db2cb5c01.21638--
 
---===============1823839929==
+--===============0199441287==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +195,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1823839929==--
+--===============0199441287==--
