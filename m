@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60772] New: xf86-video-nouveau fails to modprobe
- nouveau: KMS not enabled
-Date: Wed, 13 Feb 2013 08:59:57 +0000
-Message-ID: <bug-60772-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
+ garbage/corruption/noise on resume
+Date: Wed, 13 Feb 2013 11:52:09 +0000
+Message-ID: <bug-59168-8800-zoydq6RVyg@http.bugs.freedesktop.org/>
+References: <bug-59168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0199441287=="
+Content-Type: multipart/mixed; boundary="===============0226720618=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,51 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0199441287==
-Content-Type: multipart/alternative; boundary="1360745997.db2cb5c01.21638"; charset="us-ascii"
+--===============0226720618==
+Content-Type: multipart/alternative; boundary="1360756329.B88d22Ac4.19355"; charset="us-ascii"
 
 
---1360745997.db2cb5c01.21638
-Date: Wed, 13 Feb 2013 08:59:57 +0000
+--1360756329.B88d22Ac4.19355
+Date: Wed, 13 Feb 2013 11:52:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60772
+https://bugs.freedesktop.org/show_bug.cgi?id=59168
 
-          Priority: medium
-            Bug ID: 60772
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: xf86-video-nouveau fails to modprobe nouveau: KMS not
-                    enabled
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: hkmaly-jG/AHqQBv7lBDgjK7y7TUQ@public.gmane.org
-          Hardware: x86 (IA32)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #7 from michael.weirauch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Still present on nouveau 3.8.0-rc7 as of 2013-02-13.
 
-When nouveau kernel module is build as module and not inserted manually, X
-server won't start with message "[drm] KMS not enabled".
-
-Older versions (like xf86-video-nouveau-0.0.16) didn't have that problem.
-
-Reason is in function NVHasKMS, where you FIRST call
-drmCheckModesettingSupported and THEN nouveau_device_open, meaning
-drmCheckModesettingSupported will fail.
-
-When the calls are switched, nouveau_device_open will call modprobe and insert
-the nouveau module, so later drmCheckModesettingSupported works correctly.
+Name                          | Typ   | Version                          
+------------------------------+-------+----------------------------------
+Mesa                          | Paket | 9.0.98.83-222.1                  
+kernel                        | Paket | 3.8.0_rc7_1_desktop_nouveau01+-19
+libdrm_nouveau2               | Paket | 2.4.42-109.1                     
+xorg-x11-driver-video-nouveau | Paket | 1.0.6-58.5                       
+xorg-x11-server               | Paket | 7.6_1.13.99.901-226.2
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1360745997.db2cb5c01.21638
-Date: Wed, 13 Feb 2013 08:59:57 +0000
+--1360756329.B88d22Ac4.19355
+Date: Wed, 13 Feb 2013 11:52:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,106 +56,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772">60772</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>xf86-video-nouveau fails to modprobe nouveau: KMS not enabled
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>hkmaly&#64;bigfoot.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86 (IA32)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>When nouveau kernel module is build as module and not inserted manually, X
-server won't start with message &quot;[drm] KMS not enabled&quot;.
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
+              from <span class="vcard"><a class="email" href="mailto:michael.weirauch&#64;gmail.com" title="michael.weirauch&#64;gmail.com">michael.weirauch&#64;gmail.com</a>
+</span></b>
+        <pre>Still present on nouveau 3.8.0-rc7 as of 2013-02-13.
 
-Older versions (like xf86-video-nouveau-0.0.16) didn't have that problem.
-
-Reason is in function NVHasKMS, where you FIRST call
-drmCheckModesettingSupported and THEN nouveau_device_open, meaning
-drmCheckModesettingSupported will fail.
-
-When the calls are switched, nouveau_device_open will call modprobe and insert
-the nouveau module, so later drmCheckModesettingSupported works correctly.</pre>
+Name                          | Typ   | Version                          
+------------------------------+-------+----------------------------------
+Mesa                          | Paket | 9.0.98.83-222.1                  
+kernel                        | Paket | 3.8.0_rc7_1_desktop_nouveau01+-19
+libdrm_nouveau2               | Paket | 2.4.42-109.1                     
+xorg-x11-driver-video-nouveau | Paket | 1.0.6-58.5                       
+xorg-x11-server               | Paket | 7.6_1.13.99.901-226.2</pre>
         </div>
       </p>
       <hr>
@@ -182,9 +89,9 @@ the nouveau module, so later drmCheckModesettingSupported works correctly.</pre>
     </body>
 </html>
 
---1360745997.db2cb5c01.21638--
+--1360756329.B88d22Ac4.19355--
 
---===============0199441287==
+--===============0226720618==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -195,4 +102,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0199441287==--
+--===============0226720618==--
