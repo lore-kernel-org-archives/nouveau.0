@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58378] Distorted graphics on NVIDIA GeForce 8400M G
- after upgrade the kernel to 3.7.0 version
-Date: Thu, 14 Feb 2013 01:20:55 +0000
-Message-ID: <bug-58378-8800-ZLFqUBtQLp@http.bugs.freedesktop.org/>
-References: <bug-58378-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59742] Displayport attached monitor stopped working
+ in xorg and init 3, after kernel upgrade
+Date: Thu, 14 Feb 2013 09:24:34 +0000
+Message-ID: <bug-59742-8800-wppGhy6jlR@http.bugs.freedesktop.org/>
+References: <bug-59742-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0448557508=="
+Content-Type: multipart/mixed; boundary="===============0988686868=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59742-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,45 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0448557508==
-Content-Type: multipart/alternative; boundary="1360804855.3e873.30600"; charset="us-ascii"
+--===============0988686868==
+Content-Type: multipart/alternative; boundary="1360833874.0E1f2bdE1.23959"; charset="us-ascii"
 
 
---1360804855.3e873.30600
-Date: Thu, 14 Feb 2013 01:20:55 +0000
+--1360833874.0E1f2bdE1.23959
+Date: Thu, 14 Feb 2013 09:24:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58378
+https://bugs.freedesktop.org/show_bug.cgi?id=59742
 
---- Comment #8 from nemasu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I am having the same problems post kernel version 3.7.0 with a GeForce 8800
-GTS. Even glxgears will lock up.
+--- Comment #6 from Shawn Sterling <shawn-2Sme3GpZbHwAHsbooYhBx9i2O/JbrIOy@public.gmane.org> ---
+confirmed fixed in 3.7.4-204.
 
-I get a ton of these messages:
-[   83.399004] nouveau  [   PFIFO][0000:01:00.0] CACHE_ERROR - Ch 2/3 Mthd
-0x108c Data 0x2036652f
-
-with the occasional:
-[   83.418650] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 4 MP 1:
-INVALID_OPCODE at 07f4d8 warp 2, opcode 0423c788 10000811
-[   83.418659] nouveau  [  PGRAPH][0000:01:00.0]  TRAP
-[   83.418663] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x0027948000] subc 3
-class 0x5097 mthd 0x0f04 data 0x00000000
-[   83.418672] nouveau E[     PFB][0000:01:00.0] trapped read at 0x0000000000
-on channel 0x00027948 PFIFO/PFIFO_READ/SEMAPHORE reason: DMAOBJ_LIMIT
-[   83.431368] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 4 MP 1:
-INVALID_OPCODE at 07f4d8 warp 2, opcode 0423c788 10000811
-[   83.431376] nouveau  [  PGRAPH][0000:01:00.0]  TRAP
-[   83.431379] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x0027948000] subc 3
-class 0x5097 mthd 0x0f04 data 0x00000000
+Have a good day.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1360804855.3e873.30600
-Date: Thu, 14 Feb 2013 01:20:55 +0000
+--1360833874.0E1f2bdE1.23959
+Date: Thu, 14 Feb 2013 09:24:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,34 +55,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c8">Comment # 8</a>
+   title="NEW --- - Displayport attached monitor stopped working in xorg and init 3, after kernel upgrade"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59742#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:nemasu&#64;gmail.com" title="nemasu&#64;gmail.com">nemasu&#64;gmail.com</a>
+   title="NEW --- - Displayport attached monitor stopped working in xorg and init 3, after kernel upgrade"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59742">bug 59742</a>
+              from <span class="vcard"><a class="email" href="mailto:shawn&#64;systemtemplar.org" title="Shawn Sterling &lt;shawn&#64;systemtemplar.org&gt;"> <span class="fn">Shawn Sterling</span></a>
 </span></b>
-        <pre>I am having the same problems post kernel version 3.7.0 with a GeForce 8800
-GTS. Even glxgears will lock up.
+        <pre>confirmed fixed in 3.7.4-204.
 
-I get a ton of these messages:
-[   83.399004] nouveau  [   PFIFO][0000:01:00.0] CACHE_ERROR - Ch 2/3 Mthd
-0x108c Data 0x2036652f
-
-with the occasional:
-[   83.418650] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 4 MP 1:
-INVALID_OPCODE at 07f4d8 warp 2, opcode 0423c788 10000811
-[   83.418659] nouveau  [  PGRAPH][0000:01:00.0]  TRAP
-[   83.418663] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x0027948000] subc 3
-class 0x5097 mthd 0x0f04 data 0x00000000
-[   83.418672] nouveau E[     PFB][0000:01:00.0] trapped read at 0x0000000000
-on channel 0x00027948 PFIFO/PFIFO_READ/SEMAPHORE reason: DMAOBJ_LIMIT
-[   83.431368] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 4 MP 1:
-INVALID_OPCODE at 07f4d8 warp 2, opcode 0423c788 10000811
-[   83.431376] nouveau  [  PGRAPH][0000:01:00.0]  TRAP
-[   83.431379] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x0027948000] subc 3
-class 0x5097 mthd 0x0f04 data 0x00000000</pre>
+Have a good day.</pre>
         </div>
       </p>
       <hr>
@@ -111,9 +77,9 @@ class 0x5097 mthd 0x0f04 data 0x00000000</pre>
     </body>
 </html>
 
---1360804855.3e873.30600--
+--1360833874.0E1f2bdE1.23959--
 
---===============0448557508==
+--===============0988686868==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0448557508==--
+--===============0988686868==--
