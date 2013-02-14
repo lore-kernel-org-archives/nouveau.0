@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 57350] [nouveau,
  linux-3.7-rc] Broken cursor and kernel log swamped with trapped
  reads/writes from BAR/PFIFO_READ/FB
-Date: Thu, 14 Feb 2013 21:31:35 +0000
-Message-ID: <bug-57350-8800-CiFbB7Y7Kr@http.bugs.freedesktop.org/>
+Date: Thu, 14 Feb 2013 22:07:08 +0000
+Message-ID: <bug-57350-8800-pf00OHAICT@http.bugs.freedesktop.org/>
 References: <bug-57350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1630318858=="
+Content-Type: multipart/mixed; boundary="===============0313721177=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-57350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,41 +22,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1630318858==
-Content-Type: multipart/alternative; boundary="1360877495.7E5ed4.25129"; charset="us-ascii"
+--===============0313721177==
+Content-Type: multipart/alternative; boundary="1360879629.5bCE4.498"; charset="us-ascii"
 
 
---1360877495.7E5ed4.25129
-Date: Thu, 14 Feb 2013 21:31:35 +0000
+--1360879629.5bCE4.498
+Date: Thu, 14 Feb 2013 22:07:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=57350
 
---- Comment #18 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org> ---
-I checked at commit aa4cc5d274c09909fe32861825c2377d0ccb3bfd and the bug is not
-yet present.
-
-I checked at commit 9274f4a9ba7e70d1770e237fca16d52f27f0c728 and the bug is not
-yet present.
-
-Kernel does not build starting with commit
-9458029940ffc64bca0c5a30ea626c377205842e (fails on the redeclarations mentioned
-in comment #17).
-
-Commit 77145f1cbdf8d28b46ff8070ca749bad821e0774 is the first one to build again
-and is affected by the bug.
-
-
-The duplicate NV_* enum may be easy to fix though the struct nouveau_engine
-seems harder to correct.
+--- Comment #19 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Weird, 3863c9bc887e9638a9d905d55f6038641ece78d6 compiles fine here on both gcc
+4.7.2 and 4.6.3. Can you attach compile log?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1360877495.7E5ed4.25129
-Date: Thu, 14 Feb 2013 21:31:35 +0000
+--1360879629.5bCE4.498
+Date: Thu, 14 Feb 2013 22:07:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,29 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350#c18">Comment # 18</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=57350">bug 57350</a>
-              from <span class="vcard"><a class="email" href="mailto:bonbons67&#64;internet.lu" title="Bruno &lt;bonbons67&#64;internet.lu&gt;"> <span class="fn">Bruno</span></a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>I checked at commit aa4cc5d274c09909fe32861825c2377d0ccb3bfd and the bug is not
-yet present.
-
-I checked at commit 9274f4a9ba7e70d1770e237fca16d52f27f0c728 and the bug is not
-yet present.
-
-Kernel does not build starting with commit
-9458029940ffc64bca0c5a30ea626c377205842e (fails on the redeclarations mentioned
-in <a href="show_bug.cgi?id=57350#c17">comment #17</a>).
-
-Commit 77145f1cbdf8d28b46ff8070ca749bad821e0774 is the first one to build again
-and is affected by the bug.
-
-
-The duplicate NV_* enum may be easy to fix though the struct nouveau_engine
-seems harder to correct.</pre>
+        <pre>Weird, 3863c9bc887e9638a9d905d55f6038641ece78d6 compiles fine here on both gcc
+4.7.2 and 4.6.3. Can you attach compile log?</pre>
         </div>
       </p>
       <hr>
@@ -104,9 +76,9 @@ seems harder to correct.</pre>
     </body>
 </html>
 
---1360877495.7E5ed4.25129--
+--1360879629.5bCE4.498--
 
---===============1630318858==
+--===============0313721177==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -117,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1630318858==--
+--===============0313721177==--
