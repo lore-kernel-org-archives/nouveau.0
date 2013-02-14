@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 59742] Displayport attached monitor stopped working
  in xorg and init 3, after kernel upgrade
-Date: Thu, 14 Feb 2013 09:24:34 +0000
-Message-ID: <bug-59742-8800-wppGhy6jlR@http.bugs.freedesktop.org/>
+Date: Thu, 14 Feb 2013 09:24:46 +0000
+Message-ID: <bug-59742-8800-TFMVvJGsql@http.bugs.freedesktop.org/>
 References: <bug-59742-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0988686868=="
+Content-Type: multipart/mixed; boundary="===============2137741329=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-59742-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0988686868==
-Content-Type: multipart/alternative; boundary="1360833874.0E1f2bdE1.23959"; charset="us-ascii"
+--===============2137741329==
+Content-Type: multipart/alternative; boundary="1360833886.BAc0CdC3.23959"; charset="us-ascii"
 
 
---1360833874.0E1f2bdE1.23959
-Date: Thu, 14 Feb 2013 09:24:34 +0000
+--1360833886.BAc0CdC3.23959
+Date: Thu, 14 Feb 2013 09:24:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=59742
 
---- Comment #6 from Shawn Sterling <shawn-2Sme3GpZbHwAHsbooYhBx9i2O/JbrIOy@public.gmane.org> ---
-confirmed fixed in 3.7.4-204.
+Shawn Sterling <shawn-2Sme3GpZbHwAHsbooYhBx9i2O/JbrIOy@public.gmane.org> changed:
 
-Have a good day.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1360833874.0E1f2bdE1.23959
-Date: Thu, 14 Feb 2013 09:24:34 +0000
+--1360833886.BAc0CdC3.23959
+Date: Thu, 14 Feb 2013 09:24:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,23 +52,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Displayport attached monitor stopped working in xorg and init 3, after kernel upgrade"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59742#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Displayport attached monitor stopped working in xorg and init 3, after kernel upgrade"
+    <body><span class="vcard"><a class="email" href="mailto:shawn&#64;systemtemplar.org" title="Shawn Sterling &lt;shawn&#64;systemtemplar.org&gt;"> <span class="fn">Shawn Sterling</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Displayport attached monitor stopped working in xorg and init 3, after kernel upgrade"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=59742">bug 59742</a>
-              from <span class="vcard"><a class="email" href="mailto:shawn&#64;systemtemplar.org" title="Shawn Sterling &lt;shawn&#64;systemtemplar.org&gt;"> <span class="fn">Shawn Sterling</span></a>
-</span></b>
-        <pre>confirmed fixed in 3.7.4-204.
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-Have a good day.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -77,9 +92,9 @@ Have a good day.</pre>
     </body>
 </html>
 
---1360833874.0E1f2bdE1.23959--
+--1360833886.BAc0CdC3.23959--
 
---===============0988686868==
+--===============2137741329==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0988686868==--
+--===============2137741329==--
