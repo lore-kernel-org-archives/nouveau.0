@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59742] Displayport attached monitor stopped working
- in xorg and init 3, after kernel upgrade
-Date: Thu, 14 Feb 2013 09:24:46 +0000
-Message-ID: <bug-59742-8800-TFMVvJGsql@http.bugs.freedesktop.org/>
-References: <bug-59742-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57350] [nouveau,
+ linux-3.7-rc] Broken cursor and kernel log swamped with trapped
+ reads/writes from BAR/PFIFO_READ/FB
+Date: Thu, 14 Feb 2013 21:31:35 +0000
+Message-ID: <bug-57350-8800-CiFbB7Y7Kr@http.bugs.freedesktop.org/>
+References: <bug-57350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2137741329=="
+Content-Type: multipart/mixed; boundary="===============1630318858=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59742-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +22,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2137741329==
-Content-Type: multipart/alternative; boundary="1360833886.BAc0CdC3.23959"; charset="us-ascii"
+--===============1630318858==
+Content-Type: multipart/alternative; boundary="1360877495.7E5ed4.25129"; charset="us-ascii"
 
 
---1360833886.BAc0CdC3.23959
-Date: Thu, 14 Feb 2013 09:24:46 +0000
+--1360877495.7E5ed4.25129
+Date: Thu, 14 Feb 2013 21:31:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59742
+https://bugs.freedesktop.org/show_bug.cgi?id=57350
 
-Shawn Sterling <shawn-2Sme3GpZbHwAHsbooYhBx9i2O/JbrIOy@public.gmane.org> changed:
+--- Comment #18 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org> ---
+I checked at commit aa4cc5d274c09909fe32861825c2377d0ccb3bfd and the bug is not
+yet present.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+I checked at commit 9274f4a9ba7e70d1770e237fca16d52f27f0c728 and the bug is not
+yet present.
+
+Kernel does not build starting with commit
+9458029940ffc64bca0c5a30ea626c377205842e (fails on the redeclarations mentioned
+in comment #17).
+
+Commit 77145f1cbdf8d28b46ff8070ca749bad821e0774 is the first one to build again
+and is affected by the bug.
+
+
+The duplicate NV_* enum may be easy to fix though the struct nouveau_engine
+seems harder to correct.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1360833886.BAc0CdC3.23959
-Date: Thu, 14 Feb 2013 09:24:46 +0000
+--1360877495.7E5ed4.25129
+Date: Thu, 14 Feb 2013 21:31:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,36 +64,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:shawn&#64;systemtemplar.org" title="Shawn Sterling &lt;shawn&#64;systemtemplar.org&gt;"> <span class="fn">Shawn Sterling</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Displayport attached monitor stopped working in xorg and init 3, after kernel upgrade"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59742">bug 59742</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350#c18">Comment # 18</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350">bug 57350</a>
+              from <span class="vcard"><a class="email" href="mailto:bonbons67&#64;internet.lu" title="Bruno &lt;bonbons67&#64;internet.lu&gt;"> <span class="fn">Bruno</span></a>
+</span></b>
+        <pre>I checked at commit aa4cc5d274c09909fe32861825c2377d0ccb3bfd and the bug is not
+yet present.
+
+I checked at commit 9274f4a9ba7e70d1770e237fca16d52f27f0c728 and the bug is not
+yet present.
+
+Kernel does not build starting with commit
+9458029940ffc64bca0c5a30ea626c377205842e (fails on the redeclarations mentioned
+in <a href="show_bug.cgi?id=57350#c17">comment #17</a>).
+
+Commit 77145f1cbdf8d28b46ff8070ca749bad821e0774 is the first one to build again
+and is affected by the bug.
+
+
+The duplicate NV_* enum may be easy to fix though the struct nouveau_engine
+seems harder to correct.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -92,9 +104,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1360833886.BAc0CdC3.23959--
+--1360877495.7E5ed4.25129--
 
---===============2137741329==
+--===============1630318858==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +117,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2137741329==--
+--===============1630318858==--
