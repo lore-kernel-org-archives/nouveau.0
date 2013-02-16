@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60150] [NVAF] Garbled Screen
-Date: Fri, 15 Feb 2013 16:42:08 +0000
-Message-ID: <bug-60150-8800-BQfr5RQFLe@http.bugs.freedesktop.org/>
-References: <bug-60150-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60951] New: xf86-video-nouveau 1.0.6-1: Mouse cursor
+ intermittently disappears, requiring reboot to resolve.
+Date: Sat, 16 Feb 2013 11:54:33 +0000
+Message-ID: <bug-60951-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1993276004=="
+Content-Type: multipart/mixed; boundary="===============1572862941=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60150-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +19,53 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1993276004==
-Content-Type: multipart/alternative; boundary="1360946527.2ceE1.18496"; charset="us-ascii"
+--===============1572862941==
+Content-Type: multipart/alternative; boundary="1361015674.3D38Cb1.12494"; charset="us-ascii"
 
 
---1360946527.2ceE1.18496
-Date: Fri, 15 Feb 2013 16:42:07 +0000
+--1361015674.3D38Cb1.12494
+Date: Sat, 16 Feb 2013 11:54:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60150
+https://bugs.freedesktop.org/show_bug.cgi?id=60951
 
---- Comment #4 from Bastien Dejean <nihilhill-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Are there instructions on how to compile it as a module?
+          Priority: medium
+            Bug ID: 60951
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: xf86-video-nouveau 1.0.6-1: Mouse cursor
+                    intermittently disappears, requiring reboot to
+                    resolve.
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: major
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: cjhandrew-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86 (IA32)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-What should I look for in `/var/log`?
+I'm using Manjaro Linux (an Arch derivative) and the xf86-video-nouveau 1.0.6-1
+driver. When booting the OS, the mouse cursor appears, but for no discernible
+reason, it frequently disappears. I have to reboot to regain the cursor. 
+
+When the cursor disappears, I can still move the mouse, and elements of the GUI
+'gain focus', but I'm unable to do this with any precision.
+
+Please let me know if I can send you any further details.
+
+Thanks,
+
+Chris.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1360946527.2ceE1.18496
-Date: Fri, 15 Feb 2013 16:42:07 +0000
+--1361015674.3D38Cb1.12494
+Date: Sat, 16 Feb 2013 11:54:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,22 +73,107 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - xf86-video-nouveau 1.0.6-1: Mouse cursor intermittently disappears, requiring reboot to resolve."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60951">60951</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>xf86-video-nouveau 1.0.6-1: Mouse cursor intermittently disappears, requiring reboot to resolve.
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>cjhandrew&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAF] Garbled Screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60150#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAF] Garbled Screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60150">bug 60150</a>
-              from <span class="vcard"><a class="email" href="mailto:nihilhill&#64;gmail.com" title="Bastien Dejean &lt;nihilhill&#64;gmail.com&gt;"> <span class="fn">Bastien Dejean</span></a>
-</span></b>
-        <pre>Are there instructions on how to compile it as a module?
+        <pre>I'm using Manjaro Linux (an Arch derivative) and the xf86-video-nouveau 1.0.6-1
+driver. When booting the OS, the mouse cursor appears, but for no discernible
+reason, it frequently disappears. I have to reboot to regain the cursor. 
 
-What should I look for in `/var/log`?</pre>
+When the cursor disappears, I can still move the mouse, and elements of the GUI
+'gain focus', but I'm unable to do this with any precision.
+
+Please let me know if I can send you any further details.
+
+Thanks,
+
+Chris.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +185,9 @@ What should I look for in `/var/log`?</pre>
     </body>
 </html>
 
---1360946527.2ceE1.18496--
+--1361015674.3D38Cb1.12494--
 
---===============1993276004==
+--===============1572862941==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +198,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1993276004==--
+--===============1572862941==--
