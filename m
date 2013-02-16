@@ -1,7 +1,7 @@
 From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 5/7] nouveau: mandate dri2 build
-Date: Sat, 16 Feb 2013 20:48:45 +0000
-Message-ID: <1361047727-740-6-git-send-email-emil.l.velikov@gmail.com>
+Subject: [PATCH 6/7] configure: require xorg-macros 1.8
+Date: Sat, 16 Feb 2013 20:48:46 +0000
+Message-ID: <1361047727-740-7-git-send-email-emil.l.velikov@gmail.com>
 References: <1361047727-740-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -20,58 +20,36 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Building nouveau without dri2 is just silly
+Explicitly check for xorg-macros 1.8, as a subtle hint
+to update your build deps if building your own ddx
 
 Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- configure.ac       |  1 +
- src/nouveau_dri2.c | 16 ++--------------
- 2 files changed, 3 insertions(+), 14 deletions(-)
+ configure.ac | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/configure.ac b/configure.ac
-index 302bd2b..ad5a2ea 100644
+index ad5a2ea..433131d 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -72,6 +72,7 @@ AC_SUBST(LIBDRM_NOUVEAU_CFLAGS)
- AC_SUBST(LIBDRM_NOUVEAU_LIBS)
+@@ -47,6 +47,18 @@ AM_INIT_AUTOMAKE([dist-bzip2])
  
- PKG_CHECK_MODULES(XORG, [xorg-server >= 1.8] xproto fontsproto libdrm $REQUIRED_MODULES)
-+PKG_CHECK_MODULES(DRI2, [dri2proto >= 2.6])
- PKG_CHECK_MODULES(XEXT, [xextproto >= 7.0.99.1],
- 		  HAVE_XEXTPROTO_71="yes"; AC_DEFINE(HAVE_XEXTPROTO_71, 1, [xextproto 7.1 available]),
- 		  HAVE_XEXTPROTO_71="no")
-diff --git a/src/nouveau_dri2.c b/src/nouveau_dri2.c
-index e462a86..9e09038 100644
---- a/src/nouveau_dri2.c
-+++ b/src/nouveau_dri2.c
-@@ -7,9 +7,10 @@
- #include "nv_include.h"
- #ifdef DRI2
- #include "dri2.h"
-+#else
-+#error "This driver requires a DRI2-enabled X server"
- #endif
+ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
  
--#if defined(DRI2) && DRI2INFOREC_VERSION >= 3
- struct nouveau_dri2_buffer {
- 	DRI2BufferRec base;
- 	PixmapPtr ppix;
-@@ -814,16 +815,3 @@ nouveau_dri2_fini(ScreenPtr pScreen)
- {
- 	DRI2CloseScreen(pScreen);
- }
--#else
--Bool
--nouveau_dri2_init(ScreenPtr pScreen)
--{
--	return TRUE;
--}
--
--void
--nouveau_dri2_fini(ScreenPtr pScreen)
--{
--}
--#endif
--
++# Require X.Org macros 1.8 or later for MAN_SUBSTS set by XORG_MANPAGE_SECTIONS
++m4_ifndef([XORG_MACROS_VERSION],
++          [m4_fatal([must install xorg-macros 1.8 or later before running autoconf/autogen])])
++
++XORG_MACROS_VERSION(1.8)
++XORG_DEFAULT_OPTIONS
++
++# Require X.Org server macros (i.e. XORG_DRIVER_CHECK_EXT) to check for required modules 
++m4_ifndef([XORG_DRIVER_CHECK_EXT],
++          [m4_fatal([must install xorg-server macros before running autoconf/autogen])])
++
++
+ # Checks for programs.
+ AC_DISABLE_STATIC
+ LT_INIT
 -- 
 1.8.1.3
