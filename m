@@ -1,7 +1,7 @@
 From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 4/7] dri1: purge the final references
-Date: Sat, 16 Feb 2013 20:48:44 +0000
-Message-ID: <1361047727-740-5-git-send-email-emil.l.velikov@gmail.com>
+Subject: [PATCH 5/7] nouveau: mandate dri2 build
+Date: Sat, 16 Feb 2013 20:48:45 +0000
+Message-ID: <1361047727-740-6-git-send-email-emil.l.velikov@gmail.com>
 References: <1361047727-740-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -20,45 +20,58 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Building nouveau without dri2 is just silly
+
 Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- configure.ac  | 2 +-
- src/nv_type.h | 6 ------
- 2 files changed, 1 insertion(+), 7 deletions(-)
+ configure.ac       |  1 +
+ src/nouveau_dri2.c | 16 ++--------------
+ 2 files changed, 3 insertions(+), 14 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 7535bfe..302bd2b 100644
+index 302bd2b..ad5a2ea 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -71,7 +71,7 @@ PKG_CHECK_MODULES(LIBDRM_NOUVEAU, [libdrm_nouveau >= 2.4.25])
- AC_SUBST(LIBDRM_NOUVEAU_CFLAGS)
+@@ -72,6 +72,7 @@ AC_SUBST(LIBDRM_NOUVEAU_CFLAGS)
  AC_SUBST(LIBDRM_NOUVEAU_LIBS)
  
--PKG_CHECK_MODULES(XORG, [xorg-server >= 1.8] xproto fontsproto libdrm xf86driproto $REQUIRED_MODULES)
-+PKG_CHECK_MODULES(XORG, [xorg-server >= 1.8] xproto fontsproto libdrm $REQUIRED_MODULES)
+ PKG_CHECK_MODULES(XORG, [xorg-server >= 1.8] xproto fontsproto libdrm $REQUIRED_MODULES)
++PKG_CHECK_MODULES(DRI2, [dri2proto >= 2.6])
  PKG_CHECK_MODULES(XEXT, [xextproto >= 7.0.99.1],
  		  HAVE_XEXTPROTO_71="yes"; AC_DEFINE(HAVE_XEXTPROTO_71, 1, [xextproto 7.1 available]),
  		  HAVE_XEXTPROTO_71="no")
-diff --git a/src/nv_type.h b/src/nv_type.h
-index 5963cb6..fc67832 100644
---- a/src/nv_type.h
-+++ b/src/nv_type.h
-@@ -4,16 +4,10 @@
- #include "colormapst.h"
- #include "xf86Cursor.h"
- #include "exa.h"
--#ifdef XF86DRI
--#define _XF86DRI_SERVER_
- #include "xf86drm.h"
--#include "dri.h"
- #include <stdbool.h>
- #include <stdint.h>
- #include "xf86Crtc.h"
--#else
--#error "This driver requires a DRI-enabled X server"
--#endif
+diff --git a/src/nouveau_dri2.c b/src/nouveau_dri2.c
+index e462a86..9e09038 100644
+--- a/src/nouveau_dri2.c
++++ b/src/nouveau_dri2.c
+@@ -7,9 +7,10 @@
+ #include "nv_include.h"
+ #ifdef DRI2
+ #include "dri2.h"
++#else
++#error "This driver requires a DRI2-enabled X server"
+ #endif
  
- #if XF86_CRTC_VERSION >= 5
- #define NOUVEAU_PIXMAP_SHARING 1
+-#if defined(DRI2) && DRI2INFOREC_VERSION >= 3
+ struct nouveau_dri2_buffer {
+ 	DRI2BufferRec base;
+ 	PixmapPtr ppix;
+@@ -814,16 +815,3 @@ nouveau_dri2_fini(ScreenPtr pScreen)
+ {
+ 	DRI2CloseScreen(pScreen);
+ }
+-#else
+-Bool
+-nouveau_dri2_init(ScreenPtr pScreen)
+-{
+-	return TRUE;
+-}
+-
+-void
+-nouveau_dri2_fini(ScreenPtr pScreen)
+-{
+-}
+-#endif
+-
 -- 
 1.8.1.3
