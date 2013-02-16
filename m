@@ -1,7 +1,7 @@
 From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 6/7] configure: require xorg-macros 1.8
-Date: Sat, 16 Feb 2013 20:48:46 +0000
-Message-ID: <1361047727-740-7-git-send-email-emil.l.velikov@gmail.com>
+Subject: [PATCH 7/7] configure: printout the configuration info
+Date: Sat, 16 Feb 2013 20:48:47 +0000
+Message-ID: <1361047727-740-8-git-send-email-emil.l.velikov@gmail.com>
 References: <1361047727-740-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -20,36 +20,38 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Explicitly check for xorg-macros 1.8, as a subtle hint
-to update your build deps if building your own ddx
+Let the bikeshedding begin
 
 Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- configure.ac | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ configure.ac | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
 diff --git a/configure.ac b/configure.ac
-index ad5a2ea..433131d 100644
+index 433131d..50219e9 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -47,6 +47,18 @@ AM_INIT_AUTOMAKE([dist-bzip2])
- 
- m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
- 
-+# Require X.Org macros 1.8 or later for MAN_SUBSTS set by XORG_MANPAGE_SECTIONS
-+m4_ifndef([XORG_MACROS_VERSION],
-+          [m4_fatal([must install xorg-macros 1.8 or later before running autoconf/autogen])])
+@@ -132,3 +132,21 @@ AC_CONFIG_FILES([
+ 	man/Makefile
+ ])
+ AC_OUTPUT
 +
-+XORG_MACROS_VERSION(1.8)
-+XORG_DEFAULT_OPTIONS
++dnl
++dnl Output some configuration info for the user
++dnl
++echo ""
++echo "        prefix:              $prefix"
++echo "        exec_prefix:         $exec_prefix"
++echo "        libdir:              $libdir"
++echo "        includedir:          $includedir"
 +
-+# Require X.Org server macros (i.e. XORG_DRIVER_CHECK_EXT) to check for required modules 
-+m4_ifndef([XORG_DRIVER_CHECK_EXT],
-+          [m4_fatal([must install xorg-server macros before running autoconf/autogen])])
++echo ""
++echo "        CFLAGS:              $CFLAGS"
++echo "        CXXFLAGS:            $CXXFLAGS"
++echo "        Macros:              $DEFINES"
 +
-+
- # Checks for programs.
- AC_DISABLE_STATIC
- LT_INIT
++echo ""
++echo "        Run '${MAKE-make}' to build xf86-video-nouveau"
++echo ""
 -- 
 1.8.1.3
