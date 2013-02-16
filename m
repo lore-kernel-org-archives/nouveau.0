@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60772] xf86-video-nouveau fails to modprobe nouveau:
- KMS not enabled
-Date: Sat, 16 Feb 2013 18:14:15 +0000
-Message-ID: <bug-60772-8800-MntOEN4n1M@http.bugs.freedesktop.org/>
-References: <bug-60772-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Bugfix + dri1 cleanup patches
+Date: Sat, 16 Feb 2013 20:48:40 +0000
+Message-ID: <1361047727-740-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1280155524=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60772-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,81 +18,36 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Had those patches living in my local tree for a while now.
+Here is a respin on top of latest master
 
---===============1280155524==
-Content-Type: multipart/alternative; boundary="1361038455.8Eca1.4314"; charset="us-ascii"
+Patch 1: regression fix,  preventing the ddx from loading if kernel
+module is not loaded
 
+Patches 2-5: Completely nuke dri1, make dri2 hard dependency
 
---1361038455.8Eca1.4314
-Date: Sat, 16 Feb 2013 18:14:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Patches 6-7: Assist people with first-time build of nouveau
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60772
+Git complains about whitespace errors in patch 7, which for the sake
+of me I cannot see
 
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 74945
-  --> https://bugs.freedesktop.org/attachment.cgi?id=74945&action=edit
-Fix
+--
 
-To be honest I am a little confused why your system does not load nouveau at an
-earlier stage, rather than relying on X. Either case this is a valid point
-which I did not consider while writing the original patch
+[PATCH 1/7] nouveau: Check if the device supports modesetting, after
+opening it
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+[PATCH 2/7] nouveau: stop using dri1 function DRICreatePCIBusID
+[PATCH 3/7] nouveau: Do not load dri {sub,}module
+[PATCH 4/7] dri1: purge the final references
+[PATCH 5/7] nouveau: mandate dri2 build
 
---1361038455.8Eca1.4314
-Date: Sat, 16 Feb 2013 18:14:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+[PATCH 6/7] configure: require xorg-macros 1.8
+[PATCH 7/7] configure: printout the configuration info
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772">bug 60772</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=74945" name="attach_74945" title="Fix">attachment 74945</a> <a href="attachment.cgi?id=74945&amp;action=edit" title="Fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=60772&amp;attachment=74945'>[review]</a>
-Fix
+--
 
-To be honest I am a little confused why your system does not load nouveau at an
-earlier stage, rather than relying on X. Either case this is a valid point
-which I did not consider while writing the original patch</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1361038455.8Eca1.4314--
-
---===============1280155524==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1280155524==--
+ configure.ac       | 33 ++++++++++++++++++++++++++++++++-
+ src/nouveau_dri2.c | 16 ++--------------
+ src/nv_driver.c    | 46 +++++++++++++++++-----------------------------
+ src/nv_type.h      |  8 --------
+ 4 files changed, 51 insertions(+), 52 deletions(-)
