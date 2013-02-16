@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50121] [Regression] Since kernel v3.5 several cards
  fail to resume, introduced by: 'convert to exec engine,
  and improve channel sync'
-Date: Sat, 16 Feb 2013 17:14:59 +0000
-Message-ID: <bug-50121-8800-q6J3rotWNh@http.bugs.freedesktop.org/>
+Date: Sat, 16 Feb 2013 17:45:47 +0000
+Message-ID: <bug-50121-8800-ugEfZclrd6@http.bugs.freedesktop.org/>
 References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1946353669=="
+Content-Type: multipart/mixed; boundary="===============1785557006=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,30 +22,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1946353669==
-Content-Type: multipart/alternative; boundary="1361034900.74AF7025.26464"; charset="us-ascii"
+--===============1785557006==
+Content-Type: multipart/alternative; boundary="1361036747.c7AD61Bd5.31585"; charset="us-ascii"
 
 
---1361034900.74AF7025.26464
-Date: Sat, 16 Feb 2013 17:15:00 +0000
+--1361036747.c7AD61Bd5.31585
+Date: Sat, 16 Feb 2013 17:45:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
---- Comment #63 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Did you apply the patch from comment #36?
-
-https://bugs.freedesktop.org/show_bug.cgi?id=50121#c36
-
-Only v3.8 carries the fix.
+--- Comment #64 from Mr-4 <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
+(In reply to comment #63)
+> Only v3.8 carries the fix.
+Nope! My own distro (Fedora, as it turns out) had this patch already in their
+main nv tree as of kernel 3.7.4, so there was no need for me to apply it
+separately - I just built the kernel and had zero problems with my nv card ever
+since.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361034900.74AF7025.26464
-Date: Sat, 16 Feb 2013 17:15:00 +0000
+--1361036747.c7AD61Bd5.31585
+Date: Sat, 16 Feb 2013 17:45:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,21 +60,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c63">Comment # 63</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c64">Comment # 64</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+              from <span class="vcard"><a class="email" href="mailto:mr.dash.four&#64;googlemail.com" title="Mr-4 &lt;mr.dash.four&#64;googlemail.com&gt;"> <span class="fn">Mr-4</span></a>
 </span></b>
-        <pre>Did you apply the patch from <a href="show_bug.cgi?id=50121#c36">comment #36</a>?
-
-<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="show_bug.cgi?id=50121#c36">https://bugs.freedesktop.org/show_bug.cgi?id=50121#c36</a>
-
-Only v3.8 carries the fix.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=50121#c63">comment #63</a>)
+<span class="quote">&gt; Only v3.8 carries the fix.</span >
+Nope! My own distro (Fedora, as it turns out) had this patch already in their
+main nv tree as of kernel 3.7.4, so there was no need for me to apply it
+separately - I just built the kernel and had zero problems with my nv card ever
+since.</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +84,9 @@ Only v3.8 carries the fix.</pre>
     </body>
 </html>
 
---1361034900.74AF7025.26464--
+--1361036747.c7AD61Bd5.31585--
 
---===============1946353669==
+--===============1785557006==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1946353669==--
+--===============1785557006==--
