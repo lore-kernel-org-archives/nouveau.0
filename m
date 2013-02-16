@@ -1,7 +1,7 @@
 From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 3/7] nouveau: Do not load dri {sub,}module
-Date: Sat, 16 Feb 2013 20:48:43 +0000
-Message-ID: <1361047727-740-4-git-send-email-emil.l.velikov@gmail.com>
+Subject: [PATCH 4/7] dri1: purge the final references
+Date: Sat, 16 Feb 2013 20:48:44 +0000
+Message-ID: <1361047727-740-5-git-send-email-emil.l.velikov@gmail.com>
 References: <1361047727-740-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -20,63 +20,45 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Nouveau does not use dri1, thus loading XFree86-DRI is not needed
-On the other hand, we do use dri2
-
-As a side effect, purge the 'set-but-unused' variable pLibDRMVersion
-
 Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- src/nv_driver.c | 19 +++----------------
- src/nv_type.h   |  2 --
- 2 files changed, 3 insertions(+), 18 deletions(-)
+ configure.ac  | 2 +-
+ src/nv_type.h | 6 ------
+ 2 files changed, 1 insertion(+), 7 deletions(-)
 
-diff --git a/src/nv_driver.c b/src/nv_driver.c
-index 2b2f698..f10da00 100644
---- a/src/nv_driver.c
-+++ b/src/nv_driver.c
-@@ -633,26 +633,13 @@ static Bool
- NVDRIGetVersion(ScrnInfoPtr pScrn)
- {
- 	NVPtr pNv = NVPTR(pScrn);
--	int errmaj, errmin;
--	pointer ret;
+diff --git a/configure.ac b/configure.ac
+index 7535bfe..302bd2b 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -71,7 +71,7 @@ PKG_CHECK_MODULES(LIBDRM_NOUVEAU, [libdrm_nouveau >= 2.4.25])
+ AC_SUBST(LIBDRM_NOUVEAU_CFLAGS)
+ AC_SUBST(LIBDRM_NOUVEAU_LIBS)
  
--	ret = LoadSubModule(pScrn->module, "dri", NULL, NULL, NULL,
--			    NULL, &errmaj, &errmin);
--	if (!ret) {
--		xf86DrvMsg(pScrn->scrnIndex, X_INFO,
--				"error %d\n", errmaj);
--		LoaderErrorMsg(pScrn->name, "dri", errmaj, errmin);
--	}
--
--	if (!ret && errmaj != LDR_ONCEONLY)
-+	if (!xf86LoadSubModule(pScrn, "dri2"))
- 		return FALSE;
- 
--	xf86DrvMsg(pScrn->scrnIndex, X_INFO, "Loaded DRI module\n");
--
- 	/* Check the lib version */
--	if (xf86LoaderCheckSymbol("drmGetLibVersion"))
--		pNv->pLibDRMVersion = drmGetLibVersion(0);
--	if (pNv->pLibDRMVersion == NULL) {
-+	if ((xf86LoaderCheckSymbol("drmGetLibVersion")) &&
-+	    (drmGetLibVersion(pNv->dev->fd) == NULL)) {
- 		xf86DrvMsg(pScrn->scrnIndex, X_ERROR,
- 		"NVDRIGetVersion failed because libDRM is really "
- 		"way to old to even get a version number out of it.\n"
+-PKG_CHECK_MODULES(XORG, [xorg-server >= 1.8] xproto fontsproto libdrm xf86driproto $REQUIRED_MODULES)
++PKG_CHECK_MODULES(XORG, [xorg-server >= 1.8] xproto fontsproto libdrm $REQUIRED_MODULES)
+ PKG_CHECK_MODULES(XEXT, [xextproto >= 7.0.99.1],
+ 		  HAVE_XEXTPROTO_71="yes"; AC_DEFINE(HAVE_XEXTPROTO_71, 1, [xextproto 7.1 available]),
+ 		  HAVE_XEXTPROTO_71="no")
 diff --git a/src/nv_type.h b/src/nv_type.h
-index ed21c6d..5963cb6 100644
+index 5963cb6..fc67832 100644
 --- a/src/nv_type.h
 +++ b/src/nv_type.h
-@@ -69,8 +69,6 @@ typedef struct _NVRec {
+@@ -4,16 +4,10 @@
+ #include "colormapst.h"
+ #include "xf86Cursor.h"
+ #include "exa.h"
+-#ifdef XF86DRI
+-#define _XF86DRI_SERVER_
+ #include "xf86drm.h"
+-#include "dri.h"
+ #include <stdbool.h>
+ #include <stdint.h>
+ #include "xf86Crtc.h"
+-#else
+-#error "This driver requires a DRI-enabled X server"
+-#endif
  
-     CARD32              currentRop;
- 
--    drmVersionPtr       pLibDRMVersion;
--
- 	void *drmmode; /* for KMS */
- 
- 	/* DRM interface */
+ #if XF86_CRTC_VERSION >= 5
+ #define NOUVEAU_PIXMAP_SHARING 1
 -- 
 1.8.1.3
