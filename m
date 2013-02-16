@@ -1,13 +1,12 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 7/7] configure: printout the configuration info
-Date: Sat, 16 Feb 2013 20:48:47 +0000
-Message-ID: <1361047727-740-8-git-send-email-emil.l.velikov@gmail.com>
-References: <1361047727-740-1-git-send-email-emil.l.velikov@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 60510] Firefox 18.0.2 Crash On Nvidia GeForce2
+Date: Sat, 16 Feb 2013 22:31:49 +0000
+Message-ID: <bug-60510-8800-OPssGfAg0N@http.bugs.freedesktop.org/>
+References: <bug-60510-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0621748463=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1361047727-740-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-60510-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,38 +19,79 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Let the bikeshedding begin
 
-Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- configure.ac | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+--===============0621748463==
+Content-Type: multipart/alternative; boundary="1361053910.EfA8DA675.16101"; charset="us-ascii"
 
-diff --git a/configure.ac b/configure.ac
-index 433131d..50219e9 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -132,3 +132,21 @@ AC_CONFIG_FILES([
- 	man/Makefile
- ])
- AC_OUTPUT
-+
-+dnl
-+dnl Output some configuration info for the user
-+dnl
-+echo ""
-+echo "        prefix:              $prefix"
-+echo "        exec_prefix:         $exec_prefix"
-+echo "        libdir:              $libdir"
-+echo "        includedir:          $includedir"
-+
-+echo ""
-+echo "        CFLAGS:              $CFLAGS"
-+echo "        CXXFLAGS:            $CXXFLAGS"
-+echo "        Macros:              $DEFINES"
-+
-+echo ""
-+echo "        Run '${MAKE-make}' to build xf86-video-nouveau"
-+echo ""
+
+--1361053910.EfA8DA675.16101
+Date: Sat, 16 Feb 2013 22:31:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=60510
+
+--- Comment #3 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 74956
+  --> https://bugs.freedesktop.org/attachment.cgi?id=74956&action=edit
+mesa fix
+
+This patch will suppress those "illegal object class: 0x99" messages and
+probably fix firefox crashes.
+
 -- 
-1.8.1.3
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1361053910.EfA8DA675.16101
+Date: Sat, 16 Feb 2013 22:31:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - Firefox 18.0.2 Crash On Nvidia GeForce2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60510#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - Firefox 18.0.2 Crash On Nvidia GeForce2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60510">bug 60510</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=74956" name="attach_74956" title="mesa fix">attachment 74956</a> <a href="attachment.cgi?id=74956&amp;action=edit" title="mesa fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=60510&amp;attachment=74956'>[review]</a>
+mesa fix
+
+This patch will suppress those &quot;illegal object class: 0x99&quot; messages and
+probably fix firefox crashes.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1361053910.EfA8DA675.16101--
+
+--===============0621748463==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0621748463==--
