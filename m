@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 57350] [nouveau,
  linux-3.7-rc] Broken cursor and kernel log swamped with trapped
  reads/writes from BAR/PFIFO_READ/FB
-Date: Sun, 17 Feb 2013 17:44:05 +0000
-Message-ID: <bug-57350-8800-SgpT0kltob@http.bugs.freedesktop.org/>
+Date: Sun, 17 Feb 2013 18:16:42 +0000
+Message-ID: <bug-57350-8800-YouvRALoMP@http.bugs.freedesktop.org/>
 References: <bug-57350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0412701583=="
+Content-Type: multipart/mixed; boundary="===============1835168634=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-57350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,31 +22,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0412701583==
-Content-Type: multipart/alternative; boundary="1361123045.6bB44.18788"; charset="us-ascii"
+--===============1835168634==
+Content-Type: multipart/alternative; boundary="1361125003.B6e7bb4.23674"; charset="us-ascii"
 
 
---1361123045.6bB44.18788
-Date: Sun, 17 Feb 2013 17:44:05 +0000
+--1361125003.B6e7bb4.23674
+Date: Sun, 17 Feb 2013 18:16:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=57350
 
---- Comment #24 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org> ---
-It seems that there is a fix for this issue in nouveau/master tough that kernel
-stalls on click to open menu in enlightenment 0.17.1 [compositing enabled]...
-
-And once the stall has happened, the GPU seems rather confused, OSX wont
-successfully start anymore and older Linux kernels show incorrectly tiled
-content with nouveau (nouveaufb) while EFIFB gets things displayed as usual.
+--- Comment #25 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Note that one recent commit in xf86-video-nouveau
+(http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=912d418fdfd2e99eef1e5c631c76dda1d82cf451)
+may reduce visibility of this bug... Did you update xf86-video-nouveau too?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361123045.6bB44.18788
-Date: Sun, 17 Feb 2013 17:44:05 +0000
+--1361125003.B6e7bb4.23674
+Date: Sun, 17 Feb 2013 18:16:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,19 +57,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350#c24">Comment # 24</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350#c25">Comment # 25</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=57350">bug 57350</a>
-              from <span class="vcard"><a class="email" href="mailto:bonbons67&#64;internet.lu" title="Bruno &lt;bonbons67&#64;internet.lu&gt;"> <span class="fn">Bruno</span></a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>It seems that there is a fix for this issue in nouveau/master tough that kernel
-stalls on click to open menu in enlightenment 0.17.1 [compositing enabled]...
-
-And once the stall has happened, the GPU seems rather confused, OSX wont
-successfully start anymore and older Linux kernels show incorrectly tiled
-content with nouveau (nouveaufb) while EFIFB gets things displayed as usual.</pre>
+        <pre>Note that one recent commit in xf86-video-nouveau
+(<a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=912d418fdfd2e99eef1e5c631c76dda1d82cf451">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=912d418fdfd2e99eef1e5c631c76dda1d82cf451</a>)
+may reduce visibility of this bug... Did you update xf86-video-nouveau too?</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +78,9 @@ content with nouveau (nouveaufb) while EFIFB gets things displayed as usual.</pr
     </body>
 </html>
 
---1361123045.6bB44.18788--
+--1361125003.B6e7bb4.23674--
 
---===============0412701583==
+--===============1835168634==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0412701583==--
+--===============1835168634==--
