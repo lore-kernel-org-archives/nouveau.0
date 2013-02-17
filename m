@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57350] [nouveau,
- linux-3.7-rc] Broken cursor and kernel log swamped with trapped
- reads/writes from BAR/PFIFO_READ/FB
-Date: Sun, 17 Feb 2013 18:16:42 +0000
-Message-ID: <bug-57350-8800-YouvRALoMP@http.bugs.freedesktop.org/>
-References: <bug-57350-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58261] [NV34] Display all whited out
+Date: Sun, 17 Feb 2013 19:46:27 +0000
+Message-ID: <bug-58261-8800-14VGV274CE@http.bugs.freedesktop.org/>
+References: <bug-58261-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1835168634=="
+Content-Type: multipart/mixed; boundary="===============0965703606=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58261-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1835168634==
-Content-Type: multipart/alternative; boundary="1361125003.B6e7bb4.23674"; charset="us-ascii"
+--===============0965703606==
+Content-Type: multipart/alternative; boundary="1361130387.FcaFf243.5931"; charset="us-ascii"
 
 
---1361125003.B6e7bb4.23674
-Date: Sun, 17 Feb 2013 18:16:43 +0000
+--1361130387.FcaFf243.5931
+Date: Sun, 17 Feb 2013 19:46:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57350
+https://bugs.freedesktop.org/show_bug.cgi?id=58261
 
---- Comment #25 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Note that one recent commit in xf86-video-nouveau
-(http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=912d418fdfd2e99eef1e5c631c76dda1d82cf451)
-may reduce visibility of this bug... Did you update xf86-video-nouveau too?
+--- Comment #6 from Alex Buell <alex.buell-jGvEqXBO6G6HXe+LvDLADg@public.gmane.org> ---
+Created attachment 75002
+  --> https://bugs.freedesktop.org/attachment.cgi?id=75002&action=edit
+Dmesg for 3.6.0 (working)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361125003.B6e7bb4.23674
-Date: Sun, 17 Feb 2013 18:16:43 +0000
+--1361130387.FcaFf243.5931
+Date: Sun, 17 Feb 2013 19:46:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,17 +54,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350#c25">Comment # 25</a>
+   title="NEW --- - [NV34] Display all whited out"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58261#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350">bug 57350</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+   title="NEW --- - [NV34] Display all whited out"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58261">bug 58261</a>
+              from <span class="vcard"><a class="email" href="mailto:alex.buell&#64;munted.eu" title="Alex Buell &lt;alex.buell&#64;munted.eu&gt;"> <span class="fn">Alex Buell</span></a>
 </span></b>
-        <pre>Note that one recent commit in xf86-video-nouveau
-(<a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=912d418fdfd2e99eef1e5c631c76dda1d82cf451">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=912d418fdfd2e99eef1e5c631c76dda1d82cf451</a>)
-may reduce visibility of this bug... Did you update xf86-video-nouveau too?</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=75002" name="attach_75002" title="Dmesg for 3.6.0 (working)">attachment 75002</a> <a href="attachment.cgi?id=75002&amp;action=edit" title="Dmesg for 3.6.0 (working)">[details]</a></span>
+Dmesg for 3.6.0 (working)</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +75,9 @@ may reduce visibility of this bug... Did you update xf86-video-nouveau too?</pre
     </body>
 </html>
 
---1361125003.B6e7bb4.23674--
+--1361130387.FcaFf243.5931--
 
---===============1835168634==
+--===============0965703606==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1835168634==--
+--===============0965703606==--
