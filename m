@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 60772] xf86-video-nouveau fails to modprobe nouveau:
  KMS not enabled
-Date: Mon, 18 Feb 2013 09:59:51 +0000
-Message-ID: <bug-60772-8800-hxRYxKWiqI@http.bugs.freedesktop.org/>
+Date: Mon, 18 Feb 2013 10:37:27 +0000
+Message-ID: <bug-60772-8800-mT1tos899m@http.bugs.freedesktop.org/>
 References: <bug-60772-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2006135936=="
+Content-Type: multipart/mixed; boundary="===============1839160478=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-60772-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2006135936==
-Content-Type: multipart/alternative; boundary="1361181590.7F0431.8656"; charset="us-ascii"
+--===============1839160478==
+Content-Type: multipart/alternative; boundary="1361183847.477eAC1.17581"; charset="us-ascii"
 
 
---1361181590.7F0431.8656
-Date: Mon, 18 Feb 2013 09:59:50 +0000
+--1361183847.477eAC1.17581
+Date: Mon, 18 Feb 2013 10:37:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=60772
 
---- Comment #3 from Honza <hkmaly-jG/AHqQBv7lBDgjK7y7TUQ@public.gmane.org> ---
-Probably due to the fact that lacking boot splash image, there is nothing which
-would need the nouveau before :-).
+--- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This case reminds me XKCD's "Workflow" [1]
 
-(I have standard VGA text screen before loading X and I don't see any reason to
-change that - it may prove usefull in case of some problems and without
-problems I'm starting X immediately anyway.)
+Please note that KMS is not only about "shiny boot splash". Here is a snippet
+from Arch's Wiki [2]
 
-Thanks for fix. I'll test it after reboot.
+"...
+Kernel Mode Setting (KMS) is a method for setting display resolution and depth
+in the kernel space rather than user space.
+...
+even kernel space power-saving.
+..."
+
+Not to mention that there were(are) a few cases where the handover
+(vga->nouveau) was causing issues. With that said I believe that udev(or
+similar in your case/distro) should kick in and load nouveau before X
+
+Personally I do not feel to strong either way, thus it may boil down to
+convincing the maintainer that "nouveau kernel module should not be loaded
+before X" :) . In which case this patch will be committed
+
+[1] http://xkcd.com/1172/
+[2] https://wiki.archlinux.org/index.php/Kernel_Mode_Setting
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361181590.7F0431.8656
-Date: Mon, 18 Feb 2013 09:59:50 +0000
+--1361183847.477eAC1.17581
+Date: Mon, 18 Feb 2013 10:37:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,21 +75,35 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=60772">bug 60772</a>
-              from <span class="vcard"><a class="email" href="mailto:hkmaly&#64;bigfoot.com" title="Honza &lt;hkmaly&#64;bigfoot.com&gt;"> <span class="fn">Honza</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Probably due to the fact that lacking boot splash image, there is nothing which
-would need the nouveau before :-).
+        <pre>This case reminds me XKCD's &quot;Workflow&quot; [1]
 
-(I have standard VGA text screen before loading X and I don't see any reason to
-change that - it may prove usefull in case of some problems and without
-problems I'm starting X immediately anyway.)
+Please note that KMS is not only about &quot;shiny boot splash&quot;. Here is a snippet
+from Arch's Wiki [2]
 
-Thanks for fix. I'll test it after reboot.</pre>
+&quot;...
+Kernel Mode Setting (KMS) is a method for setting display resolution and depth
+in the kernel space rather than user space.
+...
+even kernel space power-saving.
+...&quot;
+
+Not to mention that there were(are) a few cases where the handover
+(vga-&gt;nouveau) was causing issues. With that said I believe that udev(or
+similar in your case/distro) should kick in and load nouveau before X
+
+Personally I do not feel to strong either way, thus it may boil down to
+convincing the maintainer that &quot;nouveau kernel module should not be loaded
+before X&quot; :) . In which case this patch will be committed
+
+[1] <a href="http://xkcd.com/1172/">http://xkcd.com/1172/</a>
+[2] <a href="https://wiki.archlinux.org/index.php/Kernel_Mode_Setting">https://wiki.archlinux.org/index.php/Kernel_Mode_Setting</a></pre>
         </div>
       </p>
       <hr>
@@ -87,9 +115,9 @@ Thanks for fix. I'll test it after reboot.</pre>
     </body>
 </html>
 
---1361181590.7F0431.8656--
+--1361183847.477eAC1.17581--
 
---===============2006135936==
+--===============1839160478==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +128,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2006135936==--
+--===============1839160478==--
