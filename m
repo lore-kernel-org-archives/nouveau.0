@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57350] [nouveau,
- linux-3.7-rc] Broken cursor and kernel log swamped with trapped
- reads/writes from BAR/PFIFO_READ/FB
-Date: Mon, 18 Feb 2013 19:44:17 +0000
-Message-ID: <bug-57350-8800-AaL3fBtz0A@http.bugs.freedesktop.org/>
-References: <bug-57350-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60772] xf86-video-nouveau fails to modprobe nouveau:
+ KMS not enabled
+Date: Mon, 18 Feb 2013 21:28:50 +0000
+Message-ID: <bug-60772-8800-N4DGOak8sr@http.bugs.freedesktop.org/>
+References: <bug-60772-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1574423655=="
+Content-Type: multipart/mixed; boundary="===============0813564254=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-60772-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,51 +21,58 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1574423655==
-Content-Type: multipart/alternative; boundary="1361216657.6d2B24.22226"; charset="us-ascii"
+--===============0813564254==
+Content-Type: multipart/alternative; boundary="1361222930.BAd5f8281.9792"; charset="us-ascii"
 
 
---1361216657.6d2B24.22226
-Date: Mon, 18 Feb 2013 19:44:17 +0000
+--1361222930.BAd5f8281.9792
+Date: Mon, 18 Feb 2013 21:28:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57350
+https://bugs.freedesktop.org/show_bug.cgi?id=60772
 
---- Comment #26 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org> ---
-(In reply to comment #23)
-> in-tree
+--- Comment #6 from Honza <hkmaly-jG/AHqQBv7lBDgjK7y7TUQ@public.gmane.org> ---
+Should I post this bug on http://www.explainxkcd.com/wiki/index.php?title=1172
+:-) ?
 
-Yes, compiling in-tree does work... so includes search paths somehow are broken
-between those two revisions I mentioned in comment #18 when building
-out-of-tree. Not so good.
+I repeat: there is NO mode switch in my workflow before starting X, therefore
+no need for KMS. Power saving is also not needed, as I'm starting the X in five
+minutes, usually faster.
 
-(In reply to comment #25)
-> Note that one recent commit in xf86-video-nouveau
-> (912d418fdfd2e99eef1e5c631c76dda1d82cf451) may reduce visibility of this
-> bug... Did you update xf86-video-nouveau too?
+Also, remembered another advantage of this setup. I could decide to start the
+proprietary nvidia driver instead of nouveau. (If it's still possible to
+compile it against current kernel, I must admit I didn't checked lately.)
 
-No, I just updated kernel. For userspace I'm still on xf86-video-nouveau-1.0.4,
-libdrm-2.4.40, mesa-9.0.1 and xorg-server-1.13.1
-The nouveau/master commit I tried was 43b629c047... (drm/nouveau: Fix DPMS 1 on
-G4 Snowball, from snow white to coal black) by Stefan de Konink.
+I don't have nouveau blacklisted, that's easy enough to check :-). In fact, I
+don't have it mentioned in module configuration at all, meaning kernel shows
+great amount of intelligence by finding it. I think following lines from
+/var/log/hotplug relates:
 
-(In reply to comment #16)
-> Just to be sure we are not chasing two different bugs - can you confirm
-> 3863c9bc887e9638a9d905d55f6038641ece78d6 is the commit which introduced
-> *this* bug?
+Mon Feb 18 09:59:22 CET 2013: module add /module/cfbfillrect
+Mon Feb 18 09:59:22 CET 2013: module add /module/cfbimgblt
+Mon Feb 18 09:59:22 CET 2013: module add /module/video
+Mon Feb 18 09:59:22 CET 2013: drivers add /bus/acpi/drivers/video
+Mon Feb 18 09:59:22 CET 2013: module add /module/wmi
+Mon Feb 18 09:59:22 CET 2013: drivers add /bus/acpi/drivers/wmi
+Mon Feb 18 09:59:22 CET 2013: class add /class/wmi
+Mon Feb 18 09:59:22 CET 2013: module add /module/mxm_wmi
+Mon Feb 18 09:59:22 CET 2013: module add /module/cfbcopyarea
+Mon Feb 18 09:59:22 CET 2013: module add /module/drm_kms_helper
+Mon Feb 18 09:59:22 CET 2013: module add /module/ttm
+Mon Feb 18 09:59:22 CET 2013: drm add /devices/virtual/drm/ttm
+Mon Feb 18 09:59:23 CET 2013: module add /module/nouveau
 
-Bug present in 3863c9bc887e9638a9d905d55f6038641ece78d6.
-Bug not present in preceding 8a9b889e668a5bc2f4031015fe4893005c43403d.
-
-So yes, I can confirm.
+Also, apparently I'm using http://linux-hotplug.sourceforge.net ... not sure
+about udev. I have it installed, but no daemon is running. Still, before you
+changed the xf86-video-nouveau, I had no problems.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361216657.6d2B24.22226
-Date: Mon, 18 Feb 2013 19:44:17 +0000
+--1361222930.BAd5f8281.9792
+Date: Mon, 18 Feb 2013 21:28:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -79,40 +85,47 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350#c26">Comment # 26</a>
+   title="NEW --- - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350">bug 57350</a>
-              from <span class="vcard"><a class="email" href="mailto:bonbons67&#64;internet.lu" title="Bruno &lt;bonbons67&#64;internet.lu&gt;"> <span class="fn">Bruno</span></a>
+   title="NEW --- - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772">bug 60772</a>
+              from <span class="vcard"><a class="email" href="mailto:hkmaly&#64;bigfoot.com" title="Honza &lt;hkmaly&#64;bigfoot.com&gt;"> <span class="fn">Honza</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=57350#c23">comment #23</a>)
-<span class="quote">&gt; in-tree</span >
+        <pre>Should I post this bug on <a href="http://www.explainxkcd.com/wiki/index.php?title=1172">http://www.explainxkcd.com/wiki/index.php?title=1172</a>
+:-) ?
 
-Yes, compiling in-tree does work... so includes search paths somehow are broken
-between those two revisions I mentioned in <a href="show_bug.cgi?id=57350#c18">comment #18</a> when building
-out-of-tree. Not so good.
+I repeat: there is NO mode switch in my workflow before starting X, therefore
+no need for KMS. Power saving is also not needed, as I'm starting the X in five
+minutes, usually faster.
 
-(In reply to <a href="show_bug.cgi?id=57350#c25">comment #25</a>)
-<span class="quote">&gt; Note that one recent commit in xf86-video-nouveau
-&gt; (912d418fdfd2e99eef1e5c631c76dda1d82cf451) may reduce visibility of this
-&gt; bug... Did you update xf86-video-nouveau too?</span >
+Also, remembered another advantage of this setup. I could decide to start the
+proprietary nvidia driver instead of nouveau. (If it's still possible to
+compile it against current kernel, I must admit I didn't checked lately.)
 
-No, I just updated kernel. For userspace I'm still on xf86-video-nouveau-1.0.4,
-libdrm-2.4.40, mesa-9.0.1 and xorg-server-1.13.1
-The nouveau/master commit I tried was 43b629c047... (drm/nouveau: Fix DPMS 1 on
-G4 Snowball, from snow white to coal black) by Stefan de Konink.
+I don't have nouveau blacklisted, that's easy enough to check :-). In fact, I
+don't have it mentioned in module configuration at all, meaning kernel shows
+great amount of intelligence by finding it. I think following lines from
+/var/log/hotplug relates:
 
-(In reply to <a href="show_bug.cgi?id=57350#c16">comment #16</a>)
-<span class="quote">&gt; Just to be sure we are not chasing two different bugs - can you confirm
-&gt; 3863c9bc887e9638a9d905d55f6038641ece78d6 is the commit which introduced
-&gt; *this* bug?</span >
+Mon Feb 18 09:59:22 CET 2013: module add /module/cfbfillrect
+Mon Feb 18 09:59:22 CET 2013: module add /module/cfbimgblt
+Mon Feb 18 09:59:22 CET 2013: module add /module/video
+Mon Feb 18 09:59:22 CET 2013: drivers add /bus/acpi/drivers/video
+Mon Feb 18 09:59:22 CET 2013: module add /module/wmi
+Mon Feb 18 09:59:22 CET 2013: drivers add /bus/acpi/drivers/wmi
+Mon Feb 18 09:59:22 CET 2013: class add /class/wmi
+Mon Feb 18 09:59:22 CET 2013: module add /module/mxm_wmi
+Mon Feb 18 09:59:22 CET 2013: module add /module/cfbcopyarea
+Mon Feb 18 09:59:22 CET 2013: module add /module/drm_kms_helper
+Mon Feb 18 09:59:22 CET 2013: module add /module/ttm
+Mon Feb 18 09:59:22 CET 2013: drm add /devices/virtual/drm/ttm
+Mon Feb 18 09:59:23 CET 2013: module add /module/nouveau
 
-Bug present in 3863c9bc887e9638a9d905d55f6038641ece78d6.
-Bug not present in preceding 8a9b889e668a5bc2f4031015fe4893005c43403d.
-
-So yes, I can confirm.</pre>
+Also, apparently I'm using <a href="http://linux-hotplug.sourceforge.net">http://linux-hotplug.sourceforge.net</a> ... not sure
+about udev. I have it installed, but no daemon is running. Still, before you
+changed the xf86-video-nouveau, I had no problems.</pre>
         </div>
       </p>
       <hr>
@@ -124,9 +137,9 @@ So yes, I can confirm.</pre>
     </body>
 </html>
 
---1361216657.6d2B24.22226--
+--1361222930.BAd5f8281.9792--
 
---===============1574423655==
+--===============0813564254==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -137,4 +150,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1574423655==--
+--===============0813564254==--
