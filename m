@@ -1,14 +1,13 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCHv2] nouveau: call drmCheckModesettingSupported
-	after opening the device
-Date: Mon, 18 Feb 2013 22:14:55 +0000
-Message-ID: <1361225695-6797-1-git-send-email-emil.l.velikov@gmail.com>
-References: <1361047727-740-2-git-send-email-emil.l.velikov@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 60772] xf86-video-nouveau fails to modprobe nouveau:
+ KMS not enabled
+Date: Mon, 18 Feb 2013 22:20:53 +0000
+Message-ID: <bug-60772-8800-zwtGTpmfMP@http.bugs.freedesktop.org/>
+References: <bug-60772-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0333341669=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1361047727-740-2-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-60772-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,69 +20,80 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-If the kernel module is not yet loaded X will fail to load with
-"[drm] KMS not enabled". Some of the cases which may lead to this are
 
-* using hotplug
-* blacklisted nouveau
+--===============0333341669==
+Content-Type: multipart/alternative; boundary="1361226053.Be7Ed41.18586"; charset="us-ascii"
 
-The issue was caused by commit
 
-    commit e34cfbd5bd23f7f15372af52d8a39a5715ce7310
-    Author: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-    Date:   Fri Nov 2 03:57:41 2012 +0000
+--1361226053.Be7Ed41.18586
+Date: Mon, 18 Feb 2013 22:20:53 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-        nouveau: Factor out common code to NVHasKMS()
+https://bugs.freedesktop.org/show_bug.cgi?id=60772
 
-        As the name suggests checks if it has kernel mode setting,
-        prints out the interface version and checkes if the chipset
-        is supported
+--- Comment #7 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks for the information guys. All of those are valid cases which I have not
+thought of (and to be honest this is the first time I've heard about
+linux-hotplug)
 
-        Function is used in NVPciProbe and NVPlatformProbe
+The patch has been posted on the mailing list, and I hope it will be pushed in
+due course. With a slightly more sensible commit message
 
-Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=60772
-Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
-v2: More sensible commit message
-
- src/nv_driver.c | 15 +++++++--------
- 1 file changed, 7 insertions(+), 8 deletions(-)
-
-diff --git a/src/nv_driver.c b/src/nv_driver.c
-index 9f62fe2..b1410f5 100644
---- a/src/nv_driver.c
-+++ b/src/nv_driver.c
-@@ -260,17 +260,10 @@ NVHasKMS(struct pci_device *pci_dev)
- 	}
- 	busid = DRICreatePCIBusID(pci_dev);
- 
--	ret = drmCheckModesettingSupported(busid);
--	if (ret) {
--		xf86DrvMsg(-1, X_ERROR, "[drm] KMS not enabled\n");
--		free(busid);
--		return FALSE;
--	}
--
- 	ret = nouveau_device_open(busid, &dev);
--	free(busid);
- 	if (ret) {
- 		xf86DrvMsg(-1, X_ERROR, "[drm] failed to open device\n");
-+		free(busid);
- 		return FALSE;
- 	}
- 
-@@ -288,6 +281,12 @@ NVHasKMS(struct pci_device *pci_dev)
- 	chipset = dev->chipset;
- 	nouveau_device_del(&dev);
- 
-+	ret = drmCheckModesettingSupported(busid);
-+	free(busid);
-+	if (ret) {
-+		xf86DrvMsg(-1, X_ERROR, "[drm] KMS not enabled\n");
-+		return FALSE;
-+	}
- 
- 	switch (chipset & 0xf0) {
- 	case 0x00:
 -- 
-1.8.1.3
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1361226053.Be7Ed41.18586
+Date: Mon, 18 Feb 2013 22:20:53 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772">bug 60772</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>Thanks for the information guys. All of those are valid cases which I have not
+thought of (and to be honest this is the first time I've heard about
+linux-hotplug)
+
+The patch has been posted on the mailing list, and I hope it will be pushed in
+due course. With a slightly more sensible commit message</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1361226053.Be7Ed41.18586--
+
+--===============0333341669==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0333341669==--
