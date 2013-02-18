@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 60772] xf86-video-nouveau fails to modprobe nouveau:
  KMS not enabled
-Date: Mon, 18 Feb 2013 09:04:57 +0000
-Message-ID: <bug-60772-8800-k7unvENOSO@http.bugs.freedesktop.org/>
+Date: Mon, 18 Feb 2013 09:59:51 +0000
+Message-ID: <bug-60772-8800-hxRYxKWiqI@http.bugs.freedesktop.org/>
 References: <bug-60772-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1045339477=="
+Content-Type: multipart/mixed; boundary="===============2006135936=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-60772-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,49 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1045339477==
-Content-Type: multipart/alternative; boundary="1361178297.8d4CcEB1.27523"; charset="us-ascii"
+--===============2006135936==
+Content-Type: multipart/alternative; boundary="1361181590.7F0431.8656"; charset="us-ascii"
 
 
---1361178297.8d4CcEB1.27523
-Date: Mon, 18 Feb 2013 09:04:57 +0000
+--1361181590.7F0431.8656
+Date: Mon, 18 Feb 2013 09:59:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=60772
 
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-On 18/02/13 00:47, Dave Airlie wrote:> On Sun, Feb 17, 2013 at 6:48 AM, Emil
-Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->> "Regression" caused by
->> commit e34cfbd5bd23f7f15372af52d8a39a5715ce7310
->> Author: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->> Date:   Fri Nov 2 03:57:41 2012 +0000
->>
->>     nouveau: Factor out common code to NVHasKMS()
->>
->>     As the name suggests checks if it has kernel mode setting,
->>     prints out the interface version and checkes if the chipset
->>     is supported
->>
->>     Function is used in NVPciProbe and NVPlatformProbe
->>
->> Without this change X will fail with '[drm] KMS not enabled' if
->> the kernel module is not loaded
-> 
-> Thats correct, the X server is not responsible for loading the kernel module.
-> 
-> If the kernel module isn't loaded then there is a bug elsewhere.
-> 
-> Dave.
->
+--- Comment #3 from Honza <hkmaly-jG/AHqQBv7lBDgjK7y7TUQ@public.gmane.org> ---
+Probably due to the fact that lacking boot splash image, there is nothing which
+would need the nouveau before :-).
+
+(I have standard VGA text screen before loading X and I don't see any reason to
+change that - it may prove usefull in case of some problems and without
+problems I'm starting X immediately anyway.)
+
+Thanks for fix. I'll test it after reboot.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361178297.8d4CcEB1.27523
-Date: Mon, 18 Feb 2013 09:04:57 +0000
+--1361181590.7F0431.8656
+Date: Mon, 18 Feb 2013 09:59:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -77,37 +61,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=60772">bug 60772</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:hkmaly&#64;bigfoot.com" title="Honza &lt;hkmaly&#64;bigfoot.com&gt;"> <span class="fn">Honza</span></a>
 </span></b>
-        <pre>On 18/02/13 00:47, Dave Airlie wrote:&gt; On Sun, Feb 17, 2013 at 6:48 AM, Emil
-Velikov &lt;<a href="mailto:emil.l.velikov&#64;gmail.com">emil.l.velikov&#64;gmail.com</a>&gt; wrote:
-<span class="quote">&gt;&gt; &quot;Regression&quot; caused by
-&gt;&gt; commit e34cfbd5bd23f7f15372af52d8a39a5715ce7310
-&gt;&gt; Author: Emil Velikov &lt;<a href="mailto:emil.l.velikov&#64;gmail.com">emil.l.velikov&#64;gmail.com</a>&gt;
-&gt;&gt; Date:   Fri Nov 2 03:57:41 2012 +0000
-&gt;&gt;
-&gt;&gt;     nouveau: Factor out common code to NVHasKMS()
-&gt;&gt;
-&gt;&gt;     As the name suggests checks if it has kernel mode setting,
-&gt;&gt;     prints out the interface version and checkes if the chipset
-&gt;&gt;     is supported
-&gt;&gt;
-&gt;&gt;     Function is used in NVPciProbe and NVPlatformProbe
-&gt;&gt;
-&gt;&gt; Without this change X will fail with '[drm] KMS not enabled' if
-&gt;&gt; the kernel module is not loaded
-&gt; 
-&gt; Thats correct, the X server is not responsible for loading the kernel module.
-&gt; 
-&gt; If the kernel module isn't loaded then there is a bug elsewhere.
-&gt; 
-&gt; Dave.</span >
-&gt;</pre>
+        <pre>Probably due to the fact that lacking boot splash image, there is nothing which
+would need the nouveau before :-).
+
+(I have standard VGA text screen before loading X and I don't see any reason to
+change that - it may prove usefull in case of some problems and without
+problems I'm starting X immediately anyway.)
+
+Thanks for fix. I'll test it after reboot.</pre>
         </div>
       </p>
       <hr>
@@ -119,9 +87,9 @@ Velikov &lt;<a href="mailto:emil.l.velikov&#64;gmail.com">emil.l.velikov&#64;gma
     </body>
 </html>
 
---1361178297.8d4CcEB1.27523--
+--1361181590.7F0431.8656--
 
---===============1045339477==
+--===============2006135936==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1045339477==--
+--===============2006135936==--
