@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60772] xf86-video-nouveau fails to modprobe nouveau:
- KMS not enabled
-Date: Mon, 18 Feb 2013 22:20:53 +0000
-Message-ID: <bug-60772-8800-zwtGTpmfMP@http.bugs.freedesktop.org/>
-References: <bug-60772-8800@http.bugs.freedesktop.org/>
+From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/7] nouveau: Check if the device supports
+ modesetting, after opening it
+Date: Tue, 19 Feb 2013 10:18:33 +1000
+Message-ID: <CAPM=9txAPVS2boUgP9jJDWF2KvguyxXyZY8wyhe5o1UZW4M9Xg@mail.gmail.com>
+References: <1361047727-740-1-git-send-email-emil.l.velikov@gmail.com>
+	<1361047727-740-2-git-send-email-emil.l.velikov@gmail.com>
+	<CAPM=9tyko+H6B2KRC7RaTKgkRan_rMy4FHz4=_95s=v4sgsaDQ@mail.gmail.com>
+	<5121E9EE.6060204@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0333341669=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60772-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <5121E9EE.6060204-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,83 +21,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On Mon, Feb 18, 2013 at 6:44 PM, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On 18/02/13 00:47, Dave Airlie wrote:
+> ...
+>
+>> Thats correct, the X server is not responsible for loading the kernel module.
+>>
+>> If the kernel module isn't loaded then there is a bug elsewhere.
+>>
+>> Dave.
+>>
+>
+> Same feeling in here as well. Although that does not stop people's
+> workflow habits [1]
 
---===============0333341669==
-Content-Type: multipart/alternative; boundary="1361226053.Be7Ed41.18586"; charset="us-ascii"
+Not supported, means not supported, won't fix.
 
+The OS loads the kernel modules not the X server, pre-KMS things were
+different, but with KMS this is how it works. So yeah totally nak on this.
 
---1361226053.Be7Ed41.18586
-Date: Mon, 18 Feb 2013 22:20:53 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+(xkcd never said you should care about people's workflows).
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60772
-
---- Comment #7 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thanks for the information guys. All of those are valid cases which I have not
-thought of (and to be honest this is the first time I've heard about
-linux-hotplug)
-
-The patch has been posted on the mailing list, and I hope it will be pushed in
-due course. With a slightly more sensible commit message
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1361226053.Be7Ed41.18586
-Date: Mon, 18 Feb 2013 22:20:53 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772">bug 60772</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>Thanks for the information guys. All of those are valid cases which I have not
-thought of (and to be honest this is the first time I've heard about
-linux-hotplug)
-
-The patch has been posted on the mailing list, and I hope it will be pushed in
-due course. With a slightly more sensible commit message</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1361226053.Be7Ed41.18586--
-
---===============0333341669==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0333341669==--
+Dave.
