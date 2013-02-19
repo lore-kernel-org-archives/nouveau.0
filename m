@@ -1,17 +1,15 @@
 From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/7] nouveau: Check if the device supports
- modesetting, after opening it
-Date: Tue, 19 Feb 2013 10:18:33 +1000
-Message-ID: <CAPM=9txAPVS2boUgP9jJDWF2KvguyxXyZY8wyhe5o1UZW4M9Xg@mail.gmail.com>
-References: <1361047727-740-1-git-send-email-emil.l.velikov@gmail.com>
-	<1361047727-740-2-git-send-email-emil.l.velikov@gmail.com>
-	<CAPM=9tyko+H6B2KRC7RaTKgkRan_rMy4FHz4=_95s=v4sgsaDQ@mail.gmail.com>
-	<5121E9EE.6060204@gmail.com>
+Subject: Re: [PATCHv2] nouveau: call drmCheckModesettingSupported
+ after opening the device
+Date: Tue, 19 Feb 2013 10:19:41 +1000
+Message-ID: <CAPM=9tx1H2iX0=0E+tjOQ8mJQrsN90ebNoK2Tiqo0UQshLPgxg@mail.gmail.com>
+References: <1361047727-740-2-git-send-email-emil.l.velikov@gmail.com>
+	<1361225695-6797-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5121E9EE.6060204-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <1361225695-6797-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -25,25 +23,19 @@ To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Feb 18, 2013 at 6:44 PM, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On 18/02/13 00:47, Dave Airlie wrote:
-> ...
+On Tue, Feb 19, 2013 at 8:14 AM, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> If the kernel module is not yet loaded X will fail to load with
+> "[drm] KMS not enabled". Some of the cases which may lead to this are
 >
->> Thats correct, the X server is not responsible for loading the kernel module.
->>
->> If the kernel module isn't loaded then there is a bug elsewhere.
->>
->> Dave.
->>
->
-> Same feeling in here as well. Although that does not stop people's
-> workflow habits [1]
+> * using hotplug
+> * blacklisted nouveau
 
-Not supported, means not supported, won't fix.
+If you blacklist it, its not up to the server to load it, the whole
+point of the blacklist to not load the modules.
 
-The OS loads the kernel modules not the X server, pre-KMS things were
-different, but with KMS this is how it works. So yeah totally nak on this.
+I've no idea what hotplug does wrong, but it should load the drivers
+at bootup using pci ids like say udev does.
 
-(xkcd never said you should care about people's workflows).
+NAK.
 
 Dave.
