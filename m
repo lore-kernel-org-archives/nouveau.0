@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
-Date: Thu, 21 Feb 2013 00:01:31 +0000
-Message-ID: <bug-59069-8800-pWdcVPkQj6@http.bugs.freedesktop.org/>
-References: <bug-59069-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
+ garbage/corruption/noise on resume
+Date: Thu, 21 Feb 2013 07:09:34 +0000
+Message-ID: <bug-59168-8800-Px5SOouUvk@http.bugs.freedesktop.org/>
+References: <bug-59168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1871455272=="
+Content-Type: multipart/mixed; boundary="===============0638799611=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1871455272==
-Content-Type: multipart/alternative; boundary="1361404891.FaED482.26148"; charset="us-ascii"
+--===============0638799611==
+Content-Type: multipart/alternative; boundary="1361430575.752a5.30509"; charset="us-ascii"
 
 
---1361404891.FaED482.26148
-Date: Thu, 21 Feb 2013 00:01:31 +0000
+--1361430575.752a5.30509
+Date: Thu, 21 Feb 2013 07:09:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59069
+https://bugs.freedesktop.org/show_bug.cgi?id=59168
 
---- Comment #23 from Jacopo Moronato <jmoronat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 75214
-  --> https://bugs.freedesktop.org/attachment.cgi?id=75214&action=edit
-another dmesg with logging v2 patch applied
+--- Comment #21 from Legitimate <legitimate412-hRtevi7K+EU+Va1GwOuvDg@public.gmane.org> ---
+Same problem occurs for me, yet another person, on resume (ArchLinux)
 
-Here is another dmesg with v2 patch built on top of 3.7 kernel.
+01:00.0 VGA compatible controller: NVIDIA Corporation GF116 [GeForce GTX 550
+Ti] (rev a1)
+
+- linux 3.7.9-1
+- xorg-server 1.13.2-1
+- mesa 9.0.2-1
+- nouveau-dri 9.0.2-1
+- xf86-video-nouveau 1.0.6-1
+- gnome 3.6
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361404891.FaED482.26148
-Date: Thu, 21 Feb 2013 00:01:31 +0000
+--1361430575.752a5.30509
+Date: Thu, 21 Feb 2013 07:09:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,18 +63,25 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau E[ DRM] fail ttm_validate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c23">Comment # 23</a>
+   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau E[ DRM] fail ttm_validate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
-              from <span class="vcard"><a class="email" href="mailto:jmoronat&#64;gmail.com" title="Jacopo Moronato &lt;jmoronat&#64;gmail.com&gt;"> <span class="fn">Jacopo Moronato</span></a>
+   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
+              from <span class="vcard"><a class="email" href="mailto:legitimate412&#64;mailinator.com" title="Legitimate &lt;legitimate412&#64;mailinator.com&gt;"> <span class="fn">Legitimate</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=75214" name="attach_75214" title="another dmesg with logging v2 patch applied">attachment 75214</a> <a href="attachment.cgi?id=75214&amp;action=edit" title="another dmesg with logging v2 patch applied">[details]</a></span>
-another dmesg with logging v2 patch applied
+        <pre>Same problem occurs for me, yet another person, on resume (ArchLinux)
 
-Here is another dmesg with v2 patch built on top of 3.7 kernel.</pre>
+01:00.0 VGA compatible controller: NVIDIA Corporation GF116 [GeForce GTX 550
+Ti] (rev a1)
+
+- linux 3.7.9-1
+- xorg-server 1.13.2-1
+- mesa 9.0.2-1
+- nouveau-dri 9.0.2-1
+- xf86-video-nouveau 1.0.6-1
+- gnome 3.6</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +93,9 @@ Here is another dmesg with v2 patch built on top of 3.7 kernel.</pre>
     </body>
 </html>
 
---1361404891.FaED482.26148--
+--1361430575.752a5.30509--
 
---===============1871455272==
+--===============0638799611==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +106,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1871455272==--
+--===============0638799611==--
