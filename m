@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 61287] (bisected) kernel>=3.7 breaks nouveau with
  acceleration for GeForce 6150SE nForce 430
-Date: Fri, 22 Feb 2013 15:47:09 +0000
-Message-ID: <bug-61287-8800-WWzrLIeOrv@http.bugs.freedesktop.org/>
+Date: Fri, 22 Feb 2013 15:58:02 +0000
+Message-ID: <bug-61287-8800-g8y3f0MRje@http.bugs.freedesktop.org/>
 References: <bug-61287-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0214711903=="
+Content-Type: multipart/mixed; boundary="===============1685367902=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-61287-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0214711903==
-Content-Type: multipart/alternative; boundary="1361548029.01b81.31736"; charset="us-ascii"
+--===============1685367902==
+Content-Type: multipart/alternative; boundary="1361548682.cD6f41.1535"; charset="us-ascii"
 
 
---1361548029.01b81.31736
-Date: Fri, 22 Feb 2013 15:47:09 +0000
+--1361548682.cD6f41.1535
+Date: Fri, 22 Feb 2013 15:58:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=61287
 
---- Comment #1 from gabriele balducci <balducci-KqplAB4qOuE@public.gmane.org> ---
-Created attachment 75326
-  --> https://bugs.freedesktop.org/attachment.cgi?id=75326&action=edit
-kernel configuration
+--- Comment #2 from gabriele balducci <balducci-KqplAB4qOuE@public.gmane.org> ---
+Created attachment 75327
+  --> https://bugs.freedesktop.org/attachment.cgi?id=75327&action=edit
+x server configuration
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361548029.01b81.31736
-Date: Fri, 22 Feb 2013 15:47:09 +0000
+--1361548682.cD6f41.1535
+Date: Fri, 22 Feb 2013 15:58:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - (bisected) kernel&gt;=3.7 breaks nouveau with acceleration for GeForce 6150SE nForce 430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61287#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61287#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - (bisected) kernel&gt;=3.7 breaks nouveau with acceleration for GeForce 6150SE nForce 430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=61287">bug 61287</a>
               from <span class="vcard"><a class="email" href="mailto:balducci&#64;units.it" title="gabriele balducci &lt;balducci&#64;units.it&gt;"> <span class="fn">gabriele balducci</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=75326" name="attach_75326" title="kernel configuration">attachment 75326</a> <a href="attachment.cgi?id=75326&amp;action=edit" title="kernel configuration">[details]</a></span>
-kernel configuration</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=75327" name="attach_75327" title="x server configuration">attachment 75327</a> <a href="attachment.cgi?id=75327&amp;action=edit" title="x server configuration">[details]</a></span>
+x server configuration</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ kernel configuration</pre>
     </body>
 </html>
 
---1361548029.01b81.31736--
+--1361548682.cD6f41.1535--
 
---===============0214711903==
+--===============1685367902==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0214711903==--
+--===============1685367902==--
