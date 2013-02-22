@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
  garbage/corruption/noise on resume
-Date: Thu, 21 Feb 2013 21:03:32 +0000
-Message-ID: <bug-59168-8800-TpGdNaS8fF@http.bugs.freedesktop.org/>
+Date: Fri, 22 Feb 2013 01:06:54 +0000
+Message-ID: <bug-59168-8800-tUpKC4pz1R@http.bugs.freedesktop.org/>
 References: <bug-59168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1767420582=="
+Content-Type: multipart/mixed; boundary="===============1088907699=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,57 +21,69 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1767420582==
-Content-Type: multipart/alternative; boundary="1361480613.eCEb08CF5.18211"; charset="us-ascii"
+--===============1088907699==
+Content-Type: multipart/alternative; boundary="1361495214.7bf76cB44.20942"; charset="us-ascii"
 
 
---1361480613.eCEb08CF5.18211
-Date: Thu, 21 Feb 2013 21:03:33 +0000
+--1361495214.7bf76cB44.20942
+Date: Fri, 22 Feb 2013 01:06:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=59168
 
---- Comment #22 from Ryan Turner <zdbiohazard2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I'm seeing what I think is the same problem on my Thinkpad T530.
+--- Comment #23 from Tom Callaway <tcallawa-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
+(In reply to comment #13)
+> Created attachment 75129 [details] [review]
+> fix suspend bug in nvc0 fence implementation
+> 
+> Guys, try this patch by Maarten Lankhorst.
 
-When I resume the system, xscreensaver's lock screen always seems to look and
-behave normally, but when I unlock the screen, either the whole screen is
-corrupted, or all the previously opened windows will be drawn incorrectly. I
-can even lock the screen again and xscreensaver still looks fine. When
-unlocked, the system can still be used semi-blindly, and if I can feel my way
-to a terminal, I can start some SDL and OpenGL apps that work fine, while
-newly-opened GTK/etc apps are corrupted. Logging out or otherwise restarting X
-gets everything back to normal.
+Tried that patch with git head 3.9, suspend still comes back to garbage + mouse
+cursor, dmesg logs are filled with this, repeating endlessly:
 
-Much like others that have tested, the proprietary nvidia driver works fine.
-
-dmesg:
- [85334.271612] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x001fcfa000]
- [85334.271621] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
- *repeats numerous times*
-
-lspci: (Thought I would chime in as I have a chip that hasn't been mentioned
-yet.)
- 01:00.0 VGA compatible controller: NVIDIA Corporation GF108 [Quadro NVS 5400M]
-(rev a1)
-
-Packages: (Gentoo/~amd64) CFLAGS="-O2 -pipe -march=native"
- gentoo-sources      3.7.8    USE="-build -deblob -symlink"
- mesa                9.1_rc2  USE="classic egl gallium gles1 gles2 llvm nptl
-openvg osmesa pax_kernel shared-glapi xa xorg xvmc -bindist -debug -gbm -pic
--r600-llvm-compiler (-selinux) -vdpau -wayland"
- libdrm              2.4.42   USE="libkms -static-libs"
- xorg-server         1.13.2   USE="ipv6 kdrive nptl suid udev xorg -dmx -doc
--minimal (-selinux) -static-libs -tslib -xnest -xvfb"
- xf86-video-nouveau  1.0.6
+[  302.118755] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  302.119858] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  302.120869] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  302.121951] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  302.122961] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  302.126800] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  302.127434] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  302.128113] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  302.128726] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.138071] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.145020] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  314.146127] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.147142] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  314.148232] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.149266] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.153112] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.153780] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  314.154518] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.155163] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.155873] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.156526] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.158712] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.159432] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  314.160207] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.160919] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.160995] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.161001] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.164003] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.164622] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  314.165791] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.166415] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.167099] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.167713] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.168395] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.169017] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361480613.eCEb08CF5.18211
-Date: Thu, 21 Feb 2013 21:03:33 +0000
+--1361495214.7bf76cB44.20942
+Date: Fri, 22 Feb 2013 01:06:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -85,45 +97,57 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c22">Comment # 22</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c23">Comment # 23</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
-              from <span class="vcard"><a class="email" href="mailto:zdbiohazard2&#64;gmail.com" title="Ryan Turner &lt;zdbiohazard2&#64;gmail.com&gt;"> <span class="fn">Ryan Turner</span></a>
+              from <span class="vcard"><a class="email" href="mailto:tcallawa&#64;redhat.com" title="Tom Callaway &lt;tcallawa&#64;redhat.com&gt;"> <span class="fn">Tom Callaway</span></a>
 </span></b>
-        <pre>I'm seeing what I think is the same problem on my Thinkpad T530.
+        <pre>(In reply to <a href="show_bug.cgi?id=59168#c13">comment #13</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=75129" name="attach_75129" title="fix suspend bug in nvc0 fence implementation">attachment 75129</a> <a href="attachment.cgi?id=75129&amp;action=edit" title="fix suspend bug in nvc0 fence implementation">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=59168&amp;attachment=75129'>[review]</a> [review]
+&gt; fix suspend bug in nvc0 fence implementation
+&gt; 
+&gt; Guys, try this patch by Maarten Lankhorst.</span >
 
-When I resume the system, xscreensaver's lock screen always seems to look and
-behave normally, but when I unlock the screen, either the whole screen is
-corrupted, or all the previously opened windows will be drawn incorrectly. I
-can even lock the screen again and xscreensaver still looks fine. When
-unlocked, the system can still be used semi-blindly, and if I can feel my way
-to a terminal, I can start some SDL and OpenGL apps that work fine, while
-newly-opened GTK/etc apps are corrupted. Logging out or otherwise restarting X
-gets everything back to normal.
+Tried that patch with git head 3.9, suspend still comes back to garbage + mouse
+cursor, dmesg logs are filled with this, repeating endlessly:
 
-Much like others that have tested, the proprietary nvidia driver works fine.
-
-dmesg:
- [85334.271612] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x001fcfa000]
- [85334.271621] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
- *repeats numerous times*
-
-lspci: (Thought I would chime in as I have a chip that hasn't been mentioned
-yet.)
- 01:00.0 VGA compatible controller: NVIDIA Corporation GF108 [Quadro NVS 5400M]
-(rev a1)
-
-Packages: (Gentoo/~amd64) CFLAGS=&quot;-O2 -pipe -march=native&quot;
- gentoo-sources      3.7.8    USE=&quot;-build -deblob -symlink&quot;
- mesa                9.1_rc2  USE=&quot;classic egl gallium gles1 gles2 llvm nptl
-openvg osmesa pax_kernel shared-glapi xa xorg xvmc -bindist -debug -gbm -pic
--r600-llvm-compiler (-selinux) -vdpau -wayland&quot;
- libdrm              2.4.42   USE=&quot;libkms -static-libs&quot;
- xorg-server         1.13.2   USE=&quot;ipv6 kdrive nptl suid udev xorg -dmx -doc
--minimal (-selinux) -static-libs -tslib -xnest -xvfb&quot;
- xf86-video-nouveau  1.0.6</pre>
+[  302.118755] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  302.119858] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  302.120869] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  302.121951] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  302.122961] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  302.126800] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  302.127434] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  302.128113] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  302.128726] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.138071] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.145020] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  314.146127] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.147142] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  314.148232] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.149266] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.153112] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.153780] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  314.154518] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.155163] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.155873] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.156526] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.158712] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.159432] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  314.160207] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.160919] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.160995] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.161001] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.164003] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.164622] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa0040a1e
+[  314.165791] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.166415] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.167099] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.167713] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e
+[  314.168395] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 1 [0x003fe10000]
+[  314.169017] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa004021e</pre>
         </div>
       </p>
       <hr>
@@ -135,9 +159,9 @@ openvg osmesa pax_kernel shared-glapi xa xorg xvmc -bindist -debug -gbm -pic
     </body>
 </html>
 
---1361480613.eCEb08CF5.18211--
+--1361495214.7bf76cB44.20942--
 
---===============1767420582==
+--===============1088907699==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +172,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1767420582==--
+--===============1088907699==--
