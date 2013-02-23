@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 61321] [regression][NV4c] System hang while loading
  gdm on 3.7 kernel (works on 3.6)
-Date: Sat, 23 Feb 2013 19:37:31 +0000
-Message-ID: <bug-61321-8800-TEgi9YIejk@http.bugs.freedesktop.org/>
+Date: Sat, 23 Feb 2013 20:38:51 +0000
+Message-ID: <bug-61321-8800-z8PmfIvC0o@http.bugs.freedesktop.org/>
 References: <bug-61321-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0864026495=="
+Content-Type: multipart/mixed; boundary="===============1299658947=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-61321-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0864026495==
-Content-Type: multipart/alternative; boundary="1361648251.6a3b8341.22913"; charset="us-ascii"
+--===============1299658947==
+Content-Type: multipart/alternative; boundary="1361651931.D2DAecf1.31875"; charset="us-ascii"
 
 
---1361648251.6a3b8341.22913
-Date: Sat, 23 Feb 2013 19:37:31 +0000
+--1361651931.D2DAecf1.31875
+Date: Sat, 23 Feb 2013 20:38:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=61321
 
---- Comment #10 from Cesar Eduardo Barros <cesarb-PWySMVKUnqmsTnJN9+BGXg@public.gmane.org> ---
-Created attachment 75422
-  --> https://bugs.freedesktop.org/attachment.cgi?id=75422&action=edit
-Xorg.0.log for 3.8 with nouveau.noaccel=1
+comer352l-S0/GAf8tV78@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |comer352l-S0/GAf8tV78@public.gmane.org
+           See Also|                            |https://bugzilla.kernel.org
+                   |                            |/show_bug.cgi?id=50091
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361648251.6a3b8341.22913
-Date: Sat, 23 Feb 2013 19:37:31 +0000
+--1361651931.D2DAecf1.31875
+Date: Sat, 23 Feb 2013 20:38:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +53,38 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [regression][NV4c] System hang while loading gdm on 3.7 kernel (works on 3.6)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61321#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:comer352l&#64;web.de" title="comer352l&#64;web.de">comer352l&#64;web.de</a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][NV4c] System hang while loading gdm on 3.7 kernel (works on 3.6)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=61321">bug 61321</a>
-              from <span class="vcard"><a class="email" href="mailto:cesarb&#64;cesarb.net" title="Cesar Eduardo Barros &lt;cesarb&#64;cesarb.net&gt;"> <span class="fn">Cesar Eduardo Barros</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=75422" name="attach_75422" title="Xorg.0.log for 3.8 with nouveau.noaccel=1">attachment 75422</a> <a href="attachment.cgi?id=75422&amp;action=edit" title="Xorg.0.log for 3.8 with nouveau.noaccel=1">[details]</a></span>
-Xorg.0.log for 3.8 with nouveau.noaccel=1</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>comer352l&#64;web.de
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">See Also</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://bugzilla.kernel.org/show_bug.cgi?id=50091
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +95,9 @@ Xorg.0.log for 3.8 with nouveau.noaccel=1</pre>
     </body>
 </html>
 
---1361648251.6a3b8341.22913--
+--1361651931.D2DAecf1.31875--
 
---===============0864026495==
+--===============1299658947==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +108,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0864026495==--
+--===============1299658947==--
