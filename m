@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59057] Black screen after resume from s2ram
-Date: Sun, 24 Feb 2013 20:07:04 +0000
-Message-ID: <bug-59057-8800-35tIJxPEgn@http.bugs.freedesktop.org/>
-References: <bug-59057-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 61287] (bisected) kernel>=3.7 breaks nouveau with
+ acceleration for GeForce 6150SE nForce 430
+Date: Mon, 25 Feb 2013 08:53:06 +0000
+Message-ID: <bug-61287-8800-LyNvxH8pj0@http.bugs.freedesktop.org/>
+References: <bug-61287-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1424019195=="
+Content-Type: multipart/mixed; boundary="===============1312811731=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-61287-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1424019195==
-Content-Type: multipart/alternative; boundary="1361736424.BfDba24.25089"; charset="us-ascii"
+--===============1312811731==
+Content-Type: multipart/alternative; boundary="1361782386.FbEFA3ec1.21693"; charset="us-ascii"
 
 
---1361736424.BfDba24.25089
-Date: Sun, 24 Feb 2013 20:07:04 +0000
+--1361782386.FbEFA3ec1.21693
+Date: Mon, 25 Feb 2013 08:53:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59057
+https://bugs.freedesktop.org/show_bug.cgi?id=61287
 
---- Comment #30 from Alin M Elena <alinm.elena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-+J Binder
+--- Comment #5 from gabriele balducci <balducci-KqplAB4qOuE@public.gmane.org> ---
+Following comment #8 in
+https://bugs.freedesktop.org/show_bug.cgi?id=61321 (which deals
+with the same GPU), the problems go away if I boot 3.7.9 with
+nouveau.noaccel=1.
 
-my kde freezes only if in desktop effects (on) I use native with opengl as
-opposite to raster.
+Of course, this means that glxgears and vmd run without crashing
+the X11 session, *BUT* without acceleration. In particular, vmd without
+acceleration is unacceptably slow for me, so running without
+acceleration is not an option...
 
-Alin
+However, this reinforces the idea that the problem is definitely
+related to acceleration.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361736424.BfDba24.25089
-Date: Sun, 24 Feb 2013 20:07:04 +0000
+--1361782386.FbEFA3ec1.21693
+Date: Mon, 25 Feb 2013 08:53:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,20 +64,29 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c30">Comment # 30</a>
+   title="NEW --- - (bisected) kernel&gt;=3.7 breaks nouveau with acceleration for GeForce 6150SE nForce 430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61287#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
-              from <span class="vcard"><a class="email" href="mailto:alinm.elena&#64;gmail.com" title="Alin M Elena &lt;alinm.elena&#64;gmail.com&gt;"> <span class="fn">Alin M Elena</span></a>
+   title="NEW --- - (bisected) kernel&gt;=3.7 breaks nouveau with acceleration for GeForce 6150SE nForce 430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61287">bug 61287</a>
+              from <span class="vcard"><a class="email" href="mailto:balducci&#64;units.it" title="gabriele balducci &lt;balducci&#64;units.it&gt;"> <span class="fn">gabriele balducci</span></a>
 </span></b>
-        <pre>+J Binder
+        <pre>Following <a href="show_bug.cgi?id=61287#c8">comment #8</a> in
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [regression][NV4c] System hang while loading gdm on 3.7 kernel (works on 3.6)"
+   href="show_bug.cgi?id=61321">https://bugs.freedesktop.org/show_bug.cgi?id=61321</a> (which deals
+with the same GPU), the problems go away if I boot 3.7.9 with
+nouveau.noaccel=1.
 
-my kde freezes only if in desktop effects (on) I use native with opengl as
-opposite to raster.
+Of course, this means that glxgears and vmd run without crashing
+the X11 session, *BUT* without acceleration. In particular, vmd without
+acceleration is unacceptably slow for me, so running without
+acceleration is not an option...
 
-Alin</pre>
+However, this reinforces the idea that the problem is definitely
+related to acceleration.</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +98,9 @@ Alin</pre>
     </body>
 </html>
 
---1361736424.BfDba24.25089--
+--1361782386.FbEFA3ec1.21693--
 
---===============1424019195==
+--===============1312811731==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +111,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1424019195==--
+--===============1312811731==--
