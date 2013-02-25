@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61287] (bisected) kernel>=3.7 breaks nouveau with
- acceleration for GeForce 6150SE nForce 430
-Date: Mon, 25 Feb 2013 08:53:06 +0000
-Message-ID: <bug-61287-8800-LyNvxH8pj0@http.bugs.freedesktop.org/>
-References: <bug-61287-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60951] xf86-video-nouveau 1.0.6-1: Mouse cursor
+ intermittently disappears, requiring reboot to resolve.
+Date: Mon, 25 Feb 2013 16:42:44 +0000
+Message-ID: <bug-60951-8800-wSkJvVHA3h@http.bugs.freedesktop.org/>
+References: <bug-60951-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1312811731=="
+Content-Type: multipart/mixed; boundary="===============0047240147=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61287-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-60951-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1312811731==
-Content-Type: multipart/alternative; boundary="1361782386.FbEFA3ec1.21693"; charset="us-ascii"
+--===============0047240147==
+Content-Type: multipart/alternative; boundary="1361810564.f8A12.2586"; charset="us-ascii"
 
 
---1361782386.FbEFA3ec1.21693
-Date: Mon, 25 Feb 2013 08:53:06 +0000
+--1361810564.f8A12.2586
+Date: Mon, 25 Feb 2013 16:42:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=61287
+https://bugs.freedesktop.org/show_bug.cgi?id=60951
 
---- Comment #5 from gabriele balducci <balducci-KqplAB4qOuE@public.gmane.org> ---
-Following comment #8 in
-https://bugs.freedesktop.org/show_bug.cgi?id=61321 (which deals
-with the same GPU), the problems go away if I boot 3.7.9 with
-nouveau.noaccel=1.
-
-Of course, this means that glxgears and vmd run without crashing
-the X11 session, *BUT* without acceleration. In particular, vmd without
-acceleration is unacceptably slow for me, so running without
-acceleration is not an option...
-
-However, this reinforces the idea that the problem is definitely
-related to acceleration.
+--- Comment #1 from v_2e-qsvJrrU2NvU@public.gmane.org ---
+This bug seems very similar to Bug 15758
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361782386.FbEFA3ec1.21693
-Date: Mon, 25 Feb 2013 08:53:06 +0000
+--1361810564.f8A12.2586
+Date: Mon, 25 Feb 2013 16:42:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,29 +53,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - (bisected) kernel&gt;=3.7 breaks nouveau with acceleration for GeForce 6150SE nForce 430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61287#c5">Comment # 5</a>
+   title="NEW --- - xf86-video-nouveau 1.0.6-1: Mouse cursor intermittently disappears, requiring reboot to resolve."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60951#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - (bisected) kernel&gt;=3.7 breaks nouveau with acceleration for GeForce 6150SE nForce 430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61287">bug 61287</a>
-              from <span class="vcard"><a class="email" href="mailto:balducci&#64;units.it" title="gabriele balducci &lt;balducci&#64;units.it&gt;"> <span class="fn">gabriele balducci</span></a>
+   title="NEW --- - xf86-video-nouveau 1.0.6-1: Mouse cursor intermittently disappears, requiring reboot to resolve."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60951">bug 60951</a>
+              from <span class="vcard"><a class="email" href="mailto:v_2e&#64;ukr.net" title="v_2e&#64;ukr.net">v_2e&#64;ukr.net</a>
 </span></b>
-        <pre>Following <a href="show_bug.cgi?id=61287#c8">comment #8</a> in
-<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [regression][NV4c] System hang while loading gdm on 3.7 kernel (works on 3.6)"
-   href="show_bug.cgi?id=61321">https://bugs.freedesktop.org/show_bug.cgi?id=61321</a> (which deals
-with the same GPU), the problems go away if I boot 3.7.9 with
-nouveau.noaccel=1.
-
-Of course, this means that glxgears and vmd run without crashing
-the X11 session, *BUT* without acceleration. In particular, vmd without
-acceleration is unacceptably slow for me, so running without
-acceleration is not an option...
-
-However, this reinforces the idea that the problem is definitely
-related to acceleration.</pre>
+        <pre>This bug seems very similar to <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - Invisible mouse pointer on NV4E (C51)"
+   href="show_bug.cgi?id=15758">Bug 15758</a></pre>
         </div>
       </p>
       <hr>
@@ -98,9 +76,9 @@ related to acceleration.</pre>
     </body>
 </html>
 
---1361782386.FbEFA3ec1.21693--
+--1361810564.f8A12.2586--
 
---===============1312811731==
+--===============0047240147==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1312811731==--
+--===============0047240147==--
