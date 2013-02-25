@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 61463] Freeze after resume from standby/suspend
-Date: Mon, 25 Feb 2013 21:32:06 +0000
-Message-ID: <bug-61463-8800-IVhKcArOdW@http.bugs.freedesktop.org/>
+Date: Mon, 25 Feb 2013 21:34:11 +0000
+Message-ID: <bug-61463-8800-ft2mP48vVh@http.bugs.freedesktop.org/>
 References: <bug-61463-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0555662692=="
+Content-Type: multipart/mixed; boundary="===============0175150153=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-61463-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0555662692==
-Content-Type: multipart/alternative; boundary="1361827926.a34eB2210.23943"; charset="us-ascii"
+--===============0175150153==
+Content-Type: multipart/alternative; boundary="1361828050.Ddb45B80.24496"; charset="us-ascii"
 
 
---1361827926.a34eB2210.23943
-Date: Mon, 25 Feb 2013 21:32:06 +0000
+--1361828050.Ddb45B80.24496
+Date: Mon, 25 Feb 2013 21:34:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=61463
 
---- Comment #1 from Raphael Groner <raphgro-S0/GAf8tV78@public.gmane.org> ---
-Created attachment 75534
-  --> https://bugs.freedesktop.org/attachment.cgi?id=75534&action=edit
-Xorg log
+--- Comment #2 from Raphael Groner <raphgro-S0/GAf8tV78@public.gmane.org> ---
+It's a NV44
+
+04:00.0 VGA compatible controller: NVIDIA Corporation NV44 [GeForce 7100 GS]
+(rev a1)
+
+The freeze does not happen with the proprietary driver from NVIDIA.
+
+It occurs after "systemctl suspend", pressing the power button of the box, or
+after an automatic s2ram after some timeout.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361827926.a34eB2210.23943
-Date: Mon, 25 Feb 2013 21:32:06 +0000
+--1361828050.Ddb45B80.24496
+Date: Mon, 25 Feb 2013 21:34:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +61,22 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Freeze after resume from standby/suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61463#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61463#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Freeze after resume from standby/suspend"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=61463">bug 61463</a>
               from <span class="vcard"><a class="email" href="mailto:raphgro&#64;web.de" title="Raphael Groner &lt;raphgro&#64;web.de&gt;"> <span class="fn">Raphael Groner</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=75534" name="attach_75534" title="Xorg log">attachment 75534</a> <a href="attachment.cgi?id=75534&amp;action=edit" title="Xorg log">[details]</a></span>
-Xorg log</pre>
+        <pre>It's a NV44
+
+04:00.0 VGA compatible controller: NVIDIA Corporation NV44 [GeForce 7100 GS]
+(rev a1)
+
+The freeze does not happen with the proprietary driver from NVIDIA.
+
+It occurs after &quot;systemctl suspend&quot;, pressing the power button of the box, or
+after an automatic s2ram after some timeout.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +88,9 @@ Xorg log</pre>
     </body>
 </html>
 
---1361827926.a34eB2210.23943--
+--1361828050.Ddb45B80.24496--
 
---===============0555662692==
+--===============0175150153==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0555662692==--
+--===============0175150153==--
