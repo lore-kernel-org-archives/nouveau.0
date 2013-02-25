@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 50121] [Regression] Since kernel v3.5 several cards
  fail to resume, introduced by: 'convert to exec engine,
  and improve channel sync'
-Date: Mon, 25 Feb 2013 19:40:05 +0000
-Message-ID: <bug-50121-8800-uTEV841jN6@http.bugs.freedesktop.org/>
+Date: Mon, 25 Feb 2013 19:42:42 +0000
+Message-ID: <bug-50121-8800-8cimor9AC8@http.bugs.freedesktop.org/>
 References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1862276610=="
+Content-Type: multipart/mixed; boundary="===============0867491322=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,54 +22,55 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1862276610==
-Content-Type: multipart/alternative; boundary="1361821206.3f0e26a35.3118"; charset="us-ascii"
+--===============0867491322==
+Content-Type: multipart/alternative; boundary="1361821363.F78Edd0c5.3624"; charset="us-ascii"
 
 
---1361821206.3f0e26a35.3118
-Date: Mon, 25 Feb 2013 19:40:06 +0000
+--1361821363.F78Edd0c5.3624
+Date: Mon, 25 Feb 2013 19:42:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
---- Comment #68 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Is it consistent, git says 'no':
+--- Comment #69 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Whoops, typo in first sentence. What I meant was:
 
-ronald@Alpha /usr/src/linux :) $ git log --oneline --no-merges v3.7.4...v3.7.9
--- drivers/gpu/drm
+Is the crash consistent? Does it happen every time? The fix should be applied
+at v3.7.3:
+
+ronald@Alpha /usr/src/linux :) $ git log --oneline --no-merges v3.7^...v3.7.9
+-- drivers/gpu/drm/nouveau Makefile
+5b7be63 Linux 3.7.9
+7773647 Linux 3.7.8
 330b8ab drm/nouveau: add lockdep annotations
-c7fc196 drm/radeon: Calling object_unrefer() when creating fb failure
-b666341 drm/radeon: prevent crash in the ring space allocation
-3e15c0b drm/radeon: protect against div by 0 in backend setup
-f69c00e drm/radeon: fix backend map setup on 1 RB sumo boards
-cb23301 drm/radeon: fix MC blackout on evergreen+
-04589e1 drm/radeon: add quirk for RV100 board
-4e370f5 drm/radeon: add WAIT_UNTIL to the non-VM safe regs list for cayman/TN
-83f83a0 drm/radeon/evergreen+: wait for the MC to settle after MC blackout
-ec8a7ca drm/i915: fix FORCEWAKE posting reads
-710c8f5 drm/radeon: fix a rare case of double kfree
-c140fec drm/radeon: fix error path in kpage allocation
-72b56e8 efi: Make 'efi_enabled' a function to query EFI facilities
-8a9d24b drm/i915: dump UTS_RELEASE into the error_state
-36ce28c drm/i915: GFX_MODE Flush TLB Invalidate Mode must be '1' for scanline
-waits
-924782c drm/i915: Disable AsyncFlip performance optimisations
-18c8e49 radeon_display: Use pointer return error codes
-45bced1 drm/radeon: fix cursor corruption on DCE6 and newer
-dd1b4df drm/i915: Implement WaDisableHiZPlanesWhenMSAAEnabled
-5afeb70 drm/i915: Invalidate the relocation presumed_offsets along the slow
-path
+89c5f13 Linux 3.7.7
+07c4ee0 Linux 3.7.6
+13280f4 Linux 3.7.5
+8380f1a arm64: makefile: fix uname munging when setting ARCH on native machine
+8a69ca2 Linux 3.7.4
+078314e Linux 3.7.3
+39c5cda drm/nvc0/fb: fix crash when different mutex is used to protect same
+list
+c6f94c3 drm/nouveau/clock: fix support for more than 2 monitors on nve0
+7fbc316 drm/nouveau: add locking around instobj list operations
+4d64387 drm/nouveau: fix blank LVDS screen regression on pre-nv50 cards
+ad30b29 drm/nv17-50: restore fence buffer on resume
+2370a21 drm/prime: drop reference on imported dma-buf come from gem
+cfdfb8f drm/nouveau: fix init with agpgart-uninorth
+a77af8b kbuild: Do not remove vmlinux when cleaning external module
+e6577f3 Linux 3.7.2
+cc86050 Linux 3.7.1
+2959440 Linux 3.7
 
-Don't think the lockdep annotations do anything that changes the code. But you
-might want to give it a try...
+Yes, I'm showing off my newly attained git skillz =P
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361821206.3f0e26a35.3118
-Date: Mon, 25 Feb 2013 19:40:06 +0000
+--1361821363.F78Edd0c5.3624
+Date: Mon, 25 Feb 2013 19:42:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -83,42 +84,43 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c68">Comment # 68</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c69">Comment # 69</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Is it consistent, git says 'no':
+        <pre>Whoops, typo in first sentence. What I meant was:
 
-ronald&#64;Alpha /usr/src/linux :) $ git log --oneline --no-merges v3.7.4...v3.7.9
--- drivers/gpu/drm
+Is the crash consistent? Does it happen every time? The fix should be applied
+at v3.7.3:
+
+ronald&#64;Alpha /usr/src/linux :) $ git log --oneline --no-merges v3.7^...v3.7.9
+-- drivers/gpu/drm/nouveau Makefile
+5b7be63 Linux 3.7.9
+7773647 Linux 3.7.8
 330b8ab drm/nouveau: add lockdep annotations
-c7fc196 drm/radeon: Calling object_unrefer() when creating fb failure
-b666341 drm/radeon: prevent crash in the ring space allocation
-3e15c0b drm/radeon: protect against div by 0 in backend setup
-f69c00e drm/radeon: fix backend map setup on 1 RB sumo boards
-cb23301 drm/radeon: fix MC blackout on evergreen+
-04589e1 drm/radeon: add quirk for RV100 board
-4e370f5 drm/radeon: add WAIT_UNTIL to the non-VM safe regs list for cayman/TN
-83f83a0 drm/radeon/evergreen+: wait for the MC to settle after MC blackout
-ec8a7ca drm/i915: fix FORCEWAKE posting reads
-710c8f5 drm/radeon: fix a rare case of double kfree
-c140fec drm/radeon: fix error path in kpage allocation
-72b56e8 efi: Make 'efi_enabled' a function to query EFI facilities
-8a9d24b drm/i915: dump UTS_RELEASE into the error_state
-36ce28c drm/i915: GFX_MODE Flush TLB Invalidate Mode must be '1' for scanline
-waits
-924782c drm/i915: Disable AsyncFlip performance optimisations
-18c8e49 radeon_display: Use pointer return error codes
-45bced1 drm/radeon: fix cursor corruption on DCE6 and newer
-dd1b4df drm/i915: Implement WaDisableHiZPlanesWhenMSAAEnabled
-5afeb70 drm/i915: Invalidate the relocation presumed_offsets along the slow
-path
+89c5f13 Linux 3.7.7
+07c4ee0 Linux 3.7.6
+13280f4 Linux 3.7.5
+8380f1a arm64: makefile: fix uname munging when setting ARCH on native machine
+8a69ca2 Linux 3.7.4
+078314e Linux 3.7.3
+39c5cda drm/nvc0/fb: fix crash when different mutex is used to protect same
+list
+c6f94c3 drm/nouveau/clock: fix support for more than 2 monitors on nve0
+7fbc316 drm/nouveau: add locking around instobj list operations
+4d64387 drm/nouveau: fix blank LVDS screen regression on pre-nv50 cards
+ad30b29 drm/nv17-50: restore fence buffer on resume
+2370a21 drm/prime: drop reference on imported dma-buf come from gem
+cfdfb8f drm/nouveau: fix init with agpgart-uninorth
+a77af8b kbuild: Do not remove vmlinux when cleaning external module
+e6577f3 Linux 3.7.2
+cc86050 Linux 3.7.1
+2959440 Linux 3.7
 
-Don't think the lockdep annotations do anything that changes the code. But you
-might want to give it a try...</pre>
+Yes, I'm showing off my newly attained git skillz =P</pre>
         </div>
       </p>
       <hr>
@@ -130,9 +132,9 @@ might want to give it a try...</pre>
     </body>
 </html>
 
---1361821206.3f0e26a35.3118--
+--1361821363.F78Edd0c5.3624--
 
---===============1862276610==
+--===============0867491322==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -143,4 +145,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1862276610==--
+--===============0867491322==--
