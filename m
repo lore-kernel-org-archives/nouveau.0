@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59057] Black screen after resume from s2ram
-Date: Tue, 26 Feb 2013 11:38:14 +0000
-Message-ID: <bug-59057-8800-lYW0jmwoBq@http.bugs.freedesktop.org/>
-References: <bug-59057-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58378] Distorted graphics on NVIDIA GeForce 8400M G
+ after upgrade the kernel to 3.7.0 version
+Date: Tue, 26 Feb 2013 13:36:05 +0000
+Message-ID: <bug-58378-8800-TZMd7A2ZCe@http.bugs.freedesktop.org/>
+References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1485843421=="
+Content-Type: multipart/mixed; boundary="===============1503365520=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,38 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1485843421==
-Content-Type: multipart/alternative; boundary="1361878694.5024BEfA4.16446"; charset="us-ascii"
+--===============1503365520==
+Content-Type: multipart/alternative; boundary="1361885765.eaCFc8a14.3332"; charset="us-ascii"
 
 
---1361878694.5024BEfA4.16446
-Date: Tue, 26 Feb 2013 11:38:14 +0000
+--1361885765.eaCFc8a14.3332
+Date: Tue, 26 Feb 2013 13:36:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59057
+https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
---- Comment #33 from J Binder <wheel-pGoT+mvyLdp4LYgiJMQgWbNAH6kLmebB@public.gmane.org> ---
-commit e5a58edc94a20a7ef4b7db67c166c4ca0588bad0
-Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Date:   Sat Feb 16 13:49:21 2013 +1000
+--- Comment #9 from Carolien <BlackberryQueen-RkryiyCqeDI@public.gmane.org> ---
+Same here with nVidia GeForce 8400M G videocard in an Acer Aspire 7520 G laptop
+running Ubuntu 12.10 64bit AMD64. My first impression was a heat problem due to
+dust. So i cleaned the laptop fan and refitted the heatsink and heatpipes with
+new thermal (silver) contact paste, but the video-error reoccurs. When only two
+webpages are opened: no problem. Starting a Youtube video: screen is a mass,
+like Henrique Dias reported.
 
-    drm/nv50-/disp: 0x0000 is a valid udisp config value
-
-    Return an out-of-range value instead to signal a failure from
-    exec_clkcmp().
-
-    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Is there a relation to the reported failure of nVidia GeForce 8 series??
+http://news.cnet.com/8301-13924_3-10037632-64.html
 
 
-is the first commit where s2ram works for me.
+Carolien.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361878694.5024BEfA4.16446
-Date: Tue, 26 Feb 2013 11:38:14 +0000
+--1361885765.eaCFc8a14.3332
+Date: Tue, 26 Feb 2013 13:36:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,27 +64,26 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c33">Comment # 33</a>
+   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
-              from <span class="vcard"><a class="email" href="mailto:wheel&#64;herr-der-mails.de" title="J Binder &lt;wheel&#64;herr-der-mails.de&gt;"> <span class="fn">J Binder</span></a>
+   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
+              from <span class="vcard"><a class="email" href="mailto:BlackberryQueen&#64;live.nl" title="Carolien &lt;BlackberryQueen&#64;live.nl&gt;"> <span class="fn">Carolien</span></a>
 </span></b>
-        <pre>commit e5a58edc94a20a7ef4b7db67c166c4ca0588bad0
-Author: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
-Date:   Sat Feb 16 13:49:21 2013 +1000
+        <pre>Same here with nVidia GeForce 8400M G videocard in an Acer Aspire 7520 G laptop
+running Ubuntu 12.10 64bit AMD64. My first impression was a heat problem due to
+dust. So i cleaned the laptop fan and refitted the heatsink and heatpipes with
+new thermal (silver) contact paste, but the video-error reoccurs. When only two
+webpages are opened: no problem. Starting a Youtube video: screen is a mass,
+like Henrique Dias reported.
 
-    drm/nv50-/disp: 0x0000 is a valid udisp config value
-
-    Return an out-of-range value instead to signal a failure from
-    exec_clkcmp().
-
-    Signed-off-by: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
+Is there a relation to the reported failure of nVidia GeForce 8 series??
+<a href="http://news.cnet.com/8301-13924_3-10037632-64.html">http://news.cnet.com/8301-13924_3-10037632-64.html</a>
 
 
-is the first commit where s2ram works for me.</pre>
+Carolien.</pre>
         </div>
       </p>
       <hr>
@@ -96,9 +95,9 @@ is the first commit where s2ram works for me.</pre>
     </body>
 </html>
 
---1361878694.5024BEfA4.16446--
+--1361885765.eaCFc8a14.3332--
 
---===============1485843421==
+--===============1503365520==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -109,4 +108,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1485843421==--
+--===============1503365520==--
