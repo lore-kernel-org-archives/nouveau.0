@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 61489] Mesa-demos test subtexrate causes some error
 	in dmesg
-Date: Tue, 26 Feb 2013 07:50:25 +0000
-Message-ID: <bug-61489-8800-Vb3cSuinhM@http.bugs.freedesktop.org/>
+Date: Tue, 26 Feb 2013 07:53:56 +0000
+Message-ID: <bug-61489-8800-C1MUFUzLfp@http.bugs.freedesktop.org/>
 References: <bug-61489-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1970727102=="
+Content-Type: multipart/mixed; boundary="===============0935315175=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-61489-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1970727102==
-Content-Type: multipart/alternative; boundary="1361865025.6Ac4D0.1565"; charset="us-ascii"
+--===============0935315175==
+Content-Type: multipart/alternative; boundary="1361865236.EDB6CDc00.2037"; charset="us-ascii"
 
 
---1361865025.6Ac4D0.1565
-Date: Tue, 26 Feb 2013 07:50:25 +0000
+--1361865236.EDB6CDc00.2037
+Date: Tue, 26 Feb 2013 07:53:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=61489
 
---- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Created attachment 75556
-  --> https://bugs.freedesktop.org/attachment.cgi?id=75556&action=edit
-X log
+--- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Created attachment 75557
+  --> https://bugs.freedesktop.org/attachment.cgi?id=75557&action=edit
+dmesg  flooded  with errors
+
+Sorry,  i  trimmed  down dmesg  buffer  size  for this  kernel,  I  can reboot 
+if  you  need  full  log. Basically, this is same setup as described  in 58615,
+including non-ACPI  kernel.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361865025.6Ac4D0.1565
-Date: Tue, 26 Feb 2013 07:50:25 +0000
+--1361865236.EDB6CDc00.2037
+Date: Tue, 26 Feb 2013 07:53:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +60,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Mesa-demos test subtexrate causes some error in dmesg"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61489#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61489#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Mesa-demos test subtexrate causes some error in dmesg"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=61489">bug 61489</a>
               from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=75556" name="attach_75556" title="X log">attachment 75556</a> <a href="attachment.cgi?id=75556&amp;action=edit" title="X log">[details]</a></span>
-X log</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=75557" name="attach_75557" title="dmesg  flooded  with errors">attachment 75557</a> <a href="attachment.cgi?id=75557&amp;action=edit" title="dmesg  flooded  with errors">[details]</a></span>
+dmesg  flooded  with errors
+
+Sorry,  i  trimmed  down dmesg  buffer  size  for this  kernel,  I  can reboot 
+if  you  need  full  log. Basically, this is same setup as described  in 58615,
+including non-ACPI  kernel.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +84,9 @@ X log</pre>
     </body>
 </html>
 
---1361865025.6Ac4D0.1565--
+--1361865236.EDB6CDc00.2037--
 
---===============1970727102==
+--===============0935315175==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1970727102==--
+--===============0935315175==--
