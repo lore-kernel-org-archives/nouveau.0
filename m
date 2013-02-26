@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 61489] Mesa-demos test subtexrate causes some error
 	in dmesg
-Date: Tue, 26 Feb 2013 07:53:56 +0000
-Message-ID: <bug-61489-8800-C1MUFUzLfp@http.bugs.freedesktop.org/>
+Date: Tue, 26 Feb 2013 08:16:10 +0000
+Message-ID: <bug-61489-8800-elDeSXOZar@http.bugs.freedesktop.org/>
 References: <bug-61489-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0935315175=="
+Content-Type: multipart/mixed; boundary="===============1751415157=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-61489-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0935315175==
-Content-Type: multipart/alternative; boundary="1361865236.EDB6CDc00.2037"; charset="us-ascii"
+--===============1751415157==
+Content-Type: multipart/alternative; boundary="1361866570.3A213a0.6073"; charset="us-ascii"
 
 
---1361865236.EDB6CDc00.2037
-Date: Tue, 26 Feb 2013 07:53:56 +0000
+--1361866570.3A213a0.6073
+Date: Tue, 26 Feb 2013 08:16:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=61489
 
---- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Created attachment 75557
-  --> https://bugs.freedesktop.org/attachment.cgi?id=75557&action=edit
-dmesg  flooded  with errors
+--- Comment #3 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Sorry, it  was  not  kernel  update that fixed  visibility/rendering in this
+test, but  just  fact  I keep seamonkey  running on another desktop. 
 
-Sorry,  i  trimmed  down dmesg  buffer  size  for this  kernel,  I  can reboot 
-if  you  need  full  log. Basically, this is same setup as described  in 58615,
-including non-ACPI  kernel.
+Quit  seamonkey -  no  teapots, open it - they are  there!  Funny,  but  a  bit
+ hard  to debug. User agent: Mozilla/5.0 (X11; Linux i686; rv:18.0)
+Gecko/20100101 Firefox/18.0 SeaMonkey/2.15.2
+
+WM -  fluxbox.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361865236.EDB6CDc00.2037
-Date: Tue, 26 Feb 2013 07:53:56 +0000
+--1361866570.3A213a0.6073
+Date: Tue, 26 Feb 2013 08:16:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,19 +61,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Mesa-demos test subtexrate causes some error in dmesg"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61489#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61489#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Mesa-demos test subtexrate causes some error in dmesg"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=61489">bug 61489</a>
               from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=75557" name="attach_75557" title="dmesg  flooded  with errors">attachment 75557</a> <a href="attachment.cgi?id=75557&amp;action=edit" title="dmesg  flooded  with errors">[details]</a></span>
-dmesg  flooded  with errors
+        <pre>Sorry, it  was  not  kernel  update that fixed  visibility/rendering in this
+test, but  just  fact  I keep seamonkey  running on another desktop. 
 
-Sorry,  i  trimmed  down dmesg  buffer  size  for this  kernel,  I  can reboot 
-if  you  need  full  log. Basically, this is same setup as described  in 58615,
-including non-ACPI  kernel.</pre>
+Quit  seamonkey -  no  teapots, open it - they are  there!  Funny,  but  a  bit
+ hard  to debug. User agent: Mozilla/5.0 (X11; Linux i686; rv:18.0)
+Gecko/20100101 Firefox/18.0 SeaMonkey/2.15.2
+
+WM -  fluxbox.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +87,9 @@ including non-ACPI  kernel.</pre>
     </body>
 </html>
 
---1361865236.EDB6CDc00.2037--
+--1361866570.3A213a0.6073--
 
---===============0935315175==
+--===============1751415157==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0935315175==--
+--===============1751415157==--
