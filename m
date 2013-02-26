@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61489] Mesa-demos test subtexrate causes some error
-	in dmesg
-Date: Tue, 26 Feb 2013 08:16:10 +0000
-Message-ID: <bug-61489-8800-elDeSXOZar@http.bugs.freedesktop.org/>
-References: <bug-61489-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59057] Black screen after resume from s2ram
+Date: Tue, 26 Feb 2013 08:25:35 +0000
+Message-ID: <bug-59057-8800-OmPcDkeGol@http.bugs.freedesktop.org/>
+References: <bug-59057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1751415157=="
+Content-Type: multipart/mixed; boundary="===============2024539503=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61489-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1751415157==
-Content-Type: multipart/alternative; boundary="1361866570.3A213a0.6073"; charset="us-ascii"
+--===============2024539503==
+Content-Type: multipart/alternative; boundary="1361867135.aE77DFeE3.8006"; charset="us-ascii"
 
 
---1361866570.3A213a0.6073
-Date: Tue, 26 Feb 2013 08:16:10 +0000
+--1361867135.aE77DFeE3.8006
+Date: Tue, 26 Feb 2013 08:25:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=61489
+https://bugs.freedesktop.org/show_bug.cgi?id=59057
 
---- Comment #3 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Sorry, it  was  not  kernel  update that fixed  visibility/rendering in this
-test, but  just  fact  I keep seamonkey  running on another desktop. 
-
-Quit  seamonkey -  no  teapots, open it - they are  there!  Funny,  but  a  bit
- hard  to debug. User agent: Mozilla/5.0 (X11; Linux i686; rv:18.0)
-Gecko/20100101 Firefox/18.0 SeaMonkey/2.15.2
-
-WM -  fluxbox.
+--- Comment #31 from Pontus Fuchs <pontus.fuchs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I tried compling git://anongit.freedesktop.org/nouveau/linux-2.6 / master today
+and suspend / resume now works fine. I too had to disable desktop effects.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361866570.3A213a0.6073
-Date: Tue, 26 Feb 2013 08:16:10 +0000
+--1361867135.aE77DFeE3.8006
+Date: Tue, 26 Feb 2013 08:25:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,22 +53,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Mesa-demos test subtexrate causes some error in dmesg"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61489#c3">Comment # 3</a>
+   title="NEW --- - Black screen after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c31">Comment # 31</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Mesa-demos test subtexrate causes some error in dmesg"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61489">bug 61489</a>
-              from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
+   title="NEW --- - Black screen after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
+              from <span class="vcard"><a class="email" href="mailto:pontus.fuchs&#64;gmail.com" title="Pontus Fuchs &lt;pontus.fuchs&#64;gmail.com&gt;"> <span class="fn">Pontus Fuchs</span></a>
 </span></b>
-        <pre>Sorry, it  was  not  kernel  update that fixed  visibility/rendering in this
-test, but  just  fact  I keep seamonkey  running on another desktop. 
-
-Quit  seamonkey -  no  teapots, open it - they are  there!  Funny,  but  a  bit
- hard  to debug. User agent: Mozilla/5.0 (X11; Linux i686; rv:18.0)
-Gecko/20100101 Firefox/18.0 SeaMonkey/2.15.2
-
-WM -  fluxbox.</pre>
+        <pre>I tried compling git://anongit.freedesktop.org/nouveau/linux-2.6 / master today
+and suspend / resume now works fine. I too had to disable desktop effects.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +74,9 @@ WM -  fluxbox.</pre>
     </body>
 </html>
 
---1361866570.3A213a0.6073--
+--1361867135.aE77DFeE3.8006--
 
---===============1751415157==
+--===============2024539503==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1751415157==--
+--===============2024539503==--
