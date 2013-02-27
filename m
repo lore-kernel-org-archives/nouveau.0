@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
- garbage/corruption/noise on resume
-Date: Wed, 27 Feb 2013 09:58:11 +0000
-Message-ID: <bug-59168-8800-2wlAvbEMyZ@http.bugs.freedesktop.org/>
-References: <bug-59168-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58261] [NV34] Display all whited out
+Date: Wed, 27 Feb 2013 16:01:31 +0000
+Message-ID: <bug-58261-8800-f8AMjeqNPZ@http.bugs.freedesktop.org/>
+References: <bug-58261-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0902206795=="
+Content-Type: multipart/mixed; boundary="===============1186130438=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58261-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0902206795==
-Content-Type: multipart/alternative; boundary="1361959091.bFECdf5.9392"; charset="us-ascii"
+--===============1186130438==
+Content-Type: multipart/alternative; boundary="1361980891.11C4D8F4.7595"; charset="us-ascii"
 
 
---1361959091.bFECdf5.9392
-Date: Wed, 27 Feb 2013 09:58:11 +0000
+--1361980891.11C4D8F4.7595
+Date: Wed, 27 Feb 2013 16:01:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59168
+https://bugs.freedesktop.org/show_bug.cgi?id=58261
 
---- Comment #28 from Petr Stastny <p.stastny-Mmb7MZpHnFY@public.gmane.org> ---
-Just found out that suspend and resume works on vanilla 3.7.9 and 3.8 when
-nouveau.noaccel=1 is set.
+--- Comment #10 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+The following commit should address your issue. Can you confirm
 
-So it seems the problem with the resume is directly related to the
-acceleration..
-
-When hibernating on 3.7.9 the computer reboots automatically, hibernate on 3.8
-works, but resuming from hibernation results in a black screen..
+6d175e8f6: drm/nouveau: Fix typo in init_idx_addr_latched()
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361959091.bFECdf5.9392
-Date: Wed, 27 Feb 2013 09:58:11 +0000
+--1361980891.11C4D8F4.7595
+Date: Wed, 27 Feb 2013 16:01:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,22 +54,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c28">Comment # 28</a>
+   title="NEW --- - [NV34] Display all whited out"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58261#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
-              from <span class="vcard"><a class="email" href="mailto:p.stastny&#64;gmx.de" title="Petr Stastny &lt;p.stastny&#64;gmx.de&gt;"> <span class="fn">Petr Stastny</span></a>
+   title="NEW --- - [NV34] Display all whited out"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58261">bug 58261</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Just found out that suspend and resume works on vanilla 3.7.9 and 3.8 when
-nouveau.noaccel=1 is set.
+        <pre>The following commit should address your issue. Can you confirm
 
-So it seems the problem with the resume is directly related to the
-acceleration..
-
-When hibernating on 3.7.9 the computer reboots automatically, hibernate on 3.8
-works, but resuming from hibernation results in a black screen..</pre>
+6d175e8f6: drm/nouveau: Fix typo in init_idx_addr_latched()</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +76,9 @@ works, but resuming from hibernation results in a black screen..</pre>
     </body>
 </html>
 
---1361959091.bFECdf5.9392--
+--1361980891.11C4D8F4.7595--
 
---===============0902206795==
+--===============1186130438==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0902206795==--
+--===============1186130438==--
