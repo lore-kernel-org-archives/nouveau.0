@@ -1,11 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61537] New: Screen flicker when using display with
- incorrect EDID
-Date: Wed, 27 Feb 2013 02:05:00 +0000
-Message-ID: <bug-61537-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 50121] [Regression] Since kernel v3.5 several cards
+ fail to resume, introduced by: 'convert to exec engine,
+ and improve channel sync'
+Date: Wed, 27 Feb 2013 03:17:42 +0000
+Message-ID: <bug-50121-8800-ZQ5IKZMPMf@http.bugs.freedesktop.org/>
+References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0282184498=="
+Content-Type: multipart/mixed; boundary="===============0362956818=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,55 +22,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0282184498==
-Content-Type: multipart/alternative; boundary="1361930700.6657f0ed1.14024"; charset="us-ascii"
+--===============0362956818==
+Content-Type: multipart/alternative; boundary="1361935063.Ca506E54.25133"; charset="us-ascii"
 
 
---1361930700.6657f0ed1.14024
-Date: Wed, 27 Feb 2013 02:05:00 +0000
+--1361935063.Ca506E54.25133
+Date: Wed, 27 Feb 2013 03:17:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=61537
+https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
-          Priority: medium
-            Bug ID: 61537
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Screen flicker when using display with incorrect EDID
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: tsalacinski-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #70 from Mr-4 <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
+(In reply to comment #69)
+> Is the crash consistent? Does it happen every time? The fix should be
+> applied at v3.7.3:
+No.
 
-Created attachment 75614
-  --> https://bugs.freedesktop.org/attachment.cgi?id=75614&action=edit
-Nouveau log (dmesg)
+I've downgraded the kernel slightly - from 3.7.9-201 to 3.7.9-101 (both
+official releases from Fedora) and after the first hibernate/restore cycle I
+get:
 
-While trying to use Nouveau driver with display that sends incorrect EDID (only
-FF, Samsung 226BW), screen flickers every ~10 seconds. Attached nouveau driver
-log.
+nouveau  [   PFIFO][0000:01:00.0] DMA_PUSHER - Ch 0 Get 0x00000004 Put
+0x000000c0 State 0x80000720 (err: INVALID_CMD) Push 0x00000000
 
-Everything works fine and very smooth, I can pass custom modelines to X server
-to have 1680x1050 resolution, the only thing left that works very bad is this
-flicker. If this matters, my GPU is GeForce 8600 GT.
 
-Windows 7 uses 1024x768 resolution (same as Nouveau) while installing, but
-without flicker.
-
-Everytime log is filled up with new message, flicker happens.
+However, the restore seems to work OK - I have no side effects after it is
+done, apart from the above message, so this might be an indication on what goes
+wrong - don't know, but thought to post it here.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1361930700.6657f0ed1.14024
-Date: Wed, 27 Feb 2013 02:05:00 +0000
+--1361935063.Ca506E54.25133
+Date: Wed, 27 Feb 2013 03:17:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -75,110 +64,35 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Screen flicker when using display with incorrect EDID"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61537">61537</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Screen flicker when using display with incorrect EDID
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>tsalacinski&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=75614" name="attach_75614" title="Nouveau log (dmesg)">attachment 75614</a> <a href="attachment.cgi?id=75614&amp;action=edit" title="Nouveau log (dmesg)">[details]</a></span>
-Nouveau log (dmesg)
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c70">Comment # 70</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
+              from <span class="vcard"><a class="email" href="mailto:mr.dash.four&#64;googlemail.com" title="Mr-4 &lt;mr.dash.four&#64;googlemail.com&gt;"> <span class="fn">Mr-4</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=50121#c69">comment #69</a>)
+<span class="quote">&gt; Is the crash consistent? Does it happen every time? The fix should be
+&gt; applied at v3.7.3:</span >
+No.
 
-While trying to use Nouveau driver with display that sends incorrect EDID (only
-FF, Samsung 226BW), screen flickers every ~10 seconds. Attached nouveau driver
-log.
+I've downgraded the kernel slightly - from 3.7.9-201 to 3.7.9-101 (both
+official releases from Fedora) and after the first hibernate/restore cycle I
+get:
 
-Everything works fine and very smooth, I can pass custom modelines to X server
-to have 1680x1050 resolution, the only thing left that works very bad is this
-flicker. If this matters, my GPU is GeForce 8600 GT.
+nouveau  [   PFIFO][0000:01:00.0] DMA_PUSHER - Ch 0 Get 0x00000004 Put
+0x000000c0 State 0x80000720 (err: INVALID_CMD) Push 0x00000000
 
-Windows 7 uses 1024x768 resolution (same as Nouveau) while installing, but
-without flicker.
 
-Everytime log is filled up with new message, flicker happens.</pre>
+However, the restore seems to work OK - I have no side effects after it is
+done, apart from the above message, so this might be an indication on what goes
+wrong - don't know, but thought to post it here.</pre>
         </div>
       </p>
       <hr>
@@ -190,9 +104,9 @@ Everytime log is filled up with new message, flicker happens.</pre>
     </body>
 </html>
 
---1361930700.6657f0ed1.14024--
+--1361935063.Ca506E54.25133--
 
---===============0282184498==
+--===============0362956818==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -203,4 +117,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0282184498==--
+--===============0362956818==--
