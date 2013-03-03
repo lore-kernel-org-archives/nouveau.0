@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 61731] Nouveau not working on second monitor
-Date: Sun, 03 Mar 2013 10:08:59 +0000
-Message-ID: <bug-61731-8800-2w2eiZGe68@http.bugs.freedesktop.org/>
+Date: Sun, 03 Mar 2013 10:15:17 +0000
+Message-ID: <bug-61731-8800-seNIDwgN4a@http.bugs.freedesktop.org/>
 References: <bug-61731-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0188826967=="
+Content-Type: multipart/mixed; boundary="===============1877302351=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-61731-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0188826967==
-Content-Type: multipart/alternative; boundary="1362305339.77f61.5185"; charset="us-ascii"
+--===============1877302351==
+Content-Type: multipart/alternative; boundary="1362305717.d53Bf2.6126"; charset="us-ascii"
 
 
---1362305339.77f61.5185
-Date: Sun, 3 Mar 2013 10:08:59 +0000
+--1362305717.d53Bf2.6126
+Date: Sun, 3 Mar 2013 10:15:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=61731
 
---- Comment #1 from Ronald <rvhbox-freedesktop-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
-Created attachment 75822
-  --> https://bugs.freedesktop.org/attachment.cgi?id=75822&action=edit
-dmesg
+--- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi Ronald
+
+Did you notice the lines
+[   67.479198] NVRM: The NVIDIA GPU 0000:01:00.0 (PCI ID: 10de:0426)
+[   67.479198] NVRM: installed in this system is not supported by the 304.64
+[   67.479198] NVRM: NVIDIA Linux driver release.  Please see 'Appendix
+[   67.479198] NVRM: A - Supported NVIDIA GPU Products' in this release's
+[   67.479198] NVRM: README, available on the Linux driver download page
+[   67.479198] NVRM: at www.nvidia.com.
+
+Fully(correctly) remove the blob and then try again
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1362305339.77f61.5185
-Date: Sun, 3 Mar 2013 10:08:59 +0000
+--1362305717.d53Bf2.6126
+Date: Sun, 3 Mar 2013 10:15:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +63,24 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau not working on second monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau not working on second monitor"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=61731">bug 61731</a>
-              from <span class="vcard"><a class="email" href="mailto:rvhbox-freedesktop&#64;yahoo.com" title="Ronald &lt;rvhbox-freedesktop&#64;yahoo.com&gt;"> <span class="fn">Ronald</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=75822" name="attach_75822" title="dmesg">attachment 75822</a> <a href="attachment.cgi?id=75822&amp;action=edit" title="dmesg">[details]</a></span>
-dmesg</pre>
+        <pre>Hi Ronald
+
+Did you notice the lines
+[   67.479198] NVRM: The NVIDIA GPU 0000:01:00.0 (PCI ID: 10de:0426)
+[   67.479198] NVRM: installed in this system is not supported by the 304.64
+[   67.479198] NVRM: NVIDIA Linux driver release.  Please see 'Appendix
+[   67.479198] NVRM: A - Supported NVIDIA GPU Products' in this release's
+[   67.479198] NVRM: README, available on the Linux driver download page
+[   67.479198] NVRM: at www.nvidia.com.
+
+Fully(correctly) remove the blob and then try again</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +92,9 @@ dmesg</pre>
     </body>
 </html>
 
---1362305339.77f61.5185--
+--1362305717.d53Bf2.6126--
 
---===============0188826967==
+--===============1877302351==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0188826967==--
+--===============1877302351==--
