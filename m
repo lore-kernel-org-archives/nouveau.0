@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61731] Nouveau not working on second monitor
-Date: Sun, 03 Mar 2013 15:53:21 +0000
-Message-ID: <bug-61731-8800-RoY2bOuooU@http.bugs.freedesktop.org/>
-References: <bug-61731-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 61765] New: Regression: null pointer dereference on
+ reboot after switcheroo use
+Date: Sun, 03 Mar 2013 22:02:30 +0000
+Message-ID: <bug-61765-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0290948554=="
+Content-Type: multipart/mixed; boundary="===============0544859875=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61731-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,41 +19,58 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0290948554==
-Content-Type: multipart/alternative; boundary="1362326001.eEaA2e1.20038"; charset="us-ascii"
+--===============0544859875==
+Content-Type: multipart/alternative; boundary="1362348150.DfAB81.21973"; charset="us-ascii"
 
 
---1362326001.eEaA2e1.20038
-Date: Sun, 3 Mar 2013 15:53:21 +0000
+--1362348150.DfAB81.21973
+Date: Sun, 3 Mar 2013 22:02:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=61731
+https://bugs.freedesktop.org/show_bug.cgi?id=61765
 
---- Comment #9 from Ronald <rvhbox-freedesktop-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
-Well, no the binary driver does not work properly as well. besides I prefer the
-nouveau driver.
+          Priority: medium
+            Bug ID: 61765
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Regression: null pointer dereference on reboot after
+                    switcheroo use
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: major
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: crrodriguez-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
 
-Reading the nouveau wiki I am pretty sure that my system is not properly
-cleaned from previously installed drivers like:
+Created attachment 75867
+  --> https://bugs.freedesktop.org/attachment.cgi?id=75867&action=edit
+screenshot of the crash
 
-/lib/modules/3.5.0-25-generic/kernel/drivers/net/ethernet/nvidia
-/lib/modules/3.5.0-25-generic/kernel/drivers/net/ethernet/nvidia/forcedeth.ko
-/lib/modules/3.5.0-25-generic/kernel/drivers/video/nvidia
-/lib/modules/3.5.0-25-generic/kernel/drivers/video/nvidia/nvidiafb.ko
-/usr/lib/xorg/modules/libnvidia-wfb.so.1
-/usr/lib/xorg/modules/libnvidia-wfb.so.295.20
-/usr/lib/xorg/modules/drivers/nvidia_drv.so
+echo OFF > /sys/kernel/debug/vgaswitcheroo/switch
 
-But I am unsure how to remove them (other then apt-get remove) withotu breaking
-anything vital. Can't really find any info on the ubuntu help pages.
+causes a null ptr deref at shurdown in this hybrid graphics laptop.
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GF108 [GeForce GT 540M]
+(rev a1)
+
+00:02.0 VGA compatible controller: Intel Corporation 2nd Generation Core
+Processor Family Integrated Graphics Controller (rev 09)
+
+It used to work fine in 3.6 , it broke at some point after 3.7 and continues to
+be broken in 3.8 or in 3.9.
+
+The attached file has a screen caputure of the crash.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1362326001.eEaA2e1.20038
-Date: Sun, 3 Mar 2013 15:53:21 +0000
+--1362348150.DfAB81.21973
+Date: Sun, 3 Mar 2013 22:02:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,35 +78,112 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Regression: null pointer dereference on reboot after switcheroo use"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61765">61765</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Regression: null pointer dereference on reboot after switcheroo use
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>crrodriguez&#64;opensuse.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau not working on second monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau not working on second monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731">bug 61731</a>
-              from <span class="vcard"><a class="email" href="mailto:rvhbox-freedesktop&#64;yahoo.com" title="Ronald &lt;rvhbox-freedesktop&#64;yahoo.com&gt;"> <span class="fn">Ronald</span></a>
-</span></b>
-        <pre>Well, no the binary driver does not work properly as well. besides I prefer the
-nouveau driver.
+        <pre>Created <span class=""><a href="attachment.cgi?id=75867" name="attach_75867" title="screenshot of the crash">attachment 75867</a> <a href="attachment.cgi?id=75867&amp;action=edit" title="screenshot of the crash">[details]</a></span>
+screenshot of the crash
 
-Reading the nouveau wiki I am pretty sure that my system is not properly
-cleaned from previously installed drivers like:
+echo OFF &gt; /sys/kernel/debug/vgaswitcheroo/switch
 
-/lib/modules/3.5.0-25-generic/kernel/drivers/net/ethernet/nvidia
-/lib/modules/3.5.0-25-generic/kernel/drivers/net/ethernet/nvidia/forcedeth.ko
-/lib/modules/3.5.0-25-generic/kernel/drivers/video/nvidia
-/lib/modules/3.5.0-25-generic/kernel/drivers/video/nvidia/nvidiafb.ko
-/usr/lib/xorg/modules/libnvidia-wfb.so.1
-/usr/lib/xorg/modules/libnvidia-wfb.so.295.20
-/usr/lib/xorg/modules/drivers/nvidia_drv.so
+causes a null ptr deref at shurdown in this hybrid graphics laptop.
 
-But I am unsure how to remove them (other then apt-get remove) withotu breaking
-anything vital. Can't really find any info on the ubuntu help pages.</pre>
+01:00.0 VGA compatible controller: NVIDIA Corporation GF108 [GeForce GT 540M]
+(rev a1)
+
+00:02.0 VGA compatible controller: Intel Corporation 2nd Generation Core
+Processor Family Integrated Graphics Controller (rev 09)
+
+It used to work fine in 3.6 , it broke at some point after 3.7 and continues to
+be broken in 3.8 or in 3.9.
+
+The attached file has a screen caputure of the crash.</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +195,9 @@ anything vital. Can't really find any info on the ubuntu help pages.</pre>
     </body>
 </html>
 
---1362326001.eEaA2e1.20038--
+--1362348150.DfAB81.21973--
 
---===============0290948554==
+--===============0544859875==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +208,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0290948554==--
+--===============0544859875==--
