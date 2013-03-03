@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 61731] Nouveau not working on second monitor
-Date: Sun, 03 Mar 2013 12:36:12 +0000
-Message-ID: <bug-61731-8800-nv3ae0E53j@http.bugs.freedesktop.org/>
+Date: Sun, 03 Mar 2013 12:45:16 +0000
+Message-ID: <bug-61731-8800-E15GEwMuX7@http.bugs.freedesktop.org/>
 References: <bug-61731-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1117156981=="
+Content-Type: multipart/mixed; boundary="===============0199189168=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-61731-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1117156981==
-Content-Type: multipart/alternative; boundary="1362314172.2b2eE31.23683"; charset="us-ascii"
+--===============0199189168==
+Content-Type: multipart/alternative; boundary="1362314716.2DCEE32.32491"; charset="us-ascii"
 
 
---1362314172.2b2eE31.23683
-Date: Sun, 3 Mar 2013 12:36:12 +0000
+--1362314716.2DCEE32.32491
+Date: Sun, 3 Mar 2013 12:45:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=61731
 
---- Comment #7 from Ronald <rvhbox-freedesktop-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
-Created attachment 75829
-  --> https://bugs.freedesktop.org/attachment.cgi?id=75829&action=edit
-Xorg-log (replaces previous upload!)
+--- Comment #8 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+As mentioned previously
+
+Does it work reliably with the binary driver? 
+(quite sure the answer is no looking at your initial dmesg log)
+
+Have you considered that the repair job may not be as perfect as you might have
+hoped?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1362314172.2b2eE31.23683
-Date: Sun, 3 Mar 2013 12:36:12 +0000
+--1362314716.2DCEE32.32491
+Date: Sun, 3 Mar 2013 12:45:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +59,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau not working on second monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau not working on second monitor"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=61731">bug 61731</a>
-              from <span class="vcard"><a class="email" href="mailto:rvhbox-freedesktop&#64;yahoo.com" title="Ronald &lt;rvhbox-freedesktop&#64;yahoo.com&gt;"> <span class="fn">Ronald</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=75829" name="attach_75829" title="Xorg-log (replaces previous upload!)">attachment 75829</a> <a href="attachment.cgi?id=75829&amp;action=edit" title="Xorg-log (replaces previous upload!)">[details]</a></span>
-Xorg-log (replaces previous upload!)</pre>
+        <pre>As mentioned previously
+
+Does it work reliably with the binary driver? 
+(quite sure the answer is no looking at your initial dmesg log)
+
+Have you considered that the repair job may not be as perfect as you might have
+hoped?</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +84,9 @@ Xorg-log (replaces previous upload!)</pre>
     </body>
 </html>
 
---1362314172.2b2eE31.23683--
+--1362314716.2DCEE32.32491--
 
---===============1117156981==
+--===============0199189168==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1117156981==--
+--===============0199189168==--
