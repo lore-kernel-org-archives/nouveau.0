@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61731] New: Nouveau not working on second monitor
-Date: Sun, 03 Mar 2013 10:08:21 +0000
-Message-ID: <bug-61731-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 61731] Nouveau not working on second monitor
+Date: Sun, 03 Mar 2013 10:08:59 +0000
+Message-ID: <bug-61731-8800-2w2eiZGe68@http.bugs.freedesktop.org/>
+References: <bug-61731-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2139010246=="
+Content-Type: multipart/mixed; boundary="===============0188826967=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-61731-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,68 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2139010246==
-Content-Type: multipart/alternative; boundary="1362305302.Da02F71.5062"; charset="us-ascii"
+--===============0188826967==
+Content-Type: multipart/alternative; boundary="1362305339.77f61.5185"; charset="us-ascii"
 
 
---1362305302.Da02F71.5062
-Date: Sun, 3 Mar 2013 10:08:22 +0000
+--1362305339.77f61.5185
+Date: Sun, 3 Mar 2013 10:08:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=61731
 
-          Priority: medium
-            Bug ID: 61731
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Nouveau not working on second monitor
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: rvhbox-freedesktop-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
-          Hardware: x86 (IA32)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
-
-Created attachment 75821
-  --> https://bugs.freedesktop.org/attachment.cgi?id=75821&action=edit
-kernel-log
-
-Hi,
-
-I have a problem that my nouveau driver does not properly load every time I
-boot my laptop.
-
-It either:
-- defaults to the vesa driver (always if my power cord is plugged into the
-laptop
-- starts nouveau but without the external monitor
-- starts nouveau WITH the external monitor (as it should be)
-
-(starting without the monitor attached and then connecting it always fails &
-crashes X)
-
-How/where can i find any help for this?
-
-Details:
-- Ubuntu 12.10.
-- card:  VGA compatible controller: NVIDIA Corporation G86 [GeForce 8400M GT]
-(rev a1)
-- kernel 3.5.0-25-generic
-- X.Org X Server 1.13.0 Release Date: 2012-09-05
-- all nv & nvidia drivers are blacklisted
-- the problem has grown worse over the last 2 years
-- motherboard replaced 2 years ago because of overheated nvidia card (waaranty)
+--- Comment #1 from Ronald <rvhbox-freedesktop-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
+Created attachment 75822
+  --> https://bugs.freedesktop.org/attachment.cgi?id=75822&action=edit
+dmesg
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1362305302.Da02F71.5062
-Date: Sun, 3 Mar 2013 10:08:22 +0000
+--1362305339.77f61.5185
+Date: Sun, 3 Mar 2013 10:08:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -87,123 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau not working on second monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731">61731</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Nouveau not working on second monitor
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>rvhbox-freedesktop&#64;yahoo.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86 (IA32)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=75821" name="attach_75821" title="kernel-log">attachment 75821</a> <a href="attachment.cgi?id=75821&amp;action=edit" title="kernel-log">[details]</a></span>
-kernel-log
-
-Hi,
-
-I have a problem that my nouveau driver does not properly load every time I
-boot my laptop.
-
-It either:
-- defaults to the vesa driver (always if my power cord is plugged into the
-laptop
-- starts nouveau but without the external monitor
-- starts nouveau WITH the external monitor (as it should be)
-
-(starting without the monitor attached and then connecting it always fails &amp;
-crashes X)
-
-How/where can i find any help for this?
-
-Details:
-- Ubuntu 12.10.
-- card:  VGA compatible controller: NVIDIA Corporation G86 [GeForce 8400M GT]
-(rev a1)
-- kernel 3.5.0-25-generic
-- X.Org X Server 1.13.0 Release Date: 2012-09-05
-- all nv &amp; nvidia drivers are blacklisted
-- the problem has grown worse over the last 2 years
-- motherboard replaced 2 years ago because of overheated nvidia card (waaranty)</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Nouveau not working on second monitor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Nouveau not working on second monitor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731">bug 61731</a>
+              from <span class="vcard"><a class="email" href="mailto:rvhbox-freedesktop&#64;yahoo.com" title="Ronald &lt;rvhbox-freedesktop&#64;yahoo.com&gt;"> <span class="fn">Ronald</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=75822" name="attach_75822" title="dmesg">attachment 75822</a> <a href="attachment.cgi?id=75822&amp;action=edit" title="dmesg">[details]</a></span>
+dmesg</pre>
         </div>
       </p>
       <hr>
@@ -215,9 +75,9 @@ Details:
     </body>
 </html>
 
---1362305302.Da02F71.5062--
+--1362305339.77f61.5185--
 
---===============2139010246==
+--===============0188826967==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -228,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2139010246==--
+--===============0188826967==--
