@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59057] Black screen after resume from s2ram
-Date: Mon, 04 Mar 2013 18:04:56 +0000
-Message-ID: <bug-59057-8800-89OXn8PzLm@http.bugs.freedesktop.org/>
-References: <bug-59057-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 61635] glVertexAttribPointer(id, GL_UNSIGNED_BYTE,
+ GL_FALSE, ...) does not work
+Date: Mon, 04 Mar 2013 19:54:59 +0000
+Message-ID: <bug-61635-8800-MOMjv9FYW0@http.bugs.freedesktop.org/>
+References: <bug-61635-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1714984248=="
+Content-Type: multipart/mixed; boundary="===============0771043772=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-61635-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1714984248==
-Content-Type: multipart/alternative; boundary="1362420296.a6DBf4.16190"; charset="us-ascii"
+--===============0771043772==
+Content-Type: multipart/alternative; boundary="1362426899.a5121.3169"; charset="us-ascii"
 
 
---1362420296.a6DBf4.16190
-Date: Mon, 4 Mar 2013 18:04:56 +0000
+--1362426899.a5121.3169
+Date: Mon, 4 Mar 2013 19:54:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59057
+https://bugs.freedesktop.org/show_bug.cgi?id=61635
 
---- Comment #34 from Alin M Elena <alinm.elena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I have tested it today with kernel 3.8.1 and suspend seems to work correctly...
-at least with an external display attached both lcd and it wake up.
+--- Comment #4 from rodrigo <rodrigorivascosta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 75914
+  --> https://bugs.freedesktop.org/attachment.cgi?id=75914&action=edit
+Test case to show the problem with unnormalized attribute pointers of type
+GL_UNSIGNED_BYTE
 
-if someone can confirm it too.. maybe we shall close it as solved?
+Compile with:
 
-Alin
+$ gcc -o glbyte -Wall glbyte.c -lglut -lGLEW -lGL
+
+Running with software rendering:
+
+$ LIBGL_ALWAYS_SOFTWARE=1 ./glbyte
+
+draws a beautiful star.
+
+But with hardware rendering:
+
+$ ./glbyte
+
+it draws nothing :(
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1362420296.a6DBf4.16190
-Date: Mon, 4 Mar 2013 18:04:56 +0000
+--1362426899.a5121.3169
+Date: Mon, 4 Mar 2013 19:54:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,20 +72,33 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057#c34">Comment # 34</a>
+   title="NEW --- - glVertexAttribPointer(id, GL_UNSIGNED_BYTE, GL_FALSE,...) does not work"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61635#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
-              from <span class="vcard"><a class="email" href="mailto:alinm.elena&#64;gmail.com" title="Alin M Elena &lt;alinm.elena&#64;gmail.com&gt;"> <span class="fn">Alin M Elena</span></a>
+   title="NEW --- - glVertexAttribPointer(id, GL_UNSIGNED_BYTE, GL_FALSE,...) does not work"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61635">bug 61635</a>
+              from <span class="vcard"><a class="email" href="mailto:rodrigorivascosta&#64;gmail.com" title="rodrigo &lt;rodrigorivascosta&#64;gmail.com&gt;"> <span class="fn">rodrigo</span></a>
 </span></b>
-        <pre>I have tested it today with kernel 3.8.1 and suspend seems to work correctly...
-at least with an external display attached both lcd and it wake up.
+        <pre>Created <span class=""><a href="attachment.cgi?id=75914" name="attach_75914" title="Test case to show the problem with unnormalized attribute pointers of type GL_UNSIGNED_BYTE">attachment 75914</a> <a href="attachment.cgi?id=75914&amp;action=edit" title="Test case to show the problem with unnormalized attribute pointers of type GL_UNSIGNED_BYTE">[details]</a></span>
+Test case to show the problem with unnormalized attribute pointers of type
+GL_UNSIGNED_BYTE
 
-if someone can confirm it too.. maybe we shall close it as solved?
+Compile with:
 
-Alin</pre>
+$ gcc -o glbyte -Wall glbyte.c -lglut -lGLEW -lGL
+
+Running with software rendering:
+
+$ LIBGL_ALWAYS_SOFTWARE=1 ./glbyte
+
+draws a beautiful star.
+
+But with hardware rendering:
+
+$ ./glbyte
+
+it draws nothing :(</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +110,9 @@ Alin</pre>
     </body>
 </html>
 
---1362420296.a6DBf4.16190--
+--1362426899.a5121.3169--
 
---===============1714984248==
+--===============0771043772==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +123,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1714984248==--
+--===============0771043772==--
