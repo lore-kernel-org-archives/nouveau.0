@@ -1,12 +1,12 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [libdrm PATCH 2/2] nouveau: add a way to override single
-	pushbuffer vram/gart limits
-Date: Tue,  5 Mar 2013 21:14:54 +0100
-Message-ID: <1362514494-3918-2-git-send-email-marcin.slusarz@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 60510] Firefox 18.0.2 Crash On Nvidia GeForce2
+Date: Tue, 05 Mar 2013 20:28:14 +0000
+Message-ID: <bug-60510-8800-OMbXwFi6Xi@http.bugs.freedesktop.org/>
+References: <bug-60510-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0772738255=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-60510-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,89 +19,109 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Add environment variables:
-NOUVEAU_LIBDRM_VRAM_LIMIT_PERCENT
-NOUVEAU_LIBDRM_GART_LIMIT_PERCENT
-which will allow override how much VRAM/GART single pushbuffer can take.
-Default to 80.
 
-Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- nouveau/nouveau.c | 18 ++++++++++++++++--
- nouveau/private.h |  1 +
- nouveau/pushbuf.c |  6 ++++--
- 3 files changed, 21 insertions(+), 4 deletions(-)
+--===============0772738255==
+Content-Type: multipart/alternative; boundary="1362515294.67a7AEb3.8828"; charset="us-ascii"
 
-diff --git a/nouveau/nouveau.c b/nouveau/nouveau.c
-index 9b32e31..ee7893b 100644
---- a/nouveau/nouveau.c
-+++ b/nouveau/nouveau.c
-@@ -77,6 +77,7 @@ nouveau_device_wrap(int fd, int close, struct nouveau_device **pdev)
- 	uint64_t chipset, vram, gart, bousage;
- 	drmVersionPtr ver;
- 	int ret;
-+	char *tmp;
- 
- #ifdef DEBUG
- 	debug_init(getenv("NOUVEAU_LIBDRM_DEBUG"));
-@@ -114,14 +115,27 @@ nouveau_device_wrap(int fd, int close, struct nouveau_device **pdev)
- 		nvdev->have_bo_usage = (bousage != 0);
- 
- 	nvdev->close = close;
-+
-+	tmp = getenv("NOUVEAU_LIBDRM_VRAM_LIMIT_PERCENT");
-+	if (tmp)
-+		nvdev->vram_limit_percent = atoi(tmp);
-+	else
-+		nvdev->vram_limit_percent = 80;
-+	tmp = getenv("NOUVEAU_LIBDRM_GART_LIMIT_PERCENT");
-+	if (tmp)
-+		nvdev->gart_limit_percent = atoi(tmp);
-+	else
-+		nvdev->gart_limit_percent = 80;
- 	DRMINITLISTHEAD(&nvdev->bo_list);
- 	nvdev->base.object.oclass = NOUVEAU_DEVICE_CLASS;
- 	nvdev->base.lib_version = 0x01000000;
- 	nvdev->base.chipset = chipset;
- 	nvdev->base.vram_size = vram;
- 	nvdev->base.gart_size = gart;
--	nvdev->base.vram_limit = (nvdev->base.vram_size * 80) / 100;
--	nvdev->base.gart_limit = (nvdev->base.gart_size * 80) / 100;
-+	nvdev->base.vram_limit =
-+		(nvdev->base.vram_size * nvdev->vram_limit_percent) / 100;
-+	nvdev->base.gart_limit =
-+		(nvdev->base.gart_size * nvdev->gart_limit_percent) / 100;
- 
- 	*pdev = &nvdev->base;
- 	return 0;
-diff --git a/nouveau/private.h b/nouveau/private.h
-index 8a5cb26..60714b8 100644
---- a/nouveau/private.h
-+++ b/nouveau/private.h
-@@ -99,6 +99,7 @@ struct nouveau_device_priv {
- 	uint32_t *client;
- 	int nr_client;
- 	bool have_bo_usage;
-+	int gart_limit_percent, vram_limit_percent;
- };
- 
- static inline struct nouveau_device_priv *
-diff --git a/nouveau/pushbuf.c b/nouveau/pushbuf.c
-index e720a08..0fd0c47 100644
---- a/nouveau/pushbuf.c
-+++ b/nouveau/pushbuf.c
-@@ -347,8 +347,10 @@ pushbuf_submit(struct nouveau_pushbuf *push, struct nouveau_object *chan)
- 					  &req, sizeof(req));
- 		nvpb->suffix0 = req.suffix0;
- 		nvpb->suffix1 = req.suffix1;
--		dev->vram_limit = (req.vram_available * 80) / 100;
--		dev->gart_limit = (req.gart_available * 80) / 100;
-+		dev->vram_limit = (req.vram_available *
-+				nouveau_device(dev)->vram_limit_percent) / 100;
-+		dev->gart_limit = (req.gart_available *
-+				nouveau_device(dev)->gart_limit_percent) / 100;
- #else
- 		if (dbg_on(31))
- 			ret = -EINVAL;
+
+--1362515294.67a7AEb3.8828
+Date: Tue, 5 Mar 2013 20:28:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=60510
+
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEEDINFO                    |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #4 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I pushed it to master.
+
+http://cgit.freedesktop.org/mesa/mesa/commit/?id=f4ebcd133b9c952fc57ce6d5df8bce8e2282d868
+
 -- 
-1.8.1.4
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1362515294.67a7AEb3.8828
+Date: Tue, 5 Mar 2013 20:28:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Firefox 18.0.2 Crash On Nvidia GeForce2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60510">bug 60510</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEEDINFO
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Firefox 18.0.2 Crash On Nvidia GeForce2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60510#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Firefox 18.0.2 Crash On Nvidia GeForce2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60510">bug 60510</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span></b>
+        <pre>I pushed it to master.
+
+<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=f4ebcd133b9c952fc57ce6d5df8bce8e2282d868">http://cgit.freedesktop.org/mesa/mesa/commit/?id=f4ebcd133b9c952fc57ce6d5df8bce8e2282d868</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1362515294.67a7AEb3.8828--
+
+--===============0772738255==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0772738255==--
