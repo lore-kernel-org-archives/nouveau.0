@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: idle channel before releasing notify
-	object
-Date: Tue,  5 Mar 2013 19:57:12 +0100
-Message-ID: <1362509833-28968-5-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nv50/disp: ignore encoder initialization
+	failures
+Date: Tue,  5 Mar 2013 19:57:13 +0100
+Message-ID: <1362509833-28968-6-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,29 +19,32 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Unmapping it while it's still in use (e.g. by M2MF) can lead to page faults
-and a lot of TRAP_M2MF spam in dmesg.
+Nouveau does not support all encoder types, so failure to handle one should
+not stop module initialization. And because of other bug, it lead to oops
+in nv50_crtc_destroy (nv50_display_destroy sets nouveau_display->priv to NULL,
+which is used by nv50_crtc_destroy).
 
+Fixes regression from eb6313add6dddf07ea3e50c4caa33a9c3b2379f1
+("drm/nv50: initial kms support for off-chip TMDS/DP encoders").
+
+Reported-by: Richard Yao <ryao-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org>
+Tested-by: Richard Yao <ryao-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org>
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_abi16.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/nouveau/nv50_display.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-index 4124192..3b6dc88 100644
---- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-@@ -116,6 +116,11 @@ nouveau_abi16_chan_fini(struct nouveau_abi16 *abi16,
- {
- 	struct nouveau_abi16_ntfy *ntfy, *temp;
+diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
+index 87a5a56..2db5799 100644
+--- a/drivers/gpu/drm/nouveau/nv50_display.c
++++ b/drivers/gpu/drm/nouveau/nv50_display.c
+@@ -2276,6 +2276,7 @@ nv50_display_create(struct drm_device *dev)
+ 			NV_WARN(drm, "failed to create encoder %d/%d/%d: %d\n",
+ 				     dcbe->location, dcbe->type,
+ 				     ffs(dcbe->or) - 1, ret);
++			ret = 0;
+ 		}
+ 	}
  
-+	/* wait for all activity to stop before releasing notify object, which
-+	 * may be still in use */
-+	if (chan->chan && chan->ntfy)
-+		nouveau_channel_idle(chan->chan);
-+
- 	/* cleanup notifier state */
- 	list_for_each_entry_safe(ntfy, temp, &chan->notifiers, head) {
- 		nouveau_abi16_ntfy_fini(chan, ntfy);
 -- 
 1.8.1.4
