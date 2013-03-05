@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: fix crash in vram manager debug
-	callback
-Date: Tue,  5 Mar 2013 19:57:09 +0100
-Message-ID: <1362509833-28968-2-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nouveau: drop redundant channel handle and
+	owner info from nv_channel_idle
+Date: Tue,  5 Mar 2013 19:57:10 +0100
+Message-ID: <1362509833-28968-3-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,46 +19,27 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-It's probably impossible to hit it now on mainline kernel.
-I only noticed it because one of my debugging patches uses it.
+before: "nouveau E[X[3162]] failed to idle channel 0xcccc0000 [X[3162]]"
+after:  "nouveau E[X[3162]] failed to idle channel: -16"
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_ttm.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_chan.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-index 9be9cb5..9c60ef6 100644
---- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-@@ -35,14 +35,16 @@
- static int
- nouveau_vram_manager_init(struct ttm_mem_type_manager *man, unsigned long psize)
- {
--	/* nothing to do */
-+	struct nouveau_drm *drm = nouveau_bdev(man->bdev);
-+	struct nouveau_fb *pfb = nouveau_fb(drm->device);
-+	man->priv = pfb;
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
+index eaa80a2..c8be059 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_chan.c
++++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
+@@ -58,8 +58,7 @@ nouveau_channel_idle(struct nouveau_channel *chan)
+ 	}
  
- static int
- nouveau_vram_manager_fini(struct ttm_mem_type_manager *man)
- {
--	/* nothing to do */
-+	man->priv = NULL;
- 	return 0;
+ 	if (ret)
+-		NV_ERROR(cli, "failed to idle channel 0x%08x [%s]\n",
+-			 chan->handle, cli->base.name);
++		NV_ERROR(cli, "failed to idle channel: %d\n", ret);
+ 	return ret;
  }
- 
-@@ -104,7 +106,8 @@ nouveau_vram_manager_new(struct ttm_mem_type_manager *man,
- static void
- nouveau_vram_manager_debug(struct ttm_mem_type_manager *man, const char *prefix)
- {
--	struct nouveau_mm *mm = man->priv;
-+	struct nouveau_fb *pfb = man->priv;
-+	struct nouveau_mm *mm = &pfb->vram;
- 	struct nouveau_mm_node *r;
- 	u32 total = 0, free = 0;
  
 -- 
 1.8.1.4
