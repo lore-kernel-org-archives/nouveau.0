@@ -1,7 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [RFC PATCH] drm/nouveau: use vmalloc for pgt allocation
-Date: Tue,  5 Mar 2013 19:57:08 +0100
-Message-ID: <1362509833-28968-1-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nouveau: fix crash in vram manager debug
+	callback
+Date: Tue,  5 Mar 2013 19:57:09 +0100
+Message-ID: <1362509833-28968-2-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -16,48 +17,48 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "[3.7+]"@freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Page tables on nv50 take 48kB, which can be hard to allocate in one piece.
-Let's use vmalloc.
+It's probably impossible to hit it now on mainline kernel.
+I only noticed it because one of my debugging patches uses it.
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org [3.7+]
 ---
- drivers/gpu/drm/nouveau/core/subdev/vm/base.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_ttm.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/vm/base.c b/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
-index 77c67fc..e66fb77 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
-@@ -362,7 +362,7 @@ nouveau_vm_create(struct nouveau_vmmgr *vmm, u64 offset, u64 length,
- 	vm->fpde = offset >> (vmm->pgt_bits + 12);
- 	vm->lpde = (offset + length - 1) >> (vmm->pgt_bits + 12);
- 
--	vm->pgt  = kcalloc(vm->lpde - vm->fpde + 1, sizeof(*vm->pgt), GFP_KERNEL);
-+	vm->pgt  = vzalloc((vm->lpde - vm->fpde + 1) * sizeof(*vm->pgt));
- 	if (!vm->pgt) {
- 		kfree(vm);
- 		return -ENOMEM;
-@@ -371,7 +371,7 @@ nouveau_vm_create(struct nouveau_vmmgr *vmm, u64 offset, u64 length,
- 	ret = nouveau_mm_init(&vm->mm, mm_offset >> 12, mm_length >> 12,
- 			      block >> 12);
- 	if (ret) {
--		kfree(vm->pgt);
-+		vfree(vm->pgt);
- 		kfree(vm);
- 		return ret;
- 	}
-@@ -446,7 +446,7 @@ nouveau_vm_del(struct nouveau_vm *vm)
- 	}
- 
- 	nouveau_mm_fini(&vm->mm);
--	kfree(vm->pgt);
-+	vfree(vm->pgt);
- 	kfree(vm);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+index 9be9cb5..9c60ef6 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+@@ -35,14 +35,16 @@
+ static int
+ nouveau_vram_manager_init(struct ttm_mem_type_manager *man, unsigned long psize)
+ {
+-	/* nothing to do */
++	struct nouveau_drm *drm = nouveau_bdev(man->bdev);
++	struct nouveau_fb *pfb = nouveau_fb(drm->device);
++	man->priv = pfb;
+ 	return 0;
  }
+ 
+ static int
+ nouveau_vram_manager_fini(struct ttm_mem_type_manager *man)
+ {
+-	/* nothing to do */
++	man->priv = NULL;
+ 	return 0;
+ }
+ 
+@@ -104,7 +106,8 @@ nouveau_vram_manager_new(struct ttm_mem_type_manager *man,
+ static void
+ nouveau_vram_manager_debug(struct ttm_mem_type_manager *man, const char *prefix)
+ {
+-	struct nouveau_mm *mm = man->priv;
++	struct nouveau_fb *pfb = man->priv;
++	struct nouveau_mm *mm = &pfb->vram;
+ 	struct nouveau_mm_node *r;
+ 	u32 total = 0, free = 0;
  
 -- 
 1.8.1.4
