@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61879] New: Python binding of gbm's
- gbm_create_device fail to create_device
-Date: Tue, 05 Mar 2013 23:08:20 +0000
-Message-ID: <bug-61879-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 61879] Python binding of gbm's gbm_create_device
+ fail to create_device
+Date: Tue, 05 Mar 2013 23:10:33 +0000
+Message-ID: <bug-61879-8800-mVRhC3JIGS@http.bugs.freedesktop.org/>
+References: <bug-61879-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0555043466=="
+Content-Type: multipart/mixed; boundary="===============0986150928=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-61879-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,70 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0555043466==
-Content-Type: multipart/alternative; boundary="1362524900.567DBC1D0.27411"; charset="us-ascii"
+--===============0986150928==
+Content-Type: multipart/alternative; boundary="1362525033.b277F70.27770"; charset="us-ascii"
 
 
---1362524900.567DBC1D0.27411
-Date: Tue, 5 Mar 2013 23:08:20 +0000
+--1362525033.b277F70.27770
+Date: Tue, 5 Mar 2013 23:10:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=61879
 
-          Priority: medium
-            Bug ID: 61879
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Python binding of gbm's gbm_create_device fail to
-                    create_device
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: amirouche.boubekki-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
+amirouche <amirouche.boubekki-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Created attachment 75991
-  --> https://bugs.freedesktop.org/attachment.cgi?id=75991&action=edit
-example script with cffi
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |amirouche.boubekki-Re5JQEeQqe8@public.gmane.org
+                   |                            |m
+            Version|unspecified                 |git
 
-I bound gbm_create_device with both cffi and cython of gbm_create_device and
-they both fail at the same place
+--- Comment #1 from amirouche <amirouche.boubekki-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+my card is reported by lspci as:
 
-error: Program received signal SIGSEGV, Segmentation fault.
+01:00.0 VGA compatible controller: NVIDIA Corporation GF114 [GeForce GTX 560
+Ti] (rev a1) (prog-if 00 [VGA controller])
 
-stacktrace:
-
-#0  0x00007fffee18af07 in PUSH_DATA (push=0x13c0410, data=536952832) at
-../../../../src/gallium/drivers/nouveau/nouveau_winsys.h:35
-#1  0x00007fffee18b0b2 in BEGIN_NVC0 (push=0x13c0410, subc=2, mthd=0, size=1)
-at nvc0_winsys.h:112
-#2  0x00007fffee18c0c1 in nvc0_screen_create (dev=0x15f8690) at
-nvc0_screen.c:496
-#3  0x00007fffee0c4c3b in nouveau_drm_screen_create (fd=7) at
-nouveau_drm_winsys.c:46
-#4  0x00007fffeb0a6943 in create_screen (fd=7) at pipe_nouveau.c:11
-#5  0x00007fffec4e5fdb in pipe_loader_drm_create_screen (dev=0x1750130,
-library_paths=0x7fffecec0cf2 "/usr/lib64/gallium-pipe") at
-pipe_loader_drm.c:270
-#6  0x00007fffec4e570e in pipe_loader_create_screen (dev=0x1750130,
-library_paths=0x7fffecec0cf2 "/usr/lib64/gallium-pipe") at pipe_loader.c:68
-#7  0x00007fffec4e5539 in gallium_screen_create (gdrm=0x174fff0) at gbm.c:60
-#8  0x00007fffec4e69a8 in gbm_gallium_drm_device_create (fd=7) at gbm_drm.c:248
-#9  0x00007fffef338370 in _gbm_create_device (fd=7) at main/backend.c:124
-
-version: 9.1 & git
-linux: 3.8.2 gentoo
+eglkms demo from mesa-demo works fine under 9.0.2, 9.1 and git
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1362524900.567DBC1D0.27411
-Date: Tue, 5 Mar 2013 23:08:20 +0000
+--1362525033.b277F70.27770
+Date: Tue, 5 Mar 2013 23:10:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -90,119 +61,54 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:amirouche.boubekki&#64;gmail.com" title="amirouche &lt;amirouche.boubekki&#64;gmail.com&gt;"> <span class="fn">amirouche</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Python binding of gbm's gbm_create_device fail to create_device"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61879">61879</a>
-          </td>
-        </tr>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61879">bug 61879</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>amirouche.boubekki&#64;gmail.com
+           </td>
+         </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>Python binding of gbm's gbm_create_device fail to create_device
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>amirouche.boubekki&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">Version</td>
+           <td>unspecified
+           </td>
+           <td>git
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=75991" name="attach_75991" title="example script with cffi">attachment 75991</a> <a href="attachment.cgi?id=75991&amp;action=edit" title="example script with cffi">[details]</a></span>
-example script with cffi
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Python binding of gbm's gbm_create_device fail to create_device"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61879#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Python binding of gbm's gbm_create_device fail to create_device"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61879">bug 61879</a>
+              from <span class="vcard"><a class="email" href="mailto:amirouche.boubekki&#64;gmail.com" title="amirouche &lt;amirouche.boubekki&#64;gmail.com&gt;"> <span class="fn">amirouche</span></a>
+</span></b>
+        <pre>my card is reported by lspci as:
 
-I bound gbm_create_device with both cffi and cython of gbm_create_device and
-they both fail at the same place
+01:00.0 VGA compatible controller: NVIDIA Corporation GF114 [GeForce GTX 560
+Ti] (rev a1) (prog-if 00 [VGA controller])
 
-error: Program received signal SIGSEGV, Segmentation fault.
-
-stacktrace:
-
-#0  0x00007fffee18af07 in PUSH_DATA (push=0x13c0410, data=536952832) at
-../../../../src/gallium/drivers/nouveau/nouveau_winsys.h:35
-#1  0x00007fffee18b0b2 in BEGIN_NVC0 (push=0x13c0410, subc=2, mthd=0, size=1)
-at nvc0_winsys.h:112
-#2  0x00007fffee18c0c1 in nvc0_screen_create (dev=0x15f8690) at
-nvc0_screen.c:496
-#3  0x00007fffee0c4c3b in nouveau_drm_screen_create (fd=7) at
-nouveau_drm_winsys.c:46
-#4  0x00007fffeb0a6943 in create_screen (fd=7) at pipe_nouveau.c:11
-#5  0x00007fffec4e5fdb in pipe_loader_drm_create_screen (dev=0x1750130,
-library_paths=0x7fffecec0cf2 &quot;/usr/lib64/gallium-pipe&quot;) at
-pipe_loader_drm.c:270
-#6  0x00007fffec4e570e in pipe_loader_create_screen (dev=0x1750130,
-library_paths=0x7fffecec0cf2 &quot;/usr/lib64/gallium-pipe&quot;) at pipe_loader.c:68
-#7  0x00007fffec4e5539 in gallium_screen_create (gdrm=0x174fff0) at gbm.c:60
-#8  0x00007fffec4e69a8 in gbm_gallium_drm_device_create (fd=7) at gbm_drm.c:248
-#9  0x00007fffef338370 in _gbm_create_device (fd=7) at main/backend.c:124
-
-version: 9.1 &amp; git
-linux: 3.8.2 gentoo</pre>
+eglkms demo from mesa-demo works fine under 9.0.2, 9.1 and git</pre>
         </div>
       </p>
       <hr>
@@ -214,9 +120,9 @@ linux: 3.8.2 gentoo</pre>
     </body>
 </html>
 
---1362524900.567DBC1D0.27411--
+--1362525033.b277F70.27770--
 
---===============0555043466==
+--===============0986150928==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -227,4 +133,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0555043466==--
+--===============0986150928==--
