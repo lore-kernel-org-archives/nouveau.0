@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nv50/disp: ignore encoder initialization
-	failures
-Date: Tue,  5 Mar 2013 19:57:13 +0100
-Message-ID: <1362509833-28968-6-git-send-email-marcin.slusarz@gmail.com>
+Subject: [libdrm PATCH 1/2] nouveau: return error from
+	pushbuf_validate
+Date: Tue,  5 Mar 2013 21:14:53 +0100
+Message-ID: <1362514494-3918-1-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,32 +19,25 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Nouveau does not support all encoder types, so failure to handle one should
-not stop module initialization. And because of other bug, it lead to oops
-in nv50_crtc_destroy (nv50_display_destroy sets nouveau_display->priv to NULL,
-which is used by nv50_crtc_destroy).
+Without it, libdrm_nouveau user cannot know when validation failed.
 
-Fixes regression from eb6313add6dddf07ea3e50c4caa33a9c3b2379f1
-("drm/nv50: initial kms support for off-chip TMDS/DP encoders").
-
-Reported-by: Richard Yao <ryao-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org>
-Tested-by: Richard Yao <ryao-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org>
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nv50_display.c | 1 +
- 1 file changed, 1 insertion(+)
+ nouveau/pushbuf.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
-index 87a5a56..2db5799 100644
---- a/drivers/gpu/drm/nouveau/nv50_display.c
-+++ b/drivers/gpu/drm/nouveau/nv50_display.c
-@@ -2276,6 +2276,7 @@ nv50_display_create(struct drm_device *dev)
- 			NV_WARN(drm, "failed to create encoder %d/%d/%d: %d\n",
- 				     dcbe->location, dcbe->type,
- 				     ffs(dcbe->or) - 1, ret);
-+			ret = 0;
+diff --git a/nouveau/pushbuf.c b/nouveau/pushbuf.c
+index ff8e125..e720a08 100644
+--- a/nouveau/pushbuf.c
++++ b/nouveau/pushbuf.c
+@@ -524,7 +524,7 @@ pushbuf_validate(struct nouveau_pushbuf *push, bool retry)
  		}
  	}
  
+-	return 0;
++	return ret;
+ }
+ 
+ int
 -- 
 1.8.1.4
