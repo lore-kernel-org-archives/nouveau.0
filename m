@@ -1,8 +1,8 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: drop redundant channel handle and
-	owner info from nv_channel_idle
-Date: Tue,  5 Mar 2013 19:57:10 +0100
-Message-ID: <1362509833-28968-3-git-send-email-marcin.slusarz@gmail.com>
+Subject: [PATCH] drm/nouveau/nv50: use correct tiling methods for
+	m2mf buffer moves
+Date: Tue,  5 Mar 2013 19:57:11 +0100
+Message-ID: <1362509833-28968-4-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,27 +19,37 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-before: "nouveau E[X[3162]] failed to idle channel 0xcccc0000 [X[3162]]"
-after:  "nouveau E[X[3162]] failed to idle channel: -16"
+Currently used only on original nv50, nvaa and nvac.
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_chan.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Note: it would be catched much faster (probably even by author, and not after
+2 years) if this code would use (known!) register names...
+---
+ drivers/gpu/drm/nouveau/nouveau_bo.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
-index eaa80a2..c8be059 100644
---- a/drivers/gpu/drm/nouveau/nouveau_chan.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
-@@ -58,8 +58,7 @@ nouveau_channel_idle(struct nouveau_channel *chan)
- 	}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 11ca821..7ff1071 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -801,7 +801,7 @@ nv50_bo_move_m2mf(struct nouveau_channel *chan, struct ttm_buffer_object *bo,
+ 		stride  = 16 * 4;
+ 		height  = amount / stride;
  
- 	if (ret)
--		NV_ERROR(cli, "failed to idle channel 0x%08x [%s]\n",
--			 chan->handle, cli->base.name);
-+		NV_ERROR(cli, "failed to idle channel: %d\n", ret);
- 	return ret;
- }
- 
+-		if (new_mem->mem_type == TTM_PL_VRAM &&
++		if (old_mem->mem_type == TTM_PL_VRAM &&
+ 		    nouveau_bo_tile_layout(nvbo)) {
+ 			ret = RING_SPACE(chan, 8);
+ 			if (ret)
+@@ -823,7 +823,7 @@ nv50_bo_move_m2mf(struct nouveau_channel *chan, struct ttm_buffer_object *bo,
+ 			BEGIN_NV04(chan, NvSubCopy, 0x0200, 1);
+ 			OUT_RING  (chan, 1);
+ 		}
+-		if (old_mem->mem_type == TTM_PL_VRAM &&
++		if (new_mem->mem_type == TTM_PL_VRAM &&
+ 		    nouveau_bo_tile_layout(nvbo)) {
+ 			ret = RING_SPACE(chan, 8);
+ 			if (ret)
 -- 
 1.8.1.4
