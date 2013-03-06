@@ -1,90 +1,47 @@
-From: Joe Perches <joe@perches.com>
-Subject: Re: nouveau lockdep splat
-Date: Wed, 06 Mar 2013 12:02:33 -0800
-Message-ID: <1362600153.1759.58.camel@joe-AO722>
-References: <20130304211608.GD22274@pd.tnic>
-	 <1362501052.1933.2.camel@antimon> <20130306000429.GA30189@pd.tnic>
-	 <20130306191418.GA3400@joi.lan> <513799A5.3010609@wwwdotorg.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <513799A5.3010609@wwwdotorg.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Stephen Warren <swarren@wwwdotorg.org>
-Cc: Marcin Slusarz <marcin.slusarz@gmail.com>, Stephen Warren <swarren@nvidia.com>, Andrew Morton <akpm@linux-foundation.org>, Borislav Petkov <bp@alien8.de>, Lucas Stach <dev@lynxeye.de>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, Maarten Lankhorst <maarten.lankhorst@canonical.com>
+From: Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>
+Subject: [PATCH 1/2] get_maintainer: create filename-only regex match type
+Date: Wed,  6 Mar 2013 16:36:44 -0700
+Message-ID: <1362613005-31439-1-git-send-email-swarren@wwwdotorg.org>
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+Cc: Joe Perches <joe-6d6DIl74uiNBDgjK7y7TUQ@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>, Borislav Petkov <bp-Gina5bIWoIWzQB+pC5nmwQ@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Stephen Warren <swarren-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 2013-03-06 at 12:31 -0700, Stephen Warren wrote:
-> On 03/06/2013 12:14 PM, Marcin Slusarz wrote:
-> > On Wed, Mar 06, 2013 at 01:04:29AM +0100, Borislav Petkov wrote:
-> >> On Tue, Mar 05, 2013 at 05:30:52PM +0100, Lucas Stach wrote:
-> >>> Dropping Tegra ML, it's not the place where Nouveau mails should go.
-> >>
-> >> $ ./scripts/get_maintainer.pl -f drivers/gpu/drm/nouveau/nv50_display.c
-> >> ...
-> >> linux-tegra@vger.kernel.org (open list:TEGRA SUPPORT)
-> >>
-> >> Maybe get_maintainer.pl patterns need correction...
-> > 
-> > That's new feature (introduced in commit eb90d0855b75f8 "get_maintainer: allow
-> > keywords to match filenames") of get_maintainer.pl which now can look at file
-> > contents...
-> 
-> get_maintainer.pl could always look at file contents IIRC. The change
-> was that I added keyword "tegra" to the Tegra section that now matches
-> this file's contents.
-> 
-> ./scripts/get_maintainer.pl -f drivers/gpu/drm/nouveau
-> 
-> ... might be a better invocation, although perhaps I should add an
-> explicit exclusion for "nouveau" to the Tegra section in MAINTAINERS.
+From: Stephen Warren <swarren-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
-Another option might be avoid overloading the "K:"
-entry and use a different letter for the file name
-pattern match (maybe "N") and avoid looking for
-tegra in the file or patch without another specific
-"K:" keyword match.
+Create a new N: entry type in MAINTAINERS which performs a regex match
+against filenames; either those extracted from patch +++ or --- lines,
+or those specified on the command-line using the -f option.
 
-Maybe:
+This provides the same benefits as using a K: regex option to match a
+set of filenames (see commit eb90d08 "get_maintainer: allow keywords to
+match filenames"), but without the disadvantage that "random" file
+content, such as comments,  will ever match the regex.
+
+Suggested-by: Joe Perches <joe-6d6DIl74uiNBDgjK7y7TUQ@public.gmane.org>
+Signed-off-by: Stephen Warren <swarren-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- MAINTAINERS               | 10 +++++++---
- scripts/get_maintainer.pl |  2 +-
- 2 files changed, 8 insertions(+), 4 deletions(-)
+ MAINTAINERS               |    3 +++
+ scripts/get_maintainer.pl |    2 +-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index e95b1e9..76e0223 100644
+index 9561658..1671842 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -96,10 +96,14 @@ Descriptions of section entries:
- 	   F:	net/
- 	   X:	net/ipv6/
- 	   matches all files in and below net excluding net/ipv6/
-+	N: Filename wildcard pattern match, for instance:
-+	   N:	(?i)[^a-z]tegra
-+	   matches any filename with case insensitive "tegra" but not
-+	   any other word like integrate
- 	K: Keyword perl extended regex pattern to match content in a
--	   patch or file, or an affected filename.  For instance:
-+	   patch or file.  For instance:
- 	   K: of_get_profile
--	      matches patch or file content, or filenames, that contain
-+	      matches patch or file content, that contain
- 	      "of_get_profile"
- 	   K: \b(printk|pr_(info|err))\b
- 	      matches patch or file content, or filenames, that contain one or
-@@ -7866,7 +7870,7 @@ L:	linux-tegra@vger.kernel.org
- Q:	http://patchwork.ozlabs.org/project/linux-tegra/list/
- T:	git
-git://git.kernel.org/pub/scm/linux/kernel/git/swarren/linux-tegra.git
- S:	Supported
--K:	(?i)[^a-z]tegra
-+N:	(?i)[^a-z]tegra
- 
- TEHUTI ETHERNET DRIVER
- M:	Andy Gospodarek <andy@greyhouse.net>
+@@ -90,6 +90,9 @@ Descriptions of section entries:
+ 	   F:	drivers/net/*	all files in drivers/net, but not below
+ 	   F:	*/net/*		all files in "any top level directory"/net
+ 	   One pattern per line.  Multiple F: lines acceptable.
++	N: Files and directories with regex patterns.
++	   K:	[^a-z]tegra	all files whose patch contains the word tegra
++	   One pattern per line.  Multiple N: lines acceptable.
+ 	X: Files and directories that are NOT maintained, same rules as F:
+ 	   Files exclusions are tested before file matches.
+ 	   Can be useful for excluding a specific subdirectory, for instance:
 diff --git a/scripts/get_maintainer.pl b/scripts/get_maintainer.pl
-index ce4cc83..5e4fb14 100755
+index ce4cc83..27dc5cb 100755
 --- a/scripts/get_maintainer.pl
 +++ b/scripts/get_maintainer.pl
 @@ -611,7 +611,7 @@ sub get_maintainers {
@@ -92,7 +49,9 @@ index ce4cc83..5e4fb14 100755
  				}
  			    }
 -			} elsif ($type eq 'K') {
-+			} elsif ($type eq 'N') {
++			} elsif ($type eq 'K' || $type eq 'N') {
  			    if ($file =~ m/$value/x) {
  				$hash{$tvi} = 0;
  			    }
+-- 
+1.7.10.4
