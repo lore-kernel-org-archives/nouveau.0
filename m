@@ -1,47 +1,61 @@
-From: Stephen Warren <swarren@wwwdotorg.org>
+From: Borislav Petkov <bp@alien8.de>
 Subject: Re: nouveau lockdep splat
-Date: Wed, 06 Mar 2013 12:31:49 -0700
-Message-ID: <513799A5.3010609@wwwdotorg.org>
-References: <20130304211608.GD22274@pd.tnic> <1362501052.1933.2.camel@antimon>
-	<20130306000429.GA30189@pd.tnic> <20130306191418.GA3400@joi.lan>
+Date: Wed, 6 Mar 2013 20:42:09 +0100
+Message-ID: <20130306194209.GE30673@pd.tnic>
+References: <20130304211608.GD22274@pd.tnic>
+ <1362501052.1933.2.camel@antimon>
+ <20130306000429.GA30189@pd.tnic>
+ <20130306191418.GA3400@joi.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+Content-Type: text/plain; charset=utf-8
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
 In-Reply-To: <20130306191418.GA3400@joi.lan>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Sender: linux-kernel-owner@vger.kernel.org
 To: Marcin Slusarz <marcin.slusarz@gmail.com>
-Cc: Stephen Warren <swarren@nvidia.com>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Borislav Petkov <bp@alien8.de>, Joe Perches <joe@perches.com>, Andrew Morton <akpm@linux-foundation.org>
+Cc: Stephen Warren <swarren@nvidia.com>, Joe Perches <joe@perches.com>, Andrew Morton <akpm@linux-foundation.org>, Lucas Stach <dev@lynxeye.de>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, Maarten Lankhorst <maarten.lankhorst@canonical.com>
 List-Id: nouveau.vger.kernel.org
 
-On 03/06/2013 12:14 PM, Marcin Slusarz wrote:
+On Wed, Mar 06, 2013 at 08:14:18PM +0100, Marcin Slusarz wrote:
 > On Wed, Mar 06, 2013 at 01:04:29AM +0100, Borislav Petkov wrote:
->> On Tue, Mar 05, 2013 at 05:30:52PM +0100, Lucas Stach wrote:
->>> Dropping Tegra ML, it's not the place where Nouveau mails should go.
->>
->> $ ./scripts/get_maintainer.pl -f drivers/gpu/drm/nouveau/nv50_display.c
->> ...
->> linux-tegra@vger.kernel.org (open list:TEGRA SUPPORT)
->>
->> Maybe get_maintainer.pl patterns need correction...
+> > On Tue, Mar 05, 2013 at 05:30:52PM +0100, Lucas Stach wrote:
+> > > Dropping Tegra ML, it's not the place where Nouveau mails should go.
+> > 
+> > $ ./scripts/get_maintainer.pl -f drivers/gpu/drm/nouveau/nv50_display.c
+> > ...
+> > linux-tegra@vger.kernel.org (open list:TEGRA SUPPORT)
+> > 
+> > Maybe get_maintainer.pl patterns need correction...
 > 
 > That's new feature (introduced in commit eb90d0855b75f8 "get_maintainer: allow
 > keywords to match filenames") of get_maintainer.pl which now can look at file
 > contents...
+> 
+> TEGRA SUPPORT
+> M:	Stephen Warren <swarren@wwwdotorg.org>
+> L:	linux-tegra@vger.kernel.org
+> Q:	http://patchwork.ozlabs.org/project/linux-tegra/list/
+> T:	git git://git.kernel.org/pub/scm/linux/kernel/git/swarren/linux-tegra.git
+> S:	Supported
+> K:	(?i)[^a-z]tegra
+> 
+> Note the last line and this:
+> 
+> $ grep tegra drivers/gpu/drm/nouveau/nv50_display.c
+>         u32 rekey = 56; /* binary driver, and tegra constant */
+>         max_ac_packet -= 18; /* constant from tegra */
+> 
+> Fun.
 
-get_maintainer.pl could always look at file contents IIRC. The change
-was that I added keyword "tegra" to the Tegra section that now matches
-this file's contents.
+Yeah, and a lot of it, thanks for digging this out. So obviously this
+regex is a bit... unfortunate. Although the idea of grepping the files
+for unique patterns is not bad, I have to admit.
 
-./scripts/get_maintainer.pl -f drivers/gpu/drm/nouveau
+:-)
 
-... might be a better invocation, although perhaps I should add an
-explicit exclusion for "nouveau" to the Tegra section in MAINTAINERS.
+-- 
+Regards/Gruss,
+    Boris.
+
+Sent from a fat crate under my desk. Formatting is fine.
+--
