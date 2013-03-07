@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61854] [nv50]glClipPlane not clipping correctly for
-	glsl
-Date: Thu, 07 Mar 2013 18:35:51 +0000
-Message-ID: <bug-61854-8800-M6aoUDtZzT@http.bugs.freedesktop.org/>
-References: <bug-61854-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 61947] nullpointer dereference causes xorg-server
+ segfault when nouveau DRI driver is loaded
+Date: Thu, 07 Mar 2013 19:00:48 +0000
+Message-ID: <bug-61947-8800-fhEXKFQwlk@http.bugs.freedesktop.org/>
+References: <bug-61947-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1977373245=="
+Content-Type: multipart/mixed; boundary="===============0749215560=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61854-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-61947-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1977373245==
-Content-Type: multipart/alternative; boundary="1362681351.5bdDA3461.32722"; charset="us-ascii"
+--===============0749215560==
+Content-Type: multipart/alternative; boundary="1362682848.EF4DFF1.6989"; charset="us-ascii"
 
 
---1362681351.5bdDA3461.32722
-Date: Thu, 7 Mar 2013 18:35:51 +0000
+--1362682848.EF4DFF1.6989
+Date: Thu, 7 Mar 2013 19:00:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=61854
+https://bugs.freedesktop.org/show_bug.cgi?id=61947
 
---- Comment #2 from Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> ---
-__GLSL_CG_DATA_TYPES is an NV blob-specific feature related to Cg. How does
-that have anything to do with gl_ClipVertex ? And no, there's no way we're
-going to define it with mesa.
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #1 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks. I pushed it to master and marked as stable candidate.
+
+http://cgit.freedesktop.org/mesa/mesa/commit/?id=17f1cb1d99e66227d1e05925ef937643f5c1089a
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1362681351.5bdDA3461.32722
-Date: Thu, 7 Mar 2013 18:35:51 +0000
+--1362682848.EF4DFF1.6989
+Date: Thu, 7 Mar 2013 19:00:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +57,50 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nullpointer dereference causes xorg-server segfault when nouveau DRI driver is loaded"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61947">bug 61947</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nv50]glClipPlane not clipping correctly for glsl"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61854#c2">Comment # 2</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nullpointer dereference causes xorg-server segfault when nouveau DRI driver is loaded"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61947#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nv50]glClipPlane not clipping correctly for glsl"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61854">bug 61854</a>
-              from <span class="vcard"><a class="email" href="mailto:e0425955&#64;student.tuwien.ac.at" title="Christoph Bumiller &lt;e0425955&#64;student.tuwien.ac.at&gt;"> <span class="fn">Christoph Bumiller</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nullpointer dereference causes xorg-server segfault when nouveau DRI driver is loaded"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61947">bug 61947</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>__GLSL_CG_DATA_TYPES is an NV blob-specific feature related to Cg. How does
-that have anything to do with gl_ClipVertex ? And no, there's no way we're
-going to define it with mesa.</pre>
+        <pre>Thanks. I pushed it to master and marked as stable candidate.
+
+<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=17f1cb1d99e66227d1e05925ef937643f5c1089a">http://cgit.freedesktop.org/mesa/mesa/commit/?id=17f1cb1d99e66227d1e05925ef937643f5c1089a</a></pre>
         </div>
       </p>
       <hr>
@@ -77,9 +112,9 @@ going to define it with mesa.</pre>
     </body>
 </html>
 
---1362681351.5bdDA3461.32722--
+--1362682848.EF4DFF1.6989--
 
---===============1977373245==
+--===============0749215560==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +125,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1977373245==--
+--===============0749215560==--
