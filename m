@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 61854] [nv50]glClipPlane not clipping correctly for
 	glsl
-Date: Thu, 07 Mar 2013 13:01:27 +0000
-Message-ID: <bug-61854-8800-57rHPv3QSc@http.bugs.freedesktop.org/>
+Date: Thu, 07 Mar 2013 18:35:51 +0000
+Message-ID: <bug-61854-8800-M6aoUDtZzT@http.bugs.freedesktop.org/>
 References: <bug-61854-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0939851479=="
+Content-Type: multipart/mixed; boundary="===============1977373245=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-61854-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0939851479==
-Content-Type: multipart/alternative; boundary="1362661287.bAC5B48c0.31083"; charset="us-ascii"
+--===============1977373245==
+Content-Type: multipart/alternative; boundary="1362681351.5bdDA3461.32722"; charset="us-ascii"
 
 
---1362661287.bAC5B48c0.31083
-Date: Thu, 7 Mar 2013 13:01:27 +0000
+--1362681351.5bdDA3461.32722
+Date: Thu, 7 Mar 2013 18:35:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=61854
 
---- Comment #1 from bill-xUg5jqCTrWtAfugRpC6u6w@public.gmane.org ---
-Ok, thank's to calim's help, it turns out that blender wasn't writing to
-gl_ClipVertex. However, this is because __GLSL_CG_DATA_TYPES is not defined.
-Should nouveau define it? Or is there another define that can be used in
-blender's shader?
+--- Comment #2 from Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> ---
+__GLSL_CG_DATA_TYPES is an NV blob-specific feature related to Cg. How does
+that have anything to do with gl_ClipVertex ? And no, there's no way we're
+going to define it with mesa.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1362661287.bAC5B48c0.31083
-Date: Thu, 7 Mar 2013 13:01:27 +0000
+--1362681351.5bdDA3461.32722
+Date: Thu, 7 Mar 2013 18:35:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nv50]glClipPlane not clipping correctly for glsl"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61854#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61854#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nv50]glClipPlane not clipping correctly for glsl"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=61854">bug 61854</a>
-              from <span class="vcard"><a class="email" href="mailto:bill&#64;taniwha.org" title="bill&#64;taniwha.org">bill&#64;taniwha.org</a>
+              from <span class="vcard"><a class="email" href="mailto:e0425955&#64;student.tuwien.ac.at" title="Christoph Bumiller &lt;e0425955&#64;student.tuwien.ac.at&gt;"> <span class="fn">Christoph Bumiller</span></a>
 </span></b>
-        <pre>Ok, thank's to calim's help, it turns out that blender wasn't writing to
-gl_ClipVertex. However, this is because __GLSL_CG_DATA_TYPES is not defined.
-Should nouveau define it? Or is there another define that can be used in
-blender's shader?</pre>
+        <pre>__GLSL_CG_DATA_TYPES is an NV blob-specific feature related to Cg. How does
+that have anything to do with gl_ClipVertex ? And no, there's no way we're
+going to define it with mesa.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +77,9 @@ blender's shader?</pre>
     </body>
 </html>
 
---1362661287.bAC5B48c0.31083--
+--1362681351.5bdDA3461.32722--
 
---===============0939851479==
+--===============1977373245==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0939851479==--
+--===============1977373245==--
