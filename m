@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61953] arbitrary memory access corrupts kernel
- memory, eventually crashing the kernel
-Date: Thu, 07 Mar 2013 11:46:41 +0000
-Message-ID: <bug-61953-8800-GXuaILOhNG@http.bugs.freedesktop.org/>
-References: <bug-61953-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 61854] [nv50]glClipPlane not clipping correctly for
+	glsl
+Date: Thu, 07 Mar 2013 13:01:27 +0000
+Message-ID: <bug-61854-8800-57rHPv3QSc@http.bugs.freedesktop.org/>
+References: <bug-61854-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0068700158=="
+Content-Type: multipart/mixed; boundary="===============0939851479=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61953-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-61854-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,55 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0068700158==
-Content-Type: multipart/alternative; boundary="1362656801.6eF37231.15943"; charset="us-ascii"
+--===============0939851479==
+Content-Type: multipart/alternative; boundary="1362661287.bAC5B48c0.31083"; charset="us-ascii"
 
 
---1362656801.6eF37231.15943
-Date: Thu, 7 Mar 2013 11:46:41 +0000
+--1362661287.bAC5B48c0.31083
+Date: Thu, 7 Mar 2013 13:01:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=61953
+https://bugs.freedesktop.org/show_bug.cgi?id=61854
 
---- Comment #5 from Adrian Knoth <adi-5gjw4BGRu82yAo/rNOIehoJPQCENF9+z@public.gmane.org> ---
-Unaffected: Kernel 3.2.x and before
-Affected: probably everything afterwards, at least 3.5.x to 3.8.2
-Card: NVc1 (GF108)
-
-When doing graphics-intensive work, video corruption occurs that later leads to
-a kernel crash. This bug is easy to reproduce for me, but it's hard to provide
-a minimal test case.
-
-How to trigger:
-Using the "Export to PDF" button in libreoffice may cause video corruption once
-the export is done (see attached screenshot). Occasionally, also the resulting
-PDF is corrupted (see attached PDF).
-
-Likewise, watching youtube videos or flicking through online magazines
-(http://issuu.com/gimpmagazine/docs/issue3) will first create 1px wide
-horizontal lines, later larger distorted structures and eventually crash the
-kernel.
-
-Also, using ardour3 (quite some heavy GTK canvas action) will cause artefacts
-and then crash the kernel within 40 minutes.
-
-Kernel backtraces differ from "page table corruption" to various code paths in
-almost any subsystem (NFS, ext4, RCU, whatever). Sometimes, individual
-userspace processes crash or hang in syscalls.
-
-I ran memtest for two days without problems. As said before, everything is fine
-on 3.2.x, too.
-
-Looks like random memory access from/via nouveau to me. If need be, I can grab
-a radeon card to support/falsify this hypothesis.
+--- Comment #1 from bill-xUg5jqCTrWtAfugRpC6u6w@public.gmane.org ---
+Ok, thank's to calim's help, it turns out that blender wasn't writing to
+gl_ClipVertex. However, this is because __GLSL_CG_DATA_TYPES is not defined.
+Should nouveau define it? Or is there another define that can be used in
+blender's shader?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1362656801.6eF37231.15943
-Date: Thu, 7 Mar 2013 11:46:41 +0000
+--1362661287.bAC5B48c0.31083
+Date: Thu, 7 Mar 2013 13:01:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -82,44 +56,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - arbitrary memory access corrupts kernel memory, eventually crashing the kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61953#c5">Comment # 5</a>
+   title="NEW --- - [nv50]glClipPlane not clipping correctly for glsl"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61854#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - arbitrary memory access corrupts kernel memory, eventually crashing the kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61953">bug 61953</a>
-              from <span class="vcard"><a class="email" href="mailto:adi&#64;drcomp.erfurt.thur.de" title="Adrian Knoth &lt;adi&#64;drcomp.erfurt.thur.de&gt;"> <span class="fn">Adrian Knoth</span></a>
+   title="NEW --- - [nv50]glClipPlane not clipping correctly for glsl"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61854">bug 61854</a>
+              from <span class="vcard"><a class="email" href="mailto:bill&#64;taniwha.org" title="bill&#64;taniwha.org">bill&#64;taniwha.org</a>
 </span></b>
-        <pre>Unaffected: Kernel 3.2.x and before
-Affected: probably everything afterwards, at least 3.5.x to 3.8.2
-Card: NVc1 (GF108)
-
-When doing graphics-intensive work, video corruption occurs that later leads to
-a kernel crash. This bug is easy to reproduce for me, but it's hard to provide
-a minimal test case.
-
-How to trigger:
-Using the &quot;Export to PDF&quot; button in libreoffice may cause video corruption once
-the export is done (see attached screenshot). Occasionally, also the resulting
-PDF is corrupted (see attached PDF).
-
-Likewise, watching youtube videos or flicking through online magazines
-(<a href="http://issuu.com/gimpmagazine/docs/issue3">http://issuu.com/gimpmagazine/docs/issue3</a>) will first create 1px wide
-horizontal lines, later larger distorted structures and eventually crash the
-kernel.
-
-Also, using ardour3 (quite some heavy GTK canvas action) will cause artefacts
-and then crash the kernel within 40 minutes.
-
-Kernel backtraces differ from &quot;page table corruption&quot; to various code paths in
-almost any subsystem (NFS, ext4, RCU, whatever). Sometimes, individual
-userspace processes crash or hang in syscalls.
-
-I ran memtest for two days without problems. As said before, everything is fine
-on 3.2.x, too.
-
-Looks like random memory access from/via nouveau to me. If need be, I can grab
-a radeon card to support/falsify this hypothesis.</pre>
+        <pre>Ok, thank's to calim's help, it turns out that blender wasn't writing to
+gl_ClipVertex. However, this is because __GLSL_CG_DATA_TYPES is not defined.
+Should nouveau define it? Or is there another define that can be used in
+blender's shader?</pre>
         </div>
       </p>
       <hr>
@@ -131,9 +79,9 @@ a radeon card to support/falsify this hypothesis.</pre>
     </body>
 </html>
 
---1362656801.6eF37231.15943--
+--1362661287.bAC5B48c0.31083--
 
---===============0068700158==
+--===============0939851479==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -144,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0068700158==--
+--===============0939851479==--
