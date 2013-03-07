@@ -1,42 +1,196 @@
-From: Joe Perches <joe-6d6DIl74uiNBDgjK7y7TUQ@public.gmane.org>
-Subject: Re: [PATCH V2 3/3] get_maintainer: prevent keywords from matching
- filenames
-Date: Wed, 06 Mar 2013 22:55:11 -0800
-Message-ID: <1362639311.5290.28.camel@joe-AO722>
-References: <1362616141-13947-1-git-send-email-swarren@wwwdotorg.org>
-	 <1362616141-13947-3-git-send-email-swarren@wwwdotorg.org>
-	 <1362616252.2093.37.camel@joe-AO722> <5137E09E.1060006@wwwdotorg.org>
-	 <1362616810.2093.40.camel@joe-AO722> <51383800.7000608@wwwdotorg.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 61947] New: nullpointer dereference causes
+ xorg-server segfault when nouveau DRI driver is loaded
+Date: Thu, 07 Mar 2013 08:51:39 +0000
+Message-ID: <bug-61947-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <51383800.7000608-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>
-Cc: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>, Borislav Petkov <bp-Gina5bIWoIWzQB+pC5nmwQ@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Stephen Warren <swarren-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0517892795=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 2013-03-06 at 23:47 -0700, Stephen Warren wrote:
-> On 03/06/2013 05:40 PM, Joe Perches wrote:
-> > Which is why I showed the whole thing in a single patch.
-> > No worries if it's simply to increase the patch count...
-> 
-> I'm not sure what showed refers to?
 
-The changes I posted with the suggestion
-https://lkml.org/lkml/2013/3/6/468
+--===============0517892795==
+Content-Type: multipart/alternative; boundary="1362646300.8C32FA4B1.21587"; charset="us-ascii"
 
-> I guess if I squashed /everything/ into a single commit (i.e. the change
-> to the Tegra section in MAINTAINERS too) then there wouldn't be any
-> bisect issues. I really don't care about patch count. The reason for >1
-> patch is that there's often push-back if doing logically separate things
-> (adding N: feature, modifying a MAINTAINERS entry to use it, removing
-> part of K: feature) in a single patch...
 
-Not from me anyway.
+--1362646300.8C32FA4B1.21587
+Date: Thu, 7 Mar 2013 08:51:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-I think it's a single logical change and
-it's trivial too.
+https://bugs.freedesktop.org/show_bug.cgi?id=61947
 
-No worries whatever happens.
+          Priority: medium
+            Bug ID: 61947
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: nullpointer dereference causes xorg-server segfault
+                    when nouveau DRI driver is loaded
+          Severity: critical
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: jan-Nxuwd0F5s3rq0s6DQE6FoQ@public.gmane.org
+          Hardware: All
+            Status: NEW
+           Version: 9.1
+         Component: Drivers/DRI/nouveau
+           Product: Mesa
+
+Created attachment 76086
+  --> https://bugs.freedesktop.org/attachment.cgi?id=76086&action=edit
+Patch that fixes the segfault
+
+Chromium can crash Xorg when the nouveau DRI driver is loaded. This is due to a
+nullpointer dereference.
+
+Archlinux bug (Xorg crash): https://bugs.archlinux.org/task/33994
+Fedora bug (Application crash, same cause):
+https://bugzilla.redhat.com/show_bug.cgi?id=862466
+
+As suggested in the Fedora bug, comment 15, attached is a patch that fixes this
+issue (confirmed on Archlinux). This is the same check the Intel DRI driver
+does, so I think it's needed there.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1362646300.8C32FA4B1.21587
+Date: Thu, 7 Mar 2013 08:51:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nullpointer dereference causes xorg-server segfault when nouveau DRI driver is loaded"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61947">61947</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>nullpointer dereference causes xorg-server segfault when nouveau DRI driver is loaded
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jan&#64;jgc.homeip.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>9.1
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=76086" name="attach_76086" title="Patch that fixes the segfault">attachment 76086</a> <a href="attachment.cgi?id=76086&amp;action=edit" title="Patch that fixes the segfault">[details]</a></span>
+Patch that fixes the segfault
+
+Chromium can crash Xorg when the nouveau DRI driver is loaded. This is due to a
+nullpointer dereference.
+
+Archlinux bug (Xorg crash): <a href="https://bugs.archlinux.org/task/33994">https://bugs.archlinux.org/task/33994</a>
+Fedora bug (Application crash, same cause):
+<a href="https://bugzilla.redhat.com/show_bug.cgi?id=862466">https://bugzilla.redhat.com/show_bug.cgi?id=862466</a>
+
+As suggested in the Fedora bug, <a href="show_bug.cgi?id=61947#c15">comment 15</a>, attached is a patch that fixes this
+issue (confirmed on Archlinux). This is the same check the Intel DRI driver
+does, so I think it's needed there.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1362646300.8C32FA4B1.21587--
+
+--===============0517892795==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0517892795==--
