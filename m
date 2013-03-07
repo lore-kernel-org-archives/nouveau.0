@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61947] New: nullpointer dereference causes
- xorg-server segfault when nouveau DRI driver is loaded
-Date: Thu, 07 Mar 2013 08:51:39 +0000
-Message-ID: <bug-61947-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 61953] New: arbitrary memory access corrupts kernel
+ memory, eventually crashing the kernel
+Date: Thu, 07 Mar 2013 09:39:52 +0000
+Message-ID: <bug-61953-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0517892795=="
+Content-Type: multipart/mixed; boundary="===============0207890846=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,53 +19,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0517892795==
-Content-Type: multipart/alternative; boundary="1362646300.8C32FA4B1.21587"; charset="us-ascii"
+--===============0207890846==
+Content-Type: multipart/alternative; boundary="1362649192.747c1.30034"; charset="us-ascii"
 
 
---1362646300.8C32FA4B1.21587
-Date: Thu, 7 Mar 2013 08:51:40 +0000
+--1362649192.747c1.30034
+Date: Thu, 7 Mar 2013 09:39:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=61947
+https://bugs.freedesktop.org/show_bug.cgi?id=61953
 
           Priority: medium
-            Bug ID: 61947
+            Bug ID: 61953
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: nullpointer dereference causes xorg-server segfault
-                    when nouveau DRI driver is loaded
-          Severity: critical
+           Summary: arbitrary memory access corrupts kernel memory,
+                    eventually crashing the kernel
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: major
     Classification: Unclassified
                 OS: Linux (All)
-          Reporter: jan-Nxuwd0F5s3rq0s6DQE6FoQ@public.gmane.org
-          Hardware: All
+          Reporter: adi-5gjw4BGRu82yAo/rNOIehoJPQCENF9+z@public.gmane.org
+          Hardware: x86-64 (AMD64)
             Status: NEW
-           Version: 9.1
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-Created attachment 76086
-  --> https://bugs.freedesktop.org/attachment.cgi?id=76086&action=edit
-Patch that fixes the segfault
-
-Chromium can crash Xorg when the nouveau DRI driver is loaded. This is due to a
-nullpointer dereference.
-
-Archlinux bug (Xorg crash): https://bugs.archlinux.org/task/33994
-Fedora bug (Application crash, same cause):
-https://bugzilla.redhat.com/show_bug.cgi?id=862466
-
-As suggested in the Fedora bug, comment 15, attached is a patch that fixes this
-issue (confirmed on Archlinux). This is the same check the Intel DRI driver
-does, so I think it's needed there.
+Created attachment 76094
+  --> https://bugs.freedesktop.org/attachment.cgi?id=76094&action=edit
+dmesg output
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1362646300.8C32FA4B1.21587
-Date: Thu, 7 Mar 2013 08:51:40 +0000
+--1362649192.747c1.30034
+Date: Thu, 7 Mar 2013 09:39:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -84,8 +74,8 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nullpointer dereference causes xorg-server segfault when nouveau DRI driver is loaded"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61947">61947</a>
+   title="NEW --- - arbitrary memory access corrupts kernel memory, eventually crashing the kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61953">61953</a>
           </td>
         </tr>
 
@@ -97,13 +87,19 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Summary</th>
-          <td>nullpointer dereference causes xorg-server segfault when nouveau DRI driver is loaded
+          <td>arbitrary memory access corrupts kernel memory, eventually crashing the kernel
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
           </td>
         </tr>
 
         <tr>
           <th>Severity</th>
-          <td>critical
+          <td>major
           </td>
         </tr>
 
@@ -121,13 +117,13 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Reporter</th>
-          <td>jan&#64;jgc.homeip.net
+          <td>adi&#64;drcomp.erfurt.thur.de
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>All
+          <td>x86-64 (AMD64)
           </td>
         </tr>
 
@@ -139,36 +135,25 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Version</th>
-          <td>9.1
+          <td>unspecified
           </td>
         </tr>
 
         <tr>
           <th>Component</th>
-          <td>Drivers/DRI/nouveau
+          <td>Driver/nouveau
           </td>
         </tr>
 
         <tr>
           <th>Product</th>
-          <td>Mesa
+          <td>xorg
           </td>
         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=76086" name="attach_76086" title="Patch that fixes the segfault">attachment 76086</a> <a href="attachment.cgi?id=76086&amp;action=edit" title="Patch that fixes the segfault">[details]</a></span>
-Patch that fixes the segfault
-
-Chromium can crash Xorg when the nouveau DRI driver is loaded. This is due to a
-nullpointer dereference.
-
-Archlinux bug (Xorg crash): <a href="https://bugs.archlinux.org/task/33994">https://bugs.archlinux.org/task/33994</a>
-Fedora bug (Application crash, same cause):
-<a href="https://bugzilla.redhat.com/show_bug.cgi?id=862466">https://bugzilla.redhat.com/show_bug.cgi?id=862466</a>
-
-As suggested in the Fedora bug, <a href="show_bug.cgi?id=61947#c15">comment 15</a>, attached is a patch that fixes this
-issue (confirmed on Archlinux). This is the same check the Intel DRI driver
-does, so I think it's needed there.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=76094" name="attach_76094" title="dmesg output">attachment 76094</a> <a href="attachment.cgi?id=76094&amp;action=edit" title="dmesg output">[details]</a></span>
+dmesg output</pre>
         </div>
       </p>
       <hr>
@@ -180,9 +165,9 @@ does, so I think it's needed there.</pre>
     </body>
 </html>
 
---1362646300.8C32FA4B1.21587--
+--1362649192.747c1.30034--
 
---===============0517892795==
+--===============0207890846==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -193,4 +178,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0517892795==--
+--===============0207890846==--
