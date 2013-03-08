@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 61731] Nouveau not working on second monitor
-Date: Fri, 08 Mar 2013 16:33:35 +0000
-Message-ID: <bug-61731-8800-BTYCAvg78a@http.bugs.freedesktop.org/>
+Date: Fri, 08 Mar 2013 16:52:58 +0000
+Message-ID: <bug-61731-8800-2skAIw6MMd@http.bugs.freedesktop.org/>
 References: <bug-61731-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0682388768=="
+Content-Type: multipart/mixed; boundary="===============1966610922=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-61731-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,49 +20,56 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0682388768==
-Content-Type: multipart/alternative; boundary="1362760415.3ED0cac11.23898"; charset="us-ascii"
+--===============1966610922==
+Content-Type: multipart/alternative; boundary="1362761578.FEAD7dF2.27245"; charset="us-ascii"
 
 
---1362760415.3ED0cac11.23898
-Date: Fri, 8 Mar 2013 16:33:35 +0000
+--1362761578.FEAD7dF2.27245
+Date: Fri, 8 Mar 2013 16:52:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=61731
 
---- Comment #10 from Ronald <rvhbox-freedesktop-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
-Well,
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-i think i have now completely uninstalled all nvidia packages (eventhough I
-still find nvidia files):
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |NOTABUG
 
-/lib/modules/3.5.0-25-generic/kernel/drivers/net/ethernet/nvidia
-/lib/modules/3.5.0-25-generic/kernel/drivers/net/ethernet/nvidia/forcedeth.ko
-/lib/modules/3.5.0-25-generic/kernel/drivers/video/nvidia
-/lib/modules/3.5.0-25-generic/kernel/drivers/video/nvidia/nvidiafb.ko
-/usr/lib/xorg/modules/libnvidia-wfb.so.1
-/usr/lib/xorg/modules/libnvidia-wfb.so.295.20
-/usr/lib/xorg/modules/drivers/nvidia_drv.so
+--- Comment #11 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #10)
+...
+> /lib/modules/3.5.0-25-generic/kernel/drivers/net/ethernet/nvidia/forcedeth.ko
 
-I as long as I keep my power-plug UNPLUGGED during boot the nouveau driver
-loads as normal.
+I would personally (re)move everything _but_ the above file, with that said I'm
+not a debian person
 
-But when the power-cord is PLUGGED I get this error in xorg.0.log:
+> I as long as I keep my power-plug UNPLUGGED during boot the nouveau driver
+> loads as normal.
+> 
+> But when the power-cord is PLUGGED I get this error in xorg.0.log:
+> 
+> [    1.328023] nouveau 0000:01:00.0: enabling device (0000 -> 0003)
+> [    1.328497] [drm] nouveau 0000:01:00.0: unsupported chipset 0xffffffff
+> [    1.330177] nouveau: probe of 0000:01:00.0 failed with error -22
+> 
+> What can cause this?
 
-[    1.328023] nouveau 0000:01:00.0: enabling device (0000 -> 0003)
-[    1.328497] [drm] nouveau 0000:01:00.0: unsupported chipset 0xffffffff
-[    1.330177] nouveau: probe of 0000:01:00.0 failed with error -22
+99.99...% hardware issue
 
-What can cause this?
-How can I solve this?
+> How can I solve this?
+
+Repair the machine or get a new one :)
+Note it may be something as simple as missing/loose ground within the laptop
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1362760415.3ED0cac11.23898
-Date: Fri, 8 Mar 2013 16:33:35 +0000
+--1362761578.FEAD7dF2.27245
+Date: Fri, 8 Mar 2013 16:52:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,43 +77,71 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - Nouveau not working on second monitor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731">bug 61731</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>NOTABUG
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau not working on second monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731#c10">Comment # 10</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - Nouveau not working on second monitor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731#c11">Comment # 11</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau not working on second monitor"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - Nouveau not working on second monitor"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=61731">bug 61731</a>
-              from <span class="vcard"><a class="email" href="mailto:rvhbox-freedesktop&#64;yahoo.com" title="Ronald &lt;rvhbox-freedesktop&#64;yahoo.com&gt;"> <span class="fn">Ronald</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Well,
+        <pre>(In reply to <a href="show_bug.cgi?id=61731#c10">comment #10</a>)
+...
+<span class="quote">&gt; /lib/modules/3.5.0-25-generic/kernel/drivers/net/ethernet/nvidia/forcedeth.ko</span >
 
-i think i have now completely uninstalled all nvidia packages (eventhough I
-still find nvidia files):
+I would personally (re)move everything _but_ the above file, with that said I'm
+not a debian person
 
-/lib/modules/3.5.0-25-generic/kernel/drivers/net/ethernet/nvidia
-/lib/modules/3.5.0-25-generic/kernel/drivers/net/ethernet/nvidia/forcedeth.ko
-/lib/modules/3.5.0-25-generic/kernel/drivers/video/nvidia
-/lib/modules/3.5.0-25-generic/kernel/drivers/video/nvidia/nvidiafb.ko
-/usr/lib/xorg/modules/libnvidia-wfb.so.1
-/usr/lib/xorg/modules/libnvidia-wfb.so.295.20
-/usr/lib/xorg/modules/drivers/nvidia_drv.so
+<span class="quote">&gt; I as long as I keep my power-plug UNPLUGGED during boot the nouveau driver
+&gt; loads as normal.
+&gt; 
+&gt; But when the power-cord is PLUGGED I get this error in xorg.0.log:
+&gt; 
+&gt; [    1.328023] nouveau 0000:01:00.0: enabling device (0000 -&gt; 0003)
+&gt; [    1.328497] [drm] nouveau 0000:01:00.0: unsupported chipset 0xffffffff
+&gt; [    1.330177] nouveau: probe of 0000:01:00.0 failed with error -22
+&gt; 
+&gt; What can cause this?</span >
 
-I as long as I keep my power-plug UNPLUGGED during boot the nouveau driver
-loads as normal.
+99.99...% hardware issue
 
-But when the power-cord is PLUGGED I get this error in xorg.0.log:
+<span class="quote">&gt; How can I solve this?</span >
 
-[    1.328023] nouveau 0000:01:00.0: enabling device (0000 -&gt; 0003)
-[    1.328497] [drm] nouveau 0000:01:00.0: unsupported chipset 0xffffffff
-[    1.330177] nouveau: probe of 0000:01:00.0 failed with error -22
-
-What can cause this?
-How can I solve this?</pre>
+Repair the machine or get a new one :)
+Note it may be something as simple as missing/loose ground within the laptop</pre>
         </div>
       </p>
       <hr>
@@ -118,9 +153,9 @@ How can I solve this?</pre>
     </body>
 </html>
 
---1362760415.3ED0cac11.23898--
+--1362761578.FEAD7dF2.27245--
 
---===============0682388768==
+--===============1966610922==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -131,4 +166,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0682388768==--
+--===============1966610922==--
