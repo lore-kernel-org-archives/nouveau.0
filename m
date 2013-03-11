@@ -1,9 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62115] New: Refresh rate stuck at 60Hz
-Date: Sun, 10 Mar 2013 16:24:28 +0000
-Message-ID: <bug-62115-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 62190] New: Invalid ROM contents on PowerMAC G5 11,
+ 2 with GeForce 6600 LE
+Date: Mon, 11 Mar 2013 19:18:00 +0000
+Message-ID: <bug-62190-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1274323611=="
+Content-Type: multipart/mixed; boundary="===============1737529667=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,58 +19,113 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1274323611==
-Content-Type: multipart/alternative; boundary="1362932668.AD1C1.23235"; charset="us-ascii"
+--===============1737529667==
+Content-Type: multipart/alternative; boundary="1363029480.C3DC7F1.20791"; charset="us-ascii"
 
 
---1362932668.AD1C1.23235
-Date: Sun, 10 Mar 2013 16:24:28 +0000
+--1363029480.C3DC7F1.20791
+Date: Mon, 11 Mar 2013 19:18:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62115
+https://bugs.freedesktop.org/show_bug.cgi?id=62190
 
           Priority: medium
-            Bug ID: 62115
+            Bug ID: 62190
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Refresh rate stuck at 60Hz
+           Summary: Invalid ROM contents on PowerMAC G5 11,2 with GeForce
+                    6600 LE
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: critical
+          Severity: normal
     Classification: Unclassified
                 OS: Linux (All)
-          Reporter: josealb77-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
-          Hardware: x86-64 (AMD64)
+          Reporter: phileas-fogg-JGs/UdohzUI@public.gmane.org
+          Hardware: PowerPC
             Status: NEW
-           Version: unspecified
+           Version: 7.7 (2011)
          Component: Driver/nouveau
            Product: xorg
 
-Created attachment 76277
-  --> https://bugs.freedesktop.org/attachment.cgi?id=76277&action=edit
-boot - change to 60Hz - change to 75Hz but my monitor is still at 60 Hz
+I cannot get the nouveau driver to work on my PowerPC G5 11, 2 with NV43
+GeForce 6600 LE rev a2.
 
-Hi,
-I'm using Linux Mint 14 MATE x64 kernel 3.5.0-25 with a NVIDIA GeForce GTX 460
-video card and a ViewSonic VG1921wm monitor.
 
-Using the NVIDIA privative driver I can set the monitor resolution to 1440x900
-@ 75Hz in Menu > Preferences > Display. Then with the monitor buttons I look in
-Information and it says that vertical frequency is 74.8Hz, and when I set it to
-1440x900 @ 60Hz, the monitor says that vertical frequency is 59.9Hz, namely:
-all works well.
+lspci
+------
+0000:0a:00.0 VGA compatible controller: nVidia Corporation NV43 [GeForce 6600
+LE] (rev a2)
 
-But when I'm using Nouveau it has no effect, whatever I set in Menu >
-Preferences > Display the information of my monitor always shows a vertical
-frequency of 59.9Hz.
 
-What can I do in order to get the real 1440x900@75Hz resolution with Nouveau?
+dmesg
+------
+
+Linux agpgart interface v0.103
+[drm] Initialized drm 1.1.0 20060810
+checking generic (98020000 180000) vs hw (98000000 8000000)
+fb: conflicting fb hw usage nouveaufb vs OFfb NVDA,Displ - removing generic
+driver
+Console: switching to colour dummy device 80x25
+nouveau  [  DEVICE][0000:0a:00.0] BOOT0  : 0x043200a4
+nouveau  [  DEVICE][0000:0a:00.0] Chipset: NV43 (NV43)
+nouveau  [  DEVICE][0000:0a:00.0] Family : NV40
+nouveau  [   VBIOS][0000:0a:00.0] checking OpenFirmware for image...
+nouveau  [   VBIOS][0000:0a:00.0] ... checksum invalid
+nouveau  [   VBIOS][0000:0a:00.0] checking PRAMIN for image...
+nouveau  [   VBIOS][0000:0a:00.0] ... signature not found
+nouveau  [   VBIOS][0000:0a:00.0] checking PROM for image...
+nouveau  [   VBIOS][0000:0a:00.0] ... signature not found
+nouveau  [   VBIOS][0000:0a:00.0] checking ACPI for image...
+nouveau  [   VBIOS][0000:0a:00.0] ... signature not found
+nouveau  [   VBIOS][0000:0a:00.0] checking PCIROM for image...
+nouveau 0000:0a:00.0: Invalid ROM contents
+nouveau  [   VBIOS][0000:0a:00.0] ... signature not found
+nouveau  [   VBIOS][0000:0a:00.0] using image from OpenFirmware
+nouveau  [   VBIOS][0000:0a:00.0] BIT signature found
+nouveau  [   VBIOS][0000:0a:00.0] version 05.43.02.75.00
+nouveau  [     PFB][0000:0a:00.0] RAM type: DDR1
+nouveau  [     PFB][0000:0a:00.0] RAM size: 128 MiB
+nouveau  [     PFB][0000:0a:00.0]    ZCOMP: 378880 tags
+nouveau 0000:0a:00.0: Using 32-bit DMA via iommu
+[TTM] Zone  kernel: Available graphics memory: 1487676 kiB
+[TTM] Initializing pool allocator
+nouveau  [     DRM] VRAM: 124 MiB
+nouveau  [     DRM] GART: 512 MiB
+nouveau  [     DRM] BIT BIOS found
+nouveau  [     DRM] Bios version 05.43.02.75
+nouveau  [     DRM] TMDS table version 1.1
+nouveau  [     DRM] DCB version 3.0
+nouveau  [     DRM] DCB outp 00: 01000100 00000028
+nouveau  [     DRM] DCB outp 01: 03000102 00000000
+nouveau  [     DRM] DCB outp 02: 04011210 00000028
+nouveau  [     DRM] DCB outp 03: 02111212 02000100
+nouveau  [     DRM] DCB outp 04: 02011211 0020c070
+nouveau  [     DRM] DCB conn 00: 1030
+nouveau  [     DRM] DCB conn 01: 2130
+nouveau  [     I2C][0000:0a:00.0] detected TMDS transmitter: sil164
+sil164 7-0038: Detected device 1:6.0
+[drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
+[drm] No driver support for vblank timestamp query.
+nouveau  [     DRM] 0x14CC: Parsing digital output script table
+snd-aoa-codec-onyx: created and attached onyx instance
+snd-aoa-codec-onyx: created and attached onyx instance
+nouveau  [     DRM] 1 available performance level(s)
+nouveau  [     DRM] 0: core 300MHz shader 300MHz memory 400MHz fanspeed 100%
+nouveau  [     DRM] c: core 300MHz shader 300MHz memory 400MHz fanspeed 100%
+nouveau  [     DRM] MM: using M2MF for buffer copies
+nouveau  [     DRM] Setting dpms mode 3 on TV encoder (output 4)
+nouveau  [     DRM] allocated 1280x1024 fb: 0x9000, bo c00000013ae26c00
+nouveau  [     DRM] 0x14CC: Parsing digital output script table
+Console: switching to colour frame buffer device 160x64
+nouveau 0000:0a:00.0: fb0: nouveaufb frame buffer device
+nouveau 0000:0a:00.0: registered panic notifier
+[drm] Initialized nouveau 1.1.0 20120801 for 0000:0a:00.0 on minor 0
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1362932668.AD1C1.23235
-Date: Sun, 10 Mar 2013 16:24:28 +0000
+--1363029480.C3DC7F1.20791
+Date: Mon, 11 Mar 2013 19:18:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -88,8 +144,8 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Refresh rate stuck at 60Hz"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62115">62115</a>
+   title="NEW --- - Invalid ROM contents on PowerMAC G5 11,2 with GeForce 6600 LE"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62190">62190</a>
           </td>
         </tr>
 
@@ -101,7 +157,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Summary</th>
-          <td>Refresh rate stuck at 60Hz
+          <td>Invalid ROM contents on PowerMAC G5 11,2 with GeForce 6600 LE
           </td>
         </tr>
 
@@ -113,7 +169,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Severity</th>
-          <td>critical
+          <td>normal
           </td>
         </tr>
 
@@ -131,13 +187,13 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Reporter</th>
-          <td>josealb77&#64;hotmail.com
+          <td>phileas-fogg&#64;mail.ru
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>x86-64 (AMD64)
+          <td>PowerPC
           </td>
         </tr>
 
@@ -149,7 +205,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Version</th>
-          <td>unspecified
+          <td>7.7 (2011)
           </td>
         </tr>
 
@@ -166,24 +222,79 @@ Content-Type: text/html; charset="UTF-8"
         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=76277" name="attach_76277" title="boot - change to 60Hz - change to 75Hz but my monitor is still at 60 Hz">attachment 76277</a> <a href="attachment.cgi?id=76277&amp;action=edit" title="boot - change to 60Hz - change to 75Hz but my monitor is still at 60 Hz">[details]</a></span>
-boot - change to 60Hz - change to 75Hz but my monitor is still at 60 Hz
+        <pre>I cannot get the nouveau driver to work on my PowerPC G5 11, 2 with NV43
+GeForce 6600 LE rev a2.
 
-Hi,
-I'm using Linux Mint 14 MATE x64 kernel 3.5.0-25 with a NVIDIA GeForce GTX 460
-video card and a ViewSonic VG1921wm monitor.
 
-Using the NVIDIA privative driver I can set the monitor resolution to 1440x900
-&#64; 75Hz in Menu &gt; Preferences &gt; Display. Then with the monitor buttons I look in
-Information and it says that vertical frequency is 74.8Hz, and when I set it to
-1440x900 &#64; 60Hz, the monitor says that vertical frequency is 59.9Hz, namely:
-all works well.
+lspci
+------
+0000:0a:00.0 VGA compatible controller: nVidia Corporation NV43 [GeForce 6600
+LE] (rev a2)
 
-But when I'm using Nouveau it has no effect, whatever I set in Menu &gt;
-Preferences &gt; Display the information of my monitor always shows a vertical
-frequency of 59.9Hz.
 
-What can I do in order to get the real 1440x900&#64;75Hz resolution with Nouveau?</pre>
+dmesg
+------
+
+Linux agpgart interface v0.103
+[drm] Initialized drm 1.1.0 20060810
+checking generic (98020000 180000) vs hw (98000000 8000000)
+fb: conflicting fb hw usage nouveaufb vs OFfb NVDA,Displ - removing generic
+driver
+Console: switching to colour dummy device 80x25
+nouveau  [  DEVICE][0000:0a:00.0] BOOT0  : 0x043200a4
+nouveau  [  DEVICE][0000:0a:00.0] Chipset: NV43 (NV43)
+nouveau  [  DEVICE][0000:0a:00.0] Family : NV40
+nouveau  [   VBIOS][0000:0a:00.0] checking OpenFirmware for image...
+nouveau  [   VBIOS][0000:0a:00.0] ... checksum invalid
+nouveau  [   VBIOS][0000:0a:00.0] checking PRAMIN for image...
+nouveau  [   VBIOS][0000:0a:00.0] ... signature not found
+nouveau  [   VBIOS][0000:0a:00.0] checking PROM for image...
+nouveau  [   VBIOS][0000:0a:00.0] ... signature not found
+nouveau  [   VBIOS][0000:0a:00.0] checking ACPI for image...
+nouveau  [   VBIOS][0000:0a:00.0] ... signature not found
+nouveau  [   VBIOS][0000:0a:00.0] checking PCIROM for image...
+nouveau 0000:0a:00.0: Invalid ROM contents
+nouveau  [   VBIOS][0000:0a:00.0] ... signature not found
+nouveau  [   VBIOS][0000:0a:00.0] using image from OpenFirmware
+nouveau  [   VBIOS][0000:0a:00.0] BIT signature found
+nouveau  [   VBIOS][0000:0a:00.0] version 05.43.02.75.00
+nouveau  [     PFB][0000:0a:00.0] RAM type: DDR1
+nouveau  [     PFB][0000:0a:00.0] RAM size: 128 MiB
+nouveau  [     PFB][0000:0a:00.0]    ZCOMP: 378880 tags
+nouveau 0000:0a:00.0: Using 32-bit DMA via iommu
+[TTM] Zone  kernel: Available graphics memory: 1487676 kiB
+[TTM] Initializing pool allocator
+nouveau  [     DRM] VRAM: 124 MiB
+nouveau  [     DRM] GART: 512 MiB
+nouveau  [     DRM] BIT BIOS found
+nouveau  [     DRM] Bios version 05.43.02.75
+nouveau  [     DRM] TMDS table version 1.1
+nouveau  [     DRM] DCB version 3.0
+nouveau  [     DRM] DCB outp 00: 01000100 00000028
+nouveau  [     DRM] DCB outp 01: 03000102 00000000
+nouveau  [     DRM] DCB outp 02: 04011210 00000028
+nouveau  [     DRM] DCB outp 03: 02111212 02000100
+nouveau  [     DRM] DCB outp 04: 02011211 0020c070
+nouveau  [     DRM] DCB conn 00: 1030
+nouveau  [     DRM] DCB conn 01: 2130
+nouveau  [     I2C][0000:0a:00.0] detected TMDS transmitter: sil164
+sil164 7-0038: Detected device 1:6.0
+[drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
+[drm] No driver support for vblank timestamp query.
+nouveau  [     DRM] 0x14CC: Parsing digital output script table
+snd-aoa-codec-onyx: created and attached onyx instance
+snd-aoa-codec-onyx: created and attached onyx instance
+nouveau  [     DRM] 1 available performance level(s)
+nouveau  [     DRM] 0: core 300MHz shader 300MHz memory 400MHz fanspeed 100%
+nouveau  [     DRM] c: core 300MHz shader 300MHz memory 400MHz fanspeed 100%
+nouveau  [     DRM] MM: using M2MF for buffer copies
+nouveau  [     DRM] Setting dpms mode 3 on TV encoder (output 4)
+nouveau  [     DRM] allocated 1280x1024 fb: 0x9000, bo c00000013ae26c00
+nouveau  [     DRM] 0x14CC: Parsing digital output script table
+Console: switching to colour frame buffer device 160x64
+nouveau 0000:0a:00.0: fb0: nouveaufb frame buffer device
+nouveau 0000:0a:00.0: registered panic notifier
+[drm] Initialized nouveau 1.1.0 20120801 for 0000:0a:00.0 on minor 0</pre>
         </div>
       </p>
       <hr>
@@ -195,9 +306,9 @@ What can I do in order to get the real 1440x900&#64;75Hz resolution with Nouveau
     </body>
 </html>
 
---1362932668.AD1C1.23235--
+--1363029480.C3DC7F1.20791--
 
---===============1274323611==
+--===============1737529667==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -208,4 +319,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1274323611==--
+--===============1737529667==--
