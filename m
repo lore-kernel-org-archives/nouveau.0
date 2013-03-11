@@ -1,124 +1,91 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62035] [Regression kernel 3.8.0+] G86 GeForce 8400M
- GS 3D desktop effects does not work
-Date: Mon, 11 Mar 2013 19:58:51 +0000
-Message-ID: <bug-62035-8800-LsUCaPvV4E@http.bugs.freedesktop.org/>
-References: <bug-62035-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1298352974=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62035-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>
+Subject: [PATCH V3] get_maintainer: use filename-only regex match for Tegra
+Date: Mon, 11 Mar 2013 14:19:09 -0600
+Message-ID: <1363033149-7839-1-git-send-email-swarren@wwwdotorg.org>
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+Cc: Joe Perches <joe-6d6DIl74uiNBDgjK7y7TUQ@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>, Borislav Petkov <bp-Gina5bIWoIWzQB+pC5nmwQ@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Stephen Warren <swarren-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+From: Stephen Warren <swarren-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
---===============1298352974==
-Content-Type: multipart/alternative; boundary="1363031931.4640E1.26970"; charset="us-ascii"
+Create a new N: entry type in MAINTAINERS which performs a regex match
+against filenames; either those extracted from patch +++ or --- lines,
+or those specified on the command-line using the -f option.
 
+This provides the same benefits as using a K: regex option to match a
+set of filenames (see commit eb90d08 "get_maintainer: allow keywords to
+match filenames"), but without the disadvantage that "random" file
+content, such as comments, will ever match the regex. Hence, revert most
+of that commit.
 
---1363031931.4640E1.26970
-Date: Mon, 11 Mar 2013 19:58:51 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Switch the Tegra entry from using K: to N:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62035
+Reported-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Suggested-by: Joe Perches <joe-6d6DIl74uiNBDgjK7y7TUQ@public.gmane.org>
+Signed-off-by: Stephen Warren <swarren-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+v2: Corrected typo in MAINTAINERS documentation
+v3: Squash 3 patches into one.
+---
+ MAINTAINERS               |   14 ++++++++------
+ scripts/get_maintainer.pl |    2 +-
+ 2 files changed, 9 insertions(+), 7 deletions(-)
 
-Pontus Fuchs <pontus.fuchs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #1 from Pontus Fuchs <pontus.fuchs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Works again with latest kernel from nouveau/drm-nouveau-fixes-3.9 branch
-
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 9561658..e68a07a 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -90,6 +90,9 @@ Descriptions of section entries:
+ 	   F:	drivers/net/*	all files in drivers/net, but not below
+ 	   F:	*/net/*		all files in "any top level directory"/net
+ 	   One pattern per line.  Multiple F: lines acceptable.
++	N: Files and directories with regex patterns.
++	   N:	[^a-z]tegra	all files whose patch contains the word tegra
++	   One pattern per line.  Multiple N: lines acceptable.
+ 	X: Files and directories that are NOT maintained, same rules as F:
+ 	   Files exclusions are tested before file matches.
+ 	   Can be useful for excluding a specific subdirectory, for instance:
+@@ -97,13 +100,12 @@ Descriptions of section entries:
+ 	   X:	net/ipv6/
+ 	   matches all files in and below net excluding net/ipv6/
+ 	K: Keyword perl extended regex pattern to match content in a
+-	   patch or file, or an affected filename.  For instance:
++	   patch or file.  For instance:
+ 	   K: of_get_profile
+-	      matches patch or file content, or filenames, that contain
+-	      "of_get_profile"
++	      matches patches or files that contain "of_get_profile"
+ 	   K: \b(printk|pr_(info|err))\b
+-	      matches patch or file content, or filenames, that contain one or
+-	      more of the words printk, pr_info or pr_err
++	      matches patches or files that contain one or more of the words
++	      printk, pr_info or pr_err
+ 	   One regex pattern per line.  Multiple K: lines acceptable.
+ 
+ Note: For the hard of thinking, this list is meant to remain in alphabetical
+@@ -7848,7 +7850,7 @@ L:	linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+ Q:	http://patchwork.ozlabs.org/project/linux-tegra/list/
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/swarren/linux-tegra.git
+ S:	Supported
+-K:	(?i)[^a-z]tegra
++N:	[^a-z]tegra
+ 
+ TEHUTI ETHERNET DRIVER
+ M:	Andy Gospodarek <andy-QlMahl40kYEqcZcGjlUOXw@public.gmane.org>
+diff --git a/scripts/get_maintainer.pl b/scripts/get_maintainer.pl
+index ce4cc83..5e4fb14 100755
+--- a/scripts/get_maintainer.pl
++++ b/scripts/get_maintainer.pl
+@@ -611,7 +611,7 @@ sub get_maintainers {
+ 				    $hash{$tvi} = $value_pd;
+ 				}
+ 			    }
+-			} elsif ($type eq 'K') {
++			} elsif ($type eq 'N') {
+ 			    if ($file =~ m/$value/x) {
+ 				$hash{$tvi} = 0;
+ 			    }
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1363031931.4640E1.26970
-Date: Mon, 11 Mar 2013 19:58:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:pontus.fuchs&#64;gmail.com" title="Pontus Fuchs &lt;pontus.fuchs&#64;gmail.com&gt;"> <span class="fn">Pontus Fuchs</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [Regression kernel 3.8.0+] G86 GeForce 8400M GS 3D desktop effects does not work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62035">bug 62035</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [Regression kernel 3.8.0+] G86 GeForce 8400M GS 3D desktop effects does not work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62035#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [Regression kernel 3.8.0+] G86 GeForce 8400M GS 3D desktop effects does not work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62035">bug 62035</a>
-              from <span class="vcard"><a class="email" href="mailto:pontus.fuchs&#64;gmail.com" title="Pontus Fuchs &lt;pontus.fuchs&#64;gmail.com&gt;"> <span class="fn">Pontus Fuchs</span></a>
-</span></b>
-        <pre>Works again with latest kernel from nouveau/drm-nouveau-fixes-3.9 branch</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1363031931.4640E1.26970--
-
---===============1298352974==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1298352974==--
+1.7.10.4
