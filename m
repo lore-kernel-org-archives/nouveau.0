@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62217] New: nouveau group membership request
-	(annarchy)
-Date: Tue, 12 Mar 2013 10:49:33 +0000
-Message-ID: <bug-62217-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
+ garbage/corruption/noise on resume
+Date: Tue, 12 Mar 2013 11:49:13 +0000
+Message-ID: <bug-59168-8800-Dutt1WXJXo@http.bugs.freedesktop.org/>
+References: <bug-59168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1740057477=="
+Content-Type: multipart/mixed; boundary="===============0367346077=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,40 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1740057477==
-Content-Type: multipart/alternative; boundary="1363085373.adAb71.32116"; charset="us-ascii"
+--===============0367346077==
+Content-Type: multipart/alternative; boundary="1363088954.0eEA43F5.10728"; charset="us-ascii"
 
 
---1363085373.adAb71.32116
-Date: Tue, 12 Mar 2013 10:49:33 +0000
+--1363088954.0eEA43F5.10728
+Date: Tue, 12 Mar 2013 11:49:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62217
+https://bugs.freedesktop.org/show_bug.cgi?id=59168
 
-          Priority: medium
-            Bug ID: 62217
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: nouveau group membership request (annarchy)
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: git
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #30 from Rolf Offermanns <rolf.offermanns-hi6Y0CQ0nG0@public.gmane.org> ---
+Created attachment 76393
+  --> https://bugs.freedesktop.org/attachment.cgi?id=76393&action=edit
+kernel log with nouveau.debug=trace
 
-Please add account mslusarz on annarchy to nouveau group.
+Boot -> suspend -> resume -> restart Xorg
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1363085373.adAb71.32116
-Date: Tue, 12 Mar 2013 10:49:33 +0000
+--1363088954.0eEA43F5.10728
+Date: Tue, 12 Mar 2013 11:49:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,96 +52,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau group membership request (annarchy)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62217">62217</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>nouveau group membership request (annarchy)
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>marcin.slusarz&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Please add account mslusarz on annarchy to nouveau group.</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c30">Comment # 30</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
+              from <span class="vcard"><a class="email" href="mailto:rolf.offermanns&#64;gmx.net" title="Rolf Offermanns &lt;rolf.offermanns&#64;gmx.net&gt;"> <span class="fn">Rolf Offermanns</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=76393" name="attach_76393" title="kernel log with nouveau.debug=trace">attachment 76393</a> <a href="attachment.cgi?id=76393&amp;action=edit" title="kernel log with nouveau.debug=trace">[details]</a></span>
+kernel log with nouveau.debug=trace
+
+Boot -&gt; suspend -&gt; resume -&gt; restart Xorg</pre>
         </div>
       </p>
       <hr>
@@ -161,9 +80,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1363085373.adAb71.32116--
+--1363088954.0eEA43F5.10728--
 
---===============1740057477==
+--===============0367346077==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -174,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1740057477==--
+--===============0367346077==--
