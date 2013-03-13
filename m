@@ -1,16 +1,13 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Fwd: [bisected] nouveau failure with 3.9-rc1 and
- ongoing
-Date: Wed, 13 Mar 2013 20:57:00 +0100
-Message-ID: <20130313195700.GA10649@joi.lan>
-References: <513F7AB3.3@molgaard.org>
- <5140B5DE.4070800@molgaard.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 58984] DRM NOUVEAU: probe of 0001:01:00.0 failed
+	with error -12
+Date: Wed, 13 Mar 2013 20:32:10 +0000
+Message-ID: <bug-58984-8800-8PRDtc8cgC@http.bugs.freedesktop.org/>
+References: <bug-58984-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1880929546=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <5140B5DE.4070800-6pRy+okvdpRg9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <bug-58984-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,41 +17,89 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Sune =?utf-8?B?TcO4bGdhYXJk?= <sune-6pRy+okvdpRg9hUCZPvPmw@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBNYXIgMTMsIDIwMTMgYXQgMDY6MjI6MzhQTSArMDEwMCwgU3VuZSBNw7hsZ2FhcmQg
-d3JvdGU6Cj4gSGl5YSwKPiAKPiBJIHNlbnQgdGhlIGVuY2xvc2VkIGVtYWlsIHRvIGxpbnV4LWtl
-cm5lbCBiZWZvcmUgcmVhbGl6aW5nIHRoYXQgaXQgCj4gd291bGQsIHBlcmhhcHMsIGJlIG1vcmUg
-cHJvcGVyIHRvIHNlbmQgaXQgaGVyZSwgd2hpY2ggSSBoZXJlYnkgZG8uCj4gCj4gSSBzaGFsbCBi
-ZSBoYXBweSB0byB0cnkgb3V0IGFueSBhbmQgYWxsIHBhdGNoZXMuCj4gCj4gQmVzdCByZWdhcmRz
-LAo+IAo+IFN1bmUgTcO4bGdhYXJkCj4gCj4gLS0tLS0tLS0gT3JpZ2luYWwgTWVzc2FnZSAtLS0t
-LS0tLQo+IFN1YmplY3Q6IFtiaXNlY3RlZF0gbm91dmVhdSBmYWlsdXJlIHdpdGggMy45LXJjMSBh
-bmQgb25nb2luZwo+IERhdGU6IFR1ZSwgMTIgTWFyIDIwMTMgMTk6NTc6NTUgKzAxMDAKPiBGcm9t
-OiBTdW5lIE3DuGxnYWFyZCA8c3VuZUBtb2xnYWFyZC5vcmc+Cj4gVG86IGxpbnV4LWtlcm5lbEB2
-Z2VyLmtlcm5lbC5vcmcKPiAKPiBIaXlhLAo+IAo+IEJldHdlZW4gMy44IGFuZCAzLjktcmMxLCB0
-aGUgZm9sbG93aW5nIG9jY3VyczoKPiAKPiBVcG9uIGJvb3QsIHdoZW4gS01TIGtpY2tzIGluLCBJ
-IGdldCBhIGJsYW5rIHNjcmVlbi4gS2V5Ym9hcmQgcmVzcG9uZHMKPiBjb3JyZWN0bHkgdG8gIk51
-bSBMb2NrIiBvbi9vZmYsIGJ1dCBtYWNoaW5lIGlzIHVucmVhY2hhYmxlIG9uIHRoZSBuZXR3b3Jr
-Lgo+IAo+IEdpdCBiaXNlY3Rpb24gc2F5czoKPiAKPiBlYjYzMTNhZGQ2ZGRkZjA3ZWEzZTUwYzRj
-YWEzM2E5YzNiMjM3OWYxIGlzIHRoZSBmaXJzdCBiYWQgY29tbWl0Cj4gY29tbWl0IGViNjMxM2Fk
-ZDZkZGRmMDdlYTNlNTBjNGNhYTMzYTljM2IyMzc5ZjEKPiBBdXRob3I6IEJlbiBTa2VnZ3MgPGJz
-a2VnZ3NAcmVkaGF0LmNvbT4KPiBEYXRlOiAgIE1vbiBGZWIgMTEgMDk6NTI6NTggMjAxMyArMTAw
-MAo+IAo+ICAgICAgZHJtL252NTA6IGluaXRpYWwga21zIHN1cHBvcnQgZm9yIG9mZi1jaGlwIFRN
-RFMvRFAgZW5jb2RlcnMKPiAKPiAgICAgIFNpZ25lZC1vZmYtYnk6IEJlbiBTa2VnZ3MgPGJza2Vn
-Z3NAcmVkaGF0LmNvbT4KPiAKPiA6MDQwMDAwIDA0MDAwMCA0MWY2OWQyNmE4MDA4MmUxOWQzYzc2
-ZTY1NTZhZDVlZjllYjI2NzdkCj4gMjE2ZDUwMWUwNTNlOWQwNTEzNjkyOTU5M2U5MDI1OWMyZTU5
-ZGZmMCBNCWRyaXZlcnMKCkkgdGhpbmsgaXQgbWF5IGJlIGFscmVhZHkgZml4ZWQgYnkgY29tbWl0
-IDk0ZjU0ZjUzMzZhYWM2ODAxZjJhMTRkY2IxMjQ2N2U0MWIzNTQ1NmEKImRybS9udjUwOiBlbmNv
-ZGVyIGNyZWF0aW9uIGZhaWx1cmUgZG9lc24ndCBtZWFuIGZ1bGwgaW5pdCBmYWlsdXJlIiAocG9z
-dCAzLjktcmMyKQoKPiBCdXQgZXZlbiB0aG91Z2ggSSBtYXJrZWQgdGhhdCBsYXN0IGJpc2VjdGlv
-biBrZXJuZWwgZ29vZCAoc2luY2UgaXQKPiBkaWRuJ3QgY2F1c2UgYSBibGFjay1vdXQpLCBpdCBk
-b2VzIGhhdmUgcHJvYmxlbXMsIG5hbWVseSB0aGF0IEdUSyB0aGVtZXMKPiBhcmUgcmVzZXQsIGFu
-ZCB4cmFuZHIgc2VlbXMgbm9uLWZ1bmN0aW9uYWwsIGluYXNtdWNoIGFzIG15IGxlZnQtd2FyZCwK
-PiBzZWNvbmRhcnkgc2NyZWVuIG5vdyBzZWVtcyB0byBiZSB0cmVhdGVkIGFzIGJlaW5nIHNpdHVh
-dGVkIHRvIHRoZSByaWdodC4KPiBObyBwcmV2aW91cyBrZXJuZWwgaW4gdGhlIGJpc2VjdGlvbiBl
-eGVyY2lzZSBjYXVzZWQgYW55dGhpbmcgb2YgdGhlIGxpa2UuCgpOb3Qgc3VyZSBhYm91dCB0aGlz
-IG9uZS4uLgoKCk1hcmNpbgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1880929546==
+Content-Type: multipart/alternative; boundary="1363206730.2Cbe2.5377"; charset="us-ascii"
+
+
+--1363206730.2Cbe2.5377
+Date: Wed, 13 Mar 2013 20:32:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=58984
+
+--- Comment #14 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+As you mentioned in the mailing list post that there are other problems after
+"fixing" this bug, I think the problem is more widespread.
+
+If page size on GPU is unconnected to page size on CPU (I think it's more
+likely than the other option), we need to have our own macros for PAGE_SHIFT /
+PAGE_MASK / PAGE_SIZE for GPU and use them everywhere, OR use existing CPU
+macros consistently (there are a lot of places using "12" constant).
+
+Either way it's not as simple as this oneliner...
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1363206730.2Cbe2.5377
+Date: Wed, 13 Mar 2013 20:32:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984">bug 58984</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span></b>
+        <pre>As you mentioned in the mailing list post that there are other problems after
+&quot;fixing&quot; this bug, I think the problem is more widespread.
+
+If page size on GPU is unconnected to page size on CPU (I think it's more
+likely than the other option), we need to have our own macros for PAGE_SHIFT /
+PAGE_MASK / PAGE_SIZE for GPU and use them everywhere, OR use existing CPU
+macros consistently (there are a lot of places using &quot;12&quot; constant).
+
+Either way it's not as simple as this oneliner...</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1363206730.2Cbe2.5377--
+
+--===============1880929546==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1880929546==--
