@@ -1,13 +1,11 @@
-From: =?ISO-8859-1?Q?Sune_M=F8lgaard?= <sune-6pRy+okvdpRg9hUCZPvPmw@public.gmane.org>
-Subject: Fwd: [bisected] nouveau failure with 3.9-rc1 and ongoing
-Date: Wed, 13 Mar 2013 18:22:38 +0100
-Message-ID: <5140B5DE.4070800@molgaard.org>
-References: <513F7AB3.3@molgaard.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 62305] New: No HDMI Audio out (pass-thru) on Geforce
+	7600 Go
+Date: Wed, 13 Mar 2013 17:51:56 +0000
+Message-ID: <bug-62305-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/mixed; boundary="===============1697988071=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <513F7AB3.3-6pRy+okvdpRg9hUCZPvPmw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,65 +18,155 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hiya,
 
-I sent the enclosed email to linux-kernel before realizing that it =
+--===============1697988071==
+Content-Type: multipart/alternative; boundary="1363197116.AA7B31.3645"; charset="us-ascii"
 
-would, perhaps, be more proper to send it here, which I hereby do.
 
-I shall be happy to try out any and all patches.
+--1363197116.AA7B31.3645
+Date: Wed, 13 Mar 2013 17:51:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-Best regards,
+https://bugs.freedesktop.org/show_bug.cgi?id=62305
 
-Sune M=F8lgaard
+          Priority: medium
+            Bug ID: 62305
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: No HDMI Audio out (pass-thru) on Geforce 7600 Go
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: doug-yPdSGyyl+sesTnJN9+BGXg@public.gmane.org
+          Hardware: All
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
--------- Original Message --------
-Subject: [bisected] nouveau failure with 3.9-rc1 and ongoing
-Date: Tue, 12 Mar 2013 19:57:55 +0100
-From: Sune M=F8lgaard <sune-6pRy+okvdpRg9hUCZPvPmw@public.gmane.org>
-To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-Hiya,
+--1363197116.AA7B31.3645
+Date: Wed, 13 Mar 2013 17:51:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
-Between 3.8 and 3.9-rc1, the following occurs:
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
 
-Upon boot, when KMS kicks in, I get a blank screen. Keyboard responds
-correctly to "Num Lock" on/off, but machine is unreachable on the network.
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - No HDMI Audio out (pass-thru) on Geforce 7600 Go"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62305">62305</a>
+          </td>
+        </tr>
 
-Git bisection says:
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
 
-eb6313add6dddf07ea3e50c4caa33a9c3b2379f1 is the first bad commit
-commit eb6313add6dddf07ea3e50c4caa33a9c3b2379f1
-Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Date:   Mon Feb 11 09:52:58 2013 +1000
+        <tr>
+          <th>Summary</th>
+          <td>No HDMI Audio out (pass-thru) on Geforce 7600 Go
+          </td>
+        </tr>
 
-     drm/nv50: initial kms support for off-chip TMDS/DP encoders
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
 
-     Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
 
-:040000 040000 41f69d26a80082e19d3c76e6556ad5ef9eb2677d
-216d501e053e9d05136929593e90259c2e59dff0 M	drivers
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
 
-But even though I marked that last bisection kernel good (since it
-didn't cause a black-out), it does have problems, namely that GTK themes
-are reset, and xrandr seems non-functional, inasmuch as my left-ward,
-secondary screen now seems to be treated as being situated to the right.
-No previous kernel in the bisection exercise caused anything of the like.
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
 
-I'd be happy to try out any and all patches proposed, and as for the
-physical card, this is the relevant part:
+        <tr>
+          <th>Reporter</th>
+          <td>doug&#64;nostar.net
+          </td>
+        </tr>
 
-02:00.0 VGA compatible controller: NVIDIA Corporation G92 [GeForce 9800
-GT] (rev a2)
+        <tr>
+          <th>Hardware</th>
+          <td>All
+          </td>
+        </tr>
 
-Please let me know if there is anything else I can do to help resolve this!
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
 
-Best regards,
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
 
-Sune M=F8lgaard
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
 
--- =
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
 
-What a gorgeous day. What effulgent sunshine. It was a day of this
-sort the McGillicuddy brothers murdered their mother with an axe.
-- W. C. Fields
+--1363197116.AA7B31.3645--
+
+--===============1697988071==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1697988071==--
