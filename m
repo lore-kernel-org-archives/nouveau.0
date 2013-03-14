@@ -1,16 +1,10 @@
-From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Fwd: [bisected] nouveau failure with 3.9-rc1 and
- ongoing
-Date: Thu, 14 Mar 2013 20:09:19 +0100
-Message-ID: <20130314190919.GA3092@joi.lan>
-References: <513F7AB3.3@molgaard.org> <5140B5DE.4070800@molgaard.org>
-	<20130313195700.GA10649@joi.lan> <51421D43.7030909@molgaard.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 62351] New: Segfault in nouveau_dri.so
+Date: Thu, 14 Mar 2013 19:17:59 +0000
+Message-ID: <bug-62351-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0517750445=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <51421D43.7030909-6pRy+okvdpRg9hUCZPvPmw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +14,193 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Sune =?utf-8?B?TcO4bGdhYXJk?= <sune-6pRy+okvdpRg9hUCZPvPmw@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBNYXIgMTQsIDIwMTMgYXQgMDc6NTY6MDNQTSArMDEwMCwgU3VuZSBNw7hsZ2FhcmQg
-d3JvdGU6Cj4gTWFyY2luIFNsdXNhcnogd3JvdGU6Cj4gPiBJIHRoaW5rIGl0IG1heSBiZSBhbHJl
-YWR5IGZpeGVkIGJ5IGNvbW1pdCA5NGY1NGY1MzM2YWFjNjgwMWYyYTE0ZGNiMTI0NjdlNDFiMzU0
-NTZhCj4gPiAiZHJtL252NTA6IGVuY29kZXIgY3JlYXRpb24gZmFpbHVyZSBkb2Vzbid0IG1lYW4g
-ZnVsbCBpbml0IGZhaWx1cmUiIChwb3N0IDMuOS1yYzIpCj4gCj4gV2l0aCB0aGUgbGF0ZXN0IDMu
-OS1yYzIrIGdpdCwgSSBnb3QgcGFzdCB0aGUgS01TIGluaXQgYmxhY2tvdXQgYW5kIGludG8gCj4g
-WCwgYnV0IEkgZ290IGEgcGFuaWMgc2hvcnRseSBhZnRlci4KPiAKPiBVbmZvcnR1bmF0ZWx5LCB0
-aGUgdHJhY2Ugd2FzIHRvbyBsZW5ndGh5IHRvIHNlZSBpbiB3aGljaCBtb2R1bGUsIGFuZCAKPiBz
-aW5jZSBpdCB3YXNuJ3QgY2FwdHVyZWQgL3Zhci9sb2cvc3lzbG9nLCBJIGhhdmUgbm8gaWRlYSB3
-aGV0aGVyIGl0IGhhcyAKPiBhbnl0aGluZyB0byBkbyB3aXRoIG5vdXZlYXUgb3Igc29tZXRoaW5n
-IGVsc2UuCj4gCj4gdGw7ZHI6IEl0IHdvdWxkIHNlZW0gdGhhdCB0aGUgY29tbWl0IGZpeGVzIHRo
-ZSBzcGVjaWZpYyBidWcgSSByZXBvcnRlZCwgCj4gYnV0IG15IHN5c3RlbSBpc24ndCBmdW5jdGlv
-bmFsLgoKSWYgeW91IGhhdmUgYW5vdGhlciBtYWNoaW5lIGluIHRoZSBzYW1lIG5ldHdvcmssIHlv
-dSBjb3VsZCB0cnkgdG8gY2F0Y2ggdGhpcwpwYW5pYyB3aXRoIG5ldGNvbnNvbGUuIFNlZQpodHRw
-Oi8vZ2l0Lmtlcm5lbC5vcmcvY2dpdC9saW51eC9rZXJuZWwvZ2l0L3RvcnZhbGRzL2xpbnV4Lmdp
-dC90cmVlL0RvY3VtZW50YXRpb24vbmV0d29ya2luZy9uZXRjb25zb2xlLnR4dAoKTWFyY2luCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0517750445==
+Content-Type: multipart/alternative; boundary="1363288679.FAcC8C850.24050"; charset="us-ascii"
+
+
+--1363288679.FAcC8C850.24050
+Date: Thu, 14 Mar 2013 19:17:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D62351
+
+          Priority: medium
+            Bug ID: 62351
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Segfault in nouveau_dri.so
+          Severity: major
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: sune-6pRy+okvdpRg9hUCZPvPmw@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: git
+         Component: Drivers/DRI/nouveau
+           Product: Mesa
+
+Using xorg-edgers PPA on ubuntu 12.10 but with newer vanilla kernel, I
+consistently get the following when attempting to start the DE Cinnamon as =
+well
+as Gnome 3 upon which it is based:
+
+cinnamon[4414]: segfault at 1 ip 00007f0bf3d24f95 sp 00007fffac52e440 error=
+ 4
+in nouveau_dri.so[7f0bf3cb6000+143000]
+
+According to dpkg, the version is git20130227.
+
+Card is a NVIDIA Corporation G92 [GeForce 9800 GT] (rev a2)
+
+Please advise as to how I can provide more info and possibly test patches.
+
+Best regards,
+
+Sune M=C3=B8lgaard
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1363288679.FAcC8C850.24050
+Date: Thu, 14 Mar 2013 19:17:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - Segfault in nouveau_dri.so"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D62351">62351</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Segfault in nouveau_dri.so
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>sune&#64;molgaard.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Using xorg-edgers PPA on ubuntu 12.10 but with newer vanilla k=
+ernel, I
+consistently get the following when attempting to start the DE Cinnamon as =
+well
+as Gnome 3 upon which it is based:
+
+cinnamon[4414]: segfault at 1 ip 00007f0bf3d24f95 sp 00007fffac52e440 error=
+ 4
+in nouveau_dri.so[7f0bf3cb6000+143000]
+
+According to dpkg, the version is git20130227.
+
+Card is a NVIDIA Corporation G92 [GeForce 9800 GT] (rev a2)
+
+Please advise as to how I can provide more info and possibly test patches.
+
+Best regards,
+
+Sune M=C3=B8lgaard</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1363288679.FAcC8C850.24050--
+
+--===============0517750445==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0517750445==--
