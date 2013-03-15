@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37709] Icons on the Unity panel aren't displayed
-Date: Fri, 15 Mar 2013 08:00:24 +0000
-Message-ID: <bug-37709-8800-HVYgi7HokT@http.bugs.freedesktop.org/>
-References: <bug-37709-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 38627] Changing monitor resolution causes screen
+	corruption
+Date: Fri, 15 Mar 2013 08:00:41 +0000
+Message-ID: <bug-38627-8800-9T4sV9Nyu0@http.bugs.freedesktop.org/>
+References: <bug-38627-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0566548809=="
+Content-Type: multipart/mixed; boundary="===============1950761729=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37709-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-38627-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +21,19 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0566548809==
-Content-Type: multipart/alternative; boundary="1363334424.ccF572.26675"; charset="us-ascii"
+--===============1950761729==
+Content-Type: multipart/alternative; boundary="1363334441.3cd4fd5.26675"; charset="us-ascii"
 
 
---1363334424.ccF572.26675
-Date: Fri, 15 Mar 2013 08:00:24 +0000
+--1363334441.3cd4fd5.26675
+Date: Fri, 15 Mar 2013 08:00:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37709
+https://bugs.freedesktop.org/show_bug.cgi?id=38627
 
 --- Comment #2 from chemtech <patsev.anton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Andrea,
+jalil,
 Do you still experience this issue with newer drivers ?
 Please check the status of your issue.
 
@@ -40,8 +41,8 @@ Please check the status of your issue.
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1363334424.ccF572.26675
-Date: Fri, 15 Mar 2013 08:00:24 +0000
+--1363334441.3cd4fd5.26675
+Date: Fri, 15 Mar 2013 08:00:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Icons on the Unity panel aren't displayed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37709#c2">Comment # 2</a>
+   title="NEW --- - Changing monitor resolution causes screen corruption"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38627#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Icons on the Unity panel aren't displayed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37709">bug 37709</a>
+   title="NEW --- - Changing monitor resolution causes screen corruption"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38627">bug 38627</a>
               from <span class="vcard"><a class="email" href="mailto:patsev.anton&#64;gmail.com" title="chemtech &lt;patsev.anton&#64;gmail.com&gt;"> <span class="fn">chemtech</span></a>
 </span></b>
-        <pre>Andrea,
+        <pre>jalil,
 Do you still experience this issue with newer drivers ?
 Please check the status of your issue.</pre>
         </div>
@@ -76,9 +77,9 @@ Please check the status of your issue.</pre>
     </body>
 </html>
 
---1363334424.ccF572.26675--
+--1363334441.3cd4fd5.26675--
 
---===============0566548809==
+--===============1950761729==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0566548809==--
+--===============1950761729==--
