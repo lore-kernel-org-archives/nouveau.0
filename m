@@ -1,15 +1,15 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [libdrm PATCH 1/2] nouveau: return error from
-	pushbuf_validate
-Date: Tue, 19 Mar 2013 19:15:23 +0100
-Message-ID: <20130319181523.GA3038@joi.lan>
-References: <1362514494-3918-1-git-send-email-marcin.slusarz@gmail.com>
+Subject: Re: [RFC PATCH] drm/nouveau: use vmalloc for pgt
+	allocation
+Date: Tue, 19 Mar 2013 19:18:05 +0100
+Message-ID: <20130319181805.GB3038@joi.lan>
+References: <1362509833-28968-1-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <1362514494-3918-1-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <1362509833-28968-1-git-send-email-marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,12 +23,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Mar 05, 2013 at 09:14:53PM +0100, Marcin Slusarz wrote:
-> Without it, libdrm_nouveau user cannot know when validation failed.
+On Tue, Mar 05, 2013 at 07:57:08PM +0100, Marcin Slusarz wrote:
+> Page tables on nv50 take 48kB, which can be hard to allocate in one piece.
+> Let's use vmalloc.
 > 
 > Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org [3.7+]
 > ---
+>  drivers/gpu/drm/nouveau/core/subdev/vm/base.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/core/subdev/vm/base.c b/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
+> index 77c67fc..e66fb77 100644
+> --- a/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
+> +++ b/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
+> @@ -362,7 +362,7 @@ nouveau_vm_create(struct nouveau_vmmgr *vmm, u64 offset, u64 length,
+>  	vm->fpde = offset >> (vmm->pgt_bits + 12);
+>  	vm->lpde = (offset + length - 1) >> (vmm->pgt_bits + 12);
+>  
+> -	vm->pgt  = kcalloc(vm->lpde - vm->fpde + 1, sizeof(*vm->pgt), GFP_KERNEL);
+> +	vm->pgt  = vzalloc((vm->lpde - vm->fpde + 1) * sizeof(*vm->pgt));
+>  	if (!vm->pgt) {
+>  		kfree(vm);
+>  		return -ENOMEM;
+> @@ -371,7 +371,7 @@ nouveau_vm_create(struct nouveau_vmmgr *vmm, u64 offset, u64 length,
+>  	ret = nouveau_mm_init(&vm->mm, mm_offset >> 12, mm_length >> 12,
+>  			      block >> 12);
+>  	if (ret) {
+> -		kfree(vm->pgt);
+> +		vfree(vm->pgt);
+>  		kfree(vm);
+>  		return ret;
+>  	}
+> @@ -446,7 +446,7 @@ nouveau_vm_del(struct nouveau_vm *vm)
+>  	}
+>  
+>  	nouveau_mm_fini(&vm->mm);
+> -	kfree(vm->pgt);
+> +	vfree(vm->pgt);
+>  	kfree(vm);
+>  }
+>  
+> -- 
 
-If there are no objections, I'll push both patches soon.
+What's up with this patch?
 
 Marcin
