@@ -1,161 +1,52 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
- garbage/corruption/noise on resume
-Date: Wed, 20 Mar 2013 09:57:24 +0000
-Message-ID: <bug-59168-8800-TJIqNxvRSh@http.bugs.freedesktop.org/>
-References: <bug-59168-8800@http.bugs.freedesktop.org/>
+From: Lijo Antony <lijo.kernel@gmail.com>
+Subject: Re: [Nouveau] nouveau lockdep splat
+Date: Wed, 20 Mar 2013 19:23:19 +0400
+Message-ID: <5149D467.7030908@gmail.com>
+References: <20130304211608.GD22274@pd.tnic>  <1362501052.1933.2.camel@antimon> <20130319202432.GC4570@pd.tnic> <1363725620.3413.29.camel@thor.lan> <5149589D.6090403@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1784454589=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <5149589D.6090403@gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Peter Hurley <peter@hurleysoftware.com>
+Cc: Borislav Petkov <bp@alien8.de>, Ben Skeggs <bskeggs@redhat.com>, Lucas Stach <dev@lynxeye.de>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Dave Airlie <airlied@linux.ie>
 List-Id: nouveau.vger.kernel.org
 
+On 03/20/2013 10:35 AM, Lijo Antony wrote:
+> I think this is same as https://lkml.org/lkml/2013/3/16/143 (btw, git
+> bisect in that mail is incorrect). While investigating, I found this
+> issue was introduced during 3.9 merge window. For me this comes when I
+> connect my TV via HDMI.
 
---===============1784454589==
-Content-Type: multipart/alternative; boundary="1363773444.ffAD2.3049"; charset="us-ascii"
+FWIW, git bisect gave this log,
 
+git bisect start 'drivers/gpu/'
+# good: [e450fcc6669705ef49784080ac6dd8513df37763] drm/tegra: Add list 
+of framebuffers to debugfs
+git bisect good e450fcc6669705ef49784080ac6dd8513df37763
+# bad: [6dbe51c251a327e012439c4772097a13df43c5b8] Linux 3.9-rc1
+git bisect bad 6dbe51c251a327e012439c4772097a13df43c5b8
+# good: [bab588fcfb6335c767d811a8955979f5440328e0] Merge tag 'soc' of 
+git://git.kernel.org/pub/scm/linux/kernel/git/arm/arm-soc
+git bisect good bab588fcfb6335c767d811a8955979f5440328e0
+# good: [be88298b0a3f771a4802f20c5e66af74bfd1dff1] drm/tilcdc: only 
+build on arm
+git bisect good be88298b0a3f771a4802f20c5e66af74bfd1dff1
+# bad: [4d53233a36fdda567cd4d080e27e1ee4b669ddd1] drm: don't use 
+idr_remove_all()
+git bisect bad 4d53233a36fdda567cd4d080e27e1ee4b669ddd1
+# good: [9afa3195b96da7d2320ec44d19fbfbded7a15571] Merge branch 
+'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/jikos/trivial
+git bisect good 9afa3195b96da7d2320ec44d19fbfbded7a15571
+# good: [496ad9aa8ef448058e36ca7a787c61f2e63f0f54] new helper: 
+file_inode(file)
+git bisect good 496ad9aa8ef448058e36ca7a787c61f2e63f0f54
+# bad: [d895cb1af15c04c522a25c79cc429076987c089b] Merge branch 
+'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+git bisect bad d895cb1af15c04c522a25c79cc429076987c089b
+# bad: [fffddfd6c8e0c10c42c6e2cc54ba880fcc36ebbb] Merge branch 
+'drm-next' of git://people.freedesktop.org/~airlied/linux
+git bisect bad fffddfd6c8e0c10c42c6e2cc54ba880fcc36ebbb
 
---1363773444.ffAD2.3049
-Date: Wed, 20 Mar 2013 09:57:24 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D59168
-
-Bogdan R=C4=83dulescu <bogdan_radulescu99-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |bogdan_radulescu99-/E1597aS9LQ@public.gmane.org
-                   |                            |m
-
---- Comment #31 from Bogdan R=C4=83dulescu <bogdan_radulescu99-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> -=
---
-Also happens here with Linux 3.8.3. It used to happen with all the 3.7 vers=
-ions
-I tested.
-
-The card as reported by lspci is:
-01:00.0 VGA compatible controller: nVidia Corporation GF108 [GeForce GT 540=
-M]
-(rev a1)
-        Subsystem: Sony Corporation Device 9089
-        Kernel driver in use: nouveau
-
-My messages in dmesg are:
-[  487.986709] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 3 [0x003fb8c000]
-[  487.986718] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa2040a04
-
-Hope this nouveau bug will get fixed soon as it's really annoying.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1363773444.ffAD2.3049
-Date: Wed, 20 Mar 2013 09:57:24 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:bogdan_ra=
-dulescu99&#64;yahoo.com" title=3D"Bogdan R=C4=83dulescu &lt;bogdan_radulesc=
-u99&#64;yahoo.com&gt;"> <span class=3D"fn">Bogdan R=C4=83dulescu</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/=
-corruption/noise on resume"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59168">bug 59168<=
-/a>
-        <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>bogdan_radulescu99&#64;yahoo.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/=
-corruption/noise on resume"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59168#c31">Commen=
-t # 31</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/=
-corruption/noise on resume"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59168">bug 59168<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bogdan_radulescu99&#64;yahoo.com" title=3D"Bogdan R=C4=83dulescu &lt;bogdan=
-_radulescu99&#64;yahoo.com&gt;"> <span class=3D"fn">Bogdan R=C4=83dulescu</=
-span></a>
-</span></b>
-        <pre>Also happens here with Linux 3.8.3. It used to happen with all=
- the 3.7 versions
-I tested.
-
-The card as reported by lspci is:
-01:00.0 VGA compatible controller: nVidia Corporation GF108 [GeForce GT 540=
-M]
-(rev a1)
-        Subsystem: Sony Corporation Device 9089
-        Kernel driver in use: nouveau
-
-My messages in dmesg are:
-[  487.986709] nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 3 [0x003fb8c000]
-[  487.986718] nouveau E[  PGRAPH][0000:01:00.0] SHADER 0xa2040a04
-
-Hope this nouveau bug will get fixed soon as it's really annoying.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1363773444.ffAD2.3049--
-
---===============1784454589==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1784454589==--
+-lijo
