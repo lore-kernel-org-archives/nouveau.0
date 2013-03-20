@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62571] New: Mesa 9.0 uses missing nouveau library
-Date: Wed, 20 Mar 2013 18:53:09 +0000
-Message-ID: <bug-62571-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 62571] Mesa 9.0 uses missing nouveau library
+Date: Wed, 20 Mar 2013 18:54:04 +0000
+Message-ID: <bug-62571-8800-nPmapRotNT@http.bugs.freedesktop.org/>
+References: <bug-62571-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1478097094=="
+Content-Type: multipart/mixed; boundary="===============0743252164=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-62571-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,62 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1478097094==
-Content-Type: multipart/alternative; boundary="1363805589.cd4dc10.16645"; charset="us-ascii"
+--===============0743252164==
+Content-Type: multipart/alternative; boundary="1363805644.7AcD43B1.16895"; charset="us-ascii"
 
 
---1363805589.cd4dc10.16645
-Date: Wed, 20 Mar 2013 18:53:09 +0000
+--1363805644.7AcD43B1.16895
+Date: Wed, 20 Mar 2013 18:54:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=62571
 
-          Priority: medium
-            Bug ID: 62571
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Mesa 9.0 uses missing nouveau library
-          Severity: major
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: jesus.cortezjr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: 9.0
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
+Jesus Cortez <jesus.cortezjr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-We are using Scientific Linux 6.3, and noticed that our 3D applications started
-breaking after the auto-update to Mesa 9.0.
-
-After the upgrade, glxinfo (with LIBGL_DEBUG=verbose) would return:
-
-libGL: OpenDriver: trying /usr/lib/dri/nouveau_dri.so
-libGL error: dlopen /usr/lib/dri/nouveau_dri.so failed
-(/usr/lib/dri/nouveau_dri.so: cannot open shared object file: No such file or
-directory)
-libGL error: unable to load driver: nouveau_dri.so
-libGL error: driver pointer missing
-libGL error: failed to load driver: nouveau
-libGL: OpenDriver: trying /usr/lib/dri/swrast_dri.so
-GLVersion major: 1 minor: 4 
-
-This error was also being returned in our application, resulting in crashes
-that did not occur the previous day.
-
-We were able to fix the issue by running the following commands:
-
-rpm -e --nodeps mesa-dri1-drivers
-yum -y downgrade mesa-libGL-devel mesa-libGL mesa-dri-drivers
-
-to downgrade Mesa back to 7.11.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org
+                   |rg                          |org
+          Component|Drivers/DRI/nouveau         |Mesa core
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1363805589.cd4dc10.16645
-Date: Wed, 20 Mar 2013 18:53:09 +0000
+--1363805644.7AcD43B1.16895
+Date: Wed, 20 Mar 2013 18:54:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -81,114 +52,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:jesus.cortezjr&#64;gmail.com" title="Jesus Cortez &lt;jesus.cortezjr&#64;gmail.com&gt;"> <span class="fn">Jesus Cortez</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Mesa 9.0 uses missing nouveau library"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62571">62571</a>
-          </td>
-        </tr>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62571">bug 62571</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>mesa-dev&#64;lists.freedesktop.org
+           </td>
+         </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>Mesa 9.0 uses missing nouveau library
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>jesus.cortezjr&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>9.0
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>Drivers/DRI/nouveau
+           </td>
+           <td>Mesa core
+           </td>
+         </tr></table>
       <p>
-        <div>
-        <pre>We are using Scientific Linux 6.3, and noticed that our 3D applications started
-breaking after the auto-update to Mesa 9.0.
-
-After the upgrade, glxinfo (with LIBGL_DEBUG=verbose) would return:
-
-libGL: OpenDriver: trying /usr/lib/dri/nouveau_dri.so
-libGL error: dlopen /usr/lib/dri/nouveau_dri.so failed
-(/usr/lib/dri/nouveau_dri.so: cannot open shared object file: No such file or
-directory)
-libGL error: unable to load driver: nouveau_dri.so
-libGL error: driver pointer missing
-libGL error: failed to load driver: nouveau
-libGL: OpenDriver: trying /usr/lib/dri/swrast_dri.so
-GLVersion major: 1 minor: 4 
-
-This error was also being returned in our application, resulting in crashes
-that did not occur the previous day.
-
-We were able to fix the issue by running the following commands:
-
-rpm -e --nodeps mesa-dri1-drivers
-yum -y downgrade mesa-libGL-devel mesa-libGL mesa-dri-drivers
-
-to downgrade Mesa back to 7.11.</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -199,9 +92,9 @@ to downgrade Mesa back to 7.11.</pre>
     </body>
 </html>
 
---1363805589.cd4dc10.16645--
+--1363805644.7AcD43B1.16895--
 
---===============1478097094==
+--===============0743252164==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -212,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1478097094==--
+--===============0743252164==--
