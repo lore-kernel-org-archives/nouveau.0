@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49148] nv20_state_fb.c:50: get_rt_format: Assertion
-	`0' failed.
-Date: Wed, 20 Mar 2013 18:47:37 +0000
-Message-ID: <bug-49148-8800-eL1QMz2wC7@http.bugs.freedesktop.org/>
-References: <bug-49148-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 62571] New: Mesa 9.0 uses missing nouveau library
+Date: Wed, 20 Mar 2013 18:53:09 +0000
+Message-ID: <bug-62571-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1887269195=="
+Content-Type: multipart/mixed; boundary="===============1478097094=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49148-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,113 +18,190 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1887269195==
-Content-Type: multipart/alternative; boundary="1363805257.8D0ade52.15522"; charset="us-ascii"
+--===============1478097094==
+Content-Type: multipart/alternative; boundary="1363805589.cd4dc10.16645"; charset="us-ascii"
 
 
---1363805257.8D0ade52.15522
-Date: Wed, 20 Mar 2013 18:47:37 +0000
+--1363805589.cd4dc10.16645
+Date: Wed, 20 Mar 2013 18:53:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D49148
+https://bugs.freedesktop.org/show_bug.cgi?id=62571
 
---- Comment #3 from Truckman Jones <joaogojunior-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-I'm getting the following error under wine 1.5.26 "nv10_state_fb.c:50:
-get_rt_format: Assertion `0' failed", trying to run
-"http://ufpr.dl.sourceforge.net/project/criticalmass/Critical%20Mass/1.0.0/=
-CriticalMass-Windows-1.0.0.zip"
-and many other 3d apps. I'm running here nouveau 1.0.2 driver on Nvidia MX =
-4000
-hardware (slackware linux 14.0, with required experimental libdrm) and I was
-able to run "http://web.media.mit.edu/~gordonw/OpenGL/simpleGLUT.zip" with =
-hw
-acceleration and no problems at all, I have applied this proposed patch aga=
-inst
-mesa 9.0.3 and succeeded with some offset, but unfortunatelly did have no
-effect on my problem... I'm wondering if there is something missing on this
-patch, like enabling some more modes available on this hardware? I'm looking
-for a solution and willing to help testing any experimental patches... Than=
-ks
-in advance to you folks at freedesktop.org!=20
-Ciao
-Jo=C3=A3o.http://ufpr.dl.sourceforge.net/project/criticalmass/Critical%20Ma=
-ss/1.0.0/CriticalMass-Windows-1.0.0.zip
+          Priority: medium
+            Bug ID: 62571
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Mesa 9.0 uses missing nouveau library
+          Severity: major
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: jesus.cortezjr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: 9.0
+         Component: Drivers/DRI/nouveau
+           Product: Mesa
 
---=20
+We are using Scientific Linux 6.3, and noticed that our 3D applications started
+breaking after the auto-update to Mesa 9.0.
+
+After the upgrade, glxinfo (with LIBGL_DEBUG=verbose) would return:
+
+libGL: OpenDriver: trying /usr/lib/dri/nouveau_dri.so
+libGL error: dlopen /usr/lib/dri/nouveau_dri.so failed
+(/usr/lib/dri/nouveau_dri.so: cannot open shared object file: No such file or
+directory)
+libGL error: unable to load driver: nouveau_dri.so
+libGL error: driver pointer missing
+libGL error: failed to load driver: nouveau
+libGL: OpenDriver: trying /usr/lib/dri/swrast_dri.so
+GLVersion major: 1 minor: 4 
+
+This error was also being returned in our application, resulting in crashes
+that did not occur the previous day.
+
+We were able to fix the issue by running the following commands:
+
+rpm -e --nodeps mesa-dri1-drivers
+yum -y downgrade mesa-libGL-devel mesa-libGL mesa-dri-drivers
+
+to downgrade Mesa back to 7.11.
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1363805257.8D0ade52.15522
-Date: Wed, 20 Mar 2013 18:47:37 +0000
+--1363805589.cd4dc10.16645
+Date: Wed, 20 Mar 2013 18:53:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Mesa 9.0 uses missing nouveau library"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62571">62571</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Mesa 9.0 uses missing nouveau library
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jesus.cortezjr&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>9.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nv20_state_fb.c:50: get_rt_format: Assertion `0' fail=
-ed."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D49148#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nv20_state_fb.c:50: get_rt_format: Assertion `0' fail=
-ed."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D49148">bug 49148<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-joaogojunior&#64;hotmail.com" title=3D"Truckman Jones &lt;joaogojunior&#64;=
-hotmail.com&gt;"> <span class=3D"fn">Truckman Jones</span></a>
-</span></b>
-        <pre>I'm getting the following error under wine 1.5.26 &quot;nv10_s=
-tate_fb.c:50:
-get_rt_format: Assertion `0' failed&quot;, trying to run
-&quot;<a href=3D"http://ufpr.dl.sourceforge.net/project/criticalmass/Critic=
-al%20Mass/1.0.0/CriticalMass-Windows-1.0.0.zip">http://ufpr.dl.sourceforge.=
-net/project/criticalmass/Critical%20Mass/1.0.0/CriticalMass-Windows-1.0.0.z=
-ip</a>&quot;
-and many other 3d apps. I'm running here nouveau 1.0.2 driver on Nvidia MX =
-4000
-hardware (slackware linux 14.0, with required experimental libdrm) and I was
-able to run &quot;<a href=3D"http://web.media.mit.edu/~gordonw/OpenGL/simpl=
-eGLUT.zip">http://web.media.mit.edu/~gordonw/OpenGL/simpleGLUT.zip</a>&quot=
-; with hw
-acceleration and no problems at all, I have applied this proposed patch aga=
-inst
-mesa 9.0.3 and succeeded with some offset, but unfortunatelly did have no
-effect on my problem... I'm wondering if there is something missing on this
-patch, like enabling some more modes available on this hardware? I'm looking
-for a solution and willing to help testing any experimental patches... Than=
-ks
-in advance to you folks at freedesktop.org!=20
-Ciao
-Jo=C3=A3o.<a href=3D"http://ufpr.dl.sourceforge.net/project/criticalmass/Cr=
-itical%20Mass/1.0.0/CriticalMass-Windows-1.0.0.zip">http://ufpr.dl.sourcefo=
-rge.net/project/criticalmass/Critical%20Mass/1.0.0/CriticalMass-Windows-1.0=
-.0.zip</a></pre>
+        <pre>We are using Scientific Linux 6.3, and noticed that our 3D applications started
+breaking after the auto-update to Mesa 9.0.
+
+After the upgrade, glxinfo (with LIBGL_DEBUG=verbose) would return:
+
+libGL: OpenDriver: trying /usr/lib/dri/nouveau_dri.so
+libGL error: dlopen /usr/lib/dri/nouveau_dri.so failed
+(/usr/lib/dri/nouveau_dri.so: cannot open shared object file: No such file or
+directory)
+libGL error: unable to load driver: nouveau_dri.so
+libGL error: driver pointer missing
+libGL error: failed to load driver: nouveau
+libGL: OpenDriver: trying /usr/lib/dri/swrast_dri.so
+GLVersion major: 1 minor: 4 
+
+This error was also being returned in our application, resulting in crashes
+that did not occur the previous day.
+
+We were able to fix the issue by running the following commands:
+
+rpm -e --nodeps mesa-dri1-drivers
+yum -y downgrade mesa-libGL-devel mesa-libGL mesa-dri-drivers
+
+to downgrade Mesa back to 7.11.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1363805257.8D0ade52.15522--
+--1363805589.cd4dc10.16645--
 
---===============1887269195==
+--===============1478097094==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -138,4 +212,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1887269195==--
+--===============1478097094==--
