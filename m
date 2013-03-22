@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62571] Mesa 9.0 uses missing nouveau library
-Date: Wed, 20 Mar 2013 18:54:04 +0000
-Message-ID: <bug-62571-8800-nPmapRotNT@http.bugs.freedesktop.org/>
-References: <bug-62571-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 62351] Segfault in nouveau_dri.so
+Date: Fri, 22 Mar 2013 21:48:06 +0000
+Message-ID: <bug-62351-8800-PxVLwMCukc@http.bugs.freedesktop.org/>
+References: <bug-62351-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0743252164=="
+Content-Type: multipart/mixed; boundary="===============2065843867=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62571-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-62351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0743252164==
-Content-Type: multipart/alternative; boundary="1363805644.7AcD43B1.16895"; charset="us-ascii"
+--===============2065843867==
+Content-Type: multipart/alternative; boundary="1363988886.a2cBcbCB2.7074"; charset="us-ascii"
 
 
---1363805644.7AcD43B1.16895
-Date: Wed, 20 Mar 2013 18:54:04 +0000
+--1363988886.a2cBcbCB2.7074
+Date: Fri, 22 Mar 2013 21:48:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62571
+https://bugs.freedesktop.org/show_bug.cgi?id=62351
 
-Jesus Cortez <jesus.cortezjr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org
-                   |rg                          |org
-          Component|Drivers/DRI/nouveau         |Mesa core
+--- Comment #4 from klausenbusk-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
+I can also confirm this bug, same error. Nvidia GeForce 8600 GT on Arch Linux
+tested with mesa from git today (22/3) and 11/3.
+[   21.613812] gnome-shell[431]: segfault at 1 ip 00007fb252ea8465 sp
+00007fff9e19bc00 error 4 in nouveau_dri.so[7fb252968000+121b000]
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1363805644.7AcD43B1.16895
-Date: Wed, 20 Mar 2013 18:54:04 +0000
+--1363988886.a2cBcbCB2.7074
+Date: Fri, 22 Mar 2013 21:48:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,36 +50,24 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:jesus.cortezjr&#64;gmail.com" title="Jesus Cortez &lt;jesus.cortezjr&#64;gmail.com&gt;"> <span class="fn">Jesus Cortez</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Mesa 9.0 uses missing nouveau library"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62571">bug 62571</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>mesa-dev&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Drivers/DRI/nouveau
-           </td>
-           <td>Mesa core
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Segfault in nouveau_dri.so"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62351#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Segfault in nouveau_dri.so"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62351">bug 62351</a>
+              from <span class="vcard"><a class="email" href="mailto:klausenbusk&#64;hotmail.com" title="klausenbusk&#64;hotmail.com">klausenbusk&#64;hotmail.com</a>
+</span></b>
+        <pre>I can also confirm this bug, same error. Nvidia GeForce 8600 GT on Arch Linux
+tested with mesa from git today (22/3) and 11/3.
+[   21.613812] gnome-shell[431]: segfault at 1 ip 00007fb252ea8465 sp
+00007fff9e19bc00 error 4 in nouveau_dri.so[7fb252968000+121b000]</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -92,9 +78,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1363805644.7AcD43B1.16895--
+--1363988886.a2cBcbCB2.7074--
 
---===============0743252164==
+--===============2065843867==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0743252164==--
+--===============2065843867==--
