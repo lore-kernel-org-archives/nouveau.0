@@ -1,61 +1,44 @@
-From: Marcin Slusarz <marcin.slusarz@gmail.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau: Ack interrupts for some fuc engines
-Date: Mon, 25 Mar 2013 19:14:56 +0100
-Message-ID: <20130325181456.GA8026@joi.lan>
-References: <5150175D.3070808@gmail.com>
+From: Peter Hurley <peter@hurleysoftware.com>
+Subject: Re: [PATCH] drm/nouveau: fix NULL ptr dereference from
+ nv50_disp_intr()
+Date: Mon, 25 Mar 2013 16:59:40 -0400
+Message-ID: <1364245180.3442.4.camel@thor.lan>
+References: <1363705988.3413.17.camel@thor.lan>
+	 <1364039260.3440.5.camel@thor.lan> <514EE9EE.9030208@canonical.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <5150175D.3070808@gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Maarten Lankhorst <m.b.lankhorst@gmail.com>
-Cc: nouveau@lists.freedesktop.org, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <514EE9EE.9030208@canonical.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Maarten Lankhorst <maarten.lankhorst@canonical.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Mar 25, 2013 at 10:22:37AM +0100, Maarten Lankhorst wrote:
-> Fixes 100% cpu usage when the exit interrupt never got acked.
+On Sun, 2013-03-24 at 12:56 +0100, Maarten Lankhorst wrote:
+> Op 23-03-13 12:47, Peter Hurley schreef:
+> > On Tue, 2013-03-19 at 11:13 -0400, Peter Hurley wrote:
+> >> On vanilla 3.9.0-rc3, I get this 100% repeatable oops after login when
+> >> the user X session is coming up:
+> > Perhaps I wasn't clear that this happens on every boot and is a
+> > regression from 3.8
+> >
+> > I'd be happy to help resolve this but time is of the essence; it would
+> > be a shame to have to revert all of this for 3.9
 > 
-> Signed-off-by: Maarten Lankhorst <m.b.lankhorst@gmail.com>
-> ---
-> diff --git a/drivers/gpu/drm/nouveau/core/core/falcon.c b/drivers/gpu/drm/nouveau/core/core/falcon.c
-> index e05c157..b11c5f3 100644
-> --- a/drivers/gpu/drm/nouveau/core/core/falcon.c
-> +++ b/drivers/gpu/drm/nouveau/core/core/falcon.c
-> @@ -229,6 +229,24 @@ _nouveau_falcon_fini(struct nouveau_object *object, bool suspend)
->  	return nouveau_engine_fini(&falcon->base, suspend);
->  }
->  
-> +void
-> +nouveau_falcon_intr(struct nouveau_subdev *subdev)
-> +{
-> +	struct nouveau_falcon *falcon = (void*)subdev;
-> +	u32 intr = nv_ro32(falcon, 0x008);
-> +
-> +	nv_wo32(falcon, 0x004, intr);
-> +
-> +	if (intr & 0x10) {
-> +		intr &= ~0x10;
-> +
-> +		nv_info(falcon, "Exit interrupt called\n");
+> Well it broke on my system too, so it was easy to fix.
+> 
+> I didn't even need gdm to trigger it!
+> 
+> >8----
+> This fixes regression caused by 1d7c71a3e2f7 (drm/nouveau/disp: port vblank handling to event interface),
 
-Do you really want to print it at "info" level? How frequent it is?
+Thanks Maarten!
 
-> +	}
-> +
-> +	if (intr)
-> +		nv_error(falcon, "Unhandled interrupt %08x\n", intr);
-> +}
-> +
->  int
->  nouveau_falcon_create_(struct nouveau_object *parent,
->  		       struct nouveau_object *engine,
+But am I the only one running multi-head nouveau on linux-next and early
+RCs? That's a scary thought.
+
+Is there a test bench for validating nouveau?
+
+Regards,
+Peter Hurley
