@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62707] black screen in Simcity 3000 in wine
-Date: Sun, 24 Mar 2013 20:59:40 +0000
-Message-ID: <bug-62707-8800-nt35BIbvLz@http.bugs.freedesktop.org/>
-References: <bug-62707-8800@http.bugs.freedesktop.org/>
+From: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Ack interrupts for some fuc engines
+Date: Mon, 25 Mar 2013 10:22:37 +0100
+Message-ID: <5150175D.3070808@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0336541575=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62707-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,91 +16,112 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Fixes 100% cpu usage when the exit interrupt never got acked.
 
---===============0336541575==
-Content-Type: multipart/alternative; boundary="1364158780.FBBE0.17190"; charset="us-ascii"
-
-
---1364158780.FBBE0.17190
-Date: Sun, 24 Mar 2013 20:59:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=62707
-
-thepouar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Hardware|Other                       |x86-64 (AMD64)
-                 OS|All                         |Linux (All)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1364158780.FBBE0.17190
-Date: Sun, 24 Mar 2013 20:59:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:thepouar&#64;gmail.com" title="thepouar&#64;gmail.com">thepouar&#64;gmail.com</a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - black screen in Simcity 3000 in wine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62707">bug 62707</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">OS</td>
-           <td>All
-           </td>
-           <td>Linux (All)
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1364158780.FBBE0.17190--
-
---===============0336541575==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0336541575==--
+Signed-off-by: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+diff --git a/drivers/gpu/drm/nouveau/core/core/falcon.c b/drivers/gpu/drm/nouveau/core/core/falcon.c
+index e05c157..b11c5f3 100644
+--- a/drivers/gpu/drm/nouveau/core/core/falcon.c
++++ b/drivers/gpu/drm/nouveau/core/core/falcon.c
+@@ -229,6 +229,24 @@ _nouveau_falcon_fini(struct nouveau_object *object, bool suspend)
+ 	return nouveau_engine_fini(&falcon->base, suspend);
+ }
+ 
++void
++nouveau_falcon_intr(struct nouveau_subdev *subdev)
++{
++	struct nouveau_falcon *falcon = (void*)subdev;
++	u32 intr = nv_ro32(falcon, 0x008);
++
++	nv_wo32(falcon, 0x004, intr);
++
++	if (intr & 0x10) {
++		intr &= ~0x10;
++
++		nv_info(falcon, "Exit interrupt called\n");
++	}
++
++	if (intr)
++		nv_error(falcon, "Unhandled interrupt %08x\n", intr);
++}
++
+ int
+ nouveau_falcon_create_(struct nouveau_object *parent,
+ 		       struct nouveau_object *engine,
+diff --git a/drivers/gpu/drm/nouveau/core/engine/bsp/nvc0.c b/drivers/gpu/drm/nouveau/core/engine/bsp/nvc0.c
+index 0a5aa6b..2201c96 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/bsp/nvc0.c
++++ b/drivers/gpu/drm/nouveau/core/engine/bsp/nvc0.c
+@@ -91,6 +91,7 @@ nvc0_bsp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 		return ret;
+ 
+ 	nv_subdev(priv)->unit = 0x00008000;
++	nv_subdev(priv)->intr = nouveau_falcon_intr;
+ 	nv_engine(priv)->cclass = &nvc0_bsp_cclass;
+ 	nv_engine(priv)->sclass = nvc0_bsp_sclass;
+ 	return 0;
+diff --git a/drivers/gpu/drm/nouveau/core/engine/bsp/nve0.c b/drivers/gpu/drm/nouveau/core/engine/bsp/nve0.c
+index d4f23bb..4e7f79b 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/bsp/nve0.c
++++ b/drivers/gpu/drm/nouveau/core/engine/bsp/nve0.c
+@@ -91,6 +91,7 @@ nve0_bsp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 		return ret;
+ 
+ 	nv_subdev(priv)->unit = 0x00008000;
++	nv_subdev(priv)->intr = nouveau_falcon_intr;
+ 	nv_engine(priv)->cclass = &nve0_bsp_cclass;
+ 	nv_engine(priv)->sclass = nve0_bsp_sclass;
+ 	return 0;
+diff --git a/drivers/gpu/drm/nouveau/core/engine/ppp/nvc0.c b/drivers/gpu/drm/nouveau/core/engine/ppp/nvc0.c
+index ebf0d86..4557c3b 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/ppp/nvc0.c
++++ b/drivers/gpu/drm/nouveau/core/engine/ppp/nvc0.c
+@@ -91,6 +91,7 @@ nvc0_ppp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 		return ret;
+ 
+ 	nv_subdev(priv)->unit = 0x00000002;
++	nv_subdev(priv)->intr = nouveau_falcon_intr;
+ 	nv_engine(priv)->cclass = &nvc0_ppp_cclass;
+ 	nv_engine(priv)->sclass = nvc0_ppp_sclass;
+ 	return 0;
+diff --git a/drivers/gpu/drm/nouveau/core/engine/vp/nvc0.c b/drivers/gpu/drm/nouveau/core/engine/vp/nvc0.c
+index f761949..cc2c8cc 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/vp/nvc0.c
++++ b/drivers/gpu/drm/nouveau/core/engine/vp/nvc0.c
+@@ -91,6 +91,7 @@ nvc0_vp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 		return ret;
+ 
+ 	nv_subdev(priv)->unit = 0x00020000;
++	nv_subdev(priv)->intr = nouveau_falcon_intr;
+ 	nv_engine(priv)->cclass = &nvc0_vp_cclass;
+ 	nv_engine(priv)->sclass = nvc0_vp_sclass;
+ 	return 0;
+diff --git a/drivers/gpu/drm/nouveau/core/engine/vp/nve0.c b/drivers/gpu/drm/nouveau/core/engine/vp/nve0.c
+index 2384ce5..774ec16 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/vp/nve0.c
++++ b/drivers/gpu/drm/nouveau/core/engine/vp/nve0.c
+@@ -91,6 +91,7 @@ nve0_vp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 		return ret;
+ 
+ 	nv_subdev(priv)->unit = 0x00020000;
++	nv_subdev(priv)->intr = nouveau_falcon_intr;
+ 	nv_engine(priv)->cclass = &nve0_vp_cclass;
+ 	nv_engine(priv)->sclass = nve0_vp_sclass;
+ 	return 0;
+diff --git a/drivers/gpu/drm/nouveau/core/include/core/falcon.h b/drivers/gpu/drm/nouveau/core/include/core/falcon.h
+index 1edec38..181aa7d 100644
+--- a/drivers/gpu/drm/nouveau/core/include/core/falcon.h
++++ b/drivers/gpu/drm/nouveau/core/include/core/falcon.h
+@@ -72,6 +72,8 @@ int nouveau_falcon_create_(struct nouveau_object *, struct nouveau_object *,
+ 			   struct nouveau_oclass *, u32, bool, const char *,
+ 			   const char *, int, void **);
+ 
++void nouveau_falcon_intr(struct nouveau_subdev *subdev);
++
+ #define _nouveau_falcon_dtor _nouveau_engine_dtor
+ int  _nouveau_falcon_init(struct nouveau_object *);
+ int  _nouveau_falcon_fini(struct nouveau_object *, bool);
