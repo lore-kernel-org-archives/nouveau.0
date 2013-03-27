@@ -1,93 +1,54 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62829] On S1 suspend,
- attached monitor does not enter low power state, MX420 NV17 AGP 4x card
-Date: Wed, 27 Mar 2013 17:33:47 +0000
-Message-ID: <bug-62829-8800-DnOFL2d2hC@http.bugs.freedesktop.org/>
-References: <bug-62829-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: system death under oom - 3.7.9
+Date: Wed, 27 Mar 2013 14:25:36 -0400
+Message-ID: <CAKb7UviwOk9asT=WxYgDUzfm3J+tGXobroUycpoTvzOX5kkofQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1370523037=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62829-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=ISO-8859-1
+Return-path: <owner-linux-mm@kvack.org>
+Sender: owner-linux-mm@kvack.org
+To: linux-kernel@vger.kernel.org
+Cc: nouveau@lists.freedesktop.org, linux-mm@kvack.org
 List-Id: nouveau.vger.kernel.org
 
+Hello,
 
---===============1370523037==
-Content-Type: multipart/alternative; boundary="1364405627.aEdEC7c1.27820"; charset="us-ascii"
+My system died last night apparently due to OOM conditions. Note that
+I don't have any swap set up, but my understanding is that this is not
+required. The full log is at: http://pastebin.com/YCYUXWvV. It was in
+my messages, so I guess the system took a bit to die completely.
 
+nouveau is somewhat implicated, as it is the first thing that hits an
+allocation failure in nouveau_vm_create, and has a subsequent warn in
+nouveau_mm_fini, but then there's a GPF in
+__alloc_skb/__kmalloc_track_caller (and I'm using SLUB). Here is a
+partial disassembly for __kmalloc_track_caller:
 
---1364405627.aEdEC7c1.27820
-Date: Wed, 27 Mar 2013 17:33:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+   0xffffffff811325b1 <+138>:   e8 a0 60 56 00  callq
+0xffffffff81698656 <__slab_alloc.constprop.68>
+   0xffffffff811325b6 <+143>:   49 89 c4        mov    %rax,%r12
+   0xffffffff811325b9 <+146>:   eb 27   jmp    0xffffffff811325e2
+<__kmalloc_track_caller+187>
+   0xffffffff811325bb <+148>:   49 63 45 20     movslq 0x20(%r13),%rax
+   0xffffffff811325bf <+152>:   48 8d 4a 01     lea    0x1(%rdx),%rcx
+   0xffffffff811325c3 <+156>:   49 8b 7d 00     mov    0x0(%r13),%rdi
+   0xffffffff811325c7 <+160>:   49 8b 1c 04     mov    (%r12,%rax,1),%rbx
+   0xffffffff811325cb <+164>:   4c 89 e0        mov    %r12,%rax
+   0xffffffff811325ce <+167>:   48 8d 37        lea    (%rdi),%rsi
+   0xffffffff811325d1 <+170>:   e8 3a 38 1b 00  callq
+0xffffffff812e5e10 <this_cpu_cmpxchg16b_emu>
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62829
+The GPF happens at +160, which is in the argument setup for the
+cmpxchg in slab_alloc_node. I think it's the call to
+get_freepointer(). There was a similar bug report a while back,
+https://lkml.org/lkml/2011/5/23/199, and the recommendation was to run
+with slub debugging. Is that still the case, or is there a simpler
+explanation? I can't reproduce this at will, not sure how many times
+this has happened but definitely not many.
 
---- Comment #1 from Paul Ausbeck <paula-VL1tVIhH15Ot+zzwz018cpVzexx5G7lz@public.gmane.org> ---
-One other thing. The S1 suspend currents quoted above are 120VAC. So the DELL
-Dimension draws ~24Watts when suspended from Windows XP and ~30Watts when
-suspended from Debian Wheezy.
+  -ilia
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1364405627.aEdEC7c1.27820
-Date: Wed, 27 Mar 2013 17:33:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - On S1 suspend, attached monitor does not enter low power state, MX420 NV17 AGP 4x card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62829#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - On S1 suspend, attached monitor does not enter low power state, MX420 NV17 AGP 4x card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62829">bug 62829</a>
-              from <span class="vcard"><a class="email" href="mailto:paula&#64;alumni.cse.ucsc.edu" title="Paul Ausbeck &lt;paula&#64;alumni.cse.ucsc.edu&gt;"> <span class="fn">Paul Ausbeck</span></a>
-</span></b>
-        <pre>One other thing. The S1 suspend currents quoted above are 120VAC. So the DELL
-Dimension draws ~24Watts when suspended from Windows XP and ~30Watts when
-suspended from Debian Wheezy.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1364405627.aEdEC7c1.27820--
-
---===============1370523037==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1370523037==--
+--
+To unsubscribe, send a message with 'unsubscribe linux-mm' in
+the body to majordomo@kvack.org.  For more info on Linux MM,
+see: http://www.linux-mm.org/ .
+Don't email: <a href=mailto:"dont@kvack.org"> email@kvack.org </a>
