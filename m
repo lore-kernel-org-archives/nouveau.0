@@ -1,15 +1,11 @@
 From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Ack interrupts for some fuc
-	engines
-Date: Wed, 27 Mar 2013 07:21:52 +0100
-Message-ID: <51529000.3050300@canonical.com>
-References: <5150175D.3070808@gmail.com> <20130325181456.GA8026@joi.lan>
-	<51514044.1040709@canonical.com> <20130326202952.GA11307@joi.lan>
+Subject: [ANNOUNCE] xf86-video-nouveau 1.0.7
+Date: Wed, 27 Mar 2013 09:54:43 +0100
+Message-ID: <5152B3D3.1020300@canonical.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20130326202952.GA11307-OI9uyE9O0yo@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,47 +15,60 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: xorg-announce-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Op 26-03-13 21:29, Marcin Slusarz schreef:
-> On Tue, Mar 26, 2013 at 07:29:24AM +0100, Maarten Lankhorst wrote:
->> Op 25-03-13 19:14, Marcin Slusarz schreef:
->>> On Mon, Mar 25, 2013 at 10:22:37AM +0100, Maarten Lankhorst wrote:
->>>> Fixes 100% cpu usage when the exit interrupt never got acked.
->>>>
->>>> Signed-off-by: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->>>> ---
->>>> diff --git a/drivers/gpu/drm/nouveau/core/core/falcon.c b/drivers/gpu/drm/nouveau/core/core/falcon.c
->>>> index e05c157..b11c5f3 100644
->>>> --- a/drivers/gpu/drm/nouveau/core/core/falcon.c
->>>> +++ b/drivers/gpu/drm/nouveau/core/core/falcon.c
->>>> @@ -229,6 +229,24 @@ _nouveau_falcon_fini(struct nouveau_object *object, bool suspend)
->>>>  	return nouveau_engine_fini(&falcon->base, suspend);
->>>>  }
->>>>  
->>>> +void
->>>> +nouveau_falcon_intr(struct nouveau_subdev *subdev)
->>>> +{
->>>> +	struct nouveau_falcon *falcon = (void*)subdev;
->>>> +	u32 intr = nv_ro32(falcon, 0x008);
->>>> +
->>>> +	nv_wo32(falcon, 0x004, intr);
->>>> +
->>>> +	if (intr & 0x10) {
->>>> +		intr &= ~0x10;
->>>> +
->>>> +		nv_info(falcon, "Exit interrupt called\n");
->>> Do you really want to print it at "info" level? How frequent it is?
->> It shouldn't be often, I want it to run at the error level since that usually
->> means the firmware exited prematurely/crashed and things go bad, but it
->> happens with the secret scrubber finishing on initialization too. That one
->> is harmless though.
-> Maybe it should say:
-> nv_error(falcon, "firmware exited prematurely\n");
-> ?
->
-That is only 1 of the 2 causes, the other is when it's a secret engine (CRYPT/BSP/VP for <nvd0) and the scrubber finished running. In that case it's not an error.
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-~Maarten
+Christoph Bumiller (1):
+      dri2: fix missing frame throttle on copy_region buffer swaps
+
+Dave Airlie (7):
+      nouveau: add reverse prime support
+      nouveau: create shared pixmaps in GART
+      nouveau: fix regression in PRIME since 58284cf32778d54cde139423450bc33360784503
+      nouveau: align shared buffers to 256
+      nouveau: make prime regression fix more robust.
+      nouveau: fix build on older X servers
+      nouveau: fix build against old servers (part 2)
+
+Maarten Lankhorst (2):
+      Clean up some errors on closing.
+      bump to 1.0.7
+
+Marcin Slusarz (2):
+      nouveau: put cursor BO in GART
+      nv30/exa: fix shaders on big-endian machines
+
+git tag: xf86-video-nouveau-1.0.7
+
+http://xorg.freedesktop.org/archive/individual/driver/xf86-video-nouveau-1.0.7.tar.bz2
+MD5:  383e398283e7bae30d6ce1617ccbd3a4  xf86-video-nouveau-1.0.7.tar.bz2
+SHA1: 26b19cc96048a43a94613bc5ea82b5829ec9ca95  xf86-video-nouveau-1.0.7.tar.bz2
+SHA256: d187c658e1823ca829c941f3f601f8e7220d427e079c3e52b94ecff45bc2e131  xf86-video-nouveau-1.0.7.tar.bz2
+
+http://xorg.freedesktop.org/archive/individual/driver/xf86-video-nouveau-1.0.7.tar.gz
+MD5:  916348b36ef337341fa24aab52cfc579  xf86-video-nouveau-1.0.7.tar.gz
+SHA1: c2d994368ea9a01a2a51078030e87469f207a683  xf86-video-nouveau-1.0.7.tar.gz
+SHA256: 588c3000b5ea2c3f91fd560bfc4c24faaf9ed7c4b56582a35e6101f00b17b2b5  xf86-video-nouveau-1.0.7.tar.gz
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iQIcBAEBAgAGBQJRUrOnAAoJEP5VjHKmcBPDepkQALx8IrYE8hDsEeZXhdJTzmy2
+V4nOgIGhNT9YJOqhy7ocezZfSzeRNA3PX6qhEXmqJe/XDTMvEQqhn1OXmn7N/Xrz
+Qafybjnn4L/kOZ9ZSxQNrLHtbaH6fiU20FYlI8VbDcT2iG3C3yJkyvlbkWbEItxj
+j8I7zpwMUuJ1fPv6O8he8FTSPDICql8yGKjlDXECcOnkhODAXKFBcuFNBN16ZZgW
+DedJJ3okelKngrkiDlpZKBwgvlm77xoztD+jyIspX/gsbyGFdwuwGxIhzzOW2cH7
+FP+p3/Of+5QW/oAcNqUF8I6WKG3t9TGVh6/sbN9A7QEf5fsNgaPPbpGGvK0IwPyl
+JMOtEhWkSwqaB0Kkw351sDEYhWXRuSLX1pixRho6CH7sNCIXcqkTeHnzxjCmzc9M
+S0R4hUUQC7mmb7qWB3ypAG43Y+5L/efXQLjj8O8PFGUbmxCMCtEuZjeEY3JP7lAK
+QsukukyV2exObX2Q5gk2zmTwjrPXEtNFshbtNKsgfQb1DRZMW5m1/I0YPywy3bJQ
+u0pLVZawc2HN6XNx+SJ6j6XbMi40f++T8XOOrKWPVuqUgtz4GgelKHlOl4TQRL1W
+nCB4qqllCCYQSH22+qdKTVBiLY30SzRRlnyPsz6kjA2bzPG+8Li1kU+QGQML7qXm
+6h6lJeYwf90K+Dh8L5CV
+=vikd
+-----END PGP SIGNATURE-----
+^ Look the block of numbers are here, it's completely secure! :D
