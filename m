@@ -1,7 +1,7 @@
 From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: [PATCH] drm/nouveau: wait for vblank on page flipping
-Date: Thu, 28 Mar 2013 15:37:56 +0100
-Message-ID: <515455C4.7080808@canonical.com>
+Subject: [PATCH v2] drm/nouveau: wait for vblank on page flipping
+Date: Thu, 28 Mar 2013 16:16:51 +0100
+Message-ID: <51545EE3.8020406@canonical.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -15,18 +15,18 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
 	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
 Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: nouveau@lists.freedesktop.org, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+To: nouveau@lists.freedesktop.org
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-ARRRRRRRRRRRRRRRRRRRRRRRRGGGGGGGGGGGGGHHHHHHHHHHhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh!
-
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-
 ---
-diff --git a/drivers/gpu/drm/nouveau/core/core/event.c b/drivers/gpu/drm/nouveau/core/core/event.c
-index 6d01e0f..f56bd56 100644
---- a/drivers/gpu/drm/nouveau/core/core/event.c
-+++ b/drivers/gpu/drm/nouveau/core/core/event.c
+Oops, fixed to apply this time..
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index 4610c3a..020542e 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
 @@ -593,7 +597,7 @@ nouveau_crtc_page_flip(struct drm_crtc *crtc, struct drm_framebuffer *fb,
  
  	/* Emit a page flip */
