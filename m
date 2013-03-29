@@ -1,127 +1,92 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
- garbage/corruption/noise on resume
-Date: Fri, 29 Mar 2013 14:30:47 +0000
-Message-ID: <bug-59168-8800-uk7ovKkOhl@http.bugs.freedesktop.org/>
-References: <bug-59168-8800@http.bugs.freedesktop.org/>
+From: Michal Hocko <mhocko@suse.cz>
+Subject: Re: system death under oom - 3.7.9
+Date: Fri, 29 Mar 2013 16:22:09 +0100
+Message-ID: <20130329152209.GC21879@dhcp22.suse.cz>
+References: <CAKb7UviwOk9asT=WxYgDUzfm3J+tGXobroUycpoTvzOX5kkofQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1880881017=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <owner-linux-mm@kvack.org>
+Content-Disposition: inline
+In-Reply-To: <CAKb7UviwOk9asT=WxYgDUzfm3J+tGXobroUycpoTvzOX5kkofQ@mail.gmail.com>
+Sender: owner-linux-mm@kvack.org
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, linux-mm@kvack.org
 List-Id: nouveau.vger.kernel.org
 
+On Wed 27-03-13 14:25:36, Ilia Mirkin wrote:
+> Hello,
+> 
+> My system died last night apparently due to OOM conditions. Note that
+> I don't have any swap set up, but my understanding is that this is not
+> required. The full log is at: http://pastebin.com/YCYUXWvV. It was in
+> my messages, so I guess the system took a bit to die completely.
 
---===============1880881017==
-Content-Type: multipart/alternative; boundary="1364567447.Bc471B3.14608"; charset="us-ascii"
+This doesn't seem like OOM:
+[615185.810509] DMA32 free:130456kB min:36364kB low:45452kB high:54544kB active_anon:764604kB inactive_anon:13180kB active_file:1282040kB inactive_file:910648kB unevictable:0kB isolated(anon):0kB isolated(file):0kB present:3325056kB mlocked:0kB dirty:4472kB writeback:0kB mapped:42836kB shmem:14388kB slab_reclaimable:155160kB slab_unreclaimable:13620kB kernel_stack:576kB pagetables:8712kB unstable:0kB bounce:0kB free_cma:0kB writeback_tmp:0kB pages_scanned:0 all_unreclaimable? no
+[615185.810511] lowmem_reserve[]: 0 0 2772 2772
+[615185.810517] Normal free:44288kB min:31044kB low:38804kB high:46564kB active_anon:2099560kB inactive_anon:14416kB active_file:271972kB inactive_file:69684kB unevictable:4kB isolated(anon):0kB isolated(file):0kB present:2838528kB mlocked:4kB dirty:12kB writeback:0kB mapped:107868kB shmem:17440kB slab_reclaimable:87304kB slab_unreclaimable:45452kB kernel_stack:3648kB pagetables:42840kB unstable:0kB bounce:0kB free_cma:0kB writeback_tmp:0kB pages_scanned:196 all_unreclaimable? no
 
+You are above above high watermark in the DMA32 zone and slightly bellow
+high watermak in the Normal zone.
+Your driver requested
+[615185.810279] xlock: page allocation failure: order:4, mode:0xc0d0
 
---1364567447.Bc471B3.14608
-Date: Fri, 29 Mar 2013 14:30:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+which is GFP_KERNEL |__GFP_COMP|__GFP_ZERO which doesn't look so unusual but
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59168
+[615185.810521] DMA: 0*4kB 0*8kB 1*16kB 0*32kB 2*64kB 1*128kB 1*256kB 0*512kB 1*1024kB 1*2048kB 3*4096kB = 15888kB
+[615185.810527] DMA32: 5673*4kB 7213*8kB 2142*16kB 461*32kB 30*64kB 0*128kB 0*256kB 0*512kB 0*1024kB 0*2048kB 0*4096kB = 131340kB
+[615185.810532] Normal: 3382*4kB 3121*8kB 355*16kB 11*32kB 0*64kB 0*128kB 0*256kB 0*512kB 0*1024kB 0*2048kB 0*4096kB = 44528kB
 
---- Comment #32 from rcoe-TsGEh1ee8XYAvxtiuMwx3w@public.gmane.org ---
-I have this problem also.  After suspend/resume firefox, gvim, and other
-graphic applications do not display.  The window only displays the border and
-no graphics
-inside the window.
+but you ran out of high order pages on DMA32 zone (and zone Normal looks
+even worse). There are only 30 order-4 pages and I suppose that the
+allocation failed on the watermark check for that order.
 
-I tried the patch without success.
-The workaround 'nouveau.noaccel=1' makes suspend/resume work.  Also, some
-screen corruption in a graphic application is not occurring.
+> nouveau is somewhat implicated, as it is the first thing that hits an
+> allocation failure in nouveau_vm_create, and has a subsequent warn in
+> nouveau_mm_fini, but then there's a GPF in
+> __alloc_skb/__kmalloc_track_caller (and I'm using SLUB). Here is a
+> partial disassembly for __kmalloc_track_caller:
 
-lspci 
-01:00.0 VGA compatible controller: NVIDIA Corporation Device 0dfc (rev a1)
-01:00.0 0300: 10de:0dfc (rev a1)
+I would start by checking whether the driver handles the allocation
+failure properly and it doesn't clobber slab data from other allocations
+(just a wild guess as I am not familiar with nouveau code at all).
 
-[  237.125651] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0c1e00a1
-[  237.125659] nouveau  [  DEVICE][0000:01:00.0] Chipset: GF108 (NVC1)
-[  237.125664] nouveau  [  DEVICE][0000:01:00.0] Family : NVC0
-
-libdrm_nouveau2-2.4.42-1.1.1.x86_64
-xorg-x11-driver-video-nouveau-1.0.6-2.1.1.x86_64
-kernel 3.7.10
+> 
+>    0xffffffff811325b1 <+138>:   e8 a0 60 56 00  callq
+> 0xffffffff81698656 <__slab_alloc.constprop.68>
+>    0xffffffff811325b6 <+143>:   49 89 c4        mov    %rax,%r12
+>    0xffffffff811325b9 <+146>:   eb 27   jmp    0xffffffff811325e2
+> <__kmalloc_track_caller+187>
+>    0xffffffff811325bb <+148>:   49 63 45 20     movslq 0x20(%r13),%rax
+>    0xffffffff811325bf <+152>:   48 8d 4a 01     lea    0x1(%rdx),%rcx
+>    0xffffffff811325c3 <+156>:   49 8b 7d 00     mov    0x0(%r13),%rdi
+>    0xffffffff811325c7 <+160>:   49 8b 1c 04     mov    (%r12,%rax,1),%rbx
+>    0xffffffff811325cb <+164>:   4c 89 e0        mov    %r12,%rax
+>    0xffffffff811325ce <+167>:   48 8d 37        lea    (%rdi),%rsi
+>    0xffffffff811325d1 <+170>:   e8 3a 38 1b 00  callq
+> 0xffffffff812e5e10 <this_cpu_cmpxchg16b_emu>
+> 
+> The GPF happens at +160, which is in the argument setup for the
+> cmpxchg in slab_alloc_node. I think it's the call to
+> get_freepointer(). There was a similar bug report a while back,
+> https://lkml.org/lkml/2011/5/23/199, and the recommendation was to run
+> with slub debugging. Is that still the case, or is there a simpler
+> explanation? I can't reproduce this at will, not sure how many times
+> this has happened but definitely not many.
+> 
+>   -ilia
+> --
+> To unsubscribe from this list: send the line "unsubscribe linux-kernel" in
+> the body of a message to majordomo@vger.kernel.org
+> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+> Please read the FAQ at  http://www.tux.org/lkml/
 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
+Michal Hocko
+SUSE Labs
 
---1364567447.Bc471B3.14608
-Date: Fri, 29 Mar 2013 14:30:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c32">Comment # 32</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
-              from <span class="vcard"><a class="email" href="mailto:rcoe&#64;wi.rr.com" title="rcoe&#64;wi.rr.com">rcoe&#64;wi.rr.com</a>
-</span></b>
-        <pre>I have this problem also.  After suspend/resume firefox, gvim, and other
-graphic applications do not display.  The window only displays the border and
-no graphics
-inside the window.
-
-I tried the patch without success.
-The workaround 'nouveau.noaccel=1' makes suspend/resume work.  Also, some
-screen corruption in a graphic application is not occurring.
-
-lspci 
-01:00.0 VGA compatible controller: NVIDIA Corporation Device 0dfc (rev a1)
-01:00.0 0300: 10de:0dfc (rev a1)
-
-[  237.125651] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0c1e00a1
-[  237.125659] nouveau  [  DEVICE][0000:01:00.0] Chipset: GF108 (NVC1)
-[  237.125664] nouveau  [  DEVICE][0000:01:00.0] Family : NVC0
-
-libdrm_nouveau2-2.4.42-1.1.1.x86_64
-xorg-x11-driver-video-nouveau-1.0.6-2.1.1.x86_64
-kernel 3.7.10</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1364567447.Bc471B3.14608--
-
---===============1880881017==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1880881017==--
+--
+To unsubscribe, send a message with 'unsubscribe linux-mm' in
+the body to majordomo@kvack.org.  For more info on Linux MM,
+see: http://www.linux-mm.org/ .
+Don't email: <a href=mailto:"dont@kvack.org"> email@kvack.org </a>
