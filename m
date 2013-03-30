@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62707] black screen in Simcity 3000 in wine
-Date: Sat, 30 Mar 2013 15:44:15 +0000
-Message-ID: <bug-62707-8800-9ZG2XKcUDF@http.bugs.freedesktop.org/>
-References: <bug-62707-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 62916] NVEnterVT fails with hybrid cards
+Date: Sat, 30 Mar 2013 17:28:35 +0000
+Message-ID: <bug-62916-8800-kI3POrndLw@http.bugs.freedesktop.org/>
+References: <bug-62916-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0081568391=="
+Content-Type: multipart/mixed; boundary="===============0783300583=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62707-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-62916-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0081568391==
-Content-Type: multipart/alternative; boundary="1364658255.1DDe280d0.18370"; charset="us-ascii"
+--===============0783300583==
+Content-Type: multipart/alternative; boundary="1364664515.6cAa6b8E2.7464"; charset="us-ascii"
 
 
---1364658255.1DDe280d0.18370
-Date: Sat, 30 Mar 2013 15:44:15 +0000
+--1364664515.6cAa6b8E2.7464
+Date: Sat, 30 Mar 2013 17:28:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62707
+https://bugs.freedesktop.org/show_bug.cgi?id=62916
 
-thepouar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+zeng.shixin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #1 from thepouar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-seems to be fixed in the latest version of xf86-video-nouveau
+            Summary|NVEnterTV fails on hybrid   |NVEnterVT fails with hybrid
+                   |cards                       |cards
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1364658255.1DDe280d0.18370
-Date: Sat, 30 Mar 2013 15:44:15 +0000
+--1364664515.6cAa6b8E2.7464
+Date: Sat, 30 Mar 2013 17:28:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,12 +51,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:thepouar&#64;gmail.com" title="thepouar&#64;gmail.com">thepouar&#64;gmail.com</a>
+    <body><span class="vcard"><a class="email" href="mailto:zeng.shixin&#64;gmail.com" title="zeng.shixin&#64;gmail.com">zeng.shixin&#64;gmail.com</a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - black screen in Simcity 3000 in wine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62707">bug 62707</a>
+          bz_status_NEW "
+   title="NEW --- - NVEnterVT fails with hybrid cards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62916">bug 62916</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -69,34 +66,13 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">Summary</td>
+           <td>NVEnterTV fails on hybrid cards
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
+           <td>NVEnterVT fails with hybrid cards
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - black screen in Simcity 3000 in wine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62707#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - black screen in Simcity 3000 in wine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62707">bug 62707</a>
-              from <span class="vcard"><a class="email" href="mailto:thepouar&#64;gmail.com" title="thepouar&#64;gmail.com">thepouar&#64;gmail.com</a>
-</span></b>
-        <pre>seems to be fixed in the latest version of xf86-video-nouveau</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -107,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1364658255.1DDe280d0.18370--
+--1364664515.6cAa6b8E2.7464--
 
---===============0081568391==
+--===============0783300583==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0081568391==--
+--===============0783300583==--
