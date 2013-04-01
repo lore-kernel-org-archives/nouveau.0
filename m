@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 fails to properly
-	resume
-Date: Mon, 01 Apr 2013 07:15:01 +0000
-Message-ID: <bug-23223-8800-krvtA2jlJa@http.bugs.freedesktop.org/>
-References: <bug-23223-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 61537] Screen flicker when using display with
+	incorrect EDID
+Date: Mon, 01 Apr 2013 17:07:01 +0000
+Message-ID: <bug-61537-8800-8SK8ODsAs8@http.bugs.freedesktop.org/>
+References: <bug-61537-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0365783209=="
+Content-Type: multipart/mixed; boundary="===============1681730651=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-61537-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0365783209==
-Content-Type: multipart/alternative; boundary="1364800500.01ad2Ad41.31968"; charset="us-ascii"
+--===============1681730651==
+Content-Type: multipart/alternative; boundary="1364836021.2544A6c2.23528"; charset="us-ascii"
 
 
---1364800500.01ad2Ad41.31968
-Date: Mon, 1 Apr 2013 07:15:00 +0000
+--1364836021.2544A6c2.23528
+Date: Mon, 1 Apr 2013 17:07:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=23223
+https://bugs.freedesktop.org/show_bug.cgi?id=61537
 
---- Comment #25 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The card died on me yesterday. The BIOS splash shows small but many garbled
-artifacts. Once nouveau loads it tears the entire screen with (DMA) errors.
+--- Comment #1 from Jan Hebler <jhebler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Same Problem here. You can use the following work-around
+1. mkdir [KERNEL-FIRMWARE-DIRECTORY]/edid
+2. cp [MONITOR-EDID-FILE].bin [KERNEL-FIRMWARE-DIRECTORY]/edid
+3. add the following to your Kernel Commandline:
 
-Two weeks ago I installed Windows on it for upgrading an e-reader. The last
-time I did that was maybe 4 years ago. Now, 2 Weeks later after the install the
-GPU dies. Food for thought!
+drm_kms_helper.edid_firmware=edid/[MONITOR-EDID-FILE].bin
 
-Time to buy a new one...
+This will provide kms and Friends with correct EDID-Informations. However
+to stop the annoying flicker, you have to 
+4. add another Statement to your Kernel Commandline:
+
+drm_kms_helper.poll=0
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1364800500.01ad2Ad41.31968
-Date: Mon, 1 Apr 2013 07:15:00 +0000
+--1364836021.2544A6c2.23528
+Date: Mon, 1 Apr 2013 17:07:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,22 +64,26 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c25">Comment # 25</a>
+   title="NEW --- - Screen flicker when using display with incorrect EDID"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61537#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+   title="NEW --- - Screen flicker when using display with incorrect EDID"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61537">bug 61537</a>
+              from <span class="vcard"><a class="email" href="mailto:jhebler&#64;gmail.com" title="Jan Hebler &lt;jhebler&#64;gmail.com&gt;"> <span class="fn">Jan Hebler</span></a>
 </span></b>
-        <pre>The card died on me yesterday. The BIOS splash shows small but many garbled
-artifacts. Once nouveau loads it tears the entire screen with (DMA) errors.
+        <pre>Same Problem here. You can use the following work-around
+1. mkdir [KERNEL-FIRMWARE-DIRECTORY]/edid
+2. cp [MONITOR-EDID-FILE].bin [KERNEL-FIRMWARE-DIRECTORY]/edid
+3. add the following to your Kernel Commandline:
 
-Two weeks ago I installed Windows on it for upgrading an e-reader. The last
-time I did that was maybe 4 years ago. Now, 2 Weeks later after the install the
-GPU dies. Food for thought!
+drm_kms_helper.edid_firmware=edid/[MONITOR-EDID-FILE].bin
 
-Time to buy a new one...</pre>
+This will provide kms and Friends with correct EDID-Informations. However
+to stop the annoying flicker, you have to 
+4. add another Statement to your Kernel Commandline:
+
+drm_kms_helper.poll=0</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +95,9 @@ Time to buy a new one...</pre>
     </body>
 </html>
 
---1364800500.01ad2Ad41.31968--
+--1364836021.2544A6c2.23528--
 
---===============0365783209==
+--===============1681730651==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +108,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0365783209==--
+--===============1681730651==--
