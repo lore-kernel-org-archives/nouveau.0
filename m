@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54786] random crashes of X with failed to idle
- channel 0xcccc0000
-Date: Sun, 31 Mar 2013 20:31:54 +0000
-Message-ID: <bug-54786-8800-gJdKgXTUKj@http.bugs.freedesktop.org/>
-References: <bug-54786-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23223] [NV4B] nVidia Geforce 7300 fails to properly
+	resume
+Date: Mon, 01 Apr 2013 07:15:01 +0000
+Message-ID: <bug-23223-8800-krvtA2jlJa@http.bugs.freedesktop.org/>
+References: <bug-23223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1904960975=="
+Content-Type: multipart/mixed; boundary="===============0365783209=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54786-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-23223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,76 +21,75 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1904960975==
-Content-Type: multipart/alternative; boundary="1364761914.Edc2B3.17494"; charset="us-ascii"
+--===============0365783209==
+Content-Type: multipart/alternative; boundary="1364800500.01ad2Ad41.31968"; charset="us-ascii"
 
 
---1364761914.Edc2B3.17494
-Date: Sun, 31 Mar 2013 20:31:54 +0000
+--1364800500.01ad2Ad41.31968
+Date: Mon, 1 Apr 2013 07:15:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D54786
+https://bugs.freedesktop.org/show_bug.cgi?id=23223
 
---- Comment #11 from J=C3=A9r=C3=B4me Carretero <cJ-X-WRw03QTAyf3sq35pWSNszA@public.gmane.org> ---
-Last comment made me update my kernel (got it in 3.8.4) but I got it also in
-3.9-rc4; trying latest nouveau patches since then, just in case.
-Hardware: GF106GL (Quadro 2000) (nvc0).
-I wish I could reproduce it simply.
+--- Comment #25 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+The card died on me yesterday. The BIOS splash shows small but many garbled
+artifacts. Once nouveau loads it tears the entire screen with (DMA) errors.
 
---=20
+Two weeks ago I installed Windows on it for upgrading an e-reader. The last
+time I did that was maybe 4 years ago. Now, 2 Weeks later after the install the
+GPU dies. Food for thought!
+
+Time to buy a new one...
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1364761914.Edc2B3.17494
-Date: Sun, 31 Mar 2013 20:31:54 +0000
+--1364800500.01ad2Ad41.31968
+Date: Mon, 1 Apr 2013 07:15:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - random crashes of X with failed to idle channel 0xccc=
-c0000"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D54786#c11">Commen=
-t # 11</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223#c25">Comment # 25</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - random crashes of X with failed to idle channel 0xccc=
-c0000"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D54786">bug 54786<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-cJ-X&#64;zougloub.eu" title=3D"J=C3=A9r=C3=B4me Carretero &lt;cJ-X&#64;zoug=
-loub.eu&gt;"> <span class=3D"fn">J=C3=A9r=C3=B4me Carretero</span></a>
+   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23223">bug 23223</a>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Last comment made me update my kernel (got it in 3.8.4) but I =
-got it also in
-3.9-rc4; trying latest nouveau patches since then, just in case.
-Hardware: GF106GL (Quadro 2000) (nvc0).
-I wish I could reproduce it simply.</pre>
+        <pre>The card died on me yesterday. The BIOS splash shows small but many garbled
+artifacts. Once nouveau loads it tears the entire screen with (DMA) errors.
+
+Two weeks ago I installed Windows on it for upgrading an e-reader. The last
+time I did that was maybe 4 years ago. Now, 2 Weeks later after the install the
+GPU dies. Food for thought!
+
+Time to buy a new one...</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1364761914.Edc2B3.17494--
+--1364800500.01ad2Ad41.31968--
 
---===============1904960975==
+--===============0365783209==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1904960975==--
+--===============0365783209==--
