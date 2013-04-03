@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 63048] New: Dual display problem: Using xrandr to
- setup dual displays causes X to hang
-Date: Tue, 02 Apr 2013 23:04:12 +0000
-Message-ID: <bug-63048-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 63051] New: Displist with multiple OpenGL contexts
+	crashes.
+Date: Wed, 03 Apr 2013 01:50:53 +0000
+Message-ID: <bug-63051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1969205098=="
+Content-Type: multipart/mixed; boundary="===============0506374172=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,55 +19,61 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1969205098==
-Content-Type: multipart/alternative; boundary="1364943852.D4f61.2881"; charset="us-ascii"
+--===============0506374172==
+Content-Type: multipart/alternative; boundary="1364953853.58E8D0.11863"; charset="us-ascii"
 
 
---1364943852.D4f61.2881
-Date: Tue, 2 Apr 2013 23:04:12 +0000
+--1364953853.58E8D0.11863
+Date: Wed, 3 Apr 2013 01:50:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=63048
+https://bugs.freedesktop.org/show_bug.cgi?id=63051
 
           Priority: medium
-            Bug ID: 63048
+            Bug ID: 63051
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Dual display problem: Using xrandr to setup dual
-                    displays causes X to hang
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+           Summary: Displist with multiple OpenGL contexts crashes.
           Severity: major
     Classification: Unclassified
                 OS: Linux (All)
-          Reporter: guy-IGUgQLVVQiRCV4ILt04nZQ@public.gmane.org
+          Reporter: ideasman42-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
           Hardware: x86-64 (AMD64)
             Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+           Version: 9.1
+         Component: Drivers/DRI/nouveau
+           Product: Mesa
 
-I use an xrandr to set up a dual display configuration.
+Created attachment 77349
+  --> https://bugs.freedesktop.org/attachment.cgi?id=77349&action=edit
+open this file in blender2.66a, Press '1' key, to crash.
 
-A recent upgrade of the kernel supplied by the Debian "testing" distribution
-caused the script to cease to function and additionally cause my system's GUI
-to lock up.
+This is a bug we had reported in blender (3d modeling application).
+But which I tracked down to being a crash in:
+/usr/lib/xorg/modules/dri/nouveau_dri.so
 
-The debian package maintainer for the nouveau driver suggested it may be a
-problem with backported kernel components and advised me to try a 3.8 kernel
-from the "experimental" Debian repository, which I did.
+The crash is caused by calling glCallList() when there are multiple windows
+sharing the same opengl context.
 
-The 3.8 kernel didn't fix the problem: I still can't get the second display to
-work, but the xrandr script no longer caused the GUI to lock.
+(single window doesn't crash for example and removing use of display-lists in
+the code also works).
 
-More details can be found here:
-http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=703291
+I did some more tests and using Mesa-SoftwareGL doesn't crash, using NVidia
+closed-source drivers.
+
+Attached blend file to reproduce the crash, just run...
+
+./blender displist_crash.blend
+
+... then press ONE-Key, over either of the windows to see crash.
+If you close a window before pressing ONE, it works without crashing.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1364943852.D4f61.2881
-Date: Tue, 2 Apr 2013 23:04:12 +0000
+--1364953853.58E8D0.11863
+Date: Wed, 3 Apr 2013 01:50:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -86,8 +92,8 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Dual display problem: Using xrandr to setup dual displays causes X to hang"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63048">63048</a>
+   title="NEW --- - Displist with multiple OpenGL contexts crashes."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63051">63051</a>
           </td>
         </tr>
 
@@ -99,13 +105,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Summary</th>
-          <td>Dual display problem: Using xrandr to setup dual displays causes X to hang
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
+          <td>Displist with multiple OpenGL contexts crashes.
           </td>
         </tr>
 
@@ -129,7 +129,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Reporter</th>
-          <td>guy&#64;member.fsf.org
+          <td>ideasman42&#64;gmail.com
           </td>
         </tr>
 
@@ -147,38 +147,45 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Version</th>
-          <td>unspecified
+          <td>9.1
           </td>
         </tr>
 
         <tr>
           <th>Component</th>
-          <td>Driver/nouveau
+          <td>Drivers/DRI/nouveau
           </td>
         </tr>
 
         <tr>
           <th>Product</th>
-          <td>xorg
+          <td>Mesa
           </td>
         </tr></table>
       <p>
         <div>
-        <pre>I use an xrandr to set up a dual display configuration.
+        <pre>Created <span class=""><a href="attachment.cgi?id=77349" name="attach_77349" title="open this file in blender2.66a, Press '1' key, to crash.">attachment 77349</a> <a href="attachment.cgi?id=77349&amp;action=edit" title="open this file in blender2.66a, Press '1' key, to crash.">[details]</a></span>
+open this file in blender2.66a, Press '1' key, to crash.
 
-A recent upgrade of the kernel supplied by the Debian &quot;testing&quot; distribution
-caused the script to cease to function and additionally cause my system's GUI
-to lock up.
+This is a bug we had reported in blender (3d modeling application).
+But which I tracked down to being a crash in:
+/usr/lib/xorg/modules/dri/nouveau_dri.so
 
-The debian package maintainer for the nouveau driver suggested it may be a
-problem with backported kernel components and advised me to try a 3.8 kernel
-from the &quot;experimental&quot; Debian repository, which I did.
+The crash is caused by calling glCallList() when there are multiple windows
+sharing the same opengl context.
 
-The 3.8 kernel didn't fix the problem: I still can't get the second display to
-work, but the xrandr script no longer caused the GUI to lock.
+(single window doesn't crash for example and removing use of display-lists in
+the code also works).
 
-More details can be found here:
-<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=703291">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=703291</a></pre>
+I did some more tests and using Mesa-SoftwareGL doesn't crash, using NVidia
+closed-source drivers.
+
+Attached blend file to reproduce the crash, just run...
+
+./blender displist_crash.blend
+
+... then press ONE-Key, over either of the windows to see crash.
+If you close a window before pressing ONE, it works without crashing.</pre>
         </div>
       </p>
       <hr>
@@ -190,9 +197,9 @@ More details can be found here:
     </body>
 </html>
 
---1364943852.D4f61.2881--
+--1364953853.58E8D0.11863--
 
---===============1969205098==
+--===============0506374172==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -203,4 +210,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1969205098==--
+--===============0506374172==--
