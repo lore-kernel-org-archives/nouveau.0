@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 63051] New: Displist with multiple OpenGL contexts
-	crashes.
-Date: Wed, 03 Apr 2013 01:50:53 +0000
-Message-ID: <bug-63051-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
+ garbage/corruption/noise on resume
+Date: Wed, 03 Apr 2013 07:02:23 +0000
+Message-ID: <bug-59168-8800-IGq1IIdUyz@http.bugs.freedesktop.org/>
+References: <bug-59168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0506374172=="
+Content-Type: multipart/mixed; boundary="===============1919909452=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,61 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0506374172==
-Content-Type: multipart/alternative; boundary="1364953853.58E8D0.11863"; charset="us-ascii"
+--===============1919909452==
+Content-Type: multipart/alternative; boundary="1364972543.EA77F63.17665"; charset="us-ascii"
 
 
---1364953853.58E8D0.11863
-Date: Wed, 3 Apr 2013 01:50:53 +0000
+--1364972543.EA77F63.17665
+Date: Wed, 3 Apr 2013 07:02:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=63051
+https://bugs.freedesktop.org/show_bug.cgi?id=59168
 
-          Priority: medium
-            Bug ID: 63051
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Displist with multiple OpenGL contexts crashes.
-          Severity: major
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: ideasman42-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: 9.1
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
+--- Comment #33 from michael.weirauch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Still present on nouveau 3.9.0-rc4 (master@git) as of 2013-04-03.
 
-Created attachment 77349
-  --> https://bugs.freedesktop.org/attachment.cgi?id=77349&action=edit
-open this file in blender2.66a, Press '1' key, to crash.
+Name                          | Type    | Version                         
+------------------------------+---------+---------------------------------
+Mesa                          | package | 9.1.1-247.1                     
+kernel                        | package | 3.9.0_rc4_1_desktop_nouveau01+-3
+libdrm_nouveau2               | package | 2.4.43-118.1                    
+xorg-x11-driver-video-nouveau | package | 1.0.7@git-2013-04-03
+xorg-x11-server               | package | 7.6_1.14.0-243.8         
 
-This is a bug we had reported in blender (3d modeling application).
-But which I tracked down to being a crash in:
-/usr/lib/xorg/modules/dri/nouveau_dri.so
+@Marcin Slusarz, if you are reading this:
 
-The crash is caused by calling glCallList() when there are multiple windows
-sharing the same opengl context.
-
-(single window doesn't crash for example and removing use of display-lists in
-the code also works).
-
-I did some more tests and using Mesa-SoftwareGL doesn't crash, using NVidia
-closed-source drivers.
-
-Attached blend file to reproduce the crash, just run...
-
-./blender displist_crash.blend
-
-... then press ONE-Key, over either of the windows to see crash.
-If you close a window before pressing ONE, it works without crashing.
+Do you think it's worthwhile trying your script limiter patch from bug 23223
+comment 18 mentioned by Ronald in conjunction with
+"nouveau.config=DEVINIT=NvForcePost=1"?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1364953853.58E8D0.11863
-Date: Wed, 3 Apr 2013 01:50:53 +0000
+--1364972543.EA77F63.17665
+Date: Wed, 3 Apr 2013 07:02:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -81,111 +62,37 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Displist with multiple OpenGL contexts crashes."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63051">63051</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Displist with multiple OpenGL contexts crashes.
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>ideasman42&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>9.1
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=77349" name="attach_77349" title="open this file in blender2.66a, Press '1' key, to crash.">attachment 77349</a> <a href="attachment.cgi?id=77349&amp;action=edit" title="open this file in blender2.66a, Press '1' key, to crash.">[details]</a></span>
-open this file in blender2.66a, Press '1' key, to crash.
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c33">Comment # 33</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
+              from <span class="vcard"><a class="email" href="mailto:michael.weirauch&#64;gmail.com" title="michael.weirauch&#64;gmail.com">michael.weirauch&#64;gmail.com</a>
+</span></b>
+        <pre>Still present on nouveau 3.9.0-rc4 (master&#64;git) as of 2013-04-03.
 
-This is a bug we had reported in blender (3d modeling application).
-But which I tracked down to being a crash in:
-/usr/lib/xorg/modules/dri/nouveau_dri.so
+Name                          | Type    | Version                         
+------------------------------+---------+---------------------------------
+Mesa                          | package | 9.1.1-247.1                     
+kernel                        | package | 3.9.0_rc4_1_desktop_nouveau01+-3
+libdrm_nouveau2               | package | 2.4.43-118.1                    
+xorg-x11-driver-video-nouveau | package | 1.0.7&#64;git-2013-04-03
+xorg-x11-server               | package | 7.6_1.14.0-243.8         
 
-The crash is caused by calling glCallList() when there are multiple windows
-sharing the same opengl context.
+&#64;Marcin Slusarz, if you are reading this:
 
-(single window doesn't crash for example and removing use of display-lists in
-the code also works).
-
-I did some more tests and using Mesa-SoftwareGL doesn't crash, using NVidia
-closed-source drivers.
-
-Attached blend file to reproduce the crash, just run...
-
-./blender displist_crash.blend
-
-... then press ONE-Key, over either of the windows to see crash.
-If you close a window before pressing ONE, it works without crashing.</pre>
+Do you think it's worthwhile trying your script limiter patch from <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV4B] nVidia Geforce 7300 fails to properly resume"
+   href="show_bug.cgi?id=23223#c18">bug 23223
+comment 18</a> mentioned by Ronald in conjunction with
+&quot;nouveau.config=DEVINIT=NvForcePost=1&quot;?</pre>
         </div>
       </p>
       <hr>
@@ -197,9 +104,9 @@ If you close a window before pressing ONE, it works without crashing.</pre>
     </body>
 </html>
 
---1364953853.58E8D0.11863--
+--1364972543.EA77F63.17665--
 
---===============0506374172==
+--===============1919909452==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -210,4 +117,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0506374172==--
+--===============1919909452==--
