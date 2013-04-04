@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 63101] [Ubuntu 10.04.4 LTS 32-bit] NVIDIA GeForce
  7300 GT AGP graphics card will not display any text characters on VIA
  Technologies Apollo MVP3-based mainboard
-Date: Thu, 04 Apr 2013 05:50:52 +0000
-Message-ID: <bug-63101-8800-KupV5v12YA@http.bugs.freedesktop.org/>
+Date: Thu, 04 Apr 2013 05:51:28 +0000
+Message-ID: <bug-63101-8800-A3H8X0EHbS@http.bugs.freedesktop.org/>
 References: <bug-63101-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0527053073=="
+Content-Type: multipart/mixed; boundary="===============0678707772=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-63101-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,30 +22,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0527053073==
-Content-Type: multipart/alternative; boundary="1365054652.DC3Db1.18526"; charset="us-ascii"
+--===============0678707772==
+Content-Type: multipart/alternative; boundary="1365054688.E7D1525B1.18802"; charset="us-ascii"
 
 
---1365054652.DC3Db1.18526
-Date: Thu, 4 Apr 2013 05:50:52 +0000
+--1365054688.E7D1525B1.18802
+Date: Thu, 4 Apr 2013 05:51:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=63101
 
---- Comment #1 from mypersonalmailbox1-O5WfVfzUwx8@public.gmane.org ---
-Created attachment 77400
-  --> https://bugs.freedesktop.org/attachment.cgi?id=77400&action=edit
-FIC VA-503+ mainboard with 32 MB AGP aperture size
+mypersonalmailbox1-O5WfVfzUwx8@public.gmane.org changed:
 
-I set AGP aperture size to 32 MB in the BIOS setup of FIC VA-503+ mainboard.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Priority|medium                      |high
+                URL|                            |https://bugs.launchpad.net/
+                   |                            |ubuntu/+source/ubuntu/+bug/
+                   |                            |1161596
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1365054652.DC3Db1.18526
-Date: Thu, 4 Apr 2013 05:50:52 +0000
+--1365054688.E7D1525B1.18802
+Date: Thu, 4 Apr 2013 05:51:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,24 +55,37 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [Ubuntu 10.04.4 LTS 32-bit] NVIDIA GeForce 7300 GT AGP graphics card will not display any text characters on VIA Technologies Apollo MVP3-based mainboard"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63101#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:mypersonalmailbox1&#64;mail.com" title="mypersonalmailbox1&#64;mail.com">mypersonalmailbox1&#64;mail.com</a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Ubuntu 10.04.4 LTS 32-bit] NVIDIA GeForce 7300 GT AGP graphics card will not display any text characters on VIA Technologies Apollo MVP3-based mainboard"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=63101">bug 63101</a>
-              from <span class="vcard"><a class="email" href="mailto:mypersonalmailbox1&#64;mail.com" title="mypersonalmailbox1&#64;mail.com">mypersonalmailbox1&#64;mail.com</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=77400" name="attach_77400" title="FIC VA-503+ mainboard with 32 MB AGP aperture size">attachment 77400</a> <a href="attachment.cgi?id=77400&amp;action=edit" title="FIC VA-503+ mainboard with 32 MB AGP aperture size">[details]</a></span>
-FIC VA-503+ mainboard with 32 MB AGP aperture size
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-I set AGP aperture size to 32 MB in the BIOS setup of FIC VA-503+ mainboard.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Priority</td>
+           <td>medium
+           </td>
+           <td>high
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">URL</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://bugs.launchpad.net/ubuntu/+source/ubuntu/+bug/1161596
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -81,9 +96,9 @@ I set AGP aperture size to 32 MB in the BIOS setup of FIC VA-503+ mainboard.</pr
     </body>
 </html>
 
---1365054652.DC3Db1.18526--
+--1365054688.E7D1525B1.18802--
 
---===============0527053073==
+--===============0678707772==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +109,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0527053073==--
+--===============0678707772==--
