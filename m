@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 63135] [bisected] G69/nv50 DisplayPort dual-head
  fails to switch to KMS
-Date: Thu, 04 Apr 2013 21:18:18 +0000
-Message-ID: <bug-63135-8800-ayrMizmPf1@http.bugs.freedesktop.org/>
+Date: Thu, 04 Apr 2013 21:26:48 +0000
+Message-ID: <bug-63135-8800-M3ww1ARmiw@http.bugs.freedesktop.org/>
 References: <bug-63135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0779179566=="
+Content-Type: multipart/mixed; boundary="===============0413723156=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-63135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0779179566==
-Content-Type: multipart/alternative; boundary="1365110298.5cb61.9889"; charset="us-ascii"
+--===============0413723156==
+Content-Type: multipart/alternative; boundary="1365110808.8F8336AC1.10949"; charset="us-ascii"
 
 
---1365110298.5cb61.9889
-Date: Thu, 4 Apr 2013 21:18:18 +0000
+--1365110808.8F8336AC1.10949
+Date: Thu, 4 Apr 2013 21:26:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=63135
 
---- Comment #2 from Devin J. Pohly <djpohly+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 77447
-  --> https://bugs.freedesktop.org/attachment.cgi?id=77447&action=edit
-vbios.rom from debugfs
+--- Comment #3 from Devin J. Pohly <djpohly+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(Sorry - not "nvidia-git" in the description, I meant to type "Regression still
+present in current nouveau-git.")
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1365110298.5cb61.9889
-Date: Thu, 4 Apr 2013 21:18:18 +0000
+--1365110808.8F8336AC1.10949
+Date: Thu, 4 Apr 2013 21:26:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [bisected] G69/nv50 DisplayPort dual-head fails to switch to KMS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [bisected] G69/nv50 DisplayPort dual-head fails to switch to KMS"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=63135">bug 63135</a>
               from <span class="vcard"><a class="email" href="mailto:djpohly+freedesktop&#64;gmail.com" title="Devin J. Pohly &lt;djpohly+freedesktop&#64;gmail.com&gt;"> <span class="fn">Devin J. Pohly</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=77447" name="attach_77447" title="vbios.rom from debugfs">attachment 77447</a> <a href="attachment.cgi?id=77447&amp;action=edit" title="vbios.rom from debugfs">[details]</a></span>
-vbios.rom from debugfs</pre>
+        <pre>(Sorry - not &quot;nvidia-git&quot; in the description, I meant to type &quot;Regression still
+present in current nouveau-git.&quot;)</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +75,9 @@ vbios.rom from debugfs</pre>
     </body>
 </html>
 
---1365110298.5cb61.9889--
+--1365110808.8F8336AC1.10949--
 
---===============0779179566==
+--===============0413723156==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0779179566==--
+--===============0413723156==--
