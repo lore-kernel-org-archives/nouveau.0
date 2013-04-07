@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 63165] [GTX660] GPU lockups on 3D applications
-Date: Sun, 07 Apr 2013 07:26:19 +0000
-Message-ID: <bug-63165-8800-Umaf226Kkc@http.bugs.freedesktop.org/>
+Date: Sun, 07 Apr 2013 09:15:44 +0000
+Message-ID: <bug-63165-8800-MUBa1Vy99O@http.bugs.freedesktop.org/>
 References: <bug-63165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1156092724=="
+Content-Type: multipart/mixed; boundary="===============1725421204=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-63165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1156092724==
-Content-Type: multipart/alternative; boundary="1365319579.6Ebd60.7541"; charset="us-ascii"
+--===============1725421204==
+Content-Type: multipart/alternative; boundary="1365326144.7125d0.28640"; charset="us-ascii"
 
 
---1365319579.6Ebd60.7541
-Date: Sun, 7 Apr 2013 07:26:19 +0000
+--1365326144.7125d0.28640
+Date: Sun, 7 Apr 2013 09:15:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=63165
 
---- Comment #6 from miga-anyandall-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
-Created attachment 77550
-  --> https://bugs.freedesktop.org/attachment.cgi?id=77550&action=edit
-minetest crash
-
-Uploading another crash, hopefully these will be helpful to somebody...
+--- Comment #7 from miga-anyandall-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
+Created attachment 77551
+  --> https://bugs.freedesktop.org/attachment.cgi?id=77551&action=edit
+firefox running on compiz
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1365319579.6Ebd60.7541
-Date: Sun, 7 Apr 2013 07:26:19 +0000
+--1365326144.7125d0.28640
+Date: Sun, 7 Apr 2013 09:15:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [GTX660] GPU lockups on 3D applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [GTX660] GPU lockups on 3D applications"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=63165">bug 63165</a>
               from <span class="vcard"><a class="email" href="mailto:miga-anyandall&#64;hotmail.com" title="miga-anyandall&#64;hotmail.com">miga-anyandall&#64;hotmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=77550" name="attach_77550" title="minetest crash">attachment 77550</a> <a href="attachment.cgi?id=77550&amp;action=edit" title="minetest crash">[details]</a></span>
-minetest crash
-
-Uploading another crash, hopefully these will be helpful to somebody...</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=77551" name="attach_77551" title="firefox running on compiz">attachment 77551</a> <a href="attachment.cgi?id=77551&amp;action=edit" title="firefox running on compiz">[details]</a></span>
+firefox running on compiz</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +75,9 @@ Uploading another crash, hopefully these will be helpful to somebody...</pre>
     </body>
 </html>
 
---1365319579.6Ebd60.7541--
+--1365326144.7125d0.28640--
 
---===============1156092724==
+--===============1725421204==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1156092724==--
+--===============1725421204==--
