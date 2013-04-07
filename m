@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 62351] Segfault in nouveau_dri.so
-Date: Sun, 07 Apr 2013 17:07:51 +0000
-Message-ID: <bug-62351-8800-FslJiLmSVB@http.bugs.freedesktop.org/>
+Date: Sun, 07 Apr 2013 19:26:37 +0000
+Message-ID: <bug-62351-8800-1Eea4OBQqC@http.bugs.freedesktop.org/>
 References: <bug-62351-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1898942024=="
+Content-Type: multipart/mixed; boundary="===============0137879828=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-62351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,36 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1898942024==
-Content-Type: multipart/alternative; boundary="1365354471.3468fcD2.13197"; charset="us-ascii"
+--===============0137879828==
+Content-Type: multipart/alternative; boundary="1365362797.FE6B2.4977"; charset="us-ascii"
 
 
---1365354471.3468fcD2.13197
-Date: Sun, 7 Apr 2013 17:07:51 +0000
+--1365362797.FE6B2.4977
+Date: Sun, 7 Apr 2013 19:26:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=62351
 
-sune-6pRy+okvdpRg9hUCZPvPmw@public.gmane.org changed:
+--- Comment #8 from klausenbusk-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
+(In reply to comment #7)
+> Just wanted to chime in with support for "RESOLVED FIXED" status.
+> 
+> Incidentally, as the reporter, I specified where I got my packages from.
+> What seems to have effected the fixing for me, was a new (package) release
+> of the libdrm-nouveau(2?) package.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |CLOSED
-
---- Comment #7 from sune-6pRy+okvdpRg9hUCZPvPmw@public.gmane.org ---
-Just wanted to chime in with support for "RESOLVED FIXED" status.
-
-Incidentally, as the reporter, I specified where I got my packages from. What
-seems to have effected the fixing for me, was a new (package) release of the
-libdrm-nouveau(2?) package.
+I have not updated libdrm just "mesa"/"nouveau" from git. So for me it seems
+like it have been fixed in mesa.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1365354471.3468fcD2.13197
-Date: Sun, 7 Apr 2013 17:07:51 +0000
+--1365362797.FE6B2.4977
+Date: Sun, 7 Apr 2013 19:26:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,44 +55,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:sune&#64;molgaard.org" title="sune&#64;molgaard.org">sune&#64;molgaard.org</a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed"
-   title="CLOSED FIXED - Segfault in nouveau_dri.so"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62351">bug 62351</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
-           <td>CLOSED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_CLOSED  bz_closed"
    title="CLOSED FIXED - Segfault in nouveau_dri.so"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62351#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62351#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_CLOSED  bz_closed"
    title="CLOSED FIXED - Segfault in nouveau_dri.so"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=62351">bug 62351</a>
-              from <span class="vcard"><a class="email" href="mailto:sune&#64;molgaard.org" title="sune&#64;molgaard.org">sune&#64;molgaard.org</a>
+              from <span class="vcard"><a class="email" href="mailto:klausenbusk&#64;hotmail.com" title="klausenbusk&#64;hotmail.com">klausenbusk&#64;hotmail.com</a>
 </span></b>
-        <pre>Just wanted to chime in with support for &quot;RESOLVED FIXED&quot; status.
+        <pre>(In reply to <a href="show_bug.cgi?id=62351#c7">comment #7</a>)
+<span class="quote">&gt; Just wanted to chime in with support for &quot;RESOLVED FIXED&quot; status.
+&gt; 
+&gt; Incidentally, as the reporter, I specified where I got my packages from.
+&gt; What seems to have effected the fixing for me, was a new (package) release
+&gt; of the libdrm-nouveau(2?) package.</span >
 
-Incidentally, as the reporter, I specified where I got my packages from. What
-seems to have effected the fixing for me, was a new (package) release of the
-libdrm-nouveau(2?) package.</pre>
+I have not updated libdrm just &quot;mesa&quot;/&quot;nouveau&quot; from git. So for me it seems
+like it have been fixed in mesa.</pre>
         </div>
       </p>
       <hr>
@@ -106,9 +88,9 @@ libdrm-nouveau(2?) package.</pre>
     </body>
 </html>
 
---1365354471.3468fcD2.13197--
+--1365362797.FE6B2.4977--
 
---===============1898942024==
+--===============0137879828==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -119,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1898942024==--
+--===============0137879828==--
