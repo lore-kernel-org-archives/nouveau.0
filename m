@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 63165] [GTX660] GPU lockups on 3D applications
-Date: Sun, 07 Apr 2013 09:15:44 +0000
-Message-ID: <bug-63165-8800-MUBa1Vy99O@http.bugs.freedesktop.org/>
-References: <bug-63165-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 62351] Segfault in nouveau_dri.so
+Date: Sun, 07 Apr 2013 16:25:17 +0000
+Message-ID: <bug-62351-8800-7a3jnRjtL7@http.bugs.freedesktop.org/>
+References: <bug-62351-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1725421204=="
+Content-Type: multipart/mixed; boundary="===============0075363803=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-63165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-62351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1725421204==
-Content-Type: multipart/alternative; boundary="1365326144.7125d0.28640"; charset="us-ascii"
+--===============0075363803==
+Content-Type: multipart/alternative; boundary="1365351917.D3E1fcB2.4526"; charset="us-ascii"
 
 
---1365326144.7125d0.28640
-Date: Sun, 7 Apr 2013 09:15:44 +0000
+--1365351917.D3E1fcB2.4526
+Date: Sun, 7 Apr 2013 16:25:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=63165
+https://bugs.freedesktop.org/show_bug.cgi?id=62351
 
---- Comment #7 from miga-anyandall-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
-Created attachment 77551
-  --> https://bugs.freedesktop.org/attachment.cgi?id=77551&action=edit
-firefox running on compiz
+klausenbusk-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #6 from klausenbusk-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
+I can also confirm i dont have this "bug" more.. Therefor i set it as Fixed
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1365326144.7125d0.28640
-Date: Sun, 7 Apr 2013 09:15:44 +0000
+--1365351917.D3E1fcB2.4526
+Date: Sun, 7 Apr 2013 16:25:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,21 +54,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:klausenbusk&#64;hotmail.com" title="klausenbusk&#64;hotmail.com">klausenbusk&#64;hotmail.com</a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Segfault in nouveau_dri.so"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62351">bug 62351</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [GTX660] GPU lockups on 3D applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165#c7">Comment # 7</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Segfault in nouveau_dri.so"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62351#c6">Comment # 6</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [GTX660] GPU lockups on 3D applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165">bug 63165</a>
-              from <span class="vcard"><a class="email" href="mailto:miga-anyandall&#64;hotmail.com" title="miga-anyandall&#64;hotmail.com">miga-anyandall&#64;hotmail.com</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Segfault in nouveau_dri.so"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62351">bug 62351</a>
+              from <span class="vcard"><a class="email" href="mailto:klausenbusk&#64;hotmail.com" title="klausenbusk&#64;hotmail.com">klausenbusk&#64;hotmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=77551" name="attach_77551" title="firefox running on compiz">attachment 77551</a> <a href="attachment.cgi?id=77551&amp;action=edit" title="firefox running on compiz">[details]</a></span>
-firefox running on compiz</pre>
+        <pre>I can also confirm i dont have this &quot;bug&quot; more.. Therefor i set it as Fixed</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +107,9 @@ firefox running on compiz</pre>
     </body>
 </html>
 
---1365326144.7125d0.28640--
+--1365351917.D3E1fcB2.4526--
 
---===============1725421204==
+--===============0075363803==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1725421204==--
+--===============0075363803==--
