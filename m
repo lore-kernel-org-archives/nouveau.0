@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 63165] [GTX660] GPU lockups on 3D applications
-Date: Sat, 06 Apr 2013 13:51:38 +0000
-Message-ID: <bug-63165-8800-KV0HfBUUYD@http.bugs.freedesktop.org/>
+Date: Sun, 07 Apr 2013 07:26:19 +0000
+Message-ID: <bug-63165-8800-Umaf226Kkc@http.bugs.freedesktop.org/>
 References: <bug-63165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1655405363=="
+Content-Type: multipart/mixed; boundary="===============1156092724=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-63165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,33 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1655405363==
-Content-Type: multipart/alternative; boundary="1365256298.f30FEDf0.24555"; charset="us-ascii"
+--===============1156092724==
+Content-Type: multipart/alternative; boundary="1365319579.6Ebd60.7541"; charset="us-ascii"
 
 
---1365256298.f30FEDf0.24555
-Date: Sat, 6 Apr 2013 13:51:38 +0000
+--1365319579.6Ebd60.7541
+Date: Sun, 7 Apr 2013 07:26:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=63165
 
-miga-anyandall-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org changed:
+--- Comment #6 from miga-anyandall-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
+Created attachment 77550
+  --> https://bugs.freedesktop.org/attachment.cgi?id=77550&action=edit
+minetest crash
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Version|9.1                         |git
-
---- Comment #5 from miga-anyandall-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
-Changing version to git as I have just compiled the latest mesa + drivers and
-this is still an issue.
+Uploading another crash, hopefully these will be helpful to somebody...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1365256298.f30FEDf0.24555
-Date: Sat, 6 Apr 2013 13:51:38 +0000
+--1365319579.6Ebd60.7541
+Date: Sun, 7 Apr 2013 07:26:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,41 +51,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:miga-anyandall&#64;hotmail.com" title="miga-anyandall&#64;hotmail.com">miga-anyandall&#64;hotmail.com</a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [GTX660] GPU lockups on 3D applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165">bug 63165</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Version</td>
-           <td>9.1
-           </td>
-           <td>git
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [GTX660] GPU lockups on 3D applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [GTX660] GPU lockups on 3D applications"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=63165">bug 63165</a>
               from <span class="vcard"><a class="email" href="mailto:miga-anyandall&#64;hotmail.com" title="miga-anyandall&#64;hotmail.com">miga-anyandall&#64;hotmail.com</a>
 </span></b>
-        <pre>Changing version to git as I have just compiled the latest mesa + drivers and
-this is still an issue.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=77550" name="attach_77550" title="minetest crash">attachment 77550</a> <a href="attachment.cgi?id=77550&amp;action=edit" title="minetest crash">[details]</a></span>
+minetest crash
+
+Uploading another crash, hopefully these will be helpful to somebody...</pre>
         </div>
       </p>
       <hr>
@@ -100,9 +79,9 @@ this is still an issue.</pre>
     </body>
 </html>
 
---1365256298.f30FEDf0.24555--
+--1365319579.6Ebd60.7541--
 
---===============1655405363==
+--===============1156092724==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -113,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1655405363==--
+--===============1156092724==--
