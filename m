@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62914] ZaphodHeads doesn't work after upgrading to
-	xorg 1.14
-Date: Thu, 11 Apr 2013 05:47:15 +0000
-Message-ID: <bug-62914-8800-lS9v4dO65D@http.bugs.freedesktop.org/>
-References: <bug-62914-8800@http.bugs.freedesktop.org/>
+From: Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>
+Subject: Re: Fwd: [PATCH] nouveau: Fix unconditional return
+ waiting on memory
+Date: Tue, 9 Apr 2013 08:04:46 +0100 (IST)
+Message-ID: <alpine.DEB.2.00.1304090803240.18231@skynet.skynet.ie>
+References: <20130408020117.GA6479@gmail.com>
+	<CA+GA0_tm86Z7H6mGi056BhWrq2=+_69N3Xcn3HUCa_hQuB_Wqg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0944308277=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62914-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CA+GA0_tm86Z7H6mGi056BhWrq2=+_69N3Xcn3HUCa_hQuB_Wqg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,87 +19,20 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?ISO-8859-2?Q?Marcin_=A6lusarz?= <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: jcalvinowens-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0944308277==
-Content-Type: multipart/alternative; boundary="1365659235.Bb437B1.20112"; charset="us-ascii"
+> 
+> This is ridiculous. If such trivial bugfixes need to be reposted so many
+> times, what does it say about the maintainer? Can we have a real one?
+> 
 
+This isn't a trivial bugfix though, if it was I'd have just merged it
 
---1365659235.Bb437B1.20112
-Date: Thu, 11 Apr 2013 05:47:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+When mistakes like that happen, fixing them can sometimes end causing 
+wierd regressions, so don't think just because it one semicolon that it 
+has only a trivial effect or needs no testing.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62914
-
---- Comment #4 from Maxim P. Dementiev <max-sDaPYKTrDkuHXe+LvDLADg@public.gmane.org> ---
-I've upgraded x11-drivers/xf86-video-nouveau from 1.0.6 to 1.0.7, the result is
-still the same.
-
-How can I find (or refine) the reason?
-
-About the kernel:
-/usr/src/linux-3.7.10-gentoo/drivers/gpu/drm/nouveau/nouveau_drm.h:#define
-DRIVER_DATE        "20120801"
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1365659235.Bb437B1.20112
-Date: Thu, 11 Apr 2013 05:47:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914">bug 62914</a>
-              from <span class="vcard"><a class="email" href="mailto:max&#64;e-soft.ru" title="Maxim P. Dementiev &lt;max&#64;e-soft.ru&gt;"> <span class="fn">Maxim P. Dementiev</span></a>
-</span></b>
-        <pre>I've upgraded x11-drivers/xf86-video-nouveau from 1.0.6 to 1.0.7, the result is
-still the same.
-
-How can I find (or refine) the reason?
-
-About the kernel:
-/usr/src/linux-3.7.10-gentoo/drivers/gpu/drm/nouveau/nouveau_drm.h:#define
-DRIVER_DATE        &quot;20120801&quot;</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1365659235.Bb437B1.20112--
-
---===============0944308277==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0944308277==--
+Dave.
