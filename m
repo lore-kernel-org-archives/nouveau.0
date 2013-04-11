@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62835] Screen freezes after resume from s2ram
-Date: Thu, 11 Apr 2013 17:17:53 +0000
-Message-ID: <bug-62835-8800-P47vWJMEop@http.bugs.freedesktop.org/>
-References: <bug-62835-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51579] Xv video support is black on NVidia NVa8
+ Chipset in latest git [fixed with patch]
+Date: Thu, 11 Apr 2013 19:01:15 +0000
+Message-ID: <bug-51579-8800-qxu9W2KLo1@http.bugs.freedesktop.org/>
+References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1189392917=="
+Content-Type: multipart/mixed; boundary="===============1443266661=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51579-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1189392917==
-Content-Type: multipart/alternative; boundary="1365700673.8a2B83De3.1149"; charset="us-ascii"
+--===============1443266661==
+Content-Type: multipart/alternative; boundary="1365706875.8CD80A223.22169"; charset="us-ascii"
 
 
---1365700673.8a2B83De3.1149
-Date: Thu, 11 Apr 2013 17:17:53 +0000
+--1365706875.8CD80A223.22169
+Date: Thu, 11 Apr 2013 19:01:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62835
+https://bugs.freedesktop.org/show_bug.cgi?id=51579
 
---- Comment #1 from Patrik Lundquist <patrik.lundquist-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I seem to have the same problem with a GeForce 8800 GT card. Let me know if I
-can help.
+--- Comment #21 from Duane Robertson <hnxcyllh-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I'm using version 1.13 of the gentoo xorg-driver package with nouveau selected,
+and I get exactly the same issue. My card is an ASUS 210. Of course, the nvidia
+driver works perfectly. Mplayer shows videos in gl, gl2, and x11, but not xv.
 
-See https://bugs.launchpad.net/bugs/1111884
+Oddly, the problem did not occur when I first installed the card. I put it in
+and booted with the nvidia driver, then changed over to the nouveau driver,
+then removed nvidia and continued to test, restarting at each step. Mplayer
+worked normally at every stage. Then I shut down to put the box back together,
+restarted, and... black video.
+
+Next I reinstalled the nvidia driver, loaded it, and saw normal video. The
+nouveau still has the same issue.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1365700673.8a2B83De3.1149
-Date: Thu, 11 Apr 2013 17:17:53 +0000
+--1365706875.8CD80A223.22169
+Date: Thu, 11 Apr 2013 19:01:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,19 +63,27 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Screen freezes after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62835#c1">Comment # 1</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - Xv video support is black on NVidia NVa8 Chipset in latest git [fixed with patch]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579#c21">Comment # 21</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Screen freezes after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62835">bug 62835</a>
-              from <span class="vcard"><a class="email" href="mailto:patrik.lundquist&#64;gmail.com" title="Patrik Lundquist &lt;patrik.lundquist&#64;gmail.com&gt;"> <span class="fn">Patrik Lundquist</span></a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - Xv video support is black on NVidia NVa8 Chipset in latest git [fixed with patch]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579">bug 51579</a>
+              from <span class="vcard"><a class="email" href="mailto:hnxcyllh&#64;gmail.com" title="Duane Robertson &lt;hnxcyllh&#64;gmail.com&gt;"> <span class="fn">Duane Robertson</span></a>
 </span></b>
-        <pre>I seem to have the same problem with a GeForce 8800 GT card. Let me know if I
-can help.
+        <pre>I'm using version 1.13 of the gentoo xorg-driver package with nouveau selected,
+and I get exactly the same issue. My card is an ASUS 210. Of course, the nvidia
+driver works perfectly. Mplayer shows videos in gl, gl2, and x11, but not xv.
 
-See <a href="https://bugs.launchpad.net/bugs/1111884">https://bugs.launchpad.net/bugs/1111884</a></pre>
+Oddly, the problem did not occur when I first installed the card. I put it in
+and booted with the nvidia driver, then changed over to the nouveau driver,
+then removed nvidia and continued to test, restarting at each step. Mplayer
+worked normally at every stage. Then I shut down to put the box back together,
+restarted, and... black video.
+
+Next I reinstalled the nvidia driver, loaded it, and saw normal video. The
+nouveau still has the same issue.</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +95,9 @@ See <a href="https://bugs.launchpad.net/bugs/1111884">https://bugs.launchpad.net
     </body>
 </html>
 
---1365700673.8a2B83De3.1149--
+--1365706875.8CD80A223.22169--
 
---===============1189392917==
+--===============1443266661==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +108,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1189392917==--
+--===============1443266661==--
