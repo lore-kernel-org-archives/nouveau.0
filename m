@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 63263] X server crash in nouveau_xv.c:NVPutImage
- (NVCopyNV12ColorPlanes)
-Date: Thu, 11 Apr 2013 02:06:59 +0000
-Message-ID: <bug-63263-8800-irGmEscAVY@http.bugs.freedesktop.org/>
-References: <bug-63263-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 62914] ZaphodHeads doesn't work after upgrading to
+	xorg 1.14
+Date: Thu, 11 Apr 2013 05:47:15 +0000
+Message-ID: <bug-62914-8800-lS9v4dO65D@http.bugs.freedesktop.org/>
+References: <bug-62914-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0325324434=="
+Content-Type: multipart/mixed; boundary="===============0944308277=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-63263-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-62914-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0325324434==
-Content-Type: multipart/alternative; boundary="1365646019.B737E11.12883"; charset="us-ascii"
+--===============0944308277==
+Content-Type: multipart/alternative; boundary="1365659235.Bb437B1.20112"; charset="us-ascii"
 
 
---1365646019.B737E11.12883
-Date: Thu, 11 Apr 2013 02:06:59 +0000
+--1365659235.Bb437B1.20112
+Date: Thu, 11 Apr 2013 05:47:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=63263
+https://bugs.freedesktop.org/show_bug.cgi?id=62914
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Looks like my npixels vs line_len guess was right:
+--- Comment #4 from Maxim P. Dementiev <max-sDaPYKTrDkuHXe+LvDLADg@public.gmane.org> ---
+I've upgraded x11-drivers/xf86-video-nouveau from 1.0.6 to 1.0.7, the result is
+still the same.
 
-[741217.047] (WW) NOUVEAU(0): Inconsistency between NVPutImage and
-NVQueryImageAttributes: src_x: 0, src_y: 0, src_w: 512, src_h: 384, top: 0,
-left: 102, bottom: 384, right: 512, npixels: 410, nlines: 384, line_len: 416,
-srcPitch2: 256, s2offset: 196659, s3offset: 245811, bytes: 49104, size_tmp:
-294912, over: 3
-[741217.047] (WW) NOUVEAU(0): Went too far: us: 0x7f7e20b6c002, vs:
-0x7f7e20b78002, end (non-incl): 0x7f7e20b78000
+How can I find (or refine) the reason?
 
-And the reason I only see it when the picture is off-screen is because normally
-the width is already a multiple of 8. Not sure what the right way of fixing it
-is though... I think we can just use npixels instead of line_len as the width
-parameter. However that will leave the last 1-3 pixels in the dst buffer
-uninitialized. Not sure if that's OK.
+About the kernel:
+/usr/src/linux-3.7.10-gentoo/drivers/gpu/drm/nouveau/nouveau_drm.h:#define
+DRIVER_DATE        "20120801"
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1365646019.B737E11.12883
-Date: Thu, 11 Apr 2013 02:06:59 +0000
+--1365659235.Bb437B1.20112
+Date: Thu, 11 Apr 2013 05:47:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,29 +60,22 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - X server crash in nouveau_xv.c:NVPutImage (NVCopyNV12ColorPlanes)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63263#c3">Comment # 3</a>
+   title="NEW --- - ZaphodHeads doesn't work after upgrading to xorg 1.14"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - X server crash in nouveau_xv.c:NVPutImage (NVCopyNV12ColorPlanes)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63263">bug 63263</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - ZaphodHeads doesn't work after upgrading to xorg 1.14"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914">bug 62914</a>
+              from <span class="vcard"><a class="email" href="mailto:max&#64;e-soft.ru" title="Maxim P. Dementiev &lt;max&#64;e-soft.ru&gt;"> <span class="fn">Maxim P. Dementiev</span></a>
 </span></b>
-        <pre>Looks like my npixels vs line_len guess was right:
+        <pre>I've upgraded x11-drivers/xf86-video-nouveau from 1.0.6 to 1.0.7, the result is
+still the same.
 
-[741217.047] (WW) NOUVEAU(0): Inconsistency between NVPutImage and
-NVQueryImageAttributes: src_x: 0, src_y: 0, src_w: 512, src_h: 384, top: 0,
-left: 102, bottom: 384, right: 512, npixels: 410, nlines: 384, line_len: 416,
-srcPitch2: 256, s2offset: 196659, s3offset: 245811, bytes: 49104, size_tmp:
-294912, over: 3
-[741217.047] (WW) NOUVEAU(0): Went too far: us: 0x7f7e20b6c002, vs:
-0x7f7e20b78002, end (non-incl): 0x7f7e20b78000
+How can I find (or refine) the reason?
 
-And the reason I only see it when the picture is off-screen is because normally
-the width is already a multiple of 8. Not sure what the right way of fixing it
-is though... I think we can just use npixels instead of line_len as the width
-parameter. However that will leave the last 1-3 pixels in the dst buffer
-uninitialized. Not sure if that's OK.</pre>
+About the kernel:
+/usr/src/linux-3.7.10-gentoo/drivers/gpu/drm/nouveau/nouveau_drm.h:#define
+DRIVER_DATE        &quot;20120801&quot;</pre>
         </div>
       </p>
       <hr>
@@ -101,9 +87,9 @@ uninitialized. Not sure if that's OK.</pre>
     </body>
 </html>
 
---1365646019.B737E11.12883--
+--1365659235.Bb437B1.20112--
 
---===============0325324434==
+--===============0944308277==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -114,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0325324434==--
+--===============0944308277==--
