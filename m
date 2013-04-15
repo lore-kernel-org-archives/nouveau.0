@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62914] ZaphodHeads doesn't work after upgrading to
-	xorg 1.14
-Date: Mon, 15 Apr 2013 07:19:34 +0000
-Message-ID: <bug-62914-8800-GNLXu1Nokk@http.bugs.freedesktop.org/>
-References: <bug-62914-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 63481] Nouveau driver - No monitor signal on chipset
+ NV1A (family NV10) since bisected bad commit
+ ebb945a94bba2ce8dff7b0942ff2b3f2a52a0a69 in kernel 3.7.9
+Date: Mon, 15 Apr 2013 15:40:41 +0000
+Message-ID: <bug-63481-8800-sBQCiUa0Yt@http.bugs.freedesktop.org/>
+References: <bug-63481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1669052017=="
+Content-Type: multipart/mixed; boundary="===============0072751762=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62914-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-63481-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,104 +22,64 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1669052017==
-Content-Type: multipart/alternative; boundary="1366010374.4AeEF1.26619"; charset="us-ascii"
+--===============0072751762==
+Content-Type: multipart/alternative; boundary="1366040442.BF80ee2.29993"; charset="us-ascii"
 
 
---1366010374.4AeEF1.26619
-Date: Mon, 15 Apr 2013 07:19:34 +0000
+--1366040442.BF80ee2.29993
+Date: Mon, 15 Apr 2013 15:40:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D62914
+https://bugs.freedesktop.org/show_bug.cgi?id=63481
 
---- Comment #5 from Maxim P. Dementiev <max-sDaPYKTrDkuHXe+LvDLADg@public.gmane.org> ---
-Unfortunately, I cannot use stand-alone drm module with my 3.7.10 kernel:
+--- Comment #1 from John F. Godfrey <jfgodfrey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 78003
+  --> https://bugs.freedesktop.org/attachment.cgi?id=78003&action=edit
+Xorg.0.log, while running 3.9.0-rc6
 
-/var/tmp/portage/x11-base/nouveau-drm-20121015/work/master/drivers/gpu/drm/=
-drm_gem.c:
-In function =E2=80=98drm_gem_mmap=E2=80=99:
-/var/tmp/portage/x11-base/nouveau-drm-20121015/work/master/drivers/gpu/drm/=
-drm_gem.c:709:19:
-error: =E2=80=98VM_RESERVED=E2=80=99 undeclared (first use in this function)
-/var/tmp/portage/x11-base/nouveau-drm-20121015/work/master/drivers/gpu/drm/=
-drm_gem.c:709:19:
-note: each undeclared identifier is reported only once for each function it
-appears in
-
-New 3.8.7 kernel contains the same version of drm:
-
-/usr/src/linux-3.7.10-gentoo/drivers/gpu/drm/nouveau/nouveau_drm.h:#define
-DRIVER_DATE        "20120801"
-/usr/src/linux-3.8.7-gentoo/drivers/gpu/drm/nouveau/nouveau_drm.h:#define
-DRIVER_DATE        "20120801"
-
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1366010374.4AeEF1.26619
-Date: Mon, 15 Apr 2013 07:19:34 +0000
+--1366040442.BF80ee2.29993
+Date: Mon, 15 Apr 2013 15:40:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D62914#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - Nouveau driver - No monitor signal on chipset NV1A (family NV10) since bisected bad commit ebb945a94bba2ce8dff7b0942ff2b3f2a52a0a69 in kernel 3.7.9"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63481#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D62914">bug 62914<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-max&#64;e-soft.ru" title=3D"Maxim P. Dementiev &lt;max&#64;e-soft.ru&gt;"> =
-<span class=3D"fn">Maxim P. Dementiev</span></a>
+   title="NEW --- - Nouveau driver - No monitor signal on chipset NV1A (family NV10) since bisected bad commit ebb945a94bba2ce8dff7b0942ff2b3f2a52a0a69 in kernel 3.7.9"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63481">bug 63481</a>
+              from <span class="vcard"><a class="email" href="mailto:jfgodfrey&#64;gmail.com" title="John F. Godfrey &lt;jfgodfrey&#64;gmail.com&gt;"> <span class="fn">John F. Godfrey</span></a>
 </span></b>
-        <pre>Unfortunately, I cannot use stand-alone drm module with my 3.7=
-.10 kernel:
-
-/var/tmp/portage/x11-base/nouveau-drm-20121015/work/master/drivers/gpu/drm/=
-drm_gem.c:
-In function =E2=80=98drm_gem_mmap=E2=80=99:
-/var/tmp/portage/x11-base/nouveau-drm-20121015/work/master/drivers/gpu/drm/=
-drm_gem.c:709:19:
-error: =E2=80=98VM_RESERVED=E2=80=99 undeclared (first use in this function)
-/var/tmp/portage/x11-base/nouveau-drm-20121015/work/master/drivers/gpu/drm/=
-drm_gem.c:709:19:
-note: each undeclared identifier is reported only once for each function it
-appears in
-
-New 3.8.7 kernel contains the same version of drm:
-
-/usr/src/linux-3.7.10-gentoo/drivers/gpu/drm/nouveau/nouveau_drm.h:#define
-DRIVER_DATE        &quot;20120801&quot;
-/usr/src/linux-3.8.7-gentoo/drivers/gpu/drm/nouveau/nouveau_drm.h:#define
-DRIVER_DATE        &quot;20120801&quot;</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=78003" name="attach_78003" title="Xorg.0.log, while running 3.9.0-rc6">attachment 78003</a> <a href="attachment.cgi?id=78003&amp;action=edit" title="Xorg.0.log, while running 3.9.0-rc6">[details]</a></span>
+Xorg.0.log, while running 3.9.0-rc6</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1366010374.4AeEF1.26619--
+--1366040442.BF80ee2.29993--
 
---===============1669052017==
+--===============0072751762==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -129,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1669052017==--
+--===============0072751762==--
