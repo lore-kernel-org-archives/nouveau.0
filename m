@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 63790] Nouveau fb boots laptop screen a GIANT BARCODE
-Date: Sun, 21 Apr 2013 23:13:25 +0000
-Message-ID: <bug-63790-8800-9PJQlpqGJ3@http.bugs.freedesktop.org/>
-References: <bug-63790-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58378] Distorted graphics on NVIDIA GeForce 8400M G
+ after upgrade the kernel to 3.7.0 version
+Date: Wed, 24 Apr 2013 10:01:53 +0000
+Message-ID: <bug-58378-8800-1giOKfB9oQ@http.bugs.freedesktop.org/>
+References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1332963610=="
+Content-Type: multipart/mixed; boundary="===============2058399774=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-63790-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1332963610==
-Content-Type: multipart/alternative; boundary="1366586006.dc671.23175"; charset="us-ascii"
+--===============2058399774==
+Content-Type: multipart/alternative; boundary="1366797713.dEC24.15710"; charset="us-ascii"
 
 
---1366586006.dc671.23175
-Date: Sun, 21 Apr 2013 23:13:26 +0000
+--1366797713.dEC24.15710
+Date: Wed, 24 Apr 2013 10:01:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=63790
+https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
---- Comment #1 from bugle <aka.bugle-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 78317
-  --> https://bugs.freedesktop.org/attachment.cgi?id=78317&action=edit
-lspci of laptop
+--- Comment #11 from Paulo Castro <pauloedgarcastro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+After further investigation, this issue only seems to happen to applications
+using the gtk libs.
+In my case at least ...
+
+After triggering the bug, any app which is using the GTK libs will be affected.
+It does not seem to affect other app's ( not using gtk ) rendering process.
+
+Also, the same issue doesn't happen whilst using the NVIDIA drivers, which are
+just impossible to use as in my case the system is just unusable slow.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1366586006.dc671.23175
-Date: Sun, 21 Apr 2013 23:13:26 +0000
+--1366797713.dEC24.15710
+Date: Wed, 24 Apr 2013 10:01:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +61,23 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Nouveau fb boots laptop screen a GIANT BARCODE"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63790#c1">Comment # 1</a>
+   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Nouveau fb boots laptop screen a GIANT BARCODE"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63790">bug 63790</a>
-              from <span class="vcard"><a class="email" href="mailto:aka.bugle&#64;gmail.com" title="bugle &lt;aka.bugle&#64;gmail.com&gt;"> <span class="fn">bugle</span></a>
+   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
+              from <span class="vcard"><a class="email" href="mailto:pauloedgarcastro&#64;gmail.com" title="Paulo Castro &lt;pauloedgarcastro&#64;gmail.com&gt;"> <span class="fn">Paulo Castro</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=78317" name="attach_78317" title="lspci of laptop">attachment 78317</a> <a href="attachment.cgi?id=78317&amp;action=edit" title="lspci of laptop">[details]</a></span>
-lspci of laptop</pre>
+        <pre>After further investigation, this issue only seems to happen to applications
+using the gtk libs.
+In my case at least ...
+
+After triggering the bug, any app which is using the GTK libs will be affected.
+It does not seem to affect other app's ( not using gtk ) rendering process.
+
+Also, the same issue doesn't happen whilst using the NVIDIA drivers, which are
+just impossible to use as in my case the system is just unusable slow.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +89,9 @@ lspci of laptop</pre>
     </body>
 </html>
 
---1366586006.dc671.23175--
+--1366797713.dEC24.15710--
 
---===============1332963610==
+--===============2058399774==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +102,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1332963610==--
+--===============2058399774==--
