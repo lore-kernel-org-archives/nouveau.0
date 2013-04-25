@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58378] Distorted graphics on NVIDIA GeForce 8400M G
- after upgrade the kernel to 3.7.0 version
-Date: Wed, 24 Apr 2013 10:01:53 +0000
-Message-ID: <bug-58378-8800-1giOKfB9oQ@http.bugs.freedesktop.org/>
-References: <bug-58378-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 62914] ZaphodHeads doesn't work after upgrading to
+	xorg 1.14
+Date: Thu, 25 Apr 2013 01:43:04 +0000
+Message-ID: <bug-62914-8800-vAP89NQ0k2@http.bugs.freedesktop.org/>
+References: <bug-62914-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2058399774=="
+Content-Type: multipart/mixed; boundary="===============1648312872=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-62914-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2058399774==
-Content-Type: multipart/alternative; boundary="1366797713.dEC24.15710"; charset="us-ascii"
+--===============1648312872==
+Content-Type: multipart/alternative; boundary="1366854184.a8CA5BF1.1742"; charset="us-ascii"
 
 
---1366797713.dEC24.15710
-Date: Wed, 24 Apr 2013 10:01:53 +0000
+--1366854184.a8CA5BF1.1742
+Date: Thu, 25 Apr 2013 01:43:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58378
+https://bugs.freedesktop.org/show_bug.cgi?id=62914
 
---- Comment #11 from Paulo Castro <pauloedgarcastro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-After further investigation, this issue only seems to happen to applications
-using the gtk libs.
-In my case at least ...
+--- Comment #6 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+A _very_ wild guess - this is an existing drm race bug, exposed with recent X
+work
 
-After triggering the bug, any app which is using the GTK libs will be affected.
-It does not seem to affect other app's ( not using gtk ) rendering process.
+Keep xf86-video-nouveau (ddx) at 1.0.7, and bisect X
+Note you may need to rebuild the ddx as well
 
-Also, the same issue doesn't happen whilst using the NVIDIA drivers, which are
-just impossible to use as in my case the system is just unusable slow.
+Thanks
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1366797713.dEC24.15710
-Date: Wed, 24 Apr 2013 10:01:53 +0000
+--1366854184.a8CA5BF1.1742
+Date: Thu, 25 Apr 2013 01:43:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,23 +59,21 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c11">Comment # 11</a>
+   title="NEW --- - ZaphodHeads doesn't work after upgrading to xorg 1.14"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:pauloedgarcastro&#64;gmail.com" title="Paulo Castro &lt;pauloedgarcastro&#64;gmail.com&gt;"> <span class="fn">Paulo Castro</span></a>
+   title="NEW --- - ZaphodHeads doesn't work after upgrading to xorg 1.14"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914">bug 62914</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>After further investigation, this issue only seems to happen to applications
-using the gtk libs.
-In my case at least ...
+        <pre>A _very_ wild guess - this is an existing drm race bug, exposed with recent X
+work
 
-After triggering the bug, any app which is using the GTK libs will be affected.
-It does not seem to affect other app's ( not using gtk ) rendering process.
+Keep xf86-video-nouveau (ddx) at 1.0.7, and bisect X
+Note you may need to rebuild the ddx as well
 
-Also, the same issue doesn't happen whilst using the NVIDIA drivers, which are
-just impossible to use as in my case the system is just unusable slow.</pre>
+Thanks</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +85,9 @@ just impossible to use as in my case the system is just unusable slow.</pre>
     </body>
 </html>
 
---1366797713.dEC24.15710--
+--1366854184.a8CA5BF1.1742--
 
---===============2058399774==
+--===============1648312872==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2058399774==--
+--===============1648312872==--
