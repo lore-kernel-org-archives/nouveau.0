@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61953] arbitrary memory access corrupts kernel
- memory, eventually crashing the kernel
-Date: Sat, 27 Apr 2013 10:33:42 +0000
-Message-ID: <bug-61953-8800-RPtsnFpxBM@http.bugs.freedesktop.org/>
-References: <bug-61953-8800@http.bugs.freedesktop.org/>
+From: Marek Vasut <marex-ynQEQJNshbs@public.gmane.org>
+Subject: [PATCH] nouveau: Allow 3D accelerators with output ports
+Date: Fri, 26 Apr 2013 21:23:08 +0200
+Message-ID: <1367004188-8892-1-git-send-email-marex@denx.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1810042167=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61953-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,88 +16,37 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Marek Vasut <marex-ynQEQJNshbs@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+This patch let's cards with PCI class 0x30200 (3D controller) be
+operated by the nouveau driver as well. The nv Quadro NVS 450 is
+one such card, where the first GPU has PCI class 0x30000 and the
+other GPU has PCI class 0x30200. By ignoring the 1 << 9 bit in
+the PCI class mask, displays attached to the other GPU can also
+be used now.
 
---===============1810042167==
-Content-Type: multipart/alternative; boundary="1367058822.CFA32.29899"; charset="us-ascii"
+Signed-off-by: Marek Vasut <marex-ynQEQJNshbs@public.gmane.org>
+Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+---
+ src/nv_driver.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+NOTE: I might have sent this to the wrong ML, this is my first
+      time submitting a nouveau patch.
 
---1367058822.CFA32.29899
-Date: Sat, 27 Apr 2013 10:33:42 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=61953
-
---- Comment #10 from Adrian Knoth <adi-5gjw4BGRu82yAo/rNOIehoJPQCENF9+z@public.gmane.org> ---
-(In reply to comment #9)
-
-> I had Xephyr -dumb and ran ardour3 for three hours, something that has never
-> been possible before on this machine (kernel crashes after 2-45mins).
-> 
-> It was also possible to run it without the -dumb flag, but I only tested it
-> for 20 minutes, so that's not long enough for a definite answer.
-
-Xephyr (without -dumb) successfully papering over the problem for days now.
-
+diff --git a/src/nv_driver.c b/src/nv_driver.c
+index 2b74fc6..0dce0aa 100644
+--- a/src/nv_driver.c
++++ b/src/nv_driver.c
+@@ -60,7 +60,7 @@ static Bool	NVUnmapMem(ScrnInfoPtr pScrn);
+ 
+ #define NOUVEAU_PCI_DEVICE(_vendor_id, _device_id)                             \
+ 	{ (_vendor_id), (_device_id), PCI_MATCH_ANY, PCI_MATCH_ANY,            \
+-	  0x00030000, 0x00ffffff, 0 }
++	  0x00030000, 0x00fffdff, 0 }
+ 
+ static const struct pci_id_match nouveau_device_match[] = {
+ 	NOUVEAU_PCI_DEVICE(0x12d2, PCI_MATCH_ANY),
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1367058822.CFA32.29899
-Date: Sat, 27 Apr 2013 10:33:42 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - arbitrary memory access corrupts kernel memory, eventually crashing the kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61953#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - arbitrary memory access corrupts kernel memory, eventually crashing the kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61953">bug 61953</a>
-              from <span class="vcard"><a class="email" href="mailto:adi&#64;drcomp.erfurt.thur.de" title="Adrian Knoth &lt;adi&#64;drcomp.erfurt.thur.de&gt;"> <span class="fn">Adrian Knoth</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=61953#c9">comment #9</a>)
-
-<span class="quote">&gt; I had Xephyr -dumb and ran ardour3 for three hours, something that has never
-&gt; been possible before on this machine (kernel crashes after 2-45mins).
-&gt; 
-&gt; It was also possible to run it without the -dumb flag, but I only tested it
-&gt; for 20 minutes, so that's not long enough for a definite answer.</span >
-
-Xephyr (without -dumb) successfully papering over the problem for days now.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1367058822.CFA32.29899--
-
---===============1810042167==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1810042167==--
+1.7.10.4
