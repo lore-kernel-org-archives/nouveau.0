@@ -1,10 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64057] New: screen splashes after logging in
-Date: Mon, 29 Apr 2013 18:29:26 +0000
-Message-ID: <bug-64057-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 50121] [Regression] Since kernel v3.5 several cards
+ fail to resume, introduced by: 'convert to exec engine,
+ and improve channel sync'
+Date: Tue, 30 Apr 2013 00:48:59 +0000
+Message-ID: <bug-50121-8800-IVqEe4Yybt@http.bugs.freedesktop.org/>
+References: <bug-50121-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1065601606=="
+Content-Type: multipart/mixed; boundary="===============0488027863=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-50121-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,41 +22,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1065601606==
-Content-Type: multipart/alternative; boundary="1367260166.1BFC6ec21.26318"; charset="us-ascii"
+--===============0488027863==
+Content-Type: multipart/alternative; boundary="1367282939.d125fAE4.23013"; charset="us-ascii"
 
 
---1367260166.1BFC6ec21.26318
-Date: Mon, 29 Apr 2013 18:29:26 +0000
+--1367282939.d125fAE4.23013
+Date: Tue, 30 Apr 2013 00:48:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64057
+https://bugs.freedesktop.org/show_bug.cgi?id=50121
 
-          Priority: medium
-            Bug ID: 64057
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: screen splashes after logging in
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: major
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: narman12-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #72 from Mr-4 <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
+Things have been pretty stable with 3.8.1, but it is getting a bit "twitchy"
+with 3.8.7 - on two separate occasions I've got the following error on restore:
 
-i had installed noveau graphics and sometimes freezes or hangs the pc and
-splashes the desktop please check it to solve the issue
+kernel: nouveau  [     DRM] re-enabling device...
+kernel: nouveau  [     DRM] resuming client object trees...
+kernel: nouveau  [   VBIOS][0000:01:00.0] running init tables
+kernel: nouveau  [     DRM] resuming display...
+kernel: nouveau W[   PFIFO][0000:01:00.0] unknown intr 0x00010000, ch 0
+kernel: nouveau W[   PFIFO][0000:01:00.0] unknown intr 0x00010000, ch 0
+kernel: nouveau W[   PFIFO][0000:01:00.0] unknown intr 0x00010000, ch 0
+[...]
+kernel: nouveau E[   PFIFO][0000:01:00.0] still angry after 101 spins, halt
+kernel: nouveau  [     DRM] 0xD3FB: Parsing digital output script table
+kernel: nouveau  [     DRM] Setting dpms mode 3 on TV encoder (output 3)
+kernel: nouveau  [     DRM] 0xD3FB: Parsing digital output script table
+
+
+at which point the whole screen starts with the now-familiar black-and-white
+rectangles and I have no option, but to reboot.
+
+The above error does not happen very often - maybe every 8-10 hibernate/resume
+cycles, but with the 3.8.1. kernel I didn't have any errors at all.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1367260166.1BFC6ec21.26318
-Date: Mon, 29 Apr 2013 18:29:26 +0000
+--1367282939.d125fAE4.23013
+Date: Tue, 30 Apr 2013 00:48:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,97 +70,41 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - screen splashes after logging in"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64057">64057</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>screen splashes after logging in
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>narman12&#64;yahoo.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>i had installed noveau graphics and sometimes freezes or hangs the pc and
-splashes the desktop please check it to solve the issue</pre>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121#c72">Comment # 72</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [Regression] Since kernel v3.5 several cards fail to resume, introduced by: 'convert to exec engine, and improve channel sync'"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50121">bug 50121</a>
+              from <span class="vcard"><a class="email" href="mailto:mr.dash.four&#64;googlemail.com" title="Mr-4 &lt;mr.dash.four&#64;googlemail.com&gt;"> <span class="fn">Mr-4</span></a>
+</span></b>
+        <pre>Things have been pretty stable with 3.8.1, but it is getting a bit &quot;twitchy&quot;
+with 3.8.7 - on two separate occasions I've got the following error on restore:
+
+kernel: nouveau  [     DRM] re-enabling device...
+kernel: nouveau  [     DRM] resuming client object trees...
+kernel: nouveau  [   VBIOS][0000:01:00.0] running init tables
+kernel: nouveau  [     DRM] resuming display...
+kernel: nouveau W[   PFIFO][0000:01:00.0] unknown intr 0x00010000, ch 0
+kernel: nouveau W[   PFIFO][0000:01:00.0] unknown intr 0x00010000, ch 0
+kernel: nouveau W[   PFIFO][0000:01:00.0] unknown intr 0x00010000, ch 0
+[...]
+kernel: nouveau E[   PFIFO][0000:01:00.0] still angry after 101 spins, halt
+kernel: nouveau  [     DRM] 0xD3FB: Parsing digital output script table
+kernel: nouveau  [     DRM] Setting dpms mode 3 on TV encoder (output 3)
+kernel: nouveau  [     DRM] 0xD3FB: Parsing digital output script table
+
+
+at which point the whole screen starts with the now-familiar black-and-white
+rectangles and I have no option, but to reboot.
+
+The above error does not happen very often - maybe every 8-10 hibernate/resume
+cycles, but with the 3.8.1. kernel I didn't have any errors at all.</pre>
         </div>
       </p>
       <hr>
@@ -162,9 +116,9 @@ splashes the desktop please check it to solve the issue</pre>
     </body>
 </html>
 
---1367260166.1BFC6ec21.26318--
+--1367282939.d125fAE4.23013--
 
---===============1065601606==
+--===============0488027863==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -175,4 +129,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1065601606==--
+--===============0488027863==--
