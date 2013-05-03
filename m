@@ -1,8 +1,8 @@
-From: Marek Vasut <marex-ynQEQJNshbs@public.gmane.org>
-Subject: [PATCH V2] nouveau: Allow 3D accelerators with output
-	ports
-Date: Fri,  3 May 2013 15:48:55 +0200
-Message-ID: <1367588935-8398-1-git-send-email-marex@denx.de>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nouveau_xv: Avoid reading off the end of the
+	source image on NV50+
+Date: Fri,  3 May 2013 09:59:39 -0400
+Message-ID: <1367589579-19091-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -16,39 +16,51 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Marek Vasut <marex-ynQEQJNshbs@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This patch let's cards with PCI class 0x30200 (3D controller) be
-operated by the nouveau driver as well. The nv Quadro NVS 450 is
-one such card, where the first GPU has PCI class 0x30000 and the
-other GPU has PCI class 0x30200. By ignoring the 1 << 9 bit in
-the PCI class mask, displays attached to the other GPU can also
-be used now.
+The 'w' argument to NVCopyNV12ColorPlanes is used to index into the
+source image. line_len is rounded up to 8 on NV50+, so if the source
+image (+ left offset) is not rounded to 8, NVCopyNV12ColorPlanes could
+read past the end of the array and crash X. This change can cause the
+last few horizontal pixels of dst to not be initialized, but they
+should be truncated by the renderer anyways.
 
-Signed-off-by: Marek Vasut <marex-ynQEQJNshbs@public.gmane.org>
-Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+See https://bugs.freedesktop.org/show_bug.cgi?id=63263
+
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 ---
- src/nv_driver.c |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-V2: Use 0x00ff0000 PCI device mask instead of 0x00fffdff to align
-    the code with the nouveau kernel driver as requested by Ben.
+I've been running with this patch (+ some extra debug info) for a
+while and haven't seen any ill effects in Xv rendering. The debugging
+info I had added suggests that the overruns are gone when the image is
+dragged partially off the screen on the left.
 
-diff --git a/src/nv_driver.c b/src/nv_driver.c
-index 2b74fc6..d504d3c 100644
---- a/src/nv_driver.c
-+++ b/src/nv_driver.c
-@@ -60,7 +60,7 @@ static Bool	NVUnmapMem(ScrnInfoPtr pScrn);
- 
- #define NOUVEAU_PCI_DEVICE(_vendor_id, _device_id)                             \
- 	{ (_vendor_id), (_device_id), PCI_MATCH_ANY, PCI_MATCH_ANY,            \
--	  0x00030000, 0x00ffffff, 0 }
-+	  0x00030000, 0x00ff0000, 0 }
- 
- static const struct pci_id_match nouveau_device_match[] = {
- 	NOUVEAU_PCI_DEVICE(0x12d2, PCI_MATCH_ANY),
+ src/nouveau_xv.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/nouveau_xv.c b/src/nouveau_xv.c
+index f7dc2bc..8eafcf0 100644
+--- a/src/nouveau_xv.c
++++ b/src/nouveau_xv.c
+@@ -1095,7 +1095,7 @@ NVPutImage(ScrnInfoPtr pScrn, short src_x, short src_y, short drw_x,
+ 				NVCopyNV12ColorPlanes(buf + s2offset,
+ 						      buf + s3offset, dst,
+ 						      line_len, srcPitch2,
+-						      nlines, line_len);
++						      nlines, npixels);
+ 			}
+ 		} else {
+ 			for (i = 0; i < nlines; i++) {
+@@ -1161,7 +1161,7 @@ CPU_copy:
+ 				NVCopyNV12ColorPlanes(buf + s2offset,
+ 						      buf + s3offset,
+ 						      map, dstPitch, srcPitch2,
+-						      nlines, line_len);
++						      nlines, npixels);
+ 			}
+ 		} else {
+ 			/* YUY2 and RGB */
 -- 
-1.7.10.4
+1.8.1.5
