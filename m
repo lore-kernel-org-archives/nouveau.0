@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62914] ZaphodHeads doesn't work after upgrading to
-	xorg 1.14
-Date: Sun, 05 May 2013 00:21:49 +0000
-Message-ID: <bug-62914-8800-6R0JjPLtM2@http.bugs.freedesktop.org/>
-References: <bug-62914-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60516] nouveau driver graphics corrupted in 3.7
+ kernel for nvidia FX5200 [NV34] hardware
+Date: Mon, 06 May 2013 06:01:36 +0000
+Message-ID: <bug-60516-8800-M8rRpdNX5C@http.bugs.freedesktop.org/>
+References: <bug-60516-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0648965844=="
+Content-Type: multipart/mixed; boundary="===============0309340243=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62914-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-60516-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0648965844==
-Content-Type: multipart/alternative; boundary="1367713308.7bdE61d21.29830"; charset="us-ascii"
+--===============0309340243==
+Content-Type: multipart/alternative; boundary="1367820096.6ccb4.26563"; charset="us-ascii"
 
 
---1367713308.7bdE61d21.29830
-Date: Sun, 5 May 2013 00:21:48 +0000
+--1367820096.6ccb4.26563
+Date: Mon, 6 May 2013 06:01:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62914
+https://bugs.freedesktop.org/show_bug.cgi?id=60516
 
---- Comment #7 from Damian Nowak <nowaker-qMBiBlq7xnnVItvQsEIGlw@public.gmane.org> ---
-Any instructions on how to "bisect X"? I have no idea what you meant. :)
+--- Comment #5 from Lee Matheson <lee_matheson-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+This comment is just a confirmation of the fix ( - drm/nouveau: Fix typo in
+init_idx_addr_latched()  ).
+
+On my 32-bit openSUSE-12.3 setup (with the FX5200 graphic card) I updated the
+kernel to the latest SuSE-GmbH built 3.7.10-1.4 kernel (where that kernel has
+the noted 'typo fix' ) and the nouveau graphic driver works well with it.
+
+Thank you all for the fix.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1367713308.7bdE61d21.29830
-Date: Sun, 5 May 2013 00:21:48 +0000
+--1367820096.6ccb4.26563
+Date: Mon, 6 May 2013 06:01:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,16 +59,23 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914#c7">Comment # 7</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nouveau driver graphics corrupted in 3.7 kernel for nvidia FX5200 [NV34] hardware"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60516#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914">bug 62914</a>
-              from <span class="vcard"><a class="email" href="mailto:nowaker&#64;geozone.pl" title="Damian Nowak &lt;nowaker&#64;geozone.pl&gt;"> <span class="fn">Damian Nowak</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nouveau driver graphics corrupted in 3.7 kernel for nvidia FX5200 [NV34] hardware"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60516">bug 60516</a>
+              from <span class="vcard"><a class="email" href="mailto:lee_matheson&#64;hotmail.com" title="Lee Matheson &lt;lee_matheson&#64;hotmail.com&gt;"> <span class="fn">Lee Matheson</span></a>
 </span></b>
-        <pre>Any instructions on how to &quot;bisect X&quot;? I have no idea what you meant. :)</pre>
+        <pre>This comment is just a confirmation of the fix ( - drm/nouveau: Fix typo in
+init_idx_addr_latched()  ).
+
+On my 32-bit openSUSE-12.3 setup (with the FX5200 graphic card) I updated the
+kernel to the latest SuSE-GmbH built 3.7.10-1.4 kernel (where that kernel has
+the noted 'typo fix' ) and the nouveau graphic driver works well with it.
+
+Thank you all for the fix.</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +87,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1367713308.7bdE61d21.29830--
+--1367820096.6ccb4.26563--
 
---===============0648965844==
+--===============0309340243==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0648965844==--
+--===============0309340243==--
