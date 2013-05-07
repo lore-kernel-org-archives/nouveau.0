@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64304] Graphical artifacts in 3D applications
-Date: Tue, 07 May 2013 06:06:55 +0000
-Message-ID: <bug-64304-8800-Mec9OFpobF@http.bugs.freedesktop.org/>
-References: <bug-64304-8800@http.bugs.freedesktop.org/>
+From: Michael Weirauch <michael.weirauch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: fdo-git build broken as of 2013-05-07?
+Date: Tue, 7 May 2013 10:53:32 +0200
+Message-ID: <CAMpzoDACw2z26vNhZQ4T6WS3xqY+7xypOumJ-fTuLWwLDock2w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1056351473=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64304-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,81 +18,14 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1056351473==
-Content-Type: multipart/alternative; boundary="1367906815.bCC31470.22972"; charset="us-ascii"
-
-
---1367906815.bCC31470.22972
-Date: Tue, 7 May 2013 06:06:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=64304
-
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #78961|text/plain                  |image/png
-          mime type|                            |
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1367906815.bCC31470.22972
-Date: Tue, 7 May 2013 06:06:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Graphical artifacts in 3D applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64304">bug 64304</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #78961 mime type</td>
-           <td>text/plain
-           </td>
-           <td>image/png
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1367906815.bCC31470.22972--
-
---===============1056351473==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1056351473==--
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9lbmdpbmUvZGV2aWNlL252ZTAuYzogSW4gZnVu
+Y3Rpb24g4oCYbnZlMF9pZGVudGlmeeKAmToKZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9l
+bmdpbmUvZGV2aWNlL252ZTAuYzoxNTI6NDM6IGVycm9yOgrigJhudmMwX2RldmluaXRfb2NsYXNz
+4oCZIHVuZGVjbGFyZWQgKGZpcnN0IHVzZSBpbiB0aGlzIGZ1bmN0aW9uKQpkcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9jb3JlL2VuZ2luZS9kZXZpY2UvbnZlMC5jOjE1Mjo0Mzogbm90ZTogZWFjaAp1
+bmRlY2xhcmVkIGlkZW50aWZpZXIgaXMgcmVwb3J0ZWQgb25seSBvbmNlIGZvciBlYWNoIGZ1bmN0
+aW9uIGl0CmFwcGVhcnMgaW4KClRoZXJlJ3Mgbm8gc3VjaCBvYmplY3QgbnZjMF9kZXZpbml0X29j
+bGFzcy4gbnY1MF9kZXZpbml0X29jbGFzcyBtZWFudCBwZXJoYXBzPwoKTWljaGFlbApfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
+bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
