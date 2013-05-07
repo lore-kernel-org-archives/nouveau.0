@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
-Date: Tue, 07 May 2013 16:55:43 +0000
-Message-ID: <bug-64323-8800-lmbQ7m28Tc@http.bugs.freedesktop.org/>
-References: <bug-64323-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57350] [nouveau,
+ linux-3.7-rc] Broken cursor and kernel log swamped with trapped
+ reads/writes from BAR/PFIFO_READ/FB
+Date: Tue, 07 May 2013 19:20:36 +0000
+Message-ID: <bug-57350-8800-U8pmamdEi0@http.bugs.freedesktop.org/>
+References: <bug-57350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0094622544=="
+Content-Type: multipart/mixed; boundary="===============0587608205=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,38 +22,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0094622544==
-Content-Type: multipart/alternative; boundary="1367945743.feab0.24071"; charset="us-ascii"
+--===============0587608205==
+Content-Type: multipart/alternative; boundary="1367954436.7A15c7A4.31299"; charset="us-ascii"
 
 
---1367945743.feab0.24071
-Date: Tue, 7 May 2013 16:55:43 +0000
+--1367954436.7A15c7A4.31299
+Date: Tue, 7 May 2013 19:20:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64323
+https://bugs.freedesktop.org/show_bug.cgi?id=57350
 
---- Comment #1 from Bryan Cain <bryancain3+fdo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Here is a much smaller (40 MB bz2'd, 74 MB uncompressed) trace that
-demonstrates the regression in the loading and title screen of Portal:
-http://plombofiles.pbworks.com/f/portal.trace.bz2
-
-On the loading screen, the "Loading..." text in the bottom right corner is not
-shown after the regression:
-http://plombofiles.pbworks.com/f/loading_bad.png
-http://plombofiles.pbworks.com/f/loading_good.png
-
-On the title screen, several frames have significant rendering artifacts after
-the regression:
-http://plombofiles.pbworks.com/f/title_bad.png
-http://plombofiles.pbworks.com/f/title_good.png
+--- Comment #32 from alzeih-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Still broken for me on kernel 3.8.11-1 and xf86-video-nouveau 1.0.7-1 with the
+GeForce GT 330M.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1367945743.feab0.24071
-Date: Tue, 7 May 2013 16:55:43 +0000
+--1367954436.7A15c7A4.31299
+Date: Tue, 7 May 2013 19:20:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,27 +55,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c1">Comment # 1</a>
+   title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350#c32">Comment # 32</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
-              from <span class="vcard"><a class="email" href="mailto:bryancain3+fdo&#64;gmail.com" title="Bryan Cain &lt;bryancain3+fdo&#64;gmail.com&gt;"> <span class="fn">Bryan Cain</span></a>
+   title="NEW --- - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350">bug 57350</a>
+              from <span class="vcard"><a class="email" href="mailto:alzeih&#64;gmail.com" title="alzeih&#64;gmail.com">alzeih&#64;gmail.com</a>
 </span></b>
-        <pre>Here is a much smaller (40 MB bz2'd, 74 MB uncompressed) trace that
-demonstrates the regression in the loading and title screen of Portal:
-<a href="http://plombofiles.pbworks.com/f/portal.trace.bz2">http://plombofiles.pbworks.com/f/portal.trace.bz2</a>
-
-On the loading screen, the &quot;Loading...&quot; text in the bottom right corner is not
-shown after the regression:
-<a href="http://plombofiles.pbworks.com/f/loading_bad.png">http://plombofiles.pbworks.com/f/loading_bad.png</a>
-<a href="http://plombofiles.pbworks.com/f/loading_good.png">http://plombofiles.pbworks.com/f/loading_good.png</a>
-
-On the title screen, several frames have significant rendering artifacts after
-the regression:
-<a href="http://plombofiles.pbworks.com/f/title_bad.png">http://plombofiles.pbworks.com/f/title_bad.png</a>
-<a href="http://plombofiles.pbworks.com/f/title_good.png">http://plombofiles.pbworks.com/f/title_good.png</a></pre>
+        <pre>Still broken for me on kernel 3.8.11-1 and xf86-video-nouveau 1.0.7-1 with the
+GeForce GT 330M.</pre>
         </div>
       </p>
       <hr>
@@ -96,9 +76,9 @@ the regression:
     </body>
 </html>
 
---1367945743.feab0.24071--
+--1367954436.7A15c7A4.31299--
 
---===============0094622544==
+--===============0587608205==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -109,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0094622544==--
+--===============0587608205==--
