@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64304] Graphical artifacts in 3D applications
-Date: Tue, 07 May 2013 02:55:13 +0000
-Message-ID: <bug-64304-8800-RKN0KRIF0M@http.bugs.freedesktop.org/>
+Date: Tue, 07 May 2013 06:06:55 +0000
+Message-ID: <bug-64304-8800-Mec9OFpobF@http.bugs.freedesktop.org/>
 References: <bug-64304-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1090436392=="
+Content-Type: multipart/mixed; boundary="===============1056351473=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64304-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,26 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1090436392==
-Content-Type: multipart/alternative; boundary="1367895312.5EaFB0.29013"; charset="us-ascii"
+--===============1056351473==
+Content-Type: multipart/alternative; boundary="1367906815.bCC31470.22972"; charset="us-ascii"
 
 
---1367895312.5EaFB0.29013
-Date: Tue, 7 May 2013 02:55:12 +0000
+--1367906815.bCC31470.22972
+Date: Tue, 7 May 2013 06:06:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=64304
 
---- Comment #1 from xpaulramundox-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Does not occur with LIBGL_ALWAYS_SOFTWARE=1 flag
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #78961|text/plain                  |image/png
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1367895312.5EaFB0.29013
-Date: Tue, 7 May 2013 02:55:12 +0000
+--1367906815.bCC31470.22972
+Date: Tue, 7 May 2013 06:06:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -47,21 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Graphical artifacts in 3D applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64304#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Graphical artifacts in 3D applications"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64304">bug 64304</a>
-              from <span class="vcard"><a class="email" href="mailto:xpaulramundox&#64;gmail.com" title="xpaulramundox&#64;gmail.com">xpaulramundox&#64;gmail.com</a>
-</span></b>
-        <pre>Does not occur with LIBGL_ALWAYS_SOFTWARE=1 flag</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #78961 mime type</td>
+           <td>text/plain
+           </td>
+           <td>image/png
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -72,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1367895312.5EaFB0.29013--
+--1367906815.bCC31470.22972--
 
---===============1090436392==
+--===============1056351473==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -85,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1090436392==--
+--===============1056351473==--
