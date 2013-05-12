@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62914] ZaphodHeads doesn't work after upgrading to
-	xorg 1.14
-Date: Wed, 08 May 2013 17:37:02 +0000
-Message-ID: <bug-62914-8800-RVQZp0b0bM@http.bugs.freedesktop.org/>
-References: <bug-62914-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64488] New: 3.10.0-rc1: WARNING: at
+ drivers/gpu/drm/drm_crtc.c:84 drm_fb_helper_restore_fbdev_mode+0x10/0x40()
+Date: Sun, 12 May 2013 10:15:30 +0000
+Message-ID: <bug-64488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0032461654=="
+Content-Type: multipart/mixed; boundary="===============1464654562=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62914-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,49 +19,62 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0032461654==
-Content-Type: multipart/alternative; boundary="1368034622.DB3301.2832"; charset="us-ascii"
+--===============1464654562==
+Content-Type: multipart/alternative; boundary="1368353730.AfEB11.15856"; charset="us-ascii"
 
 
---1368034622.DB3301.2832
-Date: Wed, 8 May 2013 17:37:02 +0000
+--1368353730.AfEB11.15856
+Date: Sun, 12 May 2013 10:15:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62914
+https://bugs.freedesktop.org/show_bug.cgi?id=64488
 
---- Comment #9 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Can reproduce the issue but there is no "good" combination on my system, i.e.
-any combination of 
+          Priority: medium
+            Bug ID: 64488
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: 3.10.0-rc1: WARNING: at drivers/gpu/drm/drm_crtc.c:84
+                    drm_fb_helper_restore_fbdev_mode+0x10/0x40()
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86 (IA32)
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
 
-xf86-video-nouveau -> 1.0.6-1  1.0.7-1
-xorg-server -> 1.13.2.901-1  1.14.0-2
+Created attachment 79192
+  --> https://bugs.freedesktop.org/attachment.cgi?id=79192&action=edit
+Last DRM warning (typed over from a photo). Note the tainted flags(!)
 
-produces "Failed to set drm interface version"
+Since a few cycles, it seems that nouveau is preventing the kernel from
+correctly displaying OOPS, BUGS and Warnings etc etc.
 
+This is because the DRM system seems to provide warnings each time the kernel
+kills X and moves to console to display these messages.
 
-In terms of "how to bisect" the links provided are quite nice
-Although I would suggest to confirm which package exactly caused the issue,
-before jumping into blind bisection
+Today, I enabled some debug options and captured the last WARNING by this
+system. NOTE: The oops is typed over from a camera photo, so it might not be
+entirely accurate.
 
-1. Revert xorg-server to previous version (1.13.2.901-1)
-2. Keep xf86-video-nouveau 1.0.7-1, but rebuild it on top of the old/good
-xserver
+This is an 32bit UP system with the notorious(?) Geforce FX5200 (NV34). I
+attached the Warning as an attachment.
 
-and vice versa
+I modified rsyslog to log directly to disk, hoping to capture more information.
+When that happens, I will post more.
 
-Note: to avoid rebuilding the input drivers have SSH handy and observe Xorg.log
-for the offending lines
-
-Note: if unsure about the specific build options, patches and others take a
-look at the distro packaging system
+I think this is also a regression, usually I got errors about page faults and
+stuff.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1368034622.DB3301.2832
-Date: Wed, 8 May 2013 17:37:02 +0000
+--1368353730.AfEB11.15856
+Date: Sun, 12 May 2013 10:15:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,43 +82,116 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - 3.10.0-rc1: WARNING: at drivers/gpu/drm/drm_crtc.c:84 drm_fb_helper_restore_fbdev_mode+0x10/0x40()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64488">64488</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>3.10.0-rc1: WARNING: at drivers/gpu/drm/drm_crtc.c:84 drm_fb_helper_restore_fbdev_mode+0x10/0x40()
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>ronald645&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914">bug 62914</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>Can reproduce the issue but there is no &quot;good&quot; combination on my system, i.e.
-any combination of 
+        <pre>Created <span class=""><a href="attachment.cgi?id=79192" name="attach_79192" title="Last DRM warning (typed over from a photo). Note the tainted flags(!)">attachment 79192</a> <a href="attachment.cgi?id=79192&amp;action=edit" title="Last DRM warning (typed over from a photo). Note the tainted flags(!)">[details]</a></span>
+Last DRM warning (typed over from a photo). Note the tainted flags(!)
 
-xf86-video-nouveau -&gt; 1.0.6-1  1.0.7-1
-xorg-server -&gt; 1.13.2.901-1  1.14.0-2
+Since a few cycles, it seems that nouveau is preventing the kernel from
+correctly displaying OOPS, BUGS and Warnings etc etc.
 
-produces &quot;Failed to set drm interface version&quot;
+This is because the DRM system seems to provide warnings each time the kernel
+kills X and moves to console to display these messages.
 
+Today, I enabled some debug options and captured the last WARNING by this
+system. NOTE: The oops is typed over from a camera photo, so it might not be
+entirely accurate.
 
-In terms of &quot;how to bisect&quot; the links provided are quite nice
-Although I would suggest to confirm which package exactly caused the issue,
-before jumping into blind bisection
+This is an 32bit UP system with the notorious(?) Geforce FX5200 (NV34). I
+attached the Warning as an attachment.
 
-1. Revert xorg-server to previous version (1.13.2.901-1)
-2. Keep xf86-video-nouveau 1.0.7-1, but rebuild it on top of the old/good
-xserver
+I modified rsyslog to log directly to disk, hoping to capture more information.
+When that happens, I will post more.
 
-and vice versa
-
-Note: to avoid rebuilding the input drivers have SSH handy and observe Xorg.log
-for the offending lines
-
-Note: if unsure about the specific build options, patches and others take a
-look at the distro packaging system</pre>
+I think this is also a regression, usually I got errors about page faults and
+stuff.</pre>
         </div>
       </p>
       <hr>
@@ -119,9 +203,9 @@ look at the distro packaging system</pre>
     </body>
 </html>
 
---1368034622.DB3301.2832--
+--1368353730.AfEB11.15856--
 
---===============0032461654==
+--===============1464654562==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +216,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0032461654==--
+--===============1464654562==--
