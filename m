@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62914] ZaphodHeads doesn't work after upgrading to
-	xorg 1.14
-Date: Mon, 13 May 2013 10:09:57 +0000
-Message-ID: <bug-62914-8800-M2P6wW1OZY@http.bugs.freedesktop.org/>
-References: <bug-62914-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64488] 3.10.0-rc1: WARNING: at
+ drivers/gpu/drm/drm_crtc.c:84 drm_fb_helper_restore_fbdev_mode+0x10/0x40()
+Date: Mon, 13 May 2013 10:37:07 +0000
+Message-ID: <bug-64488-8800-w81NwM4pHY@http.bugs.freedesktop.org/>
+References: <bug-64488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0486053674=="
+Content-Type: multipart/mixed; boundary="===============0020244014=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62914-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-64488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0486053674==
-Content-Type: multipart/alternative; boundary="1368439797.285A1.25645"; charset="us-ascii"
+--===============0020244014==
+Content-Type: multipart/alternative; boundary="1368441427.ca3CBA82.31496"; charset="us-ascii"
 
 
---1368439797.285A1.25645
-Date: Mon, 13 May 2013 10:09:57 +0000
+--1368441427.ca3CBA82.31496
+Date: Mon, 13 May 2013 10:37:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62914
+https://bugs.freedesktop.org/show_bug.cgi?id=64488
 
 Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
@@ -39,30 +39,17 @@ Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |FIXED
 
---- Comment #10 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Dave pushed a fix for the issue
+--- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Glad it helps
 
-
-commit d3b52efe959f255784f5ead16d7276ca0fb4cdb1
-Author: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Date:   Mon May 13 13:35:12 2013 +1000
-
-    nouveau: attempt to fix zaphod since dri1 code removal
-
-    j_v on #nouveau bisected b1a630b48210d6a3c44994fce1b73273000ace5c has
-    breaking zaphod, on review it was trying to open the drm fd a second time
-    which was unnecessary.
-
-    Avoid the problem by storing the nv fd in an entity and have share it
-between
-    the two scrn info recs.
+The patch has been queued for 3.10 and the stable branches
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1368439797.285A1.25645
-Date: Mon, 13 May 2013 10:09:57 +0000
+--1368441427.ca3CBA82.31496
+Date: Mon, 13 May 2013 10:37:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,8 +61,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914">bug 62914</a>
+   title="RESOLVED FIXED - 3.10.0-rc1: WARNING: at drivers/gpu/drm/drm_crtc.c:84 drm_fb_helper_restore_fbdev_mode+0x10/0x40()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64488">bug 64488</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -103,30 +90,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914#c10">Comment # 10</a>
+   title="RESOLVED FIXED - 3.10.0-rc1: WARNING: at drivers/gpu/drm/drm_crtc.c:84 drm_fb_helper_restore_fbdev_mode+0x10/0x40()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64488#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914">bug 62914</a>
+   title="RESOLVED FIXED - 3.10.0-rc1: WARNING: at drivers/gpu/drm/drm_crtc.c:84 drm_fb_helper_restore_fbdev_mode+0x10/0x40()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64488">bug 64488</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Dave pushed a fix for the issue
+        <pre>Glad it helps
 
-
-commit d3b52efe959f255784f5ead16d7276ca0fb4cdb1
-Author: Dave Airlie &lt;<a href="mailto:airlied&#64;redhat.com">airlied&#64;redhat.com</a>&gt;
-Date:   Mon May 13 13:35:12 2013 +1000
-
-    nouveau: attempt to fix zaphod since dri1 code removal
-
-    j_v on #nouveau bisected b1a630b48210d6a3c44994fce1b73273000ace5c has
-    breaking zaphod, on review it was trying to open the drm fd a second time
-    which was unnecessary.
-
-    Avoid the problem by storing the nv fd in an entity and have share it
-between
-    the two scrn info recs.</pre>
+The patch has been queued for 3.10 and the stable branches</pre>
         </div>
       </p>
       <hr>
@@ -138,9 +112,9 @@ between
     </body>
 </html>
 
---1368439797.285A1.25645--
+--1368441427.ca3CBA82.31496--
 
---===============0486053674==
+--===============0020244014==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -151,4 +125,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0486053674==--
+--===============0020244014==--
