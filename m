@@ -1,14 +1,13 @@
-From: Michael Weirauch <michael.weirauch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: fdo-git build broken as of 2013-05-07?
-Date: Tue, 14 May 2013 11:00:38 +0200
-Message-ID: <CAMpzoDA3RYUbRpfZfzX4Lwukpw+YbRDseHSHMHcHC6f=RTXMaQ@mail.gmail.com>
-References: <CAMpzoDACw2z26vNhZQ4T6WS3xqY+7xypOumJ-fTuLWwLDock2w@mail.gmail.com>
-	<518A64F9.6090408@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 62914] ZaphodHeads doesn't work after upgrading to
+	xorg 1.14
+Date: Tue, 14 May 2013 10:14:09 +0000
+Message-ID: <bug-62914-8800-61k6JPNn7b@http.bugs.freedesktop.org/>
+References: <bug-62914-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0814599711=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <518A64F9.6090408-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-62914-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +20,84 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-2013/5/8 Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>:
-> Although I believe it's a nice thing to have an occasional silly
-> "breakage" like that to see how many people use nouveau-git and how they
-> are coping with it ^_^
 
-Let's see if it is just my setup since reset to origin/master with
-3.10-rc1 or another "silly \"breakage\"":
+--===============0814599711==
+Content-Type: multipart/alternative; boundary="1368526449.Eee5bc2E1.1961"; charset="us-ascii"
 
-$ make -j8 O=../generated-test/ binrpm-pkg
-[...]
-  BUILD   arch/x86/boot/bzImage
-Setup is 17164 bytes (padded to 17408 bytes).
-System is 4531 kB
-CRC c0c9904f
-Kernel: arch/x86/boot/bzImage is ready  (#3)
-  MODPOST 2477 modules
-/bin/sh /store/data/devel/openSUSE/nouveau/linux-2.6/scripts/package/mkspec
-prebuilt > /store/data/devel/openSUSE/nouveau/generated-test/binkernel.spec
-/bin/sh /store/data/devel/openSUSE/nouveau/linux-2.6/scripts/mkversion
-> /store/data/devel/openSUSE/nouveau/generated-test/.tmp_version
-mv -f /store/data/devel/openSUSE/nouveau/generated-test/.tmp_version
-/store/data/devel/openSUSE/nouveau/generated-test/.version
-rpmbuild  --define "_builddir
-/store/data/devel/openSUSE/nouveau/generated-test" --target \
-x86_64 -bb FORCE
-Building target platforms: x86_64
-Building for target x86_64
-error: failed to stat
-/store/data/devel/openSUSE/nouveau/generated-test/FORCE: Datei oder
-Verzeichnis nicht gefunden
-make[2]: *** [binrpm-pkg] Fehler 1
-make[1]: *** [binrpm-pkg] Fehler 2
-make: *** [sub-make] Fehler 2
 
-Can somebody reproduce?
+--1368526449.Eee5bc2E1.1961
+Date: Tue, 14 May 2013 10:14:09 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=62914
+
+--- Comment #12 from MasterPrenium-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Dear guys,
+
+I had the same issue on an NV80 GPU card.
+
+I've just tried your patch, it's a little bit better (I can see this kind
+[  4957.508] (II) NOUVEAU(1): Output DVI-I-2 connected)
+
+Which is great and better than before, but now I've a segfault ...
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1368526449.Eee5bc2E1.1961
+Date: Tue, 14 May 2013 10:14:09 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - ZaphodHeads doesn't work after upgrading to xorg 1.14"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914#c12">Comment # 12</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - ZaphodHeads doesn't work after upgrading to xorg 1.14"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914">bug 62914</a>
+              from <span class="vcard"><a class="email" href="mailto:MasterPrenium&#64;gmail.com" title="MasterPrenium&#64;gmail.com">MasterPrenium&#64;gmail.com</a>
+</span></b>
+        <pre>Dear guys,
+
+I had the same issue on an NV80 GPU card.
+
+I've just tried your patch, it's a little bit better (I can see this kind
+[  4957.508] (II) NOUVEAU(1): Output DVI-I-2 connected)
+
+Which is great and better than before, but now I've a segfault ...</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1368526449.Eee5bc2E1.1961--
+
+--===============0814599711==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0814599711==--
