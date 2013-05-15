@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64645] Massive corruption
-Date: Wed, 15 May 2013 19:01:28 +0000
-Message-ID: <bug-64645-8800-SgkV037wdh@http.bugs.freedesktop.org/>
+Date: Wed, 15 May 2013 19:02:38 +0000
+Message-ID: <bug-64645-8800-Rnnjo1yFyp@http.bugs.freedesktop.org/>
 References: <bug-64645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0776999292=="
+Content-Type: multipart/mixed; boundary="===============0182372026=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64645-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,27 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0776999292==
-Content-Type: multipart/alternative; boundary="1368644487.eFc111.32653"; charset="us-ascii"
+--===============0182372026==
+Content-Type: multipart/alternative; boundary="1368644558.0Ddef5e1.413"; charset="us-ascii"
 
 
---1368644487.eFc111.32653
-Date: Wed, 15 May 2013 19:01:27 +0000
+--1368644558.0Ddef5e1.413
+Date: Wed, 15 May 2013 19:02:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=64645
 
---- Comment #2 from roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I  get graphics corruption in 30 minutes by default
-2 days if I do echo "LIBGL_ALWAYS_SOFTWARE=1" >> /etc/environment
+--- Comment #3 from roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+First sign of corruption are like this:
+-iceveasel display two image A and B
+-then corruption show B instead of A and A instead of B
+-then you see the stuff I capture a few second after
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1368644487.eFc111.32653
-Date: Wed, 15 May 2013 19:01:27 +0000
+--1368644558.0Ddef5e1.413
+Date: Wed, 15 May 2013 19:02:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,15 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Massive corruption"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64645#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64645#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Massive corruption"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64645">bug 64645</a>
               from <span class="vcard"><a class="email" href="mailto:roucaries.bastien+bugs&#64;gmail.com" title="roucaries.bastien+bugs&#64;gmail.com">roucaries.bastien+bugs&#64;gmail.com</a>
 </span></b>
-        <pre>I  get graphics corruption in 30 minutes by default
-2 days if I do echo &quot;LIBGL_ALWAYS_SOFTWARE=1&quot; &gt;&gt; /etc/environment</pre>
+        <pre>First sign of corruption are like this:
+-iceveasel display two image A and B
+-then corruption show B instead of A and A instead of B
+-then you see the stuff I capture a few second after</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +78,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1368644487.eFc111.32653--
+--1368644558.0Ddef5e1.413--
 
---===============0776999292==
+--===============0182372026==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0776999292==--
+--===============0182372026==--
