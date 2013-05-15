@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
-Date: Wed, 15 May 2013 08:03:32 +0000
-Message-ID: <bug-35267-8800-adJOzAXCKk@http.bugs.freedesktop.org/>
-References: <bug-35267-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64645] Massive corruption
+Date: Wed, 15 May 2013 17:59:45 +0000
+Message-ID: <bug-64645-8800-opBuOQ1L4X@http.bugs.freedesktop.org/>
+References: <bug-64645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1891653165=="
+Content-Type: multipart/mixed; boundary="===============1852056450=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35267-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-64645-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1891653165==
-Content-Type: multipart/alternative; boundary="1368605012.b46a783.17938"; charset="us-ascii"
+--===============1852056450==
+Content-Type: multipart/alternative; boundary="1368640785.ec7D1.17346"; charset="us-ascii"
 
 
---1368605012.b46a783.17938
-Date: Wed, 15 May 2013 08:03:32 +0000
+--1368640785.ec7D1.17346
+Date: Wed, 15 May 2013 17:59:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35267
+https://bugs.freedesktop.org/show_bug.cgi?id=64645
 
---- Comment #19 from John <john.collaros-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 79328
-  --> https://bugs.freedesktop.org/attachment.cgi?id=79328&action=edit
-Output from various commands
+--- Comment #1 from roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 79358
+  --> https://bugs.freedesktop.org/attachment.cgi?id=79358&action=edit
+corript 2
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1368605012.b46a783.17938
-Date: Wed, 15 May 2013 08:03:32 +0000
+--1368640785.ec7D1.17346
+Date: Wed, 15 May 2013 17:59:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +54,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau fails to load BIOS on EFI boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=35267#c19">Comment # 19</a>
+   title="NEW --- - Massive corruption"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64645#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau fails to load BIOS on EFI boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=35267">bug 35267</a>
-              from <span class="vcard"><a class="email" href="mailto:john.collaros&#64;gmail.com" title="John &lt;john.collaros&#64;gmail.com&gt;"> <span class="fn">John</span></a>
+   title="NEW --- - Massive corruption"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64645">bug 64645</a>
+              from <span class="vcard"><a class="email" href="mailto:roucaries.bastien+bugs&#64;gmail.com" title="roucaries.bastien+bugs&#64;gmail.com">roucaries.bastien+bugs&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=79328" name="attach_79328" title="Output from various commands">attachment 79328</a> <a href="attachment.cgi?id=79328&amp;action=edit" title="Output from various commands">[details]</a></span>
-Output from various commands</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=79358" name="attach_79358" title="corript 2">attachment 79358</a> <a href="attachment.cgi?id=79358&amp;action=edit" title="corript 2">[details]</a></span>
+corript 2</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ Output from various commands</pre>
     </body>
 </html>
 
---1368605012.b46a783.17938--
+--1368640785.ec7D1.17346--
 
---===============1891653165==
+--===============1852056450==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1891653165==--
+--===============1852056450==--
