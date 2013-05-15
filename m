@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64645] Massive corruption
-Date: Wed, 15 May 2013 19:22:34 +0000
-Message-ID: <bug-64645-8800-l3R3plWywY@http.bugs.freedesktop.org/>
+Date: Wed, 15 May 2013 19:22:54 +0000
+Message-ID: <bug-64645-8800-uNritTPyjl@http.bugs.freedesktop.org/>
 References: <bug-64645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1160031922=="
+Content-Type: multipart/mixed; boundary="===============1079023045=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64645-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1160031922==
-Content-Type: multipart/alternative; boundary="1368645754.d7c5adC82.4127"; charset="us-ascii"
+--===============1079023045==
+Content-Type: multipart/alternative; boundary="1368645774.5cBfE5.4127"; charset="us-ascii"
 
 
---1368645754.d7c5adC82.4127
-Date: Wed, 15 May 2013 19:22:34 +0000
+--1368645774.5cBfE5.4127
+Date: Wed, 15 May 2013 19:22:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,15 +35,15 @@ Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #79357|text/plain                  |image/png
+  Attachment #79358|text/plain                  |image/png
           mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1368645754.d7c5adC82.4127
-Date: Wed, 15 May 2013 19:22:34 +0000
+--1368645774.5cBfE5.4127
+Date: Wed, 15 May 2013 19:22:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,7 +66,7 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #79357 mime type</td>
+           <td style="text-align:right;">Attachment #79358 mime type</td>
            <td>text/plain
            </td>
            <td>image/png
@@ -83,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1368645754.d7c5adC82.4127--
+--1368645774.5cBfE5.4127--
 
---===============1160031922==
+--===============1079023045==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1160031922==--
+--===============1079023045==--
