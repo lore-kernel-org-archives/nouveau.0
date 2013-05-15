@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64645] Massive corruption
+Subject: [Bug 61953] arbitrary memory access corrupts kernel
+ memory, eventually crashing the kernel
 Date: Wed, 15 May 2013 19:34:15 +0000
-Message-ID: <bug-64645-8800-HYvxKFqv2c@http.bugs.freedesktop.org/>
-References: <bug-64645-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-61953-8800-I5vA5wOom9@http.bugs.freedesktop.org/>
+References: <bug-61953-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0115232810=="
+Content-Type: multipart/mixed; boundary="===============0554908371=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64645-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-61953-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,42 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0115232810==
-Content-Type: multipart/alternative; boundary="1368646455.AE36f382.5602"; charset="us-ascii"
+--===============0554908371==
+Content-Type: multipart/alternative; boundary="1368646455.4B2A7BcD6.5602"; charset="us-ascii"
 
 
---1368646455.AE36f382.5602
+--1368646455.4B2A7BcD6.5602
 Date: Wed, 15 May 2013 19:34:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64645
+https://bugs.freedesktop.org/show_bug.cgi?id=61953
 
 Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         QA Contact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |
            See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=61953
-            Product|xorg                        |Mesa
-          Component|Driver/nouveau              |Drivers/DRI/nouveau
-
---- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Mesa 8.0 and earlier are build against the old and experimental libdrm
-
-Please update to mesa 9.0 (or later) and attach your updated logs [1]
-
-Cheers
-Emil
-
-[1 ]http://nouveau.freedesktop.org/wiki/Bugs/
+                   |                            |g/show_bug.cgi?id=64645
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1368646455.AE36f382.5602
+--1368646455.4B2A7BcD6.5602
 Date: Wed, 15 May 2013 19:34:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -68,8 +56,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Massive corruption"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64645">bug 64645</a>
+   title="NEW --- - arbitrary memory access corrupts kernel memory, eventually crashing the kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61953">bug 61953</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -79,59 +67,14 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">QA Contact</td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-           <td>
-               &nbsp;
-           </td>
-         </tr>
-
-         <tr>
            <td style="text-align:right;">See Also</td>
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=61953
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Product</td>
-           <td>xorg
-           </td>
-           <td>Mesa
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Driver/nouveau
-           </td>
-           <td>Drivers/DRI/nouveau
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=64645
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Massive corruption"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64645#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Massive corruption"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64645">bug 64645</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>Mesa 8.0 and earlier are build against the old and experimental libdrm
-
-Please update to mesa 9.0 (or later) and attach your updated logs [1]
-
-Cheers
-Emil
-
-[1 ]<a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a></pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -142,9 +85,9 @@ Emil
     </body>
 </html>
 
---1368646455.AE36f382.5602--
+--1368646455.4B2A7BcD6.5602--
 
---===============0115232810==
+--===============0554908371==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -155,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0115232810==--
+--===============0554908371==--
