@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64645] Massive corruption
-Date: Wed, 15 May 2013 18:01:54 +0000
-Message-ID: <bug-64645-8800-NQufYnxv3q@http.bugs.freedesktop.org/>
+Date: Wed, 15 May 2013 19:01:28 +0000
+Message-ID: <bug-64645-8800-SgkV037wdh@http.bugs.freedesktop.org/>
 References: <bug-64645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1266898088=="
+Content-Type: multipart/mixed; boundary="===============0776999292=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64645-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,31 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1266898088==
-Content-Type: multipart/alternative; boundary="1368640913.7c0C1.17803"; charset="us-ascii"
+--===============0776999292==
+Content-Type: multipart/alternative; boundary="1368644487.eFc111.32653"; charset="us-ascii"
 
 
---1368640913.7c0C1.17803
-Date: Wed, 15 May 2013 18:01:53 +0000
+--1368644487.eFc111.32653
+Date: Wed, 15 May 2013 19:01:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=64645
 
-roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                URL|                            |http://bugs.debian.org/cgi-
-                   |                            |bin/bugreport.cgi?bug=70706
-                   |                            |8
+--- Comment #2 from roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I  get graphics corruption in 30 minutes by default
+2 days if I do echo "LIBGL_ALWAYS_SOFTWARE=1" >> /etc/environment
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1368640913.7c0C1.17803
-Date: Wed, 15 May 2013 18:01:53 +0000
+--1368644487.eFc111.32653
+Date: Wed, 15 May 2013 19:01:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,29 +48,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:roucaries.bastien+bugs&#64;gmail.com" title="roucaries.bastien+bugs&#64;gmail.com">roucaries.bastien+bugs&#64;gmail.com</a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Massive corruption"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64645#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Massive corruption"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64645">bug 64645</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">URL</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=707068
-           </td>
-         </tr></table>
-      <p>
+              from <span class="vcard"><a class="email" href="mailto:roucaries.bastien+bugs&#64;gmail.com" title="roucaries.bastien+bugs&#64;gmail.com">roucaries.bastien+bugs&#64;gmail.com</a>
+</span></b>
+        <pre>I  get graphics corruption in 30 minutes by default
+2 days if I do echo &quot;LIBGL_ALWAYS_SOFTWARE=1&quot; &gt;&gt; /etc/environment</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +74,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1368640913.7c0C1.17803--
+--1368644487.eFc111.32653--
 
---===============1266898088==
+--===============0776999292==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1266898088==--
+--===============0776999292==--
