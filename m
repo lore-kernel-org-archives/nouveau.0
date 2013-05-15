@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64645] Massive corruption
-Date: Wed, 15 May 2013 17:59:45 +0000
-Message-ID: <bug-64645-8800-opBuOQ1L4X@http.bugs.freedesktop.org/>
+Date: Wed, 15 May 2013 18:01:54 +0000
+Message-ID: <bug-64645-8800-NQufYnxv3q@http.bugs.freedesktop.org/>
 References: <bug-64645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1852056450=="
+Content-Type: multipart/mixed; boundary="===============1266898088=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64645-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1852056450==
-Content-Type: multipart/alternative; boundary="1368640785.ec7D1.17346"; charset="us-ascii"
+--===============1266898088==
+Content-Type: multipart/alternative; boundary="1368640913.7c0C1.17803"; charset="us-ascii"
 
 
---1368640785.ec7D1.17346
-Date: Wed, 15 May 2013 17:59:45 +0000
+--1368640913.7c0C1.17803
+Date: Wed, 15 May 2013 18:01:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=64645
 
---- Comment #1 from roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 79358
-  --> https://bugs.freedesktop.org/attachment.cgi?id=79358&action=edit
-corript 2
+roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                URL|                            |http://bugs.debian.org/cgi-
+                   |                            |bin/bugreport.cgi?bug=70706
+                   |                            |8
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1368640785.ec7D1.17346
-Date: Wed, 15 May 2013 17:59:45 +0000
+--1368640913.7c0C1.17803
+Date: Wed, 15 May 2013 18:01:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,22 +52,29 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Massive corruption"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64645#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:roucaries.bastien+bugs&#64;gmail.com" title="roucaries.bastien+bugs&#64;gmail.com">roucaries.bastien+bugs&#64;gmail.com</a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Massive corruption"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64645">bug 64645</a>
-              from <span class="vcard"><a class="email" href="mailto:roucaries.bastien+bugs&#64;gmail.com" title="roucaries.bastien+bugs&#64;gmail.com">roucaries.bastien+bugs&#64;gmail.com</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=79358" name="attach_79358" title="corript 2">attachment 79358</a> <a href="attachment.cgi?id=79358&amp;action=edit" title="corript 2">[details]</a></span>
-corript 2</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">URL</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=707068
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -75,9 +85,9 @@ corript 2</pre>
     </body>
 </html>
 
---1368640785.ec7D1.17346--
+--1368640913.7c0C1.17803--
 
---===============1852056450==
+--===============1266898088==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1852056450==--
+--===============1266898088==--
