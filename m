@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
-Date: Wed, 15 May 2013 08:02:17 +0000
-Message-ID: <bug-35267-8800-X2vqieCWG2@http.bugs.freedesktop.org/>
+Date: Wed, 15 May 2013 08:03:32 +0000
+Message-ID: <bug-35267-8800-adJOzAXCKk@http.bugs.freedesktop.org/>
 References: <bug-35267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0116268752=="
+Content-Type: multipart/mixed; boundary="===============1891653165=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-35267-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0116268752==
-Content-Type: multipart/alternative; boundary="1368604938.D6D8C63.17787"; charset="us-ascii"
+--===============1891653165==
+Content-Type: multipart/alternative; boundary="1368605012.b46a783.17938"; charset="us-ascii"
 
 
---1368604938.D6D8C63.17787
-Date: Wed, 15 May 2013 08:02:18 +0000
+--1368605012.b46a783.17938
+Date: Wed, 15 May 2013 08:03:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35267
 
---- Comment #18 from John <john.collaros-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 79327
-  --> https://bugs.freedesktop.org/attachment.cgi?id=79327&action=edit
-X.org.log for non-working system (using nvidia 319.17)
+--- Comment #19 from John <john.collaros-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 79328
+  --> https://bugs.freedesktop.org/attachment.cgi?id=79328&action=edit
+Output from various commands
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1368604938.D6D8C63.17787
-Date: Wed, 15 May 2013 08:02:18 +0000
+--1368605012.b46a783.17938
+Date: Wed, 15 May 2013 08:03:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau fails to load BIOS on EFI boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=35267#c18">Comment # 18</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=35267#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau fails to load BIOS on EFI boot."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=35267">bug 35267</a>
               from <span class="vcard"><a class="email" href="mailto:john.collaros&#64;gmail.com" title="John &lt;john.collaros&#64;gmail.com&gt;"> <span class="fn">John</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=79327" name="attach_79327" title="X.org.log for non-working system (using nvidia 319.17)">attachment 79327</a> <a href="attachment.cgi?id=79327&amp;action=edit" title="X.org.log for non-working system (using nvidia 319.17)">[details]</a></span>
-X.org.log for non-working system (using nvidia 319.17)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=79328" name="attach_79328" title="Output from various commands">attachment 79328</a> <a href="attachment.cgi?id=79328&amp;action=edit" title="Output from various commands">[details]</a></span>
+Output from various commands</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ X.org.log for non-working system (using nvidia 319.17)</pre>
     </body>
 </html>
 
---1368604938.D6D8C63.17787--
+--1368605012.b46a783.17938--
 
---===============0116268752==
+--===============1891653165==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0116268752==--
+--===============1891653165==--
