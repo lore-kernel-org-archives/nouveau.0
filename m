@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64772] New: nouveau GF108 kernel errors and graphics
- corruption when enabling second output
-Date: Sun, 19 May 2013 20:42:09 +0000
-Message-ID: <bug-64772-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64774] New: nouveau GF108 kernel crash in optimus
+ mode when enabling external display output
+Date: Sun, 19 May 2013 20:54:37 +0000
+Message-ID: <bug-64774-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1779044023=="
+Content-Type: multipart/mixed; boundary="===============1606880315=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,24 +19,24 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1779044023==
-Content-Type: multipart/alternative; boundary="1368996130.fA151.3831"; charset="us-ascii"
+--===============1606880315==
+Content-Type: multipart/alternative; boundary="1368996878.df2Afe1.5122"; charset="us-ascii"
 
 
---1368996130.fA151.3831
-Date: Sun, 19 May 2013 20:42:10 +0000
+--1368996878.df2Afe1.5122
+Date: Sun, 19 May 2013 20:54:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64772
+https://bugs.freedesktop.org/show_bug.cgi?id=64774
 
           Priority: medium
-            Bug ID: 64772
+            Bug ID: 64774
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: nouveau GF108 kernel errors and graphics corruption
-                    when enabling second output
+           Summary: nouveau GF108 kernel crash in optimus mode when
+                    enabling external display output
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
+          Severity: major
     Classification: Unclassified
                 OS: All
           Reporter: pasik-X3B1VOXEql0@public.gmane.org
@@ -46,74 +46,61 @@ https://bugs.freedesktop.org/show_bug.cgi?id=64772
          Component: Driver/nouveau
            Product: xorg
 
-Created attachment 79548
-  --> https://bugs.freedesktop.org/attachment.cgi?id=79548&action=edit
-nouveau errors, dmesg from Linux kernel 3.9.2
+Created attachment 79549
+  --> https://bugs.freedesktop.org/attachment.cgi?id=79549&action=edit
+dmesg Linux 3.8.11 nouveau optimus before the kernel crash
 
-I'm using Lenovo T430 laptop with intel/nvidia hybrid graphics, but optimus is
-disabled in BIOS, and only the Nvidia discreet GPU is enabled currently:
+I'm using Lenovo T430 laptop with intel+nvidia hybrid graphics, optimus is
+enabled in BIOS:
 
 $ lspci | grep VGA
+00:02.0 VGA compatible controller: Intel Corporation 3rd Gen Core processor
+Graphics Controller (rev 09)
 01:00.0 VGA compatible controller: NVIDIA Corporation GF108 [Quadro NVS 5400M]
 (rev a1)
-
-I boot up the laptop with only using the laptop internal LVDS panel, and when
-in X session, I connect DVI cable to the docking station. xrandr now correctly
-shows DP2 as connected, and when I enable the DVI display, I get these nouveau
-errors in the kernel dmesg:
-
-[  103.196252] nouveau  [   PLTCG][0000:01:00.0] LTC0_LTS0: 0x036f0040
-[  103.196257] nouveau  [   PLTCG][0000:01:00.0] LTC0_LTS1: 0x036f0040
-[  103.353160] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[  103.353163] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
-[  103.353923] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[  103.353925] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
-..
-..
-
-DVI monitor output actually gets enabled, and I can see the desktop there, but
-both the LVDS display and the DVI display are all messed up.
-
-For example moving a window around leaves traces of other window contents, and
-the background image gets replaced with all kinds of corrupted patterns, so
-graphics looks quite weird and corrupted on both displays.
-
-Switching back to only using the internal LVDS (disabling DVI/DP2 output) fixes
-the graphics corruptions.
 
 $ uname -a
 Linux localhost.localdomain 3.8.11-200.fc18.x86_64 #1 SMP Wed May 1 19:44:27
 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
 
-I also tried Linux kernel 3.9.2, and there I get exactly the same graphics
-corruption behaviour, but the kernel errors are slightly different:
+I boot up the system with only laptop internal LVDS active on intel gpu, and
+when in X session, I enable the second display on nouveau gpu connected to the
+dock DP2/DVI connector. 
+At this point the kernel crashes immediately.
 
-[   91.533612] nouveau  [   PLTCG][0000:01:00.0] LTC0_LTS0: 0x036f0040
-[   91.533618] nouveau  [   PLTCG][0000:01:00.0] LTC0_LTS1: 0x036f0040
-[   91.533856] nouveau E[    PBUS][0000:01:00.0] MMIO read of 0x00000000 FAULT
-at 0x141820 [ IBUS ]
-[  246.466283] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[  246.466287] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
-[  246.499229] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[  246.499232] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
+Screenshots of the kernel crash/stacktrace here:
+http://pasik.reaktio.net/nouveau/debug/nouveau-kernel-crash01.jpg
+http://pasik.reaktio.net/nouveau/debug/nouveau-kernel-crash02.jpg
 
+hand-written bits from the kernel crash:
 
-Dmesg from Linux 3.9.2 attached.
+Pid: 1208, comm: Xorg Not tainted 3.8.11-200.fc18.x86_64 #1 LENOVO
+2349H2G/2349H2G
+RIP: 0010:[<ffffffffa01abb7e>] [<ffffffffa01abb7e>] nvc0_vm_map_sg+0x8e/0x110
+[nouveau]
+RSP: 0018:ffff8803298357c8 EFLAGS: 00010206
+..
+Process Xorg (pid: 1208,..)
+..
+Call Trace:
+.. nouveau_vm_map_sg+0xc2/0x130 [nouveau]
+.. nouveau_vma_getmap.isra.11+0x68/0xa0 [nouveau]
+.. nouveau_bo_move_m2mf.isra.12+0x85/0x140 [nouveau]
+.. ? nouveau_vm_map_at+0x153/0x1c0 [nouveau]
+.. nouveau_bo_move+0xa5/0x400 [nouveau]
+.. ttm_bo_handle_move_mem+0x245/0x610 [ttm]
+
+More info from the screenshots above (also attached)..
+
+Kernel dmesg from before the crash attached.
+I also tried with Linux kernel 3.9.2 and there the system crashes hard aswell.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1368996130.fA151.3831
-Date: Sun, 19 May 2013 20:42:10 +0000
+--1368996878.df2Afe1.5122
+Date: Sun, 19 May 2013 20:54:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -132,8 +119,8 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau GF108 kernel errors and graphics corruption when enabling second output"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64772">64772</a>
+   title="NEW --- - nouveau GF108 kernel crash in optimus mode when enabling external display output"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64774">64774</a>
           </td>
         </tr>
 
@@ -145,7 +132,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Summary</th>
-          <td>nouveau GF108 kernel errors and graphics corruption when enabling second output
+          <td>nouveau GF108 kernel crash in optimus mode when enabling external display output
           </td>
         </tr>
 
@@ -157,7 +144,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Severity</th>
-          <td>normal
+          <td>major
           </td>
         </tr>
 
@@ -210,66 +197,53 @@ Content-Type: text/html; charset="UTF-8"
         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=79548" name="attach_79548" title="nouveau errors, dmesg from Linux kernel 3.9.2">attachment 79548</a> <a href="attachment.cgi?id=79548&amp;action=edit" title="nouveau errors, dmesg from Linux kernel 3.9.2">[details]</a></span>
-nouveau errors, dmesg from Linux kernel 3.9.2
+        <pre>Created <span class=""><a href="attachment.cgi?id=79549" name="attach_79549" title="dmesg Linux 3.8.11 nouveau optimus before the kernel crash">attachment 79549</a> <a href="attachment.cgi?id=79549&amp;action=edit" title="dmesg Linux 3.8.11 nouveau optimus before the kernel crash">[details]</a></span>
+dmesg Linux 3.8.11 nouveau optimus before the kernel crash
 
-I'm using Lenovo T430 laptop with intel/nvidia hybrid graphics, but optimus is
-disabled in BIOS, and only the Nvidia discreet GPU is enabled currently:
+I'm using Lenovo T430 laptop with intel+nvidia hybrid graphics, optimus is
+enabled in BIOS:
 
 $ lspci | grep VGA
+00:02.0 VGA compatible controller: Intel Corporation 3rd Gen Core processor
+Graphics Controller (rev 09)
 01:00.0 VGA compatible controller: NVIDIA Corporation GF108 [Quadro NVS 5400M]
 (rev a1)
-
-I boot up the laptop with only using the laptop internal LVDS panel, and when
-in X session, I connect DVI cable to the docking station. xrandr now correctly
-shows DP2 as connected, and when I enable the DVI display, I get these nouveau
-errors in the kernel dmesg:
-
-[  103.196252] nouveau  [   PLTCG][0000:01:00.0] LTC0_LTS0: 0x036f0040
-[  103.196257] nouveau  [   PLTCG][0000:01:00.0] LTC0_LTS1: 0x036f0040
-[  103.353160] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[  103.353163] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
-[  103.353923] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[  103.353925] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
-..
-..
-
-DVI monitor output actually gets enabled, and I can see the desktop there, but
-both the LVDS display and the DVI display are all messed up.
-
-For example moving a window around leaves traces of other window contents, and
-the background image gets replaced with all kinds of corrupted patterns, so
-graphics looks quite weird and corrupted on both displays.
-
-Switching back to only using the internal LVDS (disabling DVI/DP2 output) fixes
-the graphics corruptions.
 
 $ uname -a
 Linux localhost.localdomain 3.8.11-200.fc18.x86_64 #1 SMP Wed May 1 19:44:27
 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
 
-I also tried Linux kernel 3.9.2, and there I get exactly the same graphics
-corruption behaviour, but the kernel errors are slightly different:
+I boot up the system with only laptop internal LVDS active on intel gpu, and
+when in X session, I enable the second display on nouveau gpu connected to the
+dock DP2/DVI connector. 
+At this point the kernel crashes immediately.
 
-[   91.533612] nouveau  [   PLTCG][0000:01:00.0] LTC0_LTS0: 0x036f0040
-[   91.533618] nouveau  [   PLTCG][0000:01:00.0] LTC0_LTS1: 0x036f0040
-[   91.533856] nouveau E[    PBUS][0000:01:00.0] MMIO read of 0x00000000 FAULT
-at 0x141820 [ IBUS ]
-[  246.466283] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[  246.466287] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
-[  246.499229] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[  246.499232] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
+Screenshots of the kernel crash/stacktrace here:
+<a href="http://pasik.reaktio.net/nouveau/debug/nouveau-kernel-crash01.jpg">http://pasik.reaktio.net/nouveau/debug/nouveau-kernel-crash01.jpg</a>
+<a href="http://pasik.reaktio.net/nouveau/debug/nouveau-kernel-crash02.jpg">http://pasik.reaktio.net/nouveau/debug/nouveau-kernel-crash02.jpg</a>
 
+hand-written bits from the kernel crash:
 
-Dmesg from Linux 3.9.2 attached.</pre>
+Pid: 1208, comm: Xorg Not tainted 3.8.11-200.fc18.x86_64 #1 LENOVO
+2349H2G/2349H2G
+RIP: 0010:[&lt;ffffffffa01abb7e&gt;] [&lt;ffffffffa01abb7e&gt;] nvc0_vm_map_sg+0x8e/0x110
+[nouveau]
+RSP: 0018:ffff8803298357c8 EFLAGS: 00010206
+..
+Process Xorg (pid: 1208,..)
+..
+Call Trace:
+.. nouveau_vm_map_sg+0xc2/0x130 [nouveau]
+.. nouveau_vma_getmap.isra.11+0x68/0xa0 [nouveau]
+.. nouveau_bo_move_m2mf.isra.12+0x85/0x140 [nouveau]
+.. ? nouveau_vm_map_at+0x153/0x1c0 [nouveau]
+.. nouveau_bo_move+0xa5/0x400 [nouveau]
+.. ttm_bo_handle_move_mem+0x245/0x610 [ttm]
+
+More info from the screenshots above (also attached)..
+
+Kernel dmesg from before the crash attached.
+I also tried with Linux kernel 3.9.2 and there the system crashes hard aswell.</pre>
         </div>
       </p>
       <hr>
@@ -281,9 +255,9 @@ Dmesg from Linux 3.9.2 attached.</pre>
     </body>
 </html>
 
---1368996130.fA151.3831--
+--1368996878.df2Afe1.5122--
 
---===============1779044023==
+--===============1606880315==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -294,4 +268,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1779044023==--
+--===============1606880315==--
