@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64746] optimus don't use nouveau card
-Date: Tue, 21 May 2013 19:36:51 +0000
-Message-ID: <bug-64746-8800-j6tjWAmKEC@http.bugs.freedesktop.org/>
+Date: Tue, 21 May 2013 19:37:30 +0000
+Message-ID: <bug-64746-8800-jA1nSyg9N1@http.bugs.freedesktop.org/>
 References: <bug-64746-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1819890455=="
+Content-Type: multipart/mixed; boundary="===============0890091588=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64746-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,44 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1819890455==
-Content-Type: multipart/alternative; boundary="1369165011.82E510.30600"; charset="us-ascii"
+--===============0890091588==
+Content-Type: multipart/alternative; boundary="1369165050.fa6A130.30742"; charset="us-ascii"
 
 
---1369165011.82E510.30600
-Date: Tue, 21 May 2013 19:36:51 +0000
+--1369165050.fa6A130.30742
+Date: Tue, 21 May 2013 19:37:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=64746
 
---- Comment #1 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-i tried to use vgaswitch
-
-cat /sys/kernel/debug/vgaswitcheroo/switch 
-0:IGD:+:Pwr:0000:00:02.0
-1:DIS: :Pwr:0000:01:00.0
-
-first i tried
-init 3
-echo "0000:00:02.0" /sys/kernel/debug/vgaswitcheroo/switch 
-init 5
-
-still intel video card used by glxgears -info
-
-
-init 3
-echo "0000:01:00.0" /sys/kernel/debug/vgaswitcheroo/switch 
-init 5
-
-still intel video card used by glxgears -info
+--- Comment #2 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 79625
+  --> https://bugs.freedesktop.org/attachment.cgi?id=79625&action=edit
+var log message when i'm tried vgaswitch
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1369165011.82E510.30600
-Date: Tue, 21 May 2013 19:36:51 +0000
+--1369165050.fa6A130.30742
+Date: Tue, 21 May 2013 19:37:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,32 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - optimus don't use nouveau card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64746#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64746#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - optimus don't use nouveau card"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64746">bug 64746</a>
               from <span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
 </span></b>
-        <pre>i tried to use vgaswitch
-
-cat /sys/kernel/debug/vgaswitcheroo/switch 
-0:IGD:+:Pwr:0000:00:02.0
-1:DIS: :Pwr:0000:01:00.0
-
-first i tried
-init 3
-echo &quot;0000:00:02.0&quot; /sys/kernel/debug/vgaswitcheroo/switch 
-init 5
-
-still intel video card used by glxgears -info
-
-
-init 3
-echo &quot;0000:01:00.0&quot; /sys/kernel/debug/vgaswitcheroo/switch 
-init 5
-
-still intel video card used by glxgears -info</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=79625" name="attach_79625" title="var log message when i'm tried vgaswitch">attachment 79625</a> <a href="attachment.cgi?id=79625&amp;action=edit" title="var log message when i'm tried vgaswitch">[details]</a></span>
+var log message when i'm tried vgaswitch</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +75,9 @@ still intel video card used by glxgears -info</pre>
     </body>
 </html>
 
---1369165011.82E510.30600--
+--1369165050.fa6A130.30742--
 
---===============1819890455==
+--===============0890091588==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1819890455==--
+--===============0890091588==--
