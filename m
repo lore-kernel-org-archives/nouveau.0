@@ -1,9 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64888] New: [nva5] Garbage rendering in Portal
-Date: Thu, 23 May 2013 02:37:34 +0000
-Message-ID: <bug-64888-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64904] New: [BISECTED] nouveau,
+ nv50: External VGA not detected anymore
+Date: Thu, 23 May 2013 10:01:46 +0000
+Message-ID: <bug-64904-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1982451206=="
+Content-Type: multipart/mixed; boundary="===============1028856873=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,44 +19,68 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1982451206==
-Content-Type: multipart/alternative; boundary="1369276654.a1f84cf0.2654"; charset="us-ascii"
+--===============1028856873==
+Content-Type: multipart/alternative; boundary="1369303306.3c4131.2943"; charset="us-ascii"
 
 
---1369276654.a1f84cf0.2654
-Date: Thu, 23 May 2013 02:37:34 +0000
+--1369303306.3c4131.2943
+Date: Thu, 23 May 2013 10:01:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64888
+https://bugs.freedesktop.org/show_bug.cgi?id=64904
 
           Priority: medium
-            Bug ID: 64888
+            Bug ID: 64904
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [nva5] Garbage rendering in Portal
+           Summary: [BISECTED] nouveau, nv50: External VGA not detected
+                    anymore
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
           Severity: normal
     Classification: Unclassified
-                OS: All
-          Reporter: chrisf-GC9Nvf0HxqylVyrhU4qvOw@public.gmane.org
-          Hardware: Other
+                OS: Linux (All)
+          Reporter: wippbox-hi6Y0CQ0nG0@public.gmane.org
+          Hardware: x86 (IA32)
             Status: NEW
            Version: unspecified
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
+         Component: Driver/nouveau
+           Product: xorg
 
-This trace replays fine (but slow) on 9.0.3 on nva5; various corruption on
-9.1.1 and master. Nothing exciting in kernel log.
+I have a lenove thinkpad T61p with a NVIDIA Corporation G84GLM [Quadro FX
+570M].
+When connecting my external VGA monitor my monitor is no more detected
+properly:
+> cat /sys/class/drm/card0-VGA-1/status
+gives now "disconnected"
 
-[trace from github.com/ValveSoftware/Source-1-games/issues/641]
+I bisected the kernel sources from
+git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+and filed a bug report at https://bugzilla.kernel.org
+(https://bugzilla.kernel.org/show_bug.cgi?id=58021).
 
-https://dl.dropboxusercontent.com/u/14849789/hl2_linux.trace.xz
+Last good commit is
+ef22c8bb7b3fac45919b7fde412d36d1a8367d51
+drm/nv50/disp: call into core to handle dac/sor power state changes
+
+First bad commit is
+7ebb38b556485449bfaa506a196439f6a6fd6ebd
+drm/nv50/disp: call into core for dac load detection
+
+The responsible function is
+nv50_dac_detect in drivers/gpu/drm/nouveau/nv50_dac.c (moved to
+drivers/gpu/drm/nouveau/nv50_display.c in more recent kernels).
+
+Also tried a 3.9.1 kernel. The problem still remains.
+
+However, replacing nv50_dac_detect with the corresponding version from the last
+good commit fixed the problem (tried with a 3.8.10 and a 3.8.13 kernel).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1369276654.a1f84cf0.2654
-Date: Thu, 23 May 2013 02:37:34 +0000
+--1369303306.3c4131.2943
+Date: Thu, 23 May 2013 10:01:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,8 +99,8 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nva5] Garbage rendering in Portal"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64888">64888</a>
+   title="NEW --- - [BISECTED] nouveau, nv50: External VGA not detected anymore"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64904">64904</a>
           </td>
         </tr>
 
@@ -87,7 +112,13 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Summary</th>
-          <td>[nva5] Garbage rendering in Portal
+          <td>[BISECTED] nouveau, nv50: External VGA not detected anymore
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
           </td>
         </tr>
 
@@ -105,19 +136,19 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>OS</th>
-          <td>All
+          <td>Linux (All)
           </td>
         </tr>
 
         <tr>
           <th>Reporter</th>
-          <td>chrisf&#64;ijw.co.nz
+          <td>wippbox&#64;gmx.net
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>Other
+          <td>x86 (IA32)
           </td>
         </tr>
 
@@ -135,23 +166,45 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Component</th>
-          <td>Drivers/DRI/nouveau
+          <td>Driver/nouveau
           </td>
         </tr>
 
         <tr>
           <th>Product</th>
-          <td>Mesa
+          <td>xorg
           </td>
         </tr></table>
       <p>
         <div>
-        <pre>This trace replays fine (but slow) on 9.0.3 on nva5; various corruption on
-9.1.1 and master. Nothing exciting in kernel log.
+        <pre>I have a lenove thinkpad T61p with a NVIDIA Corporation G84GLM [Quadro FX
+570M].
+When connecting my external VGA monitor my monitor is no more detected
+properly:
+<span class="quote">&gt; cat /sys/class/drm/card0-VGA-1/status</span >
+gives now &quot;disconnected&quot;
 
-[trace from github.com/ValveSoftware/Source-1-games/issues/641]
+I bisected the kernel sources from
+git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+and filed a bug report at <a href="https://bugzilla.kernel.org">https://bugzilla.kernel.org</a>
+(<a href="https://bugzilla.kernel.org/show_bug.cgi?id=58021">https://bugzilla.kernel.org/show_bug.cgi?id=58021</a>).
 
-<a href="https://dl.dropboxusercontent.com/u/14849789/hl2_linux.trace.xz">https://dl.dropboxusercontent.com/u/14849789/hl2_linux.trace.xz</a></pre>
+Last good commit is
+ef22c8bb7b3fac45919b7fde412d36d1a8367d51
+drm/nv50/disp: call into core to handle dac/sor power state changes
+
+First bad commit is
+7ebb38b556485449bfaa506a196439f6a6fd6ebd
+drm/nv50/disp: call into core for dac load detection
+
+The responsible function is
+nv50_dac_detect in drivers/gpu/drm/nouveau/nv50_dac.c (moved to
+drivers/gpu/drm/nouveau/nv50_display.c in more recent kernels).
+
+Also tried a 3.9.1 kernel. The problem still remains.
+
+However, replacing nv50_dac_detect with the corresponding version from the last
+good commit fixed the problem (tried with a 3.8.10 and a 3.8.13 kernel).</pre>
         </div>
       </p>
       <hr>
@@ -163,9 +216,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1369276654.a1f84cf0.2654--
+--1369303306.3c4131.2943--
 
---===============1982451206==
+--===============1028856873==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -176,4 +229,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1982451206==--
+--===============1028856873==--
