@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64858] Nouveau sees invalid EDID for eDP-1 whenever
  that display is turned off
-Date: Sat, 25 May 2013 14:46:18 +0000
-Message-ID: <bug-64858-8800-VsCuYED3Xg@http.bugs.freedesktop.org/>
+Date: Sat, 25 May 2013 14:48:02 +0000
+Message-ID: <bug-64858-8800-eL77B9So6I@http.bugs.freedesktop.org/>
 References: <bug-64858-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0092001029=="
+Content-Type: multipart/mixed; boundary="===============0755280490=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64858-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,48 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0092001029==
-Content-Type: multipart/alternative; boundary="1369493178.6F3E1.14002"; charset="us-ascii"
+--===============0755280490==
+Content-Type: multipart/alternative; boundary="1369493282.d7E4a0Bc1.14329"; charset="us-ascii"
 
 
---1369493178.6F3E1.14002
-Date: Sat, 25 May 2013 14:46:18 +0000
+--1369493282.d7E4a0Bc1.14329
+Date: Sat, 25 May 2013 14:48:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=64858
 
---- Comment #3 from gspr <gspreemann-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I've finished a git bisect (log attached). It concludes with commit
-69787f7da6b2adc4054357a661aaa1701a9ca76f:
+--- Comment #4 from gspr <gspreemann-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 79786
+  --> https://bugs.freedesktop.org/attachment.cgi?id=79786&action=edit
+git bisect log
 
-69787f7da6b2adc4054357a661aaa1701a9ca76f is the first bad commit
-commit 69787f7da6b2adc4054357a661aaa1701a9ca76f
-Author: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Date:   Tue Oct 23 18:23:34 2012 +0000
-
-    drm: run the hpd irq event code directly
-
-    All drivers already have a work item to run the hpd code, so we don't
-    need to launch a new one in the helper code. Dave Airlie mentioned
-    that the cancel+re-queue might paper over DP related hpd ping-pongs,
-    hence why this is split out.
-
-    Signed-off-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-    Reviewed-by: Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
-    Signed-off-by: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-
-:040000 040000 34387171acedcebba1e05d10b819c9363833650b
-2476d15ff51e66eec241d6ab5e8943c4c46c4360 M drivers
-:040000 040000 e0c4edaf7c42932ee64d431177244b7000e93fb3
-138f6ab2e8c8e5d3985ddaa6610f0e95f241ee59 M include
+Concludes with commit 69787f7da6b2adc4054357a661aaa1701a9ca76f as the first bad
+one.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1369493178.6F3E1.14002
-Date: Sat, 25 May 2013 14:46:18 +0000
+--1369493282.d7E4a0Bc1.14329
+Date: Sat, 25 May 2013 14:48:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -76,36 +59,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau sees invalid EDID for eDP-1 whenever that display is turned off"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64858#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64858#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau sees invalid EDID for eDP-1 whenever that display is turned off"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64858">bug 64858</a>
               from <span class="vcard"><a class="email" href="mailto:gspreemann&#64;gmail.com" title="gspr &lt;gspreemann&#64;gmail.com&gt;"> <span class="fn">gspr</span></a>
 </span></b>
-        <pre>I've finished a git bisect (log attached). It concludes with commit
-69787f7da6b2adc4054357a661aaa1701a9ca76f:
+        <pre>Created <span class=""><a href="attachment.cgi?id=79786" name="attach_79786" title="git bisect log">attachment 79786</a> <a href="attachment.cgi?id=79786&amp;action=edit" title="git bisect log">[details]</a></span>
+git bisect log
 
-69787f7da6b2adc4054357a661aaa1701a9ca76f is the first bad commit
-commit 69787f7da6b2adc4054357a661aaa1701a9ca76f
-Author: Daniel Vetter &lt;<a href="mailto:daniel.vetter&#64;ffwll.ch">daniel.vetter&#64;ffwll.ch</a>&gt;
-Date:   Tue Oct 23 18:23:34 2012 +0000
-
-    drm: run the hpd irq event code directly
-
-    All drivers already have a work item to run the hpd code, so we don't
-    need to launch a new one in the helper code. Dave Airlie mentioned
-    that the cancel+re-queue might paper over DP related hpd ping-pongs,
-    hence why this is split out.
-
-    Signed-off-by: Daniel Vetter &lt;<a href="mailto:daniel.vetter&#64;ffwll.ch">daniel.vetter&#64;ffwll.ch</a>&gt;
-    Reviewed-by: Alex Deucher &lt;<a href="mailto:alexander.deucher&#64;amd.com">alexander.deucher&#64;amd.com</a>&gt;
-    Signed-off-by: Dave Airlie &lt;<a href="mailto:airlied&#64;redhat.com">airlied&#64;redhat.com</a>&gt;
-
-:040000 040000 34387171acedcebba1e05d10b819c9363833650b
-2476d15ff51e66eec241d6ab5e8943c4c46c4360 M drivers
-:040000 040000 e0c4edaf7c42932ee64d431177244b7000e93fb3
-138f6ab2e8c8e5d3985ddaa6610f0e95f241ee59 M include</pre>
+Concludes with commit 69787f7da6b2adc4054357a661aaa1701a9ca76f as the first bad
+one.</pre>
         </div>
       </p>
       <hr>
@@ -117,9 +82,9 @@ Date:   Tue Oct 23 18:23:34 2012 +0000
     </body>
 </html>
 
---1369493178.6F3E1.14002--
+--1369493282.d7E4a0Bc1.14329--
 
---===============0092001029==
+--===============0755280490==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -130,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0092001029==--
+--===============0755280490==--
