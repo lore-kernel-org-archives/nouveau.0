@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64904] [BISECTED] nouveau,
  nv50: External VGA not detected anymore
-Date: Fri, 24 May 2013 22:18:03 +0000
-Message-ID: <bug-64904-8800-F73YhOB7AU@http.bugs.freedesktop.org/>
+Date: Sat, 25 May 2013 08:12:38 +0000
+Message-ID: <bug-64904-8800-vv8IIvzdw0@http.bugs.freedesktop.org/>
 References: <bug-64904-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1411016754=="
+Content-Type: multipart/mixed; boundary="===============1542019773=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64904-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,70 +21,95 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1411016754==
-Content-Type: multipart/alternative; boundary="1369433884.E87f2.12783"; charset="us-ascii"
+--===============1542019773==
+Content-Type: multipart/alternative; boundary="1369469558.E2E81.7308"; charset="us-ascii"
 
 
---1369433884.E87f2.12783
-Date: Fri, 24 May 2013 22:18:04 +0000
+--1369469558.E2E81.7308
+Date: Sat, 25 May 2013 08:12:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64904
+https://bugs.freedesktop.org/show_bug.cgi?id=3D64904
 
---- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 79775
-  --> https://bugs.freedesktop.org/attachment.cgi?id=79775&action=edit
-Increase the delay during dac sense
+--- Comment #5 from Gerhard Br=C3=A4unlich <wippbox-hi6Y0CQ0nG0@public.gmane.org> ---
+(In reply to comment #4)
+> Created attachment 79775 [details] [review]
+> Increase the delay during dac sense
+>=20
+> Take a look at the patch to clear any confusion. It should apply cleanly =
+on
+> top of the 3.9 branch
 
-Take a look at the patch to clear any confusion. It should apply cleanly on top
-of the 3.9 branch
+OK thank you! I don't have my thinkpad with me at the moment. But I will te=
+st
+the patch tomorrow.
 
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1369433884.E87f2.12783
-Date: Fri, 24 May 2013 22:18:04 +0000
+--1369469558.E2E81.7308
+Date: Sat, 25 May 2013 08:12:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [BISECTED] nouveau, nv50: External VGA not detected anymore"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64904#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - [BISECTED] nouveau, nv50: External VGA not detected a=
+nymore"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64904#c5">Comment=
+ # 5</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [BISECTED] nouveau, nv50: External VGA not detected anymore"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64904">bug 64904</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+   title=3D"NEW --- - [BISECTED] nouveau, nv50: External VGA not detected a=
+nymore"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64904">bug 64904<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+wippbox&#64;gmx.net" title=3D"Gerhard Br=C3=A4unlich &lt;wippbox&#64;gmx.ne=
+t&gt;"> <span class=3D"fn">Gerhard Br=C3=A4unlich</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=79775" name="attach_79775" title="Increase the delay during dac sense">attachment 79775</a> <a href="attachment.cgi?id=79775&amp;action=edit" title="Increase the delay during dac sense">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=64904&amp;attachment=79775'>[review]</a>
-Increase the delay during dac sense
+        <pre>(In reply to <a href=3D"show_bug.cgi?id=3D64904#c4">comment #4=
+</a>)
+<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
+gi?id=3D79775" name=3D"attach_79775" title=3D"Increase the delay during dac=
+ sense">attachment 79775</a> <a href=3D"attachment.cgi?id=3D79775&amp;actio=
+n=3Dedit" title=3D"Increase the delay during dac sense">[details]</a></span=
+> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D64904&amp;attachment=3D7=
+9775'>[review]</a> [review]
+&gt; Increase the delay during dac sense
+&gt;=20
+&gt; Take a look at the patch to clear any confusion. It should apply clean=
+ly on
+&gt; top of the 3.9 branch</span >
 
-Take a look at the patch to clear any confusion. It should apply cleanly on top
-of the 3.9 branch</pre>
+OK thank you! I don't have my thinkpad with me at the moment. But I will te=
+st
+the patch tomorrow.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1369433884.E87f2.12783--
+--1369469558.E2E81.7308--
 
---===============1411016754==
+--===============1542019773==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1411016754==--
+--===============1542019773==--
