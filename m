@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64858] Nouveau sees invalid EDID for eDP-1 whenever
- that display is turned off
-Date: Sat, 25 May 2013 14:48:02 +0000
-Message-ID: <bug-64858-8800-eL77B9So6I@http.bugs.freedesktop.org/>
+Subject: [Bug 64858] [BISECTED] Nouveau sees invalid EDID for
+ eDP-1 whenever that display is turned off
+Date: Sat, 25 May 2013 16:26:25 +0000
+Message-ID: <bug-64858-8800-pUenXRpsPe@http.bugs.freedesktop.org/>
 References: <bug-64858-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0755280490=="
+Content-Type: multipart/mixed; boundary="===============1701265330=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64858-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0755280490==
-Content-Type: multipart/alternative; boundary="1369493282.d7E4a0Bc1.14329"; charset="us-ascii"
+--===============1701265330==
+Content-Type: multipart/alternative; boundary="1369499185.E8De1.802"; charset="us-ascii"
 
 
---1369493282.d7E4a0Bc1.14329
-Date: Sat, 25 May 2013 14:48:02 +0000
+--1369499185.E8De1.802
+Date: Sat, 25 May 2013 16:26:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=64858
 
---- Comment #4 from gspr <gspreemann-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 79786
-  --> https://bugs.freedesktop.org/attachment.cgi?id=79786&action=edit
-git bisect log
+gspr <gspreemann-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Concludes with commit 69787f7da6b2adc4054357a661aaa1701a9ca76f as the first bad
-one.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Nouveau sees invalid EDID   |[BISECTED] Nouveau sees
+                   |for eDP-1 whenever that     |invalid EDID for eDP-1
+                   |display is turned off       |whenever that display is
+                   |                            |turned off
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1369493282.d7E4a0Bc1.14329
-Date: Sat, 25 May 2013 14:48:02 +0000
+--1369499185.E8De1.802
+Date: Sat, 25 May 2013 16:26:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,25 +54,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:gspreemann&#64;gmail.com" title="gspr &lt;gspreemann&#64;gmail.com&gt;"> <span class="fn">gspr</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Nouveau sees invalid EDID for eDP-1 whenever that display is turned off"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64858#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau sees invalid EDID for eDP-1 whenever that display is turned off"
+   title="NEW --- - [BISECTED] Nouveau sees invalid EDID for eDP-1 whenever that display is turned off"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64858">bug 64858</a>
-              from <span class="vcard"><a class="email" href="mailto:gspreemann&#64;gmail.com" title="gspr &lt;gspreemann&#64;gmail.com&gt;"> <span class="fn">gspr</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=79786" name="attach_79786" title="git bisect log">attachment 79786</a> <a href="attachment.cgi?id=79786&amp;action=edit" title="git bisect log">[details]</a></span>
-git bisect log
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-Concludes with commit 69787f7da6b2adc4054357a661aaa1701a9ca76f as the first bad
-one.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Nouveau sees invalid EDID for eDP-1 whenever that display is turned off
+           </td>
+           <td>[BISECTED] Nouveau sees invalid EDID for eDP-1 whenever that display is turned off
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -82,9 +86,9 @@ one.</pre>
     </body>
 </html>
 
---1369493282.d7E4a0Bc1.14329--
+--1369499185.E8De1.802--
 
---===============0755280490==
+--===============1701265330==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0755280490==--
+--===============1701265330==--
