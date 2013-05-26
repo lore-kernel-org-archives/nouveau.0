@@ -1,102 +1,72 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64858] [BISECTED] Nouveau sees invalid EDID for
- eDP-1 whenever that display is turned off
-Date: Sat, 25 May 2013 16:26:25 +0000
-Message-ID: <bug-64858-8800-pUenXRpsPe@http.bugs.freedesktop.org/>
-References: <bug-64858-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: Commit "drm: run the hpd irq event code directly" causes stutter
+	from repeated EDID retrievals
+Date: Sun, 26 May 2013 18:14:06 +0200
+Message-ID: <CAKMK7uGtJZOJzLm1sR07EN5DySX_V08q32cMEUdN=BrBPB3WsA@mail.gmail.com>
+References: <4298860.NTVPviymN4@giraffe>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1701265330=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64858-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <4298860.NTVPviymN4@giraffe>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Gard Spreemann <gspreemann@gmail.com>
+Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
+On Sun, May 26, 2013 at 5:38 PM, Gard Spreemann <gspreemann@gmail.com> wrote:
+> Hi,
+>
+> If I should contact a list instead of you directly, I sincerely apologize!
 
---===============1701265330==
-Content-Type: multipart/alternative; boundary="1369499185.E8De1.802"; charset="us-ascii"
+You should have cc'ed relevant lists at least ;-) Fixed up.
 
+> After a recent kernel upgrade, I found that my system (using Nouveau) would
+> stutter whenever eDP-1 was turned off. That display being turned off apparently
+> causes repeated EDID retrievals and failed checksums. I did a git bisect which
+> lead me to
+> ***
+> commit 69787f7da6b2adc4054357a661aaa1701a9ca76f
+> Author: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Date:   Tue Oct 23 18:23:34 2012 +0000
+>
+>     drm: run the hpd irq event code directly
+>
+>     All drivers already have a work item to run the hpd code, so we don't
+>     need to launch a new one in the helper code. Dave Airlie mentioned
+>     that the cancel+re-queue might paper over DP related hpd ping-pongs,
+>     hence why this is split out.
+>
+>     Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+>     Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+>     Signed-off-by: Dave Airlie <airlied@redhat.com>
+> ***
+> as the first bad commit, and I was advised to contact you as well as file a bug
+> with the Nouveau project [1].
+>
+> I don't have enough insight into the code in question to understand the
+> problem, but your discussion on April 6 [2] seems relevant.
+>
+> Please let me know if there's anything I can do to help.
+>
+> [1] https://bugs.freedesktop.org/show_bug.cgi?id=64858
+> [2] https://patchwork.kernel.org/patch/2402211/
 
---1369499185.E8De1.802
-Date: Sat, 25 May 2013 16:26:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=64858
-
-gspr <gspreemann-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Nouveau sees invalid EDID   |[BISECTED] Nouveau sees
-                   |for eDP-1 whenever that     |invalid EDID for eDP-1
-                   |display is turned off       |whenever that display is
-                   |                            |turned off
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1369499185.E8De1.802
-Date: Sat, 25 May 2013 16:26:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:gspreemann&#64;gmail.com" title="gspr &lt;gspreemann&#64;gmail.com&gt;"> <span class="fn">gspr</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [BISECTED] Nouveau sees invalid EDID for eDP-1 whenever that display is turned off"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64858">bug 64858</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Nouveau sees invalid EDID for eDP-1 whenever that display is turned off
-           </td>
-           <td>[BISECTED] Nouveau sees invalid EDID for eDP-1 whenever that display is turned off
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1369499185.E8De1.802--
-
---===============1701265330==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1701265330==--
+My guess is that you've worked around these edid stalls with
+drm_kms_helper.poll=0 and the above commit breaks that w/a. That patch
+was shot down unfortunately. If you can't reproduce these stalls on
+older kernels when removing the poll=0 option, then something else
+broke.
+-Daniel
+--
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
