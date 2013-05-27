@@ -1,39 +1,91 @@
-From: Gard Spreemann <gspreemann@gmail.com>
-Subject: Re: Commit "drm: run the hpd irq event code directly" causes stutter
-	from repeated EDID retrievals
-Date: Sun, 26 May 2013 18:25:43 +0200
-Message-ID: <1486851.BFel1pU9A1@giraffe>
-References: <4298860.NTVPviymN4@giraffe>
-	<CAKMK7uGtJZOJzLm1sR07EN5DySX_V08q32cMEUdN=BrBPB3WsA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 64858] [BISECTED] Nouveau sees invalid EDID for
+ eDP-1 whenever that display is turned off
+Date: Mon, 27 May 2013 08:04:18 +0000
+Message-ID: <bug-64858-8800-Lu4pkyLn89@http.bugs.freedesktop.org/>
+References: <bug-64858-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <CAKMK7uGtJZOJzLm1sR07EN5DySX_V08q32cMEUdN=BrBPB3WsA@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============2097330820=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-64858-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sunday 26 May 2013 18:14:06 Daniel Vetter wrote:
-> My guess is that you've worked around these edid stalls with
-> drm_kms_helper.poll=0 and the above commit breaks that w/a. That patch
-> was shot down unfortunately. If you can't reproduce these stalls on
-> older kernels when removing the poll=0 option, then something else
-> broke.
 
-You are correct. Before that commit, the stuttering behavior is present with 
-poll=1, but not with poll=0. Starting with that commit, the behavior is 
-present nomatter the poll setting.
+--===============2097330820==
+Content-Type: multipart/alternative; boundary="1369641858.1303AF2.27364"; charset="us-ascii"
 
-Am I correct in thinking that this is a problem without a clear solution?
 
-- Gard
+--1369641858.1303AF2.27364
+Date: Mon, 27 May 2013 08:04:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=64858
+
+--- Comment #5 from gspr <gspreemann-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+The patch from https://patchwork.kernel.org/patch/2402211/ makes the symptoms
+go away for me with drm_kms_helper.poll=N.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1369641858.1303AF2.27364
+Date: Mon, 27 May 2013 08:04:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [BISECTED] Nouveau sees invalid EDID for eDP-1 whenever that display is turned off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64858#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [BISECTED] Nouveau sees invalid EDID for eDP-1 whenever that display is turned off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64858">bug 64858</a>
+              from <span class="vcard"><a class="email" href="mailto:gspreemann&#64;gmail.com" title="gspr &lt;gspreemann&#64;gmail.com&gt;"> <span class="fn">gspr</span></a>
+</span></b>
+        <pre>The patch from <a href="https://patchwork.kernel.org/patch/2402211/">https://patchwork.kernel.org/patch/2402211/</a> makes the symptoms
+go away for me with drm_kms_helper.poll=N.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1369641858.1303AF2.27364--
+
+--===============2097330820==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2097330820==--
