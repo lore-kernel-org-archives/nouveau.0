@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58378] Distorted graphics on NVIDIA GeForce 8400M G
- after upgrade the kernel to 3.7.0 version
-Date: Tue, 28 May 2013 20:03:52 +0000
-Message-ID: <bug-58378-8800-lzcp99Q7SX@http.bugs.freedesktop.org/>
-References: <bug-58378-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 63135] [bisected] G69/nv50 DisplayPort dual-head
+ fails to switch to KMS
+Date: Tue, 28 May 2013 22:28:18 +0000
+Message-ID: <bug-63135-8800-OaGLSMZxUy@http.bugs.freedesktop.org/>
+References: <bug-63135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0563004339=="
+Content-Type: multipart/mixed; boundary="===============1917147768=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-63135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0563004339==
-Content-Type: multipart/alternative; boundary="1369771432.c738135.22896"; charset="us-ascii"
+--===============1917147768==
+Content-Type: multipart/alternative; boundary="1369780098.2d32b1.12667"; charset="us-ascii"
 
 
---1369771432.c738135.22896
-Date: Tue, 28 May 2013 20:03:52 +0000
+--1369780098.2d32b1.12667
+Date: Tue, 28 May 2013 22:28:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58378
+https://bugs.freedesktop.org/show_bug.cgi?id=63135
 
---- Comment #12 from Dave Bjork <dav3.bjorklund-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hello!
+Devin J. Pohly <djpohly+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-New to ubuntu. I have an old acer 5520g with the exact same problem you are
-describing in the comments above. I also tought it was a heat problem and found
-alot of dust in the graphics cards fan. My computer completely locks down and I
-am unable to even login or open a terminal at the loginscreen after the first
-glitch.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #77445|0                           |1
+        is obsolete|                            |
 
-Dave
+--- Comment #6 from Devin J. Pohly <djpohly+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 79921
+  --> https://bugs.freedesktop.org/attachment.cgi?id=79921&action=edit
+full syslog with nouveau.debug=debug
+
+Attaching syslog with extra debug info, in case this is more useful than the
+previous attachment.
+
+(Note to poma: unless you are a Nouveau dev, gratuitously raising the sev and
+prio fields to the top is likely to get a bug ignored.  Setting back.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1369771432.c738135.22896
-Date: Tue, 28 May 2013 20:03:52 +0000
+--1369780098.2d32b1.12667
+Date: Tue, 28 May 2013 22:28:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,28 +63,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:djpohly+freedesktop&#64;gmail.com" title="Devin J. Pohly &lt;djpohly+freedesktop&#64;gmail.com&gt;"> <span class="fn">Devin J. Pohly</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [bisected] G69/nv50 DisplayPort dual-head fails to switch to KMS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135">bug 63135</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #77445 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c12">Comment # 12</a>
+   title="NEW --- - [bisected] G69/nv50 DisplayPort dual-head fails to switch to KMS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:dav3.bjorklund&#64;gmail.com" title="Dave Bjork &lt;dav3.bjorklund&#64;gmail.com&gt;"> <span class="fn">Dave Bjork</span></a>
+   title="NEW --- - [bisected] G69/nv50 DisplayPort dual-head fails to switch to KMS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135">bug 63135</a>
+              from <span class="vcard"><a class="email" href="mailto:djpohly+freedesktop&#64;gmail.com" title="Devin J. Pohly &lt;djpohly+freedesktop&#64;gmail.com&gt;"> <span class="fn">Devin J. Pohly</span></a>
 </span></b>
-        <pre>Hello!
+        <pre>Created <span class=""><a href="attachment.cgi?id=79921" name="attach_79921" title="full syslog with nouveau.debug=debug">attachment 79921</a> <a href="attachment.cgi?id=79921&amp;action=edit" title="full syslog with nouveau.debug=debug">[details]</a></span>
+full syslog with nouveau.debug=debug
 
-New to ubuntu. I have an old acer 5520g with the exact same problem you are
-describing in the comments above. I also tought it was a heat problem and found
-alot of dust in the graphics cards fan. My computer completely locks down and I
-am unable to even login or open a terminal at the loginscreen after the first
-glitch.
+Attaching syslog with extra debug info, in case this is more useful than the
+previous attachment.
 
-Dave</pre>
+(Note to poma: unless you are a Nouveau dev, gratuitously raising the sev and
+prio fields to the top is likely to get a bug ignored.  Setting back.)</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +116,9 @@ Dave</pre>
     </body>
 </html>
 
---1369771432.c738135.22896--
+--1369780098.2d32b1.12667--
 
---===============0563004339==
+--===============1917147768==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +129,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0563004339==--
+--===============1917147768==--
