@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64904] [BISECTED] nouveau,
  nv50: External VGA not detected anymore
-Date: Mon, 27 May 2013 22:23:58 +0000
-Message-ID: <bug-64904-8800-dhpTaDPPdO@http.bugs.freedesktop.org/>
+Date: Tue, 28 May 2013 08:27:04 +0000
+Message-ID: <bug-64904-8800-gE9vm2hYvZ@http.bugs.freedesktop.org/>
 References: <bug-64904-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2119297017=="
+Content-Type: multipart/mixed; boundary="===============0940188001=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64904-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,65 +21,82 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2119297017==
-Content-Type: multipart/alternative; boundary="1369693438.cb5a2.1446"; charset="us-ascii"
+--===============0940188001==
+Content-Type: multipart/alternative; boundary="1369729624.d2837C1.20123"; charset="us-ascii"
 
 
---1369693438.cb5a2.1446
-Date: Mon, 27 May 2013 22:23:58 +0000
+--1369729624.d2837C1.20123
+Date: Tue, 28 May 2013 08:27:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64904
+https://bugs.freedesktop.org/show_bug.cgi?id=3D64904
 
---- Comment #10 from Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Strictly speaking it should probably be (load & 7) == 7, but I don't think
-it'll fix it on its own, you might want to dump the value of load to be sure,
-with all those patches.
+--- Comment #11 from Gerhard Br=C3=A4unlich <wippbox-hi6Y0CQ0nG0@public.gmane.org> ---
+(In reply to comment #10)
+> Strictly speaking it should probably be (load & 7) =3D=3D 7, but I don't =
+think
+> it'll fix it on its own, you might want to dump the value of load to be
+> sure, with all those patches.
 
--- 
+OK, I get load=3D0.
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1369693438.cb5a2.1446
-Date: Mon, 27 May 2013 22:23:58 +0000
+--1369729624.d2837C1.20123
+Date: Tue, 28 May 2013 08:27:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [BISECTED] nouveau, nv50: External VGA not detected anymore"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64904#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - [BISECTED] nouveau, nv50: External VGA not detected a=
+nymore"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64904#c11">Commen=
+t # 11</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [BISECTED] nouveau, nv50: External VGA not detected anymore"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64904">bug 64904</a>
-              from <span class="vcard"><a class="email" href="mailto:m.b.lankhorst&#64;gmail.com" title="Maarten Lankhorst &lt;m.b.lankhorst&#64;gmail.com&gt;"> <span class="fn">Maarten Lankhorst</span></a>
+   title=3D"NEW --- - [BISECTED] nouveau, nv50: External VGA not detected a=
+nymore"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64904">bug 64904<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+wippbox&#64;gmx.net" title=3D"Gerhard Br=C3=A4unlich &lt;wippbox&#64;gmx.ne=
+t&gt;"> <span class=3D"fn">Gerhard Br=C3=A4unlich</span></a>
 </span></b>
-        <pre>Strictly speaking it should probably be (load &amp; 7) == 7, but I don't think
-it'll fix it on its own, you might want to dump the value of load to be sure,
-with all those patches.</pre>
+        <pre>(In reply to <a href=3D"show_bug.cgi?id=3D64904#c10">comment #=
+10</a>)
+<span class=3D"quote">&gt; Strictly speaking it should probably be (load &a=
+mp; 7) =3D=3D 7, but I don't think
+&gt; it'll fix it on its own, you might want to dump the value of load to be
+&gt; sure, with all those patches.</span >
+
+OK, I get load=3D0.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1369693438.cb5a2.1446--
+--1369729624.d2837C1.20123--
 
---===============2119297017==
+--===============0940188001==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +107,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2119297017==--
+--===============0940188001==--
