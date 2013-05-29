@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 63135] [bisected] G69/nv50 DisplayPort dual-head
- fails to switch to KMS
-Date: Tue, 28 May 2013 22:29:18 +0000
-Message-ID: <bug-63135-8800-hdB5j7q3Sr@http.bugs.freedesktop.org/>
-References: <bug-63135-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 65116] New: Since upgrade to libX11-1.5.99.902
+ several problems with gnome desktop
+Date: Wed, 29 May 2013 08:21:15 +0000
+Message-ID: <bug-65116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0354385207=="
+Content-Type: multipart/mixed; boundary="===============1801620874=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-63135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +19,54 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0354385207==
-Content-Type: multipart/alternative; boundary="1369780158.febCe0e1.12855"; charset="us-ascii"
+--===============1801620874==
+Content-Type: multipart/alternative; boundary="1369815675.1E6f4F1.6931"; charset="us-ascii"
 
 
---1369780158.febCe0e1.12855
-Date: Tue, 28 May 2013 22:29:18 +0000
+--1369815675.1E6f4F1.6931
+Date: Wed, 29 May 2013 08:21:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=63135
+https://bugs.freedesktop.org/show_bug.cgi?id=65116
 
-Devin J. Pohly <djpohly+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+          Priority: medium
+            Bug ID: 65116
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Since upgrade to libX11-1.5.99.902 several problems
+                    with gnome desktop
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: rose-L/08BfOuEgquzba0o+Ga+bNAH6kLmebB@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Severity|critical                    |normal
-           Priority|highest                     |medium
+After installing libX11-1.5.99.902 and libXau-1.0.8 I see strange effects on
+systems with NVidia cards.
+At the first system (Gallium 04 on NV86 - NVIDIA Corporation G86M [Quadro NVS
+140M]) the gnome desktop background is set to a green gradient, but only a
+black background is shown.
+At the second system, gnome systems settings says Gallium 0.4 on NVD9 - Forced
+Fallback modus On (NVIDIA Corporation GF119 [GeForce GT 520]) the the desktop
+background is not refreshed. If I switch at the second system to the 3D mode,
+the issue with the background disappears but the desktop is frequently
+crashing.
+
+This bug is also filed as a gentoo bug at 
+
+https://bugs.gentoo.org/show_bug.cgi?id=471396.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1369780158.febCe0e1.12855
-Date: Tue, 28 May 2013 22:29:18 +0000
+--1369815675.1E6f4F1.6931
+Date: Wed, 29 May 2013 08:21:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,36 +74,110 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:djpohly+freedesktop&#64;gmail.com" title="Devin J. Pohly &lt;djpohly+freedesktop&#64;gmail.com&gt;"> <span class="fn">Devin J. Pohly</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [bisected] G69/nv50 DisplayPort dual-head fails to switch to KMS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135">bug 63135</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+   title="NEW --- - Since upgrade to libX11-1.5.99.902 several problems with gnome desktop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65116">65116</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Severity</td>
-           <td>critical
-           </td>
-           <td>normal
-           </td>
-         </tr>
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Priority</td>
-           <td>highest
-           </td>
-           <td>medium
-           </td>
-         </tr></table>
+        <tr>
+          <th>Summary</th>
+          <td>Since upgrade to libX11-1.5.99.902 several problems with gnome desktop
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>rose&#64;rz.uni-potsdam.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
+        <div>
+        <pre>After installing libX11-1.5.99.902 and libXau-1.0.8 I see strange effects on
+systems with NVidia cards.
+At the first system (Gallium 04 on NV86 - NVIDIA Corporation G86M [Quadro NVS
+140M]) the gnome desktop background is set to a green gradient, but only a
+black background is shown.
+At the second system, gnome systems settings says Gallium 0.4 on NVD9 - Forced
+Fallback modus On (NVIDIA Corporation GF119 [GeForce GT 520]) the the desktop
+background is not refreshed. If I switch at the second system to the 3D mode,
+the issue with the background disappears but the desktop is frequently
+crashing.
+
+This bug is also filed as a gentoo bug at 
+
+<a href="https://bugs.gentoo.org/show_bug.cgi?id=471396">https://bugs.gentoo.org/show_bug.cgi?id=471396</a>.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -92,9 +188,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1369780158.febCe0e1.12855--
+--1369815675.1E6f4F1.6931--
 
---===============0354385207==
+--===============1801620874==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +201,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0354385207==--
+--===============1801620874==--
