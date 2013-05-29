@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 65116] New: Since upgrade to libX11-1.5.99.902
- several problems with gnome desktop
-Date: Wed, 29 May 2013 08:21:15 +0000
-Message-ID: <bug-65116-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 61321] [regression][NV4c] System hang while loading
+ gdm on 3.7 kernel (works on 3.6)
+Date: Wed, 29 May 2013 10:54:37 +0000
+Message-ID: <bug-61321-8800-u4UfbmXXAr@http.bugs.freedesktop.org/>
+References: <bug-61321-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1801620874=="
+Content-Type: multipart/mixed; boundary="===============0819026720=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-61321-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,54 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1801620874==
-Content-Type: multipart/alternative; boundary="1369815675.1E6f4F1.6931"; charset="us-ascii"
+--===============0819026720==
+Content-Type: multipart/alternative; boundary="1369824877.1FB5eb2.2308"; charset="us-ascii"
 
 
---1369815675.1E6f4F1.6931
-Date: Wed, 29 May 2013 08:21:15 +0000
+--1369824877.1FB5eb2.2308
+Date: Wed, 29 May 2013 10:54:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=65116
+https://bugs.freedesktop.org/show_bug.cgi?id=61321
 
-          Priority: medium
-            Bug ID: 65116
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Since upgrade to libX11-1.5.99.902 several problems
-                    with gnome desktop
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: rose-L/08BfOuEgquzba0o+Ga+bNAH6kLmebB@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-After installing libX11-1.5.99.902 and libXau-1.0.8 I see strange effects on
-systems with NVidia cards.
-At the first system (Gallium 04 on NV86 - NVIDIA Corporation G86M [Quadro NVS
-140M]) the gnome desktop background is set to a green gradient, but only a
-black background is shown.
-At the second system, gnome systems settings says Gallium 0.4 on NVD9 - Forced
-Fallback modus On (NVIDIA Corporation GF119 [GeForce GT 520]) the the desktop
-background is not refreshed. If I switch at the second system to the 3D mode,
-the issue with the background disappears but the desktop is frequently
-crashing.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+                   |rg                          |
 
-This bug is also filed as a gentoo bug at 
+--- Comment #11 from Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 79949
+  --> https://bugs.freedesktop.org/attachment.cgi?id=79949&action=edit
+initialize ramfc to zero
 
-https://bugs.gentoo.org/show_bug.cgi?id=471396.
+Just guessing, based on the commit itself. Does the patch help?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1369815675.1E6f4F1.6931
-Date: Wed, 29 May 2013 08:21:15 +0000
+--1369824877.1FB5eb2.2308
+Date: Wed, 29 May 2013 10:54:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,109 +60,51 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
+    <body><span class="vcard"><a class="email" href="mailto:m.b.lankhorst&#64;gmail.com" title="Maarten Lankhorst &lt;m.b.lankhorst&#64;gmail.com&gt;"> <span class="fn">Maarten Lankhorst</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [regression][NV4c] System hang while loading gdm on 3.7 kernel (works on 3.6)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61321">bug 61321</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Since upgrade to libX11-1.5.99.902 several problems with gnome desktop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65116">65116</a>
-          </td>
-        </tr>
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr>
 
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Since upgrade to libX11-1.5.99.902 several problems with gnome desktop
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>rose&#64;rz.uni-potsdam.de
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>m.b.lankhorst&#64;gmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>After installing libX11-1.5.99.902 and libXau-1.0.8 I see strange effects on
-systems with NVidia cards.
-At the first system (Gallium 04 on NV86 - NVIDIA Corporation G86M [Quadro NVS
-140M]) the gnome desktop background is set to a green gradient, but only a
-black background is shown.
-At the second system, gnome systems settings says Gallium 0.4 on NVD9 - Forced
-Fallback modus On (NVIDIA Corporation GF119 [GeForce GT 520]) the the desktop
-background is not refreshed. If I switch at the second system to the 3D mode,
-the issue with the background disappears but the desktop is frequently
-crashing.
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [regression][NV4c] System hang while loading gdm on 3.7 kernel (works on 3.6)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61321#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [regression][NV4c] System hang while loading gdm on 3.7 kernel (works on 3.6)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61321">bug 61321</a>
+              from <span class="vcard"><a class="email" href="mailto:m.b.lankhorst&#64;gmail.com" title="Maarten Lankhorst &lt;m.b.lankhorst&#64;gmail.com&gt;"> <span class="fn">Maarten Lankhorst</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=79949" name="attach_79949" title="initialize ramfc to zero">attachment 79949</a> <a href="attachment.cgi?id=79949&amp;action=edit" title="initialize ramfc to zero">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=61321&amp;attachment=79949'>[review]</a>
+initialize ramfc to zero
 
-This bug is also filed as a gentoo bug at 
-
-<a href="https://bugs.gentoo.org/show_bug.cgi?id=471396">https://bugs.gentoo.org/show_bug.cgi?id=471396</a>.</pre>
+Just guessing, based on the commit itself. Does the patch help?</pre>
         </div>
       </p>
       <hr>
@@ -188,9 +116,9 @@ This bug is also filed as a gentoo bug at
     </body>
 </html>
 
---1369815675.1E6f4F1.6931--
+--1369824877.1FB5eb2.2308--
 
---===============1801620874==
+--===============0819026720==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -201,4 +129,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1801620874==--
+--===============0819026720==--
