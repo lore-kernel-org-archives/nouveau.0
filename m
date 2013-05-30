@@ -1,13 +1,13 @@
-From: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
-Subject: Re: hardware donation (GeForce 6600 & GTS250)
-Date: Wed, 29 May 2013 15:30:16 +0200
-Message-ID: <51A602E8.8050107@student.tudelft.nl>
-References: <51A5E2B6.8080801@bb-goettingen.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 63135] [bisected] G69/nv50 DisplayPort dual-head
+ fails to switch to KMS
+Date: Thu, 30 May 2013 01:12:31 +0000
+Message-ID: <bug-63135-8800-dhZdrsMuFN@http.bugs.freedesktop.org/>
+References: <bug-63135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0730130780=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <51A5E2B6.8080801-Bxc08648jgRtphlaBxz+CA@public.gmane.org>
+In-Reply-To: <bug-63135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +20,80 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Dear Patrick,
 
-For experiments with performance scaling the GTS250 could be a useful 
-card. If there is no other developer that could use this card better, 
-I'm interested.
-Thanks!
+--===============0730130780==
+Content-Type: multipart/alternative; boundary="1369876350.14BC88f1.28714"; charset="us-ascii"
 
-Roy
 
-Op 29-05-13 13:12, Patrick schreef:
-> hello nouveau devs!
->
-> I have two nvidia cards lying around that are no longer in use:
->
-> * Nvidia GeForce GTS250 E-Green, 512MB GDDR3 (NV92/G92 - NV50 family)
-> * Nvidia GeForce 6600, 256MB (NV43 - NV40 family)
->
-> They both are already well supported by the nouveau driver as far as I can
-> tell. But if any dev can make use of them, please let me know, I would
-> gladly donate them.
->
-> Patrick
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
+--1369876350.14BC88f1.28714
+Date: Thu, 30 May 2013 01:12:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=63135
+
+--- Comment #8 from Devin J. Pohly <djpohly+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Well darn, apparently it isn't.  Unfortunately the bug doesn't occur 100% of
+the time when you boot a bad build, so I'm going to have to re-bisect and do a
+lot of rebooting.
+
+I'll attach a debug log from the last known good build... once I know what that
+is. :)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1369876350.14BC88f1.28714
+Date: Thu, 30 May 2013 01:12:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [bisected] G69/nv50 DisplayPort dual-head fails to switch to KMS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [bisected] G69/nv50 DisplayPort dual-head fails to switch to KMS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135">bug 63135</a>
+              from <span class="vcard"><a class="email" href="mailto:djpohly+freedesktop&#64;gmail.com" title="Devin J. Pohly &lt;djpohly+freedesktop&#64;gmail.com&gt;"> <span class="fn">Devin J. Pohly</span></a>
+</span></b>
+        <pre>Well darn, apparently it isn't.  Unfortunately the bug doesn't occur 100% of
+the time when you boot a bad build, so I'm going to have to re-bisect and do a
+lot of rebooting.
+
+I'll attach a debug log from the last known good build... once I know what that
+is. :)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1369876350.14BC88f1.28714--
+
+--===============0730130780==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0730130780==--
