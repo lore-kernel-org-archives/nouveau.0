@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 62914] ZaphodHeads doesn't work after upgrading to
 	xorg 1.14
-Date: Fri, 31 May 2013 03:37:16 +0000
-Message-ID: <bug-62914-8800-Vaukvr7zXr@http.bugs.freedesktop.org/>
+Date: Fri, 31 May 2013 04:28:58 +0000
+Message-ID: <bug-62914-8800-WSf970kkq8@http.bugs.freedesktop.org/>
 References: <bug-62914-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0802446332=="
+Content-Type: multipart/mixed; boundary="===============0669290292=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-62914-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0802446332==
-Content-Type: multipart/alternative; boundary="1369971435.818eAE61.19876"; charset="us-ascii"
+--===============0669290292==
+Content-Type: multipart/alternative; boundary="1369974538.76Db5B12.990"; charset="us-ascii"
 
 
---1369971435.818eAE61.19876
-Date: Fri, 31 May 2013 03:37:15 +0000
+--1369974538.76Db5B12.990
+Date: Fri, 31 May 2013 04:28:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=62914
 
---- Comment #23 from Jason Stubbs <jasonbstubbs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #20)
-> commit 1fdd7db94b55c65ea62cc9eaefff620b20e9e4ea
-> Author: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> Date:   Mon Jan 7 15:28:53 2013 +1000
-> 
-> It didn't revert cleanly against master and how to fix the conflict wasn't
-> clear to me so I haven't been able to test that.
+--- Comment #24 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Could you post the disassembly of the function? Would like to see exactly where
+in that method it's dying. (I wonder if it's crtc->randr_crtc... something with
+a 0x2d0 struct offset.)
 
-I spoke too soon. Reverting was as easy as deleting all the additions, whereas
-I was confused in thinking that the additions needed to be kept.
-
-So, to cut a long story short, HEAD with the above patch reverted works for me.
+Also, the latest version of that code has added a #ifdef NOUVEAU_PIXMAP_SHARING
+around the added code in drmmode_set_mode_major... (which I assume you've tried
+running as well). What happens if you just remove that whole ifdef? (But leave
+the rest of the commit in.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1369971435.818eAE61.19876
-Date: Fri, 31 May 2013 03:37:15 +0000
+--1369974538.76Db5B12.990
+Date: Fri, 31 May 2013 04:28:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,25 +61,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914#c23">Comment # 23</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914#c24">Comment # 24</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - ZaphodHeads doesn't work after upgrading to xorg 1.14"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=62914">bug 62914</a>
-              from <span class="vcard"><a class="email" href="mailto:jasonbstubbs&#64;gmail.com" title="Jason Stubbs &lt;jasonbstubbs&#64;gmail.com&gt;"> <span class="fn">Jason Stubbs</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=62914#c20">comment #20</a>)
-<span class="quote">&gt; commit 1fdd7db94b55c65ea62cc9eaefff620b20e9e4ea
-&gt; Author: Dave Airlie &lt;<a href="mailto:airlied&#64;redhat.com">airlied&#64;redhat.com</a>&gt;
-&gt; Date:   Mon Jan 7 15:28:53 2013 +1000
-&gt; 
-&gt; It didn't revert cleanly against master and how to fix the conflict wasn't
-&gt; clear to me so I haven't been able to test that.</span >
+        <pre>Could you post the disassembly of the function? Would like to see exactly where
+in that method it's dying. (I wonder if it's crtc-&gt;randr_crtc... something with
+a 0x2d0 struct offset.)
 
-I spoke too soon. Reverting was as easy as deleting all the additions, whereas
-I was confused in thinking that the additions needed to be kept.
-
-So, to cut a long story short, HEAD with the above patch reverted works for me.</pre>
+Also, the latest version of that code has added a #ifdef NOUVEAU_PIXMAP_SHARING
+around the added code in drmmode_set_mode_major... (which I assume you've tried
+running as well). What happens if you just remove that whole ifdef? (But leave
+the rest of the commit in.)</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +87,9 @@ So, to cut a long story short, HEAD with the above patch reverted works for me.<
     </body>
 </html>
 
---1369971435.818eAE61.19876--
+--1369974538.76Db5B12.990--
 
---===============0802446332==
+--===============0669290292==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0802446332==--
+--===============0669290292==--
