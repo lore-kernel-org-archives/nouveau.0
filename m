@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64904] [BISECTED] nouveau,
  nv50: External VGA not detected anymore
-Date: Sun, 02 Jun 2013 00:05:39 +0000
-Message-ID: <bug-64904-8800-ry1FOCVdC0@http.bugs.freedesktop.org/>
+Date: Sun, 02 Jun 2013 00:13:09 +0000
+Message-ID: <bug-64904-8800-rIbbonKI18@http.bugs.freedesktop.org/>
 References: <bug-64904-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0340706707=="
+Content-Type: multipart/mixed; boundary="===============1594713431=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64904-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0340706707==
-Content-Type: multipart/alternative; boundary="1370131540.0bDa4f3d4.15127"; charset="us-ascii"
+--===============1594713431==
+Content-Type: multipart/alternative; boundary="1370131989.1Cd8d84.16149"; charset="us-ascii"
 
 
---1370131540.0bDa4f3d4.15127
-Date: Sun, 2 Jun 2013 00:05:40 +0000
+--1370131989.1Cd8d84.16149
+Date: Sun, 2 Jun 2013 00:13:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,27 +36,15 @@ Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |ASSIGNED
-
---- Comment #13 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #12)
-> ...
-> 2) Write NV50_PDISPLAY_DAC_LOAD_CTRL_DONE to DAC_LOAD_CTRL(i).
-
-Nice catch Josh, although this write is not the one causing the issue.
-
-
-Just got a VGA cable and I can reproduce the issue.
-
-Would need to do some testing if the fix does not break the behaviour on any
-other cards
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+                   |rg                          |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1370131540.0bDa4f3d4.15127
-Date: Sun, 2 Jun 2013 00:05:40 +0000
+--1370131989.1Cd8d84.16149
+Date: Sun, 2 Jun 2013 00:13:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -79,36 +67,13 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
            </td>
-           <td>ASSIGNED
+           <td>emil.l.velikov&#64;gmail.com
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED --- - [BISECTED] nouveau, nv50: External VGA not detected anymore"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64904#c13">Comment # 13</a>
-              on <a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED --- - [BISECTED] nouveau, nv50: External VGA not detected anymore"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64904">bug 64904</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=64904#c12">comment #12</a>)
-<span class="quote">&gt; ...
-&gt; 2) Write NV50_PDISPLAY_DAC_LOAD_CTRL_DONE to DAC_LOAD_CTRL(i).</span >
-
-Nice catch Josh, although this write is not the one causing the issue.
-
-
-Just got a VGA cable and I can reproduce the issue.
-
-Would need to do some testing if the fix does not break the behaviour on any
-other cards</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -119,9 +84,9 @@ other cards</pre>
     </body>
 </html>
 
---1370131540.0bDa4f3d4.15127--
+--1370131989.1Cd8d84.16149--
 
---===============0340706707==
+--===============1594713431==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0340706707==--
+--===============1594713431==--
