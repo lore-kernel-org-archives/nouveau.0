@@ -1,14 +1,11 @@
-From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/2] nouveau: add libbacklight and randr property
-	support.
-Date: Thu,  6 Jun 2013 11:35:01 +1000
-Message-ID: <1370482501-14023-2-git-send-email-airlied@gmail.com>
-References: <1370482501-14023-1-git-send-email-airlied@gmail.com>
+From: rm.riches-BRax14MUi1YI9MI5TlNUSA@public.gmane.org (Robert M. Riches Jr.)
+Subject: Lockups ENGT430 (NVc0), failed to unbind.
+Date: Wed, 05 Jun 2013 22:26:29 -0700
+Message-ID: <20130606052629.EFDFE1835EA@one.localnet>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1370482501-14023-1-git-send-email-airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,129 +18,67 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-From: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Twice in a little over a week, nouveau has locked up on my system
+with an Asus ENGT430 that is "Detected [as] an NVc0 generation
+card (0x0c1080a1)" at boot time.  OS is Mageia 2, kernel
+3.4.45-server-1.mga2.  At the time of both lockups, I had a
+couple dozen Firefox windows plus several other miscellaneous
+windows open.
 
-This adds support to detect libbacklight and use it to provide the standard
-randr backlight properties, for desktops environments to use.
+Here are the some snippets from /var/log/messages a few days
+before the first lock-up:
 
-untested as of yet.
+    May 27 10:24:25 one kernel: [779598.847459] [drm] nouveau 0000:06:00.0: gpuobj -28
+    ...
+    May 27 10:28:37 one kernel: [779850.989024] [drm] nouveau 0000:06:00.0: gpuobj -28
+    ...
+    May 27 10:28:45 one kernel: [779858.365759] [drm] nouveau 0000:06:00.0: Error creating object: -28 (3/0xbeef9039)
 
-Signed-off-by: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
----
- configure.ac          |  3 +++
- src/Makefile.am       |  4 ++--
- src/drmmode_display.c | 40 ++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 45 insertions(+), 2 deletions(-)
 
-diff --git a/configure.ac b/configure.ac
-index 137de9c..d3e8692 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -81,6 +81,9 @@ sdkdir=$(pkg-config --variable=sdkdir xorg-server)
- # Checks for libraries.
- PKG_CHECK_MODULES([PCIACCESS], [pciaccess >= 0.10])
- 
-+PKG_CHECK_MODULES(LIBBACKLIGHT, [libbacklight], LIBBACKLIGHT="yes"; AC_DEFINE(HAVE_LIBBACKLIGHT, 1, [libbacklight available]), [LIBBACKLIGHT=no])
-+AM_CONDITIONAL(LIBBACKLIGHT, [ test "$LIBBACKLIGHT" = "yes" ])
-+
- PKG_CHECK_MODULES(LIBUDEV, [libudev], [LIBUDEV=yes], [LIBUDEV=no])
- if test "x$LIBUDEV" = xyes; then
- 	AC_DEFINE(HAVE_LIBUDEV, 1, [libudev support])
-diff --git a/src/Makefile.am b/src/Makefile.am
-index 17c6389..826a3f6 100644
---- a/src/Makefile.am
-+++ b/src/Makefile.am
-@@ -23,10 +23,10 @@
- # -avoid-version prevents gratuitous .0.0.0 version numbers on the end
- # _ladir passes a dummy rpath to libtool so the thing will actually link
- # TODO: -nostdlib/-Bstatic/-lgcc platform magic, not installing the .a, etc.
--AM_CFLAGS = @XORG_CFLAGS@ @LIBUDEV_CFLAGS@ @LIBDRM_NOUVEAU_CFLAGS@
-+AM_CFLAGS = @XORG_CFLAGS@ @LIBUDEV_CFLAGS@ @LIBDRM_NOUVEAU_CFLAGS@ @LIBBACKLIGHT_CFLAGS@
- nouveau_drv_la_LTLIBRARIES = nouveau_drv.la
- nouveau_drv_la_LDFLAGS = -module -avoid-version @LIBDRM_NOUVEAU_LIBS@ \
--			 @LIBUDEV_LIBS@
-+			 @LIBUDEV_LIBS@ @LIBBACKLIGHT_LIBS@
- nouveau_drv_ladir = @moduledir@/drivers
- 
- nouveau_drv_la_SOURCES = \
-diff --git a/src/drmmode_display.c b/src/drmmode_display.c
-index ad7bc1f..927dbcf 100644
---- a/src/drmmode_display.c
-+++ b/src/drmmode_display.c
-@@ -42,6 +42,10 @@
- #include "libudev.h"
- #endif
- 
-+#ifdef HAVE_LIBBACKLIGHT
-+#include "libbacklight.h"
-+#endif
-+
- static Bool drmmode_xf86crtc_resize(ScrnInfoPtr scrn, int width, int height);
- typedef struct {
-     int fd;
-@@ -82,6 +86,11 @@ typedef struct {
-     drmModePropertyBlobPtr edid_blob;
-     int num_props;
-     drmmode_prop_ptr props;
-+#ifdef HAVE_LIBBACKLIGHT
-+    struct backlight *backlight;
-+    int backlight_active_level;
-+    int backlight_max;
-+#endif
- } drmmode_output_private_rec, *drmmode_output_private_ptr;
- 
- typedef struct {
-@@ -99,6 +108,13 @@ typedef struct {
-     Bool dispatch_me;
- } drmmode_flipevtcarrier_rec, *drmmode_flipevtcarrier_ptr;
- 
-+#ifdef HAVE_LIBBACKLIGHT
-+#define BACKLIGHT_NAME             "Backlight"
-+#define BACKLIGHT_DEPRECATED_NAME  "BACKLIGHT"
-+
-+static Atom backlight_atom, backlight_deprecated_atom;
-+#endif
-+
- static void drmmode_output_dpms(xf86OutputPtr output, int mode);
- 
- static drmmode_ptr
-@@ -717,6 +733,9 @@ drmmode_output_destroy(xf86OutputPtr output)
- 		drmModeFreeProperty(drmmode_output->props[i].mode_prop);
- 		free(drmmode_output->props[i].atoms);
- 	}
-+#ifdef HAVE_LIBBACKLIGHT
-+	backlight_destroy(drmmode_output->backlight);
-+#endif
- 	drmModeFreeConnector(drmmode_output->mode_output);
- 	free(drmmode_output);
- 	output->driver_private = NULL;
-@@ -868,6 +887,27 @@ drmmode_output_create_resources(xf86OutputPtr output)
- 			}
- 		}
- 	}
-+
-+#ifdef HAVE_LIBBACKLIGHT
-+    {
-+	NVPtr pNv = NVPTR(output->scrn);
-+	struct pci_device *dev = pNv->PciInfo;
-+
-+	drmmode_output->backlight = backlight_init(dev, 0, mode_output->connector_type,
-+					mode_output->connector_type_id);
-+
-+	if (drmmode_output->backlight) {
-+	    drmmode_output->backlight_max = backlight_get_max_brightness(drmmode_output->backlight);
-+	    drmmode_output->backlight_active_level = backlight_get_brightness(drmmode_output->backlight);
-+	    nouveau_create_ranged_atom(output, &backlight_atom,
-+				      BACKLIGHT_NAME, 0, drmmode_output->backlight_max,
-+				      drmmode_output->backlight_active_level, FALSE);
-+	    nouveau_create_ranged_atom(output, &backlight_deprecated_atom,
-+				      BACKLIGHT_DEPRECATED_NAME, 0, drmmode_output->backlight_max,
-+				      drmmode_output->backlight_active_level, FALSE);
-+	}
-+    }
-+#endif
- }
- 
- static Bool
--- 
-1.8.2.1
+These happened at approximately the time of the first lockup.
+Keyboard LEDs were inoperative.
+
+    May 30 20:52:38 one kernel: [1075995.216570] [drm] nouveau 0000:06:00.0: PFIFO: write fault at 0x0000188000 [PAGE_NOT_PRESENT] from BAR3/BAR_WRITE on channel 0x0000058000
+    May 30 20:52:38 one kernel: [1075995.216579] [drm] nouveau 0000:06:00.0: PFIFO: unknown status 0x40000000
+    May 30 20:52:38 one kernel: [1075995.216594] [drm] nouveau 0000:06:00.0: PFIFO: write fault at 0x0038a20000 [PAGE_NOT_PRESENT] from PGRAPH/GPC0/PROP on channel 0x0000ac8000
+
+These happened a little over an hour after booting following
+increasing system RAM:
+
+    Jun  1 14:16:25 one kernel: [ 4163.578441] [drm] nouveau 0000:06:00.0: PMFB0_SUBP0: 0x037f0040
+    Jun  1 14:16:25 one kernel: [ 4163.578447] [drm] nouveau 0000:06:00.0: PMFB0_SUBP1: 0x037f0040
+
+Nothing adverse was observed at this time:
+
+    Jun  3 19:09:42 one kernel: [194241.366196] [drm] nouveau 0000:06:00.0: gpuobj -28
+
+This was the time of the second lock-up:
+
+    Jun  4 20:40:44 one kernel: [285949.704837] [drm] nouveau 0000:06:00.0: PFIFO: write fault at 0x01bcb20000 [INVALID_STORAGE_TYPE] from PGRAPH/GPC0/PROP on channel 0x0000ac8000
+    Jun  4 20:40:44 one kernel: [285949.704846] [drm] nouveau 0000:06:00.0: PFIFO: unknown status 0x40000000
+
+Some months ago, following advice from this list, I had
+successfully restored function by doing these commands via ssh
+from another machine:
+
+    echo 0 > /sys/class/vtconsole/vtcon1/bind
+    modprobe -r nouveau
+    modprobe nouveau
+
+These two times, the "modprobe -r nouveau" returned a message
+indicating the module was busy.  On the second time, June 4,
+/sys/class/vtconsole/vtcon1/bind still had "1" rather than the
+"0' I had written to it.  I'm taking that means the kernel had
+failed to unbind the console and module.
+
+Any additional suggestions for getting it unbound so I can remove
+and reload the module?  (...preferably without needing to reboot
+the machine.)
+
+(Truth be known, I have some GTX560 cards I'd love to put to use,
+but last time I tried, the system wouldn't even boot with one of
+those cards.)
+
+Thanks,
+
+Robert
