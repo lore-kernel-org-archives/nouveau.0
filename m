@@ -1,108 +1,65 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH] nouveau: Load firmware for BSP/VP engines on NV84-NV96,
-	NVA0
-Date: Tue, 11 Jun 2013 15:49:05 +1000
-Message-ID: <CACAvsv7m2d3G2bUOJPgPU3FzO9qUbdSnW7bs31d+sRh4e8r=Lg@mail.gmail.com>
-References: <1370250144-3303-1-git-send-email-imirkin@alum.mit.edu>
-	<CAKb7Uvj4vR4Xw_Fy-3MjyF_MW4iWqzP6iorgLKCKT2ABZkykzw@mail.gmail.com>
-	<51AEE32C.9090004@canonical.com>
-	<CAKb7UvgfgmWEYSJ2ChSawB8BQpOsc3=VCcQ-4PsxiBeNGsPQ7A@mail.gmail.com>
+From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Subject: Re: [Nouveau] [RFC PATCH] drm/nouveau: use vmalloc for pgt allocation
+Date: Tue, 11 Jun 2013 10:58:42 +0200
+Message-ID: <51B6E6C2.2090407@canonical.com>
+References: <1362509833-28968-1-git-send-email-marcin.slusarz@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <CAKb7UvgfgmWEYSJ2ChSawB8BQpOsc3=VCcQ-4PsxiBeNGsPQ7A@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Maarten Lankhorst <maarten.lankhorst@ubuntu.com>, Ben Skeggs <bskeggs@redhat.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <1362509833-28968-1-git-send-email-marcin.slusarz@gmail.com>
+Sender: stable-owner@vger.kernel.org
+To: Marcin Slusarz <marcin.slusarz@gmail.com>
+Cc: nouveau@lists.freedesktop.org, stable@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jun 5, 2013 at 5:16 PM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
-> On Wed, Jun 5, 2013 at 3:05 AM, Maarten Lankhorst
-> <maarten.lankhorst@canonical.com> wrote:
->> Hey,
->>
->> Op 04-06-13 20:38, Ilia Mirkin schreef:
->>> On Mon, Jun 3, 2013 at 5:02 AM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
->>>> These chipsets include the VP2 engine which is composed of a bitstream
->>>> processor (BSP) that decodes H.264 and a video processor (VP) which can
->>>> do iDCT/mo-comp/etc for MPEG1/2, H.264, and VC-1. Both of these are
->>>> driven by separate xtensa chips embedded in the hardware. This patch
->>>> provides the mechanism to load the kernel for the xtensa chips and
->>>> provide the necessary interactions to do the rest of the work.
->>>>
->>>> Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
->>>> ---
->>>>
->>>> This patch applies on top of nouveau/master (16a41bcc8).
->>>>
->>>> This seems to work for me. There was one boot where my userspace
->>>> component didn't work right, but it could just as well be a bug
->>>> there. Subsequent attempts seem to work fine. Note that I'm not
->>>> particularly familiar with any of this stuff, so if something looks
->>>> odd, I probably didn't know any better. I did try to faithfully
->>>> reproduce whatever the blob did. A few questions/thoughts:
->>>>
->>>> 1. There's a LOT of similarity between BSP and VP setup/etc. Is it
->>>>    worth it to create a core/xtensa.c or some such, similar to
->>>>    falcon.c? Since it's only in two places, not that much code, and
->>>>    there _are_ differences, I decided to keep them separate.
->>>>
->>>> 2. Firmware naming. Maarten suggested to use the falcon naming style,
->>>>    which is nv$chipset_fuc$offset. However here, all the chips share
->>>>    the same firmware. Also the offset would be 103 vs 00f, and is a
->>>>    little arbitrary. (And fuc doesn't apply here... xt? xtensa?) I've
->>>>    left it the way I had it: nv84_bsp and nv84_vp.
->>>>
->>>> 3. Firmware load time. I chose to load the fw into memory in the ctor,
->>>>    and then copy it in in init, due to some potentially bogus
->>>>    suspend/resume concerns. Also e.g. mplayer likes to create/destroy
->>>>    decoders at startup a few times. The downside is that ~200KB of
->>>>    memory is gone. Let me know if I should change it to do the
->>>>    request_firmware in init.
->>>>
->>>> There's obviously a userspace piece to this, which I'm still working
->>>> on. But right now I have it working within certain parameters
->>>> (e.g. 1280x544 videos), and I'm relatively confident it can be
->>>> completed without further kernel-side changes.
->>>>
->>>> There's also a hypothetical concern of "what if we create an open
->>>> firmware with a different user API". Ideally there'd be some way to
->>>> expose what kind of firmware is loaded, but I think that can be left
->>>> for "later".
->>>
->>> I also happened to notice that NV98, NVA1+ refer to these nv84 engines
->>> (in drivers/gpu/drm/nouveau/core/engine/device/nv50.c). I assume that
->>> means I should create a new nv98.c version of BSP/VP that resembles
->>> the old versions of nv84.c, and point device/nv50.c at those for nv98
->>> and nva1+?
->>>
->> nv98+ should really have an implementation more like nvc0, and the copy engine
->> is a good example on what conversion is needed to do it. :-)
+Op 05-03-13 19:57, Marcin Slusarz schreef:
+> Page tables on nv50 take 48kB, which can be hard to allocate in one piece.
+> Let's use vmalloc.
 >
-> That should probably be a separate patch, no? Do you mean something
-> more falcon-y? (It still needs firmware, right?) I think I should just
-> avoid changing things on those cards in this patch... (Also the only
-> NV card I have access to is my NV96, so I'll be more likely to keep
-> playing with that :) )
+> Signed-off-by: Marcin Slusarz <marcin.slusarz@gmail.com>
+> Cc: stable@vger.kernel.org [3.7+]
+> ---
+>  drivers/gpu/drm/nouveau/core/subdev/vm/base.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 >
-Just a note that I haven't forgotten about this.  I'm just finish off
-a few things, and I'll give my comments at the end of the week!
+> diff --git a/drivers/gpu/drm/nouveau/core/subdev/vm/base.c b/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
+> index 77c67fc..e66fb77 100644
+> --- a/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
+> +++ b/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
+> @@ -362,7 +362,7 @@ nouveau_vm_create(struct nouveau_vmmgr *vmm, u64 offset, u64 length,
+>  	vm->fpde = offset >> (vmm->pgt_bits + 12);
+>  	vm->lpde = (offset + length - 1) >> (vmm->pgt_bits + 12);
+>  
+> -	vm->pgt  = kcalloc(vm->lpde - vm->fpde + 1, sizeof(*vm->pgt), GFP_KERNEL);
+> +	vm->pgt  = vzalloc((vm->lpde - vm->fpde + 1) * sizeof(*vm->pgt));
+>  	if (!vm->pgt) {
+>  		kfree(vm);
+>  		return -ENOMEM;
+> @@ -371,7 +371,7 @@ nouveau_vm_create(struct nouveau_vmmgr *vmm, u64 offset, u64 length,
+>  	ret = nouveau_mm_init(&vm->mm, mm_offset >> 12, mm_length >> 12,
+>  			      block >> 12);
+>  	if (ret) {
+> -		kfree(vm->pgt);
+> +		vfree(vm->pgt);
+>  		kfree(vm);
+>  		return ret;
+>  	}
+> @@ -446,7 +446,7 @@ nouveau_vm_del(struct nouveau_vm *vm)
+>  	}
+>  
+>  	nouveau_mm_fini(&vm->mm);
+> -	kfree(vm->pgt);
+> +	vfree(vm->pgt);
+>  	kfree(vm);
+>  }
+Could this patch be upstreamed?
 
-Maarten, if you're reading this, same goes for your nvd7 branch :)
+I was hitting the same allocation failure on my fermi after keeping my system running for a
+a week, and doing plenty of suspend/resume cycles (16+) in between it was failing an order 6
+allocation, which I assume means it was attempting to allocate 256 kilobyte of physical memory
+contiguously. My system has 16 gigabyte of ram, and had about 4 gb free afterwards when I
+checked, so it wasn't like there was not enough memory. It was probably just too fragmented
+to allocate with kmalloc, while vmalloc doesn't require the memory to be physicallly contiguous.
 
-Ben.
-
->   -ilia
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/dri-devel
+~Maarten
