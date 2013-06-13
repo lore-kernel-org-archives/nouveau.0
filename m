@@ -1,11 +1,13 @@
-From: Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org>
-Subject: [PATCH] Link against libdrm
-Date: Thu, 13 Jun 2013 20:41:53 +0200
-Message-ID: <1371148913-25057-1-git-send-email-svenjoac@gmx.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 63135] [bisected] G69/nv50 DisplayPort dual-head
+ fails to switch to KMS
+Date: Thu, 13 Jun 2013 20:49:26 +0000
+Message-ID: <bug-63135-8800-HjAQWQsQmI@http.bugs.freedesktop.org/>
+References: <bug-63135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0988391545=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-63135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,48 +18,89 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: 633786-61a8vm9lEZVf4u+23C9RwQ@public.gmane.org, Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-The DDX uses symbols from libdrm but currently does not link against
-it, but rather relies on indirect linkage from libdrm_nouveau.  This
-could lead to insufficient dependencies in distribution packages, seen
-in http://bugs.debian.org/633786.
 
-Signed-off-by: Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org>
----
- configure.ac    | 1 +
- src/Makefile.am | 4 ++--
- 2 files changed, 3 insertions(+), 2 deletions(-)
+--===============0988391545==
+Content-Type: multipart/alternative; boundary="1371156566.380A21.17305"; charset="us-ascii"
 
-diff --git a/configure.ac b/configure.ac
-index 6f7f870..b54b8cd 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -80,6 +80,7 @@ XORG_DRIVER_CHECK_EXT(DPMSExtension, xextproto)
- XORG_DRIVER_CHECK_EXT(DRI2, [dri2proto >= 2.6])
- 
- # Checks for pkg-config packages
-+PKG_CHECK_MODULES(LIBDRM, [libdrm >= 2.4.17])
- PKG_CHECK_MODULES(LIBDRM_NOUVEAU, [libdrm_nouveau >= 2.4.25])
- AC_SUBST(LIBDRM_NOUVEAU_CFLAGS)
- AC_SUBST(LIBDRM_NOUVEAU_LIBS)
-diff --git a/src/Makefile.am b/src/Makefile.am
-index f54e135..5836ead 100644
---- a/src/Makefile.am
-+++ b/src/Makefile.am
-@@ -23,10 +23,10 @@
- # -avoid-version prevents gratuitous .0.0.0 version numbers on the end
- # _ladir passes a dummy rpath to libtool so the thing will actually link
- # TODO: -nostdlib/-Bstatic/-lgcc platform magic, not installing the .a, etc.
--AM_CFLAGS = @XORG_CFLAGS@ @LIBUDEV_CFLAGS@ @LIBDRM_NOUVEAU_CFLAGS@
-+AM_CFLAGS = @XORG_CFLAGS@ @LIBUDEV_CFLAGS@ @LIBDRM_NOUVEAU_CFLAGS@ @LIBDRM_CFLAGS@
- nouveau_drv_la_LTLIBRARIES = nouveau_drv.la
- nouveau_drv_la_LDFLAGS = -module -avoid-version @LIBDRM_NOUVEAU_LIBS@ \
--			 @LIBUDEV_LIBS@
-+			 @LIBUDEV_LIBS@ @LIBDRM_LIBS@
- nouveau_drv_ladir = @moduledir@/drivers
- 
- nouveau_drv_la_SOURCES = \
+
+--1371156566.380A21.17305
+Date: Thu, 13 Jun 2013 20:49:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=63135
+
+--- Comment #21 from Devin J. Pohly <djpohly+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 80796
+  --> https://bugs.freedesktop.org/attachment.cgi?id=80796&action=edit
+log from recent git with patch, no hang, no video
+
+Well, I haven't gotten a recent kernel to hang.  So that's good in a way. 
+Unfortunately the displays still don't work.
+
+Attached a log from the serial console, on a recent git kernel with the "Parse
+DP table v20" patch applied.  If I will need to re-bisect, let me know what I
+should look for as a determining factor for good/bad.
+
 -- 
-1.8.3.1
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1371156566.380A21.17305
+Date: Thu, 13 Jun 2013 20:49:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [bisected] G69/nv50 DisplayPort dual-head fails to switch to KMS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135#c21">Comment # 21</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [bisected] G69/nv50 DisplayPort dual-head fails to switch to KMS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135">bug 63135</a>
+              from <span class="vcard"><a class="email" href="mailto:djpohly+freedesktop&#64;gmail.com" title="Devin J. Pohly &lt;djpohly+freedesktop&#64;gmail.com&gt;"> <span class="fn">Devin J. Pohly</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=80796" name="attach_80796" title="log from recent git with patch, no hang, no video">attachment 80796</a> <a href="attachment.cgi?id=80796&amp;action=edit" title="log from recent git with patch, no hang, no video">[details]</a></span>
+log from recent git with patch, no hang, no video
+
+Well, I haven't gotten a recent kernel to hang.  So that's good in a way. 
+Unfortunately the displays still don't work.
+
+Attached a log from the serial console, on a recent git kernel with the &quot;Parse
+DP table v20&quot; patch applied.  If I will need to re-bisect, let me know what I
+should look for as a determining factor for good/bad.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1371156566.380A21.17305--
+
+--===============0988391545==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0988391545==--
