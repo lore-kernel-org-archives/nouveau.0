@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 63135] [bisected] G69/nv50 DisplayPort dual-head
- fails to switch to KMS
-Date: Thu, 13 Jun 2013 20:49:26 +0000
-Message-ID: <bug-63135-8800-HjAQWQsQmI@http.bugs.freedesktop.org/>
-References: <bug-63135-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 65554] CPU lock with nouveau_fan_update
+Date: Fri, 14 Jun 2013 20:24:50 +0000
+Message-ID: <bug-65554-8800-Qy8zlMnYMP@http.bugs.freedesktop.org/>
+References: <bug-65554-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0988391545=="
+Content-Type: multipart/mixed; boundary="===============1411917199=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-63135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-65554-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0988391545==
-Content-Type: multipart/alternative; boundary="1371156566.380A21.17305"; charset="us-ascii"
+--===============1411917199==
+Content-Type: multipart/alternative; boundary="1371241490.c41EB81.22889"; charset="us-ascii"
 
 
---1371156566.380A21.17305
-Date: Thu, 13 Jun 2013 20:49:26 +0000
+--1371241490.c41EB81.22889
+Date: Fri, 14 Jun 2013 20:24:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=63135
+https://bugs.freedesktop.org/show_bug.cgi?id=65554
 
---- Comment #21 from Devin J. Pohly <djpohly+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 80796
-  --> https://bugs.freedesktop.org/attachment.cgi?id=80796&action=edit
-log from recent git with patch, no hang, no video
+ddamienn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-Well, I haven't gotten a recent kernel to hang.  So that's good in a way. 
-Unfortunately the displays still don't work.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
 
-Attached a log from the serial console, on a recent git kernel with the "Parse
-DP table v20" patch applied.  If I will need to re-bisect, let me know what I
-should look for as a determining factor for good/bad.
+--- Comment #3 from ddamienn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I've had the debug statement active for the last few days, but the error hasn't
+re-occurred. I discovered that my video card's fan was only working
+intermittently, which a clean seems to have fixed. Since the inactive fan
+likely caused the error I was seeing, I am closing this bug report as invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1371156566.380A21.17305
-Date: Thu, 13 Jun 2013 20:49:26 +0000
+--1371241490.c41EB81.22889
+Date: Fri, 14 Jun 2013 20:24:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,28 +57,51 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:ddamienn&#64;gmail.com" title="ddamienn&#64;gmail.com">ddamienn&#64;gmail.com</a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - CPU lock with nouveau_fan_update"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65554">bug 65554</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [bisected] G69/nv50 DisplayPort dual-head fails to switch to KMS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135#c21">Comment # 21</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - CPU lock with nouveau_fan_update"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65554#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [bisected] G69/nv50 DisplayPort dual-head fails to switch to KMS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135">bug 63135</a>
-              from <span class="vcard"><a class="email" href="mailto:djpohly+freedesktop&#64;gmail.com" title="Devin J. Pohly &lt;djpohly+freedesktop&#64;gmail.com&gt;"> <span class="fn">Devin J. Pohly</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - CPU lock with nouveau_fan_update"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65554">bug 65554</a>
+              from <span class="vcard"><a class="email" href="mailto:ddamienn&#64;gmail.com" title="ddamienn&#64;gmail.com">ddamienn&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=80796" name="attach_80796" title="log from recent git with patch, no hang, no video">attachment 80796</a> <a href="attachment.cgi?id=80796&amp;action=edit" title="log from recent git with patch, no hang, no video">[details]</a></span>
-log from recent git with patch, no hang, no video
-
-Well, I haven't gotten a recent kernel to hang.  So that's good in a way. 
-Unfortunately the displays still don't work.
-
-Attached a log from the serial console, on a recent git kernel with the &quot;Parse
-DP table v20&quot; patch applied.  If I will need to re-bisect, let me know what I
-should look for as a determining factor for good/bad.</pre>
+        <pre>I've had the debug statement active for the last few days, but the error hasn't
+re-occurred. I discovered that my video card's fan was only working
+intermittently, which a clean seems to have fixed. Since the inactive fan
+likely caused the error I was seeing, I am closing this bug report as invalid.</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +113,9 @@ should look for as a determining factor for good/bad.</pre>
     </body>
 </html>
 
---1371156566.380A21.17305--
+--1371241490.c41EB81.22889--
 
---===============0988391545==
+--===============1411917199==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +126,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0988391545==--
+--===============1411917199==--
