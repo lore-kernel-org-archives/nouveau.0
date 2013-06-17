@@ -1,49 +1,99 @@
-From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: [PATCH] drm/nouveau: remove limit on gart
-Date: Mon, 17 Jun 2013 15:09:09 +0200
-Message-ID: <51BF0A75.5080803@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 51477] bad/missing graphics with NV11 / GeForce
+	2MX/MX400
+Date: Mon, 17 Jun 2013 14:15:29 +0000
+Message-ID: <bug-51477-8800-kkFTEcrtoZ@http.bugs.freedesktop.org/>
+References: <bug-51477-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1464806172=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Most graphics cards nowadays have a multiple of this limit as their vram, so
-limiting GART doesn't seem to make much sense.
 
-Signed-off-by: Maarten >Lnkhorst <maarten.lankhorst@canonical.com>
----
-diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-index 3a5e19a..41ddecd 100644
---- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-@@ -168,9 +168,6 @@ nouveau_gart_manager_new(struct ttm_mem_type_manager *man,
- 	struct nouveau_bo *nvbo = nouveau_bo(bo);
- 	struct nouveau_mem *node;
- 
--	if (unlikely((mem->num_pages << PAGE_SHIFT) >= 512 * 1024 * 1024))
--		return -ENOMEM;
--
- 	node = kzalloc(sizeof(*node), GFP_KERNEL);
- 	if (!node)
- 		return -ENOMEM;
-@@ -406,8 +403,6 @@ nouveau_ttm_init(struct nouveau_drm *drm)
- 	/* GART init */
- 	if (drm->agp.stat != ENABLED) {
- 		drm->gem.gart_available = nouveau_vmmgr(drm->device)->limit;
--		if (drm->gem.gart_available > 512 * 1024 * 1024)
--			drm->gem.gart_available = 512 * 1024 * 1024;
- 	} else {
- 		drm->gem.gart_available = drm->agp.size;
- 	}
+--===============1464806172==
+Content-Type: multipart/alternative; boundary="1371478529.f767CC3.15440"; charset="us-ascii"
+
+
+--1371478529.f767CC3.15440
+Date: Mon, 17 Jun 2013 14:15:29 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=51477
+
+--- Comment #15 from i_review_donkeys-PkbjNfxxIAQqdlJmJB21zg@public.gmane.org ---
+I'd like to add that I have experienced a similar bug under a new installation
+of Lubuntu 13.04 where the mouse pointer and certain icons disappear when
+hovering over them. Text also tends to turn green.
+
+This has happened with NV10, NV11 and NV17 videocards.
+Installing an NV34 (FX5200) videocard resolved the issue.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1371478529.f767CC3.15440
+Date: Mon, 17 Jun 2013 14:15:29 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c15">Comment # 15</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
+              from <span class="vcard"><a class="email" href="mailto:i_review_donkeys&#64;hotmail.co.uk" title="i_review_donkeys&#64;hotmail.co.uk">i_review_donkeys&#64;hotmail.co.uk</a>
+</span></b>
+        <pre>I'd like to add that I have experienced a similar bug under a new installation
+of Lubuntu 13.04 where the mouse pointer and certain icons disappear when
+hovering over them. Text also tends to turn green.
+
+This has happened with NV10, NV11 and NV17 videocards.
+Installing an NV34 (FX5200) videocard resolved the issue.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1371478529.f767CC3.15440--
+
+--===============1464806172==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1464806172==--
