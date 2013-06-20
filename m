@@ -1,60 +1,102 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH] drm/nouveau: remove limit on gart
-Date: Tue, 18 Jun 2013 09:48:31 +1000
-Message-ID: <CACAvsv6zG797_VsMDBedmM8xgYEj9OvLJAVqX9JGuhEcQ8ZWBw@mail.gmail.com>
-References: <51BF0A75.5080803@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
+Date: Thu, 20 Jun 2013 00:29:49 +0000
+Message-ID: <bug-64323-8800-wz15avYoPm@http.bugs.freedesktop.org/>
+References: <bug-64323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <51BF0A75.5080803@canonical.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1275245221=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jun 17, 2013 at 11:09 PM, Maarten Lankhorst
-<maarten.lankhorst@canonical.com> wrote:
-> Most graphics cards nowadays have a multiple of this limit as their vram, so
-> limiting GART doesn't seem to make much sense.
-Pushed, thanks :)
 
->
-> Signed-off-by: Maarten >Lnkhorst <maarten.lankhorst@canonical.com>
-> ---
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-> index 3a5e19a..41ddecd 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-> @@ -168,9 +168,6 @@ nouveau_gart_manager_new(struct ttm_mem_type_manager *man,
->         struct nouveau_bo *nvbo = nouveau_bo(bo);
->         struct nouveau_mem *node;
->
-> -       if (unlikely((mem->num_pages << PAGE_SHIFT) >= 512 * 1024 * 1024))
-> -               return -ENOMEM;
-> -
->         node = kzalloc(sizeof(*node), GFP_KERNEL);
->         if (!node)
->                 return -ENOMEM;
-> @@ -406,8 +403,6 @@ nouveau_ttm_init(struct nouveau_drm *drm)
->         /* GART init */
->         if (drm->agp.stat != ENABLED) {
->                 drm->gem.gart_available = nouveau_vmmgr(drm->device)->limit;
-> -               if (drm->gem.gart_available > 512 * 1024 * 1024)
-> -                       drm->gem.gart_available = 512 * 1024 * 1024;
->         } else {
->                 drm->gem.gart_available = drm->agp.size;
->         }
->
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/dri-devel
+--===============1275245221==
+Content-Type: multipart/alternative; boundary="1371688189.eFC61.11866"; charset="us-ascii"
+
+
+--1371688189.eFC61.11866
+Date: Thu, 20 Jun 2013 00:29:49 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=64323
+
+--- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+A few notes
+
+* Rendering is restored to normal by purging all references of
+DISCARD_WHOLE_RESOURCE from the original patch
+* Performance drops by ~8% if dynamic buffers are allocated in vram[1]
+
+[1] Tested using a minute long demo, of jumping through the first portal portal
+in the game
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1371688189.eFC61.11866
+Date: Thu, 20 Jun 2013 00:29:49 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>A few notes
+
+* Rendering is restored to normal by purging all references of
+DISCARD_WHOLE_RESOURCE from the original patch
+* Performance drops by ~8% if dynamic buffers are allocated in vram[1]
+
+[1] Tested using a minute long demo, of jumping through the first portal portal
+in the game</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1371688189.eFC61.11866--
+
+--===============1275245221==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1275245221==--
