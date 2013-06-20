@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64042] Mesalib Installation Error
-Date: Thu, 20 Jun 2013 00:54:04 +0000
-Message-ID: <bug-64042-8800-0Pop7WkADs@http.bugs.freedesktop.org/>
-References: <bug-64042-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 62870] Steam.sh fails at line 704,
+ possibly relating to mesa stack
+Date: Thu, 20 Jun 2013 01:07:11 +0000
+Message-ID: <bug-62870-8800-b9L5Jvnwcz@http.bugs.freedesktop.org/>
+References: <bug-62870-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1735145803=="
+Content-Type: multipart/mixed; boundary="===============0926960005=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64042-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-62870-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +21,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1735145803==
-Content-Type: multipart/alternative; boundary="1371689644.1D0c05.15444"; charset="us-ascii"
+--===============0926960005==
+Content-Type: multipart/alternative; boundary="1371690430.B6700F0.17919"; charset="us-ascii"
 
 
---1371689644.1D0c05.15444
-Date: Thu, 20 Jun 2013 00:54:04 +0000
+--1371690430.B6700F0.17919
+Date: Thu, 20 Jun 2013 01:07:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64042
+https://bugs.freedesktop.org/show_bug.cgi?id=62870
 
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-*** Bug 64074 has been marked as a duplicate of this bug. ***
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
+
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Can you get a backtrace of the crash
+
+1. Install mesa,libgl,nouveau symbols
+2. Set gdb as STEAM_DEBUGGER 
+$ export STEAM_DEBUGGER=gdb
+3. run steam
+
+Additionally it would be appreciated if you can provide more information as to
+what software you have on your system (ie. mesa, nouveau-dri and kernel
+version) and some logs (dmesg & Xorg.log)
+
+Cheers
+Emil
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1371689644.1D0c05.15444
-Date: Thu, 20 Jun 2013 00:54:04 +0000
+--1371690430.B6700F0.17919
+Date: Thu, 20 Jun 2013 01:07:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -47,23 +66,52 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - Steam.sh fails at line 704, possibly relating to mesa stack"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62870">bug 62870</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Mesalib Installation Error"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64042#c2">Comment # 2</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - Steam.sh fails at line 704, possibly relating to mesa stack"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62870#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Mesalib Installation Error"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64042">bug 64042</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - Steam.sh fails at line 704, possibly relating to mesa stack"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62870">bug 62870</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Mesalib Installation Error"
-   href="show_bug.cgi?id=64074">Bug 64074</a> has been marked as a duplicate of this bug. ***</pre>
+        <pre>Can you get a backtrace of the crash
+
+1. Install mesa,libgl,nouveau symbols
+2. Set gdb as STEAM_DEBUGGER 
+$ export STEAM_DEBUGGER=gdb
+3. run steam
+
+Additionally it would be appreciated if you can provide more information as to
+what software you have on your system (ie. mesa, nouveau-dri and kernel
+version) and some logs (dmesg &amp; Xorg.log)
+
+Cheers
+Emil</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +123,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1371689644.1D0c05.15444--
+--1371690430.B6700F0.17919--
 
---===============1735145803==
+--===============0926960005==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +136,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1735145803==--
+--===============0926960005==--
