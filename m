@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62870] Steam.sh fails at line 704,
- possibly relating to mesa stack
-Date: Thu, 20 Jun 2013 01:07:11 +0000
-Message-ID: <bug-62870-8800-b9L5Jvnwcz@http.bugs.freedesktop.org/>
-References: <bug-62870-8800@http.bugs.freedesktop.org/>
+From: Thomas Schneider <maxmusterm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: UBO support for nouveau broken
+Date: Fri, 21 Jun 2013 00:59:59 +0200
+Message-ID: <CAMv9YTfiUo3BtogiohwiC5cLd7qkYYUuxvjhkY1vXpW_LEP2+g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0926960005=="
+Content-Type: multipart/mixed; boundary="===============1865834661=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62870-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,112 +17,63 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============1865834661==
+Content-Type: multipart/alternative; boundary=001a11c28b94e10f3804df9de7e0
 
---===============0926960005==
-Content-Type: multipart/alternative; boundary="1371690430.B6700F0.17919"; charset="us-ascii"
+--001a11c28b94e10f3804df9de7e0
+Content-Type: text/plain; charset=ISO-8859-1
 
+Hey guys,
+I'm using the dolphin emulator from time and the stable version works
+reasonable well with current nvidia cards and nouveau.The git version got
+an overhaul however and now uses opengl3 and ubos (without ubo it uses a
+glUniform fallback).
+The ubo support works with the blobs.
+There are probably a few bugs with ubo one might be  because of ubo
+access+offset (glBindBufferRange) as this is uncommon, there are no piglit
+tests.
+I use the linux kernel from git and mesa from git (last time I compiled it
+was 3 days ago).
+The main card I test it on is
+> 01:00.0 VGA compatible controller: NVIDIA Corporation G98M [GeForce 9300M
+GS] (rev a1)
+but I tested it on newer ones as well.
+If you want to test it you can compile dolphin-emu from git (
+https://code.google.com/p/dolphin-emu/wiki/Linux_Build) and use this image
+http://sonicadvance11.dyndns.org/starfield.dol to test it.You don't need
+any bios files or actual wii games to dump.
+With kind regards,
+Thomas Schneider
 
---1371690430.B6700F0.17919
-Date: Thu, 20 Jun 2013 01:07:10 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+--001a11c28b94e10f3804df9de7e0
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62870
+<div dir=3D"ltr">Hey guys,<div>I&#39;m using the dolphin emulator from time=
+ and the stable version works reasonable well with current nvidia cards and=
+ nouveau.The git version got an overhaul however and now uses opengl3 and u=
+bos (without ubo it uses a glUniform fallback).</div>
+<div>The ubo support works with the blobs.</div><div>There are probably a f=
+ew bugs with ubo one might be =A0because of ubo access+offset (glBindBuffer=
+Range) as this is uncommon, there are no piglit tests.</div><div>I use the =
+linux kernel from git and mesa from git (last time I compiled it was 3 days=
+ ago).</div>
+<div>The main card I test it on is=A0</div><div>&gt; 01:00.0 VGA compatible=
+ controller: NVIDIA Corporation G98M [GeForce 9300M GS] (rev a1)</div><div>=
+but I tested it on newer ones as well.</div><div>If you want to test it you=
+ can compile dolphin-emu from git (<a href=3D"https://code.google.com/p/dol=
+phin-emu/wiki/Linux_Build">https://code.google.com/p/dolphin-emu/wiki/Linux=
+_Build</a>) and use this image=A0<span style=3D"color:rgb(0,0,0);font-famil=
+y:&#39;Times New Roman&#39;"><a href=3D"http://sonicadvance11.dyndns.org/st=
+arfield.dol">http://sonicadvance11.dyndns.org/starfield.dol</a> to test it.=
+You don&#39;t need any bios files or actual wii games to dump.</span></div>
+<div><span style=3D"color:rgb(0,0,0);font-family:&#39;Times New Roman&#39;"=
+>With kind regards,</span></div><div><span style=3D"color:rgb(0,0,0);font-f=
+amily:&#39;Times New Roman&#39;">Thomas Schneider</span></div></div>
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--001a11c28b94e10f3804df9de7e0--
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
-
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Can you get a backtrace of the crash
-
-1. Install mesa,libgl,nouveau symbols
-2. Set gdb as STEAM_DEBUGGER 
-$ export STEAM_DEBUGGER=gdb
-3. run steam
-
-Additionally it would be appreciated if you can provide more information as to
-what software you have on your system (ie. mesa, nouveau-dri and kernel
-version) and some logs (dmesg & Xorg.log)
-
-Cheers
-Emil
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1371690430.B6700F0.17919
-Date: Thu, 20 Jun 2013 01:07:10 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - Steam.sh fails at line 704, possibly relating to mesa stack"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62870">bug 62870</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - Steam.sh fails at line 704, possibly relating to mesa stack"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62870#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - Steam.sh fails at line 704, possibly relating to mesa stack"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62870">bug 62870</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>Can you get a backtrace of the crash
-
-1. Install mesa,libgl,nouveau symbols
-2. Set gdb as STEAM_DEBUGGER 
-$ export STEAM_DEBUGGER=gdb
-3. run steam
-
-Additionally it would be appreciated if you can provide more information as to
-what software you have on your system (ie. mesa, nouveau-dri and kernel
-version) and some logs (dmesg &amp; Xorg.log)
-
-Cheers
-Emil</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1371690430.B6700F0.17919--
-
---===============0926960005==
+--===============1865834661==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -136,4 +84,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0926960005==--
+--===============1865834661==--
