@@ -1,9 +1,10 @@
-From: Thomas Schneider <maxmusterm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: UBO support for nouveau broken
-Date: Fri, 21 Jun 2013 00:59:59 +0200
-Message-ID: <CAMv9YTfiUo3BtogiohwiC5cLd7qkYYUuxvjhkY1vXpW_LEP2+g@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 66022] New: pwm1[_enable] faults after
+ hibernate/restore related to automatic (or otherwise) fan management
+Date: Fri, 21 Jun 2013 19:58:27 +0000
+Message-ID: <bug-66022-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1865834661=="
+Content-Type: multipart/mixed; boundary="===============1888950143=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -17,63 +18,177 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1865834661==
-Content-Type: multipart/alternative; boundary=001a11c28b94e10f3804df9de7e0
 
---001a11c28b94e10f3804df9de7e0
-Content-Type: text/plain; charset=ISO-8859-1
+--===============1888950143==
+Content-Type: multipart/alternative; boundary="1371844707.cB61251.13565"; charset="us-ascii"
 
-Hey guys,
-I'm using the dolphin emulator from time and the stable version works
-reasonable well with current nvidia cards and nouveau.The git version got
-an overhaul however and now uses opengl3 and ubos (without ubo it uses a
-glUniform fallback).
-The ubo support works with the blobs.
-There are probably a few bugs with ubo one might be  because of ubo
-access+offset (glBindBufferRange) as this is uncommon, there are no piglit
-tests.
-I use the linux kernel from git and mesa from git (last time I compiled it
-was 3 days ago).
-The main card I test it on is
-> 01:00.0 VGA compatible controller: NVIDIA Corporation G98M [GeForce 9300M
-GS] (rev a1)
-but I tested it on newer ones as well.
-If you want to test it you can compile dolphin-emu from git (
-https://code.google.com/p/dolphin-emu/wiki/Linux_Build) and use this image
-http://sonicadvance11.dyndns.org/starfield.dol to test it.You don't need
-any bios files or actual wii games to dump.
-With kind regards,
-Thomas Schneider
 
---001a11c28b94e10f3804df9de7e0
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+--1371844707.cB61251.13565
+Date: Fri, 21 Jun 2013 19:58:27 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-<div dir=3D"ltr">Hey guys,<div>I&#39;m using the dolphin emulator from time=
- and the stable version works reasonable well with current nvidia cards and=
- nouveau.The git version got an overhaul however and now uses opengl3 and u=
-bos (without ubo it uses a glUniform fallback).</div>
-<div>The ubo support works with the blobs.</div><div>There are probably a f=
-ew bugs with ubo one might be =A0because of ubo access+offset (glBindBuffer=
-Range) as this is uncommon, there are no piglit tests.</div><div>I use the =
-linux kernel from git and mesa from git (last time I compiled it was 3 days=
- ago).</div>
-<div>The main card I test it on is=A0</div><div>&gt; 01:00.0 VGA compatible=
- controller: NVIDIA Corporation G98M [GeForce 9300M GS] (rev a1)</div><div>=
-but I tested it on newer ones as well.</div><div>If you want to test it you=
- can compile dolphin-emu from git (<a href=3D"https://code.google.com/p/dol=
-phin-emu/wiki/Linux_Build">https://code.google.com/p/dolphin-emu/wiki/Linux=
-_Build</a>) and use this image=A0<span style=3D"color:rgb(0,0,0);font-famil=
-y:&#39;Times New Roman&#39;"><a href=3D"http://sonicadvance11.dyndns.org/st=
-arfield.dol">http://sonicadvance11.dyndns.org/starfield.dol</a> to test it.=
-You don&#39;t need any bios files or actual wii games to dump.</span></div>
-<div><span style=3D"color:rgb(0,0,0);font-family:&#39;Times New Roman&#39;"=
->With kind regards,</span></div><div><span style=3D"color:rgb(0,0,0);font-f=
-amily:&#39;Times New Roman&#39;">Thomas Schneider</span></div></div>
+https://bugs.freedesktop.org/show_bug.cgi?id=66022
 
---001a11c28b94e10f3804df9de7e0--
+          Priority: medium
+            Bug ID: 66022
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: pwm1[_enable] faults after hibernate/restore related
+                    to automatic (or otherwise) fan management
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
---===============1865834661==
+This is a collection of 2 bugs, which I think are related (hence why I am
+reporting them both here) as they both happen as a result of hibernate/restore:
+
+1. After a hibernate/restore cycle, the fan management option (the value of
+pwm1_enable) is not restored; and also 
+
+2. After a hibernate/restore cycle, when automatic fan management is applied
+("echo 2 > .../pwm1_enable"), this doesn't work - the nouveau driver takes the
+fan speed to 2 and keeps it there *regardless* of the temperature of the video
+card, which may cause the card to BURN OUT!
+
+The kernel in use is 3.9.6 with the stock-supplied nvidia driver. For more
+details please see https://bugzilla.redhat.com/show_bug.cgi?id=976658
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1371844707.cB61251.13565
+Date: Fri, 21 Jun 2013 19:58:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - pwm1[_enable] faults after hibernate/restore related to automatic (or otherwise) fan management"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66022">66022</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>pwm1[_enable] faults after hibernate/restore related to automatic (or otherwise) fan management
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mr.dash.four&#64;googlemail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>This is a collection of 2 bugs, which I think are related (hence why I am
+reporting them both here) as they both happen as a result of hibernate/restore:
+
+1. After a hibernate/restore cycle, the fan management option (the value of
+pwm1_enable) is not restored; and also 
+
+2. After a hibernate/restore cycle, when automatic fan management is applied
+(&quot;echo 2 &gt; .../pwm1_enable&quot;), this doesn't work - the nouveau driver takes the
+fan speed to 2 and keeps it there *regardless* of the temperature of the video
+card, which may cause the card to BURN OUT!
+
+The kernel in use is 3.9.6 with the stock-supplied nvidia driver. For more
+details please see <a href="https://bugzilla.redhat.com/show_bug.cgi?id=976658">https://bugzilla.redhat.com/show_bug.cgi?id=976658</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1371844707.cB61251.13565--
+
+--===============1888950143==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -84,4 +199,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1865834661==--
+--===============1888950143==--
