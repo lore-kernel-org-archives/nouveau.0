@@ -1,309 +1,789 @@
-From: Peter Maloney <peter.maloney-bU717sqhW2kTELwDM1PSjyEWGD4kr0XT@public.gmane.org>
-Subject: kernel bug nouveau, total system hang, X crashed
-Date: Tue, 18 Jun 2013 14:49:02 +0200
-Message-ID: <51C0573E.4000402@brockmann-consult.de>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH v2] nouveau: Load firmware for BSP/VP engines on NV84-NV96,
+	NVA0
+Date: Sun, 23 Jun 2013 04:08:58 -0400
+Message-ID: <1371974938-21234-1-git-send-email-imirkin@alum.mit.edu>
+References: <1370250144-3303-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <1370250144-3303-1-git-send-email-imirkin@alum.mit.edu>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Ben Skeggs <bskeggs@redhat.com>, Maarten Lankhorst <maarten.lankhorst@ubuntu.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
+These chipsets include the VP2 engine which is composed of a bitstream
+processor (BSP) that decodes H.264 and a video processor (VP) which can
+do iDCT/mo-comp/etc for MPEG1/2, H.264, and VC-1. Both of these are
+driven by separate xtensa chips embedded in the hardware. This patch
+provides the mechanism to load the kernel for the xtensa chips and
+provide the necessary interactions to do the rest of the work.
 
-Using kernel 3.9.4, with openSUSE 12.1 (KDE 4.7.4 I think), I was
-running fine for a long time with no problems. Today with openSUSE 12.3
-(KDE 4.10.3, Xorg 1.13.2, upgraded on Jun. 10), my machine hung
-completely. I believe the nouveau driver is at fault rather than KDE or
-X, so chose this list. I think it might have been triggered by the
-"Clock" ScreenLocker (screen saver). It happened twice so far.
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+---
 
-I'm not on the list, so please CC me.
+v1 -> v2:
+ - factored out similar logic between vp and bsp into a new xtensa.c, similar
+   to falcon
+ - moved firmware loading to init rather than ctor (kinda wonder what happens
+   if you suspend while playing a video... hmm.)
+ - created new "blank" copies of vp/bsp for nv98+, identical to the old nv84
+   ones, but s/84/98/g
 
+At this point I have H.264 and MPEG1/2 working fairly well. Back when
+there were bugs in my mesa code, VP would freeze up sometimes and the
+watchdog would fire. I have no idea how to actually reset the engine
+though... so it's just a notification for now. These would happen when
+buffers were incorrectly sized, wrong addresses were passed in, etc.
 
-Here is a snippet from syslog where some strange stuff begins (while I
-am not using the computer):
+Also it's worth pointing out that the blob firmware being used allows
+arbitrary xtensa code to be uploaded by a user (with dri access),
+which in turn could enable that code to have all the system memory
+access that the card has (e.g. no iommu). It's a giant security hole,
+but without rewriting the firmware, there's not a whole lot that can
+be done. In any case, the kernel driver isn't affected. But just
+wanted to point that out.
 
-2013-06-14T03:59:34.103035+02:00 linux-zxd7 kernel: [303714.267370]
-nouveau E[   PFIFO][0000:04:00.0] DMA_PUSHER - ch 2 [Xorg[1761]] get
-0x002003b0d4 put 0x002003b134 ib_get 0x00000360 ib_put 0x00000361 state
-0x80000024 (err: INVALID_CMD) push 0x00400040
-2013-06-14T03:59:34.104254+02:00 linux-zxd7 kernel: [303714.267632]
-nouveau E[   PFIFO][0000:04:00.0] DMA_PUSHER - ch 2 [Xorg[1761]] get
-0x002003b134 put 0x002003b194 ib_get 0x00000362 ib_put 0x00000363 state
-0x80000024 (err: INVALID_CMD) push 0x00400040
-2013-06-14T03:59:34.120218+02:00 linux-zxd7 kernel: [303714.283686]
-nouveau E[   PFIFO][0000:04:00.0] DMA_PUSHER - ch 2 [Xorg[1761]] get
-0x002003b194 put 0x002003b1f4 ib_get 0x00000364 ib_put 0x00000365 state
-0x80000024 (err: INVALID_CMD) push 0x00400040
-2013-06-14T03:59:34.120238+02:00 linux-zxd7 kernel: [303714.283903]
-nouveau E[   PFIFO][0000:04:00.0] DMA_PUSHER - ch 2 [Xorg[1761]] get
-0x002003b1f4 put 0x002003b254 ib_get 0x00000366 ib_put 0x00000367 state
-0x80000024 (err: INVALID_CMD) push 0x00400040
-2013-06-14T03:59:34.120241+02:00 linux-zxd7 kernel: [303714.284025]
-nouveau E[   PFIFO][0000:04:00.0] DMA_PUSHER - ch 2 [Xorg[1761]] get
-0x002003b254 put 0x002003b2c0 ib_get 0x00000368 ib_put 0x00000369 state
-0x80000024 (err: INVALID_CMD) push 0x00400040
-2013-06-14T03:59:34.120244+02:00 linux-zxd7 kernel: [303714.284060]
-nouveau E[   PFIFO][0000:04:00.0] DMA_PUSHER - ch 2 [Xorg[1761]] get
-0x002003b2c0 put 0x002003b32c ib_get 0x0000036a ib_put 0x0000036b state
-0x80000024 (err: INVALID_CMD) push 0x00400040
-2013-06-14T03:59:34.120250+02:00 linux-zxd7 kernel: [303714.284092]
-nouveau E[   PFIFO][0000:04:00.0] DMA_PUSHER - ch 2 [Xorg[1761]] get
-0x002003b32c put 0x002003b398 ib_get 0x0000036c ib_put 0x0000036d state
-0x80000024 (err: INVALID_CMD) push 0x00400040
-2013-06-14T03:59:34.120252+02:00 linux-zxd7 kernel: [303714.284125]
-nouveau E[   PFIFO][0000:04:00.0] DMA_PUSHER - ch 2 [Xorg[1761]] get
-0x002003b398 put 0x002003b404 ib_get 0x0000036e ib_put 0x0000036f state
-0x80000024 (err: INVALID_CMD) push 0x00400040
-2013-06-14T03:59:34.124255+02:00 linux-zxd7 kernel: [303714.285213]
-nouveau E[  PGRAPH][0000:04:00.0] TRAP_M2MF IN
-2013-06-14T03:59:34.124266+02:00 linux-zxd7 kernel: [303714.285219]
-nouveau E[  PGRAPH][0000:04:00.0] TRAP_M2MF 00320051 6ade1280 00000000
-04000432
-2013-06-14T03:59:34.124267+02:00 linux-zxd7 kernel: [303714.285222]
-nouveau E[  PGRAPH][0000:04:00.0]  TRAP
-2013-06-14T03:59:34.124268+02:00 linux-zxd7 kernel: [303714.285225]
-nouveau E[  PGRAPH][0000:04:00.0] ch 2 [0x0037b10000 Xorg[1761]] subc 0
-class 0x5039 mthd 0x0314 data 0x00000108
-2013-06-14T03:59:34.124269+02:00 linux-zxd7 kernel: [303714.285236]
-nouveau E[     PFB][0000:04:00.0] trapped read at 0x006adce9f0 on
-channel 0x00037b10 [Xorg[1761]] PGRAPH/DISPATCH/M2M_IN reason:
-PAGE_NOT_PRESENT
-2013-06-14T03:59:34.136377+02:00 linux-zxd7 kernel: [303714.299033]
-nouveau E[  PGRAPH][0000:04:00.0] TRAP_M2MF IN
-2013-06-14T03:59:34.136392+02:00 linux-zxd7 kernel: [303714.299041]
-nouveau E[  PGRAPH][0000:04:00.0] TRAP_M2MF 00320151 6add5080 00000000
-04000000
-2013-06-14T03:59:34.136394+02:00 linux-zxd7 kernel: [303714.299044]
-nouveau E[  PGRAPH][0000:04:00.0]  TRAP
-2013-06-14T03:59:34.136396+02:00 linux-zxd7 kernel: [303714.299047]
-nouveau E[  PGRAPH][0000:04:00.0] ch 2 [0x0037b10000 Xorg[1761]] subc 0
-class 0x5039 mthd 0x023c data 0x00000000
-2013-06-14T03:59:34.136404+02:00 linux-zxd7 kernel: [303714.299057]
-nouveau E[     PFB][0000:04:00.0] trapped read at 0x006add4de0 on
-channel 0x00037b10 [Xorg[1761]] PGRAPH/DISPATCH/M2M_IN reason: NULL_DMAOBJ
-2013-06-14T03:59:34.136406+02:00 linux-zxd7 kernel: [303714.299066]
-nouveau E[  PGRAPH][0000:04:00.0] TRAP_M2MF IN
-2013-06-14T03:59:34.136407+02:00 linux-zxd7 kernel: [303714.299071]
-nouveau E[  PGRAPH][0000:04:00.0] TRAP_M2MF 00320151 00000380 00000000
-04000000
-2013-06-14T03:59:34.136417+02:00 linux-zxd7 kernel: [303714.299073]
-nouveau E[  PGRAPH][0000:04:00.0]  TRAP
-2013-06-14T03:59:34.136418+02:00 linux-zxd7 kernel: [303714.299075]
-nouveau E[  PGRAPH][0000:04:00.0] ch 2 [0x0037b10000 Xorg[1761]] subc 0
-class 0x5039 mthd 0x0200 data 0x00000001
-2013-06-14T03:59:34.136420+02:00 linux-zxd7 kernel: [303714.299476]
-nouveau E[  PGRAPH][0000:04:00.0] TRAP_M2MF IN
-2013-06-14T03:59:34.136420+02:00 linux-zxd7 kernel: [303714.299481]
-nouveau E[  PGRAPH][0000:04:00.0] TRAP_M2MF 00320151 6abdf380 00000000
-04000000
-2013-06-14T03:59:34.136421+02:00 linux-zxd7 kernel: [303714.299484]
-nouveau E[  PGRAPH][0000:04:00.0]  TRAP
-2013-06-14T03:59:34.136422+02:00 linux-zxd7 kernel: [303714.299486]
-nouveau E[  PGRAPH][0000:04:00.0] ch 2 [0x0037b10000 Xorg[1761]] subc 0
-class 0x5039 mthd 0x0328 data 0x00000000
+ drivers/gpu/drm/nouveau/Makefile                   |   3 +
+ drivers/gpu/drm/nouveau/core/core/xtensa.c         | 171 +++++++++++++++++++++
+ drivers/gpu/drm/nouveau/core/engine/bsp/nv84.c     |  28 ++--
+ .../drm/nouveau/core/engine/bsp/{nv84.c => nv98.c} |  22 +--
+ drivers/gpu/drm/nouveau/core/engine/device/nv50.c  |  28 ++--
+ drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c    |   4 +
+ drivers/gpu/drm/nouveau/core/engine/vp/nv84.c      |  28 ++--
+ .../drm/nouveau/core/engine/vp/{nv84.c => nv98.c}  |  22 +--
+ drivers/gpu/drm/nouveau/core/include/core/xtensa.h |  40 +++++
+ drivers/gpu/drm/nouveau/core/include/engine/bsp.h  |   1 +
+ drivers/gpu/drm/nouveau/core/include/engine/vp.h   |   1 +
+ drivers/gpu/drm/nouveau/core/subdev/mc/nv50.c      |   1 +
+ drivers/gpu/drm/nouveau/core/subdev/vm/nv50.c      |   2 +
+ 13 files changed, 289 insertions(+), 62 deletions(-)
+ create mode 100644 drivers/gpu/drm/nouveau/core/core/xtensa.c
+ copy drivers/gpu/drm/nouveau/core/engine/bsp/{nv84.c => nv98.c} (87%)
+ copy drivers/gpu/drm/nouveau/core/engine/vp/{nv84.c => nv98.c} (88%)
+ create mode 100644 drivers/gpu/drm/nouveau/core/include/core/xtensa.h
 
-
-
-And here is a stack trace with X crashing a bit later (also while I am
-not using the computer):
-
-2013-06-14T04:23:09.912406+02:00 linux-zxd7 kernel: [305129.599004] BUG:
-soft lockup - CPU#0 stuck for 23s! [Xorg:29026]
-2013-06-14T04:23:09.916319+02:00 linux-zxd7 kernel: [305129.599048]
-Modules linked in: dm_snapshot af_packet arc4 ecb md4 sha256_generic md5
-nls_utf8 cifs fscache vboxpci(O) vboxnetadp(O) vb
-oxnetflt(O) vboxdrv(O) bnep bluetooth rfkill btrfs raid6_pq zlib_deflate
-xor ufs qnx4 hfsplus hfs minix vfat msdos fat jfs xfs libcrc32c reiserfs
-xt_tcpudp xt_pkttype xt_physdev xt_LOG xt_li
-mit bridge stp llc ip6t_REJECT nf_conntrack_ipv6 nf_defrag_ipv6
-ip6table_raw ipt_REJECT iptable_raw xt_CT iptable_filter ip6table_mangle
-nf_conntrack_netbios_ns nf_conntrack_broadcast nf_con
-ntrack_ipv4 nf_defrag_ipv4 ip_tables xt_conntrack nf_conntrack
-ip6table_filter fuse ip6_tables x_tables dm_mod snd_hda_codec_analog
-snd_hda_intel snd_hda_codec snd_hwdep acpi_cpufreq snd_pcm
- mperf coretemp snd_seq snd_timer snd_seq_device kvm_intel snd mvsas
-libsas kvm ata_generic shpchp firewire_ohci sr_mod i7core_edac
-pci_hotplug firewire_core asus_atk0110 edac_core i2c_i801
-pata_marvell cdrom r8169 iTCO_wdt iTCO_vendor_support ehci_pci lpc_ich
-mfd_core sg crc32c_intel soundcore crc_itu_t scsi_transport_sas
-snd_page_alloc pcspkr microcode autofs4 hid_generic usb
-hid uhci_hcd ehci_hcd nouveau ttm xhci_hcd drm_kms_helper drm usbcore
-i2c_algo_bit usb_common mxm_wmi video wmi button processor thermal_sys
-scsi_dh_rdac scsi_dh_hp_sw scsi_dh_emc scsi_dh_al
-ua scsi_dh
-2013-06-14T04:23:09.916333+02:00 linux-zxd7 kernel: [305129.599163] CPU 0
-2013-06-14T04:23:09.916336+02:00 linux-zxd7 kernel: [305129.599168] Pid:
-29026, comm: Xorg Tainted: G           O 3.9.4-1.g51bf0ff-default #1
-System manufacturer System Product Name/P6T WS P
-RO
-2013-06-14T04:23:09.916353+02:00 linux-zxd7 kernel: [305129.599170] RIP:
-0010:[<ffffffff81584219>]  [<ffffffff81584219>]
-_raw_spin_unlock_irqrestore+0x9/0x10
-2013-06-14T04:23:09.916355+02:00 linux-zxd7 kernel: [305129.599179] RSP:
-0018:ffff880605ecbb00  EFLAGS: 00000286
-2013-06-14T04:23:09.916356+02:00 linux-zxd7 kernel: [305129.599181] RAX:
-0000000000010001 RBX: ffffffffa016a2bc RCX: 0000000000000001
-2013-06-14T04:23:09.916357+02:00 linux-zxd7 kernel: [305129.599183] RDX:
-ffffc90013b00500 RSI: 0000000000000286 RDI: 0000000000000286
-2013-06-14T04:23:09.916358+02:00 linux-zxd7 kernel: [305129.599185] RBP:
-0000000000000501 R08: 0000000000000000 R09: 0000000000002e31
-2013-06-14T04:23:09.916359+02:00 linux-zxd7 kernel: [305129.599187] R10:
-0000000000000002 R11: 0000000000002e30 R12: ffff88061ab62d80
-2013-06-14T04:23:09.916360+02:00 linux-zxd7 kernel: [305129.599189] R13:
-ffff88061ab623c0 R14: ffffffffa016a595 R15: 0000000000000001
-2013-06-14T04:23:09.916361+02:00 linux-zxd7 kernel: [305129.599194] FS:
-0000000000000000(0000) GS:ffff88063fc00000(0000) knlGS:0000000000000000
-2013-06-14T04:23:09.916362+02:00 linux-zxd7 kernel: [305129.599195] CS:
-0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-2013-06-14T04:23:09.916363+02:00 linux-zxd7 kernel: [305129.599197] CR2:
-000000000280ad58 CR3: 0000000001a0d000 CR4: 00000000000007f0
-2013-06-14T04:23:09.916364+02:00 linux-zxd7 kernel: [305129.599198] DR0:
-0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-2013-06-14T04:23:09.916364+02:00 linux-zxd7 kernel: [305129.599199] DR3:
-0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000400
-2013-06-14T04:23:09.916365+02:00 linux-zxd7 kernel: [305129.599200]
-Process Xorg (pid: 29026, threadinfo ffff880605eca000, task
-ffff8805ed822340)
-2013-06-14T04:23:09.916366+02:00 linux-zxd7 kernel: [305129.599201] Stack:
-2013-06-14T04:23:09.916367+02:00 linux-zxd7 kernel: [305129.599204]
-ffffffffa01b4c6d 0000000000000015 ffff8801f65aa200 ffff88061b341980
-2013-06-14T04:23:09.916368+02:00 linux-zxd7 kernel: [305129.599206]
-ffff88061b341998 ffff88061b3419e8 ffffffffa016cec8 ffff88061b341998
-2013-06-14T04:23:09.916369+02:00 linux-zxd7 kernel: [305129.599208]
-ffff88061b3419b0 ffff880034815400 ffffffffa01c311a ffff88061b341980
-2013-06-14T04:23:09.916370+02:00 linux-zxd7 kernel: [305129.599209] Call
-Trace:
-2013-06-14T04:23:09.916371+02:00 linux-zxd7 kernel: [305129.599248]
-[<ffffffffa01b4c6d>] nv84_graph_tlb_flush+0x28d/0x2c0 [nouveau]
-2013-06-14T04:23:09.916372+02:00 linux-zxd7 kernel: [305129.599370]
-[<ffffffffa016cec8>] nv50_vm_flush+0x78/0x90 [nouveau]
-2013-06-14T04:23:09.916373+02:00 linux-zxd7 kernel: [305129.599457]
-[<ffffffffa01c311a>] nouveau_bo_vma_del+0x9a/0xa0 [nouveau]
-2013-06-14T04:23:09.916374+02:00 linux-zxd7 kernel: [305129.599601]
-[<ffffffffa01c5040>] nouveau_abi16_chan_fini.isra.1+0xa0/0x170 [nouveau]
-2013-06-14T04:23:09.916375+02:00 linux-zxd7 kernel: [305129.599747]
-[<ffffffffa01c5310>] nouveau_abi16_fini+0x30/0x80 [nouveau]
-2013-06-14T04:23:09.916376+02:00 linux-zxd7 kernel: [305129.599889]
-[<ffffffffa01bc0d7>] nouveau_drm_preclose+0x27/0x90 [nouveau]
-2013-06-14T04:23:09.916377+02:00 linux-zxd7 kernel: [305129.600006]
-[<ffffffffa00fe7fe>] drm_release+0x6e/0x620 [drm]
-2013-06-14T04:23:09.916378+02:00 linux-zxd7 kernel: [305129.600019]
-[<ffffffff81173c9b>] __fput+0xdb/0x240
-2013-06-14T04:23:09.916379+02:00 linux-zxd7 kernel: [305129.600027]
-[<ffffffff810655c4>] task_work_run+0xb4/0xd0
-2013-06-14T04:23:09.916380+02:00 linux-zxd7 kernel: [305129.600033]
-[<ffffffff8104b606>] do_exit+0x2b6/0xa40
-2013-06-14T04:23:09.916380+02:00 linux-zxd7 kernel: [305129.600038]
-[<ffffffff8104be08>] do_group_exit+0x38/0xa0
-2013-06-14T04:23:09.916381+02:00 linux-zxd7 kernel: [305129.600044]
-[<ffffffff8105a9f2>] get_signal_to_deliver+0x1b2/0x5d0
-2013-06-14T04:23:09.916382+02:00 linux-zxd7 kernel: [305129.600051]
-[<ffffffff81002353>] do_signal+0x63/0x8c0
-2013-06-14T04:23:09.916383+02:00 linux-zxd7 kernel: [305129.600056]
-[<ffffffff81002c48>] do_notify_resume+0x98/0xc0
-2013-06-14T04:23:09.916384+02:00 linux-zxd7 kernel: [305129.600064]
-[<ffffffff8158c36a>] int_signal+0x12/0x17
-2013-06-14T04:23:09.916385+02:00 linux-zxd7 kernel: [305129.600074]
-[<00007f93254763d5>] 0x7f93254763d4
-2013-06-14T04:23:09.916386+02:00 linux-zxd7 kernel: [305129.600077]
-Code: 66 39 c2 74 0f 0f 1f 44 00 00 f3 90 0f b7 07 66 39 d0 75 f6 c3 66
-66 66 66 2e 0f 1f 84 00 00 00 00 00 66 83 07 01 48 89 f7 57 9d <66> 66
-90 66 90 c3 90 ba ff ff ff ff f0 0f c1 17 83 ea 01 b8 01
-2013-06-14T04:23:14.912452+02:00 linux-zxd7 kernel: [305132.598016]
-nouveau E[Xorg[29026]] failed to idle channel 0xcccc0000 [Xorg[29026]]
-2013-06-14T04:23:14.912466+02:00 linux-zxd7 kernel: [305134.597340]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH TLB flush idle timeout fail
-2013-06-14T04:23:14.912468+02:00 linux-zxd7 kernel: [305134.597343]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_STATUS  : 0x00000501 BUSY
-CTXPROG CCACHE_UNK4
-2013-06-14T04:23:14.912470+02:00 linux-zxd7 kernel: [305134.597349]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_VSTATUS0: 0x00000008 CCACHE
-2013-06-14T04:23:14.912472+02:00 linux-zxd7 kernel: [305134.597353]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_VSTATUS1: 0x00000000
-2013-06-14T04:23:14.912475+02:00 linux-zxd7 kernel: [305134.597357]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_VSTATUS2: 0x00000000
-2013-06-14T04:23:16.912520+02:00 linux-zxd7 kernel: [305136.596773]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH TLB flush idle timeout fail
-2013-06-14T04:23:16.912527+02:00 linux-zxd7 kernel: [305136.596777]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_STATUS  : 0x00000501 BUSY
-CTXPROG CCACHE_UNK4
-2013-06-14T04:23:16.912530+02:00 linux-zxd7 kernel: [305136.596782]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_VSTATUS0: 0x00000008 CCACHE
-2013-06-14T04:23:16.912532+02:00 linux-zxd7 kernel: [305136.596786]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_VSTATUS1: 0x00000000
-2013-06-14T04:23:16.912534+02:00 linux-zxd7 kernel: [305136.596789]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_VSTATUS2: 0x00000000
-2013-06-14T04:23:18.912705+02:00 linux-zxd7 kernel: [305138.596280]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH TLB flush idle timeout fail
-2013-06-14T04:23:18.912711+02:00 linux-zxd7 kernel: [305138.596285]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_STATUS  : 0x00000501 BUSY
-CTXPROG CCACHE_UNK4
-2013-06-14T04:23:18.912714+02:00 linux-zxd7 kernel: [305138.596291]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_VSTATUS0: 0x00000008 CCACHE
-2013-06-14T04:23:18.912716+02:00 linux-zxd7 kernel: [305138.596295]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_VSTATUS1: 0x00000000
-2013-06-14T04:23:18.912718+02:00 linux-zxd7 kernel: [305138.596298]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_VSTATUS2: 0x00000000
-2013-06-14T04:23:20.912856+02:00 linux-zxd7 kernel: [305140.595790]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH TLB flush idle timeout fail
-2013-06-14T04:23:20.912868+02:00 linux-zxd7 kernel: [305140.595794]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_STATUS  : 0x00000501 BUSY
-CTXPROG CCACHE_UNK4
-2013-06-14T04:23:20.912872+02:00 linux-zxd7 kernel: [305140.595798]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_VSTATUS0: 0x00000008 CCACHE
-2013-06-14T04:23:20.912875+02:00 linux-zxd7 kernel: [305140.595801]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_VSTATUS1: 0x00000000
-2013-06-14T04:23:20.912877+02:00 linux-zxd7 kernel: [305140.595804]
-nouveau E[  PGRAPH][0000:04:00.0] PGRAPH_VSTATUS2: 0x00000000
-2013-06-14T04:23:22.915949+02:00 linux-zxd7 kdm[1402]: X server for
-display :0 terminated unexpectedly
-2013-06-14T04:23:22.916194+02:00 linux-zxd7 kernel: [305142.595270]
-nouveau E[   PFIFO][0000:04:00.0] channel 2 [Xorg[29026]] unload timeout
-
-
-After X crashed, I could hit ctrl+alt+f1 to get to a text terminal,
-where I tried to restart X, which made the system hang completely;
-ctrl+alt+del, and even alt+sysrq+b would not reboot the system.
-
-Here is a screenshot of what it looked like at this point:
-http://s270.photobucket.com/user/peetaur/media/afterXrestarted_zps0b6fcbad.jpg.html
-
-
-
-# lspci | grep VGA
-04:00.0 VGA compatible controller: NVIDIA Corporation GT200 [GeForce GTX
-260] (rev a1)
-# uname -a
-Linux peter 3.9.4-1.g51bf0ff-default #1 SMP Fri May 24 19:52:42 UTC 2013
-(51bf0ff) x86_64 x86_64 x86_64 GNU/Linux
-# kde4-config --version
-Qt: 4.8.4
-KDE Development Platform: 4.10.3 "release 1"
-kde4-config: 1.0
-# X -version
-
-X.Org X Server 1.13.2
-Release Date: 2013-01-24
-X Protocol Version 11, Revision 0
-Build Operating System: openSUSE SUSE LINUX
-Current Operating System: Linux peter 3.9.4-1.g51bf0ff-default #1 SMP
-Fri May 24 19:52:42 UTC 2013 (51bf0ff) x86_64
-Kernel command line: BOOT_IMAGE=/vmlinuz-3.9.4-1.g51bf0ff-default
-root=UUID=93a77b67-6950-476c-9709-f248bfa94e76
-resume=/dev/disk/by-id/ata-Hitachi_HDS5C3030ALA630_MJ1311YNG44E5A-part5
-splash=silent quiet showopts
-Build Date: 30 April 2013  08:24:17AM
- Current version of pixman: 0.28.2
-        Before reporting problems, check http://wiki.x.org
-        to make sure that you have the latest version.
+diff --git a/drivers/gpu/drm/nouveau/Makefile b/drivers/gpu/drm/nouveau/Makefile
+index 998e8b4..3d9d484 100644
+--- a/drivers/gpu/drm/nouveau/Makefile
++++ b/drivers/gpu/drm/nouveau/Makefile
+@@ -23,6 +23,7 @@ nouveau-y += core/core/parent.o
+ nouveau-y += core/core/printk.o
+ nouveau-y += core/core/ramht.o
+ nouveau-y += core/core/subdev.o
++nouveau-y += core/core/xtensa.o
+ 
+ nouveau-y += core/subdev/bar/base.o
+ nouveau-y += core/subdev/bar/nv50.o
+@@ -135,6 +136,7 @@ nouveau-y += core/engine/dmaobj/nv50.o
+ nouveau-y += core/engine/dmaobj/nvc0.o
+ nouveau-y += core/engine/dmaobj/nvd0.o
+ nouveau-y += core/engine/bsp/nv84.o
++nouveau-y += core/engine/bsp/nv98.o
+ nouveau-y += core/engine/bsp/nvc0.o
+ nouveau-y += core/engine/bsp/nve0.o
+ nouveau-y += core/engine/copy/nva3.o
+@@ -209,6 +211,7 @@ nouveau-y += core/engine/software/nv10.o
+ nouveau-y += core/engine/software/nv50.o
+ nouveau-y += core/engine/software/nvc0.o
+ nouveau-y += core/engine/vp/nv84.o
++nouveau-y += core/engine/vp/nv98.o
+ nouveau-y += core/engine/vp/nvc0.o
+ nouveau-y += core/engine/vp/nve0.o
+ 
+diff --git a/drivers/gpu/drm/nouveau/core/core/xtensa.c b/drivers/gpu/drm/nouveau/core/core/xtensa.c
+new file mode 100644
+index 0000000..2dfab98
+--- /dev/null
++++ b/drivers/gpu/drm/nouveau/core/core/xtensa.c
+@@ -0,0 +1,171 @@
++/*
++ * Copyright 2013 Ilia Mirkin
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ */
++
++#include <core/xtensa.h>
++
++u32
++_nouveau_xtensa_rd32(struct nouveau_object *object, u64 addr)
++{
++	struct nouveau_xtensa *xtensa = (void *)object;
++	return nv_rd32(xtensa, xtensa->addr + addr);
++}
++
++void
++_nouveau_xtensa_wr32(struct nouveau_object *object, u64 addr, u32 data)
++{
++	struct nouveau_xtensa *xtensa = (void *)object;
++	nv_wr32(xtensa, xtensa->addr + addr, data);
++}
++
++int
++_nouveau_xtensa_engctx_ctor(struct nouveau_object *parent,
++			    struct nouveau_object *engine,
++			    struct nouveau_oclass *oclass, void *data, u32 size,
++			    struct nouveau_object **pobject)
++{
++	struct nouveau_engctx *engctx;
++	int ret;
++
++	ret = nouveau_engctx_create(parent, engine, oclass, NULL,
++				    0x10000, 0x1000,
++				    NVOBJ_FLAG_ZERO_ALLOC, &engctx);
++	*pobject = nv_object(engctx);
++	return ret;
++}
++
++void
++_nouveau_xtensa_intr(struct nouveau_subdev *subdev)
++{
++	struct nouveau_xtensa *xtensa = (void *)subdev;
++	u32 intr, unk104, unk10c, chan;
++
++	unk104 = nv_ro32(xtensa, 0xd04);
++	intr = nv_ro32(xtensa, 0xc20);
++	chan = nv_ro32(xtensa, 0xc28);
++	unk10c = nv_ro32(xtensa, 0xd0c);
++	if (intr & 0x10)
++		nv_warn(xtensa, "Watchdog interrupt, engine hung.\n");
++	nv_wo32(xtensa, 0xc20, intr);
++	intr = nv_ro32(xtensa, 0xc20);
++	if (unk104 == 0x10001 && unk10c == 0x200 && chan && !intr) {
++		nv_debug(xtensa, "Enabling FIFO_CTRL\n");
++		nv_mask(xtensa, xtensa->addr + 0xd94, 0, xtensa->fifo_val);
++	}
++}
++
++int
++nouveau_xtensa_create_(struct nouveau_object *parent,
++		       struct nouveau_object *engine,
++		       struct nouveau_oclass *oclass, u32 addr, bool enable,
++		       const char *iname, const char *fname,
++		       int length, void **pobject)
++{
++	struct nouveau_xtensa *xtensa;
++	int ret;
++
++	ret = nouveau_engine_create_(parent, engine, oclass, enable, iname,
++				     fname, length, pobject);
++	xtensa = *pobject;
++	if (ret)
++		return ret;
++
++	nv_subdev(xtensa)->intr = _nouveau_xtensa_intr;
++
++	xtensa->addr = addr;
++
++	return 0;
++}
++
++int
++_nouveau_xtensa_init(struct nouveau_object *object)
++{
++	struct nouveau_device *device = nv_device(object);
++	struct nouveau_xtensa *xtensa = (void *)object;
++	const struct firmware *fw;
++	int i, ret;
++	u32 tmp;
++
++	ret = nouveau_engine_init(&xtensa->base);
++	if (ret)
++		return ret;
++
++	ret = nouveau_gpuobj_new(object, NULL, 0x40000, 0x1000, 0,
++				 &xtensa->gpu_fw);
++	if (ret)
++		return ret;
++
++	ret = request_firmware(&fw, xtensa->firmware_fname, &device->pdev->dev);
++	if (ret) {
++		nv_warn(xtensa, "Firmware file %s unavailable.\n",
++			xtensa->firmware_fname);
++		return ret;
++	}
++
++	nv_debug(xtensa, "Loading firmware to address: 0x%llx\n",
++		 xtensa->gpu_fw->addr);
++
++	for (i = 0; i < fw->size / 4; i++)
++		nv_wo32(xtensa->gpu_fw, i * 4, *((u32 *)fw->data + i));
++
++	release_firmware(fw);
++
++	tmp = nv_ro32(xtensa, 0xc20); /* INTR */
++	if (tmp)
++		nv_warn(xtensa, "Unexpected read from XTENSA.INTR: 0x%x", tmp);
++
++	nv_wo32(xtensa, 0xd10, 0x1fffffff); /* ?? */
++	nv_wo32(xtensa, 0xd08, 0x0fffffff); /* ?? */
++
++	nv_wo32(xtensa, 0xd28, xtensa->unkd28); /* ?? */
++	nv_mask(xtensa, 0x2090,
++		0xf << (xtensa->fifo_nibble * 4),
++		0x8 << (xtensa->fifo_nibble * 4)); /* PFIFO.UNK90 */
++	nv_wo32(xtensa, 0xc20, 0x3f); /* INTR */
++	nv_wo32(xtensa, 0xd84, 0x3f); /* INTR_EN */
++
++	nv_wo32(xtensa, 0xcc0, xtensa->gpu_fw->addr >> 8); /* XT_REGION_BASE */
++	nv_wo32(xtensa, 0xcc4, 0x1c); /* XT_REGION_SETUP */
++	nv_wo32(xtensa, 0xcc8, xtensa->gpu_fw->size >> 8); /* XT_REGION_LIMIT */
++
++	tmp = nv_rd32(xtensa, 0x0);
++	nv_wo32(xtensa, 0xde0, tmp); /* SCRATCH_H2X */
++
++	nv_wo32(xtensa, 0xce8, 0xf); /* XT_REGION_SETUP */
++
++	nv_wo32(xtensa, 0xc20, 0x3f); /* INTR */
++	nv_wo32(xtensa, 0xd84, 0x3f); /* INTR_EN */
++
++	return 0;
++}
++
++int
++_nouveau_xtensa_fini(struct nouveau_object *object, bool suspend)
++{
++	struct nouveau_xtensa *xtensa = (void *)object;
++
++	nv_wo32(xtensa, 0xd84, 0); /* INTR_EN */
++	nv_wo32(xtensa, 0xd94, 0); /* FIFO_CTRL */
++
++	nouveau_gpuobj_ref(NULL, &xtensa->gpu_fw);
++
++	return nouveau_engine_fini(&xtensa->base, suspend);
++}
+diff --git a/drivers/gpu/drm/nouveau/core/engine/bsp/nv84.c b/drivers/gpu/drm/nouveau/core/engine/bsp/nv84.c
+index 1d9f614..ee4cff1 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/bsp/nv84.c
++++ b/drivers/gpu/drm/nouveau/core/engine/bsp/nv84.c
+@@ -19,24 +19,20 @@
+  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+  * OTHER DEALINGS IN THE SOFTWARE.
+  *
+- * Authors: Ben Skeggs
++ * Authors: Ben Skeggs, Ilia Mirkin
+  */
+ 
+-#include <core/engctx.h>
+-#include <core/class.h>
++#include <core/xtensa.h>
+ 
+ #include <engine/bsp.h>
+ 
+-struct nv84_bsp_priv {
+-	struct nouveau_engine base;
+-};
+-
+ /*******************************************************************************
+  * BSP object classes
+  ******************************************************************************/
+ 
+ static struct nouveau_oclass
+ nv84_bsp_sclass[] = {
++	{ 0x74b0, &nouveau_object_ofuncs },
+ 	{},
+ };
+ 
+@@ -48,7 +44,7 @@ static struct nouveau_oclass
+ nv84_bsp_cclass = {
+ 	.handle = NV_ENGCTX(BSP, 0x84),
+ 	.ofuncs = &(struct nouveau_ofuncs) {
+-		.ctor = _nouveau_engctx_ctor,
++		.ctor = _nouveau_xtensa_engctx_ctor,
+ 		.dtor = _nouveau_engctx_dtor,
+ 		.init = _nouveau_engctx_init,
+ 		.fini = _nouveau_engctx_fini,
+@@ -66,10 +62,10 @@ nv84_bsp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	      struct nouveau_oclass *oclass, void *data, u32 size,
+ 	      struct nouveau_object **pobject)
+ {
+-	struct nv84_bsp_priv *priv;
++	struct nouveau_xtensa *priv;
+ 	int ret;
+ 
+-	ret = nouveau_engine_create(parent, engine, oclass, true,
++	ret = nouveau_xtensa_create(parent, engine, oclass, 0x103000, true,
+ 				    "PBSP", "bsp", &priv);
+ 	*pobject = nv_object(priv);
+ 	if (ret)
+@@ -78,6 +74,10 @@ nv84_bsp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	nv_subdev(priv)->unit = 0x04008000;
+ 	nv_engine(priv)->cclass = &nv84_bsp_cclass;
+ 	nv_engine(priv)->sclass = nv84_bsp_sclass;
++	priv->fifo_val = 0x1111;
++	priv->fifo_nibble = 7;
++	priv->unkd28 = 0x90044;
++	priv->firmware_fname = "nouveau/nv84_bsp";
+ 	return 0;
+ }
+ 
+@@ -86,8 +86,10 @@ nv84_bsp_oclass = {
+ 	.handle = NV_ENGINE(BSP, 0x84),
+ 	.ofuncs = &(struct nouveau_ofuncs) {
+ 		.ctor = nv84_bsp_ctor,
+-		.dtor = _nouveau_engine_dtor,
+-		.init = _nouveau_engine_init,
+-		.fini = _nouveau_engine_fini,
++		.dtor = _nouveau_xtensa_dtor,
++		.init = _nouveau_xtensa_init,
++		.fini = _nouveau_xtensa_fini,
++		.rd32 = _nouveau_xtensa_rd32,
++		.wr32 = _nouveau_xtensa_wr32,
+ 	},
+ };
+diff --git a/drivers/gpu/drm/nouveau/core/engine/bsp/nv84.c b/drivers/gpu/drm/nouveau/core/engine/bsp/nv98.c
+similarity index 87%
+copy from drivers/gpu/drm/nouveau/core/engine/bsp/nv84.c
+copy to drivers/gpu/drm/nouveau/core/engine/bsp/nv98.c
+index 1d9f614..8bf92b0 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/bsp/nv84.c
++++ b/drivers/gpu/drm/nouveau/core/engine/bsp/nv98.c
+@@ -27,7 +27,7 @@
+ 
+ #include <engine/bsp.h>
+ 
+-struct nv84_bsp_priv {
++struct nv98_bsp_priv {
+ 	struct nouveau_engine base;
+ };
+ 
+@@ -36,7 +36,7 @@ struct nv84_bsp_priv {
+  ******************************************************************************/
+ 
+ static struct nouveau_oclass
+-nv84_bsp_sclass[] = {
++nv98_bsp_sclass[] = {
+ 	{},
+ };
+ 
+@@ -45,8 +45,8 @@ nv84_bsp_sclass[] = {
+  ******************************************************************************/
+ 
+ static struct nouveau_oclass
+-nv84_bsp_cclass = {
+-	.handle = NV_ENGCTX(BSP, 0x84),
++nv98_bsp_cclass = {
++	.handle = NV_ENGCTX(BSP, 0x98),
+ 	.ofuncs = &(struct nouveau_ofuncs) {
+ 		.ctor = _nouveau_engctx_ctor,
+ 		.dtor = _nouveau_engctx_dtor,
+@@ -62,11 +62,11 @@ nv84_bsp_cclass = {
+  ******************************************************************************/
+ 
+ static int
+-nv84_bsp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
++nv98_bsp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	      struct nouveau_oclass *oclass, void *data, u32 size,
+ 	      struct nouveau_object **pobject)
+ {
+-	struct nv84_bsp_priv *priv;
++	struct nv98_bsp_priv *priv;
+ 	int ret;
+ 
+ 	ret = nouveau_engine_create(parent, engine, oclass, true,
+@@ -76,16 +76,16 @@ nv84_bsp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 		return ret;
+ 
+ 	nv_subdev(priv)->unit = 0x04008000;
+-	nv_engine(priv)->cclass = &nv84_bsp_cclass;
+-	nv_engine(priv)->sclass = nv84_bsp_sclass;
++	nv_engine(priv)->cclass = &nv98_bsp_cclass;
++	nv_engine(priv)->sclass = nv98_bsp_sclass;
+ 	return 0;
+ }
+ 
+ struct nouveau_oclass
+-nv84_bsp_oclass = {
+-	.handle = NV_ENGINE(BSP, 0x84),
++nv98_bsp_oclass = {
++	.handle = NV_ENGINE(BSP, 0x98),
+ 	.ofuncs = &(struct nouveau_ofuncs) {
+-		.ctor = nv84_bsp_ctor,
++		.ctor = nv98_bsp_ctor,
+ 		.dtor = _nouveau_engine_dtor,
+ 		.init = _nouveau_engine_init,
+ 		.fini = _nouveau_engine_fini,
+diff --git a/drivers/gpu/drm/nouveau/core/engine/device/nv50.c b/drivers/gpu/drm/nouveau/core/engine/device/nv50.c
+index 5e8c3de..024d47c 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/device/nv50.c
++++ b/drivers/gpu/drm/nouveau/core/engine/device/nv50.c
+@@ -227,9 +227,9 @@ nv50_identify(struct nouveau_device *device)
+ 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv84_fifo_oclass;
+ 		device->oclass[NVDEV_ENGINE_SW     ] = &nv50_software_oclass;
+ 		device->oclass[NVDEV_ENGINE_GR     ] = &nv50_graph_oclass;
+-		device->oclass[NVDEV_ENGINE_VP     ] = &nv84_vp_oclass;
++		device->oclass[NVDEV_ENGINE_VP     ] = &nv98_vp_oclass;
+ 		device->oclass[NVDEV_ENGINE_CRYPT  ] = &nv98_crypt_oclass;
+-		device->oclass[NVDEV_ENGINE_BSP    ] = &nv84_bsp_oclass;
++		device->oclass[NVDEV_ENGINE_BSP    ] = &nv98_bsp_oclass;
+ 		device->oclass[NVDEV_ENGINE_PPP    ] = &nv98_ppp_oclass;
+ 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv94_disp_oclass;
+ 		break;
+@@ -279,9 +279,9 @@ nv50_identify(struct nouveau_device *device)
+ 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv84_fifo_oclass;
+ 		device->oclass[NVDEV_ENGINE_SW     ] = &nv50_software_oclass;
+ 		device->oclass[NVDEV_ENGINE_GR     ] = &nv50_graph_oclass;
+-		device->oclass[NVDEV_ENGINE_VP     ] = &nv84_vp_oclass;
++		device->oclass[NVDEV_ENGINE_VP     ] = &nv98_vp_oclass;
+ 		device->oclass[NVDEV_ENGINE_CRYPT  ] = &nv98_crypt_oclass;
+-		device->oclass[NVDEV_ENGINE_BSP    ] = &nv84_bsp_oclass;
++		device->oclass[NVDEV_ENGINE_BSP    ] = &nv98_bsp_oclass;
+ 		device->oclass[NVDEV_ENGINE_PPP    ] = &nv98_ppp_oclass;
+ 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv94_disp_oclass;
+ 		break;
+@@ -305,9 +305,9 @@ nv50_identify(struct nouveau_device *device)
+ 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv84_fifo_oclass;
+ 		device->oclass[NVDEV_ENGINE_SW     ] = &nv50_software_oclass;
+ 		device->oclass[NVDEV_ENGINE_GR     ] = &nv50_graph_oclass;
+-		device->oclass[NVDEV_ENGINE_VP     ] = &nv84_vp_oclass;
++		device->oclass[NVDEV_ENGINE_VP     ] = &nv98_vp_oclass;
+ 		device->oclass[NVDEV_ENGINE_CRYPT  ] = &nv98_crypt_oclass;
+-		device->oclass[NVDEV_ENGINE_BSP    ] = &nv84_bsp_oclass;
++		device->oclass[NVDEV_ENGINE_BSP    ] = &nv98_bsp_oclass;
+ 		device->oclass[NVDEV_ENGINE_PPP    ] = &nv98_ppp_oclass;
+ 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv94_disp_oclass;
+ 		break;
+@@ -332,8 +332,8 @@ nv50_identify(struct nouveau_device *device)
+ 		device->oclass[NVDEV_ENGINE_SW     ] = &nv50_software_oclass;
+ 		device->oclass[NVDEV_ENGINE_GR     ] = &nv50_graph_oclass;
+ 		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv84_mpeg_oclass;
+-		device->oclass[NVDEV_ENGINE_VP     ] = &nv84_vp_oclass;
+-		device->oclass[NVDEV_ENGINE_BSP    ] = &nv84_bsp_oclass;
++		device->oclass[NVDEV_ENGINE_VP     ] = &nv98_vp_oclass;
++		device->oclass[NVDEV_ENGINE_BSP    ] = &nv98_bsp_oclass;
+ 		device->oclass[NVDEV_ENGINE_PPP    ] = &nv98_ppp_oclass;
+ 		device->oclass[NVDEV_ENGINE_COPY0  ] = &nva3_copy_oclass;
+ 		device->oclass[NVDEV_ENGINE_DISP   ] = &nva3_disp_oclass;
+@@ -358,8 +358,8 @@ nv50_identify(struct nouveau_device *device)
+ 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv84_fifo_oclass;
+ 		device->oclass[NVDEV_ENGINE_SW     ] = &nv50_software_oclass;
+ 		device->oclass[NVDEV_ENGINE_GR     ] = &nv50_graph_oclass;
+-		device->oclass[NVDEV_ENGINE_VP     ] = &nv84_vp_oclass;
+-		device->oclass[NVDEV_ENGINE_BSP    ] = &nv84_bsp_oclass;
++		device->oclass[NVDEV_ENGINE_VP     ] = &nv98_vp_oclass;
++		device->oclass[NVDEV_ENGINE_BSP    ] = &nv98_bsp_oclass;
+ 		device->oclass[NVDEV_ENGINE_PPP    ] = &nv98_ppp_oclass;
+ 		device->oclass[NVDEV_ENGINE_COPY0  ] = &nva3_copy_oclass;
+ 		device->oclass[NVDEV_ENGINE_DISP   ] = &nva3_disp_oclass;
+@@ -384,8 +384,8 @@ nv50_identify(struct nouveau_device *device)
+ 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv84_fifo_oclass;
+ 		device->oclass[NVDEV_ENGINE_SW     ] = &nv50_software_oclass;
+ 		device->oclass[NVDEV_ENGINE_GR     ] = &nv50_graph_oclass;
+-		device->oclass[NVDEV_ENGINE_VP     ] = &nv84_vp_oclass;
+-		device->oclass[NVDEV_ENGINE_BSP    ] = &nv84_bsp_oclass;
++		device->oclass[NVDEV_ENGINE_VP     ] = &nv98_vp_oclass;
++		device->oclass[NVDEV_ENGINE_BSP    ] = &nv98_bsp_oclass;
+ 		device->oclass[NVDEV_ENGINE_PPP    ] = &nv98_ppp_oclass;
+ 		device->oclass[NVDEV_ENGINE_COPY0  ] = &nva3_copy_oclass;
+ 		device->oclass[NVDEV_ENGINE_DISP   ] = &nva3_disp_oclass;
+@@ -410,8 +410,8 @@ nv50_identify(struct nouveau_device *device)
+ 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv84_fifo_oclass;
+ 		device->oclass[NVDEV_ENGINE_SW     ] = &nv50_software_oclass;
+ 		device->oclass[NVDEV_ENGINE_GR     ] = &nv50_graph_oclass;
+-		device->oclass[NVDEV_ENGINE_VP     ] = &nv84_vp_oclass;
+-		device->oclass[NVDEV_ENGINE_BSP    ] = &nv84_bsp_oclass;
++		device->oclass[NVDEV_ENGINE_VP     ] = &nv98_vp_oclass;
++		device->oclass[NVDEV_ENGINE_BSP    ] = &nv98_bsp_oclass;
+ 		device->oclass[NVDEV_ENGINE_PPP    ] = &nv98_ppp_oclass;
+ 		device->oclass[NVDEV_ENGINE_COPY0  ] = &nva3_copy_oclass;
+ 		device->oclass[NVDEV_ENGINE_DISP   ] = &nva3_disp_oclass;
+diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c b/drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c
+index 35b94bd..7f53196 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c
++++ b/drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c
+@@ -56,7 +56,9 @@ nv84_fifo_context_attach(struct nouveau_object *parent,
+ 	switch (nv_engidx(object->engine)) {
+ 	case NVDEV_ENGINE_SW   : return 0;
+ 	case NVDEV_ENGINE_GR   : addr = 0x0020; break;
++	case NVDEV_ENGINE_VP   : addr = 0x0040; break;
+ 	case NVDEV_ENGINE_MPEG : addr = 0x0060; break;
++	case NVDEV_ENGINE_BSP  : addr = 0x0080; break;
+ 	case NVDEV_ENGINE_CRYPT: addr = 0x00a0; break;
+ 	case NVDEV_ENGINE_COPY0: addr = 0x00c0; break;
+ 	default:
+@@ -89,7 +91,9 @@ nv84_fifo_context_detach(struct nouveau_object *parent, bool suspend,
+ 	switch (nv_engidx(object->engine)) {
+ 	case NVDEV_ENGINE_SW   : return 0;
+ 	case NVDEV_ENGINE_GR   : engn = 0; addr = 0x0020; break;
++	case NVDEV_ENGINE_VP   : engn = 3; addr = 0x0040; break;
+ 	case NVDEV_ENGINE_MPEG : engn = 1; addr = 0x0060; break;
++	case NVDEV_ENGINE_BSP  : engn = 5; addr = 0x0080; break;
+ 	case NVDEV_ENGINE_CRYPT: engn = 4; addr = 0x00a0; break;
+ 	case NVDEV_ENGINE_COPY0: engn = 2; addr = 0x00c0; break;
+ 	default:
+diff --git a/drivers/gpu/drm/nouveau/core/engine/vp/nv84.c b/drivers/gpu/drm/nouveau/core/engine/vp/nv84.c
+index 261cd96..0450a2d 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/vp/nv84.c
++++ b/drivers/gpu/drm/nouveau/core/engine/vp/nv84.c
+@@ -19,24 +19,20 @@
+  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+  * OTHER DEALINGS IN THE SOFTWARE.
+  *
+- * Authors: Ben Skeggs
++ * Authors: Ben Skeggs, Ilia Mirkin
+  */
+ 
+-#include <core/engctx.h>
+-#include <core/class.h>
++#include <core/xtensa.h>
+ 
+ #include <engine/vp.h>
+ 
+-struct nv84_vp_priv {
+-	struct nouveau_engine base;
+-};
+-
+ /*******************************************************************************
+  * VP object classes
+  ******************************************************************************/
+ 
+ static struct nouveau_oclass
+ nv84_vp_sclass[] = {
++	{ 0x7476, &nouveau_object_ofuncs },
+ 	{},
+ };
+ 
+@@ -48,7 +44,7 @@ static struct nouveau_oclass
+ nv84_vp_cclass = {
+ 	.handle = NV_ENGCTX(VP, 0x84),
+ 	.ofuncs = &(struct nouveau_ofuncs) {
+-		.ctor = _nouveau_engctx_ctor,
++		.ctor = _nouveau_xtensa_engctx_ctor,
+ 		.dtor = _nouveau_engctx_dtor,
+ 		.init = _nouveau_engctx_init,
+ 		.fini = _nouveau_engctx_fini,
+@@ -66,10 +62,10 @@ nv84_vp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	     struct nouveau_oclass *oclass, void *data, u32 size,
+ 	     struct nouveau_object **pobject)
+ {
+-	struct nv84_vp_priv *priv;
++	struct nouveau_xtensa *priv;
+ 	int ret;
+ 
+-	ret = nouveau_engine_create(parent, engine, oclass, true,
++	ret = nouveau_xtensa_create(parent, engine, oclass, 0xf000, true,
+ 				    "PVP", "vp", &priv);
+ 	*pobject = nv_object(priv);
+ 	if (ret)
+@@ -78,6 +74,10 @@ nv84_vp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	nv_subdev(priv)->unit = 0x01020000;
+ 	nv_engine(priv)->cclass = &nv84_vp_cclass;
+ 	nv_engine(priv)->sclass = nv84_vp_sclass;
++	priv->fifo_val = 0x111;
++	priv->fifo_nibble = 3;
++	priv->unkd28 = 0x9c544;
++	priv->firmware_fname = "nouveau/nv84_vp";
+ 	return 0;
+ }
+ 
+@@ -86,8 +86,10 @@ nv84_vp_oclass = {
+ 	.handle = NV_ENGINE(VP, 0x84),
+ 	.ofuncs = &(struct nouveau_ofuncs) {
+ 		.ctor = nv84_vp_ctor,
+-		.dtor = _nouveau_engine_dtor,
+-		.init = _nouveau_engine_init,
+-		.fini = _nouveau_engine_fini,
++		.dtor = _nouveau_xtensa_dtor,
++		.init = _nouveau_xtensa_init,
++		.fini = _nouveau_xtensa_fini,
++		.rd32 = _nouveau_xtensa_rd32,
++		.wr32 = _nouveau_xtensa_wr32,
+ 	},
+ };
+diff --git a/drivers/gpu/drm/nouveau/core/engine/vp/nv84.c b/drivers/gpu/drm/nouveau/core/engine/vp/nv98.c
+similarity index 88%
+copy from drivers/gpu/drm/nouveau/core/engine/vp/nv84.c
+copy to drivers/gpu/drm/nouveau/core/engine/vp/nv98.c
+index 261cd96..8a8236b 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/vp/nv84.c
++++ b/drivers/gpu/drm/nouveau/core/engine/vp/nv98.c
+@@ -27,7 +27,7 @@
+ 
+ #include <engine/vp.h>
+ 
+-struct nv84_vp_priv {
++struct nv98_vp_priv {
+ 	struct nouveau_engine base;
+ };
+ 
+@@ -36,7 +36,7 @@ struct nv84_vp_priv {
+  ******************************************************************************/
+ 
+ static struct nouveau_oclass
+-nv84_vp_sclass[] = {
++nv98_vp_sclass[] = {
+ 	{},
+ };
+ 
+@@ -45,8 +45,8 @@ nv84_vp_sclass[] = {
+  ******************************************************************************/
+ 
+ static struct nouveau_oclass
+-nv84_vp_cclass = {
+-	.handle = NV_ENGCTX(VP, 0x84),
++nv98_vp_cclass = {
++	.handle = NV_ENGCTX(VP, 0x98),
+ 	.ofuncs = &(struct nouveau_ofuncs) {
+ 		.ctor = _nouveau_engctx_ctor,
+ 		.dtor = _nouveau_engctx_dtor,
+@@ -62,11 +62,11 @@ nv84_vp_cclass = {
+  ******************************************************************************/
+ 
+ static int
+-nv84_vp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
++nv98_vp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	     struct nouveau_oclass *oclass, void *data, u32 size,
+ 	     struct nouveau_object **pobject)
+ {
+-	struct nv84_vp_priv *priv;
++	struct nv98_vp_priv *priv;
+ 	int ret;
+ 
+ 	ret = nouveau_engine_create(parent, engine, oclass, true,
+@@ -76,16 +76,16 @@ nv84_vp_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 		return ret;
+ 
+ 	nv_subdev(priv)->unit = 0x01020000;
+-	nv_engine(priv)->cclass = &nv84_vp_cclass;
+-	nv_engine(priv)->sclass = nv84_vp_sclass;
++	nv_engine(priv)->cclass = &nv98_vp_cclass;
++	nv_engine(priv)->sclass = nv98_vp_sclass;
+ 	return 0;
+ }
+ 
+ struct nouveau_oclass
+-nv84_vp_oclass = {
+-	.handle = NV_ENGINE(VP, 0x84),
++nv98_vp_oclass = {
++	.handle = NV_ENGINE(VP, 0x98),
+ 	.ofuncs = &(struct nouveau_ofuncs) {
+-		.ctor = nv84_vp_ctor,
++		.ctor = nv98_vp_ctor,
+ 		.dtor = _nouveau_engine_dtor,
+ 		.init = _nouveau_engine_init,
+ 		.fini = _nouveau_engine_fini,
+diff --git a/drivers/gpu/drm/nouveau/core/include/core/xtensa.h b/drivers/gpu/drm/nouveau/core/include/core/xtensa.h
+new file mode 100644
+index 0000000..bc7eaf8
+--- /dev/null
++++ b/drivers/gpu/drm/nouveau/core/include/core/xtensa.h
+@@ -0,0 +1,40 @@
++#ifndef __NOUVEAU_XTENSA_H__
++#define __NOUVEAU_XTENSA_H__
++
++#include <core/engine.h>
++#include <core/engctx.h>
++#include <core/gpuobj.h>
++
++struct nouveau_xtensa {
++	struct nouveau_engine base;
++
++	u32 addr;
++	struct nouveau_gpuobj *gpu_fw;
++	const char *firmware_fname;
++	u32 fifo_val;
++	u8 fifo_nibble;
++	u32 unkd28;
++};
++
++#define nouveau_xtensa_create(p,e,c,b,d,i,f,r)				\
++	nouveau_xtensa_create_((p), (e), (c), (b), (d), (i), (f),	\
++			       sizeof(**r),(void **)r)
++
++int _nouveau_xtensa_engctx_ctor(struct nouveau_object *,
++				struct nouveau_object *,
++				struct nouveau_oclass *, void *, u32,
++				struct nouveau_object **);
++
++void _nouveau_xtensa_intr(struct nouveau_subdev *);
++int nouveau_xtensa_create_(struct nouveau_object *,
++			   struct nouveau_object *,
++			   struct nouveau_oclass *, u32, bool,
++			   const char *, const char *,
++			   int, void **);
++#define _nouveau_xtensa_dtor _nouveau_engine_dtor
++int _nouveau_xtensa_init(struct nouveau_object *);
++int _nouveau_xtensa_fini(struct nouveau_object *, bool);
++u32  _nouveau_xtensa_rd32(struct nouveau_object *, u64);
++void _nouveau_xtensa_wr32(struct nouveau_object *, u64, u32);
++
++#endif
+diff --git a/drivers/gpu/drm/nouveau/core/include/engine/bsp.h b/drivers/gpu/drm/nouveau/core/include/engine/bsp.h
+index 13ccdf5..67662e2 100644
+--- a/drivers/gpu/drm/nouveau/core/include/engine/bsp.h
++++ b/drivers/gpu/drm/nouveau/core/include/engine/bsp.h
+@@ -2,6 +2,7 @@
+ #define __NOUVEAU_BSP_H__
+ 
+ extern struct nouveau_oclass nv84_bsp_oclass;
++extern struct nouveau_oclass nv98_bsp_oclass;
+ extern struct nouveau_oclass nvc0_bsp_oclass;
+ extern struct nouveau_oclass nve0_bsp_oclass;
+ 
+diff --git a/drivers/gpu/drm/nouveau/core/include/engine/vp.h b/drivers/gpu/drm/nouveau/core/include/engine/vp.h
+index d7b287b..39baebe 100644
+--- a/drivers/gpu/drm/nouveau/core/include/engine/vp.h
++++ b/drivers/gpu/drm/nouveau/core/include/engine/vp.h
+@@ -2,6 +2,7 @@
+ #define __NOUVEAU_VP_H__
+ 
+ extern struct nouveau_oclass nv84_vp_oclass;
++extern struct nouveau_oclass nv98_vp_oclass;
+ extern struct nouveau_oclass nvc0_vp_oclass;
+ extern struct nouveau_oclass nve0_vp_oclass;
+ 
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/mc/nv50.c b/drivers/gpu/drm/nouveau/core/subdev/mc/nv50.c
+index d796924..0cb322a 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/mc/nv50.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/mc/nv50.c
+@@ -35,6 +35,7 @@ nv50_mc_intr[] = {
+ 	{ 0x00001000, NVDEV_ENGINE_GR },
+ 	{ 0x00004000, NVDEV_ENGINE_CRYPT },	/* NV84- */
+ 	{ 0x00008000, NVDEV_ENGINE_BSP },	/* NV84- */
++	{ 0x00020000, NVDEV_ENGINE_VP },	/* NV84- */
+ 	{ 0x00100000, NVDEV_SUBDEV_TIMER },
+ 	{ 0x00200000, NVDEV_SUBDEV_GPIO },
+ 	{ 0x04000000, NVDEV_ENGINE_DISP },
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/vm/nv50.c b/drivers/gpu/drm/nouveau/core/subdev/vm/nv50.c
+index 5de0756..9ecc5f9 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/vm/nv50.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/vm/nv50.c
+@@ -172,8 +172,10 @@ nv50_vm_flush(struct nouveau_vm *vm)
+ 
+ 		switch (i) {
+ 		case NVDEV_ENGINE_GR   : vme = 0x00; break;
++		case NVDEV_ENGINE_VP   : vme = 0x01; break;
+ 		case NVDEV_SUBDEV_BAR  : vme = 0x06; break;
+ 		case NVDEV_ENGINE_MPEG : vme = 0x08; break;
++		case NVDEV_ENGINE_BSP  : vme = 0x09; break;
+ 		case NVDEV_ENGINE_CRYPT: vme = 0x0a; break;
+ 		case NVDEV_ENGINE_COPY0: vme = 0x0d; break;
+ 		default:
+-- 
+1.8.1.5
