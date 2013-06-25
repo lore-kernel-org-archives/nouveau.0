@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 66177] pwm1 value not restored during
  hibernate/restore cycle in the event of manual fan management mode
-Date: Tue, 25 Jun 2013 22:30:21 +0000
-Message-ID: <bug-66177-8800-8Oel4JQxOy@http.bugs.freedesktop.org/>
+Date: Tue, 25 Jun 2013 22:32:02 +0000
+Message-ID: <bug-66177-8800-h1fdexd18Q@http.bugs.freedesktop.org/>
 References: <bug-66177-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1395243266=="
+Content-Type: multipart/mixed; boundary="===============1761692941=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-66177-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1395243266==
-Content-Type: multipart/alternative; boundary="1372199421.CA0E01.9129"; charset="us-ascii"
+--===============1761692941==
+Content-Type: multipart/alternative; boundary="1372199522.aeBa1.9401"; charset="us-ascii"
 
 
---1372199421.CA0E01.9129
-Date: Tue, 25 Jun 2013 22:30:21 +0000
+--1372199522.aeBa1.9401
+Date: Tue, 25 Jun 2013 22:32:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=66177
 
---- Comment #1 from Mr-4 <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-Created attachment 81430
-  --> https://bugs.freedesktop.org/attachment.cgi?id=81430&action=edit
-Restore the pwm1_enable and pwm1 (in case of manual fan management) after
-hibernate/restore
+--- Comment #2 from Mr-4 <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
+Created attachment 81431
+  --> https://bugs.freedesktop.org/attachment.cgi?id=81431&action=edit
+set fan_mode and fan_duty at boot up
 
-This patch restores pwm1_enable as well as pwm1 (in case of manual fan
-management) values after hibernate/restore.
+The following patch allows fan_mode and fan_duty (percentage) to be specified
+at the kernel command line
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1372199421.CA0E01.9129
-Date: Tue, 25 Jun 2013 22:30:21 +0000
+--1372199522.aeBa1.9401
+Date: Tue, 25 Jun 2013 22:32:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,19 +59,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - pwm1 value not restored during hibernate/restore cycle in the event of manual fan management mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66177#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66177#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - pwm1 value not restored during hibernate/restore cycle in the event of manual fan management mode"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=66177">bug 66177</a>
               from <span class="vcard"><a class="email" href="mailto:mr.dash.four&#64;googlemail.com" title="Mr-4 &lt;mr.dash.four&#64;googlemail.com&gt;"> <span class="fn">Mr-4</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=81430" name="attach_81430" title="Restore the pwm1_enable and pwm1 (in case of manual fan management) after hibernate/restore">attachment 81430</a> <a href="attachment.cgi?id=81430&amp;action=edit" title="Restore the pwm1_enable and pwm1 (in case of manual fan management) after hibernate/restore">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=66177&amp;attachment=81430'>[review]</a>
-Restore the pwm1_enable and pwm1 (in case of manual fan management) after
-hibernate/restore
+        <pre>Created <span class=""><a href="attachment.cgi?id=81431" name="attach_81431" title="set fan_mode and fan_duty at boot up">attachment 81431</a> <a href="attachment.cgi?id=81431&amp;action=edit" title="set fan_mode and fan_duty at boot up">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=66177&amp;attachment=81431'>[review]</a>
+set fan_mode and fan_duty at boot up
 
-This patch restores pwm1_enable as well as pwm1 (in case of manual fan
-management) values after hibernate/restore.</pre>
+The following patch allows fan_mode and fan_duty (percentage) to be specified
+at the kernel command line</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +82,9 @@ management) values after hibernate/restore.</pre>
     </body>
 </html>
 
---1372199421.CA0E01.9129--
+--1372199522.aeBa1.9401--
 
---===============1395243266==
+--===============1761692941==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1395243266==--
+--===============1761692941==--
