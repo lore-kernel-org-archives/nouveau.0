@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 66176] nouveau.perflvl kernel parameter doesn't work
-Date: Tue, 25 Jun 2013 23:38:14 +0000
-Message-ID: <bug-66176-8800-mBsysktiX7@http.bugs.freedesktop.org/>
+Date: Wed, 26 Jun 2013 14:03:46 +0000
+Message-ID: <bug-66176-8800-ukTheLVTKK@http.bugs.freedesktop.org/>
 References: <bug-66176-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1170854515=="
+Content-Type: multipart/mixed; boundary="===============0307453335=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-66176-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,38 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1170854515==
-Content-Type: multipart/alternative; boundary="1372203494.DaEB1c02.20528"; charset="us-ascii"
+--===============0307453335==
+Content-Type: multipart/alternative; boundary="1372255426.Aca671.25333"; charset="us-ascii"
 
 
---1372203494.DaEB1c02.20528
-Date: Tue, 25 Jun 2013 23:38:14 +0000
+--1372255426.Aca671.25333
+Date: Wed, 26 Jun 2013 14:03:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=66176
 
-Roy <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org> changed:
+--- Comment #2 from Mr-4 <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
+I am willing to give you a hand in the development and/or testing, if needed.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
-
---- Comment #1 from Roy <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org> ---
-I'm sorry, but unfortunately reclocking is not implemented for this family of
-cards (NV4x) in nouveau. None of the developers has such a board capable of
-reclocking. I have marked this bug NEEDINFO because... well, we need a lot more
-info about the internals of this card to be able to implement reclocking. Given
-the amount of users actually still using NV49s (and the complete lack of
-developer manpower on reclocking) it will probably end up being a
-very-low-priority task though.
+I know for a fact that re-clocking is possible on this card - I do that (quite
+regularly) on Windows and if I remember correctly I've also done this
+"manually" using the pathscale tools.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1372203494.DaEB1c02.20528
-Date: Tue, 25 Jun 2013 23:38:14 +0000
+--1372255426.Aca671.25333
+Date: Wed, 26 Jun 2013 14:03:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,46 +51,24 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:r.spliet&#64;student.tudelft.nl" title="Roy &lt;r.spliet&#64;student.tudelft.nl&gt;"> <span class="fn">Roy</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - nouveau.perflvl kernel parameter doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66176">bug 66176</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEEDINFO "
    title="NEEDINFO --- - nouveau.perflvl kernel parameter doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66176#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66176#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEEDINFO "
    title="NEEDINFO --- - nouveau.perflvl kernel parameter doesn't work"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=66176">bug 66176</a>
-              from <span class="vcard"><a class="email" href="mailto:r.spliet&#64;student.tudelft.nl" title="Roy &lt;r.spliet&#64;student.tudelft.nl&gt;"> <span class="fn">Roy</span></a>
+              from <span class="vcard"><a class="email" href="mailto:mr.dash.four&#64;googlemail.com" title="Mr-4 &lt;mr.dash.four&#64;googlemail.com&gt;"> <span class="fn">Mr-4</span></a>
 </span></b>
-        <pre>I'm sorry, but unfortunately reclocking is not implemented for this family of
-cards (NV4x) in nouveau. None of the developers has such a board capable of
-reclocking. I have marked this bug NEEDINFO because... well, we need a lot more
-info about the internals of this card to be able to implement reclocking. Given
-the amount of users actually still using NV49s (and the complete lack of
-developer manpower on reclocking) it will probably end up being a
-very-low-priority task though.</pre>
+        <pre>I am willing to give you a hand in the development and/or testing, if needed.
+
+I know for a fact that re-clocking is possible on this card - I do that (quite
+regularly) on Windows and if I remember correctly I've also done this
+&quot;manually&quot; using the pathscale tools.</pre>
         </div>
       </p>
       <hr>
@@ -110,9 +80,9 @@ very-low-priority task though.</pre>
     </body>
 </html>
 
---1372203494.DaEB1c02.20528--
+--1372255426.Aca671.25333--
 
---===============1170854515==
+--===============0307453335==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1170854515==--
+--===============0307453335==--
