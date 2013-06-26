@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 66177] pwm1 value not restored during
- hibernate/restore cycle in the event of manual fan management mode
-Date: Wed, 26 Jun 2013 22:49:29 +0000
-Message-ID: <bug-66177-8800-y5LU90DJ8e@http.bugs.freedesktop.org/>
-References: <bug-66177-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 66176] nouveau.perflvl kernel parameter doesn't work
+Date: Wed, 26 Jun 2013 23:04:47 +0000
+Message-ID: <bug-66176-8800-Ce1Gs7Kle7@http.bugs.freedesktop.org/>
+References: <bug-66176-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1019239219=="
+Content-Type: multipart/mixed; boundary="===============1171762414=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-66177-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-66176-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,53 +20,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1019239219==
-Content-Type: multipart/alternative; boundary="1372286969.5F1B31.12077"; charset="us-ascii"
+--===============1171762414==
+Content-Type: multipart/alternative; boundary="1372287887.Ec7e801.14172"; charset="us-ascii"
 
 
---1372286969.5F1B31.12077
-Date: Wed, 26 Jun 2013 22:49:29 +0000
+--1372287887.Ec7e801.14172
+Date: Wed, 26 Jun 2013 23:04:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=66177
+https://bugs.freedesktop.org/show_bug.cgi?id=66176
 
 --- Comment #4 from Mr-4 <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
 (In reply to comment #3)
-> The real solution would be to restore all sysfs attributes after reboot.
-Indeed, I agree.
+> * The fanspeed set fails as the mode is not NOUVEAU_THERM_CTRL_MANUAL
+> Annoying but not crucial for the re-clocking to complete. Note I'm not
+> entirely sure where it should be set
+So, the logical solution to this particular problem would be for that mode to
+be *forced* to MANUAL, regardless of its previous state (which I suspect is
+NONE) and then try and set the fan speed.
 
-> The proposed solution doesn't seem scalable :s
-I never claimed that it is - the patch was submitted (note that it wasn't
-formal submission either) barely as a guidance - it-works-for-me (tm) (;
+> * pclk->pll_calc seems to return 0, causing nv40_calc_pll() to throw ERANGE
+> * Some of the functions called within nouveau_mem_timing_calc() may need
+> tweaking depending on now well we generate the appropriate memory timings
+You've lost me! I am no expert in Nouveau development, although I am a
+(willing) developer, so you need to explain the above a little bit.
 
-> However, I fully agree something should be done here!
-Yep.
-
-> I would rather see an automatic fan management by default and some overrides
-> to disable it though. Please use the "config" parameter to specify them
-> instead of adding parameters to nouveau, it seems to be how darktama wants
-> things to work.
-How do I "use the config" exactly? And who is "darktama" - is that Ben Skeggs?
-
-> Automatic fan management is supposed to work on all cards < NVC0 (which has
-> it at boot time, by default). I discussed enabling it by default for Linux
-> 3.11 but it seems we'll need to wait until 3.12.
-I am, quite frankly, amazed that something so raw and incomplete as the
-automatic fan management could make it into the mainstream kernel code - Ben is
-usually thorough as far as these things are concerned and I don't know how this
-slipped through.
-
-The "automatic" mode doesn't work - far from it, as evident from my other
-submission (and an additional feedback provided) - see Bug #66022 (and Comment
-#5 in particular).
+> P.S.
+> Only one zero is required to change the perflvl - "0" rather than "0,0"
+Well, by looking at the code, the performance level consists of 2 parts - AC
+(power) and DC (battery) separated by a comma (","), so I used "0,0" for the
+sake of completeness.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1372286969.5F1B31.12077
-Date: Wed, 26 Jun 2013 22:49:29 +0000
+--1372287887.Ec7e801.14172
+Date: Wed, 26 Jun 2013 23:04:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -79,46 +69,34 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - pwm1 value not restored during hibernate/restore cycle in the event of manual fan management mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66177#c4">Comment # 4</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - nouveau.perflvl kernel parameter doesn't work"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66176#c4">Comment # 4</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - pwm1 value not restored during hibernate/restore cycle in the event of manual fan management mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66177">bug 66177</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - nouveau.perflvl kernel parameter doesn't work"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66176">bug 66176</a>
               from <span class="vcard"><a class="email" href="mailto:mr.dash.four&#64;googlemail.com" title="Mr-4 &lt;mr.dash.four&#64;googlemail.com&gt;"> <span class="fn">Mr-4</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=66177#c3">comment #3</a>)
-<span class="quote">&gt; The real solution would be to restore all sysfs attributes after reboot.</span >
-Indeed, I agree.
+        <pre>(In reply to <a href="show_bug.cgi?id=66176#c3">comment #3</a>)
+<span class="quote">&gt; * The fanspeed set fails as the mode is not NOUVEAU_THERM_CTRL_MANUAL
+&gt; Annoying but not crucial for the re-clocking to complete. Note I'm not
+&gt; entirely sure where it should be set</span >
+So, the logical solution to this particular problem would be for that mode to
+be *forced* to MANUAL, regardless of its previous state (which I suspect is
+NONE) and then try and set the fan speed.
 
-<span class="quote">&gt; The proposed solution doesn't seem scalable :s</span >
-I never claimed that it is - the patch was submitted (note that it wasn't
-formal submission either) barely as a guidance - it-works-for-me (tm) (;
+<span class="quote">&gt; * pclk-&gt;pll_calc seems to return 0, causing nv40_calc_pll() to throw ERANGE
+&gt; * Some of the functions called within nouveau_mem_timing_calc() may need
+&gt; tweaking depending on now well we generate the appropriate memory timings</span >
+You've lost me! I am no expert in Nouveau development, although I am a
+(willing) developer, so you need to explain the above a little bit.
 
-<span class="quote">&gt; However, I fully agree something should be done here!</span >
-Yep.
-
-<span class="quote">&gt; I would rather see an automatic fan management by default and some overrides
-&gt; to disable it though. Please use the &quot;config&quot; parameter to specify them
-&gt; instead of adding parameters to nouveau, it seems to be how darktama wants
-&gt; things to work.</span >
-How do I &quot;use the config&quot; exactly? And who is &quot;darktama&quot; - is that Ben Skeggs?
-
-<span class="quote">&gt; Automatic fan management is supposed to work on all cards &lt; NVC0 (which has
-&gt; it at boot time, by default). I discussed enabling it by default for Linux
-&gt; 3.11 but it seems we'll need to wait until 3.12.</span >
-I am, quite frankly, amazed that something so raw and incomplete as the
-automatic fan management could make it into the mainstream kernel code - Ben is
-usually thorough as far as these things are concerned and I don't know how this
-slipped through.
-
-The &quot;automatic&quot; mode doesn't work - far from it, as evident from my other
-submission (and an additional feedback provided) - see <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - pwm1[_enable] faults after hibernate/restore related to automatic (or otherwise) fan management"
-   href="show_bug.cgi?id=66022">Bug #66022</a> (and <a href="show_bug.cgi?id=66177#c5">Comment
-#5</a> in particular).</pre>
+<span class="quote">&gt; P.S.
+&gt; Only one zero is required to change the perflvl - &quot;0&quot; rather than &quot;0,0&quot;</span >
+Well, by looking at the code, the performance level consists of 2 parts - AC
+(power) and DC (battery) separated by a comma (&quot;,&quot;), so I used &quot;0,0&quot; for the
+sake of completeness.</pre>
         </div>
       </p>
       <hr>
@@ -130,9 +108,9 @@ submission (and an additional feedback provided) - see <a class="bz_bug_link
     </body>
 </html>
 
---1372286969.5F1B31.12077--
+--1372287887.Ec7e801.14172--
 
---===============1019239219==
+--===============1171762414==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -143,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1019239219==--
+--===============1171762414==--
