@@ -1,12 +1,13 @@
-From: Alen Skondro <askondro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Steam Revenge of the Titans on Arch Linux - Garbage
-	display
-Date: Wed, 26 Jun 2013 20:20:48 +0200
-Message-ID: <kqfbdq$i94$2@ger.gmane.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 66129] [BISECTED] nouveau,
+ nv50: dual display doesn't work in 3.9
+Date: Wed, 26 Jun 2013 20:50:47 +0000
+Message-ID: <bug-66129-8800-zlvEGFiOiG@http.bugs.freedesktop.org/>
+References: <bug-66129-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1216206631=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-66129-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,28 +20,73 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
 
-I'm sorry if this is the wrong mailing list, but here it goes...
+--===============1216206631==
+Content-Type: multipart/alternative; boundary="1372279847.d5caA5a34.28253"; charset="us-ascii"
 
-on Arch linux, I'm trying to run 'The Revenge of Titans' but all I get
-is garbage (image links bellow) even the game worked perfectly two months
-ago.
 
-I'm using:
+--1372279847.d5caA5a34.28253
+Date: Wed, 26 Jun 2013 20:50:47 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-- Kernel: 3.10 rc6
-- Mesa 9.1.3
+https://bugs.freedesktop.org/show_bug.cgi?id=66129
 
-OpenGL vendor string: nouveau
-OpenGL renderer string: Gallium 0.4 on NVA0
-OpenGL version string: 3.0 Mesa 9.1.3
+--- Comment #4 from Per Arnold Blaasmo <per.arnold-E3z7vgVcB3VuMpJDpNschA@public.gmane.org> ---
+Created attachment 81508
+  --> https://bugs.freedesktop.org/attachment.cgi?id=81508&action=edit
+Dmesg using kernel 3.8.11 (good)
 
-How can I tell if this is a nouveau or a game issue?
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-Can I run the game in pure SW emulation (without HW accel)?
+--1372279847.d5caA5a34.28253
+Date: Wed, 26 Jun 2013 20:50:47 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
-http://steamcommunity.com/sharedfiles/filedetails/?id=155719847
-http://steamcommunity.com/sharedfiles/filedetails/?id=155719827
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [BISECTED] nouveau, nv50: dual display doesn't work in 3.9"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66129#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [BISECTED] nouveau, nv50: dual display doesn't work in 3.9"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66129">bug 66129</a>
+              from <span class="vcard"><a class="email" href="mailto:per.arnold&#64;blaasmo.no" title="Per Arnold Blaasmo &lt;per.arnold&#64;blaasmo.no&gt;"> <span class="fn">Per Arnold Blaasmo</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=81508" name="attach_81508" title="Dmesg using kernel 3.8.11 (good)">attachment 81508</a> <a href="attachment.cgi?id=81508&amp;action=edit" title="Dmesg using kernel 3.8.11 (good)">[details]</a></span>
+Dmesg using kernel 3.8.11 (good)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
 
-thanks!
+--1372279847.d5caA5a34.28253--
+
+--===============1216206631==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1216206631==--
