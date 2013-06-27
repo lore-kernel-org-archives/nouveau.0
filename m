@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 66255] Enabling Xinerama with nouveau driver causes
  Segmentation fault
-Date: Thu, 27 Jun 2013 17:28:24 +0000
-Message-ID: <bug-66255-8800-O9gzn7WvUX@http.bugs.freedesktop.org/>
+Date: Thu, 27 Jun 2013 18:39:10 +0000
+Message-ID: <bug-66255-8800-JzBNu6jG3Y@http.bugs.freedesktop.org/>
 References: <bug-66255-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2108020513=="
+Content-Type: multipart/mixed; boundary="===============0618096110=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-66255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,46 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2108020513==
-Content-Type: multipart/alternative; boundary="1372354104.b86C4E1.2210"; charset="us-ascii"
+--===============0618096110==
+Content-Type: multipart/alternative; boundary="1372358350.d3AA4A3B2.22686"; charset="us-ascii"
 
 
---1372354104.b86C4E1.2210
-Date: Thu, 27 Jun 2013 17:28:24 +0000
+--1372358350.d3AA4A3B2.22686
+Date: Thu, 27 Jun 2013 18:39:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=66255
 
---- Comment #8 from Trev Jackson <trev.g7pvs-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
-Using the ZaphodHeads and Xinerama enabled and having commented out the lines
-below:
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I think your Xorg config is a little off. Take a look at:
 
-/*
- #ifdef NOUVEAU_PIXMAP_SHARING
-        if (crtc->randr_crtc->scanout_pixmap)
-                x = y = 0;
-        else
- #endif
-*/
+http://nouveau.freedesktop.org/wiki/MultiMonitorDesktop/
 
-It now starts without crashing, however I'm getting some odd effects and
-although I can drag a window to the bottom double display it isn't visible and
-I'm getting the full width of the screen buffer in the top left window, so when
-I move the mouse across the desktop moves sideways, showing what is on the
-right hand display (although clicking on the copy on the left window has no
-effect). The top right display is the only screen that appears correctly.
-
-Best Regards
-
-Trev
+You need to define 4 screens, one for each monitor, but you appear to only have
+2. (Also, I'm not 100% sure that the example is correct -- it references Screen
+0/1 twice, that might be a typo and perhaps should be Screen 0/1/2/3... not
+entirely sure though.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1372354104.b86C4E1.2210
-Date: Thu, 27 Jun 2013 17:28:24 +0000
+--1372358350.d3AA4A3B2.22686
+Date: Thu, 27 Jun 2013 18:39:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,34 +61,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Enabling Xinerama with nouveau driver causes Segmentation fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Enabling Xinerama with nouveau driver causes Segmentation fault"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=66255">bug 66255</a>
-              from <span class="vcard"><a class="email" href="mailto:trev.g7pvs&#64;ntlworld.com" title="Trev Jackson &lt;trev.g7pvs&#64;ntlworld.com&gt;"> <span class="fn">Trev Jackson</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Using the ZaphodHeads and Xinerama enabled and having commented out the lines
-below:
+        <pre>I think your Xorg config is a little off. Take a look at:
 
-/*
- #ifdef NOUVEAU_PIXMAP_SHARING
-        if (crtc-&gt;randr_crtc-&gt;scanout_pixmap)
-                x = y = 0;
-        else
- #endif
-*/
+<a href="http://nouveau.freedesktop.org/wiki/MultiMonitorDesktop/">http://nouveau.freedesktop.org/wiki/MultiMonitorDesktop/</a>
 
-It now starts without crashing, however I'm getting some odd effects and
-although I can drag a window to the bottom double display it isn't visible and
-I'm getting the full width of the screen buffer in the top left window, so when
-I move the mouse across the desktop moves sideways, showing what is on the
-right hand display (although clicking on the copy on the left window has no
-effect). The top right display is the only screen that appears correctly.
-
-Best Regards
-
-Trev</pre>
+You need to define 4 screens, one for each monitor, but you appear to only have
+2. (Also, I'm not 100% sure that the example is correct -- it references Screen
+0/1 twice, that might be a typo and perhaps should be Screen 0/1/2/3... not
+entirely sure though.)</pre>
         </div>
       </p>
       <hr>
@@ -113,9 +87,9 @@ Trev</pre>
     </body>
 </html>
 
---1372354104.b86C4E1.2210--
+--1372358350.d3AA4A3B2.22686--
 
---===============2108020513==
+--===============0618096110==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -126,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2108020513==--
+--===============0618096110==--
