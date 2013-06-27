@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 66176] nouveau.perflvl kernel parameter doesn't work
-Date: Wed, 26 Jun 2013 23:04:47 +0000
-Message-ID: <bug-66176-8800-Ce1Gs7Kle7@http.bugs.freedesktop.org/>
-References: <bug-66176-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 66129] [BISECTED] nouveau,
+ nv50: dual display doesn't work in 3.9
+Date: Thu, 27 Jun 2013 00:07:23 +0000
+Message-ID: <bug-66129-8800-nWtlM2Eofl@http.bugs.freedesktop.org/>
+References: <bug-66129-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1171762414=="
+Content-Type: multipart/mixed; boundary="===============1994902452=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-66176-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-66129-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,44 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1171762414==
-Content-Type: multipart/alternative; boundary="1372287887.Ec7e801.14172"; charset="us-ascii"
+--===============1994902452==
+Content-Type: multipart/alternative; boundary="1372291644.4B344.22302"; charset="us-ascii"
 
 
---1372287887.Ec7e801.14172
-Date: Wed, 26 Jun 2013 23:04:47 +0000
+--1372291644.4B344.22302
+Date: Thu, 27 Jun 2013 00:07:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=66176
+https://bugs.freedesktop.org/show_bug.cgi?id=66129
 
---- Comment #4 from Mr-4 <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-(In reply to comment #3)
-> * The fanspeed set fails as the mode is not NOUVEAU_THERM_CTRL_MANUAL
-> Annoying but not crucial for the re-clocking to complete. Note I'm not
-> entirely sure where it should be set
-So, the logical solution to this particular problem would be for that mode to
-be *forced* to MANUAL, regardless of its previous state (which I suspect is
-NONE) and then try and set the fan speed.
+--- Comment #7 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Per Arnold Blaasmo
 
-> * pclk->pll_calc seems to return 0, causing nv40_calc_pll() to throw ERANGE
-> * Some of the functions called within nouveau_mem_timing_calc() may need
-> tweaking depending on now well we generate the appropriate memory timings
-You've lost me! I am no expert in Nouveau development, although I am a
-(willing) developer, so you need to explain the above a little bit.
+Enjoy your vacation, shame you did not manage to confirm if the commit
+476e84e126171d809f9c0b5d97137f5055f95ca8 is indeed the one causing your issue ?
 
-> P.S.
-> Only one zero is required to change the perflvl - "0" rather than "0,0"
-Well, by looking at the code, the performance level consists of 2 parts - AC
-(power) and DC (battery) separated by a comma (","), so I used "0,0" for the
-sake of completeness.
+Please feel free to try the monitors individually and attach your vbios when
+you have the chance.
+
+Yves-Alexis
+It would still be beneficial if one complete set of logs + vbios is available
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1372287887.Ec7e801.14172
-Date: Wed, 26 Jun 2013 23:04:47 +0000
+--1372291644.4B344.22302
+Date: Thu, 27 Jun 2013 00:07:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,33 +62,24 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO --- - nouveau.perflvl kernel parameter doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66176#c4">Comment # 4</a>
+   title="NEEDINFO --- - [BISECTED] nouveau, nv50: dual display doesn't work in 3.9"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66129#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO --- - nouveau.perflvl kernel parameter doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66176">bug 66176</a>
-              from <span class="vcard"><a class="email" href="mailto:mr.dash.four&#64;googlemail.com" title="Mr-4 &lt;mr.dash.four&#64;googlemail.com&gt;"> <span class="fn">Mr-4</span></a>
+   title="NEEDINFO --- - [BISECTED] nouveau, nv50: dual display doesn't work in 3.9"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66129">bug 66129</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=66176#c3">comment #3</a>)
-<span class="quote">&gt; * The fanspeed set fails as the mode is not NOUVEAU_THERM_CTRL_MANUAL
-&gt; Annoying but not crucial for the re-clocking to complete. Note I'm not
-&gt; entirely sure where it should be set</span >
-So, the logical solution to this particular problem would be for that mode to
-be *forced* to MANUAL, regardless of its previous state (which I suspect is
-NONE) and then try and set the fan speed.
+        <pre>Per Arnold Blaasmo
 
-<span class="quote">&gt; * pclk-&gt;pll_calc seems to return 0, causing nv40_calc_pll() to throw ERANGE
-&gt; * Some of the functions called within nouveau_mem_timing_calc() may need
-&gt; tweaking depending on now well we generate the appropriate memory timings</span >
-You've lost me! I am no expert in Nouveau development, although I am a
-(willing) developer, so you need to explain the above a little bit.
+Enjoy your vacation, shame you did not manage to confirm if the commit
+476e84e126171d809f9c0b5d97137f5055f95ca8 is indeed the one causing your issue ?
 
-<span class="quote">&gt; P.S.
-&gt; Only one zero is required to change the perflvl - &quot;0&quot; rather than &quot;0,0&quot;</span >
-Well, by looking at the code, the performance level consists of 2 parts - AC
-(power) and DC (battery) separated by a comma (&quot;,&quot;), so I used &quot;0,0&quot; for the
-sake of completeness.</pre>
+Please feel free to try the monitors individually and attach your vbios when
+you have the chance.
+
+Yves-Alexis
+It would still be beneficial if one complete set of logs + vbios is available</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +91,9 @@ sake of completeness.</pre>
     </body>
 </html>
 
---1372287887.Ec7e801.14172--
+--1372291644.4B344.22302--
 
---===============1171762414==
+--===============1994902452==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1171762414==--
+--===============1994902452==--
