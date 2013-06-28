@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 66255] Enabling Xinerama with nouveau driver causes
  Segmentation fault
-Date: Fri, 28 Jun 2013 17:58:37 +0000
-Message-ID: <bug-66255-8800-QUEntnUBAh@http.bugs.freedesktop.org/>
+Date: Fri, 28 Jun 2013 18:00:53 +0000
+Message-ID: <bug-66255-8800-rjHv2HeeOD@http.bugs.freedesktop.org/>
 References: <bug-66255-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1001705531=="
+Content-Type: multipart/mixed; boundary="===============1924063481=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-66255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1001705531==
-Content-Type: multipart/alternative; boundary="1372442317.aB161.23596"; charset="us-ascii"
+--===============1924063481==
+Content-Type: multipart/alternative; boundary="1372442453.de8AB71d1.24381"; charset="us-ascii"
 
 
---1372442317.aB161.23596
-Date: Fri, 28 Jun 2013 17:58:37 +0000
+--1372442453.de8AB71d1.24381
+Date: Fri, 28 Jun 2013 18:00:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=66255
 
---- Comment #11 from Trev Jackson <trev.g7pvs-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
-Created attachment 81654
-  --> https://bugs.freedesktop.org/attachment.cgi?id=81654&action=edit
-xorg.conf only top left display working properly
+--- Comment #12 from Trev Jackson <trev.g7pvs-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
+Created attachment 81655
+  --> https://bugs.freedesktop.org/attachment.cgi?id=81655&action=edit
+Xorg.0.log with only top left display working properly (all at 1024x768)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1372442317.aB161.23596
-Date: Fri, 28 Jun 2013 17:58:37 +0000
+--1372442453.de8AB71d1.24381
+Date: Fri, 28 Jun 2013 18:00:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Enabling Xinerama with nouveau driver causes Segmentation fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Enabling Xinerama with nouveau driver causes Segmentation fault"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=66255">bug 66255</a>
               from <span class="vcard"><a class="email" href="mailto:trev.g7pvs&#64;ntlworld.com" title="Trev Jackson &lt;trev.g7pvs&#64;ntlworld.com&gt;"> <span class="fn">Trev Jackson</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=81654" name="attach_81654" title="xorg.conf only top left display working properly">attachment 81654</a> <a href="attachment.cgi?id=81654&amp;action=edit" title="xorg.conf only top left display working properly">[details]</a></span>
-xorg.conf only top left display working properly</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=81655" name="attach_81655" title="Xorg.0.log with only top left display working properly (all at 1024x768)">attachment 81655</a> <a href="attachment.cgi?id=81655&amp;action=edit" title="Xorg.0.log with only top left display working properly (all at 1024x768)">[details]</a></span>
+Xorg.0.log with only top left display working properly (all at 1024x768)</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ xorg.conf only top left display working properly</pre>
     </body>
 </html>
 
---1372442317.aB161.23596--
+--1372442453.de8AB71d1.24381--
 
---===============1001705531==
+--===============1924063481==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1001705531==--
+--===============1924063481==--
