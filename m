@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 66177] pwm1 value not restored during
- hibernate/restore cycle in the event of manual fan management mode
-Date: Fri, 28 Jun 2013 16:36:47 +0000
-Message-ID: <bug-66177-8800-drZv5DGizY@http.bugs.freedesktop.org/>
-References: <bug-66177-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 66255] Enabling Xinerama with nouveau driver causes
+ Segmentation fault
+Date: Fri, 28 Jun 2013 17:57:11 +0000
+Message-ID: <bug-66255-8800-EpWixuTC5r@http.bugs.freedesktop.org/>
+References: <bug-66255-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0737281561=="
+Content-Type: multipart/mixed; boundary="===============1123788010=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-66177-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-66255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0737281561==
-Content-Type: multipart/alternative; boundary="1372437406.B3A401.618"; charset="us-ascii"
+--===============1123788010==
+Content-Type: multipart/alternative; boundary="1372442231.c3Dda1.23070"; charset="us-ascii"
 
 
---1372437406.B3A401.618
-Date: Fri, 28 Jun 2013 16:36:46 +0000
+--1372442231.c3Dda1.23070
+Date: Fri, 28 Jun 2013 17:57:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=66177
+https://bugs.freedesktop.org/show_bug.cgi?id=66255
 
---- Comment #7 from Mr-4 <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-Sorry, one other thing I forgot to mention, which should be pretty obvious,
-given what I reported so far:
-
-The "auto" fan management seems to work as expected when I do *not* use it
-after hibernate/restore.
-
-In other words, when I boot up my machine (which, by default, has fan
-management disabled) and then select "auto" fan management with "echo 2 >
-../pwm1_enable", then things are OK - the fan duty (pwm1) constantly hovers
-between 20 and 28, depending on my card temperature, keeping that temperature
-under control. No problems there.
-
-Things are then *really* screwed up when I do hibernate/restore as reported
-previously. So, I suspect the hibernate/restore does something to the nouveau
-driver which prevents the auto mode from working properly.
+--- Comment #10 from Trev Jackson <trev.g7pvs-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
+I've made a copy of the example xorg.conf, only changing the address of the PCI
+addresses, it runs and it produces a small window saying it is in fallback mode
+and obviously as I want to run a 2x2 configuration the displays were in the
+wrong place.  Just altering it to put the displays in the correct place causes
+all displays to come up as black.
+This may be caused by one of the monitors only being capable of 1024x768 and
+the others being capable of 1280x1024 and the driver not being able to sort it
+out.
+I've altered xorg.conf to set all the displays to default to 1024x768 and now
+it starts up, but when I try to expand or drag a window from display DVI-I-1 to
+any of the other displays the only thing visible in the other displays is the
+mouse.
+All of the above were attempted using 1.0.8 with the section you suggested
+commented out.
+I'll attach the latest xorg.conf file
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1372437406.B3A401.618
-Date: Fri, 28 Jun 2013 16:36:46 +0000
+--1372442231.c3Dda1.23070
+Date: Fri, 28 Jun 2013 17:57:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,29 +67,29 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - pwm1 value not restored during hibernate/restore cycle in the event of manual fan management mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66177#c7">Comment # 7</a>
+   title="NEW --- - Enabling Xinerama with nouveau driver causes Segmentation fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - pwm1 value not restored during hibernate/restore cycle in the event of manual fan management mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66177">bug 66177</a>
-              from <span class="vcard"><a class="email" href="mailto:mr.dash.four&#64;googlemail.com" title="Mr-4 &lt;mr.dash.four&#64;googlemail.com&gt;"> <span class="fn">Mr-4</span></a>
+   title="NEW --- - Enabling Xinerama with nouveau driver causes Segmentation fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255">bug 66255</a>
+              from <span class="vcard"><a class="email" href="mailto:trev.g7pvs&#64;ntlworld.com" title="Trev Jackson &lt;trev.g7pvs&#64;ntlworld.com&gt;"> <span class="fn">Trev Jackson</span></a>
 </span></b>
-        <pre>Sorry, one other thing I forgot to mention, which should be pretty obvious,
-given what I reported so far:
-
-The &quot;auto&quot; fan management seems to work as expected when I do *not* use it
-after hibernate/restore.
-
-In other words, when I boot up my machine (which, by default, has fan
-management disabled) and then select &quot;auto&quot; fan management with &quot;echo 2 &gt;
-../pwm1_enable&quot;, then things are OK - the fan duty (pwm1) constantly hovers
-between 20 and 28, depending on my card temperature, keeping that temperature
-under control. No problems there.
-
-Things are then *really* screwed up when I do hibernate/restore as reported
-previously. So, I suspect the hibernate/restore does something to the nouveau
-driver which prevents the auto mode from working properly.</pre>
+        <pre>I've made a copy of the example xorg.conf, only changing the address of the PCI
+addresses, it runs and it produces a small window saying it is in fallback mode
+and obviously as I want to run a 2x2 configuration the displays were in the
+wrong place.  Just altering it to put the displays in the correct place causes
+all displays to come up as black.
+This may be caused by one of the monitors only being capable of 1024x768 and
+the others being capable of 1280x1024 and the driver not being able to sort it
+out.
+I've altered xorg.conf to set all the displays to default to 1024x768 and now
+it starts up, but when I try to expand or drag a window from display DVI-I-1 to
+any of the other displays the only thing visible in the other displays is the
+mouse.
+All of the above were attempted using 1.0.8 with the section you suggested
+commented out.
+I'll attach the latest xorg.conf file</pre>
         </div>
       </p>
       <hr>
@@ -101,9 +101,9 @@ driver which prevents the auto mode from working properly.</pre>
     </body>
 </html>
 
---1372437406.B3A401.618--
+--1372442231.c3Dda1.23070--
 
---===============0737281561==
+--===============1123788010==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -114,4 +114,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0737281561==--
+--===============1123788010==--
