@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 66366] Laptop with Nvidia GPU is hot while using
  xserver-xorg-video-nouveau driver
-Date: Sat, 29 Jun 2013 15:28:17 +0000
-Message-ID: <bug-66366-8800-FH9PBSjbPI@http.bugs.freedesktop.org/>
+Date: Sat, 29 Jun 2013 15:38:15 +0000
+Message-ID: <bug-66366-8800-r9EBdlebTd@http.bugs.freedesktop.org/>
 References: <bug-66366-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1708506790=="
+Content-Type: multipart/mixed; boundary="===============0546253886=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-66366-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1708506790==
-Content-Type: multipart/alternative; boundary="1372519697.DeCb20C3.24640"; charset="us-ascii"
+--===============0546253886==
+Content-Type: multipart/alternative; boundary="1372520295.58CC66442.27057"; charset="us-ascii"
 
 
---1372519697.DeCb20C3.24640
-Date: Sat, 29 Jun 2013 15:28:17 +0000
+--1372520295.58CC66442.27057
+Date: Sat, 29 Jun 2013 15:38:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=66366
 
-nrbrtx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Currently nouveau does no power management, meaning that
+* voltage control
+* clock control
+* clock gating
+* ASPM
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://launchpad.net/bugs/
-                   |                            |1196049
+are all running on default (set by bios) settings. It's has been worked on for
+a while now and there is still more work needed
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1372519697.DeCb20C3.24640
-Date: Sat, 29 Jun 2013 15:28:17 +0000
+--1372520295.58CC66442.27057
+Date: Sat, 29 Jun 2013 15:38:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,29 +55,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:nrbrtx&#64;gmail.com" title="nrbrtx&#64;gmail.com">nrbrtx&#64;gmail.com</a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Laptop with Nvidia GPU is hot while using xserver-xorg-video-nouveau driver"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66366#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Laptop with Nvidia GPU is hot while using xserver-xorg-video-nouveau driver"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=66366">bug 66366</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>Currently nouveau does no power management, meaning that
+* voltage control
+* clock control
+* clock gating
+* ASPM
 
-         <tr>
-           <td style="text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://launchpad.net/bugs/1196049
-           </td>
-         </tr></table>
-      <p>
+are all running on default (set by bios) settings. It's has been worked on for
+a while now and there is still more work needed</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +87,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1372519697.DeCb20C3.24640--
+--1372520295.58CC66442.27057--
 
---===============1708506790==
+--===============0546253886==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1708506790==--
+--===============0546253886==--
