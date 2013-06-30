@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 66255] Enabling Xinerama with nouveau driver causes
- Segmentation fault
-Date: Sun, 30 Jun 2013 14:10:22 +0000
-Message-ID: <bug-66255-8800-g6YgpSBjrY@http.bugs.freedesktop.org/>
-References: <bug-66255-8800@http.bugs.freedesktop.org/>
+From: Eric F <3rik.gm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: IMPORTANT : Regression since kernel > 3.4 as regards
+ suspend to RAM while using 3D accel
+Date: Sun, 30 Jun 2013 19:42:19 +0200
+Message-ID: <CA+T9nP8sBKxafn0szfpDcfudvJvMTsEvCL8eYzcV+EfYfX+3rQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1026295799=="
+Content-Type: multipart/mixed; boundary="===============0292424090=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-66255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,86 +18,51 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============0292424090==
+Content-Type: multipart/alternative; boundary=047d7b66fd3b38dbf204e062a2ed
 
---===============1026295799==
-Content-Type: multipart/alternative; boundary="1372601421.D5d25E1.382"; charset="us-ascii"
+--047d7b66fd3b38dbf204e062a2ed
+Content-Type: text/plain; charset=ISO-8859-1
 
+Hello,
 
---1372601421.D5d25E1.382
-Date: Sun, 30 Jun 2013 14:10:21 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Been wondering why I could never resume from s2r. That's because I always
+use 3D accel (compiz, cairo-dock). I have tested each Arch kernel releases,
+hoping each time to get s2r to work.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=66255
+Tired of this, I decided to use 3.4 LTS... 3.4.50
+... And guess what ? I could resume from suspend to RAM 100% of the time !!!
 
---- Comment #13 from Trev Jackson <trev.g7pvs-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
-The xorg.conf I used with two screen sections produces a 2x2 display with the
-menu at the top spanning 2 monitors, this is as I would like (except when
-Xinerama is enabled to join the two screens it goes wrong).
+I know it may be a hard work for you, but suspend to RAM while using 3D
+accel only works with this kernel (and maybe 3.4.51, will give a try).
 
-The xorg.conf I used with four screen sections (zaphod head) as per the example
-doesn't work either, but also the menu is only the width of one display which
-at 1024x768 doesn't fit very well.
+Suspend to RAM is important for battery saving for laptops.
+I use GT555M nvc3.
 
-As far as I know in theory both versions should work - but there seems to be
-some sort of problem with Xinerama working with a 2x2 display.
+Best regards,
 
-Best Regards
-Trev
+Eric
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+--047d7b66fd3b38dbf204e062a2ed
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
---1372601421.D5d25E1.382
-Date: Sun, 30 Jun 2013 14:10:21 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+<div dir=3D"ltr"><div><div><div><div><div><div><div><div>Hello,<br><br></di=
+v>Been wondering why I could never resume from s2r. That&#39;s because I al=
+ways use 3D accel (compiz, cairo-dock). I have tested each Arch kernel rele=
+ases, hoping each time to get s2r to work.<br>
+<br></div>Tired of this, I decided to use 3.4 LTS... 3.4.50<br></div>... An=
+d guess what ? I could resume from suspend to RAM 100% of the time !!!<br><=
+br></div>I know it may be a hard work for you, but suspend to RAM while usi=
+ng 3D accel only works with this kernel (and maybe 3.4.51, will give a try)=
+.<br>
+<br></div>Suspend to RAM is important for battery saving for laptops.<br></=
+div>I use GT555M nvc3.<br><br></div>Best regards,<br><br></div>Eric<br></di=
+v>
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Enabling Xinerama with nouveau driver causes Segmentation fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255#c13">Comment # 13</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Enabling Xinerama with nouveau driver causes Segmentation fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255">bug 66255</a>
-              from <span class="vcard"><a class="email" href="mailto:trev.g7pvs&#64;ntlworld.com" title="Trev Jackson &lt;trev.g7pvs&#64;ntlworld.com&gt;"> <span class="fn">Trev Jackson</span></a>
-</span></b>
-        <pre>The xorg.conf I used with two screen sections produces a 2x2 display with the
-menu at the top spanning 2 monitors, this is as I would like (except when
-Xinerama is enabled to join the two screens it goes wrong).
+--047d7b66fd3b38dbf204e062a2ed--
 
-The xorg.conf I used with four screen sections (zaphod head) as per the example
-doesn't work either, but also the menu is only the width of one display which
-at 1024x768 doesn't fit very well.
-
-As far as I know in theory both versions should work - but there seems to be
-some sort of problem with Xinerama working with a 2x2 display.
-
-Best Regards
-Trev</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1372601421.D5d25E1.382--
-
---===============1026295799==
+--===============0292424090==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,4 +73,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1026295799==--
+--===============0292424090==--
