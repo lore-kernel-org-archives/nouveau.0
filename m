@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 65310] [regression] failure in building nvc0_vbo.lo:
  /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression
  `-8589934576
-Date: Mon, 01 Jul 2013 18:10:03 +0000
-Message-ID: <bug-65310-8800-jsaMTQyvrw@http.bugs.freedesktop.org/>
+Date: Mon, 01 Jul 2013 18:13:03 +0000
+Message-ID: <bug-65310-8800-2MrZrUa7a1@http.bugs.freedesktop.org/>
 References: <bug-65310-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0609416124=="
+Content-Type: multipart/mixed; boundary="===============1488054295=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-65310-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,41 +22,54 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0609416124==
-Content-Type: multipart/alternative; boundary="1372702203.ceb2a7ec1.29692"; charset="us-ascii"
+--===============1488054295==
+Content-Type: multipart/alternative; boundary="1372702383.5C6068C1.30089"; charset="us-ascii"
 
 
---1372702203.ceb2a7ec1.29692
-Date: Mon, 1 Jul 2013 18:10:03 +0000
+--1372702383.5C6068C1.30089
+Date: Mon, 1 Jul 2013 18:13:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=65310
 
---- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Cannot seem to reproduce
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-$ export CFLAGS="-march=native -msse2 -mfpmath=sse -O3 -ffast-math
--funroll-loops -fomit-frame-pointer -floop-interchange -floop-strip-mine
--floop-block"
-export CXXFLAGS="$CFLAGS"
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
 
-# Build mesa with Gallium3D hardware drivers
-$ ./autogen.sh --prefix=/usr --with-dri-drivers= --with-state-trackers=dri
---disable-egl --with-gallium-drivers=nouveau --disable-gallium-llvm
+--- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Using gcc 4.8.1
 
-Note added "--with-dri-drivers=" to prevent compilation of intel dri module
+$ gcc -v
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/4.8.1/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc-multilib/src/gcc-4.8.1/configure --prefix=/usr
+--libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man
+--infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/
+--enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared
+--enable-threads=posix --with-system-zlib --enable-__cxa_atexit
+--disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch
+--enable-gnu-unique-object --enable-linker-build-id --enable-cloog-backend=isl
+--disable-cloog-version-check --enable-lto --enable-gold --enable-ld=default
+--enable-plugin --with-plugin-ld=ld.gold --with-linker-hash-style=gnu
+--disable-install-libiberty --enable-multilib --disable-libssp --disable-werror
+--enable-checking=release
+Thread model: posix
+gcc version 4.8.1 (GCC) 
 
-Can you ensure
-* you are using ./autogen.sh ... rather than ./configure
-* the source folder is clean - git clean -fxd
+Are you using ccache or distcc ?
+Ideally attach/link your SlackBuild
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1372702203.ceb2a7ec1.29692
-Date: Mon, 1 Jul 2013 18:10:03 +0000
+--1372702383.5C6068C1.30089
+Date: Mon, 1 Jul 2013 18:13:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,35 +77,62 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [regression] failure in building nvc0_vbo.lo: /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression `-8589934576"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65310">bug 65310</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [regression] failure in building nvc0_vbo.lo: /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression `-8589934576"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65310#c4">Comment # 4</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [regression] failure in building nvc0_vbo.lo: /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression `-8589934576"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65310#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [regression] failure in building nvc0_vbo.lo: /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression `-8589934576"
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [regression] failure in building nvc0_vbo.lo: /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression `-8589934576"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=65310">bug 65310</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Cannot seem to reproduce
+        <pre>Using gcc 4.8.1
 
-$ export CFLAGS=&quot;-march=native -msse2 -mfpmath=sse -O3 -ffast-math
--funroll-loops -fomit-frame-pointer -floop-interchange -floop-strip-mine
--floop-block&quot;
-export CXXFLAGS=&quot;$CFLAGS&quot;
+$ gcc -v
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-unknown-linux-gnu/4.8.1/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: /build/gcc-multilib/src/gcc-4.8.1/configure --prefix=/usr
+--libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man
+--infodir=/usr/share/info --with-bugurl=<a href="https://bugs.archlinux.org/">https://bugs.archlinux.org/</a>
+--enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared
+--enable-threads=posix --with-system-zlib --enable-__cxa_atexit
+--disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch
+--enable-gnu-unique-object --enable-linker-build-id --enable-cloog-backend=isl
+--disable-cloog-version-check --enable-lto --enable-gold --enable-ld=default
+--enable-plugin --with-plugin-ld=ld.gold --with-linker-hash-style=gnu
+--disable-install-libiberty --enable-multilib --disable-libssp --disable-werror
+--enable-checking=release
+Thread model: posix
+gcc version 4.8.1 (GCC) 
 
-# Build mesa with Gallium3D hardware drivers
-$ ./autogen.sh --prefix=/usr --with-dri-drivers= --with-state-trackers=dri
---disable-egl --with-gallium-drivers=nouveau --disable-gallium-llvm
-
-Note added &quot;--with-dri-drivers=&quot; to prevent compilation of intel dri module
-
-Can you ensure
-* you are using ./autogen.sh ... rather than ./configure
-* the source folder is clean - git clean -fxd</pre>
+Are you using ccache or distcc ?
+Ideally attach/link your SlackBuild</pre>
         </div>
       </p>
       <hr>
@@ -104,9 +144,9 @@ Can you ensure
     </body>
 </html>
 
---1372702203.ceb2a7ec1.29692--
+--1372702383.5C6068C1.30089--
 
---===============0609416124==
+--===============1488054295==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -117,4 +157,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0609416124==--
+--===============1488054295==--
