@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 66255] Enabling Xinerama with nouveau driver causes
- Segmentation fault
-Date: Mon, 01 Jul 2013 16:07:46 +0000
-Message-ID: <bug-66255-8800-zD3UWOtz9f@http.bugs.freedesktop.org/>
-References: <bug-66255-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 65310] [regression] failure in building nvc0_vbo.lo:
+ /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression
+ `-8589934576
+Date: Mon, 01 Jul 2013 18:03:12 +0000
+Message-ID: <bug-65310-8800-uhTvEChj9l@http.bugs.freedesktop.org/>
+References: <bug-65310-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1007738579=="
+Content-Type: multipart/mixed; boundary="===============0848568444=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-66255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-65310-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,47 +22,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1007738579==
-Content-Type: multipart/alternative; boundary="1372694866.B83D1.10185"; charset="us-ascii"
+--===============0848568444==
+Content-Type: multipart/alternative; boundary="1372701792.652d262.28838"; charset="us-ascii"
 
 
---1372694866.B83D1.10185
-Date: Mon, 1 Jul 2013 16:07:46 +0000
+--1372701792.652d262.28838
+Date: Mon, 1 Jul 2013 18:03:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=66255
+https://bugs.freedesktop.org/show_bug.cgi?id=65310
 
---- Comment #14 from Trev Jackson <trev.g7pvs-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
-Hi
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-I'm not sure about this - I've not done any C programming for a long time, the
-bit of code below from panoramiXprocs.c line 1837 where it has:
-y < -wBorderWidth((WindowPtr)pDraw)
-is there supposed to be a gap between the - symbol and the function?
-wBorderWidth call and if so is that likely to cause a problem?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |.org                        |rg
+          Component|Drivers/Gallium/r300        |Drivers/DRI/nouveau
 
-Trev
-
-      if( /* check for being onscreen */
-screenInfo.screens[0]->x + pDraw->x + x < 0 ||
-screenInfo.screens[0]->x + pDraw->x + x + w > PanoramiXPixWidth ||
-screenInfo.screens[0]->y + pDraw->y + y < 0 ||
-screenInfo.screens[0]->y + pDraw->y + y + h > PanoramiXPixHeight ||
-/* check for being inside of border */
-        x < - wBorderWidth((WindowPtr)pDraw) ||
-x + w > wBorderWidth((WindowPtr)pDraw) + (int)pDraw->width ||
-y < -wBorderWidth((WindowPtr)pDraw) ||
-y + h > wBorderWidth ((WindowPtr)pDraw) + (int)pDraw->height)
-return BadMatch;
-    }
+--- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Correcting component - nouveau (nvc0) related
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1372694866.B83D1.10185
-Date: Mon, 1 Jul 2013 16:07:46 +0000
+--1372701792.652d262.28838
+Date: Mon, 1 Jul 2013 18:03:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,41 +57,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [regression] failure in building nvc0_vbo.lo: /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression `-8589934576"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65310">bug 65310</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>dri-devel&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>Drivers/Gallium/r300
+           </td>
+           <td>Drivers/DRI/nouveau
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Enabling Xinerama with nouveau driver causes Segmentation fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255#c14">Comment # 14</a>
+   title="NEW --- - [regression] failure in building nvc0_vbo.lo: /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression `-8589934576"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65310#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Enabling Xinerama with nouveau driver causes Segmentation fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255">bug 66255</a>
-              from <span class="vcard"><a class="email" href="mailto:trev.g7pvs&#64;ntlworld.com" title="Trev Jackson &lt;trev.g7pvs&#64;ntlworld.com&gt;"> <span class="fn">Trev Jackson</span></a>
+   title="NEW --- - [regression] failure in building nvc0_vbo.lo: /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression `-8589934576"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65310">bug 65310</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Hi
-
-I'm not sure about this - I've not done any C programming for a long time, the
-bit of code below from panoramiXprocs.c line 1837 where it has:
-y &lt; -wBorderWidth((WindowPtr)pDraw)
-is there supposed to be a gap between the - symbol and the function?
-wBorderWidth call and if so is that likely to cause a problem?
-
-Trev
-
-      if( /* check for being onscreen */
-screenInfo.screens[0]-&gt;x + pDraw-&gt;x + x &lt; 0 ||
-screenInfo.screens[0]-&gt;x + pDraw-&gt;x + x + w &gt; PanoramiXPixWidth ||
-screenInfo.screens[0]-&gt;y + pDraw-&gt;y + y &lt; 0 ||
-screenInfo.screens[0]-&gt;y + pDraw-&gt;y + y + h &gt; PanoramiXPixHeight ||
-/* check for being inside of border */
-        x &lt; - wBorderWidth((WindowPtr)pDraw) ||
-x + w &gt; wBorderWidth((WindowPtr)pDraw) + (int)pDraw-&gt;width ||
-y &lt; -wBorderWidth((WindowPtr)pDraw) ||
-y + h &gt; wBorderWidth ((WindowPtr)pDraw) + (int)pDraw-&gt;height)
-return BadMatch;
-    }</pre>
+        <pre>Correcting component - nouveau (nvc0) related</pre>
         </div>
       </p>
       <hr>
@@ -115,9 +110,9 @@ return BadMatch;
     </body>
 </html>
 
---1372694866.B83D1.10185--
+--1372701792.652d262.28838--
 
---===============1007738579==
+--===============0848568444==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,4 +123,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1007738579==--
+--===============0848568444==--
