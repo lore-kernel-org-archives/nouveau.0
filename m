@@ -1,123 +1,83 @@
-From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: [PATCH] drm/nouveau: handle framebuffer pinning correctly
-Date: Tue, 02 Jul 2013 13:31:21 +0200
-Message-ID: <20130702113121.6488.96024.stgit@patser>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nv50-/disp: Use output specific mask in
+	interrupt
+Date: Tue,  2 Jul 2013 14:44:12 +0100
+Message-ID: <1372772652-3154-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "[3.9+]"@freedesktop.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Unpinning wasn't always handled correctly. The crtc_disable
-and nouveau_fbcon_destroy calls needed to unpin but didn't,
-resulting in a pin leak.
+The commit
 
-While debugging this I found some leaks in the error paths of
-nouveau_user_framebuffer_create, so I fixed those too.
+   commit 476e84e126171d809f9c0b5d97137f5055f95ca8
+   Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+   Date:   Mon Feb 11 09:24:23 2013 +1000
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+       drm/nv50-/disp: initial supervisor support for off-chip encoders
+
+changed the write mask in one of the interrupt functions for on-chip encoders,
+causing a regression in certain VGA dual-head setups. This commit reintroduces
+the mask thus resolving the regression
+
+Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=66129
+Reported-and-Tested-by: Yves-Alexis <corsac-8fiUuRrzOP0dnm+yROfE0A@public.gmane.org>
+Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org [3.9+]
+CC: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_display.c |   15 ++++++++++-----
- drivers/gpu/drm/nouveau/nouveau_fbcon.c   |    7 +++++++
- drivers/gpu/drm/nouveau/nv50_display.c    |   13 +++++++++++++
- 3 files changed, 30 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/nouveau/core/engine/disp/nv50.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index 165f04a..599abc9 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -142,17 +142,22 @@ nouveau_user_framebuffer_create(struct drm_device *dev,
- 	if (!gem)
- 		return ERR_PTR(-ENOENT);
+diff --git a/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c b/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
+index 8b42f45..7ffe2f3 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
++++ b/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
+@@ -1107,6 +1107,7 @@ nv50_disp_intr_unk20_2(struct nv50_disp_priv *priv, int head)
+ 	u32 pclk = nv_rd32(priv, 0x610ad0 + (head * 0x540)) & 0x3fffff;
+ 	u32 hval, hreg = 0x614200 + (head * 0x800);
+ 	u32 oval, oreg;
++	u32 mask;
+ 	u32 conf = exec_clkcmp(priv, head, 0xff, pclk, &outp);
+ 	if (conf != ~0) {
+ 		if (outp.location == 0 && outp.type == DCB_OUTPUT_DP) {
+@@ -1133,6 +1134,7 @@ nv50_disp_intr_unk20_2(struct nv50_disp_priv *priv, int head)
+ 			oreg = 0x614280 + (ffs(outp.or) - 1) * 0x800;
+ 			oval = 0x00000000;
+ 			hval = 0x00000000;
++			mask = 0xffffffff;
+ 		} else
+ 		if (!outp.location) {
+ 			if (outp.type == DCB_OUTPUT_DP)
+@@ -1140,14 +1142,16 @@ nv50_disp_intr_unk20_2(struct nv50_disp_priv *priv, int head)
+ 			oreg = 0x614300 + (ffs(outp.or) - 1) * 0x800;
+ 			oval = (conf & 0x0100) ? 0x00000101 : 0x00000000;
+ 			hval = 0x00000000;
++			mask = 0x00000707;
+ 		} else {
+ 			oreg = 0x614380 + (ffs(outp.or) - 1) * 0x800;
+ 			oval = 0x00000001;
+ 			hval = 0x00000001;
++			mask = 0x00000707;
+ 		}
  
-+	ret = -ENOMEM;
- 	nouveau_fb = kzalloc(sizeof(struct nouveau_framebuffer), GFP_KERNEL);
- 	if (!nouveau_fb)
--		return ERR_PTR(-ENOMEM);
-+		goto err_unref;
- 
- 	ret = nouveau_framebuffer_init(dev, nouveau_fb, mode_cmd, nouveau_gem_object(gem));
--	if (ret) {
--		drm_gem_object_unreference(gem);
--		return ERR_PTR(ret);
--	}
-+	if (ret)
-+		goto err;
- 
- 	return &nouveau_fb->base;
-+
-+err:
-+	kfree(nouveau_fb);
-+err_unref:
-+	drm_gem_object_unreference(gem);
-+	return ERR_PTR(ret);
- }
- 
- static const struct drm_mode_config_funcs nouveau_mode_config_funcs = {
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-index ecbfe69..839b7e7 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-@@ -385,6 +385,7 @@ out_unlock:
- 	mutex_unlock(&dev->struct_mutex);
- 	if (chan)
- 		nouveau_bo_vma_del(nvbo, &fbcon->nouveau_fb.vma);
-+	nouveau_bo_unmap(nvbo);
- out_unpin:
- 	nouveau_bo_unpin(nvbo);
- out_unref:
-@@ -415,6 +416,12 @@ nouveau_fbcon_destroy(struct drm_device *dev, struct nouveau_fbdev *fbcon)
+ 		nv_mask(priv, hreg, 0x0000000f, hval);
+-		nv_mask(priv, oreg, 0x00000707, oval);
++		nv_mask(priv, oreg, mask, oval);
  	}
- 
- 	if (nouveau_fb->nvbo) {
-+		struct drm_crtc *crtc;
-+
-+		list_for_each_entry(crtc, &dev->mode_config.crtc_list, head)
-+			if (nouveau_framebuffer(crtc->fb) == nouveau_fb)
-+				nouveau_bo_unpin(nouveau_fb->nvbo);
-+
- 		nouveau_bo_unmap(nouveau_fb->nvbo);
- 		nouveau_bo_vma_del(nouveau_fb->nvbo, &nouveau_fb->vma);
- 		nouveau_bo_unpin(nouveau_fb->nvbo);
-diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
-index c60bae1..05c9667 100644
---- a/drivers/gpu/drm/nouveau/nv50_display.c
-+++ b/drivers/gpu/drm/nouveau/nv50_display.c
-@@ -1272,6 +1272,18 @@ nv50_crtc_gamma_set(struct drm_crtc *crtc, u16 *r, u16 *g, u16 *b,
  }
  
- static void
-+nv50_crtc_disable(struct drm_crtc *crtc)
-+{
-+	struct nouveau_framebuffer *nv_fb;
-+
-+	if (!crtc->fb)
-+		return;
-+
-+	nv_fb = nouveau_framebuffer(crtc->fb);
-+	nouveau_bo_unpin(nv_fb->nvbo);
-+}
-+
-+static void
- nv50_crtc_destroy(struct drm_crtc *crtc)
- {
- 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
-@@ -1294,6 +1306,7 @@ nv50_crtc_destroy(struct drm_crtc *crtc)
- }
- 
- static const struct drm_crtc_helper_funcs nv50_crtc_hfunc = {
-+	.disable = nv50_crtc_disable,
- 	.dpms = nv50_crtc_dpms,
- 	.prepare = nv50_crtc_prepare,
- 	.commit = nv50_crtc_commit,
+-- 
+1.8.3.2
