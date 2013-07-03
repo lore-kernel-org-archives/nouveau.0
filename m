@@ -1,83 +1,55 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nv50-/disp: Use output specific mask in
-	interrupt
-Date: Tue,  2 Jul 2013 14:44:12 +0100
-Message-ID: <1372772652-3154-1-git-send-email-emil.l.velikov@gmail.com>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] drm/nva3/disp: Fix HDMI audio regression
+Date: Wed,  3 Jul 2013 03:06:02 -0400
+Message-ID: <1372835162-8630-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "[3.9+]"@freedesktop.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, Max Baldwin <archerseven@gmail.com>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-The commit
+This is the nva3 counterpart to commit beba44b17 (drm/nv84/disp: Fix
+HDMI audio regression). The regression happened as a result of
+refactoring in commit 8e9e3d2de (drm/nv84/disp: move hdmi control into
+core).
 
-   commit 476e84e126171d809f9c0b5d97137f5055f95ca8
-   Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-   Date:   Mon Feb 11 09:24:23 2013 +1000
-
-       drm/nv50-/disp: initial supervisor support for off-chip encoders
-
-changed the write mask in one of the interrupt functions for on-chip encoders,
-causing a regression in certain VGA dual-head setups. This commit reintroduces
-the mask thus resolving the regression
-
-Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=66129
-Reported-and-Tested-by: Yves-Alexis <corsac-8fiUuRrzOP0dnm+yROfE0A@public.gmane.org>
-Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org [3.9+]
-CC: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Reported-and-tested-by: Max Baldwin <archerseven@gmail.com>
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
 ---
- drivers/gpu/drm/nouveau/core/engine/disp/nv50.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c b/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
-index 8b42f45..7ffe2f3 100644
---- a/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
-@@ -1107,6 +1107,7 @@ nv50_disp_intr_unk20_2(struct nv50_disp_priv *priv, int head)
- 	u32 pclk = nv_rd32(priv, 0x610ad0 + (head * 0x540)) & 0x3fffff;
- 	u32 hval, hreg = 0x614200 + (head * 0x800);
- 	u32 oval, oreg;
-+	u32 mask;
- 	u32 conf = exec_clkcmp(priv, head, 0xff, pclk, &outp);
- 	if (conf != ~0) {
- 		if (outp.location == 0 && outp.type == DCB_OUTPUT_DP) {
-@@ -1133,6 +1134,7 @@ nv50_disp_intr_unk20_2(struct nv50_disp_priv *priv, int head)
- 			oreg = 0x614280 + (ffs(outp.or) - 1) * 0x800;
- 			oval = 0x00000000;
- 			hval = 0x00000000;
-+			mask = 0xffffffff;
- 		} else
- 		if (!outp.location) {
- 			if (outp.type == DCB_OUTPUT_DP)
-@@ -1140,14 +1142,16 @@ nv50_disp_intr_unk20_2(struct nv50_disp_priv *priv, int head)
- 			oreg = 0x614300 + (ffs(outp.or) - 1) * 0x800;
- 			oval = (conf & 0x0100) ? 0x00000101 : 0x00000000;
- 			hval = 0x00000000;
-+			mask = 0x00000707;
- 		} else {
- 			oreg = 0x614380 + (ffs(outp.or) - 1) * 0x800;
- 			oval = 0x00000001;
- 			hval = 0x00000001;
-+			mask = 0x00000707;
- 		}
+The actual testing was done on a NVCF card (550 Ti). Prior to this,
+AC3/DTS audio passthrough worked, but regular audio did not. With this
+change, regular audio started to work too. This should probably be
+sent to stable as well.
+
+ drivers/gpu/drm/nouveau/core/engine/disp/hdminva3.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/gpu/drm/nouveau/core/engine/disp/hdminva3.c b/drivers/gpu/drm/nouveau/core/engine/disp/hdminva3.c
+index f065fc2..db8c6fd 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/disp/hdminva3.c
++++ b/drivers/gpu/drm/nouveau/core/engine/disp/hdminva3.c
+@@ -55,6 +55,10 @@ nva3_hdmi_ctrl(struct nv50_disp_priv *priv, int head, int or, u32 data)
+ 	nv_wr32(priv, 0x61c510 + soff, 0x00000000);
+ 	nv_mask(priv, 0x61c500 + soff, 0x00000001, 0x00000001);
  
- 		nv_mask(priv, hreg, 0x0000000f, hval);
--		nv_mask(priv, oreg, 0x00000707, oval);
-+		nv_mask(priv, oreg, mask, oval);
- 	}
- }
- 
++	nv_mask(priv, 0x61c5d0 + soff, 0x00070001, 0x00010001); /* SPARE, HW_CTS */
++	nv_mask(priv, 0x61c568 + soff, 0x00010101, 0x00000000); /* ACR_CTRL, ?? */
++	nv_mask(priv, 0x61c578 + soff, 0x80000000, 0x80000000); /* ACR_0441_ENABLE */
++
+ 	/* ??? */
+ 	nv_mask(priv, 0x61733c, 0x00100000, 0x00100000); /* RESETF */
+ 	nv_mask(priv, 0x61733c, 0x10000000, 0x10000000); /* LOOKUP_EN */
 -- 
-1.8.3.2
+1.8.1.5
