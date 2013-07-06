@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 66650] [regression][NVD0] 'drm/nve0-/gr: some new
  gpc registers can have multiple copies' causes lockups
-Date: Sat, 06 Jul 2013 19:14:48 +0000
-Message-ID: <bug-66650-8800-97nRADD8AE@http.bugs.freedesktop.org/>
+Date: Sat, 06 Jul 2013 19:15:59 +0000
+Message-ID: <bug-66650-8800-InY7sOtvHv@http.bugs.freedesktop.org/>
 References: <bug-66650-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1833601351=="
+Content-Type: multipart/mixed; boundary="===============0062304516=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-66650-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1833601351==
-Content-Type: multipart/alternative; boundary="1373138088.BE3dcfD51.3322"; charset="us-ascii"
+--===============0062304516==
+Content-Type: multipart/alternative; boundary="1373138159.dffE1.3690"; charset="us-ascii"
 
 
---1373138088.BE3dcfD51.3322
-Date: Sat, 6 Jul 2013 19:14:48 +0000
+--1373138159.dffE1.3690
+Date: Sat, 6 Jul 2013 19:15:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=66650
 
---- Comment #1 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-FWIW: I cannot revert this commit, so no verification that it's a combination
-or just this one.
+--- Comment #2 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Ow and:
+
+06-07-2013 17:17 .warning ::: nouveau W[   PFIFO][0000:01:00.0] INTR
+0x00000100: 0x0000000a
+
+Also happens occasionally (Firefox) under 'normal' circumstances. But after the
+lock-up, it happens more often.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1373138088.BE3dcfD51.3322
-Date: Sat, 6 Jul 2013 19:14:48 +0000
+--1373138159.dffE1.3690
+Date: Sat, 6 Jul 2013 19:15:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +60,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][NVD0] 'drm/nve0-/gr: some new gpc registers can have multiple copies' causes lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66650#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66650#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [regression][NVD0] 'drm/nve0-/gr: some new gpc registers can have multiple copies' causes lockups"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=66650">bug 66650</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>FWIW: I cannot revert this commit, so no verification that it's a combination
-or just this one.</pre>
+        <pre>Ow and:
+
+06-07-2013 17:17 .warning ::: nouveau W[   PFIFO][0000:01:00.0] INTR
+0x00000100: 0x0000000a
+
+Also happens occasionally (Firefox) under 'normal' circumstances. But after the
+lock-up, it happens more often.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +85,9 @@ or just this one.</pre>
     </body>
 </html>
 
---1373138088.BE3dcfD51.3322--
+--1373138159.dffE1.3690--
 
---===============1833601351==
+--===============0062304516==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1833601351==--
+--===============0062304516==--
