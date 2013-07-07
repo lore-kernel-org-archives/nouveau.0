@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sun, 07 Jul 2013 12:16:54 +0000
-Message-ID: <bug-54700-8800-qbfaW6LpRB@http.bugs.freedesktop.org/>
+Date: Sun, 07 Jul 2013 12:24:21 +0000
+Message-ID: <bug-54700-8800-ZuqqSJaEEL@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0289827280=="
+Content-Type: multipart/mixed; boundary="===============0485080717=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,87 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0289827280==
-Content-Type: multipart/alternative; boundary="1373199414.BBec1.5900"; charset="us-ascii"
+--===============0485080717==
+Content-Type: multipart/alternative; boundary="1373199861.4f371.9235"; charset="us-ascii"
 
 
---1373199414.BBec1.5900
-Date: Sun, 7 Jul 2013 12:16:54 +0000
+--1373199861.4f371.9235
+Date: Sun, 7 Jul 2013 12:24:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #4 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-UPDATE: same problem with newer versions (yesterday's debian testing releases)
+r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-# uname -a
-Linux majorana 3.9-1-686-pae #1 SMP Debian 3.9.6-1 i686 GNU/Linux
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #66889|0                           |1
+        is obsolete|                            |
 
-# aptitude show xserver-xorg-video-nouveau
-Package: xserver-xorg-video-nouveau      
-State: installed
-Automatically installed: yes
-Version: 1:1.0.8-1
-Priority: optional
-Section: x11
-Maintainer: Debian X Strike Force <debian-x-0aAXYlwwYIJuHlm7Suoebg@public.gmane.org>
-Architecture: i386
-Uncompressed Size: 479 k
-Depends: libc6 (>= 2.15), libdrm-nouveau2 (>= 2.4.34), libdrm2 (>= 2.4.17),
-libudev0 (>= 146), xorg-video-abi-12,
-         xserver-xorg-core (>= 2:1.12.3.901)
-Recommends: libgl1-mesa-dri (>= 7.11.1)
-Provides: xorg-driver-video
-Description: X.Org X server -- Nouveau display driver
- This driver for the X.Org X server (see xserver-xorg for a further
-description) provides support for NVIDIA Riva, TNT,
- GeForce, and Quadro cards. 
-
-# lsmod|egrep 'fb|nv'
-# lsmod|egrep 'nouveau'
-nouveau               631975  2 
-mxm_wmi                12467  1 nouveau
-wmi                    13051  2 mxm_wmi,nouveau
-ttm                    52594  1 nouveau
-drm_kms_helper         27237  2 ch7006,nouveau
-drm                   165971  5 ttm,drm_kms_helper,ch7006,nouveau
-i2c_algo_bit           12713  1 nouveau
-i2c_core               19248  5 drm,drm_kms_helper,i2c_algo_bit,ch7006,nouveau
-video                  17462  1 nouveau
-button                 12824  1 nouveau
-#
-
-# ls /etc/X11/xorg.conf
-ls: cannot access /etc/X11/xorg.conf: No such file or directory
-# ls /etc/X11/xorg.conf.d
-modesetting.conf-off  nouveau.conf
-# cat /etc/X11/xorg.conf.d/nouveau.conf 
-Section "Device"
-Identifier "Device0"
-Driver "nouveau"
-EndSection
-
-# cat /boot/config-`uname -r`|egrep 'FRAMEBUFFER'
-CONFIG_FRAMEBUFFER_CONSOLE=y
-CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y
-CONFIG_FRAMEBUFFER_CONSOLE_ROTATION=y
-
-# cat /boot/config-`uname -r`|egrep 'HW_CONSOLE_BINDING'
-CONFIG_VT_HW_CONSOLE_BINDING=y
-
-# cat /proc/fb
-0 nouveaufb
-
-
-MORE INFO TO BE ATTACHED.
+--- Comment #5 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 82135
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82135&action=edit
+output of dmesg 2013-07-06
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1373199414.BBec1.5900
-Date: Sun, 7 Jul 2013 12:16:54 +0000
+--1373199861.4f371.9235
+Date: Sun, 7 Jul 2013 12:24:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -109,81 +57,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #66889 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
               from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
 </span></b>
-        <pre>UPDATE: same problem with newer versions (yesterday's debian testing releases)
-
-# uname -a
-Linux majorana 3.9-1-686-pae #1 SMP Debian 3.9.6-1 i686 GNU/Linux
-
-# aptitude show xserver-xorg-video-nouveau
-Package: xserver-xorg-video-nouveau      
-State: installed
-Automatically installed: yes
-Version: 1:1.0.8-1
-Priority: optional
-Section: x11
-Maintainer: Debian X Strike Force &lt;<a href="mailto:debian-x&#64;lists.debian.org">debian-x&#64;lists.debian.org</a>&gt;
-Architecture: i386
-Uncompressed Size: 479 k
-Depends: libc6 (&gt;= 2.15), libdrm-nouveau2 (&gt;= 2.4.34), libdrm2 (&gt;= 2.4.17),
-libudev0 (&gt;= 146), xorg-video-abi-12,
-         xserver-xorg-core (&gt;= 2:1.12.3.901)
-Recommends: libgl1-mesa-dri (&gt;= 7.11.1)
-Provides: xorg-driver-video
-Description: X.Org X server -- Nouveau display driver
- This driver for the X.Org X server (see xserver-xorg for a further
-description) provides support for NVIDIA Riva, TNT,
- GeForce, and Quadro cards. 
-
-# lsmod|egrep 'fb|nv'
-# lsmod|egrep 'nouveau'
-nouveau               631975  2 
-mxm_wmi                12467  1 nouveau
-wmi                    13051  2 mxm_wmi,nouveau
-ttm                    52594  1 nouveau
-drm_kms_helper         27237  2 ch7006,nouveau
-drm                   165971  5 ttm,drm_kms_helper,ch7006,nouveau
-i2c_algo_bit           12713  1 nouveau
-i2c_core               19248  5 drm,drm_kms_helper,i2c_algo_bit,ch7006,nouveau
-video                  17462  1 nouveau
-button                 12824  1 nouveau
-#
-
-# ls /etc/X11/xorg.conf
-ls: cannot access /etc/X11/xorg.conf: No such file or directory
-# ls /etc/X11/xorg.conf.d
-modesetting.conf-off  nouveau.conf
-# cat /etc/X11/xorg.conf.d/nouveau.conf 
-Section &quot;Device&quot;
-Identifier &quot;Device0&quot;
-Driver &quot;nouveau&quot;
-EndSection
-
-# cat /boot/config-`uname -r`|egrep 'FRAMEBUFFER'
-CONFIG_FRAMEBUFFER_CONSOLE=y
-CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y
-CONFIG_FRAMEBUFFER_CONSOLE_ROTATION=y
-
-# cat /boot/config-`uname -r`|egrep 'HW_CONSOLE_BINDING'
-CONFIG_VT_HW_CONSOLE_BINDING=y
-
-# cat /proc/fb
-0 nouveaufb
-
-
-MORE INFO TO BE ATTACHED.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=82135" name="attach_82135" title="output of dmesg 2013-07-06">attachment 82135</a> <a href="attachment.cgi?id=82135&amp;action=edit" title="output of dmesg 2013-07-06">[details]</a></span>
+output of dmesg 2013-07-06</pre>
         </div>
       </p>
       <hr>
@@ -195,9 +104,9 @@ MORE INFO TO BE ATTACHED.</pre>
     </body>
 </html>
 
---1373199414.BBec1.5900--
+--1373199861.4f371.9235--
 
---===============0289827280==
+--===============0485080717==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -208,4 +117,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0289827280==--
+--===============0485080717==--
