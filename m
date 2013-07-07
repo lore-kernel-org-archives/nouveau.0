@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sun, 07 Jul 2013 12:26:26 +0000
-Message-ID: <bug-54700-8800-q7P213vqaM@http.bugs.freedesktop.org/>
+Date: Sun, 07 Jul 2013 12:27:39 +0000
+Message-ID: <bug-54700-8800-XEsxPXgjH3@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0378249497=="
+Content-Type: multipart/mixed; boundary="===============0016095058=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0378249497==
-Content-Type: multipart/alternative; boundary="1373199986.C5dbf0a21.9943"; charset="us-ascii"
+--===============0016095058==
+Content-Type: multipart/alternative; boundary="1373200059.Fab41Eac1.10446"; charset="us-ascii"
 
 
---1373199986.C5dbf0a21.9943
-Date: Sun, 7 Jul 2013 12:26:26 +0000
+--1373200059.Fab41Eac1.10446
+Date: Sun, 7 Jul 2013 12:27:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
-r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #66890|0                           |1
-        is obsolete|                            |
-
---- Comment #7 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 82138
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82138&action=edit
-dd if=/dev/mem of=vbios.rom bs=1k skip=768 count=64 #2013-07-06
+--- Comment #8 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 82139
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82139&action=edit
+output of lsmod (2013-07-06)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1373199986.C5dbf0a21.9943
-Date: Sun, 7 Jul 2013 12:26:26 +0000
+--1373200059.Fab41Eac1.10446
+Date: Sun, 7 Jul 2013 12:27:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,42 +50,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #66890 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
               from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82138" name="attach_82138" title="dd if=/dev/mem of=vbios.rom bs=1k skip=768 count=64 #2013-07-06">attachment 82138</a> <a href="attachment.cgi?id=82138&amp;action=edit" title="dd if=/dev/mem of=vbios.rom bs=1k skip=768 count=64 #2013-07-06">[details]</a></span>
-dd if=/dev/mem of=vbios.rom bs=1k skip=768 count=64 #2013-07-06</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=82139" name="attach_82139" title="output of lsmod (2013-07-06)">attachment 82139</a> <a href="attachment.cgi?id=82139&amp;action=edit" title="output of lsmod (2013-07-06)">[details]</a></span>
+output of lsmod (2013-07-06)</pre>
         </div>
       </p>
       <hr>
@@ -104,9 +76,9 @@ dd if=/dev/mem of=vbios.rom bs=1k skip=768 count=64 #2013-07-06</pre>
     </body>
 </html>
 
---1373199986.C5dbf0a21.9943--
+--1373200059.Fab41Eac1.10446--
 
---===============0378249497==
+--===============0016095058==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -117,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0378249497==--
+--===============0016095058==--
