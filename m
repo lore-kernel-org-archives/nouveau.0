@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sun, 07 Jul 2013 16:24:30 +0000
-Message-ID: <bug-54700-8800-fCTcYzdwcT@http.bugs.freedesktop.org/>
+Date: Sun, 07 Jul 2013 16:25:05 +0000
+Message-ID: <bug-54700-8800-MCsKd5IOTS@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1185133345=="
+Content-Type: multipart/mixed; boundary="===============1253699302=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1185133345==
-Content-Type: multipart/alternative; boundary="1373214270.6d7Cea641.6671"; charset="us-ascii"
+--===============1253699302==
+Content-Type: multipart/alternative; boundary="1373214305.7b3bC1.6886"; charset="us-ascii"
 
 
---1373214270.6d7Cea641.6671
-Date: Sun, 7 Jul 2013 16:24:30 +0000
+--1373214305.7b3bC1.6886
+Date: Sun, 7 Jul 2013 16:25:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #15 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 82146
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82146&action=edit
-dmesg with nvidia driver (2013-07-06)
+--- Comment #16 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 82147
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82147&action=edit
+Xorg.0.log with nvidia driver
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1373214270.6d7Cea641.6671
-Date: Sun, 7 Jul 2013 16:24:30 +0000
+--1373214305.7b3bC1.6886
+Date: Sun, 7 Jul 2013 16:25:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
               from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82146" name="attach_82146" title="dmesg with nvidia driver (2013-07-06)">attachment 82146</a> <a href="attachment.cgi?id=82146&amp;action=edit" title="dmesg with nvidia driver (2013-07-06)">[details]</a></span>
-dmesg with nvidia driver (2013-07-06)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=82147" name="attach_82147" title="Xorg.0.log with nvidia driver">attachment 82147</a> <a href="attachment.cgi?id=82147&amp;action=edit" title="Xorg.0.log with nvidia driver">[details]</a></span>
+Xorg.0.log with nvidia driver</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ dmesg with nvidia driver (2013-07-06)</pre>
     </body>
 </html>
 
---1373214270.6d7Cea641.6671--
+--1373214305.7b3bC1.6886--
 
---===============1185133345==
+--===============1253699302==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1185133345==--
+--===============1253699302==--
