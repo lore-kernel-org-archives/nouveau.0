@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sun, 07 Jul 2013 14:12:13 +0000
-Message-ID: <bug-54700-8800-dnRpJEl95l@http.bugs.freedesktop.org/>
+Date: Sun, 07 Jul 2013 15:48:15 +0000
+Message-ID: <bug-54700-8800-Vn6STV91ZL@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1187234057=="
+Content-Type: multipart/mixed; boundary="===============1376304816=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,38 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1187234057==
-Content-Type: multipart/alternative; boundary="1373206333.BE542.18773"; charset="us-ascii"
+--===============1376304816==
+Content-Type: multipart/alternative; boundary="1373212095.D1f348c1.23787"; charset="us-ascii"
 
 
---1373206333.BE542.18773
-Date: Sun, 7 Jul 2013 14:12:13 +0000
+--1373212095.D1f348c1.23787
+Date: Sun, 7 Jul 2013 15:48:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #12 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Several interesting points
+--- Comment #13 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 82142
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82142&action=edit
+distorted graphics
 
-* Does the corruption/distored graphics occur before X ?
+I agree that distorted is not the good wording, but I do not how to qualify
+this misbeaviour.
 
-* Wondering how much effect this has "Unknown LVDS configuration bits"
-Does that issue occur on a non LVDS output - eg. when you have monitor plugged
-to the VGA and LVDS is off ?
+Just to have an idea of what I mean by distorted graphics I upload a snapshot
+of the iceweasel log.
 
-* Does the "distorted graphics" differ if you (re)move the mesa driver
-nouveau_vieux.so ?
-
-* Why do you have custom modelines in your xorg.conf? Have you tried with a
-plain (empty) xorg.conf ?
+The mostdisturbing feature is the doubling of the cursor arrows (and each one
+is distorted as the logo), which makes the system hard to use.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1373206333.BE542.18773
-Date: Sun, 7 Jul 2013 14:12:13 +0000
+--1373212095.D1f348c1.23787
+Date: Sun, 7 Jul 2013 15:48:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,26 +65,24 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c12">Comment # 12</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
 </span></b>
-        <pre>Several interesting points
+        <pre>Created <span class=""><a href="attachment.cgi?id=82142" name="attach_82142" title="distorted graphics">attachment 82142</a> <a href="attachment.cgi?id=82142&amp;action=edit" title="distorted graphics">[details]</a></span>
+distorted graphics
 
-* Does the corruption/distored graphics occur before X ?
+I agree that distorted is not the good wording, but I do not how to qualify
+this misbeaviour.
 
-* Wondering how much effect this has &quot;Unknown LVDS configuration bits&quot;
-Does that issue occur on a non LVDS output - eg. when you have monitor plugged
-to the VGA and LVDS is off ?
+Just to have an idea of what I mean by distorted graphics I upload a snapshot
+of the iceweasel log.
 
-* Does the &quot;distorted graphics&quot; differ if you (re)move the mesa driver
-nouveau_vieux.so ?
-
-* Why do you have custom modelines in your xorg.conf? Have you tried with a
-plain (empty) xorg.conf ?</pre>
+The mostdisturbing feature is the doubling of the cursor arrows (and each one
+is distorted as the logo), which makes the system hard to use.</pre>
         </div>
       </p>
       <hr>
@@ -97,9 +94,9 @@ plain (empty) xorg.conf ?</pre>
     </body>
 </html>
 
---1373206333.BE542.18773--
+--1373212095.D1f348c1.23787--
 
---===============1187234057==
+--===============1376304816==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,4 +107,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1187234057==--
+--===============1376304816==--
