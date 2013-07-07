@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sun, 07 Jul 2013 16:34:17 +0000
-Message-ID: <bug-54700-8800-LfTJOgkMTS@http.bugs.freedesktop.org/>
+Date: Sun, 07 Jul 2013 17:31:37 +0000
+Message-ID: <bug-54700-8800-BU697xfO0Q@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2023159151=="
+Content-Type: multipart/mixed; boundary="===============1830686677=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2023159151==
-Content-Type: multipart/alternative; boundary="1373214857.aD618e751.10583"; charset="us-ascii"
+--===============1830686677==
+Content-Type: multipart/alternative; boundary="1373218297.C4D3aDC02.1405"; charset="us-ascii"
 
 
---1373214857.aD618e751.10583
-Date: Sun, 7 Jul 2013 16:34:17 +0000
+--1373218297.C4D3aDC02.1405
+Date: Sun, 7 Jul 2013 17:31:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #18 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-(In reply to comment #12)
->  Have you tried with a plain (empty) xorg.conf ?
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-# cat /etc/X11/xorg.conf
-#
-
-Done, same misbehavior.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #82142|text/plain                  |image/png
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1373214857.aD618e751.10583
-Date: Sun, 7 Jul 2013 16:34:17 +0000
+--1373218297.C4D3aDC02.1405
+Date: Sun, 7 Jul 2013 17:31:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,27 +52,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c18">Comment # 18</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=54700#c12">comment #12</a>)
-<span class="quote">&gt;  Have you tried with a plain (empty) xorg.conf ?</span >
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-# cat /etc/X11/xorg.conf
-#
-
-Done, same misbehavior.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Attachment #82142 mime type</td>
+           <td>text/plain
+           </td>
+           <td>image/png
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +84,9 @@ Done, same misbehavior.</pre>
     </body>
 </html>
 
---1373214857.aD618e751.10583--
+--1373218297.C4D3aDC02.1405--
 
---===============2023159151==
+--===============1830686677==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2023159151==--
+--===============1830686677==--
