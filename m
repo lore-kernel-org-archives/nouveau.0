@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sun, 07 Jul 2013 16:27:45 +0000
-Message-ID: <bug-54700-8800-x1E3o1xnu6@http.bugs.freedesktop.org/>
+Date: Sun, 07 Jul 2013 16:34:17 +0000
+Message-ID: <bug-54700-8800-LfTJOgkMTS@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0174115666=="
+Content-Type: multipart/mixed; boundary="===============2023159151=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0174115666==
-Content-Type: multipart/alternative; boundary="1373214465.50cf58F11.7862"; charset="us-ascii"
+--===============2023159151==
+Content-Type: multipart/alternative; boundary="1373214857.aD618e751.10583"; charset="us-ascii"
 
 
---1373214465.50cf58F11.7862
-Date: Sun, 7 Jul 2013 16:27:45 +0000
+--1373214857.aD618e751.10583
+Date: Sun, 7 Jul 2013 16:34:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #17 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-... further info ...
+--- Comment #18 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+(In reply to comment #12)
+>  Have you tried with a plain (empty) xorg.conf ?
 
-I've attached dmesg and Xorg.0.log obtained when the nvidia driver 96.43.23 was
-running (and everything seemed fine)
+# cat /etc/X11/xorg.conf
+#
+
+Done, same misbehavior.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1373214465.50cf58F11.7862
-Date: Sun, 7 Jul 2013 16:27:45 +0000
+--1373214857.aD618e751.10583
+Date: Sun, 7 Jul 2013 16:34:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +60,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c17">Comment # 17</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
               from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
 </span></b>
-        <pre>... further info ...
+        <pre>(In reply to <a href="show_bug.cgi?id=54700#c12">comment #12</a>)
+<span class="quote">&gt;  Have you tried with a plain (empty) xorg.conf ?</span >
 
-I've attached dmesg and Xorg.0.log obtained when the nvidia driver 96.43.23 was
-running (and everything seemed fine)</pre>
+# cat /etc/X11/xorg.conf
+#
+
+Done, same misbehavior.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +85,9 @@ running (and everything seemed fine)</pre>
     </body>
 </html>
 
---1373214465.50cf58F11.7862--
+--1373214857.aD618e751.10583--
 
---===============0174115666==
+--===============2023159151==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0174115666==--
+--===============2023159151==--
