@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sun, 07 Jul 2013 17:51:59 +0000
-Message-ID: <bug-54700-8800-R6NksljzdP@http.bugs.freedesktop.org/>
+Date: Mon, 08 Jul 2013 09:14:50 +0000
+Message-ID: <bug-54700-8800-ycXM7Phulb@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2063467705=="
+Content-Type: multipart/mixed; boundary="===============0618440139=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2063467705==
-Content-Type: multipart/alternative; boundary="1373219519.CA7b2.9655"; charset="us-ascii"
+--===============0618440139==
+Content-Type: multipart/alternative; boundary="1373274890.0eb041.19350"; charset="us-ascii"
 
 
---1373219519.CA7b2.9655
-Date: Sun, 7 Jul 2013 17:51:59 +0000
+--1373274890.0eb041.19350
+Date: Mon, 8 Jul 2013 09:14:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-From the screenshot, it looks like a tiling mode is being misset. I saw
-something similar with a thing I was implementing on NV96, I forgot to set
-tiling mode 0x20 (which is tiling Y = 2), and saw a very similar effect, but
-with lines being horizontal. Not sure if memory worked the same on NV28, but
-thought I'd mention it.
+--- Comment #22 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+(In reply to comment #20)
+> (In reply to comment #14)
+> > (In reply to comment #12)
+
+> > > * Does the "distorted graphics" differ if you (re)move the mesa driver
+> > > nouveau_vieux.so ?
+> > 
+> > YES, just reproduced after
+> >   mv /usr/lib/i386-linux-gnu/dri/{,__unloaded__}nouveau_vieux_dri.so
+> >  
+> Did you restart X after doing that ?
+
+Yes, I've rebooted after the move.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1373219519.CA7b2.9655
-Date: Sun, 7 Jul 2013 17:51:59 +0000
+--1373274890.0eb041.19350
+Date: Mon, 8 Jul 2013 09:14:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +66,26 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c21">Comment # 21</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
 </span></b>
-        <pre>From the screenshot, it looks like a tiling mode is being misset. I saw
-something similar with a thing I was implementing on NV96, I forgot to set
-tiling mode 0x20 (which is tiling Y = 2), and saw a very similar effect, but
-with lines being horizontal. Not sure if memory worked the same on NV28, but
-thought I'd mention it.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=54700#c20">comment #20</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=54700#c14">comment #14</a>)
+&gt; &gt; (In reply to <a href="show_bug.cgi?id=54700#c12">comment #12</a>)</span >
+
+<span class="quote">&gt; &gt; &gt; * Does the &quot;distorted graphics&quot; differ if you (re)move the mesa driver
+&gt; &gt; &gt; nouveau_vieux.so ?
+&gt; &gt; 
+&gt; &gt; YES, just reproduced after
+&gt; &gt;   mv /usr/lib/i386-linux-gnu/dri/{,__unloaded__}nouveau_vieux_dri.so
+&gt; &gt;  
+&gt; Did you restart X after doing that ?</span >
+
+Yes, I've rebooted after the move.</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +97,9 @@ thought I'd mention it.</pre>
     </body>
 </html>
 
---1373219519.CA7b2.9655--
+--1373274890.0eb041.19350--
 
---===============2063467705==
+--===============0618440139==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +110,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2063467705==--
+--===============0618440139==--
