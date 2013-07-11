@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 66696] Nouveau does DMA to/from unexpected address
-Date: Thu, 11 Jul 2013 03:50:33 +0000
-Message-ID: <bug-66696-8800-xa5897zMta@http.bugs.freedesktop.org/>
+Date: Thu, 11 Jul 2013 08:19:07 +0000
+Message-ID: <bug-66696-8800-UkyU8ONiNx@http.bugs.freedesktop.org/>
 References: <bug-66696-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1729871837=="
+Content-Type: multipart/mixed; boundary="===============0545856946=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-66696-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1729871837==
-Content-Type: multipart/alternative; boundary="1373514633.Ee622.30958"; charset="us-ascii"
+--===============0545856946==
+Content-Type: multipart/alternative; boundary="1373530747.DEbDA1.5464"; charset="us-ascii"
 
 
---1373514633.Ee622.30958
-Date: Thu, 11 Jul 2013 03:50:33 +0000
+--1373530747.DEbDA1.5464
+Date: Thu, 11 Jul 2013 08:19:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=66696
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please give this patch a shot. Just saw a few things that stood out in your
-mmiotrace, I have no idea what they actually do :) Perhaps totally unrelated.
-If it causes new problems, try the new writes individually.
+--- Comment #6 from Stijn Tintel <stijn+bugs-VfPWfsRibaPZj6PxcwrBaQ@public.gmane.org> ---
+After correcting the typos (mv_wr32 -> nv_wr32), I was able to build the
+kernel. Unfortunately I still see the same DMAR errors.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1373514633.Ee622.30958
-Date: Thu, 11 Jul 2013 03:50:33 +0000
+--1373530747.DEbDA1.5464
+Date: Thu, 11 Jul 2013 08:19:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +54,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau does DMA to/from unexpected address"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66696#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66696#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau does DMA to/from unexpected address"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=66696">bug 66696</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:stijn+bugs&#64;linux-ipv6.be" title="Stijn Tintel &lt;stijn+bugs&#64;linux-ipv6.be&gt;"> <span class="fn">Stijn Tintel</span></a>
 </span></b>
-        <pre>Please give this patch a shot. Just saw a few things that stood out in your
-mmiotrace, I have no idea what they actually do :) Perhaps totally unrelated.
-If it causes new problems, try the new writes individually.</pre>
+        <pre>After correcting the typos (mv_wr32 -&gt; nv_wr32), I was able to build the
+kernel. Unfortunately I still see the same DMAR errors.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +74,9 @@ If it causes new problems, try the new writes individually.</pre>
     </body>
 </html>
 
---1373514633.Ee622.30958--
+--1373530747.DEbDA1.5464--
 
---===============1729871837==
+--===============0545856946==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1729871837==--
+--===============0545856946==--
