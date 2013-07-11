@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 66696] Nouveau does DMA to/from unexpected address
-Date: Thu, 11 Jul 2013 03:48:29 +0000
-Message-ID: <bug-66696-8800-DqwjSEHfrP@http.bugs.freedesktop.org/>
+Date: Thu, 11 Jul 2013 03:50:33 +0000
+Message-ID: <bug-66696-8800-xa5897zMta@http.bugs.freedesktop.org/>
 References: <bug-66696-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1178510993=="
+Content-Type: multipart/mixed; boundary="===============1729871837=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-66696-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1178510993==
-Content-Type: multipart/alternative; boundary="1373514509.4fFEDbd2.30678"; charset="us-ascii"
+--===============1729871837==
+Content-Type: multipart/alternative; boundary="1373514633.Ee622.30958"; charset="us-ascii"
 
 
---1373514509.4fFEDbd2.30678
-Date: Thu, 11 Jul 2013 03:48:29 +0000
+--1373514633.Ee622.30958
+Date: Thu, 11 Jul 2013 03:50:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=66696
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 82309
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82309&action=edit
-Attempt at adding some writes that the blob does
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please give this patch a shot. Just saw a few things that stood out in your
+mmiotrace, I have no idea what they actually do :) Perhaps totally unrelated.
+If it causes new problems, try the new writes individually.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1373514509.4fFEDbd2.30678
-Date: Thu, 11 Jul 2013 03:48:29 +0000
+--1373514633.Ee622.30958
+Date: Thu, 11 Jul 2013 03:50:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau does DMA to/from unexpected address"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66696#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66696#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau does DMA to/from unexpected address"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=66696">bug 66696</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82309" name="attach_82309" title="Attempt at adding some writes that the blob does">attachment 82309</a> <a href="attachment.cgi?id=82309&amp;action=edit" title="Attempt at adding some writes that the blob does">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=66696&amp;attachment=82309'>[review]</a>
-Attempt at adding some writes that the blob does</pre>
+        <pre>Please give this patch a shot. Just saw a few things that stood out in your
+mmiotrace, I have no idea what they actually do :) Perhaps totally unrelated.
+If it causes new problems, try the new writes individually.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +76,9 @@ Attempt at adding some writes that the blob does</pre>
     </body>
 </html>
 
---1373514509.4fFEDbd2.30678--
+--1373514633.Ee622.30958--
 
---===============1178510993==
+--===============1729871837==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1178510993==--
+--===============1729871837==--
