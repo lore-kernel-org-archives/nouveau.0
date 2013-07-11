@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 66696] Nouveau does DMA to/from unexpected address
-Date: Thu, 11 Jul 2013 08:19:07 +0000
-Message-ID: <bug-66696-8800-UkyU8ONiNx@http.bugs.freedesktop.org/>
-References: <bug-66696-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/gpio/nv50: post nv92 cards have 32 interrupt
+	lines
+Date: Thu, 11 Jul 2013 17:28:03 +0100
+Message-ID: <1373560083-29776-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0545856946=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-66696-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,74 +17,77 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Since the original merge of nouveau to upstream kernel, we were assuming that
+nv90 (and later) cards have 32 lines.
 
---===============0545856946==
-Content-Type: multipart/alternative; boundary="1373530747.DEbDA1.5464"; charset="us-ascii"
+Based on mmio traces of the binary driver, as well as PBUS error messages
+during read/write of the e070/e074 registers, we can conclude that nv92 has
+only 16 lines whereas nv94 (and later) cards have 32.
 
+Reported-and-tested-by: David M. Lloyd <david.lloyd-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+---
 
---1373530747.DEbDA1.5464
-Date: Thu, 11 Jul 2013 08:19:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Considering that no-one has reported this issue before, I'm rather curious
+if we should CC stable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=66696
+---
+ drivers/gpu/drm/nouveau/core/subdev/gpio/nv50.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
---- Comment #6 from Stijn Tintel <stijn+bugs-VfPWfsRibaPZj6PxcwrBaQ@public.gmane.org> ---
-After correcting the typos (mv_wr32 -> nv_wr32), I was able to build the
-kernel. Unfortunately I still see the same DMAR errors.
-
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/gpio/nv50.c b/drivers/gpu/drm/nouveau/core/subdev/gpio/nv50.c
+index bf489dc..c4c1d41 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/gpio/nv50.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/gpio/nv50.c
+@@ -103,7 +103,7 @@ nv50_gpio_intr(struct nouveau_subdev *subdev)
+ 	int i;
+ 
+ 	intr0 = nv_rd32(priv, 0xe054) & nv_rd32(priv, 0xe050);
+-	if (nv_device(priv)->chipset >= 0x90)
++	if (nv_device(priv)->chipset > 0x92)
+ 		intr1 = nv_rd32(priv, 0xe074) & nv_rd32(priv, 0xe070);
+ 
+ 	hi = (intr0 & 0x0000ffff) | (intr1 << 16);
+@@ -115,7 +115,7 @@ nv50_gpio_intr(struct nouveau_subdev *subdev)
+ 	}
+ 
+ 	nv_wr32(priv, 0xe054, intr0);
+-	if (nv_device(priv)->chipset >= 0x90)
++	if (nv_device(priv)->chipset > 0x92)
+ 		nv_wr32(priv, 0xe074, intr1);
+ }
+ 
+@@ -146,7 +146,7 @@ nv50_gpio_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	int ret;
+ 
+ 	ret = nouveau_gpio_create(parent, engine, oclass,
+-				  nv_device(parent)->chipset >= 0x90 ? 32 : 16,
++				  nv_device(parent)->chipset > 0x92 ? 32 : 16,
+ 				  &priv);
+ 	*pobject = nv_object(priv);
+ 	if (ret)
+@@ -182,7 +182,7 @@ nv50_gpio_init(struct nouveau_object *object)
+ 	/* disable, and ack any pending gpio interrupts */
+ 	nv_wr32(priv, 0xe050, 0x00000000);
+ 	nv_wr32(priv, 0xe054, 0xffffffff);
+-	if (nv_device(priv)->chipset >= 0x90) {
++	if (nv_device(priv)->chipset > 0x92) {
+ 		nv_wr32(priv, 0xe070, 0x00000000);
+ 		nv_wr32(priv, 0xe074, 0xffffffff);
+ 	}
+@@ -195,7 +195,7 @@ nv50_gpio_fini(struct nouveau_object *object, bool suspend)
+ {
+ 	struct nv50_gpio_priv *priv = (void *)object;
+ 	nv_wr32(priv, 0xe050, 0x00000000);
+-	if (nv_device(priv)->chipset >= 0x90)
++	if (nv_device(priv)->chipset > 0x92)
+ 		nv_wr32(priv, 0xe070, 0x00000000);
+ 	return nouveau_gpio_fini(&priv->base, suspend);
+ }
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1373530747.DEbDA1.5464
-Date: Thu, 11 Jul 2013 08:19:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau does DMA to/from unexpected address"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66696#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau does DMA to/from unexpected address"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66696">bug 66696</a>
-              from <span class="vcard"><a class="email" href="mailto:stijn+bugs&#64;linux-ipv6.be" title="Stijn Tintel &lt;stijn+bugs&#64;linux-ipv6.be&gt;"> <span class="fn">Stijn Tintel</span></a>
-</span></b>
-        <pre>After correcting the typos (mv_wr32 -&gt; nv_wr32), I was able to build the
-kernel. Unfortunately I still see the same DMAR errors.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1373530747.DEbDA1.5464--
-
---===============0545856946==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0545856946==--
+1.8.3.2
