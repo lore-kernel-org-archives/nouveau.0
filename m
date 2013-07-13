@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sat, 13 Jul 2013 09:51:16 +0000
-Message-ID: <bug-54700-8800-7ijVRpCrMO@http.bugs.freedesktop.org/>
+Date: Sat, 13 Jul 2013 09:52:08 +0000
+Message-ID: <bug-54700-8800-7g8WlbgunV@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0526563510=="
+Content-Type: multipart/mixed; boundary="===============0896820414=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0526563510==
-Content-Type: multipart/alternative; boundary="1373709077.060F36f1.19389"; charset="us-ascii"
+--===============0896820414==
+Content-Type: multipart/alternative; boundary="1373709129.82CFf441.19522"; charset="us-ascii"
 
 
---1373709077.060F36f1.19389
-Date: Sat, 13 Jul 2013 09:51:17 +0000
+--1373709129.82CFf441.19522
+Date: Sat, 13 Jul 2013 09:52:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #24 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 82378
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82378&action=edit
-Photo of external vga monitor. Distorted iceweasel logo and double coursor.
+--- Comment #25 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 82379
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82379&action=edit
+xrandr log of test with external VGA monitor
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1373709077.060F36f1.19389
-Date: Sat, 13 Jul 2013 09:51:17 +0000
+--1373709129.82CFf441.19522
+Date: Sat, 13 Jul 2013 09:52:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c24">Comment # 24</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c25">Comment # 25</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
               from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82378" name="attach_82378" title="Photo of external vga monitor. Distorted iceweasel logo and double coursor.">attachment 82378</a> <a href="attachment.cgi?id=82378&amp;action=edit" title="Photo of external vga monitor. Distorted iceweasel logo and double coursor.">[details]</a></span>
-Photo of external vga monitor. Distorted iceweasel logo and double coursor.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=82379" name="attach_82379" title="xrandr log of test with external VGA monitor">attachment 82379</a> <a href="attachment.cgi?id=82379&amp;action=edit" title="xrandr log of test with external VGA monitor">[details]</a></span>
+xrandr log of test with external VGA monitor</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ Photo of external vga monitor. Distorted iceweasel logo and double coursor.</pre
     </body>
 </html>
 
---1373709077.060F36f1.19389--
+--1373709129.82CFf441.19522--
 
---===============0526563510==
+--===============0896820414==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0526563510==--
+--===============0896820414==--
