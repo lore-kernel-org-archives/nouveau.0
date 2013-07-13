@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sat, 13 Jul 2013 11:56:08 +0000
-Message-ID: <bug-54700-8800-JijjdqfWoB@http.bugs.freedesktop.org/>
+Date: Sat, 13 Jul 2013 11:56:47 +0000
+Message-ID: <bug-54700-8800-oCEzGvQqIw@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0491078806=="
+Content-Type: multipart/mixed; boundary="===============0666060274=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0491078806==
-Content-Type: multipart/alternative; boundary="1373716568.20Cd3f1.4830"; charset="us-ascii"
+--===============0666060274==
+Content-Type: multipart/alternative; boundary="1373716607.deAa1.4945"; charset="us-ascii"
 
 
---1373716568.20Cd3f1.4830
-Date: Sat, 13 Jul 2013 11:56:08 +0000
+--1373716607.deAa1.4945
+Date: Sat, 13 Jul 2013 11:56:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #30 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 82386
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82386&action=edit
-xrandr with nvidia legacy
+--- Comment #31 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 82387
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82387&action=edit
+xorg.log with nvidia legacy
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1373716568.20Cd3f1.4830
-Date: Sat, 13 Jul 2013 11:56:08 +0000
+--1373716607.deAa1.4945
+Date: Sat, 13 Jul 2013 11:56:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c30">Comment # 30</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c31">Comment # 31</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
               from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82386" name="attach_82386" title="xrandr with nvidia legacy">attachment 82386</a> <a href="attachment.cgi?id=82386&amp;action=edit" title="xrandr with nvidia legacy">[details]</a></span>
-xrandr with nvidia legacy</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=82387" name="attach_82387" title="xorg.log with nvidia legacy">attachment 82387</a> <a href="attachment.cgi?id=82387&amp;action=edit" title="xorg.log with nvidia legacy">[details]</a></span>
+xorg.log with nvidia legacy</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ xrandr with nvidia legacy</pre>
     </body>
 </html>
 
---1373716568.20Cd3f1.4830--
+--1373716607.deAa1.4945--
 
---===============0491078806==
+--===============0666060274==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0491078806==--
+--===============0666060274==--
