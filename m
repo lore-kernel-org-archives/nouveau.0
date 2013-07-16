@@ -1,70 +1,86 @@
-From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Subject: [PATCH] drm/nouveau: do not move buffers when not needed
-Date: Mon, 15 Jul 2013 10:39:57 +0200
-Message-ID: <51E3B55D.8080403@canonical.com>
-References: <51DFFA52.6010102@canonical.com>
-	<CACAvsv74X7xU0BkfhN0gXHvFG+Ooe=7wrFBzKnqUF7PMeB5wLw@mail.gmail.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Subject: Re: [PATCH] drm/nv50-/disp: Use output specific mask in interrupt
+Date: Tue, 16 Jul 2013 12:04:40 +0100
+Message-ID: <51E528C8.3030403@gmail.com>
+References: <1372772652-3154-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACAvsv74X7xU0BkfhN0gXHvFG+Ooe=7wrFBzKnqUF7PMeB5wLw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <1372772652-3154-1-git-send-email-emil.l.velikov@gmail.com>
+Sender: stable-owner@vger.kernel.org
+To: stable@vger.kernel.org
+Cc: Emil Velikov <emil.l.velikov@gmail.com>, nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-Op 15-07-13 08:05, Ben Skeggs schreef:
-> On Fri, Jul 12, 2013 at 10:45 PM, Maarten Lankhorst
-> <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> wrote:
->> I have no idea what this bogus restriction on placement is, but it breaks decoding 1080p
->> VDPAU at boot speed. With this patch applied I only need to bump the vdec clock to
->> get real-time 1080p decoding. It prevents a lot of VRAM <-> VRAM buffer moves.
-> It's not bogus, and is required for pre-GF8 boards with VRAM > BAR size.
->
-> What configuration does the buffer that's getting moved here have
-> exactly?  The placement restriction isn't necessary on GF8, the rest
-> of the restrictions may currently be required still however.
->
->= vdpau on NVC0 with tiling. I upload the raw bitstream to a tiling bo. This is ok because
-the vm hides all the tiling translations, and the engines will read the raw bitstream correctly.
-8<---
-This prevents buffer moves from being done on NV50+, where remapping is not needed because
-the bar has its own VM, instead of only having the first BAR1-size chunk of VRAM accessible.
-nouveau_bo_tile_layout is always 0 on < NV_50.
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
----
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index d506da5..762bfcd 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -1346,14 +1361,13 @@ nouveau_ttm_fault_reserve_notify(struct ttm_buffer_object *bo)
- 	struct nouveau_device *device = nv_device(drm->device);
- 	u32 mappable = pci_resource_len(device->pdev, 1) >> PAGE_SHIFT;
- 
--	/* as long as the bo isn't in vram, and isn't tiled, we've got
--	 * nothing to do here.
-+	/*
-+	 * if the bo is not in vram, or remapping can be done (nv50+)
-+	 * do not worry about placement, any location is valid
- 	 */
--	if (bo->mem.mem_type != TTM_PL_VRAM) {
--		if (nv_device(drm->device)->card_type < NV_50 ||
--		    !nouveau_bo_tile_layout(nvbo))
--			return 0;
--	}
-+	if (nv_device(drm->device)->card_type >= NV_50 ||
-+	    bo->mem.mem_type != TTM_PL_VRAM)
-+		return 0;
- 
- 	/* make sure bo is in mappable vram */
- 	if (bo->mem.start + bo->mem.num_pages < mappable)
+Glad to see that the patch has been included in the 3.11 branch,
+although as Yves-Alexis mentioned in the bugreport it does not seem to
+be part of 3.9 or 3.10
+
+Is there any issues in the patch, or did it simply got lost in the queue ?
+
+Regards
+Emil
+
+On 02/07/13 14:44, Emil Velikov wrote:
+> The commit
+> 
+>    commit 476e84e126171d809f9c0b5d97137f5055f95ca8
+>    Author: Ben Skeggs <bskeggs@redhat.com>
+>    Date:   Mon Feb 11 09:24:23 2013 +1000
+> 
+>        drm/nv50-/disp: initial supervisor support for off-chip encoders
+> 
+> changed the write mask in one of the interrupt functions for on-chip encoders,
+> causing a regression in certain VGA dual-head setups. This commit reintroduces
+> the mask thus resolving the regression
+> 
+> Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=66129
+> Reported-and-Tested-by: Yves-Alexis <corsac@debian.org>
+> Cc: stable@vger.kernel.org [3.9+]
+> CC: Ben Skeggs <bskeggs@redhat.com>
+> Signed-off-by: Emil Velikov <emil.l.velikov@gmail.com>
+> ---
+>  drivers/gpu/drm/nouveau/core/engine/disp/nv50.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c b/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
+> index 8b42f45..7ffe2f3 100644
+> --- a/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
+> +++ b/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
+> @@ -1107,6 +1107,7 @@ nv50_disp_intr_unk20_2(struct nv50_disp_priv *priv, int head)
+>  	u32 pclk = nv_rd32(priv, 0x610ad0 + (head * 0x540)) & 0x3fffff;
+>  	u32 hval, hreg = 0x614200 + (head * 0x800);
+>  	u32 oval, oreg;
+> +	u32 mask;
+>  	u32 conf = exec_clkcmp(priv, head, 0xff, pclk, &outp);
+>  	if (conf != ~0) {
+>  		if (outp.location == 0 && outp.type == DCB_OUTPUT_DP) {
+> @@ -1133,6 +1134,7 @@ nv50_disp_intr_unk20_2(struct nv50_disp_priv *priv, int head)
+>  			oreg = 0x614280 + (ffs(outp.or) - 1) * 0x800;
+>  			oval = 0x00000000;
+>  			hval = 0x00000000;
+> +			mask = 0xffffffff;
+>  		} else
+>  		if (!outp.location) {
+>  			if (outp.type == DCB_OUTPUT_DP)
+> @@ -1140,14 +1142,16 @@ nv50_disp_intr_unk20_2(struct nv50_disp_priv *priv, int head)
+>  			oreg = 0x614300 + (ffs(outp.or) - 1) * 0x800;
+>  			oval = (conf & 0x0100) ? 0x00000101 : 0x00000000;
+>  			hval = 0x00000000;
+> +			mask = 0x00000707;
+>  		} else {
+>  			oreg = 0x614380 + (ffs(outp.or) - 1) * 0x800;
+>  			oval = 0x00000001;
+>  			hval = 0x00000001;
+> +			mask = 0x00000707;
+>  		}
+>  
+>  		nv_mask(priv, hreg, 0x0000000f, hval);
+> -		nv_mask(priv, oreg, 0x00000707, oval);
+> +		nv_mask(priv, oreg, mask, oval);
+>  	}
+>  }
+>  
+> 
