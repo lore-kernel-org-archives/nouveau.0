@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64774] nouveau GF108 kernel crash in optimus mode
- when enabling external display output
-Date: Thu, 18 Jul 2013 21:15:08 +0000
-Message-ID: <bug-64774-8800-zTiOREDBOB@http.bugs.freedesktop.org/>
-References: <bug-64774-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
+Date: Thu, 18 Jul 2013 22:02:39 +0000
+Message-ID: <bug-67051-8800-SqD2o1qzgk@http.bugs.freedesktop.org/>
+References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0259697504=="
+Content-Type: multipart/mixed; boundary="===============1914052935=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64774-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,55 +20,95 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0259697504==
-Content-Type: multipart/alternative; boundary="1374182108.B30615d2.24152"; charset="us-ascii"
+--===============1914052935==
+Content-Type: multipart/alternative; boundary="1374184959.00E20.32767"; charset="us-ascii"
 
 
---1374182108.B30615d2.24152
-Date: Thu, 18 Jul 2013 21:15:08 +0000
+--1374184959.00E20.32767
+Date: Thu, 18 Jul 2013 22:02:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64774
+https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Outputs certainly *appear* to be detected. What makes you say they're not?
+--- Comment #8 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi Ilia,
 
-[    2.882654] nouveau  [     DRM] DCB outp 00: 01800323 00010034
-[    2.882656] nouveau  [     DRM] DCB outp 01: 02811300 00000000
-[    2.882657] nouveau  [     DRM] DCB outp 02: 028223a6 0f220010
-[    2.882658] nouveau  [     DRM] DCB outp 03: 02822362 00020010
-[    2.882659] nouveau  [     DRM] DCB outp 04: 048333b6 0f220010
-[    2.882660] nouveau  [     DRM] DCB outp 05: 04833372 00020010
-[    2.882662] nouveau  [     DRM] DCB outp 06: 088443c6 0f220010
-[    2.882663] nouveau  [     DRM] DCB outp 07: 08844382 00020010
-[    2.882664] nouveau  [     DRM] DCB conn 00: 00000040
-[    2.882666] nouveau  [     DRM] DCB conn 01: 00000100
-[    2.882667] nouveau  [     DRM] DCB conn 02: 00110246
-[    2.882668] nouveau  [     DRM] DCB conn 03: 00220346
-[    2.882669] nouveau  [     DRM] DCB conn 04: 01400446
-[    3.023865] nouveau  [     DRM] allocated 1920x1080 fb: 0x60000, bo
-ffff8803285f9c00
+(In reply to comment #7)
+> BTW, does video work fine?
+Always perfect (on all kernels, on NVIDIA proprietary, Win 7, etc.).
 
-I assume you have a 1920x1080 screen hooked up to the DVI?
+> Can you post the output of "xrandr -q"?
+xrandr --version
+xrandr program version       1.4.0
+Server reports RandR version 1.4
 
-You can look at the KMS status in /sys/class/drm/ -- you should see
-cardN-DVI-I-N  directories. xrandr should also provide accurate status, e.g.:
+xrandr [-q]                                   # works without "-q" on mine.
+Screen 0: minimum 320 x 200, current 1280 x 720, maximum 8192 x 8192
+DVI-I-1 disconnected (normal left inverted right x axis y axis)
+HDMI-1 connected 1280x720+0+0 (normal left inverted right x axis y axis) 553mm
+x 311mm
+   1280x720       60.0*+   50.0  
+   1920x1080      60.0 +   50.0  
+   1920x1080i     60.1     50.0  
+   1680x1050      59.9  
+   1280x1024      75.0     60.0  
+   1440x900       59.9  
+   1280x960       60.0  
+   1152x864       75.0  
+   1440x576       50.0  
+   1024x768       75.1     70.1     60.0  
+   1440x480       59.9  
+   832x624        74.6  
+   800x600        72.2     75.0     60.3     56.2  
+   720x576        50.0  
+   720x480        59.9  
+   640x480        75.0     66.7     60.0     59.9  
+   720x400        70.1  
+VGA-1 disconnected (normal left inverted right x axis y axis)
 
-$ grep . /sys/class/drm/card*-*/status 
-/sys/class/drm/card0-DVI-I-1/status:connected
-/sys/class/drm/card0-DVI-I-2/status:disconnected
+NOTE:  Monitor is 1920x1080 native (especially on 25in.! ).
+However, I like it on 1280x720.  In /etc/X11/xorg.conf:
+ Modes   "1280x720" "1024x768" "1440x900" "1920x1080"
+This shouldn't affect sound though :)
 
-However it may end up being hidden due to vgaswitcheroo -- so make sure to look
-into that too. (Unfortunately I know next to nothing about vgaswitcheroo, but
-I'm sure Google knows more.)
+> But your monitor can probably do a bit more than 640x400, which indeed
+> points to a potential EDID problem parsing problem. (I also don't see
+> 640x400 as one of the modes reported by X.) Normally it picks the native
+> resolution of your monitor... do you have something on cmdline that
+> overrides that?
+
+I don't need to.  My life style has always been absolutely inflexible:
+
+1.  Boot to Level 3 ("console/VGA/Text mode").  Work there.  Compile kernels
+and
+the like.  Impress the neighbors (who don't have Linux).
+2.  When I please (like when I want to listen to HDMI sound :), I go to
+ Level 5 at a resolution based on the modeline above.  Do graphics things.
+3.  When done, I come down to Level 3.  Work some more.  When tired or
+disgusted I hit 'poweroff'.
+
+> Lastly, is this a x86_32 kernel? 
+You'll be the judge:
+uname -a
+Linux AlexP5 3.10.1 #1 SMP Thu Jul 18 14:17:31 EDT 2013 i686 i686 i386
+GNU/Linux
+
+Note:  The time above reflects the last one compiled with the patch.
+
+Just curious:  the sound logic is in the nouveau-kernel module or a combination
+of nouveau-kernel and Xorg-nouveau (nouveau_drv.so)?
+I know not to expect sound other than at level 5 (Xorg).
+
+Thank you for your work and interest.
+-- Alex
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374182108.B30615d2.24152
-Date: Thu, 18 Jul 2013 21:15:08 +0000
+--1374184959.00E20.32767
+Date: Thu, 18 Jul 2013 22:02:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -82,44 +121,84 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau GF108 kernel crash in optimus mode when enabling external display output"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64774#c13">Comment # 13</a>
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau GF108 kernel crash in optimus mode when enabling external display output"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64774">bug 64774</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
+              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>Outputs certainly *appear* to be detected. What makes you say they're not?
+        <pre>Hi Ilia,
 
-[    2.882654] nouveau  [     DRM] DCB outp 00: 01800323 00010034
-[    2.882656] nouveau  [     DRM] DCB outp 01: 02811300 00000000
-[    2.882657] nouveau  [     DRM] DCB outp 02: 028223a6 0f220010
-[    2.882658] nouveau  [     DRM] DCB outp 03: 02822362 00020010
-[    2.882659] nouveau  [     DRM] DCB outp 04: 048333b6 0f220010
-[    2.882660] nouveau  [     DRM] DCB outp 05: 04833372 00020010
-[    2.882662] nouveau  [     DRM] DCB outp 06: 088443c6 0f220010
-[    2.882663] nouveau  [     DRM] DCB outp 07: 08844382 00020010
-[    2.882664] nouveau  [     DRM] DCB conn 00: 00000040
-[    2.882666] nouveau  [     DRM] DCB conn 01: 00000100
-[    2.882667] nouveau  [     DRM] DCB conn 02: 00110246
-[    2.882668] nouveau  [     DRM] DCB conn 03: 00220346
-[    2.882669] nouveau  [     DRM] DCB conn 04: 01400446
-[    3.023865] nouveau  [     DRM] allocated 1920x1080 fb: 0x60000, bo
-ffff8803285f9c00
+(In reply to <a href="show_bug.cgi?id=67051#c7">comment #7</a>)
+<span class="quote">&gt; BTW, does video work fine?</span >
+Always perfect (on all kernels, on NVIDIA proprietary, Win 7, etc.).
 
-I assume you have a 1920x1080 screen hooked up to the DVI?
+<span class="quote">&gt; Can you post the output of &quot;xrandr -q&quot;?</span >
+xrandr --version
+xrandr program version       1.4.0
+Server reports RandR version 1.4
 
-You can look at the KMS status in /sys/class/drm/ -- you should see
-cardN-DVI-I-N  directories. xrandr should also provide accurate status, e.g.:
+xrandr [-q]                                   # works without &quot;-q&quot; on mine.
+Screen 0: minimum 320 x 200, current 1280 x 720, maximum 8192 x 8192
+DVI-I-1 disconnected (normal left inverted right x axis y axis)
+HDMI-1 connected 1280x720+0+0 (normal left inverted right x axis y axis) 553mm
+x 311mm
+   1280x720       60.0*+   50.0  
+   1920x1080      60.0 +   50.0  
+   1920x1080i     60.1     50.0  
+   1680x1050      59.9  
+   1280x1024      75.0     60.0  
+   1440x900       59.9  
+   1280x960       60.0  
+   1152x864       75.0  
+   1440x576       50.0  
+   1024x768       75.1     70.1     60.0  
+   1440x480       59.9  
+   832x624        74.6  
+   800x600        72.2     75.0     60.3     56.2  
+   720x576        50.0  
+   720x480        59.9  
+   640x480        75.0     66.7     60.0     59.9  
+   720x400        70.1  
+VGA-1 disconnected (normal left inverted right x axis y axis)
 
-$ grep . /sys/class/drm/card*-*/status 
-/sys/class/drm/card0-DVI-I-1/status:connected
-/sys/class/drm/card0-DVI-I-2/status:disconnected
+NOTE:  Monitor is 1920x1080 native (especially on 25in.! ).
+However, I like it on 1280x720.  In /etc/X11/xorg.conf:
+ Modes   &quot;1280x720&quot; &quot;1024x768&quot; &quot;1440x900&quot; &quot;1920x1080&quot;
+This shouldn't affect sound though :)
 
-However it may end up being hidden due to vgaswitcheroo -- so make sure to look
-into that too. (Unfortunately I know next to nothing about vgaswitcheroo, but
-I'm sure Google knows more.)</pre>
+<span class="quote">&gt; But your monitor can probably do a bit more than 640x400, which indeed
+&gt; points to a potential EDID problem parsing problem. (I also don't see
+&gt; 640x400 as one of the modes reported by X.) Normally it picks the native
+&gt; resolution of your monitor... do you have something on cmdline that
+&gt; overrides that?</span >
+
+I don't need to.  My life style has always been absolutely inflexible:
+
+1.  Boot to Level 3 (&quot;console/VGA/Text mode&quot;).  Work there.  Compile kernels
+and
+the like.  Impress the neighbors (who don't have Linux).
+2.  When I please (like when I want to listen to HDMI sound :), I go to
+ Level 5 at a resolution based on the modeline above.  Do graphics things.
+3.  When done, I come down to Level 3.  Work some more.  When tired or
+disgusted I hit 'poweroff'.
+
+<span class="quote">&gt; Lastly, is this a x86_32 kernel? </span >
+You'll be the judge:
+uname -a
+Linux AlexP5 3.10.1 #1 SMP Thu Jul 18 14:17:31 EDT 2013 i686 i686 i386
+GNU/Linux
+
+Note:  The time above reflects the last one compiled with the patch.
+
+Just curious:  the sound logic is in the nouveau-kernel module or a combination
+of nouveau-kernel and Xorg-nouveau (nouveau_drv.so)?
+I know not to expect sound other than at level 5 (Xorg).
+
+Thank you for your work and interest.
+-- Alex</pre>
         </div>
       </p>
       <hr>
@@ -131,9 +210,9 @@ I'm sure Google knows more.)</pre>
     </body>
 </html>
 
---1374182108.B30615d2.24152--
+--1374184959.00E20.32767--
 
---===============0259697504==
+--===============1914052935==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -144,4 +223,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0259697504==--
+--===============1914052935==--
