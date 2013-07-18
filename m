@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Thu, 18 Jul 2013 19:19:15 +0000
-Message-ID: <bug-67051-8800-jdSWsBLcS2@http.bugs.freedesktop.org/>
+Date: Thu, 18 Jul 2013 19:36:13 +0000
+Message-ID: <bug-67051-8800-3B6dJfdFGo@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1835017268=="
+Content-Type: multipart/mixed; boundary="===============1797750690=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,71 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1835017268==
-Content-Type: multipart/alternative; boundary="1374175155.56Aa416e0.1316"; charset="us-ascii"
+--===============1797750690==
+Content-Type: multipart/alternative; boundary="1374176173.6fFbA0D01.4047"; charset="us-ascii"
 
 
---1374175155.56Aa416e0.1316
-Date: Thu, 18 Jul 2013 19:19:15 +0000
+--1374176173.6fFbA0D01.4047
+Date: Thu, 18 Jul 2013 19:36:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #5 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi Emil,
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Well, for clarity, commit 8e9e3d2de which introduced the regression first
+appeared in v3.8-rc1. And my fix *did* enable at least one user (with a GeForce
+550 Ti IIRC) to get HDMI audio to work fine. (In his situation, sending DTS/AC3
+worked fine, but regular PCM audio sent crap, and futzing with those registers
+fixed it.)
 
-I applied the patch.  For reference:
-
-[/linux-3.10.1/drivers/gpu/drm/nouveau/core/engine/disp]$ diff hdminva3.c-orig
-hdminva3.c
-56a57,60
->         nv_mask(priv, 0x61c5d0 + soff, 0x00070001, 0x00010001); /* SPARE,
->         HW_CTS */
->         nv_mask(priv, 0x61c568 + soff, 0x00010101, 0x00000000); /* ACR_CTRL,
->         ??
-> */
->         nv_mask(priv, 0x61c578 + soff, 0x80000000, 0x80000000); /*
->         ACR_0441_ENABLE */
-------------------------------------------------------------------------------
-No cigar:
-
-aplay -D plughw:1,x test.wav    # x = 3, 7, 8, _9_
-NO SOUND
-
-and
-
-cat /proc/asound/card1/eld#3.0
-monitor_present         1
-eld_valid               0
--------------------------------
-COMMENTS
-I'm a little skeptical for two reasons:
-
-1.  The patch (date, presentation) implies that everything was hunky-dory
-until those guys on 3.10.1 did something.
-Not true.  The nouveau HDMI sound has _never_ worked since 3.8.0 (when I
-started paying attention.)
-
-2.  I'm far from a kernel-, nouveau-, patch-, etc-. expert but common sense(?)
-tells me that a mere three lines of code can't fix this problem which, again
-common sense, looks a lot more intractable.  If I can offer an uneducated guess
-nouveau should work first on this 'eld#3.0' to see it handling an EDID properly
-(like NVIDIA did - see submission) in order to have a chance at competing with
-the big boys (Nvidia, Windows) in the HDMI sound arena (although an elementary
-and vital requirement/capability at this day and age).
-
-I'm attaching the new dmesg and Xorg log for this patch attempt.
-
-Thank you for your trying to help,
--- Alex
+It would be worthwhile for you to test out v3.7 and see if it worked. If it
+did, that means there are further differences. If not, it means that getting
+things fully supported will require more RE work.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374175155.56Aa416e0.1316
-Date: Thu, 18 Jul 2013 19:19:15 +0000
+--1374176173.6fFbA0D01.4047
+Date: Thu, 18 Jul 2013 19:36:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -98,59 +61,22 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hi Emil,
+        <pre>Well, for clarity, commit 8e9e3d2de which introduced the regression first
+appeared in v3.8-rc1. And my fix *did* enable at least one user (with a GeForce
+550 Ti IIRC) to get HDMI audio to work fine. (In his situation, sending DTS/AC3
+worked fine, but regular PCM audio sent crap, and futzing with those registers
+fixed it.)
 
-I applied the patch.  For reference:
-
-[/linux-3.10.1/drivers/gpu/drm/nouveau/core/engine/disp]$ diff hdminva3.c-orig
-hdminva3.c
-56a57,60
-<span class="quote">&gt;         nv_mask(priv, 0x61c5d0 + soff, 0x00070001, 0x00010001); /* SPARE,
-&gt;         HW_CTS */
-&gt;         nv_mask(priv, 0x61c568 + soff, 0x00010101, 0x00000000); /* ACR_CTRL,
-&gt;         ??
-&gt; */
-&gt;         nv_mask(priv, 0x61c578 + soff, 0x80000000, 0x80000000); /*
-&gt;         ACR_0441_ENABLE */</span >
-------------------------------------------------------------------------------
-No cigar:
-
-aplay -D plughw:1,x test.wav    # x = 3, 7, 8, _9_
-NO SOUND
-
-and
-
-cat /proc/asound/card1/eld#3.0
-monitor_present         1
-eld_valid               0
--------------------------------
-COMMENTS
-I'm a little skeptical for two reasons:
-
-1.  The patch (date, presentation) implies that everything was hunky-dory
-until those guys on 3.10.1 did something.
-Not true.  The nouveau HDMI sound has _never_ worked since 3.8.0 (when I
-started paying attention.)
-
-2.  I'm far from a kernel-, nouveau-, patch-, etc-. expert but common sense(?)
-tells me that a mere three lines of code can't fix this problem which, again
-common sense, looks a lot more intractable.  If I can offer an uneducated guess
-nouveau should work first on this 'eld#3.0' to see it handling an EDID properly
-(like NVIDIA did - see submission) in order to have a chance at competing with
-the big boys (Nvidia, Windows) in the HDMI sound arena (although an elementary
-and vital requirement/capability at this day and age).
-
-I'm attaching the new dmesg and Xorg log for this patch attempt.
-
-Thank you for your trying to help,
--- Alex</pre>
+It would be worthwhile for you to test out v3.7 and see if it worked. If it
+did, that means there are further differences. If not, it means that getting
+things fully supported will require more RE work.</pre>
         </div>
       </p>
       <hr>
@@ -162,9 +88,9 @@ Thank you for your trying to help,
     </body>
 </html>
 
---1374175155.56Aa416e0.1316--
+--1374176173.6fFbA0D01.4047--
 
---===============1835017268==
+--===============1797750690==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -175,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1835017268==--
+--===============1797750690==--
