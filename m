@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Thu, 18 Jul 2013 23:19:48 +0000
-Message-ID: <bug-67051-8800-92L2lu2XaA@http.bugs.freedesktop.org/>
+Date: Thu, 18 Jul 2013 23:45:19 +0000
+Message-ID: <bug-67051-8800-0BsRDaFTRC@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1125881400=="
+Content-Type: multipart/mixed; boundary="===============1347167159=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,36 +20,53 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1125881400==
-Content-Type: multipart/alternative; boundary="1374189588.bd7A1A30.14582"; charset="us-ascii"
+--===============1347167159==
+Content-Type: multipart/alternative; boundary="1374191119.B7CFc061.18815"; charset="us-ascii"
 
 
---1374189588.bd7A1A30.14582
-Date: Thu, 18 Jul 2013 23:19:48 +0000
+--1374191119.B7CFc061.18815
+Date: Thu, 18 Jul 2013 23:45:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #11 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #9)
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #10)
+> (In reply to comment #9)
+> > (b) Can you test out a 3.7-based kernel?
+> I suppose I can.  Let me know if it's critical for you to proceed with your
+> work.  I'd rather wait for some more of your thoughts/tests/results _if
+> possible_.  However, I'll jump to it immediately if you say the word.
 
-> (c) Can you try unplugging and then re-plugging the HDMI cable after the
-> computer is all booted up and check the ELD status then? There's an old bug
-> that alludes to a timing issue between nvidia and alsa loading, and I have
-> no idea if it's fixed (bug #32406).
+Well, the situation is that I don't have any HDMI devices at all (either with
+HDMI outputs or inputs, forget HDMI audio), nor do I know anything about it. So
+if this doesn't work, that means that someone else needs to (a) reproduce your
+issue [and note, hdmi audio does work for some other people, so there must be
+something a bit more special about your situation, be it EDID data or more
+missed register setup], and (b) do the RE work to figure out what we're
+missing.
 
-Same:
-alex[~]% cat /proc/asound/card1/eld#3.0
-monitor_present         1
-eld_valid               0
+It seems like testing out an old kernel is easy by comparison. However I don't
+hold out a huge amount of hope for it, since like you said, eld_valid = 0,
+which more likely indicates an EDID issue.
+
+If you're interested, some minor code inspection shows that at least some of
+the logic is in nv50_display.c:nv50_audio_mode_set. You could add prints in
+there to see what it's detecting stuff as. You could also add prints to
+drm_edid.c:drm_detect_monitor_audio, perhaps your monitor's EDID is different
+than what it expects.
+
+Looks like there are a few prints already, you could see what happens when you
+boot with drm.debug=0x06 which should output nouveau- and kms-related debug
+statements.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374189588.bd7A1A30.14582
-Date: Thu, 18 Jul 2013 23:19:48 +0000
+--1374191119.B7CFc061.18815
+Date: Thu, 18 Jul 2013 23:45:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,27 +80,41 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67051#c9">comment #9</a>)
+        <pre>(In reply to <a href="show_bug.cgi?id=67051#c10">comment #10</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=67051#c9">comment #9</a>)
+&gt; &gt; (b) Can you test out a 3.7-based kernel?
+&gt; I suppose I can.  Let me know if it's critical for you to proceed with your
+&gt; work.  I'd rather wait for some more of your thoughts/tests/results _if
+&gt; possible_.  However, I'll jump to it immediately if you say the word.</span >
 
-<span class="quote">&gt; (c) Can you try unplugging and then re-plugging the HDMI cable after the
-&gt; computer is all booted up and check the ELD status then? There's an old bug
-&gt; that alludes to a timing issue between nvidia and alsa loading, and I have
-&gt; no idea if it's fixed (<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau fails to send hotplug event to ALSA hda hdmi audio"
-   href="show_bug.cgi?id=32406">bug #32406</a>).</span >
+Well, the situation is that I don't have any HDMI devices at all (either with
+HDMI outputs or inputs, forget HDMI audio), nor do I know anything about it. So
+if this doesn't work, that means that someone else needs to (a) reproduce your
+issue [and note, hdmi audio does work for some other people, so there must be
+something a bit more special about your situation, be it EDID data or more
+missed register setup], and (b) do the RE work to figure out what we're
+missing.
 
-Same:
-alex[~]% cat /proc/asound/card1/eld#3.0
-monitor_present         1
-eld_valid               0</pre>
+It seems like testing out an old kernel is easy by comparison. However I don't
+hold out a huge amount of hope for it, since like you said, eld_valid = 0,
+which more likely indicates an EDID issue.
+
+If you're interested, some minor code inspection shows that at least some of
+the logic is in nv50_display.c:nv50_audio_mode_set. You could add prints in
+there to see what it's detecting stuff as. You could also add prints to
+drm_edid.c:drm_detect_monitor_audio, perhaps your monitor's EDID is different
+than what it expects.
+
+Looks like there are a few prints already, you could see what happens when you
+boot with drm.debug=0x06 which should output nouveau- and kms-related debug
+statements.</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +126,9 @@ eld_valid               0</pre>
     </body>
 </html>
 
---1374189588.bd7A1A30.14582--
+--1374191119.B7CFc061.18815--
 
---===============1125881400==
+--===============1347167159==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +139,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1125881400==--
+--===============1347167159==--
