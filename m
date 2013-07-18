@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Thu, 18 Jul 2013 20:09:39 +0000
-Message-ID: <bug-67051-8800-w1NiTNNwgc@http.bugs.freedesktop.org/>
-References: <bug-67051-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64774] nouveau GF108 kernel crash in optimus mode
+ when enabling external display output
+Date: Thu, 18 Jul 2013 20:36:02 +0000
+Message-ID: <bug-64774-8800-ugMlnLdAy8@http.bugs.freedesktop.org/>
+References: <bug-64774-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1307866457=="
+Content-Type: multipart/mixed; boundary="===============1520971468=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-64774-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,87 +21,100 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1307866457==
-Content-Type: multipart/alternative; boundary="1374178179.ECb0441.10790"; charset="us-ascii"
+--===============1520971468==
+Content-Type: multipart/alternative; boundary="1374179762.55FFA2.16320"; charset="us-ascii"
 
 
---1374178179.ECb0441.10790
-Date: Thu, 18 Jul 2013 20:09:39 +0000
+--1374179762.55FFA2.16320
+Date: Thu, 18 Jul 2013 20:36:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67051
+https://bugs.freedesktop.org/show_bug.cgi?id=3D64774
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-BTW, does video work fine? Can you post the output of "xrandr -q"?
+--- Comment #8 from Pasi K=C3=A4rkk=C3=A4inen <pasik-X3B1VOXEql0@public.gmane.org> ---
 
-nouveau  [     DRM] allocated 640x400 fb: 0x60000, bo f4cf1800
+I tested the most recent Fedora 18 kernel update (3.9.9-201.fc18.x86_64), a=
+nd
+the bug is still there. I enabled Optimus in the BIOS, booted to Linux, tri=
+ed
+to enable nouveau DVI output, and the kernel crashed immediately.
 
-But your monitor can probably do a bit more than 640x400, which indeed points
-to a potential EDID problem parsing problem. (I also don't see 640x400 as one
-of the modes reported by X.) Normally it picks the native resolution of your
-monitor... do you have something on cmdline that overrides that? Normally
-there's a Command line: printed in the dmesg, but yours doesn't have it.
-Perhaps that happens when the cmdline is empty...
+Then I built a custom kernel based on 3.9.9-201.fc18.x86_64 with the attach=
+ed
+patch included (as suggested above), and booted with that. Now there's a
+problem.. nouveau outputs are not detected, and cannot be enabled, so I don=
+'t
+know if the patch fixes or works around the problem. At least it breaks
+something :)=20
 
-Lastly, is this a x86_32 kernel? Can't imagine it'd matter, but good to know in
-any case. (I guess it is since you mention i686, but kernel can still be x86_64
-in that case.)
+There are no obvious nouveau related errors in the dmesg.. attached aswell.
 
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374178179.ECb0441.10790
-Date: Thu, 18 Jul 2013 20:09:39 +0000
+--1374179762.55FFA2.16320
+Date: Thu, 18 Jul 2013 20:36:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - nouveau GF108 kernel crash in optimus mode when enabl=
+ing external display output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64774#c8">Comment=
+ # 8</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW --- - nouveau GF108 kernel crash in optimus mode when enabl=
+ing external display output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64774">bug 64774<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pasik&#64;iki.fi" title=3D"Pasi K=C3=A4rkk=C3=A4inen &lt;pasik&#64;iki.fi&g=
+t;"> <span class=3D"fn">Pasi K=C3=A4rkk=C3=A4inen</span></a>
 </span></b>
-        <pre>BTW, does video work fine? Can you post the output of &quot;xrandr -q&quot;?
+        <pre>
+I tested the most recent Fedora 18 kernel update (3.9.9-201.fc18.x86_64), a=
+nd
+the bug is still there. I enabled Optimus in the BIOS, booted to Linux, tri=
+ed
+to enable nouveau DVI output, and the kernel crashed immediately.
 
-nouveau  [     DRM] allocated 640x400 fb: 0x60000, bo f4cf1800
+Then I built a custom kernel based on 3.9.9-201.fc18.x86_64 with the attach=
+ed
+patch included (as suggested above), and booted with that. Now there's a
+problem.. nouveau outputs are not detected, and cannot be enabled, so I don=
+'t
+know if the patch fixes or works around the problem. At least it breaks
+something :)=20
 
-But your monitor can probably do a bit more than 640x400, which indeed points
-to a potential EDID problem parsing problem. (I also don't see 640x400 as one
-of the modes reported by X.) Normally it picks the native resolution of your
-monitor... do you have something on cmdline that overrides that? Normally
-there's a Command line: printed in the dmesg, but yours doesn't have it.
-Perhaps that happens when the cmdline is empty...
-
-Lastly, is this a x86_32 kernel? Can't imagine it'd matter, but good to know in
-any case. (I guess it is since you mention i686, but kernel can still be x86_64
-in that case.)</pre>
+There are no obvious nouveau related errors in the dmesg.. attached aswell.=
+</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1374178179.ECb0441.10790--
+--1374179762.55FFA2.16320--
 
---===============1307866457==
+--===============1520971468==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +125,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1307866457==--
+--===============1520971468==--
