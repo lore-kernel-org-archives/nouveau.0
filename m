@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64774] nouveau GF108 kernel crash in optimus mode
  when enabling external display output
-Date: Thu, 18 Jul 2013 21:04:49 +0000
-Message-ID: <bug-64774-8800-0iSsW3tQYY@http.bugs.freedesktop.org/>
+Date: Thu, 18 Jul 2013 21:15:08 +0000
+Message-ID: <bug-64774-8800-zTiOREDBOB@http.bugs.freedesktop.org/>
 References: <bug-64774-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0139100474=="
+Content-Type: multipart/mixed; boundary="===============0259697504=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64774-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,115 +21,119 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0139100474==
-Content-Type: multipart/alternative; boundary="1374181489.7c5FAfbD2.22281"; charset="us-ascii"
+--===============0259697504==
+Content-Type: multipart/alternative; boundary="1374182108.B30615d2.24152"; charset="us-ascii"
 
 
---1374181489.7c5FAfbD2.22281
-Date: Thu, 18 Jul 2013 21:04:49 +0000
+--1374182108.B30615d2.24152
+Date: Thu, 18 Jul 2013 21:15:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D64774
+https://bugs.freedesktop.org/show_bug.cgi?id=64774
 
---- Comment #12 from Pasi K=C3=A4rkk=C3=A4inen <pasik-X3B1VOXEql0@public.gmane.org> ---
+--- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Outputs certainly *appear* to be detected. What makes you say they're not?
 
-Ok, sorry for not explaining properly.=20
+[    2.882654] nouveau  [     DRM] DCB outp 00: 01800323 00010034
+[    2.882656] nouveau  [     DRM] DCB outp 01: 02811300 00000000
+[    2.882657] nouveau  [     DRM] DCB outp 02: 028223a6 0f220010
+[    2.882658] nouveau  [     DRM] DCB outp 03: 02822362 00020010
+[    2.882659] nouveau  [     DRM] DCB outp 04: 048333b6 0f220010
+[    2.882660] nouveau  [     DRM] DCB outp 05: 04833372 00020010
+[    2.882662] nouveau  [     DRM] DCB outp 06: 088443c6 0f220010
+[    2.882663] nouveau  [     DRM] DCB outp 07: 08844382 00020010
+[    2.882664] nouveau  [     DRM] DCB conn 00: 00000040
+[    2.882666] nouveau  [     DRM] DCB conn 01: 00000100
+[    2.882667] nouveau  [     DRM] DCB conn 02: 00110246
+[    2.882668] nouveau  [     DRM] DCB conn 03: 00220346
+[    2.882669] nouveau  [     DRM] DCB conn 04: 01400446
+[    3.023865] nouveau  [     DRM] allocated 1920x1080 fb: 0x60000, bo
+ffff8803285f9c00
 
-With the stock fedora 3.9.9-201 kernel the nouveau dvi outputs are detected=
- OK,
-so in the Mate desktop display properties application I can see the external
-monitor that is connected with DVI, and I can choose to enable it, which ca=
-uses
-the kernel crash.=20
+I assume you have a 1920x1080 screen hooked up to the DVI?
 
-Now with the custom 3.9.9-201.dbg01 kernel that I built, which only has the
-warn_on patch added on top of the stock kernel, the nouveau outputs are *no=
-t*
-detected at all, so I can't see the DVI monitor on the display properties
-application, and I can't enable the DVI monitor..=20
+You can look at the KMS status in /sys/class/drm/ -- you should see
+cardN-DVI-I-N  directories. xrandr should also provide accurate status, e.g.:
 
-I tried rebooting the laptop multiple times, and the behaviour stays the sa=
-me.=20
+$ grep . /sys/class/drm/card*-*/status 
+/sys/class/drm/card0-DVI-I-1/status:connected
+/sys/class/drm/card0-DVI-I-2/status:disconnected
 
-Maybe I should play with xrandr aswell. And probably rebuild a new kernel, =
-with
-that patch removed and see if it really causes the issue..=20
+However it may end up being hidden due to vgaswitcheroo -- so make sure to look
+into that too. (Unfortunately I know next to nothing about vgaswitcheroo, but
+I'm sure Google knows more.)
 
-Thanks for your reply!
-
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374181489.7c5FAfbD2.22281
-Date: Thu, 18 Jul 2013 21:04:49 +0000
+--1374182108.B30615d2.24152
+Date: Thu, 18 Jul 2013 21:15:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - nouveau GF108 kernel crash in optimus mode when enabl=
-ing external display output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64774#c12">Commen=
-t # 12</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - nouveau GF108 kernel crash in optimus mode when enabling external display output"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64774#c13">Comment # 13</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - nouveau GF108 kernel crash in optimus mode when enabl=
-ing external display output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64774">bug 64774<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pasik&#64;iki.fi" title=3D"Pasi K=C3=A4rkk=C3=A4inen &lt;pasik&#64;iki.fi&g=
-t;"> <span class=3D"fn">Pasi K=C3=A4rkk=C3=A4inen</span></a>
+   title="NEW --- - nouveau GF108 kernel crash in optimus mode when enabling external display output"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64774">bug 64774</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>
-Ok, sorry for not explaining properly.=20
+        <pre>Outputs certainly *appear* to be detected. What makes you say they're not?
 
-With the stock fedora 3.9.9-201 kernel the nouveau dvi outputs are detected=
- OK,
-so in the Mate desktop display properties application I can see the external
-monitor that is connected with DVI, and I can choose to enable it, which ca=
-uses
-the kernel crash.=20
+[    2.882654] nouveau  [     DRM] DCB outp 00: 01800323 00010034
+[    2.882656] nouveau  [     DRM] DCB outp 01: 02811300 00000000
+[    2.882657] nouveau  [     DRM] DCB outp 02: 028223a6 0f220010
+[    2.882658] nouveau  [     DRM] DCB outp 03: 02822362 00020010
+[    2.882659] nouveau  [     DRM] DCB outp 04: 048333b6 0f220010
+[    2.882660] nouveau  [     DRM] DCB outp 05: 04833372 00020010
+[    2.882662] nouveau  [     DRM] DCB outp 06: 088443c6 0f220010
+[    2.882663] nouveau  [     DRM] DCB outp 07: 08844382 00020010
+[    2.882664] nouveau  [     DRM] DCB conn 00: 00000040
+[    2.882666] nouveau  [     DRM] DCB conn 01: 00000100
+[    2.882667] nouveau  [     DRM] DCB conn 02: 00110246
+[    2.882668] nouveau  [     DRM] DCB conn 03: 00220346
+[    2.882669] nouveau  [     DRM] DCB conn 04: 01400446
+[    3.023865] nouveau  [     DRM] allocated 1920x1080 fb: 0x60000, bo
+ffff8803285f9c00
 
-Now with the custom 3.9.9-201.dbg01 kernel that I built, which only has the
-warn_on patch added on top of the stock kernel, the nouveau outputs are *no=
-t*
-detected at all, so I can't see the DVI monitor on the display properties
-application, and I can't enable the DVI monitor..=20
+I assume you have a 1920x1080 screen hooked up to the DVI?
 
-I tried rebooting the laptop multiple times, and the behaviour stays the sa=
-me.=20
+You can look at the KMS status in /sys/class/drm/ -- you should see
+cardN-DVI-I-N  directories. xrandr should also provide accurate status, e.g.:
 
-Maybe I should play with xrandr aswell. And probably rebuild a new kernel, =
-with
-that patch removed and see if it really causes the issue..=20
+$ grep . /sys/class/drm/card*-*/status 
+/sys/class/drm/card0-DVI-I-1/status:connected
+/sys/class/drm/card0-DVI-I-2/status:disconnected
 
-Thanks for your reply!</pre>
+However it may end up being hidden due to vgaswitcheroo -- so make sure to look
+into that too. (Unfortunately I know next to nothing about vgaswitcheroo, but
+I'm sure Google knows more.)</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1374181489.7c5FAfbD2.22281--
+--1374182108.B30615d2.24152--
 
---===============0139100474==
+--===============0259697504==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -140,4 +144,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0139100474==--
+--===============0259697504==--
