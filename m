@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Thu, 18 Jul 2013 19:36:13 +0000
-Message-ID: <bug-67051-8800-3B6dJfdFGo@http.bugs.freedesktop.org/>
+Date: Thu, 18 Jul 2013 20:09:39 +0000
+Message-ID: <bug-67051-8800-w1NiTNNwgc@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1797750690=="
+Content-Type: multipart/mixed; boundary="===============1307866457=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,34 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1797750690==
-Content-Type: multipart/alternative; boundary="1374176173.6fFbA0D01.4047"; charset="us-ascii"
+--===============1307866457==
+Content-Type: multipart/alternative; boundary="1374178179.ECb0441.10790"; charset="us-ascii"
 
 
---1374176173.6fFbA0D01.4047
-Date: Thu, 18 Jul 2013 19:36:13 +0000
+--1374178179.ECb0441.10790
+Date: Thu, 18 Jul 2013 20:09:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Well, for clarity, commit 8e9e3d2de which introduced the regression first
-appeared in v3.8-rc1. And my fix *did* enable at least one user (with a GeForce
-550 Ti IIRC) to get HDMI audio to work fine. (In his situation, sending DTS/AC3
-worked fine, but regular PCM audio sent crap, and futzing with those registers
-fixed it.)
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+BTW, does video work fine? Can you post the output of "xrandr -q"?
 
-It would be worthwhile for you to test out v3.7 and see if it worked. If it
-did, that means there are further differences. If not, it means that getting
-things fully supported will require more RE work.
+nouveau  [     DRM] allocated 640x400 fb: 0x60000, bo f4cf1800
+
+But your monitor can probably do a bit more than 640x400, which indeed points
+to a potential EDID problem parsing problem. (I also don't see 640x400 as one
+of the modes reported by X.) Normally it picks the native resolution of your
+monitor... do you have something on cmdline that overrides that? Normally
+there's a Command line: printed in the dmesg, but yours doesn't have it.
+Perhaps that happens when the cmdline is empty...
+
+Lastly, is this a x86_32 kernel? Can't imagine it'd matter, but good to know in
+any case. (I guess it is since you mention i686, but kernel can still be x86_64
+in that case.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374176173.6fFbA0D01.4047
-Date: Thu, 18 Jul 2013 19:36:13 +0000
+--1374178179.ECb0441.10790
+Date: Thu, 18 Jul 2013 20:09:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,22 +66,27 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Well, for clarity, commit 8e9e3d2de which introduced the regression first
-appeared in v3.8-rc1. And my fix *did* enable at least one user (with a GeForce
-550 Ti IIRC) to get HDMI audio to work fine. (In his situation, sending DTS/AC3
-worked fine, but regular PCM audio sent crap, and futzing with those registers
-fixed it.)
+        <pre>BTW, does video work fine? Can you post the output of &quot;xrandr -q&quot;?
 
-It would be worthwhile for you to test out v3.7 and see if it worked. If it
-did, that means there are further differences. If not, it means that getting
-things fully supported will require more RE work.</pre>
+nouveau  [     DRM] allocated 640x400 fb: 0x60000, bo f4cf1800
+
+But your monitor can probably do a bit more than 640x400, which indeed points
+to a potential EDID problem parsing problem. (I also don't see 640x400 as one
+of the modes reported by X.) Normally it picks the native resolution of your
+monitor... do you have something on cmdline that overrides that? Normally
+there's a Command line: printed in the dmesg, but yours doesn't have it.
+Perhaps that happens when the cmdline is empty...
+
+Lastly, is this a x86_32 kernel? Can't imagine it'd matter, but good to know in
+any case. (I guess it is since you mention i686, but kernel can still be x86_64
+in that case.)</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +98,9 @@ things fully supported will require more RE work.</pre>
     </body>
 </html>
 
---1374176173.6fFbA0D01.4047--
+--1374178179.ECb0441.10790--
 
---===============1797750690==
+--===============1307866457==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +111,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1797750690==--
+--===============1307866457==--
