@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Fri, 19 Jul 2013 00:22:25 +0000
-Message-ID: <bug-67051-8800-MhyzoIr315@http.bugs.freedesktop.org/>
+Date: Fri, 19 Jul 2013 02:10:59 +0000
+Message-ID: <bug-67051-8800-iro3Y9IyR3@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0498140512=="
+Content-Type: multipart/mixed; boundary="===============0918658010=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,55 +20,68 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0498140512==
-Content-Type: multipart/alternative; boundary="1374193345.7D4e200.25585"; charset="us-ascii"
+--===============0918658010==
+Content-Type: multipart/alternative; boundary="1374199859.dD3Ff0.12664"; charset="us-ascii"
 
 
---1374193345.7D4e200.25585
-Date: Fri, 19 Jul 2013 00:22:25 +0000
+--1374199859.dD3Ff0.12664
+Date: Fri, 19 Jul 2013 02:10:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #13 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-> It seems like testing out an old kernel is easy by comparison. However I
-> don't hold out a huge amount of hope for it, since like you said, eld_valid
-> = 0, which more likely indicates an EDID issue.
-> 
-> If you're interested, some minor code inspection shows that at least some of
-> the logic is in nv50_display.c:nv50_audio_mode_set. You could add prints in
-> there to see what it's detecting stuff as. You could also add prints to
-> drm_edid.c:drm_detect_monitor_audio, perhaps your monitor's EDID is
-> different than what it expects.
-> 
-> Looks like there are a few prints already, you could see what happens when
-> you boot with drm.debug=0x06 which should output nouveau- and kms-related
-> debug statements.
+--- Comment #14 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+SURPRISE, SURPRISE
 
-Just to stay in sync:
-I'll start compiling
-linux-3.7.tar.xz of 12/11/12
-and report the results.
-I suppose "linux-3.7.tar.xz" is actually (in retrospect) linux-3.7.0
-but who (in their right mind) would have predicted in those days that there
-would ever be a 3.7.1, i.e., a real follow up to 3.7 !!!???
-Same for 3.8, etc.
-Anyway, we'll talk about those "drm.debug=0x06" later.
+alex[~]% uname -a
+Linux AlexP5 3.7.0 #1 SMP Thu Jul 18 21:38:56 EDT 2013 i686 i686 i386 GNU/Linux
 
-> perhaps your monitor's EDID is different than what it [drm_edid.c] expects
+alex[~]% cat /proc/asound/card1/eld#3.0
+monitor_present         1
+eld_valid               1
+monitor_name            ASUS VE258
+connection_type         HDMI
+eld_version             [0x2] CEA-861D or below
+edid_version            [0x3] CEA-861-B, C or D
+manufacture_id          0x6904
+product_id              0x25f1
+port_id                 0x0
+support_hdcp            0
+support_ai              0
+audio_sync_delay        0
+speakers                [0x1] FL/FR
+sad_count               1
+sad0_coding_type        [0x1] LPCM
+sad0_channels           2
+sad0_rates              [0x4e0] 32000 44100 48000 96000
+sad0_bits               [0xe0000] 16 20 24
 
-I'm far from an expert in EDIDs but the EDID parameters as reported by NVIDIA
-in its eld#3.0 and the Xorg log look pretty good (to my untrained eye).
-The monitor is relatively new (of this year, I suppose) made by a reputable
-manufacturer so they should know their way around what EDIDs must look like.
+alex[~]% aplay -D plughw:1,9 test.wav
+Playing WAVE 'test.wav' : Signed 16 bit Little Endian, Rate 44100 Hz, Stereo
+MUSIC TO MY HDMI EARS
+
+I'm attaching the respective dmesg and Xorg log.
+
+Ilia:
+
+Thank you for your relentless troubleshooting.
+Please, please, don't make me find out (bisect or otherwisw) at what 3.7.x
+somebody messed up royally.
+(In merchandising circles kernels 3.7+ (up to current 3.10.1) are called
+"NEW AND IMPROVED")
+
+Please have those guys clean up their mess as soon as possible (if they have
+any professional molecule in their blood).
+Thanks again, best wishes,
+-- Alex
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374193345.7D4e200.25585
-Date: Fri, 19 Jul 2013 00:22:25 +0000
+--1374199859.dD3Ff0.12664
+Date: Fri, 19 Jul 2013 02:10:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -82,43 +95,56 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c13">Comment # 13</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
               from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre><span class="quote">&gt; It seems like testing out an old kernel is easy by comparison. However I
-&gt; don't hold out a huge amount of hope for it, since like you said, eld_valid
-&gt; = 0, which more likely indicates an EDID issue.
-&gt; 
-&gt; If you're interested, some minor code inspection shows that at least some of
-&gt; the logic is in nv50_display.c:nv50_audio_mode_set. You could add prints in
-&gt; there to see what it's detecting stuff as. You could also add prints to
-&gt; drm_edid.c:drm_detect_monitor_audio, perhaps your monitor's EDID is
-&gt; different than what it expects.
-&gt; 
-&gt; Looks like there are a few prints already, you could see what happens when
-&gt; you boot with drm.debug=0x06 which should output nouveau- and kms-related
-&gt; debug statements.</span >
+        <pre>SURPRISE, SURPRISE
 
-Just to stay in sync:
-I'll start compiling
-linux-3.7.tar.xz of 12/11/12
-and report the results.
-I suppose &quot;linux-3.7.tar.xz&quot; is actually (in retrospect) linux-3.7.0
-but who (in their right mind) would have predicted in those days that there
-would ever be a 3.7.1, i.e., a real follow up to 3.7 !!!???
-Same for 3.8, etc.
-Anyway, we'll talk about those &quot;drm.debug=0x06&quot; later.
+alex[~]% uname -a
+Linux AlexP5 3.7.0 #1 SMP Thu Jul 18 21:38:56 EDT 2013 i686 i686 i386 GNU/Linux
 
-<span class="quote">&gt; perhaps your monitor's EDID is different than what it [drm_edid.c] expects</span >
+alex[~]% cat /proc/asound/card1/eld#3.0
+monitor_present         1
+eld_valid               1
+monitor_name            ASUS VE258
+connection_type         HDMI
+eld_version             [0x2] CEA-861D or below
+edid_version            [0x3] CEA-861-B, C or D
+manufacture_id          0x6904
+product_id              0x25f1
+port_id                 0x0
+support_hdcp            0
+support_ai              0
+audio_sync_delay        0
+speakers                [0x1] FL/FR
+sad_count               1
+sad0_coding_type        [0x1] LPCM
+sad0_channels           2
+sad0_rates              [0x4e0] 32000 44100 48000 96000
+sad0_bits               [0xe0000] 16 20 24
 
-I'm far from an expert in EDIDs but the EDID parameters as reported by NVIDIA
-in its eld#3.0 and the Xorg log look pretty good (to my untrained eye).
-The monitor is relatively new (of this year, I suppose) made by a reputable
-manufacturer so they should know their way around what EDIDs must look like.</pre>
+alex[~]% aplay -D plughw:1,9 test.wav
+Playing WAVE 'test.wav' : Signed 16 bit Little Endian, Rate 44100 Hz, Stereo
+MUSIC TO MY HDMI EARS
+
+I'm attaching the respective dmesg and Xorg log.
+
+Ilia:
+
+Thank you for your relentless troubleshooting.
+Please, please, don't make me find out (bisect or otherwisw) at what 3.7.x
+somebody messed up royally.
+(In merchandising circles kernels 3.7+ (up to current 3.10.1) are called
+&quot;NEW AND IMPROVED&quot;)
+
+Please have those guys clean up their mess as soon as possible (if they have
+any professional molecule in their blood).
+Thanks again, best wishes,
+-- Alex</pre>
         </div>
       </p>
       <hr>
@@ -130,9 +156,9 @@ manufacturer so they should know their way around what EDIDs must look like.</pr
     </body>
 </html>
 
---1374193345.7D4e200.25585--
+--1374199859.dD3Ff0.12664--
 
---===============0498140512==
+--===============0918658010==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -143,4 +169,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0498140512==--
+--===============0918658010==--
