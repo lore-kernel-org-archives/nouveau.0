@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Fri, 19 Jul 2013 17:06:03 +0000
-Message-ID: <bug-67051-8800-ysR3H8AJnk@http.bugs.freedesktop.org/>
+Date: Fri, 19 Jul 2013 19:10:46 +0000
+Message-ID: <bug-67051-8800-yYCXlBluVo@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0991959809=="
+Content-Type: multipart/mixed; boundary="===============0016519358=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,39 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0991959809==
-Content-Type: multipart/alternative; boundary="1374253563.cAABC40.15913"; charset="us-ascii"
+--===============0016519358==
+Content-Type: multipart/alternative; boundary="1374261046.EC3e0.31297"; charset="us-ascii"
 
 
---1374253563.cAABC40.15913
-Date: Fri, 19 Jul 2013 17:06:03 +0000
+--1374261046.EC3e0.31297
+Date: Fri, 19 Jul 2013 19:10:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #21 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I've exhausted all new 3.10.1 combinations (see below).
-All have a clean, complete card1/eld#3.0 now but NONE has HDMI SOUND.
+--- Comment #22 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi Ilia,
 
-1.  hdmi-1 + hdminva3-patch
-2.  hdmi-1 + hdmi-2 + hdminva3-patch
-3.  hdmi-1 + hdmi-2
-4.  hdmi-1
+I've built 3.7.10 (I was in the neighborhood, so I said, what the heck ...).
+Like 3.7.0, the same nice 'eld#3.0' file, the same nice HDMI sound.
 
-Please note that I repeatedly checked if there still was HDMI SOUND on 3.7.0
-(on the possibility that, say, the cat ate the cable in the interim - I don't
-have a cat, BTW :).
+Since it looks to me that 3.7.10 is the last "official" release before 3.8.0
+it appears that the ugly mistake was committed (so to speak) in between those
+two (as I mentioned, 3.8.0 already contains the bug - no HDMI sound).
 
-There must still be something, somewhere missing from the original, good 3.7.0
-logic.
+-- Alex
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374253563.cAABC40.15913
-Date: Fri, 19 Jul 2013 17:06:03 +0000
+--1374261046.EC3e0.31297
+Date: Fri, 19 Jul 2013 19:10:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,27 +62,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c21">Comment # 21</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
               from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>I've exhausted all new 3.10.1 combinations (see below).
-All have a clean, complete card1/eld#3.0 now but NONE has HDMI SOUND.
+        <pre>Hi Ilia,
 
-1.  hdmi-1 + hdminva3-patch
-2.  hdmi-1 + hdmi-2 + hdminva3-patch
-3.  hdmi-1 + hdmi-2
-4.  hdmi-1
+I've built 3.7.10 (I was in the neighborhood, so I said, what the heck ...).
+Like 3.7.0, the same nice 'eld#3.0' file, the same nice HDMI sound.
 
-Please note that I repeatedly checked if there still was HDMI SOUND on 3.7.0
-(on the possibility that, say, the cat ate the cable in the interim - I don't
-have a cat, BTW :).
+Since it looks to me that 3.7.10 is the last &quot;official&quot; release before 3.8.0
+it appears that the ugly mistake was committed (so to speak) in between those
+two (as I mentioned, 3.8.0 already contains the bug - no HDMI sound).
 
-There must still be something, somewhere missing from the original, good 3.7.0
-logic.</pre>
+-- Alex</pre>
         </div>
       </p>
       <hr>
@@ -98,9 +90,9 @@ logic.</pre>
     </body>
 </html>
 
---1374253563.cAABC40.15913--
+--1374261046.EC3e0.31297--
 
---===============0991959809==
+--===============0016519358==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0991959809==--
+--===============0016519358==--
