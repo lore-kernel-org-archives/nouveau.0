@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Thu, 18 Jul 2013 23:45:19 +0000
-Message-ID: <bug-67051-8800-0BsRDaFTRC@http.bugs.freedesktop.org/>
+Date: Fri, 19 Jul 2013 00:22:25 +0000
+Message-ID: <bug-67051-8800-MhyzoIr315@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1347167159=="
+Content-Type: multipart/mixed; boundary="===============0498140512=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,53 +20,55 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1347167159==
-Content-Type: multipart/alternative; boundary="1374191119.B7CFc061.18815"; charset="us-ascii"
+--===============0498140512==
+Content-Type: multipart/alternative; boundary="1374193345.7D4e200.25585"; charset="us-ascii"
 
 
---1374191119.B7CFc061.18815
-Date: Thu, 18 Jul 2013 23:45:19 +0000
+--1374193345.7D4e200.25585
+Date: Fri, 19 Jul 2013 00:22:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #10)
-> (In reply to comment #9)
-> > (b) Can you test out a 3.7-based kernel?
-> I suppose I can.  Let me know if it's critical for you to proceed with your
-> work.  I'd rather wait for some more of your thoughts/tests/results _if
-> possible_.  However, I'll jump to it immediately if you say the word.
+--- Comment #13 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+> It seems like testing out an old kernel is easy by comparison. However I
+> don't hold out a huge amount of hope for it, since like you said, eld_valid
+> = 0, which more likely indicates an EDID issue.
+> 
+> If you're interested, some minor code inspection shows that at least some of
+> the logic is in nv50_display.c:nv50_audio_mode_set. You could add prints in
+> there to see what it's detecting stuff as. You could also add prints to
+> drm_edid.c:drm_detect_monitor_audio, perhaps your monitor's EDID is
+> different than what it expects.
+> 
+> Looks like there are a few prints already, you could see what happens when
+> you boot with drm.debug=0x06 which should output nouveau- and kms-related
+> debug statements.
 
-Well, the situation is that I don't have any HDMI devices at all (either with
-HDMI outputs or inputs, forget HDMI audio), nor do I know anything about it. So
-if this doesn't work, that means that someone else needs to (a) reproduce your
-issue [and note, hdmi audio does work for some other people, so there must be
-something a bit more special about your situation, be it EDID data or more
-missed register setup], and (b) do the RE work to figure out what we're
-missing.
+Just to stay in sync:
+I'll start compiling
+linux-3.7.tar.xz of 12/11/12
+and report the results.
+I suppose "linux-3.7.tar.xz" is actually (in retrospect) linux-3.7.0
+but who (in their right mind) would have predicted in those days that there
+would ever be a 3.7.1, i.e., a real follow up to 3.7 !!!???
+Same for 3.8, etc.
+Anyway, we'll talk about those "drm.debug=0x06" later.
 
-It seems like testing out an old kernel is easy by comparison. However I don't
-hold out a huge amount of hope for it, since like you said, eld_valid = 0,
-which more likely indicates an EDID issue.
+> perhaps your monitor's EDID is different than what it [drm_edid.c] expects
 
-If you're interested, some minor code inspection shows that at least some of
-the logic is in nv50_display.c:nv50_audio_mode_set. You could add prints in
-there to see what it's detecting stuff as. You could also add prints to
-drm_edid.c:drm_detect_monitor_audio, perhaps your monitor's EDID is different
-than what it expects.
-
-Looks like there are a few prints already, you could see what happens when you
-boot with drm.debug=0x06 which should output nouveau- and kms-related debug
-statements.
+I'm far from an expert in EDIDs but the EDID parameters as reported by NVIDIA
+in its eld#3.0 and the Xorg log look pretty good (to my untrained eye).
+The monitor is relatively new (of this year, I suppose) made by a reputable
+manufacturer so they should know their way around what EDIDs must look like.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374191119.B7CFc061.18815
-Date: Thu, 18 Jul 2013 23:45:19 +0000
+--1374193345.7D4e200.25585
+Date: Fri, 19 Jul 2013 00:22:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -80,41 +82,43 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c12">Comment # 12</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67051#c10">comment #10</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=67051#c9">comment #9</a>)
-&gt; &gt; (b) Can you test out a 3.7-based kernel?
-&gt; I suppose I can.  Let me know if it's critical for you to proceed with your
-&gt; work.  I'd rather wait for some more of your thoughts/tests/results _if
-&gt; possible_.  However, I'll jump to it immediately if you say the word.</span >
+        <pre><span class="quote">&gt; It seems like testing out an old kernel is easy by comparison. However I
+&gt; don't hold out a huge amount of hope for it, since like you said, eld_valid
+&gt; = 0, which more likely indicates an EDID issue.
+&gt; 
+&gt; If you're interested, some minor code inspection shows that at least some of
+&gt; the logic is in nv50_display.c:nv50_audio_mode_set. You could add prints in
+&gt; there to see what it's detecting stuff as. You could also add prints to
+&gt; drm_edid.c:drm_detect_monitor_audio, perhaps your monitor's EDID is
+&gt; different than what it expects.
+&gt; 
+&gt; Looks like there are a few prints already, you could see what happens when
+&gt; you boot with drm.debug=0x06 which should output nouveau- and kms-related
+&gt; debug statements.</span >
 
-Well, the situation is that I don't have any HDMI devices at all (either with
-HDMI outputs or inputs, forget HDMI audio), nor do I know anything about it. So
-if this doesn't work, that means that someone else needs to (a) reproduce your
-issue [and note, hdmi audio does work for some other people, so there must be
-something a bit more special about your situation, be it EDID data or more
-missed register setup], and (b) do the RE work to figure out what we're
-missing.
+Just to stay in sync:
+I'll start compiling
+linux-3.7.tar.xz of 12/11/12
+and report the results.
+I suppose &quot;linux-3.7.tar.xz&quot; is actually (in retrospect) linux-3.7.0
+but who (in their right mind) would have predicted in those days that there
+would ever be a 3.7.1, i.e., a real follow up to 3.7 !!!???
+Same for 3.8, etc.
+Anyway, we'll talk about those &quot;drm.debug=0x06&quot; later.
 
-It seems like testing out an old kernel is easy by comparison. However I don't
-hold out a huge amount of hope for it, since like you said, eld_valid = 0,
-which more likely indicates an EDID issue.
+<span class="quote">&gt; perhaps your monitor's EDID is different than what it [drm_edid.c] expects</span >
 
-If you're interested, some minor code inspection shows that at least some of
-the logic is in nv50_display.c:nv50_audio_mode_set. You could add prints in
-there to see what it's detecting stuff as. You could also add prints to
-drm_edid.c:drm_detect_monitor_audio, perhaps your monitor's EDID is different
-than what it expects.
-
-Looks like there are a few prints already, you could see what happens when you
-boot with drm.debug=0x06 which should output nouveau- and kms-related debug
-statements.</pre>
+I'm far from an expert in EDIDs but the EDID parameters as reported by NVIDIA
+in its eld#3.0 and the Xorg log look pretty good (to my untrained eye).
+The monitor is relatively new (of this year, I suppose) made by a reputable
+manufacturer so they should know their way around what EDIDs must look like.</pre>
         </div>
       </p>
       <hr>
@@ -126,9 +130,9 @@ statements.</pre>
     </body>
 </html>
 
---1374191119.B7CFc061.18815--
+--1374193345.7D4e200.25585--
 
---===============1347167159==
+--===============0498140512==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -139,4 +143,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1347167159==--
+--===============0498140512==--
