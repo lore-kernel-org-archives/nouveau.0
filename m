@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Fri, 19 Jul 2013 20:00:50 +0000
-Message-ID: <bug-67051-8800-oVnzrpS01d@http.bugs.freedesktop.org/>
+Date: Fri, 19 Jul 2013 21:15:55 +0000
+Message-ID: <bug-67051-8800-rsmdXhD5oO@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1712943053=="
+Content-Type: multipart/mixed; boundary="===============1113003530=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,47 +20,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1712943053==
-Content-Type: multipart/alternative; boundary="1374264049.0D4201281.4969"; charset="us-ascii"
+--===============1113003530==
+Content-Type: multipart/alternative; boundary="1374268555.eBd68FFC1.14125"; charset="us-ascii"
 
 
---1374264049.0D4201281.4969
-Date: Fri, 19 Jul 2013 20:00:49 +0000
+--1374268555.eBd68FFC1.14125
+Date: Fri, 19 Jul 2013 21:15:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #23 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Alex, thanks for your thorough testing. Sad to hear that those patches don't do
-anything :(
+--- Comment #24 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Oh wait, interesting, I misread one of your comments.
 
-3.7.10 is not in between 3.7 and 3.8, it is on the "stable" release branch. But
-it's good to know that it works fine. (And you should definitely stay on 3.7.10
-vs 3.7 -- there were a couple of annoying bugs fixed in there, both nouveau-
-and security-related.)
+So with hdmi-1.patch, you *do* get the correct eld data. But still no sound,
+even with the hdminva3 file patched up as well. So I was right... but not
+enough.
 
-I'm afraid it might be bisect time -- if there are more differences, I don't
-see them. Knowing the exact commit may be able to refocus things. However this
-is not nearly as painful as you might think. I think it makes most sense to
-only bisect in drivers/gpu/drm/nouveau. Here's a basic guide:
-https://www.kernel.org/pub/software/scm/git/docs/git-bisect.html (you'll
-obviously need a linux git checkout, as well as the git tool).
+Forget the bisect, it probably won't tell me anything, sorry about that.
 
-You'll want to do something like
+Please test out the following things:
 
-git bisect start v3.8 v3.7 -- drivers/gpu/drm/nouveau
+(a) does f7960736d0b8647fd149687d15deb79e47122d69 work fine?
+(b) does a4feaf4ea5359db96a253154eafca358d16152b2 break?
+(c) does a4feaf4ea5359db96a253154eafca358d16152b2 + hdmi-1.patch work fine?
+(d) does 8e9e3d2deacc460fbb8a4691140318f6e85e6891 + hdmi-1.patch + hdminva3
+patch work fine?
 
-This should start you off (there will be ~7 kernel compiles, so really not that
-bad). Then you mark the kernels as good/bad and proceed. Please provide the
-full bisection log when you're done.
+[no need to try other patch combinations, these are the ones to test]
+
+You'll obviously need a linux git tree for this. I'm very curious to hear the
+answers. If you hit a "no" on one, no need to do the "later" questions (e.g. if
+(a) doesn't work, no need to do b/c/d).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374264049.0D4201281.4969
-Date: Fri, 19 Jul 2013 20:00:49 +0000
+--1374268555.eBd68FFC1.14125
+Date: Fri, 19 Jul 2013 21:15:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,35 +73,34 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c23">Comment # 23</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c24">Comment # 24</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Alex, thanks for your thorough testing. Sad to hear that those patches don't do
-anything :(
+        <pre>Oh wait, interesting, I misread one of your comments.
 
-3.7.10 is not in between 3.7 and 3.8, it is on the &quot;stable&quot; release branch. But
-it's good to know that it works fine. (And you should definitely stay on 3.7.10
-vs 3.7 -- there were a couple of annoying bugs fixed in there, both nouveau-
-and security-related.)
+So with hdmi-1.patch, you *do* get the correct eld data. But still no sound,
+even with the hdminva3 file patched up as well. So I was right... but not
+enough.
 
-I'm afraid it might be bisect time -- if there are more differences, I don't
-see them. Knowing the exact commit may be able to refocus things. However this
-is not nearly as painful as you might think. I think it makes most sense to
-only bisect in drivers/gpu/drm/nouveau. Here's a basic guide:
-<a href="https://www.kernel.org/pub/software/scm/git/docs/git-bisect.html">https://www.kernel.org/pub/software/scm/git/docs/git-bisect.html</a> (you'll
-obviously need a linux git checkout, as well as the git tool).
+Forget the bisect, it probably won't tell me anything, sorry about that.
 
-You'll want to do something like
+Please test out the following things:
 
-git bisect start v3.8 v3.7 -- drivers/gpu/drm/nouveau
+(a) does f7960736d0b8647fd149687d15deb79e47122d69 work fine?
+(b) does a4feaf4ea5359db96a253154eafca358d16152b2 break?
+(c) does a4feaf4ea5359db96a253154eafca358d16152b2 + hdmi-1.patch work fine?
+(d) does 8e9e3d2deacc460fbb8a4691140318f6e85e6891 + hdmi-1.patch + hdminva3
+patch work fine?
 
-This should start you off (there will be ~7 kernel compiles, so really not that
-bad). Then you mark the kernels as good/bad and proceed. Please provide the
-full bisection log when you're done.</pre>
+[no need to try other patch combinations, these are the ones to test]
+
+You'll obviously need a linux git tree for this. I'm very curious to hear the
+answers. If you hit a &quot;no&quot; on one, no need to do the &quot;later&quot; questions (e.g. if
+(a) doesn't work, no need to do b/c/d).</pre>
         </div>
       </p>
       <hr>
@@ -114,9 +112,9 @@ full bisection log when you're done.</pre>
     </body>
 </html>
 
---1374264049.0D4201281.4969--
+--1374268555.eBd68FFC1.14125--
 
---===============1712943053==
+--===============1113003530==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,4 +125,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1712943053==--
+--===============1113003530==--
