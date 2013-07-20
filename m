@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Sat, 20 Jul 2013 03:11:03 +0000
-Message-ID: <bug-67051-8800-JrDgcVST26@http.bugs.freedesktop.org/>
+Date: Sat, 20 Jul 2013 04:11:42 +0000
+Message-ID: <bug-67051-8800-ZEGy2n0zGa@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0326860276=="
+Content-Type: multipart/mixed; boundary="===============0194796907=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,37 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0326860276==
-Content-Type: multipart/alternative; boundary="1374289863.A07107E1.23932"; charset="us-ascii"
+--===============0194796907==
+Content-Type: multipart/alternative; boundary="1374293502.273561.30324"; charset="us-ascii"
 
 
---1374289863.A07107E1.23932
-Date: Sat, 20 Jul 2013 03:11:03 +0000
+--1374293502.273561.30324
+Date: Sat, 20 Jul 2013 04:11:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #28 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-That's all very interesting. I suspect that the way that things are
-implemented, there's no correlation between "eld data showing" and "things
-actually work". OK, so my hdmi-1.patch fixes the ELD stuff, I'll send that off.
-I'm going to include your name/email (as you have it listed here) as
-Reported-and-tested-by in the patch description; let me know soon if you'd
-rather I left you off.
-
-But 8e9e3d2deacc460fbb8a4691140318f6e85e6891 has some second regression which
-matters for your card. I'll look at that change harder, looks like there's some
-other diff that my hdminva3 patch didn't cover.
-
-As always, thanks for testing.
+--- Comment #29 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 82712
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82712&action=edit
+hdminva3-2.patch
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374289863.A07107E1.23932
-Date: Sat, 20 Jul 2013 03:11:03 +0000
+--1374293502.273561.30324
+Date: Sat, 20 Jul 2013 04:11:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,25 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c28">Comment # 28</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c29">Comment # 29</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>That's all very interesting. I suspect that the way that things are
-implemented, there's no correlation between &quot;eld data showing&quot; and &quot;things
-actually work&quot;. OK, so my hdmi-1.patch fixes the ELD stuff, I'll send that off.
-I'm going to include your name/email (as you have it listed here) as
-Reported-and-tested-by in the patch description; let me know soon if you'd
-rather I left you off.
-
-But 8e9e3d2deacc460fbb8a4691140318f6e85e6891 has some second regression which
-matters for your card. I'll look at that change harder, looks like there's some
-other diff that my hdminva3 patch didn't cover.
-
-As always, thanks for testing.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=82712" name="attach_82712" title="hdminva3-2.patch">attachment 82712</a> <a href="attachment.cgi?id=82712&amp;action=edit" title="hdminva3-2.patch">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=67051&amp;attachment=82712'>[review]</a>
+hdminva3-2.patch</pre>
         </div>
       </p>
       <hr>
@@ -94,9 +75,9 @@ As always, thanks for testing.</pre>
     </body>
 </html>
 
---1374289863.A07107E1.23932--
+--1374293502.273561.30324--
 
---===============0326860276==
+--===============0194796907==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -107,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0326860276==--
+--===============0194796907==--
