@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Sun, 21 Jul 2013 00:32:54 +0000
-Message-ID: <bug-67051-8800-pbkrDw7yoq@http.bugs.freedesktop.org/>
+Date: Sun, 21 Jul 2013 00:37:24 +0000
+Message-ID: <bug-67051-8800-1wQf2H5NCn@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0790415103=="
+Content-Type: multipart/mixed; boundary="===============2141217719=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0790415103==
-Content-Type: multipart/alternative; boundary="1374366774.Dee0AEFB1.15513"; charset="us-ascii"
+--===============2141217719==
+Content-Type: multipart/alternative; boundary="1374367044.02BAaA1.15904"; charset="us-ascii"
 
 
---1374366774.Dee0AEFB1.15513
-Date: Sun, 21 Jul 2013 00:32:54 +0000
+--1374367044.02BAaA1.15904
+Date: Sun, 21 Jul 2013 00:37:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #37 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 82754
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82754&action=edit
+--- Comment #38 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Same as before, but now with:
+
+8e9e3d2deacc460fbb8a4691140318f6e85e6891 + hdmi-1.patch + hdminva3.patch +
 hdminva3-4.patch
+
+BTW, do make sure that you're booting the right kernels/installing modules (I
+assume nouveau is a module in your case). In case you weren't doing that, and
+this patch works, please go back and re-test the various patch versions.
+
+If this doesn't work, I think the next logical move is to run mmiotrace on a
+working kernel and the above patched up kernel, and compare the traces to see
+what it is that we're messing up. I think that the old logic accidentally read
+random garbage off the stack and wrote it to registers, so perhaps that random
+garbage happened to be correct.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374366774.Dee0AEFB1.15513
-Date: Sun, 21 Jul 2013 00:32:54 +0000
+--1374367044.02BAaA1.15904
+Date: Sun, 21 Jul 2013 00:37:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +66,27 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c37">Comment # 37</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c38">Comment # 38</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82754" name="attach_82754" title="hdminva3-4.patch">attachment 82754</a> <a href="attachment.cgi?id=82754&amp;action=edit" title="hdminva3-4.patch">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=67051&amp;attachment=82754'>[review]</a>
-hdminva3-4.patch</pre>
+        <pre>Same as before, but now with:
+
+8e9e3d2deacc460fbb8a4691140318f6e85e6891 + hdmi-1.patch + hdminva3.patch +
+hdminva3-4.patch
+
+BTW, do make sure that you're booting the right kernels/installing modules (I
+assume nouveau is a module in your case). In case you weren't doing that, and
+this patch works, please go back and re-test the various patch versions.
+
+If this doesn't work, I think the next logical move is to run mmiotrace on a
+working kernel and the above patched up kernel, and compare the traces to see
+what it is that we're messing up. I think that the old logic accidentally read
+random garbage off the stack and wrote it to registers, so perhaps that random
+garbage happened to be correct.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +98,9 @@ hdminva3-4.patch</pre>
     </body>
 </html>
 
---1374366774.Dee0AEFB1.15513--
+--1374367044.02BAaA1.15904--
 
---===============0790415103==
+--===============2141217719==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +111,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0790415103==--
+--===============2141217719==--
