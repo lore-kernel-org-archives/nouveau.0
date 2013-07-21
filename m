@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Sun, 21 Jul 2013 00:37:24 +0000
-Message-ID: <bug-67051-8800-1wQf2H5NCn@http.bugs.freedesktop.org/>
+Date: Sun, 21 Jul 2013 00:57:11 +0000
+Message-ID: <bug-67051-8800-wicDlBjKnX@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2141217719=="
+Content-Type: multipart/mixed; boundary="===============1644684855=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,39 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2141217719==
-Content-Type: multipart/alternative; boundary="1374367044.02BAaA1.15904"; charset="us-ascii"
+--===============1644684855==
+Content-Type: multipart/alternative; boundary="1374368231.53Ee30.17491"; charset="us-ascii"
 
 
---1374367044.02BAaA1.15904
-Date: Sun, 21 Jul 2013 00:37:24 +0000
+--1374368231.53Ee30.17491
+Date: Sun, 21 Jul 2013 00:57:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #38 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Same as before, but now with:
+--- Comment #39 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #38)
 
-8e9e3d2deacc460fbb8a4691140318f6e85e6891 + hdmi-1.patch + hdminva3.patch +
-hdminva3-4.patch
+Just a quick thought
 
-BTW, do make sure that you're booting the right kernels/installing modules (I
-assume nouveau is a module in your case). In case you weren't doing that, and
-this patch works, please go back and re-test the various patch versions.
+> BTW, do make sure that you're booting the right kernels/installing modules
+> (I assume nouveau is a module in your case).
 
-If this doesn't work, I think the next logical move is to run mmiotrace on a
-working kernel and the above patched up kernel, and compare the traces to see
-what it is that we're messing up. I think that the old logic accidentally read
-random garbage off the stack and wrote it to registers, so perhaps that random
-garbage happened to be correct.
+1.  After 'make' I do a 'make install'.  Should be fool-proof.  Or not?
+2.  As for sound, my truly full-proof method is to go back to 3.7.10 every once
+in a while and confirm it.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374367044.02BAaA1.15904
-Date: Sun, 21 Jul 2013 00:37:24 +0000
+--1374368231.53Ee30.17491
+Date: Sun, 21 Jul 2013 00:57:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,27 +62,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c38">Comment # 38</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c39">Comment # 39</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>Same as before, but now with:
+        <pre>(In reply to <a href="show_bug.cgi?id=67051#c38">comment #38</a>)
 
-8e9e3d2deacc460fbb8a4691140318f6e85e6891 + hdmi-1.patch + hdminva3.patch +
-hdminva3-4.patch
+Just a quick thought
 
-BTW, do make sure that you're booting the right kernels/installing modules (I
-assume nouveau is a module in your case). In case you weren't doing that, and
-this patch works, please go back and re-test the various patch versions.
+<span class="quote">&gt; BTW, do make sure that you're booting the right kernels/installing modules
+&gt; (I assume nouveau is a module in your case).</span >
 
-If this doesn't work, I think the next logical move is to run mmiotrace on a
-working kernel and the above patched up kernel, and compare the traces to see
-what it is that we're messing up. I think that the old logic accidentally read
-random garbage off the stack and wrote it to registers, so perhaps that random
-garbage happened to be correct.</pre>
+1.  After 'make' I do a 'make install'.  Should be fool-proof.  Or not?
+2.  As for sound, my truly full-proof method is to go back to 3.7.10 every once
+in a while and confirm it.</pre>
         </div>
       </p>
       <hr>
@@ -98,9 +90,9 @@ garbage happened to be correct.</pre>
     </body>
 </html>
 
---1374367044.02BAaA1.15904--
+--1374368231.53Ee30.17491--
 
---===============2141217719==
+--===============1644684855==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2141217719==--
+--===============1644684855==--
