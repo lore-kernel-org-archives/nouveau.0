@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Sun, 21 Jul 2013 01:01:20 +0000
-Message-ID: <bug-67051-8800-JdLJJRGVyo@http.bugs.freedesktop.org/>
+Date: Sun, 21 Jul 2013 01:21:43 +0000
+Message-ID: <bug-67051-8800-HBrpDxwQt8@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0078753928=="
+Content-Type: multipart/mixed; boundary="===============1328517864=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,50 +20,58 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0078753928==
-Content-Type: multipart/alternative; boundary="1374368480.CBEA576D1.18267"; charset="us-ascii"
+--===============1328517864==
+Content-Type: multipart/alternative; boundary="1374369703.781CD0.20754"; charset="us-ascii"
 
 
---1374368480.CBEA576D1.18267
-Date: Sun, 21 Jul 2013 01:01:20 +0000
+--1374369703.781CD0.20754
+Date: Sun, 21 Jul 2013 01:21:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #40 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #39)
-> (In reply to comment #38)
-> 
-> Just a quick thought
-> 
-> > BTW, do make sure that you're booting the right kernels/installing modules
-> > (I assume nouveau is a module in your case).
-> 
-> 1.  After 'make' I do a 'make install'.  Should be fool-proof.  Or not?
+--- Comment #41 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 
-Don't know what "make install" really does, I've never used it. I think it
-tends to hook into distro stuff. Hopefully it also installs modules, not just
-the kernel. I usually run "make modules_install". But I don't know if that's
-the right thing to do on your distro/the way that you're setting up kernels.
+> Don't know what "make install" really does, I've never used it. 
 
-> 2.  As for sound, my truly full-proof method is to go back to 3.7.10 every
-> once in a while and confirm it.
+My bad (my "quick thought" was way too quick).
+I was talking about 'make module_install'.
 
-That doesn't say anything about your procedure though. Perhaps do a 
+Anyway, to make it more precise and not affected by my state of exhaustion,
+I present my script I use"
 
-git checkout drivers/gpu/drm/nouveau
-git checkout a4feaf4ea5359db96a253154eafca358d16152b2
+#!/bin/bash -e
+# AFTER 
+#  cd /root/linux
+#  git checkout 8e9e3d2deacc460fbb8a4691140318f6e85e6891
+#  Make changes (apply, remove patches, etc.)
+cd /root/linux
+make mrproper &&
+cp -p /boot/config/config-3.7.0-rc4+-1-P5E-74G .config
+make menuconfig
+make oldconfig && ls -ogtr .config*
+time make -j4 ; echo $?
+make modules_install &&
+ls -ogtr /lib/modules
+cd /boot &&
+ cp -p /root/linux/arch/i386/boot/bzImage LFSkernel-3.7.0-1 &&
+ cp -p /root/linux/System.map System.map-3.7.0-1 &&
+ ln -fs LFSkernel-3.7.0-1 LFSkernel &&
+ ln -fs System.map-3.7.0-1 System.map && ls -ogtr
+set +e
+read -s -n1 -t20 -p "(Hit a key to continue)" ; echo
+reboot
 
-And re-build/install in the same way as you've been doing and make sure that
-HDMI sound works (and that the eld file doesn't, as you had verified earlier).
+and attach the standard '.config' (see above).  Not perfection by any standards
+but it is based on the 3.7.10 version and it adequate for these tests.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374368480.CBEA576D1.18267
-Date: Sun, 21 Jul 2013 01:01:20 +0000
+--1374369703.781CD0.20754
+Date: Sun, 21 Jul 2013 01:21:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -77,38 +85,46 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c40">Comment # 40</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c41">Comment # 41</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67051#c39">comment #39</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=67051#c38">comment #38</a>)
-&gt; 
-&gt; Just a quick thought
-&gt; 
-&gt; &gt; BTW, do make sure that you're booting the right kernels/installing modules
-&gt; &gt; (I assume nouveau is a module in your case).
-&gt; 
-&gt; 1.  After 'make' I do a 'make install'.  Should be fool-proof.  Or not?</span >
+        <pre>
+<span class="quote">&gt; Don't know what &quot;make install&quot; really does, I've never used it. </span >
 
-Don't know what &quot;make install&quot; really does, I've never used it. I think it
-tends to hook into distro stuff. Hopefully it also installs modules, not just
-the kernel. I usually run &quot;make modules_install&quot;. But I don't know if that's
-the right thing to do on your distro/the way that you're setting up kernels.
+My bad (my &quot;quick thought&quot; was way too quick).
+I was talking about 'make module_install'.
 
-<span class="quote">&gt; 2.  As for sound, my truly full-proof method is to go back to 3.7.10 every
-&gt; once in a while and confirm it.</span >
+Anyway, to make it more precise and not affected by my state of exhaustion,
+I present my script I use&quot;
 
-That doesn't say anything about your procedure though. Perhaps do a 
+#!/bin/bash -e
+# AFTER 
+#  cd /root/linux
+#  git checkout 8e9e3d2deacc460fbb8a4691140318f6e85e6891
+#  Make changes (apply, remove patches, etc.)
+cd /root/linux
+make mrproper &amp;&amp;
+cp -p /boot/config/config-3.7.0-rc4+-1-P5E-74G .config
+make menuconfig
+make oldconfig &amp;&amp; ls -ogtr .config*
+time make -j4 ; echo $?
+make modules_install &amp;&amp;
+ls -ogtr /lib/modules
+cd /boot &amp;&amp;
+ cp -p /root/linux/arch/i386/boot/bzImage LFSkernel-3.7.0-1 &amp;&amp;
+ cp -p /root/linux/System.map System.map-3.7.0-1 &amp;&amp;
+ ln -fs LFSkernel-3.7.0-1 LFSkernel &amp;&amp;
+ ln -fs System.map-3.7.0-1 System.map &amp;&amp; ls -ogtr
+set +e
+read -s -n1 -t20 -p &quot;(Hit a key to continue)&quot; ; echo
+reboot
 
-git checkout drivers/gpu/drm/nouveau
-git checkout a4feaf4ea5359db96a253154eafca358d16152b2
-
-And re-build/install in the same way as you've been doing and make sure that
-HDMI sound works (and that the eld file doesn't, as you had verified earlier).</pre>
+and attach the standard '.config' (see above).  Not perfection by any standards
+but it is based on the 3.7.10 version and it adequate for these tests.</pre>
         </div>
       </p>
       <hr>
@@ -120,9 +136,9 @@ HDMI sound works (and that the eld file doesn't, as you had verified earlier).</
     </body>
 </html>
 
---1374368480.CBEA576D1.18267--
+--1374369703.781CD0.20754--
 
---===============0078753928==
+--===============1328517864==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -133,4 +149,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0078753928==--
+--===============1328517864==--
