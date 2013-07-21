@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Sun, 21 Jul 2013 02:50:14 +0000
-Message-ID: <bug-67051-8800-t6IZggfc50@http.bugs.freedesktop.org/>
+Date: Sun, 21 Jul 2013 03:02:29 +0000
+Message-ID: <bug-67051-8800-PIV6IAcOGk@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0574232336=="
+Content-Type: multipart/mixed; boundary="===============1826709486=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,33 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0574232336==
-Content-Type: multipart/alternative; boundary="1374375014.fFD71.31261"; charset="us-ascii"
+--===============1826709486==
+Content-Type: multipart/alternative; boundary="1374375749.5E155ae80.32766"; charset="us-ascii"
 
 
---1374375014.fFD71.31261
-Date: Sun, 21 Jul 2013 02:50:14 +0000
+--1374375749.5E155ae80.32766
+Date: Sun, 21 Jul 2013 03:02:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #44 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #43)
-> 8e9e3d2deacc460fbb8a4691140318f6e85e6891 + hdmi-1.patch + hdminva3.patch +
-> hdminva3-4.patch
-> 
-> eld#3.0 Good   NO HDMI sound
-
-Just to make sure we're talking about the same thing, mind uploading your
-hdminva3.patch to the bugtracker?
+--- Comment #45 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 82756
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82756&action=edit
+hdminva3.patch
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374375014.fFD71.31261
-Date: Sun, 21 Jul 2013 02:50:14 +0000
+--1374375749.5E155ae80.32766
+Date: Sun, 21 Jul 2013 03:02:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,21 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c44">Comment # 44</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c45">Comment # 45</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67051#c43">comment #43</a>)
-<span class="quote">&gt; 8e9e3d2deacc460fbb8a4691140318f6e85e6891 + hdmi-1.patch + hdminva3.patch +
-&gt; hdminva3-4.patch
-&gt; 
-&gt; eld#3.0 Good   NO HDMI sound</span >
-
-Just to make sure we're talking about the same thing, mind uploading your
-hdminva3.patch to the bugtracker?</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=82756" name="attach_82756" title="hdminva3.patch">attachment 82756</a> <a href="attachment.cgi?id=82756&amp;action=edit" title="hdminva3.patch">[details]</a></span>
+hdminva3.patch</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +75,9 @@ hdminva3.patch to the bugtracker?</pre>
     </body>
 </html>
 
---1374375014.fFD71.31261--
+--1374375749.5E155ae80.32766--
 
---===============0574232336==
+--===============1826709486==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0574232336==--
+--===============1826709486==--
