@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Mon, 22 Jul 2013 05:14:35 +0000
-Message-ID: <bug-67051-8800-8jZiHSDgQV@http.bugs.freedesktop.org/>
+Date: Mon, 22 Jul 2013 05:15:05 +0000
+Message-ID: <bug-67051-8800-rhCENOoaYB@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1869214342=="
+Content-Type: multipart/mixed; boundary="===============1907669555=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,35 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1869214342==
-Content-Type: multipart/alternative; boundary="1374470075.B3641.28473"; charset="us-ascii"
+--===============1907669555==
+Content-Type: multipart/alternative; boundary="1374470105.B01E821.28534"; charset="us-ascii"
 
 
---1374470075.B3641.28473
-Date: Mon, 22 Jul 2013 05:14:35 +0000
+--1374470105.B01E821.28534
+Date: Mon, 22 Jul 2013 05:15:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #55 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #54)
-> Well that didn't work. Looks like you need to build with
+--- Comment #56 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #55)
+> (In reply to comment #54)
+> > Well that didn't work. Looks like you need to build with
+> > 
+> > CONFIG_NOUVEAU_DEBUG=7
+> > 
+> > I'm looking for *TONS* of output of the form nv_wr32(...)/etc. Please do
+> > this with both kernels. Don't bother uploading logs if you're not seeing
+> > that.
 > 
-> CONFIG_NOUVEAU_DEBUG=7
-> 
-> I'm looking for *TONS* of output of the form nv_wr32(...)/etc. Please do
-> this with both kernels. Don't bother uploading logs if you're not seeing
-> that.
+> Oh, and also looks like it should be nouveau.debug=PDISP=debug
 
-Oh, and also looks like it should be nouveau.debug=PDISP=debug
+ugh, i'm tired. nouveau.debug=PDISP=spam
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374470075.B3641.28473
-Date: Mon, 22 Jul 2013 05:14:35 +0000
+--1374470105.B01E821.28534
+Date: Mon, 22 Jul 2013 05:15:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,23 +65,26 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c55">Comment # 55</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c56">Comment # 56</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67051#c54">comment #54</a>)
-<span class="quote">&gt; Well that didn't work. Looks like you need to build with
+        <pre>(In reply to <a href="show_bug.cgi?id=67051#c55">comment #55</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=67051#c54">comment #54</a>)
+&gt; &gt; Well that didn't work. Looks like you need to build with
+&gt; &gt; 
+&gt; &gt; CONFIG_NOUVEAU_DEBUG=7
+&gt; &gt; 
+&gt; &gt; I'm looking for *TONS* of output of the form nv_wr32(...)/etc. Please do
+&gt; &gt; this with both kernels. Don't bother uploading logs if you're not seeing
+&gt; &gt; that.
 &gt; 
-&gt; CONFIG_NOUVEAU_DEBUG=7
-&gt; 
-&gt; I'm looking for *TONS* of output of the form nv_wr32(...)/etc. Please do
-&gt; this with both kernels. Don't bother uploading logs if you're not seeing
-&gt; that.</span >
+&gt; Oh, and also looks like it should be nouveau.debug=PDISP=debug</span >
 
-Oh, and also looks like it should be nouveau.debug=PDISP=debug</pre>
+ugh, i'm tired. nouveau.debug=PDISP=spam</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +96,9 @@ Oh, and also looks like it should be nouveau.debug=PDISP=debug</pre>
     </body>
 </html>
 
---1374470075.B3641.28473--
+--1374470105.B01E821.28534--
 
---===============1869214342==
+--===============1907669555==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +109,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1869214342==--
+--===============1907669555==--
