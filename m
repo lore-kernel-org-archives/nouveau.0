@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Mon, 22 Jul 2013 17:47:43 +0000
-Message-ID: <bug-67051-8800-hDRXYiNz1b@http.bugs.freedesktop.org/>
+Date: Mon, 22 Jul 2013 17:49:40 +0000
+Message-ID: <bug-67051-8800-25gMz0Idub@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0988442785=="
+Content-Type: multipart/mixed; boundary="===============0783251511=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0988442785==
-Content-Type: multipart/alternative; boundary="1374515263.342f2c30.10423"; charset="us-ascii"
+--===============0783251511==
+Content-Type: multipart/alternative; boundary="1374515380.A54acEF50.10607"; charset="us-ascii"
 
 
---1374515263.342f2c30.10423
-Date: Mon, 22 Jul 2013 17:47:43 +0000
+--1374515380.A54acEF50.10607
+Date: Mon, 22 Jul 2013 17:49:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #58 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 82834
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82834&action=edit
-e8 dmesg with DEBUG=7
+--- Comment #59 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 82835
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82835&action=edit
+config with DEBUG=7
+
+The '.config' file used during the two tests (f7 and e8) for your perusal and
+critique.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374515263.342f2c30.10423
-Date: Mon, 22 Jul 2013 17:47:43 +0000
+--1374515380.A54acEF50.10607
+Date: Mon, 22 Jul 2013 17:49:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c58">Comment # 58</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c59">Comment # 59</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
               from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82834" name="attach_82834" title="e8 dmesg with DEBUG=7">attachment 82834</a> <a href="attachment.cgi?id=82834&amp;action=edit" title="e8 dmesg with DEBUG=7">[details]</a></span>
-e8 dmesg with DEBUG=7</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=82835" name="attach_82835" title="config with DEBUG=7">attachment 82835</a> <a href="attachment.cgi?id=82835&amp;action=edit" title="config with DEBUG=7">[details]</a></span>
+config with DEBUG=7
+
+The '.config' file used during the two tests (f7 and e8) for your perusal and
+critique.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +81,9 @@ e8 dmesg with DEBUG=7</pre>
     </body>
 </html>
 
---1374515263.342f2c30.10423--
+--1374515380.A54acEF50.10607--
 
---===============0988442785==
+--===============0783251511==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0988442785==--
+--===============0783251511==--
