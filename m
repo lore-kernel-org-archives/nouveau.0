@@ -1,10 +1,9 @@
-From: christopher.halse.rogers-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org
-Subject: [RFC PATCH] Support running nested in a Mir compositor
-Date: Mon, 22 Jul 2013 17:51:22 +1000
-Message-ID: <1374479482-24804-1-git-send-email-christopher.halse.rogers@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 67161] New: Blank video after resuming from S3 or S4
+Date: Mon, 22 Jul 2013 10:46:33 +0000
+Message-ID: <bug-67161-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0450282303=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -16,210 +15,251 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Christopher James Halse Rogers <raof-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogQ2hyaXN0b3BoZXIgSmFtZXMgSGFsc2UgUm9nZXJzIDxyYW9mQHVidW50dS5jb20+CgpC
-YXJyaW5nIHNvbWUgKGFkbWl0dGVkbHkgc2lnbmlmaWNhbnQpIG1pc3Npbmcgb3B0aW1pc2F0aW9u
-c8K5IHRoaXMgaXMgcmVhc29uYWJseQpjb21wbGV0ZSwgYnV0IGNhbid0IGJlIGFwcGxpZWQgdW50
-aWwgdGhlIFhzZXJ2ZXIgcGF0Y2ggaGFzIGxhbmRlZCwKYW5kIHRoYXQgbmVlZHMgbW9yZSB3b3Jr
-LgoKVGhpcyBkZW1vbnN0cmF0ZXMgdGhlIGFwcHJvYWNoLCBob3dldmVyLgoKVGhlcmUncyBwcm9i
-YWJseSBzb21lIGNvZGUgdG8gYmUgc2hhcmVkIHdpdGggWFdheWxhbmQgc3VwcG9ydCwgYXJvdW5k
-IHRoZQpvdXRwdXQgaGFuZGxpbmcgKG9yIGxhY2sgdGhlcmVvZikgYW5kIHBvc3NpYmx5IGludGVn
-cmF0aW9uIHdpdGggdGhlIHVuZGVybHlpbmcKY29tcG9zaXRvciBmb3IgU3dhcEJ1ZmZlcnMgZXRj
-LgoKwrk6IFN1Y2ggYXMgbm90IGRvaW5nIGEgZnVsbHNjcmVlbiBibGl0IG9uIGFsbCBkYW1hZ2Us
-IGludGVncmF0aW9uIHdpdGgKRFJJMiBhbmQgU3dhcEJ1ZmZlcnMgdG8gYXZvaWQgY29waWVzLCBl
-dGMuCgpTaWduZWQtb2ZmLWJ5OiBDaHJpc3RvcGhlciBKYW1lcyBIYWxzZSBSb2dlcnMgPHJhb2ZA
-dWJ1bnR1LmNvbT4KLS0tCiBzcmMvbm91dmVhdV9kcmkyLmMgfCAgMjIgKysrKysrLQogc3JjL252
-X2RyaXZlci5jICAgIHwgMTcwICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKystLS0tCiBzcmMvbnZfdHlwZS5oICAgICAgfCAgMTAgKysrKwogMyBmaWxlcyBj
-aGFuZ2VkLCAxODggaW5zZXJ0aW9ucygrKSwgMTQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEv
-c3JjL25vdXZlYXVfZHJpMi5jIGIvc3JjL25vdXZlYXVfZHJpMi5jCmluZGV4IDM3ODU5NTYuLjJh
-ZDk5MzIgMTAwNjQ0Ci0tLSBhL3NyYy9ub3V2ZWF1X2RyaTIuYworKysgYi9zcmMvbm91dmVhdV9k
-cmkyLmMKQEAgLTI2Nyw3ICsyNjcsNyBAQCBjYW5fZXhjaGFuZ2UoRHJhd2FibGVQdHIgZHJhdywg
-UGl4bWFwUHRyIGRzdF9waXgsIFBpeG1hcFB0ciBzcmNfcGl4KQogCU5WUHRyIHBOdiA9IE5WUFRS
-KHNjcm4pOwogCWludCBpOwogCi0JaWYgKCF4Zjg2X2NvbmZpZy0+bnVtX2NydGMpCisJaWYgKHhv
-cmdNaXIgfHwgIXhmODZfY29uZmlnLT5udW1fY3J0YykKIAkJcmV0dXJuIEZBTFNFOwogCiAJZm9y
-IChpID0gMDsgaSA8IHhmODZfY29uZmlnLT5udW1fY3J0YzsgaSsrKSB7CkBAIC0yOTAsNyArMjkw
-LDcgQEAgY2FuX3N5bmNfdG9fdmJsYW5rKERyYXdhYmxlUHRyIGRyYXcpCiAJU2NybkluZm9QdHIg
-c2NybiA9IHhmODZTY3JlZW5Ub1Njcm4oZHJhdy0+cFNjcmVlbik7CiAJTlZQdHIgcE52ID0gTlZQ
-VFIoc2Nybik7CiAKLQlyZXR1cm4gcE52LT5nbHhfdmJsYW5rICYmCisJcmV0dXJuIHBOdi0+Z2x4
-X3ZibGFuayAmJiAheG9yZ01pciAmJgogCQludl93aW5kb3dfYmVsb25nc190b19jcnRjKHNjcm4s
-IGRyYXctPngsIGRyYXctPnksCiAJCQkJCSAgZHJhdy0+d2lkdGgsIGRyYXctPmhlaWdodCk7CiB9
-CkBAIC03NjYsNiArNzY2LDE5IEBAIG5vdXZlYXVfZHJpMl9mbGlwX2V2ZW50X2hhbmRsZXIodW5z
-aWduZWQgaW50IGZyYW1lLCB1bnNpZ25lZCBpbnQgdHZfc2VjLAogCWZyZWUoZmxpcCk7CiB9CiAK
-KyNpZiBEUkkySU5GT1JFQ19WRVJTSU9OID49IDggJiYgZGVmaW5lZChYTUlSKQorc3RhdGljIGlu
-dCBub3V2ZWF1X2RyaTJfYXV0aF9tYWdpYyhTY3JlZW5QdHIgcFNjcmVlbiwgdWludDMyX3QgbWFn
-aWMpCit7CisgICAgU2NybkluZm9QdHIgcFNjcm4gPSB4Zjg2U2NyZWVuVG9TY3JuKHBTY3JlZW4p
-OworICAgIE5WUHRyIHBOdiA9IE5WUFRSKHBTY3JuKTsKKworICAgIGlmICh4b3JnTWlyKQorCXJl
-dHVybiB4bWlyX2F1dGhfZHJtX21hZ2ljKHBOdi0+eG1pciwgbWFnaWMpOworICAgIGVsc2UKKwly
-ZXR1cm4gZHJtQXV0aE1hZ2ljKHBOdi0+ZGV2LT5mZCwgbWFnaWMpOworfQorI2VuZGlmCisKIEJv
-b2wKIG5vdXZlYXVfZHJpMl9pbml0KFNjcmVlblB0ciBwU2NyZWVuKQogewpAQCAtODA0LDYgKzgx
-NywxMSBAQCBub3V2ZWF1X2RyaTJfaW5pdChTY3JlZW5QdHIgcFNjcmVlbikKIAlkcmkyLkdldFBh
-cmFtID0gTlVMTDsKICNlbmRpZgogCisjaWYgRFJJMklORk9SRUNfVkVSU0lPTiA+PSA4ICYmIGRl
-ZmluZWQoWE1JUikKKwlkcmkyLnZlcnNpb24gPSA4OworCWRyaTIuQXV0aE1hZ2ljMiA9IG5vdXZl
-YXVfZHJpMl9hdXRoX21hZ2ljOworI2VuZGlmCisKICNpZiBEUkkySU5GT1JFQ19WRVJTSU9OID49
-IDkKIAlkcmkyLnZlcnNpb24gPSA5OwogCWRyaTIuQ3JlYXRlQnVmZmVyMiA9IG5vdXZlYXVfZHJp
-Ml9jcmVhdGVfYnVmZmVyMjsKZGlmZiAtLWdpdCBhL3NyYy9udl9kcml2ZXIuYyBiL3NyYy9udl9k
-cml2ZXIuYwppbmRleCBiODNiODIyLi45OWJkNzM1IDEwMDY0NAotLS0gYS9zcmMvbnZfZHJpdmVy
-LmMKKysrIGIvc3JjL252X2RyaXZlci5jCkBAIC0yMjYsNiArMjI2LDggQEAgTlZEcml2ZXJGdW5j
-KFNjcm5JbmZvUHRyIHNjcm4sIHhvcmdEcml2ZXJGdW5jT3Agb3AsIHZvaWQgKmRhdGEpCiAJY2Fz
-ZSBHRVRfUkVRVUlSRURfSFdfSU5URVJGQUNFUzoKIAkgICAgZmxhZyA9IChDQVJEMzIgKilkYXRh
-OwogCSAgICAoKmZsYWcpID0gMDsKKwkgICAgaWYgKHhvcmdNaXIpCisJCSpmbGFnIHw9IEhXX1NL
-SVBfQ09OU09MRTsKIAkgICAgcmV0dXJuIFRSVUU7CiAJZGVmYXVsdDoKIAkgICAgcmV0dXJuIEZB
-TFNFOwpAQCAtMzMzLDYgKzMzNSwyMyBAQCBOVkhhc0tNUyhzdHJ1Y3QgcGNpX2RldmljZSAqcGNp
-X2RldikKIH0KIAogc3RhdGljIEJvb2wKK05WSGFzTWlyU3VwcG9ydChzdHJ1Y3QgcGNpX2Rldmlj
-ZSAqcGNpX2RldikKK3sKKwljaGFyICpidXNpZDsKKworCWJ1c2lkID0gWE5GcHJpbnRmKCJwY2k6
-JTA0eDolMDJ4OiUwMnguJWQiLAorCQkJICBwY2lfZGV2LT5kb21haW4sIHBjaV9kZXYtPmJ1cywg
-cGNpX2Rldi0+ZGV2LCBwY2lfZGV2LT5mdW5jKTsKKworCWlmICh4bWlyX2dldF9kcm1fZmQoYnVz
-aWQpIDwgMCkgeworCQl4Zjg2RHJ2TXNnKC0xLCBYX0VSUk9SLCAiW1hNaXJdIEdQVSAlcyBub3Qg
-aGFuZGxlZCBieSBNaXJcbiIsIGJ1c2lkKTsKKwkJZnJlZShidXNpZCk7CisJCXJldHVybiBGQUxT
-RTsKKwl9CisJZnJlZShidXNpZCk7CisJcmV0dXJuIFRSVUU7Cit9CisKK3N0YXRpYyBCb29sCiBO
-VlBjaVByb2JlKERyaXZlclB0ciBkcnYsIGludCBlbnRpdHlfbnVtLCBzdHJ1Y3QgcGNpX2Rldmlj
-ZSAqcGNpX2RldiwKIAkgICBpbnRwdHJfdCBtYXRjaF9kYXRhKQogewpAQCAtMzQzLDYgKzM2Miw5
-IEBAIE5WUGNpUHJvYmUoRHJpdmVyUHRyIGRydiwgaW50IGVudGl0eV9udW0sIHN0cnVjdCBwY2lf
-ZGV2aWNlICpwY2lfZGV2LAogCX07CiAJU2NybkluZm9QdHIgcFNjcm4gPSBOVUxMOwogCisJaWYg
-KHhvcmdNaXIgJiYgIU5WSGFzTWlyU3VwcG9ydChwY2lfZGV2KSkKKwkJcmV0dXJuIEZBTFNFOwor
-CiAJaWYgKCFOVkhhc0tNUyhwY2lfZGV2KSkKIAkJcmV0dXJuIEZBTFNFOwogCkBAIC0zNjcsNiAr
-Mzg5LDkgQEAgTlZQbGF0Zm9ybVByb2JlKERyaXZlclB0ciBkcml2ZXIsCiAJaWYgKCFkZXYtPnBk
-ZXYpCiAJCXJldHVybiBGQUxTRTsKIAorCWlmICh4b3JnTWlyICYmICFOVkhhc01pclN1cHBvcnQo
-ZGV2LT5wZGV2KSkKKwkJcmV0dXJuIEZBTFNFOworCiAJaWYgKCFOVkhhc0tNUyhkZXYtPnBkZXYp
-KQogCQlyZXR1cm4gRkFMU0U7CiAKQEAgLTQyNCw5ICs0NDksMTEgQEAgTlZFbnRlclZUKFZUX0ZV
-TkNfQVJHU19ERUNMKQogCiAJeGY4NkRydk1zZyhwU2Nybi0+c2NybkluZGV4LCBYX0lORk8sICJO
-VkVudGVyVlQgaXMgY2FsbGVkLlxuIik7CiAKLQlyZXQgPSBkcm1TZXRNYXN0ZXIocE52LT5kZXYt
-PmZkKTsKLQlpZiAocmV0KQotCQlFcnJvckYoIlVuYWJsZSB0byBnZXQgbWFzdGVyOiAlc1xuIiwg
-c3RyZXJyb3IoZXJybm8pKTsKKwlpZiAoIXhvcmdNaXIpIHsKKwkJcmV0ID0gZHJtU2V0TWFzdGVy
-KHBOdi0+ZGV2LT5mZCk7CisJCWlmIChyZXQpCisJCQlFcnJvckYoIlVuYWJsZSB0byBnZXQgbWFz
-dGVyOiAlc1xuIiwgc3RyZXJyb3IoZXJybm8pKTsKKwl9CiAKIAlpZiAoWEY4Nl9DUlRDX0NPTkZJ
-R19QVFIocFNjcm4pLT5udW1fY3J0YyAmJiAheGY4NlNldERlc2lyZWRNb2RlcyhwU2NybikpCiAJ
-CXJldHVybiBGQUxTRTsKQEAgLTQ1Miw2ICs0NzksOSBAQCBOVkxlYXZlVlQoVlRfRlVOQ19BUkdT
-X0RFQ0wpCiAKIAl4Zjg2RHJ2TXNnKHBTY3JuLT5zY3JuSW5kZXgsIFhfSU5GTywgIk5WTGVhdmVW
-VCBpcyBjYWxsZWQuXG4iKTsKIAorCWlmICh4b3JnTWlyKQorCQlyZXR1cm47CisKIAlyZXQgPSBk
-cm1Ecm9wTWFzdGVyKHBOdi0+ZGV2LT5mZCk7CiAJaWYgKHJldCAmJiBlcnJubyAhPSBFSU8gJiYg
-ZXJybm8gIT0gRU5PREVWKQogCQlFcnJvckYoIkVycm9yIGRyb3BwaW5nIG1hc3RlcjogJWkoJW0p
-XG4iLCAtZXJybm8pOwpAQCAtNTAxLDYgKzUzMSw4OCBAQCBub3V2ZWF1X2RpcnR5X3VwZGF0ZShT
-Y3JlZW5QdHIgc2NyZWVuKQogfQogI2VuZGlmCiAKKyNpZmRlZiBYTUlSCitzdGF0aWMgdm9pZAor
-bm91dmVhdV94bWlyX2NvcHlfcGl4bWFwX3RvX21pcihQaXhtYXBQdHIgc3JjLCBpbnQgZmQpCit7
-CisJU2NyZWVuUHRyIHBTY3JlZW4gPSBzcmMtPmRyYXdhYmxlLnBTY3JlZW47CisJU2NybkluZm9Q
-dHIgcFNjcm4gPSB4Zjg2U2NyZWVuVG9TY3JuKHBTY3JlZW4pOworCU5WUHRyIHBOdiA9IE5WUFRS
-KHBTY3JuKTsKKwlFeGFEcml2ZXJQdHIgZXhhID0gcE52LT5FWEFEcml2ZXJQdHI7CisKKwlQaXht
-YXBQdHIgZHN0ID0gTlVMTDsKKwlpbnQgcmV0OworCXN0cnVjdCBub3V2ZWF1X2JvICpib19kc3Qg
-PSBOVUxMOworCisJcmV0ID0gbm91dmVhdV9ib19wcmltZV9oYW5kbGVfcmVmKHBOdi0+ZGV2LCBm
-ZCwgJmJvX2RzdCk7CisJRXJyb3JGKCJyZXQgPSAlaSBmb3IgYnVmZmVyICVpXG4iLCByZXQsIGZk
-KTsKKwlhc3NlcnQoIXJldCk7CisKKwlkc3QgPSBwU2NyZWVuLT5DcmVhdGVQaXhtYXAocFNjcmVl
-biwgMCwgMCwgcFNjcm4tPmRlcHRoLCAwKTsKKwlpZiAoZHN0ID09IE51bGxQaXhtYXApCisJCWdv
-dG8gY2xlYW51cF9ibzsKKworCXBTY3JlZW4tPk1vZGlmeVBpeG1hcEhlYWRlcihkc3QsIHBTY3Ju
-LT52aXJ0dWFsWCwgcFNjcm4tPnZpcnR1YWxZLCBwU2Nybi0+ZGVwdGgsIHBTY3JuLT5kZXB0aCwK
-KwkJCQkgICAgcFNjcm4tPnZpcnR1YWxYLCBOVUxMKTsKKwlub3V2ZWF1X2JvX3JlZihib19kc3Qs
-ICZub3V2ZWF1X3BpeG1hcChkc3QpLT5ibyk7CisKKwlyZXQgPSBleGEtPlByZXBhcmVDb3B5IChz
-cmMsIGRzdCwgMCwgMCwgR1hjb3B5LCBGQl9BTExPTkVTKTsKKwlpZiAocmV0KSB7CisJCWV4YS0+
-Q29weSAoZHN0LCAwLCAwLCAwLCAwLCBwU2Nybi0+dmlydHVhbFgsIHBTY3JuLT52aXJ0dWFsWSk7
-CisJCWV4YS0+RG9uZUNvcHkgKGRzdCk7CisJCVBVU0hfS0lDSyhwTnYtPnB1c2hidWYpOworCX0K
-KworY2xlYW51cF9ibzoKKwlub3V2ZWF1X2JvX3JlZihOVUxMLCAmYm9fZHN0KTsKK30KKworc3Rh
-dGljIHZvaWQKK25vdXZlYXVfeG1pcl9idWZmZXJfYXZhaWxhYmxlKFdpbmRvd1B0ciB3aW4pCit7
-CisgICAgaW50IGZkOworICAgIFBpeG1hcFB0ciB3aW5kb3dfcGl4bWFwOworICAgIFNjcmVlblB0
-ciBzY3JlZW4gPSB3aW4tPmRyYXdhYmxlLnBTY3JlZW47CisKKyAgICBpZiAoIXhtaXJfd2luZG93
-X2lzX2RpcnR5KHdpbikpCisgICAgICAgIHJldHVybjsKKworICAgIGZkID0geG1pcl9wcmltZV9m
-ZF9mb3Jfd2luZG93KHdpbik7CisKKyAgICB3aW5kb3dfcGl4bWFwID0gKCp3aW4tPmRyYXdhYmxl
-LnBTY3JlZW4tPkdldFdpbmRvd1BpeG1hcCkod2luKTsKKworICAgIGFzc2VydCh3aW5kb3dfcGl4
-bWFwID09IHNjcmVlbi0+R2V0U2NyZWVuUGl4bWFwKHNjcmVlbikpOworCisgICAgbm91dmVhdV94
-bWlyX2NvcHlfcGl4bWFwX3RvX21pcih3aW5kb3dfcGl4bWFwLCBmZCk7CisKKyAgICB4bWlyX3N1
-Ym1pdF9yZW5kZXJpbmdfZm9yX3dpbmRvdyh3aW4sIE5VTEwpOworfQorCitzdGF0aWMgdm9pZAor
-bm91dmVhdV9zdWJtaXRfZGlydHlfd2luZG93KFdpbmRvd1B0ciB3aW4sIERhbWFnZVB0ciBkYW1h
-Z2UpCit7CisJUGl4bWFwUHRyIHdpbmRvd19waXhtYXA7CisJaW50IGZkOworCisJaWYgKCF4bWly
-X3dpbmRvd19oYXNfZnJlZV9idWZmZXIod2luKSkKKwkJcmV0dXJuOworCisJZmQgPSB4bWlyX3By
-aW1lX2ZkX2Zvcl93aW5kb3cod2luKTsKKworCXdpbmRvd19waXhtYXAgPSAoKndpbi0+ZHJhd2Fi
-bGUucFNjcmVlbi0+R2V0V2luZG93UGl4bWFwKSh3aW4pOworCW5vdXZlYXVfeG1pcl9jb3B5X3Bp
-eG1hcF90b19taXIod2luZG93X3BpeG1hcCwgZmQpOworCisJeG1pcl9zdWJtaXRfcmVuZGVyaW5n
-X2Zvcl93aW5kb3cod2luLCBEYW1hZ2VSZWdpb24oZGFtYWdlKSk7CisKKwlEYW1hZ2VFbXB0eShk
-YW1hZ2UpOworfQorCitzdGF0aWMgeG1pcl9kcml2ZXIgeG1pcl9ub3V2ZWF1X2RyaXZlciA9IHsK
-KyAgICBYTUlSX0RSSVZFUl9WRVJTSU9OLAorICAgIG5vdXZlYXVfeG1pcl9idWZmZXJfYXZhaWxh
-YmxlCit9OworI2VuZGlmCisKIHN0YXRpYyB2b2lkIAogTlZCbG9ja0hhbmRsZXIgKEJMT0NLSEFO
-RExFUl9BUkdTX0RFQ0wpCiB7CkBAIC01MTYsNiArNjI4LDExIEBAIE5WQmxvY2tIYW5kbGVyIChC
-TE9DS0hBTkRMRVJfQVJHU19ERUNMKQogCW5vdXZlYXVfZGlydHlfdXBkYXRlKHBTY3JlZW4pOwog
-I2VuZGlmCiAKKyNpZmRlZiBYTUlSCisJaWYgKHBOdi0+eG1pcikKKwkJeG1pcl9zY3JlZW5fZm9y
-X2VhY2hfZGFtYWdlZF93aW5kb3cocE52LT54bWlyLCBub3V2ZWF1X3N1Ym1pdF9kaXJ0eV93aW5k
-b3cpOworI2VuZGlmCisKIAlpZiAocFNjcm4tPnZ0U2VtYSAmJiAhcE52LT5Ob0FjY2VsKQogCQlu
-b3V2ZWF1X3B1c2hidWZfa2ljayhwTnYtPnB1c2hidWYsIHBOdi0+cHVzaGJ1Zi0+Y2hhbm5lbCk7
-CiAKQEAgLTUzNSw3ICs2NTIsMTAgQEAgTlZDcmVhdGVTY3JlZW5SZXNvdXJjZXMoU2NyZWVuUHRy
-IHBTY3JlZW4pCiAJCXJldHVybiBGQUxTRTsKIAlwU2NyZWVuLT5DcmVhdGVTY3JlZW5SZXNvdXJj
-ZXMgPSBOVkNyZWF0ZVNjcmVlblJlc291cmNlczsKIAotCWRybW1vZGVfZmJjb25fY29weShwU2Ny
-ZWVuKTsKKwlpZiAoIXhvcmdNaXIpCisJCWRybW1vZGVfZmJjb25fY29weShwU2NyZWVuKTsKKwll
-bHNlIGlmICgheGY4NlNldERlc2lyZWRNb2RlcyhwU2NybikpCisJCXJldHVybiBGQUxTRTsKIAlp
-ZiAoIU5WRW50ZXJWVChWVF9GVU5DX0FSR1MoMCkpKQogCQlyZXR1cm4gRkFMU0U7CiAKQEAgLTU2
-MSw3ICs2ODEsNyBAQCBOVkNsb3NlU2NyZWVuKENMT1NFX1NDUkVFTl9BUkdTX0RFQ0wpCiAJU2Ny
-bkluZm9QdHIgcFNjcm4gPSB4Zjg2U2NyZWVuVG9TY3JuKHBTY3JlZW4pOwogCU5WUHRyIHBOdiA9
-IE5WUFRSKHBTY3JuKTsKIAotCWlmIChYRjg2X0NSVENfQ09ORklHX1BUUihwU2NybiktPm51bV9j
-cnRjKQorCWlmICgheG9yZ01pciAmJiBYRjg2X0NSVENfQ09ORklHX1BUUihwU2NybiktPm51bV9j
-cnRjKQogCQlkcm1tb2RlX3NjcmVlbl9maW5pKHBTY3JlZW4pOwogCiAJaWYgKCFwTnYtPk5vQWNj
-ZWwpCkBAIC02ODgsNyArODA4LDcgQEAgc3RhdGljIEJvb2wgTlZPcGVuRFJNTWFzdGVyKFNjcm5J
-bmZvUHRyIHBTY3JuKQogCU5WUHRyIHBOdiA9IE5WUFRSKHBTY3JuKTsKIAlOVkVudFB0ciBwTlZF
-bnQgPSBOVkVudFByaXYocFNjcm4pOwogCXN0cnVjdCBwY2lfZGV2aWNlICpkZXYgPSBwTnYtPlBj
-aUluZm87Ci0JY2hhciAqYnVzaWQ7CisJY2hhciAqYnVzaWQgPSBOVUxMOwogCWRybVNldFZlcnNp
-b24gc3Y7CiAJaW50IGVycjsKIAlpbnQgcmV0OwpAQCAtNzEyLDggKzgzMiwxMSBAQCBzdGF0aWMg
-Qm9vbCBOVk9wZW5EUk1NYXN0ZXIoU2NybkluZm9QdHIgcFNjcm4pCiAJYnVzaWQgPSBYTkZwcmlu
-dGYoInBjaTolMDR4OiUwMng6JTAyeC4lZCIsCiAJCQkgIGRldi0+ZG9tYWluLCBkZXYtPmJ1cywg
-ZGV2LT5kZXYsIGRldi0+ZnVuYyk7CiAjZW5kaWYKKwlpZiAoIXhvcmdNaXIpCisJCXJldCA9IG5v
-dXZlYXVfZGV2aWNlX29wZW4oYnVzaWQsICZwTnYtPmRldik7CisJZWxzZQorCQlyZXQgPSBub3V2
-ZWF1X2RldmljZV93cmFwKHhtaXJfZ2V0X2RybV9mZChidXNpZCksIDAsICZwTnYtPmRldik7CiAK
-LQlyZXQgPSBub3V2ZWF1X2RldmljZV9vcGVuKGJ1c2lkLCAmcE52LT5kZXYpOwogCWlmIChyZXQp
-IHsKIAkJeGY4NkRydk1zZyhwU2Nybi0+c2NybkluZGV4LCBYX0VSUk9SLAogCQkJICAgIltkcm1d
-IEZhaWxlZCB0byBvcGVuIERSTSBkZXZpY2UgZm9yICVzOiAlZFxuIiwKQEAgLTcyMyw2ICs4NDYs
-OSBAQCBzdGF0aWMgQm9vbCBOVk9wZW5EUk1NYXN0ZXIoU2NybkluZm9QdHIgcFNjcm4pCiAJfQog
-CWZyZWUoYnVzaWQpOwogCisJaWYgKHhvcmdNaXIpCisJCXJldHVybiBUUlVFOworCiAJc3YuZHJt
-X2RpX21ham9yID0gMTsKIAlzdi5kcm1fZGlfbWlub3IgPSAxOwogCXN2LmRybV9kZF9tYWpvciA9
-IC0xOwpAQCAtODE4LDYgKzk0NCwxNCBAQCBOVlByZUluaXQoU2NybkluZm9QdHIgcFNjcm4sIGlu
-dCBmbGFncykKIAkJKQogCQlyZXR1cm4gRkFMU0U7CiAKKyNpZmRlZiBYTUlSCisJaWYgKHhvcmdN
-aXIpIHsKKwkJcE52LT54bWlyID0geG1pcl9zY3JlZW5fY3JlYXRlKHBTY3JuKTsKKwkJaWYgKHBO
-di0+eG1pciA9PSBOVUxMKQorCQkJTlZQcmVJbml0RmFpbCgiTWlyIGZhaWxlZCB0byBpbml0aWFs
-aXplXG4iKTsKKwl9CisjZW5kaWYKKwogCWlmICh4Zjg2SXNFbnRpdHlTaGFyZWQocFNjcm4tPmVu
-dGl0eUxpc3RbMF0pKSB7CiAJCWlmKCF4Zjg2SXNQcmltSW5pdERvbmUocFNjcm4tPmVudGl0eUxp
-c3RbMF0pKSB7CiAJCQlwTnYtPlByaW1hcnkgPSBUUlVFOwpAQCAtOTY1LDYgKzEwOTksOCBAQCBO
-VlByZUluaXQoU2NybkluZm9QdHIgcFNjcm4sIGludCBmbGFncykKIAkJZnJvbSA9IFhfQ09ORklH
-OwogCQlwTnYtPkhXQ3Vyc29yID0gRkFMU0U7CiAJfQorCWlmICh4b3JnTWlyKQorCQlwTnYtPkhX
-Q3Vyc29yID0gRkFMU0U7CiAJeGY4NkRydk1zZyhwU2Nybi0+c2NybkluZGV4LCBmcm9tLCAiVXNp
-bmcgJXMgY3Vyc29yXG4iLAogCQlwTnYtPkhXQ3Vyc29yID8gIkhXIiA6ICJTVyIpOwogCkBAIC0x
-MDYwLDcgKzExOTYsMTEgQEAgTlZQcmVJbml0KFNjcm5JbmZvUHRyIHBTY3JuLCBpbnQgZmxhZ3Mp
-CiAJeGY4NkRydk1zZyhwU2Nybi0+c2NybkluZGV4LCBmcm9tLCAiU3dhcCBsaW1pdCBzZXQgdG8g
-JWQgW01heCBhbGxvd2VkICVkXSVzXG4iLAogCQkgICBwTnYtPnN3YXBfbGltaXQsIHBOdi0+bWF4
-X3N3YXBfbGltaXQsIHJlYXNvbik7CiAKLQlyZXQgPSBkcm1tb2RlX3ByZV9pbml0KHBTY3JuLCBw
-TnYtPmRldi0+ZmQsIHBTY3JuLT5iaXRzUGVyUGl4ZWwgPj4gMyk7CisJaWYgKHhvcmdNaXIpIHsK
-KwkJeG1pcl9zY3JlZW5fcHJlX2luaXQocFNjcm4sIHBOdi0+eG1pciwgJnhtaXJfbm91dmVhdV9k
-cml2ZXIpOworCQlyZXQgPSBUUlVFOworCX0gZWxzZQorCQlyZXQgPSBkcm1tb2RlX3ByZV9pbml0
-KHBTY3JuLCBwTnYtPmRldi0+ZmQsIHBTY3JuLT5iaXRzUGVyUGl4ZWwgPj4gMyk7CiAJaWYgKHJl
-dCA9PSBGQUxTRSkKIAkJTlZQcmVJbml0RmFpbCgiS2VybmVsIG1vZGVzZXR0aW5nIGZhaWxlZCB0
-byBpbml0aWFsaXplXG4iKTsKIApAQCAtMTE2OCw3ICsxMzA4LDggQEAgTlZVbm1hcE1lbShTY3Ju
-SW5mb1B0ciBwU2NybikKIHsKIAlOVlB0ciBwTnYgPSBOVlBUUihwU2Nybik7CiAKLQlkcm1tb2Rl
-X3JlbW92ZV9mYihwU2Nybik7CisJaWYgKCF4b3JnTWlyKQorCQlkcm1tb2RlX3JlbW92ZV9mYihw
-U2Nybik7CiAKIAlub3V2ZWF1X2JvX3JlZihOVUxMLCAmcE52LT50cmFuc2Zlcik7CiAJbm91dmVh
-dV9ib19yZWYoTlVMTCwgJnBOdi0+c2Nhbm91dCk7CkBAIC0xMzY4LDYgKzE1MDksMTEgQEAgTlZT
-Y3JlZW5Jbml0KFNDUkVFTl9JTklUX0FSR1NfREVDTCkKIAllbHNlCiAJCWZiUGljdHVyZUluaXQg
-KHBTY3JlZW4sIDAsIDApOwogCisjaWZkZWYgWE1JUgorCWlmIChwTnYtPnhtaXIpCisJCXhtaXJf
-c2NyZWVuX2luaXQocFNjcmVlbiwgcE52LT54bWlyKTsKKyNlbmRpZgorCiAJeGY4NlNldEJsYWNr
-V2hpdGVQaXhlbHMocFNjcmVlbik7CiAKIAlpZiAoIXBOdi0+Tm9BY2NlbCAmJiAhbm91dmVhdV9l
-eGFfaW5pdChwU2NyZWVuKSkKQEAgLTE0NDEsMTkgKzE1ODcsMTkgQEAgTlZTY3JlZW5Jbml0KFND
-UkVFTl9JTklUX0FSR1NfREVDTCkKIAkgKiBJbml0aWFsaXplIGNvbG9ybWFwIGxheWVyLgogCSAq
-IE11c3QgZm9sbG93IGluaXRpYWxpemF0aW9uIG9mIHRoZSBkZWZhdWx0IGNvbG9ybWFwIAogCSAq
-LwotCWlmICh4Zjg2X2NvbmZpZy0+bnVtX2NydGMgJiYKKwlpZiAoIXhvcmdNaXIgJiYgeGY4Nl9j
-b25maWctPm51bV9jcnRjICYmCiAJICAgICF4Zjg2SGFuZGxlQ29sb3JtYXBzKHBTY3JlZW4sIDI1
-NiwgOCwgTlZMb2FkUGFsZXR0ZSwKIAkJCQkgTlVMTCwgQ01BUF9QQUxFVFRFRF9UUlVFQ09MT1Ip
-KQotCQlyZXR1cm4gRkFMU0U7CiAKIAkvKiBSZXBvcnQgYW55IHVudXNlZCBvcHRpb25zIChvbmx5
-IGZvciB0aGUgZmlyc3QgZ2VuZXJhdGlvbikgKi8KIAlpZiAoc2VydmVyR2VuZXJhdGlvbiA9PSAx
-KQogCQl4Zjg2U2hvd1VudXNlZE9wdGlvbnMocFNjcm4tPnNjcm5JbmRleCwgcFNjcm4tPm9wdGlv
-bnMpOwogCi0JaWYgKHhmODZfY29uZmlnLT5udW1fY3J0YykKKwlpZiAoIXhvcmdNaXIgJiYgeGY4
-Nl9jb25maWctPm51bV9jcnRjKQogCQlkcm1tb2RlX3NjcmVlbl9pbml0KHBTY3JlZW4pOwogCWVs
-c2UKIAkJcE52LT5nbHhfdmJsYW5rID0gRkFMU0U7CisKIAlyZXR1cm4gVFJVRTsKIH0KIApkaWZm
-IC0tZ2l0IGEvc3JjL252X3R5cGUuaCBiL3NyYy9udl90eXBlLmgKaW5kZXggZTY5NDViYy4uZjg0
-NGZmZiAxMDA2NDQKLS0tIGEvc3JjL252X3R5cGUuaAorKysgYi9zcmMvbnZfdHlwZS5oCkBAIC05
-LDYgKzksMTQgQEAKICNpbmNsdWRlIDxzdGRpbnQuaD4KICNpbmNsdWRlICJ4Zjg2Q3J0Yy5oIgog
-CisjaWZkZWYgWE1JUgorI2luY2x1ZGUgInhtaXIuaCIKKyNpbmNsdWRlICJ4Zjg2UHJpdi5oIgor
-I2Vsc2UKK3R5cGVkZWYgc3RydWN0IHhtaXJfc2NyZWVuIHhtaXJfc2NyZWVuOworI2RlZmluZSB4
-b3JnTWlyIDAKKyNlbmRpZgorCiAjaWYgWEY4Nl9DUlRDX1ZFUlNJT04gPj0gNQogI2RlZmluZSBO
-T1VWRUFVX1BJWE1BUF9TSEFSSU5HIDEKICNlbmRpZgpAQCAtMTEyLDYgKzEyMCw4IEBAIHR5cGVk
-ZWYgc3RydWN0IF9OVlJlYyB7CiAJUGl4bWFwUHRyIHBzcGl4LCBwbXBpeCwgcGRwaXg7CiAJUGlj
-dHVyZVB0ciBwc3BpY3QsIHBtcGljdDsKIAlQaXhlbCBmZ19jb2xvdXI7CisKKwl4bWlyX3NjcmVl
-biAqeG1pcjsKIH0gTlZSZWM7CiAKICNkZWZpbmUgTlZQVFIocCkgKChOVlB0cikoKHApLT5kcml2
-ZXJQcml2YXRlKSkKLS0gCjEuOC4zLjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+
+--===============0450282303==
+Content-Type: multipart/alternative; boundary="1374489993.34d01.10453"; charset="us-ascii"
+
+
+--1374489993.34d01.10453
+Date: Mon, 22 Jul 2013 10:46:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=67161
+
+          Priority: medium
+            Bug ID: 67161
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Blank video after resuming from S3 or S4
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org
+          Hardware: x86 (IA32)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
+
+I have a Creative Labs Graphics Blaster Riva TNT video card (nv0). I'm using
+nouveau.noaccel=1 kernel boot parameter to workaround bug 27211. I'm on a
+derivative of Debian Sid:
+
+Linux openmediavault 2.6.32-5-686 #1 SMP Fri May 10 08:33:48 UTC 2013 i686
+GNU/Linux
+
+The problem is this: when the system wakes up after a pm-suspend or
+pm-hibernate, the system resumes fine (I can ssh to it and everything works
+ok), but the screen stays blank (the monitor has the orange led, which is used
+when it's in standy-by mode or no signal received).
+
+In /var/log/messages I find the following messages which seem to be related to
+nouveau:
+
+Jul 22 12:01:54 openmediavault kernel: [   58.165951] [drm] nouveau
+0000:01:00.0: We're back, enabling device...
+Jul 22 12:01:54 openmediavault kernel: [   58.165958] [drm] nouveau
+0000:01:00.0: POSTing device...
+Jul 22 12:01:54 openmediavault kernel: [   58.232063] agpgart-intel
+0000:00:00.0: AGP 2.0 bridge
+Jul 22 12:01:54 openmediavault kernel: [   58.232092] agpgart-intel
+0000:00:00.0: putting AGP V2 device into 2x mode
+Jul 22 12:01:54 openmediavault kernel: [   58.232121] nouveau 0000:01:00.0:
+putting AGP V2 device into 2x mode
+Jul 22 12:01:54 openmediavault kernel: [   58.232147] [drm] nouveau
+0000:01:00.0: Reinitialising engines...
+Jul 22 12:01:54 openmediavault kernel: [   58.232169] [drm] nouveau
+0000:01:00.0: Restoring GPU objects...
+Jul 22 12:01:54 openmediavault kernel: [   58.241771] [drm] nouveau
+0000:01:00.0: Restoring mode...
+Jul 22 12:01:54 openmediavault kernel: [   58.310342] [drm] nouveau
+0000:01:00.0: Setting dpms mode 3 on vga encoder (output 0)
+[...]
+Jul 22 12:01:54 openmediavault kernel: [   58.398120] [drm] nouveau
+0000:01:00.0: Setting dpms mode 0 on vga encoder (output 0)
+Jul 22 12:01:54 openmediavault kernel: [   58.398130] [drm] nouveau
+0000:01:00.0: Output VGA-1 is running on CRTC 0 using output @
+[...]
+Jul 22 12:35:22 openmediavault kernel: [ 2071.968039] [drm] nouveau
+0000:01:00.0: Setting dpms mode 1 on vga encoder (output 0)
+
+Please let me know if you need the full contents or /var/log/messages or any
+other info that could be used to understand what the problem is.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1374489993.34d01.10453
+Date: Mon, 22 Jul 2013 10:46:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Blank video after resuming from S3 or S4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67161">67161</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Blank video after resuming from S3 or S4
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mauromol&#64;tiscali.it
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>I have a Creative Labs Graphics Blaster Riva TNT video card (nv0). I'm using
+nouveau.noaccel=1 kernel boot parameter to workaround <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - endless PROTECTION_FAULT logs, Nouveau drm, TNT card"
+   href="show_bug.cgi?id=27211">bug 27211</a>. I'm on a
+derivative of Debian Sid:
+
+Linux openmediavault 2.6.32-5-686 #1 SMP Fri May 10 08:33:48 UTC 2013 i686
+GNU/Linux
+
+The problem is this: when the system wakes up after a pm-suspend or
+pm-hibernate, the system resumes fine (I can ssh to it and everything works
+ok), but the screen stays blank (the monitor has the orange led, which is used
+when it's in standy-by mode or no signal received).
+
+In /var/log/messages I find the following messages which seem to be related to
+nouveau:
+
+Jul 22 12:01:54 openmediavault kernel: [   58.165951] [drm] nouveau
+0000:01:00.0: We're back, enabling device...
+Jul 22 12:01:54 openmediavault kernel: [   58.165958] [drm] nouveau
+0000:01:00.0: POSTing device...
+Jul 22 12:01:54 openmediavault kernel: [   58.232063] agpgart-intel
+0000:00:00.0: AGP 2.0 bridge
+Jul 22 12:01:54 openmediavault kernel: [   58.232092] agpgart-intel
+0000:00:00.0: putting AGP V2 device into 2x mode
+Jul 22 12:01:54 openmediavault kernel: [   58.232121] nouveau 0000:01:00.0:
+putting AGP V2 device into 2x mode
+Jul 22 12:01:54 openmediavault kernel: [   58.232147] [drm] nouveau
+0000:01:00.0: Reinitialising engines...
+Jul 22 12:01:54 openmediavault kernel: [   58.232169] [drm] nouveau
+0000:01:00.0: Restoring GPU objects...
+Jul 22 12:01:54 openmediavault kernel: [   58.241771] [drm] nouveau
+0000:01:00.0: Restoring mode...
+Jul 22 12:01:54 openmediavault kernel: [   58.310342] [drm] nouveau
+0000:01:00.0: Setting dpms mode 3 on vga encoder (output 0)
+[...]
+Jul 22 12:01:54 openmediavault kernel: [   58.398120] [drm] nouveau
+0000:01:00.0: Setting dpms mode 0 on vga encoder (output 0)
+Jul 22 12:01:54 openmediavault kernel: [   58.398130] [drm] nouveau
+0000:01:00.0: Output VGA-1 is running on CRTC 0 using output &#64;
+[...]
+Jul 22 12:35:22 openmediavault kernel: [ 2071.968039] [drm] nouveau
+0000:01:00.0: Setting dpms mode 1 on vga encoder (output 0)
+
+Please let me know if you need the full contents or /var/log/messages or any
+other info that could be used to understand what the problem is.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1374489993.34d01.10453--
+
+--===============0450282303==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0450282303==--
