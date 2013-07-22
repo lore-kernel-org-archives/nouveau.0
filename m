@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Mon, 22 Jul 2013 19:59:40 +0000
-Message-ID: <bug-67051-8800-Mlfi06r9Lv@http.bugs.freedesktop.org/>
+Date: Mon, 22 Jul 2013 20:08:21 +0000
+Message-ID: <bug-67051-8800-G9xGiiUcKJ@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0305534556=="
+Content-Type: multipart/mixed; boundary="===============0791309842=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,31 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0305534556==
-Content-Type: multipart/alternative; boundary="1374523180.CdfdFa0.28835"; charset="us-ascii"
+--===============0791309842==
+Content-Type: multipart/alternative; boundary="1374523701.1de11.30543"; charset="us-ascii"
 
 
---1374523180.CdfdFa0.28835
-Date: Mon, 22 Jul 2013 19:59:39 +0000
+--1374523701.1de11.30543
+Date: Mon, 22 Jul 2013 20:08:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #62 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 82840
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82840&action=edit
-dmesg on 8e9
-
-On these two kernel logs you'll have to _trust_ me that I booted with
-nouveau._debug_=PDISP=spam :)
+--- Comment #63 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Yes, you sure did. Unfortunately the interesting information has scrolled off.
+Ugh. Unless you can get that stuff, you'll have to go for the mmiotrace instead
+(see my earlier instructions). You can reset CONFIG_NOUVEAU_DEBUG to its
+earlier value too (having it this high slows things down).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374523180.CdfdFa0.28835
-Date: Mon, 22 Jul 2013 19:59:40 +0000
+--1374523701.1de11.30543
+Date: Mon, 22 Jul 2013 20:08:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c62">Comment # 62</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c63">Comment # 63</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82840" name="attach_82840" title="dmesg on 8e9">attachment 82840</a> <a href="attachment.cgi?id=82840&amp;action=edit" title="dmesg on 8e9">[details]</a></span>
-dmesg on 8e9
-
-On these two kernel logs you'll have to _trust_ me that I booted with
-nouveau._debug_=PDISP=spam :)</pre>
+        <pre>Yes, you sure did. Unfortunately the interesting information has scrolled off.
+Ugh. Unless you can get that stuff, you'll have to go for the mmiotrace instead
+(see my earlier instructions). You can reset CONFIG_NOUVEAU_DEBUG to its
+earlier value too (having it this high slows things down).</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +78,9 @@ nouveau._debug_=PDISP=spam :)</pre>
     </body>
 </html>
 
---1374523180.CdfdFa0.28835--
+--1374523701.1de11.30543--
 
---===============0305534556==
+--===============0791309842==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0305534556==--
+--===============0791309842==--
