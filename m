@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Mon, 22 Jul 2013 17:46:53 +0000
-Message-ID: <bug-67051-8800-duTikN2IHu@http.bugs.freedesktop.org/>
+Date: Mon, 22 Jul 2013 17:47:43 +0000
+Message-ID: <bug-67051-8800-hDRXYiNz1b@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1537338236=="
+Content-Type: multipart/mixed; boundary="===============0988442785=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1537338236==
-Content-Type: multipart/alternative; boundary="1374515213.E8d34A00.10286"; charset="us-ascii"
+--===============0988442785==
+Content-Type: multipart/alternative; boundary="1374515263.342f2c30.10423"; charset="us-ascii"
 
 
---1374515213.E8d34A00.10286
-Date: Mon, 22 Jul 2013 17:46:52 +0000
+--1374515263.342f2c30.10423
+Date: Mon, 22 Jul 2013 17:47:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #57 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 82833
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82833&action=edit
-f7 dmesg with DEBUG=7
+--- Comment #58 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 82834
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82834&action=edit
+e8 dmesg with DEBUG=7
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374515213.E8d34A00.10286
-Date: Mon, 22 Jul 2013 17:46:53 +0000
+--1374515263.342f2c30.10423
+Date: Mon, 22 Jul 2013 17:47:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c57">Comment # 57</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c58">Comment # 58</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
               from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82833" name="attach_82833" title="f7 dmesg with DEBUG=7">attachment 82833</a> <a href="attachment.cgi?id=82833&amp;action=edit" title="f7 dmesg with DEBUG=7">[details]</a></span>
-f7 dmesg with DEBUG=7</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=82834" name="attach_82834" title="e8 dmesg with DEBUG=7">attachment 82834</a> <a href="attachment.cgi?id=82834&amp;action=edit" title="e8 dmesg with DEBUG=7">[details]</a></span>
+e8 dmesg with DEBUG=7</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ f7 dmesg with DEBUG=7</pre>
     </body>
 </html>
 
---1374515213.E8d34A00.10286--
+--1374515263.342f2c30.10423--
 
---===============1537338236==
+--===============0988442785==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1537338236==--
+--===============0988442785==--
