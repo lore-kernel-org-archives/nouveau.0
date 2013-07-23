@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Tue, 23 Jul 2013 00:01:35 +0000
-Message-ID: <bug-67051-8800-ZJW8SQkaTl@http.bugs.freedesktop.org/>
+Date: Tue, 23 Jul 2013 01:08:26 +0000
+Message-ID: <bug-67051-8800-AqHnOsZAwp@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1967397099=="
+Content-Type: multipart/mixed; boundary="===============0684639012=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,39 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1967397099==
-Content-Type: multipart/alternative; boundary="1374537694.dC0aC8e1.27764"; charset="us-ascii"
+--===============0684639012==
+Content-Type: multipart/alternative; boundary="1374541706.F1DC0.3487"; charset="us-ascii"
 
 
---1374537694.dC0aC8e1.27764
-Date: Tue, 23 Jul 2013 00:01:34 +0000
+--1374541706.F1DC0.3487
+Date: Tue, 23 Jul 2013 01:08:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #68 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #67)
-> > I really think that mmiotrace is the way to go at this point.
-> 
-> I can see this is the beginning of a _long_ and beautiful friendship
-> (actually I saw it from the start - this is a little heavy).
-> On a warning note: unless a heart atack and/or a plane crash, I can outlast
-> you.
-> 
-> Now if you give me precise instructions about what I have to do.  I don't
-> need anything beyond if the mmiotrace "happens" to go nowhere.  Just the
-> mmio instructions.
+--- Comment #69 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I've gone over the MMIO procedure and I think I got the gist of it.
 
-See comment 47. Should be sufficient, but feel free to ask if you're still
-confused.
+Just to make sure I'm in sync:
+
+1.  The material ends in ". Generally"
+Now, the stuff was signed "2010-04-21" (which in Linux years means yesterday),
+so this can be interpreted by an outside reader as meaning either
+ 1.1.  In such a short time no inside (Ubuntu (?)) reader had time to remove
+the  loose word "Generally", or
+ 1.2.  There is a real/important continuation somewhere.
+
+2.  Adapted for "nouveau", I'll never have to go to X (level 5) for this trace
+purpose;  I can just stay at level 3 (console/text/VGA mode) for ever - so to
+speak.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374537694.dC0aC8e1.27764
-Date: Tue, 23 Jul 2013 00:01:34 +0000
+--1374541706.F1DC0.3487
+Date: Tue, 23 Jul 2013 01:08:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,27 +66,27 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c68">Comment # 68</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c69">Comment # 69</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67051#c67">comment #67</a>)
-<span class="quote">&gt; &gt; I really think that mmiotrace is the way to go at this point.
-&gt; 
-&gt; I can see this is the beginning of a _long_ and beautiful friendship
-&gt; (actually I saw it from the start - this is a little heavy).
-&gt; On a warning note: unless a heart atack and/or a plane crash, I can outlast
-&gt; you.
-&gt; 
-&gt; Now if you give me precise instructions about what I have to do.  I don't
-&gt; need anything beyond if the mmiotrace &quot;happens&quot; to go nowhere.  Just the
-&gt; mmio instructions.</span >
+        <pre>I've gone over the MMIO procedure and I think I got the gist of it.
 
-See <a href="show_bug.cgi?id=67051#c47">comment 47</a>. Should be sufficient, but feel free to ask if you're still
-confused.</pre>
+Just to make sure I'm in sync:
+
+1.  The material ends in &quot;. Generally&quot;
+Now, the stuff was signed &quot;2010-04-21&quot; (which in Linux years means yesterday),
+so this can be interpreted by an outside reader as meaning either
+ 1.1.  In such a short time no inside (Ubuntu (?)) reader had time to remove
+the  loose word &quot;Generally&quot;, or
+ 1.2.  There is a real/important continuation somewhere.
+
+2.  Adapted for &quot;nouveau&quot;, I'll never have to go to X (level 5) for this trace
+purpose;  I can just stay at level 3 (console/text/VGA mode) for ever - so to
+speak.</pre>
         </div>
       </p>
       <hr>
@@ -98,9 +98,9 @@ confused.</pre>
     </body>
 </html>
 
---1374537694.dC0aC8e1.27764--
+--1374541706.F1DC0.3487--
 
---===============1967397099==
+--===============0684639012==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +111,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1967397099==--
+--===============0684639012==--
