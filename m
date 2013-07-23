@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58556] MacBook Pro 5, 1 with nVidia 9400m and 9600m,
- scrambled screen
-Date: Tue, 23 Jul 2013 22:52:07 +0000
-Message-ID: <bug-58556-8800-ywQKaSIvSE@http.bugs.freedesktop.org/>
-References: <bug-58556-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
+Date: Tue, 23 Jul 2013 23:23:49 +0000
+Message-ID: <bug-67051-8800-79RgeY15OK@http.bugs.freedesktop.org/>
+References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0763078164=="
+Content-Type: multipart/mixed; boundary="===============1259234626=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0763078164==
-Content-Type: multipart/alternative; boundary="1374619927.25a1BA3.4873"; charset="us-ascii"
+--===============1259234626==
+Content-Type: multipart/alternative; boundary="1374621829.cBE480Ce1.8143"; charset="us-ascii"
 
 
---1374619927.25a1BA3.4873
-Date: Tue, 23 Jul 2013 22:52:07 +0000
+--1374621829.cBE480Ce1.8143
+Date: Tue, 23 Jul 2013 23:23:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58556
+https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Great find Matyas
+--- Comment #80 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 82880
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82880&action=edit
+debug-1.patch
 
-If you're interested in cutting short the sequence you can forcepost the card,
-thus it should have you the suspend/resume trick. Use
-nouveau.config=NvForcePost=1
+Well, an analysis of both of the mmio logs shows that outside of PTIMER, the
+only MMIO differences is that nothing in the new nva3_hdmi_ctrl gets run.
+Reading the code... it should work :) So here's a patch that adds some
+nv_info's all over and tries to identify where my logic breaks down.
 
-Curious if the above will give you acceleration or only a working
-output/monitor
-(ie. try it with and without noaccel=1)
+So try this:
 
-Cheers
+8e9e3d2deacc460fbb8a4691140318f6e85e6891 + hdmi-1.patch + hdminva3.patch +
+hdminva3-4.patch + debug-1.patch
+
+No need to run it under mmiotrace, or run the old kernel. Just provide the
+dmesg that results from this.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374619927.25a1BA3.4873
-Date: Tue, 23 Jul 2013 22:52:07 +0000
+--1374621829.cBE480Ce1.8143
+Date: Tue, 23 Jul 2013 23:23:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,25 +67,29 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556#c5">Comment # 5</a>
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c80">Comment # 80</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Great find Matyas
+        <pre>Created <span class=""><a href="attachment.cgi?id=82880" name="attach_82880" title="debug-1.patch">attachment 82880</a> <a href="attachment.cgi?id=82880&amp;action=edit" title="debug-1.patch">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=67051&amp;attachment=82880'>[review]</a>
+debug-1.patch
 
-If you're interested in cutting short the sequence you can forcepost the card,
-thus it should have you the suspend/resume trick. Use
-nouveau.config=NvForcePost=1
+Well, an analysis of both of the mmio logs shows that outside of PTIMER, the
+only MMIO differences is that nothing in the new nva3_hdmi_ctrl gets run.
+Reading the code... it should work :) So here's a patch that adds some
+nv_info's all over and tries to identify where my logic breaks down.
 
-Curious if the above will give you acceleration or only a working
-output/monitor
-(ie. try it with and without noaccel=1)
+So try this:
 
-Cheers</pre>
+8e9e3d2deacc460fbb8a4691140318f6e85e6891 + hdmi-1.patch + hdminva3.patch +
+hdminva3-4.patch + debug-1.patch
+
+No need to run it under mmiotrace, or run the old kernel. Just provide the
+dmesg that results from this.</pre>
         </div>
       </p>
       <hr>
@@ -93,9 +101,9 @@ Cheers</pre>
     </body>
 </html>
 
---1374619927.25a1BA3.4873--
+--1374621829.cBE480Ce1.8143--
 
---===============0763078164==
+--===============1259234626==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +114,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0763078164==--
+--===============1259234626==--
