@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Tue, 23 Jul 2013 22:10:37 +0000
-Message-ID: <bug-67051-8800-kW8awIriEV@http.bugs.freedesktop.org/>
+Date: Tue, 23 Jul 2013 22:13:42 +0000
+Message-ID: <bug-67051-8800-2RBMnXfL54@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0277215847=="
+Content-Type: multipart/mixed; boundary="===============1319754250=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,38 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0277215847==
-Content-Type: multipart/alternative; boundary="1374617437.1d6BEd0.31404"; charset="us-ascii"
+--===============1319754250==
+Content-Type: multipart/alternative; boundary="1374617623.67d78d0.31846"; charset="us-ascii"
 
 
---1374617437.1d6BEd0.31404
-Date: Tue, 23 Jul 2013 22:10:37 +0000
+--1374617623.67d78d0.31846
+Date: Tue, 23 Jul 2013 22:13:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #77 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 82877
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82877&action=edit
-non-working HDMI sound mmio trace (30 sec.)
-
-All is not lost :)
-I had used the NVIDIA-install nouveau blacklist blindly.  My bad.
-Its second line was
-"options nouveau modeset=0"
-
-These last two traces are based on just
-"blacklist nouveau"
-
-I had to compress them (22 MB original).  This site was not happy otherwise.
+--- Comment #78 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 82878
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82878&action=edit
+Same as above but "auto-detect"
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374617437.1d6BEd0.31404
-Date: Tue, 23 Jul 2013 22:10:37 +0000
+--1374617623.67d78d0.31846
+Date: Tue, 23 Jul 2013 22:13:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,25 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c77">Comment # 77</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c78">Comment # 78</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
               from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82877" name="attach_82877" title="non-working HDMI sound mmio trace (30 sec.)">attachment 82877</a> <a href="attachment.cgi?id=82877&amp;action=edit" title="non-working HDMI sound mmio trace (30 sec.)">[details]</a></span>
-non-working HDMI sound mmio trace (30 sec.)
-
-All is not lost :)
-I had used the NVIDIA-install nouveau blacklist blindly.  My bad.
-Its second line was
-&quot;options nouveau modeset=0&quot;
-
-These last two traces are based on just
-&quot;blacklist nouveau&quot;
-
-I had to compress them (22 MB original).  This site was not happy otherwise.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=82878" name="attach_82878" title="Same as above but &quot;auto-detect&quot;">attachment 82878</a> <a href="attachment.cgi?id=82878&amp;action=edit" title="Same as above but &quot;auto-detect&quot;">[details]</a></span>
+Same as above but &quot;auto-detect&quot;</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +75,9 @@ I had to compress them (22 MB original).  This site was not happy otherwise.</pr
     </body>
 </html>
 
---1374617437.1d6BEd0.31404--
+--1374617623.67d78d0.31846--
 
---===============0277215847==
+--===============1319754250==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0277215847==--
+--===============1319754250==--
