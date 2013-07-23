@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Tue, 23 Jul 2013 23:23:49 +0000
-Message-ID: <bug-67051-8800-79RgeY15OK@http.bugs.freedesktop.org/>
+Date: Tue, 23 Jul 2013 23:25:20 +0000
+Message-ID: <bug-67051-8800-BFqzZ6N6I0@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1259234626=="
+Content-Type: multipart/mixed; boundary="===============1279665120=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,41 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1259234626==
-Content-Type: multipart/alternative; boundary="1374621829.cBE480Ce1.8143"; charset="us-ascii"
+--===============1279665120==
+Content-Type: multipart/alternative; boundary="1374621920.f7FA1.8386"; charset="us-ascii"
 
 
---1374621829.cBE480Ce1.8143
-Date: Tue, 23 Jul 2013 23:23:49 +0000
+--1374621920.f7FA1.8386
+Date: Tue, 23 Jul 2013 23:25:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #80 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 82880
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82880&action=edit
-debug-1.patch
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Well, an analysis of both of the mmio logs shows that outside of PTIMER, the
-only MMIO differences is that nothing in the new nva3_hdmi_ctrl gets run.
-Reading the code... it should work :) So here's a patch that adds some
-nv_info's all over and tries to identify where my logic breaks down.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #82880|0                           |1
+        is obsolete|                            |
 
-So try this:
+--- Comment #81 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 82881
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82881&action=edit
+debug-2.patch
 
-8e9e3d2deacc460fbb8a4691140318f6e85e6891 + hdmi-1.patch + hdminva3.patch +
-hdminva3-4.patch + debug-1.patch
-
-No need to run it under mmiotrace, or run the old kernel. Just provide the
-dmesg that results from this.
+oops, a small bug in the debug patch. use debug-2.patch instead.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374621829.cBE480Ce1.8143
-Date: Tue, 23 Jul 2013 23:23:49 +0000
+--1374621920.f7FA1.8386
+Date: Tue, 23 Jul 2013 23:25:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,34 +58,44 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #82880 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c80">Comment # 80</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c81">Comment # 81</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82880" name="attach_82880" title="debug-1.patch">attachment 82880</a> <a href="attachment.cgi?id=82880&amp;action=edit" title="debug-1.patch">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=67051&amp;attachment=82880'>[review]</a>
-debug-1.patch
+        <pre>Created <span class=""><a href="attachment.cgi?id=82881" name="attach_82881" title="debug-2.patch">attachment 82881</a> <a href="attachment.cgi?id=82881&amp;action=edit" title="debug-2.patch">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=67051&amp;attachment=82881'>[review]</a>
+debug-2.patch
 
-Well, an analysis of both of the mmio logs shows that outside of PTIMER, the
-only MMIO differences is that nothing in the new nva3_hdmi_ctrl gets run.
-Reading the code... it should work :) So here's a patch that adds some
-nv_info's all over and tries to identify where my logic breaks down.
-
-So try this:
-
-8e9e3d2deacc460fbb8a4691140318f6e85e6891 + hdmi-1.patch + hdminva3.patch +
-hdminva3-4.patch + debug-1.patch
-
-No need to run it under mmiotrace, or run the old kernel. Just provide the
-dmesg that results from this.</pre>
+oops, a small bug in the debug patch. use debug-2.patch instead.</pre>
         </div>
       </p>
       <hr>
@@ -101,9 +107,9 @@ dmesg that results from this.</pre>
     </body>
 </html>
 
---1374621829.cBE480Ce1.8143--
+--1374621920.f7FA1.8386--
 
---===============1259234626==
+--===============1279665120==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -114,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1259234626==--
+--===============1279665120==--
