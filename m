@@ -1,78 +1,100 @@
-From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: [PATCH 3/3] drm/nouveau: fix semaphore dmabuf obj
-Date: Tue, 23 Jul 2013 15:49:39 +0200
-Message-ID: <51EE89F3.6030205@canonical.com>
-References: <51EE8888.4030302@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
+Date: Tue, 23 Jul 2013 14:05:21 +0000
+Message-ID: <bug-67051-8800-qRXK1SMNA5@http.bugs.freedesktop.org/>
+References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <51EE8888.4030302@canonical.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1286052220=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Fixes some dmabuf object errors on nv50 chipset and below.
 
-Cc: stable@vger.kernel.org [3.7+]
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
----
-Xorg still won't start with vblank enabled on nv50, I have no idea why yet.
+--===============1286052220==
+Content-Type: multipart/alternative; boundary="1374588321.4fD22C0.18738"; charset="us-ascii"
 
-diff --git a/drivers/gpu/drm/nouveau/nv17_fence.c b/drivers/gpu/drm/nouveau/nv17_fence.c
-index 37a032b..260f3c5 100644
---- a/drivers/gpu/drm/nouveau/nv17_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv17_fence.c
-@@ -76,7 +76,7 @@ nv17_fence_context_new(struct nouveau_channel *chan)
- 	struct ttm_mem_reg *mem = &priv->bo->bo.mem;
- 	struct nouveau_object *object;
- 	u32 start = mem->start * PAGE_SIZE;
--	u32 limit = mem->start + mem->size - 1;
-+	u32 limit = start + mem->size - 1;
- 	int ret = 0;
- 
- 	fctx = chan->fence = kzalloc(sizeof(*fctx), GFP_KERNEL);
-diff --git a/drivers/gpu/drm/nouveau/nv50_fence.c b/drivers/gpu/drm/nouveau/nv50_fence.c
-index ada4d6d..60afa5c 100644
---- a/drivers/gpu/drm/nouveau/nv50_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv50_fence.c
-@@ -51,26 +51,27 @@ nv50_fence_context_new(struct nouveau_channel *chan)
- 	fctx->base.sync = nv17_fence_sync;
- 
- 	ret = nouveau_object_new(nv_object(chan->cli), chan->handle,
--				 NvSema, 0x0002,
-+				 NvSema, 0x003d,
- 				 &(struct nv_dma_class) {
- 					.flags = NV_DMA_TARGET_VRAM |
- 						 NV_DMA_ACCESS_RDWR,
- 					.start = mem->start * PAGE_SIZE,
--					.limit = mem->size - 1,
-+					.limit = mem->start * PAGE_SIZE + mem->size - 1,
- 				 }, sizeof(struct nv_dma_class),
- 				 &object);
- 
- 	/* dma objects for display sync channel semaphore blocks */
- 	for (i = 0; !ret && i < dev->mode_config.num_crtc; i++) {
- 		struct nouveau_bo *bo = nv50_display_crtc_sema(dev, i);
-+		mem = &bo->bo.mem;
- 
- 		ret = nouveau_object_new(nv_object(chan->cli), chan->handle,
- 					 NvEvoSema0 + i, 0x003d,
- 					 &(struct nv_dma_class) {
- 						.flags = NV_DMA_TARGET_VRAM |
- 							 NV_DMA_ACCESS_RDWR,
--						.start = bo->bo.offset,
--						.limit = bo->bo.offset + 0xfff,
-+						.start = mem->start * PAGE_SIZE,
-+						.limit = mem->start * PAGE_SIZE + mem->size - 1,
- 					 }, sizeof(struct nv_dma_class),
- 					 &object);
- 	}
+
+--1374588321.4fD22C0.18738
+Date: Tue, 23 Jul 2013 14:05:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=67051
+
+--- Comment #71 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+> echo nop > /sys/.../current_tracer (I forget the exact file, but it's on
+> that wiki page).
+
+Speaking of that, I don't have '/sys/kernel/debug/'
+Looking around I do have
+DEBUG_KERNEL and DEBUG_DRIVER both on "yes".
+What gives?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1374588321.4fD22C0.18738
+Date: Tue, 23 Jul 2013 14:05:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c71">Comment # 71</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
+              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
+</span></b>
+        <pre><span class="quote">&gt; echo nop &gt; /sys/.../current_tracer (I forget the exact file, but it's on
+&gt; that wiki page).</span >
+
+Speaking of that, I don't have '/sys/kernel/debug/'
+Looking around I do have
+DEBUG_KERNEL and DEBUG_DRIVER both on &quot;yes&quot;.
+What gives?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1374588321.4fD22C0.18738--
+
+--===============1286052220==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1286052220==--
