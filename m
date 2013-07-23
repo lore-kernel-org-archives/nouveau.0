@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Tue, 23 Jul 2013 18:29:30 +0000
-Message-ID: <bug-67051-8800-th6X7k1Qsv@http.bugs.freedesktop.org/>
+Date: Tue, 23 Jul 2013 19:01:24 +0000
+Message-ID: <bug-67051-8800-OEnj0B2x2M@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1681425375=="
+Content-Type: multipart/mixed; boundary="===============0100723008=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,31 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1681425375==
-Content-Type: multipart/alternative; boundary="1374604170.D4B5f0E0.29684"; charset="us-ascii"
+--===============0100723008==
+Content-Type: multipart/alternative; boundary="1374606084.BE338a1.2603"; charset="us-ascii"
 
 
---1374604170.D4B5f0E0.29684
-Date: Tue, 23 Jul 2013 18:29:30 +0000
+--1374606084.BE338a1.2603
+Date: Tue, 23 Jul 2013 19:01:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #74 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 82872
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82872&action=edit
-"non-working hdmi sound" trace
+--- Comment #75 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Well that was a failure. These traces should be a bit longer :) Like 10-100MB.
 
-These two traces look very much alike (to my untrained eye).
-Looking forward to the next thing we'll have to do.
+Are you sure that you did (a) start mmiotrace (b) load nouveau (in that order)?
+If so I don't know what else to do.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374604170.D4B5f0E0.29684
-Date: Tue, 23 Jul 2013 18:29:30 +0000
+--1374606084.BE338a1.2603
+Date: Tue, 23 Jul 2013 19:01:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c74">Comment # 74</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c75">Comment # 75</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82872" name="attach_82872" title="&quot;non-working hdmi sound&quot; trace">attachment 82872</a> <a href="attachment.cgi?id=82872&amp;action=edit" title="&quot;non-working hdmi sound&quot; trace">[details]</a></span>
-&quot;non-working hdmi sound&quot; trace
+        <pre>Well that was a failure. These traces should be a bit longer :) Like 10-100MB.
 
-These two traces look very much alike (to my untrained eye).
-Looking forward to the next thing we'll have to do.</pre>
+Are you sure that you did (a) start mmiotrace (b) load nouveau (in that order)?
+If so I don't know what else to do.</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +78,9 @@ Looking forward to the next thing we'll have to do.</pre>
     </body>
 </html>
 
---1374604170.D4B5f0E0.29684--
+--1374606084.BE338a1.2603--
 
---===============1681425375==
+--===============0100723008==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1681425375==--
+--===============0100723008==--
