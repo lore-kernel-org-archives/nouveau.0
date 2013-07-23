@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Tue, 23 Jul 2013 01:08:26 +0000
-Message-ID: <bug-67051-8800-AqHnOsZAwp@http.bugs.freedesktop.org/>
+Date: Tue, 23 Jul 2013 01:15:32 +0000
+Message-ID: <bug-67051-8800-3GmDkH8NQK@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0684639012=="
+Content-Type: multipart/mixed; boundary="===============0631906799=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,39 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0684639012==
-Content-Type: multipart/alternative; boundary="1374541706.F1DC0.3487"; charset="us-ascii"
+--===============0631906799==
+Content-Type: multipart/alternative; boundary="1374542132.bd2d0F1.4436"; charset="us-ascii"
 
 
---1374541706.F1DC0.3487
-Date: Tue, 23 Jul 2013 01:08:26 +0000
+--1374542132.bd2d0F1.4436
+Date: Tue, 23 Jul 2013 01:15:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #69 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I've gone over the MMIO procedure and I think I got the gist of it.
+--- Comment #70 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Correct. All you have to do is start up mmiotrace, load nouveau, and then echo
+nop > /sys/.../current_tracer (I forget the exact file, but it's on that wiki
+page). And I wouldn't worry about that trailing Generally. I just look at the
+page to remember what I have to echo into what files.
 
-Just to make sure I'm in sync:
-
-1.  The material ends in ". Generally"
-Now, the stuff was signed "2010-04-21" (which in Linux years means yesterday),
-so this can be interpreted by an outside reader as meaning either
- 1.1.  In such a short time no inside (Ubuntu (?)) reader had time to remove
-the  loose word "Generally", or
- 1.2.  There is a real/important continuation somewhere.
-
-2.  Adapted for "nouveau", I'll never have to go to X (level 5) for this trace
-purpose;  I can just stay at level 3 (console/text/VGA mode) for ever - so to
-speak.
+Note that mmiotrace has to be started *before* nouveau is loaded, so make sure
+that it's (a) a module and (b) blacklisted from loading on startup. And it goes
+without saying, but the HDMI device with audio support needs to be plugged in
+while you're doing this.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374541706.F1DC0.3487
-Date: Tue, 23 Jul 2013 01:08:26 +0000
+--1374542132.bd2d0F1.4436
+Date: Tue, 23 Jul 2013 01:15:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,27 +61,22 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c69">Comment # 69</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c70">Comment # 70</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I've gone over the MMIO procedure and I think I got the gist of it.
+        <pre>Correct. All you have to do is start up mmiotrace, load nouveau, and then echo
+nop &gt; /sys/.../current_tracer (I forget the exact file, but it's on that wiki
+page). And I wouldn't worry about that trailing Generally. I just look at the
+page to remember what I have to echo into what files.
 
-Just to make sure I'm in sync:
-
-1.  The material ends in &quot;. Generally&quot;
-Now, the stuff was signed &quot;2010-04-21&quot; (which in Linux years means yesterday),
-so this can be interpreted by an outside reader as meaning either
- 1.1.  In such a short time no inside (Ubuntu (?)) reader had time to remove
-the  loose word &quot;Generally&quot;, or
- 1.2.  There is a real/important continuation somewhere.
-
-2.  Adapted for &quot;nouveau&quot;, I'll never have to go to X (level 5) for this trace
-purpose;  I can just stay at level 3 (console/text/VGA mode) for ever - so to
-speak.</pre>
+Note that mmiotrace has to be started *before* nouveau is loaded, so make sure
+that it's (a) a module and (b) blacklisted from loading on startup. And it goes
+without saying, but the HDMI device with audio support needs to be plugged in
+while you're doing this.</pre>
         </div>
       </p>
       <hr>
@@ -98,9 +88,9 @@ speak.</pre>
     </body>
 </html>
 
---1374541706.F1DC0.3487--
+--1374542132.bd2d0F1.4436--
 
---===============0684639012==
+--===============0631906799==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0684639012==--
+--===============0631906799==--
