@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Tue, 23 Jul 2013 22:05:22 +0000
-Message-ID: <bug-67051-8800-SML9sYSUzY@http.bugs.freedesktop.org/>
+Date: Tue, 23 Jul 2013 22:10:37 +0000
+Message-ID: <bug-67051-8800-kW8awIriEV@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1565101058=="
+Content-Type: multipart/mixed; boundary="===============0277215847=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1565101058==
-Content-Type: multipart/alternative; boundary="1374617122.8bB4b0.30842"; charset="us-ascii"
+--===============0277215847==
+Content-Type: multipart/alternative; boundary="1374617437.1d6BEd0.31404"; charset="us-ascii"
 
 
---1374617122.8bB4b0.30842
-Date: Tue, 23 Jul 2013 22:05:22 +0000
+--1374617437.1d6BEd0.31404
+Date: Tue, 23 Jul 2013 22:10:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #76 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 82876
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82876&action=edit
-working HDMI sound mmio trace (30 sec.)
+--- Comment #77 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 82877
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82877&action=edit
+non-working HDMI sound mmio trace (30 sec.)
+
+All is not lost :)
+I had used the NVIDIA-install nouveau blacklist blindly.  My bad.
+Its second line was
+"options nouveau modeset=0"
+
+These last two traces are based on just
+"blacklist nouveau"
+
+I had to compress them (22 MB original).  This site was not happy otherwise.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374617122.8bB4b0.30842
-Date: Tue, 23 Jul 2013 22:05:22 +0000
+--1374617437.1d6BEd0.31404
+Date: Tue, 23 Jul 2013 22:10:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +65,25 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c76">Comment # 76</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c77">Comment # 77</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
               from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82876" name="attach_82876" title="working HDMI sound mmio trace (30 sec.)">attachment 82876</a> <a href="attachment.cgi?id=82876&amp;action=edit" title="working HDMI sound mmio trace (30 sec.)">[details]</a></span>
-working HDMI sound mmio trace (30 sec.)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=82877" name="attach_82877" title="non-working HDMI sound mmio trace (30 sec.)">attachment 82877</a> <a href="attachment.cgi?id=82877&amp;action=edit" title="non-working HDMI sound mmio trace (30 sec.)">[details]</a></span>
+non-working HDMI sound mmio trace (30 sec.)
+
+All is not lost :)
+I had used the NVIDIA-install nouveau blacklist blindly.  My bad.
+Its second line was
+&quot;options nouveau modeset=0&quot;
+
+These last two traces are based on just
+&quot;blacklist nouveau&quot;
+
+I had to compress them (22 MB original).  This site was not happy otherwise.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +95,9 @@ working HDMI sound mmio trace (30 sec.)</pre>
     </body>
 </html>
 
---1374617122.8bB4b0.30842--
+--1374617437.1d6BEd0.31404--
 
---===============1565101058==
+--===============0277215847==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +108,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1565101058==--
+--===============0277215847==--
