@@ -1,138 +1,152 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Wed, 24 Jul 2013 05:02:15 +0000
-Message-ID: <bug-67051-8800-4r7VWHtiz6@http.bugs.freedesktop.org/>
-References: <bug-67051-8800@http.bugs.freedesktop.org/>
+From: Dave Airlie <airlied@gmail.com>
+Subject: [PATCH] [RFC] drm/nouveau: bring back hdmi audio device after
+	switcheroo power down
+Date: Wed, 24 Jul 2013 17:13:42 +1000
+Message-ID: <1374650022-17865-1-git-send-email-airlied@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1595973354=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: dri-devel@lists.freedesktop.org
+Cc: tiwai@suse.de, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+After a full device powerdown via the optimus power switch, we seem
+to lose the HDMI device completely on power on, this keep track of
+whether we had a hdmi audio sub function device at power on, and
+pokes a magic register to make it reappear after the optimus power
+switch is thrown.
 
---===============1595973354==
-Content-Type: multipart/alternative; boundary="1374642135.be5ebA0f0.18911"; charset="us-ascii"
+This at least works on my NVC4 machine, probably needs testing on
+a few other laptops with other nvidia GPUs.
 
+Signed-off-by: Dave Airlie <airlied@redhat.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 32 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_drm.h |  2 ++
+ drivers/gpu/drm/nouveau/nouveau_vga.c | 17 +++++++++++++++++
+ 3 files changed, 51 insertions(+)
 
---1374642135.be5ebA0f0.18911
-Date: Wed, 24 Jul 2013 05:02:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=67051
-
---- Comment #85 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-> ... I made the change on top of a much more recent kernel, and I guess
-> my patches don't apply. You should be able to do this test on top of a
-> recent kernel -- e.g. 3.10, or 3.11-rc2. You can get this by just doing "git
-> checkout master" (or "origin" instead of "master", I forget)
-> 
-> perhaps I'll do that [whatever] later
-> if you run into trouble with this or the results are nonsensical.
-
-This is a really quick and not necessarily rigorous update.
-I did run into trouble:
-
-I went for 'git checkout _master_' - got something like 3.11.0-rc1+;
-the patches (including the last one, debug-3), worked OK.
-It's possible my "standard" '.config' file (circa 3.7.0-rc4+) I'd been using
-for the tests (without any of my "massaging" it during the 'make menuconfig' -
-for lack of time and energy) was a bit too long in the tooth for the "master"
-kernel to "adapt" to.
-The end result was after boot-up I couldn't even go into X at all and the
-system got almost frozen and unmanageable.  In short, as you'd put it,
-nonsensical.
-Right now I'm back on my tried and true 3.7.10 (i.e., standard <-> git), the
-last "official" with the HDMI sound, ready to resume the patches and any tests
-in a more organized and less frantic way.  For better or worse, that will
-happen not sooner than Wednesday, July 24, 6-7 PM EDT.
-At least you get a chance to go over them mmio traces more thoroughly (if you
-haven't done that already).
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 6197266..12a6240 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -296,6 +296,31 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+ 	return 0;
+ }
+ 
++#define PCI_CLASS_MULTIMEDIA_HD_AUDIO 0x0403
++
++static void
++nouveau_get_hdmi_dev(struct drm_device *dev)
++{
++	struct nouveau_drm *drm = dev->dev_private;
++	struct pci_dev *pdev = dev->pdev;
++
++	/* subfunction one is a hdmi audio device? */
++	drm->hdmi_device = pci_get_bus_and_slot((unsigned int)pdev->bus->number,
++						PCI_DEVFN(PCI_SLOT(pdev->devfn), 1));
++
++	if (!drm->hdmi_device) {
++		DRM_INFO("hdmi device  not found %d %d %d\n", pdev->bus->number, PCI_SLOT(pdev->devfn), 1);
++		return;
++	}
++
++	if ((drm->hdmi_device->class >> 8) != PCI_CLASS_MULTIMEDIA_HD_AUDIO) {
++		DRM_INFO("possible hdmi device  not audio %d\n", drm->hdmi_device->class);
++		pci_dev_put(drm->hdmi_device);
++		drm->hdmi_device = NULL;
++		return;
++	}
++}
++
+ static int
+ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+ {
+@@ -314,6 +339,8 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+ 	INIT_LIST_HEAD(&drm->clients);
+ 	spin_lock_init(&drm->tile.lock);
+ 
++	nouveau_get_hdmi_dev(dev);
++
+ 	/* make sure AGP controller is in a consistent state before we
+ 	 * (possibly) execute vbios init tables (see nouveau_agp.h)
+ 	 */
+@@ -400,6 +427,9 @@ fail_ttm:
+ 	nouveau_agp_fini(drm);
+ 	nouveau_vga_fini(drm);
+ fail_device:
++	if (drm->hdmi_device)
++		pci_dev_put(drm->hdmi_device);
++
+ 	nouveau_cli_destroy(&drm->client);
+ 	return ret;
+ }
+@@ -424,6 +454,8 @@ nouveau_drm_unload(struct drm_device *dev)
+ 	nouveau_agp_fini(drm);
+ 	nouveau_vga_fini(drm);
+ 
++	if (drm->hdmi_device)
++		pci_dev_put(drm->hdmi_device);
+ 	nouveau_cli_destroy(&drm->client);
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.h b/drivers/gpu/drm/nouveau/nouveau_drm.h
+index 41ff7e0..f276e37 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.h
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.h
+@@ -129,6 +129,8 @@ struct nouveau_drm {
+ 
+ 	/* power management */
+ 	struct nouveau_pm *pm;
++
++	struct pci_dev *hdmi_device;
+ };
+ 
+ static inline struct nouveau_drm *
+diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
+index 25d3495..d8af49c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_vga.c
++++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
+@@ -27,6 +27,22 @@ nouveau_vga_set_decode(void *priv, bool state)
+ }
+ 
+ static void
++nouveau_reenable_hdmi_device(struct drm_device *dev)
++{
++	struct nouveau_drm *drm = nouveau_drm(dev);
++	struct nouveau_device *device = nv_device(drm->device);
++	uint32_t val;
++
++	if (!drm->hdmi_device)
++		return;
++
++	/* write magic value into magic place */
++	val = nv_rd32(device, 0x88488);
++	val |= (1 << 25);
++	nv_wr32(device, 0x88488, val);
++}
++
++static void
+ nouveau_switcheroo_set_state(struct pci_dev *pdev,
+ 			     enum vga_switcheroo_state state)
+ {
+@@ -37,6 +53,7 @@ nouveau_switcheroo_set_state(struct pci_dev *pdev,
+ 		dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
+ 		nouveau_pmops_resume(&pdev->dev);
+ 		drm_kms_helper_poll_enable(dev);
++		nouveau_reenable_hdmi_device(dev);
+ 		dev->switch_power_state = DRM_SWITCH_POWER_ON;
+ 	} else {
+ 		printk(KERN_ERR "VGA switcheroo: switched nouveau off\n");
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1374642135.be5ebA0f0.18911
-Date: Wed, 24 Jul 2013 05:02:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c85">Comment # 85</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
-</span></b>
-        <pre><span class="quote">&gt; ... I made the change on top of a much more recent kernel, and I guess
-&gt; my patches don't apply. You should be able to do this test on top of a
-&gt; recent kernel -- e.g. 3.10, or 3.11-rc2. You can get this by just doing &quot;git
-&gt; checkout master&quot; (or &quot;origin&quot; instead of &quot;master&quot;, I forget)
-&gt; 
-&gt; perhaps I'll do that [whatever] later
-&gt; if you run into trouble with this or the results are nonsensical.</span >
-
-This is a really quick and not necessarily rigorous update.
-I did run into trouble:
-
-I went for 'git checkout _master_' - got something like 3.11.0-rc1+;
-the patches (including the last one, debug-3), worked OK.
-It's possible my &quot;standard&quot; '.config' file (circa 3.7.0-rc4+) I'd been using
-for the tests (without any of my &quot;massaging&quot; it during the 'make menuconfig' -
-for lack of time and energy) was a bit too long in the tooth for the &quot;master&quot;
-kernel to &quot;adapt&quot; to.
-The end result was after boot-up I couldn't even go into X at all and the
-system got almost frozen and unmanageable.  In short, as you'd put it,
-nonsensical.
-Right now I'm back on my tried and true 3.7.10 (i.e., standard &lt;-&gt; git), the
-last &quot;official&quot; with the HDMI sound, ready to resume the patches and any tests
-in a more organized and less frantic way.  For better or worse, that will
-happen not sooner than Wednesday, July 24, 6-7 PM EDT.
-At least you get a chance to go over them mmio traces more thoroughly (if you
-haven't done that already).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1374642135.be5ebA0f0.18911--
-
---===============1595973354==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1595973354==--
+1.8.2.1
