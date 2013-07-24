@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67277] New: Lockdep splat on kernel 3.10.0
-Date: Wed, 24 Jul 2013 21:03:58 +0000
-Message-ID: <bug-67277-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67277] Lockdep splat on kernel 3.10.0
+Date: Wed, 24 Jul 2013 21:05:37 +0000
+Message-ID: <bug-67277-8800-bK3XcQ6OtG@http.bugs.freedesktop.org/>
+References: <bug-67277-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1338763127=="
+Content-Type: multipart/mixed; boundary="===============0609639317=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-67277-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,45 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1338763127==
-Content-Type: multipart/alternative; boundary="1374699838.Cbdd1.23546"; charset="us-ascii"
+--===============0609639317==
+Content-Type: multipart/alternative; boundary="1374699937.7Dcc1.23873"; charset="us-ascii"
 
 
---1374699838.Cbdd1.23546
-Date: Wed, 24 Jul 2013 21:03:58 +0000
+--1374699937.7Dcc1.23873
+Date: Wed, 24 Jul 2013 21:05:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67277
 
-          Priority: medium
-            Bug ID: 67277
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Lockdep splat on kernel 3.10.0
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: peter-WaGBZJeGNqdsbIuE7sb01tBPR1lH4CV8@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
-
-Created attachment 82961
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82961&action=edit
-lockdep splat in kernel log
-
-On vanilla 3.10 mainline, before the user session loads, I get the attached
-lockdep report.
+--- Comment #1 from Peter Hurley <peter-WaGBZJeGNqdsbIuE7sb01tBPR1lH4CV8@public.gmane.org> ---
+Created attachment 82962
+  --> https://bugs.freedesktop.org/attachment.cgi?id=82962&action=edit
+dmesg log
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374699838.Cbdd1.23546
-Date: Wed, 24 Jul 2013 21:03:58 +0000
+--1374699937.7Dcc1.23873
+Date: Wed, 24 Jul 2013 21:05:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,100 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Lockdep splat on kernel 3.10.0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67277">67277</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Lockdep splat on kernel 3.10.0
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>peter&#64;hurleysoftware.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82961" name="attach_82961" title="lockdep splat in kernel log">attachment 82961</a> <a href="attachment.cgi?id=82961&amp;action=edit" title="lockdep splat in kernel log">[details]</a></span>
-lockdep splat in kernel log
-
-On vanilla 3.10 mainline, before the user session loads, I get the attached
-lockdep report.</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Lockdep splat on kernel 3.10.0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67277#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Lockdep splat on kernel 3.10.0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67277">bug 67277</a>
+              from <span class="vcard"><a class="email" href="mailto:peter&#64;hurleysoftware.com" title="Peter Hurley &lt;peter&#64;hurleysoftware.com&gt;"> <span class="fn">Peter Hurley</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=82962" name="attach_82962" title="dmesg log">attachment 82962</a> <a href="attachment.cgi?id=82962&amp;action=edit" title="dmesg log">[details]</a></span>
+dmesg log</pre>
         </div>
       </p>
       <hr>
@@ -169,9 +75,9 @@ lockdep report.</pre>
     </body>
 </html>
 
---1374699838.Cbdd1.23546--
+--1374699937.7Dcc1.23873--
 
---===============1338763127==
+--===============0609639317==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -182,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1338763127==--
+--===============0609639317==--
