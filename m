@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67277] Lockdep splat on kernel 3.10.0
-Date: Wed, 24 Jul 2013 21:11:47 +0000
-Message-ID: <bug-67277-8800-gpBs8ZbPvy@http.bugs.freedesktop.org/>
-References: <bug-67277-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58556] MacBook Pro 5, 1 with nVidia 9400m and 9600m,
+ scrambled screen
+Date: Wed, 24 Jul 2013 22:51:47 +0000
+Message-ID: <bug-58556-8800-Wrk0G5ZoHi@http.bugs.freedesktop.org/>
+References: <bug-58556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2007662480=="
+Content-Type: multipart/mixed; boundary="===============0839295160=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67277-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2007662480==
-Content-Type: multipart/alternative; boundary="1374700307.1600b1.24959"; charset="us-ascii"
+--===============0839295160==
+Content-Type: multipart/alternative; boundary="1374706307.fBC27A3.10860"; charset="us-ascii"
 
 
---1374700307.1600b1.24959
-Date: Wed, 24 Jul 2013 21:11:47 +0000
+--1374706307.fBC27A3.10860
+Date: Wed, 24 Jul 2013 22:51:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67277
+https://bugs.freedesktop.org/show_bug.cgi?id=58556
 
---- Comment #2 from Peter Hurley <peter-WaGBZJeGNqdsbIuE7sb01tBPR1lH4CV8@public.gmane.org> ---
-Created attachment 82963
-  --> https://bugs.freedesktop.org/attachment.cgi?id=82963&action=edit
-Xorg log
+--- Comment #10 from Matyas <Markovics.matyas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks for the pointers Emil.
+
+I have tried the NvForcePost=1 configuration with noaccel=1, it only resulted
+in the backlight being bumped to 100%. My screen was still meessed up. Doing
+the suspend/resume trick fixed it.
+
+Without noaccel I get a system crash too.
+
+It would be nice to get acceleration.
+
+Joanand, am I understanding it correctly that you could get your 9400 with
+accel? If so was that prior to 3.7 kernels?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374700307.1600b1.24959
-Date: Wed, 24 Jul 2013 21:11:47 +0000
+--1374706307.fBC27A3.10860
+Date: Wed, 24 Jul 2013 22:51:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +64,26 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Lockdep splat on kernel 3.10.0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67277#c2">Comment # 2</a>
+   title="NEW --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Lockdep splat on kernel 3.10.0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67277">bug 67277</a>
-              from <span class="vcard"><a class="email" href="mailto:peter&#64;hurleysoftware.com" title="Peter Hurley &lt;peter&#64;hurleysoftware.com&gt;"> <span class="fn">Peter Hurley</span></a>
+   title="NEW --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
+              from <span class="vcard"><a class="email" href="mailto:Markovics.matyas&#64;gmail.com" title="Matyas &lt;Markovics.matyas&#64;gmail.com&gt;"> <span class="fn">Matyas</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=82963" name="attach_82963" title="Xorg log">attachment 82963</a> <a href="attachment.cgi?id=82963&amp;action=edit" title="Xorg log">[details]</a></span>
-Xorg log</pre>
+        <pre>Thanks for the pointers Emil.
+
+I have tried the NvForcePost=1 configuration with noaccel=1, it only resulted
+in the backlight being bumped to 100%. My screen was still meessed up. Doing
+the suspend/resume trick fixed it.
+
+Without noaccel I get a system crash too.
+
+It would be nice to get acceleration.
+
+Joanand, am I understanding it correctly that you could get your 9400 with
+accel? If so was that prior to 3.7 kernels?</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +95,9 @@ Xorg log</pre>
     </body>
 </html>
 
---1374700307.1600b1.24959--
+--1374706307.fBC27A3.10860--
 
---===============2007662480==
+--===============0839295160==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +108,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2007662480==--
+--===============0839295160==--
