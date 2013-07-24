@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Wed, 24 Jul 2013 02:40:58 +0000
-Message-ID: <bug-67051-8800-x0S0c3wZiC@http.bugs.freedesktop.org/>
+Date: Wed, 24 Jul 2013 05:02:15 +0000
+Message-ID: <bug-67051-8800-4r7VWHtiz6@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0255624669=="
+Content-Type: multipart/mixed; boundary="===============1595973354=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,60 +20,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0255624669==
-Content-Type: multipart/alternative; boundary="1374633658.A3AA61.428"; charset="us-ascii"
+--===============1595973354==
+Content-Type: multipart/alternative; boundary="1374642135.be5ebA0f0.18911"; charset="us-ascii"
 
 
---1374633658.A3AA61.428
-Date: Wed, 24 Jul 2013 02:40:58 +0000
+--1374642135.be5ebA0f0.18911
+Date: Wed, 24 Jul 2013 05:02:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #84 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #83)
-> Hi Ilia,
+--- Comment #85 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+> ... I made the change on top of a much more recent kernel, and I guess
+> my patches don't apply. You should be able to do this test on top of a
+> recent kernel -- e.g. 3.10, or 3.11-rc2. You can get this by just doing "git
+> checkout master" (or "origin" instead of "master", I forget)
 > 
-> It's a little late for me;  I'm just playing for the time being to get in
-> shape for tomorrow:
-> Please help me with this (I had already applied successfully, per your
-> instructions, the hdmi-1.patch + hdminva3.patch + hdminva3-4.patch,
-> but I'm stumbling at this step:
-> 
-> # In an attempt to restore (after it failed originally)
-> [~/linux]$ git checkout drivers/gpu/drm/nouveau ; echo $?
-> 0
+> perhaps I'll do that [whatever] later
+> if you run into trouble with this or the results are nonsensical.
 
-Correct.
+This is a really quick and not necessarily rigorous update.
+I did run into trouble:
 
-> [~/linux]$ patch -p1 < /home/alex/debug-3.patch ; echo $?
-> patching file drivers/gpu/drm/nouveau/core/engine/disp/hdminva3.c
-> patching file drivers/gpu/drm/nouveau/core/engine/disp/sornv50.c
-> Hunk #2 succeeded at 77 with fuzz 1.
-> patching file drivers/gpu/drm/nouveau/nv50_display.c
-> Hunk #1 FAILED at 1657.
-> Hunk #2 FAILED at 1666.
-> 2 out of 2 hunks FAILED -- saving rejects to file
-> drivers/gpu/drm/nouveau/nv50_display.c.rej
-> 1
-
-Blast... I made the change on top of a much more recent kernel, and I guess my
-patches don't apply. You should be able to do this test on top of a recent
-kernel -- e.g. 3.10, or 3.11-rc2. You can get this by just doing "git checkout
-master" (or "origin" instead of "master", I forget)
-
-Alternatively you could look at where I put the prints in and plop them in
-manually. I guess the classy thing for me to do would be to create a debugging
-patch that'll apply to that revision... perhaps I'll do that later if you run
-into trouble with this or the results are nonsensical.
+I went for 'git checkout _master_' - got something like 3.11.0-rc1+;
+the patches (including the last one, debug-3), worked OK.
+It's possible my "standard" '.config' file (circa 3.7.0-rc4+) I'd been using
+for the tests (without any of my "massaging" it during the 'make menuconfig' -
+for lack of time and energy) was a bit too long in the tooth for the "master"
+kernel to "adapt" to.
+The end result was after boot-up I couldn't even go into X at all and the
+system got almost frozen and unmanageable.  In short, as you'd put it,
+nonsensical.
+Right now I'm back on my tried and true 3.7.10 (i.e., standard <-> git), the
+last "official" with the HDMI sound, ready to resume the patches and any tests
+in a more organized and less frantic way.  For better or worse, that will
+happen not sooner than Wednesday, July 24, 6-7 PM EDT.
+At least you get a chance to go over them mmio traces more thoroughly (if you
+haven't done that already).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374633658.A3AA61.428
-Date: Wed, 24 Jul 2013 02:40:58 +0000
+--1374642135.be5ebA0f0.18911
+Date: Wed, 24 Jul 2013 05:02:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -87,48 +78,39 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c84">Comment # 84</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c85">Comment # 85</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67051#c83">comment #83</a>)
-<span class="quote">&gt; Hi Ilia,
+        <pre><span class="quote">&gt; ... I made the change on top of a much more recent kernel, and I guess
+&gt; my patches don't apply. You should be able to do this test on top of a
+&gt; recent kernel -- e.g. 3.10, or 3.11-rc2. You can get this by just doing &quot;git
+&gt; checkout master&quot; (or &quot;origin&quot; instead of &quot;master&quot;, I forget)
 &gt; 
-&gt; It's a little late for me;  I'm just playing for the time being to get in
-&gt; shape for tomorrow:
-&gt; Please help me with this (I had already applied successfully, per your
-&gt; instructions, the hdmi-1.patch + hdminva3.patch + hdminva3-4.patch,
-&gt; but I'm stumbling at this step:
-&gt; 
-&gt; # In an attempt to restore (after it failed originally)
-&gt; [~/linux]$ git checkout drivers/gpu/drm/nouveau ; echo $?
-&gt; 0</span >
+&gt; perhaps I'll do that [whatever] later
+&gt; if you run into trouble with this or the results are nonsensical.</span >
 
-Correct.
+This is a really quick and not necessarily rigorous update.
+I did run into trouble:
 
-<span class="quote">&gt; [~/linux]$ patch -p1 &lt; /home/alex/debug-3.patch ; echo $?
-&gt; patching file drivers/gpu/drm/nouveau/core/engine/disp/hdminva3.c
-&gt; patching file drivers/gpu/drm/nouveau/core/engine/disp/sornv50.c
-&gt; Hunk #2 succeeded at 77 with fuzz 1.
-&gt; patching file drivers/gpu/drm/nouveau/nv50_display.c
-&gt; Hunk #1 FAILED at 1657.
-&gt; Hunk #2 FAILED at 1666.
-&gt; 2 out of 2 hunks FAILED -- saving rejects to file
-&gt; drivers/gpu/drm/nouveau/nv50_display.c.rej
-&gt; 1</span >
-
-Blast... I made the change on top of a much more recent kernel, and I guess my
-patches don't apply. You should be able to do this test on top of a recent
-kernel -- e.g. 3.10, or 3.11-rc2. You can get this by just doing &quot;git checkout
-master&quot; (or &quot;origin&quot; instead of &quot;master&quot;, I forget)
-
-Alternatively you could look at where I put the prints in and plop them in
-manually. I guess the classy thing for me to do would be to create a debugging
-patch that'll apply to that revision... perhaps I'll do that later if you run
-into trouble with this or the results are nonsensical.</pre>
+I went for 'git checkout _master_' - got something like 3.11.0-rc1+;
+the patches (including the last one, debug-3), worked OK.
+It's possible my &quot;standard&quot; '.config' file (circa 3.7.0-rc4+) I'd been using
+for the tests (without any of my &quot;massaging&quot; it during the 'make menuconfig' -
+for lack of time and energy) was a bit too long in the tooth for the &quot;master&quot;
+kernel to &quot;adapt&quot; to.
+The end result was after boot-up I couldn't even go into X at all and the
+system got almost frozen and unmanageable.  In short, as you'd put it,
+nonsensical.
+Right now I'm back on my tried and true 3.7.10 (i.e., standard &lt;-&gt; git), the
+last &quot;official&quot; with the HDMI sound, ready to resume the patches and any tests
+in a more organized and less frantic way.  For better or worse, that will
+happen not sooner than Wednesday, July 24, 6-7 PM EDT.
+At least you get a chance to go over them mmio traces more thoroughly (if you
+haven't done that already).</pre>
         </div>
       </p>
       <hr>
@@ -140,9 +122,9 @@ into trouble with this or the results are nonsensical.</pre>
     </body>
 </html>
 
---1374633658.A3AA61.428--
+--1374642135.be5ebA0f0.18911--
 
---===============0255624669==
+--===============1595973354==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -153,4 +135,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0255624669==--
+--===============1595973354==--
