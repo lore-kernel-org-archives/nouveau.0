@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54700] Distorted graphics (double cursor) with
- GeForce 4200Go (NV28)
-Date: Wed, 24 Jul 2013 11:33:58 +0000
-Message-ID: <bug-54700-8800-SErQ1bFlac@http.bugs.freedesktop.org/>
-References: <bug-54700-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58556] MacBook Pro 5, 1 with nVidia 9400m and 9600m,
+ scrambled screen
+Date: Wed, 24 Jul 2013 11:58:49 +0000
+Message-ID: <bug-58556-8800-78iWJvoBaR@http.bugs.freedesktop.org/>
+References: <bug-58556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1465411455=="
+Content-Type: multipart/mixed; boundary="===============0155176626=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,69 +21,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1465411455==
-Content-Type: multipart/alternative; boundary="1374665638.aB2Cf32.14634"; charset="us-ascii"
+--===============0155176626==
+Content-Type: multipart/alternative; boundary="1374667129.7a2F812.18870"; charset="us-ascii"
 
 
---1374665638.aB2Cf32.14634
-Date: Wed, 24 Jul 2013 11:33:58 +0000
+--1374667129.7a2F812.18870
+Date: Wed, 24 Jul 2013 11:58:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54700
+https://bugs.freedesktop.org/show_bug.cgi?id=58556
 
---- Comment #35 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #34)
-> > As mentioned it seems like the tiling (pitch) is misset by ~64 (after a quick
-> > look at the attached picture)
+--- Comment #6 from Joanand <MacGyver031-S0/GAf8tV78@public.gmane.org> ---
+(In reply to comment #5)
+> Great find Matyas
 > 
-> I'll look around for a doc to understand what you're saying...
+> If you're interested in cutting short the sequence you can forcepost the
+> card, thus it should have you the suspend/resume trick. Use
+> nouveau.config=NvForcePost=1
 > 
-My knowledge is kinf of flacky in the area, so here is the way I understand it.
-Gpus do not always treat and/or use memory on a linear way. It may be handled
-as a tile with certain dimensions
+> Curious if the above will give you acceleration or only a working
+> output/monitor
+> (ie. try it with and without noaccel=1)
+> 
+> Cheers
 
-> > Can you do try and establish if the issue happens in or outside of X, and in
-> > which cases
-> 
-> what do you mean by outside X? Framebuffer terminal seemed ok, how can I
-> show a graphic without X?
-> 
-Yes I meant the framebuffer. Not sure of many ways to draw stuff on it -
-directFB is project that normally deals with such things [1]. My main point is
-to understand if the issue is xf86-video-nouveau or libdrm/kernel related
+Hi,
+On my MBP, if I do not use noaccel=1, then the whole system crashes.
 
-> >i.e. in X only when drawing an image of dimensions x1 & y1, or
-> > less than x2 & greater than y2
-> 
-> You mean rescaling a single image or showing images of different pixel size?
-> 
-> And you really mean drawing (e.g. with office draw) or just showing existing
-> images?
-> 
-I meant rendering images of different sizes. Looking at the iceweasel.png at
-bugs.debian.org indicates not everything rendered exhibits the distortion -
-would be great to know something specific about the files causing it
+I have tried NvForcePost=1 with noaccel, the result was a switched off screen,
+but system seems to boot.
+With accel, screen switches off and crashes.
 
-Simple tests
-* grab the ice weasel picture, open it in a image viewer (and/or browser) -
-distorted ?
-* rescale the image (using gimp or other software), reopen the picture and
-observe.
-* same for the cursor file
+Is there any config which would activate accel for 9400 but no accel for 9600?
+This would be very helpful for me.
 
-Cheers
-Emil
-
-
-[1] http://www.directfb.org/docs/DirectFB_Tutorials/image.html
+Thanks.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374665638.aB2Cf32.14634
-Date: Wed, 24 Jul 2013 11:33:58 +0000
+--1374667129.7a2F812.18870
+Date: Wed, 24 Jul 2013 11:58:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -96,58 +76,38 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c35">Comment # 35</a>
+   title="NEW --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+   title="NEW --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
+              from <span class="vcard"><a class="email" href="mailto:MacGyver031&#64;web.de" title="Joanand &lt;MacGyver031&#64;web.de&gt;"> <span class="fn">Joanand</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=54700#c34">comment #34</a>)
-<span class="quote">&gt; &gt; As mentioned it seems like the tiling (pitch) is misset by ~64 (after a quick
-&gt; &gt; look at the attached picture)
+        <pre>(In reply to <a href="show_bug.cgi?id=58556#c5">comment #5</a>)
+<span class="quote">&gt; Great find Matyas
 &gt; 
-&gt; I'll look around for a doc to understand what you're saying...
-&gt; </span >
-My knowledge is kinf of flacky in the area, so here is the way I understand it.
-Gpus do not always treat and/or use memory on a linear way. It may be handled
-as a tile with certain dimensions
-
-<span class="quote">&gt; &gt; Can you do try and establish if the issue happens in or outside of X, and in
-&gt; &gt; which cases
+&gt; If you're interested in cutting short the sequence you can forcepost the
+&gt; card, thus it should have you the suspend/resume trick. Use
+&gt; nouveau.config=NvForcePost=1
 &gt; 
-&gt; what do you mean by outside X? Framebuffer terminal seemed ok, how can I
-&gt; show a graphic without X?
-&gt; </span >
-Yes I meant the framebuffer. Not sure of many ways to draw stuff on it -
-directFB is project that normally deals with such things [1]. My main point is
-to understand if the issue is xf86-video-nouveau or libdrm/kernel related
-
-<span class="quote">&gt; &gt;i.e. in X only when drawing an image of dimensions x1 &amp; y1, or
-&gt; &gt; less than x2 &amp; greater than y2
+&gt; Curious if the above will give you acceleration or only a working
+&gt; output/monitor
+&gt; (ie. try it with and without noaccel=1)
 &gt; 
-&gt; You mean rescaling a single image or showing images of different pixel size?
-&gt; 
-&gt; And you really mean drawing (e.g. with office draw) or just showing existing
-&gt; images?
-&gt; </span >
-I meant rendering images of different sizes. Looking at the iceweasel.png at
-bugs.debian.org indicates not everything rendered exhibits the distortion -
-would be great to know something specific about the files causing it
+&gt; Cheers</span >
 
-Simple tests
-* grab the ice weasel picture, open it in a image viewer (and/or browser) -
-distorted ?
-* rescale the image (using gimp or other software), reopen the picture and
-observe.
-* same for the cursor file
+Hi,
+On my MBP, if I do not use noaccel=1, then the whole system crashes.
 
-Cheers
-Emil
+I have tried NvForcePost=1 with noaccel, the result was a switched off screen,
+but system seems to boot.
+With accel, screen switches off and crashes.
 
+Is there any config which would activate accel for 9400 but no accel for 9600?
+This would be very helpful for me.
 
-[1] <a href="http://www.directfb.org/docs/DirectFB_Tutorials/image.html">http://www.directfb.org/docs/DirectFB_Tutorials/image.html</a></pre>
+Thanks.</pre>
         </div>
       </p>
       <hr>
@@ -159,9 +119,9 @@ Emil
     </body>
 </html>
 
---1374665638.aB2Cf32.14634--
+--1374667129.7a2F812.18870--
 
---===============1465411455==
+--===============0155176626==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -172,4 +132,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1465411455==--
+--===============0155176626==--
