@@ -1,222 +1,196 @@
-From: Paul Menzel <paulepanter@users.sourceforge.net>
-Subject: Re: [PATCH] [RFC] drm/nouveau: bring back hdmi audio device after
-	switcheroo power down
-Date: Wed, 24 Jul 2013 10:45:23 +0200
-Message-ID: <1374655523.10633.10.camel@mattotaupa>
-References: <1374650022-17865-1-git-send-email-airlied@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 54700] Distorted graphics (double cursor) with
+ GeForce 4200Go (NV28)
+Date: Wed, 24 Jul 2013 09:02:05 +0000
+Message-ID: <bug-54700-8800-NtjWYSbbBN@http.bugs.freedesktop.org/>
+References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0325607962=="
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <1374650022-17865-1-git-send-email-airlied@gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Dave Airlie <airlied@gmail.com>
-Cc: tiwai@suse.de, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0450550870=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0325607962==
-Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature";
-	boundary="=-D8GOReSU0sRJwgMi+Hti"
+--===============0450550870==
+Content-Type: multipart/alternative; boundary="1374656525.bEDbc5c1.21322"; charset="us-ascii"
 
 
---=-D8GOReSU0sRJwgMi+Hti
+--1374656525.bEDbc5c1.21322
+Date: Wed, 24 Jul 2013 09:02:05 +0000
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Am Mittwoch, den 24.07.2013, 17:13 +1000 schrieb Dave Airlie:
-> After a full device powerdown via the optimus power switch, we seem
-> to lose the HDMI device completely on power on, this keep track of
+https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
-keep*s*
+--- Comment #34 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Hi Emil (just for you because not really intersting for the bucg tracker) 
 
-> whether we had a hdmi audio sub function device at power on, and
-> pokes a magic register to make it reappear after the optimus power
-> switch is thrown.
->=20
-> This at least works on my NVC4 machine, probably needs testing on
-> a few other laptops with other nvidia GPUs.
->=20
-> Signed-off-by: Dave Airlie <airlied@redhat.com>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_drm.c | 32 +++++++++++++++++++++++++++++=
-+++
->  drivers/gpu/drm/nouveau/nouveau_drm.h |  2 ++
->  drivers/gpu/drm/nouveau/nouveau_vga.c | 17 +++++++++++++++++
->  3 files changed, 51 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouv=
-eau/nouveau_drm.c
-> index 6197266..12a6240 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> @@ -296,6 +296,31 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
->  	return 0;
->  }
-> =20
-> +#define PCI_CLASS_MULTIMEDIA_HD_AUDIO 0x0403
+I can try what you ask this week end (than I will be on vacation for 15 days
+without internet).
 
-Should that go into some header?
+Some questions
 
-> +
-> +static void
-> +nouveau_get_hdmi_dev(struct drm_device *dev)
-> +{
-> +	struct nouveau_drm *drm =3D dev->dev_private;
-> +	struct pci_dev *pdev =3D dev->pdev;
-> +
-> +	/* subfunction one is a hdmi audio device? */
+> As mentioned it seems like the tiling (pitch) is misset by ~64 (after a quick
+> look at the attached picture)
 
-Just function as in <domain>:<bus>:<slot>.<func>?
+I'll look around for a doc to understand what you're saying...
 
-> +	drm->hdmi_device =3D pci_get_bus_and_slot((unsigned int)pdev->bus->numb=
-er,
-> +						PCI_DEVFN(PCI_SLOT(pdev->devfn), 1));
-> +
-> +	if (!drm->hdmi_device) {
-> +		DRM_INFO("hdmi device  not found %d %d %d\n", pdev->bus->number, PCI_S=
-LOT(pdev->devfn), 1);
+> Can you do try and establish if the issue happens in or outside of X, and in
+> which cases
 
-Just one space after device?
+what do you mean by outside X? Framebuffer terminal seemed ok, how can I show a
+graphic without X?
 
-> +		return;
-> +	}
-> +
-> +	if ((drm->hdmi_device->class >> 8) !=3D PCI_CLASS_MULTIMEDIA_HD_AUDIO) =
-{
-> +		DRM_INFO("possible hdmi device  not audio %d\n", drm->hdmi_device->cla=
-ss);
-> +		pci_dev_put(drm->hdmi_device);
-> +		drm->hdmi_device =3D NULL;
-> +		return;
-> +	}
-> +}
-> +
->  static int
->  nouveau_drm_load(struct drm_device *dev, unsigned long flags)
->  {
-> @@ -314,6 +339,8 @@ nouveau_drm_load(struct drm_device *dev, unsigned lon=
-g flags)
->  	INIT_LIST_HEAD(&drm->clients);
->  	spin_lock_init(&drm->tile.lock);
-> =20
-> +	nouveau_get_hdmi_dev(dev);
-> +
->  	/* make sure AGP controller is in a consistent state before we
->  	 * (possibly) execute vbios init tables (see nouveau_agp.h)
->  	 */
-> @@ -400,6 +427,9 @@ fail_ttm:
->  	nouveau_agp_fini(drm);
->  	nouveau_vga_fini(drm);
->  fail_device:
-> +	if (drm->hdmi_device)
-> +		pci_dev_put(drm->hdmi_device);
-> +
->  	nouveau_cli_destroy(&drm->client);
->  	return ret;
->  }
-> @@ -424,6 +454,8 @@ nouveau_drm_unload(struct drm_device *dev)
->  	nouveau_agp_fini(drm);
->  	nouveau_vga_fini(drm);
-> =20
-> +	if (drm->hdmi_device)
-> +		pci_dev_put(drm->hdmi_device);
->  	nouveau_cli_destroy(&drm->client);
->  	return 0;
->  }
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.h b/drivers/gpu/drm/nouv=
-eau/nouveau_drm.h
-> index 41ff7e0..f276e37 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drm.h
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.h
-> @@ -129,6 +129,8 @@ struct nouveau_drm {
-> =20
->  	/* power management */
->  	struct nouveau_pm *pm;
-> +
-> +	struct pci_dev *hdmi_device;
->  };
-> =20
->  static inline struct nouveau_drm *
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouv=
-eau/nouveau_vga.c
-> index 25d3495..d8af49c 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_vga.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
-> @@ -27,6 +27,22 @@ nouveau_vga_set_decode(void *priv, bool state)
->  }
-> =20
->  static void
-> +nouveau_reenable_hdmi_device(struct drm_device *dev)
-> +{
-> +	struct nouveau_drm *drm =3D nouveau_drm(dev);
-> +	struct nouveau_device *device =3D nv_device(drm->device);
-> +	uint32_t val;
-> +
-> +	if (!drm->hdmi_device)
-> +		return;
-> +
-> +	/* write magic value into magic place */
-> +	val =3D nv_rd32(device, 0x88488);
-> +	val |=3D (1 << 25);
-> +	nv_wr32(device, 0x88488, val);
+>i.e. in X only when drawing an image of dimensions x1 & y1, or
+> less than x2 & greater than y2
 
-Use a define for this nevertheless?
+You mean rescaling a single image or showing images of different pixel size?
 
-> +}
-> +
-> +static void
->  nouveau_switcheroo_set_state(struct pci_dev *pdev,
->  			     enum vga_switcheroo_state state)
->  {
-> @@ -37,6 +53,7 @@ nouveau_switcheroo_set_state(struct pci_dev *pdev,
->  		dev->switch_power_state =3D DRM_SWITCH_POWER_CHANGING;
->  		nouveau_pmops_resume(&pdev->dev);
->  		drm_kms_helper_poll_enable(dev);
-> +		nouveau_reenable_hdmi_device(dev);
->  		dev->switch_power_state =3D DRM_SWITCH_POWER_ON;
->  	} else {
->  		printk(KERN_ERR "VGA switcheroo: switched nouveau off\n");
+And you really mean drawing (e.g. with office draw) or just showing existing
+images?
 
-Otherwise this looks good,
+> Meanwhile I'll prep some debug patches (note you may need to rebuild
+> xf86-video-nouveau, libdrm and/or nouveau) :)
+
+Just explain me what to do and I'll do it, I'm happy to help.
+
+Cheers
+ric
 
 
-Thanks,
+On 2013-07-24 02:55:04 bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org wrote:
+> https://bugs.freedesktop.org/show_bug.cgi?id=54700
+> 
+> --- Comment #33 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+> Unfortunately the blob (proprietary driver) does not provide any useful
+> information in these logs.
+> 
+> As mentioned it seems like the tiling (pitch) is misset by ~64 (after a quick
+> look at the attached picture)
+> 
+> Can you do try and establish if the issue happens in or outside of X, and in
+> which cases - i.e. in X only when drawing an image of dimensions x1 & y1, or
+> less than x2 & greater than y2
+> 
+> Meanwhile I'll prep some debug patches (note you may need to rebuild
+> xf86-video-nouveau, libdrm and/or nouveau) :)
+> 
+>
 
-Paul
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
---=-D8GOReSU0sRJwgMi+Hti
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+--1374656525.bEDbc5c1.21322
+Date: Wed, 24 Jul 2013 09:02:05 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c34">Comment # 34</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
+              from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
+</span></b>
+        <pre>Hi Emil (just for you because not really intersting for the bucg tracker) 
 
-iEYEABECAAYFAlHvlCMACgkQPX1aK2wOHVg13gCfU/g7T/lgWAFcqa/SfMbCi+2G
-ZeIAn25kAJLAb9ePZOuzb6LWNMchZER4
-=BZ5E
------END PGP SIGNATURE-----
+I can try what you ask this week end (than I will be on vacation for 15 days
+without internet).
 
---=-D8GOReSU0sRJwgMi+Hti--
+Some questions
+
+<span class="quote">&gt; As mentioned it seems like the tiling (pitch) is misset by ~64 (after a quick
+&gt; look at the attached picture)</span >
+
+I'll look around for a doc to understand what you're saying...
+
+<span class="quote">&gt; Can you do try and establish if the issue happens in or outside of X, and in
+&gt; which cases</span >
+
+what do you mean by outside X? Framebuffer terminal seemed ok, how can I show a
+graphic without X?
+
+<span class="quote">&gt;i.e. in X only when drawing an image of dimensions x1 &amp; y1, or
+&gt; less than x2 &amp; greater than y2</span >
+
+You mean rescaling a single image or showing images of different pixel size?
+
+And you really mean drawing (e.g. with office draw) or just showing existing
+images?
+
+<span class="quote">&gt; Meanwhile I'll prep some debug patches (note you may need to rebuild
+&gt; xf86-video-nouveau, libdrm and/or nouveau) :)</span >
+
+Just explain me what to do and I'll do it, I'm happy to help.
+
+Cheers
+ric
 
 
---===============0325607962==
+On 2013-07-24 02:55:04 <a href="mailto:bugzilla-daemon&#64;freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a> wrote:
+<span class="quote">&gt; <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
+   href="show_bug.cgi?id=54700">https://bugs.freedesktop.org/show_bug.cgi?id=54700</a>
+&gt; 
+&gt; --- <a href="show_bug.cgi?id=54700#c33">Comment #33</a> from Emil Velikov &lt;<a href="mailto:emil.l.velikov&#64;gmail.com">emil.l.velikov&#64;gmail.com</a>&gt; ---
+&gt; Unfortunately the blob (proprietary driver) does not provide any useful
+&gt; information in these logs.
+&gt; 
+&gt; As mentioned it seems like the tiling (pitch) is misset by ~64 (after a quick
+&gt; look at the attached picture)
+&gt; 
+&gt; Can you do try and establish if the issue happens in or outside of X, and in
+&gt; which cases - i.e. in X only when drawing an image of dimensions x1 &amp; y1, or
+&gt; less than x2 &amp; greater than y2
+&gt; 
+&gt; Meanwhile I'll prep some debug patches (note you may need to rebuild
+&gt; xf86-video-nouveau, libdrm and/or nouveau) :)
+&gt; </span >
+&gt;</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1374656525.bEDbc5c1.21322--
+
+--===============0450550870==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Content-Disposition: inline
 
 _______________________________________________
-dri-devel mailing list
-dri-devel@lists.freedesktop.org
-http://lists.freedesktop.org/mailman/listinfo/dri-devel
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0325607962==--
+--===============0450550870==--
