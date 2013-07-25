@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58556] MacBook Pro 5, 1 with nVidia 9400m and 9600m,
- scrambled screen
-Date: Wed, 24 Jul 2013 22:51:47 +0000
-Message-ID: <bug-58556-8800-Wrk0G5ZoHi@http.bugs.freedesktop.org/>
-References: <bug-58556-8800@http.bugs.freedesktop.org/>
+From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] [RFC] drm/nouveau: bring back hdmi audio
+ device after switcheroo power down
+Date: Thu, 25 Jul 2013 10:05:04 +1000
+Message-ID: <CAPM=9tzwoyaLrxv=Lbed8Q2AmWy70gPT6dDqT4JBo4WRcamuBA@mail.gmail.com>
+References: <1374650022-17865-1-git-send-email-airlied@gmail.com>
+	<51EFD8DB.10206@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0839295160=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <51EFD8DB.10206-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,95 +19,136 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On Wed, Jul 24, 2013 at 11:38 PM, Maarten Lankhorst
+<maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> wrote:
+> Op 24-07-13 09:13, Dave Airlie schreef:
+>> After a full device powerdown via the optimus power switch, we seem
+>> to lose the HDMI device completely on power on, this keep track of
+>> whether we had a hdmi audio sub function device at power on, and
+>> pokes a magic register to make it reappear after the optimus power
+>> switch is thrown.
+>>
+>> This at least works on my NVC4 machine, probably needs testing on
+>> a few other laptops with other nvidia GPUs.
+>>
+>> Signed-off-by: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+>> ---
+>>  drivers/gpu/drm/nouveau/nouveau_drm.c | 32 ++++++++++++++++++++++++++++++++
+>>  drivers/gpu/drm/nouveau/nouveau_drm.h |  2 ++
+>>  drivers/gpu/drm/nouveau/nouveau_vga.c | 17 +++++++++++++++++
+>>  3 files changed, 51 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+>> index 6197266..12a6240 100644
+>> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+>> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+>> @@ -296,6 +296,31 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+>>       return 0;
+>>  }
+>>
+>> +#define PCI_CLASS_MULTIMEDIA_HD_AUDIO 0x0403
+>> +
+>> +static void
+>> +nouveau_get_hdmi_dev(struct drm_device *dev)
+>> +{
+>> +     struct nouveau_drm *drm = dev->dev_private;
+>> +     struct pci_dev *pdev = dev->pdev;
+>> +
+>> +     /* subfunction one is a hdmi audio device? */
+>> +     drm->hdmi_device = pci_get_bus_and_slot((unsigned int)pdev->bus->number,
+>> +                                             PCI_DEVFN(PCI_SLOT(pdev->devfn), 1));
+>> +
+>> +     if (!drm->hdmi_device) {
+>> +             DRM_INFO("hdmi device  not found %d %d %d\n", pdev->bus->number, PCI_SLOT(pdev->devfn), 1);
+>> +             return;
+>> +     }
+>> +
+>> +     if ((drm->hdmi_device->class >> 8) != PCI_CLASS_MULTIMEDIA_HD_AUDIO) {
+>> +             DRM_INFO("possible hdmi device  not audio %d\n", drm->hdmi_device->class);
+>> +             pci_dev_put(drm->hdmi_device);
+>> +             drm->hdmi_device = NULL;
+>> +             return;
+>> +     }
+>> +}
+>> +
+>>  static int
+>>  nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+>>  {
+>> @@ -314,6 +339,8 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+>>       INIT_LIST_HEAD(&drm->clients);
+>>       spin_lock_init(&drm->tile.lock);
+>>
+>> +     nouveau_get_hdmi_dev(dev);
+>> +
+>>       /* make sure AGP controller is in a consistent state before we
+>>        * (possibly) execute vbios init tables (see nouveau_agp.h)
+>>        */
+>> @@ -400,6 +427,9 @@ fail_ttm:
+>>       nouveau_agp_fini(drm);
+>>       nouveau_vga_fini(drm);
+>>  fail_device:
+>> +     if (drm->hdmi_device)
+>> +             pci_dev_put(drm->hdmi_device);
+>> +
+>>       nouveau_cli_destroy(&drm->client);
+>>       return ret;
+>>  }
+>> @@ -424,6 +454,8 @@ nouveau_drm_unload(struct drm_device *dev)
+>>       nouveau_agp_fini(drm);
+>>       nouveau_vga_fini(drm);
+>>
+>> +     if (drm->hdmi_device)
+>> +             pci_dev_put(drm->hdmi_device);
+>>       nouveau_cli_destroy(&drm->client);
+>>       return 0;
+>>  }
+>> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.h b/drivers/gpu/drm/nouveau/nouveau_drm.h
+>> index 41ff7e0..f276e37 100644
+>> --- a/drivers/gpu/drm/nouveau/nouveau_drm.h
+>> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.h
+>> @@ -129,6 +129,8 @@ struct nouveau_drm {
+>>
+>>       /* power management */
+>>       struct nouveau_pm *pm;
+>> +
+>> +     struct pci_dev *hdmi_device;
+>>  };
+>>
+>>  static inline struct nouveau_drm *
+>> diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
+>> index 25d3495..d8af49c 100644
+>> --- a/drivers/gpu/drm/nouveau/nouveau_vga.c
+>> +++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
+>> @@ -27,6 +27,22 @@ nouveau_vga_set_decode(void *priv, bool state)
+>>  }
+>>
+>>  static void
+>> +nouveau_reenable_hdmi_device(struct drm_device *dev)
+>> +{
+>> +     struct nouveau_drm *drm = nouveau_drm(dev);
+>> +     struct nouveau_device *device = nv_device(drm->device);
+>> +     uint32_t val;
+>> +
+>> +     if (!drm->hdmi_device)
+>> +             return;
+>> +
+>> +     /* write magic value into magic place */
+>> +     val = nv_rd32(device, 0x88488);
+>> +     val |= (1 << 25);
+>> +     nv_wr32(device, 0x88488, val);
+>> +}
+> use nv_mask(dev, 0x88488, 0x02000000, 0x02000000);
 
---===============0839295160==
-Content-Type: multipart/alternative; boundary="1374706307.fBC27A3.10860"; charset="us-ascii"
+much nicer,
 
+>
+> Could this be added in core/engine/disp/hdminv84.c nv84_hdmi_ctrl to get the same effect?
+>
+Don't think so its nothing to do with the hdmi audio part on the
+device, it just controls the PCI sub function appearing/disappearing.
 
---1374706307.fBC27A3.10860
-Date: Wed, 24 Jul 2013 22:51:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=58556
-
---- Comment #10 from Matyas <Markovics.matyas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thanks for the pointers Emil.
-
-I have tried the NvForcePost=1 configuration with noaccel=1, it only resulted
-in the backlight being bumped to 100%. My screen was still meessed up. Doing
-the suspend/resume trick fixed it.
-
-Without noaccel I get a system crash too.
-
-It would be nice to get acceleration.
-
-Joanand, am I understanding it correctly that you could get your 9400 with
-accel? If so was that prior to 3.7 kernels?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1374706307.fBC27A3.10860
-Date: Wed, 24 Jul 2013 22:51:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
-              from <span class="vcard"><a class="email" href="mailto:Markovics.matyas&#64;gmail.com" title="Matyas &lt;Markovics.matyas&#64;gmail.com&gt;"> <span class="fn">Matyas</span></a>
-</span></b>
-        <pre>Thanks for the pointers Emil.
-
-I have tried the NvForcePost=1 configuration with noaccel=1, it only resulted
-in the backlight being bumped to 100%. My screen was still meessed up. Doing
-the suspend/resume trick fixed it.
-
-Without noaccel I get a system crash too.
-
-It would be nice to get acceleration.
-
-Joanand, am I understanding it correctly that you could get your 9400 with
-accel? If so was that prior to 3.7 kernels?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1374706307.fBC27A3.10860--
-
---===============0839295160==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0839295160==--
+Dave.
