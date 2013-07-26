@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 61460] With Option     "NoAccel" "0", xorg fails...
-Date: Fri, 26 Jul 2013 08:01:07 +0000
-Message-ID: <bug-61460-8800-u3p1wSqcom@http.bugs.freedesktop.org/>
+Date: Fri, 26 Jul 2013 08:05:27 +0000
+Message-ID: <bug-61460-8800-TL9xQTyrZ4@http.bugs.freedesktop.org/>
 References: <bug-61460-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1215333478=="
+Content-Type: multipart/mixed; boundary="===============0741856038=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-61460-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,42 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1215333478==
-Content-Type: multipart/alternative; boundary="1374825667.D27d2223.10458"; charset="us-ascii"
+--===============0741856038==
+Content-Type: multipart/alternative; boundary="1374825927.ABa3eF453.11073"; charset="us-ascii"
 
 
---1374825667.D27d2223.10458
-Date: Fri, 26 Jul 2013 08:01:07 +0000
+--1374825927.ABa3eF453.11073
+Date: Fri, 26 Jul 2013 08:05:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=61460
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-It's not particularly clear (to me) where the bug is. Certainly there appears
-to be an issue in the xf86-video-nouveau EXA implementation when the card dies,
-it starts dereferencing NULL-ish pointers. However I think that the card dying
-is the primary issue...
-
-The bug here starts out with
-
-[    6.760320] nouveau E[     DRM] GPU lockup - switching to software fbcon
-
-before anything really happens, and then X starts, and PGRAPH is variously
-freaking out. The nouveau GPU reset logic isn't so great... my experience is
-that oftentimes only a reboot really fixes a GPU lockup. (Sometimes it's fine
-though.)
-
-In the altlinux.org bug there's also a GPU lockup detected, and it's not likely
-to be due to the fact that X died, but rather the other way around. (Lockups
-aren't necessarily detected immediately...)
+--- Comment #5 from Ildar Muyukov <ildar-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org> ---
+That's bad news for me :( as it looks unresolvable with regard of the
+proprietary position of NVidia.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374825667.D27d2223.10458
-Date: Fri, 26 Jul 2013 08:01:07 +0000
+--1374825927.ABa3eF453.11073
+Date: Fri, 26 Jul 2013 08:05:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,30 +54,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - With Option &quot;NoAccel&quot; &quot;0&quot;, xorg fails..."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61460#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61460#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - With Option &quot;NoAccel&quot; &quot;0&quot;, xorg fails..."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=61460">bug 61460</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:ildar&#64;users.sourceforge.net" title="Ildar Muyukov &lt;ildar&#64;users.sourceforge.net&gt;"> <span class="fn">Ildar Muyukov</span></a>
 </span></b>
-        <pre>It's not particularly clear (to me) where the bug is. Certainly there appears
-to be an issue in the xf86-video-nouveau EXA implementation when the card dies,
-it starts dereferencing NULL-ish pointers. However I think that the card dying
-is the primary issue...
-
-The bug here starts out with
-
-[    6.760320] nouveau E[     DRM] GPU lockup - switching to software fbcon
-
-before anything really happens, and then X starts, and PGRAPH is variously
-freaking out. The nouveau GPU reset logic isn't so great... my experience is
-that oftentimes only a reboot really fixes a GPU lockup. (Sometimes it's fine
-though.)
-
-In the altlinux.org bug there's also a GPU lockup detected, and it's not likely
-to be due to the fact that X died, but rather the other way around. (Lockups
-aren't necessarily detected immediately...)</pre>
+        <pre>That's bad news for me :( as it looks unresolvable with regard of the
+proprietary position of NVidia.</pre>
         </div>
       </p>
       <hr>
@@ -104,9 +74,9 @@ aren't necessarily detected immediately...)</pre>
     </body>
 </html>
 
---1374825667.D27d2223.10458--
+--1374825927.ABa3eF453.11073--
 
---===============1215333478==
+--===============0741856038==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -117,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1215333478==--
+--===============0741856038==--
