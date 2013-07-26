@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67315] System lockup with X consuming all CPU
-Date: Fri, 26 Jul 2013 18:30:10 +0000
-Message-ID: <bug-67315-8800-dbRu7RGoBO@http.bugs.freedesktop.org/>
+Date: Fri, 26 Jul 2013 18:52:10 +0000
+Message-ID: <bug-67315-8800-p9cm1wcE5m@http.bugs.freedesktop.org/>
 References: <bug-67315-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0141519360=="
+Content-Type: multipart/mixed; boundary="===============1332970369=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,49 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0141519360==
-Content-Type: multipart/alternative; boundary="1374863410.61BC52.20678"; charset="us-ascii"
+--===============1332970369==
+Content-Type: multipart/alternative; boundary="1374864730.2725E1.24699"; charset="us-ascii"
 
 
---1374863410.61BC52.20678
-Date: Fri, 26 Jul 2013 18:30:10 +0000
+--1374864730.2725E1.24699
+Date: Fri, 26 Jul 2013 18:52:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67315
 
---- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #3)
-> 
-> There is no xorg.conf file. This is a fresh, virgin install of Fedora
-> 19, then updated.
-> 
-
-AFAICS I've asked you to try using an xorg.conf, rather than "Are you using one
-how?" :P
-
-> 
-> I stated that it appears to occur when the screen saver starts and I did
-> include the dmesg data that started to spew out when the problem occurs.
-> That being said, I will restart everything and disable the screen saver
-> completely.
-> 
-
-You mentioned "possibly when the screen saver kicks in", which indicates a wild
-guess :P With that confirmed which screen saver you're talking about -
-bubble3d, etc.
-
-There is a reason I've requested dmesg output, the one you attached is at
-rather unknown point with absolutely no information as to how nouveau handles
-your card :\. That's why I've mentioned a _complete_ dmesg. If you feel there
-is something confidential inside if clearly strip it out
+--- Comment #5 from Rick Stevens <ricks-ijgZXeOBpMSRq8AjE7tl8g@public.gmane.org> ---
+Created attachment 83046
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83046&action=edit
+20-nouveau.conf, Xorg.0.log and dmesg output
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374863410.61BC52.20678
-Date: Fri, 26 Jul 2013 18:30:10 +0000
+--1374864730.2725E1.24699
+Date: Fri, 26 Jul 2013 18:52:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -76,37 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - System lockup with X consuming all CPU"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67315">bug 67315</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:ricks&#64;alldigital.com" title="Rick Stevens &lt;ricks&#64;alldigital.com&gt;"> <span class="fn">Rick Stevens</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67315#c3">comment #3</a>)
-<span class="quote">&gt; 
-&gt; There is no xorg.conf file. This is a fresh, virgin install of Fedora
-&gt; 19, then updated.
-&gt; </span >
-
-AFAICS I've asked you to try using an xorg.conf, rather than &quot;Are you using one
-how?&quot; :P
-
-<span class="quote">&gt; 
-&gt; I stated that it appears to occur when the screen saver starts and I did
-&gt; include the dmesg data that started to spew out when the problem occurs.
-&gt; That being said, I will restart everything and disable the screen saver
-&gt; completely.
-&gt; </span >
-
-You mentioned &quot;possibly when the screen saver kicks in&quot;, which indicates a wild
-guess :P With that confirmed which screen saver you're talking about -
-bubble3d, etc.
-
-There is a reason I've requested dmesg output, the one you attached is at
-rather unknown point with absolutely no information as to how nouveau handles
-your card :\. That's why I've mentioned a _complete_ dmesg. If you feel there
-is something confidential inside if clearly strip it out</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=83046" name="attach_83046" title="20-nouveau.conf, Xorg.0.log and dmesg output">attachment 83046</a> <a href="attachment.cgi?id=83046&amp;action=edit" title="20-nouveau.conf, Xorg.0.log and dmesg output">[details]</a></span>
+20-nouveau.conf, Xorg.0.log and dmesg output</pre>
         </div>
       </p>
       <hr>
@@ -118,9 +75,9 @@ is something confidential inside if clearly strip it out</pre>
     </body>
 </html>
 
---1374863410.61BC52.20678--
+--1374864730.2725E1.24699--
 
---===============0141519360==
+--===============1332970369==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -131,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0141519360==--
+--===============1332970369==--
