@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67315] System lockup with X consuming all CPU
-Date: Fri, 26 Jul 2013 18:52:10 +0000
-Message-ID: <bug-67315-8800-p9cm1wcE5m@http.bugs.freedesktop.org/>
+Date: Fri, 26 Jul 2013 20:34:59 +0000
+Message-ID: <bug-67315-8800-I6R1H3d05w@http.bugs.freedesktop.org/>
 References: <bug-67315-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1332970369=="
+Content-Type: multipart/mixed; boundary="===============1456071390=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,60 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1332970369==
-Content-Type: multipart/alternative; boundary="1374864730.2725E1.24699"; charset="us-ascii"
+--===============1456071390==
+Content-Type: multipart/alternative; boundary="1374870898.AeF7Fc22.8967"; charset="us-ascii"
 
 
---1374864730.2725E1.24699
-Date: Fri, 26 Jul 2013 18:52:10 +0000
+--1374870898.AeF7Fc22.8967
+Date: Fri, 26 Jul 2013 20:34:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67315
 
---- Comment #5 from Rick Stevens <ricks-ijgZXeOBpMSRq8AjE7tl8g@public.gmane.org> ---
-Created attachment 83046
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83046&action=edit
-20-nouveau.conf, Xorg.0.log and dmesg output
+--- Comment #6 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Now this is interesting
+
+[19.600630]
+Initially the kernel "drm" seems to pass NULL pointer to the card, while doing
+nv50_fbcon_imageblit()
+
+ch 1 [0x0007cb0000 DRM] subc 3 class 0x502d mthd 0x0860 data 0x00000000
+
+The way I see it, after this point we're on the mercy of the hardware
+
+[19.627513]
+X/the ddx
+MP is still funny and fails to execute/set EDGEFLAG_ENABLE to 1 (which for the
+sake of me I cannot find in the ddx code?) 
+
+[55.041877]
+At this point the GPU is completely stuffed fails to execute/set
+NV50_2D_BLIT_SRC_Y_INT, (coming from X).
+
+After that hell breaks loose :P
+
+
+Rick a few interesting notes
+In the last attachment Xorg.log claims that it's starts at ~81.456, whereas
+dmesg states that X was running ~19.627541.
+* Are those logs matching (ie. captured from the same boot/system startup)
+I'm assuming that you've started your screensaver ~55.041877. Is that correct ?
+* Do you recall when did your nouveau started started reporting errors (nouveau
+E) ?
+
+Note: the following messages are harmless
+nouveau E[    PBUS][0000:02:00.0] MMIO read of * FAULT at 0x1002**
+
+Cheers
+Emil
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374864730.2725E1.24699
-Date: Fri, 26 Jul 2013 18:52:10 +0000
+--1374870898.AeF7Fc22.8967
+Date: Fri, 26 Jul 2013 20:34:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +87,48 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - System lockup with X consuming all CPU"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67315">bug 67315</a>
-              from <span class="vcard"><a class="email" href="mailto:ricks&#64;alldigital.com" title="Rick Stevens &lt;ricks&#64;alldigital.com&gt;"> <span class="fn">Rick Stevens</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83046" name="attach_83046" title="20-nouveau.conf, Xorg.0.log and dmesg output">attachment 83046</a> <a href="attachment.cgi?id=83046&amp;action=edit" title="20-nouveau.conf, Xorg.0.log and dmesg output">[details]</a></span>
-20-nouveau.conf, Xorg.0.log and dmesg output</pre>
+        <pre>Now this is interesting
+
+[19.600630]
+Initially the kernel &quot;drm&quot; seems to pass NULL pointer to the card, while doing
+nv50_fbcon_imageblit()
+
+ch 1 [0x0007cb0000 DRM] subc 3 class 0x502d mthd 0x0860 data 0x00000000
+
+The way I see it, after this point we're on the mercy of the hardware
+
+[19.627513]
+X/the ddx
+MP is still funny and fails to execute/set EDGEFLAG_ENABLE to 1 (which for the
+sake of me I cannot find in the ddx code?) 
+
+[55.041877]
+At this point the GPU is completely stuffed fails to execute/set
+NV50_2D_BLIT_SRC_Y_INT, (coming from X).
+
+After that hell breaks loose :P
+
+
+Rick a few interesting notes
+In the last attachment Xorg.log claims that it's starts at ~81.456, whereas
+dmesg states that X was running ~19.627541.
+* Are those logs matching (ie. captured from the same boot/system startup)
+I'm assuming that you've started your screensaver ~55.041877. Is that correct ?
+* Do you recall when did your nouveau started started reporting errors (nouveau
+E) ?
+
+Note: the following messages are harmless
+nouveau E[    PBUS][0000:02:00.0] MMIO read of * FAULT at 0x1002**
+
+Cheers
+Emil</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +140,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1374864730.2725E1.24699--
+--1374870898.AeF7Fc22.8967--
 
---===============1332970369==
+--===============1456071390==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +153,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1332970369==--
+--===============1456071390==--
