@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61460] With Option     "NoAccel" "0", xorg fails...
-Date: Fri, 26 Jul 2013 08:05:27 +0000
-Message-ID: <bug-61460-8800-TL9xQTyrZ4@http.bugs.freedesktop.org/>
-References: <bug-61460-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
+Date: Fri, 26 Jul 2013 08:29:43 +0000
+Message-ID: <bug-67051-8800-Snq8ROwMhP@http.bugs.freedesktop.org/>
+References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0741856038=="
+Content-Type: multipart/mixed; boundary="===============1671650148=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61460-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0741856038==
-Content-Type: multipart/alternative; boundary="1374825927.ABa3eF453.11073"; charset="us-ascii"
+--===============1671650148==
+Content-Type: multipart/alternative; boundary="1374827383.34BA1.14293"; charset="us-ascii"
 
 
---1374825927.ABa3eF453.11073
-Date: Fri, 26 Jul 2013 08:05:27 +0000
+--1374827383.34BA1.14293
+Date: Fri, 26 Jul 2013 08:29:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=61460
+https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #5 from Ildar Muyukov <ildar-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org> ---
-That's bad news for me :( as it looks unresolvable with regard of the
-proprietary position of NVidia.
+--- Comment #87 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Let's worry about X dying later... it has nothing to do with HDMI video or
+audio. Do you have the dmesg from the boot that had my debug patch applied?
+(Also, my hdminva3.patch should already be part of 3.11, so I'm surprised you
+didn't get a conflict of some sort when applying it.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374825927.ABa3eF453.11073
-Date: Fri, 26 Jul 2013 08:05:27 +0000
+--1374827383.34BA1.14293
+Date: Fri, 26 Jul 2013 08:29:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,16 +55,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - With Option &quot;NoAccel&quot; &quot;0&quot;, xorg fails..."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61460#c5">Comment # 5</a>
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c87">Comment # 87</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - With Option &quot;NoAccel&quot; &quot;0&quot;, xorg fails..."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61460">bug 61460</a>
-              from <span class="vcard"><a class="email" href="mailto:ildar&#64;users.sourceforge.net" title="Ildar Muyukov &lt;ildar&#64;users.sourceforge.net&gt;"> <span class="fn">Ildar Muyukov</span></a>
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>That's bad news for me :( as it looks unresolvable with regard of the
-proprietary position of NVidia.</pre>
+        <pre>Let's worry about X dying later... it has nothing to do with HDMI video or
+audio. Do you have the dmesg from the boot that had my debug patch applied?
+(Also, my hdminva3.patch should already be part of 3.11, so I'm surprised you
+didn't get a conflict of some sort when applying it.)</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +78,9 @@ proprietary position of NVidia.</pre>
     </body>
 </html>
 
---1374825927.ABa3eF453.11073--
+--1374827383.34BA1.14293--
 
---===============0741856038==
+--===============1671650148==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0741856038==--
+--===============1671650148==--
