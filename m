@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67382] [nouveau,
  nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Sat, 27 Jul 2013 02:00:43 +0000
-Message-ID: <bug-67382-8800-paEnA27jSH@http.bugs.freedesktop.org/>
+Date: Sat, 27 Jul 2013 02:02:36 +0000
+Message-ID: <bug-67382-8800-9NvNsz5Fql@http.bugs.freedesktop.org/>
 References: <bug-67382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1223246792=="
+Content-Type: multipart/mixed; boundary="===============0006793939=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1223246792==
-Content-Type: multipart/alternative; boundary="1374890443.7Fb18c1.17697"; charset="us-ascii"
+--===============0006793939==
+Content-Type: multipart/alternative; boundary="1374890556.5CD4bf8b1.17875"; charset="us-ascii"
 
 
---1374890443.7Fb18c1.17697
-Date: Sat, 27 Jul 2013 02:00:43 +0000
+--1374890556.5CD4bf8b1.17875
+Date: Sat, 27 Jul 2013 02:02:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67382
 
---- Comment #1 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
-Created attachment 83073
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83073&action=edit
-nouveau specific entries from journalctl using 3.9.6
+--- Comment #2 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
+Created attachment 83074
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83074&action=edit
+nouveau specific entries from journalctl using 3.10.3
 
-Journalctl log from the working 3.9.6 kernel
+Log from a non working kernel (3.10.3, the latest kernel at the moment)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374890443.7Fb18c1.17697
-Date: Sat, 27 Jul 2013 02:00:43 +0000
+--1374890556.5CD4bf8b1.17875
+Date: Sat, 27 Jul 2013 02:02:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,17 +58,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
               from <span class="vcard"><a class="email" href="mailto:anonymous&#64;dodgeit.com" title="Anonymous Helper &lt;anonymous&#64;dodgeit.com&gt;"> <span class="fn">Anonymous Helper</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83073" name="attach_83073" title="nouveau specific entries from journalctl using 3.9.6">attachment 83073</a> <a href="attachment.cgi?id=83073&amp;action=edit" title="nouveau specific entries from journalctl using 3.9.6">[details]</a></span>
-nouveau specific entries from journalctl using 3.9.6
+        <pre>Created <span class=""><a href="attachment.cgi?id=83074" name="attach_83074" title="nouveau specific entries from journalctl using 3.10.3">attachment 83074</a> <a href="attachment.cgi?id=83074&amp;action=edit" title="nouveau specific entries from journalctl using 3.10.3">[details]</a></span>
+nouveau specific entries from journalctl using 3.10.3
 
-Journalctl log from the working 3.9.6 kernel</pre>
+Log from a non working kernel (3.10.3, the latest kernel at the moment)</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +80,9 @@ Journalctl log from the working 3.9.6 kernel</pre>
     </body>
 </html>
 
---1374890443.7Fb18c1.17697--
+--1374890556.5CD4bf8b1.17875--
 
---===============1223246792==
+--===============0006793939==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1223246792==--
+--===============0006793939==--
