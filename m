@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 65827] computer often fails to boot with nouveau and
- GeForce GT 425M on newest Linux kernel
-Date: Sat, 27 Jul 2013 00:20:32 +0000
-Message-ID: <bug-65827-8800-NLfDeXIVJr@http.bugs.freedesktop.org/>
-References: <bug-65827-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64888] [nva5] Garbage rendering in Portal
+Date: Sat, 27 Jul 2013 00:23:11 +0000
+Message-ID: <bug-64888-8800-wpJMgXs0Yp@http.bugs.freedesktop.org/>
+References: <bug-64888-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1199133379=="
+Content-Type: multipart/mixed; boundary="===============1892376791=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-65827-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-64888-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1199133379==
-Content-Type: multipart/alternative; boundary="1374884432.A1c2f42.5933"; charset="us-ascii"
+--===============1892376791==
+Content-Type: multipart/alternative; boundary="1374884591.EcF8Dab81.6197"; charset="us-ascii"
 
 
---1374884432.A1c2f42.5933
-Date: Sat, 27 Jul 2013 00:20:32 +0000
+--1374884591.EcF8Dab81.6197
+Date: Sat, 27 Jul 2013 00:23:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=65827
+https://bugs.freedesktop.org/show_bug.cgi?id=64888
 
 Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-            Product|Mesa                        |xorg
-            Version|9.1                         |unspecified
-          Component|Drivers/DRI/nouveau         |Driver/nouveau
+           See Also|                            |https://bugs.freedesktop.or
+                   |                            |g/show_bug.cgi?id=64323
 
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Original issue is not mesa related. Correcting component
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Seems like a duplicate of bug 64323
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374884432.A1c2f42.5933
-Date: Sat, 27 Jul 2013 00:20:32 +0000
+--1374884591.EcF8Dab81.6197
+Date: Sat, 27 Jul 2013 00:23:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,8 +58,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - computer often fails to boot with nouveau and GeForce GT 425M on newest Linux kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65827">bug 65827</a>
+   title="NEW --- - [nva5] Garbage rendering in Portal"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64888">bug 64888</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -72,50 +69,29 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">QA Contact</td>
+           <td style="text-align:right;">See Also</td>
            <td>
                &nbsp;
            </td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Product</td>
-           <td>Mesa
-           </td>
-           <td>xorg
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Version</td>
-           <td>9.1
-           </td>
-           <td>unspecified
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Drivers/DRI/nouveau
-           </td>
-           <td>Driver/nouveau
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=64323
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - computer often fails to boot with nouveau and GeForce GT 425M on newest Linux kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65827#c2">Comment # 2</a>
+   title="NEW --- - [nva5] Garbage rendering in Portal"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64888#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - computer often fails to boot with nouveau and GeForce GT 425M on newest Linux kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65827">bug 65827</a>
+   title="NEW --- - [nva5] Garbage rendering in Portal"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64888">bug 64888</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Original issue is not mesa related. Correcting component</pre>
+        <pre>Seems like a duplicate of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Severe misrendering in Left 4 Dead 2"
+   href="show_bug.cgi?id=64323">bug 64323</a></pre>
         </div>
       </p>
       <hr>
@@ -127,9 +103,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1374884432.A1c2f42.5933--
+--1374884591.EcF8Dab81.6197--
 
---===============1199133379==
+--===============1892376791==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -140,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1199133379==--
+--===============1892376791==--
