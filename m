@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67315] System lockup with X consuming all CPU
-Date: Fri, 26 Jul 2013 21:41:35 +0000
-Message-ID: <bug-67315-8800-z43WiZ8ZZo@http.bugs.freedesktop.org/>
-References: <bug-67315-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 65827] computer often fails to boot with nouveau and
+ GeForce GT 425M on newest Linux kernel
+Date: Sat, 27 Jul 2013 00:17:52 +0000
+Message-ID: <bug-65827-8800-W2OrOVEk0u@http.bugs.freedesktop.org/>
+References: <bug-65827-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1185524879=="
+Content-Type: multipart/mixed; boundary="===============1368646537=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-65827-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,103 +21,102 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1185524879==
-Content-Type: multipart/alternative; boundary="1374874895.8Fdfa321.18274"; charset="us-ascii"
+--===============1368646537==
+Content-Type: multipart/alternative; boundary="1374884272.60AD802b1.5634"; charset="us-ascii"
 
 
---1374874895.8Fdfa321.18274
-Date: Fri, 26 Jul 2013 21:41:35 +0000
+--1374884272.60AD802b1.5634
+Date: Sat, 27 Jul 2013 00:17:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67315
+https://bugs.freedesktop.org/show_bug.cgi?id=65827
 
---- Comment #7 from Rick Stevens <ricks-ijgZXeOBpMSRq8AjE7tl8g@public.gmane.org> ---
-On 07/26/2013 01:34 PM, bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org issued this missive:
-> *Comment # 6 <https://bugs.freedesktop.org/show_bug.cgi?id=67315#c6> on
-> bug 67315 <https://bugs.freedesktop.org/show_bug.cgi?id=67315> from Emil
-> Velikov <mailto:emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> *
->
-> Now this is interesting
->
-> [19.600630]
-> Initially the kernel "drm" seems to pass NULL pointer to the card, while doing
-> nv50_fbcon_imageblit()
->
-> ch 1 [0x0007cb0000 DRM] subc 3 class 0x502d mthd 0x0860 data 0x00000000
->
-> The way I see it, after this point we're on the mercy of the hardware
->
-> [19.627513]
-> X/the ddx
-> MP is still funny and fails to execute/set EDGEFLAG_ENABLE to 1 (which for the
-> sake of me I cannot find in the ddx code?)
->
-> [55.041877]
-> At this point the GPU is completely stuffed fails to execute/set
-> NV50_2D_BLIT_SRC_Y_INT, (coming from X).
->
-> After that hell breaks loose :P
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi there
 
-Emil, thanks for looking at this. It's, uhm, interesting, isn't it?
+First and foremost what is your experience with 3.10.x kernels ? There has been
+quite a few issues addressed, and a few other in the 3.11-rc2+. Can you try
+them both ?
 
-For clarity sake, this is a bit of an odd system. It's a Shuttle 
-motherboard. From "dmidecode":
+(In reply to comment #0)
+> Created attachment 80911 [details]
+> screen shot of my screen on boot
+> 
+> When I turn my computer on, at some point of the booting process I get an
+> endless cascade of almost-identical error messages like "[   45.935830]
+> nouveau E(   PFIFO][0000:01:00.0] SUBFIFO0: (unknown bits 0x00004000)" (see
+> image attached). Apparently the computer doesn't respond to any input, so
+> the only thing I can do is force it to shut down by pressing the power
+> button long.
+> 
+Does the system respond to REISUB, ssh ?
 
-Handle 0x0002, DMI type 2, 8 bytes
-Base Board Information
-    Manufacturer: Shuttle Inc
-    Product Name: FN78S
-    Version: V10
-    Serial Number:
+> Most of the times, the system boots OK at the second try, but not even
+> always. If I'm not successful after several attempts, I choose the LTS
+> kernel (3.0.82 instead of 3.9.6) from my GRUB and then this won't happen.
+> 
+Would be great if you can attach dmesg of 3.0.82 and 3.9.6
 
-> Rick a few interesting notes
-> In the last attachment Xorg.log claims that it's starts at ~81.456, whereas
-> dmesg states that X was running ~19.627541.
-> * Are those logs matching (ie. captured from the same boot/system startup)
-> I'm assuming that you've started your screensaver ~55.041877. Is that correct ?
-> * Do you recall when did your nouveau started started reporting errors (nouveau
-> E) ?
+> It looks like these error logs messages are not properly kept as log files,
+> probably because I have to interrupt the boot process this way. A 'grep -R
+> "unknown bits"' from /var/log only finds matches in five *.journal binary
+> files in the directory /var/log/journal. This is why I attach a real-world
+> picture of my screen instead of a log file.
+> 
+journal is kind of funny on my system wrt correctly storing the logs :\ 
 
-I booted the machine and as soon as the display locked up, I ssh'd to it
-from another machine and simply did a "dmesg >/rick/dmesg.txt" to
-capture as much as I could. The Xorg.0.log was already generated by the
-time I logged in via ssh. I combined the various logs into one file and
-shot it off to bugzilla.
+You can filter journal to display messages, coming from the kernel by using
+"journalctl _TRANSPORT=kernel"
 
-As far as the screen saver, I'm running XFCE and the lockup occurred as
-soon as I went through the "Applications Menu->Settings->Screensaver"
-menu tree. It tried to render the Screensaver window, got as far as
-drawing the box around it and everything locked up. After about a
-minute, the graphical screen blanked and I started getting the GPU
-lockup and going back to fbcon messages appeared on the console. The
-GUI screen then reappeared but it was still locked up. Again it
-cleared, the GPU lockup message appeared again and around and around we
-go. It might do the same thing rendering other windows, but I'm trying
-to be consistent to help debug this.
+> One of the last times that I managed to boot with the 3.9 kernel, I noticed
+> that in the file /proc/fb I only had "0 inteldrmfb". Now I am on the 3.0
+> kernel and I have
+> "0 inteldrmfb
+> 1 nouveaufb"
+> 
+> On the other hand, the command 'lspci -v | grep VGA' returns similar output
+> on both kernels:
+> - On 3.9 kernel:
+> 00:02.0 VGA compatible controller: Intel Corporation Core Processor
+> Integrated Graphics Controller (rev 02) (prog-if 00 [VGA controller])
+> 01:00.0 VGA compatible controller: NVIDIA Corporation GF108M [GeForce GT
+> 425M] (rev ff) (prog-if ff)
+> 
+The above looks a bit interesting. Seems like lspci cannot read the full data
+of the device, thus the 0xff's. Maybe the device is switched off and/or not
+initialised by the kernel
 
-I'll be more than happy to keep tinkering, but I've had like 3 hours
-of sleep in the last two days and I'm a bit knackered. I can pick this
-back up Monday. I'm in California if that's of any help.
+> - And on 3.0 kernel:
+> 00:02.0 VGA compatible controller: Intel Corporation Core Processor
+> Integrated Graphics Controller (rev 02) (prog-if 00 [VGA controller])
+> 01:00.0 VGA compatible controller: NVIDIA Corporation GF108M [GeForce GT
+> 425M] (rev a1) (prog-if 00 [VGA controller])
+> 
+> This has been happening for several months already, so the problem didn't
+> start with kernel 3.9 but earlier.
+> 
+Would be great if you can be more specific. If 3.10 and 3.11 still fails on
+your system would be appreciated if you can bisect the commit that introduced
+this issue
 
-> Note: the following messages are harmless
-> nouveau E[    PBUS][0000:02:00.0] MMIO read of * FAULT at 0x1002**
+> All this said, even if I manage to boot, it looks like my NVIDIA card is
+> never used by any program, only the Intel one. GPU never seems to be
+> available.
+I'm assuming that that this is an optimus laptop, is that correct ?
 
-Glad to hear that! That's the first thing that appears after the
-plymouth "fill the bubble" screen and before I get the GDM login.
-----------------------------------------------------------------------
-- Rick Stevens, Systems Engineer, AllDigital    ricks-ijgZXeOBpMSRq8AjE7tl8g@public.gmane.org -
-- AIM/Skype: therps2        ICQ: 22643734            Yahoo: origrps2 -
--                                                                    -
--     Squawk!  Pieces of Seven!  Pieces of Seven!  Parity Error!     -
-----------------------------------------------------------------------
+I would target the kernel module issue first and then work on on "how to make
+my optimus laptop work under linux" :P
+
+Cheers
+Emil
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374874895.8Fdfa321.18274
-Date: Fri, 26 Jul 2013 21:41:35 +0000
+--1374884272.60AD802b1.5634
+Date: Sat, 27 Jul 2013 00:17:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -129,101 +129,91 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c7">Comment # 7</a>
+   title="NEW --- - computer often fails to boot with nouveau and GeForce GT 425M on newest Linux kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65827#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315">bug 67315</a>
-              from <span class="vcard"><a class="email" href="mailto:ricks&#64;alldigital.com" title="Rick Stevens &lt;ricks&#64;alldigital.com&gt;"> <span class="fn">Rick Stevens</span></a>
+   title="NEW --- - computer often fails to boot with nouveau and GeForce GT 425M on newest Linux kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65827">bug 65827</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>On 07/26/2013 01:34 PM, <a href="mailto:bugzilla-daemon&#64;freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a> issued this missive:
-<span class="quote">&gt; *<a href="show_bug.cgi?id=67315#c6">Comment # 6</a> &lt;<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - System lockup with X consuming all CPU"
-   href="show_bug.cgi?id=67315#c6">https://bugs.freedesktop.org/show_bug.cgi?id=67315#c6</a>&gt; on
-&gt; <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - System lockup with X consuming all CPU"
-   href="show_bug.cgi?id=67315">bug 67315</a> &lt;<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - System lockup with X consuming all CPU"
-   href="show_bug.cgi?id=67315">https://bugs.freedesktop.org/show_bug.cgi?id=67315</a>&gt; from Emil
-&gt; Velikov &lt;<a href="mailto:emil.l.velikov&#64;gmail.com">mailto:emil.l.velikov&#64;gmail.com</a>&gt; *</span >
-&gt;
-<span class="quote">&gt; Now this is interesting</span >
-&gt;
-<span class="quote">&gt; [19.600630]
-&gt; Initially the kernel &quot;drm&quot; seems to pass NULL pointer to the card, while doing
-&gt; nv50_fbcon_imageblit()</span >
-&gt;
-<span class="quote">&gt; ch 1 [0x0007cb0000 DRM] subc 3 class 0x502d mthd 0x0860 data 0x00000000</span >
-&gt;
-<span class="quote">&gt; The way I see it, after this point we're on the mercy of the hardware</span >
-&gt;
-<span class="quote">&gt; [19.627513]
-&gt; X/the ddx
-&gt; MP is still funny and fails to execute/set EDGEFLAG_ENABLE to 1 (which for the
-&gt; sake of me I cannot find in the ddx code?)</span >
-&gt;
-<span class="quote">&gt; [55.041877]
-&gt; At this point the GPU is completely stuffed fails to execute/set
-&gt; NV50_2D_BLIT_SRC_Y_INT, (coming from X).</span >
-&gt;
-<span class="quote">&gt; After that hell breaks loose :P</span >
+        <pre>Hi there
 
-Emil, thanks for looking at this. It's, uhm, interesting, isn't it?
+First and foremost what is your experience with 3.10.x kernels ? There has been
+quite a few issues addressed, and a few other in the 3.11-rc2+. Can you try
+them both ?
 
-For clarity sake, this is a bit of an odd system. It's a Shuttle 
-motherboard. From &quot;dmidecode&quot;:
+(In reply to <a href="show_bug.cgi?id=65827#c0">comment #0</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=80911" name="attach_80911" title="screen shot of my screen on boot">attachment 80911</a> <a href="attachment.cgi?id=80911&amp;action=edit" title="screen shot of my screen on boot">[details]</a></span>
+&gt; screen shot of my screen on boot
+&gt; 
+&gt; When I turn my computer on, at some point of the booting process I get an
+&gt; endless cascade of almost-identical error messages like &quot;[   45.935830]
+&gt; nouveau E(   PFIFO][0000:01:00.0] SUBFIFO0: (unknown bits 0x00004000)&quot; (see
+&gt; image attached). Apparently the computer doesn't respond to any input, so
+&gt; the only thing I can do is force it to shut down by pressing the power
+&gt; button long.
+&gt; </span >
+Does the system respond to REISUB, ssh ?
 
-Handle 0x0002, DMI type 2, 8 bytes
-Base Board Information
-    Manufacturer: Shuttle Inc
-    Product Name: FN78S
-    Version: V10
-    Serial Number:
+<span class="quote">&gt; Most of the times, the system boots OK at the second try, but not even
+&gt; always. If I'm not successful after several attempts, I choose the LTS
+&gt; kernel (3.0.82 instead of 3.9.6) from my GRUB and then this won't happen.
+&gt; </span >
+Would be great if you can attach dmesg of 3.0.82 and 3.9.6
 
-<span class="quote">&gt; Rick a few interesting notes
-&gt; In the last attachment Xorg.log claims that it's starts at ~81.456, whereas
-&gt; dmesg states that X was running ~19.627541.
-&gt; * Are those logs matching (ie. captured from the same boot/system startup)
-&gt; I'm assuming that you've started your screensaver ~55.041877. Is that correct ?
-&gt; * Do you recall when did your nouveau started started reporting errors (nouveau
-&gt; E) ?</span >
+<span class="quote">&gt; It looks like these error logs messages are not properly kept as log files,
+&gt; probably because I have to interrupt the boot process this way. A 'grep -R
+&gt; &quot;unknown bits&quot;' from /var/log only finds matches in five *.journal binary
+&gt; files in the directory /var/log/journal. This is why I attach a real-world
+&gt; picture of my screen instead of a log file.
+&gt; </span >
+journal is kind of funny on my system wrt correctly storing the logs :\ 
 
-I booted the machine and as soon as the display locked up, I ssh'd to it
-from another machine and simply did a &quot;dmesg &gt;/rick/dmesg.txt&quot; to
-capture as much as I could. The Xorg.0.log was already generated by the
-time I logged in via ssh. I combined the various logs into one file and
-shot it off to bugzilla.
+You can filter journal to display messages, coming from the kernel by using
+&quot;journalctl _TRANSPORT=kernel&quot;
 
-As far as the screen saver, I'm running XFCE and the lockup occurred as
-soon as I went through the &quot;Applications Menu-&gt;Settings-&gt;Screensaver&quot;
-menu tree. It tried to render the Screensaver window, got as far as
-drawing the box around it and everything locked up. After about a
-minute, the graphical screen blanked and I started getting the GPU
-lockup and going back to fbcon messages appeared on the console. The
-GUI screen then reappeared but it was still locked up. Again it
-cleared, the GPU lockup message appeared again and around and around we
-go. It might do the same thing rendering other windows, but I'm trying
-to be consistent to help debug this.
+<span class="quote">&gt; One of the last times that I managed to boot with the 3.9 kernel, I noticed
+&gt; that in the file /proc/fb I only had &quot;0 inteldrmfb&quot;. Now I am on the 3.0
+&gt; kernel and I have
+&gt; &quot;0 inteldrmfb
+&gt; 1 nouveaufb&quot;
+&gt; 
+&gt; On the other hand, the command 'lspci -v | grep VGA' returns similar output
+&gt; on both kernels:
+&gt; - On 3.9 kernel:
+&gt; 00:02.0 VGA compatible controller: Intel Corporation Core Processor
+&gt; Integrated Graphics Controller (rev 02) (prog-if 00 [VGA controller])
+&gt; 01:00.0 VGA compatible controller: NVIDIA Corporation GF108M [GeForce GT
+&gt; 425M] (rev ff) (prog-if ff)
+&gt; </span >
+The above looks a bit interesting. Seems like lspci cannot read the full data
+of the device, thus the 0xff's. Maybe the device is switched off and/or not
+initialised by the kernel
 
-I'll be more than happy to keep tinkering, but I've had like 3 hours
-of sleep in the last two days and I'm a bit knackered. I can pick this
-back up Monday. I'm in California if that's of any help.
+<span class="quote">&gt; - And on 3.0 kernel:
+&gt; 00:02.0 VGA compatible controller: Intel Corporation Core Processor
+&gt; Integrated Graphics Controller (rev 02) (prog-if 00 [VGA controller])
+&gt; 01:00.0 VGA compatible controller: NVIDIA Corporation GF108M [GeForce GT
+&gt; 425M] (rev a1) (prog-if 00 [VGA controller])
+&gt; 
+&gt; This has been happening for several months already, so the problem didn't
+&gt; start with kernel 3.9 but earlier.
+&gt; </span >
+Would be great if you can be more specific. If 3.10 and 3.11 still fails on
+your system would be appreciated if you can bisect the commit that introduced
+this issue
 
-<span class="quote">&gt; Note: the following messages are harmless
-&gt; nouveau E[    PBUS][0000:02:00.0] MMIO read of * FAULT at 0x1002**</span >
+<span class="quote">&gt; All this said, even if I manage to boot, it looks like my NVIDIA card is
+&gt; never used by any program, only the Intel one. GPU never seems to be
+&gt; available.</span >
+I'm assuming that that this is an optimus laptop, is that correct ?
 
-Glad to hear that! That's the first thing that appears after the
-plymouth &quot;fill the bubble&quot; screen and before I get the GDM login.
-----------------------------------------------------------------------
-- Rick Stevens, Systems Engineer, AllDigital    <a href="mailto:ricks&#64;alldigital.com">ricks&#64;alldigital.com</a> -
-- AIM/Skype: therps2        ICQ: 22643734            Yahoo: origrps2 -
--                                                                    -
--     Squawk!  Pieces of Seven!  Pieces of Seven!  Parity Error!     -
-----------------------------------------------------------------------</pre>
+I would target the kernel module issue first and then work on on &quot;how to make
+my optimus laptop work under linux&quot; :P
+
+Cheers
+Emil</pre>
         </div>
       </p>
       <hr>
@@ -235,9 +225,9 @@ plymouth &quot;fill the bubble&quot; screen and before I get the GDM login.
     </body>
 </html>
 
---1374874895.8Fdfa321.18274--
+--1374884272.60AD802b1.5634--
 
---===============1185524879==
+--===============1368646537==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -248,4 +238,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1185524879==--
+--===============1368646537==--
