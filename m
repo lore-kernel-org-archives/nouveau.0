@@ -1,92 +1,391 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: WARN in drm_crtc.c:1992 on 3.11-rc2
-Date: Fri, 26 Jul 2013 20:39:30 -0400
-Message-ID: <CAKb7UvjESg3UZh=aW81Av6JHis1LNZQC_tzjNc7SNMnGyQSk5w@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 67382] New: [nouveau,
+ nv50] linux 3.9.7-3.10.3: Xorg won't be available
+Date: Sat, 27 Jul 2013 01:35:43 +0000
+Message-ID: <bug-67382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@redhat.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0629116837=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello,
 
-I've started seeing the following warning in 3.11-rc2. [In the
-interest of full disclosure, I do have a patch applied that tries to
-implement drm_planes, which I might have done completely incorrectly,
-but looking around it doesn't seem related. I'm definitely not
-invoking any of the planes functionality right now. See
-http://paste.debian.net/hidden/cf8b3a2, plus a call to the new
-function from the end of dispnv04/disp.c:nv04_display_create ]
+--===============0629116837==
+Content-Type: multipart/alternative; boundary="1374888943.A6D1EB21.14718"; charset="us-ascii"
 
-Here is my traceback: http://pastebin.com/W3SvKFYD, linewrapped version below:
 
-[  379.242635] ------------[ cut here ]------------
-[  379.242738] WARNING: CPU: 0 PID: 2260 at
-drivers/gpu/drm/drm_crtc.c:1992 drm_mode_set_config_internal+0x6d/0xba
-[drm]()
-[  379.242740] Modules linked in: it87 hwmon_vid or51132 cx88_dvb
-videobuf_dvb dvb_core ir_mce_kbd_decoder ir_sanyo_decoder
-ir_jvc_decoder ir_sony_decoder ir_rc6_decoder ir_rc5_decoder
-ir_nec_decoder rc_hauppauge tuner_simple tuner_types tda9887 tuner
-rndis_host cdc_ether usbnet usb_storage nouveau fbcon cfbfillrect
-cfbimgblt bitblit softcursor video font btusb cfbcopyarea ttm
-bluetooth drm_kms_helper cx8800 cx8802 drm mxm_wmi crc16 cx88xx
-tveeprom btcx_risc videobuf_dma_sg videobuf_core v4l2_common backlight
-videodev fb fbdev rc_core i2c_algo_bit wmi
-[  379.242784] CPU: 0 PID: 2260 Comm: X Not tainted 3.11.0-rc2+ #59
-[  379.242786] Hardware name: Gigabyte Technology Co., Ltd.
-EX58-UD3R/EX58-UD3R, BIOS FB  05/04/2009
-[  379.242788]  00000000000007c8 ffff8801c4945c58 ffffffff816cc092
-0000000000000050
-[  379.242793]  0000000000000000 ffff8801c4945c98 ffffffff8106e2fe
-ffff8801c4945c00
-[  379.242797]  ffffffffa0142453 ffff8801c8b03000 0000000000000000
-ffff8801c81af300
-[  379.242802] Call Trace:
-[  379.242808]  [<ffffffff816cc092>] dump_stack+0x46/0x58
-[  379.242815]  [<ffffffff8106e2fe>] warn_slowpath_common+0x81/0x9b
-[  379.242830]  [<ffffffffa0142453>] ?
-drm_mode_set_config_internal+0x6d/0xba [drm]
-[  379.242835]  [<ffffffff8106e332>] warn_slowpath_null+0x1a/0x1c
-[  379.242850]  [<ffffffffa0142453>]
-drm_mode_set_config_internal+0x6d/0xba [drm]
-[  379.242866]  [<ffffffffa0144895>] drm_mode_setcrtc+0x495/0x4ef [drm]
-[  379.242871]  [<ffffffff816d1769>] ? _cond_resched+0xe/0x22
-[  379.242875]  [<ffffffff816d0044>] ? mutex_lock+0x16/0x37
-[  379.242887]  [<ffffffffa013772c>] drm_ioctl+0x305/0x41c [drm]
-[  379.242913]  [<ffffffffa0144400>] ? drm_mode_setplane+0x354/0x354 [drm]
-[  379.242930]  [<ffffffff8114fe03>] do_vfs_ioctl+0x407/0x448
-[  379.242941]  [<ffffffff81143a5d>] ? __sb_end_write+0x2f/0x5e
-[  379.242945]  [<ffffffff81141b3f>] ? file_end_write+0x25/0x27
-[  379.242949]  [<ffffffff811423b1>] ? vfs_write+0xf3/0xff
-[  379.242953]  [<ffffffff8114fe90>] SyS_ioctl+0x4c/0x70
-[  379.242959]  [<ffffffff816d9546>] system_call_fastpath+0x1a/0x1f
-[  379.242961] ---[ end trace c33c4d50de085b7e ]---
-[  613.441899] ------------[ cut here ]------------
+--1374888943.A6D1EB21.14718
+Date: Sat, 27 Jul 2013 01:35:43 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-It appears that this warning was introduced in v3.11-rc1 (commit
-cc85e1217f598). I'm using nouveau, which always uses
-drm_crtc_helper_set_config (at least for nv04/nv50 displays), so
-perhaps there's an issue in that helper function? (I looked at the
-helper and it seems like it updates ->fb at least sometimes, but I
-couldn't make out the full logic.) I have a number of cards plugged in
-right now (NV18, NV44, NV96), not sure which one would be causing
-this. I did see these when flipping between 2 X's that are on
-different vt's.
+https://bugs.freedesktop.org/show_bug.cgi?id=3D67382
 
-Let me know if there's anything you'd like me to try, or if you have
-any insight as to why this might be happening.
+          Priority: medium
+            Bug ID: 67382
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be
+                    available
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-Thanks,
+After looking at #66129 and testing linux 3.10.3 (includes the patches from
+66129) and still having problems, I decided to open a bugreport, as the pro=
+blem
+appears to be something else.
+I'm not sure if the topic describes the problem really well.
 
-  -ilia
+
+First I should mention, that I wrote a bugreport on the kernel tracker:
+https://bugzilla.kernel.org/show_bug.cgi?id=3D60071
+Which was probably the wrong place, and a complete different description.
+
+
+Machine:
+One from the nv50 (8800 GTS) graphic cards. One monitor.
+
+Notes:
+*early KMS
+
+
+Issue:
+With 3.9.6 everything is working fine. Systems boots and I'm getting my DM
+
+3.9.7 introduced following changes:
+commit aed4802d2a0d2f6c7179a2c03e184860741788c0
+Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Date: Mon Jun 3 16:40:14 2013 +1000
+
+drm/nv50/kms: use dac loadval from vbios, where it's available
+
+commit d40ee48acde16894fb3b241d7e896d5fa84e0f10 upstream.
+-------
+commit b242745947ed7562ad91dad9e9fde1a92e40d666
+Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Date: Mon Jun 3 16:07:06 2013 +1000
+
+drm/nv50/disp: force dac power state during load detect
+
+commit ea9197cc323839ef3d5280c0453b2c622caa6bc7 upstream.
+-------
+
+Since 3.9.7 (also tested with 3.9.8 and 3.10.3) the X-server won't be
+accessible. If that's the right description. I'm just seeing a black screen=
+ and
+I just can switch back to a tty (which takes it time).
+Tried it with a DM and without (plain xinit/startx from tty).
+
+
+Output:
+
+With Linux 3.9.6:
+xrandr message:
+=1BxRandr=1B: Found crtc's: 2
+=1BxRandr=1B: Linking output DVI-I-1 with crtc 0
+
+
+Output of xrandr --current:
+Screen 0: minimum 320 x 200, current 1680 x 1050, maximum 8192 x 8192
+DVI-I-1 connected 1680x1050+0+0 (normal left inverted right x axis y axis)
+473mm x 296mm
+1680x1050 59.9*+
+1400x1050 74.9
+1280x1024 75.0
+1440x900 75.0 59.9
+1152x864 75.0
+1024x768 75.1 70.1 60.0
+832x624 74.6
+800x600 72.2 75.0 60.3 56.2
+640x480 72.8 75.0 66.7 60.0
+720x400 70.1
+DVI-I-2 disconnected (normal left inverted right x axis y axis)
+
+
+Logs with Linux 3.9.7:
+xrandr message:
+xRandr: Found crtc's: 2
+xRandr: Linking output DVI-I-1 with crtc 0
+xRandr: Linking output DVI-I-2 with crtc 1
+
+
+Output of xrandr --current:
+Screen 0: minimum 320 x 200, current 1024 x 768, maximum 8192 x 8192
+DVI-I-1 connected 1024x768+0+0 (normal left inverted right x axis y axis) 4=
+73mm
+x 296mm
+1680x1050 59.9 +
+1400x1050 74.9
+1280x1024 75.0
+1440x900 75.0 59.9
+1152x864 75.0
+1024x768 75.1 70.1 60.0*
+832x624 74.6
+800x600 72.2 75.0 60.3 56.2
+640x480 72.8 75.0 66.7 60.0
+720x400 70.1
+DVI-I-2 connected 1024x768+0+0 (normal left inverted right x axis y axis) 0=
+mm x
+0mm
+1024x768 60.0*
+800x600 60.3 56.2
+848x480 60.0
+640x480 59.9
+
+
+I'm adding a dmesg snippet later.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1374888943.A6D1EB21.14718
+Date: Sat, 27 Jul 2013 01:35:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be ava=
+ilable"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D67382">67382</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>anonymous&#64;dodgeit.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>After looking at #66129 and testing linux 3.10.3 (includes the=
+ patches from
+66129) and still having problems, I decided to open a bugreport, as the pro=
+blem
+appears to be something else.
+I'm not sure if the topic describes the problem really well.
+
+
+First I should mention, that I wrote a bugreport on the kernel tracker:
+<a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D60071">https://bug=
+zilla.kernel.org/show_bug.cgi?id=3D60071</a>
+Which was probably the wrong place, and a complete different description.
+
+
+Machine:
+One from the nv50 (8800 GTS) graphic cards. One monitor.
+
+Notes:
+*early KMS
+
+
+Issue:
+With 3.9.6 everything is working fine. Systems boots and I'm getting my DM
+
+3.9.7 introduced following changes:
+commit aed4802d2a0d2f6c7179a2c03e184860741788c0
+Author: Ben Skeggs &lt;<a href=3D"mailto:bskeggs&#64;redhat.com">bskeggs&#6=
+4;redhat.com</a>&gt;
+Date: Mon Jun 3 16:40:14 2013 +1000
+
+drm/nv50/kms: use dac loadval from vbios, where it's available
+
+commit d40ee48acde16894fb3b241d7e896d5fa84e0f10 upstream.
+-------
+commit b242745947ed7562ad91dad9e9fde1a92e40d666
+Author: Ben Skeggs &lt;<a href=3D"mailto:bskeggs&#64;redhat.com">bskeggs&#6=
+4;redhat.com</a>&gt;
+Date: Mon Jun 3 16:07:06 2013 +1000
+
+drm/nv50/disp: force dac power state during load detect
+
+commit ea9197cc323839ef3d5280c0453b2c622caa6bc7 upstream.
+-------
+
+Since 3.9.7 (also tested with 3.9.8 and 3.10.3) the X-server won't be
+accessible. If that's the right description. I'm just seeing a black screen=
+ and
+I just can switch back to a tty (which takes it time).
+Tried it with a DM and without (plain xinit/startx from tty).
+
+
+Output:
+
+With Linux 3.9.6:
+xrandr message:
+=1BxRandr=1B: Found crtc's: 2
+=1BxRandr=1B: Linking output DVI-I-1 with crtc 0
+
+
+Output of xrandr --current:
+Screen 0: minimum 320 x 200, current 1680 x 1050, maximum 8192 x 8192
+DVI-I-1 connected 1680x1050+0+0 (normal left inverted right x axis y axis)
+473mm x 296mm
+1680x1050 59.9*+
+1400x1050 74.9
+1280x1024 75.0
+1440x900 75.0 59.9
+1152x864 75.0
+1024x768 75.1 70.1 60.0
+832x624 74.6
+800x600 72.2 75.0 60.3 56.2
+640x480 72.8 75.0 66.7 60.0
+720x400 70.1
+DVI-I-2 disconnected (normal left inverted right x axis y axis)
+
+
+Logs with Linux 3.9.7:
+xrandr message:
+xRandr: Found crtc's: 2
+xRandr: Linking output DVI-I-1 with crtc 0
+xRandr: Linking output DVI-I-2 with crtc 1
+
+
+Output of xrandr --current:
+Screen 0: minimum 320 x 200, current 1024 x 768, maximum 8192 x 8192
+DVI-I-1 connected 1024x768+0+0 (normal left inverted right x axis y axis) 4=
+73mm
+x 296mm
+1680x1050 59.9 +
+1400x1050 74.9
+1280x1024 75.0
+1440x900 75.0 59.9
+1152x864 75.0
+1024x768 75.1 70.1 60.0*
+832x624 74.6
+800x600 72.2 75.0 60.3 56.2
+640x480 72.8 75.0 66.7 60.0
+720x400 70.1
+DVI-I-2 connected 1024x768+0+0 (normal left inverted right x axis y axis) 0=
+mm x
+0mm
+1024x768 60.0*
+800x600 60.3 56.2
+848x480 60.0
+640x480 59.9
+
+
+I'm adding a dmesg snippet later.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1374888943.A6D1EB21.14718--
+
+--===============0629116837==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0629116837==--
