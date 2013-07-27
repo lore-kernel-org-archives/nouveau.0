@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67382] [nouveau,
  nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Sat, 27 Jul 2013 10:51:31 +0000
-Message-ID: <bug-67382-8800-dru15hvZFj@http.bugs.freedesktop.org/>
+Date: Sat, 27 Jul 2013 11:33:14 +0000
+Message-ID: <bug-67382-8800-4RvTRfFyCM@http.bugs.freedesktop.org/>
 References: <bug-67382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2083779147=="
+Content-Type: multipart/mixed; boundary="===============0304119732=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2083779147==
-Content-Type: multipart/alternative; boundary="1374922291.Be3BAbDA2.20063"; charset="us-ascii"
+--===============0304119732==
+Content-Type: multipart/alternative; boundary="1374924794.DCAacA1.26730"; charset="us-ascii"
 
 
---1374922291.Be3BAbDA2.20063
-Date: Sat, 27 Jul 2013 10:51:31 +0000
+--1374924794.DCAacA1.26730
+Date: Sat, 27 Jul 2013 11:33:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67382
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-You probably also want this patch to make NV50 work properly:
+--- Comment #5 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
+(In reply to comment #3)
 
-http://lists.freedesktop.org/archives/nouveau/2013-July/013051.html
+> A brief explanation what happens here:
+> Nouveau detects a phantom/ghost monitor hooked up to DVI-I-2, which on it's
+> own causes the DISPLAY engine to hang. Leading to the kernel being unable to
+> change the resolution(modesetting), and X failing to start and VT switch
+> being dead slow
+> 
+> Cheers
+> Emil
+
+Ah, I see. Thanks for the explanation.
+And yes, I can try to revert the second commit on top of 3.9.7 and will report
+the results later.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374922291.Be3BAbDA2.20063
-Date: Sat, 27 Jul 2013 10:51:31 +0000
+--1374924794.DCAacA1.26730
+Date: Sat, 27 Jul 2013 11:33:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,16 +67,27 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:anonymous&#64;dodgeit.com" title="Anonymous Helper &lt;anonymous&#64;dodgeit.com&gt;"> <span class="fn">Anonymous Helper</span></a>
 </span></b>
-        <pre>You probably also want this patch to make NV50 work properly:
+        <pre>(In reply to <a href="show_bug.cgi?id=67382#c3">comment #3</a>)
 
-<a href="http://lists.freedesktop.org/archives/nouveau/2013-July/013051.html">http://lists.freedesktop.org/archives/nouveau/2013-July/013051.html</a></pre>
+<span class="quote">&gt; A brief explanation what happens here:
+&gt; Nouveau detects a phantom/ghost monitor hooked up to DVI-I-2, which on it's
+&gt; own causes the DISPLAY engine to hang. Leading to the kernel being unable to
+&gt; change the resolution(modesetting), and X failing to start and VT switch
+&gt; being dead slow
+&gt; 
+&gt; Cheers
+&gt; Emil</span >
+
+Ah, I see. Thanks for the explanation.
+And yes, I can try to revert the second commit on top of 3.9.7 and will report
+the results later.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +99,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1374922291.Be3BAbDA2.20063--
+--1374924794.DCAacA1.26730--
 
---===============2083779147==
+--===============0304119732==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +112,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2083779147==--
+--===============0304119732==--
