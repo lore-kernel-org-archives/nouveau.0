@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67382] [nouveau,
- nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Sat, 27 Jul 2013 16:28:45 +0000
-Message-ID: <bug-67382-8800-7LNpbSdAAe@http.bugs.freedesktop.org/>
-References: <bug-67382-8800@http.bugs.freedesktop.org/>
+From: James <bjlockie-ozXLQgHQwDP3fQ9qLvQP4Q@public.gmane.org>
+Subject: GeForce 8800GT fan control
+Date: Sat, 27 Jul 2013 13:22:21 -0400
+Message-ID: <51F401CD.1030000@lockie.ca>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0880823383=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,123 +15,78 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0880823383==
-Content-Type: multipart/alternative; boundary="1374942525.b5B23f51.4800"; charset="us-ascii"
-
-
---1374942525.b5B23f51.4800
-Date: Sat, 27 Jul 2013 16:28:45 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=67382
-
---- Comment #6 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
-Result linux-3.9.7 without the
-drm-nv50-disp-force-dac-power-state-during-load-detect.patch[0]: Stuff is
-working like it should
-
-No ghost monitor anymore:
-Current Operating System: Linux Hekate 3.9.7-1-ARCH #1 SMP PREEMPT Sat Jul 27
-17:56:17 CEST 2013 i686
-(...)
-(II) NOUVEAU(0): Output DVI-I-1 connected
-(II) NOUVEAU(0): Output DVI-I-2 disconnected
+I have a GeForce 8800GT that I am trying to lower the fan speed on.
+I can change the fan RPM from high to not-as-high but I want more control over it.
+It is too loud and it was quieter with the blob.
+Maybe the temps are too high to make it quieter.
 
 
+# echo 1 >/sys/devices/pci0000:00/0000:00:02.0/0000:01:00.0/i2c-6/6-002e/pwm1_enable
+# sensors
+fam15h_power-pci-00c4
+Adapter: PCI adapter
+power1:       89.28 W  (crit =  95.01 W)
 
-( Whereas the failing 3.9.7 Xorg log looks like that:
-Current Operating System: Linux Hekate 3.9.7-1-ARCH #1 SMP PREEMPT Thu Jun 20
-23:22:07 CEST 2013 i686
-(...)
-(II) NOUVEAU(0): Output DVI-I-1 connected
-(II) NOUVEAU(0): Output DVI-I-2 connected )
+k10temp-pci-00c3
+Adapter: PCI adapter
+temp1:        +32.4 C  (high = +70.0 C)
+                       (crit = +70.0 C, hyst = +67.0 C)
 
+adt7473-i2c-6-2e
+Adapter: nouveau-0000:01:00.0-2
+in1:          +3.00 V  (min =  +0.00 V, max =  +2.99 V)
++3.3V:        +3.27 V  (min =  +0.00 V, max =  +4.39 V)
+fan1:        5708 RPM  (min =    0 RPM)
+fan2:           0 RPM  (min =    0 RPM)
+fan3:           0 RPM  (min =  164 RPM)  ALARM
+temp1:        +62.0 C  (low  = +80.0 C, high = +100.0 C)  ALARM
+                       (crit = +100.0 C, hyst = +98.0 C)
+Board Temp:   +55.0 C  (low  = +20.0 C, high = +60.0 C)
+                       (crit = +100.0 C, hyst = +96.0 C)
+temp3:        +61.8 C  (low  = +80.0 C, high = +105.0 C)  ALARM
+                       (crit = +136.0 C, hyst = +132.0 C)
 
-
-
-_______
-[0]
-https://git.kernel.org/cgit/linux/kernel/git/stable/stable-queue.git/tree/releases/3.9.7/drm-nv50-disp-force-dac-power-state-during-load-detect.patch?id=4c71e2e7d2a2175d6682447fd44fcbf5d5a98df8
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1374942525.b5B23f51.4800
-Date: Sat, 27 Jul 2013 16:28:45 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
-              from <span class="vcard"><a class="email" href="mailto:anonymous&#64;dodgeit.com" title="Anonymous Helper &lt;anonymous&#64;dodgeit.com&gt;"> <span class="fn">Anonymous Helper</span></a>
-</span></b>
-        <pre>Result linux-3.9.7 without the
-drm-nv50-disp-force-dac-power-state-during-load-detect.patch[0]: Stuff is
-working like it should
-
-No ghost monitor anymore:
-Current Operating System: Linux Hekate 3.9.7-1-ARCH #1 SMP PREEMPT Sat Jul 27
-17:56:17 CEST 2013 i686
-(...)
-(II) NOUVEAU(0): Output DVI-I-1 connected
-(II) NOUVEAU(0): Output DVI-I-2 disconnected
+nouveau-pci-0100
+Adapter: PCI adapter
+temp1:         +0.0 C  (high = +95.0 C, hyst =  +3.0 C)
+                       (crit = +100.0 C, hyst =  +5.0 C)
+                       (emerg = +135.0 C, hyst =  +5.0 C)
 
 
+# echo 2 >/sys/devices/pci0000:00/0000:00:02.0/0000:01:00.0/i2c-6/6-002e/pwm1_enable
+# sensors
+fam15h_power-pci-00c4
+Adapter: PCI adapter
+power1:       99.08 W  (crit =  95.01 W)
 
-( Whereas the failing 3.9.7 Xorg log looks like that:
-Current Operating System: Linux Hekate 3.9.7-1-ARCH #1 SMP PREEMPT Thu Jun 20
-23:22:07 CEST 2013 i686
-(...)
-(II) NOUVEAU(0): Output DVI-I-1 connected
-(II) NOUVEAU(0): Output DVI-I-2 connected )
+k10temp-pci-00c3
+Adapter: PCI adapter
+temp1:        +32.9 C  (high = +70.0 C)
+                       (crit = +70.0 C, hyst = +67.0 C)
+
+adt7473-i2c-6-2e
+Adapter: nouveau-0000:01:00.0-2
+in1:          +3.00 V  (min =  +0.00 V, max =  +2.99 V)
++3.3V:        +3.27 V  (min =  +0.00 V, max =  +4.39 V)
+fan1:        4376 RPM  (min =    0 RPM)
+fan2:           0 RPM  (min =    0 RPM)
+fan3:           0 RPM  (min =  164 RPM)  ALARM
+temp1:        +62.2 C  (low  = +80.0 C, high = +100.0 C)  ALARM
+                       (crit = +100.0 C, hyst = +98.0 C)
+Board Temp:   +55.0 C  (low  = +20.0 C, high = +60.0 C)
+                       (crit = +100.0 C, hyst = +96.0 C)
+temp3:        +62.2 C  (low  = +80.0 C, high = +105.0 C)  ALARM
+                       (crit = +136.0 C, hyst = +132.0 C)
+
+nouveau-pci-0100
+Adapter: PCI adapter
+temp1:         +0.0 C  (high = +95.0 C, hyst =  +3.0 C)
+                       (crit = +100.0 C, hyst =  +5.0 C)
+                       (emerg = +135.0 C, hyst =  +5.0 C)
 
 
-
-
-_______
-[0]
-<a href="https://git.kernel.org/cgit/linux/kernel/git/stable/stable-queue.git/tree/releases/3.9.7/drm-nv50-disp-force-dac-power-state-during-load-detect.patch?id=4c71e2e7d2a2175d6682447fd44fcbf5d5a98df8">https://git.kernel.org/cgit/linux/kernel/git/stable/stable-queue.git/tree/releases/3.9.7/drm-nv50-disp-force-dac-power-state-during-load-detect.patch?id=4c71e2e7d2a2175d6682447fd44fcbf5d5a98df8</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1374942525.b5B23f51.4800--
-
---===============0880823383==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0880823383==--
+# echo 3 >/sys/devices/pci0000:00/0000:00:02.0/0000:01:00.0/i2c-6/6-002e/pwm1_enable
+bash: echo: write error: Invalid argument
