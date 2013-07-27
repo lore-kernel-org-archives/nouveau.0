@@ -1,11 +1,12 @@
-From: James <bjlockie-ozXLQgHQwDP3fQ9qLvQP4Q@public.gmane.org>
-Subject: GeForce 8800GT fan control
-Date: Sat, 27 Jul 2013 13:22:21 -0400
-Message-ID: <51F401CD.1030000@lockie.ca>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
+Date: Sat, 27 Jul 2013 19:28:05 +0000
+Message-ID: <bug-67051-8800-LNWkGsnVl6@http.bugs.freedesktop.org/>
+References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0988753986=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,78 +16,137 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I have a GeForce 8800GT that I am trying to lower the fan speed on.
-I can change the fan RPM from high to not-as-high but I want more control over it.
-It is too loud and it was quieter with the blob.
-Maybe the temps are too high to make it quieter.
+
+--===============0988753986==
+Content-Type: multipart/alternative; boundary="1374953285.682efA01.31504"; charset="us-ascii"
 
 
-# echo 1 >/sys/devices/pci0000:00/0000:00:02.0/0000:01:00.0/i2c-6/6-002e/pwm1_enable
-# sensors
-fam15h_power-pci-00c4
-Adapter: PCI adapter
-power1:       89.28 W  (crit =  95.01 W)
+--1374953285.682efA01.31504
+Date: Sat, 27 Jul 2013 19:28:05 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-k10temp-pci-00c3
-Adapter: PCI adapter
-temp1:        +32.4 C  (high = +70.0 C)
-                       (crit = +70.0 C, hyst = +67.0 C)
+https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
-adt7473-i2c-6-2e
-Adapter: nouveau-0000:01:00.0-2
-in1:          +3.00 V  (min =  +0.00 V, max =  +2.99 V)
-+3.3V:        +3.27 V  (min =  +0.00 V, max =  +4.39 V)
-fan1:        5708 RPM  (min =    0 RPM)
-fan2:           0 RPM  (min =    0 RPM)
-fan3:           0 RPM  (min =  164 RPM)  ALARM
-temp1:        +62.0 C  (low  = +80.0 C, high = +100.0 C)  ALARM
-                       (crit = +100.0 C, hyst = +98.0 C)
-Board Temp:   +55.0 C  (low  = +20.0 C, high = +60.0 C)
-                       (crit = +100.0 C, hyst = +96.0 C)
-temp3:        +61.8 C  (low  = +80.0 C, high = +105.0 C)  ALARM
-                       (crit = +136.0 C, hyst = +132.0 C)
+--- Comment #92 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #91)
+> >> Should I go ahead and compile this commit (despite debug-3 failure)
+> >> and post the dmesg?
+> >> Please advise.
+> 
+> > No. My debug patch would have to be redone for a kernel that old. Instead, please take a recent kernel and apply my debug patch to it, and boot. The other patches are actually probably not necessary either -- they just change what gets written where, whereas I'm trying to figure out a potential issue with the execution flow. You don't even have to go into X or test anything (but you can) -- I just want to see the dmesg that happens when nouveau loads with that debug patch. (But obviously make sure that your hdmi-audio-capable device is plugged in at the time.)
+> 
+> Please give me an exact kernel version you'd be comfortable with.
+> Most likely my Linus copy is already a little old;  OTOH, I can
+> easily go out and get 3.10.3 (or whatever kernel du jour there might be); 
+> etc.
 
-nouveau-pci-0100
-Adapter: PCI adapter
-temp1:         +0.0 C  (high = +95.0 C, hyst =  +3.0 C)
-                       (crit = +100.0 C, hyst =  +5.0 C)
-                       (emerg = +135.0 C, hyst =  +5.0 C)
+3.10.3 is fine. As is 3.10.1. Anything that the debug patch applies cleanly to.
 
+> 
+> For dmesg, I assume (but please confirm):
+> 
+> NOUVEAU_DEBUG=7
+> nouveau.debug=PDISP=spam
 
-# echo 2 >/sys/devices/pci0000:00/0000:00:02.0/0000:01:00.0/i2c-6/6-002e/pwm1_enable
-# sensors
-fam15h_power-pci-00c4
-Adapter: PCI adapter
-power1:       99.08 W  (crit =  95.01 W)
+No -- just regular boot. Reset NOUVEAU_DEBUG to its original value (4, I
+think).
 
-k10temp-pci-00c3
-Adapter: PCI adapter
-temp1:        +32.9 C  (high = +70.0 C)
-                       (crit = +70.0 C, hyst = +67.0 C)
+> 
+> For patches:  only dmesg-3? or what else exactly?.
 
-adt7473-i2c-6-2e
-Adapter: nouveau-0000:01:00.0-2
-in1:          +3.00 V  (min =  +0.00 V, max =  +2.99 V)
-+3.3V:        +3.27 V  (min =  +0.00 V, max =  +4.39 V)
-fan1:        4376 RPM  (min =    0 RPM)
-fan2:           0 RPM  (min =    0 RPM)
-fan3:           0 RPM  (min =  164 RPM)  ALARM
-temp1:        +62.2 C  (low  = +80.0 C, high = +100.0 C)  ALARM
-                       (crit = +100.0 C, hyst = +98.0 C)
-Board Temp:   +55.0 C  (low  = +20.0 C, high = +60.0 C)
-                       (crit = +100.0 C, hyst = +96.0 C)
-temp3:        +62.2 C  (low  = +80.0 C, high = +105.0 C)  ALARM
-                       (crit = +136.0 C, hyst = +132.0 C)
+Only debug-3.
 
-nouveau-pci-0100
-Adapter: PCI adapter
-temp1:         +0.0 C  (high = +95.0 C, hyst =  +3.0 C)
-                       (crit = +100.0 C, hyst =  +5.0 C)
-                       (emerg = +135.0 C, hyst =  +5.0 C)
+> 
+> BTW:  Don't worry about X.  I ain't gonna touch it this time :)
+> 
+> Thanks,
+> -- Alex
 
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-# echo 3 >/sys/devices/pci0000:00/0000:00:02.0/0000:01:00.0/i2c-6/6-002e/pwm1_enable
-bash: echo: write error: Invalid argument
+--1374953285.682efA01.31504
+Date: Sat, 27 Jul 2013 19:28:05 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c92">Comment # 92</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=67051#c91">comment #91</a>)
+<span class="quote">&gt; &gt;&gt; Should I go ahead and compile this commit (despite debug-3 failure)
+&gt; &gt;&gt; and post the dmesg?
+&gt; &gt;&gt; Please advise.
+&gt; 
+&gt; &gt; No. My debug patch would have to be redone for a kernel that old. Instead, please take a recent kernel and apply my debug patch to it, and boot. The other patches are actually probably not necessary either -- they just change what gets written where, whereas I'm trying to figure out a potential issue with the execution flow. You don't even have to go into X or test anything (but you can) -- I just want to see the dmesg that happens when nouveau loads with that debug patch. (But obviously make sure that your hdmi-audio-capable device is plugged in at the time.)
+&gt; 
+&gt; Please give me an exact kernel version you'd be comfortable with.
+&gt; Most likely my Linus copy is already a little old;  OTOH, I can
+&gt; easily go out and get 3.10.3 (or whatever kernel du jour there might be); 
+&gt; etc.</span >
+
+3.10.3 is fine. As is 3.10.1. Anything that the debug patch applies cleanly to.
+
+<span class="quote">&gt; 
+&gt; For dmesg, I assume (but please confirm):
+&gt; 
+&gt; NOUVEAU_DEBUG=7
+&gt; nouveau.debug=PDISP=spam</span >
+
+No -- just regular boot. Reset NOUVEAU_DEBUG to its original value (4, I
+think).
+
+<span class="quote">&gt; 
+&gt; For patches:  only dmesg-3? or what else exactly?.</span >
+
+Only debug-3.
+
+<span class="quote">&gt; 
+&gt; BTW:  Don't worry about X.  I ain't gonna touch it this time :)
+&gt; 
+&gt; Thanks,
+&gt; -- Alex</span ></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1374953285.682efA01.31504--
+
+--===============0988753986==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0988753986==--
