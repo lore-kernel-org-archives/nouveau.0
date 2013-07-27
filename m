@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67382] [nouveau,
- nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Sat, 27 Jul 2013 21:49:38 +0000
-Message-ID: <bug-67382-8800-j2sEdcDuug@http.bugs.freedesktop.org/>
-References: <bug-67382-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
+Date: Sat, 27 Jul 2013 22:14:35 +0000
+Message-ID: <bug-67051-8800-qoqCD9gKZt@http.bugs.freedesktop.org/>
+References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0540486893=="
+Content-Type: multipart/mixed; boundary="===============1953457164=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0540486893==
-Content-Type: multipart/alternative; boundary="1374961778.d1c0882.19731"; charset="us-ascii"
+--===============1953457164==
+Content-Type: multipart/alternative; boundary="1374963275.abeBea50.22894"; charset="us-ascii"
 
 
---1374961778.d1c0882.19731
-Date: Sat, 27 Jul 2013 21:49:38 +0000
+--1374963275.abeBea50.22894
+Date: Sat, 27 Jul 2013 22:14:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67382
+https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #7 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Great stuff :)
-I'll attach a few patches in the next few days for you two try
+--- Comment #93 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 83105
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83105&action=edit
+3.10.1 DMESG
+
+I used 3.10.1:
+ it is mutually acceptable and
+ is the kernel of this bug submission.
+
+For the record:
+[/linux-3.10.1]$ patch -p1 < /home/alex/debug-3.patch ; echo $?
+patching file drivers/gpu/drm/nouveau/core/engine/disp/hdminva3.c
+patching file drivers/gpu/drm/nouveau/core/engine/disp/sornv50.c
+patching file drivers/gpu/drm/nouveau/nv50_display.c
+0
+
+NOUVEAU_DEBUG is at its default value: 5
+
+NO "nouveau.debug=PDISP=spam"
+
+FWIW, no HDMI sound.
+
+cat /proc/asound/card1/eld#3.0
+monitor_present         1
+eld_valid               0
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1374961778.d1c0882.19731
-Date: Sat, 27 Jul 2013 21:49:38 +0000
+--1374963275.abeBea50.22894
+Date: Sat, 27 Jul 2013 22:14:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +75,37 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c7">Comment # 7</a>
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c93">Comment # 93</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
+              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>Great stuff :)
-I'll attach a few patches in the next few days for you two try</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=83105" name="attach_83105" title="3.10.1 DMESG">attachment 83105</a> <a href="attachment.cgi?id=83105&amp;action=edit" title="3.10.1 DMESG">[details]</a></span>
+3.10.1 DMESG
+
+I used 3.10.1:
+ it is mutually acceptable and
+ is the kernel of this bug submission.
+
+For the record:
+[/linux-3.10.1]$ patch -p1 &lt; /home/alex/debug-3.patch ; echo $?
+patching file drivers/gpu/drm/nouveau/core/engine/disp/hdminva3.c
+patching file drivers/gpu/drm/nouveau/core/engine/disp/sornv50.c
+patching file drivers/gpu/drm/nouveau/nv50_display.c
+0
+
+NOUVEAU_DEBUG is at its default value: 5
+
+NO &quot;nouveau.debug=PDISP=spam&quot;
+
+FWIW, no HDMI sound.
+
+cat /proc/asound/card1/eld#3.0
+monitor_present         1
+eld_valid               0</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +117,9 @@ I'll attach a few patches in the next few days for you two try</pre>
     </body>
 </html>
 
---1374961778.d1c0882.19731--
+--1374963275.abeBea50.22894--
 
---===============0540486893==
+--===============1953457164==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +130,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0540486893==--
+--===============1953457164==--
