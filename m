@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sun, 28 Jul 2013 18:27:29 +0000
-Message-ID: <bug-54700-8800-zP8bN2HPaQ@http.bugs.freedesktop.org/>
+Date: Sun, 28 Jul 2013 18:28:15 +0000
+Message-ID: <bug-54700-8800-u6Df5KwRDQ@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1368333251=="
+Content-Type: multipart/mixed; boundary="===============1303342737=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1368333251==
-Content-Type: multipart/alternative; boundary="1375036049.DAdc2bf1.22229"; charset="us-ascii"
+--===============1303342737==
+Content-Type: multipart/alternative; boundary="1375036095.83D481.22528"; charset="us-ascii"
 
 
---1375036049.DAdc2bf1.22229
-Date: Sun, 28 Jul 2013 18:27:29 +0000
+--1375036095.83D481.22528
+Date: Sun, 28 Jul 2013 18:28:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #41 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 83146
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83146&action=edit
-fractal2 recaled and not rescaled by iceweasel
+--- Comment #42 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 83147
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83147&action=edit
+dmesg after nouveau/GPU crash
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375036049.DAdc2bf1.22229
-Date: Sun, 28 Jul 2013 18:27:29 +0000
+--1375036095.83D481.22528
+Date: Sun, 28 Jul 2013 18:28:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c41">Comment # 41</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c42">Comment # 42</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
               from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83146" name="attach_83146" title="fractal2 recaled and not rescaled by iceweasel">attachment 83146</a> <a href="attachment.cgi?id=83146&amp;action=edit" title="fractal2 recaled and not rescaled by iceweasel">[details]</a></span>
-fractal2 recaled and not rescaled by iceweasel</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=83147" name="attach_83147" title="dmesg after nouveau/GPU crash">attachment 83147</a> <a href="attachment.cgi?id=83147&amp;action=edit" title="dmesg after nouveau/GPU crash">[details]</a></span>
+dmesg after nouveau/GPU crash</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ fractal2 recaled and not rescaled by iceweasel</pre>
     </body>
 </html>
 
---1375036049.DAdc2bf1.22229--
+--1375036095.83D481.22528--
 
---===============1368333251==
+--===============1303342737==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1368333251==--
+--===============1303342737==--
