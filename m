@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sun, 28 Jul 2013 18:18:03 +0000
-Message-ID: <bug-54700-8800-cacCsC2wFt@http.bugs.freedesktop.org/>
+Date: Sun, 28 Jul 2013 18:19:25 +0000
+Message-ID: <bug-54700-8800-7TFO9mGMa1@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0389946811=="
+Content-Type: multipart/mixed; boundary="===============0785492486=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0389946811==
-Content-Type: multipart/alternative; boundary="1375035484.3EFBdb1.18836"; charset="us-ascii"
+--===============0785492486==
+Content-Type: multipart/alternative; boundary="1375035566.cEbC5eF1.19411"; charset="us-ascii"
 
 
---1375035484.3EFBdb1.18836
-Date: Sun, 28 Jul 2013 18:18:04 +0000
+--1375035566.cEbC5eF1.19411
+Date: Sun, 28 Jul 2013 18:19:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #36 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 83141
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83141&action=edit
+--- Comment #37 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 83142
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83142&action=edit
 fractal_97_1862x1048 not rescaled by iceweasel
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375035484.3EFBdb1.18836
-Date: Sun, 28 Jul 2013 18:18:04 +0000
+--1375035566.cEbC5eF1.19411
+Date: Sun, 28 Jul 2013 18:19:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,14 +56,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c36">Comment # 36</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c37">Comment # 37</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
               from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83141" name="attach_83141" title="fractal_97_1862x1048 not rescaled by iceweasel">attachment 83141</a> <a href="attachment.cgi?id=83141&amp;action=edit" title="fractal_97_1862x1048 not rescaled by iceweasel">[details]</a></span>
+        <pre>Created <span class=""><a href="attachment.cgi?id=83142" name="attach_83142" title="fractal_97_1862x1048 not rescaled by iceweasel">attachment 83142</a> <a href="attachment.cgi?id=83142&amp;action=edit" title="fractal_97_1862x1048 not rescaled by iceweasel">[details]</a></span>
 fractal_97_1862x1048 not rescaled by iceweasel</pre>
         </div>
       </p>
@@ -76,9 +76,9 @@ fractal_97_1862x1048 not rescaled by iceweasel</pre>
     </body>
 </html>
 
---1375035484.3EFBdb1.18836--
+--1375035566.cEbC5eF1.19411--
 
---===============0389946811==
+--===============0785492486==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0389946811==--
+--===============0785492486==--
