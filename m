@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sun, 28 Jul 2013 18:24:28 +0000
-Message-ID: <bug-54700-8800-D3ZMM7szhn@http.bugs.freedesktop.org/>
+Date: Sun, 28 Jul 2013 18:25:32 +0000
+Message-ID: <bug-54700-8800-kQPBYAdfDF@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0395684364=="
+Content-Type: multipart/mixed; boundary="===============1708473802=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0395684364==
-Content-Type: multipart/alternative; boundary="1375035868.7a0ECcA1.21488"; charset="us-ascii"
+--===============1708473802==
+Content-Type: multipart/alternative; boundary="1375035932.f1fcfF1.21785"; charset="us-ascii"
 
 
---1375035868.7a0ECcA1.21488
-Date: Sun, 28 Jul 2013 18:24:28 +0000
+--1375035932.f1fcfF1.21785
+Date: Sun, 28 Jul 2013 18:25:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #39 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 83144
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83144&action=edit
-fractal_97_1862x1048 ***rescaled*** by iceweasel
+r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-converted to jpg by gimp to decrease the size
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #83144|0                           |1
+        is obsolete|                            |
+
+--- Comment #40 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 83145
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83145&action=edit
+fractal_97_1862x1048 ***rescaled*** by iceweasel
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375035868.7a0ECcA1.21488
-Date: Sun, 28 Jul 2013 18:24:28 +0000
+--1375035932.f1fcfF1.21785
+Date: Sun, 28 Jul 2013 18:25:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,23 +57,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #83144 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c39">Comment # 39</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c40">Comment # 40</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
               from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83144" name="attach_83144" title="fractal_97_1862x1048 ***rescaled*** by iceweasel">attachment 83144</a> <a href="attachment.cgi?id=83144&amp;action=edit" title="fractal_97_1862x1048 ***rescaled*** by iceweasel">[details]</a></span>
-fractal_97_1862x1048 ***rescaled*** by iceweasel
-
-converted to jpg by gimp to decrease the size</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=83145" name="attach_83145" title="fractal_97_1862x1048 ***rescaled*** by iceweasel">attachment 83145</a> <a href="attachment.cgi?id=83145&amp;action=edit" title="fractal_97_1862x1048 ***rescaled*** by iceweasel">[details]</a></span>
+fractal_97_1862x1048 ***rescaled*** by iceweasel</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +104,9 @@ converted to jpg by gimp to decrease the size</pre>
     </body>
 </html>
 
---1375035868.7a0ECcA1.21488--
+--1375035932.f1fcfF1.21785--
 
---===============0395684364==
+--===============1708473802==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +117,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0395684364==--
+--===============1708473802==--
