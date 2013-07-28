@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54700] Distorted graphics (double cursor) with
- GeForce 4200Go (NV28)
-Date: Sun, 28 Jul 2013 18:49:56 +0000
-Message-ID: <bug-54700-8800-28F3zOh3YJ@http.bugs.freedesktop.org/>
-References: <bug-54700-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
+Date: Sun, 28 Jul 2013 18:57:41 +0000
+Message-ID: <bug-67051-8800-rOJPw7dV3f@http.bugs.freedesktop.org/>
+References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1907831880=="
+Content-Type: multipart/mixed; boundary="===============1675975892=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1907831880==
-Content-Type: multipart/alternative; boundary="1375037396.5D631.28125"; charset="us-ascii"
+--===============1675975892==
+Content-Type: multipart/alternative; boundary="1375037861.fE3BD0.30899"; charset="us-ascii"
 
 
---1375037396.5D631.28125
-Date: Sun, 28 Jul 2013 18:49:56 +0000
+--1375037861.fE3BD0.30899
+Date: Sun, 28 Jul 2013 18:57:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54700
+https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #46 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 83151
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83151&action=edit
-just another horrible view of my problem....
+--- Comment #102 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+> OH, I know what's going on -- the debug patch prints "link", which I removed
+> -- can you just remove that part of the print? Or do I need to send an
+> updated debug patch?
+
+Issue another patch please.  So as to stay in sync at all times.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375037396.5D631.28125
-Date: Sun, 28 Jul 2013 18:49:56 +0000
+--1375037861.fE3BD0.30899
+Date: Sun, 28 Jul 2013 18:57:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +56,19 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c46">Comment # 46</a>
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c102">Comment # 102</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
+              from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83151" name="attach_83151" title="just another horrible view of my problem....">attachment 83151</a> <a href="attachment.cgi?id=83151&amp;action=edit" title="just another horrible view of my problem....">[details]</a></span>
-just another horrible view of my problem....</pre>
+        <pre><span class="quote">&gt; OH, I know what's going on -- the debug patch prints &quot;link&quot;, which I removed
+&gt; -- can you just remove that part of the print? Or do I need to send an
+&gt; updated debug patch?</span >
+
+Issue another patch please.  So as to stay in sync at all times.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +80,9 @@ just another horrible view of my problem....</pre>
     </body>
 </html>
 
---1375037396.5D631.28125--
+--1375037861.fE3BD0.30899--
 
---===============1907831880==
+--===============1675975892==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1907831880==--
+--===============1675975892==--
