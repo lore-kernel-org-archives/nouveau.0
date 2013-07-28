@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sun, 28 Jul 2013 18:34:06 +0000
-Message-ID: <bug-54700-8800-jiRgzg5jlj@http.bugs.freedesktop.org/>
+Date: Sun, 28 Jul 2013 18:37:36 +0000
+Message-ID: <bug-54700-8800-zTmoYp61XG@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1458937293=="
+Content-Type: multipart/mixed; boundary="===============1798428508=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1458937293==
-Content-Type: multipart/alternative; boundary="1375036447.AA0B3C31.23789"; charset="us-ascii"
+--===============1798428508==
+Content-Type: multipart/alternative; boundary="1375036656.cddaEBE81.24706"; charset="us-ascii"
 
 
---1375036447.AA0B3C31.23789
-Date: Sun, 28 Jul 2013 18:34:07 +0000
+--1375036656.cddaEBE81.24706
+Date: Sun, 28 Jul 2013 18:37:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #44 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 83149
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83149&action=edit
-links -g  rendered graphics in framebuffer
+--- Comment #45 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 83150
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83150&action=edit
+links2 framebuffer graphics: the same fractal
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375036447.AA0B3C31.23789
-Date: Sun, 28 Jul 2013 18:34:07 +0000
+--1375036656.cddaEBE81.24706
+Date: Sun, 28 Jul 2013 18:37:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c44">Comment # 44</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c45">Comment # 45</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
               from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83149" name="attach_83149" title="links -g  rendered graphics in framebuffer">attachment 83149</a> <a href="attachment.cgi?id=83149&amp;action=edit" title="links -g  rendered graphics in framebuffer">[details]</a></span>
-links -g  rendered graphics in framebuffer</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=83150" name="attach_83150" title="links2 framebuffer graphics: the same fractal">attachment 83150</a> <a href="attachment.cgi?id=83150&amp;action=edit" title="links2 framebuffer graphics: the same fractal">[details]</a></span>
+links2 framebuffer graphics: the same fractal</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ links -g  rendered graphics in framebuffer</pre>
     </body>
 </html>
 
---1375036447.AA0B3C31.23789--
+--1375036656.cddaEBE81.24706--
 
---===============1458937293==
+--===============1798428508==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1458937293==--
+--===============1798428508==--
