@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Sun, 28 Jul 2013 17:57:47 +0000
-Message-ID: <bug-67051-8800-dx70g5U1Lu@http.bugs.freedesktop.org/>
-References: <bug-67051-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54700] Distorted graphics (double cursor) with
+ GeForce 4200Go (NV28)
+Date: Sun, 28 Jul 2013 18:18:03 +0000
+Message-ID: <bug-54700-8800-cacCsC2wFt@http.bugs.freedesktop.org/>
+References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1872767740=="
+Content-Type: multipart/mixed; boundary="===============0389946811=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1872767740==
-Content-Type: multipart/alternative; boundary="1375034267.D15a2111.13076"; charset="us-ascii"
+--===============0389946811==
+Content-Type: multipart/alternative; boundary="1375035484.3EFBdb1.18836"; charset="us-ascii"
 
 
---1375034267.D15a2111.13076
-Date: Sun, 28 Jul 2013 17:57:47 +0000
+--1375035484.3EFBdb1.18836
+Date: Sun, 28 Jul 2013 18:18:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67051
+https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #101 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Sorry, I did mean debug-3.patch.
-
-This indicates some sort of compile failure, but since you're using -jN, it's
-long gone. What I usually do in these situations is just run make after the
-failure, which will hopefully be hit at some point early on.
-
-OH, I know what's going on -- the debug patch prints "link", which I removed --
-can you just remove that part of the print? Or do I need to send an updated
-debug patch?
+--- Comment #36 from r.ductor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 83141
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83141&action=edit
+fractal_97_1862x1048 not rescaled by iceweasel
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375034267.D15a2111.13076
-Date: Sun, 28 Jul 2013 17:57:47 +0000
+--1375035484.3EFBdb1.18836
+Date: Sun, 28 Jul 2013 18:18:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,23 +55,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c101">Comment # 101</a>
+   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c36">Comment # 36</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
+              from <span class="vcard"><a class="email" href="mailto:r.ductor&#64;gmail.com" title="r.ductor&#64;gmail.com">r.ductor&#64;gmail.com</a>
 </span></b>
-        <pre>Sorry, I did mean debug-3.patch.
-
-This indicates some sort of compile failure, but since you're using -jN, it's
-long gone. What I usually do in these situations is just run make after the
-failure, which will hopefully be hit at some point early on.
-
-OH, I know what's going on -- the debug patch prints &quot;link&quot;, which I removed --
-can you just remove that part of the print? Or do I need to send an updated
-debug patch?</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=83141" name="attach_83141" title="fractal_97_1862x1048 not rescaled by iceweasel">attachment 83141</a> <a href="attachment.cgi?id=83141&amp;action=edit" title="fractal_97_1862x1048 not rescaled by iceweasel">[details]</a></span>
+fractal_97_1862x1048 not rescaled by iceweasel</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +76,9 @@ debug patch?</pre>
     </body>
 </html>
 
---1375034267.D15a2111.13076--
+--1375035484.3EFBdb1.18836--
 
---===============1872767740==
+--===============0389946811==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1872767740==--
+--===============0389946811==--
