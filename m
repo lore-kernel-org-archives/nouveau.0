@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Sun, 28 Jul 2013 16:42:27 +0000
-Message-ID: <bug-67051-8800-KynbjTlkNB@http.bugs.freedesktop.org/>
+Date: Sun, 28 Jul 2013 17:53:35 +0000
+Message-ID: <bug-67051-8800-uwcxhwBHsa@http.bugs.freedesktop.org/>
 References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0989723806=="
+Content-Type: multipart/mixed; boundary="===============0174862131=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,51 +20,103 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0989723806==
-Content-Type: multipart/alternative; boundary="1375029746.1C75F0.27034"; charset="us-ascii"
+--===============0174862131==
+Content-Type: multipart/alternative; boundary="1375034015.8Cc810.11722"; charset="us-ascii"
 
 
---1375029746.1C75F0.27034
-Date: Sun, 28 Jul 2013 16:42:26 +0000
+--1375034015.8Cc810.11722
+Date: Sun, 28 Jul 2013 17:53:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #99 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I'm back in action; just a few preliminary words:
-> And don't worry -- I have an HDMI cable. All I need are the other two ends :)
+--- Comment #100 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This is strange.  The compile (make) fails.
+I've compiled a few kernels in my life.  Never happened before:
+Twice.
 
-As almost an aside:
-It so happens I just got rid of a 19-in. Magnavox LCD TV.
-(circa 2009 - Probably a Philips inside)
-What has amazed me to this day, the quality/richness of picture 
-(720p - for example) and _all_ inputs including HDMI.  About < $200 US.
-One of the best pieces of machinery I've ever owned.
-Hopefully it ended up used by orphans in Uganda (making Bram Moolenaar
-(of vim fame) proud and happy).
-http://www.amazon.com/gp/product/B001QXDLNS/ref=wms_ohs_product?ie=UTF8&psc=1
+First:
+ ....
+  CC [M]  drivers/net/wireless/brcm80211/brcmfmac/dhd_linux.o
+  CC [M]  drivers/net/wireless/b43legacy/pio.o
+  CC [M]  drivers/net/wireless/b43/wa.o
+  CC [M]  drivers/net/wireless/b43/dma.o
+  CC [M]  drivers/net/wireless/brcm80211/brcmfmac/btcoex.o
+  LD [M]  drivers/net/wireless/b43legacy/b43legacy.o
+  CC [M]  drivers/net/wireless/b43/pio.o
+  CC [M]  drivers/net/wireless/b43/rfkill.o
+  LD [M]  drivers/net/wireless/brcm80211/brcmfmac/brcmfmac.o
+  LD [M]  drivers/net/wireless/b43/b43.o
+  LD      drivers/net/built-in.o
+make: *** [drivers] Error 2
 
-> if you don't want to blow away your entire tree
-I rarely keep trees around;  for safety and lack of space.
+real    4m8.390s
+user    7m39.033s
+sys     0m27.441s
+2
 
-I always start a kernel build from scratch.  For example,
- time tar xJf /usr/local/downloads/linux-3.10.1.tar.xz
-takes roughly 15 sec. - negligible compared to the time I waste in life.
-So I don't have to bother with reverses and such.
+Second time:
+ ....
+  CC      net/xfrm/xfrm_sysctl.o
+  CC      net/xfrm/xfrm_replay.o
+  LD      drivers/input/input-core.o
+  LD      drivers/input/built-in.o
+make: *** [drivers] Error 2
+make: *** Waiting for unfinished jobs....
+  CC [M]  net/xfrm/xfrm_algo.o
+  CC [M]  net/wireless/ethtool.o
+  CC [M]  net/xfrm/xfrm_user.o
+  LD      net/xfrm/built-in.o
+  CC [M]  net/wireless/mesh.o
+  CC [M]  net/wireless/ap.o
+  CC [M]  net/wireless/trace.o
+  LD      net/wireless/built-in.o
+  LD [M]  net/wireless/cfg80211.o
+  LD      net/built-in.o
 
-> Am I correct in understanding that you have a DVI-I, HDMI, and VGA connector on your card?
-Right on the money.
-I never buy a card without VGA.  Nor, for that matter, a PC without the green
-analog output (to use in those very rare cases - almost unheard of, but one
-never knows, do one? -  where the HDMI sound might not work).
+real    3m53.609s
+user    7m11.009s
+sys     0m26.165s
+2
+
+Note:  (FWIW) typical successful completion time: about 5m 28s
+------
+
+1.  I re-tried the compile of yesterday (with mthd-1).  Perfect again.
+I then retraced the very same steps, except with the new mthd-2.
+As shown above, still bad.
+
+Comments (I'm still in shock):
+2. Is it possible that you really meant debug-_1_ (Comment 98)?
+(I've gone with debug-3 exclusively so far, assuming that was a typo)
+
+3. To troubleshoot (if need be) I can do just 'make' (as opposed to make -j4)
+Slower but more explicit.
+
+4. For clarity/completeness, this is what I always do:
+
+cd /
+rm -fr linux-3.10.1
+time tar xJf /usr/local/downloads/linux-3.10.1.tar.xz ; echo $?
+cd linux-3.10.1
+make mrproper ; echo $?
+cp -p /boot/config/config-3.10.1-3-P5E-74G .config
+make menuconfig
+make oldconfig ; echo $?
+*** Apply the indicated patches ***
+time make -j4 ; echo $?
+*** If the 4th patch is mthd-2:  twice (consistently) fail.
+*** If the 4th patch is mthd-1:  always OK
+
+Any ideas, suggestions?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375029746.1C75F0.27034
-Date: Sun, 28 Jul 2013 16:42:26 +0000
+--1375034015.8Cc810.11722
+Date: Sun, 28 Jul 2013 17:53:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -78,39 +130,91 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c99">Comment # 99</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c100">Comment # 100</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
               from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>I'm back in action; just a few preliminary words:
-<span class="quote">&gt; And don't worry -- I have an HDMI cable. All I need are the other two ends :)</span >
+        <pre>This is strange.  The compile (make) fails.
+I've compiled a few kernels in my life.  Never happened before:
+Twice.
 
-As almost an aside:
-It so happens I just got rid of a 19-in. Magnavox LCD TV.
-(circa 2009 - Probably a Philips inside)
-What has amazed me to this day, the quality/richness of picture 
-(720p - for example) and _all_ inputs including HDMI.  About &lt; $200 US.
-One of the best pieces of machinery I've ever owned.
-Hopefully it ended up used by orphans in Uganda (making Bram Moolenaar
-(of vim fame) proud and happy).
-<a href="http://www.amazon.com/gp/product/B001QXDLNS/ref=wms_ohs_product?ie=UTF8&amp;psc=1">http://www.amazon.com/gp/product/B001QXDLNS/ref=wms_ohs_product?ie=UTF8&amp;psc=1</a>
+First:
+ ....
+  CC [M]  drivers/net/wireless/brcm80211/brcmfmac/dhd_linux.o
+  CC [M]  drivers/net/wireless/b43legacy/pio.o
+  CC [M]  drivers/net/wireless/b43/wa.o
+  CC [M]  drivers/net/wireless/b43/dma.o
+  CC [M]  drivers/net/wireless/brcm80211/brcmfmac/btcoex.o
+  LD [M]  drivers/net/wireless/b43legacy/b43legacy.o
+  CC [M]  drivers/net/wireless/b43/pio.o
+  CC [M]  drivers/net/wireless/b43/rfkill.o
+  LD [M]  drivers/net/wireless/brcm80211/brcmfmac/brcmfmac.o
+  LD [M]  drivers/net/wireless/b43/b43.o
+  LD      drivers/net/built-in.o
+make: *** [drivers] Error 2
 
-<span class="quote">&gt; if you don't want to blow away your entire tree</span >
-I rarely keep trees around;  for safety and lack of space.
+real    4m8.390s
+user    7m39.033s
+sys     0m27.441s
+2
 
-I always start a kernel build from scratch.  For example,
- time tar xJf /usr/local/downloads/linux-3.10.1.tar.xz
-takes roughly 15 sec. - negligible compared to the time I waste in life.
-So I don't have to bother with reverses and such.
+Second time:
+ ....
+  CC      net/xfrm/xfrm_sysctl.o
+  CC      net/xfrm/xfrm_replay.o
+  LD      drivers/input/input-core.o
+  LD      drivers/input/built-in.o
+make: *** [drivers] Error 2
+make: *** Waiting for unfinished jobs....
+  CC [M]  net/xfrm/xfrm_algo.o
+  CC [M]  net/wireless/ethtool.o
+  CC [M]  net/xfrm/xfrm_user.o
+  LD      net/xfrm/built-in.o
+  CC [M]  net/wireless/mesh.o
+  CC [M]  net/wireless/ap.o
+  CC [M]  net/wireless/trace.o
+  LD      net/wireless/built-in.o
+  LD [M]  net/wireless/cfg80211.o
+  LD      net/built-in.o
 
-<span class="quote">&gt; Am I correct in understanding that you have a DVI-I, HDMI, and VGA connector on your card?</span >
-Right on the money.
-I never buy a card without VGA.  Nor, for that matter, a PC without the green
-analog output (to use in those very rare cases - almost unheard of, but one
-never knows, do one? -  where the HDMI sound might not work).</pre>
+real    3m53.609s
+user    7m11.009s
+sys     0m26.165s
+2
+
+Note:  (FWIW) typical successful completion time: about 5m 28s
+------
+
+1.  I re-tried the compile of yesterday (with mthd-1).  Perfect again.
+I then retraced the very same steps, except with the new mthd-2.
+As shown above, still bad.
+
+Comments (I'm still in shock):
+2. Is it possible that you really meant debug-_1_ (<a href="show_bug.cgi?id=67051#c98">Comment 98</a>)?
+(I've gone with debug-3 exclusively so far, assuming that was a typo)
+
+3. To troubleshoot (if need be) I can do just 'make' (as opposed to make -j4)
+Slower but more explicit.
+
+4. For clarity/completeness, this is what I always do:
+
+cd /
+rm -fr linux-3.10.1
+time tar xJf /usr/local/downloads/linux-3.10.1.tar.xz ; echo $?
+cd linux-3.10.1
+make mrproper ; echo $?
+cp -p /boot/config/config-3.10.1-3-P5E-74G .config
+make menuconfig
+make oldconfig ; echo $?
+*** Apply the indicated patches ***
+time make -j4 ; echo $?
+*** If the 4th patch is mthd-2:  twice (consistently) fail.
+*** If the 4th patch is mthd-1:  always OK
+
+Any ideas, suggestions?</pre>
         </div>
       </p>
       <hr>
@@ -122,9 +226,9 @@ never knows, do one? -  where the HDMI sound might not work).</pre>
     </body>
 </html>
 
---1375029746.1C75F0.27034--
+--1375034015.8Cc810.11722--
 
---===============0989723806==
+--===============0174862131==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -135,4 +239,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0989723806==--
+--===============0174862131==--
