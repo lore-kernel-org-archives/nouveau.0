@@ -1,13 +1,12 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: GeForce 8800GT fan control
-Date: Sun, 28 Jul 2013 15:09:39 -0400
-Message-ID: <51F56C73.4090106@free.fr>
-References: <51F401CD.1030000@lockie.ca>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
+Date: Sun, 28 Jul 2013 20:09:24 +0000
+Message-ID: <bug-67051-8800-UN4fXGiQHC@http.bugs.freedesktop.org/>
+References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1574856758=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <51F401CD.1030000-ozXLQgHQwDP3fQ9qLvQP4Q@public.gmane.org>
+In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,24 +19,89 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 27/07/2013 13:22, James wrote:
-> I have a GeForce 8800GT that I am trying to lower the fan speed on.
-> I can change the fan RPM from high to not-as-high but I want more control over it.
-> It is too loud and it was quieter with the blob.
-> Maybe the temps are too high to make it quieter
-Hi James,
 
-Your GPU uses the adt7473 to regulate the fan speed. I would advise you 
-to use it in order to drive the fan speed.
-Changing Nouveau's fan management mode won't help because the lm sensors 
-guys forbid kernel-side access to the
-methods of i2c devices. This forbids Nouveau to be the central location 
-to drive the fan.
+--===============1574856758==
+Content-Type: multipart/alternative; boundary="1375042165.8a54De1.10228"; charset="us-ascii"
 
-If you, like me, think this is stupid and should be fixed, please be 
-aware that we tried but the lack of will on the lmsensors
-camp is a real issue.
 
-Good luck using the adt7473!
+--1375042165.8a54De1.10228
+Date: Sun, 28 Jul 2013 20:09:25 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-Martin
+https://bugs.freedesktop.org/show_bug.cgi?id=67051
+
+--- Comment #103 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 83153
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83153&action=edit
+Remove dcb_outp_match()
+
+Ilia as mentioned previously - the way I see it, only mthd-1.patch is needed to
+resolve this bug. And as a side effect the following nice cleanup can be made
+
+Note for Alex
+The attached patch will also resolve your issue (not guaranteed to apply
+cleanly), due to the fact that it purges some code unnecessary code, which you
+were (unintentionally) hitting :)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1375042165.8a54De1.10228
+Date: Sun, 28 Jul 2013 20:09:25 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c103">Comment # 103</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=83153" name="attach_83153" title="Remove dcb_outp_match()">attachment 83153</a> <a href="attachment.cgi?id=83153&amp;action=edit" title="Remove dcb_outp_match()">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=67051&amp;attachment=83153'>[review]</a>
+Remove dcb_outp_match()
+
+Ilia as mentioned previously - the way I see it, only mthd-1.patch is needed to
+resolve this bug. And as a side effect the following nice cleanup can be made
+
+Note for Alex
+The attached patch will also resolve your issue (not guaranteed to apply
+cleanly), due to the fact that it purges some code unnecessary code, which you
+were (unintentionally) hitting :)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1375042165.8a54De1.10228--
+
+--===============1574856758==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1574856758==--
