@@ -1,12 +1,14 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 1/3] drm/nouveau: remove duplicate copy of
-	nv44_graph_class
-Date: Mon, 29 Jul 2013 19:05:16 -0400
-Message-ID: <1375139118-17398-1-git-send-email-imirkin@alum.mit.edu>
+Subject: [PATCH 2/3] drm/nv40/mpeg: write magic value to channel
+	object to make it work
+Date: Mon, 29 Jul 2013 19:05:17 -0400
+Message-ID: <1375139118-17398-2-git-send-email-imirkin@alum.mit.edu>
+References: <1375139118-17398-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1375139118-17398-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,47 +22,26 @@ To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Looks like the rewrite in commit ebb945a94b ("drm/nouveau: port all
+engines to new engine module format") missed that one little detail.
+
 Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/engine/graph/nv40.h   |  3 +++
- drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c | 10 ++--------
- 2 files changed, 5 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv40.h b/drivers/gpu/drm/nouveau/core/engine/graph/nv40.h
-index 7da35a4..ad82093 100644
---- a/drivers/gpu/drm/nouveau/core/engine/graph/nv40.h
-+++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv40.h
-@@ -1,6 +1,9 @@
- #ifndef __NV40_GRAPH_H__
- #define __NV40_GRAPH_H__
+diff --git a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c
+index f7c581a..5d39b5a 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c
++++ b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c
+@@ -61,6 +61,8 @@ nv40_mpeg_context_ctor(struct nouveau_object *parent,
+ 	if (ret)
+ 		return ret;
  
-+#include <core/device.h>
-+#include <core/gpuobj.h>
++	nv_wo32(&chan->base.base, 0x78, 0x02001ec1);
 +
- /* returns 1 if device is one of the nv4x using the 0x4497 object class,
-  * helpful to determine a number of other hardware features
-  */
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c b/drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c
-index 716bf41..b10a143 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c
-@@ -22,15 +22,9 @@
-  * Authors: Ben Skeggs
-  */
+ 	return 0;
+ }
  
--#include "nv04.h"
-+#include <engine/graph/nv40.h>
- 
--static inline int
--nv44_graph_class(struct nv04_instmem_priv *priv)
--{
--	if ((nv_device(priv)->chipset & 0xf0) == 0x60)
--		return 1;
--	return !(0x0baf & (1 << (nv_device(priv)->chipset & 0x0f)));
--}
-+#include "nv04.h"
- 
- static int
- nv40_instmem_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
 -- 
 1.8.1.5
