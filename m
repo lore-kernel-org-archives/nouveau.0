@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67255] black screen after resuming from Hibernate
-Date: Mon, 29 Jul 2013 08:21:57 +0000
-Message-ID: <bug-67255-8800-5lbeidusjg@http.bugs.freedesktop.org/>
-References: <bug-67255-8800@http.bugs.freedesktop.org/>
+From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: [PATCH] drm/nouveau: protect vm refcount with mutex
+Date: Mon, 29 Jul 2013 11:55:02 +0200
+Message-ID: <51F63BF6.5090903@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0602059332=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,122 +15,163 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+The refcount was not protected by the vm lock, fix this..
 
---===============0602059332==
-Content-Type: multipart/alternative; boundary="1375086117.6b66e1.21423"; charset="us-ascii"
+------------[ cut here ]------------
+WARNING: CPU: 2 PID: 2008 at drivers/gpu/drm/nouveau/core/core/mm.c:242 nouveau_mm_fini+0x4f/0x56 [nouveau]()
+Modules linked in: adt7475 ebtable_nat ebtables nouveau ipt_MASQUERADE iptable_nat nf_nat_ipv4 nf_nat xt_CHECKSUM iptable_mangle bridge stp llc snd_hda_codec_hdmi kvm_intel ttm kvm drm_kms_helper drm mxm_wmi snd_hda_codec_realtek snd_hda_intel e1000e snd_hda_codec snd_hwdep snd_pcm ptp pps_core snd_page_alloc video parport_pc ppdev nfsd parport lockd nfs_acl auth_rpcgss sunrpc oid_registry
+CPU: 2 PID: 2008 Comm: Xorg Tainted: G        W    3.11.0-rc1-patser+ #119
+Hardware name: Acer Aspire M3985/Aspire M3985, BIOS P01-A1 03/12/2012
+ 00000000000000f2 ffff8803f59b1b68 ffffffff81637988 000000000000b0b0
+ 0000000000000000 ffff8803f59b1ba8 ffffffff81059e1d 0000000000000000
+ 0000000000000000 ffff8803f9dd6c48 ffff8803f9dd6c00 ffff8803f688d898
+Call Trace:
+ [<ffffffff81637988>] dump_stack+0x55/0x86
+ [<ffffffff81059e1d>] warn_slowpath_common+0x87/0xaf
+ [<ffffffff81059e5a>] warn_slowpath_null+0x15/0x17
+ [<ffffffffa02d6109>] nouveau_mm_fini+0x4f/0x56 [nouveau]
+ [<ffffffffa02f5703>] nouveau_vm_ref+0x154/0x180 [nouveau]
+ [<ffffffffa02d5cdb>] ? nouveau_mm_free+0x85/0x116 [nouveau]
+ [<ffffffffa02f57c9>] nouveau_vm_put+0x9a/0xb0 [nouveau]
+ [<ffffffffa033462d>] ? nouveau_gem_info+0x9d/0x9d [nouveau]
+ [<ffffffffa0334646>] nouveau_gem_object_delete+0x19/0x28 [nouveau]
+ [<ffffffffa032fc90>] nouveau_fence_work+0xc9/0x102 [nouveau]
+ [<ffffffffa0334d59>] nouveau_gem_object_close+0x103/0x182 [nouveau]
+ [<ffffffffa01d8bcd>] drm_gem_handle_delete+0xcc/0x153 [drm]
+ [<ffffffffa01d8fc5>] drm_gem_close_ioctl+0x23/0x25 [drm]
+ [<ffffffffa01d6f75>] drm_ioctl+0x4cc/0x612 [drm]
+ [<ffffffff816341c0>] ? __slab_free.isra.66+0x24d/0x2aa
+ [<ffffffffa01d8fa2>] ? drm_gem_destroy+0x4c/0x4c [drm]
+ [<ffffffff812dbef8>] ? avc_has_perm_flags+0xb1/0x179
+ [<ffffffff8115e988>] do_vfs_ioctl+0x8b/0x4f8
+ [<ffffffff812dccb4>] ? inode_has_perm.isra.43.constprop.75+0x25/0x2b
+ [<ffffffff812debef>] ? file_has_perm+0x8c/0x9a
+ [<ffffffff810d3267>] ? rcu_user_exit+0xe/0x10
+ [<ffffffff8115ee7f>] SyS_ioctl+0x8a/0x9b
+ [<ffffffff8164240b>] tracesys+0xdd/0xe2
+---[ end trace f99ff0179509b495 ]---
 
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+---
 
---1375086117.6b66e1.21423
-Date: Mon, 29 Jul 2013 08:21:57 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=67255
-
---- Comment #4 from Mike <michele.cane-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi,
-
-I compiled the kernel from nouveau git but the same problem persist.
-
-Cheers
-
-Mike
-
-On Wed, 2013-07-24 at 13:11 +0000, bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-wrote:
-> Comment # 1 on bug 67255 from Emil Velikov 
-> Hi Mike
-> 
-> Have this ever worked before with an older version of the kernel?
-> Additionally can you try the nouveau git [1]
-> 
-> Cheers
-> Emil
-> 
-> [1] http://cgit.freedesktop.org/nouveau/linux-2.6/
-> 
-> ______________________________________________________________________
-> You are receiving this mail because: 
->       * You reported the bug.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1375086117.6b66e1.21423
-Date: Mon, 29 Jul 2013 08:21:57 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - black screen after resuming from Hibernate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67255#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - black screen after resuming from Hibernate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67255">bug 67255</a>
-              from <span class="vcard"><a class="email" href="mailto:michele.cane&#64;gmail.com" title="Mike &lt;michele.cane&#64;gmail.com&gt;"> <span class="fn">Mike</span></a>
-</span></b>
-        <pre>Hi,
-
-I compiled the kernel from nouveau git but the same problem persist.
-
-Cheers
-
-Mike
-
-On Wed, 2013-07-24 at 13:11 +0000, <a href="mailto:bugzilla-daemon&#64;freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a>
-wrote:
-<span class="quote">&gt; <a href="show_bug.cgi?id=67255#c1">Comment # 1</a> on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - black screen after resuming from Hibernate"
-   href="show_bug.cgi?id=67255">bug 67255</a> from Emil Velikov 
-&gt; Hi Mike
-&gt; 
-&gt; Have this ever worked before with an older version of the kernel?
-&gt; Additionally can you try the nouveau git [1]
-&gt; 
-&gt; Cheers
-&gt; Emil
-&gt; 
-&gt; [1] <a href="http://cgit.freedesktop.org/nouveau/linux-2.6/">http://cgit.freedesktop.org/nouveau/linux-2.6/</a>
-&gt; 
-&gt; ______________________________________________________________________
-&gt; You are receiving this mail because: 
-&gt;       * You reported the bug.</span ></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1375086117.6b66e1.21423--
-
---===============0602059332==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0602059332==--
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/vm/base.c b/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
+index 3b90b42..afc5106 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
+@@ -28,6 +28,8 @@
+ #include <subdev/fb.h>
+ #include <subdev/vm.h>
+ 
++static void nouveau_vm_del(struct nouveau_vm *vm);
++
+ void
+ nouveau_vm_map_at(struct nouveau_vma *vma, u64 delta, struct nouveau_mem *node)
+ {
+@@ -335,10 +337,10 @@ nouveau_vm_get(struct nouveau_vm *vm, u64 size, u32 page_shift,
+ 			return ret;
+ 		}
+ 	}
++	++vm->refcount;
++	vma->vm = vm;
+ 	mutex_unlock(&nv_subdev(vmm)->mutex);
+ 
+-	vma->vm = NULL;
+-	nouveau_vm_ref(vm, &vma->vm, NULL);
+ 	vma->offset = (u64)vma->node->offset << 12;
+ #ifdef NOUVEAU_VM_POISON
+ 	if (vm->poison)
+@@ -353,7 +355,7 @@ nouveau_vm_put(struct nouveau_vma *vma)
+ {
+ 	struct nouveau_vm *vm = vma->vm;
+ 	struct nouveau_vmmgr *vmm = vm->vmm;
+-	u32 fpde, lpde;
++	u32 fpde, lpde, ref;
+ 
+ 	if (unlikely(vma->node == NULL))
+ 		return;
+@@ -363,9 +365,12 @@ nouveau_vm_put(struct nouveau_vma *vma)
+ 	mutex_lock(&nv_subdev(vmm)->mutex);
+ 	nouveau_vm_unmap_pgt(vm, vma->node->type != vmm->spg_shift, fpde, lpde);
+ 	nouveau_mm_free(&vm->mm, &vma->node);
+-	mutex_unlock(&nv_subdev(vmm)->mutex);
+ 
+-	nouveau_vm_ref(NULL, &vma->vm, NULL);
++	vma->vm = NULL;
++	ref = --vm->refcount;
++	mutex_unlock(&nv_subdev(vmm)->mutex);
++	if (!ref)
++		nouveau_vm_del(vm);
+ }
+ 
+ int
+@@ -429,25 +434,21 @@ nouveau_vm_link(struct nouveau_vm *vm, struct nouveau_gpuobj *pgd)
+ 
+ 	nouveau_gpuobj_ref(pgd, &vpgd->obj);
+ 
+-	mutex_lock(&nv_subdev(vmm)->mutex);
+ 	for (i = vm->fpde; i <= vm->lpde; i++)
+ 		vmm->map_pgt(pgd, i, vm->pgt[i - vm->fpde].obj);
+ 	list_add(&vpgd->head, &vm->pgd_list);
+-	mutex_unlock(&nv_subdev(vmm)->mutex);
+ 	return 0;
+ }
+ 
+ static void
+ nouveau_vm_unlink(struct nouveau_vm *vm, struct nouveau_gpuobj *mpgd)
+ {
+-	struct nouveau_vmmgr *vmm = vm->vmm;
+ 	struct nouveau_vm_pgd *vpgd, *tmp;
+ 	struct nouveau_gpuobj *pgd = NULL;
+ 
+ 	if (!mpgd)
+ 		return;
+ 
+-	mutex_lock(&nv_subdev(vmm)->mutex);
+ 	list_for_each_entry_safe(vpgd, tmp, &vm->pgd_list, head) {
+ 		if (vpgd->obj == mpgd) {
+ 			pgd = vpgd->obj;
+@@ -456,7 +457,6 @@ nouveau_vm_unlink(struct nouveau_vm *vm, struct nouveau_gpuobj *mpgd)
+ 			break;
+ 		}
+ 	}
+-	mutex_unlock(&nv_subdev(vmm)->mutex);
+ 
+ 	nouveau_gpuobj_ref(NULL, &pgd);
+ }
+@@ -489,20 +489,31 @@ nouveau_vm_ref(struct nouveau_vm *ref, struct nouveau_vm **ptr,
+ 
+ 	vm = ref;
+ 	if (vm) {
++		struct nouveau_vmmgr *vmm = vm->vmm;
++
++		mutex_lock(&nv_subdev(vmm)->mutex);
+ 		ret = nouveau_vm_link(vm, pgd);
+-		if (ret)
++		if (ret) {
++			mutex_unlock(&nv_subdev(vmm)->mutex);
+ 			return ret;
++		}
+ 
+ 		vm->refcount++;
++		mutex_unlock(&nv_subdev(vmm)->mutex);
+ 	}
+ 
+ 	vm = *ptr;
+ 	*ptr = ref;
+ 
+ 	if (vm) {
++		struct nouveau_vmmgr *vmm = vm->vmm;
++
++		mutex_lock(&nv_subdev(vmm)->mutex);
+ 		nouveau_vm_unlink(vm, pgd);
+ 
+-		if (--vm->refcount == 0)
++		ret = --vm->refcount;
++		mutex_unlock(&nv_subdev(vmm)->mutex);
++		if (!ret)
+ 			nouveau_vm_del(vm);
+ 	}
