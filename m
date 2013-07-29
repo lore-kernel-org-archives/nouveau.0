@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
-Date: Mon, 29 Jul 2013 21:44:18 +0000
-Message-ID: <bug-67051-8800-reAY68bC41@http.bugs.freedesktop.org/>
-References: <bug-67051-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 1/3] drm/nouveau: remove duplicate copy of
+	nv44_graph_class
+Date: Mon, 29 Jul 2013 19:05:16 -0400
+Message-ID: <1375139118-17398-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0767532531=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,120 +16,51 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/engine/graph/nv40.h   |  3 +++
+ drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c | 10 ++--------
+ 2 files changed, 5 insertions(+), 8 deletions(-)
 
---===============0767532531==
-Content-Type: multipart/alternative; boundary="1375134258.02fB1.21270"; charset="us-ascii"
-
-
---1375134258.02fB1.21270
-Date: Mon, 29 Jul 2013 21:44:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=67051
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #105 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Both the patch to fix the ELD situation, as well as the actual audio working
-are now in the nouveau/master repository
-(http://cgit.freedesktop.org/nouveau/linux-2.6/). Closing this bug, thanks for
-doing all the testing, sorry it took so many tries to nail down the issue.
-
-Ideally these patches will make it into some later 3.10.x, and almost
-definitely into 3.11.
-
+diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv40.h b/drivers/gpu/drm/nouveau/core/engine/graph/nv40.h
+index 7da35a4..ad82093 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/graph/nv40.h
++++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv40.h
+@@ -1,6 +1,9 @@
+ #ifndef __NV40_GRAPH_H__
+ #define __NV40_GRAPH_H__
+ 
++#include <core/device.h>
++#include <core/gpuobj.h>
++
+ /* returns 1 if device is one of the nv4x using the 0x4497 object class,
+  * helpful to determine a number of other hardware features
+  */
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c b/drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c
+index 716bf41..b10a143 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c
+@@ -22,15 +22,9 @@
+  * Authors: Ben Skeggs
+  */
+ 
+-#include "nv04.h"
++#include <engine/graph/nv40.h>
+ 
+-static inline int
+-nv44_graph_class(struct nv04_instmem_priv *priv)
+-{
+-	if ((nv_device(priv)->chipset & 0xf0) == 0x60)
+-		return 1;
+-	return !(0x0baf & (1 << (nv_device(priv)->chipset & 0x0f)));
+-}
++#include "nv04.h"
+ 
+ static int
+ nv40_instmem_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1375134258.02fB1.21270
-Date: Mon, 29 Jul 2013 21:44:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c105">Comment # 105</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - No nouveau HDMI sound on NVIDIA GT430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Both the patch to fix the ELD situation, as well as the actual audio working
-are now in the nouveau/master repository
-(<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/">http://cgit.freedesktop.org/nouveau/linux-2.6/</a>). Closing this bug, thanks for
-doing all the testing, sorry it took so many tries to nail down the issue.
-
-Ideally these patches will make it into some later 3.10.x, and almost
-definitely into 3.11.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1375134258.02fB1.21270--
-
---===============0767532531==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0767532531==--
+1.8.1.5
