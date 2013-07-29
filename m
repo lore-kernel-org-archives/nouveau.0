@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67315] System lockup with X consuming all CPU
-Date: Mon, 29 Jul 2013 20:30:49 +0000
-Message-ID: <bug-67315-8800-iMwKp2sIwh@http.bugs.freedesktop.org/>
-References: <bug-67315-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67382] [nouveau,
+ nv50] linux 3.9.7-3.10.3: Xorg won't be available
+Date: Mon, 29 Jul 2013 20:40:30 +0000
+Message-ID: <bug-67382-8800-lX74pEJp9i@http.bugs.freedesktop.org/>
+References: <bug-67382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0371336614=="
+Content-Type: multipart/mixed; boundary="===============0331526103=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,66 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0371336614==
-Content-Type: multipart/alternative; boundary="1375129849.E73eC1.10769"; charset="us-ascii"
+--===============0331526103==
+Content-Type: multipart/alternative; boundary="1375130430.05DAf2Ae2.11957"; charset="us-ascii"
 
 
---1375129849.E73eC1.10769
-Date: Mon, 29 Jul 2013 20:30:49 +0000
+--1375130430.05DAf2Ae2.11957
+Date: Mon, 29 Jul 2013 20:40:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67315
+https://bugs.freedesktop.org/show_bug.cgi?id=67382
 
---- Comment #11 from Rick Stevens <ricks-ijgZXeOBpMSRq8AjE7tl8g@public.gmane.org> ---
-(In reply to comment #9)
-> (In reply to comment #8)
-> > I'm ready to continue sorting this out. Enjoyed adequate sleep over the
-> > weekend so I'm rarin' to go.
-> > 
-> > What else do you need from me?
-> 
-> Answers to the last two questions would be nice as a start :P
+--- Comment #11 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 83240
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83240&action=edit
+another debug patch
 
-In answer to your first question (I think), yes, those captures were from the
-same boot/crash cycle, acquired as I mentioned in my comments.
+Another patch, it will printout a bit more information (that the first one
+missed) and it will unconditionally set ret & data[0].
+Apply on top of either 3.9 or 3.10 branch _after_ the offending commit
 
-In answer to the second, I'm not sure how to correlate the timestamps. Looking
-at the dmesg output, the first "nouveau E" message occurred 19 seconds into the
-boot process. This is long before the login screen for the desktop appears.
-
-The next messages seem to occur once I log in via the desktop login screen,
-about 55 seconds after the boot. The screensaver shouldn't start for at least
-10 minutes after that. As I said, if I try to do something such as adjust the
-screen saver parameters via XFCE's "Applications Menu->Settings->Screensaver"
-menu, as soon as the frame containing the the applications window is rendered
-the display, keyboard and mouse lock up.
-
-> 
-> (In reply to comment #6)
-> > In the last attachment Xorg.log claims that it's starts at ~81.456, whereas
-> > dmesg states that X was running ~19.627541.
-> > * Are those logs matching (ie. captured from the same boot/system startup)
-> > I'm assuming that you've started your screensaver ~55.041877. Is that
-> > correct ?
-> I.e. understanding the timeline would be beneficial
-> 
-> > * Do you recall when did your nouveau started started reporting errors
-> > (nouveau E) ?
-> > 
-> I'm talking about nouveau errors in general, indicated by "nouveau E"
-> disregarding the I've mentioned as harmless. If unsure attach dmesg of older
-> kernels that you have handy :)
-
-dmesg is wiped each time I boot the machine. I guess I could try to set up
-something that would log it to a disk file instead of just in the ring buffer.
+I have a sneaky suspicion that you may need to try a 3.7 kernel, but that will
+follow after the results from this patch
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375129849.E73eC1.10769
-Date: Mon, 29 Jul 2013 20:30:49 +0000
+--1375130430.05DAf2Ae2.11957
+Date: Mon, 29 Jul 2013 20:40:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -92,55 +62,23 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c11">Comment # 11</a>
+   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315">bug 67315</a>
-              from <span class="vcard"><a class="email" href="mailto:ricks&#64;alldigital.com" title="Rick Stevens &lt;ricks&#64;alldigital.com&gt;"> <span class="fn">Rick Stevens</span></a>
+   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67315#c9">comment #9</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=67315#c8">comment #8</a>)
-&gt; &gt; I'm ready to continue sorting this out. Enjoyed adequate sleep over the
-&gt; &gt; weekend so I'm rarin' to go.
-&gt; &gt; 
-&gt; &gt; What else do you need from me?
-&gt; 
-&gt; Answers to the last two questions would be nice as a start :P</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=83240" name="attach_83240" title="another debug patch">attachment 83240</a> <a href="attachment.cgi?id=83240&amp;action=edit" title="another debug patch">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=67382&amp;attachment=83240'>[review]</a>
+another debug patch
 
-In answer to your first question (I think), yes, those captures were from the
-same boot/crash cycle, acquired as I mentioned in my comments.
+Another patch, it will printout a bit more information (that the first one
+missed) and it will unconditionally set ret &amp; data[0].
+Apply on top of either 3.9 or 3.10 branch _after_ the offending commit
 
-In answer to the second, I'm not sure how to correlate the timestamps. Looking
-at the dmesg output, the first &quot;nouveau E&quot; message occurred 19 seconds into the
-boot process. This is long before the login screen for the desktop appears.
-
-The next messages seem to occur once I log in via the desktop login screen,
-about 55 seconds after the boot. The screensaver shouldn't start for at least
-10 minutes after that. As I said, if I try to do something such as adjust the
-screen saver parameters via XFCE's &quot;Applications Menu-&gt;Settings-&gt;Screensaver&quot;
-menu, as soon as the frame containing the the applications window is rendered
-the display, keyboard and mouse lock up.
-
-<span class="quote">&gt; 
-&gt; (In reply to <a href="show_bug.cgi?id=67315#c6">comment #6</a>)
-&gt; &gt; In the last attachment Xorg.log claims that it's starts at ~81.456, whereas
-&gt; &gt; dmesg states that X was running ~19.627541.
-&gt; &gt; * Are those logs matching (ie. captured from the same boot/system startup)
-&gt; &gt; I'm assuming that you've started your screensaver ~55.041877. Is that
-&gt; &gt; correct ?
-&gt; I.e. understanding the timeline would be beneficial
-&gt; 
-&gt; &gt; * Do you recall when did your nouveau started started reporting errors
-&gt; &gt; (nouveau E) ?
-&gt; &gt; 
-&gt; I'm talking about nouveau errors in general, indicated by &quot;nouveau E&quot;
-&gt; disregarding the I've mentioned as harmless. If unsure attach dmesg of older
-&gt; kernels that you have handy :)</span >
-
-dmesg is wiped each time I boot the machine. I guess I could try to set up
-something that would log it to a disk file instead of just in the ring buffer.</pre>
+I have a sneaky suspicion that you may need to try a 3.7 kernel, but that will
+follow after the results from this patch</pre>
         </div>
       </p>
       <hr>
@@ -152,9 +90,9 @@ something that would log it to a disk file instead of just in the ring buffer.</
     </body>
 </html>
 
---1375129849.E73eC1.10769--
+--1375130430.05DAf2Ae2.11957--
 
---===============0371336614==
+--===============0331526103==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -165,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0371336614==--
+--===============0331526103==--
