@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67315] System lockup with X consuming all CPU
-Date: Mon, 29 Jul 2013 16:48:45 +0000
-Message-ID: <bug-67315-8800-sDRTKi8LWt@http.bugs.freedesktop.org/>
+Date: Mon, 29 Jul 2013 17:08:48 +0000
+Message-ID: <bug-67315-8800-bvsZ5oTkwR@http.bugs.freedesktop.org/>
 References: <bug-67315-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1486584661=="
+Content-Type: multipart/mixed; boundary="===============0771683775=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,47 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1486584661==
-Content-Type: multipart/alternative; boundary="1375116525.F78D2.3627"; charset="us-ascii"
+--===============0771683775==
+Content-Type: multipart/alternative; boundary="1375117728.51122.6893"; charset="us-ascii"
 
 
---1375116525.F78D2.3627
-Date: Mon, 29 Jul 2013 16:48:45 +0000
+--1375117728.51122.6893
+Date: Mon, 29 Jul 2013 17:08:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67315
 
---- Comment #9 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #8)
-> I'm ready to continue sorting this out. Enjoyed adequate sleep over the
-> weekend so I'm rarin' to go.
-> 
-> What else do you need from me?
+--- Comment #10 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 83220
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83220&action=edit
+BUG_ON(!data)
 
-Answers to the last two questions would be nice as a start :P
-
-(In reply to comment #6)
-> In the last attachment Xorg.log claims that it's starts at ~81.456, whereas
-> dmesg states that X was running ~19.627541.
-> * Are those logs matching (ie. captured from the same boot/system startup)
-> I'm assuming that you've started your screensaver ~55.041877. Is that
-> correct ?
-I.e. understanding the timeline would be beneficial
-
-> * Do you recall when did your nouveau started started reporting errors
-> (nouveau E) ?
-> 
-I'm talking about nouveau errors in general, indicated by "nouveau E"
-disregarding the I've mentioned as harmless. If unsure attach dmesg of older
-kernels that you have handy :)
+Also you can try this simple patch, it would trigger a kernel bug so be warned.
+If/when it does capture the output and attach it in here (either in picture or
+text form)
+Thanks
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375116525.F78D2.3627
-Date: Mon, 29 Jul 2013 16:48:45 +0000
+--1375117728.51122.6893
+Date: Mon, 29 Jul 2013 17:08:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,35 +60,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - System lockup with X consuming all CPU"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67315">bug 67315</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67315#c8">comment #8</a>)
-<span class="quote">&gt; I'm ready to continue sorting this out. Enjoyed adequate sleep over the
-&gt; weekend so I'm rarin' to go.
-&gt; 
-&gt; What else do you need from me?</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=83220" name="attach_83220" title="BUG_ON(!data)">attachment 83220</a> <a href="attachment.cgi?id=83220&amp;action=edit" title="BUG_ON(!data)">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=67315&amp;attachment=83220'>[review]</a>
+BUG_ON(!data)
 
-Answers to the last two questions would be nice as a start :P
-
-(In reply to <a href="show_bug.cgi?id=67315#c6">comment #6</a>)
-<span class="quote">&gt; In the last attachment Xorg.log claims that it's starts at ~81.456, whereas
-&gt; dmesg states that X was running ~19.627541.
-&gt; * Are those logs matching (ie. captured from the same boot/system startup)
-&gt; I'm assuming that you've started your screensaver ~55.041877. Is that
-&gt; correct ?</span >
-I.e. understanding the timeline would be beneficial
-
-<span class="quote">&gt; * Do you recall when did your nouveau started started reporting errors
-&gt; (nouveau E) ?
-&gt; </span >
-I'm talking about nouveau errors in general, indicated by &quot;nouveau E&quot;
-disregarding the I've mentioned as harmless. If unsure attach dmesg of older
-kernels that you have handy :)</pre>
+Also you can try this simple patch, it would trigger a kernel bug so be warned.
+If/when it does capture the output and attach it in here (either in picture or
+text form)
+Thanks</pre>
         </div>
       </p>
       <hr>
@@ -114,9 +85,9 @@ kernels that you have handy :)</pre>
     </body>
 </html>
 
---1375116525.F78D2.3627--
+--1375117728.51122.6893--
 
---===============1486584661==
+--===============0771683775==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1486584661==--
+--===============0771683775==--
