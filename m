@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67315] System lockup with X consuming all CPU
-Date: Mon, 29 Jul 2013 21:28:57 +0000
-Message-ID: <bug-67315-8800-GudQb3soq1@http.bugs.freedesktop.org/>
-References: <bug-67315-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67051] No nouveau HDMI sound on NVIDIA GT430
+Date: Mon, 29 Jul 2013 21:44:18 +0000
+Message-ID: <bug-67051-8800-reAY68bC41@http.bugs.freedesktop.org/>
+References: <bug-67051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1974081853=="
+Content-Type: multipart/mixed; boundary="===============0767532531=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,62 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1974081853==
-Content-Type: multipart/alternative; boundary="1375133337.C78e82.18760"; charset="us-ascii"
+--===============0767532531==
+Content-Type: multipart/alternative; boundary="1375134258.02fB1.21270"; charset="us-ascii"
 
 
---1375133337.C78e82.18760
-Date: Mon, 29 Jul 2013 21:28:57 +0000
+--1375134258.02fB1.21270
+Date: Mon, 29 Jul 2013 21:44:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67315
+https://bugs.freedesktop.org/show_bug.cgi?id=67051
 
---- Comment #13 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #11)
-> In answer to your first question (I think), yes, those captures were from
-> the same boot/crash cycle, acquired as I mentioned in my comments.
-> 
-Obviously I did not express myself clear enough :)
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-The Xorg.0.log attached is _not_ from when the crash/lockup occurred. It is
-from the second X session (the one that was started by your system after X died
-the first time). I was seeking confirmation of the above with my first question
-:P
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-Does your system has plymouth or similar splash manager ? Please disable it,
-try to reproduce the issue and attach dmesg _before_ trying the
-patch/recompiling the kernel
+--- Comment #105 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Both the patch to fix the ELD situation, as well as the actual audio working
+are now in the nouveau/master repository
+(http://cgit.freedesktop.org/nouveau/linux-2.6/). Closing this bug, thanks for
+doing all the testing, sorry it took so many tries to nail down the issue.
 
-[...]
-> adjust the screen saver parameters via XFCE's "Applications
-> Menu->Settings->Screensaver" menu, as soon as the frame containing the the
-> applications window is rendered the display, keyboard and mouse lock up.
-> 
-Please do not assume that I'm running XFCE and/or know what exactly it does
-behind the scenes. The name and/or package of the screensaver would be great :)
-
-[...]
-> dmesg is wiped each time I boot the machine. I guess I could try to set up
-> something that would log it to a disk file instead of just in the ring
-> buffer.
-No need for such an overkill
-
-All I was asking - "Is this a kernel regression ?", or in other words
-"before you installed Fedora 19 with kernel 3.9.9, you had XXX, running kernel
-XXX. Do you recall any messages similar to 'nouveau E' in dmesg?"
-
-Quick $grep "nouveau E" -r /var/logs/ may help depending on your setup
-
-Cheers
-Emil
+Ideally these patches will make it into some later 3.10.x, and almost
+definitely into 3.11.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375133337.C78e82.18760
-Date: Mon, 29 Jul 2013 21:28:57 +0000
+--1375134258.02fB1.21270
+Date: Mon, 29 Jul 2013 21:44:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -83,56 +60,54 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c13">Comment # 13</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051#c105">Comment # 105</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315">bug 67315</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - No nouveau HDMI sound on NVIDIA GT430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67051">bug 67051</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67315#c11">comment #11</a>)
-<span class="quote">&gt; In answer to your first question (I think), yes, those captures were from
-&gt; the same boot/crash cycle, acquired as I mentioned in my comments.
-&gt; </span >
-Obviously I did not express myself clear enough :)
+        <pre>Both the patch to fix the ELD situation, as well as the actual audio working
+are now in the nouveau/master repository
+(<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/">http://cgit.freedesktop.org/nouveau/linux-2.6/</a>). Closing this bug, thanks for
+doing all the testing, sorry it took so many tries to nail down the issue.
 
-The Xorg.0.log attached is _not_ from when the crash/lockup occurred. It is
-from the second X session (the one that was started by your system after X died
-the first time). I was seeking confirmation of the above with my first question
-:P
-
-Does your system has plymouth or similar splash manager ? Please disable it,
-try to reproduce the issue and attach dmesg _before_ trying the
-patch/recompiling the kernel
-
-[...]
-<span class="quote">&gt; adjust the screen saver parameters via XFCE's &quot;Applications
-&gt; Menu-&gt;Settings-&gt;Screensaver&quot; menu, as soon as the frame containing the the
-&gt; applications window is rendered the display, keyboard and mouse lock up.
-&gt; </span >
-Please do not assume that I'm running XFCE and/or know what exactly it does
-behind the scenes. The name and/or package of the screensaver would be great :)
-
-[...]
-<span class="quote">&gt; dmesg is wiped each time I boot the machine. I guess I could try to set up
-&gt; something that would log it to a disk file instead of just in the ring
-&gt; buffer.</span >
-No need for such an overkill
-
-All I was asking - &quot;Is this a kernel regression ?&quot;, or in other words
-&quot;before you installed Fedora 19 with kernel 3.9.9, you had XXX, running kernel
-XXX. Do you recall any messages similar to 'nouveau E' in dmesg?&quot;
-
-Quick $grep &quot;nouveau E&quot; -r /var/logs/ may help depending on your setup
-
-Cheers
-Emil</pre>
+Ideally these patches will make it into some later 3.10.x, and almost
+definitely into 3.11.</pre>
         </div>
       </p>
       <hr>
@@ -144,9 +119,9 @@ Emil</pre>
     </body>
 </html>
 
---1375133337.C78e82.18760--
+--1375134258.02fB1.21270--
 
---===============1974081853==
+--===============0767532531==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -157,4 +132,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1974081853==--
+--===============0767532531==--
