@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67482] No DP output when optimus activated in bios
-Date: Mon, 29 Jul 2013 16:08:50 +0000
-Message-ID: <bug-67482-8800-p8GQGrUfAa@http.bugs.freedesktop.org/>
-References: <bug-67482-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67315] System lockup with X consuming all CPU
+Date: Mon, 29 Jul 2013 16:31:04 +0000
+Message-ID: <bug-67315-8800-KsBmdQUSqx@http.bugs.freedesktop.org/>
+References: <bug-67315-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0853703544=="
+Content-Type: multipart/mixed; boundary="===============0057632471=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67482-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,45 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0853703544==
-Content-Type: multipart/alternative; boundary="1375114130.70bbC21.28090"; charset="us-ascii"
+--===============0057632471==
+Content-Type: multipart/alternative; boundary="1375115464.21aAEa1.32695"; charset="us-ascii"
 
 
---1375114130.70bbC21.28090
-Date: Mon, 29 Jul 2013 16:08:50 +0000
+--1375115464.21aAEa1.32695
+Date: Mon, 29 Jul 2013 16:31:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67482
+https://bugs.freedesktop.org/show_bug.cgi?id=67315
 
-Mike <michele.cane-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #8 from Rick Stevens <ricks-ijgZXeOBpMSRq8AjE7tl8g@public.gmane.org> ---
+I'm ready to continue sorting this out. Enjoyed adequate sleep over the weekend
+so I'm rarin' to go.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #3 from Mike <michele.cane-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-My bad it works.
-
-I needed to give:
-
-xrandr --setprovideroutputsource nouveau Intel
-
-and then
-
-xrandr --setprovideroffloadsink nouveau Intel
-
-cheers
-
-Mike
+What else do you need from me?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375114130.70bbC21.28090
-Date: Mon, 29 Jul 2013 16:08:50 +0000
+--1375115464.21aAEa1.32695
+Date: Mon, 29 Jul 2013 16:31:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,60 +50,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:michele.cane&#64;gmail.com" title="Mike &lt;michele.cane&#64;gmail.com&gt;"> <span class="fn">Mike</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - No DP output when optimus activated in bios"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67482">bug 67482</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - No DP output when optimus activated in bios"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67482#c3">Comment # 3</a>
+          bz_status_NEW "
+   title="NEW --- - System lockup with X consuming all CPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c8">Comment # 8</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - No DP output when optimus activated in bios"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67482">bug 67482</a>
-              from <span class="vcard"><a class="email" href="mailto:michele.cane&#64;gmail.com" title="Mike &lt;michele.cane&#64;gmail.com&gt;"> <span class="fn">Mike</span></a>
+          bz_status_NEW "
+   title="NEW --- - System lockup with X consuming all CPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315">bug 67315</a>
+              from <span class="vcard"><a class="email" href="mailto:ricks&#64;alldigital.com" title="Rick Stevens &lt;ricks&#64;alldigital.com&gt;"> <span class="fn">Rick Stevens</span></a>
 </span></b>
-        <pre>My bad it works.
+        <pre>I'm ready to continue sorting this out. Enjoyed adequate sleep over the weekend
+so I'm rarin' to go.
 
-I needed to give:
-
-xrandr --setprovideroutputsource nouveau Intel
-
-and then
-
-xrandr --setprovideroffloadsink nouveau Intel
-
-cheers
-
-Mike</pre>
+What else do you need from me?</pre>
         </div>
       </p>
       <hr>
@@ -131,9 +78,9 @@ Mike</pre>
     </body>
 </html>
 
---1375114130.70bbC21.28090--
+--1375115464.21aAEa1.32695--
 
---===============0853703544==
+--===============0057632471==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -144,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0853703544==--
+--===============0057632471==--
