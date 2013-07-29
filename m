@@ -1,16 +1,14 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH 3/3] drm/nv31/mpeg: don't recognize nv3x cards
- as having nv44 graph class
-Date: Mon, 29 Jul 2013 19:30:47 -0400
-Message-ID: <CAKb7UvimNrAtrPApuvdh6RQFhF+YkWdBn0wSy_jESxxkRpupqA@mail.gmail.com>
-References: <1375139118-17398-1-git-send-email-imirkin@alum.mit.edu>
-	<1375139118-17398-3-git-send-email-imirkin@alum.mit.edu>
-	<51F6FA5A.3030703@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 60704] [nouveau,
+ git regression] - I2C PWM fan control broken on nv50 adt7475 on
+ kernels 3.3.x+
+Date: Mon, 29 Jul 2013 23:32:40 +0000
+Message-ID: <bug-60704-8800-UBhRxu56Tl@http.bugs.freedesktop.org/>
+References: <bug-60704-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1378388527=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <51F6FA5A.3030703-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-60704-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,39 +18,105 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jul 29, 2013 at 7:27 PM, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On 30/07/13 00:05, Ilia Mirkin wrote:
->> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
->> ---
->>  drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c | 5 ++++-
->>  1 file changed, 4 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c
->> index 9f7c7d5..c190043 100644
->> --- a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c
->> +++ b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c
->> @@ -284,7 +284,10 @@ nv31_mpeg_init(struct nouveau_object *object)
->>       /* PMPEG init */
->>       nv_wr32(priv, 0x00b32c, 0x00000000);
->>       nv_wr32(priv, 0x00b314, 0x00000100);
->> -     nv_wr32(priv, 0x00b220, nv44_graph_class(priv) ? 0x00000044 : 0x00000031);
->> +     if (nv_device(priv)->chipset >= 0x40 && nv44_graph_class(priv))
->> +             nv_wr32(priv, 0x00b220, 0x00000044);
->> +     else
->> +             nv_wr32(priv, 0x00b220, 0x00000031);
-> Might be a nitpicking too much, but I believe the check makes more sense
-> inside nv44_graph_class(), despite that this is the only nv3x context
-> that uses it
 
-Yeah, I was going back and forth on that. My final conclusion is that
-you should only be using nv44_graph_class if you're already nv40, and
-this is a bit of an abuse. So it has to do more checking as a result.
-But I can definitely see it the other way too... I don't think any of
-the uses are in a sufficiently fast path where an extra conditional
-would matter. Ben, up to you.
+--===============1378388527==
+Content-Type: multipart/alternative; boundary="1375140760.58FCc41.4885"; charset="us-ascii"
 
-  -ilia
+
+--1375140760.58FCc41.4885
+Date: Mon, 29 Jul 2013 23:32:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=60704
+
+--- Comment #13 from Marc Meledandri <m.meledandri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+FWIW, on kernel series 3.10.x, adjusting the i2c datarate still provides a
+working solution on my nv50 hardware. Sensors detect properly and fan control
+is enabled. The necessary patch has changed again:
+
+--- a/drivers/gpu/drm/nouveau/core/subdev/i2cbase.c    2013-07-25
+18:16:45.000000000 -0400
++++ b/drivers/gpu/drm/nouveau/core/subdev/i2cbase.c.patched    2013-07-29
+19:26:09.393689862 -0400
+@@ -122,7 +122,7 @@
+         if (!bit)
+             return -ENOMEM;
+
+-        bit->udelay = 10;
++        bit->udelay = 20;
+         bit->timeout = usecs_to_jiffies(2200);
+         bit->data = port;
+         bit->pre_xfer = nouveau_i2c_pre_xfer;
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1375140760.58FCc41.4885
+Date: Mon, 29 Jul 2013 23:32:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60704#c13">Comment # 13</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60704">bug 60704</a>
+              from <span class="vcard"><a class="email" href="mailto:m.meledandri&#64;gmail.com" title="Marc Meledandri &lt;m.meledandri&#64;gmail.com&gt;"> <span class="fn">Marc Meledandri</span></a>
+</span></b>
+        <pre>FWIW, on kernel series 3.10.x, adjusting the i2c datarate still provides a
+working solution on my nv50 hardware. Sensors detect properly and fan control
+is enabled. The necessary patch has changed again:
+
+--- a/drivers/gpu/drm/nouveau/core/subdev/i2cbase.c    2013-07-25
+18:16:45.000000000 -0400
++++ b/drivers/gpu/drm/nouveau/core/subdev/i2cbase.c.patched    2013-07-29
+19:26:09.393689862 -0400
+&#64;&#64; -122,7 +122,7 &#64;&#64;
+         if (!bit)
+             return -ENOMEM;
+
+-        bit-&gt;udelay = 10;
++        bit-&gt;udelay = 20;
+         bit-&gt;timeout = usecs_to_jiffies(2200);
+         bit-&gt;data = port;
+         bit-&gt;pre_xfer = nouveau_i2c_pre_xfer;</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1375140760.58FCc41.4885--
+
+--===============1378388527==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1378388527==--
