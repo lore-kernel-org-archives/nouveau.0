@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 60704] [nouveau,
  git regression] - I2C PWM fan control broken on nv50 adt7475 on
  kernels 3.3.x+
-Date: Mon, 29 Jul 2013 23:32:40 +0000
-Message-ID: <bug-60704-8800-UBhRxu56Tl@http.bugs.freedesktop.org/>
+Date: Mon, 29 Jul 2013 23:36:22 +0000
+Message-ID: <bug-60704-8800-SUlBTT88IK@http.bugs.freedesktop.org/>
 References: <bug-60704-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1378388527=="
+Content-Type: multipart/mixed; boundary="===============0277420365=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-60704-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,25 +22,23 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1378388527==
-Content-Type: multipart/alternative; boundary="1375140760.58FCc41.4885"; charset="us-ascii"
+--===============0277420365==
+Content-Type: multipart/alternative; boundary="1375140982.B521f881.5334"; charset="us-ascii"
 
 
---1375140760.58FCc41.4885
-Date: Mon, 29 Jul 2013 23:32:40 +0000
+--1375140982.B521f881.5334
+Date: Mon, 29 Jul 2013 23:36:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=60704
 
---- Comment #13 from Marc Meledandri <m.meledandri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-FWIW, on kernel series 3.10.x, adjusting the i2c datarate still provides a
-working solution on my nv50 hardware. Sensors detect properly and fan control
-is enabled. The necessary patch has changed again:
+--- Comment #14 from Marc Meledandri <m.meledandri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Disregard previous diff. This rather:
 
---- a/drivers/gpu/drm/nouveau/core/subdev/i2cbase.c    2013-07-25
+--- a/drivers/gpu/drm/nouveau/core/subdev/i2c/base.c    2013-07-25
 18:16:45.000000000 -0400
-+++ b/drivers/gpu/drm/nouveau/core/subdev/i2cbase.c.patched    2013-07-29
++++ b/drivers/gpu/drm/nouveau/core/subdev/i2c/base.c    2013-07-29
 19:26:09.393689862 -0400
 @@ -122,7 +122,7 @@
          if (!bit)
@@ -56,8 +54,8 @@ is enabled. The necessary patch has changed again:
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375140760.58FCc41.4885
-Date: Mon, 29 Jul 2013 23:32:40 +0000
+--1375140982.B521f881.5334
+Date: Mon, 29 Jul 2013 23:36:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,20 +69,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60704#c13">Comment # 13</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60704#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=60704">bug 60704</a>
               from <span class="vcard"><a class="email" href="mailto:m.meledandri&#64;gmail.com" title="Marc Meledandri &lt;m.meledandri&#64;gmail.com&gt;"> <span class="fn">Marc Meledandri</span></a>
 </span></b>
-        <pre>FWIW, on kernel series 3.10.x, adjusting the i2c datarate still provides a
-working solution on my nv50 hardware. Sensors detect properly and fan control
-is enabled. The necessary patch has changed again:
+        <pre>Disregard previous diff. This rather:
 
---- a/drivers/gpu/drm/nouveau/core/subdev/i2cbase.c    2013-07-25
+--- a/drivers/gpu/drm/nouveau/core/subdev/i2c/base.c    2013-07-25
 18:16:45.000000000 -0400
-+++ b/drivers/gpu/drm/nouveau/core/subdev/i2cbase.c.patched    2013-07-29
++++ b/drivers/gpu/drm/nouveau/core/subdev/i2c/base.c    2013-07-29
 19:26:09.393689862 -0400
 &#64;&#64; -122,7 +122,7 &#64;&#64;
          if (!bit)
@@ -106,9 +102,9 @@ is enabled. The necessary patch has changed again:
     </body>
 </html>
 
---1375140760.58FCc41.4885--
+--1375140982.B521f881.5334--
 
---===============1378388527==
+--===============0277420365==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -119,4 +115,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1378388527==--
+--===============0277420365==--
