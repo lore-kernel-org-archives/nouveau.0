@@ -1,12 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67315] System lockup with X consuming all CPU
-Date: Tue, 30 Jul 2013 20:13:29 +0000
-Message-ID: <bug-67315-8800-gysk4NNTD3@http.bugs.freedesktop.org/>
-References: <bug-67315-8800@http.bugs.freedesktop.org/>
+From: Christ-Jan Wijtmans <cj.wijtmans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Selecting supported chipsets in the driver?
+Date: Tue, 30 Jul 2013 22:39:05 +0200
+Message-ID: <CAMjv+TQLp4dCfa0FHmfUOYZR3H_RMwiev=59Ocr3WN=drky=YQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0702909044=="
+Content-Type: multipart/mixed; boundary="===============0734998739=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,65 +17,43 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============0734998739==
+Content-Type: multipart/alternative; boundary=089e011604de95aa2c04e2c09914
 
---===============0702909044==
-Content-Type: multipart/alternative; boundary="1375215209.Fd10B101.25967"; charset="us-ascii"
+--089e011604de95aa2c04e2c09914
+Content-Type: text/plain; charset=UTF-8
+
+Hi, my apologies if this is the wrong place to post this.
+I had the desire to turn on or off support for certain chipsets.
+Because i felt like the nouveau drivers are (relatively) quite large and
+depends on some kernel code that would only be used for certain chipsets.
+I will take some time this week to see how this is coded and if its
+possible but i just wanted a head sup opinion on you guys before i start
+wasting my time.
 
 
---1375215209.Fd10B101.25967
-Date: Tue, 30 Jul 2013 20:13:29 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Live long and prosper,
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67315
+Christ-Jan Wijtmans
 
---- Comment #19 from Rick Stevens <ricks-ijgZXeOBpMSRq8AjE7tl8g@public.gmane.org> ---
-Created attachment 83330
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83330&action=edit
-Logs from 3.9.9-302.fc19.x86_64 kernel
+--089e011604de95aa2c04e2c09914
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+<div dir=3D"ltr">Hi, my apologies if this is the wrong place to post this.<=
+br>I had the desire to turn on or off support for certain chipsets.<div>Bec=
+ause i felt like the nouveau drivers are (relatively) quite large and depen=
+ds on some kernel code that would only be used for certain chipsets.<br>
+I will take some time this week to see how this is coded and if its possibl=
+e but i just wanted a head sup opinion on you guys before i start wasting m=
+y time.<br><br><div><div><div dir=3D"ltr"><br>Live long and prosper,<br><br=
+>
+Christ-Jan Wijtmans</div></div>
+</div></div></div>
 
---1375215209.Fd10B101.25967
-Date: Tue, 30 Jul 2013 20:13:29 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+--089e011604de95aa2c04e2c09914--
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c19">Comment # 19</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315">bug 67315</a>
-              from <span class="vcard"><a class="email" href="mailto:ricks&#64;alldigital.com" title="Rick Stevens &lt;ricks&#64;alldigital.com&gt;"> <span class="fn">Rick Stevens</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83330" name="attach_83330" title="Logs from 3.9.9-302.fc19.x86_64 kernel">attachment 83330</a> <a href="attachment.cgi?id=83330&amp;action=edit" title="Logs from 3.9.9-302.fc19.x86_64 kernel">[details]</a></span>
-Logs from 3.9.9-302.fc19.x86_64 kernel</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1375215209.Fd10B101.25967--
-
---===============0702909044==
+--===============0734998739==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +64,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0702909044==--
+--===============0734998739==--
