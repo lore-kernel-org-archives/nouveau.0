@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62914] ZaphodHeads doesn't work after upgrading to
-	xorg 1.14
-Date: Tue, 30 Jul 2013 10:27:03 +0000
-Message-ID: <bug-62914-8800-PCWXDY2lV8@http.bugs.freedesktop.org/>
-References: <bug-62914-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67382] [nouveau,
+ nv50] linux 3.9.7-3.10.3: Xorg won't be available
+Date: Tue, 30 Jul 2013 15:45:54 +0000
+Message-ID: <bug-67382-8800-LdC7OtqPXv@http.bugs.freedesktop.org/>
+References: <bug-67382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0411858962=="
+Content-Type: multipart/mixed; boundary="===============0151444628=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62914-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,45 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0411858962==
-Content-Type: multipart/alternative; boundary="1375180023.e37C622.4763"; charset="us-ascii"
+--===============0151444628==
+Content-Type: multipart/alternative; boundary="1375199154.adEad31.32370"; charset="us-ascii"
 
 
---1375180023.e37C622.4763
-Date: Tue, 30 Jul 2013 10:27:03 +0000
+--1375199154.adEad31.32370
+Date: Tue, 30 Jul 2013 15:45:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62914
+https://bugs.freedesktop.org/show_bug.cgi?id=67382
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #13 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
+Created attachment 83307
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83307&action=edit
+dmesg from 3.9 with the faulty commit and debug2 (aka 3.9.7+debug2)
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|REOPENED                    |RESOLVED
-         Resolution|---                         |FIXED
+There you go. dmesg output with debug2 kernel.
 
---- Comment #28 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Guys plese try xf86-video-nouveau 1.0.9
-It contains the following patch which should handle the crtc->randr_crtc ==
-NULL case as spotted by Ilia
+>I have a sneaky suspicion that you may need to try a 3.7 kernel, but that will >follow after the results from this patch
 
-commit be44e7804862b4c276ed4d4717b1212920f428e6
-Author: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Date:   Tue Jul 30 15:26:46 2013 +1000
-
-    nouveau: fix crash when xinerama is enabled.
-
-    Signed-off-by: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-
-Closing for now
+Huh? Something special about 3.7, or what is the reason?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375180023.e37C622.4763
-Date: Tue, 30 Jul 2013 10:27:03 +0000
+--1375199154.adEad31.32370
+Date: Tue, 30 Jul 2013 15:45:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,60 +56,27 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914">bug 62914</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>REOPENED
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914#c28">Comment # 28</a>
+          bz_status_NEW "
+   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c13">Comment # 13</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - ZaphodHeads doesn't work after upgrading to xorg 1.14"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62914">bug 62914</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+          bz_status_NEW "
+   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
+              from <span class="vcard"><a class="email" href="mailto:anonymous&#64;dodgeit.com" title="Anonymous Helper &lt;anonymous&#64;dodgeit.com&gt;"> <span class="fn">Anonymous Helper</span></a>
 </span></b>
-        <pre>Guys plese try xf86-video-nouveau 1.0.9
-It contains the following patch which should handle the crtc-&gt;randr_crtc ==
-NULL case as spotted by Ilia
+        <pre>Created <span class=""><a href="attachment.cgi?id=83307" name="attach_83307" title="dmesg from 3.9 with the faulty commit and debug2 (aka 3.9.7+debug2)">attachment 83307</a> <a href="attachment.cgi?id=83307&amp;action=edit" title="dmesg from 3.9 with the faulty commit and debug2 (aka 3.9.7+debug2)">[details]</a></span>
+dmesg from 3.9 with the faulty commit and debug2 (aka 3.9.7+debug2)
 
-commit be44e7804862b4c276ed4d4717b1212920f428e6
-Author: Dave Airlie &lt;<a href="mailto:airlied&#64;gmail.com">airlied&#64;gmail.com</a>&gt;
-Date:   Tue Jul 30 15:26:46 2013 +1000
+There you go. dmesg output with debug2 kernel.
 
-    nouveau: fix crash when xinerama is enabled.
+<span class="quote">&gt;I have a sneaky suspicion that you may need to try a 3.7 kernel, but that will &gt;follow after the results from this patch</span >
 
-    Signed-off-by: Dave Airlie &lt;<a href="mailto:airlied&#64;redhat.com">airlied&#64;redhat.com</a>&gt;
-
-Closing for now</pre>
+Huh? Something special about 3.7, or what is the reason?</pre>
         </div>
       </p>
       <hr>
@@ -132,9 +88,9 @@ Closing for now</pre>
     </body>
 </html>
 
---1375180023.e37C622.4763--
+--1375199154.adEad31.32370--
 
---===============0411858962==
+--===============0151444628==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -145,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0411858962==--
+--===============0151444628==--
