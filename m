@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67382] [nouveau,
- nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Tue, 30 Jul 2013 18:34:48 +0000
-Message-ID: <bug-67382-8800-VTxYYofftB@http.bugs.freedesktop.org/>
-References: <bug-67382-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67315] System lockup with X consuming all CPU
+Date: Tue, 30 Jul 2013 18:44:51 +0000
+Message-ID: <bug-67315-8800-YBme9Rv9oa@http.bugs.freedesktop.org/>
+References: <bug-67315-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1661396848=="
+Content-Type: multipart/mixed; boundary="===============0055263513=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +20,52 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1661396848==
-Content-Type: multipart/alternative; boundary="1375209289.5AdC2.4056"; charset="us-ascii"
+--===============0055263513==
+Content-Type: multipart/alternative; boundary="1375209890.a1Edb2.6118"; charset="us-ascii"
 
 
---1375209289.5AdC2.4056
-Date: Tue, 30 Jul 2013 18:34:49 +0000
+--1375209890.a1Edb2.6118
+Date: Tue, 30 Jul 2013 18:44:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67382
+https://bugs.freedesktop.org/show_bug.cgi?id=67315
 
---- Comment #15 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 83320
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83320&action=edit
-debug-3
+--- Comment #17 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #16)
+> Oh, one additional thing...nouveau never seemed to work with this hardware.
+Ouch, now that is interesting :)
 
-Grab the 3.9 branch _without_ the offending patch and apply debug-3 one on top.
-Attach dmesg as usual. Thanks :)
+> I do appreciate your help on this Emil. I just wanted you to know that and
+> if I seem a bit, well, dense it's because I'm not that familiar with how the
+> entire X mechanism works on this sort of hardware.
+We all have our strengths and weaknesses :)
+
+Looking at your latest dmesg, the pointer have changed from 0 to another
+(probably invalid) value - 0xfe00ccc6
+
+nouveau E[  PGRAPH][0000:02:00.0] ch 1 [0x0007cb0000 DRM] subc 3 class 0x502d
+mthd 0x0860 data 0xfe00ccc6
+
+Would be great if you can do the following
+
+* Notice if the the value varies between reboots, or does it differ on kernel
+version
+
+example
+       kernel version
+       3.9.9   3.10.5
+boot
+1      0xbla0  0xbla1
+2      0xbla2  0xbla3
+3      0xbla4  0xbla5
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375209289.5AdC2.4056
-Date: Tue, 30 Jul 2013 18:34:49 +0000
+--1375209890.a1Edb2.6118
+Date: Tue, 30 Jul 2013 18:44:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,19 +78,41 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c15">Comment # 15</a>
+   title="NEW --- - System lockup with X consuming all CPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c17">Comment # 17</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
+   title="NEW --- - System lockup with X consuming all CPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315">bug 67315</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83320" name="attach_83320" title="debug-3">attachment 83320</a> <a href="attachment.cgi?id=83320&amp;action=edit" title="debug-3">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=67382&amp;attachment=83320'>[review]</a>
-debug-3
+        <pre>(In reply to <a href="show_bug.cgi?id=67315#c16">comment #16</a>)
+<span class="quote">&gt; Oh, one additional thing...nouveau never seemed to work with this hardware.</span >
+Ouch, now that is interesting :)
 
-Grab the 3.9 branch _without_ the offending patch and apply debug-3 one on top.
-Attach dmesg as usual. Thanks :)</pre>
+<span class="quote">&gt; I do appreciate your help on this Emil. I just wanted you to know that and
+&gt; if I seem a bit, well, dense it's because I'm not that familiar with how the
+&gt; entire X mechanism works on this sort of hardware.</span >
+We all have our strengths and weaknesses :)
+
+Looking at your latest dmesg, the pointer have changed from 0 to another
+(probably invalid) value - 0xfe00ccc6
+
+nouveau E[  PGRAPH][0000:02:00.0] ch 1 [0x0007cb0000 DRM] subc 3 class 0x502d
+mthd 0x0860 data 0xfe00ccc6
+
+Would be great if you can do the following
+
+* Notice if the the value varies between reboots, or does it differ on kernel
+version
+
+example
+       kernel version
+       3.9.9   3.10.5
+boot
+1      0xbla0  0xbla1
+2      0xbla2  0xbla3
+3      0xbla4  0xbla5</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +124,9 @@ Attach dmesg as usual. Thanks :)</pre>
     </body>
 </html>
 
---1375209289.5AdC2.4056--
+--1375209890.a1Edb2.6118--
 
---===============1661396848==
+--===============0055263513==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +137,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1661396848==--
+--===============0055263513==--
