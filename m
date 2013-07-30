@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67315] System lockup with X consuming all CPU
-Date: Tue, 30 Jul 2013 00:20:55 +0000
-Message-ID: <bug-67315-8800-ZJ9atA4VIw@http.bugs.freedesktop.org/>
+Date: Tue, 30 Jul 2013 00:39:43 +0000
+Message-ID: <bug-67315-8800-UYZeMVhO6B@http.bugs.freedesktop.org/>
 References: <bug-67315-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1394332322=="
+Content-Type: multipart/mixed; boundary="===============1894373274=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,35 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1394332322==
-Content-Type: multipart/alternative; boundary="1375143655.b57B1.11278"; charset="us-ascii"
+--===============1894373274==
+Content-Type: multipart/alternative; boundary="1375144783.7Af2EB1.14113"; charset="us-ascii"
 
 
---1375143655.b57B1.11278
-Date: Tue, 30 Jul 2013 00:20:55 +0000
+--1375144783.7Af2EB1.14113
+Date: Tue, 30 Jul 2013 00:39:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67315
 
---- Comment #15 from Rick Stevens <ricks-ijgZXeOBpMSRq8AjE7tl8g@public.gmane.org> ---
-Sorry, forgot to comment about the attachment I just put up.
+--- Comment #16 from Rick Stevens <ricks-ijgZXeOBpMSRq8AjE7tl8g@public.gmane.org> ---
+Oh, one additional thing...nouveau never seemed to work with this hardware.
+Before I upgraded this machine to F19, it had been running F18 but I ended up
+running the nvidia blob driver system since I never could get nouveau to work.
+I could go back to that if needed, but I thought that since this is currently
+an experimental system, I might try to get nouveau to work properly and
+possibly help the community.
 
-The machine did use plymouth, so I removed the "rhgb" stuff from the boot
-command and repeated everything as before, but included both Xorg.0.log[.old]
-files and another capture of dmesg.
-
-The screensaver is "xscreensaver" and the menu tree fires up
-"xscreensaver-demo".
-They come from the xscreensaver-5.22.1.fc19.x86_64 set of RPMs. The system is
-up-to-date running kernel 3.10.3-300.fc19.x86_64.
+I do appreciate your help on this Emil. I just wanted you to know that and if I
+seem a bit, well, dense it's because I'm not that familiar with how the entire
+X mechanism works on this sort of hardware.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375143655.b57B1.11278
-Date: Tue, 30 Jul 2013 00:20:55 +0000
+--1375144783.7Af2EB1.14113
+Date: Tue, 30 Jul 2013 00:39:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,23 +62,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - System lockup with X consuming all CPU"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67315">bug 67315</a>
               from <span class="vcard"><a class="email" href="mailto:ricks&#64;alldigital.com" title="Rick Stevens &lt;ricks&#64;alldigital.com&gt;"> <span class="fn">Rick Stevens</span></a>
 </span></b>
-        <pre>Sorry, forgot to comment about the attachment I just put up.
+        <pre>Oh, one additional thing...nouveau never seemed to work with this hardware.
+Before I upgraded this machine to F19, it had been running F18 but I ended up
+running the nvidia blob driver system since I never could get nouveau to work.
+I could go back to that if needed, but I thought that since this is currently
+an experimental system, I might try to get nouveau to work properly and
+possibly help the community.
 
-The machine did use plymouth, so I removed the &quot;rhgb&quot; stuff from the boot
-command and repeated everything as before, but included both Xorg.0.log[.old]
-files and another capture of dmesg.
-
-The screensaver is &quot;xscreensaver&quot; and the menu tree fires up
-&quot;xscreensaver-demo&quot;.
-They come from the xscreensaver-5.22.1.fc19.x86_64 set of RPMs. The system is
-up-to-date running kernel 3.10.3-300.fc19.x86_64.</pre>
+I do appreciate your help on this Emil. I just wanted you to know that and if I
+seem a bit, well, dense it's because I'm not that familiar with how the entire
+X mechanism works on this sort of hardware.</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +90,9 @@ up-to-date running kernel 3.10.3-300.fc19.x86_64.</pre>
     </body>
 </html>
 
---1375143655.b57B1.11278--
+--1375144783.7Af2EB1.14113--
 
---===============1394332322==
+--===============1894373274==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1394332322==--
+--===============1894373274==--
