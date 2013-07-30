@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Selecting supported chipsets in the driver?
-Date: Tue, 30 Jul 2013 18:43:46 -0400
-Message-ID: <CAKb7UvgNmvcuUD4T0+0MdK_Drk3vp9CgLGGtANJC_up04otvvA@mail.gmail.com>
-References: <CAMjv+TQLp4dCfa0FHmfUOYZR3H_RMwiev=59Ocr3WN=drky=YQ@mail.gmail.com>
-	<51F83EA7.8050704@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 67382] [nouveau,
+ nv50] linux 3.9.7-3.10.3: Xorg won't be available
+Date: Tue, 30 Jul 2013 22:49:05 +0000
+Message-ID: <bug-67382-8800-ZfPS6wFgyI@http.bugs.freedesktop.org/>
+References: <bug-67382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1633469541=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <51F83EA7.8050704-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,46 +17,96 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jul 30, 2013 at 6:31 PM, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On 30/07/13 21:39, Christ-Jan Wijtmans wrote:
->> Hi, my apologies if this is the wrong place to post this.
->> I had the desire to turn on or off support for certain chipsets.
->> Because i felt like the nouveau drivers are (relatively) quite large and
->> depends on some kernel code that would only be used for certain chipsets.
->> I will take some time this week to see how this is coded and if its
->> possible but i just wanted a head sup opinion on you guys before i start
->> wasting my time.
->>
-> I'm not entirely sure if you're talking about the kernel module, ddx
-> (xf86-video-nouveau) or mesa.
->
-> In either case, all three should be relatively easy to do, as normally
-> the generation specific code is divided. Not too sure if it's worth the
-> effort though
->
-> * kernel module - 1.7 MiB, ~400KiB gzip
-> * ddx - ~200KiB
-> * mesa - 6.3 MiB (nouveau/gallium only)
->
-> As you can see the sizes are not that big, and I'm not sure if the
-> maintainers would be up-to the idea
->
-> Not a maintainer myself so take the last statement if a healthy pinch of
-> salt :)
 
-I'm not a maintainer either, but to provide an opposing opinion, I
-strongly support the notion of being able to select card generations
-to build support for. 1.7M of kernel code is huge. I don't even think
-it'd be that hard (at least for the kernel module and mesa, and I
-think there's a lot less value in doing it for the DDX). I think it
-might be as easy as some Makefile changes + a couple of ifdefs in the
-init code to do Y/N selects. Making it so that the additional
-functionality can be loaded on demand (i.e. Y/M/N) may be much
-trickier, to the point of it not being worth it for the additional
-complexity.
+--===============1633469541==
+Content-Type: multipart/alternative; boundary="1375224545.AbCae1.25754"; charset="us-ascii"
 
-  -ilia
+
+--1375224545.AbCae1.25754
+Date: Tue, 30 Jul 2013 22:49:05 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=67382
+
+--- Comment #16 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
+Created attachment 83335
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83335&action=edit
+dmesg from 3.9.7 without the bad patch + debug3
+
+And the next log.
+
+>Thanks, there is something really funky happening in here.
+Sounds like a lot of problems ;)
+
+>The commit that causes the issue on your setup fixes a regression introduced
+
+>around the 3.7
+I see. Overlooked that fact
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1375224545.AbCae1.25754
+Date: Tue, 30 Jul 2013 22:49:05 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c16">Comment # 16</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
+              from <span class="vcard"><a class="email" href="mailto:anonymous&#64;dodgeit.com" title="Anonymous Helper &lt;anonymous&#64;dodgeit.com&gt;"> <span class="fn">Anonymous Helper</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=83335" name="attach_83335" title="dmesg from 3.9.7 without the bad patch + debug3">attachment 83335</a> <a href="attachment.cgi?id=83335&amp;action=edit" title="dmesg from 3.9.7 without the bad patch + debug3">[details]</a></span>
+dmesg from 3.9.7 without the bad patch + debug3
+
+And the next log.
+
+<span class="quote">&gt;Thanks, there is something really funky happening in here.</span >
+Sounds like a lot of problems ;)
+
+<span class="quote">&gt;The commit that causes the issue on your setup fixes a regression introduced</span >
+
+<span class="quote">&gt;around the 3.7</span >
+I see. Overlooked that fact</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1375224545.AbCae1.25754--
+
+--===============1633469541==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1633469541==--
