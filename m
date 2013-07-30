@@ -1,14 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 2/2] nv50: allow forcing PMPEG use,
-	for ease of testing
-Date: Mon, 29 Jul 2013 19:39:07 -0400
-Message-ID: <1375141147-29058-2-git-send-email-imirkin@alum.mit.edu>
-References: <1375141147-29058-1-git-send-email-imirkin@alum.mit.edu>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nv50-/disp: use the number of dac, sor,
+	pior rather than hardcoded values
+Date: Tue, 30 Jul 2013 01:01:10 +0100
+Message-ID: <1375142470-6543-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1375141147-29058-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,44 +16,117 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This also allows people who don't want to install the binary blobs
-required for VP2 to still get MPEG decoding.
+The values are already stored on chipset specific basis in the ctor.
+Make the most of them and simplify the code further by using a temporary
+variable to avoid code duplication.
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- src/gallium/drivers/nv50/nv50_context.c | 2 +-
- src/gallium/drivers/nv50/nv50_screen.c  | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/src/gallium/drivers/nv50/nv50_context.c b/src/gallium/drivers/nv50/nv50_context.c
-index 79a0473..3654a41 100644
---- a/src/gallium/drivers/nv50/nv50_context.c
-+++ b/src/gallium/drivers/nv50/nv50_context.c
-@@ -258,7 +258,7 @@ nv50_create(struct pipe_screen *pscreen, void *priv)
-    draw_set_rasterize_stage(nv50->draw, nv50_draw_render_stage(nv50));
- #endif
+Found this patch laying around in a local branch. While the it does not
+reduce the number of lines, I believe that it makes the code is alot more
+readable.
+
+Cheers
+Emil
+---
+ drivers/gpu/drm/nouveau/core/engine/disp/nv50.c | 34 ++++++++++++-------------
+ 1 file changed, 17 insertions(+), 17 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c b/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
+index 7ffe2f3..c168ae3 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
++++ b/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
+@@ -628,7 +628,7 @@ nv50_disp_base_init(struct nouveau_object *object)
+ 	}
  
--   if (screen->base.device->chipset < 0x84) {
-+   if (screen->base.device->chipset < 0x84 || getenv("XVMC_PMPEG")) {
-       /* PMPEG */
-       nouveau_context_init_vdec(&nv50->base);
-    } else if (screen->base.device->chipset < 0x98 ||
-diff --git a/src/gallium/drivers/nv50/nv50_screen.c b/src/gallium/drivers/nv50/nv50_screen.c
-index 2951eb4..959366e 100644
---- a/src/gallium/drivers/nv50/nv50_screen.c
-+++ b/src/gallium/drivers/nv50/nv50_screen.c
-@@ -647,7 +647,7 @@ nv50_screen_create(struct nouveau_device *dev)
+ 	/* ... PIOR caps */
+-	for (i = 0; i < 3; i++) {
++	for (i = 0; i < priv->pior.nr; i++) {
+ 		tmp = nv_rd32(priv, 0x61e000 + (i * 0x800));
+ 		nv_wr32(priv, 0x6101f0 + (i * 0x04), tmp);
+ 	}
+@@ -834,10 +834,11 @@ exec_script(struct nv50_disp_priv *priv, int head, int id)
+ 	u8  ver, hdr, cnt, len;
+ 	u16 data;
+ 	u32 ctrl = 0x00000000;
++	u32 reg;
+ 	int i;
  
-    nv50_screen_init_resource_functions(pscreen);
+ 	/* DAC */
+-	for (i = 0; !(ctrl & (1 << head)) && i < 3; i++)
++	for (i = 0; !(ctrl & (1 << head)) && i < priv->dac.nr; i++)
+ 		ctrl = nv_rd32(priv, 0x610b5c + (i * 8));
  
--   if (screen->base.device->chipset < 0x84) {
-+   if (screen->base.device->chipset < 0x84 || getenv("XVMC_PMPEG")) {
-       /* PMPEG */
-       nouveau_screen_init_vdec(&screen->base);
-    } else if (screen->base.device->chipset < 0x98 ||
+ 	/* SOR */
+@@ -845,19 +846,18 @@ exec_script(struct nv50_disp_priv *priv, int head, int id)
+ 		if (nv_device(priv)->chipset  < 0x90 ||
+ 		    nv_device(priv)->chipset == 0x92 ||
+ 		    nv_device(priv)->chipset == 0xa0) {
+-			for (i = 0; !(ctrl & (1 << head)) && i < 2; i++)
+-				ctrl = nv_rd32(priv, 0x610b74 + (i * 8));
+-			i += 4;
++			reg = 0x610b74;
+ 		} else {
+-			for (i = 0; !(ctrl & (1 << head)) && i < 4; i++)
+-				ctrl = nv_rd32(priv, 0x610798 + (i * 8));
+-			i += 4;
++			reg = 0x610798;
+ 		}
++		for (i = 0; !(ctrl & (1 << head)) && i < priv->sor.nr; i++)
++			ctrl = nv_rd32(priv, reg + (i * 8));
++		i += 4;
+ 	}
+ 
+ 	/* PIOR */
+ 	if (!(ctrl & (1 << head))) {
+-		for (i = 0; !(ctrl & (1 << head)) && i < 3; i++)
++		for (i = 0; !(ctrl & (1 << head)) && i < priv->pior.nr; i++)
+ 			ctrl = nv_rd32(priv, 0x610b84 + (i * 8));
+ 		i += 8;
+ 	}
+@@ -893,10 +893,11 @@ exec_clkcmp(struct nv50_disp_priv *priv, int head, int id, u32 pclk,
+ 	u8  ver, hdr, cnt, len;
+ 	u32 ctrl = 0x00000000;
+ 	u32 data, conf = ~0;
++	u32 reg;
+ 	int i;
+ 
+ 	/* DAC */
+-	for (i = 0; !(ctrl & (1 << head)) && i < 3; i++)
++	for (i = 0; !(ctrl & (1 << head)) && i < priv->dac.nr; i++)
+ 		ctrl = nv_rd32(priv, 0x610b58 + (i * 8));
+ 
+ 	/* SOR */
+@@ -904,19 +905,18 @@ exec_clkcmp(struct nv50_disp_priv *priv, int head, int id, u32 pclk,
+ 		if (nv_device(priv)->chipset  < 0x90 ||
+ 		    nv_device(priv)->chipset == 0x92 ||
+ 		    nv_device(priv)->chipset == 0xa0) {
+-			for (i = 0; !(ctrl & (1 << head)) && i < 2; i++)
+-				ctrl = nv_rd32(priv, 0x610b70 + (i * 8));
+-			i += 4;
++			reg = 0x610b70;
+ 		} else {
+-			for (i = 0; !(ctrl & (1 << head)) && i < 4; i++)
+-				ctrl = nv_rd32(priv, 0x610794 + (i * 8));
+-			i += 4;
++			reg = 0x610794;
+ 		}
++		for (i = 0; !(ctrl & (1 << head)) && i < priv->sor.nr; i++)
++			ctrl = nv_rd32(priv, reg + (i * 8));
++		i += 4;
+ 	}
+ 
+ 	/* PIOR */
+ 	if (!(ctrl & (1 << head))) {
+-		for (i = 0; !(ctrl & (1 << head)) && i < 3; i++)
++		for (i = 0; !(ctrl & (1 << head)) && i < priv->pior.nr; i++)
+ 			ctrl = nv_rd32(priv, 0x610b80 + (i * 8));
+ 		i += 8;
+ 	}
 -- 
-1.8.1.5
+1.8.3.3
