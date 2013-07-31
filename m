@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67382] [nouveau,
- nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Wed, 31 Jul 2013 12:28:06 +0000
-Message-ID: <bug-67382-8800-suszjHWfdy@http.bugs.freedesktop.org/>
-References: <bug-67382-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60704] [nouveau,
+ git regression] - I2C PWM fan control broken on nv50 adt7475 on
+ kernels 3.3.x+
+Date: Wed, 31 Jul 2013 12:34:55 +0000
+Message-ID: <bug-60704-8800-FPoQtbFClH@http.bugs.freedesktop.org/>
+References: <bug-60704-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0266237425=="
+Content-Type: multipart/mixed; boundary="===============1266177838=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-60704-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,48 +22,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0266237425==
-Content-Type: multipart/alternative; boundary="1375273686.c51Af4822.2551"; charset="us-ascii"
+--===============1266177838==
+Content-Type: multipart/alternative; boundary="1375274095.fEa28BcC2.4089"; charset="us-ascii"
 
 
---1375273686.c51Af4822.2551
-Date: Wed, 31 Jul 2013 12:28:06 +0000
+--1375274095.fEa28BcC2.4089
+Date: Wed, 31 Jul 2013 12:34:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67382
+https://bugs.freedesktop.org/show_bug.cgi?id=60704
 
---- Comment #17 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-A fair bit of fairy stuff in here.
+--- Comment #15 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+To make things even better adt7473 seems to load fine in some cases :)
 
-Without the bad patch, nouveau does not call the appropriate sense() function,
-thus your system never looks for any other outputs and does not see the fathom
-monitor connected to the dvi-i.
+User has the original nv50, running a 3.9.x kernel.
 
-Can you provide a bit more information about the card - such as number and type
-of outputs/connectors and if they work or not ?
-
-i.e.
-dvi-i -> working using a dvi-to-vga adaptor and a vga monitor
-vga -> never tested
+[  DEVICE][0000:01:00.0] BOOT0  : 0x450300a2
+[  DEVICE][0000:01:00.0] Chipset: G80 (NV50)
 ...
+adt7475 4-002e: ADT7473 device, revision 0
+adt7475 4-002e: Optional features: fan4
+[  PTHERM][0000:01:00.0] Found an adt7473 at address 0x2e (controlled by
+lm_sensors, temp offset +0 C)
+[     I2C][0000:01:00.0] detected monitoring device: adt7473
 
-Additionally please attach your video bios [1]. Thanks
-
-
-Cheers
-Emil
-
-
-[1] http://nouveau.freedesktop.org/wiki/DumpingVideoBios/
-The debugfs or vbtracetool method is preferred
+https://bugs.freedesktop.org/show_bug.cgi?id=67382
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375273686.c51Af4822.2551
-Date: Wed, 31 Jul 2013 12:28:06 +0000
+--1375274095.fEa28BcC2.4089
+Date: Wed, 31 Jul 2013 12:34:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -75,37 +67,31 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c17">Comment # 17</a>
+   title="NEW --- - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60704#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
+   title="NEW --- - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60704">bug 60704</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>A fair bit of fairy stuff in here.
+        <pre>To make things even better adt7473 seems to load fine in some cases :)
 
-Without the bad patch, nouveau does not call the appropriate sense() function,
-thus your system never looks for any other outputs and does not see the fathom
-monitor connected to the dvi-i.
+User has the original nv50, running a 3.9.x kernel.
 
-Can you provide a bit more information about the card - such as number and type
-of outputs/connectors and if they work or not ?
-
-i.e.
-dvi-i -&gt; working using a dvi-to-vga adaptor and a vga monitor
-vga -&gt; never tested
+[  DEVICE][0000:01:00.0] BOOT0  : 0x450300a2
+[  DEVICE][0000:01:00.0] Chipset: G80 (NV50)
 ...
+adt7475 4-002e: ADT7473 device, revision 0
+adt7475 4-002e: Optional features: fan4
+[  PTHERM][0000:01:00.0] Found an adt7473 at address 0x2e (controlled by
+lm_sensors, temp offset +0 C)
+[     I2C][0000:01:00.0] detected monitoring device: adt7473
 
-Additionally please attach your video bios [1]. Thanks
-
-
-Cheers
-Emil
-
-
-[1] <a href="http://nouveau.freedesktop.org/wiki/DumpingVideoBios/">http://nouveau.freedesktop.org/wiki/DumpingVideoBios/</a>
-The debugfs or vbtracetool method is preferred</pre>
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
+   href="show_bug.cgi?id=67382">https://bugs.freedesktop.org/show_bug.cgi?id=67382</a></pre>
         </div>
       </p>
       <hr>
@@ -117,9 +103,9 @@ The debugfs or vbtracetool method is preferred</pre>
     </body>
 </html>
 
---1375273686.c51Af4822.2551--
+--1375274095.fEa28BcC2.4089--
 
---===============0266237425==
+--===============1266177838==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -130,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0266237425==--
+--===============1266177838==--
