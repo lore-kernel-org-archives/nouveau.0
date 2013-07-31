@@ -1,16 +1,18 @@
 From: Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org>
 Subject: Re: [PATCH 2/2] xv: speed up YV12 -> NV12 conversion
 	using SSE2 if available
-Date: Wed, 31 Jul 2013 19:16:12 +0200
-Message-ID: <877gg6k5ur.fsf@turtle.gmx.de>
+Date: Wed, 31 Jul 2013 19:28:35 +0200
+Message-ID: <87zjt2iqpo.fsf@turtle.gmx.de>
 References: <1375080039-22607-1-git-send-email-imirkin@alum.mit.edu>
 	<1375080039-22607-2-git-send-email-imirkin@alum.mit.edu>
+	<877gg6k5ur.fsf@turtle.gmx.de>
+	<CAKb7Uvi-nVtxhENZnwm6kbRaOW-a_Gv5D_v6Ex1CuyJWTE5aUw@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1375080039-22607-2-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> (Ilia
-	Mirkin's message of "Mon, 29 Jul 2013 02:40:39 -0400")
+In-Reply-To: <CAKb7Uvi-nVtxhENZnwm6kbRaOW-a_Gv5D_v6Ex1CuyJWTE5aUw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+	(Ilia Mirkin's message of "Wed, 31 Jul 2013 13:18:31 -0400")
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,99 +22,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <public-imirkin-FrUbXkNCsVf2fBVCVOL8/A@plane.gmane.org>
-Cc: Ben Skeggs <public-bskeggs-H+wXaHxf7aLQT0dZR+AlfA-wOFGN7rlS/M9smdsby/KFg@public.gmane.org>, public-nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW-wOFGN7rlS/M9smdsby/KFg@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: Ben Skeggs <public-bskeggs-H+wXaHxf7aLQT0dZR+AlfA-wOFGN7rlS/M9smdsby/KFg@public.gmane.org>, public-nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW-wOFGN7rlS/M9smdsby/KFg@public.gmane.org, Ilia Mirkin <public-imirkin-FrUbXkNCsVf2fBVCVOL8/A@plane.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 
 
-On 2013-07-29 08:40 +0200, Ilia Mirkin wrote:
+On 2013-07-31 19:18 +0200, Ilia Mirkin wrote:
 
-> memcpy() goes from taking 45% to 66% of total function time, which
-> translates to a 30% decrease in NVPutImage runtime.
+> On Wed, Jul 31, 2013 at 1:16 PM, Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> wrote:
+>>
+>> Unfortunately, immintrin.h is not available on most architectures,
+>> leading to build failures as can be seen on
+>> https://buildd.debian.org/status/package.php?p=xserver-xorg-video-nouveau.
 >
-> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-> ---
->  src/nouveau_xv.c | 33 ++++++++++++++++++++++++++-------
->  1 file changed, 26 insertions(+), 7 deletions(-)
+> Sorry :( I thought that immintrin.h would be available everywhere and
+> just end up empty since none of the __SSE*__ would be defined. I was
+> wrong.
 >
-> diff --git a/src/nouveau_xv.c b/src/nouveau_xv.c
-> index 567e30c..5569b7c 100644
-> --- a/src/nouveau_xv.c
-> +++ b/src/nouveau_xv.c
-> @@ -25,6 +25,8 @@
->  #include "config.h"
->  #endif
->  
-> +#include <immintrin.h>
-> +
+>>
+>> Any ideas?
+>
+> A fix is checked into master already:
+> http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=1df177f35a05db505577cdc929e63fde906a704b
 
-Unfortunately, immintrin.h is not available on most architectures,
-leading to build failures as can be seen on
-https://buildd.debian.org/status/package.php?p=xserver-xorg-video-nouveau.
-
-Any ideas?
-
->  #include "xf86xv.h"
->  #include <X11/extensions/Xv.h>
->  #include "exa.h"
-> @@ -532,30 +534,47 @@ NVCopyNV12ColorPlanes(unsigned char *src1, unsigned char *src2,
->  
->  	w >>= 1;
->  	h >>= 1;
-> +#ifdef __SSE2__
-> +	l = w >> 3;
-> +	e = w & 7;
-> +#else
->  	l = w >> 1;
->  	e = w & 1;
-> +#endif
->  
->  	for (j = 0; j < h; j++) {
->  		unsigned char *us = src1;
->  		unsigned char *vs = src2;
->  		unsigned int *vuvud = (unsigned int *) dst;
-> +		unsigned short *vud;
->  
->  		for (i = 0; i < l; i++) {
-> -#if X_BYTE_ORDER == X_BIG_ENDIAN
-> +#ifdef __SSE2__
-> +			_mm_storeu_si128(
-> +				(void*)vuvud,
-> +				_mm_unpacklo_epi8(
-> +					_mm_loadl_epi64((void*)vs),
-> +					_mm_loadl_epi64((void*)us)));
-> +			vuvud+=4;
-> +			us+=8;
-> +			vs+=8;
-> +#else /* __SSE2__ */
-> +#  if X_BYTE_ORDER == X_BIG_ENDIAN
->  			*vuvud++ = (vs[0]<<24) | (us[0]<<16) | (vs[1]<<8) | us[1];
-> -#else
-> +#  else
->  			*vuvud++ = vs[0] | (us[0]<<8) | (vs[1]<<16) | (us[1]<<24);
-> -#endif
-> +#  endif
->  			us+=2;
->  			vs+=2;
-> +#endif /* __SSE2__ */
->  		}
->  
-> -		if (e) {
-> -			unsigned short *vud = (unsigned short *) vuvud;
-> +		vud = (unsigned short *)vuvud;
-> +		for (i = 0; i < e; i++) {
->  #if X_BYTE_ORDER == X_BIG_ENDIAN
-> -			*vud = us[0] | (vs[0]<<8);
-> +			vud[i] = us[i] | (vs[i]<<8);
->  #else
-> -			*vud = vs[0] | (us[0]<<8);
-> +			vud[i] = vs[i] | (us[i]<<8);
->  #endif
->  		}
->  
-> -- 
-> 1.8.1.5
+Ah, good to hear and sorry that I didn't check myself.  I'll merge that
+commit into the Debian package.
 
 Cheers,
        Sven
