@@ -1,12 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67315] System lockup with X consuming all CPU
-Date: Wed, 31 Jul 2013 16:58:57 +0000
-Message-ID: <bug-67315-8800-hp7NDNDShz@http.bugs.freedesktop.org/>
-References: <bug-67315-8800@http.bugs.freedesktop.org/>
+From: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
+Subject: Traces wanted for NVAA/NVAF
+Date: Thu, 01 Aug 2013 00:52:57 +0200
+Message-ID: <51F99549.1040609@student.tudelft.nl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1933468768=="
+Content-Type: multipart/mixed; boundary="===============0692596383=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,79 +17,65 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+This is a multi-part message in MIME format.
+--===============0692596383==
+Content-Type: multipart/alternative;
+ boundary="------------070201080301040602040807"
 
---===============1933468768==
-Content-Type: multipart/alternative; boundary="1375289937.fA061.16429"; charset="us-ascii"
+This is a multi-part message in MIME format.
+--------------070201080301040602040807
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Dear All,
 
---1375289937.fA061.16429
-Date: Wed, 31 Jul 2013 16:58:57 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=67315
-
---- Comment #21 from Rick Stevens <ricks-ijgZXeOBpMSRq8AjE7tl8g@public.gmane.org> ---
-Created attachment 83383
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83383&action=edit
-mmio trace along with dmesg and Xorg logs
-
-I did as you asked...rebooted in run level 3 with plymouth disabled. Started
-the mmio trace, then started X by using "telinit 5", tried to bring up the
-screen saver stuff, waited for it to lock up, waited until it restarted, then
-stopped the mmio trace and grabbed dmesg and the last two Xorg log files.
-
-I hope that gives you more insight. I await your feedback.
+After recently taking a little dive into the NVAC clock tree, I was 
+wondering what that net would look like on cards I expect to be similar. 
+In this case I'm looking for MMIOtraces of NVAA and NVAF, which is 
+marketed as the 8x00 mGPU, 9x00 mGPU, 320M, ION and/or some nForce IGP. 
+If there is anyone who could provide me with an MMIO trace for any of 
+these cards that would be greatly appreciated. If you need help in the 
+process, please contact me by e-mail or on IRC.
+Many thanks in advance. Yours,
 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
+Roy Spliet MSc.
+r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org
+http://www.pds.ewi.tudelft.nl/msc/mallocinopencl/
 
---1375289937.fA061.16429
-Date: Wed, 31 Jul 2013 16:58:57 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+--------------070201080301040602040807
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
 <html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c21">Comment # 21</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315">bug 67315</a>
-              from <span class="vcard"><a class="email" href="mailto:ricks&#64;alldigital.com" title="Rick Stevens &lt;ricks&#64;alldigital.com&gt;"> <span class="fn">Rick Stevens</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83383" name="attach_83383" title="mmio trace along with dmesg and Xorg logs">attachment 83383</a> <a href="attachment.cgi?id=83383&amp;action=edit" title="mmio trace along with dmesg and Xorg logs">[details]</a></span>
-mmio trace along with dmesg and Xorg logs
+  <head>
 
-I did as you asked...rebooted in run level 3 with plymouth disabled. Started
-the mmio trace, then started X by using &quot;telinit 5&quot;, tried to bring up the
-screen saver stuff, waited for it to lock up, waited until it restarted, then
-stopped the mmio trace and grabbed dmesg and the last two Xorg log files.
-
-I hope that gives you more insight. I await your feedback.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Dear All,<br>
+    <br>
+    After recently taking a little dive into the NVAC clock tree, I was
+    wondering what that net would look like on cards I expect to be
+    similar. In this case I'm looking for MMIOtraces of NVAA and NVAF,
+    which is marketed as the 8x00 mGPU, 9x00 mGPU, 320M, ION and/or some
+    nForce IGP. If there is anyone who could provide me with an MMIO
+    trace for any of these cards that would be greatly appreciated. If
+    you need help in the process, please contact me by e-mail or on IRC.<br>
+    Many thanks in advance. Yours,<br>
+    <br>
+    <div class="moz-signature">-- <br>
+      <span style="font-size: 11px; color: #181818;">Roy Spliet MSc.</span><span
+        style="font-size: 11px; color: #606060;"><br>
+        <a class="moz-txt-link-abbreviated" href="mailto:r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org">r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org</a><br>
+        <a href="http://www.pds.ewi.tudelft.nl/msc/mallocinopencl/">http://www.pds.ewi.tudelft.nl/msc/mallocinopencl/</a></span><br>
+    </div>
+  </body>
 </html>
 
---1375289937.fA061.16429--
+--------------070201080301040602040807--
 
---===============1933468768==
+--===============0692596383==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1933468768==--
+--===============0692596383==--
