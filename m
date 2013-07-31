@@ -1,15 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: Selecting supported chipsets in the driver?
-Date: Wed, 31 Jul 2013 10:44:55 -0400
-Message-ID: <51F922E7.1050100@free.fr>
-References: <CAMjv+TQLp4dCfa0FHmfUOYZR3H_RMwiev=59Ocr3WN=drky=YQ@mail.gmail.com>
-	<51F83EA7.8050704@gmail.com>
-	<CAKb7UvgNmvcuUD4T0+0MdK_Drk3vp9CgLGGtANJC_up04otvvA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 54700] Distorted graphics (double cursor) with
+ GeForce 4200Go (NV28)
+Date: Wed, 31 Jul 2013 14:58:21 +0000
+Message-ID: <bug-54700-8800-E87pbpV4SY@http.bugs.freedesktop.org/>
+References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1045680245=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgNmvcuUD4T0+0MdK_Drk3vp9CgLGGtANJC_up04otvvA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,59 +20,98 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 30/07/2013 18:43, Ilia Mirkin wrote:
-> On Tue, Jul 30, 2013 at 6:31 PM, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->> On 30/07/13 21:39, Christ-Jan Wijtmans wrote:
->>> Hi, my apologies if this is the wrong place to post this.
->>> I had the desire to turn on or off support for certain chipsets.
->>> Because i felt like the nouveau drivers are (relatively) quite large and
->>> depends on some kernel code that would only be used for certain chipsets.
->>> I will take some time this week to see how this is coded and if its
->>> possible but i just wanted a head sup opinion on you guys before i start
->>> wasting my time.
->>>
->> I'm not entirely sure if you're talking about the kernel module, ddx
->> (xf86-video-nouveau) or mesa.
->>
->> In either case, all three should be relatively easy to do, as normally
->> the generation specific code is divided. Not too sure if it's worth the
->> effort though
->>
->> * kernel module - 1.7 MiB, ~400KiB gzip
->> * ddx - ~200KiB
->> * mesa - 6.3 MiB (nouveau/gallium only)
->>
->> As you can see the sizes are not that big, and I'm not sure if the
->> maintainers would be up-to the idea
->>
->> Not a maintainer myself so take the last statement if a healthy pinch of
->> salt :)
-> I'm not a maintainer either, but to provide an opposing opinion, I
-> strongly support the notion of being able to select card generations
-> to build support for. 1.7M of kernel code is huge. I don't even think
-> it'd be that hard (at least for the kernel module and mesa, and I
-> think there's a lot less value in doing it for the DDX). I think it
-> might be as easy as some Makefile changes + a couple of ifdefs in the
-> init code to do Y/N selects. Making it so that the additional
-> functionality can be loaded on demand (i.e. Y/M/N) may be much
-> trickier, to the point of it not being worth it for the additional
-> complexity.
->
->    -ilia
 
-In mesa, it is possible to build the driver you want (nouveau_vieux, nv30,
-nv50 or nvc0) so the feature is already there.
-There is no point for the ddx.
+--===============1045680245==
+Content-Type: multipart/alternative; boundary="1375282701.f0Aaf4312.27217"; charset="us-ascii"
 
-As for drm, I sure would use this feature as this would cut down compilation
-time a lot when doing out of the tree builds. With the core arch, in theory,
-it shouldn't be that hard if you want plan on using old cards only. However,
-if you plan on doing the opposite (drop old cards support), it is harder
-as newer cards still use code written for the old ones. If you like,
-you can draw a dependency map quite easily by looking into the device
-directory that will contain all the dependencies for every chipset.
 
-One more thing, maintaining these dependencies will be done poorly and
-eat development time. So I'm not in huge favour of this unless you
-introduce a system that only compiles code for chipsets up to a certain
-point (which is useless IMO).
+--1375282701.f0Aaf4312.27217
+Date: Wed, 31 Jul 2013 14:58:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=54700
+
+--- Comment #51 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+A few random thoughts
+
+* is the cursor provided truly 64x64 ?
+
+* from drmmode_load_cursor_argb(
+struct nouveau_bo *cursor; cursor->map 
+
+Data seems to be linear, lacking any pitch/tile alignment. Does libdrm/kernel
+agree with us ?
+
+
+* from drmmode_crtc_init()
+flags - use NOUVEAU_BO_VRAM rather than BO_GART (ie. revert 912d418f)
+flags - use NOUVEAU_BO_CONTIG ?
+config - set surf_flags, surf_pitch ?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1375282701.f0Aaf4312.27217
+Date: Wed, 31 Jul 2013 14:58:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c51">Comment # 51</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>A few random thoughts
+
+* is the cursor provided truly 64x64 ?
+
+* from drmmode_load_cursor_argb(
+struct nouveau_bo *cursor; cursor-&gt;map 
+
+Data seems to be linear, lacking any pitch/tile alignment. Does libdrm/kernel
+agree with us ?
+
+
+* from drmmode_crtc_init()
+flags - use NOUVEAU_BO_VRAM rather than BO_GART (ie. revert 912d418f)
+flags - use NOUVEAU_BO_CONTIG ?
+config - set surf_flags, surf_pitch ?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1375282701.f0Aaf4312.27217--
+
+--===============1045680245==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1045680245==--
