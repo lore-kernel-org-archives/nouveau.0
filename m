@@ -1,12 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67597] nouveau E Xorg failed to idle channel on NVA0
-Date: Thu, 01 Aug 2013 02:41:42 +0000
-Message-ID: <bug-67597-8800-QTDg6iv9hz@http.bugs.freedesktop.org/>
-References: <bug-67597-8800@http.bugs.freedesktop.org/>
+From: Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org>
+Subject: Re: [PATCH 2/2] xv: speed up YV12 -> NV12 conversion
+	using SSE2 if available
+Date: Wed, 31 Jul 2013 19:16:12 +0200
+Message-ID: <877gg6k5ur.fsf@turtle.gmx.de>
+References: <1375080039-22607-1-git-send-email-imirkin@alum.mit.edu>
+	<1375080039-22607-2-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0151974309=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67597-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1375080039-22607-2-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> (Ilia
+	Mirkin's message of "Mon, 29 Jul 2013 02:40:39 -0400")
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,83 +20,99 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <public-imirkin-FrUbXkNCsVf2fBVCVOL8/A@plane.gmane.org>
+Cc: Ben Skeggs <public-bskeggs-H+wXaHxf7aLQT0dZR+AlfA-wOFGN7rlS/M9smdsby/KFg@public.gmane.org>, public-nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW-wOFGN7rlS/M9smdsby/KFg@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0151974309==
-Content-Type: multipart/alternative; boundary="1375324902.e88fdD2.23706"; charset="us-ascii"
 
+On 2013-07-29 08:40 +0200, Ilia Mirkin wrote:
 
---1375324902.e88fdD2.23706
-Date: Thu, 1 Aug 2013 02:41:42 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+> memcpy() goes from taking 45% to 66% of total function time, which
+> translates to a 30% decrease in NVPutImage runtime.
+>
+> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+> ---
+>  src/nouveau_xv.c | 33 ++++++++++++++++++++++++++-------
+>  1 file changed, 26 insertions(+), 7 deletions(-)
+>
+> diff --git a/src/nouveau_xv.c b/src/nouveau_xv.c
+> index 567e30c..5569b7c 100644
+> --- a/src/nouveau_xv.c
+> +++ b/src/nouveau_xv.c
+> @@ -25,6 +25,8 @@
+>  #include "config.h"
+>  #endif
+>  
+> +#include <immintrin.h>
+> +
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67597
+Unfortunately, immintrin.h is not available on most architectures,
+leading to build failures as can be seen on
+https://buildd.debian.org/status/package.php?p=xserver-xorg-video-nouveau.
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Actually all the fence stuff was redone between... 3.4 and 3.5 or 3.5 and 3.6
-(sorry, I forgot), and that created regressions for at least one other user (on
-a nvc0 card though). The unfortunate thing is that the fence redo actually had
-some suspend bugs in it that were fixed over time (but I guess not all of
-them!) so this may end up being tricky to bisect, if you indeed zero in on
-those fence commits.
+Any ideas?
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+>  #include "xf86xv.h"
+>  #include <X11/extensions/Xv.h>
+>  #include "exa.h"
+> @@ -532,30 +534,47 @@ NVCopyNV12ColorPlanes(unsigned char *src1, unsigned char *src2,
+>  
+>  	w >>= 1;
+>  	h >>= 1;
+> +#ifdef __SSE2__
+> +	l = w >> 3;
+> +	e = w & 7;
+> +#else
+>  	l = w >> 1;
+>  	e = w & 1;
+> +#endif
+>  
+>  	for (j = 0; j < h; j++) {
+>  		unsigned char *us = src1;
+>  		unsigned char *vs = src2;
+>  		unsigned int *vuvud = (unsigned int *) dst;
+> +		unsigned short *vud;
+>  
+>  		for (i = 0; i < l; i++) {
+> -#if X_BYTE_ORDER == X_BIG_ENDIAN
+> +#ifdef __SSE2__
+> +			_mm_storeu_si128(
+> +				(void*)vuvud,
+> +				_mm_unpacklo_epi8(
+> +					_mm_loadl_epi64((void*)vs),
+> +					_mm_loadl_epi64((void*)us)));
+> +			vuvud+=4;
+> +			us+=8;
+> +			vs+=8;
+> +#else /* __SSE2__ */
+> +#  if X_BYTE_ORDER == X_BIG_ENDIAN
+>  			*vuvud++ = (vs[0]<<24) | (us[0]<<16) | (vs[1]<<8) | us[1];
+> -#else
+> +#  else
+>  			*vuvud++ = vs[0] | (us[0]<<8) | (vs[1]<<16) | (us[1]<<24);
+> -#endif
+> +#  endif
+>  			us+=2;
+>  			vs+=2;
+> +#endif /* __SSE2__ */
+>  		}
+>  
+> -		if (e) {
+> -			unsigned short *vud = (unsigned short *) vuvud;
+> +		vud = (unsigned short *)vuvud;
+> +		for (i = 0; i < e; i++) {
+>  #if X_BYTE_ORDER == X_BIG_ENDIAN
+> -			*vud = us[0] | (vs[0]<<8);
+> +			vud[i] = us[i] | (vs[i]<<8);
+>  #else
+> -			*vud = vs[0] | (us[0]<<8);
+> +			vud[i] = vs[i] | (us[i]<<8);
+>  #endif
+>  		}
+>  
+> -- 
+> 1.8.1.5
 
---1375324902.e88fdD2.23706
-Date: Thu, 1 Aug 2013 02:41:42 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau E Xorg failed to idle channel on NVA0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67597#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau E Xorg failed to idle channel on NVA0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67597">bug 67597</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Actually all the fence stuff was redone between... 3.4 and 3.5 or 3.5 and 3.6
-(sorry, I forgot), and that created regressions for at least one other user (on
-a nvc0 card though). The unfortunate thing is that the fence redo actually had
-some suspend bugs in it that were fixed over time (but I guess not all of
-them!) so this may end up being tricky to bisect, if you indeed zero in on
-those fence commits.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1375324902.e88fdD2.23706--
-
---===============0151974309==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0151974309==--
+Cheers,
+       Sven
