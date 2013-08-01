@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67628] [BISECTED] Monitor on Display port shows
-	distortions
-Date: Thu, 01 Aug 2013 15:38:54 +0000
-Message-ID: <bug-67628-8800-4iwN0SlSzT@http.bugs.freedesktop.org/>
-References: <bug-67628-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
+	laptop
+Date: Thu, 01 Aug 2013 15:41:58 +0000
+Message-ID: <bug-56615-8800-PJNyVxefmH@http.bugs.freedesktop.org/>
+References: <bug-56615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1462711963=="
+Content-Type: multipart/mixed; boundary="===============1691002504=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67628-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1462711963==
-Content-Type: multipart/alternative; boundary="1375371535.eb852.27747"; charset="us-ascii"
+--===============1691002504==
+Content-Type: multipart/alternative; boundary="1375371718.FF431.28962"; charset="us-ascii"
 
 
---1375371535.eb852.27747
-Date: Thu, 1 Aug 2013 15:38:55 +0000
+--1375371718.FF431.28962
+Date: Thu, 1 Aug 2013 15:41:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67628
+https://bugs.freedesktop.org/show_bug.cgi?id=56615
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #14 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
+I spent a little bit more time playing with the 3.11-rc2 kernel and I noticed a
+couple of things:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #83449|text/plain                  |image/jpeg
-          mime type|                            |
+1) If I boot in standalone mode with no DisplayPort connector attached, xrandr
+shows that I have 3 DisplayPort outputs?! This is definitely not true!
+
+2) Once booted in standalone mode, if I then proceed to plug in the DisplayPort
+connector then the kernel throws a backtrace - I'll upload this as a separate
+attachment.
+
+My best guess is that the freeze is related to trying to enumerate these
+non-existent DisplayPort outputs when starting X. Whereabouts in the code are
+these outputs parsed/enumerated?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375371535.eb852.27747
-Date: Thu, 1 Aug 2013 15:38:55 +0000
+--1375371718.FF431.28962
+Date: Thu, 1 Aug 2013 15:41:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,28 +60,33 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [BISECTED] Monitor on Display port shows distortions"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67628">bug 67628</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #83449 mime type</td>
-           <td>text/plain
-           </td>
-           <td>image/jpeg
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
+              from <span class="vcard"><a class="email" href="mailto:mark.cave-ayland&#64;ilande.co.uk" title="Mark Cave-Ayland &lt;mark.cave-ayland&#64;ilande.co.uk&gt;"> <span class="fn">Mark Cave-Ayland</span></a>
+</span></b>
+        <pre>I spent a little bit more time playing with the 3.11-rc2 kernel and I noticed a
+couple of things:
+
+1) If I boot in standalone mode with no DisplayPort connector attached, xrandr
+shows that I have 3 DisplayPort outputs?! This is definitely not true!
+
+2) Once booted in standalone mode, if I then proceed to plug in the DisplayPort
+connector then the kernel throws a backtrace - I'll upload this as a separate
+attachment.
+
+My best guess is that the freeze is related to trying to enumerate these
+non-existent DisplayPort outputs when starting X. Whereabouts in the code are
+these outputs parsed/enumerated?</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +97,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1375371535.eb852.27747--
+--1375371718.FF431.28962--
 
---===============1462711963==
+--===============1691002504==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +110,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1462711963==--
+--===============1691002504==--
