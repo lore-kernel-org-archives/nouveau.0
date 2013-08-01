@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67382] [nouveau,
  nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Thu, 01 Aug 2013 17:43:23 +0000
-Message-ID: <bug-67382-8800-6QzjjWwKg8@http.bugs.freedesktop.org/>
+Date: Thu, 01 Aug 2013 18:05:14 +0000
+Message-ID: <bug-67382-8800-3iv2bxWbQa@http.bugs.freedesktop.org/>
 References: <bug-67382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0440659869=="
+Content-Type: multipart/mixed; boundary="===============0611992409=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,46 +21,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0440659869==
-Content-Type: multipart/alternative; boundary="1375379003.b72bFf252.4058"; charset="us-ascii"
+--===============0611992409==
+Content-Type: multipart/alternative; boundary="1375380314.C85F7ec1.12402"; charset="us-ascii"
 
 
---1375379003.b72bFf252.4058
-Date: Thu, 1 Aug 2013 17:43:23 +0000
+--1375380314.C85F7ec1.12402
+Date: Thu, 1 Aug 2013 18:05:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67382
 
---- Comment #21 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #20)
-> It was working. Xorg.log wrote, that DVI-I-1 is disconnected and DVI-I-2
-> connected.
-Let me see if I'm not day dreaming in here. If you startup with your monitor
-connected to the second DVI port, everything works fine ?
+--- Comment #22 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
+Created attachment 83466
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83466&action=edit
+dmesg from 3.9.7 without offendind patch+debug3. Monitor connected to the
+second dvi
 
-> The resulting dmesg varies at following lines from the first:
-> [   11.804787] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-> data[0] 0x000001a4) 0x00000000
-> [   11.806777] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-> data[0] 0x000001a4) 0x00000000
-> [   11.837181] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-> data[0] 0x000001a4) 0x00000000
-> [   11.839164] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-> data[0] 0x000001a4) 0x00000000
-> 
-I'm suspecting that there was a bit more to differ than this - such as the "or"
-on the other two printf's should differ as well. Would you mind attaching the
-dmesg ?
+>> It was working. Xorg.log wrote, that DVI-I-1 is disconnected and DVI-I-2
+>> connected.
+>Let me see if I'm not day dreaming in here. If you startup with your monitor
+>connected to the second DVI port, everything works fine ?
 
-Thanks
+Yes. Setup like Comment15 and changed the dvi-port. After pressing Power and
+booting to the end I got my DM and everything else ;)
+
+Did you hope it would check both connectors now and even without the
+"offending" patch it would detect a ghost monitor?
+
+
+On a side note. First 3.7 Kernel is finished, second is being compiled. So the
+dmesg from those will follow in about an hour
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375379003.b72bFf252.4058
-Date: Thu, 1 Aug 2013 17:43:23 +0000
+--1375380314.C85F7ec1.12402
+Date: Thu, 1 Aug 2013 18:05:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,34 +72,31 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c21">Comment # 21</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:anonymous&#64;dodgeit.com" title="Anonymous Helper &lt;anonymous&#64;dodgeit.com&gt;"> <span class="fn">Anonymous Helper</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67382#c20">comment #20</a>)
-<span class="quote">&gt; It was working. Xorg.log wrote, that DVI-I-1 is disconnected and DVI-I-2
-&gt; connected.</span >
-Let me see if I'm not day dreaming in here. If you startup with your monitor
-connected to the second DVI port, everything works fine ?
+        <pre>Created <span class=""><a href="attachment.cgi?id=83466" name="attach_83466" title="dmesg from 3.9.7 without offendind patch+debug3. Monitor connected to the second dvi">attachment 83466</a> <a href="attachment.cgi?id=83466&amp;action=edit" title="dmesg from 3.9.7 without offendind patch+debug3. Monitor connected to the second dvi">[details]</a></span>
+dmesg from 3.9.7 without offendind patch+debug3. Monitor connected to the
+second dvi
 
-<span class="quote">&gt; The resulting dmesg varies at following lines from the first:
-&gt; [   11.804787] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-&gt; data[0] 0x000001a4) 0x00000000
-&gt; [   11.806777] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-&gt; data[0] 0x000001a4) 0x00000000
-&gt; [   11.837181] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-&gt; data[0] 0x000001a4) 0x00000000
-&gt; [   11.839164] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-&gt; data[0] 0x000001a4) 0x00000000
-&gt; </span >
-I'm suspecting that there was a bit more to differ than this - such as the &quot;or&quot;
-on the other two printf's should differ as well. Would you mind attaching the
-dmesg ?
+<span class="quote">&gt;&gt; It was working. Xorg.log wrote, that DVI-I-1 is disconnected and DVI-I-2
+&gt;&gt; connected.
+&gt;Let me see if I'm not day dreaming in here. If you startup with your monitor
+&gt;connected to the second DVI port, everything works fine ?</span >
 
-Thanks</pre>
+Yes. Setup like <a href="show_bug.cgi?id=67382#c15">Comment15</a> and changed the dvi-port. After pressing Power and
+booting to the end I got my DM and everything else ;)
+
+Did you hope it would check both connectors now and even without the
+&quot;offending&quot; patch it would detect a ghost monitor?
+
+
+On a side note. First 3.7 Kernel is finished, second is being compiled. So the
+dmesg from those will follow in about an hour</pre>
         </div>
       </p>
       <hr>
@@ -113,9 +108,9 @@ Thanks</pre>
     </body>
 </html>
 
---1375379003.b72bFf252.4058--
+--1375380314.C85F7ec1.12402--
 
---===============0440659869==
+--===============0611992409==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -126,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0440659869==--
+--===============0611992409==--
