@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67382] [nouveau,
- nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Thu, 01 Aug 2013 15:02:37 +0000
-Message-ID: <bug-67382-8800-6Y5441KJoj@http.bugs.freedesktop.org/>
-References: <bug-67382-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67628] New: [BISECTED] Monitor on Display port shows
+ distortions
+Date: Thu, 01 Aug 2013 15:29:30 +0000
+Message-ID: <bug-67628-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1768230939=="
+Content-Type: multipart/mixed; boundary="===============0095975813=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,73 +19,63 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1768230939==
-Content-Type: multipart/alternative; boundary="1375369356.fcF1281.15748"; charset="us-ascii"
+--===============0095975813==
+Content-Type: multipart/alternative; boundary="1375370970.1ED777c81.24846"; charset="us-ascii"
 
 
---1375369356.fcF1281.15748
-Date: Thu, 1 Aug 2013 15:02:36 +0000
+--1375370970.1ED777c81.24846
+Date: Thu, 1 Aug 2013 15:29:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67382
+https://bugs.freedesktop.org/show_bug.cgi?id=67628
 
---- Comment #20 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
-(In reply to comment #19)
+          Priority: medium
+            Bug ID: 67628
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [BISECTED] Monitor on Display port shows distortions
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: major
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: torsten.wagner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-Interim report
+Created attachment 83446
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83446&action=edit
+Kernel bisect
 
-> According to your vbios
-> > dvi-1 --> dvi-to-vga adaptor going to a vga monitor
-> The above uses OR 2/1 for analogue/digital output
-> 
-> > dvi-2 --> normally not used. But working
-> OR 1/1 respectively here
-> 
-> > tv-out --> never tested
-> OR 0
+Updating to a kernel > 3.8, the monitor connected via display port shows heavy
+colour distortions (see attached image). 
+I bisect the kernel and it came down to patch 
 
-Whatever that means :D
+5cc027f6b1ec651c18a4322ed3e30c6e9cf01e96
+(drm/nv50-/disp: move DP link training to core and train from supervisor)
 
+This makes sens, since this patch deals with display port functions. 
 
-> Can you redo my request from comment 15, but with the monitor connected into
-> the other dvi port
+The problem appears during boot and hence I guess it is part of the DRM resp.
+KMS part.
 
-It was working. Xorg.log wrote, that DVI-I-1 is disconnected and DVI-I-2
-connected.
-The resulting dmesg varies at following lines from the first:
-[   11.804787] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-data[0] 0x000001a4) 0x00000000
-[   11.806777] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-data[0] 0x000001a4) 0x00000000
-[   11.837181] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-data[0] 0x000001a4) 0x00000000
-[   11.839164] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-data[0] 0x000001a4) 0x00000000
+Attached are dmesg outputs for a working and a non-working kernel.
+An image which shows the kind of distortions and the kernel bisect log.
 
+Relevant system infos:
 
-> Just for the jokes can you try booting a failing kernel with
-> nouveau.tv_disable=1 appended to your command line.
-
-No positive result from that either. It was still failing
-
-> If the above fails would be great if you can grab and compile a couple of
-> kernels
-> * git checkout 7ebb38b556485449bfaa506a196439f6a6fd6ebd~1
-> 
-> and
-> * git checkout 7ebb38b556485449bfaa506a196439f6a6fd6ebd~2
-> 
-> Obviously let me know how they fare and attach the output of dmesg for both
-
-Will do, but it will take it's time. The kernel repo is not a small one :)
+01:00.0 VGA compatible controller: NVIDIA Corporation GF108GL [Quadro 600] (rev
+a1)
+Display: DELL U2410
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375369356.fcF1281.15748
-Date: Thu, 1 Aug 2013 15:02:36 +0000
+--1375370970.1ED777c81.24846
+Date: Thu, 1 Aug 2013 15:29:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -95,67 +83,118 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [BISECTED] Monitor on Display port shows distortions"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67628">67628</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[BISECTED] Monitor on Display port shows distortions
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>torsten.wagner&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c20">Comment # 20</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
-              from <span class="vcard"><a class="email" href="mailto:anonymous&#64;dodgeit.com" title="Anonymous Helper &lt;anonymous&#64;dodgeit.com&gt;"> <span class="fn">Anonymous Helper</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67382#c19">comment #19</a>)
+        <pre>Created <span class=""><a href="attachment.cgi?id=83446" name="attach_83446" title="Kernel bisect">attachment 83446</a> <a href="attachment.cgi?id=83446&amp;action=edit" title="Kernel bisect">[details]</a></span>
+Kernel bisect
 
-Interim report
+Updating to a kernel &gt; 3.8, the monitor connected via display port shows heavy
+colour distortions (see attached image). 
+I bisect the kernel and it came down to patch 
 
-<span class="quote">&gt; According to your vbios
-&gt; &gt; dvi-1 --&gt; dvi-to-vga adaptor going to a vga monitor
-&gt; The above uses OR 2/1 for analogue/digital output
-&gt; 
-&gt; &gt; dvi-2 --&gt; normally not used. But working
-&gt; OR 1/1 respectively here
-&gt; 
-&gt; &gt; tv-out --&gt; never tested
-&gt; OR 0</span >
+5cc027f6b1ec651c18a4322ed3e30c6e9cf01e96
+(drm/nv50-/disp: move DP link training to core and train from supervisor)
 
-Whatever that means :D
+This makes sens, since this patch deals with display port functions. 
 
+The problem appears during boot and hence I guess it is part of the DRM resp.
+KMS part.
 
-<span class="quote">&gt; Can you redo my request from <a href="show_bug.cgi?id=67382#c15">comment 15</a>, but with the monitor connected into
-&gt; the other dvi port</span >
+Attached are dmesg outputs for a working and a non-working kernel.
+An image which shows the kind of distortions and the kernel bisect log.
 
-It was working. Xorg.log wrote, that DVI-I-1 is disconnected and DVI-I-2
-connected.
-The resulting dmesg varies at following lines from the first:
-[   11.804787] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-data[0] 0x000001a4) 0x00000000
-[   11.806777] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-data[0] 0x000001a4) 0x00000000
-[   11.837181] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-data[0] 0x000001a4) 0x00000000
-[   11.839164] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
-data[0] 0x000001a4) 0x00000000
+Relevant system infos:
 
-
-<span class="quote">&gt; Just for the jokes can you try booting a failing kernel with
-&gt; nouveau.tv_disable=1 appended to your command line.</span >
-
-No positive result from that either. It was still failing
-
-<span class="quote">&gt; If the above fails would be great if you can grab and compile a couple of
-&gt; kernels
-&gt; * git checkout 7ebb38b556485449bfaa506a196439f6a6fd6ebd~1
-&gt; 
-&gt; and
-&gt; * git checkout 7ebb38b556485449bfaa506a196439f6a6fd6ebd~2
-&gt; 
-&gt; Obviously let me know how they fare and attach the output of dmesg for both</span >
-
-Will do, but it will take it's time. The kernel repo is not a small one :)</pre>
+01:00.0 VGA compatible controller: NVIDIA Corporation GF108GL [Quadro 600] (rev
+a1)
+Display: DELL U2410</pre>
         </div>
       </p>
       <hr>
@@ -167,9 +206,9 @@ Will do, but it will take it's time. The kernel repo is not a small one :)</pre>
     </body>
 </html>
 
---1375369356.fcF1281.15748--
+--1375370970.1ED777c81.24846--
 
---===============1768230939==
+--===============0095975813==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -180,4 +219,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1768230939==--
+--===============0095975813==--
