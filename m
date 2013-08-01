@@ -1,13 +1,12 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Traces wanted for NVAA/NVAF
-Date: Thu, 01 Aug 2013 03:12:06 +0200
-Message-ID: <51F9B5E6.5020301@gmail.com>
-References: <51F99549.1040609@student.tudelft.nl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 67597] nouveau E Xorg failed to idle channel on NVA0
+Date: Thu, 01 Aug 2013 02:19:03 +0000
+Message-ID: <bug-67597-8800-NOP9VogHUv@http.bugs.freedesktop.org/>
+References: <bug-67597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0106695711=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <51F99549.1040609-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
+In-Reply-To: <bug-67597-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,32 +16,85 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Roy Spliet <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 01.08.2013 00:52, Roy Spliet wrote:
-> Dear All,
-> 
-> After recently taking a little dive into the NVAC clock tree, I was
-> wondering what that net would look like on cards I expect to be similar.
-> In this case I'm looking for MMIOtraces of NVAA and NVAF, which is
-> marketed as the 8x00 mGPU, 9x00 mGPU, 320M, ION and/or some nForce IGP.
-> If there is anyone who could provide me with an MMIO trace for any of
-> these cards that would be greatly appreciated. If you need help in the
-> process, please contact me by e-mail or on IRC.
-> Many thanks in advance. Yours,
-> 
 
-Please confirm that you don't need Mmiotrace for these two:
-
-NVIDIA Corporation G98 [GeForce 8400 GS Rev. 2] [10de:06e4] (rev a1)
-Chipset: G98 (NV98)
-Family : NV50
-
-NVIDIA Corporation ION VGA [10de:087d] (rev b1)
-Chipset: MCP79/MCP7A (NVAC)
-Family : NV50
+--===============0106695711==
+Content-Type: multipart/alternative; boundary="1375323543.43c8122.21276"; charset="us-ascii"
 
 
-poma
+--1375323543.43c8122.21276
+Date: Thu, 1 Aug 2013 02:19:03 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=67597
+
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi Marc
+
+Would you be able to bisect this issue ? Hopefully the fix will be more trivial
+than the i2c one you've reported :]
+
+Cheers
+Emil
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1375323543.43c8122.21276
+Date: Thu, 1 Aug 2013 02:19:03 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nouveau E Xorg failed to idle channel on NVA0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67597#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nouveau E Xorg failed to idle channel on NVA0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67597">bug 67597</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>Hi Marc
+
+Would you be able to bisect this issue ? Hopefully the fix will be more trivial
+than the i2c one you've reported :]
+
+Cheers
+Emil</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1375323543.43c8122.21276--
+
+--===============0106695711==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0106695711==--
