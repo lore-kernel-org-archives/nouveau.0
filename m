@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67628] [BISECTED] Monitor on Display port shows
 	distortions
-Date: Thu, 01 Aug 2013 15:33:16 +0000
-Message-ID: <bug-67628-8800-jdEwYiZNqn@http.bugs.freedesktop.org/>
+Date: Thu, 01 Aug 2013 15:38:54 +0000
+Message-ID: <bug-67628-8800-4iwN0SlSzT@http.bugs.freedesktop.org/>
 References: <bug-67628-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1334080427=="
+Content-Type: multipart/mixed; boundary="===============1462711963=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67628-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1334080427==
-Content-Type: multipart/alternative; boundary="1375371196.D4c4DeEB1.25841"; charset="us-ascii"
+--===============1462711963==
+Content-Type: multipart/alternative; boundary="1375371535.eb852.27747"; charset="us-ascii"
 
 
---1375371196.D4c4DeEB1.25841
-Date: Thu, 1 Aug 2013 15:33:16 +0000
+--1375371535.eb852.27747
+Date: Thu, 1 Aug 2013 15:38:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67628
 
---- Comment #3 from Torsten Wagner <torsten.wagner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 83449
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83449&action=edit
-image of the monitor distortion
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #83449|text/plain                  |image/jpeg
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375371196.D4c4DeEB1.25841
-Date: Thu, 1 Aug 2013 15:33:16 +0000
+--1375371535.eb852.27747
+Date: Thu, 1 Aug 2013 15:38:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +52,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [BISECTED] Monitor on Display port shows distortions"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67628#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [BISECTED] Monitor on Display port shows distortions"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67628">bug 67628</a>
-              from <span class="vcard"><a class="email" href="mailto:torsten.wagner&#64;gmail.com" title="Torsten Wagner &lt;torsten.wagner&#64;gmail.com&gt;"> <span class="fn">Torsten Wagner</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83449" name="attach_83449" title="image of the monitor distortion">attachment 83449</a> <a href="attachment.cgi?id=83449&amp;action=edit" title="image of the monitor distortion">[details]</a></span>
-image of the monitor distortion</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #83449 mime type</td>
+           <td>text/plain
+           </td>
+           <td>image/jpeg
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +84,9 @@ image of the monitor distortion</pre>
     </body>
 </html>
 
---1375371196.D4c4DeEB1.25841--
+--1375371535.eb852.27747--
 
---===============1334080427==
+--===============1462711963==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1334080427==--
+--===============1462711963==--
