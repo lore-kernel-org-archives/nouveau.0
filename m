@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67382] [nouveau,
- nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Thu, 01 Aug 2013 18:05:14 +0000
-Message-ID: <bug-67382-8800-3iv2bxWbQa@http.bugs.freedesktop.org/>
-References: <bug-67382-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
+	laptop
+Date: Thu, 01 Aug 2013 19:03:41 +0000
+Message-ID: <bug-56615-8800-zqg5dutCDJ@http.bugs.freedesktop.org/>
+References: <bug-56615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0611992409=="
+Content-Type: multipart/mixed; boundary="===============1659701296=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,44 +21,61 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0611992409==
-Content-Type: multipart/alternative; boundary="1375380314.C85F7ec1.12402"; charset="us-ascii"
+--===============1659701296==
+Content-Type: multipart/alternative; boundary="1375383821.E4Ad1.4679"; charset="us-ascii"
 
 
---1375380314.C85F7ec1.12402
-Date: Thu, 1 Aug 2013 18:05:14 +0000
+--1375383821.E4Ad1.4679
+Date: Thu, 1 Aug 2013 19:03:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67382
+https://bugs.freedesktop.org/show_bug.cgi?id=56615
 
---- Comment #22 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
-Created attachment 83466
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83466&action=edit
-dmesg from 3.9.7 without offendind patch+debug3. Monitor connected to the
-second dvi
+--- Comment #17 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
+(In reply to comment #16)
 
->> It was working. Xorg.log wrote, that DVI-I-1 is disconnected and DVI-I-2
->> connected.
->Let me see if I'm not day dreaming in here. If you startup with your monitor
->connected to the second DVI port, everything works fine ?
+> I wouldn't worry about that backtrace, it's related to something else I
+> think.
 
-Yes. Setup like Comment15 and changed the dvi-port. After pressing Power and
-booting to the end I got my DM and everything else ;)
+Okay, no worries :)
 
-Did you hope it would check both connectors now and even without the
-"offending" patch it would detect a ghost monitor?
+> Would you mind switching to nouveau/master? You can just add it as a remote
+> to your current git setup, no need to check out a whole new tree.
+
+Sure. My kernel git repository is exclusively set-up for trying to get DP
+working so it's a clone of git://anongit.freedesktop.org/nouveau/linux-2.6.
+I'll do a pull on master branch and build that for my next set of tests.
+
+> Could you post a full dmesg from a nouveau/master kernel booted with
+> "nouveau.debug=PDISP=debug"? The dmesg that you've already posted seems to
+> suggest everything is broken (e.g. PDISP is disabled which is a very bad
+> sign).
+
+Alright. I'm not back in the office until next week now, but as soon as I get a
+chance I'll try it and upload the dmesg output here.
+
+> Also, to be clear, if you boot with DP plugged in, and start X, then you get
+> a hang, right? Does the whole system hang, or just the display? Can you ssh
+> in? If you can ssh in, what happens when you try to turn stuff off/on with
+> xrandr? (Obviously with DISPLAY=:0 so as to connect to the laptop's X.)
+
+AFAICT it's a full system hang - I haven't tried remote network access, but the
+keyboard is totally unresponsive, even to CTRL-ALT-F1 and friends until the
+driver times out after about 2-3mins. I'll give the remote access a try next
+week though.
 
 
-On a side note. First 3.7 Kernel is finished, second is being compiled. So the
-dmesg from those will follow in about an hour
+Many thanks,
+
+Mark.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375380314.C85F7ec1.12402
-Date: Thu, 1 Aug 2013 18:05:14 +0000
+--1375383821.E4Ad1.4679
+Date: Thu, 1 Aug 2013 19:03:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,32 +88,50 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c22">Comment # 22</a>
+   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c17">Comment # 17</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
-              from <span class="vcard"><a class="email" href="mailto:anonymous&#64;dodgeit.com" title="Anonymous Helper &lt;anonymous&#64;dodgeit.com&gt;"> <span class="fn">Anonymous Helper</span></a>
+   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
+              from <span class="vcard"><a class="email" href="mailto:mark.cave-ayland&#64;ilande.co.uk" title="Mark Cave-Ayland &lt;mark.cave-ayland&#64;ilande.co.uk&gt;"> <span class="fn">Mark Cave-Ayland</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83466" name="attach_83466" title="dmesg from 3.9.7 without offendind patch+debug3. Monitor connected to the second dvi">attachment 83466</a> <a href="attachment.cgi?id=83466&amp;action=edit" title="dmesg from 3.9.7 without offendind patch+debug3. Monitor connected to the second dvi">[details]</a></span>
-dmesg from 3.9.7 without offendind patch+debug3. Monitor connected to the
-second dvi
+        <pre>(In reply to <a href="show_bug.cgi?id=56615#c16">comment #16</a>)
 
-<span class="quote">&gt;&gt; It was working. Xorg.log wrote, that DVI-I-1 is disconnected and DVI-I-2
-&gt;&gt; connected.
-&gt;Let me see if I'm not day dreaming in here. If you startup with your monitor
-&gt;connected to the second DVI port, everything works fine ?</span >
+<span class="quote">&gt; I wouldn't worry about that backtrace, it's related to something else I
+&gt; think.</span >
 
-Yes. Setup like <a href="show_bug.cgi?id=67382#c15">Comment15</a> and changed the dvi-port. After pressing Power and
-booting to the end I got my DM and everything else ;)
+Okay, no worries :)
 
-Did you hope it would check both connectors now and even without the
-&quot;offending&quot; patch it would detect a ghost monitor?
+<span class="quote">&gt; Would you mind switching to nouveau/master? You can just add it as a remote
+&gt; to your current git setup, no need to check out a whole new tree.</span >
+
+Sure. My kernel git repository is exclusively set-up for trying to get DP
+working so it's a clone of git://anongit.freedesktop.org/nouveau/linux-2.6.
+I'll do a pull on master branch and build that for my next set of tests.
+
+<span class="quote">&gt; Could you post a full dmesg from a nouveau/master kernel booted with
+&gt; &quot;nouveau.debug=PDISP=debug&quot;? The dmesg that you've already posted seems to
+&gt; suggest everything is broken (e.g. PDISP is disabled which is a very bad
+&gt; sign).</span >
+
+Alright. I'm not back in the office until next week now, but as soon as I get a
+chance I'll try it and upload the dmesg output here.
+
+<span class="quote">&gt; Also, to be clear, if you boot with DP plugged in, and start X, then you get
+&gt; a hang, right? Does the whole system hang, or just the display? Can you ssh
+&gt; in? If you can ssh in, what happens when you try to turn stuff off/on with
+&gt; xrandr? (Obviously with DISPLAY=:0 so as to connect to the laptop's X.)</span >
+
+AFAICT it's a full system hang - I haven't tried remote network access, but the
+keyboard is totally unresponsive, even to CTRL-ALT-F1 and friends until the
+driver times out after about 2-3mins. I'll give the remote access a try next
+week though.
 
 
-On a side note. First 3.7 Kernel is finished, second is being compiled. So the
-dmesg from those will follow in about an hour</pre>
+Many thanks,
+
+Mark.</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +143,9 @@ dmesg from those will follow in about an hour</pre>
     </body>
 </html>
 
---1375380314.C85F7ec1.12402--
+--1375383821.E4Ad1.4679--
 
---===============0611992409==
+--===============1659701296==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +156,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0611992409==--
+--===============1659701296==--
