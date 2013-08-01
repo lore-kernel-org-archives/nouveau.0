@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
-	laptop
-Date: Thu, 01 Aug 2013 16:29:18 +0000
-Message-ID: <bug-56615-8800-MjehfRcajg@http.bugs.freedesktop.org/>
-References: <bug-56615-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67382] [nouveau,
+ nv50] linux 3.9.7-3.10.3: Xorg won't be available
+Date: Thu, 01 Aug 2013 17:43:23 +0000
+Message-ID: <bug-67382-8800-6QzjjWwKg8@http.bugs.freedesktop.org/>
+References: <bug-67382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0459507206=="
+Content-Type: multipart/mixed; boundary="===============0440659869=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0459507206==
-Content-Type: multipart/alternative; boundary="1375374558.fbFFE2.9538"; charset="us-ascii"
+--===============0440659869==
+Content-Type: multipart/alternative; boundary="1375379003.b72bFf252.4058"; charset="us-ascii"
 
 
---1375374558.fbFFE2.9538
-Date: Thu, 1 Aug 2013 16:29:18 +0000
+--1375379003.b72bFf252.4058
+Date: Thu, 1 Aug 2013 17:43:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56615
+https://bugs.freedesktop.org/show_bug.cgi?id=67382
 
---- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I wouldn't worry about that backtrace, it's related to something else I think.
+--- Comment #21 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #20)
+> It was working. Xorg.log wrote, that DVI-I-1 is disconnected and DVI-I-2
+> connected.
+Let me see if I'm not day dreaming in here. If you startup with your monitor
+connected to the second DVI port, everything works fine ?
 
-Would you mind switching to nouveau/master? You can just add it as a remote to
-your current git setup, no need to check out a whole new tree.
+> The resulting dmesg varies at following lines from the first:
+> [   11.804787] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
+> data[0] 0x000001a4) 0x00000000
+> [   11.806777] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
+> data[0] 0x000001a4) 0x00000000
+> [   11.837181] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
+> data[0] 0x000001a4) 0x00000000
+> [   11.839164] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
+> data[0] 0x000001a4) 0x00000000
+> 
+I'm suspecting that there was a bit more to differ than this - such as the "or"
+on the other two printf's should differ as well. Would you mind attaching the
+dmesg ?
 
-Could you post a full dmesg from a nouveau/master kernel booted with
-"nouveau.debug=PDISP=debug"? The dmesg that you've already posted seems to
-suggest everything is broken (e.g. PDISP is disabled which is a very bad sign).
-
-Also, to be clear, if you boot with DP plugged in, and start X, then you get a
-hang, right? Does the whole system hang, or just the display? Can you ssh in?
-If you can ssh in, what happens when you try to turn stuff off/on with xrandr?
-(Obviously with DISPLAY=:0 so as to connect to the laptop's X.)
+Thanks
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375374558.fbFFE2.9538
-Date: Thu, 1 Aug 2013 16:29:18 +0000
+--1375379003.b72bFf252.4058
+Date: Thu, 1 Aug 2013 17:43:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,27 +73,35 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c16">Comment # 16</a>
+   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>I wouldn't worry about that backtrace, it's related to something else I think.
+        <pre>(In reply to <a href="show_bug.cgi?id=67382#c20">comment #20</a>)
+<span class="quote">&gt; It was working. Xorg.log wrote, that DVI-I-1 is disconnected and DVI-I-2
+&gt; connected.</span >
+Let me see if I'm not day dreaming in here. If you startup with your monitor
+connected to the second DVI port, everything works fine ?
 
-Would you mind switching to nouveau/master? You can just add it as a remote to
-your current git setup, no need to check out a whole new tree.
+<span class="quote">&gt; The resulting dmesg varies at following lines from the first:
+&gt; [   11.804787] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
+&gt; data[0] 0x000001a4) 0x00000000
+&gt; [   11.806777] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
+&gt; data[0] 0x000001a4) 0x00000000
+&gt; [   11.837181] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
+&gt; data[0] 0x000001a4) 0x00000000
+&gt; [   11.839164] nouveau  [   PDISP][0000:01:00.0] nv50_dac_mthd power(or 2,
+&gt; data[0] 0x000001a4) 0x00000000
+&gt; </span >
+I'm suspecting that there was a bit more to differ than this - such as the &quot;or&quot;
+on the other two printf's should differ as well. Would you mind attaching the
+dmesg ?
 
-Could you post a full dmesg from a nouveau/master kernel booted with
-&quot;nouveau.debug=PDISP=debug&quot;? The dmesg that you've already posted seems to
-suggest everything is broken (e.g. PDISP is disabled which is a very bad sign).
-
-Also, to be clear, if you boot with DP plugged in, and start X, then you get a
-hang, right? Does the whole system hang, or just the display? Can you ssh in?
-If you can ssh in, what happens when you try to turn stuff off/on with xrandr?
-(Obviously with DISPLAY=:0 so as to connect to the laptop's X.)</pre>
+Thanks</pre>
         </div>
       </p>
       <hr>
@@ -97,9 +113,9 @@ If you can ssh in, what happens when you try to turn stuff off/on with xrandr?
     </body>
 </html>
 
---1375374558.fbFFE2.9538--
+--1375379003.b72bFf252.4058--
 
---===============0459507206==
+--===============0440659869==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,4 +126,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0459507206==--
+--===============0440659869==--
