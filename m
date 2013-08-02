@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67597] nouveau E Xorg failed to idle channel on NVA0
-Date: Fri, 02 Aug 2013 16:28:51 +0000
-Message-ID: <bug-67597-8800-dJJH3ZumV1@http.bugs.freedesktop.org/>
+Date: Fri, 02 Aug 2013 16:37:55 +0000
+Message-ID: <bug-67597-8800-5rWZnHv6W5@http.bugs.freedesktop.org/>
 References: <bug-67597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1720664941=="
+Content-Type: multipart/mixed; boundary="===============0930677796=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67597-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,43 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1720664941==
-Content-Type: multipart/alternative; boundary="1375460931.120E5C21.1214"; charset="us-ascii"
+--===============0930677796==
+Content-Type: multipart/alternative; boundary="1375461475.8E27c8D2.9180"; charset="us-ascii"
 
 
---1375460931.120E5C21.1214
-Date: Fri, 2 Aug 2013 16:28:51 +0000
+--1375461475.8E27c8D2.9180
+Date: Fri, 2 Aug 2013 16:37:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67597
 
---- Comment #3 from Marc Meledandri <m.meledandri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi, I may try to biscect this but won't be able to get it done soon. There are
-a couple of hurdles to testing...
-
-1) The bug itself causes a hard lockup requiring poweroff. I use a Crucial M4
-SSD which has a known issue with power loss condition where it becomes
-unusable. This is risky, so I'll need to image my install over to an external
-drive to test the biscec kernel builds.
-
-2) There is no reliable steps to reproduce the issue. I was running 3.10.3 for
-several days with multiple suspend cycles prior to triggering this crasher. I'm
-not sure I can dedicate the time to this. As much as I'd like to help the
-nouveau driver have one less bug, the gpu in question is aged and I have to
-just let this one slide as it's pretty low priority for newer kernels I'd
-assume :]
-
-Please leave this report open. I'll try to update it at some point with results
-of a bisect. Can I bisect the mainline tree, or must I use the nouveau git
-tree?
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Shouldn't matter -- the trees are identical for the purpose of bisection. I bet
+running glxgears while suspending will help trigger it more often. Also, it's
+interesting that it's a hard hang. I would have expected X to die and come
+back... can you not, e.g., ssh in when this happens?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375460931.120E5C21.1214
-Date: Fri, 2 Aug 2013 16:28:51 +0000
+--1375461475.8E27c8D2.9180
+Date: Fri, 2 Aug 2013 16:37:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,31 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau E Xorg failed to idle channel on NVA0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67597#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67597#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau E Xorg failed to idle channel on NVA0"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67597">bug 67597</a>
-              from <span class="vcard"><a class="email" href="mailto:m.meledandri&#64;gmail.com" title="Marc Meledandri &lt;m.meledandri&#64;gmail.com&gt;"> <span class="fn">Marc Meledandri</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hi, I may try to biscect this but won't be able to get it done soon. There are
-a couple of hurdles to testing...
-
-1) The bug itself causes a hard lockup requiring poweroff. I use a Crucial M4
-SSD which has a known issue with power loss condition where it becomes
-unusable. This is risky, so I'll need to image my install over to an external
-drive to test the biscec kernel builds.
-
-2) There is no reliable steps to reproduce the issue. I was running 3.10.3 for
-several days with multiple suspend cycles prior to triggering this crasher. I'm
-not sure I can dedicate the time to this. As much as I'd like to help the
-nouveau driver have one less bug, the gpu in question is aged and I have to
-just let this one slide as it's pretty low priority for newer kernels I'd
-assume :]
-
-Please leave this report open. I'll try to update it at some point with results
-of a bisect. Can I bisect the mainline tree, or must I use the nouveau git
-tree?</pre>
+        <pre>Shouldn't matter -- the trees are identical for the purpose of bisection. I bet
+running glxgears while suspending will help trigger it more often. Also, it's
+interesting that it's a hard hang. I would have expected X to die and come
+back... can you not, e.g., ssh in when this happens?</pre>
         </div>
       </p>
       <hr>
@@ -106,9 +78,9 @@ tree?</pre>
     </body>
 </html>
 
---1375460931.120E5C21.1214--
+--1375461475.8E27c8D2.9180--
 
---===============1720664941==
+--===============0930677796==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -119,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1720664941==--
+--===============0930677796==--
