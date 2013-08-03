@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67382] [nouveau,
  nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Sat, 03 Aug 2013 01:02:49 +0000
-Message-ID: <bug-67382-8800-rN1bP5plGT@http.bugs.freedesktop.org/>
+Date: Sat, 03 Aug 2013 11:19:56 +0000
+Message-ID: <bug-67382-8800-vhVQlDvh83@http.bugs.freedesktop.org/>
 References: <bug-67382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1733976494=="
+Content-Type: multipart/mixed; boundary="===============0511540934=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,42 +21,48 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1733976494==
-Content-Type: multipart/alternative; boundary="1375491769.FD3D83d1.25636"; charset="us-ascii"
+--===============0511540934==
+Content-Type: multipart/alternative; boundary="1375528796.A58e7F1C2.20978"; charset="us-ascii"
 
 
---1375491769.FD3D83d1.25636
-Date: Sat, 3 Aug 2013 01:02:49 +0000
+--1375528796.A58e7F1C2.20978
+Date: Sat, 3 Aug 2013 11:19:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67382
 
---- Comment #26 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
-Created attachment 83558
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83558&action=edit
-dmesg from 3.9 with offending commit + fix
+--- Comment #27 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #26)
+> Yes, this is working. It seems no ghost monitor was detected and X works
+> like it should :)
 
-(In reply to comment #25)
-> Created attachment 83549 [details] [review]
-> possible fix
-> 
-> Still not too sure how come your system senses a monitor connected to your
-> second dvi port.
-> 
-> This patch reverts some of the new stuff introduced during the transition to
-> core. Please apply this patch on top of 3.9 branch (i.e. after the offending
-> commit)
+Great, can you track down which hunk(one or a combination) is needed ?
 
-Yes, this is working. It seems no ghost monitor was detected and X works like
-it should :)
+* set DAC_CLK_CTRL1
++    nv_wr32(priv, 0x61a010 + doff, 0x00000001);
+
+
+* bump up the delay (5 x 9.5 ms)
++    udelay(9500);
++    udelay(9500);
++    udelay(9500);
++    udelay(9500);
+
+
+* remove the stabilisation
++/*
+     nv_wr32(priv, 0x61a00c + doff, 0x80000000);
++*/
+
+Thanks
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375491769.FD3D83d1.25636
-Date: Sat, 3 Aug 2013 01:02:49 +0000
+--1375528796.A58e7F1C2.20978
+Date: Sat, 3 Aug 2013 11:19:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,29 +76,36 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c26">Comment # 26</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c27">Comment # 27</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
-              from <span class="vcard"><a class="email" href="mailto:anonymous&#64;dodgeit.com" title="Anonymous Helper &lt;anonymous&#64;dodgeit.com&gt;"> <span class="fn">Anonymous Helper</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83558" name="attach_83558" title="dmesg from 3.9 with offending commit + fix">attachment 83558</a> <a href="attachment.cgi?id=83558&amp;action=edit" title="dmesg from 3.9 with offending commit + fix">[details]</a></span>
-dmesg from 3.9 with offending commit + fix
+        <pre>(In reply to <a href="show_bug.cgi?id=67382#c26">comment #26</a>)
+<span class="quote">&gt; Yes, this is working. It seems no ghost monitor was detected and X works
+&gt; like it should :)</span >
 
-(In reply to <a href="show_bug.cgi?id=67382#c25">comment #25</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=83549" name="attach_83549" title="possible fix">attachment 83549</a> <a href="attachment.cgi?id=83549&amp;action=edit" title="possible fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=67382&amp;attachment=83549'>[review]</a> [review]
-&gt; possible fix
-&gt; 
-&gt; Still not too sure how come your system senses a monitor connected to your
-&gt; second dvi port.
-&gt; 
-&gt; This patch reverts some of the new stuff introduced during the transition to
-&gt; core. Please apply this patch on top of 3.9 branch (i.e. after the offending
-&gt; commit)</span >
+Great, can you track down which hunk(one or a combination) is needed ?
 
-Yes, this is working. It seems no ghost monitor was detected and X works like
-it should :)</pre>
+* set DAC_CLK_CTRL1
++    nv_wr32(priv, 0x61a010 + doff, 0x00000001);
+
+
+* bump up the delay (5 x 9.5 ms)
++    udelay(9500);
++    udelay(9500);
++    udelay(9500);
++    udelay(9500);
+
+
+* remove the stabilisation
++/*
+     nv_wr32(priv, 0x61a00c + doff, 0x80000000);
++*/
+
+Thanks</pre>
         </div>
       </p>
       <hr>
@@ -104,9 +117,9 @@ it should :)</pre>
     </body>
 </html>
 
---1375491769.FD3D83d1.25636--
+--1375528796.A58e7F1C2.20978--
 
---===============1733976494==
+--===============0511540934==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -117,4 +130,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1733976494==--
+--===============0511540934==--
