@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67382] [nouveau,
- nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Sat, 03 Aug 2013 14:59:58 +0000
-Message-ID: <bug-67382-8800-ncjDhhgWHe@http.bugs.freedesktop.org/>
-References: <bug-67382-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67597] nouveau E Xorg failed to idle channel on NVA0
+Date: Sat, 03 Aug 2013 16:09:58 +0000
+Message-ID: <bug-67597-8800-EqaEiOpjdQ@http.bugs.freedesktop.org/>
+References: <bug-67597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1924348055=="
+Content-Type: multipart/mixed; boundary="===============1871829214=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67597-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1924348055==
-Content-Type: multipart/alternative; boundary="1375541998.3BE41.31589"; charset="us-ascii"
+--===============1871829214==
+Content-Type: multipart/alternative; boundary="1375546197.5c7471.9644"; charset="us-ascii"
 
 
---1375541998.3BE41.31589
-Date: Sat, 3 Aug 2013 14:59:58 +0000
+--1375546197.5c7471.9644
+Date: Sat, 3 Aug 2013 16:09:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67382
+https://bugs.freedesktop.org/show_bug.cgi?id=67597
 
---- Comment #28 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
-Yes, I can do that and will post the results, when I'm finished.
+--- Comment #6 from Marc Meledandri <m.meledandri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks Ilia...glxgears while resuming from suspend triggered the crash on the
+first attempt. I'll get a test install up and running and start bisecting this
+soon.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375541998.3BE41.31589
-Date: Sat, 3 Aug 2013 14:59:58 +0000
+--1375546197.5c7471.9644
+Date: Sat, 3 Aug 2013 16:09:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,15 +54,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c28">Comment # 28</a>
+   title="NEW --- - nouveau E Xorg failed to idle channel on NVA0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67597#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
-              from <span class="vcard"><a class="email" href="mailto:anonymous&#64;dodgeit.com" title="Anonymous Helper &lt;anonymous&#64;dodgeit.com&gt;"> <span class="fn">Anonymous Helper</span></a>
+   title="NEW --- - nouveau E Xorg failed to idle channel on NVA0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67597">bug 67597</a>
+              from <span class="vcard"><a class="email" href="mailto:m.meledandri&#64;gmail.com" title="Marc Meledandri &lt;m.meledandri&#64;gmail.com&gt;"> <span class="fn">Marc Meledandri</span></a>
 </span></b>
-        <pre>Yes, I can do that and will post the results, when I'm finished.</pre>
+        <pre>Thanks Ilia...glxgears while resuming from suspend triggered the crash on the
+first attempt. I'll get a test install up and running and start bisecting this
+soon.</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1375541998.3BE41.31589--
+--1375546197.5c7471.9644--
 
---===============1924348055==
+--===============1871829214==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1924348055==--
+--===============1871829214==--
