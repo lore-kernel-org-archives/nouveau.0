@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 61287] (bisected) kernel>=3.7 breaks nouveau with
  acceleration for GeForce 6150SE nForce 430
-Date: Tue, 06 Aug 2013 19:58:31 +0000
-Message-ID: <bug-61287-8800-NQhb0YdvEE@http.bugs.freedesktop.org/>
+Date: Tue, 06 Aug 2013 21:07:55 +0000
+Message-ID: <bug-61287-8800-GidSTVlOIw@http.bugs.freedesktop.org/>
 References: <bug-61287-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1311508009=="
+Content-Type: multipart/mixed; boundary="===============2000916328=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-61287-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,42 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1311508009==
-Content-Type: multipart/alternative; boundary="1375819111.bC8f78F2.10904"; charset="us-ascii"
+--===============2000916328==
+Content-Type: multipart/alternative; boundary="1375823275.38B74C2.22074"; charset="us-ascii"
 
 
---1375819111.bC8f78F2.10904
-Date: Tue, 6 Aug 2013 19:58:31 +0000
+--1375823275.38B74C2.22074
+Date: Tue, 6 Aug 2013 21:07:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=61287
 
---- Comment #8 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Gabriele
+--- Comment #9 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
+See https://bugzilla.kernel.org/show_bug.cgi?id=50091
 
-Can you try booting with "nouveau.config=NvPCIE=0"? It will force nouveau to
-use nv04 style vm and could handle your issue
-
-If that does not work out, can you redo the bisection ?
-
-
-Georgy
-
-Please open a separate bug following the instructions [1]
-
-
-Cheers
-Emil
-
-[1] http://nouveau.freedesktop.org/wiki/Bugs/
+Bisection is utterly broken.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375819111.bC8f78F2.10904
-Date: Tue, 6 Aug 2013 19:58:31 +0000
+--1375823275.38B74C2.22074
+Date: Tue, 6 Aug 2013 21:07:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,30 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - (bisected) kernel&gt;=3.7 breaks nouveau with acceleration for GeForce 6150SE nForce 430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61287#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61287#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - (bisected) kernel&gt;=3.7 breaks nouveau with acceleration for GeForce 6150SE nForce 430"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=61287">bug 61287</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:fschaefer.oss&#64;googlemail.com" title="Frank Schaefer &lt;fschaefer.oss&#64;googlemail.com&gt;"> <span class="fn">Frank Schaefer</span></a>
 </span></b>
-        <pre>Gabriele
+        <pre>See <a href="https://bugzilla.kernel.org/show_bug.cgi?id=50091">https://bugzilla.kernel.org/show_bug.cgi?id=50091</a>
 
-Can you try booting with &quot;nouveau.config=NvPCIE=0&quot;? It will force nouveau to
-use nv04 style vm and could handle your issue
-
-If that does not work out, can you redo the bisection ?
-
-
-Georgy
-
-Please open a separate bug following the instructions [1]
-
-
-Cheers
-Emil
-
-[1] <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a></pre>
+Bisection is utterly broken.</pre>
         </div>
       </p>
       <hr>
@@ -105,9 +77,9 @@ Emil
     </body>
 </html>
 
---1375819111.bC8f78F2.10904--
+--1375823275.38B74C2.22074--
 
---===============1311508009==
+--===============2000916328==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -118,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1311508009==--
+--===============2000916328==--
