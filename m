@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
 	laptop
-Date: Tue, 06 Aug 2013 13:40:51 +0000
-Message-ID: <bug-56615-8800-LEhsGgnnbT@http.bugs.freedesktop.org/>
+Date: Tue, 06 Aug 2013 13:41:13 +0000
+Message-ID: <bug-56615-8800-XeTdUPoSge@http.bugs.freedesktop.org/>
 References: <bug-56615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1883923816=="
+Content-Type: multipart/mixed; boundary="===============2083050479=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1883923816==
-Content-Type: multipart/alternative; boundary="1375796451.f185BD1.12262"; charset="us-ascii"
+--===============2083050479==
+Content-Type: multipart/alternative; boundary="1375796473.Ba5FEC1.12315"; charset="us-ascii"
 
 
---1375796451.f185BD1.12262
-Date: Tue, 6 Aug 2013 13:40:51 +0000
+--1375796473.Ba5FEC1.12315
+Date: Tue, 6 Aug 2013 13:41:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56615
 
---- Comment #19 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
-Created attachment 83717
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83717&action=edit
-3.11-rc3-dmesg.plugged
+--- Comment #20 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
+Created attachment 83718
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83718&action=edit
+3.11-rc3-dmesg.unplug
 
-3.11-rc3-dmesg.plugged
+3.11-rc3-dmesg.unplug
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375796451.f185BD1.12262
-Date: Tue, 6 Aug 2013 13:40:51 +0000
+--1375796473.Ba5FEC1.12315
+Date: Tue, 6 Aug 2013 13:41:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,17 +58,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c19">Comment # 19</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c20">Comment # 20</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
               from <span class="vcard"><a class="email" href="mailto:mark.cave-ayland&#64;ilande.co.uk" title="Mark Cave-Ayland &lt;mark.cave-ayland&#64;ilande.co.uk&gt;"> <span class="fn">Mark Cave-Ayland</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83717" name="attach_83717" title="3.11-rc3-dmesg.plugged">attachment 83717</a> <a href="attachment.cgi?id=83717&amp;action=edit" title="3.11-rc3-dmesg.plugged">[details]</a></span>
-3.11-rc3-dmesg.plugged
+        <pre>Created <span class=""><a href="attachment.cgi?id=83718" name="attach_83718" title="3.11-rc3-dmesg.unplug">attachment 83718</a> <a href="attachment.cgi?id=83718&amp;action=edit" title="3.11-rc3-dmesg.unplug">[details]</a></span>
+3.11-rc3-dmesg.unplug
 
-3.11-rc3-dmesg.plugged</pre>
+3.11-rc3-dmesg.unplug</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +80,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1375796451.f185BD1.12262--
+--1375796473.Ba5FEC1.12315--
 
---===============1883923816==
+--===============2083050479==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1883923816==--
+--===============2083050479==--
