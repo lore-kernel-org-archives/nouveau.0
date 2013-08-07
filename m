@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61287] (bisected) kernel>=3.7 breaks nouveau with
- acceleration for GeForce 6150SE nForce 430
-Date: Wed, 07 Aug 2013 15:33:42 +0000
-Message-ID: <bug-61287-8800-dimQR4lBc1@http.bugs.freedesktop.org/>
-References: <bug-61287-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67878] New: Hardware freeze after resume from suspend
+Date: Wed, 07 Aug 2013 21:48:12 +0000
+Message-ID: <bug-67878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0941809241=="
+Content-Type: multipart/mixed; boundary="===============0307468787=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61287-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +18,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0941809241==
-Content-Type: multipart/alternative; boundary="1375889622.6AA3A2.6868"; charset="us-ascii"
+--===============0307468787==
+Content-Type: multipart/alternative; boundary="1375912092.63bcDdFC1.25856"; charset="us-ascii"
 
 
---1375889622.6AA3A2.6868
-Date: Wed, 7 Aug 2013 15:33:42 +0000
+--1375912092.63bcDdFC1.25856
+Date: Wed, 7 Aug 2013 21:48:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=61287
+https://bugs.freedesktop.org/show_bug.cgi?id=67878
 
---- Comment #11 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-It definitely wasn't fixed up to the first 3.10-rc's.
-Although it was pretty reproducable in my case, it sometimes worked fine for a
-few minutes, so a quick test isn't enough.
+          Priority: medium
+            Bug ID: 67878
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Hardware freeze after resume from suspend
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: critical
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-I doubt it will ever be fixed again. That's why I'm on Radeon hardware now.
+Created attachment 83798
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83798&action=edit
+dmesg output from boot to attempted resume
+
+On a Dell Latitude E6400 with nVidia G98M and 3.10 kernel I find that the
+machine will reproducibly resume from suspend with a non-responsive X session.
+Given attempts I can eventually get to a somewhat functional VT. dmesg output
+attached.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375889622.6AA3A2.6868
-Date: Wed, 7 Aug 2013 15:33:42 +0000
+--1375912092.63bcDdFC1.25856
+Date: Wed, 7 Aug 2013 21:48:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,24 +66,102 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Hardware freeze after resume from suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">67878</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Hardware freeze after resume from suspend
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>bgamari&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - (bisected) kernel&gt;=3.7 breaks nouveau with acceleration for GeForce 6150SE nForce 430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61287#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - (bisected) kernel&gt;=3.7 breaks nouveau with acceleration for GeForce 6150SE nForce 430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61287">bug 61287</a>
-              from <span class="vcard"><a class="email" href="mailto:fschaefer.oss&#64;googlemail.com" title="Frank Schaefer &lt;fschaefer.oss&#64;googlemail.com&gt;"> <span class="fn">Frank Schaefer</span></a>
-</span></b>
-        <pre>It definitely wasn't fixed up to the first 3.10-rc's.
-Although it was pretty reproducable in my case, it sometimes worked fine for a
-few minutes, so a quick test isn't enough.
+        <pre>Created <span class=""><a href="attachment.cgi?id=83798" name="attach_83798" title="dmesg output from boot to attempted resume">attachment 83798</a> <a href="attachment.cgi?id=83798&amp;action=edit" title="dmesg output from boot to attempted resume">[details]</a></span>
+dmesg output from boot to attempted resume
 
-I doubt it will ever be fixed again. That's why I'm on Radeon hardware now.</pre>
+On a Dell Latitude E6400 with nVidia G98M and 3.10 kernel I find that the
+machine will reproducibly resume from suspend with a non-responsive X session.
+Given attempts I can eventually get to a somewhat functional VT. dmesg output
+attached.</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +173,9 @@ I doubt it will ever be fixed again. That's why I'm on Radeon hardware now.</pre
     </body>
 </html>
 
---1375889622.6AA3A2.6868--
+--1375912092.63bcDdFC1.25856--
 
---===============0941809241==
+--===============0307468787==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +186,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0941809241==--
+--===============0307468787==--
