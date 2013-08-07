@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61287] (bisected) kernel>=3.7 breaks nouveau with
- acceleration for GeForce 6150SE nForce 430
-Date: Tue, 06 Aug 2013 21:08:20 +0000
-Message-ID: <bug-61287-8800-MLNzkmkPwW@http.bugs.freedesktop.org/>
-References: <bug-61287-8800@http.bugs.freedesktop.org/>
+From: Prasad Mhatre <prasad8mhatre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Nouveau Digest, Vol 76, Issue 9
+Date: Wed, 7 Aug 2013 09:28:30 +0530
+Message-ID: <CAChxqKtQSJC8kfNcdv3u2uJBWUCzpQAPKf+v7qXySftCZbNWyQ@mail.gmail.com>
+References: <mailman.72.1375815671.15587.nouveau@lists.freedesktop.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1935451991=="
+Content-Type: multipart/mixed; boundary="===============1951408034=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61287-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <mailman.72.1375815671.15587.nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,74 +19,113 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============1951408034==
+Content-Type: multipart/alternative; boundary=047d7ba9730ef5b4a304e3538d00
 
---===============1935451991==
-Content-Type: multipart/alternative; boundary="1375823300.10de2.22180"; charset="us-ascii"
+--047d7ba9730ef5b4a304e3538d00
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hello,
+I am Prasad ,a third year computer engineering student in pune,india.
+I have followed the steps given in the document of tracing
+but getting errors at second step.
+
+I am using ASUS  k55vd-sx314d
+specs:ci3-2350m
+4gb ram, 500hdd,2 gb nvidia geforce 610m
+os:ubuntu 13.04
+
+I am new to linux ,I wanted to get involved in this nouveau project
+how to get into i
+can someone guide me from and how to start contributing to this project
 
 
---1375823300.10de2.22180
-Date: Tue, 6 Aug 2013 21:08:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=61287
 
-Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> changed:
+>>echo 64000 > /sys/kernel/debug/tracing/buffer_size_kb
+>>>//error :file doesn't exist
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://bugzilla.kernel.org
-                   |                            |/show_bug.cgi?id=50091
+please help me
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+--047d7ba9730ef5b4a304e3538d00
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
---1375823300.10de2.22180
-Date: Tue, 6 Aug 2013 21:08:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:1=
+3px;background-color:rgb(255,255,255)">Hello,</span><br style=3D"color:rgb(=
+34,34,34);font-family:arial,sans-serif;font-size:13px;background-color:rgb(=
+255,255,255)">
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:1=
+3px;background-color:rgb(255,255,255)">I am Prasad ,a third year computer e=
+ngineering student in pune,india.</span><br style=3D"color:rgb(34,34,34);fo=
+nt-family:arial,sans-serif;font-size:13px;background-color:rgb(255,255,255)=
+">
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:1=
+3px;background-color:rgb(255,255,255)">I have followed the steps given in t=
+he document of tracing</span><br style=3D"color:rgb(34,34,34);font-family:a=
+rial,sans-serif;font-size:13px;background-color:rgb(255,255,255)">
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:1=
+3px;background-color:rgb(255,255,255)">but getting errors at second step.</=
+span><br style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-siz=
+e:13px;background-color:rgb(255,255,255)">
+<br style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13p=
+x;background-color:rgb(255,255,255)"><span style=3D"color:rgb(34,34,34);fon=
+t-family:arial,sans-serif;font-size:13px;background-color:rgb(255,255,255)"=
+>I am using ASUS =A0k55vd-sx314d</span><br style=3D"color:rgb(34,34,34);fon=
+t-family:arial,sans-serif;font-size:13px;background-color:rgb(255,255,255)"=
+>
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:1=
+3px;background-color:rgb(255,255,255)">specs:ci3-2350m</span><br style=3D"c=
+olor:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px;background-c=
+olor:rgb(255,255,255)">
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:1=
+3px;background-color:rgb(255,255,255)">4gb ram, 500hdd,2 gb nvidia geforce =
+610m</span><br style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;fo=
+nt-size:13px;background-color:rgb(255,255,255)">
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:1=
+3px;background-color:rgb(255,255,255)">os:ubuntu 13.04</span><br style=3D"c=
+olor:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px;background-c=
+olor:rgb(255,255,255)">
+<br style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13p=
+x;background-color:rgb(255,255,255)"><span style=3D"color:rgb(34,34,34);fon=
+t-family:arial,sans-serif;font-size:13px;background-color:rgb(255,255,255)"=
+>I am new to linux ,I wanted to get involved in this nouveau project</span>=
+<br style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13p=
+x;background-color:rgb(255,255,255)">
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:1=
+3px;background-color:rgb(255,255,255)">how to get into i</span><br style=3D=
+"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px;background=
+-color:rgb(255,255,255)">
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:1=
+3px;background-color:rgb(255,255,255)">can someone guide me from and how to=
+ start contributing to this project</span><br style=3D"color:rgb(34,34,34);=
+font-family:arial,sans-serif;font-size:13px;background-color:rgb(255,255,25=
+5)">
+<br style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13p=
+x;background-color:rgb(255,255,255)"><br style=3D"color:rgb(34,34,34);font-=
+family:arial,sans-serif;font-size:13px;background-color:rgb(255,255,255)"><=
+br style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px=
+;background-color:rgb(255,255,255)">
+<br style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13p=
+x;background-color:rgb(255,255,255)"><span style=3D"color:rgb(34,34,34);fon=
+t-family:arial,sans-serif;font-size:13px;background-color:rgb(255,255,255)"=
+>&gt;&gt;echo 64000 &gt; /sys/kernel/debug/tracing/</span><span style=3D"co=
+lor:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px;background-co=
+lor:rgb(255,255,255)">buffer_size_kb</span><br style=3D"color:rgb(34,34,34)=
+;font-family:arial,sans-serif;font-size:13px;background-color:rgb(255,255,2=
+55)">
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:1=
+3px;background-color:rgb(255,255,255)">&gt;&gt;&gt;//error :file doesn&#39;=
+t exist</span><br style=3D"color:rgb(34,34,34);font-family:arial,sans-serif=
+;font-size:13px;background-color:rgb(255,255,255)">
+<br style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13p=
+x;background-color:rgb(255,255,255)"><span style=3D"color:rgb(34,34,34);fon=
+t-family:arial,sans-serif;font-size:13px;background-color:rgb(255,255,255)"=
+>please help me</span>
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:fschaefer.oss&#64;googlemail.com" title="Frank Schaefer &lt;fschaefer.oss&#64;googlemail.com&gt;"> <span class="fn">Frank Schaefer</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - (bisected) kernel&gt;=3.7 breaks nouveau with acceleration for GeForce 6150SE nForce 430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61287">bug 61287</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+--047d7ba9730ef5b4a304e3538d00--
 
-         <tr>
-           <td style="text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://bugzilla.kernel.org/show_bug.cgi?id=50091
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1375823300.10de2.22180--
-
---===============1935451991==
+--===============1951408034==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +136,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1935451991==--
+--===============1951408034==--
