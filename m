@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67878] New: Hardware freeze after resume from suspend
-Date: Wed, 07 Aug 2013 21:48:12 +0000
-Message-ID: <bug-67878-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67878] Hardware freeze after resume from suspend
+Date: Wed, 07 Aug 2013 21:49:13 +0000
+Message-ID: <bug-67878-8800-g9dqzp0Yrn@http.bugs.freedesktop.org/>
+References: <bug-67878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0307468787=="
+Content-Type: multipart/mixed; boundary="===============1441479450=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,47 +20,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0307468787==
-Content-Type: multipart/alternative; boundary="1375912092.63bcDdFC1.25856"; charset="us-ascii"
+--===============1441479450==
+Content-Type: multipart/alternative; boundary="1375912153.3a8C1Be1.26965"; charset="us-ascii"
 
 
---1375912092.63bcDdFC1.25856
-Date: Wed, 7 Aug 2013 21:48:12 +0000
+--1375912153.3a8C1Be1.26965
+Date: Wed, 7 Aug 2013 21:49:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67878
 
-          Priority: medium
-            Bug ID: 67878
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Hardware freeze after resume from suspend
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: critical
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #1 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+lspci gives the following device details,
 
-Created attachment 83798
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83798&action=edit
-dmesg output from boot to attempted resume
-
-On a Dell Latitude E6400 with nVidia G98M and 3.10 kernel I find that the
-machine will reproducibly resume from suspend with a non-responsive X session.
-Given attempts I can eventually get to a somewhat functional VT. dmesg output
-attached.
+01:00.0 VGA compatible controller: NVIDIA Corporation G98M [Quadro NVS 160M]
+(rev a1) (prog-if 00 [VGA controller])
+    Subsystem: Dell Device 0233
+    Flags: bus master, fast devsel, latency 0, IRQ 16
+    Memory at f5000000 (32-bit, non-prefetchable) [size=16M]
+    Memory at e0000000 (64-bit, prefetchable) [size=256M]
+    Memory at f2000000 (64-bit, non-prefetchable) [size=32M]
+    I/O ports at df00 [size=128]
+    [virtual] Expansion ROM at f4000000 [disabled] [size=128K]
+    Capabilities: [60] Power Management version 3
+    Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
+    Capabilities: [78] Express Endpoint, MSI 00
+    Capabilities: [100] Virtual Channel
+    Capabilities: [128] Power Budgeting <?>
+    Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024 <?>
+    Kernel driver in use: nouveau
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375912092.63bcDdFC1.25856
-Date: Wed, 7 Aug 2013 21:48:12 +0000
+--1375912153.3a8C1Be1.26965
+Date: Wed, 7 Aug 2013 21:49:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,102 +64,37 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Hardware freeze after resume from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">67878</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Hardware freeze after resume from suspend
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>critical
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>bgamari&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83798" name="attach_83798" title="dmesg output from boot to attempted resume">attachment 83798</a> <a href="attachment.cgi?id=83798&amp;action=edit" title="dmesg output from boot to attempted resume">[details]</a></span>
-dmesg output from boot to attempted resume
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Hardware freeze after resume from suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Hardware freeze after resume from suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">bug 67878</a>
+              from <span class="vcard"><a class="email" href="mailto:bgamari&#64;gmail.com" title="Ben Gamari &lt;bgamari&#64;gmail.com&gt;"> <span class="fn">Ben Gamari</span></a>
+</span></b>
+        <pre>lspci gives the following device details,
 
-On a Dell Latitude E6400 with nVidia G98M and 3.10 kernel I find that the
-machine will reproducibly resume from suspend with a non-responsive X session.
-Given attempts I can eventually get to a somewhat functional VT. dmesg output
-attached.</pre>
+01:00.0 VGA compatible controller: NVIDIA Corporation G98M [Quadro NVS 160M]
+(rev a1) (prog-if 00 [VGA controller])
+    Subsystem: Dell Device 0233
+    Flags: bus master, fast devsel, latency 0, IRQ 16
+    Memory at f5000000 (32-bit, non-prefetchable) [size=16M]
+    Memory at e0000000 (64-bit, prefetchable) [size=256M]
+    Memory at f2000000 (64-bit, non-prefetchable) [size=32M]
+    I/O ports at df00 [size=128]
+    [virtual] Expansion ROM at f4000000 [disabled] [size=128K]
+    Capabilities: [60] Power Management version 3
+    Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
+    Capabilities: [78] Express Endpoint, MSI 00
+    Capabilities: [100] Virtual Channel
+    Capabilities: [128] Power Budgeting &lt;?&gt;
+    Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024 &lt;?&gt;
+    Kernel driver in use: nouveau</pre>
         </div>
       </p>
       <hr>
@@ -173,9 +106,9 @@ attached.</pre>
     </body>
 </html>
 
---1375912092.63bcDdFC1.25856--
+--1375912153.3a8C1Be1.26965--
 
---===============0307468787==
+--===============1441479450==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -186,4 +119,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0307468787==--
+--===============1441479450==--
