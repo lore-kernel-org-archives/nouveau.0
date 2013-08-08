@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
 	laptop
-Date: Thu, 08 Aug 2013 09:38:31 +0000
-Message-ID: <bug-56615-8800-NGKemEgnWV@http.bugs.freedesktop.org/>
+Date: Thu, 08 Aug 2013 09:38:54 +0000
+Message-ID: <bug-56615-8800-JVfeUyURmf@http.bugs.freedesktop.org/>
 References: <bug-56615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1227568418=="
+Content-Type: multipart/mixed; boundary="===============1876047395=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1227568418==
-Content-Type: multipart/alternative; boundary="1375954711.Bd2D01.8401"; charset="us-ascii"
+--===============1876047395==
+Content-Type: multipart/alternative; boundary="1375954734.8Bd7b78B1.8446"; charset="us-ascii"
 
 
---1375954711.Bd2D01.8401
-Date: Thu, 8 Aug 2013 09:38:31 +0000
+--1375954734.8Bd7b78B1.8446
+Date: Thu, 8 Aug 2013 09:38:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56615
 
---- Comment #23 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
-Created attachment 83819
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83819&action=edit
-Xorg.log output from remote SSH session (hung)
+--- Comment #24 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
+Created attachment 83820
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83820&action=edit
+xrandr output from remote SSH session
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375954711.Bd2D01.8401
-Date: Thu, 8 Aug 2013 09:38:31 +0000
+--1375954734.8Bd7b78B1.8446
+Date: Thu, 8 Aug 2013 09:38:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c23">Comment # 23</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c24">Comment # 24</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
               from <span class="vcard"><a class="email" href="mailto:mark.cave-ayland&#64;ilande.co.uk" title="Mark Cave-Ayland &lt;mark.cave-ayland&#64;ilande.co.uk&gt;"> <span class="fn">Mark Cave-Ayland</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83819" name="attach_83819" title="Xorg.log output from remote SSH session (hung)">attachment 83819</a> <a href="attachment.cgi?id=83819&amp;action=edit" title="Xorg.log output from remote SSH session (hung)">[details]</a></span>
-Xorg.log output from remote SSH session (hung)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=83820" name="attach_83820" title="xrandr output from remote SSH session">attachment 83820</a> <a href="attachment.cgi?id=83820&amp;action=edit" title="xrandr output from remote SSH session">[details]</a></span>
+xrandr output from remote SSH session</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ Xorg.log output from remote SSH session (hung)</pre>
     </body>
 </html>
 
---1375954711.Bd2D01.8401--
+--1375954734.8Bd7b78B1.8446--
 
---===============1227568418==
+--===============1876047395==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1227568418==--
+--===============1876047395==--
