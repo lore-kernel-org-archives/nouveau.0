@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59057] Black screen after resume from s2ram
-Date: Wed, 07 Aug 2013 22:30:36 +0000
-Message-ID: <bug-59057-8800-jMtZP6093t@http.bugs.freedesktop.org/>
-References: <bug-59057-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
+	laptop
+Date: Thu, 08 Aug 2013 09:34:16 +0000
+Message-ID: <bug-56615-8800-7AkNjUW1VL@http.bugs.freedesktop.org/>
+References: <bug-56615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1075655747=="
+Content-Type: multipart/mixed; boundary="===============1428857307=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +21,53 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1075655747==
-Content-Type: multipart/alternative; boundary="1375914637.B8dAe519.494"; charset="us-ascii"
+--===============1428857307==
+Content-Type: multipart/alternative; boundary="1375954456.B1A06B1.7729"; charset="us-ascii"
 
 
---1375914637.B8dAe519.494
-Date: Wed, 7 Aug 2013 22:30:37 +0000
+--1375954456.B1A06B1.7729
+Date: Thu, 8 Aug 2013 09:34:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59057
+https://bugs.freedesktop.org/show_bug.cgi?id=56615
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #21 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
+Hi Ilia,
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=62835
+I finally managed to get a working network connection on boot, and it looks as
+if remote SSH is working. So I asked a friend who is fluent in X to ssh in
+remotely and perform some tests :)
+
+Things we found were:
+
+1) On boot dmesg shows "nouveau E[     DRM] DDC responded, but no EDID for
+DP-1" in the kernel logfile
+
+2) xrandr -q --verbose works but very slowly; each line is noticeably lethargic
+when appearing on screen. This output shows 3 DP outputs, but there is only one
+DP connector on the laptop?! The physical ports on the laptop are:
+
+LVDS-1 - on-board LCD screen
+VGA-1 - external VGA output (possibly only wired to on-board Intel chip?)
+DP-1 - external DP output (wired to NV9 chip only)
+
+3) When manually trying to switch between the LVDS/DP-1 outputs with xrandr
+there was a backtrace in the logs from drm_mode_set_config_internal().
+
+I'll attach the related files onto this bug report.
+
+
+Many thanks,
+
+Mark.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375914637.B8dAe519.494
-Date: Wed, 7 Aug 2013 22:30:37 +0000
+--1375954456.B1A06B1.7729
+Date: Thu, 8 Aug 2013 09:34:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,29 +75,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Black screen after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59057">bug 59057</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=62835
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c21">Comment # 21</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
+              from <span class="vcard"><a class="email" href="mailto:mark.cave-ayland&#64;ilande.co.uk" title="Mark Cave-Ayland &lt;mark.cave-ayland&#64;ilande.co.uk&gt;"> <span class="fn">Mark Cave-Ayland</span></a>
+</span></b>
+        <pre>Hi Ilia,
+
+I finally managed to get a working network connection on boot, and it looks as
+if remote SSH is working. So I asked a friend who is fluent in X to ssh in
+remotely and perform some tests :)
+
+Things we found were:
+
+1) On boot dmesg shows &quot;nouveau E[     DRM] DDC responded, but no EDID for
+DP-1&quot; in the kernel logfile
+
+2) xrandr -q --verbose works but very slowly; each line is noticeably lethargic
+when appearing on screen. This output shows 3 DP outputs, but there is only one
+DP connector on the laptop?! The physical ports on the laptop are:
+
+LVDS-1 - on-board LCD screen
+VGA-1 - external VGA output (possibly only wired to on-board Intel chip?)
+DP-1 - external DP output (wired to NV9 chip only)
+
+3) When manually trying to switch between the LVDS/DP-1 outputs with xrandr
+there was a backtrace in the logs from drm_mode_set_config_internal().
+
+I'll attach the related files onto this bug report.
+
+
+Many thanks,
+
+Mark.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +127,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1375914637.B8dAe519.494--
+--1375954456.B1A06B1.7729--
 
---===============1075655747==
+--===============1428857307==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +140,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1075655747==--
+--===============1428857307==--
