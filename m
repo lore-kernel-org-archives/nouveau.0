@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
-	laptop
-Date: Thu, 08 Aug 2013 09:38:54 +0000
-Message-ID: <bug-56615-8800-JVfeUyURmf@http.bugs.freedesktop.org/>
-References: <bug-56615-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
+Date: Thu, 08 Aug 2013 14:45:34 +0000
+Message-ID: <bug-64323-8800-crlI8lDo9s@http.bugs.freedesktop.org/>
+References: <bug-64323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1876047395=="
+Content-Type: multipart/mixed; boundary="===============0320418588=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1876047395==
-Content-Type: multipart/alternative; boundary="1375954734.8Bd7b78B1.8446"; charset="us-ascii"
+--===============0320418588==
+Content-Type: multipart/alternative; boundary="1375973135.5CB052.25099"; charset="us-ascii"
 
 
---1375954734.8Bd7b78B1.8446
-Date: Thu, 8 Aug 2013 09:38:54 +0000
+--1375973135.5CB052.25099
+Date: Thu, 8 Aug 2013 14:45:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56615
+https://bugs.freedesktop.org/show_bug.cgi?id=64323
 
---- Comment #24 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
-Created attachment 83820
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83820&action=edit
-xrandr output from remote SSH session
+--- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 83839
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83839&action=edit
+hack/workaround by calim
+
+Attaching a patch/hack which calim shared a few weeks back. Restores rendering
+back to normal on my nv96 system
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375954734.8Bd7b78B1.8446
-Date: Thu, 8 Aug 2013 09:38:54 +0000
+--1375973135.5CB052.25099
+Date: Thu, 8 Aug 2013 14:45:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +57,19 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c24">Comment # 24</a>
+   title="NEW --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
-              from <span class="vcard"><a class="email" href="mailto:mark.cave-ayland&#64;ilande.co.uk" title="Mark Cave-Ayland &lt;mark.cave-ayland&#64;ilande.co.uk&gt;"> <span class="fn">Mark Cave-Ayland</span></a>
+   title="NEW --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83820" name="attach_83820" title="xrandr output from remote SSH session">attachment 83820</a> <a href="attachment.cgi?id=83820&amp;action=edit" title="xrandr output from remote SSH session">[details]</a></span>
-xrandr output from remote SSH session</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=83839" name="attach_83839" title="hack/workaround by calim">attachment 83839</a> <a href="attachment.cgi?id=83839&amp;action=edit" title="hack/workaround by calim">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=64323&amp;attachment=83839'>[review]</a>
+hack/workaround by calim
+
+Attaching a patch/hack which calim shared a few weeks back. Restores rendering
+back to normal on my nv96 system</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +81,9 @@ xrandr output from remote SSH session</pre>
     </body>
 </html>
 
---1375954734.8Bd7b78B1.8446--
+--1375973135.5CB052.25099--
 
---===============1876047395==
+--===============0320418588==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1876047395==--
+--===============0320418588==--
