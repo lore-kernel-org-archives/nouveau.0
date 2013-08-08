@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
-Date: Thu, 08 Aug 2013 14:45:34 +0000
-Message-ID: <bug-64323-8800-crlI8lDo9s@http.bugs.freedesktop.org/>
+Date: Thu, 08 Aug 2013 14:48:04 +0000
+Message-ID: <bug-64323-8800-6t8WhZp1lc@http.bugs.freedesktop.org/>
 References: <bug-64323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0320418588=="
+Content-Type: multipart/mixed; boundary="===============0520615604=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,31 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0320418588==
-Content-Type: multipart/alternative; boundary="1375973135.5CB052.25099"; charset="us-ascii"
+--===============0520615604==
+Content-Type: multipart/alternative; boundary="1375973284.8aB5de82.26105"; charset="us-ascii"
 
 
---1375973135.5CB052.25099
-Date: Thu, 8 Aug 2013 14:45:35 +0000
+--1375973284.8aB5de82.26105
+Date: Thu, 8 Aug 2013 14:48:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=64323
 
---- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 83839
-  --> https://bugs.freedesktop.org/attachment.cgi?id=83839&action=edit
-hack/workaround by calim
-
-Attaching a patch/hack which calim shared a few weeks back. Restores rendering
-back to normal on my nv96 system
+--- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Dota 2 exhibits the same issue (patches still seem to work)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375973135.5CB052.25099
-Date: Thu, 8 Aug 2013 14:45:35 +0000
+--1375973284.8aB5de82.26105
+Date: Thu, 8 Aug 2013 14:48:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +53,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Severe misrendering in Left 4 Dead 2"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=83839" name="attach_83839" title="hack/workaround by calim">attachment 83839</a> <a href="attachment.cgi?id=83839&amp;action=edit" title="hack/workaround by calim">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=64323&amp;attachment=83839'>[review]</a>
-hack/workaround by calim
-
-Attaching a patch/hack which calim shared a few weeks back. Restores rendering
-back to normal on my nv96 system</pre>
+        <pre>Dota 2 exhibits the same issue (patches still seem to work)</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +72,9 @@ back to normal on my nv96 system</pre>
     </body>
 </html>
 
---1375973135.5CB052.25099--
+--1375973284.8aB5de82.26105--
 
---===============0320418588==
+--===============0520615604==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0320418588==--
+--===============0520615604==--
