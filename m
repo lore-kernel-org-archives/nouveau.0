@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67878] Hardware freeze after resume from suspend
-Date: Fri, 09 Aug 2013 16:13:55 +0000
-Message-ID: <bug-67878-8800-ktiwYxvP8J@http.bugs.freedesktop.org/>
-References: <bug-67878-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Bug 64323] Severe misrendering in Left 4 Dead 2
+Date: Fri, 09 Aug 2013 17:31:17 +0100
+Message-ID: <52051955.3080604@gmail.com>
+References: <bug-64323-8800@http.bugs.freedesktop.org/>
+	<bug-64323-8800-6t8WhZp1lc@http.bugs.freedesktop.org/>
+	<CAMjv+TQc7TOK3=gcz6MYs310PqNqdDQj1YL7JGUXM-VkEbxTeA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0927924713=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAMjv+TQc7TOK3=gcz6MYs310PqNqdDQj1YL7JGUXM-VkEbxTeA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,91 +19,59 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Christ-Jan Wijtmans <cj.wijtmans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On 09/08/13 16:03, Christ-Jan Wijtmans wrote:
+> how did you get dota2 to even start? it should not work with the nouveau
+> drivers.
+> 
+Downloaded the game and pressed Start. I'm not sure what you're implying
+there with "it should not work", but it works like a charm with the
+patch mentioned. Only bugs I can noticed are in dota2 (i.e. they are
+present with the blob, and ati/amd users :P).
 
---===============0927924713==
-Content-Type: multipart/alternative; boundary="1376064835.81DE5ecD1.27519"; charset="us-ascii"
+Last tested with commit 6a2baf3a06125405aa648e208af782e53f1312c0~1,
+because of [1].
 
+Cheers
+Emil
 
---1376064835.81DE5ecD1.27519
-Date: Fri, 9 Aug 2013 16:13:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=67878
-
---- Comment #9 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Rereading bugs #59057 and #62835, it's not entirely clear whether the bug was
-actually ever fixed; it may be that the reporter simply worked around it.
-Comment #33 of Bug #59057
-(https://bugs.freedesktop.org/show_bug.cgi?id=59057#c33) actually refers to
-commit e5a58edc94a20a7ef4b7db67c166c4ca0588bad0
-(46c13c131d3b73080aa0f50f45e834a9ab3c0e71 in Linus's tree) as working. Going to
-test this and surrounding commits to verify this.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1376064835.81DE5ecD1.27519
-Date: Fri, 9 Aug 2013 16:13:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Hardware freeze after resume from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Hardware freeze after resume from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">bug 67878</a>
-              from <span class="vcard"><a class="email" href="mailto:bgamari&#64;gmail.com" title="Ben Gamari &lt;bgamari&#64;gmail.com&gt;"> <span class="fn">Ben Gamari</span></a>
-</span></b>
-        <pre>Rereading bugs #59057 and #62835, it's not entirely clear whether the bug was
-actually ever fixed; it may be that the reporter simply worked around it.
-<a href="show_bug.cgi?id=67878#c33">Comment #33</a> of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Black screen after resume from s2ram"
-   href="show_bug.cgi?id=59057">Bug #59057</a>
-(<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Black screen after resume from s2ram"
-   href="show_bug.cgi?id=59057#c33">https://bugs.freedesktop.org/show_bug.cgi?id=59057#c33</a>) actually refers to
-commit e5a58edc94a20a7ef4b7db67c166c4ca0588bad0
-(46c13c131d3b73080aa0f50f45e834a9ab3c0e71 in Linus's tree) as working. Going to
-test this and surrounding commits to verify this.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1376064835.81DE5ecD1.27519--
-
---===============0927924713==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0927924713==--
+[1] https://bugs.freedesktop.org/show_bug.cgi?id=67887
+> 
+> Live long and prosper,
+> 
+> Christ-Jan Wijtmans
+> http://facebook.com/cj.wijtmans
+> http://twitter.com/cjwijtmans
+> 
+> 
+> On Thu, Aug 8, 2013 at 4:48 PM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
+> 
+>>   *Comment # 5 <https://bugs.freedesktop.org/show_bug.cgi?id=64323#c5> on bug
+>> 64323 <https://bugs.freedesktop.org/show_bug.cgi?id=64323> from Emil
+>> Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> *
+>>
+>> Dota 2 exhibits the same issue (patches still seem to work)
+>>
+>>  ------------------------------
+>> You are receiving this mail because:
+>>
+>>    - You are the assignee for the bug.
+>>
+>>
+>> _______________________________________________
+>> Nouveau mailing list
+>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>>
+>>
+> 
+> 
+> 
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+> 
