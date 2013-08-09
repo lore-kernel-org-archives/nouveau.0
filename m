@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67878] Hardware freeze after resume from suspend
-Date: Fri, 09 Aug 2013 01:59:54 +0000
-Message-ID: <bug-67878-8800-kddKTOitEx@http.bugs.freedesktop.org/>
+Date: Fri, 09 Aug 2013 02:09:50 +0000
+Message-ID: <bug-67878-8800-DwAzsaKBDP@http.bugs.freedesktop.org/>
 References: <bug-67878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0730941599=="
+Content-Type: multipart/mixed; boundary="===============0179962586=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,27 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0730941599==
-Content-Type: multipart/alternative; boundary="1376013594.0AEfCF1.28293"; charset="us-ascii"
+--===============0179962586==
+Content-Type: multipart/alternative; boundary="1376014190.c23EB1.29813"; charset="us-ascii"
 
 
---1376013594.0AEfCF1.28293
-Date: Fri, 9 Aug 2013 01:59:54 +0000
+--1376014190.c23EB1.29813
+Date: Fri, 9 Aug 2013 02:09:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67878
 
---- Comment #5 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It seems 3D/compositing might be to blame here; suspending while running
-metacity seems to resume correctly.
+--- Comment #6 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+The same issue can be reproduced with 3.8.
+
+Interestingly, 3.5 seems to work correctly, even with compiz.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376013594.0AEfCF1.28293
-Date: Fri, 9 Aug 2013 01:59:54 +0000
+--1376014190.c23EB1.29813
+Date: Fri, 9 Aug 2013 02:09:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,15 +55,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Hardware freeze after resume from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Hardware freeze after resume from suspend"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">bug 67878</a>
               from <span class="vcard"><a class="email" href="mailto:bgamari&#64;gmail.com" title="Ben Gamari &lt;bgamari&#64;gmail.com&gt;"> <span class="fn">Ben Gamari</span></a>
 </span></b>
-        <pre>It seems 3D/compositing might be to blame here; suspending while running
-metacity seems to resume correctly.</pre>
+        <pre>The same issue can be reproduced with 3.8.
+
+Interestingly, 3.5 seems to work correctly, even with compiz.</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +76,9 @@ metacity seems to resume correctly.</pre>
     </body>
 </html>
 
---1376013594.0AEfCF1.28293--
+--1376014190.c23EB1.29813--
 
---===============0730941599==
+--===============0179962586==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0730941599==--
+--===============0179962586==--
