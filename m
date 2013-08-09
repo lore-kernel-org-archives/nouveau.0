@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67878] Hardware freeze after resume from suspend
-Date: Fri, 09 Aug 2013 02:09:50 +0000
-Message-ID: <bug-67878-8800-DwAzsaKBDP@http.bugs.freedesktop.org/>
+Date: Fri, 09 Aug 2013 02:24:17 +0000
+Message-ID: <bug-67878-8800-wkPJdNEWEm@http.bugs.freedesktop.org/>
 References: <bug-67878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0179962586=="
+Content-Type: multipart/mixed; boundary="===============0777925290=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0179962586==
-Content-Type: multipart/alternative; boundary="1376014190.c23EB1.29813"; charset="us-ascii"
+--===============0777925290==
+Content-Type: multipart/alternative; boundary="1376015057.D5F4d1.31303"; charset="us-ascii"
 
 
---1376014190.c23EB1.29813
-Date: Fri, 9 Aug 2013 02:09:50 +0000
+--1376015057.D5F4d1.31303
+Date: Fri, 9 Aug 2013 02:24:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67878
 
---- Comment #6 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The same issue can be reproduced with 3.8.
+--- Comment #7 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+From discussions with xexaxo in #nouveau, it seems that this might be a similar
+regression to what happened in 3.8 (described in bug #59057). My plan is as
+follows,
 
-Interestingly, 3.5 seems to work correctly, even with compiz.
+ 1) Verify that 3.8.11 works
+ 1.1) If not, verify that 3.8.1 works and bisect to find the broken release
+ 1.2) If so, check whether 3.9 works
+ 2) Bisect backwards from the first broken release to 3.8.11 (or whichever
+release was tested to work)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376014190.c23EB1.29813
-Date: Fri, 9 Aug 2013 02:09:50 +0000
+--1376015057.D5F4d1.31303
+Date: Fri, 9 Aug 2013 02:24:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +61,25 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Hardware freeze after resume from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Hardware freeze after resume from suspend"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">bug 67878</a>
               from <span class="vcard"><a class="email" href="mailto:bgamari&#64;gmail.com" title="Ben Gamari &lt;bgamari&#64;gmail.com&gt;"> <span class="fn">Ben Gamari</span></a>
 </span></b>
-        <pre>The same issue can be reproduced with 3.8.
+        <pre>From discussions with xexaxo in #nouveau, it seems that this might be a similar
+regression to what happened in 3.8 (described in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Black screen after resume from s2ram"
+   href="show_bug.cgi?id=59057">bug #59057</a>). My plan is as
+follows,
 
-Interestingly, 3.5 seems to work correctly, even with compiz.</pre>
+ 1) Verify that 3.8.11 works
+ 1.1) If not, verify that 3.8.1 works and bisect to find the broken release
+ 1.2) If so, check whether 3.9 works
+ 2) Bisect backwards from the first broken release to 3.8.11 (or whichever
+release was tested to work)</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +91,9 @@ Interestingly, 3.5 seems to work correctly, even with compiz.</pre>
     </body>
 </html>
 
---1376014190.c23EB1.29813--
+--1376015057.D5F4d1.31303--
 
---===============0179962586==
+--===============0777925290==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0179962586==--
+--===============0777925290==--
