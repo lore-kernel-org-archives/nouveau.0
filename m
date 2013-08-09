@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
-Date: Thu, 08 Aug 2013 14:48:04 +0000
-Message-ID: <bug-64323-8800-6t8WhZp1lc@http.bugs.freedesktop.org/>
-References: <bug-64323-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67878] Hardware freeze after resume from suspend
+Date: Fri, 09 Aug 2013 01:59:54 +0000
+Message-ID: <bug-67878-8800-kddKTOitEx@http.bugs.freedesktop.org/>
+References: <bug-67878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0520615604=="
+Content-Type: multipart/mixed; boundary="===============0730941599=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0520615604==
-Content-Type: multipart/alternative; boundary="1375973284.8aB5de82.26105"; charset="us-ascii"
+--===============0730941599==
+Content-Type: multipart/alternative; boundary="1376013594.0AEfCF1.28293"; charset="us-ascii"
 
 
---1375973284.8aB5de82.26105
-Date: Thu, 8 Aug 2013 14:48:04 +0000
+--1376013594.0AEfCF1.28293
+Date: Fri, 9 Aug 2013 01:59:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64323
+https://bugs.freedesktop.org/show_bug.cgi?id=67878
 
---- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Dota 2 exhibits the same issue (patches still seem to work)
+--- Comment #5 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+It seems 3D/compositing might be to blame here; suspending while running
+metacity seems to resume correctly.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1375973284.8aB5de82.26105
-Date: Thu, 8 Aug 2013 14:48:04 +0000
+--1376013594.0AEfCF1.28293
+Date: Fri, 9 Aug 2013 01:59:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,15 +53,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c5">Comment # 5</a>
+   title="NEW --- - Hardware freeze after resume from suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+   title="NEW --- - Hardware freeze after resume from suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">bug 67878</a>
+              from <span class="vcard"><a class="email" href="mailto:bgamari&#64;gmail.com" title="Ben Gamari &lt;bgamari&#64;gmail.com&gt;"> <span class="fn">Ben Gamari</span></a>
 </span></b>
-        <pre>Dota 2 exhibits the same issue (patches still seem to work)</pre>
+        <pre>It seems 3D/compositing might be to blame here; suspending while running
+metacity seems to resume correctly.</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +74,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1375973284.8aB5de82.26105--
+--1376013594.0AEfCF1.28293--
 
---===============0520615604==
+--===============0730941599==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -85,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0520615604==--
+--===============0730941599==--
