@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67878] Hardware freeze after resume from suspend
-Date: Fri, 09 Aug 2013 17:45:35 +0000
-Message-ID: <bug-67878-8800-jBFl9x1jQy@http.bugs.freedesktop.org/>
+Date: Fri, 09 Aug 2013 18:03:09 +0000
+Message-ID: <bug-67878-8800-PG8nKgp3be@http.bugs.freedesktop.org/>
 References: <bug-67878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0748741210=="
+Content-Type: multipart/mixed; boundary="===============0232540949=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0748741210==
-Content-Type: multipart/alternative; boundary="1376070334.6cD4D01.9104"; charset="us-ascii"
+--===============0232540949==
+Content-Type: multipart/alternative; boundary="1376071389.0532F1.11822"; charset="us-ascii"
 
 
---1376070334.6cD4D01.9104
-Date: Fri, 9 Aug 2013 17:45:34 +0000
+--1376071389.0532F1.11822
+Date: Fri, 9 Aug 2013 18:03:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67878
 
---- Comment #13 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I can confirm that mesa 9.1.4 on a 3.10 kernel can successfully resume, even
-while running glxgears on compiz. The messages mentioned in Comment 12 are the
-only things produced by nouveau in dmesg.
+--- Comment #14 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Confirmed that 72916698b056d0559263e84372bb45cd83a1c2c2 is bad. Unfortunately
+this is a merge base. Here is the bisection log,
+
+    git bisect start
+    # bad: [5a7bdd4b4173958c53109517b7c95f1039623e7e] docs: Add items for GL4.4
+    git bisect bad 5a7bdd4b4173958c53109517b7c95f1039623e7e
+    # good: [e64febb4b71475b35765f0dc168df22655444a7f] docs: 9.1.4 release
+notes
+    git bisect good e64febb4b71475b35765f0dc168df22655444a7f
+    # bad: [72916698b056d0559263e84372bb45cd83a1c2c2] r600g: fix segfault with
+old kernel
+    git bisect bad 72916698b056d0559263e84372bb45cd83a1c2c2
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376070334.6cD4D01.9104
-Date: Fri, 9 Aug 2013 17:45:34 +0000
+--1376071389.0532F1.11822
+Date: Fri, 9 Aug 2013 18:03:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +64,25 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Hardware freeze after resume from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c13">Comment # 13</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Hardware freeze after resume from suspend"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">bug 67878</a>
               from <span class="vcard"><a class="email" href="mailto:bgamari&#64;gmail.com" title="Ben Gamari &lt;bgamari&#64;gmail.com&gt;"> <span class="fn">Ben Gamari</span></a>
 </span></b>
-        <pre>I can confirm that mesa 9.1.4 on a 3.10 kernel can successfully resume, even
-while running glxgears on compiz. The messages mentioned in <a href="show_bug.cgi?id=67878#c12">Comment 12</a> are the
-only things produced by nouveau in dmesg.</pre>
+        <pre>Confirmed that 72916698b056d0559263e84372bb45cd83a1c2c2 is bad. Unfortunately
+this is a merge base. Here is the bisection log,
+
+    git bisect start
+    # bad: [5a7bdd4b4173958c53109517b7c95f1039623e7e] docs: Add items for GL4.4
+    git bisect bad 5a7bdd4b4173958c53109517b7c95f1039623e7e
+    # good: [e64febb4b71475b35765f0dc168df22655444a7f] docs: 9.1.4 release
+notes
+    git bisect good e64febb4b71475b35765f0dc168df22655444a7f
+    # bad: [72916698b056d0559263e84372bb45cd83a1c2c2] r600g: fix segfault with
+old kernel
+    git bisect bad 72916698b056d0559263e84372bb45cd83a1c2c2</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +94,9 @@ only things produced by nouveau in dmesg.</pre>
     </body>
 </html>
 
---1376070334.6cD4D01.9104--
+--1376071389.0532F1.11822--
 
---===============0748741210==
+--===============0232540949==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +107,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0748741210==--
+--===============0232540949==--
