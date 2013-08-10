@@ -1,46 +1,63 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 2/4] nouveau: set buffer format of video buffer
-Date: Sat, 10 Aug 2013 06:39:56 -0400
-Message-ID: <1376131198-3506-2-git-send-email-imirkin@alum.mit.edu>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 4/4] nv50: allow forcing PMPEG use,
+	for ease of testing
+Date: Sat, 10 Aug 2013 06:39:58 -0400
+Message-ID: <1376131198-3506-4-git-send-email-imirkin@alum.mit.edu>
 References: <1376131198-3506-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
-In-Reply-To: <1376131198-3506-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-To: Maarten Lankhorst <maarten.lankhorst@ubuntu.com>
-Cc: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1376131198-3506-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+This also allows people who don't want to install the binary blobs
+required for VP2 to still get MPEG decoding.
+
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 ---
+ src/gallium/drivers/nv50/nv50_context.c | 3 ++-
+ src/gallium/drivers/nv50/nv50_screen.c  | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-I don't think anything looks at this right now, but seems good to store. (Also
-ran into it with my vdpau attempt.)
-
- src/gallium/drivers/nouveau/nouveau_video.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/src/gallium/drivers/nouveau/nouveau_video.c b/src/gallium/drivers/nouveau/nouveau_video.c
-index 9357508..2e7f9b1 100644
---- a/src/gallium/drivers/nouveau/nouveau_video.c
-+++ b/src/gallium/drivers/nouveau/nouveau_video.c
-@@ -810,6 +810,7 @@ nouveau_video_buffer_create(struct pipe_context *pipe,
-    buffer->base.get_sampler_view_components = nouveau_video_buffer_sampler_view_components;
-    buffer->base.get_surfaces = nouveau_video_buffer_surfaces;
-    buffer->base.chroma_format = templat->chroma_format;
-+   buffer->base.buffer_format = templat->buffer_format;
-    buffer->base.width = width;
-    buffer->base.height = height;
-    buffer->num_planes = 2;
+diff --git a/src/gallium/drivers/nv50/nv50_context.c b/src/gallium/drivers/nv50/nv50_context.c
+index 79a0473..185d241 100644
+--- a/src/gallium/drivers/nv50/nv50_context.c
++++ b/src/gallium/drivers/nv50/nv50_context.c
+@@ -258,7 +258,8 @@ nv50_create(struct pipe_screen *pscreen, void *priv)
+    draw_set_rasterize_stage(nv50->draw, nv50_draw_render_stage(nv50));
+ #endif
+ 
+-   if (screen->base.device->chipset < 0x84) {
++   if (screen->base.device->chipset < 0x84 ||
++       debug_get_bool_option("NOUVEAU_PMPEG", FALSE)) {
+       /* PMPEG */
+       nouveau_context_init_vdec(&nv50->base);
+    } else if (screen->base.device->chipset < 0x98 ||
+diff --git a/src/gallium/drivers/nv50/nv50_screen.c b/src/gallium/drivers/nv50/nv50_screen.c
+index 2951eb4..0cbee5d 100644
+--- a/src/gallium/drivers/nv50/nv50_screen.c
++++ b/src/gallium/drivers/nv50/nv50_screen.c
+@@ -647,7 +647,8 @@ nv50_screen_create(struct nouveau_device *dev)
+ 
+    nv50_screen_init_resource_functions(pscreen);
+ 
+-   if (screen->base.device->chipset < 0x84) {
++   if (screen->base.device->chipset < 0x84 ||
++       debug_get_bool_option("NOUVEAU_PMPEG", FALSE)) {
+       /* PMPEG */
+       nouveau_screen_init_vdec(&screen->base);
+    } else if (screen->base.device->chipset < 0x98 ||
 -- 
 1.8.1.5
