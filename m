@@ -1,14 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 4/4] nv50: allow forcing PMPEG use,
-	for ease of testing
-Date: Sat, 10 Aug 2013 06:39:58 -0400
-Message-ID: <1376131198-3506-4-git-send-email-imirkin@alum.mit.edu>
-References: <1376131198-3506-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 67878] Hardware freeze after resume from suspend
+Date: Sat, 10 Aug 2013 16:01:54 +0000
+Message-ID: <bug-67878-8800-Xer9prbKSt@http.bugs.freedesktop.org/>
+References: <bug-67878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2068398164=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1376131198-3506-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,46 +16,79 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This also allows people who don't want to install the binary blobs
-required for VP2 to still get MPEG decoding.
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
----
- src/gallium/drivers/nv50/nv50_context.c | 3 ++-
- src/gallium/drivers/nv50/nv50_screen.c  | 3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+--===============2068398164==
+Content-Type: multipart/alternative; boundary="1376150514.756C1.28980"; charset="us-ascii"
 
-diff --git a/src/gallium/drivers/nv50/nv50_context.c b/src/gallium/drivers/nv50/nv50_context.c
-index 79a0473..185d241 100644
---- a/src/gallium/drivers/nv50/nv50_context.c
-+++ b/src/gallium/drivers/nv50/nv50_context.c
-@@ -258,7 +258,8 @@ nv50_create(struct pipe_screen *pscreen, void *priv)
-    draw_set_rasterize_stage(nv50->draw, nv50_draw_render_stage(nv50));
- #endif
- 
--   if (screen->base.device->chipset < 0x84) {
-+   if (screen->base.device->chipset < 0x84 ||
-+       debug_get_bool_option("NOUVEAU_PMPEG", FALSE)) {
-       /* PMPEG */
-       nouveau_context_init_vdec(&nv50->base);
-    } else if (screen->base.device->chipset < 0x98 ||
-diff --git a/src/gallium/drivers/nv50/nv50_screen.c b/src/gallium/drivers/nv50/nv50_screen.c
-index 2951eb4..0cbee5d 100644
---- a/src/gallium/drivers/nv50/nv50_screen.c
-+++ b/src/gallium/drivers/nv50/nv50_screen.c
-@@ -647,7 +647,8 @@ nv50_screen_create(struct nouveau_device *dev)
- 
-    nv50_screen_init_resource_functions(pscreen);
- 
--   if (screen->base.device->chipset < 0x84) {
-+   if (screen->base.device->chipset < 0x84 ||
-+       debug_get_bool_option("NOUVEAU_PMPEG", FALSE)) {
-       /* PMPEG */
-       nouveau_screen_init_vdec(&screen->base);
-    } else if (screen->base.device->chipset < 0x98 ||
+
+--1376150514.756C1.28980
+Date: Sat, 10 Aug 2013 16:01:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=67878
+
+--- Comment #15 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Unfortunately I'm now having trouble reproducing the working conditions with
+mesa 9.1.4.
+
+Returning to mapping out kernel version. It appears that 3.6 works correctly.
+
 -- 
-1.8.1.5
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1376150514.756C1.28980
+Date: Sat, 10 Aug 2013 16:01:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Hardware freeze after resume from suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c15">Comment # 15</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Hardware freeze after resume from suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">bug 67878</a>
+              from <span class="vcard"><a class="email" href="mailto:bgamari&#64;gmail.com" title="Ben Gamari &lt;bgamari&#64;gmail.com&gt;"> <span class="fn">Ben Gamari</span></a>
+</span></b>
+        <pre>Unfortunately I'm now having trouble reproducing the working conditions with
+mesa 9.1.4.
+
+Returning to mapping out kernel version. It appears that 3.6 works correctly.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1376150514.756C1.28980--
+
+--===============2068398164==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2068398164==--
