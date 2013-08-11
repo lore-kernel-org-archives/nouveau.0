@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67878] Hardware freeze after resume from suspend
-Date: Sun, 11 Aug 2013 14:33:32 +0000
-Message-ID: <bug-67878-8800-MvyAhSBxoi@http.bugs.freedesktop.org/>
+Date: Sun, 11 Aug 2013 15:00:05 +0000
+Message-ID: <bug-67878-8800-ZubPEndbdc@http.bugs.freedesktop.org/>
 References: <bug-67878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0137684316=="
+Content-Type: multipart/mixed; boundary="===============0432117267=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,27 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0137684316==
-Content-Type: multipart/alternative; boundary="1376231612.ACf3F001.8701"; charset="us-ascii"
+--===============0432117267==
+Content-Type: multipart/alternative; boundary="1376233205.aaaABEfb1.12868"; charset="us-ascii"
 
 
---1376231612.ACf3F001.8701
-Date: Sun, 11 Aug 2013 14:33:32 +0000
+--1376233205.aaaABEfb1.12868
+Date: Sun, 11 Aug 2013 15:00:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67878
 
---- Comment #23 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-640631d04cd2cfbb4792d6a8fc5fcab14ee273a5 is bad.
-9fabd4eedeb904173d05cb1ced3c3e6b9d2e8137 is good.
+--- Comment #24 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+74b6685089591fa275929109f7b839bf386890a0 is good.
+bd3b49f25a3eae2d91432247b7565489120b6bcf is bad.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376231612.ACf3F001.8701
-Date: Sun, 11 Aug 2013 14:33:32 +0000
+--1376233205.aaaABEfb1.12868
+Date: Sun, 11 Aug 2013 15:00:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,15 +54,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Hardware freeze after resume from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c23">Comment # 23</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c24">Comment # 24</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Hardware freeze after resume from suspend"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">bug 67878</a>
               from <span class="vcard"><a class="email" href="mailto:bgamari&#64;gmail.com" title="Ben Gamari &lt;bgamari&#64;gmail.com&gt;"> <span class="fn">Ben Gamari</span></a>
 </span></b>
-        <pre>640631d04cd2cfbb4792d6a8fc5fcab14ee273a5 is bad.
-9fabd4eedeb904173d05cb1ced3c3e6b9d2e8137 is good.</pre>
+        <pre>74b6685089591fa275929109f7b839bf386890a0 is good.
+bd3b49f25a3eae2d91432247b7565489120b6bcf is bad.</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +74,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1376231612.ACf3F001.8701--
+--1376233205.aaaABEfb1.12868--
 
---===============0137684316==
+--===============0432117267==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0137684316==--
+--===============0432117267==--
