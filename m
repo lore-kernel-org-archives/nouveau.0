@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67878] Hardware freeze after resume from suspend
-Date: Sun, 11 Aug 2013 08:15:53 +0000
-Message-ID: <bug-67878-8800-nbBhPIW04B@http.bugs.freedesktop.org/>
+Date: Sun, 11 Aug 2013 08:16:26 +0000
+Message-ID: <bug-67878-8800-Zf1RRwhtbc@http.bugs.freedesktop.org/>
 References: <bug-67878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0437662268=="
+Content-Type: multipart/mixed; boundary="===============2041742092=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0437662268==
-Content-Type: multipart/alternative; boundary="1376208953.AEa8C1.20060"; charset="us-ascii"
+--===============2041742092==
+Content-Type: multipart/alternative; boundary="1376208986.4deA1.20192"; charset="us-ascii"
 
 
---1376208953.AEa8C1.20060
-Date: Sun, 11 Aug 2013 08:15:53 +0000
+--1376208986.4deA1.20192
+Date: Sun, 11 Aug 2013 08:16:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67878
 
---- Comment #20 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-@Ilia, I should have been more specific. These next few comments are largely
-just notes recording the state of my bisection. By "bad" I mean that I have
-tested the commit and it exhibits the issue, not that it is the first bad
-commit. Currently I have around 10 more bisection steps to go before the
-culprit is hopefully identified.
+--- Comment #21 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Linux commit 2b8318881ddbcb67c5e8d2178b42284749442222 appears to work.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376208953.AEa8C1.20060
-Date: Sun, 11 Aug 2013 08:15:53 +0000
+--1376208986.4deA1.20192
+Date: Sun, 11 Aug 2013 08:16:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,18 +53,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Hardware freeze after resume from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c20">Comment # 20</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Hardware freeze after resume from suspend"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">bug 67878</a>
               from <span class="vcard"><a class="email" href="mailto:bgamari&#64;gmail.com" title="Ben Gamari &lt;bgamari&#64;gmail.com&gt;"> <span class="fn">Ben Gamari</span></a>
 </span></b>
-        <pre>&#64;Ilia, I should have been more specific. These next few comments are largely
-just notes recording the state of my bisection. By &quot;bad&quot; I mean that I have
-tested the commit and it exhibits the issue, not that it is the first bad
-commit. Currently I have around 10 more bisection steps to go before the
-culprit is hopefully identified.</pre>
+        <pre>Linux commit 2b8318881ddbcb67c5e8d2178b42284749442222 appears to work.</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +72,9 @@ culprit is hopefully identified.</pre>
     </body>
 </html>
 
---1376208953.AEa8C1.20060--
+--1376208986.4deA1.20192--
 
---===============0437662268==
+--===============2041742092==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0437662268==--
+--===============2041742092==--
