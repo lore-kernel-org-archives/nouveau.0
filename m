@@ -1,80 +1,69 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 04/10] nvc0: move bsp param-filling logic into
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 05/10] nvc0: move vp param filling logic into
 	nouveau
-Date: Sun, 11 Aug 2013 03:19:12 -0400
-Message-ID: <1376205558-23540-5-git-send-email-imirkin@alum.mit.edu>
+Date: Sun, 11 Aug 2013 03:19:13 -0400
+Message-ID: <1376205558-23540-6-git-send-email-imirkin@alum.mit.edu>
 References: <1376205558-23540-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
-In-Reply-To: <1376205558-23540-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
-To: Maarten Lankhorst <maarten.lankhorst@ubuntu.com>
-Cc: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1376205558-23540-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 ---
  src/gallium/drivers/nouveau/Makefile.sources       |   3 +-
- src/gallium/drivers/nouveau/nouveau_vp3_video.h    |  10 +-
- .../drivers/nouveau/nouveau_vp3_video_bsp.c        | 310 +++++++++++++++++++++
- src/gallium/drivers/nvc0/nvc0_video_bsp.c          | 277 +-----------------
- 4 files changed, 324 insertions(+), 276 deletions(-)
- create mode 100644 src/gallium/drivers/nouveau/nouveau_vp3_video_bsp.c
+ src/gallium/drivers/nouveau/nouveau_vp3_video.h    |   6 +
+ src/gallium/drivers/nouveau/nouveau_vp3_video_vp.c | 485 +++++++++++++++++++++
+ src/gallium/drivers/nvc0/nvc0_video.h              |   7 -
+ src/gallium/drivers/nvc0/nvc0_video_bsp.c          |   2 +-
+ src/gallium/drivers/nvc0/nvc0_video_vp.c           | 472 +-------------------
+ 6 files changed, 499 insertions(+), 476 deletions(-)
+ create mode 100644 src/gallium/drivers/nouveau/nouveau_vp3_video_vp.c
 
 diff --git a/src/gallium/drivers/nouveau/Makefile.sources b/src/gallium/drivers/nouveau/Makefile.sources
-index f7c9249..ca33207 100644
+index ca33207..7912f67 100644
 --- a/src/gallium/drivers/nouveau/Makefile.sources
 +++ b/src/gallium/drivers/nouveau/Makefile.sources
-@@ -5,4 +5,5 @@ C_SOURCES := \
- 	nouveau_buffer.c \
+@@ -6,4 +6,5 @@ C_SOURCES := \
  	nouveau_heap.c \
  	nouveau_video.c \
--	nouveau_vp3_video.c
-+	nouveau_vp3_video.c \
-+	nouveau_vp3_video_bsp.c
+ 	nouveau_vp3_video.c \
+-	nouveau_vp3_video_bsp.c
++	nouveau_vp3_video_bsp.c \
++	nouveau_vp3_video_vp.c
 diff --git a/src/gallium/drivers/nouveau/nouveau_vp3_video.h b/src/gallium/drivers/nouveau/nouveau_vp3_video.h
-index 7322138..2558d57 100644
+index 2558d57..8d3548a 100644
 --- a/src/gallium/drivers/nouveau/nouveau_vp3_video.h
 +++ b/src/gallium/drivers/nouveau/nouveau_vp3_video.h
-@@ -20,10 +20,10 @@
-  * OTHER DEALINGS IN THE SOFTWARE.
-  */
- 
--#include "pipe/p_defines.h"
-+#include <libdrm/nouveau.h>
- 
-+#include "pipe/p_defines.h"
- #include "vl/vl_video_buffer.h"
--
- #include "util/u_video.h"
- 
- struct nouveau_vp3_video_buffer {
-@@ -196,3 +196,9 @@ struct pipe_video_buffer *
- nouveau_vp3_video_buffer_create(struct pipe_context *pipe,
-                                 const struct pipe_video_buffer *templat,
-                                 int flags);
+@@ -202,3 +202,9 @@ nouveau_vp3_bsp(struct nouveau_vp3_decoder *dec,  union pipe_desc desc,
+                 struct nouveau_vp3_video_buffer *target,
+                 unsigned comm_seq, unsigned num_buffers,
+                 const void *const *data, const unsigned *num_bytes);
 +
-+uint32_t
-+nouveau_vp3_bsp(struct nouveau_vp3_decoder *dec,  union pipe_desc desc,
-+                struct nouveau_vp3_video_buffer *target,
-+                unsigned comm_seq, unsigned num_buffers,
-+                const void *const *data, const unsigned *num_bytes);
-diff --git a/src/gallium/drivers/nouveau/nouveau_vp3_video_bsp.c b/src/gallium/drivers/nouveau/nouveau_vp3_video_bsp.c
++void
++nouveau_vp3_vp_caps(struct nouveau_vp3_decoder *dec, union pipe_desc desc,
++                    struct nouveau_vp3_video_buffer *target, unsigned comm_seq,
++                    unsigned *caps, unsigned *is_ref,
++                    struct nouveau_vp3_video_buffer *refs[16]);
+diff --git a/src/gallium/drivers/nouveau/nouveau_vp3_video_vp.c b/src/gallium/drivers/nouveau/nouveau_vp3_video_vp.c
 new file mode 100644
-index 0000000..0311854
+index 0000000..c9b1b99
 --- /dev/null
-+++ b/src/gallium/drivers/nouveau/nouveau_vp3_video_bsp.c
-@@ -0,0 +1,310 @@
++++ b/src/gallium/drivers/nouveau/nouveau_vp3_video_vp.c
+@@ -0,0 +1,485 @@
 +/*
 + * Copyright 2011-2013 Maarten Lankhorst
 + *
@@ -99,602 +88,988 @@ index 0000000..0311854
 +
 +#include "nouveau_vp3_video.h"
 +
-+struct strparm_bsp {
-+	uint32_t w0[4]; // bits 0-23 length, bits 24-31 addr_hi
-+	uint32_t w1[4]; // bit 8-24 addr_lo
-+	uint32_t unk20; // should be idx * 0x8000000, bitstream offset
-+	uint32_t do_crypto_crap; // set to 0
++struct mpeg12_picparm_vp {
++	uint16_t width; // 00 in mb units
++	uint16_t height; // 02 in mb units
++
++	uint32_t unk04; // 04 stride for Y?
++	uint32_t unk08; // 08 stride for CbCr?
++
++	uint32_t ofs[6]; // 1c..20 ofs
++	uint32_t bucket_size; // 24
++	uint32_t inter_ring_data_size; // 28
++	uint16_t unk2c; // 2c
++	uint16_t alternate_scan; // 2e
++	uint16_t unk30; // 30 not seen set yet
++	uint16_t picture_structure; // 32
++	uint16_t pad2[3];
++	uint16_t unk3a; // 3a set on I frame?
++
++	uint32_t f_code[4]; // 3c
++	uint32_t picture_coding_type; // 4c
++	uint32_t intra_dc_precision; // 50
++	uint32_t q_scale_type; // 54
++	uint32_t top_field_first; // 58
++	uint32_t full_pel_forward_vector; // 5c
++	uint32_t full_pel_backward_vector; // 60
++	uint8_t intra_quantizer_matrix[0x40]; // 64
++	uint8_t non_intra_quantizer_matrix[0x40]; // a4
 +};
 +
-+struct mpeg12_picparm_bsp {
-+	uint16_t width;
-+	uint16_t height;
-+	uint8_t picture_structure;
-+	uint8_t picture_coding_type;
-+	uint8_t intra_dc_precision;
-+	uint8_t frame_pred_frame_dct;
-+	uint8_t concealment_motion_vectors;
-+	uint8_t intra_vlc_format;
-+	uint16_t pad;
-+	uint8_t f_code[2][2];
++struct mpeg4_picparm_vp {
++	uint32_t width; // 00 in normal units
++	uint32_t height; // 04 in normal units
++	uint32_t unk08; // stride 1
++	uint32_t unk0c; // stride 2
++	uint32_t ofs[6]; // 10..24 ofs
++	uint32_t bucket_size; // 28
++	uint32_t pad1; // 2c, pad
++	uint32_t pad2; // 30
++	uint32_t inter_ring_data_size; // 34
++
++	uint32_t trd[2]; // 38, 3c
++	uint32_t trb[2]; // 40, 44
++	uint32_t u48; // XXX codec selection? Should test with different values of VdpDecoderProfile
++	uint16_t f_code_fw; // 4c
++	uint16_t f_code_bw; // 4e
++	uint8_t interlaced; // 50
++
++	uint8_t quant_type; // bool, written to 528
++	uint8_t quarter_sample; // bool, written to 548
++	uint8_t short_video_header; // bool, negated written to 528 shifted by 1
++	uint8_t u54; // bool, written to 0x740
++	uint8_t vop_coding_type; // 55
++	uint8_t rounding_control; // 56
++	uint8_t alternate_vertical_scan_flag; // 57 bool
++	uint8_t top_field_first; // bool, written to vuc
++
++	uint8_t pad4[3]; // 59, 5a, 5b, contains garbage on blob
++	uint32_t pad5[0x10]; // 5c...9c non-inclusive, but WHY?
++
++	uint32_t intra[0x10]; // 9c
++	uint32_t non_intra[0x10]; // bc
++	// udc..uff pad?
 +};
 +
-+struct mpeg4_picparm_bsp {
-+	uint16_t width;
-+	uint16_t height;
-+	uint8_t vop_time_increment_size;
-+	uint8_t interlaced;
-+	uint8_t resync_marker_disable;
++// Full version, with data pumped from BSP
++struct vc1_picparm_vp {
++	uint32_t bucket_size; // 00
++	uint32_t pad; // 04
++
++	uint32_t inter_ring_data_size; // 08
++	uint32_t unk0c; // stride 1
++	uint32_t unk10; // stride 2
++	uint32_t ofs[6]; // 14..28 ofs
++
++	uint16_t width; // 2c
++	uint16_t height; // 2e
++
++	uint8_t profile; // 30 0 = simple, 1 = main, 2 = advanced
++	uint8_t loopfilter; // 31 written into vuc
++	uint8_t fastuvmc; // 32, written into vuc
++	uint8_t dquant; // 33
++
++	uint8_t overlap; // 34
++	uint8_t quantizer; // 35
++	uint8_t u36; // 36, bool
++	uint8_t pad2; // 37, to align to 0x38
 +};
 +
-+struct vc1_picparm_bsp {
-+	uint16_t width;
-+	uint16_t height;
-+	uint8_t profile; // 04 0 simple, 1 main, 2 advanced
-+	uint8_t postprocflag; // 05
-+	uint8_t pulldown; // 06
-+	uint8_t interlaced; // 07
-+	uint8_t tfcntrflag; // 08
-+	uint8_t finterpflag; // 09
-+	uint8_t psf; // 0a
-+	uint8_t pad; // 0b
-+	uint8_t multires; // 0c
-+	uint8_t syncmarker; // 0d
-+	uint8_t rangered; // 0e
-+	uint8_t maxbframes; // 0f
-+	uint8_t dquant; // 10
-+	uint8_t panscan_flag; // 11
-+	uint8_t refdist_flag; // 12
-+	uint8_t quantizer; // 13
-+	uint8_t extended_mv; // 14
-+	uint8_t extended_dmv; // 15
-+	uint8_t overlap; // 16
-+	uint8_t vstransform; // 17
++struct h264_picparm_vp { // 700..a00
++	uint16_t width, height;
++	uint32_t stride1, stride2; // 04 08
++	uint32_t ofs[6]; // 0c..24 in-image offset
++
++	uint32_t u24; // nfi ac8 ?
++	uint32_t bucket_size; // 28 bucket size
++	uint32_t inter_ring_data_size; // 2c
++
++	unsigned f0 : 1; // 0 0x01: into 640 shifted by 3, 540 shifted by 5, half size something?
++	unsigned f1 : 1; // 1 0x02: into vuc ofs 56
++	unsigned weighted_pred_flag : 1; // 2 0x04
++	unsigned f3 : 1; // 3 0x08: into vuc ofs 68
++	unsigned is_reference : 1; // 4
++	unsigned interlace : 1; // 5 field_pic_flag
++	unsigned bottom_field_flag : 1; // 6
++	unsigned f7 : 1; // 7 0x80: nfi yet
++
++	signed log2_max_frame_num_minus4 : 4; // 31 0..3
++	unsigned u31_45 : 2; // 31 4..5
++	unsigned pic_order_cnt_type : 2; // 31 6..7
++	signed pic_init_qp_minus26 : 6; // 32 0..5
++	signed chroma_qp_index_offset : 5; // 32 6..10
++	signed second_chroma_qp_index_offset : 5; // 32 11..15
++
++	unsigned weighted_bipred_idc : 2; // 34 0..1
++	unsigned fifo_dec_index : 7; // 34 2..8
++	unsigned tmp_idx : 5; // 34 9..13
++	unsigned frame_number : 16; // 34 14..29
++	unsigned u34_3030 : 1; // 34 30..30 pp.u34[30:30]
++	unsigned u34_3131 : 1; // 34 31..31 pad?
++
++	uint32_t field_order_cnt[2]; // 38, 3c
++
++	struct { // 40
++		// 0x00223102
++		// nfi (needs: top_is_reference, bottom_is_reference, is_long_term, maybe some other state that was saved..
++		unsigned fifo_idx : 7; // 00 0..6
++		unsigned tmp_idx : 5; // 00 7..11
++		unsigned unk12 : 1; // 00 12 not seen yet, but set, maybe top_is_reference
++		unsigned unk13 : 1; // 00 13 not seen yet, but set, maybe bottom_is_reference?
++		unsigned unk14 : 1; // 00 14 skipped?
++		unsigned notseenyet : 1; // 00 15 pad?
++		unsigned unk16 : 1; // 00 16
++		unsigned unk17 : 4; // 00 17..20
++		unsigned unk21 : 4; // 00 21..24
++		unsigned pad : 7; // 00 d25..31
++
++		uint32_t field_order_cnt[2]; // 04,08
++		uint32_t frame_idx; // 0c
++	} refs[0x10];
++
++	uint8_t m4x4[6][16]; // 140
++	uint8_t m8x8[2][64]; // 1a0
++	uint32_t u220; // 220 number of extra reorder_list to append?
++	uint8_t u224[0x20]; // 224..244 reorder_list append ?
++	uint8_t nfi244[0xb0]; // add some pad to make sure nulls are read
 +};
 +
-+struct h264_picparm_bsp {
-+	// 00
-+	uint32_t unk00;
-+	// 04
-+	uint32_t log2_max_frame_num_minus4; // 04 checked
-+	uint32_t pic_order_cnt_type; // 08 checked
-+	uint32_t log2_max_pic_order_cnt_lsb_minus4; // 0c checked
-+	uint32_t delta_pic_order_always_zero_flag; // 10, or unknown
-+
-+	uint32_t frame_mbs_only_flag; // 14, always 1?
-+	uint32_t direct_8x8_inference_flag; // 18, always 1?
-+	uint32_t width_mb; // 1c checked
-+	uint32_t height_mb; // 20 checked
-+	// 24
-+	//struct picparm2
-+		uint32_t entropy_coding_mode_flag; // 00, checked
-+		uint32_t pic_order_present_flag; // 04 checked
-+		uint32_t unk; // 08 seems to be 0?
-+		uint32_t pad1; // 0c seems to be 0?
-+		uint32_t pad2; // 10 always 0 ?
-+		uint32_t num_ref_idx_l0_active_minus1; // 14 always 0?
-+		uint32_t num_ref_idx_l1_active_minus1; // 18 always 0?
-+		uint32_t weighted_pred_flag; // 1c checked
-+		uint32_t weighted_bipred_idc; // 20 checked
-+		uint32_t pic_init_qp_minus26; // 24 checked
-+		uint32_t deblocking_filter_control_present_flag; // 28 always 1?
-+		uint32_t redundant_pic_cnt_present_flag; // 2c always 0?
-+		uint32_t transform_8x8_mode_flag; // 30 checked
-+		uint32_t mb_adaptive_frame_field_flag; // 34 checked-ish
-+		uint8_t field_pic_flag; // 38 checked
-+		uint8_t bottom_field_flag; // 39 checked
-+		uint8_t real_pad[0x1b]; // XX why?
-+};
-+
-+static uint32_t
-+nouveau_vp3_fill_picparm_mpeg12_bsp(struct nouveau_vp3_decoder *dec,
-+                                    struct pipe_mpeg12_picture_desc *desc,
-+                                    char *map)
++static void
++nouveau_vp3_handle_references(struct nouveau_vp3_decoder *dec, struct nouveau_vp3_video_buffer *refs[16], unsigned seq, struct nouveau_vp3_video_buffer *target)
 +{
-+   struct mpeg12_picparm_bsp *pic_bsp = (struct mpeg12_picparm_bsp *)map;
-+   int i;
-+   pic_bsp->width = dec->base.width;
-+   pic_bsp->height = dec->base.height;
-+   pic_bsp->picture_structure = desc->picture_structure;
-+   pic_bsp->picture_coding_type = desc->picture_coding_type;
-+   pic_bsp->intra_dc_precision = desc->intra_dc_precision;
-+   pic_bsp->frame_pred_frame_dct = desc->frame_pred_frame_dct;
-+   pic_bsp->concealment_motion_vectors = desc->concealment_motion_vectors;
-+   pic_bsp->intra_vlc_format = desc->intra_vlc_format;
-+   pic_bsp->pad = 0;
-+   for (i = 0; i < 4; ++i)
-+      pic_bsp->f_code[i/2][i%2] = desc->f_code[i/2][i%2] + 1; // FU
++   unsigned h264 = u_reduce_video_profile(dec->base.profile) == PIPE_VIDEO_CODEC_MPEG4_AVC;
++   unsigned i, idx, empty_spot = dec->base.max_references + 1;
++   for (i = 0; i < dec->base.max_references; ++i) {
++      if (!refs[i])
++         continue;
 +
-+   return (desc->num_slices << 4) | (dec->base.profile != PIPE_VIDEO_PROFILE_MPEG1);
++      idx = refs[i]->valid_ref;
++      //debug_printf("ref[%i] %p in slot %i\n", i, refs[i], idx);
++      assert(target != refs[i] ||
++             (h264 && empty_spot &&
++              (!dec->refs[idx].decoded_bottom || !dec->refs[idx].decoded_top)));
++      if (target == refs[i])
++         empty_spot = 0;
++
++      if (dec->refs[idx].vidbuf != refs[i]) {
++         debug_printf("%p is not a real ref\n", refs[i]);
++         // FIXME: Maybe do m2mf copy here if a application really depends on it?
++         continue;
++      }
++
++      assert(dec->refs[idx].vidbuf == refs[i]);
++      dec->refs[idx].last_used = seq;
++   }
++   if (!empty_spot)
++      return;
++
++   /* Try to find a real empty spot first, there should be one..
++    */
++   for (i = 0; i < dec->base.max_references + 1; ++i) {
++      if (dec->refs[i].last_used < seq) {
++         if (!dec->refs[i].vidbuf) {
++            empty_spot = i;
++            break;
++         }
++         if (empty_spot < dec->base.max_references+1 &&
++             dec->refs[empty_spot].last_used < dec->refs[i].last_used)
++            continue;
++         empty_spot = i;
++      }
++   }
++   assert(empty_spot < dec->base.max_references+1);
++   dec->refs[empty_spot].last_used = seq;
++//   debug_printf("Kicked %p to add %p to slot %i\n", dec->refs[empty_spot].vidbuf, target, i);
++   dec->refs[empty_spot].vidbuf = target;
++   dec->refs[empty_spot].decoded_bottom = dec->refs[empty_spot].decoded_top = 0;
++   target->valid_ref = empty_spot;
 +}
 +
 +static uint32_t
-+nouveau_vp3_fill_picparm_mpeg4_bsp(struct nouveau_vp3_decoder *dec,
-+                                   struct pipe_mpeg4_picture_desc *desc,
++nouveau_vp3_fill_picparm_mpeg12_vp(struct nouveau_vp3_decoder *dec,
++                                   struct pipe_mpeg12_picture_desc *desc,
++                                   struct nouveau_vp3_video_buffer *refs[16],
++                                   unsigned *is_ref,
 +                                   char *map)
 +{
-+   struct mpeg4_picparm_bsp *pic_bsp = (struct mpeg4_picparm_bsp *)map;
-+   uint32_t t, bits = 0;
-+   pic_bsp->width = dec->base.width;
-+   pic_bsp->height = dec->base.height;
-+   assert(desc->vop_time_increment_resolution > 0);
++   struct mpeg12_picparm_vp pic_vp_stub = {}, *pic_vp = &pic_vp_stub;
++   uint32_t i, ret = 0x01010, ring; // !async_shutdown << 16 | watchdog << 12 | irq_record << 4 | unk;
++   assert(!(dec->base.width & 0xf));
++   *is_ref = desc->picture_coding_type <= 2;
 +
-+   t = desc->vop_time_increment_resolution - 1;
-+   while (t) {
-+      bits++;
-+      t /= 2;
-+   }
-+   if (!bits)
-+      bits = 1;
-+   t = desc->vop_time_increment_resolution - 1;
-+   pic_bsp->vop_time_increment_size = bits;
-+   pic_bsp->interlaced = desc->interlaced;
-+   pic_bsp->resync_marker_disable = desc->resync_marker_disable;
-+   return 4;
++   if (dec->base.profile == PIPE_VIDEO_PROFILE_MPEG1)
++      pic_vp->picture_structure = 3;
++   else
++      pic_vp->picture_structure = desc->picture_structure;
++
++   assert(desc->picture_structure != 4);
++   if (desc->picture_structure == 4) // Untested, but should work
++      ret |= 0x100;
++   pic_vp->width = mb(dec->base.width);
++   pic_vp->height = mb(dec->base.height);
++   pic_vp->unk08 = pic_vp->unk04 = (dec->base.width+0xf)&~0xf; // Stride
++
++   nouveau_vp3_ycbcr_offsets(dec, &pic_vp->ofs[1], &pic_vp->ofs[3], &pic_vp->ofs[4]);
++   pic_vp->ofs[5] = pic_vp->ofs[3];
++   pic_vp->ofs[0] = pic_vp->ofs[2] = 0;
++   nouveau_vp3_inter_sizes(dec, 1, &ring, &pic_vp->bucket_size, &pic_vp->inter_ring_data_size);
++
++   pic_vp->alternate_scan = desc->alternate_scan;
++   pic_vp->pad2[0] = pic_vp->pad2[1] = pic_vp->pad2[2] = 0;
++   pic_vp->unk30 = desc->picture_structure < 3 && (desc->picture_structure == 2 - desc->top_field_first);
++   pic_vp->unk3a = (desc->picture_coding_type == 1);
++   for (i = 0; i < 4; ++i)
++      pic_vp->f_code[i] = desc->f_code[i/2][i%2] + 1; // FU
++   pic_vp->picture_coding_type = desc->picture_coding_type;
++   pic_vp->intra_dc_precision = desc->intra_dc_precision;
++   pic_vp->q_scale_type = desc->q_scale_type;
++   pic_vp->top_field_first = desc->top_field_first;
++   pic_vp->full_pel_forward_vector = desc->full_pel_forward_vector;
++   pic_vp->full_pel_backward_vector = desc->full_pel_backward_vector;
++   memcpy(pic_vp->intra_quantizer_matrix, desc->intra_matrix, 0x40);
++   memcpy(pic_vp->non_intra_quantizer_matrix, desc->non_intra_matrix, 0x40);
++   memcpy(map, pic_vp, sizeof(*pic_vp));
++   refs[0] = (struct nouveau_vp3_video_buffer *)desc->ref[0];
++   refs[!!refs[0]] = (struct nouveau_vp3_video_buffer *)desc->ref[1];
++   return ret | (dec->base.profile != PIPE_VIDEO_PROFILE_MPEG1);
 +}
 +
 +static uint32_t
-+nouveau_vp3_fill_picparm_vc1_bsp(struct nouveau_vp3_decoder *dec,
-+                                 struct pipe_vc1_picture_desc *d,
-+                                 char *map)
-+{
-+   struct vc1_picparm_bsp *vc = (struct vc1_picparm_bsp *)map;
-+   uint32_t caps = (d->slice_count << 4)&0xfff0;
-+   vc->width = dec->base.width;
-+   vc->height = dec->base.height;
-+   vc->profile = dec->base.profile - PIPE_VIDEO_PROFILE_VC1_SIMPLE; // 04
-+   vc->postprocflag = d->postprocflag;
-+   vc->pulldown = d->pulldown;
-+   vc->interlaced = d->interlace;
-+   vc->tfcntrflag = d->tfcntrflag; // 08
-+   vc->finterpflag = d->finterpflag;
-+   vc->psf = d->psf;
-+   vc->pad = 0;
-+   vc->multires = d->multires; // 0c
-+   vc->syncmarker = d->syncmarker;
-+   vc->rangered = d->rangered;
-+   vc->maxbframes = d->maxbframes;
-+   vc->dquant = d->dquant; // 10
-+   vc->panscan_flag = d->panscan_flag;
-+   vc->refdist_flag = d->refdist_flag;
-+   vc->quantizer = d->quantizer;
-+   vc->extended_mv = d->extended_mv; // 14
-+   vc->extended_dmv = d->extended_dmv;
-+   vc->overlap = d->overlap;
-+   vc->vstransform = d->vstransform;
-+   return caps | 2;
-+}
-+
-+static uint32_t
-+nouveau_vp3_fill_picparm_h264_bsp(struct nouveau_vp3_decoder *dec,
-+                                  struct pipe_h264_picture_desc *d,
++nouveau_vp3_fill_picparm_mpeg4_vp(struct nouveau_vp3_decoder *dec,
++                                  struct pipe_mpeg4_picture_desc *desc,
++                                  struct nouveau_vp3_video_buffer *refs[16],
++                                  unsigned *is_ref,
 +                                  char *map)
 +{
-+   struct h264_picparm_bsp stub_h = {}, *h = &stub_h;
-+   uint32_t caps = (d->slice_count << 4)&0xfff0;
++   struct mpeg4_picparm_vp pic_vp_stub = {}, *pic_vp = &pic_vp_stub;
++   uint32_t ring, ret = 0x01014; // !async_shutdown << 16 | watchdog << 12 | irq_record << 4 | unk;
++   assert(!(dec->base.width & 0xf));
++   *is_ref = desc->vop_coding_type <= 1;
 +
-+   assert(!(d->slice_count & ~0xfff));
-+   if (d->slice_count & 0x1000)
-+      caps |= 1 << 20;
++   pic_vp->width = dec->base.width;
++   pic_vp->height = mb(dec->base.height)<<4;
++   pic_vp->unk0c = pic_vp->unk08 = mb(dec->base.width)<<4; // Stride
 +
-+   assert(offsetof(struct h264_picparm_bsp, bottom_field_flag) == (0x39 + 0x24));
-+   h->unk00 = 1;
-+   h->pad1 = h->pad2 = 0;
-+   h->unk = 0;
-+   h->log2_max_frame_num_minus4 = d->log2_max_frame_num_minus4;
-+   h->frame_mbs_only_flag = d->frame_mbs_only_flag;
-+   h->direct_8x8_inference_flag = d->direct_8x8_inference_flag;
-+   h->width_mb = mb(dec->base.width);
-+   h->height_mb = mb(dec->base.height);
-+   h->entropy_coding_mode_flag = d->entropy_coding_mode_flag;
-+   h->pic_order_present_flag = d->pic_order_present_flag;
-+   h->pic_order_cnt_type = d->pic_order_cnt_type;
-+   h->log2_max_pic_order_cnt_lsb_minus4 = d->log2_max_pic_order_cnt_lsb_minus4;
-+   h->delta_pic_order_always_zero_flag = d->delta_pic_order_always_zero_flag;
-+   h->num_ref_idx_l0_active_minus1 = d->num_ref_idx_l0_active_minus1;
-+   h->num_ref_idx_l1_active_minus1 = d->num_ref_idx_l1_active_minus1;
-+   h->weighted_pred_flag = d->weighted_pred_flag;
-+   h->weighted_bipred_idc = d->weighted_bipred_idc;
-+   h->pic_init_qp_minus26 = d->pic_init_qp_minus26;
-+   h->deblocking_filter_control_present_flag = d->deblocking_filter_control_present_flag;
-+   h->redundant_pic_cnt_present_flag = d->redundant_pic_cnt_present_flag;
-+   h->transform_8x8_mode_flag = d->transform_8x8_mode_flag;
-+   h->mb_adaptive_frame_field_flag = d->mb_adaptive_frame_field_flag;
-+   h->field_pic_flag = d->field_pic_flag;
-+   h->bottom_field_flag = d->bottom_field_flag;
-+   memset(h->real_pad, 0, sizeof(h->real_pad));
-+   *(struct h264_picparm_bsp *)map = *h;
-+   return caps | 3;
++   nouveau_vp3_ycbcr_offsets(dec, &pic_vp->ofs[1], &pic_vp->ofs[3], &pic_vp->ofs[4]);
++   pic_vp->ofs[5] = pic_vp->ofs[3];
++   pic_vp->ofs[0] = pic_vp->ofs[2] = 0;
++   pic_vp->pad1 = pic_vp->pad2 = 0;
++   nouveau_vp3_inter_sizes(dec, 1, &ring, &pic_vp->bucket_size, &pic_vp->inter_ring_data_size);
++
++   pic_vp->trd[0] = desc->trd[0];
++   pic_vp->trd[1] = desc->trd[1];
++   pic_vp->trb[0] = desc->trb[0];
++   pic_vp->trb[1] = desc->trb[1];
++   pic_vp->u48 = 0; // Codec?
++   pic_vp->pad1 = pic_vp->pad2 = 0;
++   pic_vp->f_code_fw = desc->vop_fcode_forward;
++   pic_vp->f_code_bw = desc->vop_fcode_backward;
++   pic_vp->interlaced = desc->interlaced;
++   pic_vp->quant_type = desc->quant_type;
++   pic_vp->quarter_sample = desc->quarter_sample;
++   pic_vp->short_video_header = desc->short_video_header;
++   pic_vp->u54 = 0;
++   pic_vp->vop_coding_type = desc->vop_coding_type;
++   pic_vp->rounding_control = desc->rounding_control;
++   pic_vp->alternate_vertical_scan_flag = desc->alternate_vertical_scan_flag;
++   pic_vp->top_field_first = desc->top_field_first;
++
++   memcpy(pic_vp->intra, desc->intra_matrix, 0x40);
++   memcpy(pic_vp->non_intra, desc->non_intra_matrix, 0x40);
++   memcpy(map, pic_vp, sizeof(*pic_vp));
++   refs[0] = (struct nouveau_vp3_video_buffer *)desc->ref[0];
++   refs[!!refs[0]] = (struct nouveau_vp3_video_buffer *)desc->ref[1];
++   return ret;
 +}
 +
-+uint32_t
-+nouveau_vp3_bsp(struct nouveau_vp3_decoder *dec,  union pipe_desc desc,
-+                struct nouveau_vp3_video_buffer *target,
-+                unsigned comm_seq, unsigned num_buffers,
-+                const void *const *data, const unsigned *num_bytes)
++static uint32_t
++nouveau_vp3_fill_picparm_h264_vp(struct nouveau_vp3_decoder *dec,
++                                 const struct pipe_h264_picture_desc *d,
++                                 struct nouveau_vp3_video_buffer *refs[16],
++                                 unsigned *is_ref,
++                                 char *map)
 +{
-+   enum pipe_video_codec codec = u_reduce_video_profile(dec->base.profile);
-+   struct nouveau_bo *bsp_bo = dec->bsp_bo[comm_seq % NOUVEAU_VP3_VIDEO_QDEPTH];
-+   char *bsp;
-+   uint32_t endmarker, caps;
-+   struct strparm_bsp *str_bsp;
-+   int i;
++   struct h264_picparm_vp stub_h = {}, *h = &stub_h;
++   unsigned ring, i, j = 0;
++   assert(offsetof(struct h264_picparm_vp, u224) == 0x224);
++   *is_ref = d->is_reference;
++   dec->last_frame_num = d->frame_num;
 +
-+   bsp = bsp_bo->map;
-+   /*
-+    * 0x000..0x100: picparm_bsp
-+    * 0x200..0x500: picparm_vp
-+    * 0x500..0x700: comm
-+    * 0x700..onward: raw bitstream
-+    */
++   h->width = mb(dec->base.width);
++   h->height = mb(dec->base.height);
++   h->stride1 = h->stride2 = mb(dec->base.width)*16;
++   nouveau_vp3_ycbcr_offsets(dec, &h->ofs[1], &h->ofs[3], &h->ofs[4]);
++   h->ofs[5] = h->ofs[3];
++   h->ofs[0] = h->ofs[2] = 0;
++   h->u24 = dec->tmp_stride >> 8;
++   assert(h->u24);
++   nouveau_vp3_inter_sizes(dec, 1, &ring, &h->bucket_size, &h->inter_ring_data_size);
++
++   h->u220 = 0;
++   h->f0 = d->mb_adaptive_frame_field_flag;
++   h->f1 = d->direct_8x8_inference_flag;
++   h->weighted_pred_flag = d->weighted_pred_flag;
++   h->f3 = d->constrained_intra_pred_flag;
++   h->is_reference = d->is_reference;
++   h->interlace = d->field_pic_flag;
++   h->bottom_field_flag = d->bottom_field_flag;
++   h->f7 = 0; // TODO: figure out when set..
++   h->log2_max_frame_num_minus4 = d->log2_max_frame_num_minus4;
++   h->u31_45 = 1;
++
++   h->pic_order_cnt_type = d->pic_order_cnt_type;
++   h->pic_init_qp_minus26 = d->pic_init_qp_minus26;
++   h->chroma_qp_index_offset = d->chroma_qp_index_offset;
++   h->second_chroma_qp_index_offset = d->second_chroma_qp_index_offset;
++   h->weighted_bipred_idc = d->weighted_bipred_idc;
++   h->tmp_idx = 0; // set in h264_vp_refs below
++   h->fifo_dec_index = 0; // always set to 0 to be fifo compatible with other codecs
++   h->frame_number = d->frame_num;
++   h->u34_3030 = h->u34_3131 = 0;
++   h->field_order_cnt[0] = d->field_order_cnt[0];
++   h->field_order_cnt[1] = d->field_order_cnt[1];
++   memset(h->refs, 0, sizeof(h->refs));
++   memcpy(h->m4x4, d->scaling_lists_4x4, sizeof(h->m4x4) + sizeof(h->m8x8));
++   h->u220 = 0;
++   for (i = 0; i < d->num_ref_frames; ++i) {
++      if (!d->ref[i])
++         break;
++      refs[j] = (struct nouveau_vp3_video_buffer *)d->ref[i];
++      h->refs[j].fifo_idx = j + 1;
++      h->refs[j].tmp_idx = refs[j]->valid_ref;
++      h->refs[j].field_order_cnt[0] = d->field_order_cnt_list[i][0];
++      h->refs[j].field_order_cnt[1] = d->field_order_cnt_list[i][1];
++      h->refs[j].frame_idx = d->frame_num_list[i];
++      if (!dec->refs[refs[j]->valid_ref].field_pic_flag) {
++         h->refs[j].unk12 = d->top_is_reference[i];
++         h->refs[j].unk13 = d->bottom_is_reference[i];
++      }
++      h->refs[j].unk14 = 0;
++      h->refs[j].notseenyet = 0;
++      h->refs[j].unk16 = dec->refs[refs[j]->valid_ref].field_pic_flag;
++      h->refs[j].unk17 = dec->refs[refs[j]->valid_ref].decoded_top &&
++                         d->top_is_reference[i];
++      h->refs[j].unk21 = dec->refs[refs[j]->valid_ref].decoded_bottom &&
++                         d->bottom_is_reference[i];
++      h->refs[j].pad = 0;
++      assert(!d->is_long_term[i]);
++      j++;
++   }
++   for (; i < 16; ++i)
++      assert(!d->ref[i]);
++   assert(d->num_ref_frames <= dec->base.max_references);
++
++   for (; i < d->num_ref_frames; ++i)
++      h->refs[j].unk16 = d->field_pic_flag;
++   *(struct h264_picparm_vp *)map = *h;
++
++   return 0x1113;
++}
++
++static void
++nouveau_vp3_fill_picparm_h264_vp_refs(struct nouveau_vp3_decoder *dec,
++                                      struct pipe_h264_picture_desc *d,
++                                      struct nouveau_vp3_video_buffer *refs[16],
++                                      struct nouveau_vp3_video_buffer *target,
++                                      char *map)
++{
++   struct h264_picparm_vp *h = (struct h264_picparm_vp *)map;
++   assert(dec->refs[target->valid_ref].vidbuf == target);
++//    debug_printf("Target: %p\n", target);
++
++   h->tmp_idx = target->valid_ref;
++   dec->refs[target->valid_ref].field_pic_flag = d->field_pic_flag;
++   if (!d->field_pic_flag || d->bottom_field_flag)
++      dec->refs[target->valid_ref].decoded_bottom = 1;
++   if (!d->field_pic_flag || !d->bottom_field_flag)
++      dec->refs[target->valid_ref].decoded_top = 1;
++}
++
++static uint32_t
++nouveau_vp3_fill_picparm_vc1_vp(struct nouveau_vp3_decoder *dec,
++                                struct pipe_vc1_picture_desc *d,
++                                struct nouveau_vp3_video_buffer *refs[16],
++                                unsigned *is_ref,
++                                char *map)
++{
++   struct vc1_picparm_vp *vc = (struct vc1_picparm_vp *)map;
++   unsigned ring;
++   assert(dec->base.profile != PIPE_VIDEO_PROFILE_VC1_SIMPLE);
++   *is_ref = d->picture_type <= 1;
++
++   nouveau_vp3_ycbcr_offsets(dec, &vc->ofs[1], &vc->ofs[3], &vc->ofs[4]);
++   vc->ofs[5] = vc->ofs[3];
++   vc->ofs[0] = vc->ofs[2] = 0;
++   vc->width = dec->base.width;
++   vc->height = mb(dec->base.height)<<4;
++   vc->unk0c = vc->unk10 = mb(dec->base.width)<<4; // Stride
++   vc->pad = vc->pad2 = 0;
++   nouveau_vp3_inter_sizes(dec, 1, &ring, &vc->bucket_size, &vc->inter_ring_data_size);
++   vc->profile = dec->base.profile - PIPE_VIDEO_PROFILE_VC1_SIMPLE;
++   vc->loopfilter = d->loopfilter;
++   vc->fastuvmc = d->fastuvmc;
++   vc->dquant = d->dquant;
++   vc->overlap = d->overlap;
++   vc->quantizer = d->quantizer;
++   vc->u36 = 0; // ? No idea what this one is..
++   refs[0] = (struct nouveau_vp3_video_buffer *)d->ref[0];
++   refs[!!refs[0]] = (struct nouveau_vp3_video_buffer *)d->ref[1];
++   return 0x12;
++}
++
++void nouveau_vp3_vp_caps(struct nouveau_vp3_decoder *dec, union pipe_desc desc,
++                         struct nouveau_vp3_video_buffer *target, unsigned comm_seq,
++                         unsigned *caps, unsigned *is_ref,
++                         struct nouveau_vp3_video_buffer *refs[16])
++{
++   struct nouveau_bo *bsp_bo = dec->bsp_bo[comm_seq % NOUVEAU_VP3_VIDEO_QDEPTH];
++   enum pipe_video_codec codec = u_reduce_video_profile(dec->base.profile);
++   char *vp = bsp_bo->map + VP_OFFSET;
 +
 +   switch (codec){
 +   case PIPE_VIDEO_CODEC_MPEG12:
-+      endmarker = 0xb7010000;
-+      caps = nouveau_vp3_fill_picparm_mpeg12_bsp(dec, desc.mpeg12, bsp);
-+      break;
++      *caps = nouveau_vp3_fill_picparm_mpeg12_vp(dec, desc.mpeg12, refs, is_ref, vp);
++      nouveau_vp3_handle_references(dec, refs, dec->fence_seq, target);
++      return;
 +   case PIPE_VIDEO_CODEC_MPEG4:
-+      endmarker = 0xb1010000;
-+      caps = nouveau_vp3_fill_picparm_mpeg4_bsp(dec, desc.mpeg4, bsp);
-+      break;
++      *caps = nouveau_vp3_fill_picparm_mpeg4_vp(dec, desc.mpeg4, refs, is_ref, vp);
++      nouveau_vp3_handle_references(dec, refs, dec->fence_seq, target);
++      return;
 +   case PIPE_VIDEO_CODEC_VC1: {
-+      endmarker = 0x0a010000;
-+      caps = nouveau_vp3_fill_picparm_vc1_bsp(dec, desc.vc1, bsp);
-+      break;
++      *caps = nouveau_vp3_fill_picparm_vc1_vp(dec, desc.vc1, refs, is_ref, vp);
++      nouveau_vp3_handle_references(dec, refs, dec->fence_seq, target);
++      return;
 +   }
 +   case PIPE_VIDEO_CODEC_MPEG4_AVC: {
-+      endmarker = 0x0b010000;
-+      caps = nouveau_vp3_fill_picparm_h264_bsp(dec, desc.h264, bsp);
-+      break;
++      *caps = nouveau_vp3_fill_picparm_h264_vp(dec, desc.h264, refs, is_ref, vp);
++      nouveau_vp3_handle_references(dec, refs, dec->fence_seq, target);
++      nouveau_vp3_fill_picparm_h264_vp_refs(dec, desc.h264, refs, target, vp);
++      return;
 +   }
-+   default: assert(0); return -1;
++   default: assert(0); return;
 +   }
-+
-+   caps |= 0 << 16; // reset struct comm if flag is set
-+   caps |= 1 << 17; // enable watchdog
-+   caps |= 0 << 18; // do not report error to VP, so it can continue decoding what we have
-+   caps |= 0 << 19; // if enabled, use crypto crap?
-+   bsp += 0x100;
-+
-+   str_bsp = (struct strparm_bsp *)bsp;
-+   memset(str_bsp, 0, 0x80);
-+   str_bsp->w0[0] = 16;
-+   str_bsp->w1[0] = 0x1;
-+   bsp += 0x100;
-+   /* Reserved for picparm_vp */
-+   bsp += 0x300;
-+   /* Reserved for comm */
-+#if !NOUVEAU_VP3_DEBUG_FENCE
-+   memset(bsp, 0, 0x200);
-+#endif
-+   bsp += 0x200;
-+   for (i = 0; i < num_buffers; ++i) {
-+      memcpy(bsp, data[i], num_bytes[i]);
-+      bsp += num_bytes[i];
-+      str_bsp->w0[0] += num_bytes[i];
-+   }
-+
-+   /* Append end sequence */
-+   *(uint32_t *)bsp = endmarker;
-+   bsp += 4;
-+   *(uint32_t *)bsp = 0x00000000;
-+   bsp += 4;
-+   *(uint32_t *)bsp = endmarker;
-+   bsp += 4;
-+   *(uint32_t *)bsp = 0x00000000;
-+
-+   return caps;
 +}
+diff --git a/src/gallium/drivers/nvc0/nvc0_video.h b/src/gallium/drivers/nvc0/nvc0_video.h
+index 1ceb6eb..5cd79f6 100644
+--- a/src/gallium/drivers/nvc0/nvc0_video.h
++++ b/src/gallium/drivers/nvc0/nvc0_video.h
+@@ -37,13 +37,6 @@ nvc0_decoder_bsp(struct nouveau_vp3_decoder *dec, union pipe_desc desc,
+                  unsigned *vp_caps, unsigned *is_ref,
+                  struct nouveau_vp3_video_buffer *refs[16]);
+ 
+-extern void nvc0_decoder_vp_caps(struct nouveau_vp3_decoder *dec,
+-                                 union pipe_desc desc,
+-                                 struct nouveau_vp3_video_buffer *target,
+-                                 unsigned comm_seq,
+-                                 unsigned *caps, unsigned *is_ref,
+-                                 struct nouveau_vp3_video_buffer *refs[16]);
+-
+ extern void
+ nvc0_decoder_vp(struct nouveau_vp3_decoder *dec, union pipe_desc desc,
+                 struct nouveau_vp3_video_buffer *target, unsigned comm_seq,
 diff --git a/src/gallium/drivers/nvc0/nvc0_video_bsp.c b/src/gallium/drivers/nvc0/nvc0_video_bsp.c
-index c632a5e..06c85e6 100644
+index 06c85e6..2ce5519 100644
 --- a/src/gallium/drivers/nvc0/nvc0_video_bsp.c
 +++ b/src/gallium/drivers/nvc0/nvc0_video_bsp.c
-@@ -22,214 +22,6 @@
+@@ -74,7 +74,7 @@ nvc0_decoder_bsp(struct nouveau_vp3_decoder *dec, union pipe_desc desc,
+    caps = nouveau_vp3_bsp(dec, desc, target, comm_seq,
+                           num_buffers, data, num_bytes);
  
- #include "nvc0_video.h"
- 
--struct strparm_bsp {
--	uint32_t w0[4]; // bits 0-23 length, bits 24-31 addr_hi
--	uint32_t w1[4]; // bit 8-24 addr_lo
--	uint32_t unk20; // should be idx * 0x8000000, bitstream offset
--	uint32_t do_crypto_crap; // set to 0
--};
--
--struct mpeg12_picparm_bsp {
--	uint16_t width;
--	uint16_t height;
--	uint8_t picture_structure;
--	uint8_t picture_coding_type;
--	uint8_t intra_dc_precision;
--	uint8_t frame_pred_frame_dct;
--	uint8_t concealment_motion_vectors;
--	uint8_t intra_vlc_format;
--	uint16_t pad;
--	uint8_t f_code[2][2];
--};
--
--struct mpeg4_picparm_bsp {
--	uint16_t width;
--	uint16_t height;
--	uint8_t vop_time_increment_size;
--	uint8_t interlaced;
--	uint8_t resync_marker_disable;
--};
--
--struct vc1_picparm_bsp {
--	uint16_t width;
--	uint16_t height;
--	uint8_t profile; // 04 0 simple, 1 main, 2 advanced
--	uint8_t postprocflag; // 05
--	uint8_t pulldown; // 06
--	uint8_t interlaced; // 07
--	uint8_t tfcntrflag; // 08
--	uint8_t finterpflag; // 09
--	uint8_t psf; // 0a
--	uint8_t pad; // 0b
--	uint8_t multires; // 0c
--	uint8_t syncmarker; // 0d
--	uint8_t rangered; // 0e
--	uint8_t maxbframes; // 0f
--	uint8_t dquant; // 10
--	uint8_t panscan_flag; // 11
--	uint8_t refdist_flag; // 12
--	uint8_t quantizer; // 13
--	uint8_t extended_mv; // 14
--	uint8_t extended_dmv; // 15
--	uint8_t overlap; // 16
--	uint8_t vstransform; // 17
--};
--
--struct h264_picparm_bsp {
--	// 00
--	uint32_t unk00;
--	// 04
--	uint32_t log2_max_frame_num_minus4; // 04 checked
--	uint32_t pic_order_cnt_type; // 08 checked
--	uint32_t log2_max_pic_order_cnt_lsb_minus4; // 0c checked
--	uint32_t delta_pic_order_always_zero_flag; // 10, or unknown
--
--	uint32_t frame_mbs_only_flag; // 14, always 1?
--	uint32_t direct_8x8_inference_flag; // 18, always 1?
--	uint32_t width_mb; // 1c checked
--	uint32_t height_mb; // 20 checked
--	// 24
--	//struct picparm2
--		uint32_t entropy_coding_mode_flag; // 00, checked
--		uint32_t pic_order_present_flag; // 04 checked
--		uint32_t unk; // 08 seems to be 0?
--		uint32_t pad1; // 0c seems to be 0?
--		uint32_t pad2; // 10 always 0 ?
--		uint32_t num_ref_idx_l0_active_minus1; // 14 always 0?
--		uint32_t num_ref_idx_l1_active_minus1; // 18 always 0?
--		uint32_t weighted_pred_flag; // 1c checked
--		uint32_t weighted_bipred_idc; // 20 checked
--		uint32_t pic_init_qp_minus26; // 24 checked
--		uint32_t deblocking_filter_control_present_flag; // 28 always 1?
--		uint32_t redundant_pic_cnt_present_flag; // 2c always 0?
--		uint32_t transform_8x8_mode_flag; // 30 checked
--		uint32_t mb_adaptive_frame_field_flag; // 34 checked-ish
--		uint8_t field_pic_flag; // 38 checked
--		uint8_t bottom_field_flag; // 39 checked
--		uint8_t real_pad[0x1b]; // XX why?
--};
--
--static uint32_t
--nvc0_decoder_fill_picparm_mpeg12_bsp(struct nouveau_vp3_decoder *dec,
--                                     struct pipe_mpeg12_picture_desc *desc,
--                                     char *map)
--{
--   struct mpeg12_picparm_bsp *pic_bsp = (struct mpeg12_picparm_bsp *)map;
--   int i;
--   pic_bsp->width = dec->base.width;
--   pic_bsp->height = dec->base.height;
--   pic_bsp->picture_structure = desc->picture_structure;
--   pic_bsp->picture_coding_type = desc->picture_coding_type;
--   pic_bsp->intra_dc_precision = desc->intra_dc_precision;
--   pic_bsp->frame_pred_frame_dct = desc->frame_pred_frame_dct;
--   pic_bsp->concealment_motion_vectors = desc->concealment_motion_vectors;
--   pic_bsp->intra_vlc_format = desc->intra_vlc_format;
--   pic_bsp->pad = 0;
--   for (i = 0; i < 4; ++i)
--      pic_bsp->f_code[i/2][i%2] = desc->f_code[i/2][i%2] + 1; // FU
--
--   return (desc->num_slices << 4) | (dec->base.profile != PIPE_VIDEO_PROFILE_MPEG1);
--}
--
--static uint32_t
--nvc0_decoder_fill_picparm_mpeg4_bsp(struct nouveau_vp3_decoder *dec,
--                                    struct pipe_mpeg4_picture_desc *desc,
--                                    char *map)
--{
--   struct mpeg4_picparm_bsp *pic_bsp = (struct mpeg4_picparm_bsp *)map;
--   uint32_t t, bits = 0;
--   pic_bsp->width = dec->base.width;
--   pic_bsp->height = dec->base.height;
--   assert(desc->vop_time_increment_resolution > 0);
--
--   t = desc->vop_time_increment_resolution - 1;
--   while (t) {
--      bits++;
--      t /= 2;
--   }
--   if (!bits)
--      bits = 1;
--   t = desc->vop_time_increment_resolution - 1;
--   pic_bsp->vop_time_increment_size = bits;
--   pic_bsp->interlaced = desc->interlaced;
--   pic_bsp->resync_marker_disable = desc->resync_marker_disable;
--   return 4;
--}
--
--static uint32_t
--nvc0_decoder_fill_picparm_vc1_bsp(struct nouveau_vp3_decoder *dec,
--                                  struct pipe_vc1_picture_desc *d,
--                                  char *map)
--{
--   struct vc1_picparm_bsp *vc = (struct vc1_picparm_bsp *)map;
--   uint32_t caps = (d->slice_count << 4)&0xfff0;
--   vc->width = dec->base.width;
--   vc->height = dec->base.height;
--   vc->profile = dec->base.profile - PIPE_VIDEO_PROFILE_VC1_SIMPLE; // 04
--   vc->postprocflag = d->postprocflag;
--   vc->pulldown = d->pulldown;
--   vc->interlaced = d->interlace;
--   vc->tfcntrflag = d->tfcntrflag; // 08
--   vc->finterpflag = d->finterpflag;
--   vc->psf = d->psf;
--   vc->pad = 0;
--   vc->multires = d->multires; // 0c
--   vc->syncmarker = d->syncmarker;
--   vc->rangered = d->rangered;
--   vc->maxbframes = d->maxbframes;
--   vc->dquant = d->dquant; // 10
--   vc->panscan_flag = d->panscan_flag;
--   vc->refdist_flag = d->refdist_flag;
--   vc->quantizer = d->quantizer;
--   vc->extended_mv = d->extended_mv; // 14
--   vc->extended_dmv = d->extended_dmv;
--   vc->overlap = d->overlap;
--   vc->vstransform = d->vstransform;
--   return caps | 2;
--}
--
--static uint32_t
--nvc0_decoder_fill_picparm_h264_bsp(struct nouveau_vp3_decoder *dec,
--                                   struct pipe_h264_picture_desc *d,
--                                   char *map)
--{
--   struct h264_picparm_bsp stub_h = {}, *h = &stub_h;
--   uint32_t caps = (d->slice_count << 4)&0xfff0;
--
--   assert(!(d->slice_count & ~0xfff));
--   if (d->slice_count & 0x1000)
--      caps |= 1 << 20;
--
--   assert(offsetof(struct h264_picparm_bsp, bottom_field_flag) == (0x39 + 0x24));
--   h->unk00 = 1;
--   h->pad1 = h->pad2 = 0;
--   h->unk = 0;
--   h->log2_max_frame_num_minus4 = d->log2_max_frame_num_minus4;
--   h->frame_mbs_only_flag = d->frame_mbs_only_flag;
--   h->direct_8x8_inference_flag = d->direct_8x8_inference_flag;
--   h->width_mb = mb(dec->base.width);
--   h->height_mb = mb(dec->base.height);
--   h->entropy_coding_mode_flag = d->entropy_coding_mode_flag;
--   h->pic_order_present_flag = d->pic_order_present_flag;
--   h->pic_order_cnt_type = d->pic_order_cnt_type;
--   h->log2_max_pic_order_cnt_lsb_minus4 = d->log2_max_pic_order_cnt_lsb_minus4;
--   h->delta_pic_order_always_zero_flag = d->delta_pic_order_always_zero_flag;
--   h->num_ref_idx_l0_active_minus1 = d->num_ref_idx_l0_active_minus1;
--   h->num_ref_idx_l1_active_minus1 = d->num_ref_idx_l1_active_minus1;
--   h->weighted_pred_flag = d->weighted_pred_flag;
--   h->weighted_bipred_idc = d->weighted_bipred_idc;
--   h->pic_init_qp_minus26 = d->pic_init_qp_minus26;
--   h->deblocking_filter_control_present_flag = d->deblocking_filter_control_present_flag;
--   h->redundant_pic_cnt_present_flag = d->redundant_pic_cnt_present_flag;
--   h->transform_8x8_mode_flag = d->transform_8x8_mode_flag;
--   h->mb_adaptive_frame_field_flag = d->mb_adaptive_frame_field_flag;
--   h->field_pic_flag = d->field_pic_flag;
--   h->bottom_field_flag = d->bottom_field_flag;
--   memset(h->real_pad, 0, sizeof(h->real_pad));
--   *(struct h264_picparm_bsp *)map = *h;
--   return caps | 3;
--}
--
- #if NOUVEAU_VP3_DEBUG_FENCE
- static void dump_comm_bsp(struct comm *comm)
- {
-@@ -249,12 +41,10 @@ nvc0_decoder_bsp(struct nouveau_vp3_decoder *dec, union pipe_desc desc,
- {
-    struct nouveau_pushbuf *push = dec->pushbuf[0];
-    enum pipe_video_codec codec = u_reduce_video_profile(dec->base.profile);
--   char *bsp;
-    uint32_t bsp_addr, comm_addr, inter_addr;
-    uint32_t slice_size, bucket_size, ring_size;
--   uint32_t endmarker, caps;
--   struct strparm_bsp *str_bsp;
--   int ret, i;
-+   uint32_t caps;
-+   int ret;
-    struct nouveau_bo *bsp_bo = dec->bsp_bo[comm_seq % NOUVEAU_VP3_VIDEO_QDEPTH];
-    struct nouveau_bo *inter_bo = dec->inter_bo[comm_seq & 1];
-    unsigned fence_extra = 0;
-@@ -280,74 +70,15 @@ nvc0_decoder_bsp(struct nouveau_vp3_decoder *dec, union pipe_desc desc,
-       debug_printf("map failed: %i %s\n", ret, strerror(-ret));
-       return -1;
-    }
--   bsp = bsp_bo->map;
--   /*
--    * 0x000..0x100: picparm_bsp
--    * 0x200..0x500: picparm_vp
--    * 0x500..0x700: comm
--    * 0x700..onward: raw bitstream
--    */
- 
--   switch (codec){
--   case PIPE_VIDEO_CODEC_MPEG12:
--      endmarker = 0xb7010000;
--      caps = nvc0_decoder_fill_picparm_mpeg12_bsp(dec, desc.mpeg12, bsp);
--      break;
--   case PIPE_VIDEO_CODEC_MPEG4:
--      endmarker = 0xb1010000;
--      caps = nvc0_decoder_fill_picparm_mpeg4_bsp(dec, desc.mpeg4, bsp);
--      break;
--   case PIPE_VIDEO_CODEC_VC1: {
--      endmarker = 0x0a010000;
--      caps = nvc0_decoder_fill_picparm_vc1_bsp(dec, desc.vc1, bsp);
--      break;
--   }
--   case PIPE_VIDEO_CODEC_MPEG4_AVC: {
--      endmarker = 0x0b010000;
--      caps = nvc0_decoder_fill_picparm_h264_bsp(dec, desc.h264, bsp);
--      break;
--   }
--   default: assert(0); return -1;
--   }
-+   caps = nouveau_vp3_bsp(dec, desc, target, comm_seq,
-+                          num_buffers, data, num_bytes);
- 
-    nvc0_decoder_vp_caps(dec, desc, target, comm_seq, vp_caps, is_ref, refs);
+-   nvc0_decoder_vp_caps(dec, desc, target, comm_seq, vp_caps, is_ref, refs);
++   nouveau_vp3_vp_caps(dec, desc, target, comm_seq, vp_caps, is_ref, refs);
  
     nouveau_pushbuf_space(push, 6 + (codec == PIPE_VIDEO_CODEC_MPEG4_AVC ? 9 : 7) + fence_extra + 2, num_refs, 0);
     nouveau_pushbuf_refn(push, bo_refs, num_refs);
+diff --git a/src/gallium/drivers/nvc0/nvc0_video_vp.c b/src/gallium/drivers/nvc0/nvc0_video_vp.c
+index e3c00b9..eb4f1a9 100644
+--- a/src/gallium/drivers/nvc0/nvc0_video_vp.c
++++ b/src/gallium/drivers/nvc0/nvc0_video_vp.c
+@@ -23,443 +23,6 @@
+ #include "nvc0_video.h"
+ #include <sys/mman.h>
  
--   caps |= 0 << 16; // reset struct comm if flag is set
--   caps |= 1 << 17; // enable watchdog
--   caps |= 0 << 18; // do not report error to VP, so it can continue decoding what we have
--   caps |= 0 << 19; // if enabled, use crypto crap?
--   bsp += 0x100;
+-struct mpeg12_picparm_vp {
+-	uint16_t width; // 00 in mb units
+-	uint16_t height; // 02 in mb units
 -
--   str_bsp = (struct strparm_bsp *)bsp;
--   memset(str_bsp, 0, 0x80);
--   str_bsp->w0[0] = 16;
--   str_bsp->w1[0] = 0x1;
--   bsp += 0x100;
--   /* Reserved for picparm_vp */
--   bsp += 0x300;
--   /* Reserved for comm */
--#if !NOUVEAU_VP3_DEBUG_FENCE
--   memset(bsp, 0, 0x200);
--#endif
--   bsp += 0x200;
--   for (i = 0; i < num_buffers; ++i) {
--      memcpy(bsp, data[i], num_bytes[i]);
--      bsp += num_bytes[i];
--      str_bsp->w0[0] += num_bytes[i];
+-	uint32_t unk04; // 04 stride for Y?
+-	uint32_t unk08; // 08 stride for CbCr?
+-
+-	uint32_t ofs[6]; // 1c..20 ofs
+-	uint32_t bucket_size; // 24
+-	uint32_t inter_ring_data_size; // 28
+-	uint16_t unk2c; // 2c
+-	uint16_t alternate_scan; // 2e
+-	uint16_t unk30; // 30 not seen set yet
+-	uint16_t picture_structure; // 32
+-	uint16_t pad2[3];
+-	uint16_t unk3a; // 3a set on I frame?
+-
+-	uint32_t f_code[4]; // 3c
+-	uint32_t picture_coding_type; // 4c
+-	uint32_t intra_dc_precision; // 50
+-	uint32_t q_scale_type; // 54
+-	uint32_t top_field_first; // 58
+-	uint32_t full_pel_forward_vector; // 5c
+-	uint32_t full_pel_backward_vector; // 60
+-	uint8_t intra_quantizer_matrix[0x40]; // 64
+-	uint8_t non_intra_quantizer_matrix[0x40]; // a4
+-};
+-
+-struct mpeg4_picparm_vp {
+-	uint32_t width; // 00 in normal units
+-	uint32_t height; // 04 in normal units
+-	uint32_t unk08; // stride 1
+-	uint32_t unk0c; // stride 2
+-	uint32_t ofs[6]; // 10..24 ofs
+-	uint32_t bucket_size; // 28
+-	uint32_t pad1; // 2c, pad
+-	uint32_t pad2; // 30
+-	uint32_t inter_ring_data_size; // 34
+-
+-	uint32_t trd[2]; // 38, 3c
+-	uint32_t trb[2]; // 40, 44
+-	uint32_t u48; // XXX codec selection? Should test with different values of VdpDecoderProfile
+-	uint16_t f_code_fw; // 4c
+-	uint16_t f_code_bw; // 4e
+-	uint8_t interlaced; // 50
+-
+-	uint8_t quant_type; // bool, written to 528
+-	uint8_t quarter_sample; // bool, written to 548
+-	uint8_t short_video_header; // bool, negated written to 528 shifted by 1
+-	uint8_t u54; // bool, written to 0x740
+-	uint8_t vop_coding_type; // 55
+-	uint8_t rounding_control; // 56
+-	uint8_t alternate_vertical_scan_flag; // 57 bool
+-	uint8_t top_field_first; // bool, written to vuc
+-
+-	uint8_t pad4[3]; // 59, 5a, 5b, contains garbage on blob
+-	uint32_t pad5[0x10]; // 5c...9c non-inclusive, but WHY?
+-
+-	uint32_t intra[0x10]; // 9c
+-	uint32_t non_intra[0x10]; // bc
+-	// udc..uff pad?
+-};
+-
+-// Full version, with data pumped from BSP
+-struct vc1_picparm_vp {
+-	uint32_t bucket_size; // 00
+-	uint32_t pad; // 04
+-
+-	uint32_t inter_ring_data_size; // 08
+-	uint32_t unk0c; // stride 1
+-	uint32_t unk10; // stride 2
+-	uint32_t ofs[6]; // 14..28 ofs
+-
+-	uint16_t width; // 2c
+-	uint16_t height; // 2e
+-
+-	uint8_t profile; // 30 0 = simple, 1 = main, 2 = advanced
+-	uint8_t loopfilter; // 31 written into vuc
+-	uint8_t fastuvmc; // 32, written into vuc
+-	uint8_t dquant; // 33
+-
+-	uint8_t overlap; // 34
+-	uint8_t quantizer; // 35
+-	uint8_t u36; // 36, bool
+-	uint8_t pad2; // 37, to align to 0x38
+-};
+-
+-struct h264_picparm_vp { // 700..a00
+-	uint16_t width, height;
+-	uint32_t stride1, stride2; // 04 08
+-	uint32_t ofs[6]; // 0c..24 in-image offset
+-
+-	uint32_t u24; // nfi ac8 ?
+-	uint32_t bucket_size; // 28 bucket size
+-	uint32_t inter_ring_data_size; // 2c
+-
+-	unsigned f0 : 1; // 0 0x01: into 640 shifted by 3, 540 shifted by 5, half size something?
+-	unsigned f1 : 1; // 1 0x02: into vuc ofs 56
+-	unsigned weighted_pred_flag : 1; // 2 0x04
+-	unsigned f3 : 1; // 3 0x08: into vuc ofs 68
+-	unsigned is_reference : 1; // 4
+-	unsigned interlace : 1; // 5 field_pic_flag
+-	unsigned bottom_field_flag : 1; // 6
+-	unsigned f7 : 1; // 7 0x80: nfi yet
+-
+-	signed log2_max_frame_num_minus4 : 4; // 31 0..3
+-	unsigned u31_45 : 2; // 31 4..5
+-	unsigned pic_order_cnt_type : 2; // 31 6..7
+-	signed pic_init_qp_minus26 : 6; // 32 0..5
+-	signed chroma_qp_index_offset : 5; // 32 6..10
+-	signed second_chroma_qp_index_offset : 5; // 32 11..15
+-
+-	unsigned weighted_bipred_idc : 2; // 34 0..1
+-	unsigned fifo_dec_index : 7; // 34 2..8
+-	unsigned tmp_idx : 5; // 34 9..13
+-	unsigned frame_number : 16; // 34 14..29
+-	unsigned u34_3030 : 1; // 34 30..30 pp.u34[30:30]
+-	unsigned u34_3131 : 1; // 34 31..31 pad?
+-
+-	uint32_t field_order_cnt[2]; // 38, 3c
+-
+-	struct { // 40
+-		// 0x00223102
+-		// nfi (needs: top_is_reference, bottom_is_reference, is_long_term, maybe some other state that was saved..
+-		unsigned fifo_idx : 7; // 00 0..6
+-		unsigned tmp_idx : 5; // 00 7..11
+-		unsigned unk12 : 1; // 00 12 not seen yet, but set, maybe top_is_reference
+-		unsigned unk13 : 1; // 00 13 not seen yet, but set, maybe bottom_is_reference?
+-		unsigned unk14 : 1; // 00 14 skipped?
+-		unsigned notseenyet : 1; // 00 15 pad?
+-		unsigned unk16 : 1; // 00 16
+-		unsigned unk17 : 4; // 00 17..20
+-		unsigned unk21 : 4; // 00 21..24
+-		unsigned pad : 7; // 00 d25..31
+-
+-		uint32_t field_order_cnt[2]; // 04,08
+-		uint32_t frame_idx; // 0c
+-	} refs[0x10];
+-
+-	uint8_t m4x4[6][16]; // 140
+-	uint8_t m8x8[2][64]; // 1a0
+-	uint32_t u220; // 220 number of extra reorder_list to append?
+-	uint8_t u224[0x20]; // 224..244 reorder_list append ?
+-	uint8_t nfi244[0xb0]; // add some pad to make sure nulls are read
+-};
+-
+-static void
+-nvc0_decoder_handle_references(struct nouveau_vp3_decoder *dec, struct nouveau_vp3_video_buffer *refs[16], unsigned seq, struct nouveau_vp3_video_buffer *target)
+-{
+-   unsigned h264 = u_reduce_video_profile(dec->base.profile) == PIPE_VIDEO_CODEC_MPEG4_AVC;
+-   unsigned i, idx, empty_spot = dec->base.max_references + 1;
+-   for (i = 0; i < dec->base.max_references; ++i) {
+-      if (!refs[i])
+-         continue;
+-
+-      idx = refs[i]->valid_ref;
+-      //debug_printf("ref[%i] %p in slot %i\n", i, refs[i], idx);
+-      assert(target != refs[i] ||
+-             (h264 && empty_spot &&
+-              (!dec->refs[idx].decoded_bottom || !dec->refs[idx].decoded_top)));
+-      if (target == refs[i])
+-         empty_spot = 0;
+-
+-      if (dec->refs[idx].vidbuf != refs[i]) {
+-         debug_printf("%p is not a real ref\n", refs[i]);
+-         // FIXME: Maybe do m2mf copy here if a application really depends on it?
+-         continue;
+-      }
+-
+-      assert(dec->refs[idx].vidbuf == refs[i]);
+-      dec->refs[idx].last_used = seq;
 -   }
+-   if (!empty_spot)
+-      return;
 -
--   /* Append end sequence */
--   *(uint32_t *)bsp = endmarker;
--   bsp += 4;
--   *(uint32_t *)bsp = 0x00000000;
--   bsp += 4;
--   *(uint32_t *)bsp = endmarker;
--   bsp += 4;
--   *(uint32_t *)bsp = 0x00000000;
+-   /* Try to find a real empty spot first, there should be one..
+-    */
+-   for (i = 0; i < dec->base.max_references + 1; ++i) {
+-      if (dec->refs[i].last_used < seq) {
+-         if (!dec->refs[i].vidbuf) {
+-            empty_spot = i;
+-            break;
+-         }
+-         if (empty_spot < dec->base.max_references+1 &&
+-             dec->refs[empty_spot].last_used < dec->refs[i].last_used)
+-            continue;
+-         empty_spot = i;
+-      }
+-   }
+-   assert(empty_spot < dec->base.max_references+1);
+-   dec->refs[empty_spot].last_used = seq;
+-//   debug_printf("Kicked %p to add %p to slot %i\n", dec->refs[empty_spot].vidbuf, target, i);
+-   dec->refs[empty_spot].vidbuf = target;
+-   dec->refs[empty_spot].decoded_bottom = dec->refs[empty_spot].decoded_top = 0;
+-   target->valid_ref = empty_spot;
+-}
 -
-    bsp_addr = bsp_bo->offset >> 8;
-    inter_addr = inter_bo->offset >> 8;
+-static void
+-nvc0_decoder_kick_ref(struct nouveau_vp3_decoder *dec, struct nouveau_vp3_video_buffer *target)
+-{
+-   dec->refs[target->valid_ref].vidbuf = NULL;
+-   dec->refs[target->valid_ref].last_used = 0;
+-//   debug_printf("Unreffed %p\n", target);
+-}
+-
+-static uint32_t
+-nvc0_decoder_fill_picparm_mpeg12_vp(struct nouveau_vp3_decoder *dec,
+-                                    struct pipe_mpeg12_picture_desc *desc,
+-                                    struct nouveau_vp3_video_buffer *refs[16],
+-                                    unsigned *is_ref,
+-                                    char *map)
+-{
+-   struct mpeg12_picparm_vp pic_vp_stub = {}, *pic_vp = &pic_vp_stub;
+-   uint32_t i, ret = 0x01010, ring; // !async_shutdown << 16 | watchdog << 12 | irq_record << 4 | unk;
+-   assert(!(dec->base.width & 0xf));
+-   *is_ref = desc->picture_coding_type <= 2;
+-
+-   if (dec->base.profile == PIPE_VIDEO_PROFILE_MPEG1)
+-      pic_vp->picture_structure = 3;
+-   else
+-      pic_vp->picture_structure = desc->picture_structure;
+-
+-   assert(desc->picture_structure != 4);
+-   if (desc->picture_structure == 4) // Untested, but should work
+-      ret |= 0x100;
+-   pic_vp->width = mb(dec->base.width);
+-   pic_vp->height = mb(dec->base.height);
+-   pic_vp->unk08 = pic_vp->unk04 = (dec->base.width+0xf)&~0xf; // Stride
+-
+-   nouveau_vp3_ycbcr_offsets(dec, &pic_vp->ofs[1], &pic_vp->ofs[3], &pic_vp->ofs[4]);
+-   pic_vp->ofs[5] = pic_vp->ofs[3];
+-   pic_vp->ofs[0] = pic_vp->ofs[2] = 0;
+-   nouveau_vp3_inter_sizes(dec, 1, &ring, &pic_vp->bucket_size, &pic_vp->inter_ring_data_size);
+-
+-   pic_vp->alternate_scan = desc->alternate_scan;
+-   pic_vp->pad2[0] = pic_vp->pad2[1] = pic_vp->pad2[2] = 0;
+-   pic_vp->unk30 = desc->picture_structure < 3 && (desc->picture_structure == 2 - desc->top_field_first);
+-   pic_vp->unk3a = (desc->picture_coding_type == 1);
+-   for (i = 0; i < 4; ++i)
+-      pic_vp->f_code[i] = desc->f_code[i/2][i%2] + 1; // FU
+-   pic_vp->picture_coding_type = desc->picture_coding_type;
+-   pic_vp->intra_dc_precision = desc->intra_dc_precision;
+-   pic_vp->q_scale_type = desc->q_scale_type;
+-   pic_vp->top_field_first = desc->top_field_first;
+-   pic_vp->full_pel_forward_vector = desc->full_pel_forward_vector;
+-   pic_vp->full_pel_backward_vector = desc->full_pel_backward_vector;
+-   memcpy(pic_vp->intra_quantizer_matrix, desc->intra_matrix, 0x40);
+-   memcpy(pic_vp->non_intra_quantizer_matrix, desc->non_intra_matrix, 0x40);
+-   memcpy(map, pic_vp, sizeof(*pic_vp));
+-   refs[0] = (struct nouveau_vp3_video_buffer *)desc->ref[0];
+-   refs[!!refs[0]] = (struct nouveau_vp3_video_buffer *)desc->ref[1];
+-   return ret | (dec->base.profile != PIPE_VIDEO_PROFILE_MPEG1);
+-}
+-
+-static uint32_t
+-nvc0_decoder_fill_picparm_mpeg4_vp(struct nouveau_vp3_decoder *dec,
+-                                   struct pipe_mpeg4_picture_desc *desc,
+-                                   struct nouveau_vp3_video_buffer *refs[16],
+-                                   unsigned *is_ref,
+-                                   char *map)
+-{
+-   struct mpeg4_picparm_vp pic_vp_stub = {}, *pic_vp = &pic_vp_stub;
+-   uint32_t ring, ret = 0x01014; // !async_shutdown << 16 | watchdog << 12 | irq_record << 4 | unk;
+-   assert(!(dec->base.width & 0xf));
+-   *is_ref = desc->vop_coding_type <= 1;
+-
+-   pic_vp->width = dec->base.width;
+-   pic_vp->height = mb(dec->base.height)<<4;
+-   pic_vp->unk0c = pic_vp->unk08 = mb(dec->base.width)<<4; // Stride
+-
+-   nouveau_vp3_ycbcr_offsets(dec, &pic_vp->ofs[1], &pic_vp->ofs[3], &pic_vp->ofs[4]);
+-   pic_vp->ofs[5] = pic_vp->ofs[3];
+-   pic_vp->ofs[0] = pic_vp->ofs[2] = 0;
+-   pic_vp->pad1 = pic_vp->pad2 = 0;
+-   nouveau_vp3_inter_sizes(dec, 1, &ring, &pic_vp->bucket_size, &pic_vp->inter_ring_data_size);
+-
+-   pic_vp->trd[0] = desc->trd[0];
+-   pic_vp->trd[1] = desc->trd[1];
+-   pic_vp->trb[0] = desc->trb[0];
+-   pic_vp->trb[1] = desc->trb[1];
+-   pic_vp->u48 = 0; // Codec?
+-   pic_vp->pad1 = pic_vp->pad2 = 0;
+-   pic_vp->f_code_fw = desc->vop_fcode_forward;
+-   pic_vp->f_code_bw = desc->vop_fcode_backward;
+-   pic_vp->interlaced = desc->interlaced;
+-   pic_vp->quant_type = desc->quant_type;
+-   pic_vp->quarter_sample = desc->quarter_sample;
+-   pic_vp->short_video_header = desc->short_video_header;
+-   pic_vp->u54 = 0;
+-   pic_vp->vop_coding_type = desc->vop_coding_type;
+-   pic_vp->rounding_control = desc->rounding_control;
+-   pic_vp->alternate_vertical_scan_flag = desc->alternate_vertical_scan_flag;
+-   pic_vp->top_field_first = desc->top_field_first;
+-
+-   memcpy(pic_vp->intra, desc->intra_matrix, 0x40);
+-   memcpy(pic_vp->non_intra, desc->non_intra_matrix, 0x40);
+-   memcpy(map, pic_vp, sizeof(*pic_vp));
+-   refs[0] = (struct nouveau_vp3_video_buffer *)desc->ref[0];
+-   refs[!!refs[0]] = (struct nouveau_vp3_video_buffer *)desc->ref[1];
+-   return ret;
+-}
+-
+-static uint32_t
+-nvc0_decoder_fill_picparm_h264_vp(struct nouveau_vp3_decoder *dec,
+-                                  const struct pipe_h264_picture_desc *d,
+-                                  struct nouveau_vp3_video_buffer *refs[16],
+-                                  unsigned *is_ref,
+-                                  char *map)
+-{
+-   struct h264_picparm_vp stub_h = {}, *h = &stub_h;
+-   unsigned ring, i, j = 0;
+-   assert(offsetof(struct h264_picparm_vp, u224) == 0x224);
+-   *is_ref = d->is_reference;
+-   dec->last_frame_num = d->frame_num;
+-
+-   h->width = mb(dec->base.width);
+-   h->height = mb(dec->base.height);
+-   h->stride1 = h->stride2 = mb(dec->base.width)*16;
+-   nouveau_vp3_ycbcr_offsets(dec, &h->ofs[1], &h->ofs[3], &h->ofs[4]);
+-   h->ofs[5] = h->ofs[3];
+-   h->ofs[0] = h->ofs[2] = 0;
+-   h->u24 = dec->tmp_stride >> 8;
+-   assert(h->u24);
+-   nouveau_vp3_inter_sizes(dec, 1, &ring, &h->bucket_size, &h->inter_ring_data_size);
+-
+-   h->u220 = 0;
+-   h->f0 = d->mb_adaptive_frame_field_flag;
+-   h->f1 = d->direct_8x8_inference_flag;
+-   h->weighted_pred_flag = d->weighted_pred_flag;
+-   h->f3 = d->constrained_intra_pred_flag;
+-   h->is_reference = d->is_reference;
+-   h->interlace = d->field_pic_flag;
+-   h->bottom_field_flag = d->bottom_field_flag;
+-   h->f7 = 0; // TODO: figure out when set..
+-   h->log2_max_frame_num_minus4 = d->log2_max_frame_num_minus4;
+-   h->u31_45 = 1;
+-
+-   h->pic_order_cnt_type = d->pic_order_cnt_type;
+-   h->pic_init_qp_minus26 = d->pic_init_qp_minus26;
+-   h->chroma_qp_index_offset = d->chroma_qp_index_offset;
+-   h->second_chroma_qp_index_offset = d->second_chroma_qp_index_offset;
+-   h->weighted_bipred_idc = d->weighted_bipred_idc;
+-   h->tmp_idx = 0; // set in h264_vp_refs below
+-   h->fifo_dec_index = 0; // always set to 0 to be fifo compatible with other codecs
+-   h->frame_number = d->frame_num;
+-   h->u34_3030 = h->u34_3131 = 0;
+-   h->field_order_cnt[0] = d->field_order_cnt[0];
+-   h->field_order_cnt[1] = d->field_order_cnt[1];
+-   memset(h->refs, 0, sizeof(h->refs));
+-   memcpy(h->m4x4, d->scaling_lists_4x4, sizeof(h->m4x4) + sizeof(h->m8x8));
+-   h->u220 = 0;
+-   for (i = 0; i < d->num_ref_frames; ++i) {
+-      if (!d->ref[i])
+-         break;
+-      refs[j] = (struct nouveau_vp3_video_buffer *)d->ref[i];
+-      h->refs[j].fifo_idx = j + 1;
+-      h->refs[j].tmp_idx = refs[j]->valid_ref;
+-      h->refs[j].field_order_cnt[0] = d->field_order_cnt_list[i][0];
+-      h->refs[j].field_order_cnt[1] = d->field_order_cnt_list[i][1];
+-      h->refs[j].frame_idx = d->frame_num_list[i];
+-      if (!dec->refs[refs[j]->valid_ref].field_pic_flag) {
+-         h->refs[j].unk12 = d->top_is_reference[i];
+-         h->refs[j].unk13 = d->bottom_is_reference[i];
+-      }
+-      h->refs[j].unk14 = 0;
+-      h->refs[j].notseenyet = 0;
+-      h->refs[j].unk16 = dec->refs[refs[j]->valid_ref].field_pic_flag;
+-      h->refs[j].unk17 = dec->refs[refs[j]->valid_ref].decoded_top &&
+-                         d->top_is_reference[i];
+-      h->refs[j].unk21 = dec->refs[refs[j]->valid_ref].decoded_bottom &&
+-                         d->bottom_is_reference[i];
+-      h->refs[j].pad = 0;
+-      assert(!d->is_long_term[i]);
+-      j++;
+-   }
+-   for (; i < 16; ++i)
+-      assert(!d->ref[i]);
+-   assert(d->num_ref_frames <= dec->base.max_references);
+-
+-   for (; i < d->num_ref_frames; ++i)
+-      h->refs[j].unk16 = d->field_pic_flag;
+-   *(struct h264_picparm_vp *)map = *h;
+-
+-   return 0x1113;
+-}
+-
+-static void
+-nvc0_decoder_fill_picparm_h264_vp_refs(struct nouveau_vp3_decoder *dec,
+-                                       struct pipe_h264_picture_desc *d,
+-                                       struct nouveau_vp3_video_buffer *refs[16],
+-                                       struct nouveau_vp3_video_buffer *target,
+-                                       char *map)
+-{
+-   struct h264_picparm_vp *h = (struct h264_picparm_vp *)map;
+-   assert(dec->refs[target->valid_ref].vidbuf == target);
+-//    debug_printf("Target: %p\n", target);
+-
+-   h->tmp_idx = target->valid_ref;
+-   dec->refs[target->valid_ref].field_pic_flag = d->field_pic_flag;
+-   if (!d->field_pic_flag || d->bottom_field_flag)
+-      dec->refs[target->valid_ref].decoded_bottom = 1;
+-   if (!d->field_pic_flag || !d->bottom_field_flag)
+-      dec->refs[target->valid_ref].decoded_top = 1;
+-}
+-
+-static uint32_t
+-nvc0_decoder_fill_picparm_vc1_vp(struct nouveau_vp3_decoder *dec,
+-                                 struct pipe_vc1_picture_desc *d,
+-                                 struct nouveau_vp3_video_buffer *refs[16],
+-                                 unsigned *is_ref,
+-                                 char *map)
+-{
+-   struct vc1_picparm_vp *vc = (struct vc1_picparm_vp *)map;
+-   unsigned ring;
+-   assert(dec->base.profile != PIPE_VIDEO_PROFILE_VC1_SIMPLE);
+-   *is_ref = d->picture_type <= 1;
+-
+-   nouveau_vp3_ycbcr_offsets(dec, &vc->ofs[1], &vc->ofs[3], &vc->ofs[4]);
+-   vc->ofs[5] = vc->ofs[3];
+-   vc->ofs[0] = vc->ofs[2] = 0;
+-   vc->width = dec->base.width;
+-   vc->height = mb(dec->base.height)<<4;
+-   vc->unk0c = vc->unk10 = mb(dec->base.width)<<4; // Stride
+-   vc->pad = vc->pad2 = 0;
+-   nouveau_vp3_inter_sizes(dec, 1, &ring, &vc->bucket_size, &vc->inter_ring_data_size);
+-   vc->profile = dec->base.profile - PIPE_VIDEO_PROFILE_VC1_SIMPLE;
+-   vc->loopfilter = d->loopfilter;
+-   vc->fastuvmc = d->fastuvmc;
+-   vc->dquant = d->dquant;
+-   vc->overlap = d->overlap;
+-   vc->quantizer = d->quantizer;
+-   vc->u36 = 0; // ? No idea what this one is..
+-   refs[0] = (struct nouveau_vp3_video_buffer *)d->ref[0];
+-   refs[!!refs[0]] = (struct nouveau_vp3_video_buffer *)d->ref[1];
+-   return 0x12;
+-}
+-
+ #if NOUVEAU_VP3_DEBUG_FENCE
+ static void dump_comm_vp(struct nouveau_vp3_decoder *dec, struct comm *comm, u32 comm_seq,
+                          struct nouveau_bo *inter_bo, unsigned slice_size)
+@@ -493,37 +56,12 @@ static void dump_comm_vp(struct nouveau_vp3_decoder *dec, struct comm *comm, u32
+ }
+ #endif
  
+-void nvc0_decoder_vp_caps(struct nouveau_vp3_decoder *dec, union pipe_desc desc,
+-                          struct nouveau_vp3_video_buffer *target, unsigned comm_seq,
+-                          unsigned *caps, unsigned *is_ref,
+-                          struct nouveau_vp3_video_buffer *refs[16])
++static void
++nvc0_decoder_kick_ref(struct nouveau_vp3_decoder *dec, struct nouveau_vp3_video_buffer *target)
+ {
+-   struct nouveau_bo *bsp_bo = dec->bsp_bo[comm_seq % NOUVEAU_VP3_VIDEO_QDEPTH];
+-   enum pipe_video_codec codec = u_reduce_video_profile(dec->base.profile);
+-   char *vp = bsp_bo->map + VP_OFFSET;
+-
+-   switch (codec){
+-   case PIPE_VIDEO_CODEC_MPEG12:
+-      *caps = nvc0_decoder_fill_picparm_mpeg12_vp(dec, desc.mpeg12, refs, is_ref, vp);
+-      nvc0_decoder_handle_references(dec, refs, dec->fence_seq, target);
+-      return;
+-   case PIPE_VIDEO_CODEC_MPEG4:
+-      *caps = nvc0_decoder_fill_picparm_mpeg4_vp(dec, desc.mpeg4, refs, is_ref, vp);
+-      nvc0_decoder_handle_references(dec, refs, dec->fence_seq, target);
+-      return;
+-   case PIPE_VIDEO_CODEC_VC1: {
+-      *caps = nvc0_decoder_fill_picparm_vc1_vp(dec, desc.vc1, refs, is_ref, vp);
+-      nvc0_decoder_handle_references(dec, refs, dec->fence_seq, target);
+-      return;
+-   }
+-   case PIPE_VIDEO_CODEC_MPEG4_AVC: {
+-      *caps = nvc0_decoder_fill_picparm_h264_vp(dec, desc.h264, refs, is_ref, vp);
+-      nvc0_decoder_handle_references(dec, refs, dec->fence_seq, target);
+-      nvc0_decoder_fill_picparm_h264_vp_refs(dec, desc.h264, refs, target, vp);
+-      return;
+-   }
+-   default: assert(0); return;
+-   }
++   dec->refs[target->valid_ref].vidbuf = NULL;
++   dec->refs[target->valid_ref].last_used = 0;
++//   debug_printf("Unreffed %p\n", target);
+ }
+ 
+ void
 -- 
 1.8.1.5
