@@ -1,92 +1,104 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67878] Hardware freeze after resume from suspend
-Date: Sat, 10 Aug 2013 22:36:24 +0000
-Message-ID: <bug-67878-8800-TuT4piqq0Z@http.bugs.freedesktop.org/>
-References: <bug-67878-8800@http.bugs.freedesktop.org/>
+From: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Subject: Fixing nouveau for >4k PAGE_SIZE
+Date: Sun, 11 Aug 2013 10:41:10 +1000
+Message-ID: <1376181670.32100.77.camel@pasglop>
+References: <1372740099.4820.24.camel@pasglop>
+	<CAPM=9txvRW5MM849FVqOoSL28g=+hTDiLWaMtn5Kj-X3h1kJ8g@mail.gmail.com>
+	<1376175111.32100.53.camel@pasglop> <1376179046.32100.60.camel@pasglop>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0407712474=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <1376179046.32100.60.camel@pasglop>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Dave Airlie <airlied@gmail.com>
+Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org, =?ISO-8859-1?Q?St=E9phane?= Marchesin <marcheu@chromium.org>
 List-Id: nouveau.vger.kernel.org
 
+Hi folks !
 
---===============0407712474==
-Content-Type: multipart/alternative; boundary="1376174183.5De1581.14803"; charset="us-ascii"
+So I've been trying to figure out what it would take to make
+nouveau work properly on architectures where PAGE_SIZE isn't
+4k such as most ppc64's. An initial patch from Dave fixed a
+bogon in nv41.c nv41_vm_map_sg() which was trying to handle
+the case at that low level, but this isn't enough, and after
+a bit of digging, I also think that's not the right approach:
 
+So, from what I can tell, subdev/vm/base.c is not clean vs. PAGE_SIZE
+in a number of places unless I'm mistaken. For example, in
+nouveau_vm_map_sg_table(), something like that:
 
---1376174183.5De1581.14803
-Date: Sat, 10 Aug 2013 22:36:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+		sglen = sg_dma_len(sg) >> PAGE_SHIFT;
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67878
+		end = pte + sglen;
 
---- Comment #17 from Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Confirmed that a clean 3.8 build exhibits the issue.
+Seems to imply an assumption here that the "pte" is in multiple of
+PAGE_SHIFT, but afaik, it's not. So further down, we do:
 
-Starting a bisection between 3.7 and 3.8.
+		for (m = 0; m < len; m++) {
+			dma_addr_t addr = sg_dma_address(sg) + (m << PAGE_SHIFT);
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+			vmm->map_sg(vma, pgt, mem, pte, 1, &addr);                       
+			num--;
+			pte++;
 
---1376174183.5De1581.14803
-Date: Sat, 10 Aug 2013 22:36:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+But in fact, inside vmm->map_sg, with the current code, we will have
+incremented pte by more than 1 ... so we basically lose track here.
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Hardware freeze after resume from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c17">Comment # 17</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Hardware freeze after resume from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">bug 67878</a>
-              from <span class="vcard"><a class="email" href="mailto:bgamari&#64;gmail.com" title="Ben Gamari &lt;bgamari&#64;gmail.com&gt;"> <span class="fn">Ben Gamari</span></a>
-</span></b>
-        <pre>Confirmed that a clean 3.8 build exhibits the issue.
+			if (num == 0)
+				goto finish;
+		}
+		if (unlikely(end >= max)) {
+			pde++;
+			pte = 0;
+		}
 
-Starting a bisection between 3.7 and 3.8.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+We need to similarly make sure we don't end up crossing accross two
+pde's here, ie, that our 64k page isn't mapped at a non-multiple of
+64k in the card space, where is that enforced ? (It might be, I don't
+know). If it is, then we need to recalc the pde on each sub page.
 
---1376174183.5De1581.14803--
+So I'm thinking the right fix is to remove the inner loop in nv41.c
+nv41_vm_map_sg() and similars, let those basically deal with card-size
+PTEs exclusively, and move the breakdown logic inside
+nouveau_vm_map_sg_table() and friendes, that's the only way it can get
+pte and pde right anyway and it would generally work with all backends
+(well, hopefully)
 
---===============0407712474==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Now, to do that, I need a better understanding of the various things
+in there since I'm not familiar with nouveau at all. What I think I've
+figured out is with a few questions, it would be awesome if you could
+answer them so I can have a shot at fixing it all :-)
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+ - There is spg_shift and lpg_shift in the backend vmm. My understanding
+is those correspond to the supported small and large page shift respectively
+in the card's MMU, correct ? On nv41 they are both 12.
 
---===============0407712474==--
+ - vma->node->type indicates the desired page shift for a given vma
+object we are trying to map. It may or may not match spg_shift. If it
+doesn't, the 'big' flag gets set in the various vm/base.c functions,
+which makes them use a different page table via:
+
+		struct nouveau_gpuobj *pgt = vm->pgt[pde].obj[big];
+
+ Question: Can that ever happen on nv41 ? Or rather, can node->type
+ever be set to something that is neither vmm->spg_shift nor vmm->lpg_shift ?
+
+ - vma->node->offset is the location in bytes in the card memory space
+of the nouveau_vma object, right ?
+
+ - In nouveau_vm_map_sg_table(), we take a "delta" argument. I assume that's
+an indication of where within the "vma" we want to map the sg list, ie page
+1 of the sg list gets mapped to page 1 of the VMA, correct ?
+
+Thanks !
+
+Ben.
