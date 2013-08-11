@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62835] Screen freezes after resume from s2ram
-Date: Sun, 11 Aug 2013 16:14:06 +0000
-Message-ID: <bug-62835-8800-2C5UpKZOAL@http.bugs.freedesktop.org/>
-References: <bug-62835-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67597] nouveau E Xorg failed to idle channel on NVA0
+Date: Sun, 11 Aug 2013 20:29:26 +0000
+Message-ID: <bug-67597-8800-PjKdFpOJdg@http.bugs.freedesktop.org/>
+References: <bug-67597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0674478581=="
+Content-Type: multipart/mixed; boundary="===============2114493753=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67597-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0674478581==
-Content-Type: multipart/alternative; boundary="1376237646.EB7DcB3.23599"; charset="us-ascii"
+--===============2114493753==
+Content-Type: multipart/alternative; boundary="1376252966.1b8fA41.11644"; charset="us-ascii"
 
 
---1376237646.EB7DcB3.23599
-Date: Sun, 11 Aug 2013 16:14:06 +0000
+--1376252966.1b8fA41.11644
+Date: Sun, 11 Aug 2013 20:29:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62835
+https://bugs.freedesktop.org/show_bug.cgi?id=67597
 
---- Comment #5 from Pontus Fuchs <pontus.fuchs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #4)
-> Can you isolate(bisect) the offending commit ?
+--- Comment #7 from Marc Meledandri <m.meledandri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Okay, I created a test environment and bisected this problem:
 
-It's not really possible :( The complete story goes like this:
+4f6029da58ba9204c98e33f4f3737fe085c87a6f is the first bad commit
+commit 4f6029da58ba9204c98e33f4f3737fe085c87a6f
+Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Date:   Fri Nov 16 11:54:31 2012 +1000
 
-1. Back in 3.7 everything was working fine.
-2. In 3.8-rc2 resume was not working with the black screen problem
-3. After some time the black screen was fixed but I now had the problem
-described in this bug.
+    drm/nv50-nvc0: switch to common disp impl, removing previous version
 
-If I bisect to a completely working system I'll end up before 3.8-rc2 as in bug
-59057.
+    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+
+:040000 040000 9daeb0bd5ed3e9b22b53c21fab853bd2e392f6ed
+4bdbb1d96e57d3f254affb8812788f04b7474bf7 M    drivers
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376237646.EB7DcB3.23599
-Date: Sun, 11 Aug 2013 16:14:06 +0000
+--1376252966.1b8fA41.11644
+Date: Sun, 11 Aug 2013 20:29:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,29 +64,27 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Screen freezes after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62835#c5">Comment # 5</a>
+   title="NEW --- - nouveau E Xorg failed to idle channel on NVA0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67597#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Screen freezes after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62835">bug 62835</a>
-              from <span class="vcard"><a class="email" href="mailto:pontus.fuchs&#64;gmail.com" title="Pontus Fuchs &lt;pontus.fuchs&#64;gmail.com&gt;"> <span class="fn">Pontus Fuchs</span></a>
+   title="NEW --- - nouveau E Xorg failed to idle channel on NVA0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67597">bug 67597</a>
+              from <span class="vcard"><a class="email" href="mailto:m.meledandri&#64;gmail.com" title="Marc Meledandri &lt;m.meledandri&#64;gmail.com&gt;"> <span class="fn">Marc Meledandri</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=62835#c4">comment #4</a>)
-<span class="quote">&gt; Can you isolate(bisect) the offending commit ?</span >
+        <pre>Okay, I created a test environment and bisected this problem:
 
-It's not really possible :( The complete story goes like this:
+4f6029da58ba9204c98e33f4f3737fe085c87a6f is the first bad commit
+commit 4f6029da58ba9204c98e33f4f3737fe085c87a6f
+Author: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
+Date:   Fri Nov 16 11:54:31 2012 +1000
 
-1. Back in 3.7 everything was working fine.
-2. In 3.8-rc2 resume was not working with the black screen problem
-3. After some time the black screen was fixed but I now had the problem
-described in this bug.
+    drm/nv50-nvc0: switch to common disp impl, removing previous version
 
-If I bisect to a completely working system I'll end up before 3.8-rc2 as in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Black screen after resume from s2ram"
-   href="show_bug.cgi?id=59057">bug
-59057</a>.</pre>
+    Signed-off-by: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
+
+:040000 040000 9daeb0bd5ed3e9b22b53c21fab853bd2e392f6ed
+4bdbb1d96e57d3f254affb8812788f04b7474bf7 M    drivers</pre>
         </div>
       </p>
       <hr>
@@ -97,9 +96,9 @@ If I bisect to a completely working system I'll end up before 3.8-rc2 as in <a c
     </body>
 </html>
 
---1376237646.EB7DcB3.23599--
+--1376252966.1b8fA41.11644--
 
---===============0674478581==
+--===============2114493753==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,4 +109,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0674478581==--
+--===============2114493753==--
