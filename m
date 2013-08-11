@@ -1,8 +1,8 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 07/10] nvc0: move firmware loading functions to
-	nouveau
-Date: Sun, 11 Aug 2013 03:19:15 -0400
-Message-ID: <1376205558-23540-8-git-send-email-imirkin@alum.mit.edu>
+Subject: [PATCH 08/10] nvc0: move video param and format support
+	functions to nouveau
+Date: Sun, 11 Aug 2013 03:19:16 -0400
+Message-ID: <1376205558-23540-9-git-send-email-imirkin@alum.mit.edu>
 References: <1376205558-23540-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,265 +24,171 @@ List-Id: nouveau.vger.kernel.org
 
 Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 ---
- src/gallium/drivers/nouveau/nouveau_vp3_video.c | 101 ++++++++++++++++++++++++
- src/gallium/drivers/nouveau/nouveau_vp3_video.h |   5 ++
- src/gallium/drivers/nvc0/nvc0_video.c           |  92 +--------------------
- 3 files changed, 108 insertions(+), 90 deletions(-)
+ src/gallium/drivers/nouveau/nouveau_vp3_video.c | 37 +++++++++++++++++++++++++
+ src/gallium/drivers/nouveau/nouveau_vp3_video.h | 10 +++++++
+ src/gallium/drivers/nvc0/nvc0_context.h         |  5 ----
+ src/gallium/drivers/nvc0/nvc0_screen.c          | 18 +++---------
+ src/gallium/drivers/nvc0/nvc0_video.c           | 26 -----------------
+ 5 files changed, 51 insertions(+), 45 deletions(-)
 
 diff --git a/src/gallium/drivers/nouveau/nouveau_vp3_video.c b/src/gallium/drivers/nouveau/nouveau_vp3_video.c
-index 6abc581..a3387b3 100644
+index a3387b3..95ba7ec 100644
 --- a/src/gallium/drivers/nouveau/nouveau_vp3_video.c
 +++ b/src/gallium/drivers/nouveau/nouveau_vp3_video.c
-@@ -20,6 +20,10 @@
-  * OTHER DEALINGS IN THE SOFTWARE.
-  */
- 
-+#include <sys/mman.h>
-+#include <stdio.h>
-+#include <fcntl.h>
-+
- #include "nouveau_screen.h"
- #include "nouveau_context.h"
- #include "nouveau_vp3_video.h"
-@@ -226,3 +230,100 @@ nouveau_vp3_decoder_init_common(struct pipe_video_decoder *dec)
-    dec->begin_frame = nouveau_vp3_decoder_begin_frame;
-    dec->end_frame = nouveau_vp3_decoder_end_frame;
+@@ -327,3 +327,40 @@ nouveau_vp3_load_firmware(struct nouveau_vp3_decoder *dec,
+    dec->fw_bo->map = NULL;
+    return 0;
  }
 +
-+static void vp4_getpath(enum pipe_video_profile profile, char *path)
++int
++nouveau_vp3_screen_get_video_param(struct pipe_screen *pscreen,
++                                   enum pipe_video_profile profile,
++                                   enum pipe_video_cap param)
 +{
-+   switch (u_reduce_video_profile(profile)) {
-+      case PIPE_VIDEO_CODEC_MPEG12: {
-+         sprintf(path, "/lib/firmware/nouveau/vuc-mpeg12-0");
-+         break;
-+      }
-+      case PIPE_VIDEO_CODEC_MPEG4: {
-+         sprintf(path, "/lib/firmware/nouveau/vuc-mpeg4-0");
-+         break;
-+      }
-+      case PIPE_VIDEO_CODEC_VC1: {
-+         sprintf(path, "/lib/firmware/nouveau/vuc-vc1-0");
-+         break;
-+      }
-+      case PIPE_VIDEO_CODEC_MPEG4_AVC: {
-+         sprintf(path, "/lib/firmware/nouveau/vuc-h264-0");
-+         break;
-+      }
-+      default: assert(0);
++   switch (param) {
++   case PIPE_VIDEO_CAP_SUPPORTED:
++      return profile >= PIPE_VIDEO_PROFILE_MPEG1;
++   case PIPE_VIDEO_CAP_NPOT_TEXTURES:
++      return 1;
++   case PIPE_VIDEO_CAP_MAX_WIDTH:
++   case PIPE_VIDEO_CAP_MAX_HEIGHT:
++      return nouveau_screen(pscreen)->device->chipset < 0xd0 ? 2048 : 4096;
++   case PIPE_VIDEO_CAP_PREFERED_FORMAT:
++      return PIPE_FORMAT_NV12;
++   case PIPE_VIDEO_CAP_SUPPORTS_INTERLACED:
++   case PIPE_VIDEO_CAP_PREFERS_INTERLACED:
++      return true;
++   case PIPE_VIDEO_CAP_SUPPORTS_PROGRESSIVE:
++      return false;
++   default:
++      debug_printf("unknown video param: %d\n", param);
++      return 0;
 +   }
 +}
 +
-+int
-+nouveau_vp3_load_firmware(struct nouveau_vp3_decoder *dec,
-+                          enum pipe_video_profile profile,
-+                          unsigned chipset)
++boolean
++nouveau_vp3_screen_video_supported(struct pipe_screen *screen,
++                                   enum pipe_format format,
++                                   enum pipe_video_profile profile)
 +{
-+   int fd;
-+   char path[PATH_MAX];
-+   ssize_t r;
-+   uint32_t *end, endval;
++   if (profile != PIPE_VIDEO_PROFILE_UNKNOWN)
++      return format == PIPE_FORMAT_NV12;
 +
-+   vp4_getpath(profile, path);
-+
-+   if (nouveau_bo_map(dec->fw_bo, NOUVEAU_BO_WR, dec->client))
-+      return 1;
-+
-+   fd = open(path, O_RDONLY | O_CLOEXEC);
-+   if (fd < 0) {
-+      fprintf(stderr, "opening firmware file %s failed: %m\n", path);
-+      return 1;
-+   }
-+   r = read(fd, dec->fw_bo->map, 0x4000);
-+   close(fd);
-+
-+   if (r < 0) {
-+      fprintf(stderr, "reading firmware file %s failed: %m\n", path);
-+      return 1;
-+   }
-+
-+   if (r == 0x4000) {
-+      fprintf(stderr, "firmware file %s too large!\n", path);
-+      return 1;
-+   }
-+
-+   if (r & 0xff) {
-+      fprintf(stderr, "firmware file %s wrong size!\n", path);
-+      return 1;
-+   }
-+
-+   end = dec->fw_bo->map + r - 4;
-+   endval = *end;
-+   while (endval == *end)
-+      end--;
-+
-+   r = (intptr_t)end - (intptr_t)dec->fw_bo->map + 4;
-+
-+   switch (u_reduce_video_profile(profile)) {
-+      case PIPE_VIDEO_CODEC_MPEG12: {
-+         assert((r & 0xff) == 0xe0);
-+         dec->fw_sizes = (0x2e0<<16) | (r - 0x2e0);
-+         break;
-+      }
-+      case PIPE_VIDEO_CODEC_MPEG4: {
-+         assert((r & 0xff) == 0xe0);
-+         dec->fw_sizes = (0x2e0<<16) | (r - 0x2e0);
-+         break;
-+      }
-+      case PIPE_VIDEO_CODEC_VC1: {
-+         assert((r & 0xff) == 0xac);
-+         dec->fw_sizes = (0x3ac<<16) | (r - 0x3ac);
-+         break;
-+      }
-+      case PIPE_VIDEO_CODEC_MPEG4_AVC: {
-+         assert((r & 0xff) == 0x70);
-+         dec->fw_sizes = (0x370<<16) | (r - 0x370);
-+         break;
-+      }
-+      default:
-+         return 1;
-+   }
-+   munmap(dec->fw_bo->map, dec->fw_bo->size);
-+   dec->fw_bo->map = NULL;
-+   return 0;
++   return vl_video_buffer_is_format_supported(screen, format, profile);
 +}
 diff --git a/src/gallium/drivers/nouveau/nouveau_vp3_video.h b/src/gallium/drivers/nouveau/nouveau_vp3_video.h
-index cb088fe..5e40385 100644
+index 5e40385..f1a1054 100644
 --- a/src/gallium/drivers/nouveau/nouveau_vp3_video.h
 +++ b/src/gallium/drivers/nouveau/nouveau_vp3_video.h
-@@ -200,6 +200,11 @@ nouveau_vp3_video_buffer_create(struct pipe_context *pipe,
- void
- nouveau_vp3_decoder_init_common(struct pipe_video_decoder *decoder);
- 
-+int
-+nouveau_vp3_load_firmware(struct nouveau_vp3_decoder *dec,
-+                          enum pipe_video_profile profile,
-+                          unsigned chipset);
+@@ -216,3 +216,13 @@ nouveau_vp3_vp_caps(struct nouveau_vp3_decoder *dec, union pipe_desc desc,
+                     struct nouveau_vp3_video_buffer *target, unsigned comm_seq,
+                     unsigned *caps, unsigned *is_ref,
+                     struct nouveau_vp3_video_buffer *refs[16]);
 +
- uint32_t
- nouveau_vp3_bsp(struct nouveau_vp3_decoder *dec,  union pipe_desc desc,
-                 struct nouveau_vp3_video_buffer *target,
++int
++nouveau_vp3_screen_get_video_param(struct pipe_screen *pscreen,
++                                   enum pipe_video_profile profile,
++                                   enum pipe_video_cap param);
++
++boolean
++nouveau_vp3_screen_video_supported(struct pipe_screen *screen,
++                                   enum pipe_format format,
++                                   enum pipe_video_profile profile);
+diff --git a/src/gallium/drivers/nvc0/nvc0_context.h b/src/gallium/drivers/nvc0/nvc0_context.h
+index 9e58960..db6bb10 100644
+--- a/src/gallium/drivers/nvc0/nvc0_context.h
++++ b/src/gallium/drivers/nvc0/nvc0_context.h
+@@ -346,11 +346,6 @@ struct pipe_video_buffer *
+ nvc0_video_buffer_create(struct pipe_context *pipe,
+                          const struct pipe_video_buffer *templat);
+ 
+-int
+-nvc0_screen_get_video_param(struct pipe_screen *pscreen,
+-                            enum pipe_video_profile profile,
+-                            enum pipe_video_cap param);
+-
+ /* nvc0_push.c */
+ void nvc0_push_vbo(struct nvc0_context *, const struct pipe_draw_info *);
+ 
+diff --git a/src/gallium/drivers/nvc0/nvc0_screen.c b/src/gallium/drivers/nvc0/nvc0_screen.c
+index bc5580b..93a2902 100644
+--- a/src/gallium/drivers/nvc0/nvc0_screen.c
++++ b/src/gallium/drivers/nvc0/nvc0_screen.c
+@@ -27,6 +27,8 @@
+ #include "vl/vl_decoder.h"
+ #include "vl/vl_video_buffer.h"
+ 
++#include "nouveau/nouveau_vp3_video.h"
++
+ #include "nvc0_context.h"
+ #include "nvc0_screen.h"
+ 
+@@ -63,18 +65,6 @@ nvc0_screen_is_format_supported(struct pipe_screen *pscreen,
+    return (nvc0_format_table[format].usage & bindings) == bindings;
+ }
+ 
+-static boolean
+-nvc0_screen_video_supported(struct pipe_screen *screen,
+-                            enum pipe_format format,
+-                            enum pipe_video_profile profile)
+-{
+-   if (profile != PIPE_VIDEO_PROFILE_UNKNOWN)
+-      return format == PIPE_FORMAT_NV12;
+-
+-   return vl_video_buffer_is_format_supported(screen, format, profile);
+-}
+-
+-
+ static int
+ nvc0_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+ {
+@@ -593,8 +583,8 @@ nvc0_screen_create(struct nouveau_device *dev)
+ 
+    nvc0_screen_init_resource_functions(pscreen);
+ 
+-   screen->base.base.get_video_param = nvc0_screen_get_video_param;
+-   screen->base.base.is_video_format_supported = nvc0_screen_video_supported;
++   screen->base.base.get_video_param = nouveau_vp3_screen_get_video_param;
++   screen->base.base.is_video_format_supported = nouveau_vp3_screen_video_supported;
+ 
+    ret = nouveau_bo_new(dev, NOUVEAU_BO_GART | NOUVEAU_BO_MAP, 0, 4096, NULL,
+                         &screen->fence.bo);
 diff --git a/src/gallium/drivers/nvc0/nvc0_video.c b/src/gallium/drivers/nvc0/nvc0_video.c
-index 2ba17b4..e0f29be 100644
+index e0f29be..5891f09 100644
 --- a/src/gallium/drivers/nvc0/nvc0_video.c
 +++ b/src/gallium/drivers/nvc0/nvc0_video.c
-@@ -25,9 +25,6 @@
+@@ -25,32 +25,6 @@
  #include "util/u_sampler.h"
  #include "util/u_format.h"
  
--#include <sys/mman.h>
--#include <fcntl.h>
--
- int
- nvc0_screen_get_video_param(struct pipe_screen *pscreen,
-                             enum pipe_video_profile profile,
-@@ -85,29 +82,6 @@ nvc0_decoder_decode_bitstream(struct pipe_video_decoder *decoder,
-    nvc0_decoder_ppp(dec, desc, target, comm_seq);
- }
- 
--static void nvc0_video_getpath(enum pipe_video_profile profile, char *path)
+-int
+-nvc0_screen_get_video_param(struct pipe_screen *pscreen,
+-                            enum pipe_video_profile profile,
+-                            enum pipe_video_cap param)
 -{
--   switch (u_reduce_video_profile(profile)) {
--      case PIPE_VIDEO_CODEC_MPEG12: {
--         sprintf(path, "/lib/firmware/nouveau/vuc-mpeg12-0");
--         break;
--      }
--      case PIPE_VIDEO_CODEC_MPEG4: {
--         sprintf(path, "/lib/firmware/nouveau/vuc-mpeg4-0");
--         break;
--      }
--      case PIPE_VIDEO_CODEC_VC1: {
--         sprintf(path, "/lib/firmware/nouveau/vuc-vc1-0");
--         break;
--      }
--      case PIPE_VIDEO_CODEC_MPEG4_AVC: {
--         sprintf(path, "/lib/firmware/nouveau/vuc-h264-0");
--         break;
--      }
--      default: assert(0);
+-   switch (param) {
+-   case PIPE_VIDEO_CAP_SUPPORTED:
+-      return profile >= PIPE_VIDEO_PROFILE_MPEG1;
+-   case PIPE_VIDEO_CAP_NPOT_TEXTURES:
+-      return 1;
+-   case PIPE_VIDEO_CAP_MAX_WIDTH:
+-   case PIPE_VIDEO_CAP_MAX_HEIGHT:
+-      return nouveau_screen(pscreen)->device->chipset < 0xd0 ? 2048 : 4096;
+-   case PIPE_VIDEO_CAP_PREFERED_FORMAT:
+-      return PIPE_FORMAT_NV12;
+-   case PIPE_VIDEO_CAP_SUPPORTS_INTERLACED:
+-   case PIPE_VIDEO_CAP_PREFERS_INTERLACED:
+-      return true;
+-   case PIPE_VIDEO_CAP_SUPPORTS_PROGRESSIVE:
+-      return false;
+-   default:
+-      debug_printf("unknown video param: %d\n", param);
+-      return 0;
 -   }
 -}
 -
- struct pipe_video_decoder *
- nvc0_create_decoder(struct pipe_context *context,
-                     enum pipe_video_profile profile,
-@@ -277,76 +251,14 @@ nvc0_create_decoder(struct pipe_context *context,
-    }
- 
-    if (screen->device->chipset < 0xd0) {
--      int fd;
--      char path[PATH_MAX];
--      ssize_t r;
--      uint32_t *end, endval;
--
-       ret = nouveau_bo_new(screen->device, NOUVEAU_BO_VRAM, 0,
-                            0x4000, &cfg, &dec->fw_bo);
--      if (!ret)
--         ret = nouveau_bo_map(dec->fw_bo, NOUVEAU_BO_WR, dec->client);
-       if (ret)
-          goto fail;
- 
--      nvc0_video_getpath(profile, path);
--
--      fd = open(path, O_RDONLY | O_CLOEXEC);
--      if (fd < 0) {
--         fprintf(stderr, "opening firmware file %s failed: %m\n", path);
--         goto fw_fail;
--      }
--      r = read(fd, dec->fw_bo->map, 0x4000);
--      close(fd);
--
--      if (r < 0) {
--         fprintf(stderr, "reading firmware file %s failed: %m\n", path);
--         goto fw_fail;
--      }
--
--      if (r == 0x4000) {
--         fprintf(stderr, "firmware file %s too large!\n", path);
--         goto fw_fail;
--      }
--
--      if (r & 0xff) {
--         fprintf(stderr, "firmware file %s wrong size!\n", path);
--         goto fw_fail;
--      }
--
--      end = dec->fw_bo->map + r - 4;
--      endval = *end;
--      while (endval == *end)
--         end--;
--
--      r = (intptr_t)end - (intptr_t)dec->fw_bo->map + 4;
--
--      switch (u_reduce_video_profile(profile)) {
--      case PIPE_VIDEO_CODEC_MPEG12: {
--         assert((r & 0xff) == 0xe0);
--         dec->fw_sizes = (0x2e0<<16) | (r - 0x2e0);
--         break;
--      }
--      case PIPE_VIDEO_CODEC_MPEG4: {
--         assert((r & 0xff) == 0xe0);
--         dec->fw_sizes = (0x2e0<<16) | (r - 0x2e0);
--         break;
--      }
--      case PIPE_VIDEO_CODEC_VC1: {
--         assert((r & 0xff) == 0xac);
--         dec->fw_sizes = (0x3ac<<16) | (r - 0x3ac);
--         break;
--      }
--      case PIPE_VIDEO_CODEC_MPEG4_AVC: {
--         assert((r & 0xff) == 0x70);
--         dec->fw_sizes = (0x370<<16) | (r - 0x370);
--         break;
--      }
--      default:
-+      ret = nouveau_vp3_load_firmware(dec, profile, screen->device->chipset);
-+      if (ret)
-          goto fw_fail;
--      }
--      munmap(dec->fw_bo->map, dec->fw_bo->size);
--      dec->fw_bo->map = NULL;
-    }
- 
-    if (codec != 3) {
+ static void
+ nvc0_decoder_decode_bitstream(struct pipe_video_decoder *decoder,
+                               struct pipe_video_buffer *video_target,
 -- 
 1.8.1.5
