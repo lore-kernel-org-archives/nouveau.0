@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67878] [BISECTED] Hardware freeze after resume from
-	suspend
-Date: Sun, 11 Aug 2013 15:54:47 +0000
-Message-ID: <bug-67878-8800-YrnQuN2P2Z@http.bugs.freedesktop.org/>
-References: <bug-67878-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 62835] Screen freezes after resume from s2ram
+Date: Sun, 11 Aug 2013 16:14:06 +0000
+Message-ID: <bug-62835-8800-2C5UpKZOAL@http.bugs.freedesktop.org/>
+References: <bug-62835-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1105133729=="
+Content-Type: multipart/mixed; boundary="===============0674478581=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-62835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1105133729==
-Content-Type: multipart/alternative; boundary="1376236487.a400a51.20003"; charset="us-ascii"
+--===============0674478581==
+Content-Type: multipart/alternative; boundary="1376237646.EB7DcB3.23599"; charset="us-ascii"
 
 
---1376236487.a400a51.20003
-Date: Sun, 11 Aug 2013 15:54:47 +0000
+--1376237646.EB7DcB3.23599
+Date: Sun, 11 Aug 2013 16:14:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67878
+https://bugs.freedesktop.org/show_bug.cgi?id=62835
 
-Ben Gamari <bgamari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #5 from Pontus Fuchs <pontus.fuchs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #4)
+> Can you isolate(bisect) the offending commit ?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Hardware freeze after       |[BISECTED] Hardware freeze
-                   |resume from suspend         |after resume from suspend
+It's not really possible :( The complete story goes like this:
+
+1. Back in 3.7 everything was working fine.
+2. In 3.8-rc2 resume was not working with the black screen problem
+3. After some time the black screen was fixed but I now had the problem
+described in this bug.
+
+If I bisect to a completely working system I'll end up before 3.8-rc2 as in bug
+59057.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376236487.a400a51.20003
-Date: Sun, 11 Aug 2013 15:54:47 +0000
+--1376237646.EB7DcB3.23599
+Date: Sun, 11 Aug 2013 16:14:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,28 +58,35 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:bgamari&#64;gmail.com" title="Ben Gamari &lt;bgamari&#64;gmail.com&gt;"> <span class="fn">Ben Gamari</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [BISECTED] Hardware freeze after resume from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">bug 67878</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Hardware freeze after resume from suspend
-           </td>
-           <td>[BISECTED] Hardware freeze after resume from suspend
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Screen freezes after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62835#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Screen freezes after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62835">bug 62835</a>
+              from <span class="vcard"><a class="email" href="mailto:pontus.fuchs&#64;gmail.com" title="Pontus Fuchs &lt;pontus.fuchs&#64;gmail.com&gt;"> <span class="fn">Pontus Fuchs</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=62835#c4">comment #4</a>)
+<span class="quote">&gt; Can you isolate(bisect) the offending commit ?</span >
+
+It's not really possible :( The complete story goes like this:
+
+1. Back in 3.7 everything was working fine.
+2. In 3.8-rc2 resume was not working with the black screen problem
+3. After some time the black screen was fixed but I now had the problem
+described in this bug.
+
+If I bisect to a completely working system I'll end up before 3.8-rc2 as in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Black screen after resume from s2ram"
+   href="show_bug.cgi?id=59057">bug
+59057</a>.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +97,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1376236487.a400a51.20003--
+--1376237646.EB7DcB3.23599--
 
---===============1105133729==
+--===============0674478581==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +110,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1105133729==--
+--===============0674478581==--
