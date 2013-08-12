@@ -1,13 +1,13 @@
 From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau: mark last megabyte as usable
-Date: Mon, 12 Aug 2013 10:01:41 +1000
-Message-ID: <CACAvsv60r0LYRRFt7LBxMYHpegNFQEant0NUJWqKJ614Khs4TA@mail.gmail.com>
-References: <52026699.1010004@canonical.com>
+Subject: Re: [PATCH] drm/nouveau: fix ltcg memory corruptions
+Date: Mon, 12 Aug 2013 10:47:43 +1000
+Message-ID: <CACAvsv4BuTg5mvDdynmh8vW3ZVe_MO2kB5b27UL1vh=8gk9Rkw@mail.gmail.com>
+References: <520264D0.3020602@canonical.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <52026699.1010004@canonical.com>
+In-Reply-To: <520264D0.3020602@canonical.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
 	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
@@ -21,53 +21,139 @@ To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
 Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Aug 8, 2013 at 1:24 AM, Maarten Lankhorst
+On Thu, Aug 8, 2013 at 1:16 AM, Maarten Lankhorst
 <maarten.lankhorst@canonical.com> wrote:
-> It's my megabyte, I want to use it! At this point in init
-> vbios is copied over already, so there's no reason it cannot
-> used to hold other data now.
-I believe there's areas in here where the SBIOS/VBIOS can communicate
-to the driver on various events actually, at least in some situations.
- I'd rather leave it reserved for the moment.  Also, if/when we do do
-this, we'll want to stick the vbios image back on module unload so
-it's there for reload too.
+> Allocating type=0 marks the memory as free. This allows the ltcg memory to be
+> allocated twice. Add a BUG_ON in core/mm.c to prevent this ever happening again.
+> Additionally some registers were not initialized in init, this causes them to be
+> uninitialized after suspend.
+Ack in general.  A couple of things though:
 
+1. Split the two changes into two patches
+2. drm/nvc0-/ltcg, and not drm/nouveau - this is the format we
+generally use for specific fixes
+
+Thanks,
 Ben.
+
 >
 > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
 > ---
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnvc0.c b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnvc0.c
-> index cf97c4d..507d35d 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnvc0.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnvc0.c
-> @@ -119,7 +119,6 @@ nvc0_ram_create(struct nouveau_object *parent, struct nouveau_object *engine,
->         struct nouveau_bios *bios = nouveau_bios(pfb);
->         struct nouveau_ram *ram;
->         const u32 rsvd_head = ( 256 * 1024) >> 12; /* vga memory */
-> -       const u32 rsvd_tail = (1024 * 1024) >> 12; /* vbios etc */
->         u32 parts = nv_rd32(pfb, 0x022438);
->         u32 pmask = nv_rd32(pfb, 0x022554);
->         u32 bsize = nv_rd32(pfb, 0x10f20c);
-> @@ -156,7 +155,7 @@ nvc0_ram_create(struct nouveau_object *parent, struct nouveau_object *engine,
->         /* if all controllers have the same amount attached, there's no holes */
->         if (uniform) {
->                 offset = rsvd_head;
-> -               length = (ram->size >> 12) - rsvd_head - rsvd_tail;
-> +               length = (ram->size >> 12) - rsvd_head;
->                 ret = nouveau_mm_init(&pfb->vram, offset, length, 1);
->         } else {
->                 /* otherwise, address lowest common amount from 0GiB */
-> @@ -167,7 +166,7 @@ nvc0_ram_create(struct nouveau_object *parent, struct nouveau_object *engine,
+> diff --git a/drivers/gpu/drm/nouveau/core/core/mm.c b/drivers/gpu/drm/nouveau/core/core/mm.c
+> index d829172..7a4e089 100644
+> --- a/drivers/gpu/drm/nouveau/core/core/mm.c
+> +++ b/drivers/gpu/drm/nouveau/core/core/mm.c
+> @@ -98,6 +98,8 @@ nouveau_mm_head(struct nouveau_mm *mm, u8 type, u32 size_max, u32 size_min,
+>         u32 splitoff;
+>         u32 s, e;
 >
->                 /* and the rest starting from (8GiB + common_size) */
->                 offset = (0x0200000000ULL >> 12) + (bsize << 8);
-> -               length = (ram->size >> 12) - (bsize << 8) - rsvd_tail;
-> +               length = (ram->size >> 12) - (bsize << 8);
+> +       BUG_ON(!type);
+> +
+>         list_for_each_entry(this, &mm->free, fl_entry) {
+>                 e = this->offset + this->length;
+>                 s = this->offset;
+> @@ -162,6 +164,8 @@ nouveau_mm_tail(struct nouveau_mm *mm, u8 type, u32 size_max, u32 size_min,
+>         struct nouveau_mm_node *prev, *this, *next;
+>         u32 mask = align - 1;
 >
->                 ret = nouveau_mm_init(&pfb->vram, offset, length, 0);
->                 if (ret)
+> +       BUG_ON(!type);
+> +
+>         list_for_each_entry_reverse(this, &mm->free, fl_entry) {
+>                 u32 e = this->offset + this->length;
+>                 u32 s = this->offset;
+> diff --git a/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c b/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c
+> index bcca883..7288940 100644
+> --- a/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c
+> +++ b/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c
+> @@ -30,8 +30,9 @@ struct nvc0_ltcg_priv {
+>         struct nouveau_ltcg base;
+>         u32 part_nr;
+>         u32 subp_nr;
+> -       struct nouveau_mm tags;
+>         u32 num_tags;
+> +       u32 tag_base;
+> +       struct nouveau_mm tags;
+>         struct nouveau_mm_node *tag_ram;
+>  };
+>
+> @@ -117,10 +118,6 @@ nvc0_ltcg_init_tag_ram(struct nouveau_fb *pfb, struct nvc0_ltcg_priv *priv)
+>         u32 tag_size, tag_margin, tag_align;
+>         int ret;
+>
+> -       nv_wr32(priv, 0x17e8d8, priv->part_nr);
+> -       if (nv_device(pfb)->card_type >= NV_E0)
+> -               nv_wr32(priv, 0x17e000, priv->part_nr);
+> -
+>         /* tags for 1/4 of VRAM should be enough (8192/4 per GiB of VRAM) */
+>         priv->num_tags = (pfb->ram->size >> 17) / 4;
+>         if (priv->num_tags > (1 << 17))
+> @@ -142,7 +139,7 @@ nvc0_ltcg_init_tag_ram(struct nouveau_fb *pfb, struct nvc0_ltcg_priv *priv)
+>         tag_size += tag_align;
+>         tag_size  = (tag_size + 0xfff) >> 12; /* round up */
+>
+> -       ret = nouveau_mm_tail(&pfb->vram, 0, tag_size, tag_size, 1,
+> +       ret = nouveau_mm_tail(&pfb->vram, 1, tag_size, tag_size, 1,
+>                               &priv->tag_ram);
+>         if (ret) {
+>                 priv->num_tags = 0;
+> @@ -152,7 +149,7 @@ nvc0_ltcg_init_tag_ram(struct nouveau_fb *pfb, struct nvc0_ltcg_priv *priv)
+>                 tag_base += tag_align - 1;
+>                 ret = do_div(tag_base, tag_align);
+>
+> -               nv_wr32(priv, 0x17e8d4, tag_base);
+> +               priv->tag_base = tag_base;
+>         }
+>         ret = nouveau_mm_init(&priv->tags, 0, priv->num_tags, 1);
+>
+> @@ -182,8 +179,6 @@ nvc0_ltcg_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+>         }
+>         priv->subp_nr = nv_rd32(priv, 0x17e8dc) >> 28;
+>
+> -       nv_mask(priv, 0x17e820, 0x00100000, 0x00000000); /* INTR_EN &= ~0x10 */
+> -
+>         ret = nvc0_ltcg_init_tag_ram(pfb, priv);
+>         if (ret)
+>                 return ret;
+> @@ -209,13 +204,36 @@ nvc0_ltcg_dtor(struct nouveau_object *object)
+>         nouveau_ltcg_destroy(ltcg);
+>  }
+>
+> +int
+> +nvc0_ltcg_init(struct nouveau_object *object)
+> +{
+> +       struct nouveau_ltcg *ltcg = (struct nouveau_ltcg *)object;
+> +       struct nvc0_ltcg_priv *priv = (struct nvc0_ltcg_priv *)ltcg;
+> +       struct nouveau_fb *pfb = nouveau_fb(ltcg->base.base.parent);
+> +       int ret;
+> +
+> +       ret = nouveau_subdev_init(&pfb->base);
+> +       if (ret)
+> +               return ret;
+> +
+> +       nv_mask(priv, 0x17e820, 0x00100000, 0x00000000); /* INTR_EN &= ~0x10 */
+> +
+> +       nv_wr32(priv, 0x17e8d8, priv->part_nr);
+> +       if (nv_device(pfb)->card_type >= NV_E0)
+> +               nv_wr32(priv, 0x17e000, priv->part_nr);
+> +
+> +       nv_wr32(priv, 0x17e8d4, priv->tag_base);
+> +
+> +       return 0;
+> +}
+> +
+>  struct nouveau_oclass
+>  nvc0_ltcg_oclass = {
+>         .handle = NV_SUBDEV(LTCG, 0xc0),
+>         .ofuncs = &(struct nouveau_ofuncs) {
+>                 .ctor = nvc0_ltcg_ctor,
+>                 .dtor = nvc0_ltcg_dtor,
+> -               .init = _nouveau_ltcg_init,
+> +               .init = nvc0_ltcg_init,
+>                 .fini = _nouveau_ltcg_fini,
+>         },
+>  };
 >
 > _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
