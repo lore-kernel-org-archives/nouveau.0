@@ -1,129 +1,269 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau: fix ltcg memory initialization
-	after suspend
-Date: Mon, 12 Aug 2013 12:19:15 -0400
-Message-ID: <CAKb7UvgddSoPofO4pHoFjp74oWErxHWK=JTykvJ4JkpiCxoLWg@mail.gmail.com>
-References: <5208BC6D.6040808@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 68037] New: TRAP_TPDMA - TP0: Unhandled ustatus
+ 0x00000008 ; and other NV50 log spam errors
+Date: Mon, 12 Aug 2013 23:41:43 +0000
+Message-ID: <bug-68037-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <5208BC6D.6040808@canonical.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1665067829=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Aug 12, 2013 at 6:43 AM, Maarten Lankhorst
-<maarten.lankhorst@canonical.com> wrote:
-> Some registers were not initialized in init, this causes them to be
-> uninitialized after suspend.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-> ---
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c b/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c
-> index bcca883..7288940 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c
-> @@ -30,8 +30,9 @@ struct nvc0_ltcg_priv {
->         struct nouveau_ltcg base;
->         u32 part_nr;
->         u32 subp_nr;
-> -       struct nouveau_mm tags;
->         u32 num_tags;
-> +       u32 tag_base;
-> +       struct nouveau_mm tags;
->         struct nouveau_mm_node *tag_ram;
->  };
->
-> @@ -117,10 +118,6 @@ nvc0_ltcg_init_tag_ram(struct nouveau_fb *pfb, struct nvc0_ltcg_priv *priv)
->         u32 tag_size, tag_margin, tag_align;
->         int ret;
->
-> -       nv_wr32(priv, 0x17e8d8, priv->part_nr);
-> -       if (nv_device(pfb)->card_type >= NV_E0)
-> -               nv_wr32(priv, 0x17e000, priv->part_nr);
-> -
->         /* tags for 1/4 of VRAM should be enough (8192/4 per GiB of VRAM) */
->         priv->num_tags = (pfb->ram->size >> 17) / 4;
->         if (priv->num_tags > (1 << 17))
-> @@ -152,7 +149,7 @@ nvc0_ltcg_init_tag_ram(struct nouveau_fb *pfb, struct nvc0_ltcg_priv *priv)
->                 tag_base += tag_align - 1;
->                 ret = do_div(tag_base, tag_align);
->
-> -               nv_wr32(priv, 0x17e8d4, tag_base);
-> +               priv->tag_base = tag_base;
->         }
->         ret = nouveau_mm_init(&priv->tags, 0, priv->num_tags, 1);
->
-> @@ -182,8 +179,6 @@ nvc0_ltcg_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
->         }
->         priv->subp_nr = nv_rd32(priv, 0x17e8dc) >> 28;
->
-> -       nv_mask(priv, 0x17e820, 0x00100000, 0x00000000); /* INTR_EN &= ~0x10 */
-> -
->         ret = nvc0_ltcg_init_tag_ram(pfb, priv);
->         if (ret)
->                 return ret;
-> @@ -209,13 +204,36 @@ nvc0_ltcg_dtor(struct nouveau_object *object)
->         nouveau_ltcg_destroy(ltcg);
->  }
->
-> +int
-> +nvc0_ltcg_init(struct nouveau_object *object)
 
-This should probably be a static int.
+--===============1665067829==
+Content-Type: multipart/alternative; boundary="1376350903.E62A7831.19250"; charset="us-ascii"
 
-> +{
-> +       struct nouveau_ltcg *ltcg = (struct nouveau_ltcg *)object;
-> +       struct nvc0_ltcg_priv *priv = (struct nvc0_ltcg_priv *)ltcg;
-> +       struct nouveau_fb *pfb = nouveau_fb(ltcg->base.base.parent);
 
-Hm, it's all a bit confusing, but wouldn't nouveau_fb(ltcg) (or priv)
-work just fine here? nv_device looks at ->parent... but perhaps not
-hard enough :)
+--1376350903.E62A7831.19250
+Date: Mon, 12 Aug 2013 23:41:43 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-> +       int ret;
-> +
-> +       ret = nouveau_subdev_init(&pfb->base);
+https://bugs.freedesktop.org/show_bug.cgi?id=68037
 
-Should this be &ltcg->base? (Or nouveau_ltcg_init(ltcg) for consistency...)
+          Priority: medium
+            Bug ID: 68037
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: TRAP_TPDMA - TP0: Unhandled ustatus 0x00000008 ; and
+                    other NV50 log spam errors
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: dirkneukirchen-S0/GAf8tV78@public.gmane.org
+          Hardware: x86 (IA32)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-> +       if (ret)
-> +               return ret;
-> +
-> +       nv_mask(priv, 0x17e820, 0x00100000, 0x00000000); /* INTR_EN &= ~0x10 */
-> +
-> +       nv_wr32(priv, 0x17e8d8, priv->part_nr);
-> +       if (nv_device(pfb)->card_type >= NV_E0)
-> +               nv_wr32(priv, 0x17e000, priv->part_nr);
-> +
-> +       nv_wr32(priv, 0x17e8d4, priv->tag_base);
-> +
-> +       return 0;
-> +}
-> +
->  struct nouveau_oclass
->  nvc0_ltcg_oclass = {
->         .handle = NV_SUBDEV(LTCG, 0xc0),
->         .ofuncs = &(struct nouveau_ofuncs) {
->                 .ctor = nvc0_ltcg_ctor,
->                 .dtor = nvc0_ltcg_dtor,
-> -               .init = _nouveau_ltcg_init,
-> +               .init = nvc0_ltcg_init,
->                 .fini = _nouveau_ltcg_fini,
->         },
->  };
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+Created attachment 83990
+  --> https://bugs.freedesktop.org/attachment.cgi?id=83990&action=edit
+dmesg with nouveau.debug=debug
+
+Steps to reproduce:
+
+- log in
+- execute glxgears
+- message appears
+
+Hardware: 
+- Dual Monitor Setup VGA+DVI
+- Geforce 8200 (Onboard; Jetway JNC62K)
+nouveau  [  DEVICE][0000:02:00.0] Chipset: MCP77/MCP78 (NVAA)
+nouveau  [  DEVICE][0000:02:00.0] Family : NV50
+
+example message:
+nouveau E[  PGRAPH][0000:02:00.0] TRAP_TPDMA - TP0: Unhandled ustatus
+0x00000008
+nouveau E[  PGRAPH][0000:02:00.0]  TRAP
+nouveau E[  PGRAPH][0000:02:00.0] ch 2 [0x0007b45000 Xorg[4836]] subc 7 class
+0x8397 mthd 0x15e0 data 0x00000000
+nouveau E[     PFB][0000:02:00.0] trapped write at 0x0020491500 on channel
+0x00007b45 [Xorg[4836]] PGRAPH/PROP/RT0 reason: PAGE_NOT_PRESENT
+nouveau E[   PFIFO][0000:02:00.0] DMA_PUSHER - ch 2 [Xorg[4836]] get
+0x0020025494 put 0x0020025f28 ib_get 0x000000aa ib_put 0x000000c9 state
+0x8000e684 (err: INVALID_CMD) push 0x00400040
+nouveau E[  PGRAPH][0000:02:00.0] DATA_ERROR BEGIN_END_ACTIVE
+nouveau E[  PGRAPH][0000:02:00.0]  DATA_ERROR
+nouveau E[  PGRAPH][0000:02:00.0] ch 2 [0x0007b45000 Xorg[4836]] subc 7 class
+0x8397 mthd 0x1360 data 0x00000001
+
+Kernel versions affected (at least):
+3.11-rc5
+3.10.4
+3.8.0-27 (Linux Mint 15)
+and possible older versions - see
+https://bugs.freedesktop.org/show_bug.cgi?id=42479 for a similar message
+
+potential related bugs: 
+- https://bugs.freedesktop.org/show_bug.cgi?id=47191
+
+Results of log messages might be somewhat random - maybe because of Video RAM
+sharing.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1376350903.E62A7831.19250
+Date: Mon, 12 Aug 2013 23:41:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - TRAP_TPDMA - TP0: Unhandled ustatus 0x00000008 ; and other NV50 log spam errors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68037">68037</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>TRAP_TPDMA - TP0: Unhandled ustatus 0x00000008 ; and other NV50 log spam errors
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>dirkneukirchen&#64;web.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=83990" name="attach_83990" title="dmesg with nouveau.debug=debug">attachment 83990</a> <a href="attachment.cgi?id=83990&amp;action=edit" title="dmesg with nouveau.debug=debug">[details]</a></span>
+dmesg with nouveau.debug=debug
+
+Steps to reproduce:
+
+- log in
+- execute glxgears
+- message appears
+
+Hardware: 
+- Dual Monitor Setup VGA+DVI
+- Geforce 8200 (Onboard; Jetway JNC62K)
+nouveau  [  DEVICE][0000:02:00.0] Chipset: MCP77/MCP78 (NVAA)
+nouveau  [  DEVICE][0000:02:00.0] Family : NV50
+
+example message:
+nouveau E[  PGRAPH][0000:02:00.0] TRAP_TPDMA - TP0: Unhandled ustatus
+0x00000008
+nouveau E[  PGRAPH][0000:02:00.0]  TRAP
+nouveau E[  PGRAPH][0000:02:00.0] ch 2 [0x0007b45000 Xorg[4836]] subc 7 class
+0x8397 mthd 0x15e0 data 0x00000000
+nouveau E[     PFB][0000:02:00.0] trapped write at 0x0020491500 on channel
+0x00007b45 [Xorg[4836]] PGRAPH/PROP/RT0 reason: PAGE_NOT_PRESENT
+nouveau E[   PFIFO][0000:02:00.0] DMA_PUSHER - ch 2 [Xorg[4836]] get
+0x0020025494 put 0x0020025f28 ib_get 0x000000aa ib_put 0x000000c9 state
+0x8000e684 (err: INVALID_CMD) push 0x00400040
+nouveau E[  PGRAPH][0000:02:00.0] DATA_ERROR BEGIN_END_ACTIVE
+nouveau E[  PGRAPH][0000:02:00.0]  DATA_ERROR
+nouveau E[  PGRAPH][0000:02:00.0] ch 2 [0x0007b45000 Xorg[4836]] subc 7 class
+0x8397 mthd 0x1360 data 0x00000001
+
+Kernel versions affected (at least):
+3.11-rc5
+3.10.4
+3.8.0-27 (Linux Mint 15)
+and possible older versions - see
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - piglit/glean/readPixSanity fails - dmesg PGRAPH - TRAP_TPDMA - TP0: Unhandled ustatus 0x00020000"
+   href="show_bug.cgi?id=42479">https://bugs.freedesktop.org/show_bug.cgi?id=42479</a> for a similar message
+
+potential related bugs: 
+- <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - random xorg hang with PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address"
+   href="show_bug.cgi?id=47191">https://bugs.freedesktop.org/show_bug.cgi?id=47191</a>
+
+Results of log messages might be somewhat random - maybe because of Video RAM
+sharing.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1376350903.E62A7831.19250--
+
+--===============1665067829==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1665067829==--
