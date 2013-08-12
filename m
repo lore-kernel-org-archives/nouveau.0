@@ -1,7 +1,8 @@
 From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: [PATCH 3/5] drm/nouveau/timer: restore the time on resume
-Date: Sun, 11 Aug 2013 22:48:50 -0400
-Message-ID: <1376275732-2878-4-git-send-email-martin.peres@free.fr>
+Subject: [PATCH 2/5] drm/nouveau/fan: restore the PWM value on
+	resume when using the manual or auto mode
+Date: Sun, 11 Aug 2013 22:48:49 -0400
+Message-ID: <1376275732-2878-3-git-send-email-martin.peres@free.fr>
 References: <1376275732-2878-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,84 +24,51 @@ List-Id: nouveau.vger.kernel.org
 
 From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 
-This can be useful if some parts of Nouveau try to calculate the time between
-two events. Without this patch, the time difference would be negative in the
-case where the computer is suspended/resumed between two events.
-This patch should fix fan speed probing when done while suspending/resuming.
+If the fan was in manual or auto mode, we should restore the fan speed that was
+previously set when resuming.
 
-Solve this by saving the current time before suspending and by restoring it
-on resume.
+The initial pwm value is saved when loading the module.
 
 Signed-off-by: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 Tested-by: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
+Tested-by: Dash Four <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/core/subdev/therm/base.c | 7 ++++++-
+ drivers/gpu/drm/nouveau/core/subdev/therm/fan.c  | 3 +++
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c b/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
-index 9469b82..8c72da6 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
-@@ -36,6 +36,7 @@ struct nv04_timer_priv {
- 	struct nouveau_timer base;
- 	struct list_head alarms;
- 	spinlock_t lock;
-+	u64 suspend_time;
- };
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/base.c b/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
+index 3e9d941..2ada3d7 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
+@@ -267,8 +267,13 @@ _nouveau_therm_init(struct nouveau_object *object)
+ 	if (ret)
+ 		return ret;
  
- static u64
-@@ -146,6 +147,7 @@ nv04_timer_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	priv->base.base.intr = nv04_timer_intr;
- 	priv->base.read = nv04_timer_read;
- 	priv->base.alarm = nv04_timer_alarm;
-+	priv->suspend_time = 0;
- 
- 	INIT_LIST_HEAD(&priv->alarms);
- 	spin_lock_init(&priv->lock);
-@@ -164,7 +166,7 @@ nv04_timer_init(struct nouveau_object *object)
- {
- 	struct nouveau_device *device = nv_device(object);
- 	struct nv04_timer_priv *priv = (void *)object;
--	u32 m = 1, f, n, d;
-+	u32 m = 1, f, n, d, lo, hi;
- 	int ret;
- 
- 	ret = nouveau_timer_init(&priv->base);
-@@ -220,17 +222,26 @@ nv04_timer_init(struct nouveau_object *object)
- 		n >>= 1;
- 		d >>= 1;
- 	}
-+	
-+	/* restore the time before suspend */
-+	lo = priv->suspend_time;
-+	hi = (priv->suspend_time >> 32);
- 
- 	nv_debug(priv, "input frequency : %dHz\n", f);
- 	nv_debug(priv, "input multiplier: %d\n", m);
- 	nv_debug(priv, "numerator       : 0x%08x\n", n);
- 	nv_debug(priv, "denominator     : 0x%08x\n", d);
- 	nv_debug(priv, "timer frequency : %dHz\n", (f * m) * d / n);
-+	nv_debug(priv, "time low        : 0x%08x\n", lo);
-+	nv_debug(priv, "time high       : 0x%08x\n", hi);
- 
- 	nv_wr32(priv, NV04_PTIMER_NUMERATOR, n);
- 	nv_wr32(priv, NV04_PTIMER_DENOMINATOR, d);
- 	nv_wr32(priv, NV04_PTIMER_INTR_0, 0xffffffff);
- 	nv_wr32(priv, NV04_PTIMER_INTR_EN_0, 0x00000000);
-+	nv_wr32(priv, NV04_PTIMER_TIME_1, hi);
-+	nv_wr32(priv, NV04_PTIMER_TIME_0, lo);
+-	if (priv->suspend >= 0)
++	if (priv->suspend >= 0) {
++		/* restore the pwm value only when on manual or auto mode */
++		if (priv->suspend > 0)
++			nouveau_therm_fan_set(therm, true, priv->fan->percent);
 +
+ 		nouveau_therm_fan_mode(therm, priv->suspend);
++	}
+ 	priv->sensor.program_alarms(therm);
  	return 0;
  }
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/fan.c b/drivers/gpu/drm/nouveau/core/subdev/therm/fan.c
+index c728380..6d411e1 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/therm/fan.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/therm/fan.c
+@@ -233,6 +233,9 @@ nouveau_therm_fan_ctor(struct nouveau_therm *therm)
+ 	}
  
-@@ -238,6 +249,8 @@ static int
- nv04_timer_fini(struct nouveau_object *object, bool suspend)
- {
- 	struct nv04_timer_priv *priv = (void *)object;
-+	if (suspend)
-+		priv->suspend_time = nv04_timer_read(&priv->base);
- 	nv_wr32(priv, NV04_PTIMER_INTR_EN_0, 0x00000000);
- 	return nouveau_timer_fini(&priv->base, suspend);
- }
+ 	nv_info(therm, "FAN control: %s\n", priv->fan->type);
++	
++	/* read the current speed, it is useful when resuming */
++	priv->fan->percent = nouveau_therm_fan_get(therm);
+ 
+ 	/* attempt to detect a tachometer connection */
+ 	ret = gpio->find(gpio, 0, DCB_GPIO_FAN_SENSE, 0xff, &priv->fan->tach);
 -- 
 1.8.3.4
