@@ -1,8 +1,7 @@
 From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: [PATCH 2/5] drm/nouveau/fan: restore the PWM value on
-	resume when using the manual or auto mode
-Date: Sun, 11 Aug 2013 22:48:49 -0400
-Message-ID: <1376275732-2878-3-git-send-email-martin.peres@free.fr>
+Subject: [PATCH 4/5] drm/nouveau/timer: add a way to cancel alarms
+Date: Sun, 11 Aug 2013 22:48:51 -0400
+Message-ID: <1376275732-2878-5-git-send-email-martin.peres@free.fr>
 References: <1376275732-2878-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,51 +23,90 @@ List-Id: nouveau.vger.kernel.org
 
 From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 
-If the fan was in manual or auto mode, we should restore the fan speed that was
-previously set when resuming.
-
-The initial pwm value is saved when loading the module.
+Since alarms don't play well with suspend, it is important every alarm user
+cancels his tasks before suspending. The task should be rescheduled on resume.
 
 Signed-off-by: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 Tested-by: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 Tested-by: Dash Four <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/subdev/therm/base.c | 7 ++++++-
- drivers/gpu/drm/nouveau/core/subdev/therm/fan.c  | 3 +++
- 2 files changed, 9 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/core/include/subdev/timer.h |  2 ++
+ drivers/gpu/drm/nouveau/core/subdev/timer/base.c    |  7 +++++++
+ drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c    | 20 ++++++++++++++++++++
+ 3 files changed, 29 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/base.c b/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
-index 3e9d941..2ada3d7 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
-@@ -267,8 +267,13 @@ _nouveau_therm_init(struct nouveau_object *object)
- 	if (ret)
- 		return ret;
+diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/timer.h b/drivers/gpu/drm/nouveau/core/include/subdev/timer.h
+index e465d15..9ab70df 100644
+--- a/drivers/gpu/drm/nouveau/core/include/subdev/timer.h
++++ b/drivers/gpu/drm/nouveau/core/include/subdev/timer.h
+@@ -22,6 +22,7 @@ bool nouveau_timer_wait_eq(void *, u64 nsec, u32 addr, u32 mask, u32 data);
+ bool nouveau_timer_wait_ne(void *, u64 nsec, u32 addr, u32 mask, u32 data);
+ bool nouveau_timer_wait_cb(void *, u64 nsec, bool (*func)(void *), void *data);
+ void nouveau_timer_alarm(void *, u32 nsec, struct nouveau_alarm *);
++void nouveau_timer_alarm_cancel(void *, struct nouveau_alarm *);
  
--	if (priv->suspend >= 0)
-+	if (priv->suspend >= 0) {
-+		/* restore the pwm value only when on manual or auto mode */
-+		if (priv->suspend > 0)
-+			nouveau_therm_fan_set(therm, true, priv->fan->percent);
-+
- 		nouveau_therm_fan_mode(therm, priv->suspend);
-+	}
- 	priv->sensor.program_alarms(therm);
- 	return 0;
+ #define NV_WAIT_DEFAULT 2000000000ULL
+ #define nv_wait(o,a,m,v)                                                       \
+@@ -35,6 +36,7 @@ struct nouveau_timer {
+ 	struct nouveau_subdev base;
+ 	u64  (*read)(struct nouveau_timer *);
+ 	void (*alarm)(struct nouveau_timer *, u64 time, struct nouveau_alarm *);
++	void (*alarm_cancel)(struct nouveau_timer *, struct nouveau_alarm *);
+ };
+ 
+ static inline struct nouveau_timer *
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/timer/base.c b/drivers/gpu/drm/nouveau/core/subdev/timer/base.c
+index 5d417cc..cf8a0e0 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/timer/base.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/timer/base.c
+@@ -85,3 +85,10 @@ nouveau_timer_alarm(void *obj, u32 nsec, struct nouveau_alarm *alarm)
+ 	struct nouveau_timer *ptimer = nouveau_timer(obj);
+ 	ptimer->alarm(ptimer, nsec, alarm);
  }
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/fan.c b/drivers/gpu/drm/nouveau/core/subdev/therm/fan.c
-index c728380..6d411e1 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/therm/fan.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/therm/fan.c
-@@ -233,6 +233,9 @@ nouveau_therm_fan_ctor(struct nouveau_therm *therm)
- 	}
++
++void
++nouveau_timer_alarm_cancel(void *obj, struct nouveau_alarm *alarm)
++{
++	struct nouveau_timer *ptimer = nouveau_timer(obj);
++	ptimer->alarm_cancel(ptimer, alarm);
++}
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c b/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
+index 8c72da6..e0d4fd1 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
+@@ -114,6 +114,25 @@ nv04_timer_alarm(struct nouveau_timer *ptimer, u64 time,
+ }
  
- 	nv_info(therm, "FAN control: %s\n", priv->fan->type);
-+	
-+	/* read the current speed, it is useful when resuming */
-+	priv->fan->percent = nouveau_therm_fan_get(therm);
+ static void
++nv04_timer_alarm_cancel(struct nouveau_timer *ptimer,
++			struct nouveau_alarm *alarm)
++{
++	struct nv04_timer_priv *priv = (void *)ptimer;
++	unsigned long flags;
++
++	/* avoid deleting an entry while the alarm intr is running */
++	spin_lock_irqsave(&priv->lock, flags);
++
++	/* delete the alarm from the list */
++	list_del(&alarm->head);
++
++	/* reset the head so as list_empty returns 1 */
++	INIT_LIST_HEAD(&alarm->head);
++
++	spin_unlock_irqrestore(&priv->lock, flags);
++}
++
++static void
+ nv04_timer_intr(struct nouveau_subdev *subdev)
+ {
+ 	struct nv04_timer_priv *priv = (void *)subdev;
+@@ -147,6 +166,7 @@ nv04_timer_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	priv->base.base.intr = nv04_timer_intr;
+ 	priv->base.read = nv04_timer_read;
+ 	priv->base.alarm = nv04_timer_alarm;
++	priv->base.alarm_cancel = nv04_timer_alarm_cancel;
+ 	priv->suspend_time = 0;
  
- 	/* attempt to detect a tachometer connection */
- 	ret = gpio->find(gpio, 0, DCB_GPIO_FAN_SENSE, 0xff, &priv->fan->tach);
+ 	INIT_LIST_HEAD(&priv->alarms);
 -- 
 1.8.3.4
