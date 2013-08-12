@@ -1,7 +1,8 @@
 From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: [PATCH 4/5] drm/nouveau/timer: add a way to cancel alarms
-Date: Sun, 11 Aug 2013 22:48:51 -0400
-Message-ID: <1376275732-2878-5-git-send-email-martin.peres@free.fr>
+Subject: [PATCH 5/5] drm/nouveau/therm: survive to suspend/resume
+	cycles
+Date: Sun, 11 Aug 2013 22:48:52 -0400
+Message-ID: <1376275732-2878-6-git-send-email-martin.peres@free.fr>
 References: <1376275732-2878-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,90 +24,182 @@ List-Id: nouveau.vger.kernel.org
 
 From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 
-Since alarms don't play well with suspend, it is important every alarm user
-cancels his tasks before suspending. The task should be rescheduled on resume.
+Therm uses 3 ptimer alarms. Two to drive the fan and one for polling the
+temperature. When suspending/resuming, alarms will never be fired.
+As we are checking if there isn't an alarm pending before rescheduling
+another one, we end up never checking temperature or updating the
+fan speed.
+
+This commit also adds debug messages to be able to spot more easily
+if this case happens again in the future. Sorry for the spam if you
+activate the debug level though.
+
+Tested-by: Dash Four <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>
+
+v2:
+- fix temperature polling too
 
 Signed-off-by: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 Tested-by: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
-Tested-by: Dash Four <mr.dash.four-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/include/subdev/timer.h |  2 ++
- drivers/gpu/drm/nouveau/core/subdev/timer/base.c    |  7 +++++++
- drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c    | 20 ++++++++++++++++++++
- 3 files changed, 29 insertions(+)
+ drivers/gpu/drm/nouveau/core/subdev/therm/base.c | 10 +++++++++-
+ drivers/gpu/drm/nouveau/core/subdev/therm/fan.c  | 19 ++++++++++++++++++-
+ drivers/gpu/drm/nouveau/core/subdev/therm/priv.h |  4 ++++
+ drivers/gpu/drm/nouveau/core/subdev/therm/temp.c | 21 +++++++++++++++++++++
+ 4 files changed, 52 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/timer.h b/drivers/gpu/drm/nouveau/core/include/subdev/timer.h
-index e465d15..9ab70df 100644
---- a/drivers/gpu/drm/nouveau/core/include/subdev/timer.h
-+++ b/drivers/gpu/drm/nouveau/core/include/subdev/timer.h
-@@ -22,6 +22,7 @@ bool nouveau_timer_wait_eq(void *, u64 nsec, u32 addr, u32 mask, u32 data);
- bool nouveau_timer_wait_ne(void *, u64 nsec, u32 addr, u32 mask, u32 data);
- bool nouveau_timer_wait_cb(void *, u64 nsec, bool (*func)(void *), void *data);
- void nouveau_timer_alarm(void *, u32 nsec, struct nouveau_alarm *);
-+void nouveau_timer_alarm_cancel(void *, struct nouveau_alarm *);
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/base.c b/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
+index 2ada3d7..f1de7a9 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
+@@ -95,12 +95,14 @@ nouveau_therm_update(struct nouveau_therm *therm, int mode)
+ 	int duty;
  
- #define NV_WAIT_DEFAULT 2000000000ULL
- #define nv_wait(o,a,m,v)                                                       \
-@@ -35,6 +36,7 @@ struct nouveau_timer {
- 	struct nouveau_subdev base;
- 	u64  (*read)(struct nouveau_timer *);
- 	void (*alarm)(struct nouveau_timer *, u64 time, struct nouveau_alarm *);
-+	void (*alarm_cancel)(struct nouveau_timer *, struct nouveau_alarm *);
- };
+ 	spin_lock_irqsave(&priv->lock, flags);
++	nv_debug(therm, "FAN speed check\n");
+ 	if (mode < 0)
+ 		mode = priv->mode;
+ 	priv->mode = mode;
  
- static inline struct nouveau_timer *
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/timer/base.c b/drivers/gpu/drm/nouveau/core/subdev/timer/base.c
-index 5d417cc..cf8a0e0 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/timer/base.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/timer/base.c
-@@ -85,3 +85,10 @@ nouveau_timer_alarm(void *obj, u32 nsec, struct nouveau_alarm *alarm)
- 	struct nouveau_timer *ptimer = nouveau_timer(obj);
- 	ptimer->alarm(ptimer, nsec, alarm);
- }
-+
-+void
-+nouveau_timer_alarm_cancel(void *obj, struct nouveau_alarm *alarm)
-+{
-+	struct nouveau_timer *ptimer = nouveau_timer(obj);
-+	ptimer->alarm_cancel(ptimer, alarm);
-+}
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c b/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
-index 8c72da6..e0d4fd1 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
-@@ -114,6 +114,25 @@ nv04_timer_alarm(struct nouveau_timer *ptimer, u64 time,
+ 	switch (mode) {
+ 	case NOUVEAU_THERM_CTRL_MANUAL:
++		ptimer->alarm_cancel(ptimer, &priv->alarm);
+ 		duty = nouveau_therm_fan_get(therm);
+ 		if (duty < 0)
+ 			duty = 100;
+@@ -113,6 +115,7 @@ nouveau_therm_update(struct nouveau_therm *therm, int mode)
+ 		break;
+ 	case NOUVEAU_THERM_CTRL_NONE:
+ 	default:
++		ptimer->alarm_cancel(ptimer, &priv->alarm);
+ 		goto done;
+ 	}
+ 
+@@ -122,6 +125,8 @@ nouveau_therm_update(struct nouveau_therm *therm, int mode)
+ done:
+ 	if (list_empty(&priv->alarm.head) && (mode == NOUVEAU_THERM_CTRL_AUTO))
+ 		ptimer->alarm(ptimer, 1000000000ULL, &priv->alarm);
++	else if (!list_empty(&priv->alarm.head))
++		nv_debug(therm, "therm fan alarm list is not empty\n");
+ 	spin_unlock_irqrestore(&priv->lock, flags);
  }
  
- static void
-+nv04_timer_alarm_cancel(struct nouveau_timer *ptimer,
-+			struct nouveau_alarm *alarm)
+@@ -274,7 +279,8 @@ _nouveau_therm_init(struct nouveau_object *object)
+ 
+ 		nouveau_therm_fan_mode(therm, priv->suspend);
+ 	}
+-	priv->sensor.program_alarms(therm);
++	nouveau_therm_sensor_init(therm);
++	nouveau_therm_fan_init(therm);
+ 	return 0;
+ }
+ 
+@@ -284,6 +290,8 @@ _nouveau_therm_fini(struct nouveau_object *object, bool suspend)
+ 	struct nouveau_therm *therm = (void *)object;
+ 	struct nouveau_therm_priv *priv = (void *)therm;
+ 
++	nouveau_therm_fan_fini(therm, suspend);
++	nouveau_therm_sensor_fini(therm, suspend);
+ 	if (suspend) {
+ 		priv->suspend = priv->mode;
+ 		priv->mode = NOUVEAU_THERM_CTRL_NONE;
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/fan.c b/drivers/gpu/drm/nouveau/core/subdev/therm/fan.c
+index 6d411e1..39f47b9 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/therm/fan.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/therm/fan.c
+@@ -204,6 +204,23 @@ nouveau_therm_fan_safety_checks(struct nouveau_therm *therm)
+ }
+ 
+ int
++nouveau_therm_fan_init(struct nouveau_therm *therm)
 +{
-+	struct nv04_timer_priv *priv = (void *)ptimer;
-+	unsigned long flags;
-+
-+	/* avoid deleting an entry while the alarm intr is running */
-+	spin_lock_irqsave(&priv->lock, flags);
-+
-+	/* delete the alarm from the list */
-+	list_del(&alarm->head);
-+
-+	/* reset the head so as list_empty returns 1 */
-+	INIT_LIST_HEAD(&alarm->head);
-+
-+	spin_unlock_irqrestore(&priv->lock, flags);
++	return 0;
 +}
 +
-+static void
- nv04_timer_intr(struct nouveau_subdev *subdev)
++int
++nouveau_therm_fan_fini(struct nouveau_therm *therm, bool suspend)
++{
++	struct nouveau_therm_priv *priv = (void *)therm;
++	struct nouveau_timer *ptimer = nouveau_timer(therm);
++
++	if (suspend)
++		ptimer->alarm_cancel(ptimer, &priv->fan->alarm);
++	return 0;
++}
++
++int
+ nouveau_therm_fan_ctor(struct nouveau_therm *therm)
  {
- 	struct nv04_timer_priv *priv = (void *)subdev;
-@@ -147,6 +166,7 @@ nv04_timer_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	priv->base.base.intr = nv04_timer_intr;
- 	priv->base.read = nv04_timer_read;
- 	priv->base.alarm = nv04_timer_alarm;
-+	priv->base.alarm_cancel = nv04_timer_alarm_cancel;
- 	priv->suspend_time = 0;
+ 	struct nouveau_therm_priv *priv = (void *)therm;
+@@ -233,7 +250,7 @@ nouveau_therm_fan_ctor(struct nouveau_therm *therm)
+ 	}
  
- 	INIT_LIST_HEAD(&priv->alarms);
+ 	nv_info(therm, "FAN control: %s\n", priv->fan->type);
+-	
++
+ 	/* read the current speed, it is useful when resuming */
+ 	priv->fan->percent = nouveau_therm_fan_get(therm);
+ 
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h b/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h
+index 15ca64e..dd38529 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h
++++ b/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h
+@@ -113,6 +113,8 @@ void nouveau_therm_ic_ctor(struct nouveau_therm *therm);
+ int nouveau_therm_sensor_ctor(struct nouveau_therm *therm);
+ 
+ int nouveau_therm_fan_ctor(struct nouveau_therm *therm);
++int nouveau_therm_fan_init(struct nouveau_therm *therm);
++int nouveau_therm_fan_fini(struct nouveau_therm *therm, bool suspend);
+ int nouveau_therm_fan_get(struct nouveau_therm *therm);
+ int nouveau_therm_fan_set(struct nouveau_therm *therm, bool now, int percent);
+ int nouveau_therm_fan_user_get(struct nouveau_therm *therm);
+@@ -122,6 +124,8 @@ int nouveau_therm_fan_sense(struct nouveau_therm *therm);
+ 
+ int nouveau_therm_preinit(struct nouveau_therm *);
+ 
++int nouveau_therm_sensor_init(struct nouveau_therm *therm);
++int nouveau_therm_sensor_fini(struct nouveau_therm *therm, bool suspend);
+ void nouveau_therm_sensor_preinit(struct nouveau_therm *);
+ void nouveau_therm_sensor_set_threshold_state(struct nouveau_therm *therm,
+ 					     enum nouveau_therm_thrs thrs,
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c b/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c
+index dde746c..b80a330 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c
+@@ -180,6 +180,8 @@ alarm_timer_callback(struct nouveau_alarm *alarm)
+ 
+ 	spin_lock_irqsave(&priv->sensor.alarm_program_lock, flags);
+ 
++	nv_debug(therm, "polling the internal temperature\n");
++
+ 	nouveau_therm_threshold_hyst_polling(therm, &sensor->thrs_fan_boost,
+ 					     NOUVEAU_THERM_THRS_FANBOOST);
+ 
+@@ -216,6 +218,25 @@ nouveau_therm_program_alarms_polling(struct nouveau_therm *therm)
+ 	alarm_timer_callback(&priv->sensor.therm_poll_alarm);
+ }
+ 
++int
++nouveau_therm_sensor_init(struct nouveau_therm *therm)
++{
++	struct nouveau_therm_priv *priv = (void *)therm;
++	priv->sensor.program_alarms(therm);
++	return 0;
++}
++
++int
++nouveau_therm_sensor_fini(struct nouveau_therm *therm, bool suspend)
++{
++	struct nouveau_therm_priv *priv = (void *)therm;
++	struct nouveau_timer *ptimer = nouveau_timer(therm);
++
++	if (suspend)
++		ptimer->alarm_cancel(ptimer, &priv->sensor.therm_poll_alarm);
++	return 0;
++}
++
+ void
+ nouveau_therm_sensor_preinit(struct nouveau_therm *therm)
+ {
 -- 
 1.8.3.4
