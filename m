@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16792] modesetting on NV86: cannot allocate
-	framebuffer
-Date: Tue, 13 Aug 2013 03:04:24 +0000
-Message-ID: <bug-16792-8800-QNpsLXs0wi@http.bugs.freedesktop.org/>
-References: <bug-16792-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 21257] Qt applications strange behavior
+Date: Tue, 13 Aug 2013 03:07:12 +0000
+Message-ID: <bug-21257-8800-cowLfsv4Wq@http.bugs.freedesktop.org/>
+References: <bug-21257-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0691934584=="
+Content-Type: multipart/mixed; boundary="===============1689674548=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16792-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-21257-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0691934584==
-Content-Type: multipart/alternative; boundary="1376363064.68E802.18260"; charset="us-ascii"
+--===============1689674548==
+Content-Type: multipart/alternative; boundary="1376363232.BB16e72.18665"; charset="us-ascii"
 
 
---1376363064.68E802.18260
-Date: Tue, 13 Aug 2013 03:04:24 +0000
+--1376363232.BB16e72.18665
+Date: Tue, 13 Aug 2013 03:07:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=16792
+https://bugs.freedesktop.org/show_bug.cgi?id=21257
 
 Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
 
@@ -39,15 +38,15 @@ Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |FIXED
 
---- Comment #14 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-Someone forgot to close this bug.
+--- Comment #11 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+Nouveau has no problems with KDE on any of my cards. Let's close this bug.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376363064.68E802.18260
-Date: Tue, 13 Aug 2013 03:04:24 +0000
+--1376363232.BB16e72.18665
+Date: Tue, 13 Aug 2013 03:07:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,8 +58,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - modesetting on NV86: cannot allocate framebuffer"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=16792">bug 16792</a>
+   title="RESOLVED FIXED - Qt applications strange behavior"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21257">bug 21257</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -88,15 +87,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - modesetting on NV86: cannot allocate framebuffer"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=16792#c14">Comment # 14</a>
+   title="RESOLVED FIXED - Qt applications strange behavior"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21257#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - modesetting on NV86: cannot allocate framebuffer"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=16792">bug 16792</a>
+   title="RESOLVED FIXED - Qt applications strange behavior"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21257">bug 21257</a>
               from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>Someone forgot to close this bug.</pre>
+        <pre>Nouveau has no problems with KDE on any of my cards. Let's close this bug.</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +107,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1376363064.68E802.18260--
+--1376363232.BB16e72.18665--
 
---===============0691934584==
+--===============1689674548==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0691934584==--
+--===============1689674548==--
