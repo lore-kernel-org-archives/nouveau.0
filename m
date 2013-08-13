@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64774] nouveau GF108 kernel crash in optimus mode
- when enabling external display output
-Date: Tue, 13 Aug 2013 18:23:20 +0000
-Message-ID: <bug-64774-8800-GcgiNW9J2u@http.bugs.freedesktop.org/>
-References: <bug-64774-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
+Date: Tue, 13 Aug 2013 18:47:39 +0000
+Message-ID: <bug-59069-8800-qXvN0GWcFv@http.bugs.freedesktop.org/>
+References: <bug-59069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0589112388=="
+Content-Type: multipart/mixed; boundary="===============1302209255=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64774-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,88 +20,73 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0589112388==
-Content-Type: multipart/alternative; boundary="1376418201.85F452.1216"; charset="us-ascii"
+--===============1302209255==
+Content-Type: multipart/alternative; boundary="1376419659.D48C6b5c4.4852"; charset="us-ascii"
 
 
---1376418201.85F452.1216
-Date: Tue, 13 Aug 2013 18:23:21 +0000
+--1376419659.D48C6b5c4.4852
+Date: Tue, 13 Aug 2013 18:47:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D64774
+https://bugs.freedesktop.org/show_bug.cgi?id=59069
 
---- Comment #19 from Pasi K=C3=A4rkk=C3=A4inen <pasik-X3B1VOXEql0@public.gmane.org> ---
+--- Comment #25 from Pierre Ossman <pierre-bugzilla-vCPtPcF4ZGuHXe+LvDLADg@public.gmane.org> ---
+Anything happening on this front? Are more logs needed?
 
-Ok separate bug opened:
+I've been suffering from this bug for years, and with the upgrade to Fedora 19
+it has reached a point where the system is almost unusable. I originally
+reported it to Fedora, but I did not get much feedback there:
 
-"nouveau inconsistent changing output connector names in xrandr":
-https://bugs.freedesktop.org/show_bug.cgi?id=3D68075
+https://bugzilla.redhat.com/show_bug.cgi?id=699551
 
-So let's focus on the kernel crash on this bug.
-I just verified the same kernel crash also happens on Linux 3.10.4.
-
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376418201.85F452.1216
-Date: Tue, 13 Aug 2013 18:23:21 +0000
+--1376419659.D48C6b5c4.4852
+Date: Tue, 13 Aug 2013 18:47:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - nouveau GF108 kernel crash in optimus mode when enabl=
-ing external display output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64774#c19">Commen=
-t # 19</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c25">Comment # 25</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - nouveau GF108 kernel crash in optimus mode when enabl=
-ing external display output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64774">bug 64774<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pasik&#64;iki.fi" title=3D"Pasi K=C3=A4rkk=C3=A4inen &lt;pasik&#64;iki.fi&g=
-t;"> <span class=3D"fn">Pasi K=C3=A4rkk=C3=A4inen</span></a>
+   title="NEW --- - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre-bugzilla&#64;ossman.eu" title="Pierre Ossman &lt;pierre-bugzilla&#64;ossman.eu&gt;"> <span class="fn">Pierre Ossman</span></a>
 </span></b>
-        <pre>
-Ok separate bug opened:
+        <pre>Anything happening on this front? Are more logs needed?
 
-&quot;nouveau inconsistent changing output connector names in xrandr&quot;:
-<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nouveau inconsistent changing output connector names =
-in xrandr"
-   href=3D"show_bug.cgi?id=3D68075">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D68075</a>
+I've been suffering from this bug for years, and with the upgrade to Fedora 19
+it has reached a point where the system is almost unusable. I originally
+reported it to Fedora, but I did not get much feedback there:
 
-So let's focus on the kernel crash on this bug.
-I just verified the same kernel crash also happens on Linux 3.10.4.</pre>
+<a href="https://bugzilla.redhat.com/show_bug.cgi?id=699551">https://bugzilla.redhat.com/show_bug.cgi?id=699551</a></pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1376418201.85F452.1216--
+--1376419659.D48C6b5c4.4852--
 
---===============0589112388==
+--===============1302209255==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -113,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0589112388==--
+--===============1302209255==--
