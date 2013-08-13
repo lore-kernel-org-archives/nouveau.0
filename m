@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 16897] Support for multiple nvidia cards
-Date: Tue, 13 Aug 2013 03:17:03 +0000
-Message-ID: <bug-16897-8800-yJZvpSsuMd@http.bugs.freedesktop.org/>
-References: <bug-16897-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 17377] NV50 failure : Unhandled PFIFO_INTR -
+	0x00000010
+Date: Tue, 13 Aug 2013 03:18:35 +0000
+Message-ID: <bug-17377-8800-uiLxPELUme@http.bugs.freedesktop.org/>
+References: <bug-17377-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0301170549=="
+Content-Type: multipart/mixed; boundary="===============1949803979=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-16897-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-17377-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0301170549==
-Content-Type: multipart/alternative; boundary="1376363824.2b464.20611"; charset="us-ascii"
+--===============1949803979==
+Content-Type: multipart/alternative; boundary="1376363914.FDC1Dd1.20956"; charset="us-ascii"
 
 
---1376363824.2b464.20611
-Date: Tue, 13 Aug 2013 03:17:04 +0000
+--1376363914.FDC1Dd1.20956
+Date: Tue, 13 Aug 2013 03:18:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=16897
+https://bugs.freedesktop.org/show_bug.cgi?id=17377
 
 Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
 
@@ -38,16 +39,15 @@ Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |WORKSFORME
 
---- Comment #4 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-Nouveau should support multicard pretty well:
-http://nouveau.freedesktop.org/wiki/FeatureMatrix/
+--- Comment #18 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+It works for me. I guess the bug has been fixed.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376363824.2b464.20611
-Date: Tue, 13 Aug 2013 03:17:04 +0000
+--1376363914.FDC1Dd1.20956
+Date: Tue, 13 Aug 2013 03:18:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,8 +59,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - Support for multiple nvidia cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=16897">bug 16897</a>
+   title="RESOLVED WORKSFORME - NV50 failure : Unhandled PFIFO_INTR - 0x00000010"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=17377">bug 17377</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -88,16 +88,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - Support for multiple nvidia cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=16897#c4">Comment # 4</a>
+   title="RESOLVED WORKSFORME - NV50 failure : Unhandled PFIFO_INTR - 0x00000010"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=17377#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - Support for multiple nvidia cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=16897">bug 16897</a>
+   title="RESOLVED WORKSFORME - NV50 failure : Unhandled PFIFO_INTR - 0x00000010"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=17377">bug 17377</a>
               from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>Nouveau should support multicard pretty well:
-<a href="http://nouveau.freedesktop.org/wiki/FeatureMatrix/">http://nouveau.freedesktop.org/wiki/FeatureMatrix/</a></pre>
+        <pre>It works for me. I guess the bug has been fixed.</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +108,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1376363824.2b464.20611--
+--1376363914.FDC1Dd1.20956--
 
---===============0301170549==
+--===============1949803979==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0301170549==--
+--===============1949803979==--
