@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 66022] pwm1[_enable] faults after hibernate/restore
- related to automatic (or otherwise) fan management
-Date: Tue, 13 Aug 2013 02:58:16 +0000
-Message-ID: <bug-66022-8800-DjiSZbkTcn@http.bugs.freedesktop.org/>
-References: <bug-66022-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 16792] modesetting on NV86: cannot allocate
+	framebuffer
+Date: Tue, 13 Aug 2013 03:04:24 +0000
+Message-ID: <bug-16792-8800-QNpsLXs0wi@http.bugs.freedesktop.org/>
+References: <bug-16792-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1108859276=="
+Content-Type: multipart/mixed; boundary="===============0691934584=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-66022-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-16792-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1108859276==
-Content-Type: multipart/alternative; boundary="1376362696.0A33d2.17453"; charset="us-ascii"
+--===============0691934584==
+Content-Type: multipart/alternative; boundary="1376363064.68E802.18260"; charset="us-ascii"
 
 
---1376362696.0A33d2.17453
-Date: Tue, 13 Aug 2013 02:58:16 +0000
+--1376363064.68E802.18260
+Date: Tue, 13 Aug 2013 03:04:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=66022
+https://bugs.freedesktop.org/show_bug.cgi?id=16792
 
 Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
+         Resolution|---                         |FIXED
 
---- Comment #6 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-
-
-*** This bug has been marked as a duplicate of bug 66177 ***
+--- Comment #14 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+Someone forgot to close this bug.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376362696.0A33d2.17453
-Date: Tue, 13 Aug 2013 02:58:16 +0000
+--1376363064.68E802.18260
+Date: Tue, 13 Aug 2013 03:04:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,8 +59,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - pwm1[_enable] faults after hibernate/restore related to automatic (or otherwise) fan management"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66022">bug 66022</a>
+   title="RESOLVED FIXED - modesetting on NV86: cannot allocate framebuffer"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=16792">bug 16792</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -83,27 +81,22 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Resolution</td>
            <td>---
            </td>
-           <td>DUPLICATE
+           <td>FIXED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - pwm1[_enable] faults after hibernate/restore related to automatic (or otherwise) fan management"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66022#c6">Comment # 6</a>
+   title="RESOLVED FIXED - modesetting on NV86: cannot allocate framebuffer"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=16792#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - pwm1[_enable] faults after hibernate/restore related to automatic (or otherwise) fan management"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66022">bug 66022</a>
+   title="RESOLVED FIXED - modesetting on NV86: cannot allocate framebuffer"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=16792">bug 16792</a>
               from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>
-
-*** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - pwm1 value not restored during hibernate/restore cycle in the event of manual fan management mode"
-   href="show_bug.cgi?id=66177">bug 66177</a> ***</pre>
+        <pre>Someone forgot to close this bug.</pre>
         </div>
       </p>
       <hr>
@@ -115,9 +108,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1376362696.0A33d2.17453--
+--1376363064.68E802.18260--
 
---===============1108859276==
+--===============0691934584==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1108859276==--
+--===============0691934584==--
