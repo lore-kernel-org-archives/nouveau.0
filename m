@@ -1,12 +1,12 @@
-From: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nvc0-/ltcg: fix ltcg memory initialization
-	after suspend
-Date: Wed, 14 Aug 2013 10:38:53 +0200
-Message-ID: <1376469533-6702-1-git-send-email-maarten.lankhorst@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 64493] X server crashes when launch Savage XR
+Date: Wed, 14 Aug 2013 22:54:37 +0000
+Message-ID: <bug-64493-8800-XjsbBlQqfW@http.bugs.freedesktop.org/>
+References: <bug-64493-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0640413619=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-64493-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,97 +16,93 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Some registers were not initialized in init, this causes them to be
-uninitialized after suspend.
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
----
- drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c | 35 ++++++++++++++++++-------
- 1 file changed, 26 insertions(+), 9 deletions(-)
+--===============0640413619==
+Content-Type: multipart/alternative; boundary="1376520877.f45CdF61.8636"; charset="us-ascii"
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c b/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c
-index 01da47bda..61e9a9b 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c
-@@ -30,8 +30,9 @@ struct nvc0_ltcg_priv {
- 	struct nouveau_ltcg base;
- 	u32 part_nr;
- 	u32 subp_nr;
--	struct nouveau_mm tags;
- 	u32 num_tags;
-+	u32 tag_base;
-+	struct nouveau_mm tags;
- 	struct nouveau_mm_node *tag_ram;
- };
- 
-@@ -117,10 +118,6 @@ nvc0_ltcg_init_tag_ram(struct nouveau_fb *pfb, struct nvc0_ltcg_priv *priv)
- 	u32 tag_size, tag_margin, tag_align;
- 	int ret;
- 
--	nv_wr32(priv, 0x17e8d8, priv->part_nr);
--	if (nv_device(pfb)->card_type >= NV_E0)
--		nv_wr32(priv, 0x17e000, priv->part_nr);
--
- 	/* tags for 1/4 of VRAM should be enough (8192/4 per GiB of VRAM) */
- 	priv->num_tags = (pfb->ram->size >> 17) / 4;
- 	if (priv->num_tags > (1 << 17))
-@@ -152,7 +149,7 @@ nvc0_ltcg_init_tag_ram(struct nouveau_fb *pfb, struct nvc0_ltcg_priv *priv)
- 		tag_base += tag_align - 1;
- 		ret = do_div(tag_base, tag_align);
- 
--		nv_wr32(priv, 0x17e8d4, tag_base);
-+		priv->tag_base = tag_base;
- 	}
- 	ret = nouveau_mm_init(&priv->tags, 0, priv->num_tags, 1);
- 
-@@ -182,8 +179,6 @@ nvc0_ltcg_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	}
- 	priv->subp_nr = nv_rd32(priv, 0x17e8dc) >> 28;
- 
--	nv_mask(priv, 0x17e820, 0x00100000, 0x00000000); /* INTR_EN &= ~0x10 */
--
- 	ret = nvc0_ltcg_init_tag_ram(pfb, priv);
- 	if (ret)
- 		return ret;
-@@ -209,13 +204,35 @@ nvc0_ltcg_dtor(struct nouveau_object *object)
- 	nouveau_ltcg_destroy(ltcg);
- }
- 
-+static int
-+nvc0_ltcg_init(struct nouveau_object *object)
-+{
-+	struct nouveau_ltcg *ltcg = (struct nouveau_ltcg *)object;
-+	struct nvc0_ltcg_priv *priv = (struct nvc0_ltcg_priv *)ltcg;
-+	int ret;
-+
-+	ret = nouveau_ltcg_init(ltcg);
-+	if (ret)
-+		return ret;
-+
-+	nv_mask(priv, 0x17e820, 0x00100000, 0x00000000); /* INTR_EN &= ~0x10 */
-+
-+	nv_wr32(priv, 0x17e8d8, priv->part_nr);
-+	if (nv_device(ltcg)->card_type >= NV_E0)
-+		nv_wr32(priv, 0x17e000, priv->part_nr);
-+
-+	nv_wr32(priv, 0x17e8d4, priv->tag_base);
-+
-+	return 0;
-+}
-+
- struct nouveau_oclass
- nvc0_ltcg_oclass = {
- 	.handle = NV_SUBDEV(LTCG, 0xc0),
- 	.ofuncs = &(struct nouveau_ofuncs) {
- 		.ctor = nvc0_ltcg_ctor,
- 		.dtor = nvc0_ltcg_dtor,
--		.init = _nouveau_ltcg_init,
-+		.init = nvc0_ltcg_init,
- 		.fini = _nouveau_ltcg_fini,
- 	},
- };
+
+--1376520877.f45CdF61.8636
+Date: Wed, 14 Aug 2013 22:54:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=64493
+
+--- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #2)
+> > 2. Check if the software renderer produces the same result
+> > * export LIBGL_ALWAYS_SOFTWARE=1 && savage...
+> Same result
+
+If X crashes while using the swrast (i.e. when LIBGL_ALWAYS_SOFTWARE is set),
+then the issue is not nouveau but mesa related.
+
+If you're interested in getting this sorted you could track the package and
+commit that caused this :) Hint - seems like the package is mesa and/or
+xorg-server
+
 -- 
-1.8.3.4
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1376520877.f45CdF61.8636
+Date: Wed, 14 Aug 2013 22:54:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - X server crashes when launch Savage XR"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64493#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - X server crashes when launch Savage XR"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64493">bug 64493</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=64493#c2">comment #2</a>)
+<span class="quote">&gt; &gt; 2. Check if the software renderer produces the same result
+&gt; &gt; * export LIBGL_ALWAYS_SOFTWARE=1 &amp;&amp; savage...
+&gt; Same result</span >
+
+If X crashes while using the swrast (i.e. when LIBGL_ALWAYS_SOFTWARE is set),
+then the issue is not nouveau but mesa related.
+
+If you're interested in getting this sorted you could track the package and
+commit that caused this :) Hint - seems like the package is mesa and/or
+xorg-server</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1376520877.f45CdF61.8636--
+
+--===============0640413619==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0640413619==--
