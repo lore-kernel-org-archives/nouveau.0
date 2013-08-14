@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61635] glVertexAttribPointer(id, GL_UNSIGNED_BYTE,
- GL_FALSE, ...) does not work
-Date: Wed, 14 Aug 2013 05:21:18 +0000
-Message-ID: <bug-61635-8800-6AmitKLoaD@http.bugs.freedesktop.org/>
-References: <bug-61635-8800@http.bugs.freedesktop.org/>
+From: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nvc0-/ltcg: fix ltcg memory initialization
+	after suspend
+Date: Wed, 14 Aug 2013 10:38:53 +0200
+Message-ID: <1376469533-6702-1-git-send-email-maarten.lankhorst@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0183695031=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61635-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,77 +16,97 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Some registers were not initialized in init, this causes them to be
+uninitialized after suspend.
 
---===============0183695031==
-Content-Type: multipart/alternative; boundary="1376457678.dD3Cc2.24179"; charset="us-ascii"
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c | 35 ++++++++++++++++++-------
+ 1 file changed, 26 insertions(+), 9 deletions(-)
 
-
---1376457678.dD3Cc2.24179
-Date: Wed, 14 Aug 2013 05:21:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=61635
-
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-If you're still able to test on that NV4B, could you redo your program to take
-a vec4 instead of a vec2 (and just feed it 0's), and see if it works then?
-(Without any mesa changes.) It worked for me on a NV44.
-
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c b/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c
+index 01da47bda..61e9a9b 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/ltcg/nvc0.c
+@@ -30,8 +30,9 @@ struct nvc0_ltcg_priv {
+ 	struct nouveau_ltcg base;
+ 	u32 part_nr;
+ 	u32 subp_nr;
+-	struct nouveau_mm tags;
+ 	u32 num_tags;
++	u32 tag_base;
++	struct nouveau_mm tags;
+ 	struct nouveau_mm_node *tag_ram;
+ };
+ 
+@@ -117,10 +118,6 @@ nvc0_ltcg_init_tag_ram(struct nouveau_fb *pfb, struct nvc0_ltcg_priv *priv)
+ 	u32 tag_size, tag_margin, tag_align;
+ 	int ret;
+ 
+-	nv_wr32(priv, 0x17e8d8, priv->part_nr);
+-	if (nv_device(pfb)->card_type >= NV_E0)
+-		nv_wr32(priv, 0x17e000, priv->part_nr);
+-
+ 	/* tags for 1/4 of VRAM should be enough (8192/4 per GiB of VRAM) */
+ 	priv->num_tags = (pfb->ram->size >> 17) / 4;
+ 	if (priv->num_tags > (1 << 17))
+@@ -152,7 +149,7 @@ nvc0_ltcg_init_tag_ram(struct nouveau_fb *pfb, struct nvc0_ltcg_priv *priv)
+ 		tag_base += tag_align - 1;
+ 		ret = do_div(tag_base, tag_align);
+ 
+-		nv_wr32(priv, 0x17e8d4, tag_base);
++		priv->tag_base = tag_base;
+ 	}
+ 	ret = nouveau_mm_init(&priv->tags, 0, priv->num_tags, 1);
+ 
+@@ -182,8 +179,6 @@ nvc0_ltcg_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	}
+ 	priv->subp_nr = nv_rd32(priv, 0x17e8dc) >> 28;
+ 
+-	nv_mask(priv, 0x17e820, 0x00100000, 0x00000000); /* INTR_EN &= ~0x10 */
+-
+ 	ret = nvc0_ltcg_init_tag_ram(pfb, priv);
+ 	if (ret)
+ 		return ret;
+@@ -209,13 +204,35 @@ nvc0_ltcg_dtor(struct nouveau_object *object)
+ 	nouveau_ltcg_destroy(ltcg);
+ }
+ 
++static int
++nvc0_ltcg_init(struct nouveau_object *object)
++{
++	struct nouveau_ltcg *ltcg = (struct nouveau_ltcg *)object;
++	struct nvc0_ltcg_priv *priv = (struct nvc0_ltcg_priv *)ltcg;
++	int ret;
++
++	ret = nouveau_ltcg_init(ltcg);
++	if (ret)
++		return ret;
++
++	nv_mask(priv, 0x17e820, 0x00100000, 0x00000000); /* INTR_EN &= ~0x10 */
++
++	nv_wr32(priv, 0x17e8d8, priv->part_nr);
++	if (nv_device(ltcg)->card_type >= NV_E0)
++		nv_wr32(priv, 0x17e000, priv->part_nr);
++
++	nv_wr32(priv, 0x17e8d4, priv->tag_base);
++
++	return 0;
++}
++
+ struct nouveau_oclass
+ nvc0_ltcg_oclass = {
+ 	.handle = NV_SUBDEV(LTCG, 0xc0),
+ 	.ofuncs = &(struct nouveau_ofuncs) {
+ 		.ctor = nvc0_ltcg_ctor,
+ 		.dtor = nvc0_ltcg_dtor,
+-		.init = _nouveau_ltcg_init,
++		.init = nvc0_ltcg_init,
+ 		.fini = _nouveau_ltcg_fini,
+ 	},
+ };
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1376457678.dD3Cc2.24179
-Date: Wed, 14 Aug 2013 05:21:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - glVertexAttribPointer(id, GL_UNSIGNED_BYTE, GL_FALSE,...) does not work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61635#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - glVertexAttribPointer(id, GL_UNSIGNED_BYTE, GL_FALSE,...) does not work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61635">bug 61635</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>If you're still able to test on that NV4B, could you redo your program to take
-a vec4 instead of a vec2 (and just feed it 0's), and see if it works then?
-(Without any mesa changes.) It worked for me on a NV44.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1376457678.dD3Cc2.24179--
-
---===============0183695031==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0183695031==--
+1.8.3.4
