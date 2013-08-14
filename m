@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64493] X server crashes when launch Savage XR
-Date: Wed, 14 Aug 2013 22:54:37 +0000
-Message-ID: <bug-64493-8800-XjsbBlQqfW@http.bugs.freedesktop.org/>
+Date: Wed, 14 Aug 2013 23:03:39 +0000
+Message-ID: <bug-64493-8800-psQitBrUWP@http.bugs.freedesktop.org/>
 References: <bug-64493-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0640413619=="
+Content-Type: multipart/mixed; boundary="===============0256258171=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64493-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,36 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0640413619==
-Content-Type: multipart/alternative; boundary="1376520877.f45CdF61.8636"; charset="us-ascii"
+--===============0256258171==
+Content-Type: multipart/alternative; boundary="1376521419.dCdB1.11066"; charset="us-ascii"
 
 
---1376520877.f45CdF61.8636
-Date: Wed, 14 Aug 2013 22:54:37 +0000
+--1376521419.dCdB1.11066
+Date: Wed, 14 Aug 2013 23:03:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=64493
 
---- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #2)
-> > 2. Check if the software renderer produces the same result
-> > * export LIBGL_ALWAYS_SOFTWARE=1 && savage...
-> Same result
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+[  4863.494] (EE) Segmentation fault at address 0xde5
 
-If X crashes while using the swrast (i.e. when LIBGL_ALWAYS_SOFTWARE is set),
-then the issue is not nouveau but mesa related.
+This is likely a simple null pointer dereference. Install the debug versions of
+the libraries (xf86-video-nouveau, mesa, X), and run X inside gdb (or just use
+gdb to look up where in the code it's dying based on the addresses it prints).
 
-If you're interested in getting this sorted you could track the package and
-commit that caused this :) Hint - seems like the package is mesa and/or
-xorg-server
+Not sure about the assertion that LIBGL_ALWAYS_SOFTWARE=1 + X crash = not a bug
+in nouveau. There's still the ddx...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376520877.f45CdF61.8636
-Date: Wed, 14 Aug 2013 22:54:37 +0000
+--1376521419.dCdB1.11066
+Date: Wed, 14 Aug 2013 23:03:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,24 +60,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - X server crashes when launch Savage XR"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64493#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64493#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - X server crashes when launch Savage XR"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64493">bug 64493</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=64493#c2">comment #2</a>)
-<span class="quote">&gt; &gt; 2. Check if the software renderer produces the same result
-&gt; &gt; * export LIBGL_ALWAYS_SOFTWARE=1 &amp;&amp; savage...
-&gt; Same result</span >
+        <pre>[  4863.494] (EE) Segmentation fault at address 0xde5
 
-If X crashes while using the swrast (i.e. when LIBGL_ALWAYS_SOFTWARE is set),
-then the issue is not nouveau but mesa related.
+This is likely a simple null pointer dereference. Install the debug versions of
+the libraries (xf86-video-nouveau, mesa, X), and run X inside gdb (or just use
+gdb to look up where in the code it's dying based on the addresses it prints).
 
-If you're interested in getting this sorted you could track the package and
-commit that caused this :) Hint - seems like the package is mesa and/or
-xorg-server</pre>
+Not sure about the assertion that LIBGL_ALWAYS_SOFTWARE=1 + X crash = not a bug
+in nouveau. There's still the ddx...</pre>
         </div>
       </p>
       <hr>
@@ -92,9 +86,9 @@ xorg-server</pre>
     </body>
 </html>
 
---1376520877.f45CdF61.8636--
+--1376521419.dCdB1.11066--
 
---===============0640413619==
+--===============0256258171==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0640413619==--
+--===============0256258171==--
