@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 68037] TRAP_TPDMA - TP0: Unhandled ustatus
  0x00000008 ; and other NV50 log spam errors
-Date: Thu, 15 Aug 2013 06:14:32 +0000
-Message-ID: <bug-68037-8800-Kp7UJbt1HR@http.bugs.freedesktop.org/>
+Date: Thu, 15 Aug 2013 17:30:53 +0000
+Message-ID: <bug-68037-8800-wpfwyShRi3@http.bugs.freedesktop.org/>
 References: <bug-68037-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1965821245=="
+Content-Type: multipart/mixed; boundary="===============0842411624=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-68037-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,36 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1965821245==
-Content-Type: multipart/alternative; boundary="1376547273.E5BBF1.9695"; charset="us-ascii"
+--===============0842411624==
+Content-Type: multipart/alternative; boundary="1376587853.0c4761.13976"; charset="us-ascii"
 
 
---1376547273.E5BBF1.9695
-Date: Thu, 15 Aug 2013 06:14:33 +0000
+--1376587853.0c4761.13976
+Date: Thu, 15 Aug 2013 17:30:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=68037
 
---- Comment #2 from dirkneukirchen-S0/GAf8tV78@public.gmane.org ---
-Created attachment 84086
-  --> https://bugs.freedesktop.org/attachment.cgi?id=84086&action=edit
-Xorg crashes after a while running glxgears. Debug messages from nouveau
+--- Comment #3 from dirkneukirchen-S0/GAf8tV78@public.gmane.org ---
+forgot software versions:
 
-previous crashes only changed Kernel.
-This time i installed packages from xorg-edgers rebooted and ran glxgears.
-
-After a while (opening browser, switch to virtual terminal and back)
-system doesnt response and X is restarted
-
-Attached log with debug messages from nouveau
+latest log was with:
+- Kernel 3.11-rc5
+xorg-edgers:
+libdrm-nouveau2 2.4.46+git20130702.c6d73cfe-0ubuntu0sarvatt~raring
+libgl1-mesa-dri 9.2.0~git20130729+9.2.9b8ad643-0ubuntu0sarvatt~raring
+xserver-xorg-core
+2:1.13.4~git20130508+server-1.13-branch.10c42f57-0ubuntu0ricotz~raring
+xserver-xorg-video-nouveau 1:1.0.9+git20130730.300c5a32-0ubuntu0sarvatt~raring
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376547273.E5BBF1.9695
-Date: Thu, 15 Aug 2013 06:14:33 +0000
+--1376587853.0c4761.13976
+Date: Thu, 15 Aug 2013 17:30:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,23 +63,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - TRAP_TPDMA - TP0: Unhandled ustatus 0x00000008 ; and other NV50 log spam errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68037#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68037#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - TRAP_TPDMA - TP0: Unhandled ustatus 0x00000008 ; and other NV50 log spam errors"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=68037">bug 68037</a>
               from <span class="vcard"><a class="email" href="mailto:dirkneukirchen&#64;web.de" title="dirkneukirchen&#64;web.de">dirkneukirchen&#64;web.de</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=84086" name="attach_84086" title="Xorg crashes after a while running glxgears. Debug messages from nouveau">attachment 84086</a> <a href="attachment.cgi?id=84086&amp;action=edit" title="Xorg crashes after a while running glxgears. Debug messages from nouveau">[details]</a></span>
-Xorg crashes after a while running glxgears. Debug messages from nouveau
+        <pre>forgot software versions:
 
-previous crashes only changed Kernel.
-This time i installed packages from xorg-edgers rebooted and ran glxgears.
-
-After a while (opening browser, switch to virtual terminal and back)
-system doesnt response and X is restarted
-
-Attached log with debug messages from nouveau</pre>
+latest log was with:
+- Kernel 3.11-rc5
+xorg-edgers:
+libdrm-nouveau2 2.4.46+git20130702.c6d73cfe-0ubuntu0sarvatt~raring
+libgl1-mesa-dri 9.2.0~git20130729+9.2.9b8ad643-0ubuntu0sarvatt~raring
+xserver-xorg-core
+2:1.13.4~git20130508+server-1.13-branch.10c42f57-0ubuntu0ricotz~raring
+xserver-xorg-video-nouveau 1:1.0.9+git20130730.300c5a32-0ubuntu0sarvatt~raring</pre>
         </div>
       </p>
       <hr>
@@ -92,9 +91,9 @@ Attached log with debug messages from nouveau</pre>
     </body>
 </html>
 
---1376547273.E5BBF1.9695--
+--1376587853.0c4761.13976--
 
---===============1965821245==
+--===============0842411624==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1965821245==--
+--===============0842411624==--
