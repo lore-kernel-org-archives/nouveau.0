@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68126] drm Nouveau fails compile
-Date: Thu, 15 Aug 2013 01:42:31 +0000
-Message-ID: <bug-68126-8800-AKszy1R6sO@http.bugs.freedesktop.org/>
-References: <bug-68126-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68037] TRAP_TPDMA - TP0: Unhandled ustatus
+ 0x00000008 ; and other NV50 log spam errors
+Date: Thu, 15 Aug 2013 06:14:32 +0000
+Message-ID: <bug-68037-8800-Kp7UJbt1HR@http.bugs.freedesktop.org/>
+References: <bug-68037-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1218506659=="
+Content-Type: multipart/mixed; boundary="===============1965821245=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68126-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68037-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1218506659==
-Content-Type: multipart/alternative; boundary="1376530951.DC8Efd1.9523"; charset="us-ascii"
+--===============1965821245==
+Content-Type: multipart/alternative; boundary="1376547273.E5BBF1.9695"; charset="us-ascii"
 
 
---1376530951.DC8Efd1.9523
-Date: Thu, 15 Aug 2013 01:42:31 +0000
+--1376547273.E5BBF1.9695
+Date: Thu, 15 Aug 2013 06:14:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68126
+https://bugs.freedesktop.org/show_bug.cgi?id=68037
 
---- Comment #5 from min2 <min2-OQ2JkDkuTc7l0auHykxRS0EOCMrvLtNR@public.gmane.org> ---
-(In reply to comment #3)
-> (In reply to comment #2)
-> > 9f9ccf707c54156b4559a4b1206022c2ca2d45cd is the first bad commit
-> > commit 9f9ccf707c54156b4559a4b1206022c2ca2d45cd
-> > Author: Kenneth Graunke <kenneth-xkhwgxqQjnbNLxjTenLetw@public.gmane.org>
-> > Date:   Tue Dec 4 13:31:57 2012 -0800
-> 
-> Uh, no.
+--- Comment #2 from dirkneukirchen-S0/GAf8tV78@public.gmane.org ---
+Created attachment 84086
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84086&action=edit
+Xorg crashes after a while running glxgears. Debug messages from nouveau
 
-Sorry for this failed bisect.
+previous crashes only changed Kernel.
+This time i installed packages from xorg-edgers rebooted and ran glxgears.
+
+After a while (opening browser, switch to virtual terminal and back)
+system doesnt response and X is restarted
+
+Attached log with debug messages from nouveau
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376530951.DC8Efd1.9523
-Date: Thu, 15 Aug 2013 01:42:31 +0000
+--1376547273.E5BBF1.9695
+Date: Thu, 15 Aug 2013 06:14:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,25 +62,25 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - drm Nouveau fails compile"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68126#c5">Comment # 5</a>
+          bz_status_NEW "
+   title="NEW --- - TRAP_TPDMA - TP0: Unhandled ustatus 0x00000008 ; and other NV50 log spam errors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68037#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - drm Nouveau fails compile"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68126">bug 68126</a>
-              from <span class="vcard"><a class="email" href="mailto:min2&#64;mail.mailinator.com" title="min2 &lt;min2&#64;mail.mailinator.com&gt;"> <span class="fn">min2</span></a>
+          bz_status_NEW "
+   title="NEW --- - TRAP_TPDMA - TP0: Unhandled ustatus 0x00000008 ; and other NV50 log spam errors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68037">bug 68037</a>
+              from <span class="vcard"><a class="email" href="mailto:dirkneukirchen&#64;web.de" title="dirkneukirchen&#64;web.de">dirkneukirchen&#64;web.de</a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=68126#c3">comment #3</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=68126#c2">comment #2</a>)
-&gt; &gt; 9f9ccf707c54156b4559a4b1206022c2ca2d45cd is the first bad commit
-&gt; &gt; commit 9f9ccf707c54156b4559a4b1206022c2ca2d45cd
-&gt; &gt; Author: Kenneth Graunke &lt;<a href="mailto:kenneth&#64;whitecape.org">kenneth&#64;whitecape.org</a>&gt;
-&gt; &gt; Date:   Tue Dec 4 13:31:57 2012 -0800
-&gt; 
-&gt; Uh, no.</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=84086" name="attach_84086" title="Xorg crashes after a while running glxgears. Debug messages from nouveau">attachment 84086</a> <a href="attachment.cgi?id=84086&amp;action=edit" title="Xorg crashes after a while running glxgears. Debug messages from nouveau">[details]</a></span>
+Xorg crashes after a while running glxgears. Debug messages from nouveau
 
-Sorry for this failed bisect.</pre>
+previous crashes only changed Kernel.
+This time i installed packages from xorg-edgers rebooted and ran glxgears.
+
+After a while (opening browser, switch to virtual terminal and back)
+system doesnt response and X is restarted
+
+Attached log with debug messages from nouveau</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +92,9 @@ Sorry for this failed bisect.</pre>
     </body>
 </html>
 
---1376530951.DC8Efd1.9523--
+--1376547273.E5BBF1.9695--
 
---===============1218506659==
+--===============1965821245==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1218506659==--
+--===============1965821245==--
