@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64746] optimus don't use nouveau card
-Date: Wed, 14 Aug 2013 23:29:23 +0000
-Message-ID: <bug-64746-8800-alMhPW0x6T@http.bugs.freedesktop.org/>
-References: <bug-64746-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68126] drm Nouveau fails compile
+Date: Thu, 15 Aug 2013 00:14:41 +0000
+Message-ID: <bug-68126-8800-hA5zQcMS8f@http.bugs.freedesktop.org/>
+References: <bug-68126-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1474760882=="
+Content-Type: multipart/mixed; boundary="===============0348235309=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64746-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68126-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,38 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1474760882==
-Content-Type: multipart/alternative; boundary="1376522962.0807c5620.19029"; charset="us-ascii"
+--===============0348235309==
+Content-Type: multipart/alternative; boundary="1376525681.48A3c1.30234"; charset="us-ascii"
 
 
---1376522962.0807c5620.19029
-Date: Wed, 14 Aug 2013 23:29:22 +0000
+--1376525681.48A3c1.30234
+Date: Thu, 15 Aug 2013 00:14:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64746
+https://bugs.freedesktop.org/show_bug.cgi?id=68126
 
---- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi Marc
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 84079
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84079&action=edit
+Typo fix
 
-Can you attach your xorg.log, the link provided returns a 404
+Can you try the patch? It seems to resolve the problem on my build.
 
-What is the output of
-$ DRI_PRIME=1 glxinfo | grep render
-
-Note that Optimus is a very "funny" case and your experience may vary depending
-on the connections between the GPUs and the outputs - special thanks goes to
-your laptop manufacturer :)
-
-For further information take a look at our wiki [1]
-[1] http://nouveau.freedesktop.org/wiki/Optimus/
+Thanks
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376522962.0807c5620.19029
-Date: Wed, 14 Aug 2013 23:29:22 +0000
+--1376525681.48A3c1.30234
+Date: Thu, 15 Aug 2013 00:14:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,27 +58,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - optimus don't use nouveau card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64746#c3">Comment # 3</a>
+   title="NEW --- - drm Nouveau fails compile"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68126#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - optimus don't use nouveau card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64746">bug 64746</a>
+   title="NEW --- - drm Nouveau fails compile"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68126">bug 68126</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Hi Marc
+        <pre>Created <span class=""><a href="attachment.cgi?id=84079" name="attach_84079" title="Typo fix">attachment 84079</a> <a href="attachment.cgi?id=84079&amp;action=edit" title="Typo fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=68126&amp;attachment=84079'>[review]</a>
+Typo fix
 
-Can you attach your xorg.log, the link provided returns a 404
+Can you try the patch? It seems to resolve the problem on my build.
 
-What is the output of
-$ DRI_PRIME=1 glxinfo | grep render
-
-Note that Optimus is a very &quot;funny&quot; case and your experience may vary depending
-on the connections between the GPUs and the outputs - special thanks goes to
-your laptop manufacturer :)
-
-For further information take a look at our wiki [1]
-[1] <a href="http://nouveau.freedesktop.org/wiki/Optimus/">http://nouveau.freedesktop.org/wiki/Optimus/</a></pre>
+Thanks</pre>
         </div>
       </p>
       <hr>
@@ -96,9 +83,9 @@ For further information take a look at our wiki [1]
     </body>
 </html>
 
---1376522962.0807c5620.19029--
+--1376525681.48A3c1.30234--
 
---===============1474760882==
+--===============0348235309==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -109,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1474760882==--
+--===============0348235309==--
