@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 68126] drm Nouveau fails compile
-Date: Thu, 15 Aug 2013 00:26:49 +0000
-Message-ID: <bug-68126-8800-9TZJ24HnYD@http.bugs.freedesktop.org/>
+Date: Thu, 15 Aug 2013 00:44:08 +0000
+Message-ID: <bug-68126-8800-5JwlLB0VZj@http.bugs.freedesktop.org/>
 References: <bug-68126-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0189585719=="
+Content-Type: multipart/mixed; boundary="===============1039907219=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-68126-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0189585719==
-Content-Type: multipart/alternative; boundary="1376526409.11EeC00C1.31819"; charset="us-ascii"
+--===============1039907219==
+Content-Type: multipart/alternative; boundary="1376527448.fF4f081.1848"; charset="us-ascii"
 
 
---1376526409.11EeC00C1.31819
-Date: Thu, 15 Aug 2013 00:26:49 +0000
+--1376527448.fF4f081.1848
+Date: Thu, 15 Aug 2013 00:44:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=68126
 
---- Comment #2 from min2 <min2-OQ2JkDkuTc7l0auHykxRS0EOCMrvLtNR@public.gmane.org> ---
-9f9ccf707c54156b4559a4b1206022c2ca2d45cd is the first bad commit
-commit 9f9ccf707c54156b4559a4b1206022c2ca2d45cd
-Author: Kenneth Graunke <kenneth-xkhwgxqQjnbNLxjTenLetw@public.gmane.org>
-Date:   Tue Dec 4 13:31:57 2012 -0800
+--- Comment #3 from Matt Turner <mattst88-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #2)
+> 9f9ccf707c54156b4559a4b1206022c2ca2d45cd is the first bad commit
+> commit 9f9ccf707c54156b4559a4b1206022c2ca2d45cd
+> Author: Kenneth Graunke <kenneth-xkhwgxqQjnbNLxjTenLetw@public.gmane.org>
+> Date:   Tue Dec 4 13:31:57 2012 -0800
+
+Uh, no.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376526409.11EeC00C1.31819
-Date: Thu, 15 Aug 2013 00:26:49 +0000
+--1376527448.fF4f081.1848
+Date: Thu, 15 Aug 2013 00:44:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,17 +59,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - drm Nouveau fails compile"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68126#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68126#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - drm Nouveau fails compile"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=68126">bug 68126</a>
-              from <span class="vcard"><a class="email" href="mailto:min2&#64;mail.mailinator.com" title="min2 &lt;min2&#64;mail.mailinator.com&gt;"> <span class="fn">min2</span></a>
+              from <span class="vcard"><a class="email" href="mailto:mattst88&#64;gmail.com" title="Matt Turner &lt;mattst88&#64;gmail.com&gt;"> <span class="fn">Matt Turner</span></a>
 </span></b>
-        <pre>9f9ccf707c54156b4559a4b1206022c2ca2d45cd is the first bad commit
-commit 9f9ccf707c54156b4559a4b1206022c2ca2d45cd
-Author: Kenneth Graunke &lt;<a href="mailto:kenneth&#64;whitecape.org">kenneth&#64;whitecape.org</a>&gt;
-Date:   Tue Dec 4 13:31:57 2012 -0800</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=68126#c2">comment #2</a>)
+<span class="quote">&gt; 9f9ccf707c54156b4559a4b1206022c2ca2d45cd is the first bad commit
+&gt; commit 9f9ccf707c54156b4559a4b1206022c2ca2d45cd
+&gt; Author: Kenneth Graunke &lt;<a href="mailto:kenneth&#64;whitecape.org">kenneth&#64;whitecape.org</a>&gt;
+&gt; Date:   Tue Dec 4 13:31:57 2012 -0800</span >
+
+Uh, no.</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +84,9 @@ Date:   Tue Dec 4 13:31:57 2012 -0800</pre>
     </body>
 </html>
 
---1376526409.11EeC00C1.31819--
+--1376527448.fF4f081.1848--
 
---===============0189585719==
+--===============1039907219==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0189585719==--
+--===============1039907219==--
