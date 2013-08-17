@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61635] glVertexAttribPointer(id, GL_UNSIGNED_BYTE,
- GL_FALSE, ...) does not work
-Date: Fri, 16 Aug 2013 00:33:08 +0000
-Message-ID: <bug-61635-8800-elZYfQAM9G@http.bugs.freedesktop.org/>
-References: <bug-61635-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64746] optimus don't use nouveau card
+Date: Sat, 17 Aug 2013 18:41:08 +0000
+Message-ID: <bug-64746-8800-x18AF1r0J8@http.bugs.freedesktop.org/>
+References: <bug-64746-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0386719379=="
+Content-Type: multipart/mixed; boundary="===============0576740777=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61635-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-64746-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0386719379==
-Content-Type: multipart/alternative; boundary="1376613188.dE4FDdAA2.13986"; charset="us-ascii"
+--===============0576740777==
+Content-Type: multipart/alternative; boundary="1376764868.bf760.20219"; charset="us-ascii"
 
 
---1376613188.dE4FDdAA2.13986
-Date: Fri, 16 Aug 2013 00:33:08 +0000
+--1376764868.bf760.20219
+Date: Sat, 17 Aug 2013 18:41:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=61635
+https://bugs.freedesktop.org/show_bug.cgi?id=64746
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Fix now in mesa-git
-(http://cgit.freedesktop.org/mesa/mesa/commit/?id=14ee790df77c810f187860a8d51096173ff39fcf),
-pretty sure it's the right thing. Closing this. Thanks for the test case, very
-useful!
+--- Comment #4 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 84183
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84183&action=edit
+Xorg file
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376613188.dE4FDdAA2.13986
-Date: Fri, 16 Aug 2013 00:33:08 +0000
+--1376764868.bf760.20219
+Date: Sat, 17 Aug 2013 18:41:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,51 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - glVertexAttribPointer(id, GL_UNSIGNED_BYTE, GL_FALSE,...) does not work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61635">bug 61635</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - glVertexAttribPointer(id, GL_UNSIGNED_BYTE, GL_FALSE,...) does not work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61635#c7">Comment # 7</a>
+          bz_status_NEW "
+   title="NEW --- - optimus don't use nouveau card"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64746#c4">Comment # 4</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - glVertexAttribPointer(id, GL_UNSIGNED_BYTE, GL_FALSE,...) does not work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61635">bug 61635</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEW "
+   title="NEW --- - optimus don't use nouveau card"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64746">bug 64746</a>
+              from <span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
 </span></b>
-        <pre>Fix now in mesa-git
-(<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=14ee790df77c810f187860a8d51096173ff39fcf">http://cgit.freedesktop.org/mesa/mesa/commit/?id=14ee790df77c810f187860a8d51096173ff39fcf</a>),
-pretty sure it's the right thing. Closing this. Thanks for the test case, very
-useful!</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=84183" name="attach_84183" title="Xorg file">attachment 84183</a> <a href="attachment.cgi?id=84183&amp;action=edit" title="Xorg file">[details]</a></span>
+Xorg file</pre>
         </div>
       </p>
       <hr>
@@ -114,9 +75,9 @@ useful!</pre>
     </body>
 </html>
 
---1376613188.dE4FDdAA2.13986--
+--1376764868.bf760.20219--
 
---===============0386719379==
+--===============0576740777==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0386719379==--
+--===============0576740777==--
