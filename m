@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64746] optimus don't use nouveau card
-Date: Sat, 17 Aug 2013 18:41:08 +0000
-Message-ID: <bug-64746-8800-x18AF1r0J8@http.bugs.freedesktop.org/>
+Date: Sat, 17 Aug 2013 18:41:37 +0000
+Message-ID: <bug-64746-8800-ZRChRwdUNn@http.bugs.freedesktop.org/>
 References: <bug-64746-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0576740777=="
+Content-Type: multipart/mixed; boundary="===============0856622351=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64746-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0576740777==
-Content-Type: multipart/alternative; boundary="1376764868.bf760.20219"; charset="us-ascii"
+--===============0856622351==
+Content-Type: multipart/alternative; boundary="1376764897.238Efaba0.20815"; charset="us-ascii"
 
 
---1376764868.bf760.20219
-Date: Sat, 17 Aug 2013 18:41:08 +0000
+--1376764897.238Efaba0.20815
+Date: Sat, 17 Aug 2013 18:41:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=64746
 
---- Comment #4 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 84183
-  --> https://bugs.freedesktop.org/attachment.cgi?id=84183&action=edit
-Xorg file
+--- Comment #5 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+DRI_PRIME=1 glxinfo | grep render
+
+return nothing
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376764868.bf760.20219
-Date: Sat, 17 Aug 2013 18:41:08 +0000
+--1376764897.238Efaba0.20815
+Date: Sat, 17 Aug 2013 18:41:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - optimus don't use nouveau card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64746#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64746#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - optimus don't use nouveau card"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64746">bug 64746</a>
               from <span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=84183" name="attach_84183" title="Xorg file">attachment 84183</a> <a href="attachment.cgi?id=84183&amp;action=edit" title="Xorg file">[details]</a></span>
-Xorg file</pre>
+        <pre>DRI_PRIME=1 glxinfo | grep render
+
+return nothing</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +76,9 @@ Xorg file</pre>
     </body>
 </html>
 
---1376764868.bf760.20219--
+--1376764897.238Efaba0.20815--
 
---===============0576740777==
+--===============0856622351==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0576740777==--
+--===============0856622351==--
