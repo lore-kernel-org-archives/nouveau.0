@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 29766] suspend-to-ram problem on GF7600 notebook
-Date: Sun, 18 Aug 2013 18:09:53 +0000
-Message-ID: <bug-29766-8800-kZoyX1VhE0@http.bugs.freedesktop.org/>
-References: <bug-29766-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26800] Nouveau TV-out incorrectly detecting load
+Date: Sun, 18 Aug 2013 18:09:55 +0000
+Message-ID: <bug-26800-8800-srQrh8me2m@http.bugs.freedesktop.org/>
+References: <bug-26800-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0539334193=="
+Content-Type: multipart/mixed; boundary="===============0926484786=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-29766-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26800-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0539334193==
-Content-Type: multipart/alternative; boundary="1376849394.fb3f36fD344.7623"; charset="us-ascii"
+--===============0926484786==
+Content-Type: multipart/alternative; boundary="1376849395.E5dE350.7623"; charset="us-ascii"
 
 
---1376849394.fb3f36fD344.7623
-Date: Sun, 18 Aug 2013 18:09:53 +0000
+--1376849395.E5dE350.7623
+Date: Sun, 18 Aug 2013 18:09:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=29766
+https://bugs.freedesktop.org/show_bug.cgi?id=26800
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -38,7 +38,7 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 It appears that this bug report has laid dormant for quite a while. Sorry we
 haven't gotten to it. Since we fix bugs all the time, chances are pretty good
 that your issue has been fixed with the latest software. Please give it a shot.
@@ -59,8 +59,8 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849394.fb3f36fD344.7623
-Date: Sun, 18 Aug 2013 18:09:54 +0000
+--1376849395.E5dE350.7623
+Date: Sun, 18 Aug 2013 18:09:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,8 +72,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - suspend-to-ram problem on GF7600 notebook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=29766">bug 29766</a>
+   title="RESOLVED INVALID - Nouveau TV-out incorrectly detecting load"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=26800">bug 26800</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -101,12 +101,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - suspend-to-ram problem on GF7600 notebook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=29766#c6">Comment # 6</a>
+   title="RESOLVED INVALID - Nouveau TV-out incorrectly detecting load"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=26800#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - suspend-to-ram problem on GF7600 notebook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=29766">bug 29766</a>
+   title="RESOLVED INVALID - Nouveau TV-out incorrectly detecting load"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=26800">bug 26800</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -135,9 +135,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849394.fb3f36fD344.7623--
+--1376849395.E5dE350.7623--
 
---===============0539334193==
+--===============0926484786==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +148,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0539334193==--
+--===============0926484786==--
