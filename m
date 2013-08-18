@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 41644] Mouse pointer flickering/disappearing on NV05
-Date: Sun, 18 Aug 2013 18:09:08 +0000
-Message-ID: <bug-41644-8800-hS49hpJHCc@http.bugs.freedesktop.org/>
-References: <bug-41644-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 34491] Resuming from Suspend to RAM causes poor 2D
+	performance
+Date: Sun, 18 Aug 2013 18:09:09 +0000
+Message-ID: <bug-34491-8800-v5sMG4EsJL@http.bugs.freedesktop.org/>
+References: <bug-34491-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1829574427=="
+Content-Type: multipart/mixed; boundary="===============0216483784=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-41644-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-34491-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1829574427==
-Content-Type: multipart/alternative; boundary="1376849348.37eec45149.7623"; charset="us-ascii"
+--===============0216483784==
+Content-Type: multipart/alternative; boundary="1376849349.dFC752.7623"; charset="us-ascii"
 
 
---1376849348.37eec45149.7623
-Date: Sun, 18 Aug 2013 18:09:08 +0000
+--1376849349.dFC752.7623
+Date: Sun, 18 Aug 2013 18:09:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=41644
+https://bugs.freedesktop.org/show_bug.cgi?id=34491
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -59,8 +60,8 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849348.37eec45149.7623
-Date: Sun, 18 Aug 2013 18:09:08 +0000
+--1376849349.dFC752.7623
+Date: Sun, 18 Aug 2013 18:09:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,8 +73,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Mouse pointer flickering/disappearing on NV05"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=41644">bug 41644</a>
+   title="RESOLVED INVALID - Resuming from Suspend to RAM causes poor 2D performance"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=34491">bug 34491</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -101,12 +102,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Mouse pointer flickering/disappearing on NV05"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=41644#c2">Comment # 2</a>
+   title="RESOLVED INVALID - Resuming from Suspend to RAM causes poor 2D performance"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=34491#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Mouse pointer flickering/disappearing on NV05"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=41644">bug 41644</a>
+   title="RESOLVED INVALID - Resuming from Suspend to RAM causes poor 2D performance"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=34491">bug 34491</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -135,9 +136,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849348.37eec45149.7623--
+--1376849349.dFC752.7623--
 
---===============1829574427==
+--===============0216483784==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +149,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1829574427==--
+--===============0216483784==--
