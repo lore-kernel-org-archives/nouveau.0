@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25589] compiling nouveau kernel without AGP=y fails
-Date: Sun, 18 Aug 2013 18:10:22 +0000
-Message-ID: <bug-25589-8800-JeKbu8tzjH@http.bugs.freedesktop.org/>
-References: <bug-25589-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37398] some applications (like wine) crash nouveau
+ and leave it in an unworkable state
+Date: Sun, 18 Aug 2013 18:10:23 +0000
+Message-ID: <bug-37398-8800-YcrzyIzf3Q@http.bugs.freedesktop.org/>
+References: <bug-37398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1871947274=="
+Content-Type: multipart/mixed; boundary="===============0425490774=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25589-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-37398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1871947274==
-Content-Type: multipart/alternative; boundary="1376849422.B51F33Cf529.7623"; charset="us-ascii"
+--===============0425490774==
+Content-Type: multipart/alternative; boundary="1376849423.dC8E00A539.7623"; charset="us-ascii"
 
 
---1376849422.B51F33Cf529.7623
-Date: Sun, 18 Aug 2013 18:10:22 +0000
+--1376849423.dC8E00A539.7623
+Date: Sun, 18 Aug 2013 18:10:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=25589
+https://bugs.freedesktop.org/show_bug.cgi?id=37398
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -38,7 +39,7 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 It appears that this bug report has laid dormant for quite a while. Sorry we
 haven't gotten to it. Since we fix bugs all the time, chances are pretty good
 that your issue has been fixed with the latest software. Please give it a shot.
@@ -59,8 +60,8 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849422.B51F33Cf529.7623
-Date: Sun, 18 Aug 2013 18:10:22 +0000
+--1376849423.dC8E00A539.7623
+Date: Sun, 18 Aug 2013 18:10:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,8 +73,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - compiling nouveau kernel without AGP=y fails"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=25589">bug 25589</a>
+   title="RESOLVED INVALID - some applications (like wine) crash nouveau and leave it in an unworkable state"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=37398">bug 37398</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -101,12 +102,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - compiling nouveau kernel without AGP=y fails"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=25589#c1">Comment # 1</a>
+   title="RESOLVED INVALID - some applications (like wine) crash nouveau and leave it in an unworkable state"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=37398#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - compiling nouveau kernel without AGP=y fails"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=25589">bug 25589</a>
+   title="RESOLVED INVALID - some applications (like wine) crash nouveau and leave it in an unworkable state"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=37398">bug 37398</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -135,9 +136,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849422.B51F33Cf529.7623--
+--1376849423.dC8E00A539.7623--
 
---===============1871947274==
+--===============0425490774==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +149,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1871947274==--
+--===============0425490774==--
