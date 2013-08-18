@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 26797] [NV4C] GeForce 6150SE: DVI-connector not
 	detected
-Date: Sun, 18 Aug 2013 20:02:56 +0000
-Message-ID: <bug-26797-8800-Zv56ty8gVy@http.bugs.freedesktop.org/>
+Date: Sun, 18 Aug 2013 20:39:05 +0000
+Message-ID: <bug-26797-8800-5GfZHCltBn@http.bugs.freedesktop.org/>
 References: <bug-26797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1492667894=="
+Content-Type: multipart/mixed; boundary="===============0890476926=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-26797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1492667894==
-Content-Type: multipart/alternative; boundary="1376856175.BcA5dfc1.5849"; charset="us-ascii"
+--===============0890476926==
+Content-Type: multipart/alternative; boundary="1376858345.b3228Af1.16658"; charset="us-ascii"
 
 
---1376856175.BcA5dfc1.5849
-Date: Sun, 18 Aug 2013 20:02:55 +0000
+--1376858345.b3228Af1.16658
+Date: Sun, 18 Aug 2013 20:39:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26797
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #22 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
+(In reply to comment #21)
+> Which kernel is the latest kernel?
+3.10
+I'm on Radeon hardware since then and I can't switch back easily.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|GeForce 6150SE:             |[NV4C] GeForce 6150SE:
-                   |DVI-connector not detected  |DVI-connector not detected
+> Could you put up a dmesg from it? 
+Nothing has changed, DCB type 4 is still unknown.
 
---- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Which kernel is the latest kernel? Could you put up a dmesg from it? Also,
-could you supply your VBIOS? (/sys/kernel/debug/dri/0/vbios.rom)
+> Also, could you supply your VBIOS? (/sys/kernel/debug/dri/0/vbios.rom)
+Already sent 3 1/2 years ago. See comments #6-11
+
+
+Please read the the whole bug report.
+The reason why the connector doesn't work, is that the DVI connector is
+realized with a Sil1364 sDVO and there is no driver for it yet.
+I don't have access to datasheets of the Sil1364.
+If we have a driver for this device one day, I'll be glad to test it.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376856175.BcA5dfc1.5849
-Date: Sun, 18 Aug 2013 20:02:55 +0000
+--1376858345.b3228Af1.16658
+Date: Sun, 18 Aug 2013 20:39:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,41 +64,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV4C] GeForce 6150SE: DVI-connector not detected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=26797">bug 26797</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>GeForce 6150SE: DVI-connector not detected
-           </td>
-           <td>[NV4C] GeForce 6150SE: DVI-connector not detected
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [NV4C] GeForce 6150SE: DVI-connector not detected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=26797#c21">Comment # 21</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=26797#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [NV4C] GeForce 6150SE: DVI-connector not detected"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=26797">bug 26797</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:fschaefer.oss&#64;googlemail.com" title="Frank Schaefer &lt;fschaefer.oss&#64;googlemail.com&gt;"> <span class="fn">Frank Schaefer</span></a>
 </span></b>
-        <pre>Which kernel is the latest kernel? Could you put up a dmesg from it? Also,
-could you supply your VBIOS? (/sys/kernel/debug/dri/0/vbios.rom)</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=26797#c21">comment #21</a>)
+<span class="quote">&gt; Which kernel is the latest kernel?</span >
+3.10
+I'm on Radeon hardware since then and I can't switch back easily.
+
+<span class="quote">&gt; Could you put up a dmesg from it? </span >
+Nothing has changed, DCB type 4 is still unknown.
+
+<span class="quote">&gt; Also, could you supply your VBIOS? (/sys/kernel/debug/dri/0/vbios.rom)</span >
+Already sent 3 1/2 years ago. See comments #6-11
+
+
+Please read the the whole bug report.
+The reason why the connector doesn't work, is that the DVI connector is
+realized with a Sil1364 sDVO and there is no driver for it yet.
+I don't have access to datasheets of the Sil1364.
+If we have a driver for this device one day, I'll be glad to test it.</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +105,9 @@ could you supply your VBIOS? (/sys/kernel/debug/dri/0/vbios.rom)</pre>
     </body>
 </html>
 
---1376856175.BcA5dfc1.5849--
+--1376858345.b3228Af1.16658--
 
---===============1492667894==
+--===============0890476926==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +118,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1492667894==--
+--===============0890476926==--
