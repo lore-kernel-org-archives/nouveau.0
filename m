@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21186] nouveau very slow with screen size > 1680
+Subject: [Bug 38016] nouveau driver crashes xorg when starting KDE
 Date: Sun, 18 Aug 2013 18:09:28 +0000
-Message-ID: <bug-21186-8800-sADWM0M67g@http.bugs.freedesktop.org/>
-References: <bug-21186-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-38016-8800-N9bvl6aJJL@http.bugs.freedesktop.org/>
+References: <bug-38016-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2046067225=="
+Content-Type: multipart/mixed; boundary="===============0221282013=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21186-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-38016-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +20,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2046067225==
-Content-Type: multipart/alternative; boundary="1376849368.7c0cAdA175.7623"; charset="us-ascii"
+--===============0221282013==
+Content-Type: multipart/alternative; boundary="1376849368.c7F8BAB178.7623"; charset="us-ascii"
 
 
---1376849368.7c0cAdA175.7623
+--1376849368.c7F8BAB178.7623
 Date: Sun, 18 Aug 2013 18:09:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=21186
+https://bugs.freedesktop.org/show_bug.cgi?id=38016
 
-Bug 21186 depends on bug 15751, which changed state.
-
-Bug 15751 Summary: nouveau very slow with screen size > 2048
-https://bugs.freedesktop.org/show_bug.cgi?id=15751
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+It appears that this bug report has laid dormant for quite a while. Sorry we
+haven't gotten to it. Since we fix bugs all the time, chances are pretty good
+that your issue has been fixed with the latest software. Please give it a shot.
+(Linux kernel 3.10.7, xf86-video-nouveau 1.0.9, mesa 9.1.6, or their git
+versions.) If upgrading to the latest isn't an option for you, your distro's
+bugzilla is probably the right destination for your bug report.
+
+In an effort to clean up our bug list, we're pre-emptively closing all bugs
+that haven't seen updates since 2011. If the original issue remains, please
+make sure to provide fresh info, see http://nouveau.freedesktop.org/wiki/Bugs/
+for what we need to see, and re-open this one.
+
+Thanks,
+
+The Nouveau Team
+
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849368.7c0cAdA175.7623
+--1376849368.c7F8BAB178.7623
 Date: Sun, 18 Aug 2013 18:09:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -54,16 +68,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau very slow with screen size &gt; 1680"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21186">Bug 21186</a>
-              depends on
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau very slow with screen size &gt; 2048"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=15751">bug 15751</a>,
-              which changed state.
+   title="RESOLVED INVALID - nouveau driver crashes xorg when starting KDE"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38016">bug 38016</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -88,6 +98,33 @@ Content-Type: text/html; charset="UTF-8"
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - nouveau driver crashes xorg when starting KDE"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38016#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - nouveau driver crashes xorg when starting KDE"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38016">bug 38016</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
+haven't gotten to it. Since we fix bugs all the time, chances are pretty good
+that your issue has been fixed with the latest software. Please give it a shot.
+(Linux kernel 3.10.7, xf86-video-nouveau 1.0.9, mesa 9.1.6, or their git
+versions.) If upgrading to the latest isn't an option for you, your distro's
+bugzilla is probably the right destination for your bug report.
+
+In an effort to clean up our bug list, we're pre-emptively closing all bugs
+that haven't seen updates since 2011. If the original issue remains, please
+make sure to provide fresh info, see <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a>
+for what we need to see, and re-open this one.
+
+Thanks,
+
+The Nouveau Team</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -98,9 +135,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1376849368.7c0cAdA175.7623--
+--1376849368.c7F8BAB178.7623--
 
---===============2046067225==
+--===============0221282013==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +148,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2046067225==--
+--===============0221282013==--
