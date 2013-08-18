@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40888] Implementation of OpenCL on Nouveau
-Date: Sun, 18 Aug 2013 18:09:44 +0000
-Message-ID: <bug-40888-8800-7m05W9EIcI@http.bugs.freedesktop.org/>
-References: <bug-40888-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39098] X segfaults when running a Wine program while
+ 2 screens are, or have been, in use.
+Date: Sun, 18 Aug 2013 18:09:45 +0000
+Message-ID: <bug-39098-8800-s5cwg72zsE@http.bugs.freedesktop.org/>
+References: <bug-39098-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0590449129=="
+Content-Type: multipart/mixed; boundary="===============0809791920=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40888-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39098-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0590449129==
-Content-Type: multipart/alternative; boundary="1376849384.6cDbc285.7623"; charset="us-ascii"
+--===============0809791920==
+Content-Type: multipart/alternative; boundary="1376849385.8CF43A2287.7623"; charset="us-ascii"
 
 
---1376849384.6cDbc285.7623
+--1376849385.8CF43A2287.7623
 Date: Sun, 18 Aug 2013 18:09:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40888
+https://bugs.freedesktop.org/show_bug.cgi?id=39098
 
-Bug 40888 depends on bug 40891, which changed state.
-
-Bug 40891 Summary: OpenCL: Implementing an LLVM backend for GPGPU
-https://bugs.freedesktop.org/show_bug.cgi?id=40891
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+It appears that this bug report has laid dormant for quite a while. Sorry we
+haven't gotten to it. Since we fix bugs all the time, chances are pretty good
+that your issue has been fixed with the latest software. Please give it a shot.
+(Linux kernel 3.10.7, xf86-video-nouveau 1.0.9, mesa 9.1.6, or their git
+versions.) If upgrading to the latest isn't an option for you, your distro's
+bugzilla is probably the right destination for your bug report.
+
+In an effort to clean up our bug list, we're pre-emptively closing all bugs
+that haven't seen updates since 2011. If the original issue remains, please
+make sure to provide fresh info, see http://nouveau.freedesktop.org/wiki/Bugs/
+for what we need to see, and re-open this one.
+
+Thanks,
+
+The Nouveau Team
+
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849384.6cDbc285.7623
+--1376849385.8CF43A2287.7623
 Date: Sun, 18 Aug 2013 18:09:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -54,16 +69,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Implementation of OpenCL on Nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40888">Bug 40888</a>
-              depends on
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - OpenCL: Implementing an LLVM backend for GPGPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40891">bug 40891</a>,
-              which changed state.
+   title="RESOLVED INVALID - X segfaults when running a Wine program while 2 screens are, or have been, in use."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=39098">bug 39098</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -88,6 +99,33 @@ Content-Type: text/html; charset="UTF-8"
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - X segfaults when running a Wine program while 2 screens are, or have been, in use."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=39098#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - X segfaults when running a Wine program while 2 screens are, or have been, in use."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=39098">bug 39098</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
+haven't gotten to it. Since we fix bugs all the time, chances are pretty good
+that your issue has been fixed with the latest software. Please give it a shot.
+(Linux kernel 3.10.7, xf86-video-nouveau 1.0.9, mesa 9.1.6, or their git
+versions.) If upgrading to the latest isn't an option for you, your distro's
+bugzilla is probably the right destination for your bug report.
+
+In an effort to clean up our bug list, we're pre-emptively closing all bugs
+that haven't seen updates since 2011. If the original issue remains, please
+make sure to provide fresh info, see <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a>
+for what we need to see, and re-open this one.
+
+Thanks,
+
+The Nouveau Team</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -98,9 +136,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1376849384.6cDbc285.7623--
+--1376849385.8CF43A2287.7623--
 
---===============0590449129==
+--===============0809791920==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +149,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0590449129==--
+--===============0809791920==--
