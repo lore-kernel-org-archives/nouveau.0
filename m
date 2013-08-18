@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35889] Screen of Geforce4 440 GO NV17 corrupts while
-	booting
-Date: Sun, 18 Aug 2013 18:10:15 +0000
-Message-ID: <bug-35889-8800-F4CWcYn6Bh@http.bugs.freedesktop.org/>
-References: <bug-35889-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23199] nv50/NVS135M: missing TV-out-support
+Date: Sun, 18 Aug 2013 18:10:16 +0000
+Message-ID: <bug-23199-8800-BL4mtFTXWZ@http.bugs.freedesktop.org/>
+References: <bug-23199-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1068124056=="
+Content-Type: multipart/mixed; boundary="===============0984793894=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-23199-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1068124056==
-Content-Type: multipart/alternative; boundary="1376849415.A0a416479.7623"; charset="us-ascii"
+--===============0984793894==
+Content-Type: multipart/alternative; boundary="1376849416.Bc87e0D491.7623"; charset="us-ascii"
 
 
---1376849415.A0a416479.7623
-Date: Sun, 18 Aug 2013 18:10:15 +0000
+--1376849416.Bc87e0D491.7623
+Date: Sun, 18 Aug 2013 18:10:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35889
+https://bugs.freedesktop.org/show_bug.cgi?id=23199
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -60,8 +59,8 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849415.A0a416479.7623
-Date: Sun, 18 Aug 2013 18:10:15 +0000
+--1376849416.Bc87e0D491.7623
+Date: Sun, 18 Aug 2013 18:10:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,8 +72,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Screen of Geforce4 440 GO NV17 corrupts while booting"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=35889">bug 35889</a>
+   title="RESOLVED INVALID - nv50/NVS135M: missing TV-out-support"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23199">bug 23199</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -102,12 +101,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Screen of Geforce4 440 GO NV17 corrupts while booting"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=35889#c4">Comment # 4</a>
+   title="RESOLVED INVALID - nv50/NVS135M: missing TV-out-support"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23199#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Screen of Geforce4 440 GO NV17 corrupts while booting"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=35889">bug 35889</a>
+   title="RESOLVED INVALID - nv50/NVS135M: missing TV-out-support"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23199">bug 23199</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -136,9 +135,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849415.A0a416479.7623--
+--1376849416.Bc87e0D491.7623--
 
---===============1068124056==
+--===============0984793894==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -149,4 +148,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1068124056==--
+--===============0984793894==--
