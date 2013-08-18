@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33373] nouveau dual monitor configuration doesn't
- work with linux 2.6.38-rc2
-Date: Sun, 18 Aug 2013 18:09:26 +0000
-Message-ID: <bug-33373-8800-qjQx4HKncH@http.bugs.freedesktop.org/>
-References: <bug-33373-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40406] Nouveau NVIDIA NV46: Freeze
+Date: Sun, 18 Aug 2013 18:09:27 +0000
+Message-ID: <bug-40406-8800-iqF4iVzscv@http.bugs.freedesktop.org/>
+References: <bug-40406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1606231083=="
+Content-Type: multipart/mixed; boundary="===============2053479754=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40406-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1606231083==
-Content-Type: multipart/alternative; boundary="1376849366.eE2E11164.7623"; charset="us-ascii"
+--===============2053479754==
+Content-Type: multipart/alternative; boundary="1376849367.1a7aDd169.7623"; charset="us-ascii"
 
 
---1376849366.eE2E11164.7623
-Date: Sun, 18 Aug 2013 18:09:26 +0000
+--1376849367.1a7aDd169.7623
+Date: Sun, 18 Aug 2013 18:09:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33373
+https://bugs.freedesktop.org/show_bug.cgi?id=40406
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -39,7 +38,7 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #32 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 It appears that this bug report has laid dormant for quite a while. Sorry we
 haven't gotten to it. Since we fix bugs all the time, chances are pretty good
 that your issue has been fixed with the latest software. Please give it a shot.
@@ -60,8 +59,8 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849366.eE2E11164.7623
-Date: Sun, 18 Aug 2013 18:09:26 +0000
+--1376849367.1a7aDd169.7623
+Date: Sun, 18 Aug 2013 18:09:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,8 +72,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau dual monitor configuration doesn't work with linux 2.6.38-rc2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33373">bug 33373</a>
+   title="RESOLVED INVALID - Nouveau NVIDIA NV46: Freeze"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40406">bug 40406</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -102,12 +101,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau dual monitor configuration doesn't work with linux 2.6.38-rc2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33373#c3">Comment # 3</a>
+   title="RESOLVED INVALID - Nouveau NVIDIA NV46: Freeze"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40406#c32">Comment # 32</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau dual monitor configuration doesn't work with linux 2.6.38-rc2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33373">bug 33373</a>
+   title="RESOLVED INVALID - Nouveau NVIDIA NV46: Freeze"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40406">bug 40406</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -136,9 +135,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849366.eE2E11164.7623--
+--1376849367.1a7aDd169.7623--
 
---===============1606231083==
+--===============2053479754==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -149,4 +148,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1606231083==--
+--===============2053479754==--
