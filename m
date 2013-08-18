@@ -1,10 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26797] GeForce 6150SE: DVI-connector not detected
-Date: Sun, 18 Aug 2013 19:48:52 +0000
-Message-ID: <bug-26797-8800-amNSldiP2Z@http.bugs.freedesktop.org/>
+Subject: [Bug 26797] [NV4C] GeForce 6150SE: DVI-connector not
+	detected
+Date: Sun, 18 Aug 2013 20:02:56 +0000
+Message-ID: <bug-26797-8800-Zv56ty8gVy@http.bugs.freedesktop.org/>
 References: <bug-26797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0769907465=="
+Content-Type: multipart/mixed; boundary="===============1492667894=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-26797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,34 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0769907465==
-Content-Type: multipart/alternative; boundary="1376855332.23082681.1671"; charset="us-ascii"
+--===============1492667894==
+Content-Type: multipart/alternative; boundary="1376856175.BcA5dfc1.5849"; charset="us-ascii"
 
 
---1376855332.23082681.1671
-Date: Sun, 18 Aug 2013 19:48:52 +0000
+--1376856175.BcA5dfc1.5849
+Date: Sun, 18 Aug 2013 20:02:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=26797
 
-Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|INVALID                     |---
+            Summary|GeForce 6150SE:             |[NV4C] GeForce 6150SE:
+                   |DVI-connector not detected  |DVI-connector not detected
 
---- Comment #20 from Frank Schaefer <fschaefer.oss-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-This bug report still applies to the latest kernel.
-A driver for the Sil1364 is missing.
+--- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Which kernel is the latest kernel? Could you put up a dmesg from it? Also,
+could you supply your VBIOS? (/sys/kernel/debug/dri/0/vbios.rom)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376855332.23082681.1671
-Date: Sun, 18 Aug 2013 19:48:52 +0000
+--1376856175.BcA5dfc1.5849
+Date: Sun, 18 Aug 2013 20:02:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,11 +56,11 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:fschaefer.oss&#64;googlemail.com" title="Frank Schaefer &lt;fschaefer.oss&#64;googlemail.com&gt;"> <span class="fn">Frank Schaefer</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_REOPENED "
-   title="REOPENED --- - GeForce 6150SE: DVI-connector not detected"
+   title="REOPENED --- - [NV4C] GeForce 6150SE: DVI-connector not detected"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=26797">bug 26797</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -70,34 +71,26 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>RESOLVED
+           <td style="text-align:right;">Summary</td>
+           <td>GeForce 6150SE: DVI-connector not detected
            </td>
-           <td>REOPENED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>INVALID
-           </td>
-           <td>---
+           <td>[NV4C] GeForce 6150SE: DVI-connector not detected
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
-   title="REOPENED --- - GeForce 6150SE: DVI-connector not detected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=26797#c20">Comment # 20</a>
+   title="REOPENED --- - [NV4C] GeForce 6150SE: DVI-connector not detected"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=26797#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
-   title="REOPENED --- - GeForce 6150SE: DVI-connector not detected"
+   title="REOPENED --- - [NV4C] GeForce 6150SE: DVI-connector not detected"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=26797">bug 26797</a>
-              from <span class="vcard"><a class="email" href="mailto:fschaefer.oss&#64;googlemail.com" title="Frank Schaefer &lt;fschaefer.oss&#64;googlemail.com&gt;"> <span class="fn">Frank Schaefer</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>This bug report still applies to the latest kernel.
-A driver for the Sil1364 is missing.</pre>
+        <pre>Which kernel is the latest kernel? Could you put up a dmesg from it? Also,
+could you supply your VBIOS? (/sys/kernel/debug/dri/0/vbios.rom)</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +102,9 @@ A driver for the Sil1364 is missing.</pre>
     </body>
 </html>
 
---1376855332.23082681.1671--
+--1376856175.BcA5dfc1.5849--
 
---===============0769907465==
+--===============1492667894==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +115,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0769907465==--
+--===============1492667894==--
