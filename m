@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26453] hard lock up with GeForce 9500 GT
-Date: Sun, 18 Aug 2013 18:09:14 +0000
-Message-ID: <bug-26453-8800-35qaut71XX@http.bugs.freedesktop.org/>
-References: <bug-26453-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 30582] SDL tests under su root crashes X server
+Date: Sun, 18 Aug 2013 18:09:15 +0000
+Message-ID: <bug-30582-8800-Tkx3zu8XPa@http.bugs.freedesktop.org/>
+References: <bug-30582-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1425752325=="
+Content-Type: multipart/mixed; boundary="===============0085387599=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-30582-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1425752325==
-Content-Type: multipart/alternative; boundary="1376849354.bCCCA50288.7623"; charset="us-ascii"
+--===============0085387599==
+Content-Type: multipart/alternative; boundary="1376849355.0ACBEd591.7623"; charset="us-ascii"
 
 
---1376849354.bCCCA50288.7623
-Date: Sun, 18 Aug 2013 18:09:14 +0000
+--1376849355.0ACBEd591.7623
+Date: Sun, 18 Aug 2013 18:09:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=26453
+https://bugs.freedesktop.org/show_bug.cgi?id=30582
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -38,7 +38,7 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 It appears that this bug report has laid dormant for quite a while. Sorry we
 haven't gotten to it. Since we fix bugs all the time, chances are pretty good
 that your issue has been fixed with the latest software. Please give it a shot.
@@ -59,8 +59,8 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849354.bCCCA50288.7623
-Date: Sun, 18 Aug 2013 18:09:14 +0000
+--1376849355.0ACBEd591.7623
+Date: Sun, 18 Aug 2013 18:09:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,8 +72,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - hard lock up with GeForce 9500 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=26453">bug 26453</a>
+   title="RESOLVED INVALID - SDL tests under su root crashes X server"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=30582">bug 30582</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -101,12 +101,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - hard lock up with GeForce 9500 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=26453#c1">Comment # 1</a>
+   title="RESOLVED INVALID - SDL tests under su root crashes X server"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=30582#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - hard lock up with GeForce 9500 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=26453">bug 26453</a>
+   title="RESOLVED INVALID - SDL tests under su root crashes X server"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=30582">bug 30582</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -135,9 +135,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849354.bCCCA50288.7623--
+--1376849355.0ACBEd591.7623--
 
---===============1425752325==
+--===============0085387599==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +148,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1425752325==--
+--===============0085387599==--
