@@ -1,11 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Bug cleanup
-Date: Sun, 18 Aug 2013 12:54:37 -0400
-Message-ID: <CAKb7Uvg-eYz1zE7Tf8Uyb8fpNv0bq5s9XRThxsX7SBkOamxD2w@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 33841] Fedora 14 randomly crashes
+Date: Sun, 18 Aug 2013 18:09:01 +0000
+Message-ID: <bug-33841-8800-Kq0lnHnodf@http.bugs.freedesktop.org/>
+References: <bug-33841-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0339492729=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-33841-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,29 +16,136 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello everyone,
 
-In an effort to get a better handle on nouveau's outstanding issues,
-I'm going to close all bugs that haven't seen any updates since 2011.
-I asked a core group of nouveau developers about this, and none of
-them seemed to object. Depending on how this goes, we may do the same
-thing up to the end of 2012, but that was more contentious.
+--===============0339492729==
+Content-Type: multipart/alternative; boundary="1376849341.Cf76F62.7623"; charset="us-ascii"
 
-A lot of these bugs are pre-KMS, the driver's been
-moved/changed/rewritten several times since they were filed, so it's
-quite likely that the issues have been fixed, or at the very least,
-require a re-test. As bug reporters tend to disappear after this much
-time (different email, hardware died, etc), we decided that just
-closing them outright would be the right move. They can always be
-reopened if the issues persist, but the onus is on the bug reporter to
-do so.
 
-As an unfortunate side-effect, the list is about to get ~200 emails,
-one for each bug I close. Sorry for the spam, but I don't know of a
-way around it. (If you do know a way around it, I won't be doing this
-for ~an hour, let me know asap.)
+--1376849341.Cf76F62.7623
+Date: Sun, 18 Aug 2013 18:09:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-  -ilia
+https://bugs.freedesktop.org/show_bug.cgi?id=33841
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+It appears that this bug report has laid dormant for quite a while. Sorry we
+haven't gotten to it. Since we fix bugs all the time, chances are pretty good
+that your issue has been fixed with the latest software. Please give it a shot.
+(Linux kernel 3.10.7, xf86-video-nouveau 1.0.9, mesa 9.1.6, or their git
+versions.) If upgrading to the latest isn't an option for you, your distro's
+bugzilla is probably the right destination for your bug report.
+
+In an effort to clean up our bug list, we're pre-emptively closing all bugs
+that haven't seen updates since 2011. If the original issue remains, please
+make sure to provide fresh info, see http://nouveau.freedesktop.org/wiki/Bugs/
+for what we need to see, and re-open this one.
+
+Thanks,
+
+The Nouveau Team
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1376849341.Cf76F62.7623
+Date: Sun, 18 Aug 2013 18:09:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Fedora 14 randomly crashes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33841">bug 33841</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Fedora 14 randomly crashes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33841#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Fedora 14 randomly crashes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33841">bug 33841</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
+haven't gotten to it. Since we fix bugs all the time, chances are pretty good
+that your issue has been fixed with the latest software. Please give it a shot.
+(Linux kernel 3.10.7, xf86-video-nouveau 1.0.9, mesa 9.1.6, or their git
+versions.) If upgrading to the latest isn't an option for you, your distro's
+bugzilla is probably the right destination for your bug report.
+
+In an effort to clean up our bug list, we're pre-emptively closing all bugs
+that haven't seen updates since 2011. If the original issue remains, please
+make sure to provide fresh info, see <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a>
+for what we need to see, and re-open this one.
+
+Thanks,
+
+The Nouveau Team</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1376849341.Cf76F62.7623--
+
+--===============0339492729==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0339492729==--
