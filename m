@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 28152] corruption in FVWM window decorations
-Date: Sun, 18 Aug 2013 18:29:40 +0000
-Message-ID: <bug-28152-8800-OisafdycpN@http.bugs.freedesktop.org/>
+Date: Sun, 18 Aug 2013 18:33:06 +0000
+Message-ID: <bug-28152-8800-8WQQ1HGd7F@http.bugs.freedesktop.org/>
 References: <bug-28152-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0348593458=="
+Content-Type: multipart/mixed; boundary="===============0010918727=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-28152-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0348593458==
-Content-Type: multipart/alternative; boundary="1376850580.53Fb101.13801"; charset="us-ascii"
+--===============0010918727==
+Content-Type: multipart/alternative; boundary="1376850786.74a61.14297"; charset="us-ascii"
 
 
---1376850580.53Fb101.13801
-Date: Sun, 18 Aug 2013 18:29:40 +0000
+--1376850786.74a61.14297
+Date: Sun, 18 Aug 2013 18:33:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,19 +35,27 @@ Nick Bowler <nbowler-m3eOHSKbYRSw5LPnMra/2Q@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|INVALID                     |---
+  Attachment #35721|0                           |1
+        is obsolete|                            |
 
---- Comment #5 from Nick Bowler <nbowler-m3eOHSKbYRSw5LPnMra/2Q@public.gmane.org> ---
-This bug did not magically fix itself.  The corruption persists exactly as in
-the screenshots posted over 3 years ago.
+--- Comment #6 from Nick Bowler <nbowler-m3eOHSKbYRSw5LPnMra/2Q@public.gmane.org> ---
+Created attachment 84211
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84211&action=edit
+Xorg.0.log
+
+Fresh Xorg log...
+
+xf86-video-nouveau 1.0.9
+mesa 9.1.6
+server 1.4.2.901
+Linux 3.9.4
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376850580.53Fb101.13801
-Date: Sun, 18 Aug 2013 18:29:40 +0000
+--1376850786.74a61.14297
+Date: Sun, 18 Aug 2013 18:33:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,18 +78,11 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>RESOLVED
+           <td style="text-align:right;">Attachment #35721 is obsolete</td>
+           <td>
+               &nbsp;
            </td>
-           <td>REOPENED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>INVALID
-           </td>
-           <td>---
+           <td>1
            </td>
          </tr></table>
       <p>
@@ -89,15 +90,22 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - corruption in FVWM window decorations"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=28152#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28152#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - corruption in FVWM window decorations"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=28152">bug 28152</a>
               from <span class="vcard"><a class="email" href="mailto:nbowler&#64;draconx.ca" title="Nick Bowler &lt;nbowler&#64;draconx.ca&gt;"> <span class="fn">Nick Bowler</span></a>
 </span></b>
-        <pre>This bug did not magically fix itself.  The corruption persists exactly as in
-the screenshots posted over 3 years ago.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=84211" name="attach_84211" title="Xorg.0.log">attachment 84211</a> <a href="attachment.cgi?id=84211&amp;action=edit" title="Xorg.0.log">[details]</a></span>
+Xorg.0.log
+
+Fresh Xorg log...
+
+xf86-video-nouveau 1.0.9
+mesa 9.1.6
+server 1.4.2.901
+Linux 3.9.4</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +117,9 @@ the screenshots posted over 3 years ago.</pre>
     </body>
 </html>
 
---1376850580.53Fb101.13801--
+--1376850786.74a61.14297--
 
---===============0348593458==
+--===============0010918727==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +130,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0348593458==--
+--===============0010918727==--
