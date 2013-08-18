@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37576] nouveau: xdpyinfo returns wrong screen size
-Date: Sun, 18 Aug 2013 18:09:12 +0000
-Message-ID: <bug-37576-8800-nrVQdzf8cS@http.bugs.freedesktop.org/>
-References: <bug-37576-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 43562] GT215: Freeze on X startup
+Date: Sun, 18 Aug 2013 18:09:13 +0000
+Message-ID: <bug-43562-8800-cIaQ1Fsy1X@http.bugs.freedesktop.org/>
+References: <bug-43562-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1113910392=="
+Content-Type: multipart/mixed; boundary="===============0215200009=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37576-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-43562-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1113910392==
-Content-Type: multipart/alternative; boundary="1376849352.F6BF376.7623"; charset="us-ascii"
+--===============0215200009==
+Content-Type: multipart/alternative; boundary="1376849353.b00079.7623"; charset="us-ascii"
 
 
---1376849352.F6BF376.7623
-Date: Sun, 18 Aug 2013 18:09:12 +0000
+--1376849353.b00079.7623
+Date: Sun, 18 Aug 2013 18:09:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37576
+https://bugs.freedesktop.org/show_bug.cgi?id=43562
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -59,8 +59,8 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849352.F6BF376.7623
-Date: Sun, 18 Aug 2013 18:09:12 +0000
+--1376849353.b00079.7623
+Date: Sun, 18 Aug 2013 18:09:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,8 +72,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau: xdpyinfo returns wrong screen size"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37576">bug 37576</a>
+   title="RESOLVED INVALID - GT215: Freeze on X startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43562">bug 43562</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -101,12 +101,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau: xdpyinfo returns wrong screen size"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37576#c1">Comment # 1</a>
+   title="RESOLVED INVALID - GT215: Freeze on X startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43562#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau: xdpyinfo returns wrong screen size"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37576">bug 37576</a>
+   title="RESOLVED INVALID - GT215: Freeze on X startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43562">bug 43562</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -135,9 +135,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849352.F6BF376.7623--
+--1376849353.b00079.7623--
 
---===============1113910392==
+--===============0215200009==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +148,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1113910392==--
+--===============0215200009==--
