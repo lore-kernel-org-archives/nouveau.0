@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33159] Lock up on GeForce 9600 GT
+Subject: [Bug 28152] corruption in FVWM window decorations
 Date: Sun, 18 Aug 2013 18:10:38 +0000
-Message-ID: <bug-33159-8800-30ceAOgDcV@http.bugs.freedesktop.org/>
-References: <bug-33159-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-28152-8800-MacRzXMNM2@http.bugs.freedesktop.org/>
+References: <bug-28152-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0824039377=="
+Content-Type: multipart/mixed; boundary="===============2073895334=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33159-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-28152-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0824039377==
-Content-Type: multipart/alternative; boundary="1376849438.Dabae8631.7623"; charset="us-ascii"
+--===============2073895334==
+Content-Type: multipart/alternative; boundary="1376849438.6E0F1633.7623"; charset="us-ascii"
 
 
---1376849438.Dabae8631.7623
+--1376849438.6E0F1633.7623
 Date: Sun, 18 Aug 2013 18:10:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33159
+https://bugs.freedesktop.org/show_bug.cgi?id=28152
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -38,7 +38,7 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 It appears that this bug report has laid dormant for quite a while. Sorry we
 haven't gotten to it. Since we fix bugs all the time, chances are pretty good
 that your issue has been fixed with the latest software. Please give it a shot.
@@ -59,7 +59,7 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849438.Dabae8631.7623
+--1376849438.6E0F1633.7623
 Date: Sun, 18 Aug 2013 18:10:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -72,8 +72,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Lock up on GeForce 9600 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33159">bug 33159</a>
+   title="RESOLVED INVALID - corruption in FVWM window decorations"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28152">bug 28152</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -101,12 +101,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Lock up on GeForce 9600 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33159#c1">Comment # 1</a>
+   title="RESOLVED INVALID - corruption in FVWM window decorations"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28152#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Lock up on GeForce 9600 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33159">bug 33159</a>
+   title="RESOLVED INVALID - corruption in FVWM window decorations"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28152">bug 28152</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -135,9 +135,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849438.Dabae8631.7623--
+--1376849438.6E0F1633.7623--
 
---===============0824039377==
+--===============2073895334==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +148,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0824039377==--
+--===============2073895334==--
