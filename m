@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 17699] Xorg crashes when trying to share a VT
-Date: Sun, 18 Aug 2013 18:09:49 +0000
-Message-ID: <bug-17699-8800-GDIy730HCw@http.bugs.freedesktop.org/>
-References: <bug-17699-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 35475] asus laptop boots to blank screen 2 out of 3
+	times
+Date: Sun, 18 Aug 2013 18:09:50 +0000
+Message-ID: <bug-35475-8800-UwlnN1BmCT@http.bugs.freedesktop.org/>
+References: <bug-35475-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2019090237=="
+Content-Type: multipart/mixed; boundary="===============1975439497=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-17699-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-35475-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2019090237==
-Content-Type: multipart/alternative; boundary="1376849389.AC16Ff315.7623"; charset="us-ascii"
+--===============1975439497==
+Content-Type: multipart/alternative; boundary="1376849390.de0d326.7623"; charset="us-ascii"
 
 
---1376849389.AC16Ff315.7623
-Date: Sun, 18 Aug 2013 18:09:49 +0000
+--1376849390.de0d326.7623
+Date: Sun, 18 Aug 2013 18:09:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=17699
+https://bugs.freedesktop.org/show_bug.cgi?id=35475
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -38,7 +39,7 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 It appears that this bug report has laid dormant for quite a while. Sorry we
 haven't gotten to it. Since we fix bugs all the time, chances are pretty good
 that your issue has been fixed with the latest software. Please give it a shot.
@@ -59,8 +60,8 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849389.AC16Ff315.7623
-Date: Sun, 18 Aug 2013 18:09:49 +0000
+--1376849390.de0d326.7623
+Date: Sun, 18 Aug 2013 18:09:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,8 +73,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Xorg crashes when trying to share a VT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=17699">bug 17699</a>
+   title="RESOLVED INVALID - asus laptop boots to blank screen 2 out of 3 times"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=35475">bug 35475</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -101,12 +102,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Xorg crashes when trying to share a VT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=17699#c2">Comment # 2</a>
+   title="RESOLVED INVALID - asus laptop boots to blank screen 2 out of 3 times"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=35475#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Xorg crashes when trying to share a VT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=17699">bug 17699</a>
+   title="RESOLVED INVALID - asus laptop boots to blank screen 2 out of 3 times"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=35475">bug 35475</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -135,9 +136,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849389.AC16Ff315.7623--
+--1376849390.de0d326.7623--
 
---===============2019090237==
+--===============1975439497==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +149,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2019090237==--
+--===============1975439497==--
