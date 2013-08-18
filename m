@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38016] nouveau driver crashes xorg when starting KDE
-Date: Sun, 18 Aug 2013 18:09:28 +0000
-Message-ID: <bug-38016-8800-N9bvl6aJJL@http.bugs.freedesktop.org/>
-References: <bug-38016-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 25453] nouveau + multiple xorg servers + suspend2ram
+ trashes root partition
+Date: Sun, 18 Aug 2013 18:09:29 +0000
+Message-ID: <bug-25453-8800-36V5lmMqNt@http.bugs.freedesktop.org/>
+References: <bug-25453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0221282013=="
+Content-Type: multipart/mixed; boundary="===============0601988243=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38016-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-25453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0221282013==
-Content-Type: multipart/alternative; boundary="1376849368.c7F8BAB178.7623"; charset="us-ascii"
+--===============0601988243==
+Content-Type: multipart/alternative; boundary="1376849368.f5cF181.7623"; charset="us-ascii"
 
 
---1376849368.c7F8BAB178.7623
+--1376849368.f5cF181.7623
 Date: Sun, 18 Aug 2013 18:09:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38016
+https://bugs.freedesktop.org/show_bug.cgi?id=25453
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -38,7 +39,7 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 It appears that this bug report has laid dormant for quite a while. Sorry we
 haven't gotten to it. Since we fix bugs all the time, chances are pretty good
 that your issue has been fixed with the latest software. Please give it a shot.
@@ -59,7 +60,7 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849368.c7F8BAB178.7623
+--1376849368.f5cF181.7623
 Date: Sun, 18 Aug 2013 18:09:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -72,8 +73,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau driver crashes xorg when starting KDE"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38016">bug 38016</a>
+   title="RESOLVED INVALID - nouveau + multiple xorg servers + suspend2ram trashes root partition"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=25453">bug 25453</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -101,12 +102,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau driver crashes xorg when starting KDE"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38016#c1">Comment # 1</a>
+   title="RESOLVED INVALID - nouveau + multiple xorg servers + suspend2ram trashes root partition"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=25453#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau driver crashes xorg when starting KDE"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38016">bug 38016</a>
+   title="RESOLVED INVALID - nouveau + multiple xorg servers + suspend2ram trashes root partition"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=25453">bug 25453</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -135,9 +136,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849368.c7F8BAB178.7623--
+--1376849368.f5cF181.7623--
 
---===============0221282013==
+--===============0601988243==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +149,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0221282013==--
+--===============0601988243==--
