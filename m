@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37398] some applications (like wine) crash nouveau
- and leave it in an unworkable state
-Date: Sun, 18 Aug 2013 18:10:23 +0000
-Message-ID: <bug-37398-8800-YcrzyIzf3Q@http.bugs.freedesktop.org/>
-References: <bug-37398-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27217] Corruption during x-video playback
+Date: Sun, 18 Aug 2013 18:10:24 +0000
+Message-ID: <bug-27217-8800-UTvPx1NTVM@http.bugs.freedesktop.org/>
+References: <bug-27217-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0425490774=="
+Content-Type: multipart/mixed; boundary="===============1404985962=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27217-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0425490774==
-Content-Type: multipart/alternative; boundary="1376849423.dC8E00A539.7623"; charset="us-ascii"
+--===============1404985962==
+Content-Type: multipart/alternative; boundary="1376849424.e07AD7C6541.7623"; charset="us-ascii"
 
 
---1376849423.dC8E00A539.7623
-Date: Sun, 18 Aug 2013 18:10:23 +0000
+--1376849424.e07AD7C6541.7623
+Date: Sun, 18 Aug 2013 18:10:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37398
+https://bugs.freedesktop.org/show_bug.cgi?id=27217
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -39,7 +38,7 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 It appears that this bug report has laid dormant for quite a while. Sorry we
 haven't gotten to it. Since we fix bugs all the time, chances are pretty good
 that your issue has been fixed with the latest software. Please give it a shot.
@@ -60,8 +59,8 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849423.dC8E00A539.7623
-Date: Sun, 18 Aug 2013 18:10:23 +0000
+--1376849424.e07AD7C6541.7623
+Date: Sun, 18 Aug 2013 18:10:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,8 +72,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - some applications (like wine) crash nouveau and leave it in an unworkable state"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37398">bug 37398</a>
+   title="RESOLVED INVALID - Corruption during x-video playback"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27217">bug 27217</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -102,12 +101,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - some applications (like wine) crash nouveau and leave it in an unworkable state"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37398#c12">Comment # 12</a>
+   title="RESOLVED INVALID - Corruption during x-video playback"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27217#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - some applications (like wine) crash nouveau and leave it in an unworkable state"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37398">bug 37398</a>
+   title="RESOLVED INVALID - Corruption during x-video playback"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27217">bug 27217</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -136,9 +135,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849423.dC8E00A539.7623--
+--1376849424.e07AD7C6541.7623--
 
---===============0425490774==
+--===============1404985962==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -149,4 +148,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0425490774==--
+--===============1404985962==--
