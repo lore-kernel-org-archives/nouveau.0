@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40890] OpenCL: Implement a GPGPU runtime following
- the CAL specification
-Date: Sun, 18 Aug 2013 18:10:27 +0000
-Message-ID: <bug-40890-8800-IwScMJb1s9@http.bugs.freedesktop.org/>
-References: <bug-40890-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 19491] S-video & composite output
+Date: Sun, 18 Aug 2013 18:10:28 +0000
+Message-ID: <bug-19491-8800-EOnmy1S2Le@http.bugs.freedesktop.org/>
+References: <bug-19491-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0300439982=="
+Content-Type: multipart/mixed; boundary="===============1006020068=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40890-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-19491-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0300439982==
-Content-Type: multipart/alternative; boundary="1376849427.44c7563.7623"; charset="us-ascii"
+--===============1006020068==
+Content-Type: multipart/alternative; boundary="1376849428.C5E8eaB570.7623"; charset="us-ascii"
 
 
---1376849427.44c7563.7623
-Date: Sun, 18 Aug 2013 18:10:27 +0000
+--1376849428.C5E8eaB570.7623
+Date: Sun, 18 Aug 2013 18:10:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40890
+https://bugs.freedesktop.org/show_bug.cgi?id=19491
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -39,7 +38,7 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 It appears that this bug report has laid dormant for quite a while. Sorry we
 haven't gotten to it. Since we fix bugs all the time, chances are pretty good
 that your issue has been fixed with the latest software. Please give it a shot.
@@ -60,8 +59,8 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849427.44c7563.7623
-Date: Sun, 18 Aug 2013 18:10:27 +0000
+--1376849428.C5E8eaB570.7623
+Date: Sun, 18 Aug 2013 18:10:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,8 +72,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - OpenCL: Implement a GPGPU runtime following the CAL specification"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40890">bug 40890</a>
+   title="RESOLVED INVALID - S-video &amp; composite output"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=19491">bug 19491</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -102,12 +101,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - OpenCL: Implement a GPGPU runtime following the CAL specification"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40890#c2">Comment # 2</a>
+   title="RESOLVED INVALID - S-video &amp; composite output"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=19491#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - OpenCL: Implement a GPGPU runtime following the CAL specification"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40890">bug 40890</a>
+   title="RESOLVED INVALID - S-video &amp; composite output"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=19491">bug 19491</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -136,9 +135,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849427.44c7563.7623--
+--1376849428.C5E8eaB570.7623--
 
---===============0300439982==
+--===============1006020068==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -149,4 +148,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0300439982==--
+--===============1006020068==--
