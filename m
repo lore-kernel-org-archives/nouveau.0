@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26568] Xv Corruption and X Lockup w/ Nouveau on C51
- (Geforce 6150 Go)
-Date: Sun, 18 Aug 2013 18:09:47 +0000
-Message-ID: <bug-26568-8800-owPeBcb3OX@http.bugs.freedesktop.org/>
-References: <bug-26568-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 36560] snow when motion is present (NV15)
+Date: Sun, 18 Aug 2013 18:09:48 +0000
+Message-ID: <bug-36560-8800-gAzlm9msEY@http.bugs.freedesktop.org/>
+References: <bug-36560-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0994779667=="
+Content-Type: multipart/mixed; boundary="===============0471172802=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26568-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-36560-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0994779667==
-Content-Type: multipart/alternative; boundary="1376849387.DB10301.7623"; charset="us-ascii"
+--===============0471172802==
+Content-Type: multipart/alternative; boundary="1376849388.42a5313.7623"; charset="us-ascii"
 
 
---1376849387.DB10301.7623
-Date: Sun, 18 Aug 2013 18:09:47 +0000
+--1376849388.42a5313.7623
+Date: Sun, 18 Aug 2013 18:09:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=26568
+https://bugs.freedesktop.org/show_bug.cgi?id=36560
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -39,7 +38,7 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 It appears that this bug report has laid dormant for quite a while. Sorry we
 haven't gotten to it. Since we fix bugs all the time, chances are pretty good
 that your issue has been fixed with the latest software. Please give it a shot.
@@ -60,8 +59,8 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849387.DB10301.7623
-Date: Sun, 18 Aug 2013 18:09:47 +0000
+--1376849388.42a5313.7623
+Date: Sun, 18 Aug 2013 18:09:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,8 +72,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Xv Corruption and X Lockup w/ Nouveau on C51 (Geforce 6150 Go)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=26568">bug 26568</a>
+   title="RESOLVED INVALID - snow when motion is present (NV15)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=36560">bug 36560</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -102,12 +101,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Xv Corruption and X Lockup w/ Nouveau on C51 (Geforce 6150 Go)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=26568#c4">Comment # 4</a>
+   title="RESOLVED INVALID - snow when motion is present (NV15)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=36560#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Xv Corruption and X Lockup w/ Nouveau on C51 (Geforce 6150 Go)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=26568">bug 26568</a>
+   title="RESOLVED INVALID - snow when motion is present (NV15)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=36560">bug 36560</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -136,9 +135,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849387.DB10301.7623--
+--1376849388.42a5313.7623--
 
---===============0994779667==
+--===============0471172802==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -149,4 +148,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0994779667==--
+--===============0471172802==--
