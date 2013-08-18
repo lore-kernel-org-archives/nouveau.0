@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27076] [C51/6100 GO] Image corruption / broken Xv
+Subject: [Bug 38186] [drm] No driver support for vblank timestamp
+	query.
 Date: Sun, 18 Aug 2013 18:10:17 +0000
-Message-ID: <bug-27076-8800-XEPoBK0mh8@http.bugs.freedesktop.org/>
-References: <bug-27076-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-38186-8800-1bVmQNqJQ5@http.bugs.freedesktop.org/>
+References: <bug-38186-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0138746405=="
+Content-Type: multipart/mixed; boundary="===============1701236454=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27076-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-38186-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0138746405==
-Content-Type: multipart/alternative; boundary="1376849417.D7ECEf495.7623"; charset="us-ascii"
+--===============1701236454==
+Content-Type: multipart/alternative; boundary="1376849417.0dD38F8A499.7623"; charset="us-ascii"
 
 
---1376849417.D7ECEf495.7623
+--1376849417.0dD38F8A499.7623
 Date: Sun, 18 Aug 2013 18:10:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27076
+https://bugs.freedesktop.org/show_bug.cgi?id=38186
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -59,7 +60,7 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849417.D7ECEf495.7623
+--1376849417.0dD38F8A499.7623
 Date: Sun, 18 Aug 2013 18:10:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -72,8 +73,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [C51/6100 GO] Image corruption / broken Xv"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27076">bug 27076</a>
+   title="RESOLVED INVALID - [drm] No driver support for vblank timestamp query."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38186">bug 38186</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -101,12 +102,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [C51/6100 GO] Image corruption / broken Xv"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27076#c1">Comment # 1</a>
+   title="RESOLVED INVALID - [drm] No driver support for vblank timestamp query."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38186#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [C51/6100 GO] Image corruption / broken Xv"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27076">bug 27076</a>
+   title="RESOLVED INVALID - [drm] No driver support for vblank timestamp query."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38186">bug 38186</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -135,9 +136,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849417.D7ECEf495.7623--
+--1376849417.0dD38F8A499.7623--
 
---===============0138746405==
+--===============1701236454==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +149,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0138746405==--
+--===============1701236454==--
