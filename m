@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 36167] Suspend does not work with Geforce7600 GT and
- kernel2.6.38
-Date: Sun, 18 Aug 2013 18:09:13 +0000
-Message-ID: <bug-36167-8800-3Aefv9qxFR@http.bugs.freedesktop.org/>
-References: <bug-36167-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37243] Resume STR or STD,
+	black & white stripes & dots.
+Date: Sun, 18 Aug 2013 18:09:11 +0000
+Message-ID: <bug-37243-8800-fCewOSqRJN@http.bugs.freedesktop.org/>
+References: <bug-37243-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1189662303=="
+Content-Type: multipart/mixed; boundary="===============1367347248=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-36167-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-37243-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1189662303==
-Content-Type: multipart/alternative; boundary="1376849353.f5BA5d81.7623"; charset="us-ascii"
+--===============1367347248==
+Content-Type: multipart/alternative; boundary="1376849351.fFa87269.7623"; charset="us-ascii"
 
 
---1376849353.f5BA5d81.7623
-Date: Sun, 18 Aug 2013 18:09:13 +0000
+--1376849351.fFa87269.7623
+Date: Sun, 18 Aug 2013 18:09:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=36167
+https://bugs.freedesktop.org/show_bug.cgi?id=37243
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -39,7 +39,7 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 It appears that this bug report has laid dormant for quite a while. Sorry we
 haven't gotten to it. Since we fix bugs all the time, chances are pretty good
 that your issue has been fixed with the latest software. Please give it a shot.
@@ -60,8 +60,8 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849353.f5BA5d81.7623
-Date: Sun, 18 Aug 2013 18:09:13 +0000
+--1376849351.fFa87269.7623
+Date: Sun, 18 Aug 2013 18:09:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,8 +73,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Suspend does not work with Geforce7600 GT and kernel2.6.38"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=36167">bug 36167</a>
+   title="RESOLVED INVALID - Resume STR or STD, black &amp; white stripes &amp; dots."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=37243">bug 37243</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -102,12 +102,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Suspend does not work with Geforce7600 GT and kernel2.6.38"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=36167#c5">Comment # 5</a>
+   title="RESOLVED INVALID - Resume STR or STD, black &amp; white stripes &amp; dots."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=37243#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Suspend does not work with Geforce7600 GT and kernel2.6.38"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=36167">bug 36167</a>
+   title="RESOLVED INVALID - Resume STR or STD, black &amp; white stripes &amp; dots."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=37243">bug 37243</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -136,9 +136,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849353.f5BA5d81.7623--
+--1376849351.fFa87269.7623--
 
---===============1189662303==
+--===============1367347248==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -149,4 +149,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1189662303==--
+--===============1367347248==--
