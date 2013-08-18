@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40884] Nouveau's TODO list for new comers
+Subject: [Bug 19223] Parallel X servers do not work
 Date: Sun, 18 Aug 2013 18:09:18 +0000
-Message-ID: <bug-40884-8800-VmUark8Pwi@http.bugs.freedesktop.org/>
-References: <bug-40884-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-19223-8800-EU4xEF3Z82@http.bugs.freedesktop.org/>
+References: <bug-19223-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0682450020=="
+Content-Type: multipart/mixed; boundary="===============1292503650=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40884-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-19223-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +20,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0682450020==
-Content-Type: multipart/alternative; boundary="1376849357.82C1fb0109.7623"; charset="us-ascii"
+--===============1292503650==
+Content-Type: multipart/alternative; boundary="1376849358.38f40115.7623"; charset="us-ascii"
 
 
---1376849357.82C1fb0109.7623
-Date: Sun, 18 Aug 2013 18:09:17 +0000
+--1376849358.38f40115.7623
+Date: Sun, 18 Aug 2013 18:09:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40884
+https://bugs.freedesktop.org/show_bug.cgi?id=19223
 
-Bug 40884 depends on bug 40888, which changed state.
-
-Bug 40888 Summary: Implementation of OpenCL on Nouveau
-https://bugs.freedesktop.org/show_bug.cgi?id=40888
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+It appears that this bug report has laid dormant for quite a while. Sorry we
+haven't gotten to it. Since we fix bugs all the time, chances are pretty good
+that your issue has been fixed with the latest software. Please give it a shot.
+(Linux kernel 3.10.7, xf86-video-nouveau 1.0.9, mesa 9.1.6, or their git
+versions.) If upgrading to the latest isn't an option for you, your distro's
+bugzilla is probably the right destination for your bug report.
+
+In an effort to clean up our bug list, we're pre-emptively closing all bugs
+that haven't seen updates since 2011. If the original issue remains, please
+make sure to provide fresh info, see http://nouveau.freedesktop.org/wiki/Bugs/
+for what we need to see, and re-open this one.
+
+Thanks,
+
+The Nouveau Team
+
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849357.82C1fb0109.7623
-Date: Sun, 18 Aug 2013 18:09:17 +0000
+--1376849358.38f40115.7623
+Date: Sun, 18 Aug 2013 18:09:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +68,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau's TODO list for new comers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40884">Bug 40884</a>
-              depends on
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Implementation of OpenCL on Nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40888">bug 40888</a>,
-              which changed state.
+   title="RESOLVED INVALID - Parallel X servers do not work"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=19223">bug 19223</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -88,6 +98,33 @@ Content-Type: text/html; charset="UTF-8"
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Parallel X servers do not work"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=19223#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Parallel X servers do not work"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=19223">bug 19223</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
+haven't gotten to it. Since we fix bugs all the time, chances are pretty good
+that your issue has been fixed with the latest software. Please give it a shot.
+(Linux kernel 3.10.7, xf86-video-nouveau 1.0.9, mesa 9.1.6, or their git
+versions.) If upgrading to the latest isn't an option for you, your distro's
+bugzilla is probably the right destination for your bug report.
+
+In an effort to clean up our bug list, we're pre-emptively closing all bugs
+that haven't seen updates since 2011. If the original issue remains, please
+make sure to provide fresh info, see <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a>
+for what we need to see, and re-open this one.
+
+Thanks,
+
+The Nouveau Team</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -98,9 +135,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1376849357.82C1fb0109.7623--
+--1376849358.38f40115.7623--
 
---===============0682450020==
+--===============1292503650==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +148,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0682450020==--
+--===============1292503650==--
