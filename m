@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 23466] xrandr --rotate normal crashes system
-Date: Sun, 18 Aug 2013 18:10:42 +0000
-Message-ID: <bug-23466-8800-XBCHrDVmCd@http.bugs.freedesktop.org/>
-References: <bug-23466-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 28152] corruption in FVWM window decorations
+Date: Sun, 18 Aug 2013 18:29:40 +0000
+Message-ID: <bug-28152-8800-OisafdycpN@http.bugs.freedesktop.org/>
+References: <bug-28152-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1222658301=="
+Content-Type: multipart/mixed; boundary="===============0348593458=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-23466-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-28152-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,47 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1222658301==
-Content-Type: multipart/alternative; boundary="1376849442.5F3c3DB3657.7623"; charset="us-ascii"
+--===============0348593458==
+Content-Type: multipart/alternative; boundary="1376850580.53Fb101.13801"; charset="us-ascii"
 
 
---1376849442.5F3c3DB3657.7623
-Date: Sun, 18 Aug 2013 18:10:42 +0000
+--1376850580.53Fb101.13801
+Date: Sun, 18 Aug 2013 18:29:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=23466
+https://bugs.freedesktop.org/show_bug.cgi?id=28152
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+Nick Bowler <nbowler-m3eOHSKbYRSw5LPnMra/2Q@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
+             Status|RESOLVED                    |REOPENED
+         Resolution|INVALID                     |---
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-It appears that this bug report has laid dormant for quite a while. Sorry we
-haven't gotten to it. Since we fix bugs all the time, chances are pretty good
-that your issue has been fixed with the latest software. Please give it a shot.
-(Linux kernel 3.10.7, xf86-video-nouveau 1.0.9, mesa 9.1.6, or their git
-versions.) If upgrading to the latest isn't an option for you, your distro's
-bugzilla is probably the right destination for your bug report.
-
-In an effort to clean up our bug list, we're pre-emptively closing all bugs
-that haven't seen updates since 2011. If the original issue remains, please
-make sure to provide fresh info, see http://nouveau.freedesktop.org/wiki/Bugs/
-for what we need to see, and re-open this one.
-
-Thanks,
-
-The Nouveau Team
+--- Comment #5 from Nick Bowler <nbowler-m3eOHSKbYRSw5LPnMra/2Q@public.gmane.org> ---
+This bug did not magically fix itself.  The corruption persists exactly as in
+the screenshots posted over 3 years ago.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376849442.5F3c3DB3657.7623
-Date: Sun, 18 Aug 2013 18:10:42 +0000
+--1376850580.53Fb101.13801
+Date: Sun, 18 Aug 2013 18:29:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,12 +55,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:nbowler&#64;draconx.ca" title="Nick Bowler &lt;nbowler&#64;draconx.ca&gt;"> <span class="fn">Nick Bowler</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - xrandr --rotate normal crashes system"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23466">bug 23466</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - corruption in FVWM window decorations"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28152">bug 28152</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -84,46 +71,33 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
            <td>RESOLVED
+           </td>
+           <td>REOPENED
            </td>
          </tr>
 
          <tr>
            <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
            <td>INVALID
+           </td>
+           <td>---
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - xrandr --rotate normal crashes system"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23466#c2">Comment # 2</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - corruption in FVWM window decorations"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28152#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - xrandr --rotate normal crashes system"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=23466">bug 23466</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_REOPENED "
+   title="REOPENED --- - corruption in FVWM window decorations"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28152">bug 28152</a>
+              from <span class="vcard"><a class="email" href="mailto:nbowler&#64;draconx.ca" title="Nick Bowler &lt;nbowler&#64;draconx.ca&gt;"> <span class="fn">Nick Bowler</span></a>
 </span></b>
-        <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
-haven't gotten to it. Since we fix bugs all the time, chances are pretty good
-that your issue has been fixed with the latest software. Please give it a shot.
-(Linux kernel 3.10.7, xf86-video-nouveau 1.0.9, mesa 9.1.6, or their git
-versions.) If upgrading to the latest isn't an option for you, your distro's
-bugzilla is probably the right destination for your bug report.
-
-In an effort to clean up our bug list, we're pre-emptively closing all bugs
-that haven't seen updates since 2011. If the original issue remains, please
-make sure to provide fresh info, see <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a>
-for what we need to see, and re-open this one.
-
-Thanks,
-
-The Nouveau Team</pre>
+        <pre>This bug did not magically fix itself.  The corruption persists exactly as in
+the screenshots posted over 3 years ago.</pre>
         </div>
       </p>
       <hr>
@@ -135,9 +109,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376849442.5F3c3DB3657.7623--
+--1376850580.53Fb101.13801--
 
---===============1222658301==
+--===============0348593458==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +122,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1222658301==--
+--===============0348593458==--
