@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33695] xrandr configuration of external monitor
- fails (graphics mode + xinerama)
-Date: Mon, 19 Aug 2013 16:40:59 +0000
-Message-ID: <bug-33695-8800-sjRZ1EuoV7@http.bugs.freedesktop.org/>
-References: <bug-33695-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40892] Power management
+Date: Mon, 19 Aug 2013 16:41:00 +0000
+Message-ID: <bug-40892-8800-TYzrrLuV3r@http.bugs.freedesktop.org/>
+References: <bug-40892-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1188643280=="
+Content-Type: multipart/mixed; boundary="===============1108968605=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33695-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40892-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1188643280==
-Content-Type: multipart/alternative; boundary="1376930459.aAFD67.21724"; charset="us-ascii"
+--===============1108968605==
+Content-Type: multipart/alternative; boundary="1376930460.16Baba371.21724"; charset="us-ascii"
 
 
---1376930459.aAFD67.21724
-Date: Mon, 19 Aug 2013 16:40:59 +0000
+--1376930460.16Baba371.21724
+Date: Mon, 19 Aug 2013 16:41:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33695
+https://bugs.freedesktop.org/show_bug.cgi?id=40892
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -39,7 +38,7 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 It appears that this bug report has laid dormant for quite a while. Sorry we
 haven't gotten to it. Since we fix bugs all the time, chances are pretty good
 that your issue has been fixed with the latest software. Please give it a shot.
@@ -60,8 +59,8 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376930459.aAFD67.21724
-Date: Mon, 19 Aug 2013 16:40:59 +0000
+--1376930460.16Baba371.21724
+Date: Mon, 19 Aug 2013 16:41:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,8 +72,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - xrandr configuration of external monitor fails (graphics mode + xinerama)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33695">bug 33695</a>
+   title="RESOLVED INVALID - Power management"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40892">bug 40892</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -102,12 +101,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - xrandr configuration of external monitor fails (graphics mode + xinerama)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33695#c2">Comment # 2</a>
+   title="RESOLVED INVALID - Power management"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40892#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - xrandr configuration of external monitor fails (graphics mode + xinerama)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33695">bug 33695</a>
+   title="RESOLVED INVALID - Power management"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40892">bug 40892</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -136,9 +135,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376930459.aAFD67.21724--
+--1376930460.16Baba371.21724--
 
---===============1188643280==
+--===============1108968605==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -149,4 +148,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1188643280==--
+--===============1108968605==--
