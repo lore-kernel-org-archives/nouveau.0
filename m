@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35171] x11-drivers/xf86-video-nouveau does not work
- with Quadro FX1800 on HP elitebook 8540w
+Subject: [Bug 38074] Dual head doesn't work for some combination
+ of monitors (second screen still off)
 Date: Mon, 19 Aug 2013 16:40:58 +0000
-Message-ID: <bug-35171-8800-E9KG1oQV9Z@http.bugs.freedesktop.org/>
-References: <bug-35171-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-38074-8800-5lpvSVb0tv@http.bugs.freedesktop.org/>
+References: <bug-38074-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2137912125=="
+Content-Type: multipart/mixed; boundary="===============1368292574=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35171-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2137912125==
-Content-Type: multipart/alternative; boundary="1376930459.b48A63.21724"; charset="us-ascii"
+--===============1368292574==
+Content-Type: multipart/alternative; boundary="1376930458.28D358.21724"; charset="us-ascii"
 
 
---1376930459.b48A63.21724
-Date: Mon, 19 Aug 2013 16:40:59 +0000
+--1376930458.28D358.21724
+Date: Mon, 19 Aug 2013 16:40:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35171
+https://bugs.freedesktop.org/show_bug.cgi?id=38074
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -39,7 +39,7 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #17 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 It appears that this bug report has laid dormant for quite a while. Sorry we
 haven't gotten to it. Since we fix bugs all the time, chances are pretty good
 that your issue has been fixed with the latest software. Please give it a shot.
@@ -60,8 +60,8 @@ The Nouveau Team
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376930459.b48A63.21724
-Date: Mon, 19 Aug 2013 16:40:59 +0000
+--1376930458.28D358.21724
+Date: Mon, 19 Aug 2013 16:40:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,8 +73,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - x11-drivers/xf86-video-nouveau does not work with Quadro FX1800 on HP elitebook 8540w"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=35171">bug 35171</a>
+   title="RESOLVED INVALID - Dual head doesn't work for some combination of monitors (second screen still off)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074">bug 38074</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -102,12 +102,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - x11-drivers/xf86-video-nouveau does not work with Quadro FX1800 on HP elitebook 8540w"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=35171#c5">Comment # 5</a>
+   title="RESOLVED INVALID - Dual head doesn't work for some combination of monitors (second screen still off)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074#c17">Comment # 17</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - x11-drivers/xf86-video-nouveau does not work with Quadro FX1800 on HP elitebook 8540w"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=35171">bug 35171</a>
+   title="RESOLVED INVALID - Dual head doesn't work for some combination of monitors (second screen still off)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074">bug 38074</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>It appears that this bug report has laid dormant for quite a while. Sorry we
@@ -136,9 +136,9 @@ The Nouveau Team</pre>
     </body>
 </html>
 
---1376930459.b48A63.21724--
+--1376930458.28D358.21724--
 
---===============2137912125==
+--===============1368292574==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -149,4 +149,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2137912125==--
+--===============1368292574==--
