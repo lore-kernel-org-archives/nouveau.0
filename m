@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27905] DVI monitor is blank - DVI detected as
-	Display Port ?
-Date: Mon, 19 Aug 2013 15:01:58 +0000
-Message-ID: <bug-27905-8800-fSRgO6qNBb@http.bugs.freedesktop.org/>
-References: <bug-27905-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 52509] [NVA3] System hangs completely after loading
+ nouveau kernel module
+Date: Mon, 19 Aug 2013 15:08:44 +0000
+Message-ID: <bug-52509-8800-MrjaPXJVSO@http.bugs.freedesktop.org/>
+References: <bug-52509-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0264014262=="
+Content-Type: multipart/mixed; boundary="===============1845342717=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27905-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-52509-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0264014262==
-Content-Type: multipart/alternative; boundary="1376924518.DB26f5174.27497"; charset="us-ascii"
+--===============1845342717==
+Content-Type: multipart/alternative; boundary="1376924924.E3e32.28642"; charset="us-ascii"
 
 
---1376924518.DB26f5174.27497
-Date: Mon, 19 Aug 2013 15:01:58 +0000
+--1376924924.E3e32.28642
+Date: Mon, 19 Aug 2013 15:08:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27905
+https://bugs.freedesktop.org/show_bug.cgi?id=52509
 
---- Comment #22 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Is this still an issue with the latest kernel?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|System hangs completely     |[NVA3] System hangs
+                   |after loading nouveau       |completely after loading
+                   |kernel module               |nouveau kernel module
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you see if newer kernels work better? If not, please post a more recent log
+and your VBIOS (see http://nouveau.freedesktop.org/wiki/DumpingVideoBios/).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376924518.DB26f5174.27497
-Date: Mon, 19 Aug 2013 15:01:58 +0000
+--1376924924.E3e32.28642
+Date: Mon, 19 Aug 2013 15:08:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -48,20 +57,41 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA3] System hangs completely after loading nouveau kernel module"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=52509">bug 52509</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>System hangs completely after loading nouveau kernel module
+           </td>
+           <td>[NVA3] System hangs completely after loading nouveau kernel module
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED --- - DVI monitor is blank - DVI detected as Display Port ?"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27905#c22">Comment # 22</a>
+          bz_status_NEW "
+   title="NEW --- - [NVA3] System hangs completely after loading nouveau kernel module"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=52509#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED --- - DVI monitor is blank - DVI detected as Display Port ?"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27905">bug 27905</a>
+          bz_status_NEW "
+   title="NEW --- - [NVA3] System hangs completely after loading nouveau kernel module"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=52509">bug 52509</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Is this still an issue with the latest kernel?</pre>
+        <pre>Can you see if newer kernels work better? If not, please post a more recent log
+and your VBIOS (see <a href="http://nouveau.freedesktop.org/wiki/DumpingVideoBios/">http://nouveau.freedesktop.org/wiki/DumpingVideoBios/</a>).</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +103,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1376924518.DB26f5174.27497--
+--1376924924.E3e32.28642--
 
---===============0264014262==
+--===============1845342717==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0264014262==--
+--===============1845342717==--
