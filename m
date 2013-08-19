@@ -1,10 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55449] Problems identifying card
-Date: Mon, 19 Aug 2013 15:59:55 +0000
-Message-ID: <bug-55449-8800-VjBxWmGji5@http.bugs.freedesktop.org/>
+Subject: [Bug 55449] [NV15] Problems identifying card on PPC big
+	endian
+Date: Mon, 19 Aug 2013 16:00:27 +0000
+Message-ID: <bug-55449-8800-fSQYDftZ3T@http.bugs.freedesktop.org/>
 References: <bug-55449-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0692088660=="
+Content-Type: multipart/mixed; boundary="===============2016067615=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-55449-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,34 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0692088660==
-Content-Type: multipart/alternative; boundary="1376927995.6dFa2.9466"; charset="us-ascii"
+--===============2016067615==
+Content-Type: multipart/alternative; boundary="1376928027.E8Daa2.9672"; charset="us-ascii"
 
 
---1376927995.6dFa2.9466
-Date: Mon, 19 Aug 2013 15:59:55 +0000
+--1376928027.E8Daa2.9672
+Date: Mon, 19 Aug 2013 16:00:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=55449
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, so the fundamental problem is that it's being detected as a NV30 card
-instead of NV15 due to a lack of byteswapping when reading in the the PMC.ID
-register (which should have come out as 0x015000a3). Once that goes wrong, all
-bets are off.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-I know that another user was pretty close to getting a NV4x card to work (benh,
-the ppc maintainer), which would largely go through the same init paths (at
-least as far as mmio reads/writes are concerned). Could you test a more recent
-kernel (like 3.10 or 3.11) and see if this particular issue is still there?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Problems identifying card   |[NV15] Problems identifying
+                   |                            |card on PPC big endian
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376927995.6dFa2.9466
-Date: Mon, 19 Aug 2013 15:59:55 +0000
+--1376928027.E8Daa2.9672
+Date: Mon, 19 Aug 2013 16:00:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,29 +52,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Problems identifying card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55449#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Problems identifying card"
+   title="NEW --- - [NV15] Problems identifying card on PPC big endian"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=55449">bug 55449</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>OK, so the fundamental problem is that it's being detected as a NV30 card
-instead of NV15 due to a lack of byteswapping when reading in the the PMC.ID
-register (which should have come out as 0x015000a3). Once that goes wrong, all
-bets are off.
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-I know that another user was pretty close to getting a NV4x card to work (benh,
-the ppc maintainer), which would largely go through the same init paths (at
-least as far as mmio reads/writes are concerned). Could you test a more recent
-kernel (like 3.10 or 3.11) and see if this particular issue is still there?</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Problems identifying card
+           </td>
+           <td>[NV15] Problems identifying card on PPC big endian
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -88,9 +84,9 @@ kernel (like 3.10 or 3.11) and see if this particular issue is still there?</pre
     </body>
 </html>
 
---1376927995.6dFa2.9466--
+--1376928027.E8Daa2.9672--
 
---===============0692088660==
+--===============2016067615==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0692088660==--
+--===============2016067615==--
