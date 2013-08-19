@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50571] nouveau crashes with GeForce GT 520
-Date: Mon, 19 Aug 2013 17:41:14 +0000
-Message-ID: <bug-50571-8800-vZ2pmZdPTw@http.bugs.freedesktop.org/>
-References: <bug-50571-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33977] X core font rendering is "laggy"
+Date: Mon, 19 Aug 2013 17:44:56 +0000
+Message-ID: <bug-33977-8800-qdL3xVlLrT@http.bugs.freedesktop.org/>
+References: <bug-33977-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1753891533=="
+Content-Type: multipart/mixed; boundary="===============1249444983=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50571-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33977-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1753891533==
-Content-Type: multipart/alternative; boundary="1376934074.E0ce5.9433"; charset="us-ascii"
+--===============1249444983==
+Content-Type: multipart/alternative; boundary="1376934296.FFC75.10809"; charset="us-ascii"
 
 
---1376934074.E0ce5.9433
-Date: Mon, 19 Aug 2013 17:41:14 +0000
+--1376934296.FFC75.10809
+Date: Mon, 19 Aug 2013 17:44:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50571
+https://bugs.freedesktop.org/show_bug.cgi?id=33977
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+         Resolution|INVALID                     |FIXED
 
---- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Sounds like the original issue is fixed. Vova, if you're still having issues,
-file a new bug describing your symptoms, take a look at
-http://nouveau.freedesktop.org/wiki/Bugs/ for doing that effectively.
+--- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+It was probably apparent, but it was a bulk message, I didn't really look at
+each item too carefully but rather used the date of comments as the closing
+criteria. Updating the status to FIXED instead of INVALID.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376934074.E0ce5.9433
-Date: Mon, 19 Aug 2013 17:41:14 +0000
+--1376934296.FFC75.10809
+Date: Mon, 19 Aug 2013 17:44:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,8 +59,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nouveau crashes with GeForce GT 520"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50571">bug 50571</a>
+   title="RESOLVED FIXED - X core font rendering is &quot;laggy&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33977">bug 33977</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -71,16 +70,8 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
            <td style="text-align:right;">Resolution</td>
-           <td>---
+           <td>INVALID
            </td>
            <td>FIXED
            </td>
@@ -89,17 +80,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nouveau crashes with GeForce GT 520"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50571#c16">Comment # 16</a>
+   title="RESOLVED FIXED - X core font rendering is &quot;laggy&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33977#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nouveau crashes with GeForce GT 520"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50571">bug 50571</a>
+   title="RESOLVED FIXED - X core font rendering is &quot;laggy&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33977">bug 33977</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Sounds like the original issue is fixed. Vova, if you're still having issues,
-file a new bug describing your symptoms, take a look at
-<a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a> for doing that effectively.</pre>
+        <pre>It was probably apparent, but it was a bulk message, I didn't really look at
+each item too carefully but rather used the date of comments as the closing
+criteria. Updating the status to FIXED instead of INVALID.</pre>
         </div>
       </p>
       <hr>
@@ -111,9 +102,9 @@ file a new bug describing your symptoms, take a look at
     </body>
 </html>
 
---1376934074.E0ce5.9433--
+--1376934296.FFC75.10809--
 
---===============1753891533==
+--===============1249444983==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,4 +115,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1753891533==--
+--===============1249444983==--
