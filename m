@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40884] Nouveau's TODO list for new comers
-Date: Mon, 19 Aug 2013 16:41:00 +0000
-Message-ID: <bug-40884-8800-mQIs46sFVL@http.bugs.freedesktop.org/>
-References: <bug-40884-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33977] X core font rendering is "laggy"
+Date: Mon, 19 Aug 2013 17:14:18 +0000
+Message-ID: <bug-33977-8800-yl7RWadEFO@http.bugs.freedesktop.org/>
+References: <bug-33977-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1477932215=="
+Content-Type: multipart/mixed; boundary="===============0215319782=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40884-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33977-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1477932215==
-Content-Type: multipart/alternative; boundary="1376930460.734D0b75.21724"; charset="us-ascii"
+--===============0215319782==
+Content-Type: multipart/alternative; boundary="1376932458.6a3B5.32601"; charset="us-ascii"
 
 
---1376930460.734D0b75.21724
-Date: Mon, 19 Aug 2013 16:41:00 +0000
+--1376932458.6a3B5.32601
+Date: Mon, 19 Aug 2013 17:14:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40884
+https://bugs.freedesktop.org/show_bug.cgi?id=33977
 
-Bug 40884 depends on bug 40892, which changed state.
-
-Bug 40892 Summary: Power management
-https://bugs.freedesktop.org/show_bug.cgi?id=40892
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
+--- Comment #17 from Vincent Lefevre <vincent-fdt-buymaDBGzMOsTnJN9+BGXg@public.gmane.org> ---
+It would be better to close this bug as FIXED, since it was really fixed,
+apparent around 2011-02-24 and two months later in Debian:
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=614938
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376930460.734D0b75.21724
-Date: Mon, 19 Aug 2013 16:41:00 +0000
+--1376932458.6a3B5.32601
+Date: Mon, 19 Aug 2013 17:14:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,40 +49,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Nouveau's TODO list for new comers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40884">Bug 40884</a>
-              depends on
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Power management"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40892">bug 40892</a>,
-              which changed state.
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - X core font rendering is &quot;laggy&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33977#c17">Comment # 17</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - X core font rendering is &quot;laggy&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33977">bug 33977</a>
+              from <span class="vcard"><a class="email" href="mailto:vincent-fdt&#64;vinc17.net" title="Vincent Lefevre &lt;vincent-fdt&#64;vinc17.net&gt;"> <span class="fn">Vincent Lefevre</span></a>
+</span></b>
+        <pre>It would be better to close this bug as FIXED, since it was really fixed,
+apparent around 2011-02-24 and two months later in Debian:
+<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=614938">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=614938</a></pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -98,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1376930460.734D0b75.21724--
+--1376932458.6a3B5.32601--
 
---===============1477932215==
+--===============0215319782==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1477932215==--
+--===============0215319782==--
