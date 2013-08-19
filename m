@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37085] HDMI thinks it works but TV says "no signal"
-Date: Mon, 19 Aug 2013 14:14:17 +0000
-Message-ID: <bug-37085-8800-60YBI37pWh@http.bugs.freedesktop.org/>
-References: <bug-37085-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33999] 2.6.37 - NV11 crashes X if glxgears started
+Date: Mon, 19 Aug 2013 14:20:32 +0000
+Message-ID: <bug-33999-8800-txvVkEdqy7@http.bugs.freedesktop.org/>
+References: <bug-33999-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1238262232=="
+Content-Type: multipart/mixed; boundary="===============1266480421=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37085-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33999-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1238262232==
-Content-Type: multipart/alternative; boundary="1376921657.CFBA2.20437"; charset="us-ascii"
+--===============1266480421==
+Content-Type: multipart/alternative; boundary="1376922032.AbAbFD32.21281"; charset="us-ascii"
 
 
---1376921657.CFBA2.20437
-Date: Mon, 19 Aug 2013 14:14:17 +0000
+--1376922032.AbAbFD32.21281
+Date: Mon, 19 Aug 2013 14:20:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37085
+https://bugs.freedesktop.org/show_bug.cgi?id=33999
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Seems like different people have had conflicting results. Can everyone confirm
-that things work with the latest kernel? And if not, please attach your kernel
-boot logs and vbios.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+All the comments seem to indicate that the issue is fixed, updating status to
+reflect that.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376921657.CFBA2.20437
-Date: Mon, 19 Aug 2013 14:14:17 +0000
+--1376922032.AbAbFD32.21281
+Date: Mon, 19 Aug 2013 14:20:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,22 +55,49 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - 2.6.37 - NV11 crashes X if glxgears started"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33999">bug 33999</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - HDMI thinks it works but TV says &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37085#c6">Comment # 6</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - 2.6.37 - NV11 crashes X if glxgears started"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33999#c15">Comment # 15</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - HDMI thinks it works but TV says &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37085">bug 37085</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - 2.6.37 - NV11 crashes X if glxgears started"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33999">bug 33999</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Seems like different people have had conflicting results. Can everyone confirm
-that things work with the latest kernel? And if not, please attach your kernel
-boot logs and vbios.</pre>
+        <pre>All the comments seem to indicate that the issue is fixed, updating status to
+reflect that.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +109,9 @@ boot logs and vbios.</pre>
     </body>
 </html>
 
---1376921657.CFBA2.20437--
+--1376922032.AbAbFD32.21281--
 
---===============1238262232==
+--===============1266480421==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +122,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1238262232==--
+--===============1266480421==--
