@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37768] [NVA8] UT2003: Splash-screen is transparent
- with gnome-shell enabled
-Date: Mon, 19 Aug 2013 14:44:02 +0000
-Message-ID: <bug-37768-8800-P5U0hOedSm@http.bugs.freedesktop.org/>
-References: <bug-37768-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 43939] [NV96] DVI monitor connected via HDMI is
+ blank / standby (NV96 / 9500GS)
+Date: Mon, 19 Aug 2013 14:52:29 +0000
+Message-ID: <bug-43939-8800-jbmQkOZ07x@http.bugs.freedesktop.org/>
+References: <bug-43939-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1306619546=="
+Content-Type: multipart/mixed; boundary="===============0940888911=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37768-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-43939-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1306619546==
-Content-Type: multipart/alternative; boundary="1376923441.deCa0.24645"; charset="us-ascii"
+--===============0940888911==
+Content-Type: multipart/alternative; boundary="1376923949.2c0c1D53.25861"; charset="us-ascii"
 
 
---1376923441.deCa0.24645
-Date: Mon, 19 Aug 2013 14:44:01 +0000
+--1376923949.2c0c1D53.25861
+Date: Mon, 19 Aug 2013 14:52:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37768
+https://bugs.freedesktop.org/show_bug.cgi?id=43939
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could you retest this with a more recent mesa (e.g. 9.1.6 or 9.2-git)? [And the
-other stuff could stand an upgrade as well...]
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-In case that the problem persists, try to capture an apitrace, and see if the
-problem still happens when you replay that apitrace
-(https://github.com/apitrace/apitrace, although there are probably also distro
-packages for it). If the problem happens with the apitrace, compress/upload it
-to this bug.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|DVI monitor connected via   |[NV96] DVI monitor
+                   |HDMI is blank / standby     |connected via HDMI is blank
+                   |(NV96 / 9500GS)             |/ standby (NV96 / 9500GS)
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you confirm whether this is still an issue with a more recent kernel (e.g.
+3.10)? All the output stuff has gotten quite a bit of rework in the past 2
+years.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376923441.deCa0.24645
-Date: Mon, 19 Aug 2013 14:44:01 +0000
+--1376923949.2c0c1D53.25861
+Date: Mon, 19 Aug 2013 14:52:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,27 +58,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV96] DVI monitor connected via HDMI is blank / standby (NV96 / 9500GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939">bug 43939</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>DVI monitor connected via HDMI is blank / standby (NV96 / 9500GS)
+           </td>
+           <td>[NV96] DVI monitor connected via HDMI is blank / standby (NV96 / 9500GS)
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA8] UT2003: Splash-screen is transparent with gnome-shell enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37768#c2">Comment # 2</a>
+   title="NEW --- - [NV96] DVI monitor connected via HDMI is blank / standby (NV96 / 9500GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA8] UT2003: Splash-screen is transparent with gnome-shell enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37768">bug 37768</a>
+   title="NEW --- - [NV96] DVI monitor connected via HDMI is blank / standby (NV96 / 9500GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939">bug 43939</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Could you retest this with a more recent mesa (e.g. 9.1.6 or 9.2-git)? [And the
-other stuff could stand an upgrade as well...]
-
-In case that the problem persists, try to capture an apitrace, and see if the
-problem still happens when you replay that apitrace
-(<a href="https://github.com/apitrace/apitrace">https://github.com/apitrace/apitrace</a>, although there are probably also distro
-packages for it). If the problem happens with the apitrace, compress/upload it
-to this bug.</pre>
+        <pre>Can you confirm whether this is still an issue with a more recent kernel (e.g.
+3.10)? All the output stuff has gotten quite a bit of rework in the past 2
+years.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +105,9 @@ to this bug.</pre>
     </body>
 </html>
 
---1376923441.deCa0.24645--
+--1376923949.2c0c1D53.25861--
 
---===============1306619546==
+--===============0940888911==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +118,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1306619546==--
+--===============0940888911==--
