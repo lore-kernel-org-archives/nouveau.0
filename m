@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58261] [NV34] Display all whited out
-Date: Mon, 19 Aug 2013 22:10:59 +0000
-Message-ID: <bug-58261-8800-EXJWiEd6Ez@http.bugs.freedesktop.org/>
-References: <bug-58261-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 62190] [NV43] Invalid ROM contents on PowerMAC G5 11,
+ 2 with GeForce 6600 LE on PPC64 big endian
+Date: Mon, 19 Aug 2013 22:33:02 +0000
+Message-ID: <bug-62190-8800-mRh7G5eNeJ@http.bugs.freedesktop.org/>
+References: <bug-62190-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1719567137=="
+Content-Type: multipart/mixed; boundary="===============0926054064=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58261-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-62190-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1719567137==
-Content-Type: multipart/alternative; boundary="1376950259.adFc458d4.22231"; charset="us-ascii"
+--===============0926054064==
+Content-Type: multipart/alternative; boundary="1376951582.dDbEe6b42.27059"; charset="us-ascii"
 
 
---1376950259.adFc458d4.22231
-Date: Mon, 19 Aug 2013 22:10:59 +0000
+--1376951582.dDbEe6b42.27059
+Date: Mon, 19 Aug 2013 22:33:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58261
+https://bugs.freedesktop.org/show_bug.cgi?id=62190
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+            Summary|Invalid ROM contents on     |[NV43] Invalid ROM contents
+                   |PowerMAC G5 11,2 with       |on PowerMAC G5 11,2 with
+                   |GeForce 6600 LE             |GeForce 6600 LE on PPC64
+                   |                            |big endian
 
---- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The bisect result + commit that fixed all make sense. No followup from a
-5-month old request to retest, I'm assuming this is indeed fixed. Feel free to
-reopen if it's not.
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I think you forgot to describe the issue you're having (beyond "doesn't work").
+Is it just the ROM checksum error?
+
+My understanding is that there's also some sort of issue with 64k pages (vs 4k
+pages). I don't know much about ppc, so I don't know if it's that's an option
+or hardware-dependent. I believe benh was trying to get it all to work, perhaps
+he'll have patches when he does.
+
+BTW, are you using this as PPC or PPC64? (Is that even an option with PPC?)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376950259.adFc458d4.22231
-Date: Mon, 19 Aug 2013 22:10:59 +0000
+--1376951582.dDbEe6b42.27059
+Date: Mon, 19 Aug 2013 22:33:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,9 +68,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV34] Display all whited out"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58261">bug 58261</a>
+          bz_status_NEW "
+   title="NEW --- - [NV43] Invalid ROM contents on PowerMAC G5 11,2 with GeForce 6600 LE on PPC64 big endian"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62190">bug 62190</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -71,35 +80,33 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">Summary</td>
+           <td>Invalid ROM contents on PowerMAC G5 11,2 with GeForce 6600 LE
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
+           <td>[NV43] Invalid ROM contents on PowerMAC G5 11,2 with GeForce 6600 LE on PPC64 big endian
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV34] Display all whited out"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58261#c11">Comment # 11</a>
+          bz_status_NEW "
+   title="NEW --- - [NV43] Invalid ROM contents on PowerMAC G5 11,2 with GeForce 6600 LE on PPC64 big endian"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62190#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV34] Display all whited out"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58261">bug 58261</a>
+          bz_status_NEW "
+   title="NEW --- - [NV43] Invalid ROM contents on PowerMAC G5 11,2 with GeForce 6600 LE on PPC64 big endian"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62190">bug 62190</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>The bisect result + commit that fixed all make sense. No followup from a
-5-month old request to retest, I'm assuming this is indeed fixed. Feel free to
-reopen if it's not.</pre>
+        <pre>I think you forgot to describe the issue you're having (beyond &quot;doesn't work&quot;).
+Is it just the ROM checksum error?
+
+My understanding is that there's also some sort of issue with 64k pages (vs 4k
+pages). I don't know much about ppc, so I don't know if it's that's an option
+or hardware-dependent. I believe benh was trying to get it all to work, perhaps
+he'll have patches when he does.
+
+BTW, are you using this as PPC or PPC64? (Is that even an option with PPC?)</pre>
         </div>
       </p>
       <hr>
@@ -111,9 +118,9 @@ reopen if it's not.</pre>
     </body>
 </html>
 
---1376950259.adFc458d4.22231--
+--1376951582.dDbEe6b42.27059--
 
---===============1719567137==
+--===============0926054064==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,4 +131,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1719567137==--
+--===============0926054064==--
