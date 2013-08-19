@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33977] X core font rendering is "laggy"
-Date: Mon, 19 Aug 2013 17:44:56 +0000
-Message-ID: <bug-33977-8800-qdL3xVlLrT@http.bugs.freedesktop.org/>
-References: <bug-33977-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 63165] [NVE6] GTX660 GPU lockups on 3D applications
+Date: Mon, 19 Aug 2013 17:50:35 +0000
+Message-ID: <bug-63165-8800-BhVej7N4N5@http.bugs.freedesktop.org/>
+References: <bug-63165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1249444983=="
+Content-Type: multipart/mixed; boundary="===============0262699519=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33977-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-63165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1249444983==
-Content-Type: multipart/alternative; boundary="1376934296.FFC75.10809"; charset="us-ascii"
+--===============0262699519==
+Content-Type: multipart/alternative; boundary="1376934635.F275C521.12785"; charset="us-ascii"
 
 
---1376934296.FFC75.10809
-Date: Mon, 19 Aug 2013 17:44:56 +0000
+--1376934635.F275C521.12785
+Date: Mon, 19 Aug 2013 17:50:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33977
+https://bugs.freedesktop.org/show_bug.cgi?id=63165
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|INVALID                     |FIXED
+            Summary|[GTX660] GPU lockups on 3D  |[NVE6] GTX660 GPU lockups
+                   |applications                |on 3D applications
 
---- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-It was probably apparent, but it was a bulk message, I didn't really look at
-each item too carefully but rather used the date of comments as the closing
-criteria. Updating the status to FIXED instead of INVALID.
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please try a 3.11-rc kernel. There have been various kepler updates since 3.8.
+
+Also, I only looked at your latest log, but I did see a suspend/resume sequence
+in there. I assume you can get it to crash without a suspend/resume in there as
+well?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376934296.FFC75.10809
-Date: Mon, 19 Aug 2013 17:44:56 +0000
+--1376934635.F275C521.12785
+Date: Mon, 19 Aug 2013 17:50:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,9 +61,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - X core font rendering is &quot;laggy&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33977">bug 33977</a>
+          bz_status_NEW "
+   title="NEW --- - [NVE6] GTX660 GPU lockups on 3D applications"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165">bug 63165</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -70,27 +73,29 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>INVALID
+           <td style="text-align:right;">Summary</td>
+           <td>[GTX660] GPU lockups on 3D applications
            </td>
-           <td>FIXED
+           <td>[NVE6] GTX660 GPU lockups on 3D applications
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - X core font rendering is &quot;laggy&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33977#c18">Comment # 18</a>
+          bz_status_NEW "
+   title="NEW --- - [NVE6] GTX660 GPU lockups on 3D applications"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165#c12">Comment # 12</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - X core font rendering is &quot;laggy&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33977">bug 33977</a>
+          bz_status_NEW "
+   title="NEW --- - [NVE6] GTX660 GPU lockups on 3D applications"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165">bug 63165</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>It was probably apparent, but it was a bulk message, I didn't really look at
-each item too carefully but rather used the date of comments as the closing
-criteria. Updating the status to FIXED instead of INVALID.</pre>
+        <pre>Please try a 3.11-rc kernel. There have been various kepler updates since 3.8.
+
+Also, I only looked at your latest log, but I did see a suspend/resume sequence
+in there. I assume you can get it to crash without a suspend/resume in there as
+well?</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +107,9 @@ criteria. Updating the status to FIXED instead of INVALID.</pre>
     </body>
 </html>
 
---1376934296.FFC75.10809--
+--1376934635.F275C521.12785--
 
---===============1249444983==
+--===============0262699519==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1249444983==--
+--===============0262699519==--
