@@ -1,59 +1,130 @@
-From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau: fix vblank deadlock
-Date: Mon, 19 Aug 2013 22:01:21 +0200
-Message-ID: <52127991.3020409@canonical.com>
-References: <5208CC15.8080403@canonical.com>
-	<5212600D.7000203@hurleysoftware.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27928] Nouveau / Mesa sometimes gets libraries
+	overwritten
+Date: Mon, 19 Aug 2013 22:03:45 +0000
+Message-ID: <bug-27928-8800-2zf3Q8s2tG@http.bugs.freedesktop.org/>
+References: <bug-27928-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <5212600D.7000203@hurleysoftware.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Peter Hurley <peter@hurleysoftware.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1658427846=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-27928-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hey,
 
-Op 19-08-13 20:12, Peter Hurley schreef:
-> On 08/12/2013 07:50 AM, Maarten Lankhorst wrote:
->> This fixes a deadlock inversion when vblank is enabled/disabled by drm.
->> &dev->vblank_time_lock is always taken when the vblank state is toggled,
->> which caused a deadlock when &event->lock was also taken during
->> event_get/put.
->>
->> Solve the race by requiring that lock to change enable/disable state,
->> and always keeping vblank on the event list. Core drm ignores unwanted
->> vblanks, so extra calls to drm_handle_vblank are harmless.
->
-> I don't feel this is the appropriate solution to the lock inversion
-> between vblank_time_lock and event->lock.
->
-> Preferably drm core should correct the interface layer bug; ie., calling
-> into a sub-driver holding a lock _and_ requiring the sub-driver to call a
-> drm helper function which claims the same lock is bad design. The console
-> lock suffers from the same design flaw and is a constant problem.
->
-> Alternatively, the event trigger could be lockless; ie., the event list
-> could be an RCU list instead. In this way, the event->lock does not need
-> to be claimed, and thus no lock inversion is possible. The main drawback
-> here is that currently the event->lock enforces non-overlapping lifetimes
-> between the event handler and the event. Untangling object lifetimes in
-> nouveau is a non-trivial exercise.
-If only it was so easy..
+--===============1658427846==
+Content-Type: multipart/alternative; boundary="1376949825.f7F61.21708"; charset="us-ascii"
 
-nouveau is doing a non-standard thing with core/engine/software, specifically the release method.
-The real fix is reverting the commit that changes this to a nouveau_event type of thing, and reinstates
-the old locking. This is not going to happen though, so the second best fix is just telling it to lock the
-other lock too when changing enable state.
 
-~Maarten
+--1376949825.f7F61.21708
+Date: Mon, 19 Aug 2013 22:03:45 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=27928
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No update in 3 years (except for someone asking for an update a few months
+ago). I'm going to assume this took care of itself one way or another. Feel
+free to re-open if you still think there's a nouveau issue going on with the
+latest drivers.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1376949825.f7F61.21708
+Date: Mon, 19 Aug 2013 22:03:45 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Nouveau / Mesa sometimes gets libraries overwritten"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27928">bug 27928</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Nouveau / Mesa sometimes gets libraries overwritten"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27928#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Nouveau / Mesa sometimes gets libraries overwritten"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27928">bug 27928</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>No update in 3 years (except for someone asking for an update a few months
+ago). I'm going to assume this took care of itself one way or another. Feel
+free to re-open if you still think there's a nouveau issue going on with the
+latest drivers.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1376949825.f7F61.21708--
+
+--===============1658427846==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1658427846==--
