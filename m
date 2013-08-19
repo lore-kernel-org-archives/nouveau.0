@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 43939] [NV96] DVI monitor connected via HDMI is
- blank / standby (NV96 / 9500GS)
-Date: Mon, 19 Aug 2013 14:52:29 +0000
-Message-ID: <bug-43939-8800-jbmQkOZ07x@http.bugs.freedesktop.org/>
-References: <bug-43939-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27905] DVI monitor is blank - DVI detected as
+	Display Port ?
+Date: Mon, 19 Aug 2013 15:01:58 +0000
+Message-ID: <bug-27905-8800-fSRgO6qNBb@http.bugs.freedesktop.org/>
+References: <bug-27905-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0940888911=="
+Content-Type: multipart/mixed; boundary="===============0264014262=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-43939-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27905-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0940888911==
-Content-Type: multipart/alternative; boundary="1376923949.2c0c1D53.25861"; charset="us-ascii"
+--===============0264014262==
+Content-Type: multipart/alternative; boundary="1376924518.DB26f5174.27497"; charset="us-ascii"
 
 
---1376923949.2c0c1D53.25861
-Date: Mon, 19 Aug 2013 14:52:29 +0000
+--1376924518.DB26f5174.27497
+Date: Mon, 19 Aug 2013 15:01:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=43939
+https://bugs.freedesktop.org/show_bug.cgi?id=27905
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|DVI monitor connected via   |[NV96] DVI monitor
-                   |HDMI is blank / standby     |connected via HDMI is blank
-                   |(NV96 / 9500GS)             |/ standby (NV96 / 9500GS)
-
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you confirm whether this is still an issue with a more recent kernel (e.g.
-3.10)? All the output stuff has gotten quite a bit of rework in the past 2
-years.
+--- Comment #22 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Is this still an issue with the latest kernel?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376923949.2c0c1D53.25861
-Date: Mon, 19 Aug 2013 14:52:29 +0000
+--1376924518.DB26f5174.27497
+Date: Mon, 19 Aug 2013 15:01:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,42 +48,20 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] DVI monitor connected via HDMI is blank / standby (NV96 / 9500GS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939">bug 43939</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>DVI monitor connected via HDMI is blank / standby (NV96 / 9500GS)
-           </td>
-           <td>[NV96] DVI monitor connected via HDMI is blank / standby (NV96 / 9500GS)
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] DVI monitor connected via HDMI is blank / standby (NV96 / 9500GS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939#c5">Comment # 5</a>
+          bz_status_ASSIGNED "
+   title="ASSIGNED --- - DVI monitor is blank - DVI detected as Display Port ?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27905#c22">Comment # 22</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] DVI monitor connected via HDMI is blank / standby (NV96 / 9500GS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939">bug 43939</a>
+          bz_status_ASSIGNED "
+   title="ASSIGNED --- - DVI monitor is blank - DVI detected as Display Port ?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27905">bug 27905</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Can you confirm whether this is still an issue with a more recent kernel (e.g.
-3.10)? All the output stuff has gotten quite a bit of rework in the past 2
-years.</pre>
+        <pre>Is this still an issue with the latest kernel?</pre>
         </div>
       </p>
       <hr>
@@ -105,9 +73,9 @@ years.</pre>
     </body>
 </html>
 
---1376923949.2c0c1D53.25861--
+--1376924518.DB26f5174.27497--
 
---===============0940888911==
+--===============0264014262==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -118,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0940888911==--
+--===============0264014262==--
