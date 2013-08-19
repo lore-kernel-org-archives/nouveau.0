@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 25802] nouveau driver crashes in exa
-Date: Mon, 19 Aug 2013 22:52:17 +0000
-Message-ID: <bug-25802-8800-pNQLLXb0u1@http.bugs.freedesktop.org/>
-References: <bug-25802-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 45112] [NV96] Kernel panic while using Firefox
+Date: Mon, 19 Aug 2013 23:14:52 +0000
+Message-ID: <bug-45112-8800-79KAd1fLfy@http.bugs.freedesktop.org/>
+References: <bug-45112-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1620244689=="
+Content-Type: multipart/mixed; boundary="===============1925000189=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-25802-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-45112-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1620244689==
-Content-Type: multipart/alternative; boundary="1376952737.fa7F1F3.31282"; charset="us-ascii"
+--===============1925000189==
+Content-Type: multipart/alternative; boundary="1376954092.F78AE52.3328"; charset="us-ascii"
 
 
---1376952737.fa7F1F3.31282
-Date: Mon, 19 Aug 2013 22:52:17 +0000
+--1376954092.F78AE52.3328
+Date: Mon, 19 Aug 2013 23:14:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=25802
+https://bugs.freedesktop.org/show_bug.cgi?id=45112
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
-
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The altlinux bug is completely unrelated. That one happens when the GPU has
-locked up, EXA doesn't handle that quite as gracefully as it might and so X
-crashes. This was a much more, uh, "legitimate" crash, and not provoked by a
-heavily-using GL app. As we haven't heard from the original reporter in almost
-4 years, closing this as invalid (since "fixed" is a bit too strong).
+            Summary|Kernel panic while using    |[NV96] Kernel panic while
+                   |Firefox                     |using Firefox
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376952737.fa7F1F3.31282
-Date: Mon, 19 Aug 2013 22:52:17 +0000
+--1376954092.F78AE52.3328
+Date: Mon, 19 Aug 2013 23:14:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,12 +51,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau driver crashes in exa"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=25802">bug 25802</a>
+          bz_status_NEW "
+   title="NEW --- - [NV96] Kernel panic while using Firefox"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=45112">bug 45112</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -73,38 +66,13 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">Summary</td>
+           <td>Kernel panic while using Firefox
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
+           <td>[NV96] Kernel panic while using Firefox
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau driver crashes in exa"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=25802#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau driver crashes in exa"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=25802">bug 25802</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>The altlinux bug is completely unrelated. That one happens when the GPU has
-locked up, EXA doesn't handle that quite as gracefully as it might and so X
-crashes. This was a much more, uh, &quot;legitimate&quot; crash, and not provoked by a
-heavily-using GL app. As we haven't heard from the original reporter in almost
-4 years, closing this as invalid (since &quot;fixed&quot; is a bit too strong).</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -115,9 +83,9 @@ heavily-using GL app. As we haven't heard from the original reporter in almost
     </body>
 </html>
 
---1376952737.fa7F1F3.31282--
+--1376954092.F78AE52.3328--
 
---===============1620244689==
+--===============1925000189==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1620244689==--
+--===============1925000189==--
