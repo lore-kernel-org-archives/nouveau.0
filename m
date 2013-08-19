@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 45517] [GTX 580] X seems to hang a login prompt --
- PFIFO errors in dmesg
+Subject: [Bug 54437] [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580
+ : Xorg freezes when using accel
 Date: Mon, 19 Aug 2013 23:55:41 +0000
-Message-ID: <bug-45517-8800-x3cJXdQyjK@http.bugs.freedesktop.org/>
-References: <bug-45517-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-54437-8800-GoL6c1PD3v@http.bugs.freedesktop.org/>
+References: <bug-54437-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1322150899=="
+Content-Type: multipart/mixed; boundary="===============1700513447=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-45517-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-54437-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1322150899==
-Content-Type: multipart/alternative; boundary="1376956541.E4eA5Dd3.12233"; charset="us-ascii"
+--===============1700513447==
+Content-Type: multipart/alternative; boundary="1376956542.8DD37.12233"; charset="us-ascii"
 
 
---1376956541.E4eA5Dd3.12233
-Date: Mon, 19 Aug 2013 23:55:41 +0000
+--1376956542.8DD37.12233
+Date: Mon, 19 Aug 2013 23:55:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=45517
+https://bugs.freedesktop.org/show_bug.cgi?id=54437
 
 Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
+                 CC|                            |b.harrington-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org
 
---- Comment #6 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-This look like an older version of bug 54437. Mark it as a duplicate.
-
-*** This bug has been marked as a duplicate of bug 54437 ***
+--- Comment #8 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+*** Bug 45517 has been marked as a duplicate of this bug. ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376956541.E4eA5Dd3.12233
-Date: Mon, 19 Aug 2013 23:55:41 +0000
+--1376956542.8DD37.12233
+Date: Mon, 19 Aug 2013 23:55:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,9 +57,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [GTX 580] X seems to hang a login prompt -- PFIFO errors in dmesg"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=45517">bug 45517</a>
+          bz_status_NEW "
+   title="NEW --- - [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54437">bug 54437</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -72,41 +69,29 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
+           <td>b.harrington&#64;samsung.com
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [GTX 580] X seems to hang a login prompt -- PFIFO errors in dmesg"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=45517#c6">Comment # 6</a>
+          bz_status_NEW "
+   title="NEW --- - [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54437#c8">Comment # 8</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [GTX 580] X seems to hang a login prompt -- PFIFO errors in dmesg"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=45517">bug 45517</a>
+          bz_status_NEW "
+   title="NEW --- - [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54437">bug 54437</a>
               from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>This look like an older version of <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
-   href="show_bug.cgi?id=54437">bug 54437</a>. Mark it as a duplicate.
-
-*** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
-   href="show_bug.cgi?id=54437">bug 54437</a> ***</pre>
+        <pre>*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [GTX 580] X seems to hang a login prompt -- PFIFO errors in dmesg"
+   href="show_bug.cgi?id=45517">Bug 45517</a> has been marked as a duplicate of this bug. ***</pre>
         </div>
       </p>
       <hr>
@@ -118,9 +103,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1376956541.E4eA5Dd3.12233--
+--1376956542.8DD37.12233--
 
---===============1322150899==
+--===============1700513447==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -131,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1322150899==--
+--===============1700513447==--
