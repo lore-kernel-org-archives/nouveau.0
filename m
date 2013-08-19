@@ -1,159 +1,44 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 42479] piglit/glean/readPixSanity fails - dmesg
- PGRAPH - TRAP_TPDMA - TP0: Unhandled ustatus 0x00020000
-Date: Mon, 19 Aug 2013 06:53:31 +0000
-Message-ID: <bug-42479-8800-0iN79tAznc@http.bugs.freedesktop.org/>
-References: <bug-42479-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nv30: add forgotten PIPE_CAP_CUBE_MAP_ARRAY cap
+	to list
+Date: Mon, 19 Aug 2013 07:16:25 -0400
+Message-ID: <1376910985-3675-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0890982219=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-42479-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: mesa-dev@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+---
 
---===============0890982219==
-Content-Type: multipart/alternative; boundary="1376895211.BEBB21.24101"; charset="us-ascii"
+Silences a warning about unrecognized param when in debug mode.
 
+ src/gallium/drivers/nv30/nv30_screen.c | 1 +
+ 1 file changed, 1 insertion(+)
 
---1376895211.BEBB21.24101
-Date: Mon, 19 Aug 2013 06:53:31 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=42479
-
-dirkneukirchen-S0/GAf8tV78@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|INVALID                     |FIXED
-
---- Comment #5 from dirkneukirchen-S0/GAf8tV78@public.gmane.org ---
-nouveau passes this test now
-
-Linux 3.11-rc5 and
-Linux 3.8.0-27-generic (Ubuntu kernel)
-with current xorg-edgers of 20130729 (mesa ...) 20130702 (libdrm-nouveau) etc.
-
-Hardware was:
-Chipset: MCP77/MCP78 (NVAA)
-Family : NV50
-
- piglit-run.py /usr/share/piglit/tests/sanity.tests results/sanity.results 
-[Mon Aug 19 06:52:29 2013] ::  running :: glean/readPixSanity
-[Mon Aug 19 06:56:10 2013] ::     pass :: glean/readPixSanity
-[Mon Aug 19 06:56:10 2013] ::  running :: glean/basic
-[Mon Aug 19 06:56:12 2013] ::     pass :: glean/basic
-
-nouveau.debug=debug and dmesg has entries:
-[342440.398336] nouveau D[  DEVICE][0000:02:00.0][0x80000080][f23fd840] illegal
-class 0xa06f
-[342440.398340] nouveau D[  DEVICE][0000:02:00.0][0x80000080][f23fd840] illegal
-class 0x906f
-
-I don't know if that is important.
-
+diff --git a/src/gallium/drivers/nv30/nv30_screen.c b/src/gallium/drivers/nv30/nv30_screen.c
+index 40e8b5f..39e64ce 100644
+--- a/src/gallium/drivers/nv30/nv30_screen.c
++++ b/src/gallium/drivers/nv30/nv30_screen.c
+@@ -113,6 +113,7 @@ nv30_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+    case PIPE_CAP_TEXTURE_BARRIER:
+    case PIPE_CAP_SEAMLESS_CUBE_MAP:
+    case PIPE_CAP_SEAMLESS_CUBE_MAP_PER_TEXTURE:
++   case PIPE_CAP_CUBE_MAP_ARRAY:
+    case PIPE_CAP_VERTEX_COLOR_UNCLAMPED:
+    case PIPE_CAP_QUADS_FOLLOW_PROVOKING_VERTEX_CONVENTION:
+    case PIPE_CAP_MIXED_COLORBUFFER_FORMATS:
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1376895211.BEBB21.24101
-Date: Mon, 19 Aug 2013 06:53:31 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:dirkneukirchen&#64;web.de" title="dirkneukirchen&#64;web.de">dirkneukirchen&#64;web.de</a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - piglit/glean/readPixSanity fails - dmesg PGRAPH - TRAP_TPDMA - TP0: Unhandled ustatus 0x00020000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=42479">bug 42479</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>INVALID
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - piglit/glean/readPixSanity fails - dmesg PGRAPH - TRAP_TPDMA - TP0: Unhandled ustatus 0x00020000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=42479#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - piglit/glean/readPixSanity fails - dmesg PGRAPH - TRAP_TPDMA - TP0: Unhandled ustatus 0x00020000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=42479">bug 42479</a>
-              from <span class="vcard"><a class="email" href="mailto:dirkneukirchen&#64;web.de" title="dirkneukirchen&#64;web.de">dirkneukirchen&#64;web.de</a>
-</span></b>
-        <pre>nouveau passes this test now
-
-Linux 3.11-rc5 and
-Linux 3.8.0-27-generic (Ubuntu kernel)
-with current xorg-edgers of 20130729 (mesa ...) 20130702 (libdrm-nouveau) etc.
-
-Hardware was:
-Chipset: MCP77/MCP78 (NVAA)
-Family : NV50
-
- piglit-run.py /usr/share/piglit/tests/sanity.tests results/sanity.results 
-[Mon Aug 19 06:52:29 2013] ::  running :: glean/readPixSanity
-[Mon Aug 19 06:56:10 2013] ::     pass :: glean/readPixSanity
-[Mon Aug 19 06:56:10 2013] ::  running :: glean/basic
-[Mon Aug 19 06:56:12 2013] ::     pass :: glean/basic
-
-nouveau.debug=debug and dmesg has entries:
-[342440.398336] nouveau D[  DEVICE][0000:02:00.0][0x80000080][f23fd840] illegal
-class 0xa06f
-[342440.398340] nouveau D[  DEVICE][0000:02:00.0][0x80000080][f23fd840] illegal
-class 0x906f
-
-I don't know if that is important.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1376895211.BEBB21.24101--
-
---===============0890982219==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0890982219==--
+1.8.1.5
