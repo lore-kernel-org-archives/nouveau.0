@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54437] [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580
- : Xorg freezes when using accel
-Date: Mon, 19 Aug 2013 18:29:32 +0000
-Message-ID: <bug-54437-8800-8EqKZLDZC7@http.bugs.freedesktop.org/>
-References: <bug-54437-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26534] nouveau does not fetch edid from connected
+ monitor on nforce1 (nv1a)
+Date: Mon, 19 Aug 2013 19:07:14 +0000
+Message-ID: <bug-26534-8800-HdV34Gfkah@http.bugs.freedesktop.org/>
+References: <bug-26534-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1729109220=="
+Content-Type: multipart/mixed; boundary="===============0977391869=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54437-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26534-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1729109220==
-Content-Type: multipart/alternative; boundary="1376936972.6fEaB2.25023"; charset="us-ascii"
+--===============0977391869==
+Content-Type: multipart/alternative; boundary="1376939234.288Be71.1869"; charset="us-ascii"
 
 
---1376936972.6fEaB2.25023
-Date: Mon, 19 Aug 2013 18:29:32 +0000
+--1376939234.288Be71.1869
+Date: Mon, 19 Aug 2013 19:07:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54437
+https://bugs.freedesktop.org/show_bug.cgi?id=26534
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #20 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org> ---
+Created attachment 84284
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84284&action=edit
+VBIOS, extracted with 3.11-rc6
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|linux-nouveau2.6            |[NVC8] linux-nouveau2.6
-                   |(3.6.0-rc4) : GTX580 : Xorg |(3.6.0-rc4) : GTX580 : Xorg
-                   |freezes when using accel    |freezes when using accel
-
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Worth trying 3.11-rc6. A bunch of changes went into 3.11-rc1 related to
-register setup on nvc0+ cards.
+Same behavior with 3.11-rc6 as with 3.10.7 (or even 3.8.2)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376936972.6fEaB2.25023
-Date: Mon, 19 Aug 2013 18:29:32 +0000
+--1376939234.288Be71.1869
+Date: Mon, 19 Aug 2013 19:07:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,41 +52,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54437">bug 54437</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel
-           </td>
-           <td>[NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54437#c6">Comment # 6</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - nouveau does not fetch edid from connected monitor on nforce1 (nv1a)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=26534#c20">Comment # 20</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54437">bug 54437</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_REOPENED "
+   title="REOPENED --- - nouveau does not fetch edid from connected monitor on nforce1 (nv1a)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=26534">bug 26534</a>
+              from <span class="vcard"><a class="email" href="mailto:bonbons67&#64;internet.lu" title="Bruno &lt;bonbons67&#64;internet.lu&gt;"> <span class="fn">Bruno</span></a>
 </span></b>
-        <pre>Worth trying 3.11-rc6. A bunch of changes went into 3.11-rc1 related to
-register setup on nvc0+ cards.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=84284" name="attach_84284" title="VBIOS, extracted with 3.11-rc6">attachment 84284</a> <a href="attachment.cgi?id=84284&amp;action=edit" title="VBIOS, extracted with 3.11-rc6">[details]</a></span>
+VBIOS, extracted with 3.11-rc6
+
+Same behavior with 3.11-rc6 as with 3.10.7 (or even 3.8.2)</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +80,9 @@ register setup on nvc0+ cards.</pre>
     </body>
 </html>
 
---1376936972.6fEaB2.25023--
+--1376939234.288Be71.1869--
 
---===============1729109220==
+--===============0977391869==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -116,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1729109220==--
+--===============0977391869==--
