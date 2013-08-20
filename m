@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47306] segfault in nouveau_fence_update
-Date: Tue, 20 Aug 2013 05:59:51 +0000
-Message-ID: <bug-47306-8800-2KALHGU2b4@http.bugs.freedesktop.org/>
-References: <bug-47306-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58776] [NV44] Some cards require NvPCIE=0
+Date: Tue, 20 Aug 2013 06:09:57 +0000
+Message-ID: <bug-58776-8800-1PEa0Kt8tB@http.bugs.freedesktop.org/>
+References: <bug-58776-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1489590809=="
+Content-Type: multipart/mixed; boundary="===============1902851268=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47306-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1489590809==
-Content-Type: multipart/alternative; boundary="1376978390.1af20.27776"; charset="us-ascii"
+--===============1902851268==
+Content-Type: multipart/alternative; boundary="1376978997.bE06F2.29390"; charset="us-ascii"
 
 
---1376978390.1af20.27776
-Date: Tue, 20 Aug 2013 05:59:50 +0000
+--1376978997.bE06F2.29390
+Date: Tue, 20 Aug 2013 06:09:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47306
+https://bugs.freedesktop.org/show_bug.cgi?id=58776
 
---- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Does this still occur with recent software versions? (Like Mesa 9.1.6 or Mesa
-9.2)
+--- Comment #19 from gabriele balducci <balducci-KqplAB4qOuE@public.gmane.org> ---
+Thanks for your interest
+
+Unfortunately, that machine is dead since my report and I am now using a
+different hardware...
+
+thanks again
+ciao
+gabriele
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376978390.1af20.27776
-Date: Tue, 20 Aug 2013 05:59:50 +0000
+--1376978997.bE06F2.29390
+Date: Tue, 20 Aug 2013 06:09:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,16 +59,22 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - segfault in nouveau_fence_update"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47306#c11">Comment # 11</a>
+   title="NEW --- - [NV44] Some cards require NvPCIE=0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58776#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - segfault in nouveau_fence_update"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47306">bug 47306</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NV44] Some cards require NvPCIE=0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58776">bug 58776</a>
+              from <span class="vcard"><a class="email" href="mailto:balducci&#64;units.it" title="gabriele balducci &lt;balducci&#64;units.it&gt;"> <span class="fn">gabriele balducci</span></a>
 </span></b>
-        <pre>Does this still occur with recent software versions? (Like Mesa 9.1.6 or Mesa
-9.2)</pre>
+        <pre>Thanks for your interest
+
+Unfortunately, that machine is dead since my report and I am now using a
+different hardware...
+
+thanks again
+ciao
+gabriele</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +86,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1376978390.1af20.27776--
+--1376978997.bE06F2.29390--
 
---===============1489590809==
+--===============1902851268==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1489590809==--
+--===============1902851268==--
