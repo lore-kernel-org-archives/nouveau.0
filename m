@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 44849] [NVAF] nouveau loads scrambled garbage
-Date: Tue, 20 Aug 2013 04:40:32 +0000
-Message-ID: <bug-44849-8800-PPVxl584Xr@http.bugs.freedesktop.org/>
-References: <bug-44849-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58984] [NV98] Probe error on SPARC with 8kb pages
+Date: Tue, 20 Aug 2013 04:58:43 +0000
+Message-ID: <bug-58984-8800-sUBDG0PlTs@http.bugs.freedesktop.org/>
+References: <bug-58984-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0539651848=="
+Content-Type: multipart/mixed; boundary="===============1555725887=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-44849-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58984-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0539651848==
-Content-Type: multipart/alternative; boundary="1376973632.7D7FC04F1.15718"; charset="us-ascii"
+--===============1555725887==
+Content-Type: multipart/alternative; boundary="1376974723.Ccea2.18122"; charset="us-ascii"
 
 
---1376973632.7D7FC04F1.15718
-Date: Tue, 20 Aug 2013 04:40:32 +0000
+--1376974723.Ccea2.18122
+Date: Tue, 20 Aug 2013 04:58:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=44849
+https://bugs.freedesktop.org/show_bug.cgi?id=58984
 
---- Comment #2 from garegin <garegin16-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #1)
-> Sorry for the late answer, could you please try again with a newer kerneland
-> send us the logs if it still doesn't work?
-> 
-> I also guess this is an Apple product because you said you are using EFI and
-> that the 320m could either be the NVS 320M (nv84) or the Geforce 320m (nvaf).
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-This but has been resolved already a long time ago. Please close it.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|DRM NOUVEAU: probe of       |[NV98] Probe error on SPARC
+                   |0001:01:00.0 failed with    |with 8kb pages
+                   |error -12                   |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376973632.7D7FC04F1.15718
-Date: Tue, 20 Aug 2013 04:40:32 +0000
+--1376974723.Ccea2.18122
+Date: Tue, 20 Aug 2013 04:58:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,28 +52,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [NVAF] nouveau loads scrambled garbage"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=44849#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [NVAF] nouveau loads scrambled garbage"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=44849">bug 44849</a>
-              from <span class="vcard"><a class="email" href="mailto:garegin16&#64;gmail.com" title="garegin &lt;garegin16&#64;gmail.com&gt;"> <span class="fn">garegin</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=44849#c1">comment #1</a>)
-<span class="quote">&gt; Sorry for the late answer, could you please try again with a newer kerneland
-&gt; send us the logs if it still doesn't work?
-&gt; 
-&gt; I also guess this is an Apple product because you said you are using EFI and
-&gt; that the 320m could either be the NVS 320M (nv84) or the Geforce 320m (nvaf).</span >
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV98] Probe error on SPARC with 8kb pages"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58984">bug 58984</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-This but has been resolved already a long time ago. Please close it.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>DRM NOUVEAU: probe of 0001:01:00.0 failed with error -12
+           </td>
+           <td>[NV98] Probe error on SPARC with 8kb pages
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -86,9 +84,9 @@ This but has been resolved already a long time ago. Please close it.</pre>
     </body>
 </html>
 
---1376973632.7D7FC04F1.15718--
+--1376974723.Ccea2.18122--
 
---===============0539651848==
+--===============1555725887==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0539651848==--
+--===============1555725887==--
