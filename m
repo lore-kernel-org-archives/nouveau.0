@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50836] [NVAC] [bisected] ION fails to probe
-Date: Tue, 20 Aug 2013 21:41:44 +0000
-Message-ID: <bug-50836-8800-ecszKMRQrs@http.bugs.freedesktop.org/>
-References: <bug-50836-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47790] [NV36 AGP] sys-kernel/gentoo-sources-3.3.0 -
+ black screen on second nouveau display
+Date: Tue, 20 Aug 2013 21:44:59 +0000
+Message-ID: <bug-47790-8800-ZtXsKM6MX3@http.bugs.freedesktop.org/>
+References: <bug-47790-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1253455822=="
+Content-Type: multipart/mixed; boundary="===============1669066808=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50836-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47790-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1253455822==
-Content-Type: multipart/alternative; boundary="1377034904.86ef6cFE2.31079"; charset="us-ascii"
+--===============1669066808==
+Content-Type: multipart/alternative; boundary="1377035099.cb28Fd42.31662"; charset="us-ascii"
 
 
---1377034904.86ef6cFE2.31079
-Date: Tue, 20 Aug 2013 21:41:44 +0000
+--1377035099.cb28Fd42.31662
+Date: Tue, 20 Aug 2013 21:44:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50836
+https://bugs.freedesktop.org/show_bug.cgi?id=47790
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|[bisected] ION fails to     |[NVAC] [bisected] ION fails
-                   |probe                       |to probe
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please retest on the latest kernel. I know lots of people use NVAC just fine.
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+And the user who did the bisect didn't add himself to the CC list. Oh well.
+I'll mark it invalid then, as no one is availabe to test. It can be reopened
+should there be renewed interest.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377034904.86ef6cFE2.31079
-Date: Tue, 20 Aug 2013 21:41:44 +0000
+--1377035099.cb28Fd42.31662
+Date: Tue, 20 Aug 2013 21:44:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,9 +60,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAC] [bisected] ION fails to probe"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50836">bug 50836</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - [NV36 AGP] sys-kernel/gentoo-sources-3.3.0 - black screen on second nouveau display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47790">bug 47790</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -69,25 +72,35 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[bisected] ION fails to probe
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>[NVAC] [bisected] ION fails to probe
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAC] [bisected] ION fails to probe"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50836#c1">Comment # 1</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - [NV36 AGP] sys-kernel/gentoo-sources-3.3.0 - black screen on second nouveau display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47790#c12">Comment # 12</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAC] [bisected] ION fails to probe"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50836">bug 50836</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - [NV36 AGP] sys-kernel/gentoo-sources-3.3.0 - black screen on second nouveau display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47790">bug 47790</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Please retest on the latest kernel. I know lots of people use NVAC just fine.</pre>
+        <pre>And the user who did the bisect didn't add himself to the CC list. Oh well.
+I'll mark it invalid then, as no one is availabe to test. It can be reopened
+should there be renewed interest.</pre>
         </div>
       </p>
       <hr>
@@ -99,9 +112,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377034904.86ef6cFE2.31079--
+--1377035099.cb28Fd42.31662--
 
---===============1253455822==
+--===============1669066808==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -112,4 +125,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1253455822==--
+--===============1669066808==--
