@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57660] [NVA3:NVC0] Turn on support for
-	PIPE_CAP_CUBE_MAP_ARRAY
-Date: Tue, 20 Aug 2013 15:00:56 +0000
-Message-ID: <bug-57660-8800-E6riZUqzC0@http.bugs.freedesktop.org/>
-References: <bug-57660-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68075] nouveau inconsistent changing output
+ connector names in xrandr
+Date: Tue, 20 Aug 2013 16:13:38 +0000
+Message-ID: <bug-68075-8800-MMV4JyDn1H@http.bugs.freedesktop.org/>
+References: <bug-68075-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0244650930=="
+Content-Type: multipart/mixed; boundary="===============0344374543=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68075-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0244650930==
-Content-Type: multipart/alternative; boundary="1377010856.bA2ca1f3.6392"; charset="us-ascii"
+--===============0344374543==
+Content-Type: multipart/alternative; boundary="1377015218.7A0CF1.23828"; charset="us-ascii"
 
 
---1377010856.bA2ca1f3.6392
-Date: Tue, 20 Aug 2013 15:00:56 +0000
+--1377015218.7A0CF1.23828
+Date: Tue, 20 Aug 2013 16:13:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57660
+https://bugs.freedesktop.org/show_bug.cgi?id=68075
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+As far as I can see, everything's working totally fine from the kernel end.
+There is one difference between the two "dvi plugged in at boot" cases, in that
+in one, nouveau ends up as card0, in the other i915 does.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #70799|0                           |1
-        is obsolete|                            |
+All the connectors seem fine, and are properly reporting status. There's
+nothing funny in dmesg.
+
+So... I think we should shift our attention to X. Can you attach your
+Xorg.0.log for the same three cases? Although let's amend the first case ("no
+dvi plugged in") to "no dvi plugged in at boot, then plugged in later" (since
+that still functions, right).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377010856.bA2ca1f3.6392
-Date: Tue, 20 Aug 2013 15:00:56 +0000
+--1377015218.7A0CF1.23828
+Date: Tue, 20 Aug 2013 16:13:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,29 +58,31 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA3:NVC0] Turn on support for PIPE_CAP_CUBE_MAP_ARRAY"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57660">bug 57660</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #70799 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nouveau inconsistent changing output connector names in xrandr"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68075#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nouveau inconsistent changing output connector names in xrandr"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68075">bug 68075</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>As far as I can see, everything's working totally fine from the kernel end.
+There is one difference between the two &quot;dvi plugged in at boot&quot; cases, in that
+in one, nouveau ends up as card0, in the other i915 does.
+
+All the connectors seem fine, and are properly reporting status. There's
+nothing funny in dmesg.
+
+So... I think we should shift our attention to X. Can you attach your
+Xorg.0.log for the same three cases? Although let's amend the first case (&quot;no
+dvi plugged in&quot;) to &quot;no dvi plugged in at boot, then plugged in later&quot; (since
+that still functions, right).</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +93,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377010856.bA2ca1f3.6392--
+--1377015218.7A0CF1.23828--
 
---===============0244650930==
+--===============0344374543==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +106,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0244650930==--
+--===============0344374543==--
