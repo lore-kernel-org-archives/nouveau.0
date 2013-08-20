@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34220] Detects Load on output and blinks screen
-	every ~30secs
-Date: Tue, 20 Aug 2013 01:56:18 +0000
-Message-ID: <bug-34220-8800-tJr4zjw4gV@http.bugs.freedesktop.org/>
-References: <bug-34220-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39010] better handling of large pixmaps
+Date: Tue, 20 Aug 2013 02:04:52 +0000
+Message-ID: <bug-39010-8800-zMhps5lvY0@http.bugs.freedesktop.org/>
+References: <bug-39010-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1420028950=="
+Content-Type: multipart/mixed; boundary="===============1719046035=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-34220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39010-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,111 +20,109 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1420028950==
-Content-Type: multipart/alternative; boundary="1376963778.f8Deba5.31588"; charset="us-ascii"
+--===============1719046035==
+Content-Type: multipart/alternative; boundary="1376964291.3E2b4211.32457"; charset="us-ascii"
 
 
---1376963778.f8Deba5.31588
-Date: Tue, 20 Aug 2013 01:56:18 +0000
+--1376964291.3E2b4211.32457
+Date: Tue, 20 Aug 2013 02:04:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D34220
+https://bugs.freedesktop.org/show_bug.cgi?id=39010
 
-Gy=C3=B6rgy Ball=C3=B3 <ballogy-HLx8PRj2pn30Br+ELjv3iA@public.gmane.org> changed:
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+What's with the weird non-power-of-2 sizes?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|ballogy-HLx8PRj2pn30Br+ELjv3iA@public.gmane.org        |
+Wouldn't it be better to have a target number of pixmaps to fit in vram, or
+perhaps a percentage of vram that you're willing to take up with a single
+pixmap? There are lots of cards with all sorts of quantities of memory (e.g.
+there are 8800's with 320MB of RAM).
 
---- Comment #10 from Gy=C3=B6rgy Ball=C3=B3 <ballogy-HLx8PRj2pn30Br+ELjv3iA@public.gmane.org> ---
-I think it has been fixed in upower with this commit:
+So once you determine a percentage, just have a list of sizes like
 
- Add an option for polling dock devices in UPower.conf, defaulting to false
+sizes = [8192, 4096, 2048]
+for size in sizes:
+  if size * size * 4 < memory * 0.1:
+    return size
+return 1024
 
-http://cgit.freedesktop.org/upower/commit/?id=3D38199e44ff1e87b586d51d30b69=
-d1f70e40d27f1
+(This is an example where I assume RGBA pixmaps, up to 10% of vram, but I
+picked that at random... maybe other percentages would be more reasonable...
+play around with the numbers. It certainly seems that we'd never want to allow
+a pixmap that's bigger than VRAM, at the very least, which with current code,
+there could be, if there were nv10+ with < 64MB of vram, which I'm pretty sure
+I've seen with at least NV1A with 32M of stolen ram.)
 
---=20
+[Note: please don't take this as an endorsement of the approach. In fact, I
+thought TTM should be able to handle all that, but apparently not. This is just
+a comment on improving your patch, irrespective of the overall approach.]
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376963778.f8Deba5.31588
-Date: Tue, 20 Aug 2013 01:56:18 +0000
+--1376964291.3E2b4211.32457
+Date: Tue, 20 Aug 2013 02:04:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ballogy&#=
-64;freestart.hu" title=3D"Gy=C3=B6rgy Ball=C3=B3 &lt;ballogy&#64;freestart.=
-hu&gt;"> <span class=3D"fn">Gy=C3=B6rgy Ball=C3=B3</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - Detects Load on output and blinks screen every ~30sec=
-s"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D34220">bug 34220<=
-/a>
-        <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>ballogy&#64;freestart.hu
-           </td>
-           <td>
-               &nbsp;
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - Detects Load on output and blinks screen every ~30sec=
-s"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D34220#c10">Commen=
-t # 10</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - better handling of large pixmaps"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=39010#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - Detects Load on output and blinks screen every ~30sec=
-s"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D34220">bug 34220<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ballogy&#64;freestart.hu" title=3D"Gy=C3=B6rgy Ball=C3=B3 &lt;ballogy&#64;f=
-reestart.hu&gt;"> <span class=3D"fn">Gy=C3=B6rgy Ball=C3=B3</span></a>
+   title="NEW --- - better handling of large pixmaps"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=39010">bug 39010</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I think it has been fixed in upower with this commit:
+        <pre>What's with the weird non-power-of-2 sizes?
 
- Add an option for polling dock devices in UPower.conf, defaulting to false
+Wouldn't it be better to have a target number of pixmaps to fit in vram, or
+perhaps a percentage of vram that you're willing to take up with a single
+pixmap? There are lots of cards with all sorts of quantities of memory (e.g.
+there are 8800's with 320MB of RAM).
 
-<a href=3D"http://cgit.freedesktop.org/upower/commit/?id=3D38199e44ff1e87b5=
-86d51d30b69d1f70e40d27f1">http://cgit.freedesktop.org/upower/commit/?id=3D3=
-8199e44ff1e87b586d51d30b69d1f70e40d27f1</a></pre>
+So once you determine a percentage, just have a list of sizes like
+
+sizes = [8192, 4096, 2048]
+for size in sizes:
+  if size * size * 4 &lt; memory * 0.1:
+    return size
+return 1024
+
+(This is an example where I assume RGBA pixmaps, up to 10% of vram, but I
+picked that at random... maybe other percentages would be more reasonable...
+play around with the numbers. It certainly seems that we'd never want to allow
+a pixmap that's bigger than VRAM, at the very least, which with current code,
+there could be, if there were nv10+ with &lt; 64MB of vram, which I'm pretty sure
+I've seen with at least NV1A with 32M of stolen ram.)
+
+[Note: please don't take this as an endorsement of the approach. In fact, I
+thought TTM should be able to handle all that, but apparently not. This is just
+a comment on improving your patch, irrespective of the overall approach.]</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1376963778.f8Deba5.31588--
+--1376964291.3E2b4211.32457--
 
---===============1420028950==
+--===============1719046035==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -136,4 +133,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1420028950==--
+--===============1719046035==--
