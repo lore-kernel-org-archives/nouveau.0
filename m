@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 66255] Xinerama 2x2 monitor configuration display
-	issues
-Date: Tue, 20 Aug 2013 01:42:19 +0000
-Message-ID: <bug-66255-8800-LJGWK8eIBM@http.bugs.freedesktop.org/>
-References: <bug-66255-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39010] better handling of large pixmaps
+Date: Tue, 20 Aug 2013 01:43:50 +0000
+Message-ID: <bug-39010-8800-xr3Z7SibgY@http.bugs.freedesktop.org/>
+References: <bug-39010-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1531707997=="
+Content-Type: multipart/mixed; boundary="===============0052114426=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-66255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39010-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,129 +20,77 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1531707997==
-Content-Type: multipart/alternative; boundary="1376962939.6ECeA2.29914"; charset="us-ascii"
+--===============0052114426==
+Content-Type: multipart/alternative; boundary="1376963030.2fC5FB1.30083"; charset="us-ascii"
 
 
---1376962939.6ECeA2.29914
-Date: Tue, 20 Aug 2013 01:42:19 +0000
+--1376963030.2fC5FB1.30083
+Date: Tue, 20 Aug 2013 01:43:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=66255
+https://bugs.freedesktop.org/show_bug.cgi?id=3D39010
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #7 from Gy=C3=B6rgy Ball=C3=B3 <ballogy-HLx8PRj2pn30Br+ELjv3iA@public.gmane.org> ---
+It is still a problem with the following components:
+- linux 3.10.7
+- libdrm 2.4.46
+- xf86-video-nouveau 1.0.9
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Enabling Xinerama with      |Xinerama 2x2 monitor
-                   |nouveau driver causes       |configuration display
-                   |Segmentation fault          |issues
+Could someone review the patch from the nouveau team?
 
---- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Spaces around operators don't matter in C. You can even do one of my
-favourites:
-
-while (x --> 0) { // as x goes to 0
-  ...
-}
-
-:)
-
-The commit roughly implementing what I was suggesting has been pushed out into
-xf86-video-nouveau 1.0.9. But we can repurpose this bug to be about
-xinerama-fail. I unfortunately can't really help with that though. I'm also
-having a bit of a hard time understanding what you mean when you're describing
-those problems, perhaps taking a photo would help. Do note that Xinerama is
-considered to be the devil's spawn nowadays, so getting a card with 4 outputs
-could be the way to go -- NVE0+ cards can have support for that. If, OTOH,
-you're satisified with having 2 separate screens of 2 monitors each (which I
-guess is what you were doing at first) and not being able to drag windows
-across them, then the multi-screen solution should work too... (just get rid of
-zaphod heads/xinerama, but keep the separate device/screen sections pointing at
-the right things)
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376962939.6ECeA2.29914
-Date: Tue, 20 Aug 2013 01:42:19 +0000
+--1376963030.2fC5FB1.30083
+Date: Tue, 20 Aug 2013 01:43:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Xinerama 2x2 monitor configuration display issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255">bug 66255</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Enabling Xinerama with nouveau driver causes Segmentation fault
-           </td>
-           <td>Xinerama 2x2 monitor configuration display issues
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - Xinerama 2x2 monitor configuration display issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255#c15">Comment # 15</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - better handling of large pixmaps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D39010#c7">Comment=
+ # 7</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - Xinerama 2x2 monitor configuration display issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255">bug 66255</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW --- - better handling of large pixmaps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D39010">bug 39010<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ballogy&#64;freestart.hu" title=3D"Gy=C3=B6rgy Ball=C3=B3 &lt;ballogy&#64;f=
+reestart.hu&gt;"> <span class=3D"fn">Gy=C3=B6rgy Ball=C3=B3</span></a>
 </span></b>
-        <pre>Spaces around operators don't matter in C. You can even do one of my
-favourites:
+        <pre>It is still a problem with the following components:
+- linux 3.10.7
+- libdrm 2.4.46
+- xf86-video-nouveau 1.0.9
 
-while (x --&gt; 0) { // as x goes to 0
-  ...
-}
-
-:)
-
-The commit roughly implementing what I was suggesting has been pushed out into
-xf86-video-nouveau 1.0.9. But we can repurpose this bug to be about
-xinerama-fail. I unfortunately can't really help with that though. I'm also
-having a bit of a hard time understanding what you mean when you're describing
-those problems, perhaps taking a photo would help. Do note that Xinerama is
-considered to be the devil's spawn nowadays, so getting a card with 4 outputs
-could be the way to go -- NVE0+ cards can have support for that. If, OTOH,
-you're satisified with having 2 separate screens of 2 monitors each (which I
-guess is what you were doing at first) and not being able to drag windows
-across them, then the multi-screen solution should work too... (just get rid of
-zaphod heads/xinerama, but keep the separate device/screen sections pointing at
-the right things)</pre>
+Could someone review the patch from the nouveau team?</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1376962939.6ECeA2.29914--
+--1376963030.2fC5FB1.30083--
 
---===============1531707997==
+--===============0052114426==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -154,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1531707997==--
+--===============0052114426==--
