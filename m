@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58784] Nouveau on NVCE,
-	reclocking: memory type not supported?
-Date: Tue, 20 Aug 2013 06:54:36 +0000
-Message-ID: <bug-58784-8800-BW7TxpxyeI@http.bugs.freedesktop.org/>
-References: <bug-58784-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 36090] [NV34] [NV49] terminal's visual bell is very
+ slow with nouveau
+Date: Tue, 20 Aug 2013 08:33:37 +0000
+Message-ID: <bug-36090-8800-ouDy9UeeMH@http.bugs.freedesktop.org/>
+References: <bug-36090-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1673756012=="
+Content-Type: multipart/mixed; boundary="===============0165127040=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58784-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-36090-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1673756012==
-Content-Type: multipart/alternative; boundary="1376981676.b24Bcc33.4575"; charset="us-ascii"
+--===============0165127040==
+Content-Type: multipart/alternative; boundary="1376987617.674ED3.18814"; charset="us-ascii"
 
 
---1376981676.b24Bcc33.4575
-Date: Tue, 20 Aug 2013 06:54:36 +0000
+--1376987617.674ED3.18814
+Date: Tue, 20 Aug 2013 08:33:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58784
+https://bugs.freedesktop.org/show_bug.cgi?id=36090
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #72144|text/plain                  |application/octet-stream
-          mime type|                            |
+--- Comment #3 from Harald Judt <h.judt-RbZlAiThDcE@public.gmane.org> ---
+Thanks for your suggestion, but I can no longer call me owner of such a card
+and therefore am unable to test this.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376981676.b24Bcc33.4575
-Date: Tue, 20 Aug 2013 06:54:36 +0000
+--1376987617.674ED3.18814
+Date: Tue, 20 Aug 2013 08:33:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,28 +49,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau on NVCE, reclocking: memory type not supported?"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58784">bug 58784</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #72144 mime type</td>
-           <td>text/plain
-           </td>
-           <td>application/octet-stream
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV34] [NV49] terminal's visual bell is very slow with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=36090#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV34] [NV49] terminal's visual bell is very slow with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=36090">bug 36090</a>
+              from <span class="vcard"><a class="email" href="mailto:h.judt&#64;gmx.at" title="Harald Judt &lt;h.judt&#64;gmx.at&gt;"> <span class="fn">Harald Judt</span></a>
+</span></b>
+        <pre>Thanks for your suggestion, but I can no longer call me owner of such a card
+and therefore am unable to test this.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +75,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1376981676.b24Bcc33.4575--
+--1376987617.674ED3.18814--
 
---===============1673756012==
+--===============0165127040==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1673756012==--
+--===============0165127040==--
