@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68344] New: [piglit]
- shaders/glsl-fs-texture2d-dependent-4 randomly passes or fails on NVAA/NV50
-Date: Tue, 20 Aug 2013 16:38:58 +0000
-Message-ID: <bug-68344-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 66255] Xinerama 2x2 monitor configuration display
+	issues
+Date: Tue, 20 Aug 2013 17:04:51 +0000
+Message-ID: <bug-66255-8800-4PFRoDmxdC@http.bugs.freedesktop.org/>
+References: <bug-66255-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0789329176=="
+Content-Type: multipart/mixed; boundary="===============1089721611=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-66255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,70 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0789329176==
-Content-Type: multipart/alternative; boundary="1377016739.7fB751.30378"; charset="us-ascii"
+--===============1089721611==
+Content-Type: multipart/alternative; boundary="1377018292.AEBB1.4842"; charset="us-ascii"
 
 
---1377016739.7fB751.30378
-Date: Tue, 20 Aug 2013 16:38:59 +0000
+--1377018292.AEBB1.4842
+Date: Tue, 20 Aug 2013 17:04:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68344
+https://bugs.freedesktop.org/show_bug.cgi?id=66255
 
-          Priority: medium
-            Bug ID: 68344
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [piglit] shaders/glsl-fs-texture2d-dependent-4
-                    randomly passes or fails on NVAA/NV50
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: dirkneukirchen-S0/GAf8tV78@public.gmane.org
-          Hardware: x86 (IA32)
-            Status: NEW
-           Version: git
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #18 from Trev Jackson <trev.g7pvs-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
+Created attachment 84350
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84350&action=edit
+1.0.9 sliding and seperate top and bottom displays
 
-Created attachment 84349
-  --> https://bugs.freedesktop.org/attachment.cgi?id=84349&action=edit
-normal bootlog
-
-./piglit-run.py -t '/shaders/glsl-fs-texture2d-dependent-4' tests/quick.tests
-results/quick-shaders-single-test.tests 
-
-passes or fails seemingly random
-20 passes - 9 fails
-
-Result of fail:
-Probe color at (25,224)
-  Expected: 0.000000 0.000000 1.000000
-  Observed: 1.000000 0.000000 0.000000
-Probe color at (224,224)
-  Expected: 1.000000 1.000000 1.000000
-  Observed: 0.000000 1.000000 0.000000
-
-Hardware:
-Nvidia 8200 Onboard NVAA/NV50
-nouveau  [  DEVICE][0000:02:00.0] Chipset: MCP77/MCP78 (NVAA)
-nouveau  [  DEVICE][0000:02:00.0] Family : NV50
-
-Software:
-Linux Mint 15 + xorg-edgers + 3.11-rc5
-Kernel: 3.11.0-rc5-vanillaice (compiled)
-libdrm-nouveau: 2.4.46+git20130702.c6d73cfe-0ubuntu0sarvatt~raring
-xserver-xorg-video-nouveau :
-1:1.0.9+git20130730.300c5a32-0ubuntu0sarvatt~raring
-mesa: 9.2.0~git20130729+9.2.9b8ad643-0ubuntu0sarvatt~raring
+Using 1.0.9 a segmentation fault no longer occurs, however the driver isn't
+performing as expected.
+The attached file causes the display on the individual monitors to move
+sideways as you move the mouse from one monitor to the next.  In addition the
+top two monitors act as one screen and the bottom two as a different screen and
+you cannot bridge across them with a program window(e.g a browser).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377016739.7fB751.30378
-Date: Tue, 20 Aug 2013 16:38:59 +0000
+--1377018292.AEBB1.4842
+Date: Tue, 20 Aug 2013 17:04:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -90,124 +57,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [piglit] shaders/glsl-fs-texture2d-dependent-4 randomly passes or fails on NVAA/NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68344">68344</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[piglit] shaders/glsl-fs-texture2d-dependent-4 randomly passes or fails on NVAA/NV50
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>dirkneukirchen&#64;web.de
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86 (IA32)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=84349" name="attach_84349" title="normal bootlog">attachment 84349</a> <a href="attachment.cgi?id=84349&amp;action=edit" title="normal bootlog">[details]</a></span>
-normal bootlog
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Xinerama 2x2 monitor configuration display issues"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255#c18">Comment # 18</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Xinerama 2x2 monitor configuration display issues"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255">bug 66255</a>
+              from <span class="vcard"><a class="email" href="mailto:trev.g7pvs&#64;ntlworld.com" title="Trev Jackson &lt;trev.g7pvs&#64;ntlworld.com&gt;"> <span class="fn">Trev Jackson</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=84350" name="attach_84350" title="1.0.9 sliding and seperate top and bottom displays">attachment 84350</a> <a href="attachment.cgi?id=84350&amp;action=edit" title="1.0.9 sliding and seperate top and bottom displays">[details]</a></span>
+1.0.9 sliding and seperate top and bottom displays
 
-./piglit-run.py -t '/shaders/glsl-fs-texture2d-dependent-4' tests/quick.tests
-results/quick-shaders-single-test.tests 
-
-passes or fails seemingly random
-20 passes - 9 fails
-
-Result of fail:
-Probe color at (25,224)
-  Expected: 0.000000 0.000000 1.000000
-  Observed: 1.000000 0.000000 0.000000
-Probe color at (224,224)
-  Expected: 1.000000 1.000000 1.000000
-  Observed: 0.000000 1.000000 0.000000
-
-Hardware:
-Nvidia 8200 Onboard NVAA/NV50
-nouveau  [  DEVICE][0000:02:00.0] Chipset: MCP77/MCP78 (NVAA)
-nouveau  [  DEVICE][0000:02:00.0] Family : NV50
-
-Software:
-Linux Mint 15 + xorg-edgers + 3.11-rc5
-Kernel: 3.11.0-rc5-vanillaice (compiled)
-libdrm-nouveau: 2.4.46+git20130702.c6d73cfe-0ubuntu0sarvatt~raring
-xserver-xorg-video-nouveau :
-1:1.0.9+git20130730.300c5a32-0ubuntu0sarvatt~raring
-mesa: 9.2.0~git20130729+9.2.9b8ad643-0ubuntu0sarvatt~raring</pre>
+Using 1.0.9 a segmentation fault no longer occurs, however the driver isn't
+performing as expected.
+The attached file causes the display on the individual monitors to move
+sideways as you move the mouse from one monitor to the next.  In addition the
+top two monitors act as one screen and the bottom two as a different screen and
+you cannot bridge across them with a program window(e.g a browser).</pre>
         </div>
       </p>
       <hr>
@@ -219,9 +90,9 @@ mesa: 9.2.0~git20130729+9.2.9b8ad643-0ubuntu0sarvatt~raring</pre>
     </body>
 </html>
 
---1377016739.7fB751.30378--
+--1377018292.AEBB1.4842--
 
---===============0789329176==
+--===============1089721611==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -232,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0789329176==--
+--===============1089721611==--
