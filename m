@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 48742] [NV30 gallium] fbotexture -arb misrenders on
-	nv43
-Date: Tue, 20 Aug 2013 06:10:37 +0000
-Message-ID: <bug-48742-8800-aCVEsoXX68@http.bugs.freedesktop.org/>
-References: <bug-48742-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57660] [NVA3:NVC0] Turn on support for
+	PIPE_CAP_CUBE_MAP_ARRAY
+Date: Tue, 20 Aug 2013 06:39:36 +0000
+Message-ID: <bug-57660-8800-wPzxverL45@http.bugs.freedesktop.org/>
+References: <bug-57660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2087464186=="
+Content-Type: multipart/mixed; boundary="===============0401829982=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-48742-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2087464186==
-Content-Type: multipart/alternative; boundary="1376979037.07F3FD1.29514"; charset="us-ascii"
+--===============0401829982==
+Content-Type: multipart/alternative; boundary="1376980776.B81c81.2840"; charset="us-ascii"
 
 
---1376979037.07F3FD1.29514
-Date: Tue, 20 Aug 2013 06:10:37 +0000
+--1376980776.B81c81.2840
+Date: Tue, 20 Aug 2013 06:39:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=48742
+https://bugs.freedesktop.org/show_bug.cgi?id=57660
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|fbotexture -arb misrenders  |[NV30 gallium] fbotexture
-                   |on nv43                     |-arb misrenders on nv43
-
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Reproduced on a NV34 with both Mesa 9.1.6 and the semi-latest 9.3-git checkout
-(probably as of a few days ago, definitely no nv30 changes in there). The bad
-rendering is identical in all 3 of the fbotexture modes. (BTW, this took me a
-sec to figure out -- fbotexture is in the mesa/demos repo.)
+           Assignee|mustrumr97-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org        |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
+                 CC|                            |mustrumr97-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376979037.07F3FD1.29514
-Date: Tue, 20 Aug 2013 06:10:37 +0000
+--1376980776.B81c81.2840
+Date: Tue, 20 Aug 2013 06:39:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,8 +57,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV30 gallium] fbotexture -arb misrenders on nv43"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48742">bug 48742</a>
+   title="NEW --- - [NVA3:NVC0] Turn on support for PIPE_CAP_CUBE_MAP_ARRAY"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57660">bug 57660</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -73,29 +68,22 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>fbotexture -arb misrenders on nv43
+           <td style="text-align:right;">Assignee</td>
+           <td>mustrumr97&#64;gmail.com
            </td>
-           <td>[NV30 gallium] fbotexture -arb misrenders on nv43
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>mustrumr97&#64;gmail.com
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV30 gallium] fbotexture -arb misrenders on nv43"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48742#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV30 gallium] fbotexture -arb misrenders on nv43"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48742">bug 48742</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Reproduced on a NV34 with both Mesa 9.1.6 and the semi-latest 9.3-git checkout
-(probably as of a few days ago, definitely no nv30 changes in there). The bad
-rendering is identical in all 3 of the fbotexture modes. (BTW, this took me a
-sec to figure out -- fbotexture is in the mesa/demos repo.)</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -106,9 +94,9 @@ sec to figure out -- fbotexture is in the mesa/demos repo.)</pre>
     </body>
 </html>
 
---1376979037.07F3FD1.29514--
+--1376980776.B81c81.2840--
 
---===============2087464186==
+--===============0401829982==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -119,4 +107,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2087464186==--
+--===============0401829982==--
