@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59565] [NVA8] HDMI does not produce correct
- resolution on Vizio screen
-Date: Tue, 20 Aug 2013 06:50:18 +0000
-Message-ID: <bug-59565-8800-H9xvs67Nf5@http.bugs.freedesktop.org/>
-References: <bug-59565-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58784] Nouveau on NVCE,
+	reclocking: memory type not supported?
+Date: Tue, 20 Aug 2013 06:54:36 +0000
+Message-ID: <bug-58784-8800-BW7TxpxyeI@http.bugs.freedesktop.org/>
+References: <bug-58784-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1515891838=="
+Content-Type: multipart/mixed; boundary="===============1673756012=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59565-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58784-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1515891838==
-Content-Type: multipart/alternative; boundary="1376981417.680a1d1.4038"; charset="us-ascii"
+--===============1673756012==
+Content-Type: multipart/alternative; boundary="1376981676.b24Bcc33.4575"; charset="us-ascii"
 
 
---1376981417.680a1d1.4038
-Date: Tue, 20 Aug 2013 06:50:17 +0000
+--1376981676.b24Bcc33.4575
+Date: Tue, 20 Aug 2013 06:54:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59565
+https://bugs.freedesktop.org/show_bug.cgi?id=58784
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|NVIDIA Geforce 8400GS HDMI  |[NVA8] HDMI does not
-                   |with Vizio screen does not  |produce correct resolution
-                   |have the correct resolution |on Vizio screen
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Does this still happen with the latest kernel? Are you sure that the TV isn't
-just overscanning? There's often an option in the TV settings to disable this.
-What exactly do you mean by "wrong resolution"?
-
-Please supply the output of:
-
-xrandr -q --verbose
+  Attachment #72144|text/plain                  |application/octet-stream
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376981417.680a1d1.4038
-Date: Tue, 20 Aug 2013 06:50:17 +0000
+--1376981676.b24Bcc33.4575
+Date: Tue, 20 Aug 2013 06:54:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,8 +56,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA8] HDMI does not produce correct resolution on Vizio screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59565">bug 59565</a>
+   title="NEW --- - Nouveau on NVCE, reclocking: memory type not supported?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58784">bug 58784</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -77,32 +67,13 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>NVIDIA Geforce 8400GS HDMI with Vizio screen does not have the correct resolution
+           <td style="text-align:right;">Attachment #72144 mime type</td>
+           <td>text/plain
            </td>
-           <td>[NVA8] HDMI does not produce correct resolution on Vizio screen
+           <td>application/octet-stream
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA8] HDMI does not produce correct resolution on Vizio screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59565#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA8] HDMI does not produce correct resolution on Vizio screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59565">bug 59565</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Does this still happen with the latest kernel? Are you sure that the TV isn't
-just overscanning? There's often an option in the TV settings to disable this.
-What exactly do you mean by &quot;wrong resolution&quot;?
-
-Please supply the output of:
-
-xrandr -q --verbose</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -113,9 +84,9 @@ xrandr -q --verbose</pre>
     </body>
 </html>
 
---1376981417.680a1d1.4038--
+--1376981676.b24Bcc33.4575--
 
---===============1515891838==
+--===============1673756012==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -126,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1515891838==--
+--===============1673756012==--
