@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 36090] [NV34] [NV49] terminal's visual bell is very
- slow with nouveau
-Date: Tue, 20 Aug 2013 02:14:00 +0000
-Message-ID: <bug-36090-8800-qoeDix5LHm@http.bugs.freedesktop.org/>
-References: <bug-36090-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39010] better handling of large pixmaps
+Date: Tue, 20 Aug 2013 02:45:59 +0000
+Message-ID: <bug-39010-8800-Im2HByvBpo@http.bugs.freedesktop.org/>
+References: <bug-39010-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0521985307=="
+Content-Type: multipart/mixed; boundary="===============0803889195=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-36090-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39010-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,103 +20,83 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0521985307==
-Content-Type: multipart/alternative; boundary="1376964840.7dF25104.988"; charset="us-ascii"
+--===============0803889195==
+Content-Type: multipart/alternative; boundary="1376966759.D8FeaE1.4027"; charset="us-ascii"
 
 
---1376964840.7dF25104.988
-Date: Tue, 20 Aug 2013 02:14:00 +0000
+--1376966759.D8FeaE1.4027
+Date: Tue, 20 Aug 2013 02:45:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=36090
+https://bugs.freedesktop.org/show_bug.cgi?id=3D39010
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #9 from Gy=C3=B6rgy Ball=C3=B3 <ballogy-HLx8PRj2pn30Br+ELjv3iA@public.gmane.org> ---
+I'm not a developer, so I don't know what would be the best solution. With =
+the
+current driver on NV17 with 64 MB VRAM, if I open a picture in Firefox that
+larger than 2047px=C3=972047px, it causes 'fail ttm_validate' errors. If I =
+reduce
+the max. pixmap size from 4096=C3=974096 to 2046=C3=972046, it solves the p=
+roblem.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|terminal's visual bell is   |[NV34] [NV49] terminal's
-                   |very slow with nouveau      |visual bell is very slow
-                   |                            |with nouveau
+I don't have any other NVIDIA hardware to test my patch.
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could you retest with a newer kernel/DDX? This feels like the sort of thing
-that probably got fixed over the past couple of years.
-
-Note to the NV49 user, there's currently a bug in 3.11-rcX that will cause
-nouveau to crash on start (for nv49 and nv4e). Either use 3.10, the
-nouveau/master tree, or cherry pick
-http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=42f186b6af54b82dcee926a35440b74dbabe1623
-(this will hopefully make the final 3.11 release).
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376964840.7dF25104.988
-Date: Tue, 20 Aug 2013 02:14:00 +0000
+--1376966759.D8FeaE1.4027
+Date: Tue, 20 Aug 2013 02:45:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV34] [NV49] terminal's visual bell is very slow with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=36090">bug 36090</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>terminal's visual bell is very slow with nouveau
-           </td>
-           <td>[NV34] [NV49] terminal's visual bell is very slow with nouveau
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV34] [NV49] terminal's visual bell is very slow with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=36090#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - better handling of large pixmaps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D39010#c9">Comment=
+ # 9</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV34] [NV49] terminal's visual bell is very slow with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=36090">bug 36090</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW --- - better handling of large pixmaps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D39010">bug 39010<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ballogy&#64;freestart.hu" title=3D"Gy=C3=B6rgy Ball=C3=B3 &lt;ballogy&#64;f=
+reestart.hu&gt;"> <span class=3D"fn">Gy=C3=B6rgy Ball=C3=B3</span></a>
 </span></b>
-        <pre>Could you retest with a newer kernel/DDX? This feels like the sort of thing
-that probably got fixed over the past couple of years.
+        <pre>I'm not a developer, so I don't know what would be the best so=
+lution. With the
+current driver on NV17 with 64 MB VRAM, if I open a picture in Firefox that
+larger than 2047px=C3=972047px, it causes 'fail ttm_validate' errors. If I =
+reduce
+the max. pixmap size from 4096=C3=974096 to 2046=C3=972046, it solves the p=
+roblem.
 
-Note to the NV49 user, there's currently a bug in 3.11-rcX that will cause
-nouveau to crash on start (for nv49 and nv4e). Either use 3.10, the
-nouveau/master tree, or cherry pick
-<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=42f186b6af54b82dcee926a35440b74dbabe1623">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=42f186b6af54b82dcee926a35440b74dbabe1623</a>
-(this will hopefully make the final 3.11 release).</pre>
+I don't have any other NVIDIA hardware to test my patch.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1376964840.7dF25104.988--
+--1376966759.D8FeaE1.4027--
 
---===============0521985307==
+--===============0803889195==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,4 +107,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0521985307==--
+--===============0803889195==--
