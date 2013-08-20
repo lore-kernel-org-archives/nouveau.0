@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58776] [NV44] Some cards require NvPCIE=0
-Date: Tue, 20 Aug 2013 06:09:57 +0000
-Message-ID: <bug-58776-8800-1PEa0Kt8tB@http.bugs.freedesktop.org/>
-References: <bug-58776-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 48742] [NV30 gallium] fbotexture -arb misrenders on
+	nv43
+Date: Tue, 20 Aug 2013 06:10:37 +0000
+Message-ID: <bug-48742-8800-aCVEsoXX68@http.bugs.freedesktop.org/>
+References: <bug-48742-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1902851268=="
+Content-Type: multipart/mixed; boundary="===============2087464186=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-48742-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1902851268==
-Content-Type: multipart/alternative; boundary="1376978997.bE06F2.29390"; charset="us-ascii"
+--===============2087464186==
+Content-Type: multipart/alternative; boundary="1376979037.07F3FD1.29514"; charset="us-ascii"
 
 
---1376978997.bE06F2.29390
-Date: Tue, 20 Aug 2013 06:09:57 +0000
+--1376979037.07F3FD1.29514
+Date: Tue, 20 Aug 2013 06:10:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58776
+https://bugs.freedesktop.org/show_bug.cgi?id=48742
 
---- Comment #19 from gabriele balducci <balducci-KqplAB4qOuE@public.gmane.org> ---
-Thanks for your interest
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Unfortunately, that machine is dead since my report and I am now using a
-different hardware...
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|fbotexture -arb misrenders  |[NV30 gallium] fbotexture
+                   |on nv43                     |-arb misrenders on nv43
 
-thanks again
-ciao
-gabriele
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Reproduced on a NV34 with both Mesa 9.1.6 and the semi-latest 9.3-git checkout
+(probably as of a few days ago, definitely no nv30 changes in there). The bad
+rendering is identical in all 3 of the fbotexture modes. (BTW, this took me a
+sec to figure out -- fbotexture is in the mesa/demos repo.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376978997.bE06F2.29390
-Date: Tue, 20 Aug 2013 06:09:57 +0000
+--1376979037.07F3FD1.29514
+Date: Tue, 20 Aug 2013 06:10:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,27 +58,43 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV30 gallium] fbotexture -arb misrenders on nv43"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48742">bug 48742</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>fbotexture -arb misrenders on nv43
+           </td>
+           <td>[NV30 gallium] fbotexture -arb misrenders on nv43
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV44] Some cards require NvPCIE=0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58776#c19">Comment # 19</a>
+   title="NEW --- - [NV30 gallium] fbotexture -arb misrenders on nv43"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48742#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV44] Some cards require NvPCIE=0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58776">bug 58776</a>
-              from <span class="vcard"><a class="email" href="mailto:balducci&#64;units.it" title="gabriele balducci &lt;balducci&#64;units.it&gt;"> <span class="fn">gabriele balducci</span></a>
+   title="NEW --- - [NV30 gallium] fbotexture -arb misrenders on nv43"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48742">bug 48742</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Thanks for your interest
-
-Unfortunately, that machine is dead since my report and I am now using a
-different hardware...
-
-thanks again
-ciao
-gabriele</pre>
+        <pre>Reproduced on a NV34 with both Mesa 9.1.6 and the semi-latest 9.3-git checkout
+(probably as of a few days ago, definitely no nv30 changes in there). The bad
+rendering is identical in all 3 of the fbotexture modes. (BTW, this took me a
+sec to figure out -- fbotexture is in the mesa/demos repo.)</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +106,9 @@ gabriele</pre>
     </body>
 </html>
 
---1376978997.bE06F2.29390--
+--1376979037.07F3FD1.29514--
 
---===============1902851268==
+--===============2087464186==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +119,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1902851268==--
+--===============2087464186==--
