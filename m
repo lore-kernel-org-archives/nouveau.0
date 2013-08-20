@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38984] xorg-nouveau: Segfault after gdm3 login,
- EQ overflowing, GeForce 8600 GT (backtrace attached)
-Date: Tue, 20 Aug 2013 00:20:26 +0000
-Message-ID: <bug-38984-8800-wNQRjcaTzp@http.bugs.freedesktop.org/>
-References: <bug-38984-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 63048] Dual display problem: Using xrandr to setup
+ dual displays causes X to hang
+Date: Tue, 20 Aug 2013 01:13:46 +0000
+Message-ID: <bug-63048-8800-Q8INMkaUGQ@http.bugs.freedesktop.org/>
+References: <bug-63048-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0202030200=="
+Content-Type: multipart/mixed; boundary="===============1335376549=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38984-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-63048-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0202030200==
-Content-Type: multipart/alternative; boundary="1376958026.2033fBd52.17286"; charset="us-ascii"
+--===============1335376549==
+Content-Type: multipart/alternative; boundary="1376961226.042DC1c61.27053"; charset="us-ascii"
 
 
---1376958026.2033fBd52.17286
-Date: Tue, 20 Aug 2013 00:20:26 +0000
+--1376961226.042DC1c61.27053
+Date: Tue, 20 Aug 2013 01:13:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38984
+https://bugs.freedesktop.org/show_bug.cgi?id=63048
 
-Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
+guy-IGUgQLVVQiRCV4ILt04nZQ@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
          Resolution|---                         |FIXED
 
---- Comment #6 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-@RomaHagen: Thanks for your testing. We can indeed close this bug report.
+--- Comment #1 from guy-IGUgQLVVQiRCV4ILt04nZQ@public.gmane.org ---
+Doesn't seem to be a problem anymore in 3.10 kernels
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1376958026.2033fBd52.17286
-Date: Tue, 20 Aug 2013 00:20:26 +0000
+--1376961226.042DC1c61.27053
+Date: Tue, 20 Aug 2013 01:13:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,12 +55,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:guy&#64;member.fsf.org" title="guy&#64;member.fsf.org">guy&#64;member.fsf.org</a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - xorg-nouveau: Segfault after gdm3 login, EQ overflowing, GeForce 8600 GT (backtrace attached)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38984">bug 38984</a>
+   title="RESOLVED FIXED - Dual display problem: Using xrandr to setup dual displays causes X to hang"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63048">bug 63048</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -88,15 +88,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - xorg-nouveau: Segfault after gdm3 login, EQ overflowing, GeForce 8600 GT (backtrace attached)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38984#c6">Comment # 6</a>
+   title="RESOLVED FIXED - Dual display problem: Using xrandr to setup dual displays causes X to hang"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63048#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - xorg-nouveau: Segfault after gdm3 login, EQ overflowing, GeForce 8600 GT (backtrace attached)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38984">bug 38984</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+   title="RESOLVED FIXED - Dual display problem: Using xrandr to setup dual displays causes X to hang"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63048">bug 63048</a>
+              from <span class="vcard"><a class="email" href="mailto:guy&#64;member.fsf.org" title="guy&#64;member.fsf.org">guy&#64;member.fsf.org</a>
 </span></b>
-        <pre>&#64;RomaHagen: Thanks for your testing. We can indeed close this bug report.</pre>
+        <pre>Doesn't seem to be a problem anymore in 3.10 kernels</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +108,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1376958026.2033fBd52.17286--
+--1376961226.042DC1c61.27053--
 
---===============0202030200==
+--===============1335376549==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0202030200==--
+--===============1335376549==--
