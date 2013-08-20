@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68348] New: [piglit] shaders/glsl-array-bounds-02
- (+even nrs) produces TRAP , TRAP_MP - TP0: Unhandled ustatus 0x00000001
-Date: Tue, 20 Aug 2013 17:55:23 +0000
-Message-ID: <bug-68348-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68348] [piglit] shaders/glsl-array-bounds-02 (+even
+ nrs) produces TRAP , TRAP_MP - TP0: Unhandled ustatus 0x00000001
+Date: Tue, 20 Aug 2013 20:41:19 +0000
+Message-ID: <bug-68348-8800-RD8kQAHjRu@http.bugs.freedesktop.org/>
+References: <bug-68348-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0347503894=="
+Content-Type: multipart/mixed; boundary="===============0179684446=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-68348-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,77 +21,48 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0347503894==
-Content-Type: multipart/alternative; boundary="1377021323.fEE81.16662"; charset="us-ascii"
+--===============0179684446==
+Content-Type: multipart/alternative; boundary="1377031279.bb8Ae2A2.21322"; charset="us-ascii"
 
 
---1377021323.fEE81.16662
-Date: Tue, 20 Aug 2013 17:55:23 +0000
+--1377031279.bb8Ae2A2.21322
+Date: Tue, 20 Aug 2013 20:41:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=68348
 
-          Priority: medium
-            Bug ID: 68348
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [piglit] shaders/glsl-array-bounds-02 (+even nrs)
-                    produces TRAP , TRAP_MP - TP0: Unhandled ustatus
-                    0x00000001
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: dirkneukirchen-S0/GAf8tV78@public.gmane.org
-          Hardware: x86 (IA32)
-            Status: NEW
-           Version: git
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The big difference between the even and odd numbered
+shaders/glsl-array-bounds-* seems to be how the invalid index comes about.
 
-Created attachment 84353
-  --> https://bugs.freedesktop.org/attachment.cgi?id=84353&action=edit
-dmesg with many instances of problem occuring (while isolating the piglit
-testcase)
+In the odd-numbered ones, it comes directly from shader code, e.g.:
 
-./piglit-run.py --no-concurrency -t  '^shaders/glsl-array-bounds-02'
-tests/quick.tests results/quick-shaders-array.tests
+void main() {
+  int idx = 20;
+  array[idx]
+}
 
-and all other even numbered cases 
-glsl-array-bounds-04
-glsl-array-bounds-06
-glsl-array-bounds-08
+In the even-numbered ones, it comes from a uniform that I guess is passed in:
 
-print out success but get a kernel log entry like 
+uniform int idx;
 
-[ 4653.971680] nouveau E[  PGRAPH][0000:02:00.0] TRAP_MP - TP0: Unhandled
-ustatus 0x00000001
-[ 4653.971688] nouveau E[  PGRAPH][0000:02:00.0]  TRAP
-[ 4653.971695] nouveau E[  PGRAPH][0000:02:00.0] ch 5 [0x0007814000
-shader_runner[8809]] subc 3 class 0x8397 mthd 0x15e0 data 0x00000000
+void main() {
+  array[idx]
+}
 
-found with heavy use of exclude -x feature :)
+(And the various tests check fragment/vertex shaders, positive/negative
+offsets, and the place where the idx comes from, so 8 tests total.)
 
-
-Hardware:
-Nvidia 8200 Onboard NVAA/NV50
-nouveau  [  DEVICE][0000:02:00.0] Chipset: MCP77/MCP78 (NVAA)
-nouveau  [  DEVICE][0000:02:00.0] Family : NV50
-
-Software:
-Linux Mint 15 + xorg-edgers + 3.11-rc5
-Kernel: 3.11.0-rc5-vanillaice (compiled)
-libdrm-nouveau: 2.4.46+git20130702.c6d73cfe-0ubuntu0sarvatt~raring
-xserver-xorg-video-nouveau :
-1:1.0.9+git20130730.300c5a32-0ubuntu0sarvatt~raring
-mesa: 9.2.0~git20130729+9.2.9b8ad643-0ubuntu0sarvatt~raring
+Although I'm not sure there's actually a problem here... the program is doing
+something illegal. You get segfault notifications in dmesg too...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377021323.fEE81.16662
-Date: Tue, 20 Aug 2013 17:55:23 +0000
+--1377031279.bb8Ae2A2.21322
+Date: Tue, 20 Aug 2013 20:41:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -97,130 +70,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [piglit] shaders/glsl-array-bounds-02 (+even nrs) produces TRAP , TRAP_MP - TP0: Unhandled ustatus 0x00000001"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68348">68348</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[piglit] shaders/glsl-array-bounds-02 (+even nrs) produces TRAP , TRAP_MP - TP0: Unhandled ustatus 0x00000001
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>dirkneukirchen&#64;web.de
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86 (IA32)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=84353" name="attach_84353" title="dmesg with many instances of problem occuring (while isolating the piglit testcase)">attachment 84353</a> <a href="attachment.cgi?id=84353&amp;action=edit" title="dmesg with many instances of problem occuring (while isolating the piglit testcase)">[details]</a></span>
-dmesg with many instances of problem occuring (while isolating the piglit
-testcase)
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [piglit] shaders/glsl-array-bounds-02 (+even nrs) produces TRAP , TRAP_MP - TP0: Unhandled ustatus 0x00000001"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68348#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [piglit] shaders/glsl-array-bounds-02 (+even nrs) produces TRAP , TRAP_MP - TP0: Unhandled ustatus 0x00000001"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68348">bug 68348</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>The big difference between the even and odd numbered
+shaders/glsl-array-bounds-* seems to be how the invalid index comes about.
 
-./piglit-run.py --no-concurrency -t  '^shaders/glsl-array-bounds-02'
-tests/quick.tests results/quick-shaders-array.tests
+In the odd-numbered ones, it comes directly from shader code, e.g.:
 
-and all other even numbered cases 
-glsl-array-bounds-04
-glsl-array-bounds-06
-glsl-array-bounds-08
+void main() {
+  int idx = 20;
+  array[idx]
+}
 
-print out success but get a kernel log entry like 
+In the even-numbered ones, it comes from a uniform that I guess is passed in:
 
-[ 4653.971680] nouveau E[  PGRAPH][0000:02:00.0] TRAP_MP - TP0: Unhandled
-ustatus 0x00000001
-[ 4653.971688] nouveau E[  PGRAPH][0000:02:00.0]  TRAP
-[ 4653.971695] nouveau E[  PGRAPH][0000:02:00.0] ch 5 [0x0007814000
-shader_runner[8809]] subc 3 class 0x8397 mthd 0x15e0 data 0x00000000
+uniform int idx;
 
-found with heavy use of exclude -x feature :)
+void main() {
+  array[idx]
+}
 
+(And the various tests check fragment/vertex shaders, positive/negative
+offsets, and the place where the idx comes from, so 8 tests total.)
 
-Hardware:
-Nvidia 8200 Onboard NVAA/NV50
-nouveau  [  DEVICE][0000:02:00.0] Chipset: MCP77/MCP78 (NVAA)
-nouveau  [  DEVICE][0000:02:00.0] Family : NV50
-
-Software:
-Linux Mint 15 + xorg-edgers + 3.11-rc5
-Kernel: 3.11.0-rc5-vanillaice (compiled)
-libdrm-nouveau: 2.4.46+git20130702.c6d73cfe-0ubuntu0sarvatt~raring
-xserver-xorg-video-nouveau :
-1:1.0.9+git20130730.300c5a32-0ubuntu0sarvatt~raring
-mesa: 9.2.0~git20130729+9.2.9b8ad643-0ubuntu0sarvatt~raring</pre>
+Although I'm not sure there's actually a problem here... the program is doing
+something illegal. You get segfault notifications in dmesg too...</pre>
         </div>
       </p>
       <hr>
@@ -232,9 +117,9 @@ mesa: 9.2.0~git20130729+9.2.9b8ad643-0ubuntu0sarvatt~raring</pre>
     </body>
 </html>
 
---1377021323.fEE81.16662--
+--1377031279.bb8Ae2A2.21322--
 
---===============0347503894==
+--===============0179684446==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -245,4 +130,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0347503894==--
+--===============0179684446==--
