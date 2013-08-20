@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 66255] Xinerama 2x2 monitor configuration display
 	issues
-Date: Tue, 20 Aug 2013 17:04:51 +0000
-Message-ID: <bug-66255-8800-4PFRoDmxdC@http.bugs.freedesktop.org/>
+Date: Tue, 20 Aug 2013 17:06:04 +0000
+Message-ID: <bug-66255-8800-dooTCwHqzJ@http.bugs.freedesktop.org/>
 References: <bug-66255-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1089721611=="
+Content-Type: multipart/mixed; boundary="===============1013515501=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-66255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1089721611==
-Content-Type: multipart/alternative; boundary="1377018292.AEBB1.4842"; charset="us-ascii"
+--===============1013515501==
+Content-Type: multipart/alternative; boundary="1377018364.B1FfcbCC1.5223"; charset="us-ascii"
 
 
---1377018292.AEBB1.4842
-Date: Tue, 20 Aug 2013 17:04:52 +0000
+--1377018364.B1FfcbCC1.5223
+Date: Tue, 20 Aug 2013 17:06:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=66255
 
---- Comment #18 from Trev Jackson <trev.g7pvs-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
-Created attachment 84350
-  --> https://bugs.freedesktop.org/attachment.cgi?id=84350&action=edit
-1.0.9 sliding and seperate top and bottom displays
-
-Using 1.0.9 a segmentation fault no longer occurs, however the driver isn't
-performing as expected.
-The attached file causes the display on the individual monitors to move
-sideways as you move the mouse from one monitor to the next.  In addition the
-top two monitors act as one screen and the bottom two as a different screen and
-you cannot bridge across them with a program window(e.g a browser).
+--- Comment #19 from Trev Jackson <trev.g7pvs-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
+Created attachment 84351
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84351&action=edit
+log file for sliding seperate top and bottom
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377018292.AEBB1.4842
-Date: Tue, 20 Aug 2013 17:04:52 +0000
+--1377018364.B1FfcbCC1.5223
+Date: Tue, 20 Aug 2013 17:06:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,22 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Xinerama 2x2 monitor configuration display issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255#c18">Comment # 18</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Xinerama 2x2 monitor configuration display issues"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=66255">bug 66255</a>
               from <span class="vcard"><a class="email" href="mailto:trev.g7pvs&#64;ntlworld.com" title="Trev Jackson &lt;trev.g7pvs&#64;ntlworld.com&gt;"> <span class="fn">Trev Jackson</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=84350" name="attach_84350" title="1.0.9 sliding and seperate top and bottom displays">attachment 84350</a> <a href="attachment.cgi?id=84350&amp;action=edit" title="1.0.9 sliding and seperate top and bottom displays">[details]</a></span>
-1.0.9 sliding and seperate top and bottom displays
-
-Using 1.0.9 a segmentation fault no longer occurs, however the driver isn't
-performing as expected.
-The attached file causes the display on the individual monitors to move
-sideways as you move the mouse from one monitor to the next.  In addition the
-top two monitors act as one screen and the bottom two as a different screen and
-you cannot bridge across them with a program window(e.g a browser).</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=84351" name="attach_84351" title="log file for sliding seperate top and bottom">attachment 84351</a> <a href="attachment.cgi?id=84351&amp;action=edit" title="log file for sliding seperate top and bottom">[details]</a></span>
+log file for sliding seperate top and bottom</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +76,9 @@ you cannot bridge across them with a program window(e.g a browser).</pre>
     </body>
 </html>
 
---1377018292.AEBB1.4842--
+--1377018364.B1FfcbCC1.5223--
 
---===============1089721611==
+--===============1013515501==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1089721611==--
+--===============1013515501==--
