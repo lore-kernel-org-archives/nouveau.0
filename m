@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50836] [NVAC] [bisected] ION fails to probe
-Date: Tue, 20 Aug 2013 21:47:07 +0000
-Message-ID: <bug-50836-8800-ZYZ0NLu7iG@http.bugs.freedesktop.org/>
-References: <bug-50836-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57211] [NVA3] nvidia GTS 360M: hangs during boot
+Date: Tue, 20 Aug 2013 21:52:18 +0000
+Message-ID: <bug-57211-8800-hA37doG8Tf@http.bugs.freedesktop.org/>
+References: <bug-57211-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0412592086=="
+Content-Type: multipart/mixed; boundary="===============0239731539=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50836-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57211-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0412592086==
-Content-Type: multipart/alternative; boundary="1377035226.B20be1.32118"; charset="us-ascii"
+--===============0239731539==
+Content-Type: multipart/alternative; boundary="1377035538.17DD2a2.662"; charset="us-ascii"
 
 
---1377035226.B20be1.32118
-Date: Tue, 20 Aug 2013 21:47:06 +0000
+--1377035538.17DD2a2.662
+Date: Tue, 20 Aug 2013 21:52:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=50836
+https://bugs.freedesktop.org/show_bug.cgi?id=57211
 
-Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+            Summary|nvidia GTS 360M: hangs      |[NVA3] nvidia GTS 360M:
+                   |during boot                 |hangs during boot
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please re-test with the latest kernel. If the issue persists, please attach the
+full dmesg output.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377035226.B20be1.32118
-Date: Tue, 20 Aug 2013 21:47:06 +0000
+--1377035538.17DD2a2.662
+Date: Tue, 20 Aug 2013 21:52:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,12 +55,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:johannesobermayr&#64;gmx.de" title="Johannes Obermayr &lt;johannesobermayr&#64;gmx.de&gt;"> <span class="fn">Johannes Obermayr</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVAC] [bisected] ION fails to probe"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50836">bug 50836</a>
+          bz_status_NEW "
+   title="NEW --- - [NVA3] nvidia GTS 360M: hangs during boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57211">bug 57211</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -66,21 +70,27 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">Summary</td>
+           <td>nvidia GTS 360M: hangs during boot
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
+           <td>[NVA3] nvidia GTS 360M: hangs during boot
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA3] nvidia GTS 360M: hangs during boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57211#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA3] nvidia GTS 360M: hangs during boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57211">bug 57211</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Please re-test with the latest kernel. If the issue persists, please attach the
+full dmesg output.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -91,9 +101,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377035226.B20be1.32118--
+--1377035538.17DD2a2.662--
 
---===============0412592086==
+--===============0239731539==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +114,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0412592086==--
+--===============0239731539==--
