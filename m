@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60772] xf86-video-nouveau fails to modprobe nouveau:
- KMS not enabled
-Date: Wed, 21 Aug 2013 02:26:29 +0000
-Message-ID: <bug-60772-8800-Yh8Gd4C9cP@http.bugs.freedesktop.org/>
-References: <bug-60772-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 63101] [NV4B] NVIDIA GeForce 7300 GT AGP graphics
+ card will not display any text characters on VIA Technologies Apollo
+ MVP3-based mainboard
+Date: Wed, 21 Aug 2013 03:53:40 +0000
+Message-ID: <bug-63101-8800-sM8vq99GLn@http.bugs.freedesktop.org/>
+References: <bug-63101-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1916475832=="
+Content-Type: multipart/mixed; boundary="===============1849147623=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60772-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-63101-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,51 +22,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1916475832==
-Content-Type: multipart/alternative; boundary="1377051989.bABBdB81.9352"; charset="us-ascii"
+--===============1849147623==
+Content-Type: multipart/alternative; boundary="1377057220.cbf66A3A2.24799"; charset="us-ascii"
 
 
---1377051989.bABBdB81.9352
-Date: Wed, 21 Aug 2013 02:26:29 +0000
+--1377057220.cbf66A3A2.24799
+Date: Wed, 21 Aug 2013 03:53:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60772
+https://bugs.freedesktop.org/show_bug.cgi?id=63101
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |WONTFIX
+             Status|NEW                         |NEEDINFO
+            Summary|[Ubuntu 10.04.4 LTS 32-bit] |[NV4B] NVIDIA GeForce 7300
+                   |NVIDIA GeForce 7300 GT AGP  |GT AGP graphics card will
+                   |graphics card will not      |not display any text
+                   |display any text characters |characters on VIA
+                   |on VIA Technologies Apollo  |Technologies Apollo
+                   |MVP3-based mainboard        |MVP3-based mainboard
 
---- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The usual mechanism, nowadays, for modules to load is that the kernel creates
-some stuff in /sys, udev is notified about it, looks at the module_alias which
-describe what it is that the modules claim they support, and loads the right
-ones. In this case the nouveau module should (and does) claim to support some
-set of pci devices. (I might have that a little wrong, but that's the overall
-gist.) If you're not using udev/have disabled that somehow, I don't think it's
-too much to ask you to load the module yourself.
-
-In any case, I don't think having this in the bugtracker will lead to the
-resolution that you're seeking. If you really want to change the behaviour,
-send a patch, ping people, etc. It sounds like the various people are in favor
-of the current behaviour (I know I am -- I hate it when things do stuff behind
-my back). For anyone looking at this later, see discussion that followed
-http://lists.freedesktop.org/archives/nouveau/2013-February/012222.html .
-
-If you want to boot s.t. you can load the nvidia driver, you can either boot
-with nouveau.modeset=0, or take a look at
-http://nouveau.freedesktop.org/wiki/KernelModeSetting/ for how to unload a
-"mode-setted" module.
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you try this with an upstream kernel, e.g. 3.10 or the kernel at
+nouveau/master? (Note that 3.11-rc1 - 3.11-rc6 will crash on load for you, -rc7
+should be fine when it comes out.) It's impossible to tell what's in those LTS
+kernels, so they're basically useless for reporting bugs to upstream about. If
+building your own kernel isn't an option, you should file this but with Ubuntu.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377051989.bABBdB81.9352
-Date: Wed, 21 Aug 2013 02:26:29 +0000
+--1377057220.cbf66A3A2.24799
+Date: Wed, 21 Aug 2013 03:53:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -76,9 +68,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772">bug 60772</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [NV4B] NVIDIA GeForce 7300 GT AGP graphics card will not display any text characters on VIA Technologies Apollo MVP3-based mainboard"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63101">bug 63101</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -91,48 +83,34 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Status</td>
            <td>NEW
            </td>
-           <td>RESOLVED
+           <td>NEEDINFO
            </td>
          </tr>
 
          <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
+           <td style="text-align:right;">Summary</td>
+           <td>[Ubuntu 10.04.4 LTS 32-bit] NVIDIA GeForce 7300 GT AGP graphics card will not display any text characters on VIA Technologies Apollo MVP3-based mainboard
            </td>
-           <td>WONTFIX
+           <td>[NV4B] NVIDIA GeForce 7300 GT AGP graphics card will not display any text characters on VIA Technologies Apollo MVP3-based mainboard
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772#c10">Comment # 10</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [NV4B] NVIDIA GeForce 7300 GT AGP graphics card will not display any text characters on VIA Technologies Apollo MVP3-based mainboard"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63101#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772">bug 60772</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [NV4B] NVIDIA GeForce 7300 GT AGP graphics card will not display any text characters on VIA Technologies Apollo MVP3-based mainboard"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63101">bug 63101</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>The usual mechanism, nowadays, for modules to load is that the kernel creates
-some stuff in /sys, udev is notified about it, looks at the module_alias which
-describe what it is that the modules claim they support, and loads the right
-ones. In this case the nouveau module should (and does) claim to support some
-set of pci devices. (I might have that a little wrong, but that's the overall
-gist.) If you're not using udev/have disabled that somehow, I don't think it's
-too much to ask you to load the module yourself.
-
-In any case, I don't think having this in the bugtracker will lead to the
-resolution that you're seeking. If you really want to change the behaviour,
-send a patch, ping people, etc. It sounds like the various people are in favor
-of the current behaviour (I know I am -- I hate it when things do stuff behind
-my back). For anyone looking at this later, see discussion that followed
-<a href="http://lists.freedesktop.org/archives/nouveau/2013-February/012222.html">http://lists.freedesktop.org/archives/nouveau/2013-February/012222.html</a> .
-
-If you want to boot s.t. you can load the nvidia driver, you can either boot
-with nouveau.modeset=0, or take a look at
-<a href="http://nouveau.freedesktop.org/wiki/KernelModeSetting/">http://nouveau.freedesktop.org/wiki/KernelModeSetting/</a> for how to unload a
-&quot;mode-setted&quot; module.</pre>
+        <pre>Can you try this with an upstream kernel, e.g. 3.10 or the kernel at
+nouveau/master? (Note that 3.11-rc1 - 3.11-rc6 will crash on load for you, -rc7
+should be fine when it comes out.) It's impossible to tell what's in those LTS
+kernels, so they're basically useless for reporting bugs to upstream about. If
+building your own kernel isn't an option, you should file this but with Ubuntu.</pre>
         </div>
       </p>
       <hr>
@@ -144,9 +122,9 @@ with nouveau.modeset=0, or take a look at
     </body>
 </html>
 
---1377051989.bABBdB81.9352--
+--1377057220.cbf66A3A2.24799--
 
---===============1916475832==
+--===============1849147623==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -157,4 +135,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1916475832==--
+--===============1849147623==--
