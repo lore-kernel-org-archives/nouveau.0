@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68075] nouveau inconsistent changing output
- connector names in xrandr
-Date: Wed, 21 Aug 2013 19:00:58 +0000
-Message-ID: <bug-68075-8800-b5Bd7R2A88@http.bugs.freedesktop.org/>
-References: <bug-68075-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68402] New: Some elements are only rendered in
+	top-left area
+Date: Wed, 21 Aug 2013 20:49:17 +0000
+Message-ID: <bug-68402-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0498871359=="
+Content-Type: multipart/mixed; boundary="===============0739570324=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68075-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,133 +19,197 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0498871359==
-Content-Type: multipart/alternative; boundary="1377111658.BaEA301.24276"; charset="us-ascii"
+--===============0739570324==
+Content-Type: multipart/alternative; boundary="1377118157.Bfdecc50.19002"; charset="us-ascii"
 
 
---1377111658.BaEA301.24276
-Date: Wed, 21 Aug 2013 19:00:58 +0000
+--1377118157.Bfdecc50.19002
+Date: Wed, 21 Aug 2013 20:49:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D68075
+https://bugs.freedesktop.org/show_bug.cgi?id=68402
 
---- Comment #8 from Pasi K=C3=A4rkk=C3=A4inen <pasik-X3B1VOXEql0@public.gmane.org> ---
-Xorg logs (also with dmesg and xrandr output) attached.
+          Priority: medium
+            Bug ID: 68402
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Some elements are only rendered in top-left area
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: janmlynek0-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: All
+            Status: NEW
+           Version: git
+         Component: Drivers/DRI/nouveau
+           Product: Mesa
 
-Summary about each test-case:
+Created attachment 84412
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84412&action=edit
+dmesg log
 
-01-dvi-not-connected-at-boot-but-is-connected-later:
-- DVI monitor is not connected to nouveau at boot time, but I connect the D=
-VI
-cable later while in Xorg session.
-- xrandr shows nouveau outputs as DP-1, DP-2 and DP-3.
-- I am able to successfully enable and disable DVI monitor connected to nou=
-veau
-adapter.
-- xrandr shows correct connected/disconnected state for the DVI output.
-- Graphics on the DVI monitor are corrupted, for example moving xterm around
-the DVI display leaves trace of the xterm contents behind, but let's not fo=
-cus
-on that on this bug :) it kind of works.
+Ubuntu 13.04 64-bit (affects both x86 and x86_64)
+Kernel - from nouveau/linux-2.6 repo - HEAD is
+3b56bba6abaa70d629fccdcf8490e087ea3a1ab4
+X.Org X Server 1.13.4
+Mesa version e6013e4bee7ebff6b7bd2f3b95eb16e8949e228c
+Family: NVC0
+Chipset: GF116 (NVCF) (GTX 550 Ti)
 
-02-dvi-connected-at-boot-no-nouveau-outputs-detected-in-xrandr:
-- DVI cable is connected to nouveau at boot time.
-- xrandr does *not* show any nouveau outputs, so it's not possible to
-enable/disable DVI monitor.
-- DVI monitor shows black/white corrupted pattern, even when it should be a=
-ll
-empty/black in this case because it's not in use.
-- Screenshot of the DVI monitor included in the .tar.gz.
+Some elements are only rendered in top-left area of the window (screenshot to
+be included). This affects both Portal and Team Fortress 2.
 
-03-dvi-connected-at-boot-nouveau-outputs-detected-as-displayport-in-xrandr:
-- DVI cable is connected to nouveau at boot time.
-- xrandr shows nouveau outputs as DisplayPort-0, DisplayPort-1 and
-DisplayPort-2.
-- Trying to enable DVI monitor connected to nouveau results in hard kernel
-crash (but we have the other bug open about the kernel crash issue).
+I've done a bisection and this is the result:
 
---=20
+2149ce41ed6b10f7bff65d7b3f23fd03b89753e3 is the first bad commit
+commit 2149ce41ed6b10f7bff65d7b3f23fd03b89753e3
+Author: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Date:   Sun Sep 30 22:59:34 2012 +0200
+
+    nv50,nvc0: fix 3d engine blit for nvc0
+
+:040000 040000 e0f165f869fed658f574a2719d0e841dda95139e
+013265106fe6e2f2dab6b20811566fa5ba1106f3 M    src
+
+There is nothing related to this issue in dmesg, but I'll include it anyway.
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377111658.BaEA301.24276
-Date: Wed, 21 Aug 2013 19:00:58 +0000
+--1377118157.Bfdecc50.19002
+Date: Wed, 21 Aug 2013 20:49:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Some elements are only rendered in top-left area"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68402">68402</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Some elements are only rendered in top-left area
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>janmlynek0&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nouveau inconsistent changing output connector names =
-in xrandr"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D68075#c8">Comment=
- # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nouveau inconsistent changing output connector names =
-in xrandr"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D68075">bug 68075<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pasik&#64;iki.fi" title=3D"Pasi K=C3=A4rkk=C3=A4inen &lt;pasik&#64;iki.fi&g=
-t;"> <span class=3D"fn">Pasi K=C3=A4rkk=C3=A4inen</span></a>
-</span></b>
-        <pre>Xorg logs (also with dmesg and xrandr output) attached.
+        <pre>Created <span class=""><a href="attachment.cgi?id=84412" name="attach_84412" title="dmesg log">attachment 84412</a> <a href="attachment.cgi?id=84412&amp;action=edit" title="dmesg log">[details]</a></span>
+dmesg log
 
-Summary about each test-case:
+Ubuntu 13.04 64-bit (affects both x86 and x86_64)
+Kernel - from nouveau/linux-2.6 repo - HEAD is
+3b56bba6abaa70d629fccdcf8490e087ea3a1ab4
+X.Org X Server 1.13.4
+Mesa version e6013e4bee7ebff6b7bd2f3b95eb16e8949e228c
+Family: NVC0
+Chipset: GF116 (NVCF) (GTX 550 Ti)
 
-01-dvi-not-connected-at-boot-but-is-connected-later:
-- DVI monitor is not connected to nouveau at boot time, but I connect the D=
-VI
-cable later while in Xorg session.
-- xrandr shows nouveau outputs as DP-1, DP-2 and DP-3.
-- I am able to successfully enable and disable DVI monitor connected to nou=
-veau
-adapter.
-- xrandr shows correct connected/disconnected state for the DVI output.
-- Graphics on the DVI monitor are corrupted, for example moving xterm around
-the DVI display leaves trace of the xterm contents behind, but let's not fo=
-cus
-on that on this bug :) it kind of works.
+Some elements are only rendered in top-left area of the window (screenshot to
+be included). This affects both Portal and Team Fortress 2.
 
-02-dvi-connected-at-boot-no-nouveau-outputs-detected-in-xrandr:
-- DVI cable is connected to nouveau at boot time.
-- xrandr does *not* show any nouveau outputs, so it's not possible to
-enable/disable DVI monitor.
-- DVI monitor shows black/white corrupted pattern, even when it should be a=
-ll
-empty/black in this case because it's not in use.
-- Screenshot of the DVI monitor included in the .tar.gz.
+I've done a bisection and this is the result:
 
-03-dvi-connected-at-boot-nouveau-outputs-detected-as-displayport-in-xrandr:
-- DVI cable is connected to nouveau at boot time.
-- xrandr shows nouveau outputs as DisplayPort-0, DisplayPort-1 and
-DisplayPort-2.
-- Trying to enable DVI monitor connected to nouveau results in hard kernel
-crash (but we have the other bug open about the kernel crash issue).</pre>
+2149ce41ed6b10f7bff65d7b3f23fd03b89753e3 is the first bad commit
+commit 2149ce41ed6b10f7bff65d7b3f23fd03b89753e3
+Author: Christoph Bumiller &lt;<a href="mailto:e0425955&#64;student.tuwien.ac.at">e0425955&#64;student.tuwien.ac.at</a>&gt;
+Date:   Sun Sep 30 22:59:34 2012 +0200
+
+    nv50,nvc0: fix 3d engine blit for nvc0
+
+:040000 040000 e0f165f869fed658f574a2719d0e841dda95139e
+013265106fe6e2f2dab6b20811566fa5ba1106f3 M    src
+
+There is nothing related to this issue in dmesg, but I'll include it anyway.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1377111658.BaEA301.24276--
+--1377118157.Bfdecc50.19002--
 
---===============0498871359==
+--===============0739570324==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -158,4 +220,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0498871359==--
+--===============0739570324==--
