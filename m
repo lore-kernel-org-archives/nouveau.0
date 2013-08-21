@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 68075] nouveau inconsistent changing output
  connector names in xrandr
-Date: Wed, 21 Aug 2013 18:49:32 +0000
-Message-ID: <bug-68075-8800-i3qJgRuuyN@http.bugs.freedesktop.org/>
+Date: Wed, 21 Aug 2013 18:50:55 +0000
+Message-ID: <bug-68075-8800-Zg3gmBznqx@http.bugs.freedesktop.org/>
 References: <bug-68075-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1440219713=="
+Content-Type: multipart/mixed; boundary="===============1616850531=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-68075-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1440219713==
-Content-Type: multipart/alternative; boundary="1377110972.7006CBa1.20811"; charset="us-ascii"
+--===============1616850531==
+Content-Type: multipart/alternative; boundary="1377111055.630e3a1.21268"; charset="us-ascii"
 
 
---1377110972.7006CBa1.20811
-Date: Wed, 21 Aug 2013 18:49:32 +0000
+--1377111055.630e3a1.21268
+Date: Wed, 21 Aug 2013 18:50:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D68075
 
---- Comment #7 from Pasi K=C3=A4rkk=C3=A4inen <pasik-X3B1VOXEql0@public.gmane.org> ---
-Created attachment 84407
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D84407&action=3Dedit
-nouveau debug Xorg logs
+Pasi K=C3=A4rkk=C3=A4inen <pasik-X3B1VOXEql0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #84407|text/plain                  |application/octet-stream
+          mime type|                            |
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377110972.7006CBa1.20811
-Date: Wed, 21 Aug 2013 18:49:32 +0000
+--1377111055.630e3a1.21268
+Date: Wed, 21 Aug 2013 18:50:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -52,31 +54,32 @@ Content-Transfer-Encoding: quoted-printable
     <head>
       <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nouveau inconsistent changing output connector names =
-in xrandr"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D68075#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pasik&#64=
+;iki.fi" title=3D"Pasi K=C3=A4rkk=C3=A4inen &lt;pasik&#64;iki.fi&gt;"> <spa=
+n class=3D"fn">Pasi K=C3=A4rkk=C3=A4inen</span></a>
+</span> changed
+              <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW --- - nouveau inconsistent changing output connector names =
 in xrandr"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D68075">bug 68075<=
 /a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pasik&#64;iki.fi" title=3D"Pasi K=C3=A4rkk=C3=A4inen &lt;pasik&#64;iki.fi&g=
-t;"> <span class=3D"fn">Pasi K=C3=A4rkk=C3=A4inen</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D84407"=
- name=3D"attach_84407" title=3D"nouveau debug Xorg logs">attachment 84407</=
-a> <a href=3D"attachment.cgi?id=3D84407&amp;action=3Dedit" title=3D"nouveau=
- debug Xorg logs">[details]</a></span>
-nouveau debug Xorg logs</pre>
-        </div>
+        <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #84407 mime type</td>
+           <td>text/plain
+           </td>
+           <td>application/octet-stream
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -87,9 +90,9 @@ nouveau debug Xorg logs</pre>
     </body>
 </html>
 
---1377110972.7006CBa1.20811--
+--1377111055.630e3a1.21268--
 
---===============1440219713==
+--===============1616850531==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1440219713==--
+--===============1616850531==--
