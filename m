@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64774] nouveau GF108 kernel crash in optimus mode
  when enabling external display output
-Date: Wed, 21 Aug 2013 17:03:59 +0000
-Message-ID: <bug-64774-8800-mR6YOu5KUN@http.bugs.freedesktop.org/>
+Date: Wed, 21 Aug 2013 17:07:27 +0000
+Message-ID: <bug-64774-8800-CpBvqQCTWU@http.bugs.freedesktop.org/>
 References: <bug-64774-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0116063528=="
+Content-Type: multipart/mixed; boundary="===============1377437749=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64774-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,75 +21,83 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0116063528==
-Content-Type: multipart/alternative; boundary="1377104639.edbe1f6f2.24645"; charset="us-ascii"
+--===============1377437749==
+Content-Type: multipart/alternative; boundary="1377104847.6c3B2.25458"; charset="us-ascii"
 
 
---1377104639.edbe1f6f2.24645
-Date: Wed, 21 Aug 2013 17:03:59 +0000
+--1377104847.6c3B2.25458
+Date: Wed, 21 Aug 2013 17:07:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64774
+https://bugs.freedesktop.org/show_bug.cgi?id=3D64774
 
---- Comment #22 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-We should figure out why it's getting stuff that it doesn't expect. I had
-suggested adding the warn solely to avoid the crash down the line. I guess it's
-reasonable for the upstream kernel to have that, as if it ever fires, we're
-going to be in trouble later... I think. Will have to re-check the code. I can
-post it with my analysis if you like, or you can.
+--- Comment #23 from Pasi K=C3=A4rkk=C3=A4inen <pasik-X3B1VOXEql0@public.gmane.org> ---
 
-Could you retest this with 3.11-rc6 BTW? The whole fb pinning/etc logic was
-reworked, and your issue may have been fixed by it.
+Feel free to post it with your analysis! You can add my reported-by and
+tested-by.=20
 
--- 
+I'm able to reproduce the crash with Linux 3.8.x, 3.9.x and 3.10.x, so the
+patch is needed at least on the 3.10.x stable branch to fix the crash there.
+
+I'll also test with 3.11-rc.
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377104639.edbe1f6f2.24645
-Date: Wed, 21 Aug 2013 17:03:59 +0000
+--1377104847.6c3B2.25458
+Date: Wed, 21 Aug 2013 17:07:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - nouveau GF108 kernel crash in optimus mode when enabling external display output"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64774#c22">Comment # 22</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - nouveau GF108 kernel crash in optimus mode when enabl=
+ing external display output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64774#c23">Commen=
+t # 23</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - nouveau GF108 kernel crash in optimus mode when enabling external display output"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64774">bug 64774</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW --- - nouveau GF108 kernel crash in optimus mode when enabl=
+ing external display output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64774">bug 64774<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pasik&#64;iki.fi" title=3D"Pasi K=C3=A4rkk=C3=A4inen &lt;pasik&#64;iki.fi&g=
+t;"> <span class=3D"fn">Pasi K=C3=A4rkk=C3=A4inen</span></a>
 </span></b>
-        <pre>We should figure out why it's getting stuff that it doesn't expect. I had
-suggested adding the warn solely to avoid the crash down the line. I guess it's
-reasonable for the upstream kernel to have that, as if it ever fires, we're
-going to be in trouble later... I think. Will have to re-check the code. I can
-post it with my analysis if you like, or you can.
+        <pre>
+Feel free to post it with your analysis! You can add my reported-by and
+tested-by.=20
 
-Could you retest this with 3.11-rc6 BTW? The whole fb pinning/etc logic was
-reworked, and your issue may have been fixed by it.</pre>
+I'm able to reproduce the crash with Linux 3.8.x, 3.9.x and 3.10.x, so the
+patch is needed at least on the 3.10.x stable branch to fix the crash there.
+
+I'll also test with 3.11-rc.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1377104639.edbe1f6f2.24645--
+--1377104847.6c3B2.25458--
 
---===============0116063528==
+--===============1377437749==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +108,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0116063528==--
+--===============1377437749==--
