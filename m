@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49786] In xterm,
  some rectangles are not redrawn when the window is partly covered
-Date: Wed, 21 Aug 2013 10:56:30 +0000
-Message-ID: <bug-49786-8800-KssPaGCMSb@http.bugs.freedesktop.org/>
+Date: Wed, 21 Aug 2013 10:56:54 +0000
+Message-ID: <bug-49786-8800-ehljMneida@http.bugs.freedesktop.org/>
 References: <bug-49786-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0298941296=="
+Content-Type: multipart/mixed; boundary="===============0980805597=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-49786-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0298941296==
-Content-Type: multipart/alternative; boundary="1377082590.0A5650331.26536"; charset="us-ascii"
+--===============0980805597==
+Content-Type: multipart/alternative; boundary="1377082614.E0fc4.26536"; charset="us-ascii"
 
 
---1377082590.0A5650331.26536
-Date: Wed, 21 Aug 2013 10:56:30 +0000
+--1377082614.E0fc4.26536
+Date: Wed, 21 Aug 2013 10:56:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,15 +36,15 @@ Vincent Lefevre <vincent-fdt-buymaDBGzMOsTnJN9+BGXg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #84379|dmesg output (2013-08-21)   |dmesg output - DELL
-        description|                            |Latitude E6400 (2013-08-21)
+  Attachment #84380|Xorg.0.log (2013-08-21)     |Xorg.0.log - DELL Latitude
+        description|                            |E6400 (2013-08-21)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377082590.0A5650331.26536
-Date: Wed, 21 Aug 2013 10:56:30 +0000
+--1377082614.E0fc4.26536
+Date: Wed, 21 Aug 2013 10:56:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,10 +67,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #84379 description</td>
-           <td>dmesg output (2013-08-21)
+           <td style="text-align:right;">Attachment #84380 description</td>
+           <td>Xorg.0.log (2013-08-21)
            </td>
-           <td>dmesg output - DELL Latitude E6400 (2013-08-21)
+           <td>Xorg.0.log - DELL Latitude E6400 (2013-08-21)
            </td>
          </tr></table>
       <p>
@@ -84,9 +84,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377082590.0A5650331.26536--
+--1377082614.E0fc4.26536--
 
---===============0298941296==
+--===============0980805597==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0298941296==--
+--===============0980805597==--
