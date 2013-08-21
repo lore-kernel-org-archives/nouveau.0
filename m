@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56340] [Ubuntu 10.04.4 LTS 32-bit] Severe
  instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2
  M64 graphics
-Date: Wed, 21 Aug 2013 05:54:14 +0000
-Message-ID: <bug-56340-8800-SbaVcXqcuT@http.bugs.freedesktop.org/>
+Date: Wed, 21 Aug 2013 05:54:57 +0000
+Message-ID: <bug-56340-8800-XuyPQd2EKd@http.bugs.freedesktop.org/>
 References: <bug-56340-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1331145361=="
+Content-Type: multipart/mixed; boundary="===============0648766628=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56340-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,32 +22,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1331145361==
-Content-Type: multipart/alternative; boundary="1377064454.0BC150A2.16250"; charset="us-ascii"
+--===============0648766628==
+Content-Type: multipart/alternative; boundary="1377064497.83D78fDE2.16353"; charset="us-ascii"
 
 
---1377064454.0BC150A2.16250
-Date: Wed, 21 Aug 2013 05:54:14 +0000
+--1377064497.83D78fDE2.16353
+Date: Wed, 21 Aug 2013 05:54:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=56340
 
---- Comment #16 from Robert Hancock <hancockrwd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It's not really clear that there is a driver issue even though some other
-models of graphics cards don't have this problem in these motherboards. It's
-quite possible that there is some issue where the card's AGP bus timing is more
-marginal, etc. and combined with this motherboard/chipset it causes problems.
-Given all the known issues with VIA AGP and that the TNT2 M64 boards were
-really low-end boards even when new, with likely not the greatest
-components/build quality, it seems a reasonable explanation.
+--- Comment #17 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #15)
+> (In reply to comment #14)
+> 
+> Again, since this mainboard is a Socket 7 mainboard, I am not able to run
+> this system on Linux 3.x kernel.
+
+For posterity, I'll reply here as well -- that is a complete falsehood. Linux
+3.10 should support any 486 or later CPU.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377064454.0BC150A2.16250
-Date: Wed, 21 Aug 2013 05:54:14 +0000
+--1377064497.83D78fDE2.16353
+Date: Wed, 21 Aug 2013 05:54:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,20 +62,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEEDINFO "
    title="NEEDINFO --- - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340#c16">Comment # 16</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340#c17">Comment # 17</a>
               on <a class="bz_bug_link 
           bz_status_NEEDINFO "
    title="NEEDINFO --- - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=56340">bug 56340</a>
-              from <span class="vcard"><a class="email" href="mailto:hancockrwd&#64;gmail.com" title="Robert Hancock &lt;hancockrwd&#64;gmail.com&gt;"> <span class="fn">Robert Hancock</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>It's not really clear that there is a driver issue even though some other
-models of graphics cards don't have this problem in these motherboards. It's
-quite possible that there is some issue where the card's AGP bus timing is more
-marginal, etc. and combined with this motherboard/chipset it causes problems.
-Given all the known issues with VIA AGP and that the TNT2 M64 boards were
-really low-end boards even when new, with likely not the greatest
-components/build quality, it seems a reasonable explanation.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=56340#c15">comment #15</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=56340#c14">comment #14</a>)
+&gt; 
+&gt; Again, since this mainboard is a Socket 7 mainboard, I am not able to run
+&gt; this system on Linux 3.x kernel.</span >
+
+For posterity, I'll reply here as well -- that is a complete falsehood. Linux
+3.10 should support any 486 or later CPU.</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +88,9 @@ components/build quality, it seems a reasonable explanation.</pre>
     </body>
 </html>
 
---1377064454.0BC150A2.16250--
+--1377064497.83D78fDE2.16353--
 
---===============1331145361==
+--===============0648766628==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1331145361==--
+--===============0648766628==--
