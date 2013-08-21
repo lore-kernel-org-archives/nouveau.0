@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56340] [Ubuntu 10.04.4 LTS 32-bit] Severe
- instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2
- M64 graphics
-Date: Wed, 21 Aug 2013 05:36:56 +0000
-Message-ID: <bug-56340-8800-C07i2h1oI8@http.bugs.freedesktop.org/>
-References: <bug-56340-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 28152] [NV36] corruption in FVWM window decorations
+Date: Wed, 21 Aug 2013 05:39:50 +0000
+Message-ID: <bug-28152-8800-b9FmuhOxzz@http.bugs.freedesktop.org/>
+References: <bug-28152-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1090593646=="
+Content-Type: multipart/mixed; boundary="===============0791158801=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56340-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-28152-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,49 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1090593646==
-Content-Type: multipart/alternative; boundary="1377063416.76adDD1.13790"; charset="us-ascii"
+--===============0791158801==
+Content-Type: multipart/alternative; boundary="1377063590.37C6b2b11.14251"; charset="us-ascii"
 
 
---1377063416.76adDD1.13790
-Date: Wed, 21 Aug 2013 05:36:56 +0000
+--1377063590.37C6b2b11.14251
+Date: Wed, 21 Aug 2013 05:39:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56340
+https://bugs.freedesktop.org/show_bug.cgi?id=28152
 
---- Comment #15 from mypersonalmailbox1-O5WfVfzUwx8@public.gmane.org ---
-(In reply to comment #14)
+Nick Bowler <nbowler-m3eOHSKbYRSw5LPnMra/2Q@public.gmane.org> changed:
 
-Again, since this mainboard is a Socket 7 mainboard, I am not able to run this
-system on Linux 3.x kernel.
-That being said, what I said in comment #13 still holds.
-Occasionally, I can get through the Ubuntu boot process, but most of the, I
-will encounter a freeze.
-If I set the system to AGP 1X mode in the BIOS setup, the system will never
-freeze.
-The problem is when I use AGP 2X mode.
-Note that these 2 cards are the ONLY AGP card that have issues with Ubuntu when
-AGP 2X mode is turned on.
-I have tested this mainboard with literally all kinds of AGP 3.3V signaling
-mode supporting cards (including NVIDIA GeForce 7300 GT, GeForce 6200, GeForce
-5950 Ultra, GeForce 4 MX, GeForce 2 MX, GeForce 256, RIVA TNT2, RIVA TNT, ATI
-Technologies Radeon 9700, Radeon 9250, Rage 128 Pro, Rage 128, Matrox G400,
-3DLabs Wildcat VP, S3 Graphics Savage4, SiS 305, 315, and many more), and only
-these 2 NVIDIA RIVA TNT2 M64 have issues when I turn on AGP 2X mode.
-This bug does not affect FIC KA-6110 mainboard despite the AGP similarities of
-VIA Technologies Apollo MVP3 chipset and Apollo Pro133 chipset.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #35722|0                           |1
+        is obsolete|                            |
 
-Regards,
+--- Comment #9 from Nick Bowler <nbowler-m3eOHSKbYRSw5LPnMra/2Q@public.gmane.org> ---
+Created attachment 84368
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84368&action=edit
+Kernel log
 
-fpgahardwareengineer
+Here's the log from the freshly minted 3.10.8 (of course the graphical problems
+are still present)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377063416.76adDD1.13790
-Date: Wed, 21 Aug 2013 05:36:56 +0000
+--1377063590.37C6b2b11.14251
+Date: Wed, 21 Aug 2013 05:39:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,43 +59,45 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:nbowler&#64;draconx.ca" title="Nick Bowler &lt;nbowler&#64;draconx.ca&gt;"> <span class="fn">Nick Bowler</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV36] corruption in FVWM window decorations"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28152">bug 28152</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #35722 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340#c15">Comment # 15</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV36] corruption in FVWM window decorations"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28152#c9">Comment # 9</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340">bug 56340</a>
-              from <span class="vcard"><a class="email" href="mailto:mypersonalmailbox1&#64;mail.com" title="mypersonalmailbox1&#64;mail.com">mypersonalmailbox1&#64;mail.com</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV36] corruption in FVWM window decorations"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28152">bug 28152</a>
+              from <span class="vcard"><a class="email" href="mailto:nbowler&#64;draconx.ca" title="Nick Bowler &lt;nbowler&#64;draconx.ca&gt;"> <span class="fn">Nick Bowler</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=56340#c14">comment #14</a>)
+        <pre>Created <span class=""><a href="attachment.cgi?id=84368" name="attach_84368" title="Kernel log">attachment 84368</a> <a href="attachment.cgi?id=84368&amp;action=edit" title="Kernel log">[details]</a></span>
+Kernel log
 
-Again, since this mainboard is a Socket 7 mainboard, I am not able to run this
-system on Linux 3.x kernel.
-That being said, what I said in <a href="show_bug.cgi?id=56340#c13">comment #13</a> still holds.
-Occasionally, I can get through the Ubuntu boot process, but most of the, I
-will encounter a freeze.
-If I set the system to AGP 1X mode in the BIOS setup, the system will never
-freeze.
-The problem is when I use AGP 2X mode.
-Note that these 2 cards are the ONLY AGP card that have issues with Ubuntu when
-AGP 2X mode is turned on.
-I have tested this mainboard with literally all kinds of AGP 3.3V signaling
-mode supporting cards (including NVIDIA GeForce 7300 GT, GeForce 6200, GeForce
-5950 Ultra, GeForce 4 MX, GeForce 2 MX, GeForce 256, RIVA TNT2, RIVA TNT, ATI
-Technologies Radeon 9700, Radeon 9250, Rage 128 Pro, Rage 128, Matrox G400,
-3DLabs Wildcat VP, S3 Graphics Savage4, SiS 305, 315, and many more), and only
-these 2 NVIDIA RIVA TNT2 M64 have issues when I turn on AGP 2X mode.
-This bug does not affect FIC KA-6110 mainboard despite the AGP similarities of
-VIA Technologies Apollo MVP3 chipset and Apollo Pro133 chipset.
-
-Regards,
-
-fpgahardwareengineer</pre>
+Here's the log from the freshly minted 3.10.8 (of course the graphical problems
+are still present)</pre>
         </div>
       </p>
       <hr>
@@ -120,9 +109,9 @@ fpgahardwareengineer</pre>
     </body>
 </html>
 
---1377063416.76adDD1.13790--
+--1377063590.37C6b2b11.14251--
 
---===============1090593646==
+--===============0791158801==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -133,4 +122,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1090593646==--
+--===============0791158801==--
