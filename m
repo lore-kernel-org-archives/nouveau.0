@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62870] Steam.sh fails at line 704,
- possibly relating to mesa stack
-Date: Wed, 21 Aug 2013 06:15:07 +0000
-Message-ID: <bug-62870-8800-7z9M2vDBNN@http.bugs.freedesktop.org/>
-References: <bug-62870-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51579] [NVA8] Xv shows black image on ION chipset
+Date: Wed, 21 Aug 2013 06:21:31 +0000
+Message-ID: <bug-51579-8800-m9Tn04EpV9@http.bugs.freedesktop.org/>
+References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1784814739=="
+Content-Type: multipart/mixed; boundary="===============0795831244=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62870-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51579-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1784814739==
-Content-Type: multipart/alternative; boundary="1377065706.fdcf40380.21013"; charset="us-ascii"
+--===============0795831244==
+Content-Type: multipart/alternative; boundary="1377066091.7FA720af4.22477"; charset="us-ascii"
 
 
---1377065706.fdcf40380.21013
-Date: Wed, 21 Aug 2013 06:15:06 +0000
+--1377066091.7FA720af4.22477
+Date: Wed, 21 Aug 2013 06:21:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62870
+https://bugs.freedesktop.org/show_bug.cgi?id=51579
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEEDINFO                    |RESOLVED
-         Resolution|---                         |NOTOURBUG
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-How did you arrive at this being a nouveau bug? Sounds like a steam issue, or
-something else. Debug it a little further using the steps that Emil suggested.
-If it _does_ turn out to be a nouveau bug, feel free to reopen this.
+             Status|NEEDINFO                    |NEW
+            Summary|Xv video support is black   |[NVA8] Xv shows black image
+                   |on NVidia NVa8 Chipset in   |on ION chipset
+                   |latest git [fixed with      |
+                   |patch]                      |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377065706.fdcf40380.21013
-Date: Wed, 21 Aug 2013 06:15:06 +0000
+--1377066091.7FA720af4.22477
+Date: Wed, 21 Aug 2013 06:21:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,9 +57,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - Steam.sh fails at line 704, possibly relating to mesa stack"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62870">bug 62870</a>
+          bz_status_NEW "
+   title="NEW --- - [NVA8] Xv shows black image on ION chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579">bug 51579</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -75,33 +72,18 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Status</td>
            <td>NEEDINFO
            </td>
-           <td>RESOLVED
+           <td>NEW
            </td>
          </tr>
 
          <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
+           <td style="text-align:right;">Summary</td>
+           <td>Xv video support is black on NVidia NVa8 Chipset in latest git [fixed with patch]
            </td>
-           <td>NOTOURBUG
+           <td>[NVA8] Xv shows black image on ION chipset
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - Steam.sh fails at line 704, possibly relating to mesa stack"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62870#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - Steam.sh fails at line 704, possibly relating to mesa stack"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62870">bug 62870</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>How did you arrive at this being a nouveau bug? Sounds like a steam issue, or
-something else. Debug it a little further using the steps that Emil suggested.
-If it _does_ turn out to be a nouveau bug, feel free to reopen this.</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -112,9 +94,9 @@ If it _does_ turn out to be a nouveau bug, feel free to reopen this.</pre>
     </body>
 </html>
 
---1377065706.fdcf40380.21013--
+--1377066091.7FA720af4.22477--
 
---===============1784814739==
+--===============0795831244==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -125,4 +107,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1784814739==--
+--===============0795831244==--
