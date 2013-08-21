@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58556] MacBook Pro 5, 1 with nVidia 9400m and 9600m,
- scrambled screen
-Date: Wed, 21 Aug 2013 13:44:52 +0000
-Message-ID: <bug-58556-8800-E33zSoD9i0@http.bugs.freedesktop.org/>
-References: <bug-58556-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 49786] In xterm,
+ some rectangles are not redrawn when the window is partly covered
+Date: Wed, 21 Aug 2013 14:25:22 +0000
+Message-ID: <bug-49786-8800-7F193H8oLm@http.bugs.freedesktop.org/>
+References: <bug-49786-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1794079551=="
+Content-Type: multipart/mixed; boundary="===============0415096354=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-49786-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1794079551==
-Content-Type: multipart/alternative; boundary="1377092692.DAcd3.6049"; charset="us-ascii"
+--===============0415096354==
+Content-Type: multipart/alternative; boundary="1377095122.dB02a1.18060"; charset="us-ascii"
 
 
---1377092692.DAcd3.6049
-Date: Wed, 21 Aug 2013 13:44:52 +0000
+--1377095122.dB02a1.18060
+Date: Wed, 21 Aug 2013 14:25:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58556
+https://bugs.freedesktop.org/show_bug.cgi?id=49786
 
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|DUPLICATE                   |---
-
---- Comment #14 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Hi Ilia,
-
-It seems to me bug 27501 is about being unable to boot, which is not the "main"
-problem here, but rather having a garbage screen after a successful boot.
-
-I'm bisecting it, and it seems it appeared between kernel 3.4 and 3.5-rc7. I'll
-post the full bisection here as soon as I can.
+--- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Great repro script! Bug confirmed on my NV96, and disconfirmed on NV18. I see
+that your card is a NV98, so this is probably a bug in the nv50 exa logic.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377092692.DAcd3.6049
-Date: Wed, 21 Aug 2013 13:44:52 +0000
+--1377095122.dB02a1.18060
+Date: Wed, 21 Aug 2013 14:25:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,57 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
-           <td>REOPENED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>DUPLICATE
-           </td>
-           <td>---
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>Hi Ilia,
-
-It seems to me <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="show_bug.cgi?id=27501">bug 27501</a> is about being unable to boot, which is not the &quot;main&quot;
-problem here, but rather having a garbage screen after a successful boot.
-
-I'm bisecting it, and it seems it appeared between kernel 3.4 and 3.5-rc7. I'll
-post the full bisection here as soon as I can.</pre>
+   title="NEW --- - In xterm, some rectangles are not redrawn when the window is partly covered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49786#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - In xterm, some rectangles are not redrawn when the window is partly covered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49786">bug 49786</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Great repro script! Bug confirmed on my NV96, and disconfirmed on NV18. I see
+that your card is a NV98, so this is probably a bug in the nv50 exa logic.</pre>
         </div>
       </p>
       <hr>
@@ -123,9 +75,9 @@ post the full bisection here as soon as I can.</pre>
     </body>
 </html>
 
---1377092692.DAcd3.6049--
+--1377095122.dB02a1.18060--
 
---===============1794079551==
+--===============0415096354==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -136,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1794079551==--
+--===============0415096354==--
