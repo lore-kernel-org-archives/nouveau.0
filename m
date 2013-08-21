@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 28152] [NV36] corruption in FVWM window decorations
-Date: Wed, 21 Aug 2013 05:39:50 +0000
-Message-ID: <bug-28152-8800-b9FmuhOxzz@http.bugs.freedesktop.org/>
-References: <bug-28152-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47796] Powerpoint 2010 Viewer crashes with Wine and
+ the Nouveau driver: "Unhandled exception: assertion failed"
+Date: Wed, 21 Aug 2013 05:53:15 +0000
+Message-ID: <bug-47796-8800-PJaTtCjiQd@http.bugs.freedesktop.org/>
+References: <bug-47796-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0791158801=="
+Content-Type: multipart/mixed; boundary="===============0596392438=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-28152-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47796-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,38 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0791158801==
-Content-Type: multipart/alternative; boundary="1377063590.37C6b2b11.14251"; charset="us-ascii"
+--===============0596392438==
+Content-Type: multipart/alternative; boundary="1377064395.feB81.15940"; charset="us-ascii"
 
 
---1377063590.37C6b2b11.14251
-Date: Wed, 21 Aug 2013 05:39:50 +0000
+--1377064395.feB81.15940
+Date: Wed, 21 Aug 2013 05:53:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=28152
+https://bugs.freedesktop.org/show_bug.cgi?id=47796
 
-Nick Bowler <nbowler-m3eOHSKbYRSw5LPnMra/2Q@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #35722|0                           |1
-        is obsolete|                            |
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
 
---- Comment #9 from Nick Bowler <nbowler-m3eOHSKbYRSw5LPnMra/2Q@public.gmane.org> ---
-Created attachment 84368
-  --> https://bugs.freedesktop.org/attachment.cgi?id=84368&action=edit
-Kernel log
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I downloaded the latest powerpoint viewer and was not able to recreate the
+crash on a NV18 card. There's another very similar bug (which is a tad newer
+than this one, but I've already commented on that one, sorry) that I'm going to
+mark this as a duplicate of. The upshot is that I don't see how that assert can
+happen with the current mesa code.
 
-Here's the log from the freshly minted 3.10.8 (of course the graphical problems
-are still present)
+Please re-check with the latest mesa if this is still an issue, and add steps
+on how to reproduce if it still occurs. (And let us know if it doesn't occur
+anymore too.)
+
+*** This bug has been marked as a duplicate of bug 49148 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377063590.37C6b2b11.14251
-Date: Wed, 21 Aug 2013 05:39:50 +0000
+--1377064395.feB81.15940
+Date: Wed, 21 Aug 2013 05:53:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,12 +65,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:nbowler&#64;draconx.ca" title="Nick Bowler &lt;nbowler&#64;draconx.ca&gt;"> <span class="fn">Nick Bowler</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV36] corruption in FVWM window decorations"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=28152">bug 28152</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Powerpoint 2010 Viewer crashes with Wine and the Nouveau driver: &quot;Unhandled exception: assertion failed&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47796">bug 47796</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -74,30 +80,46 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #35722 is obsolete</td>
-           <td>
-               &nbsp;
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>1
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV36] corruption in FVWM window decorations"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=28152#c9">Comment # 9</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Powerpoint 2010 Viewer crashes with Wine and the Nouveau driver: &quot;Unhandled exception: assertion failed&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47796#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV36] corruption in FVWM window decorations"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=28152">bug 28152</a>
-              from <span class="vcard"><a class="email" href="mailto:nbowler&#64;draconx.ca" title="Nick Bowler &lt;nbowler&#64;draconx.ca&gt;"> <span class="fn">Nick Bowler</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Powerpoint 2010 Viewer crashes with Wine and the Nouveau driver: &quot;Unhandled exception: assertion failed&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47796">bug 47796</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=84368" name="attach_84368" title="Kernel log">attachment 84368</a> <a href="attachment.cgi?id=84368&amp;action=edit" title="Kernel log">[details]</a></span>
-Kernel log
+        <pre>I downloaded the latest powerpoint viewer and was not able to recreate the
+crash on a NV18 card. There's another very similar bug (which is a tad newer
+than this one, but I've already commented on that one, sorry) that I'm going to
+mark this as a duplicate of. The upshot is that I don't see how that assert can
+happen with the current mesa code.
 
-Here's the log from the freshly minted 3.10.8 (of course the graphical problems
-are still present)</pre>
+Please re-check with the latest mesa if this is still an issue, and add steps
+on how to reproduce if it still occurs. (And let us know if it doesn't occur
+anymore too.)
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - nv20_state_fb.c:50: get_rt_format: Assertion `0' failed."
+   href="show_bug.cgi?id=49148">bug 49148</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +131,9 @@ are still present)</pre>
     </body>
 </html>
 
---1377063590.37C6b2b11.14251--
+--1377064395.feB81.15940--
 
---===============0791158801==
+--===============0596392438==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +144,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0791158801==--
+--===============0596392438==--
