@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49786] In xterm,
  some rectangles are not redrawn when the window is partly covered
-Date: Wed, 21 Aug 2013 15:05:41 +0000
-Message-ID: <bug-49786-8800-31gsbx5NvD@http.bugs.freedesktop.org/>
+Date: Wed, 21 Aug 2013 15:36:11 +0000
+Message-ID: <bug-49786-8800-79mk0AihB7@http.bugs.freedesktop.org/>
 References: <bug-49786-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0203322595=="
+Content-Type: multipart/mixed; boundary="===============1789039126=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-49786-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0203322595==
-Content-Type: multipart/alternative; boundary="1377097541.A0dd8BE1.28395"; charset="us-ascii"
+--===============1789039126==
+Content-Type: multipart/alternative; boundary="1377099371.4adbdd41.3973"; charset="us-ascii"
 
 
---1377097541.A0dd8BE1.28395
-Date: Wed, 21 Aug 2013 15:05:41 +0000
+--1377099371.4adbdd41.3973
+Date: Wed, 21 Aug 2013 15:36:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49786
 
---- Comment #12 from Vincent Lefevre <vincent-fdt-buymaDBGzMOsTnJN9+BGXg@public.gmane.org> ---
-FYI, the other machine where the bug occurs also has a NV98 chipset. The exact
-card is the following:
-
-  NVIDIA Corporation G98 [Quadro NVS 295] (rev a1)
-
-according to lspci. The one on the DELL Latitude is:
-
-  NVIDIA Corporation G98M [Quadro NVS 160M] (rev a1)
+--- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+And as I suspected, if you run a compositor, the issue goes away (e.g. with
+xcompmgr).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377097541.A0dd8BE1.28395
-Date: Wed, 21 Aug 2013 15:05:41 +0000
+--1377099371.4adbdd41.3973
+Date: Wed, 21 Aug 2013 15:36:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,21 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - In xterm, some rectangles are not redrawn when the window is partly covered"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49786#c12">Comment # 12</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49786#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - In xterm, some rectangles are not redrawn when the window is partly covered"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=49786">bug 49786</a>
-              from <span class="vcard"><a class="email" href="mailto:vincent-fdt&#64;vinc17.net" title="Vincent Lefevre &lt;vincent-fdt&#64;vinc17.net&gt;"> <span class="fn">Vincent Lefevre</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>FYI, the other machine where the bug occurs also has a NV98 chipset. The exact
-card is the following:
-
-  NVIDIA Corporation G98 [Quadro NVS 295] (rev a1)
-
-according to lspci. The one on the DELL Latitude is:
-
-  NVIDIA Corporation G98M [Quadro NVS 160M] (rev a1)</pre>
+        <pre>And as I suspected, if you run a compositor, the issue goes away (e.g. with
+xcompmgr).</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +75,9 @@ according to lspci. The one on the DELL Latitude is:
     </body>
 </html>
 
---1377097541.A0dd8BE1.28395--
+--1377099371.4adbdd41.3973--
 
---===============0203322595==
+--===============1789039126==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0203322595==--
+--===============1789039126==--
