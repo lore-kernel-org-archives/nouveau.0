@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49786] In xterm,
- some rectangles are not redrawn when the window is partly covered
-Date: Wed, 21 Aug 2013 06:29:57 +0000
-Message-ID: <bug-49786-8800-EHIdAoPaES@http.bugs.freedesktop.org/>
-References: <bug-49786-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 61069] [NV17] Crash while displaying large image
+Date: Wed, 21 Aug 2013 06:37:41 +0000
+Message-ID: <bug-61069-8800-GY47Zt5BKs@http.bugs.freedesktop.org/>
+References: <bug-61069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1562391935=="
+Content-Type: multipart/mixed; boundary="===============0578065186=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49786-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-61069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1562391935==
-Content-Type: multipart/alternative; boundary="1377066596.52dCEA41.25276"; charset="us-ascii"
+--===============0578065186==
+Content-Type: multipart/alternative; boundary="1377067060.6FcaB2.27266"; charset="us-ascii"
 
 
---1377066596.52dCEA41.25276
-Date: Wed, 21 Aug 2013 06:29:56 +0000
+--1377067060.6FcaB2.27266
+Date: Wed, 21 Aug 2013 06:37:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=49786
+https://bugs.freedesktop.org/show_bug.cgi?id=61069
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you confirm that this happens with the latest DDX (1.0.9)? If so, we'll
-need a bit more information -- please attach both a dmesg + Xorg.0.log for your
-system. (Even if there are no errors, they contain information that describes
-your system.)
+--- Comment #3 from dave.mueller-OI3hZJvNYWs@public.gmane.org ---
+What do you mean by "latest kernel"? If you mean 3.10, the answer is yes.
+Is there something in the upcoming 3.11 which may fix this issue?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377066596.52dCEA41.25276
-Date: Wed, 21 Aug 2013 06:29:56 +0000
+--1377067060.6FcaB2.27266
+Date: Wed, 21 Aug 2013 06:37:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,19 +52,17 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - In xterm, some rectangles are not redrawn when the window is partly covered"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49786#c4">Comment # 4</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [NV17] Crash while displaying large image"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61069#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - In xterm, some rectangles are not redrawn when the window is partly covered"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49786">bug 49786</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [NV17] Crash while displaying large image"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61069">bug 61069</a>
+              from <span class="vcard"><a class="email" href="mailto:dave.mueller&#64;gmx.ch" title="dave.mueller&#64;gmx.ch">dave.mueller&#64;gmx.ch</a>
 </span></b>
-        <pre>Can you confirm that this happens with the latest DDX (1.0.9)? If so, we'll
-need a bit more information -- please attach both a dmesg + Xorg.0.log for your
-system. (Even if there are no errors, they contain information that describes
-your system.)</pre>
+        <pre>What do you mean by &quot;latest kernel&quot;? If you mean 3.10, the answer is yes.
+Is there something in the upcoming 3.11 which may fix this issue?</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +74,9 @@ your system.)</pre>
     </body>
 </html>
 
---1377066596.52dCEA41.25276--
+--1377067060.6FcaB2.27266--
 
---===============1562391935==
+--===============0578065186==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1562391935==--
+--===============0578065186==--
