@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64774] nouveau GF108 kernel crash in optimus mode
- when enabling external display output
-Date: Wed, 21 Aug 2013 17:07:27 +0000
-Message-ID: <bug-64774-8800-CpBvqQCTWU@http.bugs.freedesktop.org/>
-References: <bug-64774-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68075] nouveau inconsistent changing output
+ connector names in xrandr
+Date: Wed, 21 Aug 2013 18:49:32 +0000
+Message-ID: <bug-68075-8800-i3qJgRuuyN@http.bugs.freedesktop.org/>
+References: <bug-68075-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1377437749=="
+Content-Type: multipart/mixed; boundary="===============1440219713=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64774-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68075-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1377437749==
-Content-Type: multipart/alternative; boundary="1377104847.6c3B2.25458"; charset="us-ascii"
+--===============1440219713==
+Content-Type: multipart/alternative; boundary="1377110972.7006CBa1.20811"; charset="us-ascii"
 
 
---1377104847.6c3B2.25458
-Date: Wed, 21 Aug 2013 17:07:27 +0000
+--1377110972.7006CBa1.20811
+Date: Wed, 21 Aug 2013 18:49:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D64774
+https://bugs.freedesktop.org/show_bug.cgi?id=3D68075
 
---- Comment #23 from Pasi K=C3=A4rkk=C3=A4inen <pasik-X3B1VOXEql0@public.gmane.org> ---
-
-Feel free to post it with your analysis! You can add my reported-by and
-tested-by.=20
-
-I'm able to reproduce the crash with Linux 3.8.x, 3.9.x and 3.10.x, so the
-patch is needed at least on the 3.10.x stable branch to fix the crash there.
-
-I'll also test with 3.11-rc.
+--- Comment #7 from Pasi K=C3=A4rkk=C3=A4inen <pasik-X3B1VOXEql0@public.gmane.org> ---
+Created attachment 84407
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D84407&action=3Dedit
+nouveau debug Xorg logs
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377104847.6c3B2.25458
-Date: Wed, 21 Aug 2013 17:07:27 +0000
+--1377110972.7006CBa1.20811
+Date: Wed, 21 Aug 2013 18:49:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,28 +57,25 @@ Content-Transfer-Encoding: quoted-printable
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW --- - nouveau GF108 kernel crash in optimus mode when enabl=
-ing external display output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64774#c23">Commen=
-t # 23</a>
+   title=3D"NEW --- - nouveau inconsistent changing output connector names =
+in xrandr"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D68075#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW --- - nouveau GF108 kernel crash in optimus mode when enabl=
-ing external display output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64774">bug 64774<=
+   title=3D"NEW --- - nouveau inconsistent changing output connector names =
+in xrandr"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D68075">bug 68075<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 pasik&#64;iki.fi" title=3D"Pasi K=C3=A4rkk=C3=A4inen &lt;pasik&#64;iki.fi&g=
 t;"> <span class=3D"fn">Pasi K=C3=A4rkk=C3=A4inen</span></a>
 </span></b>
-        <pre>
-Feel free to post it with your analysis! You can add my reported-by and
-tested-by.=20
-
-I'm able to reproduce the crash with Linux 3.8.x, 3.9.x and 3.10.x, so the
-patch is needed at least on the 3.10.x stable branch to fix the crash there.
-
-I'll also test with 3.11-rc.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D84407"=
+ name=3D"attach_84407" title=3D"nouveau debug Xorg logs">attachment 84407</=
+a> <a href=3D"attachment.cgi?id=3D84407&amp;action=3Dedit" title=3D"nouveau=
+ debug Xorg logs">[details]</a></span>
+nouveau debug Xorg logs</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +87,9 @@ I'll also test with 3.11-rc.</pre>
     </body>
 </html>
 
---1377104847.6c3B2.25458--
+--1377110972.7006CBa1.20811--
 
---===============1377437749==
+--===============1440219713==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1377437749==--
+--===============1440219713==--
