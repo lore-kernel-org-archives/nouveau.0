@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51579] [NVA8] Xv shows black image on ION chipset
-Date: Wed, 21 Aug 2013 06:21:31 +0000
-Message-ID: <bug-51579-8800-m9Tn04EpV9@http.bugs.freedesktop.org/>
-References: <bug-51579-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 49786] In xterm,
+ some rectangles are not redrawn when the window is partly covered
+Date: Wed, 21 Aug 2013 06:29:57 +0000
+Message-ID: <bug-49786-8800-EHIdAoPaES@http.bugs.freedesktop.org/>
+References: <bug-49786-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0795831244=="
+Content-Type: multipart/mixed; boundary="===============1562391935=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51579-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-49786-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0795831244==
-Content-Type: multipart/alternative; boundary="1377066091.7FA720af4.22477"; charset="us-ascii"
+--===============1562391935==
+Content-Type: multipart/alternative; boundary="1377066596.52dCEA41.25276"; charset="us-ascii"
 
 
---1377066091.7FA720af4.22477
-Date: Wed, 21 Aug 2013 06:21:31 +0000
+--1377066596.52dCEA41.25276
+Date: Wed, 21 Aug 2013 06:29:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51579
+https://bugs.freedesktop.org/show_bug.cgi?id=49786
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEEDINFO                    |NEW
-            Summary|Xv video support is black   |[NVA8] Xv shows black image
-                   |on NVidia NVa8 Chipset in   |on ION chipset
-                   |latest git [fixed with      |
-                   |patch]                      |
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you confirm that this happens with the latest DDX (1.0.9)? If so, we'll
+need a bit more information -- please attach both a dmesg + Xorg.0.log for your
+system. (Even if there are no errors, they contain information that describes
+your system.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377066091.7FA720af4.22477
-Date: Wed, 21 Aug 2013 06:21:31 +0000
+--1377066596.52dCEA41.25276
+Date: Wed, 21 Aug 2013 06:29:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,36 +51,24 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA8] Xv shows black image on ION chipset"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579">bug 51579</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEEDINFO
-           </td>
-           <td>NEW
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Xv video support is black on NVidia NVa8 Chipset in latest git [fixed with patch]
-           </td>
-           <td>[NVA8] Xv shows black image on ION chipset
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - In xterm, some rectangles are not redrawn when the window is partly covered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49786#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - In xterm, some rectangles are not redrawn when the window is partly covered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49786">bug 49786</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Can you confirm that this happens with the latest DDX (1.0.9)? If so, we'll
+need a bit more information -- please attach both a dmesg + Xorg.0.log for your
+system. (Even if there are no errors, they contain information that describes
+your system.)</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -94,9 +79,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377066091.7FA720af4.22477--
+--1377066596.52dCEA41.25276--
 
---===============0795831244==
+--===============1562391935==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -107,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0795831244==--
+--===============1562391935==--
