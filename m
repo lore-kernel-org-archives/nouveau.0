@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49786] In xterm,
  some rectangles are not redrawn when the window is partly covered
-Date: Wed, 21 Aug 2013 10:56:54 +0000
-Message-ID: <bug-49786-8800-ehljMneida@http.bugs.freedesktop.org/>
+Date: Wed, 21 Aug 2013 10:59:49 +0000
+Message-ID: <bug-49786-8800-WsAexaMto2@http.bugs.freedesktop.org/>
 References: <bug-49786-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0980805597=="
+Content-Type: multipart/mixed; boundary="===============0668924795=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-49786-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0980805597==
-Content-Type: multipart/alternative; boundary="1377082614.E0fc4.26536"; charset="us-ascii"
+--===============0668924795==
+Content-Type: multipart/alternative; boundary="1377082789.3fba0b11.27394"; charset="us-ascii"
 
 
---1377082614.E0fc4.26536
-Date: Wed, 21 Aug 2013 10:56:54 +0000
+--1377082789.3fba0b11.27394
+Date: Wed, 21 Aug 2013 10:59:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49786
 
-Vincent Lefevre <vincent-fdt-buymaDBGzMOsTnJN9+BGXg@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #84380|Xorg.0.log (2013-08-21)     |Xorg.0.log - DELL Latitude
-        description|                            |E6400 (2013-08-21)
+--- Comment #10 from Vincent Lefevre <vincent-fdt-buymaDBGzMOsTnJN9+BGXg@public.gmane.org> ---
+Some other thing: the dmesg and Xorg.0.log I've attached correspond to the DELL
+Latitude E6400. The bug also occurs on a different machine (not with me here);
+I'll try to attach information in the next few days.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377082614.E0fc4.26536
-Date: Wed, 21 Aug 2013 10:56:54 +0000
+--1377082789.3fba0b11.27394
+Date: Wed, 21 Aug 2013 10:59:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,28 +50,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:vincent-fdt&#64;vinc17.net" title="Vincent Lefevre &lt;vincent-fdt&#64;vinc17.net&gt;"> <span class="fn">Vincent Lefevre</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - In xterm, some rectangles are not redrawn when the window is partly covered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49786#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - In xterm, some rectangles are not redrawn when the window is partly covered"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=49786">bug 49786</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #84380 description</td>
-           <td>Xorg.0.log (2013-08-21)
-           </td>
-           <td>Xorg.0.log - DELL Latitude E6400 (2013-08-21)
-           </td>
-         </tr></table>
-      <p>
+              from <span class="vcard"><a class="email" href="mailto:vincent-fdt&#64;vinc17.net" title="Vincent Lefevre &lt;vincent-fdt&#64;vinc17.net&gt;"> <span class="fn">Vincent Lefevre</span></a>
+</span></b>
+        <pre>Some other thing: the dmesg and Xorg.0.log I've attached correspond to the DELL
+Latitude E6400. The bug also occurs on a different machine (not with me here);
+I'll try to attach information in the next few days.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +77,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377082614.E0fc4.26536--
+--1377082789.3fba0b11.27394--
 
---===============0980805597==
+--===============0668924795==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0980805597==--
+--===============0668924795==--
