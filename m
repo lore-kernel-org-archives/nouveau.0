@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 63101] [NV4B] NVIDIA GeForce 7300 GT AGP graphics
- card will not display any text characters on VIA Technologies Apollo
- MVP3-based mainboard
-Date: Wed, 21 Aug 2013 03:53:40 +0000
-Message-ID: <bug-63101-8800-sM8vq99GLn@http.bugs.freedesktop.org/>
-References: <bug-63101-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58556] MacBook Pro 5, 1 with nVidia 9400m and 9600m,
+ scrambled screen
+Date: Wed, 21 Aug 2013 04:07:01 +0000
+Message-ID: <bug-58556-8800-8aFsRoyf3C@http.bugs.freedesktop.org/>
+References: <bug-58556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1849147623=="
+Content-Type: multipart/mixed; boundary="===============0361703374=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-63101-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,42 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1849147623==
-Content-Type: multipart/alternative; boundary="1377057220.cbf66A3A2.24799"; charset="us-ascii"
+--===============0361703374==
+Content-Type: multipart/alternative; boundary="1377058022.e5478e43.26968"; charset="us-ascii"
 
 
---1377057220.cbf66A3A2.24799
-Date: Wed, 21 Aug 2013 03:53:40 +0000
+--1377058022.e5478e43.26968
+Date: Wed, 21 Aug 2013 04:07:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=63101
+https://bugs.freedesktop.org/show_bug.cgi?id=58556
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
-            Summary|[Ubuntu 10.04.4 LTS 32-bit] |[NV4B] NVIDIA GeForce 7300
-                   |NVIDIA GeForce 7300 GT AGP  |GT AGP graphics card will
-                   |graphics card will not      |not display any text
-                   |display any text characters |characters on VIA
-                   |on VIA Technologies Apollo  |Technologies Apollo
-                   |MVP3-based mainboard        |MVP3-based mainboard
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you try this with an upstream kernel, e.g. 3.10 or the kernel at
-nouveau/master? (Note that 3.11-rc1 - 3.11-rc6 will crash on load for you, -rc7
-should be fine when it comes out.) It's impossible to tell what's in those LTS
-kernels, so they're basically useless for reporting bugs to upstream about. If
-building your own kernel isn't an option, you should file this but with Ubuntu.
+--- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+There are two long bugs about this same issue, I'm giving the older one
+precedence.
+
+*** This bug has been marked as a duplicate of bug 27501 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377057220.cbf66A3A2.24799
-Date: Wed, 21 Aug 2013 03:53:40 +0000
+--1377058022.e5478e43.26968
+Date: Wed, 21 Aug 2013 04:07:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,9 +61,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [NV4B] NVIDIA GeForce 7300 GT AGP graphics card will not display any text characters on VIA Technologies Apollo MVP3-based mainboard"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63101">bug 63101</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -83,34 +76,36 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Status</td>
            <td>NEW
            </td>
-           <td>NEEDINFO
+           <td>RESOLVED
            </td>
          </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[Ubuntu 10.04.4 LTS 32-bit] NVIDIA GeForce 7300 GT AGP graphics card will not display any text characters on VIA Technologies Apollo MVP3-based mainboard
+           <td style="text-align:right;">Resolution</td>
+           <td>---
            </td>
-           <td>[NV4B] NVIDIA GeForce 7300 GT AGP graphics card will not display any text characters on VIA Technologies Apollo MVP3-based mainboard
+           <td>DUPLICATE
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [NV4B] NVIDIA GeForce 7300 GT AGP graphics card will not display any text characters on VIA Technologies Apollo MVP3-based mainboard"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63101#c5">Comment # 5</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556#c13">Comment # 13</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [NV4B] NVIDIA GeForce 7300 GT AGP graphics card will not display any text characters on VIA Technologies Apollo MVP3-based mainboard"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63101">bug 63101</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Can you try this with an upstream kernel, e.g. 3.10 or the kernel at
-nouveau/master? (Note that 3.11-rc1 - 3.11-rc6 will crash on load for you, -rc7
-should be fine when it comes out.) It's impossible to tell what's in those LTS
-kernels, so they're basically useless for reporting bugs to upstream about. If
-building your own kernel isn't an option, you should file this but with Ubuntu.</pre>
+        <pre>There are two long bugs about this same issue, I'm giving the older one
+precedence.
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nVidia 9600M GT (Macbook Pro current model) is unable to boot"
+   href="show_bug.cgi?id=27501">bug 27501</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -122,9 +117,9 @@ building your own kernel isn't an option, you should file this but with Ubuntu.<
     </body>
 </html>
 
---1377057220.cbf66A3A2.24799--
+--1377058022.e5478e43.26968--
 
---===============1849147623==
+--===============0361703374==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -135,4 +130,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1849147623==--
+--===============0361703374==--
