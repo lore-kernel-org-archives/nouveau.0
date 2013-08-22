@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67382] [nouveau,
  nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Thu, 22 Aug 2013 01:31:36 +0000
-Message-ID: <bug-67382-8800-t1L1yP896Q@http.bugs.freedesktop.org/>
+Date: Thu, 22 Aug 2013 02:00:11 +0000
+Message-ID: <bug-67382-8800-CxRhWyp6F5@http.bugs.freedesktop.org/>
 References: <bug-67382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0989402634=="
+Content-Type: multipart/mixed; boundary="===============0019832303=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,36 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0989402634==
-Content-Type: multipart/alternative; boundary="1377135096.Be8d7Fb61.24415"; charset="us-ascii"
+--===============0019832303==
+Content-Type: multipart/alternative; boundary="1377136811.856eA2.29811"; charset="us-ascii"
 
 
---1377135096.Be8d7Fb61.24415
-Date: Thu, 22 Aug 2013 01:31:35 +0000
+--1377136811.856eA2.29811
+Date: Thu, 22 Aug 2013 02:00:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67382
 
---- Comment #30 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
-As the days went by. I'm wondering what I should do. Or what's the case with
-this report.
-Is it kind of a problem, that I need to take care myself? E.g. it cannot be
-patched/removed/altered, because this stabilisation is needed and would harm
-other cards?
+--- Comment #31 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #30)
+> As the days went by. I'm wondering what I should do. Or what's the case with
+> this report.
+> Is it kind of a problem, that I need to take care myself? E.g. it cannot be
+> patched/removed/altered, because this stabilisation is needed and would harm
+> other cards?
+> 
+Point is I've asked a few people and no-one seems to have such issue like you.
+So I'm suspecting that it's related to the original NV50. With that said the
+only person I can think of having such a card to test is the nouveau/kernel
+maintainer. Which is quite busy, but hopefully will have a moment to test.
 
-
-I have no problem with waiting, but the uncertainty is killing me :)
-
-
-Best regards
+Side effect of using the new "fix" is causing a regression on almost all other
+cards, and/or the need to increase the delay to a silly value (as it was
+before).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377135096.Be8d7Fb61.24415
-Date: Thu, 22 Aug 2013 01:31:35 +0000
+--1377136811.856eA2.29811
+Date: Thu, 22 Aug 2013 02:00:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,24 +68,28 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c30">Comment # 30</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c31">Comment # 31</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
-              from <span class="vcard"><a class="email" href="mailto:anonymous&#64;dodgeit.com" title="Anonymous Helper &lt;anonymous&#64;dodgeit.com&gt;"> <span class="fn">Anonymous Helper</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>As the days went by. I'm wondering what I should do. Or what's the case with
-this report.
-Is it kind of a problem, that I need to take care myself? E.g. it cannot be
-patched/removed/altered, because this stabilisation is needed and would harm
-other cards?
+        <pre>(In reply to <a href="show_bug.cgi?id=67382#c30">comment #30</a>)
+<span class="quote">&gt; As the days went by. I'm wondering what I should do. Or what's the case with
+&gt; this report.
+&gt; Is it kind of a problem, that I need to take care myself? E.g. it cannot be
+&gt; patched/removed/altered, because this stabilisation is needed and would harm
+&gt; other cards?
+&gt; </span >
+Point is I've asked a few people and no-one seems to have such issue like you.
+So I'm suspecting that it's related to the original NV50. With that said the
+only person I can think of having such a card to test is the nouveau/kernel
+maintainer. Which is quite busy, but hopefully will have a moment to test.
 
-
-I have no problem with waiting, but the uncertainty is killing me :)
-
-
-Best regards</pre>
+Side effect of using the new &quot;fix&quot; is causing a regression on almost all other
+cards, and/or the need to increase the delay to a silly value (as it was
+before).</pre>
         </div>
       </p>
       <hr>
@@ -93,9 +101,9 @@ Best regards</pre>
     </body>
 </html>
 
---1377135096.Be8d7Fb61.24415--
+--1377136811.856eA2.29811--
 
---===============0989402634==
+--===============0019832303==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +114,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0989402634==--
+--===============0019832303==--
