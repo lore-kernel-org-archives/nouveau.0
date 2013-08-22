@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67382] [nouveau,
- nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Thu, 22 Aug 2013 07:43:10 +0000
-Message-ID: <bug-67382-8800-1DaSgzkxm9@http.bugs.freedesktop.org/>
-References: <bug-67382-8800@http.bugs.freedesktop.org/>
+From: Pasi =?iso-8859-1?Q?K=E4rkk=E4inen?= <pasik-X3B1VOXEql0@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: avoid null deref on bad
+ arguments to nouveau_vma_getmap
+Date: Thu, 22 Aug 2013 10:58:32 +0300
+Message-ID: <20130822075832.GO2924@reaktio.net>
+References: <1377130214-17522-1-git-send-email-imirkin@alum.mit.edu>
+	<5215B9E8.5080108@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2034119044=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <5215B9E8.5080108-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,109 +20,97 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Thu, Aug 22, 2013 at 09:12:40AM +0200, Maarten Lankhorst wrote:
+> Op 22-08-13 02:10, Ilia Mirkin schreef:
+> > The code expects non-VRAM mem nodes to have a pages list. If that's not
+> > set, it will do a null deref down the line. Warn on that condition and
+> > return an error.
+> >
+> > See https://bugs.freedesktop.org/show_bug.cgi?id=3D64774
+> >
+> > Reported-by: Pasi K=E4rkk=E4inen <pasik-X3B1VOXEql0@public.gmane.org>
+> > Tested-by: Pasi K=E4rkk=E4inen <pasik-X3B1VOXEql0@public.gmane.org>
+> > Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+> > Cc: <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org> # 3.8+
+> > ---
+> >
+> > I don't exactly understand what's going on, but this is just a
+> > straightforward way to avoid a null deref that you see happens in the
+> > bug. I haven't figured out the root cause of this, but it's getting
+> > well into the "I have no idea how TTM works" space. However this seems
+> > like a bit of defensive programming -- nouveau_vm_map_sg will pass
+> > node->pages as a list down, which will be dereferenced by
+> > nvc0_vm_map_sg. Perhaps the other arguments should make that
+> > dereferencing not happen, but it definitely was happening here, as you
+> > can see in the bug.
+> >
+> > Ben/Maarten, I'll let you judge whether this check is appropriate,
+> > since like I hope I was able to convey above, I'm just not really sure =
+:)
+> Not it really isn't appropriate..
+> =
 
---===============2034119044==
-Content-Type: multipart/alternative; boundary="1377157389.6a566cA2.3753"; charset="us-ascii"
+> You'd have to call call nouveau_vm_map_sg_table instead, the only place t=
+hat doesn't handle that correctly
+> is where it's not expected to be called.
+> =
+
+> Here, have a completely untested patch to fix things...
+>
+
+Thanks! I'll give it a try later today.. =
 
 
---1377157389.6a566cA2.3753
-Date: Thu, 22 Aug 2013 07:43:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67382
+-- Pasi
+ =
 
---- Comment #32 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-(In reply to comment #31)
-> (In reply to comment #30)
-> > As the days went by. I'm wondering what I should do. Or what's the case with
-> > this report.
-> > Is it kind of a problem, that I need to take care myself? E.g. it cannot be
-> > patched/removed/altered, because this stabilisation is needed and would harm
-> > other cards?
-> > 
-> Point is I've asked a few people and no-one seems to have such issue like
-> you. So I'm suspecting that it's related to the original NV50. With that
-> said the only person I can think of having such a card to test is the
-> nouveau/kernel maintainer. Which is quite busy, but hopefully will have a
-> moment to test.
-> 
-> Side effect of using the new "fix" is causing a regression on almost all
-> other cards, and/or the need to increase the delay to a silly value (as it
-> was before).
 
-Hey dude, I have two of them :) One quadro and one geforce.
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/=
+nouveau/nouveau_display.c
+> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+> @@ -138,17 +143,26 @@ nouveau_user_framebuffer_create(struct drm_device *=
+dev,
+>  {
+>  	struct nouveau_framebuffer *nouveau_fb;
+>  	struct drm_gem_object *gem;
+> +	struct nouveau_bo *nvbo;
+>  	int ret =3D -ENOMEM;
+>  =
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+>  	gem =3D drm_gem_object_lookup(dev, file_priv, mode_cmd->handles[0]);
+>  	if (!gem)
+>  		return ERR_PTR(-ENOENT);
+>  =
 
---1377157389.6a566cA2.3753
-Date: Thu, 22 Aug 2013 07:43:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+> +	nvbo =3D nouveau_gem_object(gem);
+> +	if (!(nvbo->valid_domains & NOUVEAU_GEM_DOMAIN_VRAM)) {
+> +		nv_warn(nouveau_drm(dev), "Trying to create a fb in vram with"
+> +			" valid_domains=3D%08x\n", nvbo->valid_domains);
+> +		ret =3D -EINVAL;
+> +		goto err_unref;
+> +	}
+> +
+>  	nouveau_fb =3D kzalloc(sizeof(struct nouveau_framebuffer), GFP_KERNEL);
+>  	if (!nouveau_fb)
+>  		goto err_unref;
+>  =
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c32">Comment # 32</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67382#c31">comment #31</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=67382#c30">comment #30</a>)
-&gt; &gt; As the days went by. I'm wondering what I should do. Or what's the case with
-&gt; &gt; this report.
-&gt; &gt; Is it kind of a problem, that I need to take care myself? E.g. it cannot be
-&gt; &gt; patched/removed/altered, because this stabilisation is needed and would harm
-&gt; &gt; other cards?
-&gt; &gt; 
-&gt; Point is I've asked a few people and no-one seems to have such issue like
-&gt; you. So I'm suspecting that it's related to the original NV50. With that
-&gt; said the only person I can think of having such a card to test is the
-&gt; nouveau/kernel maintainer. Which is quite busy, but hopefully will have a
-&gt; moment to test.
-&gt; 
-&gt; Side effect of using the new &quot;fix&quot; is causing a regression on almost all
-&gt; other cards, and/or the need to increase the delay to a silly value (as it
-&gt; was before).</span >
+> -	ret =3D nouveau_framebuffer_init(dev, nouveau_fb, mode_cmd, nouveau_gem=
+_object(gem));
+> +	ret =3D nouveau_framebuffer_init(dev, nouveau_fb, mode_cmd, nvbo);
+>  	if (ret)
+>  		goto err;
+>  =
 
-Hey dude, I have two of them :) One quadro and one geforce.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+> =
 
---1377157389.6a566cA2.3753--
-
---===============2034119044==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============2034119044==--
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
