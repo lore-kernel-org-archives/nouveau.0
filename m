@@ -1,16 +1,13 @@
-From: Pasi =?iso-8859-1?Q?K=E4rkk=E4inen?= <pasik-X3B1VOXEql0@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: avoid null deref on bad
- arguments to nouveau_vma_getmap
-Date: Thu, 22 Aug 2013 10:58:32 +0300
-Message-ID: <20130822075832.GO2924@reaktio.net>
-References: <1377130214-17522-1-git-send-email-imirkin@alum.mit.edu>
-	<5215B9E8.5080108@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 60772] xf86-video-nouveau fails to modprobe nouveau:
+ KMS not enabled
+Date: Thu, 22 Aug 2013 09:06:43 +0000
+Message-ID: <bug-60772-8800-ESZGcLb8fh@http.bugs.freedesktop.org/>
+References: <bug-60772-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/mixed; boundary="===============0531404538=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <5215B9E8.5080108-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+In-Reply-To: <bug-60772-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,97 +17,159 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Aug 22, 2013 at 09:12:40AM +0200, Maarten Lankhorst wrote:
-> Op 22-08-13 02:10, Ilia Mirkin schreef:
-> > The code expects non-VRAM mem nodes to have a pages list. If that's not
-> > set, it will do a null deref down the line. Warn on that condition and
-> > return an error.
-> >
-> > See https://bugs.freedesktop.org/show_bug.cgi?id=3D64774
-> >
-> > Reported-by: Pasi K=E4rkk=E4inen <pasik-X3B1VOXEql0@public.gmane.org>
-> > Tested-by: Pasi K=E4rkk=E4inen <pasik-X3B1VOXEql0@public.gmane.org>
-> > Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-> > Cc: <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org> # 3.8+
-> > ---
-> >
-> > I don't exactly understand what's going on, but this is just a
-> > straightforward way to avoid a null deref that you see happens in the
-> > bug. I haven't figured out the root cause of this, but it's getting
-> > well into the "I have no idea how TTM works" space. However this seems
-> > like a bit of defensive programming -- nouveau_vm_map_sg will pass
-> > node->pages as a list down, which will be dereferenced by
-> > nvc0_vm_map_sg. Perhaps the other arguments should make that
-> > dereferencing not happen, but it definitely was happening here, as you
-> > can see in the bug.
-> >
-> > Ben/Maarten, I'll let you judge whether this check is appropriate,
-> > since like I hope I was able to convey above, I'm just not really sure =
-:)
-> Not it really isn't appropriate..
-> =
 
-> You'd have to call call nouveau_vm_map_sg_table instead, the only place t=
-hat doesn't handle that correctly
-> is where it's not expected to be called.
-> =
-
-> Here, have a completely untested patch to fix things...
->
-
-Thanks! I'll give it a try later today.. =
+--===============0531404538==
+Content-Type: multipart/alternative; boundary="1377162403.F7BFbA1.18565"; charset="us-ascii"
 
 
+--1377162403.F7BFbA1.18565
+Date: Thu, 22 Aug 2013 09:06:42 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
--- Pasi
- =
+https://bugs.freedesktop.org/show_bug.cgi?id=60772
 
+--- Comment #14 from Honza <hkmaly-jG/AHqQBv7lBDgjK7y7TUQ@public.gmane.org> ---
+(In reply to comment #13)
+> (In reply to comment #11)
+> > Mirkin: You might've overlooked it, but there IS patch in the message you
+> > posted reference to. I don't see what other patch might be needed.
+> > 
+> No-one is saying there is a need for (other) patch(es)
+> 
 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/=
-nouveau/nouveau_display.c
-> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-> @@ -138,17 +143,26 @@ nouveau_user_framebuffer_create(struct drm_device *=
-dev,
->  {
->  	struct nouveau_framebuffer *nouveau_fb;
->  	struct drm_gem_object *gem;
-> +	struct nouveau_bo *nvbo;
->  	int ret =3D -ENOMEM;
->  =
+"If you really want to change the behaviour, send a patch, ping people, etc."
 
->  	gem =3D drm_gem_object_lookup(dev, file_priv, mode_cmd->handles[0]);
->  	if (!gem)
->  		return ERR_PTR(-ENOENT);
->  =
+> > I fail to see why you think it's necessary to change behaviour of
+> > xf86-video-nouveau to support less workflows just to force the workflow you
+> > prefer. All replies against this patch I saw was on ideological ground, none
+> > presented any real reason why it's better this way.
+> > 
+> Afaics thing will work fine if you use udev/eudev/mdev over linux-hotplug.
+> In the latter of which I cannot see any progress (or changes) over the last
+> few years.
+> 
 
-> +	nvbo =3D nouveau_gem_object(gem);
-> +	if (!(nvbo->valid_domains & NOUVEAU_GEM_DOMAIN_VRAM)) {
-> +		nv_warn(nouveau_drm(dev), "Trying to create a fb in vram with"
-> +			" valid_domains=3D%08x\n", nvbo->valid_domains);
-> +		ret =3D -EINVAL;
-> +		goto err_unref;
-> +	}
-> +
->  	nouveau_fb =3D kzalloc(sizeof(struct nouveau_framebuffer), GFP_KERNEL);
->  	if (!nouveau_fb)
->  		goto err_unref;
->  =
+I successfully ignored devfs. Fads like that come and go. No need to change
+what's working. Current attempts of integrating pulseaudio and init doesn't
+convince me udev is stable. Sure, sysvinit didn't have much change in last few
+years ... because it's working. Systemd, on the other hand ...
 
-> -	ret =3D nouveau_framebuffer_init(dev, nouveau_fb, mode_cmd, nouveau_gem=
-_object(gem));
-> +	ret =3D nouveau_framebuffer_init(dev, nouveau_fb, mode_cmd, nvbo);
->  	if (ret)
->  		goto err;
->  =
+> Whereas for the ideological ground - I think that the maintainer of the
+> kernel drm subsystem(Dave) would know better. Yes a bit more information
+> would not hurt, but considering the other drivers are doing this I do not
+> see it as a wrong thing/bikeshedding.
+> 
+> Btw, I believe he already mentioned that it's racy :)
+> 
 
-> =
+He mentioned that there is race when you start the module and X server
+immediately starts using it. If you start udev and immediately after it start
+X, the race will still be there, wouldn't it? In fact, it will be even worse,
+as udev doesn't exactly have predictable timing.
 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/dri-devel
+With distributions trying to make startup fast and parallel and often starting
+display managers-based logins, I'm actually surprised it works.
+
+If the code would be supposed to solve the race, it would contain cycle
+sleeping until some ioctl returns the module finished initialization. Probably
+with timeout around 30 seconds.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1377162403.F7BFbA1.18565
+Date: Thu, 22 Aug 2013 09:06:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - xf86-video-nouveau fails to modprobe nouveau: KMS not enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60772">bug 60772</a>
+              from <span class="vcard"><a class="email" href="mailto:hkmaly&#64;bigfoot.com" title="Honza &lt;hkmaly&#64;bigfoot.com&gt;"> <span class="fn">Honza</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=60772#c13">comment #13</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=60772#c11">comment #11</a>)
+&gt; &gt; Mirkin: You might've overlooked it, but there IS patch in the message you
+&gt; &gt; posted reference to. I don't see what other patch might be needed.
+&gt; &gt; 
+&gt; No-one is saying there is a need for (other) patch(es)
+&gt; </span >
+
+&quot;If you really want to change the behaviour, send a patch, ping people, etc.&quot;
+
+<span class="quote">&gt; &gt; I fail to see why you think it's necessary to change behaviour of
+&gt; &gt; xf86-video-nouveau to support less workflows just to force the workflow you
+&gt; &gt; prefer. All replies against this patch I saw was on ideological ground, none
+&gt; &gt; presented any real reason why it's better this way.
+&gt; &gt; 
+&gt; Afaics thing will work fine if you use udev/eudev/mdev over linux-hotplug.
+&gt; In the latter of which I cannot see any progress (or changes) over the last
+&gt; few years.
+&gt; </span >
+
+I successfully ignored devfs. Fads like that come and go. No need to change
+what's working. Current attempts of integrating pulseaudio and init doesn't
+convince me udev is stable. Sure, sysvinit didn't have much change in last few
+years ... because it's working. Systemd, on the other hand ...
+
+<span class="quote">&gt; Whereas for the ideological ground - I think that the maintainer of the
+&gt; kernel drm subsystem(Dave) would know better. Yes a bit more information
+&gt; would not hurt, but considering the other drivers are doing this I do not
+&gt; see it as a wrong thing/bikeshedding.
+&gt; 
+&gt; Btw, I believe he already mentioned that it's racy :)
+&gt; </span >
+
+He mentioned that there is race when you start the module and X server
+immediately starts using it. If you start udev and immediately after it start
+X, the race will still be there, wouldn't it? In fact, it will be even worse,
+as udev doesn't exactly have predictable timing.
+
+With distributions trying to make startup fast and parallel and often starting
+display managers-based logins, I'm actually surprised it works.
+
+If the code would be supposed to solve the race, it would contain cycle
+sleeping until some ioctl returns the module finished initialization. Probably
+with timeout around 30 seconds.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1377162403.F7BFbA1.18565--
+
+--===============0531404538==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0531404538==--
