@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67382] [nouveau,
  nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Thu, 22 Aug 2013 22:24:54 +0000
-Message-ID: <bug-67382-8800-88EYfsnC4f@http.bugs.freedesktop.org/>
+Date: Thu, 22 Aug 2013 22:35:47 +0000
+Message-ID: <bug-67382-8800-t6OnbsoEW5@http.bugs.freedesktop.org/>
 References: <bug-67382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1849903195=="
+Content-Type: multipart/mixed; boundary="===============0876212373=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,68 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1849903195==
-Content-Type: multipart/alternative; boundary="1377210294.dfFc32.14042"; charset="us-ascii"
+--===============0876212373==
+Content-Type: multipart/alternative; boundary="1377210947.2843d12.16741"; charset="us-ascii"
 
 
---1377210294.dfFc32.14042
-Date: Thu, 22 Aug 2013 22:24:54 +0000
+--1377210947.2843d12.16741
+Date: Thu, 22 Aug 2013 22:35:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67382
 
---- Comment #33 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 84479
-  --> https://bugs.freedesktop.org/attachment.cgi?id=84479&action=edit
-nv50 quirk
+--- Comment #34 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Here is a bit more information as to the blob's handing on the case
 
-Confirmed that only nv50 are affected. The blob's dac handling does differ 
-between nv50 and later cards, so this patch should do the job.
+nv50
 
-Feel free to test and provide a full name + email if you'd like your
-contributions to me acknowledged ("Reported-by" and "Tested-by")
+Simple register bashing
+
+write(loadval | 0x0100000)
+udelay(140s)
+read()
+write(0)
+
+nv94/96
+
+HWSQ
+
+00000000: 5f 01 00           ewait #CRTC0_VBLANK 0x0
+00000003: 5f 01 01           ewait #CRTC0_VBLANK 0x1
+00000006: 0e                 wait 0x2 shl 0x6
+00000007: 0d                 wait 0x1 shl 0x6
+00000008: 02                 wait 0x2 shl 0x0
+00000009: 01                 wait 0x1 shl 0x0
+// the above are only valid if the output is already enabled
+0000000a: e2 08 02 10 00     data 0x100208
+0000000f: e0 0c a8 61 00     addr 0x61a80c
+00000014: 00                 nop
+00000015: 40 0c a8           addrlo 0xa80c
+00000018: 05                 wait 0x1 shl 0x2
+00000019: e2 00 00 00 00     data 0x0
+0000001e: 40 0c a8           addrlo 0xa80c
+00000021: 7f                 exit
+00000022: 7f                 exit
+00000023: 7f                 exit
+
+PBUS.HWSQ.TRIGGER <= { TYPE = START | ENTRY_POINT = 0 }
+PBUS.HWSQ.STATUS => { A = { IP = 0x5 | ACTIVE } }
+
+if output is connected ~5,4 ms later
+PDISPLAY.DAC[0x1].LOAD_CTRL => { LOAD_PATTERN = 0 | PRESENT = 0x7 }
+PDISPLAY.DAC[0x1].LOAD_CTRL <= { LOAD_PATTERN = 0 | PRESENT = 0 }
+
+otherwise in ~5us
+PDISPLAY.DAC[0x1].LOAD_CTRL => { LOAD_PATTERN = 0 | PRESENT = 0x0 }
+PDISPLAY.DAC[0x1].LOAD_CTRL <= { LOAD_PATTERN = 0 | PRESENT = 0 }
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377210294.dfFc32.14042
-Date: Thu, 22 Aug 2013 22:24:54 +0000
+--1377210947.2843d12.16741
+Date: Thu, 22 Aug 2013 22:35:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,21 +96,56 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c33">Comment # 33</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c34">Comment # 34</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=84479" name="attach_84479" title="nv50 quirk">attachment 84479</a> <a href="attachment.cgi?id=84479&amp;action=edit" title="nv50 quirk">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=67382&amp;attachment=84479'>[review]</a>
-nv50 quirk
+        <pre>Here is a bit more information as to the blob's handing on the case
 
-Confirmed that only nv50 are affected. The blob's dac handling does differ 
-between nv50 and later cards, so this patch should do the job.
+nv50
 
-Feel free to test and provide a full name + email if you'd like your
-contributions to me acknowledged (&quot;Reported-by&quot; and &quot;Tested-by&quot;)</pre>
+Simple register bashing
+
+write(loadval | 0x0100000)
+udelay(140s)
+read()
+write(0)
+
+nv94/96
+
+HWSQ
+
+00000000: 5f 01 00           ewait #CRTC0_VBLANK 0x0
+00000003: 5f 01 01           ewait #CRTC0_VBLANK 0x1
+00000006: 0e                 wait 0x2 shl 0x6
+00000007: 0d                 wait 0x1 shl 0x6
+00000008: 02                 wait 0x2 shl 0x0
+00000009: 01                 wait 0x1 shl 0x0
+// the above are only valid if the output is already enabled
+0000000a: e2 08 02 10 00     data 0x100208
+0000000f: e0 0c a8 61 00     addr 0x61a80c
+00000014: 00                 nop
+00000015: 40 0c a8           addrlo 0xa80c
+00000018: 05                 wait 0x1 shl 0x2
+00000019: e2 00 00 00 00     data 0x0
+0000001e: 40 0c a8           addrlo 0xa80c
+00000021: 7f                 exit
+00000022: 7f                 exit
+00000023: 7f                 exit
+
+PBUS.HWSQ.TRIGGER &lt;= { TYPE = START | ENTRY_POINT = 0 }
+PBUS.HWSQ.STATUS =&gt; { A = { IP = 0x5 | ACTIVE } }
+
+if output is connected ~5,4 ms later
+PDISPLAY.DAC[0x1].LOAD_CTRL =&gt; { LOAD_PATTERN = 0 | PRESENT = 0x7 }
+PDISPLAY.DAC[0x1].LOAD_CTRL &lt;= { LOAD_PATTERN = 0 | PRESENT = 0 }
+
+otherwise in ~5us
+PDISPLAY.DAC[0x1].LOAD_CTRL =&gt; { LOAD_PATTERN = 0 | PRESENT = 0x0 }
+PDISPLAY.DAC[0x1].LOAD_CTRL &lt;= { LOAD_PATTERN = 0 | PRESENT = 0 }</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +157,9 @@ contributions to me acknowledged (&quot;Reported-by&quot; and &quot;Tested-by&qu
     </body>
 </html>
 
---1377210294.dfFc32.14042--
+--1377210947.2843d12.16741--
 
---===============1849903195==
+--===============0876212373==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +170,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1849903195==--
+--===============0876212373==--
