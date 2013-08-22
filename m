@@ -1,117 +1,93 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67382] [nouveau,
- nv50] linux 3.9.7-3.10.3: Xorg won't be available
-Date: Thu, 22 Aug 2013 02:00:11 +0000
-Message-ID: <bug-67382-8800-CxRhWyp6F5@http.bugs.freedesktop.org/>
-References: <bug-67382-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [PATCH] drm/nouveau: avoid null deref on bad arguments to
+	nouveau_vma_getmap
+Date: Thu, 22 Aug 2013 16:41:06 +1000
+Message-ID: <CACAvsv4zNrgnBkaJOJyDyDq1bnW37eccjsT=c4yfBJHcNgaaWQ@mail.gmail.com>
+References: <1377130214-17522-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0019832303=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <1377130214-17522-1-git-send-email-imirkin@alum.mit.edu>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, =?ISO-8859-1?Q?Pasi_K=E4rkk=E4inen?= <pasik@iki.fi>, Maarten Lankhorst <maarten.lankhorst@ubuntu.com>, Ben Skeggs <bskeggs@redhat.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
+On Thu, Aug 22, 2013 at 10:10 AM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
+> The code expects non-VRAM mem nodes to have a pages list. If that's not
+> set, it will do a null deref down the line. Warn on that condition and
+> return an error.
+>
+> See https://bugs.freedesktop.org/show_bug.cgi?id=3D64774
+>
+> Reported-by: Pasi K=E4rkk=E4inen <pasik@iki.fi>
+> Tested-by: Pasi K=E4rkk=E4inen <pasik@iki.fi>
+> Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+> Cc: <stable@vger.kernel.org> # 3.8+
+> ---
+>
+> I don't exactly understand what's going on, but this is just a
+> straightforward way to avoid a null deref that you see happens in the
+> bug. I haven't figured out the root cause of this, but it's getting
+> well into the "I have no idea how TTM works" space. However this seems
+> like a bit of defensive programming -- nouveau_vm_map_sg will pass
+> node->pages as a list down, which will be dereferenced by
+> nvc0_vm_map_sg. Perhaps the other arguments should make that
+> dereferencing not happen, but it definitely was happening here, as you
+> can see in the bug.
+>
+> Ben/Maarten, I'll let you judge whether this check is appropriate,
+> since like I hope I was able to convey above, I'm just not really sure :)
+>
+>  drivers/gpu/drm/nouveau/nouveau_bo.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouve=
+au/nouveau_bo.c
+> index cdc3282..191145d 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> @@ -963,6 +963,12 @@ nouveau_vma_getmap(struct nouveau_channel *chan, str=
+uct nouveau_bo *nvbo,
+>         struct nouveau_mem *node =3D mem->mm_node;
+>         int ret;
+>
+> +       /* If we ever get here for a non-vram mem node that doesn't
+> +        * have pages, we will end up doing a null deref in
+> +        * nouveau_vm_map_sg. */
+> +       if (WARN_ON(mem->mem_type !=3D TTM_PL_VRAM && !node->pages))
+> +               return -EINVAL;
+My guess here is that this is a mapping that requires the use of
+map_sg_table() (see nouveau_bo_move_ntfy() for the condition).
 
---===============0019832303==
-Content-Type: multipart/alternative; boundary="1377136811.856eA2.29811"; charset="us-ascii"
+I'm not entirely sure this should even be happening to be honest.  I
+guess TTM is trying to move a shared buffer from GART to VRAM for some
+reason (userspace probably asked for it?).. And well, this really
+shouldn't be allowed.. The other device won't be able to touch it
+then.
 
+If you can confirm this is indeed what's happening, we should find out
+why and fix it (and have the kernel completely reject such attempts).
 
---1377136811.856eA2.29811
-Date: Thu, 22 Aug 2013 02:00:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Ben.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67382
-
---- Comment #31 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #30)
-> As the days went by. I'm wondering what I should do. Or what's the case with
-> this report.
-> Is it kind of a problem, that I need to take care myself? E.g. it cannot be
-> patched/removed/altered, because this stabilisation is needed and would harm
-> other cards?
-> 
-Point is I've asked a few people and no-one seems to have such issue like you.
-So I'm suspecting that it's related to the original NV50. With that said the
-only person I can think of having such a card to test is the nouveau/kernel
-maintainer. Which is quite busy, but hopefully will have a moment to test.
-
-Side effect of using the new "fix" is causing a regression on almost all other
-cards, and/or the need to increase the delay to a silly value (as it was
-before).
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1377136811.856eA2.29811
-Date: Thu, 22 Aug 2013 02:00:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c31">Comment # 31</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=67382#c30">comment #30</a>)
-<span class="quote">&gt; As the days went by. I'm wondering what I should do. Or what's the case with
-&gt; this report.
-&gt; Is it kind of a problem, that I need to take care myself? E.g. it cannot be
-&gt; patched/removed/altered, because this stabilisation is needed and would harm
-&gt; other cards?
-&gt; </span >
-Point is I've asked a few people and no-one seems to have such issue like you.
-So I'm suspecting that it's related to the original NV50. With that said the
-only person I can think of having such a card to test is the nouveau/kernel
-maintainer. Which is quite busy, but hopefully will have a moment to test.
-
-Side effect of using the new &quot;fix&quot; is causing a regression on almost all other
-cards, and/or the need to increase the delay to a silly value (as it was
-before).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1377136811.856eA2.29811--
-
---===============0019832303==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0019832303==--
+> +
+>         ret =3D nouveau_vm_get(nv_client(chan->cli)->vm, mem->num_pages <<
+>                              PAGE_SHIFT, node->page_shift,
+>                              NV_MEM_ACCESS_RW, vma);
+> --
+> 1.8.1.5
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
