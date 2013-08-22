@@ -1,121 +1,59 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68402] Some elements are only rendered in top-left
-	area
-Date: Wed, 21 Aug 2013 23:42:53 +0000
-Message-ID: <bug-68402-8800-YZS0UGQktF@http.bugs.freedesktop.org/>
-References: <bug-68402-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] drm/nouveau: avoid null deref on bad arguments to
+	nouveau_vma_getmap
+Date: Wed, 21 Aug 2013 20:10:14 -0400
+Message-ID: <1377130214-17522-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0616429742=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68402-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, Maarten Lankhorst <maarten.lankhorst@ubuntu.com>, dri-devel@lists.freedesktop.org, =?UTF-8?q?Pasi=20K=C3=A4rkk=C3=A4inen?= <pasik@iki.fi>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0616429742==
-Content-Type: multipart/alternative; boundary="1377128573.Efd61a1.32513"; charset="us-ascii"
-
-
---1377128573.Efd61a1.32513
-Date: Wed, 21 Aug 2013 23:42:53 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D68402
-
---- Comment #3 from J=C3=A1n Mlynek <janmlynek0-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It's the last hunk that causes the issue:
-
-BEGIN_NVC0(push, NVC0_3D(VIEWPORT_HORIZ(0)), 2);
-PUSH_DATA (push, nvc0->framebuffer.width << 16);
-PUSH_DATA (push, nvc0->framebuffer.height << 16);
-
-Removing it solved the issue, so I tried to do the same thing in
-current(master) code.
-After removing 2 of these hunks (there is another one in commit
-443b247878edd6a67adc073b0c36e2941436b9a0), the bug is not present.
-
-I have no idea what I've broken in the process, though. :-)
-
--J=C3=A1n
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1377128573.Efd61a1.32513
-Date: Wed, 21 Aug 2013 23:42:53 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - Some elements are only rendered in top-left area"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D68402#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - Some elements are only rendered in top-left area"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D68402">bug 68402<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-janmlynek0&#64;gmail.com" title=3D"J=C3=A1n Mlynek &lt;janmlynek0&#64;gmail=
-.com&gt;"> <span class=3D"fn">J=C3=A1n Mlynek</span></a>
-</span></b>
-        <pre>It's the last hunk that causes the issue:
-
-BEGIN_NVC0(push, NVC0_3D(VIEWPORT_HORIZ(0)), 2);
-PUSH_DATA (push, nvc0-&gt;framebuffer.width &lt;&lt; 16);
-PUSH_DATA (push, nvc0-&gt;framebuffer.height &lt;&lt; 16);
-
-Removing it solved the issue, so I tried to do the same thing in
-current(master) code.
-After removing 2 of these hunks (there is another one in commit
-443b247878edd6a67adc073b0c36e2941436b9a0), the bug is not present.
-
-I have no idea what I've broken in the process, though. :-)
-
--J=C3=A1n</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1377128573.Efd61a1.32513--
-
---===============0616429742==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0616429742==--
+VGhlIGNvZGUgZXhwZWN0cyBub24tVlJBTSBtZW0gbm9kZXMgdG8gaGF2ZSBhIHBhZ2VzIGxpc3Qu
+IElmIHRoYXQncyBub3QKc2V0LCBpdCB3aWxsIGRvIGEgbnVsbCBkZXJlZiBkb3duIHRoZSBsaW5l
+LiBXYXJuIG9uIHRoYXQgY29uZGl0aW9uIGFuZApyZXR1cm4gYW4gZXJyb3IuCgpTZWUgaHR0cHM6
+Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NjQ3NzQKClJlcG9ydGVkLWJ5
+OiBQYXNpIEvDpHJra8OkaW5lbiA8cGFzaWtAaWtpLmZpPgpUZXN0ZWQtYnk6IFBhc2kgS8Okcmtr
+w6RpbmVuIDxwYXNpa0Bpa2kuZmk+ClNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2lu
+QGFsdW0ubWl0LmVkdT4KQ2M6IDxzdGFibGVAdmdlci5rZXJuZWwub3JnPiAjIDMuOCsKLS0tCgpJ
+IGRvbid0IGV4YWN0bHkgdW5kZXJzdGFuZCB3aGF0J3MgZ29pbmcgb24sIGJ1dCB0aGlzIGlzIGp1
+c3QgYQpzdHJhaWdodGZvcndhcmQgd2F5IHRvIGF2b2lkIGEgbnVsbCBkZXJlZiB0aGF0IHlvdSBz
+ZWUgaGFwcGVucyBpbiB0aGUKYnVnLiBJIGhhdmVuJ3QgZmlndXJlZCBvdXQgdGhlIHJvb3QgY2F1
+c2Ugb2YgdGhpcywgYnV0IGl0J3MgZ2V0dGluZwp3ZWxsIGludG8gdGhlICJJIGhhdmUgbm8gaWRl
+YSBob3cgVFRNIHdvcmtzIiBzcGFjZS4gSG93ZXZlciB0aGlzIHNlZW1zCmxpa2UgYSBiaXQgb2Yg
+ZGVmZW5zaXZlIHByb2dyYW1taW5nIC0tIG5vdXZlYXVfdm1fbWFwX3NnIHdpbGwgcGFzcwpub2Rl
+LT5wYWdlcyBhcyBhIGxpc3QgZG93biwgd2hpY2ggd2lsbCBiZSBkZXJlZmVyZW5jZWQgYnkKbnZj
+MF92bV9tYXBfc2cuIFBlcmhhcHMgdGhlIG90aGVyIGFyZ3VtZW50cyBzaG91bGQgbWFrZSB0aGF0
+CmRlcmVmZXJlbmNpbmcgbm90IGhhcHBlbiwgYnV0IGl0IGRlZmluaXRlbHkgd2FzIGhhcHBlbmlu
+ZyBoZXJlLCBhcyB5b3UKY2FuIHNlZSBpbiB0aGUgYnVnLgoKQmVuL01hYXJ0ZW4sIEknbGwgbGV0
+IHlvdSBqdWRnZSB3aGV0aGVyIHRoaXMgY2hlY2sgaXMgYXBwcm9wcmlhdGUsCnNpbmNlIGxpa2Ug
+SSBob3BlIEkgd2FzIGFibGUgdG8gY29udmV5IGFib3ZlLCBJJ20ganVzdCBub3QgcmVhbGx5IHN1
+cmUgOikKCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMgfCA2ICsrKysrKwog
+MSBmaWxlIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
+YXVfYm8uYwppbmRleCBjZGMzMjgyLi4xOTExNDVkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9iby5jCkBAIC05NjMsNiArOTYzLDEyIEBAIG5vdXZlYXVfdm1hX2dldG1hcChzdHJ1Y3Qg
+bm91dmVhdV9jaGFubmVsICpjaGFuLCBzdHJ1Y3Qgbm91dmVhdV9ibyAqbnZibywKIAlzdHJ1Y3Qg
+bm91dmVhdV9tZW0gKm5vZGUgPSBtZW0tPm1tX25vZGU7CiAJaW50IHJldDsKIAorCS8qIElmIHdl
+IGV2ZXIgZ2V0IGhlcmUgZm9yIGEgbm9uLXZyYW0gbWVtIG5vZGUgdGhhdCBkb2Vzbid0CisJICog
+aGF2ZSBwYWdlcywgd2Ugd2lsbCBlbmQgdXAgZG9pbmcgYSBudWxsIGRlcmVmIGluCisJICogbm91
+dmVhdV92bV9tYXBfc2cuICovCisJaWYgKFdBUk5fT04obWVtLT5tZW1fdHlwZSAhPSBUVE1fUExf
+VlJBTSAmJiAhbm9kZS0+cGFnZXMpKQorCQlyZXR1cm4gLUVJTlZBTDsKKwogCXJldCA9IG5vdXZl
+YXVfdm1fZ2V0KG52X2NsaWVudChjaGFuLT5jbGkpLT52bSwgbWVtLT5udW1fcGFnZXMgPDwKIAkJ
+CSAgICAgUEFHRV9TSElGVCwgbm9kZS0+cGFnZV9zaGlmdCwKIAkJCSAgICAgTlZfTUVNX0FDQ0VT
+U19SVywgdm1hKTsKLS0gCjEuOC4xLjUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vZHJpLWRldmVsCg==
