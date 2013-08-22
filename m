@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54437] [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580
  : Xorg freezes when using accel
-Date: Thu, 22 Aug 2013 17:33:56 +0000
-Message-ID: <bug-54437-8800-lVkQfnQJOQ@http.bugs.freedesktop.org/>
+Date: Thu, 22 Aug 2013 18:11:07 +0000
+Message-ID: <bug-54437-8800-8sB3VgnPbu@http.bugs.freedesktop.org/>
 References: <bug-54437-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1401364406=="
+Content-Type: multipart/mixed; boundary="===============2074231844=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54437-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1401364406==
-Content-Type: multipart/alternative; boundary="1377192836.7B8bC3.11386"; charset="us-ascii"
+--===============2074231844==
+Content-Type: multipart/alternative; boundary="1377195067.7cd4BA4.19705"; charset="us-ascii"
 
 
---1377192836.7B8bC3.11386
-Date: Thu, 22 Aug 2013 17:33:56 +0000
+--1377195067.7cd4BA4.19705
+Date: Thu, 22 Aug 2013 18:11:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54437
 
---- Comment #9 from Leif Gruenwoldt <leifer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #3)
-> The card works just fine if using the extracted firmware
-
-Can you elaborate on how to do that? This sounds like a better solution than
-using the proprietary nvidia driver.
+--- Comment #10 from Kelly Doran <kel.p.doran-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+http://nouveau.freedesktop.org/wiki/NVC0_Firmware/
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377192836.7B8bC3.11386
-Date: Thu, 22 Aug 2013 17:33:56 +0000
+--1377195067.7cd4BA4.19705
+Date: Thu, 22 Aug 2013 18:11:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54437#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54437#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54437">bug 54437</a>
-              from <span class="vcard"><a class="email" href="mailto:leifer&#64;gmail.com" title="Leif Gruenwoldt &lt;leifer&#64;gmail.com&gt;"> <span class="fn">Leif Gruenwoldt</span></a>
+              from <span class="vcard"><a class="email" href="mailto:kel.p.doran&#64;gmail.com" title="Kelly Doran &lt;kel.p.doran&#64;gmail.com&gt;"> <span class="fn">Kelly Doran</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=54437#c3">comment #3</a>)
-<span class="quote">&gt; The card works just fine if using the extracted firmware</span >
-
-Can you elaborate on how to do that? This sounds like a better solution than
-using the proprietary nvidia driver.</pre>
+        <pre><a href="http://nouveau.freedesktop.org/wiki/NVC0_Firmware/">http://nouveau.freedesktop.org/wiki/NVC0_Firmware/</a></pre>
         </div>
       </p>
       <hr>
@@ -81,9 +73,9 @@ using the proprietary nvidia driver.</pre>
     </body>
 </html>
 
---1377192836.7B8bC3.11386--
+--1377195067.7cd4BA4.19705--
 
---===============1401364406==
+--===============2074231844==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1401364406==--
+--===============2074231844==--
