@@ -1,251 +1,119 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] drm/nouveau/i2c: pass the function pointers in at creation
-	time
-Date: Fri, 23 Aug 2013 13:03:14 -0400
-Message-ID: <1377277394-7648-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 67382] [nouveau,
+ nv50] linux 3.9.7-3.10.3: Xorg won't be available
+Date: Fri, 23 Aug 2013 17:16:59 +0000
+Message-ID: <bug-67382-8800-fMMgDRuI8H@http.bugs.freedesktop.org/>
+References: <bug-67382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Hans-Peter Deifel <hpdeifel@gmx.de>
+Content-Type: multipart/mixed; boundary="===============0413102885=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-i2c_bit_add_bus can call the pre_xfer function, which expects the func
-pointer to be set. Pass in func to the port creation logic so that it is
-set before i2c_bit_add_bus.
 
-See https://bugs.freedesktop.org/show_bug.cgi?id=68456
+--===============0413102885==
+Content-Type: multipart/alternative; boundary="1377278219.E52e1.20805"; charset="us-ascii"
 
-Reported-by: Hans-Peter Deifel <hpdeifel@gmx.de>
-Tested-by: Hans-Peter Deifel <hpdeifel@gmx.de>
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
----
 
-This will only happen if i2c_algo_bit.bit_test=1.
+--1377278219.E52e1.20805
+Date: Fri, 23 Aug 2013 17:16:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
- drivers/gpu/drm/nouveau/core/include/subdev/i2c.h |  8 +++++---
- drivers/gpu/drm/nouveau/core/subdev/i2c/anx9805.c | 10 ++++------
- drivers/gpu/drm/nouveau/core/subdev/i2c/base.c    |  2 ++
- drivers/gpu/drm/nouveau/core/subdev/i2c/nv04.c    |  4 ++--
- drivers/gpu/drm/nouveau/core/subdev/i2c/nv4e.c    |  4 ++--
- drivers/gpu/drm/nouveau/core/subdev/i2c/nv50.c    |  4 ++--
- drivers/gpu/drm/nouveau/core/subdev/i2c/nv94.c    |  8 ++++----
- drivers/gpu/drm/nouveau/core/subdev/i2c/nvd0.c    |  4 ++--
- 8 files changed, 23 insertions(+), 21 deletions(-)
+https://bugs.freedesktop.org/show_bug.cgi?id=67382
 
-diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/i2c.h b/drivers/gpu/drm/nouveau/core/include/subdev/i2c.h
-index 888384c..7e4e277 100644
---- a/drivers/gpu/drm/nouveau/core/include/subdev/i2c.h
-+++ b/drivers/gpu/drm/nouveau/core/include/subdev/i2c.h
-@@ -39,8 +39,8 @@ struct nouveau_i2c_func {
- 	int  (*drv_ctl)(struct nouveau_i2c_port *, int lane, int sw, int pe);
- };
- 
--#define nouveau_i2c_port_create(p,e,o,i,a,d)                                   \
--	nouveau_i2c_port_create_((p), (e), (o), (i), (a),                      \
-+#define nouveau_i2c_port_create(p,e,o,i,a,f,d)                                 \
-+	nouveau_i2c_port_create_((p), (e), (o), (i), (a), (f),                 \
- 				 sizeof(**d), (void **)d)
- #define nouveau_i2c_port_destroy(p) ({                                         \
- 	struct nouveau_i2c_port *port = (p);                                   \
-@@ -53,7 +53,9 @@ struct nouveau_i2c_func {
- 
- int nouveau_i2c_port_create_(struct nouveau_object *, struct nouveau_object *,
- 			     struct nouveau_oclass *, u8,
--			     const struct i2c_algorithm *, int, void **);
-+			     const struct i2c_algorithm *,
-+			     const struct nouveau_i2c_func *,
-+			     int, void **);
- void _nouveau_i2c_port_dtor(struct nouveau_object *);
- #define _nouveau_i2c_port_init nouveau_object_init
- #define _nouveau_i2c_port_fini nouveau_object_fini
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/i2c/anx9805.c b/drivers/gpu/drm/nouveau/core/subdev/i2c/anx9805.c
-index dec94e9..4b195ac 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/i2c/anx9805.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/i2c/anx9805.c
-@@ -118,7 +118,8 @@ anx9805_aux_chan_ctor(struct nouveau_object *parent,
- 	int ret;
- 
- 	ret = nouveau_i2c_port_create(parent, engine, oclass, index,
--				     &nouveau_i2c_aux_algo, &chan);
-+				      &nouveau_i2c_aux_algo, &anx9805_aux_func,
-+				      &chan);
- 	*pobject = nv_object(chan);
- 	if (ret)
- 		return ret;
-@@ -140,8 +141,6 @@ anx9805_aux_chan_ctor(struct nouveau_object *parent,
- 		struct i2c_algo_bit_data *algo = mast->adapter.algo_data;
- 		algo->udelay = max(algo->udelay, 40);
- 	}
--
--	chan->base.func = &anx9805_aux_func;
- 	return 0;
- }
- 
-@@ -234,7 +233,8 @@ anx9805_ddc_port_ctor(struct nouveau_object *parent,
- 	int ret;
- 
- 	ret = nouveau_i2c_port_create(parent, engine, oclass, index,
--				     &anx9805_i2c_algo, &port);
-+				      &anx9805_i2c_algo, &anx9805_i2c_func,
-+				      &port);
- 	*pobject = nv_object(port);
- 	if (ret)
- 		return ret;
-@@ -256,8 +256,6 @@ anx9805_ddc_port_ctor(struct nouveau_object *parent,
- 		struct i2c_algo_bit_data *algo = mast->adapter.algo_data;
- 		algo->udelay = max(algo->udelay, 40);
- 	}
--
--	port->base.func = &anx9805_i2c_func;
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/i2c/base.c b/drivers/gpu/drm/nouveau/core/subdev/i2c/base.c
-index 8ae2625..2895c19 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/i2c/base.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/i2c/base.c
-@@ -95,6 +95,7 @@ nouveau_i2c_port_create_(struct nouveau_object *parent,
- 			 struct nouveau_object *engine,
- 			 struct nouveau_oclass *oclass, u8 index,
- 			 const struct i2c_algorithm *algo,
-+			 const struct nouveau_i2c_func *func,
- 			 int size, void **pobject)
- {
- 	struct nouveau_device *device = nv_device(parent);
-@@ -112,6 +113,7 @@ nouveau_i2c_port_create_(struct nouveau_object *parent,
- 	port->adapter.owner = THIS_MODULE;
- 	port->adapter.dev.parent = &device->pdev->dev;
- 	port->index = index;
-+	port->func = func;
- 	i2c_set_adapdata(&port->adapter, i2c);
- 
- 	if ( algo == &nouveau_i2c_bit_algo &&
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/i2c/nv04.c b/drivers/gpu/drm/nouveau/core/subdev/i2c/nv04.c
-index 2ad1884..860d5d2 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/i2c/nv04.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/i2c/nv04.c
-@@ -91,12 +91,12 @@ nv04_i2c_port_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	int ret;
- 
- 	ret = nouveau_i2c_port_create(parent, engine, oclass, index,
--				     &nouveau_i2c_bit_algo, &port);
-+				      &nouveau_i2c_bit_algo, &nv04_i2c_func,
-+				      &port);
- 	*pobject = nv_object(port);
- 	if (ret)
- 		return ret;
- 
--	port->base.func = &nv04_i2c_func;
- 	port->drive = info->drive;
- 	port->sense = info->sense;
- 	return 0;
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/i2c/nv4e.c b/drivers/gpu/drm/nouveau/core/subdev/i2c/nv4e.c
-index f501ae2..0c2655a 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/i2c/nv4e.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/i2c/nv4e.c
-@@ -84,12 +84,12 @@ nv4e_i2c_port_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	int ret;
- 
- 	ret = nouveau_i2c_port_create(parent, engine, oclass, index,
--				     &nouveau_i2c_bit_algo, &port);
-+				      &nouveau_i2c_bit_algo, &nv4e_i2c_func,
-+				      &port);
- 	*pobject = nv_object(port);
- 	if (ret)
- 		return ret;
- 
--	port->base.func = &nv4e_i2c_func;
- 	port->addr = 0x600800 + info->drive;
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/i2c/nv50.c b/drivers/gpu/drm/nouveau/core/subdev/i2c/nv50.c
-index 378dfa3..a8d67a2 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/i2c/nv50.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/i2c/nv50.c
-@@ -85,7 +85,8 @@ nv50_i2c_port_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	int ret;
- 
- 	ret = nouveau_i2c_port_create(parent, engine, oclass, index,
--				     &nouveau_i2c_bit_algo, &port);
-+				      &nouveau_i2c_bit_algo, &nv50_i2c_func,
-+				      &port);
- 	*pobject = nv_object(port);
- 	if (ret)
- 		return ret;
-@@ -93,7 +94,6 @@ nv50_i2c_port_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	if (info->drive >= nv50_i2c_addr_nr)
- 		return -EINVAL;
- 
--	port->base.func = &nv50_i2c_func;
- 	port->state = 0x00000007;
- 	port->addr = nv50_i2c_addr[info->drive];
- 	return 0;
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/i2c/nv94.c b/drivers/gpu/drm/nouveau/core/subdev/i2c/nv94.c
-index 61b7716..df6d3e4 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/i2c/nv94.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/i2c/nv94.c
-@@ -186,7 +186,8 @@ nv94_i2c_port_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	int ret;
- 
- 	ret = nouveau_i2c_port_create(parent, engine, oclass, index,
--				     &nouveau_i2c_bit_algo, &port);
-+				      &nouveau_i2c_bit_algo, &nv94_i2c_func,
-+				      &port);
- 	*pobject = nv_object(port);
- 	if (ret)
- 		return ret;
-@@ -194,7 +195,6 @@ nv94_i2c_port_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	if (info->drive >= nv50_i2c_addr_nr)
- 		return -EINVAL;
- 
--	port->base.func = &nv94_i2c_func;
- 	port->state = 7;
- 	port->addr = nv50_i2c_addr[info->drive];
- 	if (info->share != DCB_I2C_UNUSED) {
-@@ -221,12 +221,12 @@ nv94_aux_port_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	int ret;
- 
- 	ret = nouveau_i2c_port_create(parent, engine, oclass, index,
--				     &nouveau_i2c_aux_algo, &port);
-+				      &nouveau_i2c_aux_algo, &nv94_aux_func,
-+				      &port);
- 	*pobject = nv_object(port);
- 	if (ret)
- 		return ret;
- 
--	port->base.func = &nv94_aux_func;
- 	port->addr = info->drive;
- 	if (info->share != DCB_I2C_UNUSED) {
- 		port->ctrl = 0x00e500 + (info->drive * 0x50);
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/i2c/nvd0.c b/drivers/gpu/drm/nouveau/core/subdev/i2c/nvd0.c
-index f761b8a..29967d3 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/i2c/nvd0.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/i2c/nvd0.c
-@@ -60,12 +60,12 @@ nvd0_i2c_port_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	int ret;
- 
- 	ret = nouveau_i2c_port_create(parent, engine, oclass, index,
--				     &nouveau_i2c_bit_algo, &port);
-+				      &nouveau_i2c_bit_algo, &nvd0_i2c_func,
-+				      &port);
- 	*pobject = nv_object(port);
- 	if (ret)
- 		return ret;
- 
--	port->base.func = &nvd0_i2c_func;
- 	port->state = 0x00000007;
- 	port->addr = 0x00d014 + (info->drive * 0x20);
- 	if (info->share != DCB_I2C_UNUSED) {
+--- Comment #35 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
+(In reply to comment #33)
+> Created attachment 84479 [details] [review]
+> nv50 quirk
+> 
+> Confirmed that only nv50 are affected. The blob's dac handling does differ 
+> between nv50 and later cards, so this patch should do the job.
+
+Quite a difference in handling, if I look at #34
+
+> Feel free to test and provide a full name + email if you'd like your
+> contributions to me acknowledged ("Reported-by" and "Tested-by")
+
+Tested it and it's working :) Thanks for all the work.
+And naming me isn't necessary. I'm happy, that the problem is fixed.
+
+But I'm wondering if more such cases will appear.
+
 -- 
-1.8.1.5
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1377278219.E52e1.20805
+Date: Fri, 23 Aug 2013 17:16:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c35">Comment # 35</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
+              from <span class="vcard"><a class="email" href="mailto:anonymous&#64;dodgeit.com" title="Anonymous Helper &lt;anonymous&#64;dodgeit.com&gt;"> <span class="fn">Anonymous Helper</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=67382#c33">comment #33</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=84479" name="attach_84479" title="nv50 quirk">attachment 84479</a> <a href="attachment.cgi?id=84479&amp;action=edit" title="nv50 quirk">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=67382&amp;attachment=84479'>[review]</a> [review]
+&gt; nv50 quirk
+&gt; 
+&gt; Confirmed that only nv50 are affected. The blob's dac handling does differ 
+&gt; between nv50 and later cards, so this patch should do the job.</span >
+
+Quite a difference in handling, if I look at #34
+
+<span class="quote">&gt; Feel free to test and provide a full name + email if you'd like your
+&gt; contributions to me acknowledged (&quot;Reported-by&quot; and &quot;Tested-by&quot;)</span >
+
+Tested it and it's working :) Thanks for all the work.
+And naming me isn't necessary. I'm happy, that the problem is fixed.
+
+But I'm wondering if more such cases will appear.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1377278219.E52e1.20805--
+
+--===============0413102885==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0413102885==--
