@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 20341] NV31 lockup
-Date: Fri, 23 Aug 2013 08:05:52 +0000
-Message-ID: <bug-20341-8800-DLUv3IfzgL@http.bugs.freedesktop.org/>
+Date: Fri, 23 Aug 2013 15:14:23 +0000
+Message-ID: <bug-20341-8800-beRrgW8oYt@http.bugs.freedesktop.org/>
 References: <bug-20341-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0793930680=="
+Content-Type: multipart/mixed; boundary="===============2051796870=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-20341-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,57 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0793930680==
-Content-Type: multipart/alternative; boundary="1377245152.B66281.5873"; charset="us-ascii"
+--===============2051796870==
+Content-Type: multipart/alternative; boundary="1377270863.6c83eb41.31268"; charset="us-ascii"
 
 
---1377245152.B66281.5873
-Date: Fri, 23 Aug 2013 08:05:52 +0000
+--1377270863.6c83eb41.31268
+Date: Fri, 23 Aug 2013 15:14:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=20341
 
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Don't worry about the WARN -- that should get fixed in -rc7 (or you can grab
-nouveau/master).
+--- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Hm, after more careful review, I take back my comment about the scheme being
+fragile. (I mean, it's still fragile, but not AS fragile as I thought. I don't
+see a way for it to fail under normal circumstances.)
 
-[ 5096.360378] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 1 [X[1337]]
-get 0x00037be4 put 0x0001d690 state 0x2000a428 (err: CALL_SUBR_ACTIVE) push
-0x00000000
+However one very simple explanation is that a call command is making it onto
+the userspace-supplied pushbuf. Let's make sure that this is not the case --
+Get valgrind-mmt going (http://nouveau.freedesktop.org/wiki/Valgrind-mmt/), and
+run X inside of mmt, and run x11perf until it dies, e.g.
 
-This is bad. Once this happens, I guess the fifo is out of sync, and that is a
-recipe for bad times.
+valgrind --tool=mmt --mmt-trace-file=/dev/dri/card0 --mmt-trace-nouveau-ioctls
+xinit x11perf -putimage500 -- :1 >& xorg-mmt.log
 
-From
-https://github.com/envytools/envytools/blob/master/hwdocs/fifo/dma-pusher.txt:
-
-"""
-The call command copies dma_get to subr_return, sets subr_active to 1, and
-sets dma_get to the target. If subr_active is already set before the call, the
-DMA_PUSHER error of type CALL_SUBR_ACTIVE is raised.
-
-The return command copies subr_return to dma_get and clears subr_active. If
-subr_active isn't set, it instead raises DMA_PUSHER error of type
-RET_SUBR_INACTIVE.
-"""
-
-And it looks like we make use of the call functionality in
-nouveau_gem_ioctl_pushbuf. The whole scheme seems a bit fragile since we do the
-call to some new pushbuf, and then tell userspace to write a return at the
-beginning of its next pushbuf. However we might need to do a call in order to
-get to that pushbuf, thus causing this condition. But... this code is very
-subtle so perhaps I'm missing why this can't happen.
-
-Another thing to try is nouveau.vram_pushbuf on the kernel cmdline -- this
-might be what the old CBLocation thing did, not sure.
+or something along those lines. (And you can run it in a separate X server so
+you don't have to kill your "real" session.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377245152.B66281.5873
-Date: Fri, 23 Aug 2013 08:05:52 +0000
+--1377270863.6c83eb41.31268
+Date: Fri, 23 Aug 2013 15:14:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -84,45 +66,27 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - NV31 lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=20341#c14">Comment # 14</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=20341#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - NV31 lockup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=20341">bug 20341</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Don't worry about the WARN -- that should get fixed in -rc7 (or you can grab
-nouveau/master).
+        <pre>Hm, after more careful review, I take back my comment about the scheme being
+fragile. (I mean, it's still fragile, but not AS fragile as I thought. I don't
+see a way for it to fail under normal circumstances.)
 
-[ 5096.360378] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 1 [X[1337]]
-get 0x00037be4 put 0x0001d690 state 0x2000a428 (err: CALL_SUBR_ACTIVE) push
-0x00000000
+However one very simple explanation is that a call command is making it onto
+the userspace-supplied pushbuf. Let's make sure that this is not the case --
+Get valgrind-mmt going (<a href="http://nouveau.freedesktop.org/wiki/Valgrind-mmt/">http://nouveau.freedesktop.org/wiki/Valgrind-mmt/</a>), and
+run X inside of mmt, and run x11perf until it dies, e.g.
 
-This is bad. Once this happens, I guess the fifo is out of sync, and that is a
-recipe for bad times.
+valgrind --tool=mmt --mmt-trace-file=/dev/dri/card0 --mmt-trace-nouveau-ioctls
+xinit x11perf -putimage500 -- :1 &gt;&amp; xorg-mmt.log
 
-From
-<a href="https://github.com/envytools/envytools/blob/master/hwdocs/fifo/dma-pusher.txt">https://github.com/envytools/envytools/blob/master/hwdocs/fifo/dma-pusher.txt</a>:
-
-&quot;&quot;&quot;
-The call command copies dma_get to subr_return, sets subr_active to 1, and
-sets dma_get to the target. If subr_active is already set before the call, the
-DMA_PUSHER error of type CALL_SUBR_ACTIVE is raised.
-
-The return command copies subr_return to dma_get and clears subr_active. If
-subr_active isn't set, it instead raises DMA_PUSHER error of type
-RET_SUBR_INACTIVE.
-&quot;&quot;&quot;
-
-And it looks like we make use of the call functionality in
-nouveau_gem_ioctl_pushbuf. The whole scheme seems a bit fragile since we do the
-call to some new pushbuf, and then tell userspace to write a return at the
-beginning of its next pushbuf. However we might need to do a call in order to
-get to that pushbuf, thus causing this condition. But... this code is very
-subtle so perhaps I'm missing why this can't happen.
-
-Another thing to try is nouveau.vram_pushbuf on the kernel cmdline -- this
-might be what the old CBLocation thing did, not sure.</pre>
+or something along those lines. (And you can run it in a separate X server so
+you don't have to kill your &quot;real&quot; session.)</pre>
         </div>
       </p>
       <hr>
@@ -134,9 +98,9 @@ might be what the old CBLocation thing did, not sure.</pre>
     </body>
 </html>
 
---1377245152.B66281.5873--
+--1377270863.6c83eb41.31268--
 
---===============0793930680==
+--===============2051796870==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -147,4 +111,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0793930680==--
+--===============2051796870==--
