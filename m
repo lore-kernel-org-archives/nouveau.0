@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 68456] [NV4B] null deref on load,
 	NvI2C=1 makes it work
-Date: Fri, 23 Aug 2013 01:13:40 +0000
-Message-ID: <bug-68456-8800-y7cOQZV7gj@http.bugs.freedesktop.org/>
+Date: Fri, 23 Aug 2013 01:46:45 +0000
+Message-ID: <bug-68456-8800-LVrVslbg8U@http.bugs.freedesktop.org/>
 References: <bug-68456-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1088354259=="
+Content-Type: multipart/mixed; boundary="===============0487291110=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-68456-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,42 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1088354259==
-Content-Type: multipart/alternative; boundary="1377220420.A0DdbF32.22047"; charset="us-ascii"
+--===============0487291110==
+Content-Type: multipart/alternative; boundary="1377222405.cfc2bDb2.28847"; charset="us-ascii"
 
 
---1377220420.A0DdbF32.22047
-Date: Fri, 23 Aug 2013 01:13:40 +0000
+--1377222405.cfc2bDb2.28847
+Date: Fri, 23 Aug 2013 01:46:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=68456
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The code decodes to
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 84484
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84484&action=edit
+pass i2c functions into create func
 
-  1c:   51                      push   %rcx
-  1d:   48 8b 47 18             mov    0x18(%rdi),%rax
-  21:   48 8b 38                mov    (%rax),%rdi
-  24:   48 8b 87 50 03 00 00    mov    0x350(%rdi),%rax
-  2b:*  48 8b 00                mov    (%rax),%rax              <-- trapping
-instruction
-  2e:   48 85 c0                test   %rax,%rax
-  31:   74 02                   je     0x35
-  33:   ff d0                   callq  *%rax
-  35:   31 c0                   xor    %eax,%eax
-  37:   5a                      pop    %rdx
-  38:   c3                      retq   
-
-Which means that port->func is NULL. Still trying to work out exactly how that
-happens.
+Can you give this patch a shot? It compiles, but I haven't tested it beyond
+that. Should fix the null deref. But it might still not work. (Obviously
+without the NvI2C=1 thing.) BTW, how are you hitting this? Did you set
+something in i2c like bit_test=1?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377220420.A0DdbF32.22047
-Date: Fri, 23 Aug 2013 01:13:40 +0000
+--1377222405.cfc2bDb2.28847
+Date: Fri, 23 Aug 2013 01:46:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,30 +61,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4B] null deref on load, NvI2C=1 makes it work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68456#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68456#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4B] null deref on load, NvI2C=1 makes it work"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=68456">bug 68456</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>The code decodes to
+        <pre>Created <span class=""><a href="attachment.cgi?id=84484" name="attach_84484" title="pass i2c functions into create func">attachment 84484</a> <a href="attachment.cgi?id=84484&amp;action=edit" title="pass i2c functions into create func">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=68456&amp;attachment=84484'>[review]</a>
+pass i2c functions into create func
 
-  1c:   51                      push   %rcx
-  1d:   48 8b 47 18             mov    0x18(%rdi),%rax
-  21:   48 8b 38                mov    (%rax),%rdi
-  24:   48 8b 87 50 03 00 00    mov    0x350(%rdi),%rax
-  2b:*  48 8b 00                mov    (%rax),%rax              &lt;-- trapping
-instruction
-  2e:   48 85 c0                test   %rax,%rax
-  31:   74 02                   je     0x35
-  33:   ff d0                   callq  *%rax
-  35:   31 c0                   xor    %eax,%eax
-  37:   5a                      pop    %rdx
-  38:   c3                      retq   
-
-Which means that port-&gt;func is NULL. Still trying to work out exactly how that
-happens.</pre>
+Can you give this patch a shot? It compiles, but I haven't tested it beyond
+that. Should fix the null deref. But it might still not work. (Obviously
+without the NvI2C=1 thing.) BTW, how are you hitting this? Did you set
+something in i2c like bit_test=1?</pre>
         </div>
       </p>
       <hr>
@@ -105,9 +86,9 @@ happens.</pre>
     </body>
 </html>
 
---1377220420.A0DdbF32.22047--
+--1377222405.cfc2bDb2.28847--
 
---===============1088354259==
+--===============0487291110==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -118,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1088354259==--
+--===============0487291110==--
