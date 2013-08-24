@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33165] [NVA3] Nouveau + nvidia GT240 = unworkable
-Date: Sat, 24 Aug 2013 03:19:06 +0000
-Message-ID: <bug-33165-8800-IQhGr71ULg@http.bugs.freedesktop.org/>
-References: <bug-33165-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 63790] [NV11] Nouveau fb boots laptop screen a GIANT
+	BARCODE
+Date: Sat, 24 Aug 2013 03:20:16 +0000
+Message-ID: <bug-63790-8800-STZ7QWrd08@http.bugs.freedesktop.org/>
+References: <bug-63790-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0400136701=="
+Content-Type: multipart/mixed; boundary="===============1802661543=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-63790-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0400136701==
-Content-Type: multipart/alternative; boundary="1377314346.a44e13.667"; charset="us-ascii"
+--===============1802661543==
+Content-Type: multipart/alternative; boundary="1377314416.AD1f76F81.864"; charset="us-ascii"
 
 
---1377314346.a44e13.667
-Date: Sat, 24 Aug 2013 03:19:06 +0000
+--1377314416.AD1f76F81.864
+Date: Sat, 24 Aug 2013 03:20:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33165
+https://bugs.freedesktop.org/show_bug.cgi?id=63790
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Nouveau + nvidia GT240 =    |[NVA3] Nouveau + nvidia
-                   |unworkable                  |GT240 = unworkable
+            Summary|Nouveau fb boots laptop     |[NV11] Nouveau fb boots
+                   |screen a GIANT BARCODE      |laptop screen a GIANT
+                   |                            |BARCODE
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377314346.a44e13.667
-Date: Sat, 24 Aug 2013 03:19:06 +0000
+--1377314416.AD1f76F81.864
+Date: Sat, 24 Aug 2013 03:20:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,8 +57,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA3] Nouveau + nvidia GT240 = unworkable"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
+   title="NEW --- - [NV11] Nouveau fb boots laptop screen a GIANT BARCODE"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63790">bug 63790</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -67,9 +69,9 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>Nouveau + nvidia GT240 = unworkable
+           <td>Nouveau fb boots laptop screen a GIANT BARCODE
            </td>
-           <td>[NVA3] Nouveau + nvidia GT240 = unworkable
+           <td>[NV11] Nouveau fb boots laptop screen a GIANT BARCODE
            </td>
          </tr></table>
       <p>
@@ -83,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377314346.a44e13.667--
+--1377314416.AD1f76F81.864--
 
---===============0400136701==
+--===============1802661543==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0400136701==--
+--===============1802661543==--
