@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37031] no graphics in IDL
-Date: Sat, 24 Aug 2013 18:50:35 +0000
-Message-ID: <bug-37031-8800-1nh0JJIq0R@http.bugs.freedesktop.org/>
-References: <bug-37031-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 53219] ION: crash in nouveau_mm_head+0x37/0x170
+ (regression of module rework)
+Date: Sat, 24 Aug 2013 18:57:16 +0000
+Message-ID: <bug-53219-8800-7DPsqVX4sP@http.bugs.freedesktop.org/>
+References: <bug-53219-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0615538137=="
+Content-Type: multipart/mixed; boundary="===============0753911165=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37031-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-53219-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0615538137==
-Content-Type: multipart/alternative; boundary="1377370235.7BC0F0.20755"; charset="us-ascii"
+--===============0753911165==
+Content-Type: multipart/alternative; boundary="1377370636.AAeaEdc2.21882"; charset="us-ascii"
 
 
---1377370235.7BC0F0.20755
-Date: Sat, 24 Aug 2013 18:50:35 +0000
+--1377370636.AAeaEdc2.21882
+Date: Sat, 24 Aug 2013 18:57:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37031
+https://bugs.freedesktop.org/show_bug.cgi?id=53219
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-No update in over a month after request to re-test. Marking as invalid. Feel
-free to re-open if this is still an issue with the latest software.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please re-test on the latest kernel and confirm that this is still an issue.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377370235.7BC0F0.20755
-Date: Sat, 24 Aug 2013 18:50:35 +0000
+--1377370636.AAeaEdc2.21882
+Date: Sat, 24 Aug 2013 18:57:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,49 +48,20 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - no graphics in IDL"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37031">bug 37031</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - no graphics in IDL"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37031#c2">Comment # 2</a>
+          bz_status_NEW "
+   title="NEW --- - ION: crash in nouveau_mm_head+0x37/0x170 (regression of module rework)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=53219#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - no graphics in IDL"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37031">bug 37031</a>
+          bz_status_NEW "
+   title="NEW --- - ION: crash in nouveau_mm_head+0x37/0x170 (regression of module rework)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=53219">bug 53219</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>No update in over a month after request to re-test. Marking as invalid. Feel
-free to re-open if this is still an issue with the latest software.</pre>
+        <pre>Please re-test on the latest kernel and confirm that this is still an issue.</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +73,9 @@ free to re-open if this is still an issue with the latest software.</pre>
     </body>
 </html>
 
---1377370235.7BC0F0.20755--
+--1377370636.AAeaEdc2.21882--
 
---===============0615538137==
+--===============0753911165==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0615538137==--
+--===============0753911165==--
