@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40138] nouveau doesn't show screen on DVI on
- ALiveNF6G-DVI with DVI Graphics-SI Card
+Subject: [Bug 26797] [NV4C] GeForce 6150SE: external DVI encoder
+ not supported (Sil1364)
 Date: Sat, 24 Aug 2013 19:13:23 +0000
-Message-ID: <bug-40138-8800-S77v0tA9VV@http.bugs.freedesktop.org/>
-References: <bug-40138-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-26797-8800-r4CMifnzHT@http.bugs.freedesktop.org/>
+References: <bug-26797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0519134837=="
+Content-Type: multipart/mixed; boundary="===============0556540194=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40138-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0519134837==
-Content-Type: multipart/alternative; boundary="1377371603.d36F82.25569"; charset="us-ascii"
+--===============0556540194==
+Content-Type: multipart/alternative; boundary="1377371604.Ba57Fe065.25569"; charset="us-ascii"
 
 
---1377371603.d36F82.25569
-Date: Sat, 24 Aug 2013 19:13:23 +0000
+--1377371604.Ba57Fe065.25569
+Date: Sat, 24 Aug 2013 19:13:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40138
+https://bugs.freedesktop.org/show_bug.cgi?id=26797
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
+                 CC|                            |alexander.stein@informatik.
+                   |                            |tu-chemnitz.de
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Would be nice if you could confirm that you also have a Sil1364 encoder (I'm
-guessing the chip is somewhere near the DVI connector), but I'm guessing it's
-the same situation.
-
-*** This bug has been marked as a duplicate of bug 26797 ***
+--- Comment #24 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+*** Bug 40138 has been marked as a duplicate of this bug. ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377371603.d36F82.25569
-Date: Sat, 24 Aug 2013 19:13:23 +0000
+--1377371604.Ba57Fe065.25569
+Date: Sat, 24 Aug 2013 19:13:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,9 +58,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - nouveau doesn't show screen on DVI on ALiveNF6G-DVI with DVI Graphics-SI Card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40138">bug 40138</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV4C] GeForce 6150SE: external DVI encoder not supported (Sil1364)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=26797">bug 26797</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -74,40 +70,29 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
+           <td>alexander.stein&#64;informatik.tu-chemnitz.de
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - nouveau doesn't show screen on DVI on ALiveNF6G-DVI with DVI Graphics-SI Card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40138#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - nouveau doesn't show screen on DVI on ALiveNF6G-DVI with DVI Graphics-SI Card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40138">bug 40138</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Would be nice if you could confirm that you also have a Sil1364 encoder (I'm
-guessing the chip is somewhere near the DVI connector), but I'm guessing it's
-the same situation.
-
-*** This bug has been marked as a duplicate of <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [NV4C] GeForce 6150SE: external DVI encoder not supported (Sil1364)"
-   href="show_bug.cgi?id=26797">bug 26797</a> ***</pre>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=26797#c24">Comment # 24</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV4C] GeForce 6150SE: external DVI encoder not supported (Sil1364)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=26797">bug 26797</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - nouveau doesn't show screen on DVI on ALiveNF6G-DVI with DVI Graphics-SI Card"
+   href="show_bug.cgi?id=40138">Bug 40138</a> has been marked as a duplicate of this bug. ***</pre>
         </div>
       </p>
       <hr>
@@ -119,9 +104,9 @@ the same situation.
     </body>
 </html>
 
---1377371603.d36F82.25569--
+--1377371604.Ba57Fe065.25569--
 
---===============0519134837==
+--===============0556540194==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +117,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0519134837==--
+--===============0556540194==--
