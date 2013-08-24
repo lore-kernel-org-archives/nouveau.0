@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 48434] [NV43] X freezes with "EQ overflowing"
-Date: Sat, 24 Aug 2013 21:44:51 +0000
-Message-ID: <bug-48434-8800-z4xoZQ7tk2@http.bugs.freedesktop.org/>
-References: <bug-48434-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56748] [NVAF] Graphic Elements Displayed Partially
+Date: Sat, 24 Aug 2013 21:52:36 +0000
+Message-ID: <bug-56748-8800-LHpyScQJGS@http.bugs.freedesktop.org/>
+References: <bug-56748-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0230526529=="
+Content-Type: multipart/mixed; boundary="===============0236971239=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-48434-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-56748-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0230526529==
-Content-Type: multipart/alternative; boundary="1377380691.a3C2b23.22769"; charset="us-ascii"
+--===============0236971239==
+Content-Type: multipart/alternative; boundary="1377381156.20aFdA2.24620"; charset="us-ascii"
 
 
---1377380691.a3C2b23.22769
-Date: Sat, 24 Aug 2013 21:44:51 +0000
+--1377381156.20aFdA2.24620
+Date: Sat, 24 Aug 2013 21:52:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=48434
+https://bugs.freedesktop.org/show_bug.cgi?id=56748
 
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-First off -- does this still happen with the latest kernel/mesa?
-
-If it does, please supply a complete kernel log. The "eq overflowing" thing is
-just a sign that the GPU has hung, and not an actual problem in X. What are you
-doing when this happens?
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Does this still happen with the latest kernel (3.10 or 3.11-rc6)?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377380691.a3C2b23.22769
-Date: Sat, 24 Aug 2013 21:44:51 +0000
+--1377381156.20aFdA2.24620
+Date: Sat, 24 Aug 2013 21:52:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,20 +51,16 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV43] X freezes with &quot;EQ overflowing&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48434#c14">Comment # 14</a>
+          bz_status_NEW "
+   title="NEW --- - [NVAF] Graphic Elements Displayed Partially"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56748#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV43] X freezes with &quot;EQ overflowing&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48434">bug 48434</a>
+          bz_status_NEW "
+   title="NEW --- - [NVAF] Graphic Elements Displayed Partially"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56748">bug 56748</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>First off -- does this still happen with the latest kernel/mesa?
-
-If it does, please supply a complete kernel log. The &quot;eq overflowing&quot; thing is
-just a sign that the GPU has hung, and not an actual problem in X. What are you
-doing when this happens?</pre>
+        <pre>Does this still happen with the latest kernel (3.10 or 3.11-rc6)?</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +72,9 @@ doing when this happens?</pre>
     </body>
 </html>
 
---1377380691.a3C2b23.22769--
+--1377381156.20aFdA2.24620--
 
---===============0230526529==
+--===============0236971239==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0230526529==--
+--===============0236971239==--
