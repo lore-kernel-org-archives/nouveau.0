@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 46779] Freeze on G86 [Quadro NVS 290] under Gnome
- Shell when opening Firefox tabs
-Date: Sat, 24 Aug 2013 18:28:11 +0000
-Message-ID: <bug-46779-8800-Ws6hFEMvPi@http.bugs.freedesktop.org/>
-References: <bug-46779-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64645] Massive corruption
+Date: Sat, 24 Aug 2013 18:46:28 +0000
+Message-ID: <bug-64645-8800-qivaF1YSst@http.bugs.freedesktop.org/>
+References: <bug-64645-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0808469447=="
+Content-Type: multipart/mixed; boundary="===============0388556157=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-46779-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-64645-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0808469447==
-Content-Type: multipart/alternative; boundary="1377368891.Cbfc61.16609"; charset="us-ascii"
+--===============0388556157==
+Content-Type: multipart/alternative; boundary="1377369988.fCad2.19765"; charset="us-ascii"
 
 
---1377368891.Cbfc61.16609
-Date: Sat, 24 Aug 2013 18:28:11 +0000
+--1377369988.fCad2.19765
+Date: Sat, 24 Aug 2013 18:46:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=46779
+https://bugs.freedesktop.org/show_bug.cgi?id=64645
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please retest this with more current software and see if the problem still
-happens. (For the purpose of this discussion, "more current" means kernel >=
-3.10, mesa >= 9.1, xf86-video-nouveau >= 1.0.9)
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No update in over a month after request to re-test. Marking as invalid. Feel
+free to re-open if this is still an issue with the latest software.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377368891.Cbfc61.16609
-Date: Sat, 24 Aug 2013 18:28:11 +0000
+--1377369988.fCad2.19765
+Date: Sat, 24 Aug 2013 18:46:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +55,49 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Massive corruption"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64645">bug 64645</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Freeze on G86 [Quadro NVS 290] under Gnome Shell when opening Firefox tabs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=46779#c3">Comment # 3</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Massive corruption"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64645#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Freeze on G86 [Quadro NVS 290] under Gnome Shell when opening Firefox tabs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=46779">bug 46779</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Massive corruption"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64645">bug 64645</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Please retest this with more current software and see if the problem still
-happens. (For the purpose of this discussion, &quot;more current&quot; means kernel &gt;=
-3.10, mesa &gt;= 9.1, xf86-video-nouveau &gt;= 1.0.9)</pre>
+        <pre>No update in over a month after request to re-test. Marking as invalid. Feel
+free to re-open if this is still an issue with the latest software.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +109,9 @@ happens. (For the purpose of this discussion, &quot;more current&quot; means ker
     </body>
 </html>
 
---1377368891.Cbfc61.16609--
+--1377369988.fCad2.19765--
 
---===============0808469447==
+--===============0388556157==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +122,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0808469447==--
+--===============0388556157==--
