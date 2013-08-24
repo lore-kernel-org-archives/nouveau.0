@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61069] [NV17] Crash while displaying large image
-Date: Sat, 24 Aug 2013 00:43:15 +0000
-Message-ID: <bug-61069-8800-38VZQZwy0S@http.bugs.freedesktop.org/>
-References: <bug-61069-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57837] [NV86] invalid opcode on login into dm
+Date: Sat, 24 Aug 2013 01:54:20 +0000
+Message-ID: <bug-57837-8800-hfDRb46Cjx@http.bugs.freedesktop.org/>
+References: <bug-57837-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2134832907=="
+Content-Type: multipart/mixed; boundary="===============0942211149=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57837-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2134832907==
-Content-Type: multipart/alternative; boundary="1377304995.ECA8cE62.29424"; charset="us-ascii"
+--===============0942211149==
+Content-Type: multipart/alternative; boundary="1377309260.d65e2.13668"; charset="us-ascii"
 
 
---1377304995.ECA8cE62.29424
-Date: Sat, 24 Aug 2013 00:43:15 +0000
+--1377309260.d65e2.13668
+Date: Sat, 24 Aug 2013 01:54:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=61069
+https://bugs.freedesktop.org/show_bug.cgi?id=57837
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I still can't repro the issue. Another difference might be that I'm using xorg
-1.13, whereas your original log is for 1.12. Is there anything in dmesg when
-the hangs occur?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-I did notice that if I'm running with a compositor, e.g. xcompmgr, then things
-get REALLY slow when loading large images. Slow enough for watchdogs to fire,
-rcu to complain, etc. But the system does come into its own, esp if I kill
-xcompmgr. I don't know whether "standard KDE settings" include a compositor
-(wouldn't be surprised), but if they do, can you try turning that off?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|nouveau invalid opcode for  |[NV86] invalid opcode on
+                   |NVIDIA                      |login into dm
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please retest this with the latest kernel/mesa. This type of hardware really
+should work...
+
+If you still have this issue, please post a full dmesg of the newest kernel,
+along with Xorg.0.log, along with a detailed explanation of one setup that
+causes this (preferably the simplest one) so that someone else can attempt to
+reproduce it.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377304995.ECA8cE62.29424
-Date: Sat, 24 Aug 2013 00:43:15 +0000
+--1377309260.d65e2.13668
+Date: Sat, 24 Aug 2013 01:54:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,28 +60,46 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] invalid opcode on login into dm"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57837">bug 57837</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>nouveau invalid opcode for NVIDIA
+           </td>
+           <td>[NV86] invalid opcode on login into dm
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [NV17] Crash while displaying large image"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61069#c6">Comment # 6</a>
+          bz_status_NEW "
+   title="NEW --- - [NV86] invalid opcode on login into dm"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57837#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [NV17] Crash while displaying large image"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61069">bug 61069</a>
+          bz_status_NEW "
+   title="NEW --- - [NV86] invalid opcode on login into dm"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57837">bug 57837</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I still can't repro the issue. Another difference might be that I'm using xorg
-1.13, whereas your original log is for 1.12. Is there anything in dmesg when
-the hangs occur?
+        <pre>Please retest this with the latest kernel/mesa. This type of hardware really
+should work...
 
-I did notice that if I'm running with a compositor, e.g. xcompmgr, then things
-get REALLY slow when loading large images. Slow enough for watchdogs to fire,
-rcu to complain, etc. But the system does come into its own, esp if I kill
-xcompmgr. I don't know whether &quot;standard KDE settings&quot; include a compositor
-(wouldn't be surprised), but if they do, can you try turning that off?</pre>
+If you still have this issue, please post a full dmesg of the newest kernel,
+along with Xorg.0.log, along with a detailed explanation of one setup that
+causes this (preferably the simplest one) so that someone else can attempt to
+reproduce it.</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +111,9 @@ xcompmgr. I don't know whether &quot;standard KDE settings&quot; include a compo
     </body>
 </html>
 
---1377304995.ECA8cE62.29424--
+--1377309260.d65e2.13668--
 
---===============2134832907==
+--===============0942211149==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +124,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2134832907==--
+--===============0942211149==--
