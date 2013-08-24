@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60150] [NVAF] Garbled Screen
-Date: Sat, 24 Aug 2013 21:52:52 +0000
-Message-ID: <bug-60150-8800-nDuA32QVHP@http.bugs.freedesktop.org/>
-References: <bug-60150-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67161] Blank video after resuming from S3 or S4
+Date: Sat, 24 Aug 2013 22:06:40 +0000
+Message-ID: <bug-67161-8800-piM4NKdigZ@http.bugs.freedesktop.org/>
+References: <bug-67161-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0152289572=="
+Content-Type: multipart/mixed; boundary="===============1342948624=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60150-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67161-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0152289572==
-Content-Type: multipart/alternative; boundary="1377381172.aABc5e5.24620"; charset="us-ascii"
+--===============1342948624==
+Content-Type: multipart/alternative; boundary="1377382000.b46C2.27352"; charset="us-ascii"
 
 
---1377381172.aABc5e5.24620
-Date: Sat, 24 Aug 2013 21:52:52 +0000
+--1377382000.b46C2.27352
+Date: Sat, 24 Aug 2013 22:06:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60150
+https://bugs.freedesktop.org/show_bug.cgi?id=67161
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Does this still happen with the latest kernel (3.10 or 3.11-rc6)?
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please retest this with the latest software (kernel 3.10 or later, new drm,
+xf86-video-nouveau). We can't support 4-year old kernels + random patch sets
+that distributions add to them. If that's not an option for you, file a bug
+with your distribution.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377381172.aABc5e5.24620
-Date: Sat, 24 Aug 2013 21:52:52 +0000
+--1377382000.b46C2.27352
+Date: Sat, 24 Aug 2013 22:06:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,15 +55,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVAF] Garbled Screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60150#c6">Comment # 6</a>
+   title="NEW --- - Blank video after resuming from S3 or S4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67161#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVAF] Garbled Screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60150">bug 60150</a>
+   title="NEW --- - Blank video after resuming from S3 or S4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67161">bug 67161</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Does this still happen with the latest kernel (3.10 or 3.11-rc6)?</pre>
+        <pre>Please retest this with the latest software (kernel 3.10 or later, new drm,
+xf86-video-nouveau). We can't support 4-year old kernels + random patch sets
+that distributions add to them. If that's not an option for you, file a bug
+with your distribution.</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +78,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377381172.aABc5e5.24620--
+--1377382000.b46C2.27352--
 
---===============0152289572==
+--===============1342948624==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -85,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0152289572==--
+--===============1342948624==--
