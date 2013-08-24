@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54646] [NVD9] i2c failure on Quadro NVS 4200M (GF119)
-Date: Sat, 24 Aug 2013 13:51:07 +0000
-Message-ID: <bug-54646-8800-nYS72QTIuS@http.bugs.freedesktop.org/>
-References: <bug-54646-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 46779] Freeze on G86 [Quadro NVS 290] under Gnome
+ Shell when opening Firefox tabs
+Date: Sat, 24 Aug 2013 18:28:11 +0000
+Message-ID: <bug-46779-8800-Ws6hFEMvPi@http.bugs.freedesktop.org/>
+References: <bug-46779-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0391750986=="
+Content-Type: multipart/mixed; boundary="===============0808469447=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54646-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-46779-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0391750986==
-Content-Type: multipart/alternative; boundary="1377352267.8d511.983"; charset="us-ascii"
+--===============0808469447==
+Content-Type: multipart/alternative; boundary="1377368891.Cbfc61.16609"; charset="us-ascii"
 
 
---1377352267.8d511.983
-Date: Sat, 24 Aug 2013 13:51:07 +0000
+--1377368891.Cbfc61.16609
+Date: Sat, 24 Aug 2013 18:28:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54646
+https://bugs.freedesktop.org/show_bug.cgi?id=46779
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please retest this with more current software and see if the problem still
+happens. (For the purpose of this discussion, "more current" means kernel >=
+3.10, mesa >= 9.1, xf86-video-nouveau >= 1.0.9)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377352267.8d511.983
-Date: Sat, 24 Aug 2013 13:51:07 +0000
+--1377368891.Cbfc61.16609
+Date: Sat, 24 Aug 2013 18:28:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,36 +50,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVD9] i2c failure on Quadro NVS 4200M (GF119)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54646">bug 54646</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Freeze on G86 [Quadro NVS 290] under Gnome Shell when opening Firefox tabs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=46779#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Freeze on G86 [Quadro NVS 290] under Gnome Shell when opening Firefox tabs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=46779">bug 46779</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Please retest this with more current software and see if the problem still
+happens. (For the purpose of this discussion, &quot;more current&quot; means kernel &gt;=
+3.10, mesa &gt;= 9.1, xf86-video-nouveau &gt;= 1.0.9)</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -91,9 +77,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377352267.8d511.983--
+--1377368891.Cbfc61.16609--
 
---===============0391750986==
+--===============0808469447==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0391750986==--
+--===============0808469447==--
