@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33165] Nouveau + nvidia GT240 = unworkable
-Date: Sat, 24 Aug 2013 03:17:20 +0000
-Message-ID: <bug-33165-8800-qv6Z4UFL02@http.bugs.freedesktop.org/>
+Subject: [Bug 33165] [NVA3] Nouveau + nvidia GT240 = unworkable
+Date: Sat, 24 Aug 2013 03:19:06 +0000
+Message-ID: <bug-33165-8800-IQhGr71ULg@http.bugs.freedesktop.org/>
 References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1148737520=="
+Content-Type: multipart/mixed; boundary="===============0400136701=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,27 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1148737520==
-Content-Type: multipart/alternative; boundary="1377314240.ef62B3.397"; charset="us-ascii"
+--===============0400136701==
+Content-Type: multipart/alternative; boundary="1377314346.a44e13.667"; charset="us-ascii"
 
 
---1377314240.ef62B3.397
-Date: Sat, 24 Aug 2013 03:17:20 +0000
+--1377314346.a44e13.667
+Date: Sat, 24 Aug 2013 03:19:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33165
 
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please re-test with the latest kernel. There are reports of all nva3+ cards
-working fine for most people with current software.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Nouveau + nvidia GT240 =    |[NVA3] Nouveau + nvidia
+                   |unworkable                  |GT240 = unworkable
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377314240.ef62B3.397
-Date: Sat, 24 Aug 2013 03:17:20 +0000
+--1377314346.a44e13.667
+Date: Sat, 24 Aug 2013 03:19:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -48,22 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Nouveau + nvidia GT240 = unworkable"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau + nvidia GT240 = unworkable"
+   title="NEW --- - [NVA3] Nouveau + nvidia GT240 = unworkable"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Please re-test with the latest kernel. There are reports of all nva3+ cards
-working fine for most people with current software.</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Nouveau + nvidia GT240 = unworkable
+           </td>
+           <td>[NVA3] Nouveau + nvidia GT240 = unworkable
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -74,9 +83,9 @@ working fine for most people with current software.</pre>
     </body>
 </html>
 
---1377314240.ef62B3.397--
+--1377314346.a44e13.667--
 
---===============1148737520==
+--===============0400136701==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1148737520==--
+--===============0400136701==--
