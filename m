@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 63790] [NV11] Nouveau fb boots laptop screen a GIANT
-	BARCODE
-Date: Sat, 24 Aug 2013 03:20:16 +0000
-Message-ID: <bug-63790-8800-STZ7QWrd08@http.bugs.freedesktop.org/>
-References: <bug-63790-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 46601] [NV98] DCB I2C entry invalid
+Date: Sat, 24 Aug 2013 03:31:09 +0000
+Message-ID: <bug-46601-8800-VP59KAfmuf@http.bugs.freedesktop.org/>
+References: <bug-46601-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1802661543=="
+Content-Type: multipart/mixed; boundary="===============0124408669=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-63790-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-46601-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1802661543==
-Content-Type: multipart/alternative; boundary="1377314416.AD1f76F81.864"; charset="us-ascii"
+--===============0124408669==
+Content-Type: multipart/alternative; boundary="1377315069.341ddf1.2894"; charset="us-ascii"
 
 
---1377314416.AD1f76F81.864
-Date: Sat, 24 Aug 2013 03:20:16 +0000
+--1377315069.341ddf1.2894
+Date: Sat, 24 Aug 2013 03:31:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=63790
+https://bugs.freedesktop.org/show_bug.cgi?id=46601
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Nouveau fb boots laptop     |[NV11] Nouveau fb boots
-                   |screen a GIANT BARCODE      |laptop screen a GIANT
-                   |                            |BARCODE
+            Summary|[drm] nouveau 0000:02:00.0: |[NV98] DCB I2C entry
+                   |DCB I2C entry invalid       |invalid
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please re-test with the latest kernel. A lot has changed since kernel 3.2.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377314416.AD1f76F81.864
-Date: Sat, 24 Aug 2013 03:20:16 +0000
+--1377315069.341ddf1.2894
+Date: Sat, 24 Aug 2013 03:31:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,8 +58,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV11] Nouveau fb boots laptop screen a GIANT BARCODE"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63790">bug 63790</a>
+   title="NEW --- - [NV98] DCB I2C entry invalid"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=46601">bug 46601</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -69,12 +70,25 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>Nouveau fb boots laptop screen a GIANT BARCODE
+           <td>[drm] nouveau 0000:02:00.0: DCB I2C entry invalid
            </td>
-           <td>[NV11] Nouveau fb boots laptop screen a GIANT BARCODE
+           <td>[NV98] DCB I2C entry invalid
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV98] DCB I2C entry invalid"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=46601#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV98] DCB I2C entry invalid"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=46601">bug 46601</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Please re-test with the latest kernel. A lot has changed since kernel 3.2.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +99,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377314416.AD1f76F81.864--
+--1377315069.341ddf1.2894--
 
---===============1802661543==
+--===============0124408669==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +112,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1802661543==--
+--===============0124408669==--
