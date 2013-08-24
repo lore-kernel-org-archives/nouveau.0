@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54646] [NVD9] i2c failure on Quadro NVS 4200M (GF119)
-Date: Sat, 24 Aug 2013 13:25:37 +0000
-Message-ID: <bug-54646-8800-uiBAyPq3Y9@http.bugs.freedesktop.org/>
+Date: Sat, 24 Aug 2013 13:51:07 +0000
+Message-ID: <bug-54646-8800-nYS72QTIuS@http.bugs.freedesktop.org/>
 References: <bug-54646-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0051367215=="
+Content-Type: multipart/mixed; boundary="===============0391750986=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54646-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,33 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0051367215==
-Content-Type: multipart/alternative; boundary="1377350737.Ff3ed1.28860"; charset="us-ascii"
+--===============0391750986==
+Content-Type: multipart/alternative; boundary="1377352267.8d511.983"; charset="us-ascii"
 
 
---1377350737.Ff3ed1.28860
-Date: Sat, 24 Aug 2013 13:25:37 +0000
+--1377352267.8d511.983
+Date: Sat, 24 Aug 2013 13:51:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54646
 
---- Comment #2 from Jan Vesely <jano.vesely-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #1)
-> There have been a lot of fixes to NVD0+ since you filed this bug. Could you
-> try 3.11-rc6 (or nouveau/master)? If it still shows issues, please supply a
-> complete dmesg as well as your vbios (/sys/kernel/debug/dri/0/vbios.rom).
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-I almost forgot about this bug. I use novueau kernel daily (with Airlie's
-auto-off patches) and the dmesg output looks OK with the recent version
-(3.11-rc6+).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377350737.Ff3ed1.28860
-Date: Sat, 24 Aug 2013 13:25:37 +0000
+--1377352267.8d511.983
+Date: Sat, 24 Aug 2013 13:51:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,28 +51,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] i2c failure on Quadro NVS 4200M (GF119)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54646#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] i2c failure on Quadro NVS 4200M (GF119)"
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVD9] i2c failure on Quadro NVS 4200M (GF119)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54646">bug 54646</a>
-              from <span class="vcard"><a class="email" href="mailto:jano.vesely&#64;gmail.com" title="Jan Vesely &lt;jano.vesely&#64;gmail.com&gt;"> <span class="fn">Jan Vesely</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=54646#c1">comment #1</a>)
-<span class="quote">&gt; There have been a lot of fixes to NVD0+ since you filed this bug. Could you
-&gt; try 3.11-rc6 (or nouveau/master)? If it still shows issues, please supply a
-&gt; complete dmesg as well as your vbios (/sys/kernel/debug/dri/0/vbios.rom).</span >
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-I almost forgot about this bug. I use novueau kernel daily (with Airlie's
-auto-off patches) and the dmesg output looks OK with the recent version
-(3.11-rc6+).</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -86,9 +91,9 @@ auto-off patches) and the dmesg output looks OK with the recent version
     </body>
 </html>
 
---1377350737.Ff3ed1.28860--
+--1377352267.8d511.983--
 
---===============0051367215==
+--===============0391750986==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0051367215==--
+--===============0391750986==--
