@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60680] [NV96] HDMI is connected and has mode,
- TV says "no signal"
-Date: Sat, 24 Aug 2013 08:30:02 +0000
-Message-ID: <bug-60680-8800-RWY6hFqfsj@http.bugs.freedesktop.org/>
-References: <bug-60680-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68488] [NV86] Lockup and reboot on T61 with nouveau
+	driver/exa
+Date: Sat, 24 Aug 2013 11:09:39 +0000
+Message-ID: <bug-68488-8800-EMgRrgKQYo@http.bugs.freedesktop.org/>
+References: <bug-68488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0578804043=="
+Content-Type: multipart/mixed; boundary="===============0485881487=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60680-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,53 +21,52 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0578804043==
-Content-Type: multipart/alternative; boundary="1377333002.BDeeCB1.3418"; charset="us-ascii"
+--===============0485881487==
+Content-Type: multipart/alternative; boundary="1377342579.DE8d2.3039"; charset="us-ascii"
 
 
---1377333002.BDeeCB1.3418
-Date: Sat, 24 Aug 2013 08:30:02 +0000
+--1377342579.DE8d2.3039
+Date: Sat, 24 Aug 2013 11:09:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60680
+https://bugs.freedesktop.org/show_bug.cgi?id=68488
 
---- Comment #9 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-As preparing for bisection, here are new confirmed data points:
+--- Comment #2 from Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> ---
+Created attachment 84554
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84554&action=edit
+journalctl -f _TRANSPORT=kernel
 
-- 3.5.2 vanilla kernel (i.e. not Gentoo-patches) works.
-- 3.11-rc6 vanilla kernel does not work.
+(In reply to comment #1)
+> Can you reproduce this at will? 
 
-I am specifically looking at whether boot-time fbcon after nouveau loads shows
-up on HDMI, whether X by default shows up on HDMI, and can I get the HDMI
-output exclusively.
+There are no clear steps to reproduce, but it happens often enough (at least
+every second day, sometimes several times a day).
 
-On 3.5.2, fbcon is cloned, X by default is cloned, and HDMI exclusive works.
+> If it started happening recently, was there some sort of upgrade that took place?
 
-On 3.11-rc6, fbcon shows only on LVDS, X by default shows only on LVDS, and
-HDMI exclusive does not show up anywhere. (off-topic: default resolution was
-not native for LVDS anymore.)
+I made a fresh install of Fedora 19 on this machine a month ago. I *think* the
+problem did not happen in the first one or two weeks, but that's not enough
+time to come up with any theories. :)
 
-The HDMI exclusive is set up by:
-$ xrandr --output LVDS-1 --off --output HDMI-1 --mode 1920x1080 --set 'scaling
-mode' 'None'
+> I think seeing a kernel log would be instructional. 
 
-I did also try dual setup:
-$ xrandr --output LVDS-1 --auto --output HDMI-1 --mode 1920x1080 --set 'scaling
-mode' 'None' --right-of LVDS-1
-but that does not work even on 3.5.2, LVDS works but TV says no signal.
-Apparently something in manual dual-screen setup gets messed up, while boot-up
-dual screen works. But that is off-topic here.
+I had three reboots yesterday evening within 30 minutes (around 22:09:00,
+22:18:00, 22:30:00).  The attached "journalctl -f _TRANSPORT=kernel" output
+includes two full reboot cycles.
+I'll also attach "journalctl --since=yesterday -f _TRANSPORT=kernel -p err" to
+ease finding critical stuff.
 
-Therefore, my bisection will concentrate on whether HDMI exclusive at full-HD
-resolution works or not.
+If journalctl is not the way to go, please link to instructions. I was looking
+at https://fedoraproject.org/wiki/How_to_debug_Xorg_problems for my initial
+comment.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377333002.BDeeCB1.3418
-Date: Sat, 24 Aug 2013 08:30:02 +0000
+--1377342579.DE8d2.3039
+Date: Sat, 24 Aug 2013 11:09:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -80,42 +79,40 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60680#c9">Comment # 9</a>
+   title="NEW --- - [NV86] Lockup and reboot on T61 with nouveau driver/exa"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68488#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60680">bug 60680</a>
-              from <span class="vcard"><a class="email" href="mailto:ppaalanen&#64;gmail.com" title="Pekka Paalanen &lt;ppaalanen&#64;gmail.com&gt;"> <span class="fn">Pekka Paalanen</span></a>
+   title="NEW --- - [NV86] Lockup and reboot on T61 with nouveau driver/exa"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68488">bug 68488</a>
+              from <span class="vcard"><a class="email" href="mailto:a9016009&#64;gmx.de" title="Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <span class="fn">Andre Klapper</span></a>
 </span></b>
-        <pre>As preparing for bisection, here are new confirmed data points:
+        <pre>Created <span class=""><a href="attachment.cgi?id=84554" name="attach_84554" title="journalctl -f _TRANSPORT=kernel">attachment 84554</a> <a href="attachment.cgi?id=84554&amp;action=edit" title="journalctl -f _TRANSPORT=kernel">[details]</a></span>
+journalctl -f _TRANSPORT=kernel
 
-- 3.5.2 vanilla kernel (i.e. not Gentoo-patches) works.
-- 3.11-rc6 vanilla kernel does not work.
+(In reply to <a href="show_bug.cgi?id=68488#c1">comment #1</a>)
+<span class="quote">&gt; Can you reproduce this at will? </span >
 
-I am specifically looking at whether boot-time fbcon after nouveau loads shows
-up on HDMI, whether X by default shows up on HDMI, and can I get the HDMI
-output exclusively.
+There are no clear steps to reproduce, but it happens often enough (at least
+every second day, sometimes several times a day).
 
-On 3.5.2, fbcon is cloned, X by default is cloned, and HDMI exclusive works.
+<span class="quote">&gt; If it started happening recently, was there some sort of upgrade that took place?</span >
 
-On 3.11-rc6, fbcon shows only on LVDS, X by default shows only on LVDS, and
-HDMI exclusive does not show up anywhere. (off-topic: default resolution was
-not native for LVDS anymore.)
+I made a fresh install of Fedora 19 on this machine a month ago. I *think* the
+problem did not happen in the first one or two weeks, but that's not enough
+time to come up with any theories. :)
 
-The HDMI exclusive is set up by:
-$ xrandr --output LVDS-1 --off --output HDMI-1 --mode 1920x1080 --set 'scaling
-mode' 'None'
+<span class="quote">&gt; I think seeing a kernel log would be instructional. </span >
 
-I did also try dual setup:
-$ xrandr --output LVDS-1 --auto --output HDMI-1 --mode 1920x1080 --set 'scaling
-mode' 'None' --right-of LVDS-1
-but that does not work even on 3.5.2, LVDS works but TV says no signal.
-Apparently something in manual dual-screen setup gets messed up, while boot-up
-dual screen works. But that is off-topic here.
+I had three reboots yesterday evening within 30 minutes (around 22:09:00,
+22:18:00, 22:30:00).  The attached &quot;journalctl -f _TRANSPORT=kernel&quot; output
+includes two full reboot cycles.
+I'll also attach &quot;journalctl --since=yesterday -f _TRANSPORT=kernel -p err&quot; to
+ease finding critical stuff.
 
-Therefore, my bisection will concentrate on whether HDMI exclusive at full-HD
-resolution works or not.</pre>
+If journalctl is not the way to go, please link to instructions. I was looking
+at <a href="https://fedoraproject.org/wiki/How_to_debug_Xorg_problems">https://fedoraproject.org/wiki/How_to_debug_Xorg_problems</a> for my initial
+comment.</pre>
         </div>
       </p>
       <hr>
@@ -127,9 +124,9 @@ resolution works or not.</pre>
     </body>
 </html>
 
---1377333002.BDeeCB1.3418--
+--1377342579.DE8d2.3039--
 
---===============0578804043==
+--===============0485881487==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -140,4 +137,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0578804043==--
+--===============0485881487==--
