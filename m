@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55980] X Segfault on second screen resize
-Date: Sat, 24 Aug 2013 01:59:49 +0000
-Message-ID: <bug-55980-8800-FifzMrASGr@http.bugs.freedesktop.org/>
-References: <bug-55980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54056] [NVAF] plenty of errors trapped write at plus
+ PGRAPH error
+Date: Sat, 24 Aug 2013 02:05:51 +0000
+Message-ID: <bug-54056-8800-j0iIKIjcie@http.bugs.freedesktop.org/>
+References: <bug-54056-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1847757709=="
+Content-Type: multipart/mixed; boundary="===============0672013324=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-55980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-54056-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1847757709==
-Content-Type: multipart/alternative; boundary="1377309589.62A0eF7a2.15001"; charset="us-ascii"
+--===============0672013324==
+Content-Type: multipart/alternative; boundary="1377309951.4c6Aaf722.16209"; charset="us-ascii"
 
 
---1377309589.62A0eF7a2.15001
-Date: Sat, 24 Aug 2013 01:59:49 +0000
+--1377309951.4c6Aaf722.16209
+Date: Sat, 24 Aug 2013 02:05:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=55980
+https://bugs.freedesktop.org/show_bug.cgi?id=54056
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you confirm whether this still happens with the latest
-kernel/xf86-video-nouveau/Xorg? If so, please provide a complete dmesg and
-Xorg.0.log after the issue happens.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|plenty of errors trapped    |[NVAF] plenty of errors
+                   |write at plus PGRAPH error  |trapped write at plus
+                   |                            |PGRAPH error
+
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Alin, please re-test with the latest kernel. If you're still having issues,
+please supply a complete dmesg form that kernel, as well as the Xorg.0.log.
+Also you could use a mesa upgrade (to at least 9.1).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377309589.62A0eF7a2.15001
-Date: Sat, 24 Aug 2013 01:59:49 +0000
+--1377309951.4c6Aaf722.16209
+Date: Sat, 24 Aug 2013 02:05:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,22 +58,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVAF] plenty of errors trapped write at plus PGRAPH error"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54056">bug 54056</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>plenty of errors trapped write at plus PGRAPH error
+           </td>
+           <td>[NVAF] plenty of errors trapped write at plus PGRAPH error
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - X Segfault on second screen resize"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55980#c7">Comment # 7</a>
+   title="NEW --- - [NVAF] plenty of errors trapped write at plus PGRAPH error"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54056#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - X Segfault on second screen resize"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55980">bug 55980</a>
+   title="NEW --- - [NVAF] plenty of errors trapped write at plus PGRAPH error"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54056">bug 54056</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Can you confirm whether this still happens with the latest
-kernel/xf86-video-nouveau/Xorg? If so, please provide a complete dmesg and
-Xorg.0.log after the issue happens.</pre>
+        <pre>Alin, please re-test with the latest kernel. If you're still having issues,
+please supply a complete dmesg form that kernel, as well as the Xorg.0.log.
+Also you could use a mesa upgrade (to at least 9.1).</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +105,9 @@ Xorg.0.log after the issue happens.</pre>
     </body>
 </html>
 
---1377309589.62A0eF7a2.15001--
+--1377309951.4c6Aaf722.16209--
 
---===============1847757709==
+--===============0672013324==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +118,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1847757709==--
+--===============0672013324==--
