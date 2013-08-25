@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 63165] [NVE6] GTX660 GPU lockups on 3D applications
-Date: Sun, 25 Aug 2013 07:12:33 +0000
-Message-ID: <bug-63165-8800-wT0DeZfMtC@http.bugs.freedesktop.org/>
-References: <bug-63165-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67161] Blank video after resuming from S3 or S4
+Date: Sun, 25 Aug 2013 08:35:54 +0000
+Message-ID: <bug-67161-8800-BqimtpnQpu@http.bugs.freedesktop.org/>
+References: <bug-67161-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1508736113=="
+Content-Type: multipart/mixed; boundary="===============0517058059=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-63165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67161-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +20,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1508736113==
-Content-Type: multipart/alternative; boundary="1377414753.bbc6A4Ce1.25091"; charset="us-ascii"
+--===============0517058059==
+Content-Type: multipart/alternative; boundary="1377419754.BBBfFEd1.7712"; charset="us-ascii"
 
 
---1377414753.bbc6A4Ce1.25091
-Date: Sun, 25 Aug 2013 07:12:33 +0000
+--1377419754.BBBfFEd1.7712
+Date: Sun, 25 Aug 2013 08:35:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=63165
+https://bugs.freedesktop.org/show_bug.cgi?id=67161
 
---- Comment #14 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-(In reply to comment #13)
-> Hi Ilia,
-> Yes, I can get it to crash without doing a suspend/resume. The latest kernel
-> I tried is 3.10.7, but I will try a 3.11 kernel when I'm able to. For now,
-> I'm just living off of Openbox and applications that only use 2D (which
-> actually isn't as bad as I thought it'd be).
+Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> changed:
 
-Linux 3.11 contains many fixes concerning context switching which should fix
-your 3D issues.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |WONTFIX
+
+--- Comment #2 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
+Hi Ilia,
+thanks for your feedback. Upgrading my distribution is not an option and since
+it's based on Debian Squeeze (which is oldstable now), I really don't think
+that filing a bug with it will to lead to anywhere.
+
+On the other hand, I may try a recent live distribution with a recent enough
+kernel version to see if the behaviour is the same. In case, which distribution
+would you recommend?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377414753.bbc6A4Ce1.25091
-Date: Sun, 25 Aug 2013 07:12:33 +0000
+--1377419754.BBBfFEd1.7712
+Date: Sun, 25 Aug 2013 08:35:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,28 +61,55 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Blank video after resuming from S3 or S4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67161">bug 67161</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>WONTFIX
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] GTX660 GPU lockups on 3D applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165#c14">Comment # 14</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Blank video after resuming from S3 or S4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67161#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] GTX660 GPU lockups on 3D applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165">bug 63165</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Blank video after resuming from S3 or S4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67161">bug 67161</a>
+              from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=63165#c13">comment #13</a>)
-<span class="quote">&gt; Hi Ilia,
-&gt; Yes, I can get it to crash without doing a suspend/resume. The latest kernel
-&gt; I tried is 3.10.7, but I will try a 3.11 kernel when I'm able to. For now,
-&gt; I'm just living off of Openbox and applications that only use 2D (which
-&gt; actually isn't as bad as I thought it'd be).</span >
+        <pre>Hi Ilia,
+thanks for your feedback. Upgrading my distribution is not an option and since
+it's based on Debian Squeeze (which is oldstable now), I really don't think
+that filing a bug with it will to lead to anywhere.
 
-Linux 3.11 contains many fixes concerning context switching which should fix
-your 3D issues.</pre>
+On the other hand, I may try a recent live distribution with a recent enough
+kernel version to see if the behaviour is the same. In case, which distribution
+would you recommend?</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +121,9 @@ your 3D issues.</pre>
     </body>
 </html>
 
---1377414753.bbc6A4Ce1.25091--
+--1377419754.BBBfFEd1.7712--
 
---===============1508736113==
+--===============0517058059==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +134,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1508736113==--
+--===============0517058059==--
