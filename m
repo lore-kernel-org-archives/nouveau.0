@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 43939] [NV96] monitor connected via HDMI->DVI
  adapter is blank / standby (9500GS)
-Date: Sun, 25 Aug 2013 05:49:21 +0000
-Message-ID: <bug-43939-8800-he2PevhWcd@http.bugs.freedesktop.org/>
+Date: Sun, 25 Aug 2013 05:56:11 +0000
+Message-ID: <bug-43939-8800-l9SAZhnsq4@http.bugs.freedesktop.org/>
 References: <bug-43939-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0010942299=="
+Content-Type: multipart/mixed; boundary="===============0540857884=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-43939-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,41 +21,54 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0010942299==
-Content-Type: multipart/alternative; boundary="1377409761.5EE43.9835"; charset="us-ascii"
+--===============0540857884==
+Content-Type: multipart/alternative; boundary="1377410171.Dbcf13e82.10722"; charset="us-ascii"
 
 
---1377409761.5EE43.9835
-Date: Sun, 25 Aug 2013 05:49:21 +0000
+--1377410171.Dbcf13e82.10722
+Date: Sun, 25 Aug 2013 05:56:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=43939
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #13 from Anthony Foiani <anthony.foiani+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #12)
+> Oh, I'm in no way trying to lay the blame away from nouveau :) 
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NV96] DVI monitor          |[NV96] monitor connected
-                   |connected via HDMI is blank |via HDMI->DVI adapter is
-                   |/ standby (NV96 / 9500GS)   |blank / standby (9500GS)
+Heh.  Didn't mean to imply that you were.
 
---- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Oh, I'm in no way trying to lay the blame away from nouveau :) Just getting the
-facts straight. I assume this is just an adapter (i.e. round hole/square peg),
-not a converter. In this case, the card would actually drive the port as a DVI
-port that just happens to be using a HDMI cable. Which actually makes the
-problem more likely to be unrelated to the one in the other bug.
+Mostly I was convincing myself about whether I need another hour or two of
+swapping cables to try HDMI-to-HDMI connection on same card, in case there's
+something intrinsically flakey with this card.  (It's actually the GS variant,
+which was OEM'd to HP at the time?)
 
-For completeness, could you upload your vbios
-(/sys/kernel/debug/dri/0/vbios.rom)?
+> Just getting
+> the facts straight. I assume this is just an adapter (i.e. round hole/square
+> peg), not a converter. In this case, the card would actually drive the port
+> as a DVI port that just happens to be using a HDMI cable. Which actually
+> makes the problem more likely to be unrelated to the one in the other bug.
+
+Yes, these are all pin-to-pin adapters.
+
+(I had to check, because I'm involved with a *different* bug that affects
+active DisplayPort to dual-link DVI converters -- but that's on a different
+machine, a little ultra small form factor that only has displayport output from
+the intel gfx core.)
+
+> For completeness, could you upload your vbios
+> (/sys/kernel/debug/dri/0/vbios.rom)?
+
+Will do so.
+
+Thanks!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377409761.5EE43.9835
-Date: Sun, 25 Aug 2013 05:49:21 +0000
+--1377410171.Dbcf13e82.10722
+Date: Sun, 25 Aug 2013 05:56:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,47 +76,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939">bug 43939</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NV96] DVI monitor connected via HDMI is blank / standby (NV96 / 9500GS)
-           </td>
-           <td>[NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939#c12">Comment # 12</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=43939">bug 43939</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:anthony.foiani+freedesktop&#64;gmail.com" title="Anthony Foiani &lt;anthony.foiani+freedesktop&#64;gmail.com&gt;"> <span class="fn">Anthony Foiani</span></a>
 </span></b>
-        <pre>Oh, I'm in no way trying to lay the blame away from nouveau :) Just getting the
-facts straight. I assume this is just an adapter (i.e. round hole/square peg),
-not a converter. In this case, the card would actually drive the port as a DVI
-port that just happens to be using a HDMI cable. Which actually makes the
-problem more likely to be unrelated to the one in the other bug.
+        <pre>(In reply to <a href="show_bug.cgi?id=43939#c12">comment #12</a>)
+<span class="quote">&gt; Oh, I'm in no way trying to lay the blame away from nouveau :) </span >
 
-For completeness, could you upload your vbios
-(/sys/kernel/debug/dri/0/vbios.rom)?</pre>
+Heh.  Didn't mean to imply that you were.
+
+Mostly I was convincing myself about whether I need another hour or two of
+swapping cables to try HDMI-to-HDMI connection on same card, in case there's
+something intrinsically flakey with this card.  (It's actually the GS variant,
+which was OEM'd to HP at the time?)
+
+<span class="quote">&gt; Just getting
+&gt; the facts straight. I assume this is just an adapter (i.e. round hole/square
+&gt; peg), not a converter. In this case, the card would actually drive the port
+&gt; as a DVI port that just happens to be using a HDMI cable. Which actually
+&gt; makes the problem more likely to be unrelated to the one in the other bug.</span >
+
+Yes, these are all pin-to-pin adapters.
+
+(I had to check, because I'm involved with a *different* bug that affects
+active DisplayPort to dual-link DVI converters -- but that's on a different
+machine, a little ultra small form factor that only has displayport output from
+the intel gfx core.)
+
+<span class="quote">&gt; For completeness, could you upload your vbios
+&gt; (/sys/kernel/debug/dri/0/vbios.rom)?</span >
+
+Will do so.
+
+Thanks!</pre>
         </div>
       </p>
       <hr>
@@ -115,9 +129,9 @@ For completeness, could you upload your vbios
     </body>
 </html>
 
---1377409761.5EE43.9835--
+--1377410171.Dbcf13e82.10722--
 
---===============0010942299==
+--===============0540857884==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,4 +142,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0010942299==--
+--===============0540857884==--
