@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67161] Blank video after resuming from S3 or S4
-Date: Sun, 25 Aug 2013 08:35:54 +0000
-Message-ID: <bug-67161-8800-BqimtpnQpu@http.bugs.freedesktop.org/>
+Date: Sun, 25 Aug 2013 08:36:12 +0000
+Message-ID: <bug-67161-8800-XRH7H1sTlx@http.bugs.freedesktop.org/>
 References: <bug-67161-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0517058059=="
+Content-Type: multipart/mixed; boundary="===============0144782384=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67161-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0517058059==
-Content-Type: multipart/alternative; boundary="1377419754.BBBfFEd1.7712"; charset="us-ascii"
+--===============0144782384==
+Content-Type: multipart/alternative; boundary="1377419772.c2aFf1.7766"; charset="us-ascii"
 
 
---1377419754.BBBfFEd1.7712
-Date: Sun, 25 Aug 2013 08:35:54 +0000
+--1377419772.c2aFf1.7766
+Date: Sun, 25 Aug 2013 08:36:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,25 +35,18 @@ Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |WONTFIX
+             Status|RESOLVED                    |REOPENED
+         Resolution|WONTFIX                     |---
 
---- Comment #2 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
-Hi Ilia,
-thanks for your feedback. Upgrading my distribution is not an option and since
-it's based on Debian Squeeze (which is oldstable now), I really don't think
-that filing a bug with it will to lead to anywhere.
-
-On the other hand, I may try a recent live distribution with a recent enough
-kernel version to see if the behaviour is the same. In case, which distribution
-would you recommend?
+--- Comment #3 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
+Sorry, I didn't mean to close it yet :-P
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377419754.BBBfFEd1.7712
-Date: Sun, 25 Aug 2013 08:35:54 +0000
+--1377419772.c2aFf1.7766
+Date: Sun, 25 Aug 2013 08:36:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,8 +57,8 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - Blank video after resuming from S3 or S4"
+          bz_status_REOPENED "
+   title="REOPENED --- - Blank video after resuming from S3 or S4"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67161">bug 67161</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -77,39 +70,32 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
            <td>RESOLVED
+           </td>
+           <td>REOPENED
            </td>
          </tr>
 
          <tr>
            <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
            <td>WONTFIX
+           </td>
+           <td>---
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - Blank video after resuming from S3 or S4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67161#c2">Comment # 2</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - Blank video after resuming from S3 or S4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67161#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - Blank video after resuming from S3 or S4"
+          bz_status_REOPENED "
+   title="REOPENED --- - Blank video after resuming from S3 or S4"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67161">bug 67161</a>
               from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
 </span></b>
-        <pre>Hi Ilia,
-thanks for your feedback. Upgrading my distribution is not an option and since
-it's based on Debian Squeeze (which is oldstable now), I really don't think
-that filing a bug with it will to lead to anywhere.
-
-On the other hand, I may try a recent live distribution with a recent enough
-kernel version to see if the behaviour is the same. In case, which distribution
-would you recommend?</pre>
+        <pre>Sorry, I didn't mean to close it yet :-P</pre>
         </div>
       </p>
       <hr>
@@ -121,9 +107,9 @@ would you recommend?</pre>
     </body>
 </html>
 
---1377419754.BBBfFEd1.7712--
+--1377419772.c2aFf1.7766--
 
---===============0517058059==
+--===============0144782384==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -134,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0517058059==--
+--===============0144782384==--
