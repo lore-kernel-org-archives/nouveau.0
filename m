@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54910] Problems with nouveau and Gforce 2MX
-Date: Sun, 25 Aug 2013 04:27:13 +0000
-Message-ID: <bug-54910-8800-eMv1xRzgYV@http.bugs.freedesktop.org/>
-References: <bug-54910-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54681] Connecting TV to second DVI port of 9600GT
+ card causes GPU lockup and Xorg crash
+Date: Sun, 25 Aug 2013 04:37:18 +0000
+Message-ID: <bug-54681-8800-f4yr3hp3D2@http.bugs.freedesktop.org/>
+References: <bug-54681-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0074246542=="
+Content-Type: multipart/mixed; boundary="===============0150330015=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54910-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-54681-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0074246542==
-Content-Type: multipart/alternative; boundary="1377404833.dBB36e1.28704"; charset="us-ascii"
+--===============0150330015==
+Content-Type: multipart/alternative; boundary="1377405438.eD2dc2.29911"; charset="us-ascii"
 
 
---1377404833.dBB36e1.28704
-Date: Sun, 25 Aug 2013 04:27:13 +0000
+--1377405438.eD2dc2.29911
+Date: Sun, 25 Aug 2013 04:37:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54910
+https://bugs.freedesktop.org/show_bug.cgi?id=54681
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Does this still happen with the latest software? If so, please attach logs
-individually rather than compressed all together (unless they're _enormous_).
-That way one can see them in a browser without downloading/extracting/etc.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Does this happen with the latest xf86-video-nouveau? If so, please provide an
+updated stacktrace. (exa_accel.c no longer exists)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377404833.dBB36e1.28704
-Date: Sun, 25 Aug 2013 04:27:13 +0000
+--1377405438.eD2dc2.29911
+Date: Sun, 25 Aug 2013 04:37:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,17 +54,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Problems with nouveau and Gforce 2MX"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54910#c1">Comment # 1</a>
+   title="NEW --- - Connecting TV to second DVI port of 9600GT card causes GPU lockup and Xorg crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54681#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Problems with nouveau and Gforce 2MX"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54910">bug 54910</a>
+   title="NEW --- - Connecting TV to second DVI port of 9600GT card causes GPU lockup and Xorg crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54681">bug 54681</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Does this still happen with the latest software? If so, please attach logs
-individually rather than compressed all together (unless they're _enormous_).
-That way one can see them in a browser without downloading/extracting/etc.</pre>
+        <pre>Does this happen with the latest xf86-video-nouveau? If so, please provide an
+updated stacktrace. (exa_accel.c no longer exists)</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +75,9 @@ That way one can see them in a browser without downloading/extracting/etc.</pre>
     </body>
 </html>
 
---1377404833.dBB36e1.28704--
+--1377405438.eD2dc2.29911--
 
---===============0074246542==
+--===============0150330015==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0074246542==--
+--===============0150330015==--
