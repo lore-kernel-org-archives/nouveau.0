@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 43939] [NV96] monitor connected via HDMI->DVI
- adapter is blank / standby (9500GS)
-Date: Sun, 25 Aug 2013 05:56:51 +0000
-Message-ID: <bug-43939-8800-xEU2t31P8V@http.bugs.freedesktop.org/>
-References: <bug-43939-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59133] GPU lockup with threaded opengl
+Date: Sun, 25 Aug 2013 06:07:23 +0000
+Message-ID: <bug-59133-8800-bMcGRiT3G1@http.bugs.freedesktop.org/>
+References: <bug-59133-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0301166379=="
+Content-Type: multipart/mixed; boundary="===============1629087943=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-43939-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59133-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0301166379==
-Content-Type: multipart/alternative; boundary="1377410211.cbba72Ea2.10777"; charset="us-ascii"
+--===============1629087943==
+Content-Type: multipart/alternative; boundary="1377410842.7f57D32.12421"; charset="us-ascii"
 
 
---1377410211.cbba72Ea2.10777
-Date: Sun, 25 Aug 2013 05:56:51 +0000
+--1377410842.7f57D32.12421
+Date: Sun, 25 Aug 2013 06:07:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=43939
+https://bugs.freedesktop.org/show_bug.cgi?id=59133
 
---- Comment #14 from Anthony Foiani <anthony.foiani+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 84580
-  --> https://bugs.freedesktop.org/attachment.cgi?id=84580&action=edit
-vbios.rom file as requested
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Does this still happen with the latest software (kernel/mesa)? If so, please
+provide a complete report. See http://nouveau.freedesktop.org/wiki/Bugs/
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377410211.cbba72Ea2.10777
-Date: Sun, 25 Aug 2013 05:56:51 +0000
+--1377410842.7f57D32.12421
+Date: Sun, 25 Aug 2013 06:07:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +53,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939#c14">Comment # 14</a>
+   title="NEW --- - GPU lockup with threaded opengl"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59133#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939">bug 43939</a>
-              from <span class="vcard"><a class="email" href="mailto:anthony.foiani+freedesktop&#64;gmail.com" title="Anthony Foiani &lt;anthony.foiani+freedesktop&#64;gmail.com&gt;"> <span class="fn">Anthony Foiani</span></a>
+   title="NEW --- - GPU lockup with threaded opengl"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59133">bug 59133</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=84580" name="attach_84580" title="vbios.rom file as requested">attachment 84580</a> <a href="attachment.cgi?id=84580&amp;action=edit" title="vbios.rom file as requested">[details]</a></span>
-vbios.rom file as requested</pre>
+        <pre>Does this still happen with the latest software (kernel/mesa)? If so, please
+provide a complete report. See <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a></pre>
         </div>
       </p>
       <hr>
@@ -76,9 +74,9 @@ vbios.rom file as requested</pre>
     </body>
 </html>
 
---1377410211.cbba72Ea2.10777--
+--1377410842.7f57D32.12421--
 
---===============0301166379==
+--===============1629087943==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0301166379==--
+--===============1629087943==--
