@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 63165] [NVE6] GTX660 GPU lockups on 3D applications
-Date: Sun, 25 Aug 2013 01:57:02 +0000
-Message-ID: <bug-63165-8800-9MBjO55SLB@http.bugs.freedesktop.org/>
-References: <bug-63165-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57034] [NVA0] [Quadro FX 4800] display port
+ connectors not recognized
+Date: Sun, 25 Aug 2013 03:29:54 +0000
+Message-ID: <bug-57034-8800-364jm2xgqH@http.bugs.freedesktop.org/>
+References: <bug-57034-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2048407533=="
+Content-Type: multipart/mixed; boundary="===============0453188875=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-63165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57034-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2048407533==
-Content-Type: multipart/alternative; boundary="1377395821.1343A10.5809"; charset="us-ascii"
+--===============0453188875==
+Content-Type: multipart/alternative; boundary="1377401394.acE33F2.18394"; charset="us-ascii"
 
 
---1377395821.1343A10.5809
-Date: Sun, 25 Aug 2013 01:57:01 +0000
+--1377401394.acE33F2.18394
+Date: Sun, 25 Aug 2013 03:29:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=63165
+https://bugs.freedesktop.org/show_bug.cgi?id=57034
 
---- Comment #13 from miga-anyandall-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
-Hi Ilia,
-Yes, I can get it to crash without doing a suspend/resume. The latest kernel I
-tried is 3.10.7, but I will try a 3.11 kernel when I'm able to. For now, I'm
-just living off of Openbox and applications that only use 2D (which actually
-isn't as bad as I thought it'd be).
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[Quadro FX 4800] display    |[NVA0] [Quadro FX 4800]
+                   |port connectors not         |display port connectors not
+                   |recognized                  |recognized
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please retest with the latest kernel. I see two dcb outputs with dp, so they're
+definitely at least somewhat recognized. Take a look at
+/sys/class/drm/card*-*/status -- that should indicate what it sees.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377395821.1343A10.5809
-Date: Sun, 25 Aug 2013 01:57:01 +0000
+--1377401394.acE33F2.18394
+Date: Sun, 25 Aug 2013 03:29:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,24 +58,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA0] [Quadro FX 4800] display port connectors not recognized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57034">bug 57034</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[Quadro FX 4800] display port connectors not recognized
+           </td>
+           <td>[NVA0] [Quadro FX 4800] display port connectors not recognized
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] GTX660 GPU lockups on 3D applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165#c13">Comment # 13</a>
+   title="NEW --- - [NVA0] [Quadro FX 4800] display port connectors not recognized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57034#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] GTX660 GPU lockups on 3D applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165">bug 63165</a>
-              from <span class="vcard"><a class="email" href="mailto:miga-anyandall&#64;hotmail.com" title="miga-anyandall&#64;hotmail.com">miga-anyandall&#64;hotmail.com</a>
+   title="NEW --- - [NVA0] [Quadro FX 4800] display port connectors not recognized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57034">bug 57034</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hi Ilia,
-Yes, I can get it to crash without doing a suspend/resume. The latest kernel I
-tried is 3.10.7, but I will try a 3.11 kernel when I'm able to. For now, I'm
-just living off of Openbox and applications that only use 2D (which actually
-isn't as bad as I thought it'd be).</pre>
+        <pre>Please retest with the latest kernel. I see two dcb outputs with dp, so they're
+definitely at least somewhat recognized. Take a look at
+/sys/class/drm/card*-*/status -- that should indicate what it sees.</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +105,9 @@ isn't as bad as I thought it'd be).</pre>
     </body>
 </html>
 
---1377395821.1343A10.5809--
+--1377401394.acE33F2.18394--
 
---===============2048407533==
+--===============0453188875==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +118,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2048407533==--
+--===============0453188875==--
