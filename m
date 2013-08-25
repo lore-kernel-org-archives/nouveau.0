@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49295] [NV50 gallium] artifacts in prboom on NV86
-Date: Sun, 25 Aug 2013 17:39:47 +0000
-Message-ID: <bug-49295-8800-9z34gJpcdr@http.bugs.freedesktop.org/>
-References: <bug-49295-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47191] random xorg hang with PGRAPH_TRAP_TPDMA_2D -
+ TP 0 - Unknown fault at address
+Date: Sun, 25 Aug 2013 17:45:00 +0000
+Message-ID: <bug-47191-8800-3q155emKO1@http.bugs.freedesktop.org/>
+References: <bug-47191-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1938991307=="
+Content-Type: multipart/mixed; boundary="===============1619443689=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49295-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47191-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1938991307==
-Content-Type: multipart/alternative; boundary="1377452386.eFFBB71.11175"; charset="us-ascii"
+--===============1619443689==
+Content-Type: multipart/alternative; boundary="1377452700.b54FbFf71.12238"; charset="us-ascii"
 
 
---1377452386.eFFBB71.11175
-Date: Sun, 25 Aug 2013 17:39:46 +0000
+--1377452700.b54FbFf71.12238
+Date: Sun, 25 Aug 2013 17:45:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=49295
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|artifacts in prboom on NV86 |[NV50 gallium] artifacts in
-                   |                            |prboom on NV86
+https://bugs.freedesktop.org/show_bug.cgi?id=47191
 
 --- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please retest with the latest mesa.
+Does this still happen with the latest kernel/mesa/xf86-video-nouveau? If so,
+please supply all the information requested at
+http://nouveau.freedesktop.org/wiki/Bugs/
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377452386.eFFBB71.11175
-Date: Sun, 25 Aug 2013 17:39:46 +0000
+--1377452700.b54FbFf71.12238
+Date: Sun, 25 Aug 2013 17:45:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,40 +50,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV50 gallium] artifacts in prboom on NV86"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49295">bug 49295</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>artifacts in prboom on NV86
-           </td>
-           <td>[NV50 gallium] artifacts in prboom on NV86
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50 gallium] artifacts in prboom on NV86"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49295#c1">Comment # 1</a>
+   title="NEW --- - random xorg hang with PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47191#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50 gallium] artifacts in prboom on NV86"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49295">bug 49295</a>
+   title="NEW --- - random xorg hang with PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47191">bug 47191</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Please retest with the latest mesa.</pre>
+        <pre>Does this still happen with the latest kernel/mesa/xf86-video-nouveau? If so,
+please supply all the information requested at
+<a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a></pre>
         </div>
       </p>
       <hr>
@@ -99,9 +77,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377452386.eFFBB71.11175--
+--1377452700.b54FbFf71.12238--
 
---===============1938991307==
+--===============1619443689==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -112,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1938991307==--
+--===============1619443689==--
