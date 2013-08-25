@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59133] GPU lockup with threaded opengl
-Date: Sun, 25 Aug 2013 06:07:23 +0000
-Message-ID: <bug-59133-8800-bMcGRiT3G1@http.bugs.freedesktop.org/>
-References: <bug-59133-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54537] native mode, forcing panel scaling
+Date: Sun, 25 Aug 2013 06:11:43 +0000
+Message-ID: <bug-54537-8800-JPz8HCdq8Y@http.bugs.freedesktop.org/>
+References: <bug-54537-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1629087943=="
+Content-Type: multipart/mixed; boundary="===============0213509035=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59133-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-54537-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1629087943==
-Content-Type: multipart/alternative; boundary="1377410842.7f57D32.12421"; charset="us-ascii"
+--===============0213509035==
+Content-Type: multipart/alternative; boundary="1377411103.22e88af1.12830"; charset="us-ascii"
 
 
---1377410842.7f57D32.12421
-Date: Sun, 25 Aug 2013 06:07:22 +0000
+--1377411103.22e88af1.12830
+Date: Sun, 25 Aug 2013 06:11:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59133
+https://bugs.freedesktop.org/show_bug.cgi?id=54537
 
 --- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Does this still happen with the latest software (kernel/mesa)? If so, please
-provide a complete report. See http://nouveau.freedesktop.org/wiki/Bugs/
+I do not see such an error message in the current kernel sources. Please
+re-test with the latest kernel, and if the problem persists, please provide the
+monitor's EDID (/sys/class/drm/card0-HDMI-1/edid).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377410842.7f57D32.12421
-Date: Sun, 25 Aug 2013 06:07:22 +0000
+--1377411103.22e88af1.12830
+Date: Sun, 25 Aug 2013 06:11:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,16 +54,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - GPU lockup with threaded opengl"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59133#c1">Comment # 1</a>
+   title="NEW --- - native mode, forcing panel scaling"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54537#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - GPU lockup with threaded opengl"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59133">bug 59133</a>
+   title="NEW --- - native mode, forcing panel scaling"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54537">bug 54537</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Does this still happen with the latest software (kernel/mesa)? If so, please
-provide a complete report. See <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a></pre>
+        <pre>I do not see such an error message in the current kernel sources. Please
+re-test with the latest kernel, and if the problem persists, please provide the
+monitor's EDID (/sys/class/drm/card0-HDMI-1/edid).</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +76,9 @@ provide a complete report. See <a href="http://nouveau.freedesktop.org/wiki/Bugs
     </body>
 </html>
 
---1377410842.7f57D32.12421--
+--1377411103.22e88af1.12830--
 
---===============1629087943==
+--===============0213509035==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1629087943==--
+--===============0213509035==--
