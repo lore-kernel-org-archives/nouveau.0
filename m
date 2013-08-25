@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20341] [NV31] lockup when using AGP. agpmode=0 fixes
-	it.
-Date: Sun, 25 Aug 2013 04:04:23 +0000
-Message-ID: <bug-20341-8800-mZ9ceHUH4d@http.bugs.freedesktop.org/>
-References: <bug-20341-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 20466] No borders in Xmonad/Dwm
+Date: Sun, 25 Aug 2013 04:20:07 +0000
+Message-ID: <bug-20466-8800-UKY1Otef8R@http.bugs.freedesktop.org/>
+References: <bug-20466-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0494869187=="
+Content-Type: multipart/mixed; boundary="===============1363368312=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20341-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-20466-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0494869187==
-Content-Type: multipart/alternative; boundary="1377403463.8DdF1.24778"; charset="us-ascii"
+--===============1363368312==
+Content-Type: multipart/alternative; boundary="1377404407.324031.27537"; charset="us-ascii"
 
 
---1377403463.8DdF1.24778
-Date: Sun, 25 Aug 2013 04:04:23 +0000
+--1377404407.324031.27537
+Date: Sun, 25 Aug 2013 04:20:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=20341
+https://bugs.freedesktop.org/show_bug.cgi?id=20466
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|NV31 lockup                 |[NV31] lockup when using
-                   |                            |AGP. agpmode=0 fixes it.
+             Status|REOPENED                    |RESOLVED
+         Resolution|---                         |NOTOURBUG
 
---- Comment #17 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Argh. So if it didn't crash with valgrind-mmt, it's a heisenbug :( Some silly
-timing thing... and agpmode=0 either slows it down enough or it's something to
-do with the GART. (I assume agpmode=0 -> 0 GART memory, yes?) In either case,
-this is out of my (debugging) league. Thanks for doing the tests, and sorry
-they didn't lead to anything easy. I'll leave this open, perhaps some brave
-soul will delve into it.
-
-Did you ever give nouveau.vram_pushbuf=1 a shot (without agpmode=0)?
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Re-closing this. The person who reopened didn't add himself to the CC list and
+didn't provide any information. If anyone else experiences this, feel free to
+open a fresh issue with fresh logs/etc as requested at
+http://nouveau.freedesktop.org/wiki/Bugs/ .
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377403463.8DdF1.24778
-Date: Sun, 25 Aug 2013 04:04:23 +0000
+--1377404407.324031.27537
+Date: Sun, 25 Aug 2013 04:20:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,9 +60,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV31] lockup when using AGP. agpmode=0 fixes it."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=20341">bug 20341</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - No borders in Xmonad/Dwm"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=20466">bug 20466</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -77,32 +72,36 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>NV31 lockup
+           <td style="text-align:right;">Status</td>
+           <td>REOPENED
            </td>
-           <td>[NV31] lockup when using AGP. agpmode=0 fixes it.
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>NOTOURBUG
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV31] lockup when using AGP. agpmode=0 fixes it."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=20341#c17">Comment # 17</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - No borders in Xmonad/Dwm"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=20466#c9">Comment # 9</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV31] lockup when using AGP. agpmode=0 fixes it."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=20341">bug 20341</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - No borders in Xmonad/Dwm"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=20466">bug 20466</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Argh. So if it didn't crash with valgrind-mmt, it's a heisenbug :( Some silly
-timing thing... and agpmode=0 either slows it down enough or it's something to
-do with the GART. (I assume agpmode=0 -&gt; 0 GART memory, yes?) In either case,
-this is out of my (debugging) league. Thanks for doing the tests, and sorry
-they didn't lead to anything easy. I'll leave this open, perhaps some brave
-soul will delve into it.
-
-Did you ever give nouveau.vram_pushbuf=1 a shot (without agpmode=0)?</pre>
+        <pre>Re-closing this. The person who reopened didn't add himself to the CC list and
+didn't provide any information. If anyone else experiences this, feel free to
+open a fresh issue with fresh logs/etc as requested at
+<a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a> .</pre>
         </div>
       </p>
       <hr>
@@ -114,9 +113,9 @@ Did you ever give nouveau.vram_pushbuf=1 a shot (without agpmode=0)?</pre>
     </body>
 </html>
 
---1377403463.8DdF1.24778--
+--1377404407.324031.27537--
 
---===============0494869187==
+--===============1363368312==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,4 +126,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0494869187==--
+--===============1363368312==--
