@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47191] random xorg hang with PGRAPH_TRAP_TPDMA_2D -
- TP 0 - Unknown fault at address
-Date: Sun, 25 Aug 2013 17:45:00 +0000
-Message-ID: <bug-47191-8800-3q155emKO1@http.bugs.freedesktop.org/>
-References: <bug-47191-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 65310] [regression] failure in building nvc0_vbo.lo:
+ /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression
+ `-8589934576
+Date: Sun, 25 Aug 2013 17:46:22 +0000
+Message-ID: <bug-65310-8800-w485yyxpSD@http.bugs.freedesktop.org/>
+References: <bug-65310-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1619443689=="
+Content-Type: multipart/mixed; boundary="===============1870675473=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47191-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-65310-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +22,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1619443689==
-Content-Type: multipart/alternative; boundary="1377452700.b54FbFf71.12238"; charset="us-ascii"
+--===============1870675473==
+Content-Type: multipart/alternative; boundary="1377452782.6C70e1.12485"; charset="us-ascii"
 
 
---1377452700.b54FbFf71.12238
-Date: Sun, 25 Aug 2013 17:45:00 +0000
+--1377452782.6C70e1.12485
+Date: Sun, 25 Aug 2013 17:46:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47191
+https://bugs.freedesktop.org/show_bug.cgi?id=65310
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Does this still happen with the latest kernel/mesa/xf86-video-nouveau? If so,
-please supply all the information requested at
-http://nouveau.freedesktop.org/wiki/Bugs/
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please provide repro steps. I'm inclined to believe this is a problem in the
+environment, and not a core gcc bug. But those are some trippy optimization
+flags, so who knows. Be sure to specify the platform you're building for (given
+the sse2 flag, x86 or x86_64... but which one... I guess x86 since x86_64
+implies sse2).
+
+If you can reproduce this by just running a single gcc command (like the one
+you pasted, but figure out the actual gcc invocation), you should file a gcc
+bug too.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377452700.b54FbFf71.12238
-Date: Sun, 25 Aug 2013 17:45:00 +0000
+--1377452782.6C70e1.12485
+Date: Sun, 25 Aug 2013 17:46:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,18 +61,24 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - random xorg hang with PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47191#c1">Comment # 1</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [regression] failure in building nvc0_vbo.lo: /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression `-8589934576"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65310#c6">Comment # 6</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - random xorg hang with PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47191">bug 47191</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [regression] failure in building nvc0_vbo.lo: /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression `-8589934576"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65310">bug 65310</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Does this still happen with the latest kernel/mesa/xf86-video-nouveau? If so,
-please supply all the information requested at
-<a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a></pre>
+        <pre>Please provide repro steps. I'm inclined to believe this is a problem in the
+environment, and not a core gcc bug. But those are some trippy optimization
+flags, so who knows. Be sure to specify the platform you're building for (given
+the sse2 flag, x86 or x86_64... but which one... I guess x86 since x86_64
+implies sse2).
+
+If you can reproduce this by just running a single gcc command (like the one
+you pasted, but figure out the actual gcc invocation), you should file a gcc
+bug too.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +90,9 @@ please supply all the information requested at
     </body>
 </html>
 
---1377452700.b54FbFf71.12238--
+--1377452782.6C70e1.12485--
 
---===============1619443689==
+--===============1870675473==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1619443689==--
+--===============1870675473==--
