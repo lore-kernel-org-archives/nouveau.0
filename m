@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20466] No borders in Xmonad/Dwm
-Date: Sun, 25 Aug 2013 04:20:07 +0000
-Message-ID: <bug-20466-8800-UKY1Otef8R@http.bugs.freedesktop.org/>
-References: <bug-20466-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 43939] [NV96] DVI monitor connected via HDMI is
+ blank / standby (NV96 / 9500GS)
+Date: Sun, 25 Aug 2013 04:21:29 +0000
+Message-ID: <bug-43939-8800-vJ8mJiARDq@http.bugs.freedesktop.org/>
+References: <bug-43939-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1363368312=="
+Content-Type: multipart/mixed; boundary="===============0591091455=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20466-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-43939-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1363368312==
-Content-Type: multipart/alternative; boundary="1377404407.324031.27537"; charset="us-ascii"
+--===============0591091455==
+Content-Type: multipart/alternative; boundary="1377404489.4cebb2.27802"; charset="us-ascii"
 
 
---1377404407.324031.27537
-Date: Sun, 25 Aug 2013 04:20:07 +0000
+--1377404489.4cebb2.27802
+Date: Sun, 25 Aug 2013 04:21:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=20466
+https://bugs.freedesktop.org/show_bug.cgi?id=43939
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #8 from Anthony Foiani <anthony.foiani+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #7)
+> Would you mind trying 3.11-rc6, or apply
+> http://cgit.freedesktop.org/nouveau/linux-2.6/commit/
+> ?id=9a7046d55f319b2dde5d2536cc2adb01ebdbe09e to your kernel? I'm not 100%
+> sure it'll fix things, but it's definitely worth a shot. I can't quite tell
+> if your DCB types would have gotten messed up by this test or not.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|REOPENED                    |RESOLVED
-         Resolution|---                         |NOTOURBUG
+Well, I tried to... but some combination of UEFI and/or Fedora weirdness is
+keeping me from booting all the way into 3.11-rc6.
 
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Re-closing this. The person who reopened didn't add himself to the CC list and
-didn't provide any information. If anyone else experiences this, feel free to
-open a fresh issue with fresh logs/etc as requested at
-http://nouveau.freedesktop.org/wiki/Bugs/ .
+I'm downloading the rawhide (f20branch) live media right now, will see if I can
+boot all the way with it.
+
+On the plus side, I did see an error screen with graphical tuxes, and the error
+was some 2s into the boot.  So it's possible that things are working on the
+nouveau side, and it's just getting confused by Fedora.
+
+Ok, live media downloaded, time for a reboot.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377404407.324031.27537
-Date: Sun, 25 Aug 2013 04:20:07 +0000
+--1377404489.4cebb2.27802
+Date: Sun, 25 Aug 2013 04:21:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,51 +65,37 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - No borders in Xmonad/Dwm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=20466">bug 20466</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>REOPENED
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTOURBUG
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - No borders in Xmonad/Dwm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=20466#c9">Comment # 9</a>
+          bz_status_NEW "
+   title="NEW --- - [NV96] DVI monitor connected via HDMI is blank / standby (NV96 / 9500GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939#c8">Comment # 8</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - No borders in Xmonad/Dwm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=20466">bug 20466</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NV96] DVI monitor connected via HDMI is blank / standby (NV96 / 9500GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939">bug 43939</a>
+              from <span class="vcard"><a class="email" href="mailto:anthony.foiani+freedesktop&#64;gmail.com" title="Anthony Foiani &lt;anthony.foiani+freedesktop&#64;gmail.com&gt;"> <span class="fn">Anthony Foiani</span></a>
 </span></b>
-        <pre>Re-closing this. The person who reopened didn't add himself to the CC list and
-didn't provide any information. If anyone else experiences this, feel free to
-open a fresh issue with fresh logs/etc as requested at
-<a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a> .</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=43939#c7">comment #7</a>)
+<span class="quote">&gt; Would you mind trying 3.11-rc6, or apply
+&gt; <a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/</a>
+&gt; ?id=9a7046d55f319b2dde5d2536cc2adb01ebdbe09e to your kernel? I'm not 100%
+&gt; sure it'll fix things, but it's definitely worth a shot. I can't quite tell
+&gt; if your DCB types would have gotten messed up by this test or not.</span >
+
+Well, I tried to... but some combination of UEFI and/or Fedora weirdness is
+keeping me from booting all the way into 3.11-rc6.
+
+I'm downloading the rawhide (f20branch) live media right now, will see if I can
+boot all the way with it.
+
+On the plus side, I did see an error screen with graphical tuxes, and the error
+was some 2s into the boot.  So it's possible that things are working on the
+nouveau side, and it's just getting confused by Fedora.
+
+Ok, live media downloaded, time for a reboot.</pre>
         </div>
       </p>
       <hr>
@@ -113,9 +107,9 @@ open a fresh issue with fresh logs/etc as requested at
     </body>
 </html>
 
---1377404407.324031.27537--
+--1377404489.4cebb2.27802--
 
---===============1363368312==
+--===============0591091455==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -126,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1363368312==--
+--===============0591091455==--
