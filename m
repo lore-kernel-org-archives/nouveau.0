@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49727] [nv30 gallium] wine 1.5.2 and 3Dmark2001se
- displays only black screen with FPS, on nv43/AGP
-Date: Sun, 25 Aug 2013 03:47:03 +0000
-Message-ID: <bug-49727-8800-41mojEEES8@http.bugs.freedesktop.org/>
-References: <bug-49727-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 49243] [NV4C] graphical corruption with GeForce
+ 6150SE nForce 430
+Date: Sun, 25 Aug 2013 03:51:56 +0000
+Message-ID: <bug-49243-8800-0qYcN9ASmy@http.bugs.freedesktop.org/>
+References: <bug-49243-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1094112904=="
+Content-Type: multipart/mixed; boundary="===============1653644502=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49727-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-49243-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1094112904==
-Content-Type: multipart/alternative; boundary="1377402423.3EB8eb51.21056"; charset="us-ascii"
+--===============1653644502==
+Content-Type: multipart/alternative; boundary="1377402716.F7Fb1B1.22364"; charset="us-ascii"
 
 
---1377402423.3EB8eb51.21056
-Date: Sun, 25 Aug 2013 03:47:03 +0000
+--1377402716.F7Fb1B1.22364
+Date: Sun, 25 Aug 2013 03:51:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=49727
+https://bugs.freedesktop.org/show_bug.cgi?id=49243
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|wine 1.5.2  and             |[nv30 gallium] wine 1.5.2
-                   |3Dmark2001se  displays only |and 3Dmark2001se  displays
-                   |black  screen with FPS, on  |only black  screen with
-                   |nv43/AGP                    |FPS, on nv43/AGP
+            Summary|graphical corruption with   |[NV4C] graphical corruption
+                   |GeForce 6150SE nForce 430   |with GeForce 6150SE nForce
+                   |                            |430
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Is this still an issue with mesa 9.1 or later?
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Not sure exactly what versions you were running, but does this still happen
+with the latest software (kernel/mesa)? (On the image, looks like the stride is
+set a bit too low somewhere.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377402423.3EB8eb51.21056
-Date: Sun, 25 Aug 2013 03:47:03 +0000
+--1377402716.F7Fb1B1.22364
+Date: Sun, 25 Aug 2013 03:51:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,8 +62,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nv30 gallium] wine 1.5.2 and 3Dmark2001se displays only black screen with FPS, on nv43/AGP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49727">bug 49727</a>
+   title="NEW --- - [NV4C] graphical corruption with GeForce 6150SE nForce 430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49243">bug 49243</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -73,24 +74,26 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>wine 1.5.2  and 3Dmark2001se  displays only black  screen with FPS, on nv43/AGP
+           <td>graphical corruption with GeForce 6150SE nForce 430
            </td>
-           <td>[nv30 gallium] wine 1.5.2  and 3Dmark2001se  displays only black  screen with FPS, on nv43/AGP
+           <td>[NV4C] graphical corruption with GeForce 6150SE nForce 430
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nv30 gallium] wine 1.5.2 and 3Dmark2001se displays only black screen with FPS, on nv43/AGP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49727#c5">Comment # 5</a>
+   title="NEW --- - [NV4C] graphical corruption with GeForce 6150SE nForce 430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49243#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nv30 gallium] wine 1.5.2 and 3Dmark2001se displays only black screen with FPS, on nv43/AGP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49727">bug 49727</a>
+   title="NEW --- - [NV4C] graphical corruption with GeForce 6150SE nForce 430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49243">bug 49243</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Is this still an issue with mesa 9.1 or later?</pre>
+        <pre>Not sure exactly what versions you were running, but does this still happen
+with the latest software (kernel/mesa)? (On the image, looks like the stride is
+set a bit too low somewhere.)</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +105,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377402423.3EB8eb51.21056--
+--1377402716.F7Fb1B1.22364--
 
---===============1094112904==
+--===============1653644502==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +118,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1094112904==--
+--===============1653644502==--
