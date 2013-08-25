@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20341] [NV31] lockup when using AGP. agpmode=0 fixes
-	it.
-Date: Sun, 25 Aug 2013 04:41:31 +0000
-Message-ID: <bug-20341-8800-CiInpFPlPS@http.bugs.freedesktop.org/>
-References: <bug-20341-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 23023] no backlight support  in /sys or /proc ;
+ xbacklight not working
+Date: Sun, 25 Aug 2013 04:44:00 +0000
+Message-ID: <bug-23023-8800-Ezpuvzzduv@http.bugs.freedesktop.org/>
+References: <bug-23023-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0264365318=="
+Content-Type: multipart/mixed; boundary="===============0765904899=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20341-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-23023-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0264365318==
-Content-Type: multipart/alternative; boundary="1377405691.fBe2e5cA1.30660"; charset="us-ascii"
+--===============0765904899==
+Content-Type: multipart/alternative; boundary="1377405840.b6C5BA2.31248"; charset="us-ascii"
 
 
---1377405691.fBe2e5cA1.30660
-Date: Sun, 25 Aug 2013 04:41:31 +0000
+--1377405840.b6C5BA2.31248
+Date: Sun, 25 Aug 2013 04:44:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=20341
+https://bugs.freedesktop.org/show_bug.cgi?id=23023
 
---- Comment #18 from Jason Detring <detringj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 84576
-  --> https://bugs.freedesktop.org/attachment.cgi?id=84576&action=edit
-firefox corruption
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Setting vram_pushbuf=1 seems to help a little.  There are no more lockups, but
-graphics get trashed when things start moving fast (x11perf) or big and
-complicated (fullscreen web browsers).  Basically, any large volume data
-transfers.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|REOPENED                    |RESOLVED
+         Resolution|---                         |FIXED
 
-After the initial corruption occurs due to the mystery trigger, the system
-never really goes back to normal.  There's broken graphics everywhere, even on
-unrelated, small, sparsely-updated windows.
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Re-closing this. The people who reopened posters (a) had totally different
+hardware, (b) did not provide any actual info, and (c) didn't add themselves to
+cc.
 
-Things look roughly like I remember writing about in Comment #4, so this
-parameter is probably doing the same job as 'CBLocation'.
+If someone should still have issues regarding backlight, please file a full
+issue as instructed by http://nouveau.freedesktop.org/wiki/Bugs/
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377405691.fBe2e5cA1.30660
-Date: Sun, 25 Aug 2013 04:41:31 +0000
+--1377405840.b6C5BA2.31248
+Date: Sun, 25 Aug 2013 04:44:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,33 +60,53 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - no backlight support in /sys or /proc ; xbacklight not working"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23023">bug 23023</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>REOPENED
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV31] lockup when using AGP. agpmode=0 fixes it."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=20341#c18">Comment # 18</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - no backlight support in /sys or /proc ; xbacklight not working"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23023#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV31] lockup when using AGP. agpmode=0 fixes it."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=20341">bug 20341</a>
-              from <span class="vcard"><a class="email" href="mailto:detringj&#64;gmail.com" title="Jason Detring &lt;detringj&#64;gmail.com&gt;"> <span class="fn">Jason Detring</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - no backlight support in /sys or /proc ; xbacklight not working"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=23023">bug 23023</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=84576" name="attach_84576" title="firefox corruption">attachment 84576</a> <a href="attachment.cgi?id=84576&amp;action=edit" title="firefox corruption">[details]</a></span>
-firefox corruption
+        <pre>Re-closing this. The people who reopened posters (a) had totally different
+hardware, (b) did not provide any actual info, and (c) didn't add themselves to
+cc.
 
-Setting vram_pushbuf=1 seems to help a little.  There are no more lockups, but
-graphics get trashed when things start moving fast (x11perf) or big and
-complicated (fullscreen web browsers).  Basically, any large volume data
-transfers.
-
-After the initial corruption occurs due to the mystery trigger, the system
-never really goes back to normal.  There's broken graphics everywhere, even on
-unrelated, small, sparsely-updated windows.
-
-Things look roughly like I remember writing about in <a href="show_bug.cgi?id=20341#c4">Comment #4</a>, so this
-parameter is probably doing the same job as 'CBLocation'.</pre>
+If someone should still have issues regarding backlight, please file a full
+issue as instructed by <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a></pre>
         </div>
       </p>
       <hr>
@@ -100,9 +118,9 @@ parameter is probably doing the same job as 'CBLocation'.</pre>
     </body>
 </html>
 
---1377405691.fBe2e5cA1.30660--
+--1377405840.b6C5BA2.31248--
 
---===============0264365318==
+--===============0765904899==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -113,4 +131,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0264365318==--
+--===============0765904899==--
