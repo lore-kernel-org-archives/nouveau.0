@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 63135] [NV96] [bisected] DisplayPort dual-head fails
- to switch to KMS
-Date: Mon, 26 Aug 2013 17:23:44 +0000
-Message-ID: <bug-63135-8800-MJIo2yjIvH@http.bugs.freedesktop.org/>
-References: <bug-63135-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33165] [NVA3, NVA8] gpu lockup during driver probe
+Date: Mon, 26 Aug 2013 17:27:35 +0000
+Message-ID: <bug-33165-8800-5MWdPaf0Iq@http.bugs.freedesktop.org/>
+References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1277568464=="
+Content-Type: multipart/mixed; boundary="===============1624882372=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-63135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,98 +20,56 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1277568464==
-Content-Type: multipart/alternative; boundary="1377537823.C5bfF641.1233"; charset="us-ascii"
+--===============1624882372==
+Content-Type: multipart/alternative; boundary="1377538055.0a2a54.2064"; charset="us-ascii"
 
 
---1377537823.C5bfF641.1233
-Date: Mon, 26 Aug 2013 17:23:43 +0000
+--1377538055.0a2a54.2064
+Date: Mon, 26 Aug 2013 17:27:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=63135
+https://bugs.freedesktop.org/show_bug.cgi?id=33165
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #22 from Kevin Martin <ktmdms-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I no longer have accel turned off but I have had to add:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[bisected] G69/nv50         |[NV96] [bisected]
-                   |DisplayPort dual-head fails |DisplayPort dual-head fails
-                   |to switch to KMS            |to switch to KMS
+        Option     "ShadowFB" "1"               # [<bool>]
 
---- Comment #22 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-You know, this warning in your dmesg doesn't fill me with confidence:
+to get mine to work.  
 
-[    0.188533] WARNING: at drivers/iommu/intel_irq_remapping.c:533
-intel_irq_remapping_supported+0x35/0x78()
-[    0.198212] This system BIOS has enabled interrupt remapping
-[    0.198212] on a chipset that contains an erratum making that
-[    0.198212] feature unstable.  To maintain system stability
-[    0.198212] interrupt remapping is being disabled.  Please
-[    0.198212] contact your BIOS vendor for an update
+Xorg.0.log:
+[   140.225] Current Operating System: Linux ktmtoshiba
+3.11.0-0.rc6.git2.1.fc21.x86_64 #1 SMP Thu Aug 22 21:02:34 UTC 2013 x86_
+64
+[   140.225] Kernel command line:
+BOOT_IMAGE=/vmlinuz-3.11.0-0.rc6.git2.1.fc21.x86_64
+root=UUID=895ff4c3-db90-4071-aeab-a0ec2d6b
+94cf ro rd.md=0 rd.lvm=0 rd.dm=0 rd.luks=0 ipv6.disable=1 rhgb quiet
+acpi_backlight=vendor acpi_osi=Linux
+[   140.225] Build Date: 30 July 2013  06:10:29AM
+[   140.225] Build ID: xorg-x11-server 1.14.2-9.fc20 
+[   140.225] Current version of pixman: 0.30.0
 
-Can you see if you can disable DMAR in your bios? I'm sure it's not related,
-but... who knows.
+[   140.567] (II) Module nouveau: vendor="X.Org Foundation"
+[   140.567]     compiled for 1.14.2, module version = 1.0.9
+[   140.567]     Module class: X.Org Video Driver
+[   140.567]     ABI class: X.Org Video Driver, version 14.1
 
-Secondly, your log appears to only have errors/warns, not info prints. Would be
-good to get the full log. Is that patch still needed BTW? What happens without
-it?
-
-These I don't like:
-
-[    9.190684] nouveau E[   PDISP][0000:03:00.0] DP:0006:0382: bios data not
-found
-[    9.191377] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x03854080 FAULT
-at 0x614b00
-[    9.192380] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00000090 FAULT
-at 0x61c9a8
-[    9.193055] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x6df3fe24 FAULT
-at 0x614200
-[    9.193778] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00000000 FAULT
-at 0x614b00
-[    9.194453] nouveau E[    PBUS][0000:03:00.0] MMIO write of 0x80000000 FAULT
-at 0x610030
-[    9.385564] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00100000 FAULT
-at 0x61c804
-[    9.385915] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00000008 FAULT
-at 0x61c804
-[    9.386332] nouveau E[    PBUS][0000:03:00.0] MMIO write of 0x80000000 FAULT
-at 0x61c804
-[    9.386676] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00000008 FAULT
-at 0x61c804
-[    9.387021] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00000008 FAULT
-at 0x61c830
-[   11.168116] nouveau E[    PBUS][0000:03:00.0] MMIO write of 0x80000001 FAULT
-at 0x61c804
-[   11.168794] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00000008 FAULT
-at 0x61c830
-[   11.169464] nouveau E[    PBUS][0000:03:00.0] MMIO write of 0x00000020 FAULT
-at 0x642000
-[   11.171770] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x0000003c FAULT
-at 0x640000
-[   11.174084] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00000028 FAULT
-at 0x640000
-[   11.175080] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x80000001 FAULT
-at 0x61d004
-[   11.177067] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x0000001c FAULT
-at 0x640000
-[   11.178719] nouveau E[    PBUS][0000:03:00.0] MMIO write of 0x00000008 FAULT
-at 0x640000
-[   11.179107] nouveau E[    PBUS][0000:03:00.0] MMIO write of 0x00000014 FAULT
-at 0x640000
-[   13.178552] nouveau E[    PBUS][0000:03:00.0] MMIO write of 0x0000006c FAULT
-at 0x642000
-
-And they're probably the source of the problem. BTW, it's worth asking -- are
-there actual DP connectors on your card, and/or are you using adapters of some
-sort?
+dmesg:
+[    4.516476] fbcon: nouveaufb (fb0) is primary device
+[    6.059440] nouveau E[     DRM] GPU lockup - switching to software fbcon
+[    6.072773] nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
+[    6.072776] nouveau 0000:01:00.0: registered panic notifier
+[    6.072852] [drm] Initialized nouveau 1.1.1 20120801 for 0000:01:00.0 on
+minor 0
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377537823.C5bfF641.1233
-Date: Mon, 26 Aug 2013 17:23:43 +0000
+--1377538055.0a2a54.2064
+Date: Mon, 26 Aug 2013 17:27:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -120,104 +77,50 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] [bisected] DisplayPort dual-head fails to switch to KMS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135">bug 63135</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[bisected] G69/nv50 DisplayPort dual-head fails to switch to KMS
-           </td>
-           <td>[NV96] [bisected] DisplayPort dual-head fails to switch to KMS
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV96] [bisected] DisplayPort dual-head fails to switch to KMS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135#c22">Comment # 22</a>
+   title="NEW --- - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV96] [bisected] DisplayPort dual-head fails to switch to KMS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135">bug 63135</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
+              from <span class="vcard"><a class="email" href="mailto:ktmdms&#64;gmail.com" title="Kevin Martin &lt;ktmdms&#64;gmail.com&gt;"> <span class="fn">Kevin Martin</span></a>
 </span></b>
-        <pre>You know, this warning in your dmesg doesn't fill me with confidence:
+        <pre>I no longer have accel turned off but I have had to add:
 
-[    0.188533] WARNING: at drivers/iommu/intel_irq_remapping.c:533
-intel_irq_remapping_supported+0x35/0x78()
-[    0.198212] This system BIOS has enabled interrupt remapping
-[    0.198212] on a chipset that contains an erratum making that
-[    0.198212] feature unstable.  To maintain system stability
-[    0.198212] interrupt remapping is being disabled.  Please
-[    0.198212] contact your BIOS vendor for an update
+        Option     &quot;ShadowFB&quot; &quot;1&quot;               # [&lt;bool&gt;]
 
-Can you see if you can disable DMAR in your bios? I'm sure it's not related,
-but... who knows.
+to get mine to work.  
 
-Secondly, your log appears to only have errors/warns, not info prints. Would be
-good to get the full log. Is that patch still needed BTW? What happens without
-it?
+Xorg.0.log:
+[   140.225] Current Operating System: Linux ktmtoshiba
+3.11.0-0.rc6.git2.1.fc21.x86_64 #1 SMP Thu Aug 22 21:02:34 UTC 2013 x86_
+64
+[   140.225] Kernel command line:
+BOOT_IMAGE=/vmlinuz-3.11.0-0.rc6.git2.1.fc21.x86_64
+root=UUID=895ff4c3-db90-4071-aeab-a0ec2d6b
+94cf ro rd.md=0 rd.lvm=0 rd.dm=0 rd.luks=0 ipv6.disable=1 rhgb quiet
+acpi_backlight=vendor acpi_osi=Linux
+[   140.225] Build Date: 30 July 2013  06:10:29AM
+[   140.225] Build ID: xorg-x11-server 1.14.2-9.fc20 
+[   140.225] Current version of pixman: 0.30.0
 
-These I don't like:
+[   140.567] (II) Module nouveau: vendor=&quot;X.Org Foundation&quot;
+[   140.567]     compiled for 1.14.2, module version = 1.0.9
+[   140.567]     Module class: X.Org Video Driver
+[   140.567]     ABI class: X.Org Video Driver, version 14.1
 
-[    9.190684] nouveau E[   PDISP][0000:03:00.0] DP:0006:0382: bios data not
-found
-[    9.191377] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x03854080 FAULT
-at 0x614b00
-[    9.192380] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00000090 FAULT
-at 0x61c9a8
-[    9.193055] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x6df3fe24 FAULT
-at 0x614200
-[    9.193778] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00000000 FAULT
-at 0x614b00
-[    9.194453] nouveau E[    PBUS][0000:03:00.0] MMIO write of 0x80000000 FAULT
-at 0x610030
-[    9.385564] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00100000 FAULT
-at 0x61c804
-[    9.385915] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00000008 FAULT
-at 0x61c804
-[    9.386332] nouveau E[    PBUS][0000:03:00.0] MMIO write of 0x80000000 FAULT
-at 0x61c804
-[    9.386676] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00000008 FAULT
-at 0x61c804
-[    9.387021] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00000008 FAULT
-at 0x61c830
-[   11.168116] nouveau E[    PBUS][0000:03:00.0] MMIO write of 0x80000001 FAULT
-at 0x61c804
-[   11.168794] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00000008 FAULT
-at 0x61c830
-[   11.169464] nouveau E[    PBUS][0000:03:00.0] MMIO write of 0x00000020 FAULT
-at 0x642000
-[   11.171770] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x0000003c FAULT
-at 0x640000
-[   11.174084] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x00000028 FAULT
-at 0x640000
-[   11.175080] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x80000001 FAULT
-at 0x61d004
-[   11.177067] nouveau E[    PBUS][0000:03:00.0] MMIO read of 0x0000001c FAULT
-at 0x640000
-[   11.178719] nouveau E[    PBUS][0000:03:00.0] MMIO write of 0x00000008 FAULT
-at 0x640000
-[   11.179107] nouveau E[    PBUS][0000:03:00.0] MMIO write of 0x00000014 FAULT
-at 0x640000
-[   13.178552] nouveau E[    PBUS][0000:03:00.0] MMIO write of 0x0000006c FAULT
-at 0x642000
-
-And they're probably the source of the problem. BTW, it's worth asking -- are
-there actual DP connectors on your card, and/or are you using adapters of some
-sort?</pre>
+dmesg:
+[    4.516476] fbcon: nouveaufb (fb0) is primary device
+[    6.059440] nouveau E[     DRM] GPU lockup - switching to software fbcon
+[    6.072773] nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
+[    6.072776] nouveau 0000:01:00.0: registered panic notifier
+[    6.072852] [drm] Initialized nouveau 1.1.1 20120801 for 0000:01:00.0 on
+minor 0</pre>
         </div>
       </p>
       <hr>
@@ -229,9 +132,9 @@ sort?</pre>
     </body>
 </html>
 
---1377537823.C5bfF641.1233--
+--1377538055.0a2a54.2064--
 
---===============1277568464==
+--===============1624882372==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -242,4 +145,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1277568464==--
+--===============1624882372==--
