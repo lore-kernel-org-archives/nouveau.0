@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54700] Distorted graphics (double cursor) with
- GeForce 4200Go (NV28)
-Date: Mon, 26 Aug 2013 04:24:42 +0000
-Message-ID: <bug-54700-8800-JR08rIT1Un@http.bugs.freedesktop.org/>
-References: <bug-54700-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57151] repeatable nouveau driver crashes/hangs
+ during resume on Dell Latitude E6510 when drm.debug=14
+Date: Mon, 26 Aug 2013 07:08:26 +0000
+Message-ID: <bug-57151-8800-cnJdYp0I1g@http.bugs.freedesktop.org/>
+References: <bug-57151-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0402767260=="
+Content-Type: multipart/mixed; boundary="===============1155057355=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57151-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0402767260==
-Content-Type: multipart/alternative; boundary="1377491083.324EC6.4878"; charset="us-ascii"
+--===============1155057355==
+Content-Type: multipart/alternative; boundary="1377500906.E43DE81.4138"; charset="us-ascii"
 
 
---1377491083.324EC6.4878
-Date: Mon, 26 Aug 2013 04:24:43 +0000
+--1377500906.E43DE81.4138
+Date: Mon, 26 Aug 2013 07:08:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54700
+https://bugs.freedesktop.org/show_bug.cgi?id=57151
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |f0rhum-GANU6spQydw@public.gmane.org
-
---- Comment #52 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-*** Bug 50403 has been marked as a duplicate of this bug. ***
+--- Comment #3 from karolszk <karolszk-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Currently I can't check this (during such long time I have to change my
+hardware form Dell Latitude E6510 to another vendor becuase of this and similar
+graphics resume/suspend problems). Regards.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377491083.324EC6.4878
-Date: Mon, 26 Aug 2013 04:24:43 +0000
+--1377500906.E43DE81.4138
+Date: Mon, 26 Aug 2013 07:08:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,44 +50,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>f0rhum&#64;free.fr
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c52">Comment # 52</a>
+   title="NEW --- - repeatable nouveau driver crashes/hangs during resume on Dell Latitude E6510 when drm.debug=14"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57151#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - repeatable nouveau driver crashes/hangs during resume on Dell Latitude E6510 when drm.debug=14"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57151">bug 57151</a>
+              from <span class="vcard"><a class="email" href="mailto:karolszk&#64;gmail.com" title="karolszk &lt;karolszk&#64;gmail.com&gt;"> <span class="fn">karolszk</span></a>
 </span></b>
-        <pre>*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - NV28 double cursor &amp; ugly graphics &amp; crashes"
-   href="show_bug.cgi?id=50403">Bug 50403</a> has been marked as a duplicate of this bug. ***</pre>
+        <pre>Currently I can't check this (during such long time I have to change my
+hardware form Dell Latitude E6510 to another vendor becuase of this and similar
+graphics resume/suspend problems). Regards.</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +77,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377491083.324EC6.4878--
+--1377500906.E43DE81.4138--
 
---===============0402767260==
+--===============1155057355==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -116,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0402767260==--
+--===============1155057355==--
