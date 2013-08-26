@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33165] [NVA3] Nouveau + nvidia GT240 = unworkable
-Date: Mon, 26 Aug 2013 14:49:55 +0000
-Message-ID: <bug-33165-8800-o69T3SV0gH@http.bugs.freedesktop.org/>
-References: <bug-33165-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57034] [NVA0] [Quadro FX 4800] display port
+ connectors not recognized
+Date: Mon, 26 Aug 2013 15:44:02 +0000
+Message-ID: <bug-57034-8800-QhUrpAIxld@http.bugs.freedesktop.org/>
+References: <bug-57034-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0925589598=="
+Content-Type: multipart/mixed; boundary="===============1446215727=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57034-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,111 +21,127 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0925589598==
-Content-Type: multipart/alternative; boundary="1377528596.B72C54.5647"; charset="us-ascii"
+--===============1446215727==
+Content-Type: multipart/alternative; boundary="1377531842.d4A5DB481.18356"; charset="us-ascii"
 
 
---1377528596.B72C54.5647
-Date: Mon, 26 Aug 2013 14:49:55 +0000
+--1377531842.d4A5DB481.18356
+Date: Mon, 26 Aug 2013 15:44:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D33165
+https://bugs.freedesktop.org/show_bug.cgi?id=57034
 
-Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> changed:
+--- Comment #2 from Orion Poplawski <orion-CVdf0l11yl+B+jHODAdFcQ@public.gmane.org> ---
+Things are looking better with 3.10.9:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #84638|0                           |1
-        is obsolete|                            |
+$ ls /sys/class/drm/card*-*/status
+/sys/class/drm/card0-DP-1/status  /sys/class/drm/card0-DP-2/status 
+/sys/class/drm/card0-DVI-I-1/status
+$ cat /sys/class/drm/card*-*/status
+connected
+connected
+disconnected
 
---- Comment #20 from Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> ---
-Created attachment 84652
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D84652&action=3Dedit
-kernel_log_nouveau_drm_debug.txt
+But I'm not getting any output on DP-2 - monitor is in power save but I don't
+know why.
 
-There is certainly no firmware in /lib/firmware/nouveau.
-I've now attached a new dmesg output.
+$ xrandr
+Screen 0: minimum 320 x 200, current 3200 x 1200, maximum 8192 x 8192
+DVI-I-1 disconnected (normal left inverted right x axis y axis)
+DP-1 connected primary 1600x1200+0+0 (normal left inverted right x axis y axis)
+367mm x 275mm
+   1600x1200      60.0*+
+   1280x1024      75.0     60.0
+   1152x864       75.0
+   1024x768       75.1     60.0
+   800x600        75.0     60.3
+   640x480        75.0     60.0
+   720x400        70.1
+DP-2 connected 1600x1200+1600+0 (normal left inverted right x axis y axis)
+367mm x 275mm
+   1600x1200      60.0*+
+   1280x1024      75.0     60.0
+   1152x864       75.0
+   1024x768       75.1     60.0
+   800x600        75.0     60.3
+   640x480        75.0     60.0
+   720x400        70.1
 
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377528596.B72C54.5647
-Date: Mon, 26 Aug 2013 14:49:56 +0000
+--1377531842.d4A5DB481.18356
+Date: Mon, 26 Aug 2013 15:44:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:andrius&#=
-64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;stikonas.eu&=
-gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVA3] Nouveau + nvidia GT240 =3D unworkable"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D33165">bug 33165<=
-/a>
-        <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #84638 is obsolete</t=
-d>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - [NVA3] Nouveau + nvidia GT240 =3D unworkable"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D33165#c20">Commen=
-t # 20</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - [NVA0] [Quadro FX 4800] display port connectors not recognized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57034#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - [NVA3] Nouveau + nvidia GT240 =3D unworkable"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D33165">bug 33165<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-andrius&#64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;sti=
-konas.eu&gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
+   title="NEW --- - [NVA0] [Quadro FX 4800] display port connectors not recognized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57034">bug 57034</a>
+              from <span class="vcard"><a class="email" href="mailto:orion&#64;cora.nwra.com" title="Orion Poplawski &lt;orion&#64;cora.nwra.com&gt;"> <span class="fn">Orion Poplawski</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D84652"=
- name=3D"attach_84652" title=3D"kernel_log_nouveau_drm_debug.txt">attachmen=
-t 84652</a> <a href=3D"attachment.cgi?id=3D84652&amp;action=3Dedit" title=
-=3D"kernel_log_nouveau_drm_debug.txt">[details]</a></span>
-kernel_log_nouveau_drm_debug.txt
+        <pre>Things are looking better with 3.10.9:
 
-There is certainly no firmware in /lib/firmware/nouveau.
-I've now attached a new dmesg output.</pre>
+$ ls /sys/class/drm/card*-*/status
+/sys/class/drm/card0-DP-1/status  /sys/class/drm/card0-DP-2/status 
+/sys/class/drm/card0-DVI-I-1/status
+$ cat /sys/class/drm/card*-*/status
+connected
+connected
+disconnected
+
+But I'm not getting any output on DP-2 - monitor is in power save but I don't
+know why.
+
+$ xrandr
+Screen 0: minimum 320 x 200, current 3200 x 1200, maximum 8192 x 8192
+DVI-I-1 disconnected (normal left inverted right x axis y axis)
+DP-1 connected primary 1600x1200+0+0 (normal left inverted right x axis y axis)
+367mm x 275mm
+   1600x1200      60.0*+
+   1280x1024      75.0     60.0
+   1152x864       75.0
+   1024x768       75.1     60.0
+   800x600        75.0     60.3
+   640x480        75.0     60.0
+   720x400        70.1
+DP-2 connected 1600x1200+1600+0 (normal left inverted right x axis y axis)
+367mm x 275mm
+   1600x1200      60.0*+
+   1280x1024      75.0     60.0
+   1152x864       75.0
+   1024x768       75.1     60.0
+   800x600        75.0     60.3
+   640x480        75.0     60.0
+   720x400        70.1</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1377528596.B72C54.5647--
+--1377531842.d4A5DB481.18356--
 
---===============0925589598==
+--===============1446215727==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -135,4 +152,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0925589598==--
+--===============1446215727==--
