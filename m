@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33165] [NVA3, NVA8] gpu lockup during driver probe
-Date: Mon, 26 Aug 2013 15:48:11 +0000
-Message-ID: <bug-33165-8800-JqzNmjZZn1@http.bugs.freedesktop.org/>
-References: <bug-33165-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57034] [NVA0] second dp monitor stays powered off
+Date: Mon, 26 Aug 2013 15:54:45 +0000
+Message-ID: <bug-57034-8800-6ssICFGr9H@http.bugs.freedesktop.org/>
+References: <bug-57034-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0388110127=="
+Content-Type: multipart/mixed; boundary="===============1065237398=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57034-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +20,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0388110127==
-Content-Type: multipart/alternative; boundary="1377532091.3DfcB2c24.18980"; charset="us-ascii"
+--===============1065237398==
+Content-Type: multipart/alternative; boundary="1377532485.68ff08DD2.20262"; charset="us-ascii"
 
 
---1377532091.3DfcB2c24.18980
-Date: Mon, 26 Aug 2013 15:48:11 +0000
+--1377532485.68ff08DD2.20262
+Date: Mon, 26 Aug 2013 15:54:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33165
+https://bugs.freedesktop.org/show_bug.cgi?id=57034
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|[NVA3] Nouveau + nvidia     |[NVA3, NVA8] gpu lockup
-                   |GT240 = unworkable          |during driver probe
+            Summary|[NVA0] [Quadro FX 4800]     |[NVA0] second dp monitor
+                   |display port connectors not |stays powered off
+                   |recognized                  |
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Things are looking up :)
+
+What happens if you do
+
+xrandr --output DP-2 --off
+xrandr --output DP-2 --auto
+
+Alternatively, what happens if you physically unplug and then re-plug the
+second DP monitor?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377532091.3DfcB2c24.18980
-Date: Mon, 26 Aug 2013 15:48:11 +0000
+--1377532485.68ff08DD2.20262
+Date: Mon, 26 Aug 2013 15:54:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,8 +67,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA3, NVA8] gpu lockup during driver probe"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
+   title="NEW --- - [NVA0] second dp monitor stays powered off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57034">bug 57034</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -67,12 +79,33 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>[NVA3] Nouveau + nvidia GT240 = unworkable
+           <td>[NVA0] [Quadro FX 4800] display port connectors not recognized
            </td>
-           <td>[NVA3, NVA8] gpu lockup during driver probe
+           <td>[NVA0] second dp monitor stays powered off
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA0] second dp monitor stays powered off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57034#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA0] second dp monitor stays powered off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57034">bug 57034</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Things are looking up :)
+
+What happens if you do
+
+xrandr --output DP-2 --off
+xrandr --output DP-2 --auto
+
+Alternatively, what happens if you physically unplug and then re-plug the
+second DP monitor?</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +116,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377532091.3DfcB2c24.18980--
+--1377532485.68ff08DD2.20262--
 
---===============0388110127==
+--===============1065237398==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +129,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0388110127==--
+--===============1065237398==--
