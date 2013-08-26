@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49243] [NV4C] graphical corruption with GeForce
- 6150SE nForce 430
-Date: Mon, 26 Aug 2013 03:27:53 +0000
-Message-ID: <bug-49243-8800-pQP28CP8cv@http.bugs.freedesktop.org/>
-References: <bug-49243-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57151] repeatable nouveau driver crashes/hangs
+ during resume on Dell Latitude E6510 when drm.debug=14
+Date: Mon, 26 Aug 2013 04:10:39 +0000
+Message-ID: <bug-57151-8800-nlOGTljQUQ@http.bugs.freedesktop.org/>
+References: <bug-57151-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1371682516=="
+Content-Type: multipart/mixed; boundary="===============0142520188=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49243-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57151-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1371682516==
-Content-Type: multipart/alternative; boundary="1377487672.BFc4Bc0.28562"; charset="us-ascii"
+--===============0142520188==
+Content-Type: multipart/alternative; boundary="1377490239.c0Eb2.2962"; charset="us-ascii"
 
 
---1377487672.BFc4Bc0.28562
-Date: Mon, 26 Aug 2013 03:27:52 +0000
+--1377490239.c0Eb2.2962
+Date: Mon, 26 Aug 2013 04:10:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=49243
+https://bugs.freedesktop.org/show_bug.cgi?id=57151
 
---- Comment #8 from Shawn Landden <shawnlandden-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Answer his question
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Does this still happen with the latest kernel?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377487672.BFc4Bc0.28562
-Date: Mon, 26 Aug 2013 03:27:52 +0000
+--1377490239.c0Eb2.2962
+Date: Mon, 26 Aug 2013 04:10:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,16 +52,16 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NV4C] graphical corruption with GeForce 6150SE nForce 430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49243#c8">Comment # 8</a>
+          bz_status_NEW "
+   title="NEW --- - repeatable nouveau driver crashes/hangs during resume on Dell Latitude E6510 when drm.debug=14"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57151#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NV4C] graphical corruption with GeForce 6150SE nForce 430"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49243">bug 49243</a>
-              from <span class="vcard"><a class="email" href="mailto:shawnlandden&#64;gmail.com" title="Shawn Landden &lt;shawnlandden&#64;gmail.com&gt;"> <span class="fn">Shawn Landden</span></a>
+          bz_status_NEW "
+   title="NEW --- - repeatable nouveau driver crashes/hangs during resume on Dell Latitude E6510 when drm.debug=14"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57151">bug 57151</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Answer his question</pre>
+        <pre>Does this still happen with the latest kernel?</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +73,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377487672.BFc4Bc0.28562--
+--1377490239.c0Eb2.2962--
 
---===============1371682516==
+--===============0142520188==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1371682516==--
+--===============0142520188==--
