@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 32855] Incorrect image stretching with Render in
  RepeatPad mode, NV50
-Date: Mon, 26 Aug 2013 18:35:09 +0000
-Message-ID: <bug-32855-8800-5P5SxSMCtA@http.bugs.freedesktop.org/>
+Date: Mon, 26 Aug 2013 18:59:38 +0000
+Message-ID: <bug-32855-8800-ZvAiyK9AoX@http.bugs.freedesktop.org/>
 References: <bug-32855-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2138516054=="
+Content-Type: multipart/mixed; boundary="===============0084241560=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-32855-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,45 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2138516054==
-Content-Type: multipart/alternative; boundary="1377542109.D86C1.14159"; charset="us-ascii"
+--===============0084241560==
+Content-Type: multipart/alternative; boundary="1377543578.CF0a2.18867"; charset="us-ascii"
 
 
---1377542109.D86C1.14159
-Date: Mon, 26 Aug 2013 18:35:09 +0000
+--1377543578.CF0a2.18867
+Date: Mon, 26 Aug 2013 18:59:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=32855
 
-Zack Weinberg <zackw-VmQCmMdMyN0AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #9)
+> It is user-hostile and unprofessional to mass-close bugs, even very old
+> bugs, without making any attempt to reproduce the problem first. 
+> http://www.jwz.org/doc/cadt.html
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|INVALID                     |WORKSFORME
+I wasn't a big fan of it either (despite proposing it and doing it). But look
+at it from the project's standpoint -- volunteer based (and not exactly a big
+team), high code churn rate (esp 1-2 years ago), high hardware
+death(/replacement) rate, large variety of hardware, 400+ bugs deep, of which
+200 are from more than 2 years without an update. So I didn't see a better way
+of getting a handle on the situation. Of the 200+ bugs I closed, about 10 have
+gotten follow-up comments of any sort (either that it's been fixed/hardware
+gone/still a problem). I'm individually pinging newer bugs, and I'm not having
+a great response rate either (but better).
 
---- Comment #9 from Zack Weinberg <zackw-VmQCmMdMyN0AvxtiuMwx3w@public.gmane.org> ---
-It is user-hostile and unprofessional to mass-close bugs, even very old bugs,
-without making any attempt to reproduce the problem first. 
-http://www.jwz.org/doc/cadt.html
-
-I'm willing to cut a *little* slack on this bug because it may have appeared to
-require specific hardware to reproduce; however, I went to the trouble of
-writing a self-contained test program and giving precise instructions for
-reproduction, so I expect you to at least *try* to find the appropriate
-hardware, and if you couldn't, to say so, instead of just "shrug, this might
-have been fixed."  I would have been happy to test development drivers, even,
-if I had ever been asked.
-
-That said, with the latest software present in Debian unstable, the bug appears
-to have been fixed, so I will leave it closed.
+Besides, you always have the option of re-opening the same bug and providing
+updated information. As a bug filer, I think it's reasonable to expect you to
+be the main tester (at least with nouveau).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377542109.D86C1.14159
-Date: Mon, 26 Aug 2013 18:35:09 +0000
+--1377543578.CF0a2.18867
+Date: Mon, 26 Aug 2013 18:59:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,53 +65,37 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:zackw&#64;panix.com" title="Zack Weinberg &lt;zackw&#64;panix.com&gt;"> <span class="fn">Zack Weinberg</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - Incorrect image stretching with Render in RepeatPad mode, NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=32855">bug 32855</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>INVALID
-           </td>
-           <td>WORKSFORME
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED WORKSFORME - Incorrect image stretching with Render in RepeatPad mode, NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=32855#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=32855#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED WORKSFORME - Incorrect image stretching with Render in RepeatPad mode, NV50"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=32855">bug 32855</a>
-              from <span class="vcard"><a class="email" href="mailto:zackw&#64;panix.com" title="Zack Weinberg &lt;zackw&#64;panix.com&gt;"> <span class="fn">Zack Weinberg</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>It is user-hostile and unprofessional to mass-close bugs, even very old bugs,
-without making any attempt to reproduce the problem first. 
-<a href="http://www.jwz.org/doc/cadt.html">http://www.jwz.org/doc/cadt.html</a>
+        <pre>(In reply to <a href="show_bug.cgi?id=32855#c9">comment #9</a>)
+<span class="quote">&gt; It is user-hostile and unprofessional to mass-close bugs, even very old
+&gt; bugs, without making any attempt to reproduce the problem first. 
+&gt; <a href="http://www.jwz.org/doc/cadt.html">http://www.jwz.org/doc/cadt.html</a></span >
 
-I'm willing to cut a *little* slack on this bug because it may have appeared to
-require specific hardware to reproduce; however, I went to the trouble of
-writing a self-contained test program and giving precise instructions for
-reproduction, so I expect you to at least *try* to find the appropriate
-hardware, and if you couldn't, to say so, instead of just &quot;shrug, this might
-have been fixed.&quot;  I would have been happy to test development drivers, even,
-if I had ever been asked.
+I wasn't a big fan of it either (despite proposing it and doing it). But look
+at it from the project's standpoint -- volunteer based (and not exactly a big
+team), high code churn rate (esp 1-2 years ago), high hardware
+death(/replacement) rate, large variety of hardware, 400+ bugs deep, of which
+200 are from more than 2 years without an update. So I didn't see a better way
+of getting a handle on the situation. Of the 200+ bugs I closed, about 10 have
+gotten follow-up comments of any sort (either that it's been fixed/hardware
+gone/still a problem). I'm individually pinging newer bugs, and I'm not having
+a great response rate either (but better).
 
-That said, with the latest software present in Debian unstable, the bug appears
-to have been fixed, so I will leave it closed.</pre>
+Besides, you always have the option of re-opening the same bug and providing
+updated information. As a bug filer, I think it's reasonable to expect you to
+be the main tester (at least with nouveau).</pre>
         </div>
       </p>
       <hr>
@@ -125,9 +107,9 @@ to have been fixed, so I will leave it closed.</pre>
     </body>
 </html>
 
---1377542109.D86C1.14159--
+--1377543578.CF0a2.18867--
 
---===============2138516054==
+--===============0084241560==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -138,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2138516054==--
+--===============0084241560==--
