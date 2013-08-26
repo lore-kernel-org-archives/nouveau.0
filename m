@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 57034] [NVA0] [Quadro FX 4800] display port
  connectors not recognized
-Date: Mon, 26 Aug 2013 15:44:02 +0000
-Message-ID: <bug-57034-8800-QhUrpAIxld@http.bugs.freedesktop.org/>
+Date: Mon, 26 Aug 2013 15:44:29 +0000
+Message-ID: <bug-57034-8800-vaFiIDJVM5@http.bugs.freedesktop.org/>
 References: <bug-57034-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1446215727=="
+Content-Type: multipart/mixed; boundary="===============0752696241=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-57034-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,59 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1446215727==
-Content-Type: multipart/alternative; boundary="1377531842.d4A5DB481.18356"; charset="us-ascii"
+--===============0752696241==
+Content-Type: multipart/alternative; boundary="1377531869.cadD1.18417"; charset="us-ascii"
 
 
---1377531842.d4A5DB481.18356
-Date: Mon, 26 Aug 2013 15:44:02 +0000
+--1377531869.cadD1.18417
+Date: Mon, 26 Aug 2013 15:44:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=57034
 
---- Comment #2 from Orion Poplawski <orion-CVdf0l11yl+B+jHODAdFcQ@public.gmane.org> ---
-Things are looking better with 3.10.9:
+Orion Poplawski <orion-CVdf0l11yl+B+jHODAdFcQ@public.gmane.org> changed:
 
-$ ls /sys/class/drm/card*-*/status
-/sys/class/drm/card0-DP-1/status  /sys/class/drm/card0-DP-2/status 
-/sys/class/drm/card0-DVI-I-1/status
-$ cat /sys/class/drm/card*-*/status
-connected
-connected
-disconnected
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #69963|0                           |1
+        is obsolete|                            |
 
-But I'm not getting any output on DP-2 - monitor is in power save but I don't
-know why.
-
-$ xrandr
-Screen 0: minimum 320 x 200, current 3200 x 1200, maximum 8192 x 8192
-DVI-I-1 disconnected (normal left inverted right x axis y axis)
-DP-1 connected primary 1600x1200+0+0 (normal left inverted right x axis y axis)
-367mm x 275mm
-   1600x1200      60.0*+
-   1280x1024      75.0     60.0
-   1152x864       75.0
-   1024x768       75.1     60.0
-   800x600        75.0     60.3
-   640x480        75.0     60.0
-   720x400        70.1
-DP-2 connected 1600x1200+1600+0 (normal left inverted right x axis y axis)
-367mm x 275mm
-   1600x1200      60.0*+
-   1280x1024      75.0     60.0
-   1152x864       75.0
-   1024x768       75.1     60.0
-   800x600        75.0     60.3
-   640x480        75.0     60.0
-   720x400        70.1
+--- Comment #3 from Orion Poplawski <orion-CVdf0l11yl+B+jHODAdFcQ@public.gmane.org> ---
+Created attachment 84660
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84660&action=edit
+Xorg.0.log
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377531842.d4A5DB481.18356
-Date: Mon, 26 Aug 2013 15:44:02 +0000
+--1377531869.cadD1.18417
+Date: Mon, 26 Aug 2013 15:44:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -81,53 +57,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:orion&#64;cora.nwra.com" title="Orion Poplawski &lt;orion&#64;cora.nwra.com&gt;"> <span class="fn">Orion Poplawski</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA0] [Quadro FX 4800] display port connectors not recognized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57034">bug 57034</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #69963 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA0] [Quadro FX 4800] display port connectors not recognized"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57034#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57034#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA0] [Quadro FX 4800] display port connectors not recognized"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=57034">bug 57034</a>
               from <span class="vcard"><a class="email" href="mailto:orion&#64;cora.nwra.com" title="Orion Poplawski &lt;orion&#64;cora.nwra.com&gt;"> <span class="fn">Orion Poplawski</span></a>
 </span></b>
-        <pre>Things are looking better with 3.10.9:
-
-$ ls /sys/class/drm/card*-*/status
-/sys/class/drm/card0-DP-1/status  /sys/class/drm/card0-DP-2/status 
-/sys/class/drm/card0-DVI-I-1/status
-$ cat /sys/class/drm/card*-*/status
-connected
-connected
-disconnected
-
-But I'm not getting any output on DP-2 - monitor is in power save but I don't
-know why.
-
-$ xrandr
-Screen 0: minimum 320 x 200, current 3200 x 1200, maximum 8192 x 8192
-DVI-I-1 disconnected (normal left inverted right x axis y axis)
-DP-1 connected primary 1600x1200+0+0 (normal left inverted right x axis y axis)
-367mm x 275mm
-   1600x1200      60.0*+
-   1280x1024      75.0     60.0
-   1152x864       75.0
-   1024x768       75.1     60.0
-   800x600        75.0     60.3
-   640x480        75.0     60.0
-   720x400        70.1
-DP-2 connected 1600x1200+1600+0 (normal left inverted right x axis y axis)
-367mm x 275mm
-   1600x1200      60.0*+
-   1280x1024      75.0     60.0
-   1152x864       75.0
-   1024x768       75.1     60.0
-   800x600        75.0     60.3
-   640x480        75.0     60.0
-   720x400        70.1</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=84660" name="attach_84660" title="Xorg.0.log">attachment 84660</a> <a href="attachment.cgi?id=84660&amp;action=edit" title="Xorg.0.log">[details]</a></span>
+Xorg.0.log</pre>
         </div>
       </p>
       <hr>
@@ -139,9 +104,9 @@ DP-2 connected 1600x1200+1600+0 (normal left inverted right x axis y axis)
     </body>
 </html>
 
---1377531842.d4A5DB481.18356--
+--1377531869.cadD1.18417--
 
---===============1446215727==
+--===============0752696241==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -152,4 +117,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1446215727==--
+--===============0752696241==--
