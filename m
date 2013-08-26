@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33165] [NVA3] Nouveau + nvidia GT240 = unworkable
-Date: Mon, 26 Aug 2013 15:46:08 +0000
-Message-ID: <bug-33165-8800-sxUHhBP1GT@http.bugs.freedesktop.org/>
+Subject: [Bug 33165] [NVA3, NVA8] gpu lockup during driver probe
+Date: Mon, 26 Aug 2013 15:48:11 +0000
+Message-ID: <bug-33165-8800-JqzNmjZZn1@http.bugs.freedesktop.org/>
 References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1638809994=="
+Content-Type: multipart/mixed; boundary="===============0388110127=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1638809994==
-Content-Type: multipart/alternative; boundary="1377531969.75F75b68.18649"; charset="us-ascii"
+--===============0388110127==
+Content-Type: multipart/alternative; boundary="1377532091.3DfcB2c24.18980"; charset="us-ascii"
 
 
---1377531969.75F75b68.18649
-Date: Mon, 26 Aug 2013 15:46:09 +0000
+--1377532091.3DfcB2c24.18980
+Date: Mon, 26 Aug 2013 15:48:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,17 +35,15 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |ktmdms-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-*** Bug 61460 has been marked as a duplicate of this bug. ***
+            Summary|[NVA3] Nouveau + nvidia     |[NVA3, NVA8] gpu lockup
+                   |GT240 = unworkable          |during driver probe
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377531969.75F75b68.18649
-Date: Mon, 26 Aug 2013 15:46:09 +0000
+--1377532091.3DfcB2c24.18980
+Date: Mon, 26 Aug 2013 15:48:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,7 +55,7 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA3] Nouveau + nvidia GT240 = unworkable"
+   title="NEW --- - [NVA3, NVA8] gpu lockup during driver probe"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -68,30 +66,13 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
+           <td style="text-align:right;">Summary</td>
+           <td>[NVA3] Nouveau + nvidia GT240 = unworkable
            </td>
-           <td>ktmdms&#64;gmail.com
+           <td>[NVA3, NVA8] gpu lockup during driver probe
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA3] Nouveau + nvidia GT240 = unworkable"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c21">Comment # 21</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA3] Nouveau + nvidia GT240 = unworkable"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - With Option &quot;NoAccel&quot; &quot;0&quot;, xorg fails..."
-   href="show_bug.cgi?id=61460">Bug 61460</a> has been marked as a duplicate of this bug. ***</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -102,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377531969.75F75b68.18649--
+--1377532091.3DfcB2c24.18980--
 
---===============1638809994==
+--===============0388110127==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1638809994==--
+--===============0388110127==--
