@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50375] [NV11] KMS/fbcon accel failing after
+Subject: [Bug 50375] [NV1A] KMS/fbcon accel failing after
  scrolling/tty switch
-Date: Tue, 27 Aug 2013 20:09:49 +0000
-Message-ID: <bug-50375-8800-JH9F2KPVU7@http.bugs.freedesktop.org/>
+Date: Tue, 27 Aug 2013 20:11:13 +0000
+Message-ID: <bug-50375-8800-JchmchND1y@http.bugs.freedesktop.org/>
 References: <bug-50375-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0606982133=="
+Content-Type: multipart/mixed; boundary="===============1704709499=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-50375-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0606982133==
-Content-Type: multipart/alternative; boundary="1377634188.Db1F5d1.23872"; charset="us-ascii"
+--===============1704709499==
+Content-Type: multipart/alternative; boundary="1377634273.B2fBCBc1.24040"; charset="us-ascii"
 
 
---1377634188.Db1F5d1.23872
-Date: Tue, 27 Aug 2013 20:09:48 +0000
+--1377634273.B2fBCBc1.24040
+Date: Tue, 27 Aug 2013 20:11:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,24 +36,20 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|NV11: KMS/fbcon accel       |[NV11] KMS/fbcon accel
+            Summary|[NV11] KMS/fbcon accel      |[NV1A] KMS/fbcon accel
                    |failing after scrolling/tty |failing after scrolling/tty
                    |switch                      |switch
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Do I assume correctly that this still happens with the latest kernel? If so,
-please try the following things (individually) and let me know if there's any
-improvement:
-
-nouveau.vram_pushbuf=1
-nouveau.agpmode=0
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Oh, also looking at your log, it looks like you actually have the NV1A, not
+NV11.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377634188.Db1F5d1.23872
-Date: Tue, 27 Aug 2013 20:09:48 +0000
+--1377634273.B2fBCBc1.24040
+Date: Tue, 27 Aug 2013 20:11:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,7 +61,7 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV11] KMS/fbcon accel failing after scrolling/tty switch"
+   title="NEW --- - [NV1A] KMS/fbcon accel failing after scrolling/tty switch"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=50375">bug 50375</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -77,29 +73,25 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>NV11: KMS/fbcon accel failing after scrolling/tty switch
-           </td>
            <td>[NV11] KMS/fbcon accel failing after scrolling/tty switch
+           </td>
+           <td>[NV1A] KMS/fbcon accel failing after scrolling/tty switch
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV11] KMS/fbcon accel failing after scrolling/tty switch"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50375#c1">Comment # 1</a>
+   title="NEW --- - [NV1A] KMS/fbcon accel failing after scrolling/tty switch"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50375#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV11] KMS/fbcon accel failing after scrolling/tty switch"
+   title="NEW --- - [NV1A] KMS/fbcon accel failing after scrolling/tty switch"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=50375">bug 50375</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Do I assume correctly that this still happens with the latest kernel? If so,
-please try the following things (individually) and let me know if there's any
-improvement:
-
-nouveau.vram_pushbuf=1
-nouveau.agpmode=0</pre>
+        <pre>Oh, also looking at your log, it looks like you actually have the NV1A, not
+NV11.</pre>
         </div>
       </p>
       <hr>
@@ -111,9 +103,9 @@ nouveau.agpmode=0</pre>
     </body>
 </html>
 
---1377634188.Db1F5d1.23872--
+--1377634273.B2fBCBc1.24040--
 
---===============0606982133==
+--===============1704709499==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0606982133==--
+--===============1704709499==--
