@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51809] jReality "Export->Image" on nouveau corrupts
  memory / locks up X server
-Date: Tue, 27 Aug 2013 04:39:11 +0000
-Message-ID: <bug-51809-8800-Juh2kqukJm@http.bugs.freedesktop.org/>
+Date: Tue, 27 Aug 2013 04:56:42 +0000
+Message-ID: <bug-51809-8800-TBWY36vx9P@http.bugs.freedesktop.org/>
 References: <bug-51809-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1411993211=="
+Content-Type: multipart/mixed; boundary="===============0769427383=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-51809-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1411993211==
-Content-Type: multipart/alternative; boundary="1377578350.81FAA0.29111"; charset="us-ascii"
+--===============0769427383==
+Content-Type: multipart/alternative; boundary="1377579401.aA533e0.31646"; charset="us-ascii"
 
 
---1377578350.81FAA0.29111
-Date: Tue, 27 Aug 2013 04:39:10 +0000
+--1377579401.aA533e0.31646
+Date: Tue, 27 Aug 2013 04:56:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51809
 
---- Comment #2 from Luke Hutchison <luke.hutch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Unfortunately I no longer have access to the hardware that caused this crash.
-Sorry! :/
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Marking as invalid as the hardware is no longer available for testing.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377578350.81FAA0.29111
-Date: Tue, 27 Aug 2013 04:39:10 +0000
+--1377579401.aA533e0.31646
+Date: Tue, 27 Aug 2013 04:56:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,21 +55,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - jReality &quot;Export-&gt;Image&quot; on nouveau corrupts memory / locks up X server"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51809">bug 51809</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - jReality &quot;Export-&gt;Image&quot; on nouveau corrupts memory / locks up X server"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51809#c2">Comment # 2</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - jReality &quot;Export-&gt;Image&quot; on nouveau corrupts memory / locks up X server"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51809#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - jReality &quot;Export-&gt;Image&quot; on nouveau corrupts memory / locks up X server"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - jReality &quot;Export-&gt;Image&quot; on nouveau corrupts memory / locks up X server"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=51809">bug 51809</a>
-              from <span class="vcard"><a class="email" href="mailto:luke.hutch&#64;gmail.com" title="Luke Hutchison &lt;luke.hutch&#64;gmail.com&gt;"> <span class="fn">Luke Hutchison</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Unfortunately I no longer have access to the hardware that caused this crash.
-Sorry! :/</pre>
+        <pre>Marking as invalid as the hardware is no longer available for testing.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +108,9 @@ Sorry! :/</pre>
     </body>
 </html>
 
---1377578350.81FAA0.29111--
+--1377579401.aA533e0.31646--
 
---===============1411993211==
+--===============0769427383==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1411993211==--
+--===============0769427383==--
