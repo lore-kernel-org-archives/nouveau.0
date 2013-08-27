@@ -1,7 +1,7 @@
 From: Peter Hurley <peter@hurleysoftware.com>
-Subject: [PATCH 2/9] drm/nouveau: Move event index check from critical section
-Date: Tue, 27 Aug 2013 16:12:55 -0400
-Message-ID: <1377634382-13872-3-git-send-email-peter@hurleysoftware.com>
+Subject: [PATCH 3/9] drm/nouveau: Allocate local event handlers
+Date: Tue, 27 Aug 2013 16:12:56 -0400
+Message-ID: <1377634382-13872-4-git-send-email-peter@hurleysoftware.com>
 References: <1377634382-13872-1-git-send-email-peter@hurleysoftware.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,52 +21,103 @@ To: Dave Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
 Cc: nouveau@lists.freedesktop.org, Peter Hurley <peter@hurleysoftware.com>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-The index_nr field is constant for the lifetime of the event, so
-serialized access is unnecessary.
+Prepare for transition to RCU-based event handler list;
+since RCU list traversal may have stale pointers, local
+storage may go out of scope before handler completes.
+
+Introduce nouveau_event_handler_create/_destroy which provides
+suitable semantics for multiple, temporary event handlers.
 
 Signed-off-by: Peter Hurley <peter@hurleysoftware.com>
 ---
- drivers/gpu/drm/nouveau/core/core/event.c | 19 +++++++++++--------
- 1 file changed, 11 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/nouveau/core/core/event.c         | 24 +++++++++++++++++++++++
+ drivers/gpu/drm/nouveau/core/include/core/event.h |  6 ++++++
+ drivers/gpu/drm/nouveau/nouveau_fence.c           | 15 +++++++-------
+ 3 files changed, 38 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/core/core/event.c b/drivers/gpu/drm/nouveau/core/core/event.c
-index 7eb81c1..e69c463 100644
+index e69c463..1a8d685 100644
 --- a/drivers/gpu/drm/nouveau/core/core/event.c
 +++ b/drivers/gpu/drm/nouveau/core/core/event.c
-@@ -40,9 +40,11 @@ nouveau_event_put(struct nouveau_event *event, int index,
- {
- 	unsigned long flags;
+@@ -23,6 +23,30 @@
+ #include <core/os.h>
+ #include <core/event.h>
  
-+	if (index >= event->index_nr)
-+		return;
++int
++nouveau_event_handler_create(struct nouveau_event *event, int index,
++			     int (*func)(struct nouveau_eventh*, int),
++			     void *priv, struct nouveau_eventh **phandler)
++{
++	struct nouveau_eventh *handler;
 +
- 	spin_lock_irqsave(&event->lock, flags);
--	if (index < event->index_nr)
--		nouveau_event_put_locked(event, index, handler);
-+	nouveau_event_put_locked(event, index, handler);
- 	spin_unlock_irqrestore(&event->lock, flags);
- }
- 
-@@ -52,13 +54,14 @@ nouveau_event_get(struct nouveau_event *event, int index,
- {
- 	unsigned long flags;
- 
-+	if (index >= event->index_nr)
-+		return;
++	handler = *phandler = kzalloc(sizeof(*handler), GFP_KERNEL);
++	if (!handler)
++		return -ENOMEM;
++	handler->func = func;
++	handler->priv = priv;
++	nouveau_event_get(event, index, handler);
++	return 0;
++}
 +
- 	spin_lock_irqsave(&event->lock, flags);
--	if (index < event->index_nr) {
--		list_add(&handler->head, &event->index[index].list);
--		if (!event->index[index].refs++) {
--			if (event->enable)
--				event->enable(event, index);
--		}
-+	list_add(&handler->head, &event->index[index].list);
-+	if (!event->index[index].refs++) {
-+		if (event->enable)
-+			event->enable(event, index);
++void
++nouveau_event_handler_destroy(struct nouveau_event *event, int index,
++			      struct nouveau_eventh *handler)
++{
++	nouveau_event_put(event, index, handler);
++	kfree(handler);
++}
++
+ static void
+ nouveau_event_put_locked(struct nouveau_event *event, int index,
+ 			 struct nouveau_eventh *handler)
+diff --git a/drivers/gpu/drm/nouveau/core/include/core/event.h b/drivers/gpu/drm/nouveau/core/include/core/event.h
+index ad4d8c2..bdf1a0a 100644
+--- a/drivers/gpu/drm/nouveau/core/include/core/event.h
++++ b/drivers/gpu/drm/nouveau/core/include/core/event.h
+@@ -34,4 +34,10 @@ void nouveau_event_get(struct nouveau_event *, int index,
+ void nouveau_event_put(struct nouveau_event *, int index,
+ 		       struct nouveau_eventh *);
+ 
++int nouveau_event_handler_create(struct nouveau_event *, int index,
++				 int (*func)(struct nouveau_eventh*, int),
++				 void *priv, struct nouveau_eventh **);
++void nouveau_event_handler_destroy(struct nouveau_event *, int index,
++				   struct nouveau_eventh *);
++
+ #endif
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
+index c2e3167..6dde483 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+@@ -180,13 +180,14 @@ nouveau_fence_wait_uevent(struct nouveau_fence *fence, bool intr)
+ 	struct nouveau_channel *chan = fence->channel;
+ 	struct nouveau_fifo *pfifo = nouveau_fifo(chan->drm->device);
+ 	struct nouveau_fence_priv *priv = chan->drm->fence;
+-	struct nouveau_eventh handler = {
+-		.func = nouveau_fence_wait_uevent_handler,
+-		.priv = priv,
+-	};
+-	int ret = 0;
++	struct nouveau_eventh *handler;
++	int ret;
+ 
+-	nouveau_event_get(pfifo->uevent, 0, &handler);
++	ret = nouveau_event_handler_create(pfifo->uevent, 0,
++					   nouveau_fence_wait_uevent_handler,
++					   priv, &handler);
++	if (ret)
++		return ret;
+ 
+ 	if (fence->timeout) {
+ 		unsigned long timeout = fence->timeout - jiffies;
+@@ -218,7 +219,7 @@ nouveau_fence_wait_uevent(struct nouveau_fence *fence, bool intr)
+ 		}
  	}
- 	spin_unlock_irqrestore(&event->lock, flags);
- }
+ 
+-	nouveau_event_put(pfifo->uevent, 0, &handler);
++	nouveau_event_handler_destroy(pfifo->uevent, 0, handler);
+ 	if (unlikely(ret < 0))
+ 		return ret;
+ 
 -- 
 1.8.1.2
