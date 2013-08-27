@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38074] Dual head doesn't work for some combination
  of monitors (second screen still off)
-Date: Tue, 27 Aug 2013 14:43:32 +0000
-Message-ID: <bug-38074-8800-eVJys1O4aW@http.bugs.freedesktop.org/>
+Date: Tue, 27 Aug 2013 14:44:07 +0000
+Message-ID: <bug-38074-8800-E6khT5wCQe@http.bugs.freedesktop.org/>
 References: <bug-38074-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0406564132=="
+Content-Type: multipart/mixed; boundary="===============1753532535=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,71 +21,65 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0406564132==
-Content-Type: multipart/alternative; boundary="1377614612.027dc2.21903"; charset="us-ascii"
+--===============1753532535==
+Content-Type: multipart/alternative; boundary="1377614647.BBfF013.21993"; charset="us-ascii"
 
 
---1377614612.027dc2.21903
-Date: Tue, 27 Aug 2013 14:43:32 +0000
+--1377614647.BBfF013.21993
+Date: Tue, 27 Aug 2013 14:44:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D38074
+https://bugs.freedesktop.org/show_bug.cgi?id=38074
 
---- Comment #19 from Jarom=C3=ADr C=C3=A1p=C3=ADk <jcapik-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
-xf86-video-nouveau 1.0.9
-mesa 9.2
+--- Comment #20 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please attach a fresh dmesg. Also, is the problem the same as before -- using a
+1280x1024 resolution on the second head works? What happens if you use
+1920x1080? Does it just go into "sleep" mode or what?
 
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377614612.027dc2.21903
-Date: Tue, 27 Aug 2013 14:43:32 +0000
+--1377614647.BBfF013.21993
+Date: Tue, 27 Aug 2013 14:44:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_REOPENED "
-   title=3D"REOPENED --- - Dual head doesn't work for some combination of m=
-onitors (second screen still off)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D38074#c19">Commen=
-t # 19</a>
-              on <a class=3D"bz_bug_link=20
+   title="REOPENED --- - Dual head doesn't work for some combination of monitors (second screen still off)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074#c20">Comment # 20</a>
+              on <a class="bz_bug_link 
           bz_status_REOPENED "
-   title=3D"REOPENED --- - Dual head doesn't work for some combination of m=
-onitors (second screen still off)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D38074">bug 38074<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jcapik&#64;redhat.com" title=3D"Jarom=C3=ADr C=C3=A1p=C3=ADk &lt;jcapik&#64=
-;redhat.com&gt;"> <span class=3D"fn">Jarom=C3=ADr C=C3=A1p=C3=ADk</span></a>
+   title="REOPENED --- - Dual head doesn't work for some combination of monitors (second screen still off)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074">bug 38074</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>xf86-video-nouveau 1.0.9
-mesa 9.2</pre>
+        <pre>Please attach a fresh dmesg. Also, is the problem the same as before -- using a
+1280x1024 resolution on the second head works? What happens if you use
+1920x1080? Does it just go into &quot;sleep&quot; mode or what?</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1377614612.027dc2.21903--
+--1377614647.BBfF013.21993--
 
---===============0406564132==
+--===============1753532535==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0406564132==--
+--===============1753532535==--
