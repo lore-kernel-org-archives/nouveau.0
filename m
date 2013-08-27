@@ -1,8 +1,7 @@
 From: Peter Hurley <peter@hurleysoftware.com>
-Subject: [PATCH 5/9] drm/nouveau: Add install/remove semantics for event
-	handlers
-Date: Tue, 27 Aug 2013 16:12:58 -0400
-Message-ID: <1377634382-13872-6-git-send-email-peter@hurleysoftware.com>
+Subject: [PATCH 6/9] drm/nouveau: Convert event handler list to RCU
+Date: Tue, 27 Aug 2013 16:12:59 -0400
+Message-ID: <1377634382-13872-7-git-send-email-peter@hurleysoftware.com>
 References: <1377634382-13872-1-git-send-email-peter@hurleysoftware.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,393 +21,267 @@ To: Dave Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
 Cc: nouveau@lists.freedesktop.org, Peter Hurley <peter@hurleysoftware.com>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Complete migration of nouveau_event_get/_put from add/remove
-semantics to enable/disable semantics.
+Lockdep report [1] correctly identifies a potential deadlock between
+nouveau_drm_vblank_enable() and nouveau_drm_vblank_handler() due
+to inverted lock order of event->lock with drm core's
+dev->vblank_time_lock.
 
-Introduce nouveau_event_handler_install/_remove interface to
-add/remove non-local-scope event handlers (ie., those stored in
-parent containers). This change in semantics makes explicit the
-handler lifetime, and distinguishes "one-of" event handlers
-(such as gpio) from "many temporary" event handlers (such as uevent).
+Fix vblank event deadlock by converting event handler list to RCU.
+List updates remain serialized by event->lock.
+List traversal & handler execution is lockless which prevents
+inverted lock order problems with the drm core.
+Safe deletion of the event handler is accomplished with
+synchronize_rcu() for those handlers stored in nouveau_object-based
+containers (nouveau_drm & nv50_/nvc0_software_context); otherwise,
+with kfree_rcu (for nouveau_connector & uevent temporary handlers).
 
+[1]
+======================================================
+[ INFO: possible circular locking dependency detected ]
+3.10.0-0+tip-xeon+lockdep #0+tip Not tainted
+-------------------------------------------------------
+swapper/7/0 is trying to acquire lock:
+ (&(&dev->vblank_time_lock)->rlock){-.....}, at: [<ffffffffa0086269>] drm_handle_vblank+0x69/0x400 [drm]
+
+but task is already holding lock:
+ (&(&event->lock)->rlock){-.....}, at: [<ffffffffa0101dbd>] nouveau_event_trigger+0x4d/0xd0 [nouveau]
+
+which lock already depends on the new lock.
+
+the existing dependency chain (in reverse order) is:
+
+-> #1 (&(&event->lock)->rlock){-.....}:
+       [<ffffffff810b6d62>] lock_acquire+0x92/0x1f0
+       [<ffffffff8175e926>] _raw_spin_lock_irqsave+0x46/0x60
+       [<ffffffffa0101cf7>] nouveau_event_get+0x27/0xa0 [nouveau]
+       [<ffffffffa01807bd>] nouveau_drm_vblank_enable+0x8d/0xf0 [nouveau]
+       [<ffffffffa00856d8>] drm_vblank_get+0xf8/0x2c0 [drm]
+       [<ffffffffa00867f4>] drm_wait_vblank+0x84/0x6f0 [drm]
+       [<ffffffffa0081719>] drm_ioctl+0x559/0x690 [drm]
+       [<ffffffff811bed77>] do_vfs_ioctl+0x97/0x590
+       [<ffffffff811bf301>] SyS_ioctl+0x91/0xb0
+       [<ffffffff817677c2>] system_call_fastpath+0x16/0x1b
+
+-> #0 (&(&dev->vblank_time_lock)->rlock){-.....}:
+       [<ffffffff810b65c3>] __lock_acquire+0x1c43/0x1d30
+       [<ffffffff810b6d62>] lock_acquire+0x92/0x1f0
+       [<ffffffff8175e926>] _raw_spin_lock_irqsave+0x46/0x60
+       [<ffffffffa0086269>] drm_handle_vblank+0x69/0x400 [drm]
+       [<ffffffffa0180847>] nouveau_drm_vblank_handler+0x27/0x30 [nouveau]
+       [<ffffffffa0101e00>] nouveau_event_trigger+0x90/0xd0 [nouveau]
+       [<ffffffffa012dafd>] nv50_disp_intr+0xdd/0x230 [nouveau]
+       [<ffffffffa0120451>] nouveau_mc_intr+0xa1/0x100 [nouveau]
+       [<ffffffff810f3c7c>] handle_irq_event_percpu+0x6c/0x3d0
+       [<ffffffff810f4028>] handle_irq_event+0x48/0x70
+       [<ffffffff810f71ca>] handle_fasteoi_irq+0x5a/0x100
+       [<ffffffff81004512>] handle_irq+0x22/0x40
+       [<ffffffff817691fa>] do_IRQ+0x5a/0xd0
+       [<ffffffff8175f76f>] ret_from_intr+0x0/0x13
+       [<ffffffff8100b876>] arch_cpu_idle+0x26/0x30
+       [<ffffffff810a5b4e>] cpu_startup_entry+0xce/0x410
+       [<ffffffff81743d4e>] start_secondary+0x255/0x25c
+
+other info that might help us debug this:
+
+ Possible unsafe locking scenario:
+
+       CPU0                    CPU1
+       ----                    ----
+  lock(&(&event->lock)->rlock);
+                               lock(&(&dev->vblank_time_lock)->rlock);
+                               lock(&(&event->lock)->rlock);
+  lock(&(&dev->vblank_time_lock)->rlock);
+
+ *** DEADLOCK ***
+
+1 lock held by swapper/7/0:
+ #0:  (&(&event->lock)->rlock){-.....}, at: [<ffffffffa0101dbd>] nouveau_event_trigger+0x4d/0xd0 [nouveau]
+
+stack backtrace:
+CPU: 7 PID: 0 Comm: swapper/7 Not tainted 3.10.0-0+tip-xeon+lockdep #0+tip
+Hardware name: Dell Inc. Precision WorkStation T5400  /0RW203, BIOS A11 04/30/2012
+ ffffffff821ccf60 ffff8802bfdc3b08 ffffffff81755f39 ffff8802bfdc3b58
+ ffffffff8174f526 0000000000000002 ffff8802bfdc3be8 ffff8802b330a7f8
+ ffff8802b330a820 ffff8802b330a7f8 0000000000000000 0000000000000001
+Call Trace:
+ <IRQ>  [<ffffffff81755f39>] dump_stack+0x19/0x1b
+ [<ffffffff8174f526>] print_circular_bug+0x1fb/0x20c
+ [<ffffffff810b65c3>] __lock_acquire+0x1c43/0x1d30
+ [<ffffffff810b1f8d>] ? trace_hardirqs_off+0xd/0x10
+ [<ffffffff8102b1a8>] ? flat_send_IPI_mask+0x88/0xa0
+ [<ffffffff810b6d62>] lock_acquire+0x92/0x1f0
+ [<ffffffffa0086269>] ? drm_handle_vblank+0x69/0x400 [drm]
+ [<ffffffff8175e926>] _raw_spin_lock_irqsave+0x46/0x60
+ [<ffffffffa0086269>] ? drm_handle_vblank+0x69/0x400 [drm]
+ [<ffffffffa0086269>] drm_handle_vblank+0x69/0x400 [drm]
+ [<ffffffffa0180847>] nouveau_drm_vblank_handler+0x27/0x30 [nouveau]
+ [<ffffffffa0101e00>] nouveau_event_trigger+0x90/0xd0 [nouveau]
+ [<ffffffffa012dafd>] nv50_disp_intr+0xdd/0x230 [nouveau]
+ [<ffffffff8175f182>] ? _raw_spin_unlock_irqrestore+0x42/0x80
+ [<ffffffff8107800c>] ? __hrtimer_start_range_ns+0x16c/0x530
+ [<ffffffffa0120451>] nouveau_mc_intr+0xa1/0x100 [nouveau]
+ [<ffffffff810f3c7c>] handle_irq_event_percpu+0x6c/0x3d0
+ [<ffffffff810f4028>] handle_irq_event+0x48/0x70
+ [<ffffffff810f718e>] ? handle_fasteoi_irq+0x1e/0x100
+ [<ffffffff810f71ca>] handle_fasteoi_irq+0x5a/0x100
+ [<ffffffff81004512>] handle_irq+0x22/0x40
+ [<ffffffff817691fa>] do_IRQ+0x5a/0xd0
+ [<ffffffff8175f76f>] common_interrupt+0x6f/0x6f
+ <EOI>  [<ffffffff8100ad3d>] ? default_idle+0x1d/0x290
+ [<ffffffff8100ad3b>] ? default_idle+0x1b/0x290
+ [<ffffffff8100b876>] arch_cpu_idle+0x26/0x30
+ [<ffffffff810a5b4e>] cpu_startup_entry+0xce/0x410
+ [<ffffffff810ae0dc>] ? clockevents_register_device+0xdc/0x140
+ [<ffffffff81743d4e>] start_secondary+0x255/0x25c
+
+Reported-by: Dave Jones <davej@redhat.com>
 Signed-off-by: Peter Hurley <peter@hurleysoftware.com>
 ---
- drivers/gpu/drm/nouveau/core/core/event.c          | 63 +++++++++++++++++++---
- .../gpu/drm/nouveau/core/engine/software/nv50.c    | 31 +++++++++--
- .../gpu/drm/nouveau/core/engine/software/nvc0.c    | 31 +++++++++--
- drivers/gpu/drm/nouveau/core/include/core/event.h  |  6 +++
- .../gpu/drm/nouveau/core/include/engine/software.h |  2 +-
- drivers/gpu/drm/nouveau/nouveau_connector.c        | 10 +++-
- drivers/gpu/drm/nouveau/nouveau_drm.c              | 17 +++++-
- 7 files changed, 140 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/nouveau/core/core/event.c          | 22 +++++++++++-----------
+ .../gpu/drm/nouveau/core/engine/software/nv50.c    |  1 +
+ .../gpu/drm/nouveau/core/engine/software/nvc0.c    |  1 +
+ drivers/gpu/drm/nouveau/core/include/core/event.h  |  1 +
+ drivers/gpu/drm/nouveau/nouveau_connector.c        |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c              |  1 +
+ 6 files changed, 16 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/core/core/event.c b/drivers/gpu/drm/nouveau/core/core/event.c
-index 0a65ede..4cd1ebe 100644
+index 4cd1ebe..ce0a0ef 100644
 --- a/drivers/gpu/drm/nouveau/core/core/event.c
 +++ b/drivers/gpu/drm/nouveau/core/core/event.c
-@@ -23,19 +23,60 @@
+@@ -22,6 +22,7 @@
+ 
  #include <core/os.h>
  #include <core/event.h>
++#include <linux/rculist.h>
  
-+void
-+nouveau_event_handler_install(struct nouveau_event *event, int index,
-+			      int (*func)(struct nouveau_eventh*, int),
-+			      void *priv, struct nouveau_eventh *handler)
-+{
-+	unsigned long flags;
-+
-+	if (index >= event->index_nr)
-+		return;
-+
-+	handler->func = func;
-+	handler->priv = priv;
-+
-+	spin_lock_irqsave(&event->lock, flags);
-+	list_add(&handler->head, &event->index[index].list);
-+	spin_unlock_irqrestore(&event->lock, flags);
-+}
-+
-+void
-+nouveau_event_handler_remove(struct nouveau_event *event, int index,
-+			     struct nouveau_eventh *handler)
-+{
-+	unsigned long flags;
-+
-+	if (index >= event->index_nr)
-+		return;
-+
-+	spin_lock_irqsave(&event->lock, flags);
-+	list_del(&handler->head);
-+	spin_unlock_irqrestore(&event->lock, flags);
-+}
-+
- int
- nouveau_event_handler_create(struct nouveau_event *event, int index,
- 			     int (*func)(struct nouveau_eventh*, int),
- 			     void *priv, struct nouveau_eventh **phandler)
- {
- 	struct nouveau_eventh *handler;
-+	unsigned long flags;
- 
- 	handler = *phandler = kzalloc(sizeof(*handler), GFP_KERNEL);
- 	if (!handler)
- 		return -ENOMEM;
- 	handler->func = func;
+ void
+ nouveau_event_handler_install(struct nouveau_event *event, int index,
+@@ -37,7 +38,7 @@ nouveau_event_handler_install(struct nouveau_event *event, int index,
  	handler->priv = priv;
--	nouveau_event_get(event, index, handler);
-+	__set_bit(NVKM_EVENT_ENABLE, &handler->flags);
-+
-+	spin_lock_irqsave(&event->lock, flags);
-+	list_add(&handler->head, &event->index[index].list);
-+	if (!event->index[index].refs++) {
-+		if (event->enable)
-+			event->enable(event, index);
-+	}
-+	spin_unlock_irqrestore(&event->lock, flags);
- 	return 0;
- }
- 
-@@ -43,7 +84,18 @@ void
- nouveau_event_handler_destroy(struct nouveau_event *event, int index,
- 			      struct nouveau_eventh *handler)
- {
--	nouveau_event_put(event, index, handler);
-+	unsigned long flags;
-+
-+	if (index >= event->index_nr)
-+		return;
-+
-+	spin_lock_irqsave(&event->lock, flags);
-+	if (!--event->index[index].refs) {
-+		if (event->disable)
-+			event->disable(event, index);
-+	}
-+	list_del(&handler->head);
-+	spin_unlock_irqrestore(&event->lock, flags);
- 	kfree(handler);
- }
- 
-@@ -56,7 +108,6 @@ nouveau_event_put_locked(struct nouveau_event *event, int index,
- 			if (event->disable)
- 				event->disable(event, index);
- 		}
--		list_del(&handler->head);
- 	}
- }
- 
-@@ -85,7 +136,6 @@ nouveau_event_get(struct nouveau_event *event, int index,
  
  	spin_lock_irqsave(&event->lock, flags);
- 	if (!__test_and_set_bit(NVKM_EVENT_ENABLE, &handler->flags)) {
--		list_add(&handler->head, &event->index[index].list);
- 		if (!event->index[index].refs++) {
- 			if (event->enable)
- 				event->enable(event, index);
-@@ -105,8 +155,9 @@ nouveau_event_trigger(struct nouveau_event *event, int index)
- 
- 	spin_lock_irqsave(&event->lock, flags);
- 	list_for_each_entry_safe(handler, temp, &event->index[index].list, head) {
--		if (handler->func(handler, index) == NVKM_EVENT_DROP) {
--			nouveau_event_put_locked(event, index, handler);
-+		if (test_bit(NVKM_EVENT_ENABLE, &handler->flags)) {
-+			if (handler->func(handler, index) == NVKM_EVENT_DROP)
-+				nouveau_event_put_locked(event, index, handler);
- 		}
- 	}
+-	list_add(&handler->head, &event->index[index].list);
++	list_add_rcu(&handler->head, &event->index[index].list);
  	spin_unlock_irqrestore(&event->lock, flags);
+ }
+ 
+@@ -51,7 +52,7 @@ nouveau_event_handler_remove(struct nouveau_event *event, int index,
+ 		return;
+ 
+ 	spin_lock_irqsave(&event->lock, flags);
+-	list_del(&handler->head);
++	list_del_rcu(&handler->head);
+ 	spin_unlock_irqrestore(&event->lock, flags);
+ }
+ 
+@@ -71,7 +72,7 @@ nouveau_event_handler_create(struct nouveau_event *event, int index,
+ 	__set_bit(NVKM_EVENT_ENABLE, &handler->flags);
+ 
+ 	spin_lock_irqsave(&event->lock, flags);
+-	list_add(&handler->head, &event->index[index].list);
++	list_add_rcu(&handler->head, &event->index[index].list);
+ 	if (!event->index[index].refs++) {
+ 		if (event->enable)
+ 			event->enable(event, index);
+@@ -94,9 +95,9 @@ nouveau_event_handler_destroy(struct nouveau_event *event, int index,
+ 		if (event->disable)
+ 			event->disable(event, index);
+ 	}
+-	list_del(&handler->head);
++	list_del_rcu(&handler->head);
+ 	spin_unlock_irqrestore(&event->lock, flags);
+-	kfree(handler);
++	kfree_rcu(handler, rcu);
+ }
+ 
+ static void
+@@ -147,20 +148,19 @@ nouveau_event_get(struct nouveau_event *event, int index,
+ void
+ nouveau_event_trigger(struct nouveau_event *event, int index)
+ {
+-	struct nouveau_eventh *handler, *temp;
+-	unsigned long flags;
++	struct nouveau_eventh *handler;
+ 
+ 	if (index >= event->index_nr)
+ 		return;
+ 
+-	spin_lock_irqsave(&event->lock, flags);
+-	list_for_each_entry_safe(handler, temp, &event->index[index].list, head) {
++	rcu_read_lock();
++	list_for_each_entry_rcu(handler, &event->index[index].list, head) {
+ 		if (test_bit(NVKM_EVENT_ENABLE, &handler->flags)) {
+ 			if (handler->func(handler, index) == NVKM_EVENT_DROP)
+-				nouveau_event_put_locked(event, index, handler);
++				nouveau_event_put(event, index, handler);
+ 		}
+ 	}
+-	spin_unlock_irqrestore(&event->lock, flags);
++	rcu_read_unlock();
+ }
+ 
+ void
 diff --git a/drivers/gpu/drm/nouveau/core/engine/software/nv50.c b/drivers/gpu/drm/nouveau/core/engine/software/nv50.c
-index c48e749..dfce1f5 100644
+index dfce1f5..87aeee1 100644
 --- a/drivers/gpu/drm/nouveau/core/engine/software/nv50.c
 +++ b/drivers/gpu/drm/nouveau/core/engine/software/nv50.c
-@@ -97,7 +97,7 @@ nv50_software_mthd_vblsem_release(struct nouveau_object *object, u32 mthd,
- 	if (crtc > 1)
- 		return -EINVAL;
- 
--	nouveau_event_get(disp->vblank, crtc, &chan->base.vblank.event);
-+	nouveau_event_get(disp->vblank, crtc, &chan->base.vblank.event[crtc]);
- 	return 0;
+@@ -191,6 +191,7 @@ nv50_software_context_dtor(struct nouveau_object *object)
+ 		nouveau_event_handler_remove(disp->vblank, i,
+ 					     &chan->base.vblank.event[i]);
+ 	}
++	synchronize_rcu();
+ 	_nouveau_software_context_dtor(object);
  }
  
-@@ -135,7 +135,7 @@ static int
- nv50_software_vblsem_release(struct nouveau_eventh *event, int head)
- {
- 	struct nouveau_software_chan *chan =
--		container_of(event, struct nouveau_software_chan, vblank.event);
-+		container_of(event, struct nouveau_software_chan, vblank.event[head]);
- 	struct nv50_software_priv *priv = (void *)nv_object(chan)->engine;
- 	struct nouveau_bar *bar = nouveau_bar(priv);
- 
-@@ -161,7 +161,8 @@ nv50_software_context_ctor(struct nouveau_object *parent,
- 			   struct nouveau_object **pobject)
- {
- 	struct nv50_software_chan *chan;
--	int ret;
-+	struct nouveau_disp *disp = nouveau_disp(engine);
-+	int ret, i;
- 
- 	ret = nouveau_software_context_create(parent, engine, oclass, &chan);
- 	*pobject = nv_object(chan);
-@@ -169,16 +170,36 @@ nv50_software_context_ctor(struct nouveau_object *parent,
- 		return ret;
- 
- 	chan->base.vblank.channel = nv_gpuobj(parent->parent)->addr >> 12;
--	chan->base.vblank.event.func = nv50_software_vblsem_release;
-+	for (i = 0; i < ARRAY_SIZE(chan->base.vblank.event); i++) {
-+		nouveau_event_handler_install(disp->vblank, i,
-+					      nv50_software_vblsem_release,
-+					      NULL,
-+					      &chan->base.vblank.event[i]);
-+	}
- 	return 0;
- }
- 
-+void
-+nv50_software_context_dtor(struct nouveau_object *object)
-+{
-+	struct nv50_software_chan *chan = (void *)object;
-+	struct nv50_software_priv *priv = (void *)nv_object(chan)->engine;
-+	struct nouveau_disp *disp = nouveau_disp(priv);
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(chan->base.vblank.event); i++) {
-+		nouveau_event_handler_remove(disp->vblank, i,
-+					     &chan->base.vblank.event[i]);
-+	}
-+	_nouveau_software_context_dtor(object);
-+}
-+
- static struct nouveau_oclass
- nv50_software_cclass = {
- 	.handle = NV_ENGCTX(SW, 0x50),
- 	.ofuncs = &(struct nouveau_ofuncs) {
- 		.ctor = nv50_software_context_ctor,
--		.dtor = _nouveau_software_context_dtor,
-+		.dtor = nv50_software_context_dtor,
- 		.init = _nouveau_software_context_init,
- 		.fini = _nouveau_software_context_fini,
- 	},
 diff --git a/drivers/gpu/drm/nouveau/core/engine/software/nvc0.c b/drivers/gpu/drm/nouveau/core/engine/software/nvc0.c
-index d698e71..d1f52c0 100644
+index d1f52c0..e87ba42 100644
 --- a/drivers/gpu/drm/nouveau/core/engine/software/nvc0.c
 +++ b/drivers/gpu/drm/nouveau/core/engine/software/nvc0.c
-@@ -80,7 +80,7 @@ nvc0_software_mthd_vblsem_release(struct nouveau_object *object, u32 mthd,
- 	if ((nv_device(object)->card_type < NV_E0 && crtc > 1) || crtc > 3)
- 		return -EINVAL;
- 
--	nouveau_event_get(disp->vblank, crtc, &chan->base.vblank.event);
-+	nouveau_event_get(disp->vblank, crtc, &chan->base.vblank.event[crtc]);
- 	return 0;
+@@ -197,6 +197,7 @@ nvc0_software_context_dtor(struct nouveau_object *object)
+ 		nouveau_event_handler_remove(disp->vblank, i,
+ 					     &chan->base.vblank.event[i]);
+ 	}
++	synchronize_rcu();
+ 	_nouveau_software_context_dtor(object);
  }
  
-@@ -147,7 +147,7 @@ static int
- nvc0_software_vblsem_release(struct nouveau_eventh *event, int head)
- {
- 	struct nouveau_software_chan *chan =
--		container_of(event, struct nouveau_software_chan, vblank.event);
-+		container_of(event, struct nouveau_software_chan, vblank.event[head]);
- 	struct nvc0_software_priv *priv = (void *)nv_object(chan)->engine;
- 	struct nouveau_bar *bar = nouveau_bar(priv);
- 
-@@ -167,7 +167,8 @@ nvc0_software_context_ctor(struct nouveau_object *parent,
- 			   struct nouveau_object **pobject)
- {
- 	struct nvc0_software_chan *chan;
--	int ret;
-+	struct nouveau_disp *disp = nouveau_disp(engine);
-+	int ret, i;
- 
- 	ret = nouveau_software_context_create(parent, engine, oclass, &chan);
- 	*pobject = nv_object(chan);
-@@ -175,16 +176,36 @@ nvc0_software_context_ctor(struct nouveau_object *parent,
- 		return ret;
- 
- 	chan->base.vblank.channel = nv_gpuobj(parent->parent)->addr >> 12;
--	chan->base.vblank.event.func = nvc0_software_vblsem_release;
-+	for (i = 0; i < ARRAY_SIZE(chan->base.vblank.event); i++) {
-+		nouveau_event_handler_install(disp->vblank, i,
-+					      nvc0_software_vblsem_release,
-+					      NULL,
-+					      &chan->base.vblank.event[i]);
-+	}
- 	return 0;
- }
- 
-+void
-+nvc0_software_context_dtor(struct nouveau_object *object)
-+{
-+	struct nvc0_software_chan *chan = (void *)object;
-+	struct nvc0_software_priv *priv = (void *)nv_object(chan)->engine;
-+	struct nouveau_disp *disp = nouveau_disp(priv);
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(chan->base.vblank.event); i++) {
-+		nouveau_event_handler_remove(disp->vblank, i,
-+					     &chan->base.vblank.event[i]);
-+	}
-+	_nouveau_software_context_dtor(object);
-+}
-+
- static struct nouveau_oclass
- nvc0_software_cclass = {
- 	.handle = NV_ENGCTX(SW, 0xc0),
- 	.ofuncs = &(struct nouveau_ofuncs) {
- 		.ctor = nvc0_software_context_ctor,
--		.dtor = _nouveau_software_context_dtor,
-+		.dtor = nvc0_software_context_dtor,
- 		.init = _nouveau_software_context_init,
- 		.fini = _nouveau_software_context_fini,
- 	},
 diff --git a/drivers/gpu/drm/nouveau/core/include/core/event.h b/drivers/gpu/drm/nouveau/core/include/core/event.h
-index 3e704d5..45e8a0f 100644
+index 45e8a0f..f01b173 100644
 --- a/drivers/gpu/drm/nouveau/core/include/core/event.h
 +++ b/drivers/gpu/drm/nouveau/core/include/core/event.h
-@@ -44,4 +44,10 @@ int nouveau_event_handler_create(struct nouveau_event *, int index,
- void nouveau_event_handler_destroy(struct nouveau_event *, int index,
- 				   struct nouveau_eventh *);
+@@ -13,6 +13,7 @@ struct nouveau_eventh {
+ 	unsigned long flags;
+ 	void *priv;
+ 	int (*func)(struct nouveau_eventh *, int index);
++	struct rcu_head rcu;
+ };
  
-+void nouveau_event_handler_install(struct nouveau_event *, int index,
-+				   int (*func)(struct nouveau_eventh*, int),
-+				   void *priv, struct nouveau_eventh *);
-+void nouveau_event_handler_remove(struct nouveau_event *, int index,
-+				  struct nouveau_eventh *);
-+
- #endif
-diff --git a/drivers/gpu/drm/nouveau/core/include/engine/software.h b/drivers/gpu/drm/nouveau/core/include/engine/software.h
-index 4579948..bc26ea8 100644
---- a/drivers/gpu/drm/nouveau/core/include/engine/software.h
-+++ b/drivers/gpu/drm/nouveau/core/include/engine/software.h
-@@ -9,7 +9,7 @@ struct nouveau_software_chan {
- 	struct nouveau_engctx base;
- 
- 	struct {
--		struct nouveau_eventh event;
-+		struct nouveau_eventh event[4];
- 		u32 channel;
- 		u32 ctxdma;
- 		u64 offset;
+ struct nouveau_event {
 diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 4da776f..13b38ed 100644
+index 13b38ed..14fce8a 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -98,6 +98,11 @@ static void
- nouveau_connector_destroy(struct drm_connector *connector)
- {
- 	struct nouveau_connector *nv_connector = nouveau_connector(connector);
-+	struct nouveau_drm *drm = nouveau_drm(connector->dev);
-+	struct nouveau_gpio *gpio = nouveau_gpio(drm->device);
-+
-+	nouveau_event_handler_remove(gpio->events, nv_connector->hpd.line,
-+				     &nv_connector->hpd_func);
+@@ -106,7 +106,7 @@ nouveau_connector_destroy(struct drm_connector *connector)
  	kfree(nv_connector->edid);
  	drm_sysfs_connector_remove(connector);
  	drm_connector_cleanup(connector);
-@@ -990,7 +995,10 @@ nouveau_connector_create(struct drm_device *dev, int index)
+-	kfree(connector);
++	kfree_rcu(nv_connector, hpd_func.rcu);
+ }
  
- 		ret = gpio->find(gpio, 0, hpd[ffs((entry & 0x07033000) >> 12)],
- 				 DCB_GPIO_UNUSED, &nv_connector->hpd);
--		nv_connector->hpd_func.func = nouveau_connector_hotplug;
-+		nouveau_event_handler_install(gpio->events,
-+					      nv_connector->hpd.line,
-+					      nouveau_connector_hotplug, NULL,
-+					      &nv_connector->hpd_func);
- 		if (ret)
- 			nv_connector->hpd.func = DCB_GPIO_UNUSED;
- 
+ static struct nouveau_i2c_port *
 diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index ccea2c4..4187cad 100644
+index 4187cad..544ca19 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -88,7 +88,6 @@ nouveau_drm_vblank_enable(struct drm_device *dev, int head)
+@@ -432,6 +432,7 @@ nouveau_drm_unload(struct drm_device *dev)
+ 	for (i = 0; i < ARRAY_SIZE(drm->vblank); i++)
+ 		nouveau_event_handler_remove(disp->vblank, i,
+ 					     &drm->vblank[i]);
++	synchronize_rcu();
  
- 	if (WARN_ON_ONCE(head > ARRAY_SIZE(drm->vblank)))
- 		return -EIO;
--	drm->vblank[head].func = nouveau_drm_vblank_handler;
- 	nouveau_event_get(pdisp->vblank, head, &drm->vblank[head]);
- 	return 0;
- }
-@@ -298,7 +297,8 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
- 	struct pci_dev *pdev = dev->pdev;
- 	struct nouveau_device *device;
- 	struct nouveau_drm *drm;
--	int ret;
-+	struct nouveau_disp *disp;
-+	int ret, i;
- 
- 	ret = nouveau_cli_create(pdev, "DRM", sizeof(*drm), (void**)&drm);
- 	if (ret)
-@@ -352,6 +352,13 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
- 	if (nv_device(drm->device)->chipset == 0xc1)
- 		nv_mask(device, 0x00088080, 0x00000800, 0x00000000);
- 
-+	disp = nouveau_disp(device);
-+	for (i = 0; i < ARRAY_SIZE(drm->vblank); i++) {
-+		nouveau_event_handler_install(disp->vblank, i,
-+					      nouveau_drm_vblank_handler,
-+					      NULL, &drm->vblank[i]);
-+	}
-+
- 	nouveau_vga_init(drm);
- 	nouveau_agp_init(drm);
- 
-@@ -404,6 +411,8 @@ static int
- nouveau_drm_unload(struct drm_device *dev)
- {
- 	struct nouveau_drm *drm = nouveau_drm(dev);
-+	struct nouveau_disp *disp = nouveau_disp(drm->device);
-+	int i;
- 
- 	nouveau_fbcon_fini(dev);
- 	nouveau_accel_fini(drm);
-@@ -420,6 +429,10 @@ nouveau_drm_unload(struct drm_device *dev)
- 	nouveau_agp_fini(drm);
- 	nouveau_vga_fini(drm);
- 
-+	for (i = 0; i < ARRAY_SIZE(drm->vblank); i++)
-+		nouveau_event_handler_remove(disp->vblank, i,
-+					     &drm->vblank[i]);
-+
  	nouveau_cli_destroy(&drm->client);
  	return 0;
- }
 -- 
 1.8.1.2
