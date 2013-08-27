@@ -1,7 +1,7 @@
 From: Peter Hurley <peter@hurleysoftware.com>
-Subject: [PATCH 1/9] drm/nouveau: Add priv field for event handlers
-Date: Tue, 27 Aug 2013 16:12:54 -0400
-Message-ID: <1377634382-13872-2-git-send-email-peter@hurleysoftware.com>
+Subject: [PATCH 2/9] drm/nouveau: Move event index check from critical section
+Date: Tue, 27 Aug 2013 16:12:55 -0400
+Message-ID: <1377634382-13872-3-git-send-email-peter@hurleysoftware.com>
 References: <1377634382-13872-1-git-send-email-peter@hurleysoftware.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,78 +21,52 @@ To: Dave Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
 Cc: nouveau@lists.freedesktop.org, Peter Hurley <peter@hurleysoftware.com>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Provide private field for event handlers exclusive use.
-Convert nouveau_fence_wait_uevent() and
-nouveau_fence_wait_uevent_handler(); drop struct nouveau_fence_uevent.
+The index_nr field is constant for the lifetime of the event, so
+serialized access is unnecessary.
 
 Signed-off-by: Peter Hurley <peter@hurleysoftware.com>
 ---
- drivers/gpu/drm/nouveau/core/include/core/event.h |  1 +
- drivers/gpu/drm/nouveau/nouveau_fence.c           | 20 +++++++-------------
- 2 files changed, 8 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/nouveau/core/core/event.c | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/include/core/event.h b/drivers/gpu/drm/nouveau/core/include/core/event.h
-index 9e09440..ad4d8c2 100644
---- a/drivers/gpu/drm/nouveau/core/include/core/event.h
-+++ b/drivers/gpu/drm/nouveau/core/include/core/event.h
-@@ -7,6 +7,7 @@
- 
- struct nouveau_eventh {
- 	struct list_head head;
-+	void *priv;
- 	int (*func)(struct nouveau_eventh *, int index);
- };
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
-index be31499..c2e3167 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-@@ -165,17 +165,11 @@ nouveau_fence_done(struct nouveau_fence *fence)
- 	return !fence->channel;
- }
- 
--struct nouveau_fence_uevent {
--	struct nouveau_eventh handler;
--	struct nouveau_fence_priv *priv;
--};
--
- static int
--nouveau_fence_wait_uevent_handler(struct nouveau_eventh *event, int index)
-+nouveau_fence_wait_uevent_handler(struct nouveau_eventh *handler, int index)
+diff --git a/drivers/gpu/drm/nouveau/core/core/event.c b/drivers/gpu/drm/nouveau/core/core/event.c
+index 7eb81c1..e69c463 100644
+--- a/drivers/gpu/drm/nouveau/core/core/event.c
++++ b/drivers/gpu/drm/nouveau/core/core/event.c
+@@ -40,9 +40,11 @@ nouveau_event_put(struct nouveau_event *event, int index,
  {
--	struct nouveau_fence_uevent *uevent =
--		container_of(event, struct nouveau_fence_uevent, handler);
--	wake_up_all(&uevent->priv->waiting);
-+	struct nouveau_fence_priv *priv = handler->priv;
-+	wake_up_all(&priv->waiting);
- 	return NVKM_EVENT_KEEP;
+ 	unsigned long flags;
+ 
++	if (index >= event->index_nr)
++		return;
++
+ 	spin_lock_irqsave(&event->lock, flags);
+-	if (index < event->index_nr)
+-		nouveau_event_put_locked(event, index, handler);
++	nouveau_event_put_locked(event, index, handler);
+ 	spin_unlock_irqrestore(&event->lock, flags);
  }
  
-@@ -186,13 +180,13 @@ nouveau_fence_wait_uevent(struct nouveau_fence *fence, bool intr)
- 	struct nouveau_channel *chan = fence->channel;
- 	struct nouveau_fifo *pfifo = nouveau_fifo(chan->drm->device);
- 	struct nouveau_fence_priv *priv = chan->drm->fence;
--	struct nouveau_fence_uevent uevent = {
--		.handler.func = nouveau_fence_wait_uevent_handler,
-+	struct nouveau_eventh handler = {
-+		.func = nouveau_fence_wait_uevent_handler,
- 		.priv = priv,
- 	};
- 	int ret = 0;
+@@ -52,13 +54,14 @@ nouveau_event_get(struct nouveau_event *event, int index,
+ {
+ 	unsigned long flags;
  
--	nouveau_event_get(pfifo->uevent, 0, &uevent.handler);
-+	nouveau_event_get(pfifo->uevent, 0, &handler);
- 
- 	if (fence->timeout) {
- 		unsigned long timeout = fence->timeout - jiffies;
-@@ -224,7 +218,7 @@ nouveau_fence_wait_uevent(struct nouveau_fence *fence, bool intr)
- 		}
++	if (index >= event->index_nr)
++		return;
++
+ 	spin_lock_irqsave(&event->lock, flags);
+-	if (index < event->index_nr) {
+-		list_add(&handler->head, &event->index[index].list);
+-		if (!event->index[index].refs++) {
+-			if (event->enable)
+-				event->enable(event, index);
+-		}
++	list_add(&handler->head, &event->index[index].list);
++	if (!event->index[index].refs++) {
++		if (event->enable)
++			event->enable(event, index);
  	}
- 
--	nouveau_event_put(pfifo->uevent, 0, &uevent.handler);
-+	nouveau_event_put(pfifo->uevent, 0, &handler);
- 	if (unlikely(ret < 0))
- 		return ret;
- 
+ 	spin_unlock_irqrestore(&event->lock, flags);
+ }
 -- 
 1.8.1.2
