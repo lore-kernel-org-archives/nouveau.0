@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38074] [NV96] Dual head doesn't work for some
- combination of monitors (second screen still off)
-Date: Tue, 27 Aug 2013 18:01:27 +0000
-Message-ID: <bug-38074-8800-PRrbZmA1rE@http.bugs.freedesktop.org/>
-References: <bug-38074-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 50375] [NV11] KMS/fbcon accel failing after
+ scrolling/tty switch
+Date: Tue, 27 Aug 2013 20:09:49 +0000
+Message-ID: <bug-50375-8800-JH9F2KPVU7@http.bugs.freedesktop.org/>
+References: <bug-50375-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1217912836=="
+Content-Type: multipart/mixed; boundary="===============0606982133=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-50375-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,75 +21,99 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1217912836==
-Content-Type: multipart/alternative; boundary="1377626487.4EDF2.31384"; charset="us-ascii"
+--===============0606982133==
+Content-Type: multipart/alternative; boundary="1377634188.Db1F5d1.23872"; charset="us-ascii"
 
 
---1377626487.4EDF2.31384
-Date: Tue, 27 Aug 2013 18:01:27 +0000
+--1377634188.Db1F5d1.23872
+Date: Tue, 27 Aug 2013 20:09:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D38074
+https://bugs.freedesktop.org/show_bug.cgi?id=50375
 
---- Comment #22 from Jarom=C3=ADr C=C3=A1p=C3=ADk <jcapik-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
-Created attachment 84734
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D84734&action=3Dedit
-dmesg-2013-08-27.txt
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
---=20
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|NV11: KMS/fbcon accel       |[NV11] KMS/fbcon accel
+                   |failing after scrolling/tty |failing after scrolling/tty
+                   |switch                      |switch
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Do I assume correctly that this still happens with the latest kernel? If so,
+please try the following things (individually) and let me know if there's any
+improvement:
+
+nouveau.vram_pushbuf=1
+nouveau.agpmode=0
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377626487.4EDF2.31384
-Date: Tue, 27 Aug 2013 18:01:27 +0000
+--1377634188.Db1F5d1.23872
+Date: Tue, 27 Aug 2013 20:09:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV11] KMS/fbcon accel failing after scrolling/tty switch"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50375">bug 50375</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>NV11: KMS/fbcon accel failing after scrolling/tty switch
+           </td>
+           <td>[NV11] KMS/fbcon accel failing after scrolling/tty switch
+           </td>
+         </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED --- - [NV96] Dual head doesn't work for some combinati=
-on of monitors (second screen still off)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D38074#c22">Commen=
-t # 22</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED --- - [NV96] Dual head doesn't work for some combinati=
-on of monitors (second screen still off)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D38074">bug 38074<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jcapik&#64;redhat.com" title=3D"Jarom=C3=ADr C=C3=A1p=C3=ADk &lt;jcapik&#64=
-;redhat.com&gt;"> <span class=3D"fn">Jarom=C3=ADr C=C3=A1p=C3=ADk</span></a>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV11] KMS/fbcon accel failing after scrolling/tty switch"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50375#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV11] KMS/fbcon accel failing after scrolling/tty switch"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50375">bug 50375</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D84734"=
- name=3D"attach_84734" title=3D"dmesg-2013-08-27.txt">attachment 84734</a> =
-<a href=3D"attachment.cgi?id=3D84734&amp;action=3Dedit" title=3D"dmesg-2013=
--08-27.txt">[details]</a></span>
-dmesg-2013-08-27.txt</pre>
+        <pre>Do I assume correctly that this still happens with the latest kernel? If so,
+please try the following things (individually) and let me know if there's any
+improvement:
+
+nouveau.vram_pushbuf=1
+nouveau.agpmode=0</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1377626487.4EDF2.31384--
+--1377634188.Db1F5d1.23872--
 
---===============1217912836==
+--===============0606982133==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +124,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1217912836==--
+--===============0606982133==--
