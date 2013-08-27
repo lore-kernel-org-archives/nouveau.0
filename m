@@ -1,220 +1,104 @@
-From: Peter Hurley <peter@hurleysoftware.com>
-Subject: [PATCH 9/9] drm/nouveau: Simplify event handler interface
-Date: Tue, 27 Aug 2013 16:13:02 -0400
-Message-ID: <1377634382-13872-10-git-send-email-peter@hurleysoftware.com>
-References: <1377634382-13872-1-git-send-email-peter@hurleysoftware.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 50375] [NV1A] KMS/fbcon accel failing after
+ scrolling/tty switch
+Date: Tue, 27 Aug 2013 20:27:58 +0000
+Message-ID: <bug-50375-8800-vd6OSgSHre@http.bugs.freedesktop.org/>
+References: <bug-50375-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <1377634382-13872-1-git-send-email-peter@hurleysoftware.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Dave Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
-Cc: nouveau@lists.freedesktop.org, Peter Hurley <peter@hurleysoftware.com>, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1552646028=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-50375-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Remove index parameter; access index via handler->index instead.
-Dissociate handler from related container; use handler->priv to
-access container.
 
-Signed-off-by: Peter Hurley <peter@hurleysoftware.com>
----
- drivers/gpu/drm/nouveau/core/core/event.c           | 6 +++---
- drivers/gpu/drm/nouveau/core/engine/software/nv50.c | 7 +++----
- drivers/gpu/drm/nouveau/core/engine/software/nvc0.c | 7 +++----
- drivers/gpu/drm/nouveau/core/include/core/event.h   | 6 +++---
- drivers/gpu/drm/nouveau/nouveau_connector.c         | 9 +++++----
- drivers/gpu/drm/nouveau/nouveau_drm.c               | 9 +++++----
- drivers/gpu/drm/nouveau/nouveau_fence.c             | 2 +-
- 7 files changed, 23 insertions(+), 23 deletions(-)
+--===============1552646028==
+Content-Type: multipart/alternative; boundary="1377635277.503F1.27453"; charset="us-ascii"
 
-diff --git a/drivers/gpu/drm/nouveau/core/core/event.c b/drivers/gpu/drm/nouveau/core/core/event.c
-index b7d8ae1..1240fef 100644
---- a/drivers/gpu/drm/nouveau/core/core/event.c
-+++ b/drivers/gpu/drm/nouveau/core/core/event.c
-@@ -26,7 +26,7 @@
- 
- void
- nouveau_event_handler_install(struct nouveau_event *event, int index,
--			      int (*func)(struct nouveau_eventh*, int),
-+			      int (*func)(struct nouveau_eventh*),
- 			      void *priv, struct nouveau_eventh *handler)
- {
- 	unsigned long flags;
-@@ -61,7 +61,7 @@ nouveau_event_handler_remove(struct nouveau_eventh *handler)
- 
- int
- nouveau_event_handler_create(struct nouveau_event *event, int index,
--			     int (*func)(struct nouveau_eventh*, int),
-+			     int (*func)(struct nouveau_eventh*),
- 			     void *priv, struct nouveau_eventh **phandler)
- {
- 	struct nouveau_eventh *handler;
-@@ -157,7 +157,7 @@ nouveau_event_trigger(struct nouveau_event *event, int index)
- 	rcu_read_lock();
- 	list_for_each_entry_rcu(handler, &event->index[index].list, head) {
- 		if (test_bit(NVKM_EVENT_ENABLE, &handler->flags)) {
--			if (handler->func(handler, index) == NVKM_EVENT_DROP)
-+			if (handler->func(handler) == NVKM_EVENT_DROP)
- 				nouveau_event_put(handler);
- 		}
- 	}
-diff --git a/drivers/gpu/drm/nouveau/core/engine/software/nv50.c b/drivers/gpu/drm/nouveau/core/engine/software/nv50.c
-index e969f0c..bf6f23b 100644
---- a/drivers/gpu/drm/nouveau/core/engine/software/nv50.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/software/nv50.c
-@@ -131,10 +131,9 @@ nv50_software_sclass[] = {
-  ******************************************************************************/
- 
- static int
--nv50_software_vblsem_release(struct nouveau_eventh *event, int head)
-+nv50_software_vblsem_release(struct nouveau_eventh *handler)
- {
--	struct nouveau_software_chan *chan =
--		container_of(event, struct nouveau_software_chan, vblank.event[head]);
-+	struct nouveau_software_chan *chan = handler->priv;
- 	struct nv50_software_priv *priv = (void *)nv_object(chan)->engine;
- 	struct nouveau_bar *bar = nouveau_bar(priv);
- 
-@@ -172,7 +171,7 @@ nv50_software_context_ctor(struct nouveau_object *parent,
- 	for (i = 0; i < ARRAY_SIZE(chan->base.vblank.event); i++) {
- 		nouveau_event_handler_install(disp->vblank, i,
- 					      nv50_software_vblsem_release,
--					      NULL,
-+					      chan,
- 					      &chan->base.vblank.event[i]);
- 	}
- 	return 0;
-diff --git a/drivers/gpu/drm/nouveau/core/engine/software/nvc0.c b/drivers/gpu/drm/nouveau/core/engine/software/nvc0.c
-index d06658a..1a2a7a8 100644
---- a/drivers/gpu/drm/nouveau/core/engine/software/nvc0.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/software/nvc0.c
-@@ -143,10 +143,9 @@ nvc0_software_sclass[] = {
-  ******************************************************************************/
- 
- static int
--nvc0_software_vblsem_release(struct nouveau_eventh *event, int head)
-+nvc0_software_vblsem_release(struct nouveau_eventh *handler)
- {
--	struct nouveau_software_chan *chan =
--		container_of(event, struct nouveau_software_chan, vblank.event[head]);
-+	struct nouveau_software_chan *chan = handler->priv;
- 	struct nvc0_software_priv *priv = (void *)nv_object(chan)->engine;
- 	struct nouveau_bar *bar = nouveau_bar(priv);
- 
-@@ -178,7 +177,7 @@ nvc0_software_context_ctor(struct nouveau_object *parent,
- 	for (i = 0; i < ARRAY_SIZE(chan->base.vblank.event); i++) {
- 		nouveau_event_handler_install(disp->vblank, i,
- 					      nvc0_software_vblsem_release,
--					      NULL,
-+					      chan,
- 					      &chan->base.vblank.event[i]);
- 	}
- 	return 0;
-diff --git a/drivers/gpu/drm/nouveau/core/include/core/event.h b/drivers/gpu/drm/nouveau/core/include/core/event.h
-index e839d70..d062176 100644
---- a/drivers/gpu/drm/nouveau/core/include/core/event.h
-+++ b/drivers/gpu/drm/nouveau/core/include/core/event.h
-@@ -14,7 +14,7 @@ struct nouveau_eventh {
- 	struct list_head head;
- 	unsigned long flags;
- 	void *priv;
--	int (*func)(struct nouveau_eventh *, int index);
-+	int (*func)(struct nouveau_eventh *);
- 	struct rcu_head rcu;
- 	int index;
- };
-@@ -41,12 +41,12 @@ void nouveau_event_get(struct nouveau_eventh *);
- void nouveau_event_put(struct nouveau_eventh *);
- 
- int nouveau_event_handler_create(struct nouveau_event *, int index,
--				 int (*func)(struct nouveau_eventh*, int),
-+				 int (*func)(struct nouveau_eventh*),
- 				 void *priv, struct nouveau_eventh **);
- void nouveau_event_handler_destroy(struct nouveau_eventh *);
- 
- void nouveau_event_handler_install(struct nouveau_event *, int index,
--				   int (*func)(struct nouveau_eventh*, int),
-+				   int (*func)(struct nouveau_eventh*),
- 				   void *priv, struct nouveau_eventh *);
- void nouveau_event_handler_remove(struct nouveau_eventh *);
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 85494d2..bfe28a0 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -917,10 +917,10 @@ nouveau_connector_hotplug_work(struct work_struct *work)
- }
- 
- static int
--nouveau_connector_hotplug(struct nouveau_eventh *event, int index)
-+nouveau_connector_hotplug(struct nouveau_eventh *handler)
- {
--	struct nouveau_connector *nv_connector =
--		container_of(event, struct nouveau_connector, hpd_func);
-+	struct nouveau_connector *nv_connector = handler->priv;
-+
- 	schedule_work(&nv_connector->hpd_work);
- 	return NVKM_EVENT_KEEP;
- }
-@@ -994,7 +994,8 @@ nouveau_connector_create(struct drm_device *dev, int index)
- 				 DCB_GPIO_UNUSED, &nv_connector->hpd);
- 		nouveau_event_handler_install(gpio->events,
- 					      nv_connector->hpd.line,
--					      nouveau_connector_hotplug, NULL,
-+					      nouveau_connector_hotplug,
-+					      nv_connector,
- 					      &nv_connector->hpd_func);
- 		if (ret)
- 			nv_connector->hpd.func = DCB_GPIO_UNUSED;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 845dd57..2e6a226 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -72,10 +72,11 @@ module_param_named(modeset, nouveau_modeset, int, 0400);
- static struct drm_driver driver;
- 
- static int
--nouveau_drm_vblank_handler(struct nouveau_eventh *event, int head)
-+nouveau_drm_vblank_handler(struct nouveau_eventh *handler)
- {
--	struct nouveau_drm *drm =
--		container_of(event, struct nouveau_drm, vblank[head]);
-+	struct nouveau_drm *drm = handler->priv;
-+	int head = handler->index;
-+
- 	drm_handle_vblank(drm->dev, head);
- 	return NVKM_EVENT_KEEP;
- }
-@@ -354,7 +355,7 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
- 	for (i = 0; i < ARRAY_SIZE(drm->vblank); i++) {
- 		nouveau_event_handler_install(disp->vblank, i,
- 					      nouveau_drm_vblank_handler,
--					      NULL, &drm->vblank[i]);
-+					      drm, &drm->vblank[i]);
- 	}
- 
- 	nouveau_vga_init(drm);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
-index 0ae280a..f9bff26 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-@@ -166,7 +166,7 @@ nouveau_fence_done(struct nouveau_fence *fence)
- }
- 
- static int
--nouveau_fence_wait_uevent_handler(struct nouveau_eventh *handler, int index)
-+nouveau_fence_wait_uevent_handler(struct nouveau_eventh *handler)
- {
- 	struct nouveau_fence_priv *priv = handler->priv;
- 	wake_up_all(&priv->waiting);
+
+--1377635277.503F1.27453
+Date: Tue, 27 Aug 2013 20:27:57 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=50375
+
+--- Comment #3 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org> ---
+(In reply to comment #1)
+> Do I assume correctly that this still happens with the latest kernel?
+
+Impossible to tell with current kernels (3.8.2, 3.10.7, 3.11-rc6) as VGA output
+is not being lit up properly by nouveau (monitor says "no signal").
+
+See also bug #26534, comments 18 and 20.
+
 -- 
-1.8.1.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1377635277.503F1.27453
+Date: Tue, 27 Aug 2013 20:27:57 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV1A] KMS/fbcon accel failing after scrolling/tty switch"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50375#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV1A] KMS/fbcon accel failing after scrolling/tty switch"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50375">bug 50375</a>
+              from <span class="vcard"><a class="email" href="mailto:bonbons67&#64;internet.lu" title="Bruno &lt;bonbons67&#64;internet.lu&gt;"> <span class="fn">Bruno</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=50375#c1">comment #1</a>)
+<span class="quote">&gt; Do I assume correctly that this still happens with the latest kernel?</span >
+
+Impossible to tell with current kernels (3.8.2, 3.10.7, 3.11-rc6) as VGA output
+is not being lit up properly by nouveau (monitor says &quot;no signal&quot;).
+
+See also <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - nouveau does not fetch edid from connected monitor on nforce1 (nv1a)"
+   href="show_bug.cgi?id=26534">bug #26534</a>, comments 18 and 20.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1377635277.503F1.27453--
+
+--===============1552646028==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1552646028==--
