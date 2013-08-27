@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 65827] computer often fails to boot with nouveau and
- GeForce GT 425M on newest Linux kernel
-Date: Tue, 27 Aug 2013 15:23:42 +0000
-Message-ID: <bug-65827-8800-T9fJnlL4sM@http.bugs.freedesktop.org/>
-References: <bug-65827-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 61287] (bisected) kernel>=3.7 breaks nouveau with
+ acceleration for GeForce 6150SE nForce 430
+Date: Tue, 27 Aug 2013 15:29:39 +0000
+Message-ID: <bug-61287-8800-vh8FRwFAjq@http.bugs.freedesktop.org/>
+References: <bug-61287-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1543298079=="
+Content-Type: multipart/mixed; boundary="===============1466192498=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-65827-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-61287-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1543298079==
-Content-Type: multipart/alternative; boundary="1377617022.326fD2.31004"; charset="us-ascii"
+--===============1466192498==
+Content-Type: multipart/alternative; boundary="1377617379.8ac83012.32214"; charset="us-ascii"
 
 
---1377617022.326fD2.31004
-Date: Tue, 27 Aug 2013 15:23:42 +0000
+--1377617379.8ac83012.32214
+Date: Tue, 27 Aug 2013 15:29:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=65827
+https://bugs.freedesktop.org/show_bug.cgi?id=61287
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -39,16 +39,17 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |FIXED
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Per the reporter's comments, sounds like the issue is fixed. Feel free to
-re-open if I've misunderstood.
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The original reporter's issues seem fixed. Feel free to re-open if I've
+misunderstood. I'm inclined to think that the NV31 issue is unrelated, looks
+like the fifo gets confused on that one.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377617022.326fD2.31004
-Date: Tue, 27 Aug 2013 15:23:42 +0000
+--1377617379.8ac83012.32214
+Date: Tue, 27 Aug 2013 15:29:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,8 +61,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - computer often fails to boot with nouveau and GeForce GT 425M on newest Linux kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65827">bug 65827</a>
+   title="RESOLVED FIXED - (bisected) kernel&gt;=3.7 breaks nouveau with acceleration for GeForce 6150SE nForce 430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61287">bug 61287</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -89,16 +90,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - computer often fails to boot with nouveau and GeForce GT 425M on newest Linux kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65827#c5">Comment # 5</a>
+   title="RESOLVED FIXED - (bisected) kernel&gt;=3.7 breaks nouveau with acceleration for GeForce 6150SE nForce 430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61287#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - computer often fails to boot with nouveau and GeForce GT 425M on newest Linux kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65827">bug 65827</a>
+   title="RESOLVED FIXED - (bisected) kernel&gt;=3.7 breaks nouveau with acceleration for GeForce 6150SE nForce 430"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61287">bug 61287</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Per the reporter's comments, sounds like the issue is fixed. Feel free to
-re-open if I've misunderstood.</pre>
+        <pre>The original reporter's issues seem fixed. Feel free to re-open if I've
+misunderstood. I'm inclined to think that the NV31 issue is unrelated, looks
+like the fifo gets confused on that one.</pre>
         </div>
       </p>
       <hr>
@@ -110,9 +112,9 @@ re-open if I've misunderstood.</pre>
     </body>
 </html>
 
---1377617022.326fD2.31004--
+--1377617379.8ac83012.32214--
 
---===============1543298079==
+--===============1466192498==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +125,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1543298079==--
+--===============1466192498==--
