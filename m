@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38074] Dual head doesn't work for some combination
- of monitors (second screen still off)
-Date: Tue, 27 Aug 2013 14:44:07 +0000
-Message-ID: <bug-38074-8800-E6khT5wCQe@http.bugs.freedesktop.org/>
+Subject: [Bug 38074] [NV96] Dual head doesn't work for some
+ combination of monitors (second screen still off)
+Date: Tue, 27 Aug 2013 14:44:29 +0000
+Message-ID: <bug-38074-8800-rG05ljFwrG@http.bugs.freedesktop.org/>
 References: <bug-38074-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1753532535=="
+Content-Type: multipart/mixed; boundary="===============2023353459=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1753532535==
-Content-Type: multipart/alternative; boundary="1377614647.BBfF013.21993"; charset="us-ascii"
+--===============2023353459==
+Content-Type: multipart/alternative; boundary="1377614669.AF7c3.22195"; charset="us-ascii"
 
 
---1377614647.BBfF013.21993
-Date: Tue, 27 Aug 2013 14:44:07 +0000
+--1377614669.AF7c3.22195
+Date: Tue, 27 Aug 2013 14:44:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38074
 
---- Comment #20 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please attach a fresh dmesg. Also, is the problem the same as before -- using a
-1280x1024 resolution on the second head works? What happens if you use
-1920x1080? Does it just go into "sleep" mode or what?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Dual head doesn't work for  |[NV96] Dual head doesn't
+                   |some combination of         |work for some combination
+                   |monitors (second screen     |of monitors (second screen
+                   |still off)                  |still off)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377614647.BBfF013.21993
-Date: Tue, 27 Aug 2013 14:44:07 +0000
+--1377614669.AF7c3.22195
+Date: Tue, 27 Aug 2013 14:44:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,23 +54,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_REOPENED "
-   title="REOPENED --- - Dual head doesn't work for some combination of monitors (second screen still off)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074#c20">Comment # 20</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - Dual head doesn't work for some combination of monitors (second screen still off)"
+   title="REOPENED --- - [NV96] Dual head doesn't work for some combination of monitors (second screen still off)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=38074">bug 38074</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Please attach a fresh dmesg. Also, is the problem the same as before -- using a
-1280x1024 resolution on the second head works? What happens if you use
-1920x1080? Does it just go into &quot;sleep&quot; mode or what?</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Dual head doesn't work for some combination of monitors (second screen still off)
+           </td>
+           <td>[NV96] Dual head doesn't work for some combination of monitors (second screen still off)
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -77,9 +86,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377614647.BBfF013.21993--
+--1377614669.AF7c3.22195--
 
---===============1753532535==
+--===============2023353459==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1753532535==--
+--===============2023353459==--
