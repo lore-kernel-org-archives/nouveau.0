@@ -1,11 +1,13 @@
 From: Peter Hurley <peter@hurleysoftware.com>
-Subject: [PATCH 0/9] drm/nouveau: Cleanup event/handler design
-Date: Tue, 27 Aug 2013 16:12:53 -0400
-Message-ID: <1377634382-13872-1-git-send-email-peter@hurleysoftware.com>
+Subject: [PATCH 1/9] drm/nouveau: Add priv field for event handlers
+Date: Tue, 27 Aug 2013 16:12:54 -0400
+Message-ID: <1377634382-13872-2-git-send-email-peter@hurleysoftware.com>
+References: <1377634382-13872-1-git-send-email-peter@hurleysoftware.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <1377634382-13872-1-git-send-email-peter@hurleysoftware.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
 	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
@@ -19,97 +21,78 @@ To: Dave Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
 Cc: nouveau@lists.freedesktop.org, Peter Hurley <peter@hurleysoftware.com>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-This series was originally motivated by a deadlock, introduced in
-commit 1d7c71a3e2f77336df536855b0efd2dc5bdeb41b
-'drm/nouveau/disp: port vblank handling to event interface',
-due to inverted lock order between nouveau_drm_vblank_enable()
-and nouveau_drm_vblank_handler() (the complete
-lockdep report is included in the patch 4/5 changelog).
+Provide private field for event handlers exclusive use.
+Convert nouveau_fence_wait_uevent() and
+nouveau_fence_wait_uevent_handler(); drop struct nouveau_fence_uevent.
 
-Because this series fixes the vblank event deadlock, it is
-a competing solution to Maarten Lankhorst's 'drm/nouveau:
-fix vblank deadlock'.
+Signed-off-by: Peter Hurley <peter@hurleysoftware.com>
+---
+ drivers/gpu/drm/nouveau/core/include/core/event.h |  1 +
+ drivers/gpu/drm/nouveau/nouveau_fence.c           | 20 +++++++-------------
+ 2 files changed, 8 insertions(+), 13 deletions(-)
 
-This series fixes the vblank event deadlock by converting the
-event handler list to RCU. This solution allows the event trigger
-to be lockless, and thus avoiding the lock inversion.
-
-Typical hurdles to RCU conversion include: 1) ensuring the
-object lifetime exceeds the lockless access; 2) preventing
-premature object reuse; and 3) verifying that stale object
-use not present logical errors.
-
-Because object reuse is not safe in RCU-based operations,
-the nouveau_event_get/_put interface is migrated from
-add/remove semantics to enable/disable semantics with a separate
-install/remove step (which also serves to document the
-handler lifetime). This also corrects an unsafe interface design
-where handlers can mistakenly be reused while in use.
-
-The nouveau driver currently supports 4 events -- gpio, uevent, cevent,
-and vblank. Every event is created by and stored within its
-respective subdev/engine object -- gpio in the GPIO subdev, uevent
-and cevent in the FIFO engine, and vblank in the DISP engine.
-Thus event lifetime extends until the subdev is destructed during
-devobj teardown.
-
-Event handler lifetime varies and is detailed in the table below
-(apologies for the wide-format):
-
-Event  Handler function                   Container                     Until
------  ----------------                   ---------------               ------------------
-gpio   nouveau_connector_hotplug          struct nouveau_connector      nouveau_connector_destroy
-uevent nouveau_fence_wait_uevent_handler  local stack object            nouveau_fence_wait_uevent returns
-cevent none                               n/a                           n/a
-vblank nouveau_drm_vblank_handler         struct nouveau_drm            nouveau_drm_remove
-vblank nv50_software_vblsem_release       struct nouveau_software_chan  _nouveau_engctx_dtor
-                                                                          (call stack originates with
-                                                                           nouveau_abi16_chan_free ioctl)
-vblank nvc0_software_vblsem_release       struct nouveau_software_chan  same as above
-
-
-RCU lifetime considerations for handlers:
-
-Event  Handler                            Lifetime
------  ----------------                   ---------------------------------
-gpio   nouveau_connector_hotplug          kfree_rcu(nv_connector)
-uevent nouveau_fence_wait_uevent_handler  explicit use of nouveau_event_hander_create/_destroy
-cevent none                               n/a
-vblank nouveau_drm_vblank_handler         synchronize_rcu() in nouveau_drm_unload
-vblank nv50_software_vblsem_release       synchronize_rcu() in container dtor
-vblank nvc0_software_vblsem_release       synchronize_rcu() in container dtor
-
-synchronize_rcu() is used for nouveau_object-based containers for which
-kfree_rcu() is not suitable/possible.
-
-Stale event handler execution is not a concern for the existing handlers
-because either: 1) the handler is responsible for disabling itself (via
-returning NVKM_EVENT_DROP), or 2) the existing handler can already be stale,
-as is the case with nouveau_connector_hotplug, which only schedules a work
-item, and nouveau_drm_vblank_handler, which the drm core expects may be stale.
-
-
-Peter Hurley (9):
-  drm/nouveau: Add priv field for event handlers
-  drm/nouveau: Move event index check from critical section
-  drm/nouveau: Allocate local event handlers
-  drm/nouveau: Allow asymmetric nouveau_event_get/_put
-  drm/nouveau: Add install/remove semantics for event handlers
-  drm/nouveau: Convert event handler list to RCU
-  drm/nouveau: Fold nouveau_event_put_locked into caller
-  drm/nouveau: Simplify event interface
-  drm/nouveau: Simplify event handler interface
-
- drivers/gpu/drm/nouveau/core/core/event.c          | 121 +++++++++++++++++----
- .../gpu/drm/nouveau/core/engine/software/nv50.c    |  32 ++++--
- .../gpu/drm/nouveau/core/engine/software/nvc0.c    |  32 ++++--
- drivers/gpu/drm/nouveau/core/include/core/event.h  |  27 ++++-
- .../gpu/drm/nouveau/core/include/engine/software.h |   2 +-
- drivers/gpu/drm/nouveau/nouveau_connector.c        |  16 ++-
- drivers/gpu/drm/nouveau/nouveau_display.c          |  16 +--
- drivers/gpu/drm/nouveau/nouveau_drm.c              |  35 +++---
- drivers/gpu/drm/nouveau/nouveau_fence.c            |  27 ++---
- 9 files changed, 220 insertions(+), 88 deletions(-)
-
+diff --git a/drivers/gpu/drm/nouveau/core/include/core/event.h b/drivers/gpu/drm/nouveau/core/include/core/event.h
+index 9e09440..ad4d8c2 100644
+--- a/drivers/gpu/drm/nouveau/core/include/core/event.h
++++ b/drivers/gpu/drm/nouveau/core/include/core/event.h
+@@ -7,6 +7,7 @@
+ 
+ struct nouveau_eventh {
+ 	struct list_head head;
++	void *priv;
+ 	int (*func)(struct nouveau_eventh *, int index);
+ };
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
+index be31499..c2e3167 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+@@ -165,17 +165,11 @@ nouveau_fence_done(struct nouveau_fence *fence)
+ 	return !fence->channel;
+ }
+ 
+-struct nouveau_fence_uevent {
+-	struct nouveau_eventh handler;
+-	struct nouveau_fence_priv *priv;
+-};
+-
+ static int
+-nouveau_fence_wait_uevent_handler(struct nouveau_eventh *event, int index)
++nouveau_fence_wait_uevent_handler(struct nouveau_eventh *handler, int index)
+ {
+-	struct nouveau_fence_uevent *uevent =
+-		container_of(event, struct nouveau_fence_uevent, handler);
+-	wake_up_all(&uevent->priv->waiting);
++	struct nouveau_fence_priv *priv = handler->priv;
++	wake_up_all(&priv->waiting);
+ 	return NVKM_EVENT_KEEP;
+ }
+ 
+@@ -186,13 +180,13 @@ nouveau_fence_wait_uevent(struct nouveau_fence *fence, bool intr)
+ 	struct nouveau_channel *chan = fence->channel;
+ 	struct nouveau_fifo *pfifo = nouveau_fifo(chan->drm->device);
+ 	struct nouveau_fence_priv *priv = chan->drm->fence;
+-	struct nouveau_fence_uevent uevent = {
+-		.handler.func = nouveau_fence_wait_uevent_handler,
++	struct nouveau_eventh handler = {
++		.func = nouveau_fence_wait_uevent_handler,
+ 		.priv = priv,
+ 	};
+ 	int ret = 0;
+ 
+-	nouveau_event_get(pfifo->uevent, 0, &uevent.handler);
++	nouveau_event_get(pfifo->uevent, 0, &handler);
+ 
+ 	if (fence->timeout) {
+ 		unsigned long timeout = fence->timeout - jiffies;
+@@ -224,7 +218,7 @@ nouveau_fence_wait_uevent(struct nouveau_fence *fence, bool intr)
+ 		}
+ 	}
+ 
+-	nouveau_event_put(pfifo->uevent, 0, &uevent.handler);
++	nouveau_event_put(pfifo->uevent, 0, &handler);
+ 	if (unlikely(ret < 0))
+ 		return ret;
+ 
 -- 
 1.8.1.2
