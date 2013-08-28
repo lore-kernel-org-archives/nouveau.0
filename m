@@ -1,91 +1,95 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 50375] [NV1A] KMS/fbcon accel failing after
- scrolling/tty switch
-Date: Wed, 28 Aug 2013 17:43:59 +0000
-Message-ID: <bug-50375-8800-VxSJ6djQBD@http.bugs.freedesktop.org/>
-References: <bug-50375-8800@http.bugs.freedesktop.org/>
+From: Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
+Subject: Re: [PATCH 3/6] drm/nouveau: hook up cache sync functions
+Date: Wed, 28 Aug 2013 14:21:38 -0400
+Message-ID: <20130828182138.GB27939@phenom.dumpdata.com>
+References: <1377648050-6649-1-git-send-email-dev@lynxeye.de>
+	<1377648050-6649-4-git-send-email-dev@lynxeye.de>
+	<20130828164357.GB27172@phenom.dumpdata.com>
+	<1377709117.1733.3.camel@tellur>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0818503820=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-50375-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <1377709117.1733.3.camel@tellur>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Lucas Stach <dev@lynxeye.de>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+On Wed, Aug 28, 2013 at 06:58:37PM +0200, Lucas Stach wrote:
+> Am Mittwoch, den 28.08.2013, 12:43 -0400 schrieb Konrad Rzeszutek Wilk:
+> > On Wed, Aug 28, 2013 at 02:00:47AM +0200, Lucas Stach wrote:
+> > > Signed-off-by: Lucas Stach <dev@lynxeye.de>
+> > > ---
+> > >  drivers/gpu/drm/nouveau/nouveau_bo.c  | 4 ++++
+> > >  drivers/gpu/drm/nouveau/nouveau_gem.c | 5 +++++
+> > >  2 files changed, 9 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > > index af20fba..f4a2eb9 100644
+> > > --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > > +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > > @@ -411,6 +411,10 @@ nouveau_bo_validate(struct nouveau_bo *nvbo, bool interruptible,
+> > >  {
+> > >  	int ret;
+> > >  
+> > > +	if (nvbo->bo.ttm && nvbo->bo.ttm->caching_state == tt_cached)
+> > 
+> > You don't want to do it also for tt_wc ?
+> > 
+> No the point of using writecombined memory for BOs is to explicitly
+> avoid the need for this cache sync. An uncached MMIO read from the
+> device should already flush out all writecombining buffers and this read
+> is always happening when submitting a pushbuf.
 
---===============0818503820==
-Content-Type: multipart/alternative; boundary="1377711839.Db8fb0E1.23593"; charset="us-ascii"
 
+Could you include this explanation in the git commit description please?
 
---1377711839.Db8fb0E1.23593
-Date: Wed, 28 Aug 2013 17:43:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=50375
-
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could you also retest your various bugs with that patch applied to see if
-they've resolved themselves? (Including this one.)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1377711839.Db8fb0E1.23593
-Date: Wed, 28 Aug 2013 17:43:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV1A] KMS/fbcon accel failing after scrolling/tty switch"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50375#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV1A] KMS/fbcon accel failing after scrolling/tty switch"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=50375">bug 50375</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Could you also retest your various bugs with that patch applied to see if
-they've resolved themselves? (Including this one.)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1377711839.Db8fb0E1.23593--
-
---===============0818503820==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0818503820==--
+> 
+> > > +		ttm_dma_tt_cache_sync_for_device((struct ttm_dma_tt *)nvbo->bo.ttm,
+> > > +			&nouveau_bdev(nvbo->bo.ttm->bdev)->dev->pdev->dev);
+> > > +
+> > >  	ret = ttm_bo_validate(&nvbo->bo, &nvbo->placement,
+> > >  			      interruptible, no_wait_gpu);
+> > >  	if (ret)
+> > > diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+> > > index 830cb7b..f632b92 100644
+> > > --- a/drivers/gpu/drm/nouveau/nouveau_gem.c
+> > > +++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+> > > @@ -901,6 +901,11 @@ nouveau_gem_ioctl_cpu_prep(struct drm_device *dev, void *data,
+> > >  	ret = ttm_bo_wait(&nvbo->bo, true, true, no_wait);
+> > >  	spin_unlock(&nvbo->bo.bdev->fence_lock);
+> > >  	drm_gem_object_unreference_unlocked(gem);
+> > > +
+> > > +	if (!ret && nvbo->bo.ttm && nvbo->bo.ttm->caching_state == tt_cached)
+> > 
+> > Ditto?
+> cpu_prep is used to make the kernel aware of a following userspace read.
+> Writecombined mappings are essentially uncached from the read
+> perspective.
+> 
+> >  
+> > > +		ttm_dma_tt_cache_sync_for_cpu((struct ttm_dma_tt *)nvbo->bo.ttm,
+> > > +					      &dev->pdev->dev);
+> > > +
+> > >  	return ret;
+> > >  }
+> > >  
+> > > -- 
+> > > 1.8.3.1
+> > > 
+> > > _______________________________________________
+> > > dri-devel mailing list
+> > > dri-devel@lists.freedesktop.org
+> > > http://lists.freedesktop.org/mailman/listinfo/dri-devel
+> 
+> 
