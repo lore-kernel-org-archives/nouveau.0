@@ -1,120 +1,104 @@
-From: Lucas Stach <dev@lynxeye.de>
-Subject: Re: [PATCH 4/6] drm/nouveau: introduce NOUVEAU_GEM_TILE_WCUS
-Date: Wed, 28 Aug 2013 09:39:30 +0200
-Message-ID: <1377675570.1624.9.camel@tellur>
-References: <1377648050-6649-1-git-send-email-dev@lynxeye.de>
-	<1377648050-6649-5-git-send-email-dev@lynxeye.de>
-	<CACAvsv5EbqpS+f99Q9-oJxm3pz+42wEYNPSHcDe2GbLwvEH4TQ@mail.gmail.com>
+From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: avoid null deref on bad
+	arguments to nouveau_vma_getmap
+Date: Wed, 28 Aug 2013 09:44:15 +0200
+Message-ID: <521DAA4F.8030503@canonical.com>
+References: <1377130214-17522-1-git-send-email-imirkin@alum.mit.edu>
+	<5215B9E8.5080108@canonical.com>
+	<20130823202042.GS2924@reaktio.net>
+	<20130828062948.GE2924@reaktio.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <CACAvsv5EbqpS+f99Q9-oJxm3pz+42wEYNPSHcDe2GbLwvEH4TQ@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Ben Skeggs <skeggsb@gmail.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20130828062948.GE2924-GxtO3QLqHcLR7s880joybQ@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?ISO-8859-1?Q?Pasi_K=E4rkk=E4inen?= <pasik-X3B1VOXEql0@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Am Mittwoch, den 28.08.2013, 17:11 +1000 schrieb Ben Skeggs:
-> On Wed, Aug 28, 2013 at 10:00 AM, Lucas Stach <dev@lynxeye.de> wrote:
-> > This flag allows userspace to give the kernel a hint that it should use
-> > a non-snooped resource. To guarantee coherency at all times mappings
-> > into userspace are done write combined, so userspace should avoid
-> > reading back from those resources.
-> Do any other combinations of cached/uncached and snooped/non-snooped
-> make any sense?  If so, perhaps we want to split the flags.
-> 
-Thought about that and I came to the conclusion that it isn't worth the
-hassle. If we split it then things get more complicated on x86, were we
-would have to invalidate caches manually with all the related
-performance implications.
+Op 28-08-13 08:29, Pasi K=E4rkk=E4inen schreef:
+> On Fri, Aug 23, 2013 at 11:20:42PM +0300, Pasi K=E4rkk=E4inen wrote:
+>> On Thu, Aug 22, 2013 at 09:12:40AM +0200, Maarten Lankhorst wrote:
+>>> Op 22-08-13 02:10, Ilia Mirkin schreef:
+>>>> The code expects non-VRAM mem nodes to have a pages list. If that's not
+>>>> set, it will do a null deref down the line. Warn on that condition and
+>>>> return an error.
+>>>>
+>>>> See https://bugs.freedesktop.org/show_bug.cgi?id=3D64774
+>>>>
+>>>> Reported-by: Pasi K=E4rkk=E4inen <pasik-X3B1VOXEql0@public.gmane.org>
+>>>> Tested-by: Pasi K=E4rkk=E4inen <pasik-X3B1VOXEql0@public.gmane.org>
+>>>> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+>>>> Cc: <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org> # 3.8+
+>>>> ---
+>>>>
+>>>> I don't exactly understand what's going on, but this is just a
+>>>> straightforward way to avoid a null deref that you see happens in the
+>>>> bug. I haven't figured out the root cause of this, but it's getting
+>>>> well into the "I have no idea how TTM works" space. However this seems
+>>>> like a bit of defensive programming -- nouveau_vm_map_sg will pass
+>>>> node->pages as a list down, which will be dereferenced by
+>>>> nvc0_vm_map_sg. Perhaps the other arguments should make that
+>>>> dereferencing not happen, but it definitely was happening here, as you
+>>>> can see in the bug.
+>>>>
+>>>> Ben/Maarten, I'll let you judge whether this check is appropriate,
+>>>> since like I hope I was able to convey above, I'm just not really sure=
+ :)
+>>> Not it really isn't appropriate..
+>>>
+>>> You'd have to call call nouveau_vm_map_sg_table instead, the only place=
+ that doesn't handle that correctly
+>>> is where it's not expected to be called.
+>>>
+>>> Here, have a completely untested patch to fix things...
+>>>
+>> Maarten: I've been testing this stuff with Linux 3.10.x, so I had to mod=
+ify the patch a bit to make it apply there.. =
 
-So I think it's a lot easier for userspace writers to just set the WCUS
-flag on resources where the can promise no to touch the resource for
-reading (AFAIR Christoph wanted this flag mostly for resources that the
-driver isn't going to touch ever), or where it can happily live with
-uncached reading.
+>> I've attached the modified copy that applies to 3.10.9, hopefully I did =
+the backport correctly.
+>>
+>> With Linux 3.10.9 and the patch applied the kernel doesn't crash anymore=
+, and I get this error in dmesg:
+>>
+>> [   76.105643] nouveau W[     DRM] Trying to create a fb in vram with va=
+lid_domains=3D00000004
+>>
+>> Does that help? =
 
-> >
-> > Signed-off-by: Lucas Stach <dev@lynxeye.de>
-> > ---
-> > On x86 an optimized userspace can save up on snoop traffic in the
-> > system, on ARM the benefits are potentially much larger, as we can save
-> > the manual cache flush/invalidate.
-> > ---
-> >  drivers/gpu/drm/nouveau/nouveau_bo.c | 11 ++++++++++-
-> >  drivers/gpu/drm/nouveau/nouveau_bo.h |  1 +
-> >  include/uapi/drm/nouveau_drm.h       |  1 +
-> >  3 files changed, 12 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> > index f4a2eb9..c5fcbcc 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> > @@ -231,6 +231,12 @@ nouveau_bo_new(struct drm_device *dev, int size, int align,
-> >
-> >         nouveau_bo_fixup_align(nvbo, flags, &align, &size);
-> >         nvbo->bo.mem.num_pages = size >> PAGE_SHIFT;
-> > +
-> > +       if (tile_flags & NOUVEAU_GEM_TILE_WCUS)
-> > +               nvbo->valid_caching = TTM_PL_FLAG_UNCACHED | TTM_PL_FLAG_WC;
-> > +       else
-> > +               nvbo->valid_caching = TTM_PL_MASK_CACHING;
-> > +
-> >         nouveau_bo_placement_set(nvbo, flags, 0);
-> >
-> >         acc_size = ttm_bo_dma_acc_size(&drm->ttm.bdev, size,
-> > @@ -292,7 +298,7 @@ void
-> >  nouveau_bo_placement_set(struct nouveau_bo *nvbo, uint32_t type, uint32_t busy)
-> >  {
-> >         struct ttm_placement *pl = &nvbo->placement;
-> > -       uint32_t flags = TTM_PL_MASK_CACHING |
-> > +       uint32_t flags = nvbo->valid_caching |
-> >                 (nvbo->pin_refcnt ? TTM_PL_FLAG_NO_EVICT : 0);
-> >
-> >         pl->placement = nvbo->placements;
-> > @@ -1554,6 +1560,9 @@ nouveau_bo_vma_add(struct nouveau_bo *nvbo, struct nouveau_vm *vm,
-> >         if (nvbo->bo.mem.mem_type == TTM_PL_VRAM)
-> >                 nouveau_vm_map(vma, nvbo->bo.mem.mm_node);
-> >         else if (nvbo->bo.mem.mem_type == TTM_PL_TT) {
-> > +               if (!(nvbo->valid_caching & TTM_PL_FLAG_CACHED))
-> > +                       vma->access |= NV_MEM_ACCESS_NOSNOOP;
-> > +
-> >                 if (node->sg)
-> >                         nouveau_vm_map_sg_table(vma, 0, size, node);
-> >                 else
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau/nouveau_bo.h
-> > index 653dbbb..2ecf8b7 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_bo.h
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
-> > @@ -9,6 +9,7 @@ struct nouveau_bo {
-> >         struct ttm_buffer_object bo;
-> >         struct ttm_placement placement;
-> >         u32 valid_domains;
-> > +       u32 valid_caching;
-> >         u32 placements[3];
-> >         u32 busy_placements[3];
-> >         struct ttm_bo_kmap_obj kmap;
-> > diff --git a/include/uapi/drm/nouveau_drm.h b/include/uapi/drm/nouveau_drm.h
-> > index 2a5769f..4948eee2 100644
-> > --- a/include/uapi/drm/nouveau_drm.h
-> > +++ b/include/uapi/drm/nouveau_drm.h
-> > @@ -36,6 +36,7 @@
-> >  #define NOUVEAU_GEM_TILE_32BPP       0x00000002
-> >  #define NOUVEAU_GEM_TILE_ZETA        0x00000004
-> >  #define NOUVEAU_GEM_TILE_NONCONTIG   0x00000008
-> > +#define NOUVEAU_GEM_TILE_WCUS        0x00000010 /* write-combined, unsnooped */
-> >
-> >  struct drm_nouveau_gem_info {
-> >         uint32_t handle;
-> > --
-> > 1.8.3.1
-> >
+>>
+> Any comments? =
+
+>
+> Maarten's patch works for me, I get that warning instead of a kernel cras=
+h,
+> but it's also a bigger change that doesn't apply to older kernels as-is. =
+
+>
+> Ilia's original patch in this thread can be applied to older kernels as-i=
+s,
+> and it also prevents the kernel crash from happening.
+>
+> Should we get both applied, so Ilia's patch can be CC'd to stable ? =
+
+>
+You haven't understood the root cause then. You're trying to move an IMPORT=
+ED dma-buf into VRAM.
+Doing so would seem to work, but at that point it's no longer a dma-buf so =
+changes done by the exporter
+would not show up in nouveau because they no longer refer to the same piece=
+ of memory.
+
+Failing is the only right option here.
+
+~Maarten
