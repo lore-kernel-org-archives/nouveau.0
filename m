@@ -1,14 +1,13 @@
 From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH 4/6] drm/nouveau: introduce NOUVEAU_GEM_TILE_WCUS
-Date: Wed, 28 Aug 2013 17:11:27 +1000
-Message-ID: <CACAvsv5EbqpS+f99Q9-oJxm3pz+42wEYNPSHcDe2GbLwvEH4TQ@mail.gmail.com>
-References: <1377648050-6649-1-git-send-email-dev@lynxeye.de>
-	<1377648050-6649-5-git-send-email-dev@lynxeye.de>
+Subject: Re: [PATCH 0/9] drm/nouveau: Cleanup event/handler design
+Date: Wed, 28 Aug 2013 17:15:34 +1000
+Message-ID: <CACAvsv6atUc=QO2gHEbHK4-+uCh=GUtCqtVKVkZxmS-S8EQppg@mail.gmail.com>
+References: <1377634382-13872-1-git-send-email-peter@hurleysoftware.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <1377648050-6649-5-git-send-email-dev@lynxeye.de>
+In-Reply-To: <1377634382-13872-1-git-send-email-peter@hurleysoftware.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
 	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
@@ -18,90 +17,122 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
 	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
 Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Lucas Stach <dev@lynxeye.de>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+To: Peter Hurley <peter@hurleysoftware.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Aug 28, 2013 at 10:00 AM, Lucas Stach <dev@lynxeye.de> wrote:
-> This flag allows userspace to give the kernel a hint that it should use
-> a non-snooped resource. To guarantee coherency at all times mappings
-> into userspace are done write combined, so userspace should avoid
-> reading back from those resources.
-Do any other combinations of cached/uncached and snooped/non-snooped
-make any sense?  If so, perhaps we want to split the flags.
+On Wed, Aug 28, 2013 at 6:12 AM, Peter Hurley <peter@hurleysoftware.com> wrote:
+> This series was originally motivated by a deadlock, introduced in
+> commit 1d7c71a3e2f77336df536855b0efd2dc5bdeb41b
+> 'drm/nouveau/disp: port vblank handling to event interface',
+> due to inverted lock order between nouveau_drm_vblank_enable()
+> and nouveau_drm_vblank_handler() (the complete
+> lockdep report is included in the patch 4/5 changelog).
+Hey Peter,
+
+Thanks for the patch series.  I've only taken a cursory glance through
+the patches thus far, as they're definitely too intrusive for -fixes
+at this point.  I will take a proper look through the series within
+the next week or so, I have some work pending which may possibly make
+some of these changes unnecessary, though from what I can tell,
+there's other good bits here we'll want.
+
+In a previous mail on the locking issue, you mentioned the drm core
+doing the "wrong thing" here too, did you have any further thoughts on
+correcting that issue too?
+
+Ben.
 
 >
-> Signed-off-by: Lucas Stach <dev@lynxeye.de>
-> ---
-> On x86 an optimized userspace can save up on snoop traffic in the
-> system, on ARM the benefits are potentially much larger, as we can save
-> the manual cache flush/invalidate.
-> ---
->  drivers/gpu/drm/nouveau/nouveau_bo.c | 11 ++++++++++-
->  drivers/gpu/drm/nouveau/nouveau_bo.h |  1 +
->  include/uapi/drm/nouveau_drm.h       |  1 +
->  3 files changed, 12 insertions(+), 1 deletion(-)
+> Because this series fixes the vblank event deadlock, it is
+> a competing solution to Maarten Lankhorst's 'drm/nouveau:
+> fix vblank deadlock'.
 >
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> index f4a2eb9..c5fcbcc 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> @@ -231,6 +231,12 @@ nouveau_bo_new(struct drm_device *dev, int size, int align,
+> This series fixes the vblank event deadlock by converting the
+> event handler list to RCU. This solution allows the event trigger
+> to be lockless, and thus avoiding the lock inversion.
 >
->         nouveau_bo_fixup_align(nvbo, flags, &align, &size);
->         nvbo->bo.mem.num_pages = size >> PAGE_SHIFT;
-> +
-> +       if (tile_flags & NOUVEAU_GEM_TILE_WCUS)
-> +               nvbo->valid_caching = TTM_PL_FLAG_UNCACHED | TTM_PL_FLAG_WC;
-> +       else
-> +               nvbo->valid_caching = TTM_PL_MASK_CACHING;
-> +
->         nouveau_bo_placement_set(nvbo, flags, 0);
+> Typical hurdles to RCU conversion include: 1) ensuring the
+> object lifetime exceeds the lockless access; 2) preventing
+> premature object reuse; and 3) verifying that stale object
+> use not present logical errors.
 >
->         acc_size = ttm_bo_dma_acc_size(&drm->ttm.bdev, size,
-> @@ -292,7 +298,7 @@ void
->  nouveau_bo_placement_set(struct nouveau_bo *nvbo, uint32_t type, uint32_t busy)
->  {
->         struct ttm_placement *pl = &nvbo->placement;
-> -       uint32_t flags = TTM_PL_MASK_CACHING |
-> +       uint32_t flags = nvbo->valid_caching |
->                 (nvbo->pin_refcnt ? TTM_PL_FLAG_NO_EVICT : 0);
+> Because object reuse is not safe in RCU-based operations,
+> the nouveau_event_get/_put interface is migrated from
+> add/remove semantics to enable/disable semantics with a separate
+> install/remove step (which also serves to document the
+> handler lifetime). This also corrects an unsafe interface design
+> where handlers can mistakenly be reused while in use.
 >
->         pl->placement = nvbo->placements;
-> @@ -1554,6 +1560,9 @@ nouveau_bo_vma_add(struct nouveau_bo *nvbo, struct nouveau_vm *vm,
->         if (nvbo->bo.mem.mem_type == TTM_PL_VRAM)
->                 nouveau_vm_map(vma, nvbo->bo.mem.mm_node);
->         else if (nvbo->bo.mem.mem_type == TTM_PL_TT) {
-> +               if (!(nvbo->valid_caching & TTM_PL_FLAG_CACHED))
-> +                       vma->access |= NV_MEM_ACCESS_NOSNOOP;
-> +
->                 if (node->sg)
->                         nouveau_vm_map_sg_table(vma, 0, size, node);
->                 else
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau/nouveau_bo.h
-> index 653dbbb..2ecf8b7 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_bo.h
-> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
-> @@ -9,6 +9,7 @@ struct nouveau_bo {
->         struct ttm_buffer_object bo;
->         struct ttm_placement placement;
->         u32 valid_domains;
-> +       u32 valid_caching;
->         u32 placements[3];
->         u32 busy_placements[3];
->         struct ttm_bo_kmap_obj kmap;
-> diff --git a/include/uapi/drm/nouveau_drm.h b/include/uapi/drm/nouveau_drm.h
-> index 2a5769f..4948eee2 100644
-> --- a/include/uapi/drm/nouveau_drm.h
-> +++ b/include/uapi/drm/nouveau_drm.h
-> @@ -36,6 +36,7 @@
->  #define NOUVEAU_GEM_TILE_32BPP       0x00000002
->  #define NOUVEAU_GEM_TILE_ZETA        0x00000004
->  #define NOUVEAU_GEM_TILE_NONCONTIG   0x00000008
-> +#define NOUVEAU_GEM_TILE_WCUS        0x00000010 /* write-combined, unsnooped */
+> The nouveau driver currently supports 4 events -- gpio, uevent, cevent,
+> and vblank. Every event is created by and stored within its
+> respective subdev/engine object -- gpio in the GPIO subdev, uevent
+> and cevent in the FIFO engine, and vblank in the DISP engine.
+> Thus event lifetime extends until the subdev is destructed during
+> devobj teardown.
 >
->  struct drm_nouveau_gem_info {
->         uint32_t handle;
+> Event handler lifetime varies and is detailed in the table below
+> (apologies for the wide-format):
+>
+> Event  Handler function                   Container                     Until
+> -----  ----------------                   ---------------               ------------------
+> gpio   nouveau_connector_hotplug          struct nouveau_connector      nouveau_connector_destroy
+> uevent nouveau_fence_wait_uevent_handler  local stack object            nouveau_fence_wait_uevent returns
+> cevent none                               n/a                           n/a
+> vblank nouveau_drm_vblank_handler         struct nouveau_drm            nouveau_drm_remove
+> vblank nv50_software_vblsem_release       struct nouveau_software_chan  _nouveau_engctx_dtor
+>                                                                           (call stack originates with
+>                                                                            nouveau_abi16_chan_free ioctl)
+> vblank nvc0_software_vblsem_release       struct nouveau_software_chan  same as above
+>
+>
+> RCU lifetime considerations for handlers:
+>
+> Event  Handler                            Lifetime
+> -----  ----------------                   ---------------------------------
+> gpio   nouveau_connector_hotplug          kfree_rcu(nv_connector)
+> uevent nouveau_fence_wait_uevent_handler  explicit use of nouveau_event_hander_create/_destroy
+> cevent none                               n/a
+> vblank nouveau_drm_vblank_handler         synchronize_rcu() in nouveau_drm_unload
+> vblank nv50_software_vblsem_release       synchronize_rcu() in container dtor
+> vblank nvc0_software_vblsem_release       synchronize_rcu() in container dtor
+>
+> synchronize_rcu() is used for nouveau_object-based containers for which
+> kfree_rcu() is not suitable/possible.
+>
+> Stale event handler execution is not a concern for the existing handlers
+> because either: 1) the handler is responsible for disabling itself (via
+> returning NVKM_EVENT_DROP), or 2) the existing handler can already be stale,
+> as is the case with nouveau_connector_hotplug, which only schedules a work
+> item, and nouveau_drm_vblank_handler, which the drm core expects may be stale.
+>
+>
+> Peter Hurley (9):
+>   drm/nouveau: Add priv field for event handlers
+>   drm/nouveau: Move event index check from critical section
+>   drm/nouveau: Allocate local event handlers
+>   drm/nouveau: Allow asymmetric nouveau_event_get/_put
+>   drm/nouveau: Add install/remove semantics for event handlers
+>   drm/nouveau: Convert event handler list to RCU
+>   drm/nouveau: Fold nouveau_event_put_locked into caller
+>   drm/nouveau: Simplify event interface
+>   drm/nouveau: Simplify event handler interface
+>
+>  drivers/gpu/drm/nouveau/core/core/event.c          | 121 +++++++++++++++++----
+>  .../gpu/drm/nouveau/core/engine/software/nv50.c    |  32 ++++--
+>  .../gpu/drm/nouveau/core/engine/software/nvc0.c    |  32 ++++--
+>  drivers/gpu/drm/nouveau/core/include/core/event.h  |  27 ++++-
+>  .../gpu/drm/nouveau/core/include/engine/software.h |   2 +-
+>  drivers/gpu/drm/nouveau/nouveau_connector.c        |  16 ++-
+>  drivers/gpu/drm/nouveau/nouveau_display.c          |  16 +--
+>  drivers/gpu/drm/nouveau/nouveau_drm.c              |  35 +++---
+>  drivers/gpu/drm/nouveau/nouveau_fence.c            |  27 ++---
+>  9 files changed, 220 insertions(+), 88 deletions(-)
+>
 > --
-> 1.8.3.1
+> 1.8.1.2
 >
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
