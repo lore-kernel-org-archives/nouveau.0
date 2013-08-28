@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 68665] [NVE4] Crashing games when set AA to x2 on
 	GTX760
-Date: Wed, 28 Aug 2013 14:49:45 +0000
-Message-ID: <bug-68665-8800-K8CGYHEdNd@http.bugs.freedesktop.org/>
+Date: Wed, 28 Aug 2013 14:58:45 +0000
+Message-ID: <bug-68665-8800-kJl2RUrd3i@http.bugs.freedesktop.org/>
 References: <bug-68665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1166788161=="
+Content-Type: multipart/mixed; boundary="===============1807239216=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-68665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,45 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1166788161==
-Content-Type: multipart/alternative; boundary="1377701385.2daCd8c1.5659"; charset="us-ascii"
+--===============1807239216==
+Content-Type: multipart/alternative; boundary="1377701925.1fBBa20.7346"; charset="us-ascii"
 
 
---1377701385.2daCd8c1.5659
-Date: Wed, 28 Aug 2013 14:49:45 +0000
+--1377701925.1fBBa20.7346
+Date: Wed, 28 Aug 2013 14:58:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=68665
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Crashing games when set AA  |[NVE4] Crashing games when
-                   |to x2 on GTX760             |set AA to x2 on GTX760
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-To answer my own question, from the linked bugs, there is:
-
-Aug 27 16:51:15 Elias kernel: [24255.888373] nouveau E[  PGRAPH][0000:01:00.0]
-DATA_ERROR [INVALID_VALUE] ch 5 [0x000007f73d xonotic-sdl[7519]] subc 1 class
-0xa0c0 mthd 0x02f4 data 0x0040aaaa
-
-Unfortunately, Igor, you're not the original reporter of these bugs, as I
-understand it. (And more importantly, can't test potential fixes.) Hopefully
-someone on the nouveau team has the requisite hardware to be able to test this
-out. Given that it's a kepler card, I think it's important to make sure that
-the latest git kernel is used, as there are fixes not available in 3.10
-regarding context switching and initialization. (Not sure if those are at fault
-here, but it's good to get that out of the way.)
+--- Comment #4 from Igor Gnatenko <i.gnatenko.brain-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #3)
+> Unfortunately, Igor, you're not the original reporter of these bugs, as I
+> understand it. (And more importantly, can't test potential fixes.) 
+You can write there and I can provide info for RHBZ reporter and conversely.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377701385.2daCd8c1.5659
-Date: Wed, 28 Aug 2013 14:49:45 +0000
+--1377701925.1fBBa20.7346
+Date: Wed, 28 Aug 2013 14:58:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,52 +51,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE4] Crashing games when set AA to x2 on GTX760"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68665">bug 68665</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Crashing games when set AA to x2 on GTX760
-           </td>
-           <td>[NVE4] Crashing games when set AA to x2 on GTX760
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] Crashing games when set AA to x2 on GTX760"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68665#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68665#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] Crashing games when set AA to x2 on GTX760"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=68665">bug 68665</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:i.gnatenko.brain&#64;gmail.com" title="Igor Gnatenko &lt;i.gnatenko.brain&#64;gmail.com&gt;"> <span class="fn">Igor Gnatenko</span></a>
 </span></b>
-        <pre>To answer my own question, from the linked bugs, there is:
-
-Aug 27 16:51:15 Elias kernel: [24255.888373] nouveau E[  PGRAPH][0000:01:00.0]
-DATA_ERROR [INVALID_VALUE] ch 5 [0x000007f73d xonotic-sdl[7519]] subc 1 class
-0xa0c0 mthd 0x02f4 data 0x0040aaaa
-
-Unfortunately, Igor, you're not the original reporter of these bugs, as I
-understand it. (And more importantly, can't test potential fixes.) Hopefully
-someone on the nouveau team has the requisite hardware to be able to test this
-out. Given that it's a kepler card, I think it's important to make sure that
-the latest git kernel is used, as there are fixes not available in 3.10
-regarding context switching and initialization. (Not sure if those are at fault
-here, but it's good to get that out of the way.)</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=68665#c3">comment #3</a>)
+<span class="quote">&gt; Unfortunately, Igor, you're not the original reporter of these bugs, as I
+&gt; understand it. (And more importantly, can't test potential fixes.) </span >
+You can write there and I can provide info for RHBZ reporter and conversely.</pre>
         </div>
       </p>
       <hr>
@@ -124,9 +79,9 @@ here, but it's good to get that out of the way.)</pre>
     </body>
 </html>
 
---1377701385.2daCd8c1.5659--
+--1377701925.1fBBa20.7346--
 
---===============1166788161==
+--===============1807239216==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -137,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1166788161==--
+--===============1807239216==--
