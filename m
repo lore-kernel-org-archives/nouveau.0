@@ -1,96 +1,43 @@
-From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Subject: [PATCH 6/6] drm/nouveau: use MSI interrupts
-Date: Wed, 28 Aug 2013 02:00:50 +0200
-Message-ID: <1377648050-6649-7-git-send-email-dev@lynxeye.de>
+From: Lucas Stach <dev@lynxeye.de>
+Subject: [PATCH 1/6] drm/ttm: recognize ARM arch in ioprot handler
+Date: Wed, 28 Aug 2013 02:00:45 +0200
+Message-ID: <1377648050-6649-2-git-send-email-dev@lynxeye.de>
 References: <1377648050-6649-1-git-send-email-dev@lynxeye.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1377648050-6649-1-git-send-email-dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <1377648050-6649-1-git-send-email-dev@lynxeye.de>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: nouveau@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-MSIs were only problematic on some old, broken chipsets. But now that we
-already see systems where PCI legacy interrupts are somewhat flaky, it's
-really time to move to MSIs.
-
-Signed-off-by: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+Signed-off-by: Lucas Stach <dev@lynxeye.de>
 ---
- drivers/gpu/drm/nouveau/core/include/subdev/mc.h |  1 +
- drivers/gpu/drm/nouveau/core/subdev/mc/base.c    | 17 +++++++++++++++++
- 2 files changed, 18 insertions(+)
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/mc.h b/drivers/gpu/drm/nouveau/core/include/subdev/mc.h
-index 9d2cd20..ce6569f 100644
---- a/drivers/gpu/drm/nouveau/core/include/subdev/mc.h
-+++ b/drivers/gpu/drm/nouveau/core/include/subdev/mc.h
-@@ -12,6 +12,7 @@ struct nouveau_mc_intr {
- struct nouveau_mc {
- 	struct nouveau_subdev base;
- 	const struct nouveau_mc_intr *intr_map;
-+	bool use_msi;
- };
- 
- static inline struct nouveau_mc *
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/mc/base.c b/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
-index ec9cd6f..02b337e 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
-@@ -23,6 +23,7 @@
-  */
- 
- #include <subdev/mc.h>
-+#include <core/option.h>
- 
- static irqreturn_t
- nouveau_mc_intr(int irq, void *arg)
-@@ -43,6 +44,9 @@ nouveau_mc_intr(int irq, void *arg)
- 		map++;
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index 319cf41..db15687 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -487,7 +487,7 @@ pgprot_t ttm_io_prot(uint32_t caching_flags, pgprot_t tmp)
+ 			pgprot_val(tmp) |= _PAGE_GUARDED;
  	}
- 
-+	if (pmc->use_msi)
-+		nv_wr08(pmc->base.base.parent, 0x00088068, 0xff);
-+
- 	if (intr) {
- 		nv_error(pmc, "unknown intr 0x%08x\n", stat);
- 	}
-@@ -75,6 +79,8 @@ _nouveau_mc_dtor(struct nouveau_object *object)
- 	struct nouveau_device *device = nv_device(object);
- 	struct nouveau_mc *pmc = (void *)object;
- 	free_irq(device->pdev->irq, pmc);
-+	if (pmc->use_msi)
-+		pci_disable_msi(device->pdev);
- 	nouveau_subdev_destroy(&pmc->base);
- }
- 
-@@ -96,6 +102,17 @@ nouveau_mc_create_(struct nouveau_object *parent, struct nouveau_object *engine,
- 
- 	pmc->intr_map = intr_map;
- 
-+	pmc->use_msi = nouveau_boolopt(device->cfgopt, "NvMSI", true);
-+	if (pmc->use_msi) {
-+		ret = pci_enable_msi(device->pdev);
-+		if (ret) {
-+			pmc->use_msi = false;
-+		} else {
-+			nv_wr08(device, 0x00088068, 0xff);
-+			nv_info(pmc, "MSI interrupts enabled\n");
-+		}
-+	}
-+
- 	ret = request_irq(device->pdev->irq, nouveau_mc_intr,
- 			  IRQF_SHARED, "nouveau", pmc);
- 	if (ret < 0)
+ #endif
+-#if defined(__ia64__)
++#if defined(__ia64__) || defined(__arm__)
+ 	if (caching_flags & TTM_PL_FLAG_WC)
+ 		tmp = pgprot_writecombine(tmp);
+ 	else
 -- 
 1.8.3.1
