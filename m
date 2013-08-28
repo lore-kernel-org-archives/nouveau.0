@@ -1,101 +1,102 @@
-From: Lucas Stach <dev@lynxeye.de>
-Subject: [PATCH 4/6] drm/nouveau: introduce NOUVEAU_GEM_TILE_WCUS
-Date: Wed, 28 Aug 2013 02:00:48 +0200
-Message-ID: <1377648050-6649-5-git-send-email-dev@lynxeye.de>
-References: <1377648050-6649-1-git-send-email-dev@lynxeye.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 50375] [NV1A] KMS/fbcon accel failing after
+ scrolling/tty switch
+Date: Wed, 28 Aug 2013 03:22:38 +0000
+Message-ID: <bug-50375-8800-ftvYDrSQUD@http.bugs.freedesktop.org/>
+References: <bug-50375-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <1377648050-6649-1-git-send-email-dev@lynxeye.de>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: nouveau@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0890306783=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-50375-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This flag allows userspace to give the kernel a hint that it should use
-a non-snooped resource. To guarantee coherency at all times mappings
-into userspace are done write combined, so userspace should avoid
-reading back from those resources.
 
-Signed-off-by: Lucas Stach <dev@lynxeye.de>
----
-On x86 an optimized userspace can save up on snoop traffic in the
-system, on ARM the benefits are potentially much larger, as we can save
-the manual cache flush/invalidate.
----
- drivers/gpu/drm/nouveau/nouveau_bo.c | 11 ++++++++++-
- drivers/gpu/drm/nouveau/nouveau_bo.h |  1 +
- include/uapi/drm/nouveau_drm.h       |  1 +
- 3 files changed, 12 insertions(+), 1 deletion(-)
+--===============0890306783==
+Content-Type: multipart/alternative; boundary="1377660158.aECaD1.3719"; charset="us-ascii"
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index f4a2eb9..c5fcbcc 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -231,6 +231,12 @@ nouveau_bo_new(struct drm_device *dev, int size, int align,
- 
- 	nouveau_bo_fixup_align(nvbo, flags, &align, &size);
- 	nvbo->bo.mem.num_pages = size >> PAGE_SHIFT;
-+
-+	if (tile_flags & NOUVEAU_GEM_TILE_WCUS)
-+		nvbo->valid_caching = TTM_PL_FLAG_UNCACHED | TTM_PL_FLAG_WC;
-+	else
-+		nvbo->valid_caching = TTM_PL_MASK_CACHING;
-+
- 	nouveau_bo_placement_set(nvbo, flags, 0);
- 
- 	acc_size = ttm_bo_dma_acc_size(&drm->ttm.bdev, size,
-@@ -292,7 +298,7 @@ void
- nouveau_bo_placement_set(struct nouveau_bo *nvbo, uint32_t type, uint32_t busy)
- {
- 	struct ttm_placement *pl = &nvbo->placement;
--	uint32_t flags = TTM_PL_MASK_CACHING |
-+	uint32_t flags = nvbo->valid_caching |
- 		(nvbo->pin_refcnt ? TTM_PL_FLAG_NO_EVICT : 0);
- 
- 	pl->placement = nvbo->placements;
-@@ -1554,6 +1560,9 @@ nouveau_bo_vma_add(struct nouveau_bo *nvbo, struct nouveau_vm *vm,
- 	if (nvbo->bo.mem.mem_type == TTM_PL_VRAM)
- 		nouveau_vm_map(vma, nvbo->bo.mem.mm_node);
- 	else if (nvbo->bo.mem.mem_type == TTM_PL_TT) {
-+		if (!(nvbo->valid_caching & TTM_PL_FLAG_CACHED))
-+			vma->access |= NV_MEM_ACCESS_NOSNOOP;
-+
- 		if (node->sg)
- 			nouveau_vm_map_sg_table(vma, 0, size, node);
- 		else
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau/nouveau_bo.h
-index 653dbbb..2ecf8b7 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
-@@ -9,6 +9,7 @@ struct nouveau_bo {
- 	struct ttm_buffer_object bo;
- 	struct ttm_placement placement;
- 	u32 valid_domains;
-+	u32 valid_caching;
- 	u32 placements[3];
- 	u32 busy_placements[3];
- 	struct ttm_bo_kmap_obj kmap;
-diff --git a/include/uapi/drm/nouveau_drm.h b/include/uapi/drm/nouveau_drm.h
-index 2a5769f..4948eee2 100644
---- a/include/uapi/drm/nouveau_drm.h
-+++ b/include/uapi/drm/nouveau_drm.h
-@@ -36,6 +36,7 @@
- #define NOUVEAU_GEM_TILE_32BPP       0x00000002
- #define NOUVEAU_GEM_TILE_ZETA        0x00000004
- #define NOUVEAU_GEM_TILE_NONCONTIG   0x00000008
-+#define NOUVEAU_GEM_TILE_WCUS        0x00000010 /* write-combined, unsnooped */
- 
- struct drm_nouveau_gem_info {
- 	uint32_t handle;
+
+--1377660158.aECaD1.3719
+Date: Wed, 28 Aug 2013 03:22:38 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=50375
+
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 84758
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84758&action=edit
+patch to treat nv1a as pre-nv17
+
+Generationally, NV1A is pre-NV17. However in a bunch of places in the nouveau
+code, this wasn't recognized. I believe this patch should help, at least with
+something. Mind trying it out? Should apply on top of a git-ish kernel (but
+probably doesn't really matter).
+
 -- 
-1.8.3.1
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1377660158.aECaD1.3719
+Date: Wed, 28 Aug 2013 03:22:38 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV1A] KMS/fbcon accel failing after scrolling/tty switch"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50375#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV1A] KMS/fbcon accel failing after scrolling/tty switch"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=50375">bug 50375</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=84758" name="attach_84758" title="patch to treat nv1a as pre-nv17">attachment 84758</a> <a href="attachment.cgi?id=84758&amp;action=edit" title="patch to treat nv1a as pre-nv17">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=50375&amp;attachment=84758'>[review]</a>
+patch to treat nv1a as pre-nv17
+
+Generationally, NV1A is pre-NV17. However in a bunch of places in the nouveau
+code, this wasn't recognized. I believe this patch should help, at least with
+something. Mind trying it out? Should apply on top of a git-ish kernel (but
+probably doesn't really matter).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1377660158.aECaD1.3719--
+
+--===============0890306783==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0890306783==--
