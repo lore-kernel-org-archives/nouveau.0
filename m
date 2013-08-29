@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68665] [NVE4] Crashing games when set AA to x2 on
-	GTX760
-Date: Thu, 29 Aug 2013 10:52:17 +0000
-Message-ID: <bug-68665-8800-Ih7DQMVfoK@http.bugs.freedesktop.org/>
-References: <bug-68665-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 43939] [NV96] monitor connected via HDMI->DVI
+ adapter is blank / standby (9500GS)
+Date: Thu, 29 Aug 2013 18:47:04 +0000
+Message-ID: <bug-43939-8800-Jg4vSo4srl@http.bugs.freedesktop.org/>
+References: <bug-43939-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1302655661=="
+Content-Type: multipart/mixed; boundary="===============2131055427=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-43939-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1302655661==
-Content-Type: multipart/alternative; boundary="1377773537.cDf46b0.29225"; charset="us-ascii"
+--===============2131055427==
+Content-Type: multipart/alternative; boundary="1377802024.B1ACB863.10470"; charset="us-ascii"
 
 
---1377773537.cDf46b0.29225
-Date: Thu, 29 Aug 2013 10:52:17 +0000
+--1377802024.B1ACB863.10470
+Date: Thu, 29 Aug 2013 18:47:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68665
+https://bugs.freedesktop.org/show_bug.cgi?id=43939
 
---- Comment #6 from Igor Gnatenko <i.gnatenko.brain-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #5)
-> Already fixed in 9.2, your snapshot is too old.
-Ok. We will update our mesa to 9.2. If we can reproduce this I will re-open
-this bug. Thanks.
+--- Comment #15 from fd_mitch-3KzNJp4Rz8A@public.gmane.org ---
+I have the same issue. My dual-head setup works very well with 3.5.0 but
+stopped working when I switched to 3.8.0. I also tried 3.10.0 but the problem
+persists.
+
+I have the same symptom: second monitor does not even turn on, it does not
+receive any signal, but xrandr and X thinks everything is working correctly
+(dual-head setup).
+
+I am running Kubuntu 13.04.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377773537.cDf46b0.29225
-Date: Thu, 29 Aug 2013 10:52:17 +0000
+--1377802024.B1ACB863.10470
+Date: Thu, 29 Aug 2013 18:47:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,19 +60,24 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE4] Crashing games when set AA to x2 on GTX760"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68665#c6">Comment # 6</a>
+          bz_status_NEW "
+   title="NEW --- - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939#c15">Comment # 15</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE4] Crashing games when set AA to x2 on GTX760"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68665">bug 68665</a>
-              from <span class="vcard"><a class="email" href="mailto:i.gnatenko.brain&#64;gmail.com" title="Igor Gnatenko &lt;i.gnatenko.brain&#64;gmail.com&gt;"> <span class="fn">Igor Gnatenko</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939">bug 43939</a>
+              from <span class="vcard"><a class="email" href="mailto:fd_mitch&#64;ptaff.ca" title="fd_mitch&#64;ptaff.ca">fd_mitch&#64;ptaff.ca</a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=68665#c5">comment #5</a>)
-<span class="quote">&gt; Already fixed in 9.2, your snapshot is too old.</span >
-Ok. We will update our mesa to 9.2. If we can reproduce this I will re-open
-this bug. Thanks.</pre>
+        <pre>I have the same issue. My dual-head setup works very well with 3.5.0 but
+stopped working when I switched to 3.8.0. I also tried 3.10.0 but the problem
+persists.
+
+I have the same symptom: second monitor does not even turn on, it does not
+receive any signal, but xrandr and X thinks everything is working correctly
+(dual-head setup).
+
+I am running Kubuntu 13.04.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +89,9 @@ this bug. Thanks.</pre>
     </body>
 </html>
 
---1377773537.cDf46b0.29225--
+--1377802024.B1ACB863.10470--
 
---===============1302655661==
+--===============2131055427==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +102,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1302655661==--
+--===============2131055427==--
