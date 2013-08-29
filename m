@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 68665] [NVE4] Crashing games when set AA to x2 on
 	GTX760
-Date: Thu, 29 Aug 2013 10:33:15 +0000
-Message-ID: <bug-68665-8800-k8j51lyALz@http.bugs.freedesktop.org/>
+Date: Thu, 29 Aug 2013 10:52:17 +0000
+Message-ID: <bug-68665-8800-Ih7DQMVfoK@http.bugs.freedesktop.org/>
 References: <bug-68665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1054318382=="
+Content-Type: multipart/mixed; boundary="===============1302655661=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-68665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1054318382==
-Content-Type: multipart/alternative; boundary="1377772394.bE081.25380"; charset="us-ascii"
+--===============1302655661==
+Content-Type: multipart/alternative; boundary="1377773537.cDf46b0.29225"; charset="us-ascii"
 
 
---1377772394.bE081.25380
-Date: Thu, 29 Aug 2013 10:33:14 +0000
+--1377773537.cDf46b0.29225
+Date: Thu, 29 Aug 2013 10:52:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=68665
 
-Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #5 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
-Already fixed in 9.2, your snapshot is too old.
+--- Comment #6 from Igor Gnatenko <i.gnatenko.brain-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #5)
+> Already fixed in 9.2, your snapshot is too old.
+Ok. We will update our mesa to 9.2. If we can reproduce this I will re-open
+this bug. Thanks.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377772394.bE081.25380
-Date: Thu, 29 Aug 2013 10:33:14 +0000
+--1377773537.cDf46b0.29225
+Date: Thu, 29 Aug 2013 10:52:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,48 +51,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE4] Crashing games when set AA to x2 on GTX760"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68665">bug 68665</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - [NVE4] Crashing games when set AA to x2 on GTX760"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68665#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68665#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - [NVE4] Crashing games when set AA to x2 on GTX760"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=68665">bug 68665</a>
-              from <span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
+              from <span class="vcard"><a class="email" href="mailto:i.gnatenko.brain&#64;gmail.com" title="Igor Gnatenko &lt;i.gnatenko.brain&#64;gmail.com&gt;"> <span class="fn">Igor Gnatenko</span></a>
 </span></b>
-        <pre>Already fixed in 9.2, your snapshot is too old.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=68665#c5">comment #5</a>)
+<span class="quote">&gt; Already fixed in 9.2, your snapshot is too old.</span >
+Ok. We will update our mesa to 9.2. If we can reproduce this I will re-open
+this bug. Thanks.</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +79,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377772394.bE081.25380--
+--1377773537.cDf46b0.29225--
 
---===============1054318382==
+--===============1302655661==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1054318382==--
+--===============1302655661==--
