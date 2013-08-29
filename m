@@ -1,97 +1,93 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH 6/6] drm/nouveau: use MSI interrupts
-Date: Thu, 29 Aug 2013 10:07:27 +1000
-Message-ID: <CACAvsv7Ew+0icWEq6ixdtP9Vpux4zeWjV5Lpih94YZWgs_jx4A@mail.gmail.com>
-References: <1377648050-6649-1-git-send-email-dev@lynxeye.de>
-	<1377648050-6649-7-git-send-email-dev@lynxeye.de>
-	<CACAvsv5shyLkE-WdJj6yDx1hhFtNRkuzujxQasWd2MAaVMjJ7A@mail.gmail.com>
-	<1377674937.1624.2.camel@tellur>
-	<CAKb7Uvini5fD0JRLg4hnc2U7Cq51y0EWzR_yAUuSU0TtQeDvQw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 63481] [NV1A] No monitor signal since commit
+ ebb945a94 (3.7-rc1)
+Date: Thu, 29 Aug 2013 01:21:13 +0000
+Message-ID: <bug-63481-8800-UEGDecxr6R@http.bugs.freedesktop.org/>
+References: <bug-63481-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <CAKb7Uvini5fD0JRLg4hnc2U7Cq51y0EWzR_yAUuSU0TtQeDvQw@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0135878105=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-63481-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Aug 28, 2013 at 11:54 PM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
-> On Wed, Aug 28, 2013 at 3:28 AM, Lucas Stach <dev@lynxeye.de> wrote:
->> Am Mittwoch, den 28.08.2013, 17:09 +1000 schrieb Ben Skeggs:
->>> On Wed, Aug 28, 2013 at 10:00 AM, Lucas Stach <dev@lynxeye.de> wrote:
->>> > MSIs were only problematic on some old, broken chipsets. But now that we
->>> > already see systems where PCI legacy interrupts are somewhat flaky, it's
->>> > really time to move to MSIs.
->>> >
->>> > Signed-off-by: Lucas Stach <dev@lynxeye.de>
->>> > ---
->>> >  drivers/gpu/drm/nouveau/core/include/subdev/mc.h |  1 +
->>> >  drivers/gpu/drm/nouveau/core/subdev/mc/base.c    | 17 +++++++++++++++++
->>> >  2 files changed, 18 insertions(+)
->>> >
->>> > diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/mc.h b/drivers/gpu/drm/nouveau/core/include/subdev/mc.h
->>> > index 9d2cd20..ce6569f 100644
->>> > --- a/drivers/gpu/drm/nouveau/core/include/subdev/mc.h
->>> > +++ b/drivers/gpu/drm/nouveau/core/include/subdev/mc.h
->>> > @@ -12,6 +12,7 @@ struct nouveau_mc_intr {
->>> >  struct nouveau_mc {
->>> >         struct nouveau_subdev base;
->>> >         const struct nouveau_mc_intr *intr_map;
->>> > +       bool use_msi;
->>> >  };
->>> >
->>> >  static inline struct nouveau_mc *
->>> > diff --git a/drivers/gpu/drm/nouveau/core/subdev/mc/base.c b/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
->>> > index ec9cd6f..02b337e 100644
->>> > --- a/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
->>> > +++ b/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
->>> > @@ -23,6 +23,7 @@
->>> >   */
->>> >
->>> >  #include <subdev/mc.h>
->>> > +#include <core/option.h>
->>> >
->>> >  static irqreturn_t
->>> >  nouveau_mc_intr(int irq, void *arg)
->>> > @@ -43,6 +44,9 @@ nouveau_mc_intr(int irq, void *arg)
->>> >                 map++;
->>> >         }
->>> >
->>> > +       if (pmc->use_msi)
->>> > +               nv_wr08(pmc->base.base.parent, 0x00088068, 0xff);
->>> Register not present everywhere.
->>>
->>> At the very least, the enabling of MSI should be disallowed on the
->>> earlier chipsets where it's not supported.  Though, it's perhaps
->>> possible that the pci_enable_msi() call will fail in all of these
->>> cases anyway.. I'm not certain.
->>>
->> MSIs are required property for everything doing PCIe. So the only cases
->> where this should fail is plain PCI/AGP devices. I don't really have a
->> test system for those old cards set up.
->>
->> But I remember Ilia having some legacy things plugged in, so maybe he
->> could test this patch and see how it goes?
->
-> Sure, let me know what you need -- I have nv18 PCI, nv34 PCIe (note
-> that it's not native PCIe, but some sort of bridge thing IIRC),
-Cases like the nv34 here (i think there's some nv4x that aren't native
-pcie too) are what I'm wondering about primarily.
 
-> nv42
-> PCIe, nv44 PCIe, nv96 PCIe.
->
-> Can I just apply this patch, or do I need to do the whole series? What
-> constitutes a success?
->
->   -ilia
+--===============0135878105==
+Content-Type: multipart/alternative; boundary="1377739273.AFC84B03.15322"; charset="us-ascii"
+
+
+--1377739273.AFC84B03.15322
+Date: Thu, 29 Aug 2013 01:21:13 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=63481
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please try out https://bugs.freedesktop.org/attachment.cgi?id=84758
+
+This helped another NV1A user.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1377739273.AFC84B03.15322
+Date: Thu, 29 Aug 2013 01:21:13 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV1A] No monitor signal since commit ebb945a94 (3.7-rc1)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63481#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV1A] No monitor signal since commit ebb945a94 (3.7-rc1)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63481">bug 63481</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Please try out <a href="https://bugs.freedesktop.org/attachment.cgi?id=84758">https://bugs.freedesktop.org/attachment.cgi?id=84758</a>
+
+This helped another NV1A user.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1377739273.AFC84B03.15322--
+
+--===============0135878105==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0135878105==--
