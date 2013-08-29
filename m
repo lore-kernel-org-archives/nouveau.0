@@ -1,21 +1,23 @@
 From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH 6/6] drm/nouveau: use MSI interrupts
-Date: Thu, 29 Aug 2013 15:07:23 +1000
-Message-ID: <CACAvsv4AZo-B3MtTh3oN946YAC=vPiR=S3TsEg7R2-hEma57tg@mail.gmail.com>
-References: <1377648050-6649-1-git-send-email-dev@lynxeye.de>
-	<1377648050-6649-7-git-send-email-dev@lynxeye.de>
-	<CACAvsv5shyLkE-WdJj6yDx1hhFtNRkuzujxQasWd2MAaVMjJ7A@mail.gmail.com>
-	<1377674937.1624.2.camel@tellur>
-	<CAKb7Uvini5fD0JRLg4hnc2U7Cq51y0EWzR_yAUuSU0TtQeDvQw@mail.gmail.com>
-	<CACAvsv7Ew+0icWEq6ixdtP9Vpux4zeWjV5Lpih94YZWgs_jx4A@mail.gmail.com>
-	<CAKb7UvgsJYsD9rvAXziGP716zh1KuKEp5Wq6rzFWjCXFp3a86g@mail.gmail.com>
-	<CACAvsv6GPuSAnL+mHkygQHjgu1YVyRpRF7-UVRdV=DiMzFrU5Q@mail.gmail.com>
-	<CAKb7UvhHncbNN9Q=VM-drJARF74RyZH6Vhb1Gqway1y+fUNyww@mail.gmail.com>
+Subject: Re: Fixing nouveau for >4k PAGE_SIZE
+Date: Thu, 29 Aug 2013 16:49:46 +1000
+Message-ID: <CACAvsv41g-fXaUG168CJdETNkZzA2A5=L9Ri4gsmPaF6DsqkwQ@mail.gmail.com>
+References: <1372740099.4820.24.camel@pasglop>
+	<CAPM=9txvRW5MM849FVqOoSL28g=+hTDiLWaMtn5Kj-X3h1kJ8g@mail.gmail.com>
+	<1376175111.32100.53.camel@pasglop>
+	<1376179046.32100.60.camel@pasglop>
+	<1376181670.32100.77.camel@pasglop>
+	<1376199396.32100.106.camel@pasglop>
+	<52072C7C.8040104@canonical.com>
+	<1376204790.32100.109.camel@pasglop>
+	<1376208256.32100.117.camel@pasglop>
+	<52075323.4010200@canonical.com>
+	<1376213713.32100.135.camel@pasglop>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <CAKb7UvhHncbNN9Q=VM-drJARF74RyZH6Vhb1Gqway1y+fUNyww@mail.gmail.com>
+In-Reply-To: <1376213713.32100.135.camel@pasglop>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
 	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
@@ -25,200 +27,353 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
 	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
 Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+To: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, =?ISO-8859-1?Q?St=E9phane_Marchesin?= <marcheu@chromium.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Aug 29, 2013 at 3:00 PM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
-> On Thu, Aug 29, 2013 at 12:45 AM, Ben Skeggs <skeggsb@gmail.com> wrote:
->> On Thu, Aug 29, 2013 at 12:20 PM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
->>> On Wed, Aug 28, 2013 at 8:07 PM, Ben Skeggs <skeggsb@gmail.com> wrote:
->>>> On Wed, Aug 28, 2013 at 11:54 PM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
->>>>> On Wed, Aug 28, 2013 at 3:28 AM, Lucas Stach <dev@lynxeye.de> wrote:
->>>>>> Am Mittwoch, den 28.08.2013, 17:09 +1000 schrieb Ben Skeggs:
->>>>>>> On Wed, Aug 28, 2013 at 10:00 AM, Lucas Stach <dev@lynxeye.de> wrote:
->>>>>>> > MSIs were only problematic on some old, broken chipsets. But now that we
->>>>>>> > already see systems where PCI legacy interrupts are somewhat flaky, it's
->>>>>>> > really time to move to MSIs.
->>>>>>> >
->>>>>>> > Signed-off-by: Lucas Stach <dev@lynxeye.de>
->>>>>>> > ---
->>>>>>> >  drivers/gpu/drm/nouveau/core/include/subdev/mc.h |  1 +
->>>>>>> >  drivers/gpu/drm/nouveau/core/subdev/mc/base.c    | 17 +++++++++++++++++
->>>>>>> >  2 files changed, 18 insertions(+)
->>>>>>> >
->>>>>>> > diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/mc.h b/drivers/gpu/drm/nouveau/core/include/subdev/mc.h
->>>>>>> > index 9d2cd20..ce6569f 100644
->>>>>>> > --- a/drivers/gpu/drm/nouveau/core/include/subdev/mc.h
->>>>>>> > +++ b/drivers/gpu/drm/nouveau/core/include/subdev/mc.h
->>>>>>> > @@ -12,6 +12,7 @@ struct nouveau_mc_intr {
->>>>>>> >  struct nouveau_mc {
->>>>>>> >         struct nouveau_subdev base;
->>>>>>> >         const struct nouveau_mc_intr *intr_map;
->>>>>>> > +       bool use_msi;
->>>>>>> >  };
->>>>>>> >
->>>>>>> >  static inline struct nouveau_mc *
->>>>>>> > diff --git a/drivers/gpu/drm/nouveau/core/subdev/mc/base.c b/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
->>>>>>> > index ec9cd6f..02b337e 100644
->>>>>>> > --- a/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
->>>>>>> > +++ b/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
->>>>>>> > @@ -23,6 +23,7 @@
->>>>>>> >   */
->>>>>>> >
->>>>>>> >  #include <subdev/mc.h>
->>>>>>> > +#include <core/option.h>
->>>>>>> >
->>>>>>> >  static irqreturn_t
->>>>>>> >  nouveau_mc_intr(int irq, void *arg)
->>>>>>> > @@ -43,6 +44,9 @@ nouveau_mc_intr(int irq, void *arg)
->>>>>>> >                 map++;
->>>>>>> >         }
->>>>>>> >
->>>>>>> > +       if (pmc->use_msi)
->>>>>>> > +               nv_wr08(pmc->base.base.parent, 0x00088068, 0xff);
->>>>>>> Register not present everywhere.
->>>>>>>
->>>>>>> At the very least, the enabling of MSI should be disallowed on the
->>>>>>> earlier chipsets where it's not supported.  Though, it's perhaps
->>>>>>> possible that the pci_enable_msi() call will fail in all of these
->>>>>>> cases anyway.. I'm not certain.
->>>>>>>
->>>>>> MSIs are required property for everything doing PCIe. So the only cases
->>>>>> where this should fail is plain PCI/AGP devices. I don't really have a
->>>>>> test system for those old cards set up.
->>>>>>
->>>>>> But I remember Ilia having some legacy things plugged in, so maybe he
->>>>>> could test this patch and see how it goes?
->>>>>
->>>>> Sure, let me know what you need -- I have nv18 PCI, nv34 PCIe (note
->>>>> that it's not native PCIe, but some sort of bridge thing IIRC),
->>>> Cases like the nv34 here (i think there's some nv4x that aren't native
->>>> pcie too) are what I'm wondering about primarily.
->>>
->>> And rightly so. With the NV18 PCI, NV34 PCIe, NV42 PCIe plugged in,
->>> with "AutoAddGPU" disabled the NV18 and NV42 seem fine. However merely
->>> starting X (not xinit, not startx, not [gkx]dm) on the NV34 and ^C'ing
->>> it (with no clients connecting to said X), causes a "failed to idle
->>> channel" message in dmesg, which apparently never rectifies itself, so
->>> X is hung forever. FTR, there were no displays connected either, but I
->>> tried the exact same procedure without the MSI patch and it worked
->>> fine. Here is the init sequence with the MSI patch:
->> I don't suppose bashing 0x1868 instead of 0x88068 works here?  If not,
+On Sun, Aug 11, 2013 at 7:35 PM, Benjamin Herrenschmidt
+<benh@kernel.crashing.org> wrote:
+> On Sun, 2013-08-11 at 11:02 +0200, Maarten Lankhorst wrote:
 >
-> Should that work on the NV42 as well?
-I believe so.  NV4x has both the 0x18xx and 0x88xxx apertures I believe.
+>> > diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/nv40.c b/drivers/gpu/drm/nouveau/core/engine/fifo/nv40.c
+>> > index 5c7433d..c314a5f 100644
+>> > --- a/drivers/gpu/drm/nouveau/core/engine/fifo/nv40.c
+>> > +++ b/drivers/gpu/drm/nouveau/core/engine/fifo/nv40.c
+>> > @@ -190,8 +190,8 @@ nv40_fifo_chan_ctor(struct nouveau_object *parent,
+>> >     if (size < sizeof(*args))
+>> >             return -EINVAL;
+>> >
+>> > -   ret = nouveau_fifo_channel_create(parent, engine, oclass, 0, 0xc00000,
+>> > -                                     0x1000, args->pushbuf,
+>> > +   ret = nouveau_fifo_channel_create(parent, engine, oclass, 0, 0x800000,
+>> > +                                     0x10000, args->pushbuf,
+>> >                                       (1ULL << NVDEV_ENGINE_DMAOBJ) |
+>> >                                       (1ULL << NVDEV_ENGINE_SW) |
+>> >                                       (1ULL << NVDEV_ENGINE_GR) |
+>> Why the size change?
+>
+> This reverts the value to older ones, however that patch might not be
+> needed anymore (I was carrying it from Dave but if we don't map the
+> registers into userspace we shouldn't need to force align them).
+>
+>> > diff --git a/drivers/gpu/drm/nouveau/core/subdev/vm/base.c b/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
+>> > index ef3133e..5833851 100644
+>> > --- a/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
+>> > +++ b/drivers/gpu/drm/nouveau/core/subdev/vm/base.c
+>> > @@ -84,10 +84,11 @@ nouveau_vm_map_sg_table(struct nouveau_vma *vma, u64 delta, u64 length,
+>> >  {
+>> >     struct nouveau_vm *vm = vma->vm;
+>> >     struct nouveau_vmmgr *vmm = vm->vmm;
+>> > -   int big = vma->node->type != vmm->spg_shift;
+>> > +   u32 shift = vma->node->type;
+>> > +   int big = shift != vmm->spg_shift;
+>> >     u32 offset = vma->node->offset + (delta >> 12);
+>> > -   u32 bits = vma->node->type - 12;
+>> > -   u32 num  = length >> vma->node->type;
+>> > +   u32 bits = shift - 12;
+>> > +   u32 num  = length >> shift;
+>> >     u32 pde  = (offset >> vmm->pgt_bits) - vm->fpde;
+>> >     u32 pte  = (offset & ((1 << vmm->pgt_bits) - 1)) >> bits;
+>> >     u32 max  = 1 << (vmm->pgt_bits - bits);
+>> > @@ -98,7 +99,7 @@ nouveau_vm_map_sg_table(struct nouveau_vma *vma, u64 delta, u64 length,
+>> >
+>> >     for_each_sg(mem->sg->sgl, sg, mem->sg->nents, i) {
+>> >             struct nouveau_gpuobj *pgt = vm->pgt[pde].obj[big];
+>> > -           sglen = sg_dma_len(sg) >> PAGE_SHIFT;
+>> > +           sglen = sg_dma_len(sg) >> shift;
+>> >
+>> >             end = pte + sglen;
+>> >             if (unlikely(end >= max))
+>> Please add a WARN_ON(big); in map_sg and map_sg_table if you do this.
+>
+> So that's debatable :-)
+>
+> The above code is map_sg. Arguably my patch *fixes* using it with card
+> large pages :-)
+>
+> IE, Look at the "usual" case (PAGE_SHIFT=12). Today, the above means
+> sglen will be in units of small pages. But everything else in that loop
+> operates in units of whatever is represented by the pte, which can
+> either be 4k or larger.
+>
+> So adding "sglen" to "pte" was never right for shift != 12 before
+> (regardless of PAGE_SHIFT).
+>
+> With my patch, it's more correct, so as such, adding a WARN_ON here
+> wouldn't be "if I do this" :-)
+>
+> Now, the "big" case still cannot really work here with PAGE_SHIFT=12,
+> because that would require the sg segments to be multiple of
+> "shift" (the card large page) and that is not going to be the case.
+>
+> So funnily enough, we *could* use card large pages of 64k ("big") if ...
+> we had PAGE_SHIFT=16 ... which we do on ppc64 :-) But not anywhere else.
+>
+> But yes, the point remains, in the general case, that function cannot
+> work for the "big" case, so I wonder if we should catch it with a
+> WARN_ON and maybe simplify the code a bunch while at it...
+>
+>> > @@ -106,7 +107,7 @@ nouveau_vm_map_sg_table(struct nouveau_vma *vma, u64 delta, u64 length,
+>> >             len = end - pte;
+>> >
+>> >             for (m = 0; m < len; m++) {
+>> > -                   dma_addr_t addr = sg_dma_address(sg) + (m << PAGE_SHIFT);
+>> > +                   dma_addr_t addr = sg_dma_address(sg) + (m << shift);
+>> >
+>> >                     vmm->map_sg(vma, pgt, mem, pte, 1, &addr);
+>> >                     num--;
+>> > @@ -121,7 +122,7 @@ nouveau_vm_map_sg_table(struct nouveau_vma *vma, u64 delta, u64 length,
+>> >             }
+>> >             if (m < sglen) {
+>> >                     for (; m < sglen; m++) {
+>> > -                           dma_addr_t addr = sg_dma_address(sg) + (m << PAGE_SHIFT);
+>> > +                           dma_addr_t addr = sg_dma_address(sg) + (m << shift);
+>> >
+>> >                             vmm->map_sg(vma, pgt, mem, pte, 1, &addr);
+>> >                             num--;
+>> > @@ -136,6 +137,7 @@ finish:
+>> >     vmm->flush(vm);
+>> >  }
+>> >
+>> > +#if PAGE_SHIFT == 12
+>> >  void
+>> >  nouveau_vm_map_sg(struct nouveau_vma *vma, u64 delta, u64 length,
+>> >               struct nouveau_mem *mem)
+>> > @@ -143,10 +145,11 @@ nouveau_vm_map_sg(struct nouveau_vma *vma, u64 delta, u64 length,
+>> >     struct nouveau_vm *vm = vma->vm;
+>> >     struct nouveau_vmmgr *vmm = vm->vmm;
+>> >     dma_addr_t *list = mem->pages;
+>> > -   int big = vma->node->type != vmm->spg_shift;
+>> > +   u32 shift = vma->node->type;
+>> > +   int big = shift != vmm->spg_shift;
+>> >     u32 offset = vma->node->offset + (delta >> 12);
+>> > -   u32 bits = vma->node->type - 12;
+>> > -   u32 num  = length >> vma->node->type;
+>> > +   u32 bits = shift - 12;
+>> > +   u32 num  = length >> shift;
+>> >     u32 pde  = (offset >> vmm->pgt_bits) - vm->fpde;
+>> >     u32 pte  = (offset & ((1 << vmm->pgt_bits) - 1)) >> bits;
+>> >     u32 max  = 1 << (vmm->pgt_bits - bits);
+>> > @@ -173,6 +176,52 @@ nouveau_vm_map_sg(struct nouveau_vma *vma, u64 delta, u64 length,
+>
+> So the above is the existing one which I kept mostly intact ... but
+> cannot work for shift != 12 either for the same reasons so here too, if
+> we could simplify that ...
+>
+>> >     vmm->flush(vm);
+>> >  }
+>> > +#else
+>> > +void
+>> > +nouveau_vm_map_sg(struct nouveau_vma *vma, u64 delta, u64 length,
+>> > +             struct nouveau_mem *mem)
+>> > +{
+>> > +   struct nouveau_vm *vm = vma->vm;
+>> > +   struct nouveau_vmmgr *vmm = vm->vmm;
+>> > +   dma_addr_t *list = mem->pages;
+>> > +   u32 shift = vma->node->type;
+>> > +   int big = shift != vmm->spg_shift;
+>> > +   u32 offset = vma->node->offset + (delta >> 12);
+>> > +   u32 bits = shift - 12;
+>> > +   u32 num  = length >> shift;
+>> > +   u32 pde  = (offset >> vmm->pgt_bits) - vm->fpde;
+>> > +   u32 pte  = (offset & ((1 << vmm->pgt_bits) - 1)) >> bits;
+>> > +   u32 max  = 1 << (vmm->pgt_bits - bits);
+>> > +   u32 sub_cnt = 1 << (PAGE_SHIFT - shift);
+>> > +   u32 sub_rem = 0;
+>> > +   u64 phys = 0;
+>> > +
+>> > +
+>> > +   /* XXX This will not work for a big mapping ! */
+>> > +   WARN_ON_ONCE(big);
+>> > +
+>> > +   while (num) {
+>> > +           struct nouveau_gpuobj *pgt = vm->pgt[pde].obj[big];
+>> > +
+>> > +           if (sub_rem == 0) {
+>> > +                   phys = *(list++);
+>> > +                   sub_rem = sub_cnt;
+>> > +           }
+>> > +           vmm->map_sg(vma, pgt, mem, pte, 1, &phys);
+>> > +
+>> > +           num  -= 1;
+>> > +           pte  += 1;
+>> > +           sub_rem -= 1;
+>> > +           phys += 1 << shift;
+>> > +           if (unlikely(pte >= max)) {
+>> > +                   pde++;
+>> > +                   pte = 0;
+>> > +           }
+>> > +   }
+>> > +
+>> > +   vmm->flush(vm);
+>> > +}
+>> > +#endif
+>>
+>> Considering that map_sg in nv04-50 takes PAGE_SIZE pages, it would be easier to fix
+>> map_sg for nv50 and nvc0, this would mean less fixing in map_sg/map_sg_table.
+>
+> Sorry, I'm not sure what you mean exactly ... The code *today* tries to
+> handle things at the low level (vmm->map_sg) and that cannot work the
+> way it's done. I'm removing that. Or rather, that cannot work unless we
+> can guarantee that there will be no crossing of PTE page boundary (no
+> crossing of pde) by the PAGE_SIZE page, which I think we cannot (see my
+> discussion in my email asking if we could enforce that somewhat).
+>
+> Additionally the current code is broken in that the upper layer in
+> vm/base.c doesn't increment "pte" by the right amount.
+>
+> Now, if those two assertions can be made always true:
+>
+>  - Those two functions (map_sg and map_sg_table) never deal with the
+> "big" case.
+>
+>  - An object is always mapped at a card address that is a multiple
+> of PAGE_SIZE (ie, invividual PAGE_SIZE pages don't cross pde boundaries
+> when mapped)
+I think these two restrictions are reasonable to enforce, and we should do so.
 
 >
->> next thing would be to mmiotrace the binary driver and see if you can
->> make it enable+use MSI on it.  I doubt the current legacy driver does
->> it by default, but there was some magic to enable it that you can
->> probably find if you google around.
+> Then we can probably simplify the code significantly *and* go back to
+> handling PAGE_SIZE pages in the vmm->map_sg() instead of breaking them
+> up a level above like I do.
+Sounds good!
+
 >
-> I've yet to set up the legacy driver... I bet it doesn't compile on
-> 3.11, so I'll have to patch it to nuke procfs/i2c...
+>> I don't like the duplicate definition, and the extra for loop in map_sg will be compiled out when page_size == 12.
 >
+> Sort-of. Right now, my code prevents calling vmm->map_sg with more than
+> "1" as len which reduces perf in the PAGE_SHIFT=12 case, which is why I
+> did the duplication.
+>
+> However this is just an illustration. I'm fully aware that this is not
+> good as-is, I'm just poking to see what you guys think is the best
+> approach to *properly* fix it.
+>
+>> Oh fun fact:
+>> on nv50 if PAGE_SIZE = 64K you should just use large pages on the nvidia card for everything. :D
+>
+> I don't think I care at this stage but heh ...
+>
+>> I have no idea if it works for bar, but you could test..
+>> In subdev/bar/nv50.c kmap/umap change the 12 argument to 16, and change vm->pgt[0].obj[0] to vm->pgt[0].obj[1] and vm->pgt[0].refcount[0] to vm->pgt[0].refcount[1].
 >>
->>>
->>> [  307.049812] nouveau  [  DEVICE][0000:04:00.0] BOOT0  : 0x034a00b1
->>> [  307.049815] nouveau  [  DEVICE][0000:04:00.0] Chipset: NV34 (NV34)
->>> [  307.049819] nouveau  [  DEVICE][0000:04:00.0] Family : NV30
->>> [  307.050648] nouveau  [   VBIOS][0000:04:00.0] checking PRAMIN for image...
->>> [  307.050652] nouveau  [   VBIOS][0000:04:00.0] ... signature not found
->>> [  307.050653] nouveau  [   VBIOS][0000:04:00.0] checking PROM for image...
->>> [  307.195201] nouveau  [   VBIOS][0000:04:00.0] ... appears to be valid
->>> [  307.195205] nouveau  [   VBIOS][0000:04:00.0] using image from PROM
->>> [  307.195209] nouveau  [   VBIOS][0000:04:00.0] BMP version 5.29
->>> [  307.195429] nouveau  [   VBIOS][0000:04:00.0] version 04.34.20.79.00
->>> [  307.195971] nouveau  [ DEVINIT][0000:04:00.0] adaptor not initialised
->>> [  307.195979] nouveau  [   VBIOS][0000:04:00.0] running init tables
->>> [  307.209253] nouveau 0000:04:00.0: irq 47 for MSI/MSI-X
->>> [  307.209266] nouveau  [     PMC][0000:04:00.0] MSI interrupts enabled
->>> [  307.209281] nouveau W[  PTIMER][0000:04:00.0] unknown input clock freq
->>> [  307.209288] nouveau  [     PFB][0000:04:00.0] RAM type: DDR1
->>> [  307.209290] nouveau  [     PFB][0000:04:00.0] RAM size: 64 MiB
->>> [  307.209292] nouveau  [     PFB][0000:04:00.0]    ZCOMP: 0 tags
->>> [  307.215653] nouveau  [     DRM] VRAM: 63 MiB
->>> [  307.215656] nouveau  [     DRM] GART: 128 MiB
->>> [  307.215659] nouveau  [     DRM] BMP version 5.41
->>> [  307.215662] nouveau  [     DRM] DCB version 2.2
->>> [  307.215666] nouveau  [     DRM] DCB outp 00: 01000300 000088b8
->>> [  307.215669] nouveau  [     DRM] DCB outp 01: 02010310 000088b8
->>> [  307.215672] nouveau  [     DRM] DCB outp 02: 01000302 00000000
->>> [  307.215676] nouveau  [     DRM] DCB outp 03: 04010312 00000000
->>> [  307.215686] nouveau  [     DRM] Adaptor not initialised, running
->>> VBIOS init tables.
->>> [  307.215964] nouveau  [     DRM] Saving VGA fonts
->>> [  307.310084] [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
->>> [  307.310087] [drm] No driver support for vblank timestamp query.
->>> [  307.310093] nouveau  [     DRM] 0xB61E: Parsing digital output script table
->>> [  307.360111] nouveau  [     DRM] 0xB70B: Parsing digital output script table
->>> [  307.410799] nouveau  [     DRM] 0 available performance level(s)
->>> [  307.410804] nouveau  [     DRM] c: core 249MHz memory 405MHz
->>> [  307.412062] nouveau  [     DRM] MM: using M2MF for buffer copies
->>> [  307.442478] nouveau 0000:04:00.0: No connectors reported connected with modes
->>> [  307.442483] [drm] Cannot find any crtc or sizes - going 1024x768
->>> [  307.442669] nouveau  [     DRM] allocated 1024x768 fb: 0x9000, bo
->>> ffff8801c73c3800
->>> [...]
->>> [  360.414044] nouveau E[ X[8294]] failed to idle channel 0xcccc0001 [X[8294]]
->>> [  375.403288] nouveau E[ X[8294]] failed to idle channel 0xcccc0001 [X[8294]]
->>> [  390.392407] nouveau E[ X[8294]] failed to idle channel 0xcccc0001 [X[8294]]
->>>
->>> In case it's of interest, this is a Quadro NVS 280 card, here is the
->>> lspci output:
->>>
->>> 04:00.0 VGA compatible controller [0300]: NVIDIA Corporation NV37GL
->>> [Quadro PCI-E Series] [10de:00fd] (rev a2) (prog-if 00 [VGA
->>> controller])
->>>         Subsystem: NVIDIA Corporation Device [10de:0215]
->>>         Control: I/O- Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop-
->>> ParErr- Stepping- SERR- FastB2B- DisINTx+
->>>         Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort-
->>> <TAbort- <MAbort- >SERR- <PERR- INTx-
->>>         Latency: 0, Cache Line Size: 64 bytes
->>>         Interrupt: pin A routed to IRQ 47
->>>         Region 0: Memory at f4000000 (32-bit, non-prefetchable) [size=16M]
->>>         Region 1: Memory at c0000000 (32-bit, prefetchable) [size=256M]
->>>         Region 2: Memory at f5000000 (32-bit, non-prefetchable) [size=16M]
->>>         [virtual] Expansion ROM at f6000000 [disabled] [size=128K]
->>>         Capabilities: [60] Power Management version 2
->>>                 Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA
->>> PME(D0-,D1-,D2-,D3hot-,D3cold-)
->>>                 Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
->>>         Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
->>>                 Address: 00000000feeff00c  Data: 4162
->>>         Capabilities: [78] Express (v1) Legacy Endpoint, MSI 00
->>>                 DevCap: MaxPayload 128 bytes, PhantFunc 0, Latency L0s
->>> <512ns, L1 <4us
->>>                         ExtTag- AttnBtn- AttnInd- PwrInd- RBE- FLReset-
->>>                 DevCtl: Report errors: Correctable- Non-Fatal- Fatal-
->>> Unsupported-
->>>                         RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop+
->>>                         MaxPayload 128 bytes, MaxReadReq 512 bytes
->>>                 DevSta: CorrErr- UncorrErr- FatalErr- UnsuppReq-
->>> AuxPwr- TransPend-
->>>                 LnkCap: Port #0, Speed 2.5GT/s, Width x16, ASPM L0s,
->>> Latency L0 <2us, L1 <16us
->>>                         ClockPM- Surprise- LLActRep- BwNot-
->>>                 LnkCtl: ASPM Disabled; RCB 128 bytes Disabled- Retrain- CommClk-
->>>                         ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
->>>                 LnkSta: Speed 2.5GT/s, Width x16, TrErr- Train-
->>> SlotClk+ DLActive- BWMgmt- ABWMgmt-
->>>         Capabilities: [100 v1] Virtual Channel
->>>                 Caps:   LPEVC=0 RefClk=100ns PATEntryBits=1
->>>                 Arb:    Fixed- WRR32- WRR64- WRR128-
->>>                 Ctrl:   ArbSelect=Fixed
->>>                 Status: InProgress-
->>>                 VC0:    Caps:   PATOffset=00 MaxTimeSlots=1 RejSnoopTrans-
->>>                         Arb:    Fixed- WRR32- WRR64- WRR128- TWRR128- WRR256-
->>>                         Ctrl:   Enable+ ID=0 ArbSelect=Fixed TC/VC=ff
->>>                         Status: NegoPending- InProgress-
->>>         Capabilities: [128 v1] Power Budgeting <?>
->>>         Kernel driver in use: nouveau
->>>         Kernel modules: nouveau
->>>
->>>
->>> Let me know if you have any questions about my setup.
->>>
->>>   -ilia
+>> for nvc0 that would require 128K pages, but I believe it should work too.
+>
+> I don't think we want to go there right now, there is little benefit for
+> the vast majority of platforms (x86 and ARM). Let's stick to making
+> ppc64 "work" and not bother too much with things that will never be used
+> in practice :-)
+>
+> I'd rather make the code simpler by removing the "big" case from those
+> functions if it's never going to be used.
+Fully agreed!
+
+Ben.
+
+>
+> Cheers,
+> Ben.
+>
+>> >
+>> >  void
+>> >  nouveau_vm_unmap_at(struct nouveau_vma *vma, u64 delta, u64 length)
+>> > diff --git a/drivers/gpu/drm/nouveau/core/subdev/vm/nv04.c b/drivers/gpu/drm/nouveau/core/subdev/vm/nv04.c
+>> > index ed45437..f7e2311 100644
+>> > --- a/drivers/gpu/drm/nouveau/core/subdev/vm/nv04.c
+>> > +++ b/drivers/gpu/drm/nouveau/core/subdev/vm/nv04.c
+>> > @@ -39,14 +39,10 @@ nv04_vm_map_sg(struct nouveau_vma *vma, struct nouveau_gpuobj *pgt,
+>> >  {
+>> >     pte = 0x00008 + (pte * 4);
+>> >     while (cnt) {
+>> > -           u32 page = PAGE_SIZE / NV04_PDMA_PAGE;
+>> >             u32 phys = (u32)*list++;
+>> > -           while (cnt && page--) {
+>> > -                   nv_wo32(pgt, pte, phys | 3);
+>> > -                   phys += NV04_PDMA_PAGE;
+>> > -                   pte += 4;
+>> > -                   cnt -= 1;
+>> > -           }
+>> > +           nv_wo32(pgt, pte, phys | 3);
+>> > +           pte += 4;
+>> > +           cnt -= 1;
+>> >     }
+>> >  }
+>> >
+>> > diff --git a/drivers/gpu/drm/nouveau/core/subdev/vm/nv41.c b/drivers/gpu/drm/nouveau/core/subdev/vm/nv41.c
+>> > index 064c762..a78f624 100644
+>> > --- a/drivers/gpu/drm/nouveau/core/subdev/vm/nv41.c
+>> > +++ b/drivers/gpu/drm/nouveau/core/subdev/vm/nv41.c
+>> > @@ -43,14 +43,10 @@ nv41_vm_map_sg(struct nouveau_vma *vma, struct nouveau_gpuobj *pgt,
+>> >  {
+>> >     pte = pte * 4;
+>> >     while (cnt) {
+>> > -           u32 page = PAGE_SIZE / NV41_GART_PAGE;
+>> >             u64 phys = (u64)*list++;
+>> > -           while (cnt && page--) {
+>> > -                   nv_wo32(pgt, pte, (phys >> 7) | 1);
+>> > -                   phys += NV41_GART_PAGE;
+>> > -                   pte += 4;
+>> > -                   cnt -= 1;
+>> > -           }
+>> > +           nv_wo32(pgt, pte, (phys >> 7) | 1);
+>> > +           pte += 4;
+>> > +           cnt -= 1;
+>> >     }
+>> >  }
+>> See above^, it's better if you could fixup nv50/nvc0.c instead.
+>> >
+>> > diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+>> > index af20fba..694024d 100644
+>> > --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+>> > +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+>> > @@ -226,7 +226,7 @@ nouveau_bo_new(struct drm_device *dev, int size, int align,
+>> >     nvbo->page_shift = 12;
+>> >     if (drm->client.base.vm) {
+>> >             if (!(flags & TTM_PL_FLAG_TT) && size > 256 * 1024)
+>> > -                   nvbo->page_shift = drm->client.base.vm->vmm->lpg_shift;
+>> > +                   nvbo->page_shift = lpg_shift;
+>> >     }
+>> >
+>> >     nouveau_bo_fixup_align(nvbo, flags, &align, &size);
+>> Hm.. I don't know if it will be an issue here. But I'm concerned about the cases where nouveau_vm can end up unaligned.
+>> This will not be an issue for the bar mappings, because they map the entire bo, and bo's are always page aligned.
+>> See nouveau_bo_fixup_align.
+>>
+>> But the channel vm mappings are no longer guaranteed to be page aligned. In fact it's very likely they are all misaligned due to some vm allocations
+>> done when mapping a channel. This is only a problem on nv50+ though. Probably not an issue you're hitting.
+>> > diff --git a/drivers/gpu/drm/nouveau/nouveau_sgdma.c b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
+>> > index ca5492a..494cf88 100644
+>> > --- a/drivers/gpu/drm/nouveau/nouveau_sgdma.c
+>> > +++ b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
+>> > @@ -31,7 +31,7 @@ nv04_sgdma_bind(struct ttm_tt *ttm, struct ttm_mem_reg *mem)
+>> >  {
+>> >     struct nouveau_sgdma_be *nvbe = (struct nouveau_sgdma_be *)ttm;
+>> >     struct nouveau_mem *node = mem->mm_node;
+>> > -   u64 size = mem->num_pages << 12;
+>> > +   u64 size = mem->num_pages << PAGE_SHIFT;
+>> >
+>> >     if (ttm->sg) {
+>> >             node->sg = ttm->sg;
+>> > diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+>> > index 19e3757..f0629de 100644
+>> > --- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
+>> > +++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+>> > @@ -252,8 +252,8 @@ nv04_gart_manager_new(struct ttm_mem_type_manager *man,
+>> >
+>> >     node->page_shift = 12;
+>> >
+>> > -   ret = nouveau_vm_get(man->priv, mem->num_pages << 12, node->page_shift,
+>> > -                        NV_MEM_ACCESS_RW, &node->vma[0]);
+>> > +   ret = nouveau_vm_get(man->priv, mem->num_pages << PAGE_SHIFT,
+>> > +                        node->page_shift, NV_MEM_ACCESS_RW, &node->vma[0]);
+>> >     if (ret) {
+>> >             kfree(node);
+>> >             return ret;
+>> >
+>> >
+>
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
