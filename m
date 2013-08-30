@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56535] Resident evil 4 with wine: crash
-Date: Fri, 30 Aug 2013 23:17:25 +0000
-Message-ID: <bug-56535-8800-gluwmQ1LCs@http.bugs.freedesktop.org/>
-References: <bug-56535-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 46597] [NVA8/NV50 gallium] nv50_pc.h:351:
+ nv_alloc_instruction: Assertion `pc->num_instructions < 2048' failed.
+Date: Fri, 30 Aug 2013 23:22:30 +0000
+Message-ID: <bug-46597-8800-A4I3nhkYyO@http.bugs.freedesktop.org/>
+References: <bug-46597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0818845491=="
+Content-Type: multipart/mixed; boundary="===============0005871657=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56535-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-46597-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0818845491==
-Content-Type: multipart/alternative; boundary="1377904645.5cc8A1.13038"; charset="us-ascii"
+--===============0005871657==
+Content-Type: multipart/alternative; boundary="1377904950.5E2367B1.14248"; charset="us-ascii"
 
 
---1377904645.5cc8A1.13038
-Date: Fri, 30 Aug 2013 23:17:25 +0000
+--1377904950.5E2367B1.14248
+Date: Fri, 30 Aug 2013 23:22:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56535
+https://bugs.freedesktop.org/show_bug.cgi?id=46597
 
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Does this still happen with recent software? (both kernel and mesa... and
-probably wine too)
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-If so, can you get it to happen on anything other than Resident Evil 4? Is
-there a free demo perhaps that you can repro on?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|nv50_pc.h:351:              |[NVA8/NV50 gallium]
+                   |nv_alloc_instruction:       |nv50_pc.h:351:
+                   |Assertion                   |nv_alloc_instruction:
+                   |`pc->num_instructions <     |Assertion
+                   |2048' failed.               |`pc->num_instructions <
+                   |                            |2048' failed.
 
-I believe there's a thing called 'winedbg', use that, I think it's more likely
-that you'll get a useful trace that way.
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Looks like you were using a pre-9.0 mesa release. Can you check if this still
+happens with mesa-9.2 (and also updating your kernel wouldn't hurt, I think
+NVA8 support was much improved).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377904645.5cc8A1.13038
-Date: Fri, 30 Aug 2013 23:17:25 +0000
+--1377904950.5E2367B1.14248
+Date: Fri, 30 Aug 2013 23:22:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,27 +61,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA8/NV50 gallium] nv50_pc.h:351: nv_alloc_instruction: Assertion `pc-&gt;num_instructions &lt; 2048' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=46597">bug 46597</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>nv50_pc.h:351: nv_alloc_instruction: Assertion `pc-&gt;num_instructions &lt; 2048' failed.
+           </td>
+           <td>[NVA8/NV50 gallium] nv50_pc.h:351: nv_alloc_instruction: Assertion `pc-&gt;num_instructions &lt; 2048' failed.
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Resident evil 4 with wine: crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56535#c14">Comment # 14</a>
+   title="NEW --- - [NVA8/NV50 gallium] nv50_pc.h:351: nv_alloc_instruction: Assertion `pc-&gt;num_instructions &lt; 2048' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=46597#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Resident evil 4 with wine: crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56535">bug 56535</a>
+   title="NEW --- - [NVA8/NV50 gallium] nv50_pc.h:351: nv_alloc_instruction: Assertion `pc-&gt;num_instructions &lt; 2048' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=46597">bug 46597</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Does this still happen with recent software? (both kernel and mesa... and
-probably wine too)
-
-If so, can you get it to happen on anything other than Resident Evil 4? Is
-there a free demo perhaps that you can repro on?
-
-I believe there's a thing called 'winedbg', use that, I think it's more likely
-that you'll get a useful trace that way.</pre>
+        <pre>Looks like you were using a pre-9.0 mesa release. Can you check if this still
+happens with mesa-9.2 (and also updating your kernel wouldn't hurt, I think
+NVA8 support was much improved).</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +108,9 @@ that you'll get a useful trace that way.</pre>
     </body>
 </html>
 
---1377904645.5cc8A1.13038--
+--1377904950.5E2367B1.14248--
 
---===============0818845491==
+--===============0005871657==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0818845491==--
+--===============0005871657==--
