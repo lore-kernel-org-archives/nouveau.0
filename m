@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51798] Cannot enable second video card on nvidia
-	quadro NVS420
-Date: Fri, 30 Aug 2013 18:57:14 +0000
-Message-ID: <bug-51798-8800-FMSp5GiF0d@http.bugs.freedesktop.org/>
-References: <bug-51798-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68768] New: [nv50] error during boot
+Date: Fri, 30 Aug 2013 19:22:35 +0000
+Message-ID: <bug-68768-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0479661964=="
+Content-Type: multipart/mixed; boundary="===============1062827894=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51798-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +18,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0479661964==
-Content-Type: multipart/alternative; boundary="1377889034.2DcB2.23882"; charset="us-ascii"
+--===============1062827894==
+Content-Type: multipart/alternative; boundary="1377890555.AfbDD871.28512"; charset="us-ascii"
 
 
---1377889034.2DcB2.23882
-Date: Fri, 30 Aug 2013 18:57:14 +0000
+--1377890555.AfbDD871.28512
+Date: Fri, 30 Aug 2013 19:22:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51798
+https://bugs.freedesktop.org/show_bug.cgi?id=68768
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+          Priority: medium
+            Bug ID: 68768
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [nv50] error during boot
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: mattia.b89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
+Created attachment 84928
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84928&action=edit
+dmesg
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Sorry to hear the card died. Marking as invalid since the original owner no
-longer has the hardware.
+I get this two errors (or better warning, because the boot continues) during my
+boot:
 
-Note that Kepler cards (nve0+) have 4 CRTC's on one GPU, and the current linux
-stack is a whole lot better at supporting a single GPU with multiple screens
-than multiple GPUs with multiple screens.
+[    8.644478] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0xffffffff FAULT
+at 0x00e074
+[    8.796621] nouveau E[  PTHERM][0000:01:00.0] unhandled intr 0x000001e0
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377889034.2DcB2.23882
-Date: Fri, 30 Aug 2013 18:57:14 +0000
+--1377890555.AfbDD871.28512
+Date: Fri, 30 Aug 2013 19:22:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,53 +68,104 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Cannot enable second video card on nvidia quadro NVS420"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51798">bug 51798</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nv50] error during boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68768">68768</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
-           </td>
-         </tr></table>
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[nv50] error during boot
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mattia.b89&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Cannot enable second video card on nvidia quadro NVS420"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51798#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Cannot enable second video card on nvidia quadro NVS420"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51798">bug 51798</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Sorry to hear the card died. Marking as invalid since the original owner no
-longer has the hardware.
+        <pre>Created <span class=""><a href="attachment.cgi?id=84928" name="attach_84928" title="dmesg">attachment 84928</a> <a href="attachment.cgi?id=84928&amp;action=edit" title="dmesg">[details]</a></span>
+dmesg
 
-Note that Kepler cards (nve0+) have 4 CRTC's on one GPU, and the current linux
-stack is a whole lot better at supporting a single GPU with multiple screens
-than multiple GPUs with multiple screens.</pre>
+I get this two errors (or better warning, because the boot continues) during my
+boot:
+
+[    8.644478] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0xffffffff FAULT
+at 0x00e074
+[    8.796621] nouveau E[  PTHERM][0000:01:00.0] unhandled intr 0x000001e0</pre>
         </div>
       </p>
       <hr>
@@ -118,9 +177,9 @@ than multiple GPUs with multiple screens.</pre>
     </body>
 </html>
 
---1377889034.2DcB2.23882--
+--1377890555.AfbDD871.28512--
 
---===============0479661964==
+--===============1062827894==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -131,4 +190,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0479661964==--
+--===============1062827894==--
