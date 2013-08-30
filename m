@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 68768] [NV92] PTHERM unhandled intr error during boot
-Date: Fri, 30 Aug 2013 19:38:38 +0000
-Message-ID: <bug-68768-8800-jhbtIO8Vwt@http.bugs.freedesktop.org/>
+Date: Fri, 30 Aug 2013 19:40:10 +0000
+Message-ID: <bug-68768-8800-tDgCIw7TNU@http.bugs.freedesktop.org/>
 References: <bug-68768-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1645246070=="
+Content-Type: multipart/mixed; boundary="===============0862770891=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-68768-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1645246070==
-Content-Type: multipart/alternative; boundary="1377891518.2fcD2.31909"; charset="us-ascii"
+--===============0862770891==
+Content-Type: multipart/alternative; boundary="1377891610.104ED2.32279"; charset="us-ascii"
 
 
---1377891518.2fcD2.31909
-Date: Fri, 30 Aug 2013 19:38:38 +0000
+--1377891610.104ED2.32279
+Date: Fri, 30 Aug 2013 19:40:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=68768
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-[    8.796597] nouveau  [  PTHERM][0000:01:00.0] fan management: disabled
+--- Comment #4 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+(In reply to comment #2)
+> thank you,
+> 
+> I (apparently) haven't noticed problems, at least no big problem
+> 
+> but deeply investigating I could notice a bad fan management (could be
+> PTHERM related....)
 
-If you want to enable it, take a look at
-https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/thermal/nouveau_thermal
+The PTHERM error is harmless. I'll fix it though :) That's funny though because
+I was doing a round of PTHERM testing on nv50 and found this problem too.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377891518.2fcD2.31909
-Date: Fri, 30 Aug 2013 19:38:38 +0000
+--1377891610.104ED2.32279
+Date: Fri, 30 Aug 2013 19:40:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,17 +62,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV92] PTHERM unhandled intr error during boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68768#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68768#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV92] PTHERM unhandled intr error during boot"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=68768">bug 68768</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>[    8.796597] nouveau  [  PTHERM][0000:01:00.0] fan management: disabled
+        <pre>(In reply to <a href="show_bug.cgi?id=68768#c2">comment #2</a>)
+<span class="quote">&gt; thank you,
+&gt; 
+&gt; I (apparently) haven't noticed problems, at least no big problem
+&gt; 
+&gt; but deeply investigating I could notice a bad fan management (could be
+&gt; PTHERM related....)</span >
 
-If you want to enable it, take a look at
-<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/thermal/nouveau_thermal">https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/thermal/nouveau_thermal</a></pre>
+The PTHERM error is harmless. I'll fix it though :) That's funny though because
+I was doing a round of PTHERM testing on nv50 and found this problem too.</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +90,9 @@ If you want to enable it, take a look at
     </body>
 </html>
 
---1377891518.2fcD2.31909--
+--1377891610.104ED2.32279--
 
---===============1645246070==
+--===============0862770891==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1645246070==--
+--===============0862770891==--
