@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51362] [NVE7] DisplayPort output on nVidia Quadro
- K2000M (ThinkPad W530) doesn't work
-Date: Fri, 30 Aug 2013 23:36:00 +0000
-Message-ID: <bug-51362-8800-d2TQ7STWbi@http.bugs.freedesktop.org/>
-References: <bug-51362-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51157] [NVC1] GeForce GT 540M not working anymore
+Date: Fri, 30 Aug 2013 23:39:25 +0000
+Message-ID: <bug-51157-8800-36uECHUInJ@http.bugs.freedesktop.org/>
+References: <bug-51157-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0043349896=="
+Content-Type: multipart/mixed; boundary="===============2085308490=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51362-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51157-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0043349896==
-Content-Type: multipart/alternative; boundary="1377905760.5EEdDe32.16709"; charset="us-ascii"
+--===============2085308490==
+Content-Type: multipart/alternative; boundary="1377905965.aA0AC82.17745"; charset="us-ascii"
 
 
---1377905760.5EEdDe32.16709
-Date: Fri, 30 Aug 2013 23:36:00 +0000
+--1377905965.aA0AC82.17745
+Date: Fri, 30 Aug 2013 23:39:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51362
+https://bugs.freedesktop.org/show_bug.cgi?id=51157
 
---- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Is this still an issue with the latest kernel (3.11-rc7 or nouveau/master)?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|GeForce GT 540M not working |[NVC1] GeForce GT 540M not
+                   |anymore                     |working anymore
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Do problems persist with the latest kernels (e.g. 3.11-rc7 at the time of
+writing)? If so, please attach a recent dmesg.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377905760.5EEdDe32.16709
-Date: Fri, 30 Aug 2013 23:36:00 +0000
+--1377905965.aA0AC82.17745
+Date: Fri, 30 Aug 2013 23:39:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -48,20 +55,41 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC1] GeForce GT 540M not working anymore"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51157">bug 51157</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>GeForce GT 540M not working anymore
+           </td>
+           <td>[NVC1] GeForce GT 540M not working anymore
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] DisplayPort output on nVidia Quadro K2000M (ThinkPad W530) doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51362#c10">Comment # 10</a>
+   title="NEW --- - [NVC1] GeForce GT 540M not working anymore"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51157#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] DisplayPort output on nVidia Quadro K2000M (ThinkPad W530) doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51362">bug 51362</a>
+   title="NEW --- - [NVC1] GeForce GT 540M not working anymore"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51157">bug 51157</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Is this still an issue with the latest kernel (3.11-rc7 or nouveau/master)?</pre>
+        <pre>Do problems persist with the latest kernels (e.g. 3.11-rc7 at the time of
+writing)? If so, please attach a recent dmesg.</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +101,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377905760.5EEdDe32.16709--
+--1377905965.aA0AC82.17745--
 
---===============0043349896==
+--===============2085308490==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +114,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0043349896==--
+--===============2085308490==--
