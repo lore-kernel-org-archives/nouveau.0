@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 41588] suspend/resume with active CRTC,
- but disconnected output causes problems
-Date: Fri, 30 Aug 2013 23:43:16 +0000
-Message-ID: <bug-41588-8800-slOElMQ1bt@http.bugs.freedesktop.org/>
-References: <bug-41588-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: [PATCH 1/2] drm/nouveau/bios/therm: handle vbioses with
+	duplicate entries (mostly nva5)
+Date: Sat, 31 Aug 2013 01:58:50 +0200
+Message-ID: <1377907131-15099-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1367819060=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-41588-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,72 +17,40 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Martin Peres <martin.peres-/ze9ptdxDJdQFI55V6+gNQ@public.gmane.org>, Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 
---===============1367819060==
-Content-Type: multipart/alternative; boundary="1377906196.ABfDB7F21.18458"; charset="us-ascii"
+Some vbioses have extra useless entries after "the end" of the table. This is
+problematic since all of the vbios I found with this issue redefine the
+pwm freq divider to insane levels (52750 Hz instead of 2500), thus breaking
+fan management.
 
+The first solution to solve this mess would be to change the length of the
+table. The solution I choose was simply to avoid setting the pwm freq twice
+as the other redefinitions are harmless with our current parser.
 
---1377906196.ABfDB7F21.18458
-Date: Fri, 30 Aug 2013 23:43:16 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Signed-off-by: Martin Peres <martin.peres-/ze9ptdxDJdQFI55V6+gNQ@public.gmane.org>
+Reported-by: Mariusz Bialonczyk <manio-RFXG7K41k5GsTnJN9+BGXg@public.gmane.org>
+Tested-by: Mariusz Bialonczyk <manio-RFXG7K41k5GsTnJN9+BGXg@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/subdev/bios/therm.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=41588
-
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Does this still happen with the latest kernel?
-
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/bios/therm.c b/drivers/gpu/drm/nouveau/core/subdev/bios/therm.c
+index 22a2057..22ac6db 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/bios/therm.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/bios/therm.c
+@@ -184,7 +184,8 @@ nvbios_therm_fan_parse(struct nouveau_bios *bios,
+ 			cur_trip->fan_duty = value;
+ 			break;
+ 		case 0x26:
+-			fan->pwm_freq = value;
++			if (!fan->pwm_freq)
++				fan->pwm_freq = value;
+ 			break;
+ 		case 0x3b:
+ 			fan->bump_period = value;
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1377906196.ABfDB7F21.18458
-Date: Fri, 30 Aug 2013 23:43:16 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - suspend/resume with active CRTC, but disconnected output causes problems"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=41588#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - suspend/resume with active CRTC, but disconnected output causes problems"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=41588">bug 41588</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Does this still happen with the latest kernel?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1377906196.ABfDB7F21.18458--
-
---===============1367819060==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1367819060==--
+1.8.4
