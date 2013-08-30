@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 68768] [NV92] PTHERM unhandled intr error during boot
-Date: Fri, 30 Aug 2013 19:35:32 +0000
-Message-ID: <bug-68768-8800-w9JlogsCbm@http.bugs.freedesktop.org/>
+Date: Fri, 30 Aug 2013 19:38:38 +0000
+Message-ID: <bug-68768-8800-jhbtIO8Vwt@http.bugs.freedesktop.org/>
 References: <bug-68768-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0659118908=="
+Content-Type: multipart/mixed; boundary="===============1645246070=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-68768-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,31 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0659118908==
-Content-Type: multipart/alternative; boundary="1377891332.5eE2df021.31147"; charset="us-ascii"
+--===============1645246070==
+Content-Type: multipart/alternative; boundary="1377891518.2fcD2.31909"; charset="us-ascii"
 
 
---1377891332.5eE2df021.31147
-Date: Fri, 30 Aug 2013 19:35:32 +0000
+--1377891518.2fcD2.31909
+Date: Fri, 30 Aug 2013 19:38:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=68768
 
---- Comment #2 from mattia.b89 <mattia.b89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-thank you,
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+[    8.796597] nouveau  [  PTHERM][0000:01:00.0] fan management: disabled
 
-I (apparently) haven't noticed problems, at least no big problem
-
-but deeply investigating I could notice a bad fan management (could be PTHERM
-related....)
+If you want to enable it, take a look at
+https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/thermal/nouveau_thermal
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377891332.5eE2df021.31147
-Date: Fri, 30 Aug 2013 19:35:32 +0000
+--1377891518.2fcD2.31909
+Date: Fri, 30 Aug 2013 19:38:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,19 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV92] PTHERM unhandled intr error during boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68768#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68768#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV92] PTHERM unhandled intr error during boot"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=68768">bug 68768</a>
-              from <span class="vcard"><a class="email" href="mailto:mattia.b89&#64;gmail.com" title="mattia.b89 &lt;mattia.b89&#64;gmail.com&gt;"> <span class="fn">mattia.b89</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>thank you,
+        <pre>[    8.796597] nouveau  [  PTHERM][0000:01:00.0] fan management: disabled
 
-I (apparently) haven't noticed problems, at least no big problem
-
-but deeply investigating I could notice a bad fan management (could be PTHERM
-related....)</pre>
+If you want to enable it, take a look at
+<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/thermal/nouveau_thermal">https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/thermal/nouveau_thermal</a></pre>
         </div>
       </p>
       <hr>
@@ -82,9 +78,9 @@ related....)</pre>
     </body>
 </html>
 
---1377891332.5eE2df021.31147--
+--1377891518.2fcD2.31909--
 
---===============0659118908==
+--===============1645246070==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0659118908==--
+--===============1645246070==--
