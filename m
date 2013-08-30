@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64746] optimus don't use nouveau card
-Date: Fri, 30 Aug 2013 13:03:38 +0000
-Message-ID: <bug-64746-8800-2VYg2nn2hP@http.bugs.freedesktop.org/>
+Date: Fri, 30 Aug 2013 13:53:15 +0000
+Message-ID: <bug-64746-8800-uN5VDjUFnl@http.bugs.freedesktop.org/>
 References: <bug-64746-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1937073394=="
+Content-Type: multipart/mixed; boundary="===============0981951377=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64746-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,50 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1937073394==
-Content-Type: multipart/alternative; boundary="1377867818.bc3ddF00.15925"; charset="us-ascii"
+--===============0981951377==
+Content-Type: multipart/alternative; boundary="1377870795.DdaB0cA0.26664"; charset="us-ascii"
 
 
---1377867818.bc3ddF00.15925
-Date: Fri, 30 Aug 2013 13:03:38 +0000
+--1377870795.DdaB0cA0.26664
+Date: Fri, 30 Aug 2013 13:53:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=64746
 
---- Comment #6 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hmm something unusual is happening here
+--- Comment #7 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+cat /sys/kernel/debug/vgaswitcheroo/switch 
+0:DIS: :Pwr:0000:01:00.0
+1:IGD:+:Pwr:0000:00:02.0
 
-* the var/messages does not indicate any writes to vgaswitcheroo/switch
-* the Xorg.log still indicates that the intel card is setup and used as primary
+don't seem switched?
 
-So to get a better picture (including timeline) can you do the following
+i tried
+echo DIS > /sys/kernel/debug/vgaswitcheroo/switch
 
-1. Toggle/switch to the nv card
-$ cat /sys/kernel/debug/vgaswitcheroo/switch 
-$ echo "0000:01:00.0" /sys/kernel/debug/vgaswitcheroo/switch
+but the screen get completly black...
 
-2. Confirm that the nv card is used (paste the output in your reply)
-$ cat /sys/kernel/debug/vgaswitcheroo/switch 
-
-3. Start X
-$ init 5 #startx # systemd start {g,k,x}dm
-
-and then attach the output of the following (plain text, please)
-
-* dmesg
-* Xorg.0.log
-* LIBGL_DEBUG=verbose glxinfo
-* LIBGL_DEBUG=verbose DRI_PRIME=1 glxinfo
-
-Thanks
+so i switched back with 
+echo IGD > /sys/kernel/debug/vgaswitcheroo/switch
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377867818.bc3ddF00.15925
-Date: Fri, 30 Aug 2013 13:03:38 +0000
+--1377870795.DdaB0cA0.26664
+Date: Fri, 30 Aug 2013 13:53:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -77,38 +65,26 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - optimus don't use nouveau card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64746#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64746#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - optimus don't use nouveau card"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64746">bug 64746</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
 </span></b>
-        <pre>Hmm something unusual is happening here
+        <pre>cat /sys/kernel/debug/vgaswitcheroo/switch 
+0:DIS: :Pwr:0000:01:00.0
+1:IGD:+:Pwr:0000:00:02.0
 
-* the var/messages does not indicate any writes to vgaswitcheroo/switch
-* the Xorg.log still indicates that the intel card is setup and used as primary
+don't seem switched?
 
-So to get a better picture (including timeline) can you do the following
+i tried
+echo DIS &gt; /sys/kernel/debug/vgaswitcheroo/switch
 
-1. Toggle/switch to the nv card
-$ cat /sys/kernel/debug/vgaswitcheroo/switch 
-$ echo &quot;0000:01:00.0&quot; /sys/kernel/debug/vgaswitcheroo/switch
+but the screen get completly black...
 
-2. Confirm that the nv card is used (paste the output in your reply)
-$ cat /sys/kernel/debug/vgaswitcheroo/switch 
-
-3. Start X
-$ init 5 #startx # systemd start {g,k,x}dm
-
-and then attach the output of the following (plain text, please)
-
-* dmesg
-* Xorg.0.log
-* LIBGL_DEBUG=verbose glxinfo
-* LIBGL_DEBUG=verbose DRI_PRIME=1 glxinfo
-
-Thanks</pre>
+so i switched back with 
+echo IGD &gt; /sys/kernel/debug/vgaswitcheroo/switch</pre>
         </div>
       </p>
       <hr>
@@ -120,9 +96,9 @@ Thanks</pre>
     </body>
 </html>
 
---1377867818.bc3ddF00.15925--
+--1377870795.DdaB0cA0.26664--
 
---===============1937073394==
+--===============0981951377==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -133,4 +109,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1937073394==--
+--===============0981951377==--
