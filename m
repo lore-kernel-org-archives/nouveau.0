@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67315] [NVAA] System lockup with X consuming all CPU
-Date: Fri, 30 Aug 2013 21:06:11 +0000
-Message-ID: <bug-67315-8800-kOawCTzDZm@http.bugs.freedesktop.org/>
-References: <bug-67315-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54786] random crashes of X with failed to idle
+ channel 0xcccc0000
+Date: Fri, 30 Aug 2013 21:21:54 +0000
+Message-ID: <bug-54786-8800-dznL40cNLA@http.bugs.freedesktop.org/>
+References: <bug-54786-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0529556567=="
+Content-Type: multipart/mixed; boundary="===============0735660434=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-54786-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,42 +21,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0529556567==
-Content-Type: multipart/alternative; boundary="1377896771.b04beB62.18476"; charset="us-ascii"
+--===============0735660434==
+Content-Type: multipart/alternative; boundary="1377897714.a1Ddc4.21844"; charset="us-ascii"
 
 
---1377896771.b04beB62.18476
-Date: Fri, 30 Aug 2013 21:06:11 +0000
+--1377897714.a1Ddc4.21844
+Date: Fri, 30 Aug 2013 21:21:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67315
+https://bugs.freedesktop.org/show_bug.cgi?id=54786
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|System lockup with X        |[NVAA] System lockup with X
-                   |consuming all CPU           |consuming all CPU
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
---- Comment #22 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Did you mmiotrace nouveau or the nvidia proprietary driver? The request was for
-the latter. [Although I don't really see how that will help... but I also
-haven't looked at all the details of this bug.]
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+"failed to idle channel xxx" means "the gpu appears to not have hit a sync
+point". This can happen for a variety of reasons, differing for different
+hardware. It has a special propensity for showing up on a resume where
+operations were going on while the gpu was suspending, but can also happen in
+other circumstances.
 
-It would be worth testing 3.11-rc7 on this (or 3.11 if it's out by the time you
-get to it).
-
-I wonder if there's a bug somewhere handling the NVAA as NVA3+ (which it's
-not). But then NVAC would also be affected... or something in the ctxprogs...
-(I guess for which the mmiotrace could come in handy.)
+I'm going to close this bug because the issue is reportedly fixed for the
+original bug reporter, and every other commenter has vastly different hardware.
+I would advise each of you to update your software (kernel, xf86-video-nouveau,
+mesa) to the latest, and if problems persist file your own separate bugs,
+indicate what hardware you have, and what steps to reproduce, including logs.
+See http://nouveau.freedesktop.org/wiki/Bugs/
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377896771.b04beB62.18476
-Date: Fri, 30 Aug 2013 21:06:11 +0000
+--1377897714.a1Ddc4.21844
+Date: Fri, 30 Aug 2013 21:21:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,9 +69,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAA] System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315">bug 67315</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - random crashes of X with failed to idle channel 0xcccc0000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54786">bug 54786</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -78,34 +81,44 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>System lockup with X consuming all CPU
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>[NVAA] System lockup with X consuming all CPU
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAA] System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c22">Comment # 22</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - random crashes of X with failed to idle channel 0xcccc0000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54786#c12">Comment # 12</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAA] System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315">bug 67315</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - random crashes of X with failed to idle channel 0xcccc0000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54786">bug 54786</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Did you mmiotrace nouveau or the nvidia proprietary driver? The request was for
-the latter. [Although I don't really see how that will help... but I also
-haven't looked at all the details of this bug.]
+        <pre>&quot;failed to idle channel xxx&quot; means &quot;the gpu appears to not have hit a sync
+point&quot;. This can happen for a variety of reasons, differing for different
+hardware. It has a special propensity for showing up on a resume where
+operations were going on while the gpu was suspending, but can also happen in
+other circumstances.
 
-It would be worth testing 3.11-rc7 on this (or 3.11 if it's out by the time you
-get to it).
-
-I wonder if there's a bug somewhere handling the NVAA as NVA3+ (which it's
-not). But then NVAC would also be affected... or something in the ctxprogs...
-(I guess for which the mmiotrace could come in handy.)</pre>
+I'm going to close this bug because the issue is reportedly fixed for the
+original bug reporter, and every other commenter has vastly different hardware.
+I would advise each of you to update your software (kernel, xf86-video-nouveau,
+mesa) to the latest, and if problems persist file your own separate bugs,
+indicate what hardware you have, and what steps to reproduce, including logs.
+See <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a></pre>
         </div>
       </p>
       <hr>
@@ -117,9 +130,9 @@ not). But then NVAC would also be affected... or something in the ctxprogs...
     </body>
 </html>
 
---1377896771.b04beB62.18476--
+--1377897714.a1Ddc4.21844--
 
---===============0529556567==
+--===============0735660434==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -130,4 +143,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0529556567==--
+--===============0735660434==--
