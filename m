@@ -1,7 +1,7 @@
-From: Ben Skeggs <skeggsb@gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Subject: Re: [PATCH 6/6] drm/nouveau: use MSI interrupts
-Date: Fri, 30 Aug 2013 12:00:55 +1000
-Message-ID: <CACAvsv6OOmWVrRxzqbXnkhJEwm4mweq3o_3gGjoGit7ARHJSOg@mail.gmail.com>
+Date: Thu, 29 Aug 2013 22:01:31 -0400
+Message-ID: <CAKb7Uvj_E0h+9RHqOtHJvnV1td+7BmKqKVGTEwLzYkDsyTfJpg@mail.gmail.com>
 References: <1377648050-6649-1-git-send-email-dev@lynxeye.de>
 	<1377648050-6649-7-git-send-email-dev@lynxeye.de>
 	<CACAvsv5shyLkE-WdJj6yDx1hhFtNRkuzujxQasWd2MAaVMjJ7A@mail.gmail.com>
@@ -17,37 +17,37 @@ References: <1377648050-6649-1-git-send-email-dev@lynxeye.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <CACAvsv5f3vfP1Fs41N=L8Sc_ih32_h5Vz44mjMTJ-WXH9mDe0A@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CACAvsv5f3vfP1Fs41N=L8Sc_ih32_h5Vz44mjMTJ-WXH9mDe0A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Aug 30, 2013 at 11:58 AM, Ben Skeggs <skeggsb@gmail.com> wrote:
-> On Fri, Aug 30, 2013 at 11:10 AM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
->> On Thu, Aug 29, 2013 at 1:07 AM, Ben Skeggs <skeggsb@gmail.com> wrote:
->>> On Thu, Aug 29, 2013 at 3:00 PM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
->>>> On Thu, Aug 29, 2013 at 12:45 AM, Ben Skeggs <skeggsb@gmail.com> wrote:
->>>>> On Thu, Aug 29, 2013 at 12:20 PM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
->>>>>> On Wed, Aug 28, 2013 at 8:07 PM, Ben Skeggs <skeggsb@gmail.com> wrote:
->>>>>>> On Wed, Aug 28, 2013 at 11:54 PM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
->>>>>>>> On Wed, Aug 28, 2013 at 3:28 AM, Lucas Stach <dev@lynxeye.de> wrote:
+On Thu, Aug 29, 2013 at 9:58 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On Fri, Aug 30, 2013 at 11:10 AM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+>> On Thu, Aug 29, 2013 at 1:07 AM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>>> On Thu, Aug 29, 2013 at 3:00 PM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+>>>> On Thu, Aug 29, 2013 at 12:45 AM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>>>>> On Thu, Aug 29, 2013 at 12:20 PM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+>>>>>> On Wed, Aug 28, 2013 at 8:07 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>>>>>>> On Wed, Aug 28, 2013 at 11:54 PM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+>>>>>>>> On Wed, Aug 28, 2013 at 3:28 AM, Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> wrote:
 >>>>>>>>> Am Mittwoch, den 28.08.2013, 17:09 +1000 schrieb Ben Skeggs:
->>>>>>>>>> On Wed, Aug 28, 2013 at 10:00 AM, Lucas Stach <dev@lynxeye.de> wrote:
+>>>>>>>>>> On Wed, Aug 28, 2013 at 10:00 AM, Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> wrote:
 >>>>>>>>>> > MSIs were only problematic on some old, broken chipsets. But now that we
 >>>>>>>>>> > already see systems where PCI legacy interrupts are somewhat flaky, it's
 >>>>>>>>>> > really time to move to MSIs.
 >>>>>>>>>> >
->>>>>>>>>> > Signed-off-by: Lucas Stach <dev@lynxeye.de>
+>>>>>>>>>> > Signed-off-by: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
 >>>>>>>>>> > ---
 >>>>>>>>>> >  drivers/gpu/drm/nouveau/core/include/subdev/mc.h |  1 +
 >>>>>>>>>> >  drivers/gpu/drm/nouveau/core/subdev/mc/base.c    | 17 +++++++++++++++++
@@ -268,8 +268,8 @@ On Fri, Aug 30, 2013 at 11:58 AM, Ben Skeggs <skeggsb@gmail.com> wrote:
 > BR02-using pretend PCIE cards.
 >
 > What's the pccid of your nv3x board?
-Err, ignore that.  It's in the lspci output of an earlier mail!
 
->
->>
->>   -ilia
+I assume that was a typo and you meant "pci id"? If so, 10de:00fd. You
+can see the full info (including ids) in the quoted part above.
+
+  -ilia
