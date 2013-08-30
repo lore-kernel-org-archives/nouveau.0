@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51157] [NVC1] GeForce GT 540M not working anymore
-Date: Fri, 30 Aug 2013 23:39:25 +0000
-Message-ID: <bug-51157-8800-36uECHUInJ@http.bugs.freedesktop.org/>
-References: <bug-51157-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 41588] suspend/resume with active CRTC,
+ but disconnected output causes problems
+Date: Fri, 30 Aug 2013 23:43:16 +0000
+Message-ID: <bug-41588-8800-slOElMQ1bt@http.bugs.freedesktop.org/>
+References: <bug-41588-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2085308490=="
+Content-Type: multipart/mixed; boundary="===============1367819060=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51157-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-41588-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2085308490==
-Content-Type: multipart/alternative; boundary="1377905965.aA0AC82.17745"; charset="us-ascii"
+--===============1367819060==
+Content-Type: multipart/alternative; boundary="1377906196.ABfDB7F21.18458"; charset="us-ascii"
 
 
---1377905965.aA0AC82.17745
-Date: Fri, 30 Aug 2013 23:39:25 +0000
+--1377906196.ABfDB7F21.18458
+Date: Fri, 30 Aug 2013 23:43:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51157
+https://bugs.freedesktop.org/show_bug.cgi?id=41588
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|GeForce GT 540M not working |[NVC1] GeForce GT 540M not
-                   |anymore                     |working anymore
-
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Do problems persist with the latest kernels (e.g. 3.11-rc7 at the time of
-writing)? If so, please attach a recent dmesg.
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Does this still happen with the latest kernel?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377905965.aA0AC82.17745
-Date: Fri, 30 Aug 2013 23:39:25 +0000
+--1377906196.ABfDB7F21.18458
+Date: Fri, 30 Aug 2013 23:43:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,41 +48,20 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] GeForce GT 540M not working anymore"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51157">bug 51157</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>GeForce GT 540M not working anymore
-           </td>
-           <td>[NVC1] GeForce GT 540M not working anymore
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] GeForce GT 540M not working anymore"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51157#c5">Comment # 5</a>
+   title="NEW --- - suspend/resume with active CRTC, but disconnected output causes problems"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=41588#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] GeForce GT 540M not working anymore"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51157">bug 51157</a>
+   title="NEW --- - suspend/resume with active CRTC, but disconnected output causes problems"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=41588">bug 41588</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Do problems persist with the latest kernels (e.g. 3.11-rc7 at the time of
-writing)? If so, please attach a recent dmesg.</pre>
+        <pre>Does this still happen with the latest kernel?</pre>
         </div>
       </p>
       <hr>
@@ -101,9 +73,9 @@ writing)? If so, please attach a recent dmesg.</pre>
     </body>
 </html>
 
---1377905965.aA0AC82.17745--
+--1377906196.ABfDB7F21.18458--
 
---===============2085308490==
+--===============1367819060==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -114,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2085308490==--
+--===============1367819060==--
