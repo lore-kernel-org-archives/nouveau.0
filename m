@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67628] [BISECTED] Monitor on Display port shows
-	distortions
-Date: Fri, 30 Aug 2013 10:14:49 +0000
-Message-ID: <bug-67628-8800-2WIGmx2Loh@http.bugs.freedesktop.org/>
-References: <bug-67628-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60007] BUG: nouveau crashes in various ways in
+ 32-bits Fedora 18
+Date: Fri, 30 Aug 2013 11:20:19 +0000
+Message-ID: <bug-60007-8800-VnB7nx6AT1@http.bugs.freedesktop.org/>
+References: <bug-60007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0786063511=="
+Content-Type: multipart/mixed; boundary="===============1030952677=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67628-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-60007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0786063511==
-Content-Type: multipart/alternative; boundary="1377857689.d5d46742.9628"; charset="us-ascii"
+--===============1030952677==
+Content-Type: multipart/alternative; boundary="1377861619.fd3D2.24445"; charset="us-ascii"
 
 
---1377857689.d5d46742.9628
-Date: Fri, 30 Aug 2013 10:14:49 +0000
+--1377861619.fd3D2.24445
+Date: Fri, 30 Aug 2013 11:20:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67628
+https://bugs.freedesktop.org/show_bug.cgi?id=60007
 
---- Comment #4 from Per Arnold Blaasmo <per.arnold-E3z7vgVcB3VuMpJDpNschA@public.gmane.org> ---
-I have the same problem with dual screen and displayport.
-I have described it in bug #66129.
+--- Comment #19 from Cornel Panceac <cpanceac-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi Ilia, I have just switched back to gm=nome-shell and i"ll use it for a while
+to see how stable it is. In gnome 3 Fallback Mode i did not have any
+significant issues. I"m using the latest Fedora kernel:
 
-Bug #66129 was resolved for VGA displays, but not for displayport.
+$ uname -a
+Linux localhost.localdomain 3.9.11-200.fc18.i686.PAE #1 SMP Mon Jul 22 21:19:06
+UTC 2013 i686 i686 i386 GNU/Linux
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377857689.d5d46742.9628
-Date: Fri, 30 Aug 2013 10:14:49 +0000
+--1377861619.fd3D2.24445
+Date: Fri, 30 Aug 2013 11:20:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,24 +59,21 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [BISECTED] Monitor on Display port shows distortions"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67628#c4">Comment # 4</a>
+   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [BISECTED] Monitor on Display port shows distortions"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67628">bug 67628</a>
-              from <span class="vcard"><a class="email" href="mailto:per.arnold&#64;blaasmo.no" title="Per Arnold Blaasmo &lt;per.arnold&#64;blaasmo.no&gt;"> <span class="fn">Per Arnold Blaasmo</span></a>
+   title="NEW --- - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">bug 60007</a>
+              from <span class="vcard"><a class="email" href="mailto:cpanceac&#64;gmail.com" title="Cornel Panceac &lt;cpanceac&#64;gmail.com&gt;"> <span class="fn">Cornel Panceac</span></a>
 </span></b>
-        <pre>I have the same problem with dual screen and displayport.
-I have described it in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [BISECTED] nouveau, nv50: dual display doesn't work in 3.9"
-   href="show_bug.cgi?id=66129">bug #66129</a>.
+        <pre>Hi Ilia, I have just switched back to gm=nome-shell and i&quot;ll use it for a while
+to see how stable it is. In gnome 3 Fallback Mode i did not have any
+significant issues. I&quot;m using the latest Fedora kernel:
 
-<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [BISECTED] nouveau, nv50: dual display doesn't work in 3.9"
-   href="show_bug.cgi?id=66129">Bug #66129</a> was resolved for VGA displays, but not for displayport.</pre>
+$ uname -a
+Linux localhost.localdomain 3.9.11-200.fc18.i686.PAE #1 SMP Mon Jul 22 21:19:06
+UTC 2013 i686 i686 i386 GNU/Linux</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +85,9 @@ I have described it in <a class="bz_bug_link
     </body>
 </html>
 
---1377857689.d5d46742.9628--
+--1377861619.fd3D2.24445--
 
---===============0786063511==
+--===============1030952677==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0786063511==--
+--===============1030952677==--
