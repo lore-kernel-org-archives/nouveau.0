@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57326] [NVCE] gpu lockup when using hardware
- acceleration in AndroVM
-Date: Sat, 31 Aug 2013 06:15:12 +0000
-Message-ID: <bug-57326-8800-kIrIZcDIXo@http.bugs.freedesktop.org/>
-References: <bug-57326-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 48745] windows are clipped to a certain vertical
+	space
+Date: Sat, 31 Aug 2013 06:20:20 +0000
+Message-ID: <bug-48745-8800-BlQCi80rz6@http.bugs.freedesktop.org/>
+References: <bug-48745-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0206460196=="
+Content-Type: multipart/mixed; boundary="===============0921445171=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57326-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-48745-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0206460196==
-Content-Type: multipart/alternative; boundary="1377929712.63D80.27296"; charset="us-ascii"
+--===============0921445171==
+Content-Type: multipart/alternative; boundary="1377930020.eaf70CED2.28125"; charset="us-ascii"
 
 
---1377929712.63D80.27296
-Date: Sat, 31 Aug 2013 06:15:12 +0000
+--1377930020.eaf70CED2.28125
+Date: Sat, 31 Aug 2013 06:20:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57326
+https://bugs.freedesktop.org/show_bug.cgi?id=48745
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|gpu lockup when using       |[NVCE] gpu lockup when
-                   |hardware acceleration in    |using hardware acceleration
-                   |AndroVM                     |in AndroVM
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-VirtualBox is well known for scribbling all over kernel memory (there's a
-reason its modules mark the kernel as tainted), it will be hard to debug
-anything relying on vbox... can you reproduce this with a "regular" program?
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Looks like you filed another bug with more detailed information about the same
+issue. Marking this as the dup of the better bug (and one I've already asked a
+follow-up question on)
 
-Also, you might want to try the latest kernel/mesa, might help with vbox.
+*** This bug has been marked as a duplicate of bug 58101 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377929712.63D80.27296
-Date: Sat, 31 Aug 2013 06:15:12 +0000
+--1377930020.eaf70CED2.28125
+Date: Sat, 31 Aug 2013 06:20:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,9 +62,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVCE] gpu lockup when using hardware acceleration in AndroVM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57326">bug 57326</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - windows are clipped to a certain vertical space"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48745">bug 48745</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -75,29 +74,40 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>gpu lockup when using hardware acceleration in AndroVM
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>[NVCE] gpu lockup when using hardware acceleration in AndroVM
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVCE] gpu lockup when using hardware acceleration in AndroVM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57326#c2">Comment # 2</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - windows are clipped to a certain vertical space"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48745#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVCE] gpu lockup when using hardware acceleration in AndroVM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57326">bug 57326</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - windows are clipped to a certain vertical space"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48745">bug 48745</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>VirtualBox is well known for scribbling all over kernel memory (there's a
-reason its modules mark the kernel as tainted), it will be hard to debug
-anything relying on vbox... can you reproduce this with a &quot;regular&quot; program?
+        <pre>Looks like you filed another bug with more detailed information about the same
+issue. Marking this as the dup of the better bug (and one I've already asked a
+follow-up question on)
 
-Also, you might want to try the latest kernel/mesa, might help with vbox.</pre>
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV34] Rendering problems with a Geforce Go 5300"
+   href="show_bug.cgi?id=58101">bug 58101</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +119,9 @@ Also, you might want to try the latest kernel/mesa, might help with vbox.</pre>
     </body>
 </html>
 
---1377929712.63D80.27296--
+--1377930020.eaf70CED2.28125--
 
---===============0206460196==
+--===============0921445171==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +132,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0206460196==--
+--===============0921445171==--
