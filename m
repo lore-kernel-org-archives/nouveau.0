@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31120] Backlight off after suspend-to-disk on
+Subject: [Bug 31122] Cannot control backlight intensity on
 	Powerbook
-Date: Sat, 31 Aug 2013 02:30:20 +0000
-Message-ID: <bug-31120-8800-S9cLYC2a3X@http.bugs.freedesktop.org/>
-References: <bug-31120-8800@http.bugs.freedesktop.org/>
+Date: Sat, 31 Aug 2013 02:51:06 +0000
+Message-ID: <bug-31122-8800-98hkSvRt6x@http.bugs.freedesktop.org/>
+References: <bug-31122-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0491213265=="
+Content-Type: multipart/mixed; boundary="===============1799711411=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31120-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31122-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0491213265==
-Content-Type: multipart/alternative; boundary="1377916220.b4512.20079"; charset="us-ascii"
+--===============1799711411==
+Content-Type: multipart/alternative; boundary="1377917466.b2ddFCDb3.24060"; charset="us-ascii"
 
 
---1377916220.b4512.20079
-Date: Sat, 31 Aug 2013 02:30:20 +0000
+--1377917466.b2ddFCDb3.24060
+Date: Sat, 31 Aug 2013 02:51:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31120
+https://bugs.freedesktop.org/show_bug.cgi?id=31122
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 84946
-  --> https://bugs.freedesktop.org/attachment.cgi?id=84946&action=edit
-fix typo
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+What do the Fn+X keys do? I assume they just act as a keypress? (And I'm
+guessing that the nv driver hooks into that somehow... although the only
+reference to 10f0 that I see is in turning the thing on/off, perhaps it just
+leaves something untouched that nouveau touches and messes up.)
 
-I won't pretend to understand any issues surrounding ppc, powerbooks, etc.
-However this seems like an obvious typo. Can you see if this helps your
-situation?
+This should be fairly easy to implement... You know what register to control,
+what the min/max are. I'm guessing it's just 10f0 that matters -- the other
+register controls whether the CRTC is on/off.
+
+It should be easy to stick something into nouveau_backlight.c that deals with
+your sitation. Instead of keying off of card family, you'd key off of
+dev->pci_device, like dfp.c:nv04_dfp_update_backlight does. You should give it
+a shot if you're interested.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377916220.b4512.20079
-Date: Sat, 31 Aug 2013 02:30:20 +0000
+--1377917466.b2ddFCDb3.24060
+Date: Sat, 31 Aug 2013 02:51:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,20 +65,27 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Backlight off after suspend-to-disk on Powerbook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120#c2">Comment # 2</a>
+   title="NEW --- - Cannot control backlight intensity on Powerbook"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31122#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Backlight off after suspend-to-disk on Powerbook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120">bug 31120</a>
+   title="NEW --- - Cannot control backlight intensity on Powerbook"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31122">bug 31122</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=84946" name="attach_84946" title="fix typo">attachment 84946</a> <a href="attachment.cgi?id=84946&amp;action=edit" title="fix typo">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=31120&amp;attachment=84946'>[review]</a>
-fix typo
+        <pre>What do the Fn+X keys do? I assume they just act as a keypress? (And I'm
+guessing that the nv driver hooks into that somehow... although the only
+reference to 10f0 that I see is in turning the thing on/off, perhaps it just
+leaves something untouched that nouveau touches and messes up.)
 
-I won't pretend to understand any issues surrounding ppc, powerbooks, etc.
-However this seems like an obvious typo. Can you see if this helps your
-situation?</pre>
+This should be fairly easy to implement... You know what register to control,
+what the min/max are. I'm guessing it's just 10f0 that matters -- the other
+register controls whether the CRTC is on/off.
+
+It should be easy to stick something into nouveau_backlight.c that deals with
+your sitation. Instead of keying off of card family, you'd key off of
+dev-&gt;pci_device, like dfp.c:nv04_dfp_update_backlight does. You should give it
+a shot if you're interested.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +97,9 @@ situation?</pre>
     </body>
 </html>
 
---1377916220.b4512.20079--
+--1377917466.b2ddFCDb3.24060--
 
---===============0491213265==
+--===============1799711411==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +110,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0491213265==--
+--===============1799711411==--
