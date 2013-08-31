@@ -1,10 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47965] [NVC1] brightness adjustments don't work
-Date: Sat, 31 Aug 2013 04:05:22 +0000
-Message-ID: <bug-47965-8800-uXeq3eSSTU@http.bugs.freedesktop.org/>
+Subject: [Bug 47965] [NVC1] brightness adjustments don't work on
+ HP Elitebook 8560w
+Date: Sat, 31 Aug 2013 04:12:01 +0000
+Message-ID: <bug-47965-8800-TYWsjHKsCG@http.bugs.freedesktop.org/>
 References: <bug-47965-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1380275204=="
+Content-Type: multipart/mixed; boundary="===============0622314273=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-47965-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1380275204==
-Content-Type: multipart/alternative; boundary="1377921923.47bcdf13.4808"; charset="us-ascii"
+--===============0622314273==
+Content-Type: multipart/alternative; boundary="1377922321.7376A53.5841"; charset="us-ascii"
 
 
---1377921923.47bcdf13.4808
-Date: Sat, 31 Aug 2013 04:05:23 +0000
+--1377922321.7376A53.5841
+Date: Sat, 31 Aug 2013 04:12:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,18 +36,16 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|I can't modify brightness   |[NVC1] brightness
-                   |with nVidia 1000m Quadro    |adjustments don't work
-
---- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Is this still an issue, with acpi_backlight=vendor, with the latest kernel?
+            Summary|[NVC1] brightness           |[NVC1] brightness
+                   |adjustments don't work      |adjustments don't work on
+                   |                            |HP Elitebook 8560w
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377921923.47bcdf13.4808
-Date: Sat, 31 Aug 2013 04:05:23 +0000
+--1377922321.7376A53.5841
+Date: Sat, 31 Aug 2013 04:12:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,7 +57,7 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] brightness adjustments don't work"
+   title="NEW --- - [NVC1] brightness adjustments don't work on HP Elitebook 8560w"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=47965">bug 47965</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -70,25 +69,12 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>I can't modify brightness with nVidia 1000m Quadro
-           </td>
            <td>[NVC1] brightness adjustments don't work
+           </td>
+           <td>[NVC1] brightness adjustments don't work on HP Elitebook 8560w
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] brightness adjustments don't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47965#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] brightness adjustments don't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47965">bug 47965</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Is this still an issue, with acpi_backlight=vendor, with the latest kernel?</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -99,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377921923.47bcdf13.4808--
+--1377922321.7376A53.5841--
 
---===============1380275204==
+--===============0622314273==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -112,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1380275204==--
+--===============0622314273==--
