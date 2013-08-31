@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60175] [NVA8] Repeatable kernel panics in iowrite32
- when visiting websites with adobe flash enabled
-Date: Sat, 31 Aug 2013 05:58:27 +0000
-Message-ID: <bug-60175-8800-Mkh1pG6HWT@http.bugs.freedesktop.org/>
-References: <bug-60175-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56757] [NV42/NV30 gallium] UrbanTerror4.2 gets parts
+ of images cut off
+Date: Sat, 31 Aug 2013 06:11:11 +0000
+Message-ID: <bug-56757-8800-o0vlMlENUu@http.bugs.freedesktop.org/>
+References: <bug-56757-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0684502056=="
+Content-Type: multipart/mixed; boundary="===============0729982735=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60175-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-56757-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0684502056==
-Content-Type: multipart/alternative; boundary="1377928707.F7D0E1.24087"; charset="us-ascii"
+--===============0729982735==
+Content-Type: multipart/alternative; boundary="1377929471.500B01.26462"; charset="us-ascii"
 
 
---1377928707.F7D0E1.24087
-Date: Sat, 31 Aug 2013 05:58:27 +0000
+--1377929471.500B01.26462
+Date: Sat, 31 Aug 2013 06:11:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60175
+https://bugs.freedesktop.org/show_bug.cgi?id=56757
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Repeatable kernel panics    |[NVA8] Repeatable kernel
-                   |when visiting websites with |panics in iowrite32 when
-                   |adobe flash enabled         |visiting websites with
-                   |                            |adobe flash enabled
+            Summary|[regression][bisected][scre |[NV42/NV30 gallium]
+                   |enshots] nvfx -> nv30       |UrbanTerror4.2 gets parts
+                   |driver rework causes        |of images cut off
+                   |regression in               |
+                   |UrbanTerror4.2 (beta5)      |
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I used to get this on older kernels too, but it doesn't seem to happen anymore.
-Can you see if this is still an issue for you in 3.10.x or 3.11-rc7?
+--- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Just tested this out on NV42 with mesa ~9.2, and just clicking on "start
+server" which brings up a settings screen shows half the settings cut off at
+the bottom.
 
-If it still happens, can you find some exact websites (publically accessible)
-that cause it (and what browser)?
+This ends up triggering the "swizzled and linear textures at the same time"
+problem I've seen before, but I don't know if it's directly related -- that
+tends to just not show textures at all/show stale data rather than cutting
+stuff off.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377928707.F7D0E1.24087
-Date: Sat, 31 Aug 2013 05:58:27 +0000
+--1377929471.500B01.26462
+Date: Sat, 31 Aug 2013 06:11:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,8 +69,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA8] Repeatable kernel panics in iowrite32 when visiting websites with adobe flash enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60175">bug 60175</a>
+   title="NEW --- - [NV42/NV30 gallium] UrbanTerror4.2 gets parts of images cut off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757">bug 56757</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -77,28 +81,31 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>Repeatable kernel panics when visiting websites with adobe flash enabled
+           <td>[regression][bisected][screenshots] nvfx -&gt; nv30 driver rework causes regression in UrbanTerror4.2 (beta5)
            </td>
-           <td>[NVA8] Repeatable kernel panics in iowrite32 when visiting websites with adobe flash enabled
+           <td>[NV42/NV30 gallium] UrbanTerror4.2 gets parts of images cut off
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA8] Repeatable kernel panics in iowrite32 when visiting websites with adobe flash enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60175#c5">Comment # 5</a>
+   title="NEW --- - [NV42/NV30 gallium] UrbanTerror4.2 gets parts of images cut off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA8] Repeatable kernel panics in iowrite32 when visiting websites with adobe flash enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60175">bug 60175</a>
+   title="NEW --- - [NV42/NV30 gallium] UrbanTerror4.2 gets parts of images cut off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56757">bug 56757</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I used to get this on older kernels too, but it doesn't seem to happen anymore.
-Can you see if this is still an issue for you in 3.10.x or 3.11-rc7?
+        <pre>Just tested this out on NV42 with mesa ~9.2, and just clicking on &quot;start
+server&quot; which brings up a settings screen shows half the settings cut off at
+the bottom.
 
-If it still happens, can you find some exact websites (publically accessible)
-that cause it (and what browser)?</pre>
+This ends up triggering the &quot;swizzled and linear textures at the same time&quot;
+problem I've seen before, but I don't know if it's directly related -- that
+tends to just not show textures at all/show stale data rather than cutting
+stuff off.</pre>
         </div>
       </p>
       <hr>
@@ -110,9 +117,9 @@ that cause it (and what browser)?</pre>
     </body>
 </html>
 
---1377928707.F7D0E1.24087--
+--1377929471.500B01.26462--
 
---===============0684502056==
+--===============0729982735==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +130,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0684502056==--
+--===============0729982735==--
