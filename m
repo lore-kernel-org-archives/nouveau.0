@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51362] [NVE7] DisplayPort output on nVidia Quadro
- K2000M (ThinkPad W530) doesn't work
-Date: Sat, 31 Aug 2013 02:19:16 +0000
-Message-ID: <bug-51362-8800-6iTKlNoCd7@http.bugs.freedesktop.org/>
-References: <bug-51362-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31120] Backlight off after suspend-to-disk on
+	Powerbook
+Date: Sat, 31 Aug 2013 02:30:20 +0000
+Message-ID: <bug-31120-8800-S9cLYC2a3X@http.bugs.freedesktop.org/>
+References: <bug-31120-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1673779501=="
+Content-Type: multipart/mixed; boundary="===============0491213265=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51362-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31120-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1673779501==
-Content-Type: multipart/alternative; boundary="1377915556.b3a4252.17295"; charset="us-ascii"
+--===============0491213265==
+Content-Type: multipart/alternative; boundary="1377916220.b4512.20079"; charset="us-ascii"
 
 
---1377915556.b3a4252.17295
-Date: Sat, 31 Aug 2013 02:19:16 +0000
+--1377916220.b4512.20079
+Date: Sat, 31 Aug 2013 02:30:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51362
+https://bugs.freedesktop.org/show_bug.cgi?id=31120
 
---- Comment #11 from e.swanson+xorgbugs-5lA2vZBjcqn3oGB3hsPCZA@public.gmane.org ---
-I've been stuck on 3.9 because there's a bug with the nvidia blob,
-kepler gpus, and optimus on 3.10 or later. I tried nouveau's arch linux
-packages on 3.10, but it was still an issue then. I can try building
-3.11-rc7 to test later this weekend if that'd be helpful information.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 84946
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84946&action=edit
+fix typo
+
+I won't pretend to understand any issues surrounding ppc, powerbooks, etc.
+However this seems like an obvious typo. Can you see if this helps your
+situation?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377915556.b3a4252.17295
-Date: Sat, 31 Aug 2013 02:19:16 +0000
+--1377916220.b4512.20079
+Date: Sat, 31 Aug 2013 02:30:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,18 +59,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] DisplayPort output on nVidia Quadro K2000M (ThinkPad W530) doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51362#c11">Comment # 11</a>
+   title="NEW --- - Backlight off after suspend-to-disk on Powerbook"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] DisplayPort output on nVidia Quadro K2000M (ThinkPad W530) doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51362">bug 51362</a>
-              from <span class="vcard"><a class="email" href="mailto:e.swanson+xorgbugs&#64;alloscomp.com" title="e.swanson+xorgbugs&#64;alloscomp.com">e.swanson+xorgbugs&#64;alloscomp.com</a>
+   title="NEW --- - Backlight off after suspend-to-disk on Powerbook"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120">bug 31120</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I've been stuck on 3.9 because there's a bug with the nvidia blob,
-kepler gpus, and optimus on 3.10 or later. I tried nouveau's arch linux
-packages on 3.10, but it was still an issue then. I can try building
-3.11-rc7 to test later this weekend if that'd be helpful information.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=84946" name="attach_84946" title="fix typo">attachment 84946</a> <a href="attachment.cgi?id=84946&amp;action=edit" title="fix typo">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=31120&amp;attachment=84946'>[review]</a>
+fix typo
+
+I won't pretend to understand any issues surrounding ppc, powerbooks, etc.
+However this seems like an obvious typo. Can you see if this helps your
+situation?</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +84,9 @@ packages on 3.10, but it was still an issue then. I can try building
     </body>
 </html>
 
---1377915556.b3a4252.17295--
+--1377916220.b4512.20079--
 
---===============1673779501==
+--===============0491213265==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1673779501==--
+--===============0491213265==--
