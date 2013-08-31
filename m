@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68768] [NV92] PTHERM unhandled intr error during boot
-Date: Sat, 31 Aug 2013 16:55:00 +0000
-Message-ID: <bug-68768-8800-bC4kX0k8w7@http.bugs.freedesktop.org/>
-References: <bug-68768-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 49786] In xterm,
+ some rectangles are not redrawn when the window is partly covered
+Date: Sat, 31 Aug 2013 17:43:29 +0000
+Message-ID: <bug-49786-8800-QF4ZYIQh43@http.bugs.freedesktop.org/>
+References: <bug-49786-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0138056112=="
+Content-Type: multipart/mixed; boundary="===============2076810844=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68768-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-49786-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0138056112==
-Content-Type: multipart/alternative; boundary="1377968100.d721bD32.10347"; charset="us-ascii"
+--===============2076810844==
+Content-Type: multipart/alternative; boundary="1377971008.cAEaC31.16379"; charset="us-ascii"
 
 
---1377968100.d721bD32.10347
-Date: Sat, 31 Aug 2013 16:55:00 +0000
+--1377971008.cAEaC31.16379
+Date: Sat, 31 Aug 2013 17:43:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68768
+https://bugs.freedesktop.org/show_bug.cgi?id=49786
 
---- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-As per my earlier comment, see
-https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/thermal/nouveau_thermal
+--- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Also tested on NV42, doesn't happen there either. Further points to something
+in the nv50 exa rather than something generic...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377968100.d721bD32.10347
-Date: Sat, 31 Aug 2013 16:55:00 +0000
+--1377971008.cAEaC31.16379
+Date: Sat, 31 Aug 2013 17:43:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,16 +54,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV92] PTHERM unhandled intr error during boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68768#c11">Comment # 11</a>
+   title="NEW --- - In xterm, some rectangles are not redrawn when the window is partly covered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49786#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV92] PTHERM unhandled intr error during boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68768">bug 68768</a>
+   title="NEW --- - In xterm, some rectangles are not redrawn when the window is partly covered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49786">bug 49786</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>As per my earlier comment, see
-<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/thermal/nouveau_thermal">https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/thermal/nouveau_thermal</a></pre>
+        <pre>Also tested on NV42, doesn't happen there either. Further points to something
+in the nv50 exa rather than something generic...</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +75,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377968100.d721bD32.10347--
+--1377971008.cAEaC31.16379--
 
---===============0138056112==
+--===============2076810844==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0138056112==--
+--===============2076810844==--
