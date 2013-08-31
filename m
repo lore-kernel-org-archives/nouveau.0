@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39550] [NV96] Brightness stuck to low value after
- suspend/resume on HP Elitebook 8530w
-Date: Sat, 31 Aug 2013 16:13:36 +0000
-Message-ID: <bug-39550-8800-IjjSHnKFLr@http.bugs.freedesktop.org/>
-References: <bug-39550-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57326] [NVCE] gpu lockup when using hardware
+ acceleration in AndroVM
+Date: Sat, 31 Aug 2013 16:31:02 +0000
+Message-ID: <bug-57326-8800-R6WoI2qKLP@http.bugs.freedesktop.org/>
+References: <bug-57326-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1731633515=="
+Content-Type: multipart/mixed; boundary="===============1257096016=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57326-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1731633515==
-Content-Type: multipart/alternative; boundary="1377965616.EbFb5fF7.5253"; charset="us-ascii"
+--===============1257096016==
+Content-Type: multipart/alternative; boundary="1377966662.B6F0A0.7033"; charset="us-ascii"
 
 
---1377965616.EbFb5fF7.5253
-Date: Sat, 31 Aug 2013 16:13:36 +0000
+--1377966662.B6F0A0.7033
+Date: Sat, 31 Aug 2013 16:31:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39550
+https://bugs.freedesktop.org/show_bug.cgi?id=57326
 
---- Comment #43 from rick <rick.hendricksen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #41)
-> What backlight driver is being used? Please post your dmesg. Are you booting
-> with acpi_backlight=vendor ?
-
-No, I am booting with the following command line:
-[    0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz-linux
-root=UUID=d30907c8-9c00-4b4f-9dfb-b01990328a7a rw loglevel=3
-
-Also, is there an IRC channel or something I could join to speed up
-communication regarding this bug?
+--- Comment #5 from thepouar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Haven't tried it anywhere else, QEMU has no hardware acceleration and VMware is
+crap compared to VBox and is proprietary. I'm guessing you don't have a 560 Ti
+on hand to test this on or you wouldn't need to ask these questions, or you
+just don't have a Windows 7 VM on hand. Which would explain why some of these
+bugs exist, it is pretty impressive you guys got nouveau to work this well.
+Nvidia should be paying you.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377965616.EbFb5fF7.5253
-Date: Sat, 31 Aug 2013 16:13:36 +0000
+--1377966662.B6F0A0.7033
+Date: Sat, 31 Aug 2013 16:31:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,24 +58,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV96] Brightness stuck to low value after suspend/resume on HP Elitebook 8530w"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=39550#c43">Comment # 43</a>
+   title="NEW --- - [NVCE] gpu lockup when using hardware acceleration in AndroVM"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57326#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV96] Brightness stuck to low value after suspend/resume on HP Elitebook 8530w"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=39550">bug 39550</a>
-              from <span class="vcard"><a class="email" href="mailto:rick.hendricksen&#64;gmail.com" title="rick &lt;rick.hendricksen&#64;gmail.com&gt;"> <span class="fn">rick</span></a>
+   title="NEW --- - [NVCE] gpu lockup when using hardware acceleration in AndroVM"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57326">bug 57326</a>
+              from <span class="vcard"><a class="email" href="mailto:thepouar&#64;gmail.com" title="thepouar&#64;gmail.com">thepouar&#64;gmail.com</a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=39550#c41">comment #41</a>)
-<span class="quote">&gt; What backlight driver is being used? Please post your dmesg. Are you booting
-&gt; with acpi_backlight=vendor ?</span >
-
-No, I am booting with the following command line:
-[    0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz-linux
-root=UUID=d30907c8-9c00-4b4f-9dfb-b01990328a7a rw loglevel=3
-
-Also, is there an IRC channel or something I could join to speed up
-communication regarding this bug?</pre>
+        <pre>Haven't tried it anywhere else, QEMU has no hardware acceleration and VMware is
+crap compared to VBox and is proprietary. I'm guessing you don't have a 560 Ti
+on hand to test this on or you wouldn't need to ask these questions, or you
+just don't have a Windows 7 VM on hand. Which would explain why some of these
+bugs exist, it is pretty impressive you guys got nouveau to work this well.
+Nvidia should be paying you.</pre>
         </div>
       </p>
       <hr>
@@ -91,9 +83,9 @@ communication regarding this bug?</pre>
     </body>
 </html>
 
---1377965616.EbFb5fF7.5253--
+--1377966662.B6F0A0.7033--
 
---===============1731633515==
+--===============1257096016==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1731633515==--
+--===============1257096016==--
