@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 52398] nouveau: DPMS permanently turns off display
- when starting X.org, text console works fine
-Date: Sat, 31 Aug 2013 05:44:03 +0000
-Message-ID: <bug-52398-8800-OXvXl4v4Xy@http.bugs.freedesktop.org/>
-References: <bug-52398-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57350] [nouveau,
+ linux-3.7-rc] Broken cursor and kernel log swamped with trapped
+ reads/writes from BAR/PFIFO_READ/FB
+Date: Sat, 31 Aug 2013 05:49:42 +0000
+Message-ID: <bug-57350-8800-yRAfxFxc5z@http.bugs.freedesktop.org/>
+References: <bug-57350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0347569165=="
+Content-Type: multipart/mixed; boundary="===============2089015417=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-52398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +22,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0347569165==
-Content-Type: multipart/alternative; boundary="1377927843.1B7AC8bE1.21626"; charset="us-ascii"
+--===============2089015417==
+Content-Type: multipart/alternative; boundary="1377928182.A5013Db44.22657"; charset="us-ascii"
 
 
---1377927843.1B7AC8bE1.21626
-Date: Sat, 31 Aug 2013 05:44:03 +0000
+--1377928182.A5013Db44.22657
+Date: Sat, 31 Aug 2013 05:49:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=52398
+https://bugs.freedesktop.org/show_bug.cgi?id=57350
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could you test out https://bugs.freedesktop.org/attachment.cgi?id=84946 and see
-if it helps?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #35 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Closing as fixed per the comments. There are several NVAF-related bugs
+currently open, feel free to subscribe to them. (I've requested retests on
+them, although haven't heard back yet.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377927843.1B7AC8bE1.21626
-Date: Sat, 31 Aug 2013 05:44:03 +0000
+--1377928182.A5013Db44.22657
+Date: Sat, 31 Aug 2013 05:49:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,21 +58,50 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350">bug 57350</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau: DPMS permanently turns off display when starting X.org, text console works fine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=52398#c7">Comment # 7</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350#c35">Comment # 35</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau: DPMS permanently turns off display when starting X.org, text console works fine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=52398">bug 52398</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nouveau, linux-3.7-rc] Broken cursor and kernel log swamped with trapped reads/writes from BAR/PFIFO_READ/FB"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57350">bug 57350</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Could you test out <a href="https://bugs.freedesktop.org/attachment.cgi?id=84946">https://bugs.freedesktop.org/attachment.cgi?id=84946</a> and see
-if it helps?</pre>
+        <pre>Closing as fixed per the comments. There are several NVAF-related bugs
+currently open, feel free to subscribe to them. (I've requested retests on
+them, although haven't heard back yet.)</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +113,9 @@ if it helps?</pre>
     </body>
 </html>
 
---1377927843.1B7AC8bE1.21626--
+--1377928182.A5013Db44.22657--
 
---===============0347569165==
+--===============2089015417==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +126,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0347569165==--
+--===============2089015417==--
