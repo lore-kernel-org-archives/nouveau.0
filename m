@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47965] [NVC1] brightness adjustments don't work on
- HP Elitebook 8560w
-Date: Sat, 31 Aug 2013 04:12:01 +0000
-Message-ID: <bug-47965-8800-TYWsjHKsCG@http.bugs.freedesktop.org/>
-References: <bug-47965-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39550] [NV96] Brightness stuck to low value after
+ suspend/resume on HP Elitebook 8530w
+Date: Sat, 31 Aug 2013 04:28:37 +0000
+Message-ID: <bug-39550-8800-FKhmOjMWJ7@http.bugs.freedesktop.org/>
+References: <bug-39550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0622314273=="
+Content-Type: multipart/mixed; boundary="===============1790443598=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47965-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0622314273==
-Content-Type: multipart/alternative; boundary="1377922321.7376A53.5841"; charset="us-ascii"
+--===============1790443598==
+Content-Type: multipart/alternative; boundary="1377923318.ce513fc8.8458"; charset="us-ascii"
 
 
---1377922321.7376A53.5841
-Date: Sat, 31 Aug 2013 04:12:01 +0000
+--1377923318.ce513fc8.8458
+Date: Sat, 31 Aug 2013 04:28:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47965
+https://bugs.freedesktop.org/show_bug.cgi?id=39550
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|[NVC1] brightness           |[NVC1] brightness
-                   |adjustments don't work      |adjustments don't work on
-                   |                            |HP Elitebook 8560w
+            Summary|Brightness stuck to low     |[NV96] Brightness stuck to
+                   |value after suspend/resume  |low value after
+                   |                            |suspend/resume on HP
+                   |                            |Elitebook 8530w
+
+--- Comment #39 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can someone confirm that this is fixed in newer kernels as Ben said it should
+be?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377922321.7376A53.5841
-Date: Sat, 31 Aug 2013 04:12:01 +0000
+--1377923318.ce513fc8.8458
+Date: Sat, 31 Aug 2013 04:28:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,8 +62,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] brightness adjustments don't work on HP Elitebook 8560w"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47965">bug 47965</a>
+   title="NEW --- - [NV96] Brightness stuck to low value after suspend/resume on HP Elitebook 8530w"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=39550">bug 39550</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -69,12 +74,26 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>[NVC1] brightness adjustments don't work
+           <td>Brightness stuck to low value after suspend/resume
            </td>
-           <td>[NVC1] brightness adjustments don't work on HP Elitebook 8560w
+           <td>[NV96] Brightness stuck to low value after suspend/resume on HP Elitebook 8530w
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV96] Brightness stuck to low value after suspend/resume on HP Elitebook 8530w"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=39550#c39">Comment # 39</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV96] Brightness stuck to low value after suspend/resume on HP Elitebook 8530w"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=39550">bug 39550</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Can someone confirm that this is fixed in newer kernels as Ben said it should
+be?</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +104,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1377922321.7376A53.5841--
+--1377923318.ce513fc8.8458--
 
---===============0622314273==
+--===============1790443598==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +117,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0622314273==--
+--===============1790443598==--
