@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49786] In xterm,
- some rectangles are not redrawn when the window is partly covered
-Date: Sat, 31 Aug 2013 17:43:29 +0000
-Message-ID: <bug-49786-8800-QF4ZYIQh43@http.bugs.freedesktop.org/>
-References: <bug-49786-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 41114] [NVCx] nouveau module crashes on boot
+Date: Sun, 01 Sep 2013 02:51:53 +0000
+Message-ID: <bug-41114-8800-QdjmBAgORT@http.bugs.freedesktop.org/>
+References: <bug-41114-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2076810844=="
+Content-Type: multipart/mixed; boundary="===============1247430028=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49786-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-41114-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2076810844==
-Content-Type: multipart/alternative; boundary="1377971008.cAEaC31.16379"; charset="us-ascii"
+--===============1247430028==
+Content-Type: multipart/alternative; boundary="1378003913.6f31cceE5.21915"; charset="us-ascii"
 
 
---1377971008.cAEaC31.16379
-Date: Sat, 31 Aug 2013 17:43:28 +0000
+--1378003913.6f31cceE5.21915
+Date: Sun, 1 Sep 2013 02:51:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=49786
+https://bugs.freedesktop.org/show_bug.cgi?id=41114
 
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Also tested on NV42, doesn't happen there either. Further points to something
-in the nv50 exa rather than something generic...
+--- Comment #18 from Robert Riches <rm.riches-BRax14MUi1YI9MI5TlNUSA@public.gmane.org> ---
+I won't be able to test a newer kernel for the symptoms I observed, because I
+don't have a system available to install a release with a newer kernel. 
+However, please don't take that as reason to disqualify this report.  I'm a
+minor late arrival at this party.  It's not clear whether the issue I mentioned
+with kernel 3.3.8-desktop-2.mga2 on Mageia 2 is consistent with the original
+symptoms reported here.  My symptoms should probably be reported separately, if
+I could afford the time to do that.  Hopefully, the earlier reporters can test
+with a newer kernel.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1377971008.cAEaC31.16379
-Date: Sat, 31 Aug 2013 17:43:28 +0000
+--1378003913.6f31cceE5.21915
+Date: Sun, 1 Sep 2013 02:51:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +59,22 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - In xterm, some rectangles are not redrawn when the window is partly covered"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49786#c14">Comment # 14</a>
+   title="NEW --- - [NVCx] nouveau module crashes on boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=41114#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - In xterm, some rectangles are not redrawn when the window is partly covered"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49786">bug 49786</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NVCx] nouveau module crashes on boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=41114">bug 41114</a>
+              from <span class="vcard"><a class="email" href="mailto:rm.riches&#64;jacob21819.net" title="Robert Riches &lt;rm.riches&#64;jacob21819.net&gt;"> <span class="fn">Robert Riches</span></a>
 </span></b>
-        <pre>Also tested on NV42, doesn't happen there either. Further points to something
-in the nv50 exa rather than something generic...</pre>
+        <pre>I won't be able to test a newer kernel for the symptoms I observed, because I
+don't have a system available to install a release with a newer kernel. 
+However, please don't take that as reason to disqualify this report.  I'm a
+minor late arrival at this party.  It's not clear whether the issue I mentioned
+with kernel 3.3.8-desktop-2.mga2 on Mageia 2 is consistent with the original
+symptoms reported here.  My symptoms should probably be reported separately, if
+I could afford the time to do that.  Hopefully, the earlier reporters can test
+with a newer kernel.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +86,9 @@ in the nv50 exa rather than something generic...</pre>
     </body>
 </html>
 
---1377971008.cAEaC31.16379--
+--1378003913.6f31cceE5.21915--
 
---===============2076810844==
+--===============1247430028==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2076810844==--
+--===============1247430028==--
