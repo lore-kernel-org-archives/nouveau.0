@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 41114] [NVCx] nouveau module crashes on boot
-Date: Sun, 01 Sep 2013 02:51:53 +0000
-Message-ID: <bug-41114-8800-QdjmBAgORT@http.bugs.freedesktop.org/>
-References: <bug-41114-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 63165] [NVE6] GTX660 GPU lockups on 3D applications
+Date: Sun, 01 Sep 2013 06:17:08 +0000
+Message-ID: <bug-63165-8800-myqcMKrz1p@http.bugs.freedesktop.org/>
+References: <bug-63165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1247430028=="
+Content-Type: multipart/mixed; boundary="===============1503380852=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-41114-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-63165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +20,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1247430028==
-Content-Type: multipart/alternative; boundary="1378003913.6f31cceE5.21915"; charset="us-ascii"
+--===============1503380852==
+Content-Type: multipart/alternative; boundary="1378016228.37ac2bC70.18826"; charset="us-ascii"
 
 
---1378003913.6f31cceE5.21915
-Date: Sun, 1 Sep 2013 02:51:53 +0000
+--1378016228.37ac2bC70.18826
+Date: Sun, 1 Sep 2013 06:17:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=41114
+https://bugs.freedesktop.org/show_bug.cgi?id=63165
 
---- Comment #18 from Robert Riches <rm.riches-BRax14MUi1YI9MI5TlNUSA@public.gmane.org> ---
-I won't be able to test a newer kernel for the symptoms I observed, because I
-don't have a system available to install a release with a newer kernel. 
-However, please don't take that as reason to disqualify this report.  I'm a
-minor late arrival at this party.  It's not clear whether the issue I mentioned
-with kernel 3.3.8-desktop-2.mga2 on Mageia 2 is consistent with the original
-symptoms reported here.  My symptoms should probably be reported separately, if
-I could afford the time to do that.  Hopefully, the earlier reporters can test
-with a newer kernel.
+--- Comment #15 from miga-anyandall-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
+Created attachment 84990
+  --> https://bugs.freedesktop.org/attachment.cgi?id=84990&action=edit
+neverball+compiz
+
+I installed 3.11-rc7 and while I'm still having issues with Compiz, everything
+else seems to be working fine, which leads me to believe that Compiz is
+probably what's at fault now.
+
+Tried with Xonotic, Minetest, Neverball and am going to try to leave Red
+Eclipse running for a while just to see if there are any crashes. If it doesn't
+crash, I'll go ahead and mark this up to Compiz being at fault now.
+
+I'll go ahead and upload the dmesg output of Compiz+Neverball crashing if you
+want to view it and tell me if it's still a nouveau issue or if it is a Compiz
+issue at this point.
+
+Thanks for your help!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378003913.6f31cceE5.21915
-Date: Sun, 1 Sep 2013 02:51:53 +0000
+--1378016228.37ac2bC70.18826
+Date: Sun, 1 Sep 2013 06:17:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,22 +68,30 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVCx] nouveau module crashes on boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=41114#c18">Comment # 18</a>
+   title="NEW --- - [NVE6] GTX660 GPU lockups on 3D applications"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVCx] nouveau module crashes on boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=41114">bug 41114</a>
-              from <span class="vcard"><a class="email" href="mailto:rm.riches&#64;jacob21819.net" title="Robert Riches &lt;rm.riches&#64;jacob21819.net&gt;"> <span class="fn">Robert Riches</span></a>
+   title="NEW --- - [NVE6] GTX660 GPU lockups on 3D applications"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165">bug 63165</a>
+              from <span class="vcard"><a class="email" href="mailto:miga-anyandall&#64;hotmail.com" title="miga-anyandall&#64;hotmail.com">miga-anyandall&#64;hotmail.com</a>
 </span></b>
-        <pre>I won't be able to test a newer kernel for the symptoms I observed, because I
-don't have a system available to install a release with a newer kernel. 
-However, please don't take that as reason to disqualify this report.  I'm a
-minor late arrival at this party.  It's not clear whether the issue I mentioned
-with kernel 3.3.8-desktop-2.mga2 on Mageia 2 is consistent with the original
-symptoms reported here.  My symptoms should probably be reported separately, if
-I could afford the time to do that.  Hopefully, the earlier reporters can test
-with a newer kernel.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=84990" name="attach_84990" title="neverball+compiz">attachment 84990</a> <a href="attachment.cgi?id=84990&amp;action=edit" title="neverball+compiz">[details]</a></span>
+neverball+compiz
+
+I installed 3.11-rc7 and while I'm still having issues with Compiz, everything
+else seems to be working fine, which leads me to believe that Compiz is
+probably what's at fault now.
+
+Tried with Xonotic, Minetest, Neverball and am going to try to leave Red
+Eclipse running for a while just to see if there are any crashes. If it doesn't
+crash, I'll go ahead and mark this up to Compiz being at fault now.
+
+I'll go ahead and upload the dmesg output of Compiz+Neverball crashing if you
+want to view it and tell me if it's still a nouveau issue or if it is a Compiz
+issue at this point.
+
+Thanks for your help!</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +103,9 @@ with a newer kernel.</pre>
     </body>
 </html>
 
---1378003913.6f31cceE5.21915--
+--1378016228.37ac2bC70.18826--
 
---===============1247430028==
+--===============1503380852==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1247430028==--
+--===============1503380852==--
