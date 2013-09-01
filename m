@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39550] [NV96] Brightness stuck to low value after
- suspend/resume on HP Elitebook 8530w
-Date: Sun, 01 Sep 2013 12:28:25 +0000
-Message-ID: <bug-39550-8800-h7NCRv35oe@http.bugs.freedesktop.org/>
-References: <bug-39550-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64858] [BISECTED] Nouveau sees invalid EDID for
+ eDP-1 whenever that display is turned off
+Date: Sun, 01 Sep 2013 13:08:02 +0000
+Message-ID: <bug-64858-8800-FRiB2B5IqK@http.bugs.freedesktop.org/>
+References: <bug-64858-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0359540322=="
+Content-Type: multipart/mixed; boundary="===============2104549620=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-64858-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0359540322==
-Content-Type: multipart/alternative; boundary="1378038506.DFf3488.25678"; charset="us-ascii"
+--===============2104549620==
+Content-Type: multipart/alternative; boundary="1378040882.4C613.1054"; charset="us-ascii"
 
 
---1378038506.DFf3488.25678
-Date: Sun, 1 Sep 2013 12:28:26 +0000
+--1378040882.4C613.1054
+Date: Sun, 1 Sep 2013 13:08:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=39550
+https://bugs.freedesktop.org/show_bug.cgi?id=64858
 
---- Comment #44 from Roy <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org> ---
-(In reply to comment #36)
-> Created attachment 68764 [details] [review]
-> Enable the PANEL_BACKLIGHT_LEVEL GPIO
-> 
-> Guys can you try the patch. It should apply against the latest nouveau tree
-
-NACK on this patch: this particular pin should be driven by a PWM in SOR, as
-indicated in 0xe100. Rather look if routing from PWM to GPIO pin is correct...
+--- Comment #10 from gspr <gspreemann-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+With 3.11-rc7, I no longer see the same stuttering described in the initial bug
+report. There is, however, still a 100% load kworker thread, lots and lots of
+EDID checksum failed messages, and long periods of unresponsiveness when
+changing resolution. Adding drm_kms_helper.poll=N removes the repeated EDID
+checksum messages, but the system still becomes unresponsive for large
+stretches of time after changing resolution, and there's still a kworker thread
+at 100%.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378038506.DFf3488.25678
-Date: Sun, 1 Sep 2013 12:28:26 +0000
+--1378040882.4C613.1054
+Date: Sun, 1 Sep 2013 13:08:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,23 +58,22 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] Brightness stuck to low value after suspend/resume on HP Elitebook 8530w"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=39550#c44">Comment # 44</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [BISECTED] Nouveau sees invalid EDID for eDP-1 whenever that display is turned off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64858#c10">Comment # 10</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] Brightness stuck to low value after suspend/resume on HP Elitebook 8530w"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=39550">bug 39550</a>
-              from <span class="vcard"><a class="email" href="mailto:r.spliet&#64;student.tudelft.nl" title="Roy &lt;r.spliet&#64;student.tudelft.nl&gt;"> <span class="fn">Roy</span></a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [BISECTED] Nouveau sees invalid EDID for eDP-1 whenever that display is turned off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64858">bug 64858</a>
+              from <span class="vcard"><a class="email" href="mailto:gspreemann&#64;gmail.com" title="gspr &lt;gspreemann&#64;gmail.com&gt;"> <span class="fn">gspr</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=39550#c36">comment #36</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=68764" name="attach_68764" title="Enable the PANEL_BACKLIGHT_LEVEL GPIO">attachment 68764</a> <a href="attachment.cgi?id=68764&amp;action=edit" title="Enable the PANEL_BACKLIGHT_LEVEL GPIO">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=39550&amp;attachment=68764'>[review]</a> [review]
-&gt; Enable the PANEL_BACKLIGHT_LEVEL GPIO
-&gt; 
-&gt; Guys can you try the patch. It should apply against the latest nouveau tree</span >
-
-NACK on this patch: this particular pin should be driven by a PWM in SOR, as
-indicated in 0xe100. Rather look if routing from PWM to GPIO pin is correct...</pre>
+        <pre>With 3.11-rc7, I no longer see the same stuttering described in the initial bug
+report. There is, however, still a 100% load kworker thread, lots and lots of
+EDID checksum failed messages, and long periods of unresponsiveness when
+changing resolution. Adding drm_kms_helper.poll=N removes the repeated EDID
+checksum messages, but the system still becomes unresponsive for large
+stretches of time after changing resolution, and there's still a kworker thread
+at 100%.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +85,9 @@ indicated in 0xe100. Rather look if routing from PWM to GPIO pin is correct...</
     </body>
 </html>
 
---1378038506.DFf3488.25678--
+--1378040882.4C613.1054--
 
---===============0359540322==
+--===============2104549620==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0359540322==--
+--===============2104549620==--
