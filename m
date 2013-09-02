@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51362] [NVE7] DisplayPort output on nVidia Quadro
- K2000M (ThinkPad W530) doesn't work
-Date: Mon, 02 Sep 2013 15:20:11 +0000
-Message-ID: <bug-51362-8800-O6KlQHqOkx@http.bugs.freedesktop.org/>
-References: <bug-51362-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68402] Some elements are only rendered in top-left
+	area
+Date: Mon, 02 Sep 2013 15:42:20 +0000
+Message-ID: <bug-68402-8800-oOcyCEQwvG@http.bugs.freedesktop.org/>
+References: <bug-68402-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0273976409=="
+Content-Type: multipart/mixed; boundary="===============0362682878=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51362-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68402-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0273976409==
-Content-Type: multipart/alternative; boundary="1378135211.1502EA3a5.12495"; charset="us-ascii"
+--===============0362682878==
+Content-Type: multipart/alternative; boundary="1378136540.fB06b1.16663"; charset="us-ascii"
 
 
---1378135211.1502EA3a5.12495
-Date: Mon, 2 Sep 2013 15:20:11 +0000
+--1378136540.fB06b1.16663
+Date: Mon, 2 Sep 2013 15:42:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51362
+https://bugs.freedesktop.org/show_bug.cgi?id=68402
 
-e.swanson+xorgbugs-5lA2vZBjcqn3oGB3hsPCZA@public.gmane.org changed:
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #85067|text/plain                  |application/octet-stream
-          mime type|                            |
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+The issue should be resolved by commit ad4dc7723(nvc0: restore viewport after
+blit), which will make it's way into the next 9.1 and 9.2 mesa release.
+
+Feel free to reopen if above commit does not resolve the issue.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378135211.1502EA3a5.12495
-Date: Mon, 2 Sep 2013 15:20:11 +0000
+--1378136540.fB06b1.16663
+Date: Mon, 2 Sep 2013 15:42:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,12 +58,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:e.swanson+xorgbugs&#64;alloscomp.com" title="e.swanson+xorgbugs&#64;alloscomp.com">e.swanson+xorgbugs&#64;alloscomp.com</a>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] DisplayPort output on nVidia Quadro K2000M (ThinkPad W530) doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51362">bug 51362</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Some elements are only rendered in top-left area"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68402">bug 68402</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -67,13 +73,37 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #85067 mime type</td>
-           <td>text/plain
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>application/octet-stream
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Some elements are only rendered in top-left area"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68402#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Some elements are only rendered in top-left area"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68402">bug 68402</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>The issue should be resolved by commit ad4dc7723(nvc0: restore viewport after
+blit), which will make it's way into the next 9.1 and 9.2 mesa release.
+
+Feel free to reopen if above commit does not resolve the issue.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +114,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1378135211.1502EA3a5.12495--
+--1378136540.fB06b1.16663--
 
---===============0273976409==
+--===============0362682878==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +127,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0273976409==--
+--===============0362682878==--
