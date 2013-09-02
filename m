@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 68854] [NV04] PROTECTION_ERROR / PROTECTION_FAULT
-Date: Mon, 02 Sep 2013 19:04:45 +0000
-Message-ID: <bug-68854-8800-EgFTzQRWT1@http.bugs.freedesktop.org/>
+Date: Mon, 02 Sep 2013 19:05:47 +0000
+Message-ID: <bug-68854-8800-Y0nbLRxmPi@http.bugs.freedesktop.org/>
 References: <bug-68854-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1784084616=="
+Content-Type: multipart/mixed; boundary="===============1950011075=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-68854-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,32 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1784084616==
-Content-Type: multipart/alternative; boundary="1378148685.0d5Ba1.15173"; charset="us-ascii"
+--===============1950011075==
+Content-Type: multipart/alternative; boundary="1378148747.24d21.15306"; charset="us-ascii"
 
 
---1378148685.0d5Ba1.15173
-Date: Mon, 2 Sep 2013 19:04:45 +0000
+--1378148747.24d21.15306
+Date: Mon, 2 Sep 2013 19:05:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=68854
 
---- Comment #2 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
-Created attachment 85086
-  --> https://bugs.freedesktop.org/attachment.cgi?id=85086&action=edit
-Xorg.0.log
-
-Here is the Xorg.0.log captured after boot. I'm going to attach a new dmesg
-output taken together with this Xorg.0.log, maybe it's easier understand
-relationships between the two log files...
+--- Comment #3 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
+Created attachment 85087
+  --> https://bugs.freedesktop.org/attachment.cgi?id=85087&action=edit
+dmesg output taken after the same boot from which Xorg.0.log was taken
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378148685.0d5Ba1.15173
-Date: Mon, 2 Sep 2013 19:04:45 +0000
+--1378148747.24d21.15306
+Date: Mon, 2 Sep 2013 19:05:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,19 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV04] PROTECTION_ERROR / PROTECTION_FAULT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68854#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68854#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV04] PROTECTION_ERROR / PROTECTION_FAULT"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=68854">bug 68854</a>
               from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=85086" name="attach_85086" title="Xorg.0.log">attachment 85086</a> <a href="attachment.cgi?id=85086&amp;action=edit" title="Xorg.0.log">[details]</a></span>
-Xorg.0.log
-
-Here is the Xorg.0.log captured after boot. I'm going to attach a new dmesg
-output taken together with this Xorg.0.log, maybe it's easier understand
-relationships between the two log files...</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=85087" name="attach_85087" title="dmesg output taken after the same boot from which Xorg.0.log was taken">attachment 85087</a> <a href="attachment.cgi?id=85087&amp;action=edit" title="dmesg output taken after the same boot from which Xorg.0.log was taken">[details]</a></span>
+dmesg output taken after the same boot from which Xorg.0.log was taken</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +75,9 @@ relationships between the two log files...</pre>
     </body>
 </html>
 
---1378148685.0d5Ba1.15173--
+--1378148747.24d21.15306--
 
---===============1784084616==
+--===============1950011075==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1784084616==--
+--===============1950011075==--
