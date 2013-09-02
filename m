@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57081] [NVA8] dell latitude laptop E6510 with
- nouveau and nvs3100 nvidia doesn't resume properly
-Date: Mon, 02 Sep 2013 05:19:05 +0000
-Message-ID: <bug-57081-8800-J34Dj9ymaz@http.bugs.freedesktop.org/>
-References: <bug-57081-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 63165] [NVE6] GTX660 GPU lockups on 3D applications
+Date: Mon, 02 Sep 2013 05:23:38 +0000
+Message-ID: <bug-63165-8800-rnPPji225s@http.bugs.freedesktop.org/>
+References: <bug-63165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1009005294=="
+Content-Type: multipart/mixed; boundary="===============0588576589=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57081-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-63165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1009005294==
-Content-Type: multipart/alternative; boundary="1378099145.B0BAA6D52.13109"; charset="us-ascii"
+--===============0588576589==
+Content-Type: multipart/alternative; boundary="1378099418.8ABaD0b1.13519"; charset="us-ascii"
 
 
---1378099145.B0BAA6D52.13109
-Date: Mon, 2 Sep 2013 05:19:05 +0000
+--1378099418.8ABaD0b1.13519
+Date: Mon, 2 Sep 2013 05:23:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57081
+https://bugs.freedesktop.org/show_bug.cgi?id=63165
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-https://help.ubuntu.com/community/Kernel/Compile
-
-You might also take a look at https://wiki.ubuntu.com/Kernel/LTSEnablementStack
-
-All of this brought to you with the power of the Google search engine. I highly
-recommend you check it out at http://www.google.com .
+--- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I do note lots of errors in your dmesg, make sure you're using the latest mesa
+as well (9.2 is probably good enough, don't know if too much stuff has happened
+on 9.3-devel yet).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378099145.B0BAA6D52.13109
-Date: Mon, 2 Sep 2013 05:19:05 +0000
+--1378099418.8ABaD0b1.13519
+Date: Mon, 2 Sep 2013 05:23:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,20 +54,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA8] dell latitude laptop E6510 with nouveau and nvs3100 nvidia doesn't resume properly"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57081#c4">Comment # 4</a>
+   title="NEW --- - [NVE6] GTX660 GPU lockups on 3D applications"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA8] dell latitude laptop E6510 with nouveau and nvs3100 nvidia doesn't resume properly"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57081">bug 57081</a>
+   title="NEW --- - [NVE6] GTX660 GPU lockups on 3D applications"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165">bug 63165</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre><a href="https://help.ubuntu.com/community/Kernel/Compile">https://help.ubuntu.com/community/Kernel/Compile</a>
-
-You might also take a look at <a href="https://wiki.ubuntu.com/Kernel/LTSEnablementStack">https://wiki.ubuntu.com/Kernel/LTSEnablementStack</a>
-
-All of this brought to you with the power of the Google search engine. I highly
-recommend you check it out at <a href="http://www.google.com">http://www.google.com</a> .</pre>
+        <pre>I do note lots of errors in your dmesg, make sure you're using the latest mesa
+as well (9.2 is probably good enough, don't know if too much stuff has happened
+on 9.3-devel yet).</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +76,9 @@ recommend you check it out at <a href="http://www.google.com">http://www.google.
     </body>
 </html>
 
---1378099145.B0BAA6D52.13109--
+--1378099418.8ABaD0b1.13519--
 
---===============1009005294==
+--===============0588576589==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1009005294==--
+--===============0588576589==--
