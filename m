@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51362] [NVE7] DisplayPort output on nVidia Quadro
  K2000M (ThinkPad W530) doesn't work
-Date: Mon, 02 Sep 2013 15:15:47 +0000
-Message-ID: <bug-51362-8800-p4WChjHASi@http.bugs.freedesktop.org/>
+Date: Mon, 02 Sep 2013 15:19:44 +0000
+Message-ID: <bug-51362-8800-MQ7tzxoyz4@http.bugs.freedesktop.org/>
 References: <bug-51362-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0177849949=="
+Content-Type: multipart/mixed; boundary="===============0553518446=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-51362-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0177849949==
-Content-Type: multipart/alternative; boundary="1378134947.35af7F082.11937"; charset="us-ascii"
+--===============0553518446==
+Content-Type: multipart/alternative; boundary="1378135184.aDc22.12495"; charset="us-ascii"
 
 
---1378134947.35af7F082.11937
-Date: Mon, 2 Sep 2013 15:15:47 +0000
+--1378135184.aDc22.12495
+Date: Mon, 2 Sep 2013 15:19:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51362
 
-e.swanson+xorgbugs-5lA2vZBjcqn3oGB3hsPCZA@public.gmane.org changed:
+--- Comment #17 from e.swanson+xorgbugs-5lA2vZBjcqn3oGB3hsPCZA@public.gmane.org ---
+Created attachment 85067
+  --> https://bugs.freedesktop.org/attachment.cgi?id=85067&action=edit
+VBios dump on 3.11rc7
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #85066|VBios dump on 3.11rc7       |garbage, disregard
-        description|                            |
+VBios dumped with:
+# cat /sys/kernel/debug/dri/0/vbios.rom > vbios.rom
+
+My attempt to dump with vbtracetool (as root this time :) failed - my machine
+locked up and required a hard reboot.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378134947.35af7F082.11937
-Date: Mon, 2 Sep 2013 15:15:47 +0000
+--1378135184.aDc22.12495
+Date: Mon, 2 Sep 2013 15:19:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,28 +56,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:e.swanson+xorgbugs&#64;alloscomp.com" title="e.swanson+xorgbugs&#64;alloscomp.com">e.swanson+xorgbugs&#64;alloscomp.com</a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE7] DisplayPort output on nVidia Quadro K2000M (ThinkPad W530) doesn't work"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51362#c17">Comment # 17</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] DisplayPort output on nVidia Quadro K2000M (ThinkPad W530) doesn't work"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=51362">bug 51362</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:e.swanson+xorgbugs&#64;alloscomp.com" title="e.swanson+xorgbugs&#64;alloscomp.com">e.swanson+xorgbugs&#64;alloscomp.com</a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=85067" name="attach_85067" title="VBios dump on 3.11rc7">attachment 85067</a> <a href="attachment.cgi?id=85067&amp;action=edit" title="VBios dump on 3.11rc7">[details]</a></span>
+VBios dump on 3.11rc7
 
-         <tr>
-           <td style="text-align:right;">Attachment #85066 description</td>
-           <td>VBios dump on 3.11rc7
-           </td>
-           <td>garbage, disregard
-           </td>
-         </tr></table>
-      <p>
+VBios dumped with:
+# cat /sys/kernel/debug/dri/0/vbios.rom &gt; vbios.rom
+
+My attempt to dump with vbtracetool (as root this time :) failed - my machine
+locked up and required a hard reboot.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +88,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1378134947.35af7F082.11937--
+--1378135184.aDc22.12495--
 
---===============0177849949==
+--===============0553518446==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0177849949==--
+--===============0553518446==--
