@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57081] [NVA8] dell latitude laptop E6510 with
- nouveau and nvs3100 nvidia doesn't resume properly
-Date: Sun, 01 Sep 2013 20:36:12 +0000
-Message-ID: <bug-57081-8800-fFdE49vnbw@http.bugs.freedesktop.org/>
-References: <bug-57081-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67161] Blank video after resuming from S3 or S4
+Date: Mon, 02 Sep 2013 05:11:11 +0000
+Message-ID: <bug-67161-8800-xgRwVcRA5r@http.bugs.freedesktop.org/>
+References: <bug-67161-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1935104296=="
+Content-Type: multipart/mixed; boundary="===============1356698669=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57081-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67161-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1935104296==
-Content-Type: multipart/alternative; boundary="1378067772.EA12f1f1.9691"; charset="us-ascii"
+--===============1356698669==
+Content-Type: multipart/alternative; boundary="1378098671.deb52.12008"; charset="us-ascii"
 
 
---1378067772.EA12f1f1.9691
-Date: Sun, 1 Sep 2013 20:36:12 +0000
+--1378098671.deb52.12008
+Date: Mon, 2 Sep 2013 05:11:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57081
+https://bugs.freedesktop.org/show_bug.cgi?id=67161
 
---- Comment #3 from karolszk <karolszk-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hello,
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-How can I do it on UBUNTU 12.04?! Probably LTS does not support 3.11-rc7
-kernel.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|REOPENED                    |RESOLVED
+         Resolution|---                         |FIXED
 
-ps.
-
-From my day work I switched from DELL LATITUDE E6510 to another laptop (because
-resume/suspend problems).
-
-This laptop currently used by my 10 years old son to play Minecraft. So it's
-not easy to switch kernel... :-)
-
-Regards, Karol Szk.
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+OK, marking this as fixed. If you like, you can file another bug about the
+invalid opcode thing, make sure to attach the vbios
+(/sys/kernel/debug/dri/0/vbios.rom on newer kernels), as well as the
+vbtracetool output. However, just to properly set expectations, it's highly
+unlikely to go anywhere since the cards are ancient and it does sound like it's
+working OK.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378067772.EA12f1f1.9691
-Date: Sun, 1 Sep 2013 20:36:12 +0000
+--1378098671.deb52.12008
+Date: Mon, 2 Sep 2013 05:11:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,33 +59,53 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Blank video after resuming from S3 or S4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67161">bug 67161</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>REOPENED
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA8] dell latitude laptop E6510 with nouveau and nvs3100 nvidia doesn't resume properly"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57081#c3">Comment # 3</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Blank video after resuming from S3 or S4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67161#c6">Comment # 6</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA8] dell latitude laptop E6510 with nouveau and nvs3100 nvidia doesn't resume properly"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57081">bug 57081</a>
-              from <span class="vcard"><a class="email" href="mailto:karolszk&#64;gmail.com" title="karolszk &lt;karolszk&#64;gmail.com&gt;"> <span class="fn">karolszk</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Blank video after resuming from S3 or S4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67161">bug 67161</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hello,
-
-How can I do it on UBUNTU 12.04?! Probably LTS does not support 3.11-rc7
-kernel.
-
-ps.
-
-From my day work I switched from DELL LATITUDE E6510 to another laptop (because
-resume/suspend problems).
-
-This laptop currently used by my 10 years old son to play Minecraft. So it's
-not easy to switch kernel... :-)
-
-Regards, Karol Szk.</pre>
+        <pre>OK, marking this as fixed. If you like, you can file another bug about the
+invalid opcode thing, make sure to attach the vbios
+(/sys/kernel/debug/dri/0/vbios.rom on newer kernels), as well as the
+vbtracetool output. However, just to properly set expectations, it's highly
+unlikely to go anywhere since the cards are ancient and it does sound like it's
+working OK.</pre>
         </div>
       </p>
       <hr>
@@ -99,9 +117,9 @@ Regards, Karol Szk.</pre>
     </body>
 </html>
 
---1378067772.EA12f1f1.9691--
+--1378098671.deb52.12008--
 
---===============1935104296==
+--===============1356698669==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -112,4 +130,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1935104296==--
+--===============1356698669==--
