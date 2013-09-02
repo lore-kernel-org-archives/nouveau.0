@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67161] Blank video after resuming from S3 or S4
-Date: Mon, 02 Sep 2013 09:25:18 +0000
-Message-ID: <bug-67161-8800-rbHKJG5Civ@http.bugs.freedesktop.org/>
-References: <bug-67161-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68835] [NV04] Unknown opcode 0x43 + protection fault
+Date: Mon, 02 Sep 2013 14:15:49 +0000
+Message-ID: <bug-68835-8800-PN0I5yA8Mu@http.bugs.freedesktop.org/>
+References: <bug-68835-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2105722324=="
+Content-Type: multipart/mixed; boundary="===============1757826181=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67161-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2105722324==
-Content-Type: multipart/alternative; boundary="1378113918.8ab21.18603"; charset="us-ascii"
+--===============1757826181==
+Content-Type: multipart/alternative; boundary="1378131349.86e6B3E2.1132"; charset="us-ascii"
 
 
---1378113918.8ab21.18603
-Date: Mon, 2 Sep 2013 09:25:18 +0000
+--1378131349.86e6B3E2.1132
+Date: Mon, 2 Sep 2013 14:15:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67161
+https://bugs.freedesktop.org/show_bug.cgi?id=68835
 
---- Comment #7 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
-Opened bug #68835.
-Thanks again!
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Unknown opcode 0x43 +       |[NV04] Unknown opcode 0x43
+                   |protection fault on a       |+ protection fault
+                   |Graphics Blaster Riva TNT   |
+                   |card                        |
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The POST trace is what I had in mind as the vtracetool output.
+
+As for the protection faults, they're yet another issue from the bios. Would be
+good to figure out what causes them to get printed, and file another bug.
+(Really best to keep it to one issue per... issue.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378113918.8ab21.18603
-Date: Mon, 2 Sep 2013 09:25:18 +0000
+--1378131349.86e6B3E2.1132
+Date: Mon, 2 Sep 2013 14:15:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -48,24 +60,44 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV04] Unknown opcode 0x43 + protection fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835">bug 68835</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Unknown opcode 0x43 + protection fault on a Graphics Blaster Riva TNT card
+           </td>
+           <td>[NV04] Unknown opcode 0x43 + protection fault
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Blank video after resuming from S3 or S4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67161#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Blank video after resuming from S3 or S4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67161">bug 67161</a>
-              from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
-</span></b>
-        <pre>Opened <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Unknown opcode 0x43 + protection fault on a Graphics Blaster Riva TNT card"
-   href="show_bug.cgi?id=68835">bug #68835</a>.
-Thanks again!</pre>
+   title="NEW --- - [NV04] Unknown opcode 0x43 + protection fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV04] Unknown opcode 0x43 + protection fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835">bug 68835</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>The POST trace is what I had in mind as the vtracetool output.
+
+As for the protection faults, they're yet another issue from the bios. Would be
+good to figure out what causes them to get printed, and file another bug.
+(Really best to keep it to one issue per... issue.)</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +109,9 @@ Thanks again!</pre>
     </body>
 </html>
 
---1378113918.8ab21.18603--
+--1378131349.86e6B3E2.1132--
 
---===============2105722324==
+--===============1757826181==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +122,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2105722324==--
+--===============1757826181==--
