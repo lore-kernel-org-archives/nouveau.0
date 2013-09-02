@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 68835] [NV04] Unknown opcode 0x43
-Date: Mon, 02 Sep 2013 16:36:32 +0000
-Message-ID: <bug-68835-8800-9KI94fVNkn@http.bugs.freedesktop.org/>
+Date: Mon, 02 Sep 2013 16:37:48 +0000
+Message-ID: <bug-68835-8800-289CYZLtRJ@http.bugs.freedesktop.org/>
 References: <bug-68835-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2062160682=="
+Content-Type: multipart/mixed; boundary="===============0902271092=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-68835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2062160682==
-Content-Type: multipart/alternative; boundary="1378139792.DC8C3.25020"; charset="us-ascii"
+--===============0902271092==
+Content-Type: multipart/alternative; boundary="1378139868.c03741.25169"; charset="us-ascii"
 
 
---1378139792.DC8C3.25020
-Date: Mon, 2 Sep 2013 16:36:32 +0000
+--1378139868.c03741.25169
+Date: Mon, 2 Sep 2013 16:37:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=68835
 
-Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Blocks|                            |68854
+--- Comment #5 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
+I've opened Bug 68854 for the protection fault problem. Let me know what can I
+do to try to figure out what it is causing it.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378139792.DC8C3.25020
-Date: Mon, 2 Sep 2013 16:36:32 +0000
+--1378139868.c03741.25169
+Date: Mon, 2 Sep 2013 16:37:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,29 +48,25 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV04] Unknown opcode 0x43"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV04] Unknown opcode 0x43"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=68835">bug 68835</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Blocks</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>68854
-           </td>
-         </tr></table>
-      <p>
+              from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
+</span></b>
+        <pre>I've opened <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV04] PROTECTION_ERROR / PROTECTION_FAULT"
+   href="show_bug.cgi?id=68854">Bug 68854</a> for the protection fault problem. Let me know what can I
+do to try to figure out what it is causing it.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +77,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1378139792.DC8C3.25020--
+--1378139868.c03741.25169--
 
---===============2062160682==
+--===============0902271092==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2062160682==--
+--===============0902271092==--
