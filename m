@@ -1,125 +1,57 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68835] [NV04] Unknown opcode 0x43 + protection fault
-Date: Mon, 02 Sep 2013 14:15:49 +0000
-Message-ID: <bug-68835-8800-PN0I5yA8Mu@http.bugs.freedesktop.org/>
-References: <bug-68835-8800@http.bugs.freedesktop.org/>
+From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Subject: [PATCH] drm/nv84-: write fence value on exit,
+	and restore value on init.
+Date: Mon,  2 Sep 2013 16:31:02 +0200
+Message-ID: <1378132262-19453-1-git-send-email-maarten.lankhorst@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1757826181=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: nouveau@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+This increases the chance slightly that recovery from lockup can happen
+succesfully.
 
---===============1757826181==
-Content-Type: multipart/alternative; boundary="1378131349.86e6B3E2.1132"; charset="us-ascii"
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+---
+ drivers/gpu/drm/nouveau/nv84_fence.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-
---1378131349.86e6B3E2.1132
-Date: Mon, 2 Sep 2013 14:15:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=68835
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Unknown opcode 0x43 +       |[NV04] Unknown opcode 0x43
-                   |protection fault on a       |+ protection fault
-                   |Graphics Blaster Riva TNT   |
-                   |card                        |
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The POST trace is what I had in mind as the vtracetool output.
-
-As for the protection faults, they're yet another issue from the bios. Would be
-good to figure out what causes them to get printed, and file another bug.
-(Really best to keep it to one issue per... issue.)
-
+diff --git a/drivers/gpu/drm/nouveau/nv84_fence.c b/drivers/gpu/drm/nouveau/nv84_fence.c
+index 2cf0ade..daf4b18 100644
+--- a/drivers/gpu/drm/nouveau/nv84_fence.c
++++ b/drivers/gpu/drm/nouveau/nv84_fence.c
+@@ -122,8 +122,11 @@ nv84_fence_context_del(struct nouveau_channel *chan)
+ 	struct drm_device *dev = chan->drm->dev;
+ 	struct nv84_fence_priv *priv = chan->drm->fence;
+ 	struct nv84_fence_chan *fctx = chan->fence;
++	struct nouveau_fifo_chan *fifo = (void *)chan->object;
+ 	int i;
+ 
++	nouveau_bo_wr32(priv->bo, fifo->chid * 16/4, fctx->base.sequence);
++
+ 	for (i = 0; i < dev->mode_config.num_crtc; i++) {
+ 		struct nouveau_bo *bo = nv50_display_crtc_sema(dev, i);
+ 		nouveau_bo_vma_del(bo, &fctx->dispc_vma[i]);
+@@ -168,7 +171,7 @@ nv84_fence_context_new(struct nouveau_channel *chan)
+ 		ret = nouveau_bo_vma_add(bo, client->vm, &fctx->dispc_vma[i]);
+ 	}
+ 
+-	nouveau_bo_wr32(priv->bo, fifo->chid * 16/4, 0x00000000);
++	fctx->base.sequence = nouveau_bo_rd32(priv->bo, fifo->chid * 16/4);
+ 
+ 	if (ret)
+ 		nv84_fence_context_del(chan);
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1378131349.86e6B3E2.1132
-Date: Mon, 2 Sep 2013 14:15:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV04] Unknown opcode 0x43 + protection fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835">bug 68835</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Unknown opcode 0x43 + protection fault on a Graphics Blaster Riva TNT card
-           </td>
-           <td>[NV04] Unknown opcode 0x43 + protection fault
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV04] Unknown opcode 0x43 + protection fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV04] Unknown opcode 0x43 + protection fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835">bug 68835</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>The POST trace is what I had in mind as the vtracetool output.
-
-As for the protection faults, they're yet another issue from the bios. Would be
-good to figure out what causes them to get printed, and file another bug.
-(Really best to keep it to one issue per... issue.)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1378131349.86e6B3E2.1132--
-
---===============1757826181==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1757826181==--
+1.8.3.4
