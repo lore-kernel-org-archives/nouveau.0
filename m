@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51362] [NVE7] DisplayPort output on nVidia Quadro
- K2000M (ThinkPad W530) doesn't work
-Date: Tue, 03 Sep 2013 15:28:47 +0000
-Message-ID: <bug-51362-8800-iz3wGzXzsd@http.bugs.freedesktop.org/>
-References: <bug-51362-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68075] nouveau inconsistent changing output
+ connector names in xrandr
+Date: Tue, 03 Sep 2013 17:47:21 +0000
+Message-ID: <bug-68075-8800-deCbspJm2I@http.bugs.freedesktop.org/>
+References: <bug-68075-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0845702202=="
+Content-Type: multipart/mixed; boundary="===============0364448665=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51362-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68075-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,103 +21,84 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0845702202==
-Content-Type: multipart/alternative; boundary="1378222127.23e8dE2.25006"; charset="us-ascii"
+--===============0364448665==
+Content-Type: multipart/alternative; boundary="1378230441.45fdf01.1889"; charset="us-ascii"
 
 
---1378222127.23e8dE2.25006
-Date: Tue, 3 Sep 2013 15:28:47 +0000
+--1378230441.45fdf01.1889
+Date: Tue, 3 Sep 2013 17:47:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51362
+https://bugs.freedesktop.org/show_bug.cgi?id=3D68075
 
---- Comment #19 from e.swanson+xorgbugs-5lA2vZBjcqn3oGB3hsPCZA@public.gmane.org ---
-I've captured some mmiotraces of the blob. There's a 26MB file at:
-http://www.alloscomp.com/files/mmiotrace_minidp_hdmi.tar.bz2
+--- Comment #11 from Pasi K=C3=A4rkk=C3=A4inen <pasik-X3B1VOXEql0@public.gmane.org> ---
 
-To create these dumps, I:
-    - closed X
-    - disconnected my VGA monitor, leaving only the DP->HDMI monitor connected
-    - rmmod nvidia
-    - rmmod nouveau
-    - enabled mmiotrace
-    - modprobe (nvidia or nouveau, depending on the trace)
-    - xinit "/bin/sleep 10"
-    - disabled mmiotrace
+So I updated from Fedora 18 to Fedora 19, which has xorg-1.14.2, and now it
+looks better. I haven't seen the "changing nouveau connector names" issue
+anymore..=20
 
-To create the hotplug dump, I:
-    - closed X (VGA monitor still connected)
-    - rmmod nvidia
-    - enabled mmiotrace
-    - modprobe nvidia
-    - xinit (to an xterm)
-    - unplugged and replugged my DP monitor (with trace markers)
-    - closed X
-    - disabled mmiotrace
+but I can't be completely certain yet, because there are other problems now
+with xorg 1.14 that prevent proper testing (Xorg crashes with segfault when
+running for example "xrandr --output DP-2 --off")..
 
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378222127.23e8dE2.25006
-Date: Tue, 3 Sep 2013 15:28:47 +0000
+--1378230441.45fdf01.1889
+Date: Tue, 3 Sep 2013 17:47:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NVE7] DisplayPort output on nVidia Quadro K2000M (ThinkPad W530) doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51362#c19">Comment # 19</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - nouveau inconsistent changing output connector names =
+in xrandr"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D68075#c11">Commen=
+t # 11</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NVE7] DisplayPort output on nVidia Quadro K2000M (ThinkPad W530) doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51362">bug 51362</a>
-              from <span class="vcard"><a class="email" href="mailto:e.swanson+xorgbugs&#64;alloscomp.com" title="e.swanson+xorgbugs&#64;alloscomp.com">e.swanson+xorgbugs&#64;alloscomp.com</a>
+   title=3D"NEW --- - nouveau inconsistent changing output connector names =
+in xrandr"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D68075">bug 68075<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pasik&#64;iki.fi" title=3D"Pasi K=C3=A4rkk=C3=A4inen &lt;pasik&#64;iki.fi&g=
+t;"> <span class=3D"fn">Pasi K=C3=A4rkk=C3=A4inen</span></a>
 </span></b>
-        <pre>I've captured some mmiotraces of the blob. There's a 26MB file at:
-<a href="http://www.alloscomp.com/files/mmiotrace_minidp_hdmi.tar.bz2">http://www.alloscomp.com/files/mmiotrace_minidp_hdmi.tar.bz2</a>
+        <pre>
+So I updated from Fedora 18 to Fedora 19, which has xorg-1.14.2, and now it
+looks better. I haven't seen the &quot;changing nouveau connector names&quo=
+t; issue
+anymore..=20
 
-To create these dumps, I:
-    - closed X
-    - disconnected my VGA monitor, leaving only the DP-&gt;HDMI monitor connected
-    - rmmod nvidia
-    - rmmod nouveau
-    - enabled mmiotrace
-    - modprobe (nvidia or nouveau, depending on the trace)
-    - xinit &quot;/bin/sleep 10&quot;
-    - disabled mmiotrace
-
-To create the hotplug dump, I:
-    - closed X (VGA monitor still connected)
-    - rmmod nvidia
-    - enabled mmiotrace
-    - modprobe nvidia
-    - xinit (to an xterm)
-    - unplugged and replugged my DP monitor (with trace markers)
-    - closed X
-    - disabled mmiotrace</pre>
+but I can't be completely certain yet, because there are other problems now
+with xorg 1.14 that prevent proper testing (Xorg crashes with segfault when
+running for example &quot;xrandr --output DP-2 --off&quot;)..</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1378222127.23e8dE2.25006--
+--1378230441.45fdf01.1889--
 
---===============0845702202==
+--===============0364448665==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,4 +109,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0845702202==--
+--===============0364448665==--
