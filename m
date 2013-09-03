@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68854] [NV04] PROTECTION_ERROR / PROTECTION_FAULT
-Date: Mon, 02 Sep 2013 19:13:11 +0000
-Message-ID: <bug-68854-8800-8oTdlqFSpQ@http.bugs.freedesktop.org/>
-References: <bug-68854-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
+ garbage/corruption/noise on resume
+Date: Tue, 03 Sep 2013 01:05:02 +0000
+Message-ID: <bug-59168-8800-WIcFJRcmXZ@http.bugs.freedesktop.org/>
+References: <bug-59168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1961286485=="
+Content-Type: multipart/mixed; boundary="===============1425009548=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68854-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +21,66 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1961286485==
-Content-Type: multipart/alternative; boundary="1378149191.daAbA1.16603"; charset="us-ascii"
+--===============1425009548==
+Content-Type: multipart/alternative; boundary="1378170302.DAe24.5141"; charset="us-ascii"
 
 
---1378149191.daAbA1.16603
-Date: Mon, 2 Sep 2013 19:13:11 +0000
+--1378170302.DAe24.5141
+Date: Tue, 3 Sep 2013 01:05:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68854
+https://bugs.freedesktop.org/show_bug.cgi?id=59168
 
---- Comment #4 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
-By the way, it shouldn't be in any kind related to this, however X starts at
-1024x767 at 60 Hz, while my monitor supports up to 1280x1024 (which is its
-native resolution) at a maximum refresh rate of 75 Hz (72 Hz and 60 Hz also
-supported). Is this another (separate) problem?
+--- Comment #39 from Laurence Lee <rubyjedi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I hate to resurrect a zombie thread, but I am still affected by this
+suspend/resume issue. My system also reports "SHADER 0xa004021e" as a common
+point of failure.
+
+On Fedora 18, kernel 3.10.10-100.fc18.x86_64), my screen resumes from
+hibernation with garbage on-screen as described in this ticket, and messages
+like these are repeated in the logs:
+
+Sep  2 14:23:38 ufo-laptop kernel: [   66.074252] nouveau E[ 
+PGRAPH][0000:01:00.0] TRAP ch 1 [0x005fbb1000 X[846]]
+Sep  2 14:23:38 ufo-laptop kernel: [   66.074264] nouveau E[ 
+PGRAPH][0000:01:00.0] SHADER 0xa004021e
+
+
+lspci -nnv:
+
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:1251]
+(rev a1) (prog-if 00 [VGA controller])
+    Subsystem: CLEVO/KAPOK Computer Device [1558:5102]
+    Flags: bus master, fast devsel, latency 0, IRQ 16
+    Memory at f4000000 (32-bit, non-prefetchable) [size=32M]
+    Memory at e8000000 (64-bit, prefetchable) [size=128M]
+    Memory at f0000000 (64-bit, prefetchable) [size=64M]
+    I/O ports at e000 [size=128]
+    Expansion ROM at f6000000 [disabled] [size=512K]
+    Capabilities: [60] Power Management version 3
+    Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
+    Capabilities: [78] Express Endpoint, MSI 00
+    Capabilities: [b4] Vendor Specific Information: Len=14 <?>
+    Capabilities: [100] Virtual Channel
+    Capabilities: [128] Power Budgeting <?>
+    Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024 <?>
+    Kernel driver in use: nouveau
+
+
+The only thing that works at the moment is setting nouveau.noaccel=1. Setting
+nouveau.config=DEVINIG=NvForcePost=1 causes bootup to Plymouth with a black,
+unlit screen.
+
+I would really like to have a long-term solution to this, and am willing to act
+upon any suggestions or patches you may have to reach that goal. Thanks!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378149191.daAbA1.16603
-Date: Mon, 2 Sep 2013 19:13:11 +0000
+--1378170302.DAe24.5141
+Date: Tue, 3 Sep 2013 01:05:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,19 +92,56 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV04] PROTECTION_ERROR / PROTECTION_FAULT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68854#c4">Comment # 4</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c39">Comment # 39</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV04] PROTECTION_ERROR / PROTECTION_FAULT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68854">bug 68854</a>
-              from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
+              from <span class="vcard"><a class="email" href="mailto:rubyjedi&#64;gmail.com" title="Laurence Lee &lt;rubyjedi&#64;gmail.com&gt;"> <span class="fn">Laurence Lee</span></a>
 </span></b>
-        <pre>By the way, it shouldn't be in any kind related to this, however X starts at
-1024x767 at 60 Hz, while my monitor supports up to 1280x1024 (which is its
-native resolution) at a maximum refresh rate of 75 Hz (72 Hz and 60 Hz also
-supported). Is this another (separate) problem?</pre>
+        <pre>I hate to resurrect a zombie thread, but I am still affected by this
+suspend/resume issue. My system also reports &quot;SHADER 0xa004021e&quot; as a common
+point of failure.
+
+On Fedora 18, kernel 3.10.10-100.fc18.x86_64), my screen resumes from
+hibernation with garbage on-screen as described in this ticket, and messages
+like these are repeated in the logs:
+
+Sep  2 14:23:38 ufo-laptop kernel: [   66.074252] nouveau E[ 
+PGRAPH][0000:01:00.0] TRAP ch 1 [0x005fbb1000 X[846]]
+Sep  2 14:23:38 ufo-laptop kernel: [   66.074264] nouveau E[ 
+PGRAPH][0000:01:00.0] SHADER 0xa004021e
+
+
+lspci -nnv:
+
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation Device [10de:1251]
+(rev a1) (prog-if 00 [VGA controller])
+    Subsystem: CLEVO/KAPOK Computer Device [1558:5102]
+    Flags: bus master, fast devsel, latency 0, IRQ 16
+    Memory at f4000000 (32-bit, non-prefetchable) [size=32M]
+    Memory at e8000000 (64-bit, prefetchable) [size=128M]
+    Memory at f0000000 (64-bit, prefetchable) [size=64M]
+    I/O ports at e000 [size=128]
+    Expansion ROM at f6000000 [disabled] [size=512K]
+    Capabilities: [60] Power Management version 3
+    Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
+    Capabilities: [78] Express Endpoint, MSI 00
+    Capabilities: [b4] Vendor Specific Information: Len=14 &lt;?&gt;
+    Capabilities: [100] Virtual Channel
+    Capabilities: [128] Power Budgeting &lt;?&gt;
+    Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024 &lt;?&gt;
+    Kernel driver in use: nouveau
+
+
+The only thing that works at the moment is setting nouveau.noaccel=1. Setting
+nouveau.config=DEVINIG=NvForcePost=1 causes bootup to Plymouth with a black,
+unlit screen.
+
+I would really like to have a long-term solution to this, and am willing to act
+upon any suggestions or patches you may have to reach that goal. Thanks!</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +153,9 @@ supported). Is this another (separate) problem?</pre>
     </body>
 </html>
 
---1378149191.daAbA1.16603--
+--1378170302.DAe24.5141--
 
---===============1961286485==
+--===============1425009548==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +166,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1961286485==--
+--===============1425009548==--
