@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
- garbage/corruption/noise on resume
-Date: Tue, 03 Sep 2013 01:19:54 +0000
-Message-ID: <bug-59168-8800-ipyJSfEW4w@http.bugs.freedesktop.org/>
-References: <bug-59168-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68488] [NV86] Lockup and reboot on T61 with nouveau
+	driver/exa
+Date: Tue, 03 Sep 2013 09:06:44 +0000
+Message-ID: <bug-68488-8800-kpdm434o6C@http.bugs.freedesktop.org/>
+References: <bug-68488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1260393391=="
+Content-Type: multipart/mixed; boundary="===============1432156310=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1260393391==
-Content-Type: multipart/alternative; boundary="1378171195.d76C0FE4.9580"; charset="us-ascii"
+--===============1432156310==
+Content-Type: multipart/alternative; boundary="1378199204.dFaa2.10214"; charset="us-ascii"
 
 
---1378171195.d76C0FE4.9580
-Date: Tue, 3 Sep 2013 01:19:55 +0000
+--1378199204.dFaa2.10214
+Date: Tue, 3 Sep 2013 09:06:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59168
+https://bugs.freedesktop.org/show_bug.cgi?id=68488
 
---- Comment #40 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Try and see if 3.11 helps, a bunch of init stuff was changed for nvcx. If not,
-please attach the relevant logs and reopen the bug. However if it's
-sufficiently different from the original, it may be less confusing to just open
-a fresh one.
+--- Comment #4 from Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> ---
+Is there any other information I could provide? Still happens about twice a day
+with latest Fedora 19 kernel (kernel-PAE-3.10.10-200.fc19.i686).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378171195.d76C0FE4.9580
-Date: Tue, 3 Sep 2013 01:19:55 +0000
+--1378199204.dFaa2.10214
+Date: Tue, 3 Sep 2013 09:06:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,19 +53,17 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c40">Comment # 40</a>
+          bz_status_NEW "
+   title="NEW --- - [NV86] Lockup and reboot on T61 with nouveau driver/exa"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68488#c4">Comment # 4</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NV86] Lockup and reboot on T61 with nouveau driver/exa"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68488">bug 68488</a>
+              from <span class="vcard"><a class="email" href="mailto:a9016009&#64;gmx.de" title="Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <span class="fn">Andre Klapper</span></a>
 </span></b>
-        <pre>Try and see if 3.11 helps, a bunch of init stuff was changed for nvcx. If not,
-please attach the relevant logs and reopen the bug. However if it's
-sufficiently different from the original, it may be less confusing to just open
-a fresh one.</pre>
+        <pre>Is there any other information I could provide? Still happens about twice a day
+with latest Fedora 19 kernel (kernel-PAE-3.10.10-200.fc19.i686).</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +75,9 @@ a fresh one.</pre>
     </body>
 </html>
 
---1378171195.d76C0FE4.9580--
+--1378199204.dFaa2.10214--
 
---===============1260393391==
+--===============1432156310==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1260393391==--
+--===============1432156310==--
