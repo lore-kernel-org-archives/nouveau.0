@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 60020] [NV42] Resuming Dell Precision M70 crashes
-Date: Tue, 03 Sep 2013 21:56:52 +0000
-Message-ID: <bug-60020-8800-H3ndx6oqP6@http.bugs.freedesktop.org/>
+Date: Tue, 03 Sep 2013 22:05:05 +0000
+Message-ID: <bug-60020-8800-AjPNUNHkxL@http.bugs.freedesktop.org/>
 References: <bug-60020-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1543283495=="
+Content-Type: multipart/mixed; boundary="===============1629997793=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-60020-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,26 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1543283495==
-Content-Type: multipart/alternative; boundary="1378245412.dfc5bd0A1.10799"; charset="us-ascii"
+--===============1629997793==
+Content-Type: multipart/alternative; boundary="1378245905.E6A27d802.13159"; charset="us-ascii"
 
 
---1378245412.dfc5bd0A1.10799
-Date: Tue, 3 Sep 2013 21:56:52 +0000
+--1378245905.E6A27d802.13159
+Date: Tue, 3 Sep 2013 22:05:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=60020
 
---- Comment #4 from Roy Bixler <rcbixler-0BtJm3PWb0s@public.gmane.org> ---
-Yes, it still happens with 3.11-rc7.
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+How hung is the machine? Can you ssh into it? If so, would be great to see the
+logs on hang after resume. If not, can you try using netconsole/serial console?
+Does booting with nouveau.config=NvForcePost=1 help?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378245412.dfc5bd0A1.10799
-Date: Tue, 3 Sep 2013 21:56:52 +0000
+--1378245905.E6A27d802.13159
+Date: Tue, 3 Sep 2013 22:05:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,14 +55,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV42] Resuming Dell Precision M70 crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60020#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60020#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV42] Resuming Dell Precision M70 crashes"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=60020">bug 60020</a>
-              from <span class="vcard"><a class="email" href="mailto:rcbixler&#64;nyx.net" title="Roy Bixler &lt;rcbixler&#64;nyx.net&gt;"> <span class="fn">Roy Bixler</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Yes, it still happens with 3.11-rc7.</pre>
+        <pre>How hung is the machine? Can you ssh into it? If so, would be great to see the
+logs on hang after resume. If not, can you try using netconsole/serial console?
+Does booting with nouveau.config=NvForcePost=1 help?</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1378245412.dfc5bd0A1.10799--
+--1378245905.E6A27d802.13159--
 
---===============1543283495==
+--===============1629997793==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -85,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1543283495==--
+--===============1629997793==--
