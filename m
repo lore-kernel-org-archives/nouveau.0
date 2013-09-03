@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68075] nouveau inconsistent changing output
- connector names in xrandr
-Date: Tue, 03 Sep 2013 18:16:56 +0000
-Message-ID: <bug-68075-8800-eA2nsz2YV0@http.bugs.freedesktop.org/>
-References: <bug-68075-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67255] [NVC3] black screen after resuming from
+	Hibernate
+Date: Tue, 03 Sep 2013 19:13:20 +0000
+Message-ID: <bug-67255-8800-snB0oRzHOj@http.bugs.freedesktop.org/>
+References: <bug-67255-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0684503920=="
+Content-Type: multipart/mixed; boundary="===============0555552828=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68075-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,80 +21,89 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0684503920==
-Content-Type: multipart/alternative; boundary="1378232216.86aee1.11029"; charset="us-ascii"
+--===============0555552828==
+Content-Type: multipart/alternative; boundary="1378235600.ECb751d2.28441"; charset="us-ascii"
 
 
---1378232216.86aee1.11029
-Date: Tue, 3 Sep 2013 18:16:56 +0000
+--1378235600.ECb751d2.28441
+Date: Tue, 3 Sep 2013 19:13:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D68075
+https://bugs.freedesktop.org/show_bug.cgi?id=67255
 
---- Comment #15 from Pasi K=C3=A4rkk=C3=A4inen <pasik-X3B1VOXEql0@public.gmane.org> ---
+--- Comment #6 from Diether Knof <dknof-Mmb7MZpHnFY@public.gmane.org> ---
+Hello,
 
-Yep, I know, Intel strings in the traceback :) But it happens when disablin=
-g a
-nouveau output..=20
+I am having the same problem.
+System: gentoo
+kernel: 3.10.7-gentoo, 3.8.13-gentoo, 3.11 (from kernel.org)
 
-But I agree, it's better to open a separate bug report about that issue..
+The problem arises without X, I have called '/usr/sbin/hibernate -v3' directly
+after startup (no X is started automatically).
+In /var/log/messages there are more then 400 lines as 
+  Sep  3 20:20:39 localhost kernel: nouveau E[    PBUS][0000:01:00.0] MMIO read
+of 0x00000000 FAULT at 0x610260 [ IBUS ]
+(even the same timestamp).
 
---=20
+Greetings
+Diether
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378232216.86aee1.11029
-Date: Tue, 3 Sep 2013 18:16:56 +0000
+--1378235600.ECb751d2.28441
+Date: Tue, 3 Sep 2013 19:13:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - nouveau inconsistent changing output connector names =
-in xrandr"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D68075#c15">Commen=
-t # 15</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - [NVC3] black screen after resuming from Hibernate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67255#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - nouveau inconsistent changing output connector names =
-in xrandr"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D68075">bug 68075<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pasik&#64;iki.fi" title=3D"Pasi K=C3=A4rkk=C3=A4inen &lt;pasik&#64;iki.fi&g=
-t;"> <span class=3D"fn">Pasi K=C3=A4rkk=C3=A4inen</span></a>
+   title="NEW --- - [NVC3] black screen after resuming from Hibernate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67255">bug 67255</a>
+              from <span class="vcard"><a class="email" href="mailto:dknof&#64;gmx.de" title="Diether Knof &lt;dknof&#64;gmx.de&gt;"> <span class="fn">Diether Knof</span></a>
 </span></b>
-        <pre>
-Yep, I know, Intel strings in the traceback :) But it happens when disablin=
-g a
-nouveau output..=20
+        <pre>Hello,
 
-But I agree, it's better to open a separate bug report about that issue..</=
-pre>
+I am having the same problem.
+System: gentoo
+kernel: 3.10.7-gentoo, 3.8.13-gentoo, 3.11 (from kernel.org)
+
+The problem arises without X, I have called '/usr/sbin/hibernate -v3' directly
+after startup (no X is started automatically).
+In /var/log/messages there are more then 400 lines as 
+  Sep  3 20:20:39 localhost kernel: nouveau E[    PBUS][0000:01:00.0] MMIO read
+of 0x00000000 FAULT at 0x610260 [ IBUS ]
+(even the same timestamp).
+
+Greetings
+Diether</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1378232216.86aee1.11029--
+--1378235600.ECb751d2.28441--
 
---===============0684503920==
+--===============0555552828==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +114,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0684503920==--
+--===============0555552828==--
