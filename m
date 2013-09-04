@@ -1,63 +1,114 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: force alignment to 0x1000 for
-	gpu objects
-Date: Wed, 4 Sep 2013 13:34:27 +1000
-Message-ID: <CACAvsv60+TdUFeQjUjZOig-7wdg6vu0fb9T8wBS5FLJFPEVJyg@mail.gmail.com>
-References: <1378132297-19616-1-git-send-email-maarten.lankhorst@canonical.com>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [PATCH] drm/nouveau: avoid null deref on bad arguments to
+	nouveau_vma_getmap
+Date: Wed, 4 Sep 2013 13:41:02 +1000
+Message-ID: <CACAvsv7ygYoM6ZzFdY-Zov0herPMQDERaw6jzj6VuB+p20FcJQ@mail.gmail.com>
+References: <1377130214-17522-1-git-send-email-imirkin@alum.mit.edu>
+	<5215B9E8.5080108@canonical.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1378132297-19616-1-git-send-email-maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <5215B9E8.5080108@canonical.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, =?ISO-8859-1?Q?Pasi_K=E4rkk=E4inen?= <pasik@iki.fi>, Maarten Lankhorst <maarten.lankhorst@ubuntu.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Sep 3, 2013 at 12:31 AM, Maarten Lankhorst
-<maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> wrote:
-> There are a lot of places that allocate multiples of 1000,
-> but do not set alignment correctly and still require this
-> alignment implicitly or explicitly.
-This is wrong.  Where are the places you think you need this?
+On Thu, Aug 22, 2013 at 5:12 PM, Maarten Lankhorst
+<maarten.lankhorst@canonical.com> wrote:
+> Op 22-08-13 02:10, Ilia Mirkin schreef:
+>> The code expects non-VRAM mem nodes to have a pages list. If that's not
+>> set, it will do a null deref down the line. Warn on that condition and
+>> return an error.
+>>
+>> See https://bugs.freedesktop.org/show_bug.cgi?id=3D64774
+>>
+>> Reported-by: Pasi K=E4rkk=E4inen <pasik@iki.fi>
+>> Tested-by: Pasi K=E4rkk=E4inen <pasik@iki.fi>
+>> Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+>> Cc: <stable@vger.kernel.org> # 3.8+
+>> ---
+>>
+>> I don't exactly understand what's going on, but this is just a
+>> straightforward way to avoid a null deref that you see happens in the
+>> bug. I haven't figured out the root cause of this, but it's getting
+>> well into the "I have no idea how TTM works" space. However this seems
+>> like a bit of defensive programming -- nouveau_vm_map_sg will pass
+>> node->pages as a list down, which will be dereferenced by
+>> nvc0_vm_map_sg. Perhaps the other arguments should make that
+>> dereferencing not happen, but it definitely was happening here, as you
+>> can see in the bug.
+>>
+>> Ben/Maarten, I'll let you judge whether this check is appropriate,
+>> since like I hope I was able to convey above, I'm just not really sure :)
+> Not it really isn't appropriate..
+>
+> You'd have to call call nouveau_vm_map_sg_table instead, the only place t=
+hat doesn't handle that correctly
+> is where it's not expected to be called.
+>
+> Here, have a completely untested patch to fix things...
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/=
+nouveau/nouveau_display.c
+> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+> @@ -138,17 +143,26 @@ nouveau_user_framebuffer_create(struct drm_device *=
+dev,
+>  {
+>         struct nouveau_framebuffer *nouveau_fb;
+>         struct drm_gem_object *gem;
+> +       struct nouveau_bo *nvbo;
+>         int ret =3D -ENOMEM;
+>
+>         gem =3D drm_gem_object_lookup(dev, file_priv, mode_cmd->handles[0=
+]);
+>         if (!gem)
+>                 return ERR_PTR(-ENOENT);
+>
+> +       nvbo =3D nouveau_gem_object(gem);
+> +       if (!(nvbo->valid_domains & NOUVEAU_GEM_DOMAIN_VRAM)) {
+> +               nv_warn(nouveau_drm(dev), "Trying to create a fb in vram =
+with"
+> +                       " valid_domains=3D%08x\n", nvbo->valid_domains);
+> +               ret =3D -EINVAL;
+> +               goto err_unref;
+> +       }
+> +
+Definitely the right idea, we can't handle this case right now.
+However, we may someday want/need to be able to scan out of system
+memory, so this is the wrong place.
+
+I suspect the correct thing to do (which'll also handle the
+"defensive" part) is to bail in nouveau_bo_move() on attempts to move
+a DMA-BUF backed object into VRAM.
+
+Sound OK?
 
 Ben.
 
-> ---
->  drivers/gpu/drm/nouveau/core/core/gpuobj.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>         nouveau_fb =3D kzalloc(sizeof(struct nouveau_framebuffer), GFP_KE=
+RNEL);
+>         if (!nouveau_fb)
+>                 goto err_unref;
 >
-> diff --git a/drivers/gpu/drm/nouveau/core/core/gpuobj.c b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
-> index 7595506..7bcae1d 100644
-> --- a/drivers/gpu/drm/nouveau/core/core/gpuobj.c
-> +++ b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
-> @@ -65,6 +65,14 @@ nouveau_gpuobj_create_(struct nouveau_object *parent,
->         int ret, i;
->         u64 addr;
+> -       ret =3D nouveau_framebuffer_init(dev, nouveau_fb, mode_cmd, nouve=
+au_gem_object(gem));
+> +       ret =3D nouveau_framebuffer_init(dev, nouveau_fb, mode_cmd, nvbo);
+>         if (ret)
+>                 goto err;
 >
-> +       /*
-> +        * There are a lot of places that allocate multiples of 1000,
-> +        * but do not set alignment correctly and still require this
-> +        * alignment implicitly or explicitly.
-> +        */
-> +       if (size >= 0x1000 && align < 0x1000)
-> +               align = 0x1000;
-> +
->         *pobject = NULL;
->
->         if (pargpu) {
-> --
-> 1.8.3.4
 >
 > _______________________________________________
 > dri-devel mailing list
-> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> dri-devel@lists.freedesktop.org
 > http://lists.freedesktop.org/mailman/listinfo/dri-devel
