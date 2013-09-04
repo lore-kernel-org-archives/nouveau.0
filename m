@@ -1,14 +1,15 @@
 From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: Re: [PATCH] drm/nouveau: force alignment to 0x1000 for gpu objects
-Date: Wed, 04 Sep 2013 13:59:17 +0200
-Message-ID: <52272095.10905@canonical.com>
-References: <1378132297-19616-1-git-send-email-maarten.lankhorst@canonical.com>
-	<CACAvsv60+TdUFeQjUjZOig-7wdg6vu0fb9T8wBS5FLJFPEVJyg@mail.gmail.com>
+Subject: Re: [PATCH] drm/nouveau: fix command submission to use vmalloc for
+	big allocations
+Date: Wed, 04 Sep 2013 14:27:29 +0200
+Message-ID: <52272731.8040203@canonical.com>
+References: <1378132291-19577-1-git-send-email-maarten.lankhorst@canonical.com>
+	<CACAvsv5Ok_3Mf6SQ=ZX4T3Ypy1rV__bRt_eWOLU=HhRJcJNrSw@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <CACAvsv60+TdUFeQjUjZOig-7wdg6vu0fb9T8wBS5FLJFPEVJyg@mail.gmail.com>
+In-Reply-To: <CACAvsv5Ok_3Mf6SQ=ZX4T3Ypy1rV__bRt_eWOLU=HhRJcJNrSw@mail.gmail.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
 	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
@@ -22,16 +23,19 @@ To: Ben Skeggs <skeggsb@gmail.com>
 Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-Op 04-09-13 05:34, Ben Skeggs schreef:
+Op 04-09-13 05:31, Ben Skeggs schreef:
 > On Tue, Sep 3, 2013 at 12:31 AM, Maarten Lankhorst
 > <maarten.lankhorst@canonical.com> wrote:
->> There are a lot of places that allocate multiples of 1000,
->> but do not set alignment correctly and still require this
->> alignment implicitly or explicitly.
-> This is wrong.  Where are the places you think you need this?
+>> I was getting a order 4 allocation failure from kmalloc when testing some game
+>> after a few days uptime with some suspend/resumes. For big allocations vmalloc
+>> should be used instead.
+> I've picked up this patch with a minor modification (see below)
 >
-All the calls to nouveau_gpuobj_map_vm for example in core/engine/graph/nvc0.c.
-
-engctx_create is usually called with alignment = 0x100 too, which seems like it would break in the fifo_context_attach calls too.
+>> Also limit size more aggressively to 256 KiB.
+> I dropped this, it's *completely* useless, the sizes are already
+> enforced right at the beginning of the ioctl (shockingly, the max size
+> is going to be 256KiB already)...
+>
+Thanks, I wonder how I missed that. :-)
 
 ~Maarten
