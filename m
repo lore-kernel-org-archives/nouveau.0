@@ -1,92 +1,64 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60020] [NV42] Resuming Dell Precision M70 crashes
-Date: Tue, 03 Sep 2013 22:05:05 +0000
-Message-ID: <bug-60020-8800-AjPNUNHkxL@http.bugs.freedesktop.org/>
-References: <bug-60020-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [Nouveau] [PATCH] drm/nv50/disp: prevent false output detection
+ on the original nv50
+Date: Wed, 4 Sep 2013 11:07:05 +1000
+Message-ID: <CACAvsv6o7XECaVQvDeQBS4iacruV6LzTeE8BzQyWjSfhT79Skg@mail.gmail.com>
+References: <1377279822-29675-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1629997793=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60020-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=ISO-8859-1
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <1377279822-29675-1-git-send-email-emil.l.velikov@gmail.com>
+Sender: stable-owner@vger.kernel.org
+To: Emil Velikov <emil.l.velikov@gmail.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, stable@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
+On Sat, Aug 24, 2013 at 3:43 AM, Emil Velikov <emil.l.velikov@gmail.com> wrote:
+> Commit ea9197cc323839ef3d5280c0453b2c622caa6bc7 effectively enabled the
+> use of an improved DAC detection code, but introduced a regression on
+> the original nv50 chipset, causing a ghost monitor to be detected.
+Hey Emil,
 
---===============1629997793==
-Content-Type: multipart/alternative; boundary="1378245905.E6A27d802.13159"; charset="us-ascii"
+I've merged this patch, modified (after some experimenting on both
+NV50 and GK106) to make this change unconditional for all chipsets.
 
+Thanks :)
 
---1378245905.E6A27d802.13159
-Date: Tue, 3 Sep 2013 22:05:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Ben.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60020
-
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-How hung is the machine? Can you ssh into it? If so, would be great to see the
-logs on hang after resume. If not, can you try using netconsole/serial console?
-Does booting with nouveau.config=NvForcePost=1 help?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1378245905.E6A27d802.13159
-Date: Tue, 3 Sep 2013 22:05:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV42] Resuming Dell Precision M70 crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60020#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV42] Resuming Dell Precision M70 crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60020">bug 60020</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>How hung is the machine? Can you ssh into it? If so, would be great to see the
-logs on hang after resume. If not, can you try using netconsole/serial console?
-Does booting with nouveau.config=NvForcePost=1 help?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1378245905.E6A27d802.13159--
-
---===============1629997793==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1629997793==--
+>
+> Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=67382
+> Tested-by: Martin Peres <martin.peres@labri.fr>
+> Signed-off-by: Emil Velikov <emil.l.velikov@gmail.com>
+> Cc: <stable@vger.kernel.org> # 3.9+
+> ---
+>  drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c b/drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c
+> index f02fd9f..15df527 100644
+> --- a/drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c
+> +++ b/drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c
+> @@ -55,7 +55,14 @@ nv50_dac_sense(struct nv50_disp_priv *priv, int or, u32 loadval)
+>         nv_wr32(priv, 0x61a00c + doff, 0x00100000 | loadval);
+>         mdelay(9);
+>         udelay(500);
+> -       nv_wr32(priv, 0x61a00c + doff, 0x80000000);
+> +
+> +       /*
+> +        * The original nv50 detects a ghost monitor if we do the following
+> +        * write. See fdo#67382 for more information
+> +        */
+> +       if (nv_device(priv)->chipset != 0x50)
+> +               nv_wr32(priv, 0x61a00c + doff, 0x80000000);
+> +
+>         load = (nv_rd32(priv, 0x61a00c + doff) & 0x38000000) >> 27;
+>         nv_wr32(priv, 0x61a00c + doff, 0x00000000);
+>         nv_mask(priv, 0x61a004 + doff, 0x807f0000, 0x80550000);
+> --
+> 1.8.3.4
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
