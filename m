@@ -1,100 +1,70 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49727] [nv30 gallium] wine 1.5.2 and 3Dmark2001se
- displays only black screen with FPS, on nv43/AGP
-Date: Wed, 04 Sep 2013 03:03:58 +0000
-Message-ID: <bug-49727-8800-QOBJUap8kE@http.bugs.freedesktop.org/>
-References: <bug-49727-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [PATCH] drm/nv84-: write fence value on exit, and restore value
+	on init.
+Date: Wed, 4 Sep 2013 13:21:19 +1000
+Message-ID: <CACAvsv6Aj2abkDV4-HPykMT9gKWw5U8AHkiBzvnOH5UND6nUDQ@mail.gmail.com>
+References: <1378132262-19453-1-git-send-email-maarten.lankhorst@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0672352770=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49727-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <1378132262-19453-1-git-send-email-maarten.lankhorst@canonical.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
+On Tue, Sep 3, 2013 at 12:31 AM, Maarten Lankhorst
+<maarten.lankhorst@canonical.com> wrote:
+> This increases the chance slightly that recovery from lockup can happen
+> succesfully.
+I'd *really* love to see proof of this.  When channels die, all
+outstanding fences are marked as signalled.  This should do absolutely
+nothing...
 
---===============0672352770==
-Content-Type: multipart/alternative; boundary="1378263838.50bF1F1.2812"; charset="us-ascii"
-
-
---1378263838.50bF1F1.2812
-Date: Wed, 4 Sep 2013 03:03:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=49727
-
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 85162
-  --> https://bugs.freedesktop.org/attachment.cgi?id=85162&action=edit
-disable ARB_framebuffer_object, print when trying to do both swizzle and linear
-
-Does this patch help? If not, do you see "rt_format is both swizzled and
-linear" getting printed a bunch (in a debug build... change it to a
-_debug_printf(...) if you're doing a non-debug build)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1378263838.50bF1F1.2812
-Date: Wed, 4 Sep 2013 03:03:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nv30 gallium] wine 1.5.2 and 3Dmark2001se displays only black screen with FPS, on nv43/AGP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49727#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nv30 gallium] wine 1.5.2 and 3Dmark2001se displays only black screen with FPS, on nv43/AGP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49727">bug 49727</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=85162" name="attach_85162" title="disable ARB_framebuffer_object, print when trying to do both swizzle and linear">attachment 85162</a> <a href="attachment.cgi?id=85162&amp;action=edit" title="disable ARB_framebuffer_object, print when trying to do both swizzle and linear">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=49727&amp;attachment=85162'>[review]</a>
-disable ARB_framebuffer_object, print when trying to do both swizzle and linear
-
-Does this patch help? If not, do you see &quot;rt_format is both swizzled and
-linear&quot; getting printed a bunch (in a debug build... change it to a
-_debug_printf(...) if you're doing a non-debug build)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1378263838.50bF1F1.2812--
-
---===============0672352770==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0672352770==--
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+> ---
+>  drivers/gpu/drm/nouveau/nv84_fence.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nv84_fence.c b/drivers/gpu/drm/nouveau/nv84_fence.c
+> index 2cf0ade..daf4b18 100644
+> --- a/drivers/gpu/drm/nouveau/nv84_fence.c
+> +++ b/drivers/gpu/drm/nouveau/nv84_fence.c
+> @@ -122,8 +122,11 @@ nv84_fence_context_del(struct nouveau_channel *chan)
+>         struct drm_device *dev = chan->drm->dev;
+>         struct nv84_fence_priv *priv = chan->drm->fence;
+>         struct nv84_fence_chan *fctx = chan->fence;
+> +       struct nouveau_fifo_chan *fifo = (void *)chan->object;
+>         int i;
+>
+> +       nouveau_bo_wr32(priv->bo, fifo->chid * 16/4, fctx->base.sequence);
+> +
+>         for (i = 0; i < dev->mode_config.num_crtc; i++) {
+>                 struct nouveau_bo *bo = nv50_display_crtc_sema(dev, i);
+>                 nouveau_bo_vma_del(bo, &fctx->dispc_vma[i]);
+> @@ -168,7 +171,7 @@ nv84_fence_context_new(struct nouveau_channel *chan)
+>                 ret = nouveau_bo_vma_add(bo, client->vm, &fctx->dispc_vma[i]);
+>         }
+>
+> -       nouveau_bo_wr32(priv->bo, fifo->chid * 16/4, 0x00000000);
+> +       fctx->base.sequence = nouveau_bo_rd32(priv->bo, fifo->chid * 16/4);
+>
+>         if (ret)
+>                 nv84_fence_context_del(chan);
+> --
+> 1.8.3.4
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
