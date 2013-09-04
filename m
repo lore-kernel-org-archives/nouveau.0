@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49727] [nv30 gallium] wine 1.5.2 and 3Dmark2001se
- displays only black screen with FPS, on nv43/AGP
-Date: Wed, 04 Sep 2013 15:55:36 +0000
-Message-ID: <bug-49727-8800-TtX07KNnFt@http.bugs.freedesktop.org/>
-References: <bug-49727-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67382] [nouveau,
+ nv50] linux 3.9.7-3.10.3: Xorg won't be available
+Date: Wed, 04 Sep 2013 16:10:34 +0000
+Message-ID: <bug-67382-8800-atVDucMelR@http.bugs.freedesktop.org/>
+References: <bug-67382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0126544289=="
+Content-Type: multipart/mixed; boundary="===============0698257731=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49727-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0126544289==
-Content-Type: multipart/alternative; boundary="1378310136.f0B6D761.15165"; charset="us-ascii"
+--===============0698257731==
+Content-Type: multipart/alternative; boundary="1378311034.2D6e831.19719"; charset="us-ascii"
 
 
---1378310136.f0B6D761.15165
-Date: Wed, 4 Sep 2013 15:55:36 +0000
+--1378311034.2D6e831.19719
+Date: Wed, 4 Sep 2013 16:10:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=49727
+https://bugs.freedesktop.org/show_bug.cgi?id=67382
 
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I did send a patch to fix the crash (the ->user_priv wasn't being set correctly
-on init for some reason), but that just caused it to hang the gpu...
+--- Comment #38 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
+(In reply to comment #37)
+> P.S. feel free to close bug ticket at kernel.org, as the fix lands.
+
+Will do, but how long does it usually takes until a patch is accepted?
+Checked the source of 3.10.10 and 3.11 and it's still not applied.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378310136.f0B6D761.15165
-Date: Wed, 4 Sep 2013 15:55:36 +0000
+--1378311034.2D6e831.19719
+Date: Wed, 4 Sep 2013 16:10:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,17 +56,20 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nv30 gallium] wine 1.5.2 and 3Dmark2001se displays only black screen with FPS, on nv43/AGP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49727#c9">Comment # 9</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382#c38">Comment # 38</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nv30 gallium] wine 1.5.2 and 3Dmark2001se displays only black screen with FPS, on nv43/AGP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49727">bug 49727</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67382">bug 67382</a>
+              from <span class="vcard"><a class="email" href="mailto:anonymous&#64;dodgeit.com" title="Anonymous Helper &lt;anonymous&#64;dodgeit.com&gt;"> <span class="fn">Anonymous Helper</span></a>
 </span></b>
-        <pre>I did send a patch to fix the crash (the -&gt;user_priv wasn't being set correctly
-on init for some reason), but that just caused it to hang the gpu...</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=67382#c37">comment #37</a>)
+<span class="quote">&gt; P.S. feel free to close bug ticket at kernel.org, as the fix lands.</span >
+
+Will do, but how long does it usually takes until a patch is accepted?
+Checked the source of 3.10.10 and 3.11 and it's still not applied.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +81,9 @@ on init for some reason), but that just caused it to hang the gpu...</pre>
     </body>
 </html>
 
---1378310136.f0B6D761.15165--
+--1378311034.2D6e831.19719--
 
---===============0126544289==
+--===============0698257731==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0126544289==--
+--===============0698257731==--
