@@ -1,15 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/therm: ack any pending IRQ at
-	init v2
-Date: Wed, 4 Sep 2013 11:52:06 +1000
-Message-ID: <CACAvsv6+9TqeTjMeMPdAwDrxLbbZ1sBJDQFmE7Xum9ryebns7g@mail.gmail.com>
-References: <1377907131-15099-2-git-send-email-martin.peres@free.fr>
-	<1377907571-15301-1-git-send-email-martin.peres@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 58615] [NV43] hangs with direct rendering since 3.7
+	rework
+Date: Wed, 04 Sep 2013 01:52:13 +0000
+Message-ID: <bug-58615-8800-jQl5PtdDp4@http.bugs.freedesktop.org/>
+References: <bug-58615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1187836958=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1377907571-15301-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-58615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,103 +17,110 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Aug 31, 2013 at 10:06 AM, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> wrote:
-> From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
->
-> This is safe because ptherm hasn't been configured yet and will be a
-> little further down the initialization path. Ptherm should be safe
-> regarding to runtime reconfiguration.
-Any objections to instead sticking the ACK in a single fini() hook
-(along with additional code to disable all therm interrupts), and
-having the IRQ handle silently ignore any non-requested IRQs (see what
-the copy engine irq handler does, for example)?
 
-Ben.
->
-> v2:
-> - do not limit this patch to nv84-a3 and make it nv84+
->
-> Signed-off-by: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c | 19 ++++++++++++++++++-
->  drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c |  4 ++++
->  drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c |  4 ++++
->  3 files changed, 26 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c b/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c
-> index 42ba633..8615d62 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c
-> @@ -209,13 +209,30 @@ nv84_therm_ctor(struct nouveau_object *parent,
->         return nouveau_therm_preinit(&priv->base.base);
->  }
->
-> +static int
-> +nv84_therm_init(struct nouveau_object *object)
-> +{
-> +       struct nv84_therm_priv *priv = (void *)object;
-> +       int ret;
-> +
-> +       ret = nouveau_therm_init(&priv->base.base);
-> +       if (ret)
-> +               return ret;
-> +
-> +       /* ACK ptherm IRQs */
-> +       nv_wr32(object, 0x20100, 0xffffffff);
-> +       nv_wr32(object, 0x1100, 0x10000); /* PBUS */
-> +
-> +       return 0;
-> +}
-> +
->  struct nouveau_oclass
->  nv84_therm_oclass = {
->         .handle = NV_SUBDEV(THERM, 0x84),
->         .ofuncs = &(struct nouveau_ofuncs) {
->                 .ctor = nv84_therm_ctor,
->                 .dtor = _nouveau_therm_dtor,
-> -               .init = _nouveau_therm_init,
-> +               .init = nv84_therm_init,
->                 .fini = _nouveau_therm_fini,
->         },
->  };
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c b/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c
-> index d11a7c4..f740eeb 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c
-> @@ -60,6 +60,10 @@ nva3_therm_init(struct nouveau_object *object)
->         }
->         nv_mask(priv, 0x00e720, 0x00000002, 0x00000000);
->
-> +       /* ACK ptherm IRQs */
-> +       nv_wr32(object, 0x20100, 0xffffffff);
-> +       nv_wr32(object, 0x1100, 0x10000); /* PBUS */
-> +
->         return 0;
->  }
->
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c b/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
-> index 54c28bd..d9b5103 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
-> @@ -114,6 +114,10 @@ nvd0_therm_init(struct nouveau_object *object)
->         }
->         nv_mask(priv, 0x00e720, 0x00000002, 0x00000000);
->
-> +       /* ACK ptherm IRQs */
-> +       nv_wr32(object, 0x20100, 0xffffffff);
-> +       nv_wr32(object, 0x1100, 0x10000); /* PBUS */
-> +
->         return 0;
->  }
->
-> --
-> 1.8.4
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+--===============1187836958==
+Content-Type: multipart/alternative; boundary="1378259533.dc601.16562"; charset="us-ascii"
+
+
+--1378259533.dc601.16562
+Date: Wed, 4 Sep 2013 01:52:13 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=58615
+
+Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #83509|0                           |1
+        is obsolete|                            |
+
+--- Comment #11 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Created attachment 85161
+  --> https://bugs.freedesktop.org/attachment.cgi?id=85161&action=edit
+dmesg from nouveau/master
+
+Using mesa  git (9.3.0-6b5c802) trivial/tri also  hangs X server. (I switched 
+away from it to  working VT, and captured  this  dmesg.)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1378259533.dc601.16562
+Date: Wed, 4 Sep 2013 01:52:13 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV43] hangs with direct rendering since 3.7 rework"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58615">bug 58615</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #83509 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV43] hangs with direct rendering since 3.7 rework"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58615#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV43] hangs with direct rendering since 3.7 rework"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58615">bug 58615</a>
+              from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=85161" name="attach_85161" title="dmesg from nouveau/master">attachment 85161</a> <a href="attachment.cgi?id=85161&amp;action=edit" title="dmesg from nouveau/master">[details]</a></span>
+dmesg from nouveau/master
+
+Using mesa  git (9.3.0-6b5c802) trivial/tri also  hangs X server. (I switched 
+away from it to  working VT, and captured  this  dmesg.)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1378259533.dc601.16562--
+
+--===============1187836958==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1187836958==--
