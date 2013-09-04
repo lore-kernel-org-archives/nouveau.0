@@ -1,124 +1,63 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH] drm/nouveau: fix command submission to use vmalloc for
-	big allocations
-Date: Wed, 4 Sep 2013 13:31:59 +1000
-Message-ID: <CACAvsv5Ok_3Mf6SQ=ZX4T3Ypy1rV__bRt_eWOLU=HhRJcJNrSw@mail.gmail.com>
-References: <1378132291-19577-1-git-send-email-maarten.lankhorst@canonical.com>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: force alignment to 0x1000 for
+	gpu objects
+Date: Wed, 4 Sep 2013 13:34:27 +1000
+Message-ID: <CACAvsv60+TdUFeQjUjZOig-7wdg6vu0fb9T8wBS5FLJFPEVJyg@mail.gmail.com>
+References: <1378132297-19616-1-git-send-email-maarten.lankhorst@canonical.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <1378132291-19577-1-git-send-email-maarten.lankhorst@canonical.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1378132297-19616-1-git-send-email-maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 On Tue, Sep 3, 2013 at 12:31 AM, Maarten Lankhorst
-<maarten.lankhorst@canonical.com> wrote:
-> I was getting a order 4 allocation failure from kmalloc when testing some game
-> after a few days uptime with some suspend/resumes. For big allocations vmalloc
-> should be used instead.
-I've picked up this patch with a minor modification (see below)
+<maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> wrote:
+> There are a lot of places that allocate multiples of 1000,
+> but do not set alignment correctly and still require this
+> alignment implicitly or explicitly.
+This is wrong.  Where are the places you think you need this?
 
->
-> Also limit size more aggressively to 256 KiB.
-I dropped this, it's *completely* useless, the sizes are already
-enforced right at the beginning of the ioctl (shockingly, the max size
-is going to be 256KiB already)...
-
-Thanks,
 Ben.
 
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
 > ---
->  drivers/gpu/drm/nouveau/nouveau_gem.c | 30 +++++++++++++++++++++++-------
->  1 file changed, 23 insertions(+), 7 deletions(-)
+>  drivers/gpu/drm/nouveau/core/core/gpuobj.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-> index 177b86d5..779d702 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-> @@ -584,18 +584,34 @@ nouveau_gem_pushbuf_validate(struct nouveau_channel *chan,
->         return 0;
->  }
+> diff --git a/drivers/gpu/drm/nouveau/core/core/gpuobj.c b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+> index 7595506..7bcae1d 100644
+> --- a/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+> +++ b/drivers/gpu/drm/nouveau/core/core/gpuobj.c
+> @@ -65,6 +65,14 @@ nouveau_gpuobj_create_(struct nouveau_object *parent,
+>         int ret, i;
+>         u64 addr;
 >
-> +static inline void
-> +u_free(void *addr)
-> +{
-> +       if (!is_vmalloc_addr(addr))
-> +               kfree(addr);
-> +       else
-> +               vfree(addr);
-> +}
+> +       /*
+> +        * There are a lot of places that allocate multiples of 1000,
+> +        * but do not set alignment correctly and still require this
+> +        * alignment implicitly or explicitly.
+> +        */
+> +       if (size >= 0x1000 && align < 0x1000)
+> +               align = 0x1000;
 > +
->  static inline void *
->  u_memcpya(uint64_t user, unsigned nmemb, unsigned size)
->  {
->         void *mem;
->         void __user *userptr = (void __force __user *)(uintptr_t)user;
+>         *pobject = NULL;
 >
-> -       mem = kmalloc(nmemb * size, GFP_KERNEL);
-> +       if (nmemb > 256 * 1024 / size)
-> +               return ERR_PTR(-ENOMEM);
-> +
-> +       size *= nmemb;
-> +
-> +       mem = kmalloc(size, GFP_KERNEL | __GFP_NOWARN);
-> +       if (!mem)
-> +               mem = vmalloc(size);
->         if (!mem)
->                 return ERR_PTR(-ENOMEM);
->
-> -       if (DRM_COPY_FROM_USER(mem, userptr, nmemb * size)) {
-> -               kfree(mem);
-> +       if (DRM_COPY_FROM_USER(mem, userptr, size)) {
-> +               u_free(mem);
->                 return ERR_PTR(-EFAULT);
->         }
->
-> @@ -681,7 +697,7 @@ nouveau_gem_pushbuf_reloc_apply(struct nouveau_cli *cli,
->                 nouveau_bo_wr32(nvbo, r->reloc_bo_offset >> 2, data);
->         }
->
-> -       kfree(reloc);
-> +       u_free(reloc);
->         return ret;
->  }
->
-> @@ -743,7 +759,7 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
->
->         bo = u_memcpya(req->buffers, req->nr_buffers, sizeof(*bo));
->         if (IS_ERR(bo)) {
-> -               kfree(push);
-> +               u_free(push);
->                 return nouveau_abi16_put(abi16, PTR_ERR(bo));
->         }
->
-> @@ -854,8 +870,8 @@ out:
->         nouveau_fence_unref(&fence);
->
->  out_prevalid:
-> -       kfree(bo);
-> -       kfree(push);
-> +       u_free(bo);
-> +       u_free(push);
->
->  out_next:
->         if (chan->dma.ib_max) {
+>         if (pargpu) {
 > --
 > 1.8.3.4
 >
 > _______________________________________________
 > dri-devel mailing list
-> dri-devel@lists.freedesktop.org
+> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 > http://lists.freedesktop.org/mailman/listinfo/dri-devel
