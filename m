@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
-Date: Wed, 04 Sep 2013 20:16:11 +0000
-Message-ID: <bug-35267-8800-J75BBumKX2@http.bugs.freedesktop.org/>
+Date: Wed, 04 Sep 2013 20:27:37 +0000
+Message-ID: <bug-35267-8800-8KI3NsjT2S@http.bugs.freedesktop.org/>
 References: <bug-35267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0513876459=="
+Content-Type: multipart/mixed; boundary="===============1126538148=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-35267-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,51 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0513876459==
-Content-Type: multipart/alternative; boundary="1378325771.bAfCb2.15299"; charset="us-ascii"
+--===============1126538148==
+Content-Type: multipart/alternative; boundary="1378326457.DCCDD83.22342"; charset="us-ascii"
 
 
---1378325771.bAfCb2.15299
-Date: Wed, 4 Sep 2013 20:16:11 +0000
+--1378326457.DCCDD83.22342
+Date: Wed, 4 Sep 2013 20:27:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35267
 
---- Comment #21 from hanfi <freedesktop.org-6Pg49yFQ+vvtRgLqZ5aouw@public.gmane.org> ---
-(In reply to comment #20)
-> Is this still an issue with the latest kernel? Note that you can load a
-> custom vbios by using nouveau.NvBios=path/to/vbios.rom (which will be loaded
-> using the firmware loading logic, so make sure that file is available when
-> nouveau is getting loaded, either built into the kernel, or in the initrd if
-> you're using that).
+--- Comment #22 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Ooops, did I say nouveau.NvBios? (Yes, I did...) That was a lie.
 
-Where exactly should I set this option?
-I tried pass it as a kernel parameter from grub, which did not work.
-Then i blacklisted nouveau, and tried to load it after the system booted
-But this always tells me:
+Try: nouveau.config=NvBios=path/to/vbios.rom
 
-laptop ~ # modprobe nouveau nouveau.NvBios='/boot/vbios.rom'
-[   86.004292] nouveau: `/boot/vbios.rom' invalid for parameter
-`nouveau.NvBios'
-modprobe: ERROR: could not insert 'nouveau': Invalid argument
-laptop ~ # modprobe nouveau NvBios='/boot/vbios.rom'
-[   92.214318] nouveau: `/boot/vbios.rom' invalid for parameter `NvBios'
-modprobe: ERROR: could not insert 'nouveau': Invalid argument
-
-
-This is on kernel 3.10.7 (gentoo sources) and greping trough the source i see
-that the option exists.
-Do i need try linux for workgroup (aka 3.11)?
-
-Im lost a little bit here.
+Note that this path is passed to the firmware loader, which might only work in
+paths relative to /lib/firmware -- I don't think doing "/boot/blah" will work.
+But I've never tried it. (Or it'll call out to the usermode helper, which will
+do who knows what.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378325771.bAfCb2.15299
-Date: Wed, 4 Sep 2013 20:16:11 +0000
+--1378326457.DCCDD83.22342
+Date: Wed, 4 Sep 2013 20:27:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -78,39 +60,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau fails to load BIOS on EFI boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=35267#c21">Comment # 21</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=35267#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau fails to load BIOS on EFI boot."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=35267">bug 35267</a>
-              from <span class="vcard"><a class="email" href="mailto:freedesktop.org&#64;spahan.ch" title="hanfi &lt;freedesktop.org&#64;spahan.ch&gt;"> <span class="fn">hanfi</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=35267#c20">comment #20</a>)
-<span class="quote">&gt; Is this still an issue with the latest kernel? Note that you can load a
-&gt; custom vbios by using nouveau.NvBios=path/to/vbios.rom (which will be loaded
-&gt; using the firmware loading logic, so make sure that file is available when
-&gt; nouveau is getting loaded, either built into the kernel, or in the initrd if
-&gt; you're using that).</span >
+        <pre>Ooops, did I say nouveau.NvBios? (Yes, I did...) That was a lie.
 
-Where exactly should I set this option?
-I tried pass it as a kernel parameter from grub, which did not work.
-Then i blacklisted nouveau, and tried to load it after the system booted
-But this always tells me:
+Try: nouveau.config=NvBios=path/to/vbios.rom
 
-laptop ~ # modprobe nouveau nouveau.NvBios='/boot/vbios.rom'
-[   86.004292] nouveau: `/boot/vbios.rom' invalid for parameter
-`nouveau.NvBios'
-modprobe: ERROR: could not insert 'nouveau': Invalid argument
-laptop ~ # modprobe nouveau NvBios='/boot/vbios.rom'
-[   92.214318] nouveau: `/boot/vbios.rom' invalid for parameter `NvBios'
-modprobe: ERROR: could not insert 'nouveau': Invalid argument
-
-
-This is on kernel 3.10.7 (gentoo sources) and greping trough the source i see
-that the option exists.
-Do i need try linux for workgroup (aka 3.11)?
-
-Im lost a little bit here.</pre>
+Note that this path is passed to the firmware loader, which might only work in
+paths relative to /lib/firmware -- I don't think doing &quot;/boot/blah&quot; will work.
+But I've never tried it. (Or it'll call out to the usermode helper, which will
+do who knows what.)</pre>
         </div>
       </p>
       <hr>
@@ -122,9 +86,9 @@ Im lost a little bit here.</pre>
     </body>
 </html>
 
---1378325771.bAfCb2.15299--
+--1378326457.DCCDD83.22342--
 
---===============0513876459==
+--===============1126538148==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -135,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0513876459==--
+--===============1126538148==--
