@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68665] [NVE4] Crashing games when set AA to x2 on
-	GTX760
-Date: Thu, 05 Sep 2013 08:23:35 +0000
-Message-ID: <bug-68665-8800-5gteUIFaQI@http.bugs.freedesktop.org/>
-References: <bug-68665-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 1/7] drm/nouveau: remove prototype for
+	non-existent nouveau_connector_bpp
+Date: Thu,  5 Sep 2013 04:45:00 -0400
+Message-ID: <1378370706-18599-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1888235739=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,79 +16,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_connector.h | 3 ---
+ 1 file changed, 3 deletions(-)
 
---===============1888235739==
-Content-Type: multipart/alternative; boundary="1378369415.d0e51.2317"; charset="us-ascii"
-
-
---1378369415.d0e51.2317
-Date: Thu, 5 Sep 2013 08:23:35 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=68665
-
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There is no way to get the data ending with aaaa in the new code. If they're
-still seeing it, it's still an old snapshot. (Of course, the problem may be
-entirely unrelated to that error.) Fresh logs would be nice. And a debug mesa
-build wouldn't hurt either, as that enables all sorts of extra checks.
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
+index 6e399aa..4cefce3 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.h
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
+@@ -107,7 +107,4 @@ nouveau_crtc_connector_get(struct nouveau_crtc *nv_crtc)
+ struct drm_connector *
+ nouveau_connector_create(struct drm_device *, int index);
+ 
+-int
+-nouveau_connector_bpp(struct drm_connector *);
+-
+ #endif /* __NOUVEAU_CONNECTOR_H__ */
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1378369415.d0e51.2317
-Date: Thu, 5 Sep 2013 08:23:35 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NVE4] Crashing games when set AA to x2 on GTX760"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68665#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NVE4] Crashing games when set AA to x2 on GTX760"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68665">bug 68665</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>There is no way to get the data ending with aaaa in the new code. If they're
-still seeing it, it's still an old snapshot. (Of course, the problem may be
-entirely unrelated to that error.) Fresh logs would be nice. And a debug mesa
-build wouldn't hurt either, as that enables all sorts of extra checks.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1378369415.d0e51.2317--
-
---===============1888235739==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1888235739==--
+1.8.1.5
