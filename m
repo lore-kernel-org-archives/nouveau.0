@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 7/7] drm/nv40/mpeg: nv40 -> nv44,
-	and point nv40-nv43 to the nv31 impl
-Date: Thu,  5 Sep 2013 04:45:06 -0400
-Message-ID: <1378370706-18599-7-git-send-email-imirkin@alum.mit.edu>
-References: <1378370706-18599-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 68665] [NVE4] Crashing games when set AA to x2 on
+	GTX760
+Date: Thu, 05 Sep 2013 10:35:43 +0000
+Message-ID: <bug-68665-8800-wnnluaafYH@http.bugs.freedesktop.org/>
+References: <bug-68665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2081701329=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1378370706-18599-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+In-Reply-To: <bug-68665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,313 +17,73 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This enables the one-decoder-at-a-time logic for nv40-nv43, and
-removes the unnecessary context setup.
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
----
- drivers/gpu/drm/nouveau/Makefile                   |  2 +-
- drivers/gpu/drm/nouveau/core/engine/device/nv40.c  | 32 +++++++++---------
- .../nouveau/core/engine/mpeg/{nv40.c => nv44.c}    | 38 +++++++++++-----------
- drivers/gpu/drm/nouveau/core/include/engine/mpeg.h |  2 +-
- 4 files changed, 37 insertions(+), 37 deletions(-)
- rename drivers/gpu/drm/nouveau/core/engine/mpeg/{nv40.c => nv44.c} (82%)
+--===============2081701329==
+Content-Type: multipart/alternative; boundary="1378377343.7daFAb71.24309"; charset="us-ascii"
 
-diff --git a/drivers/gpu/drm/nouveau/Makefile b/drivers/gpu/drm/nouveau/Makefile
-index d939a1d..e8cb578 100644
---- a/drivers/gpu/drm/nouveau/Makefile
-+++ b/drivers/gpu/drm/nouveau/Makefile
-@@ -226,7 +226,7 @@ nouveau-y += core/engine/graph/nvd9.o
- nouveau-y += core/engine/graph/nve4.o
- nouveau-y += core/engine/graph/nvf0.o
- nouveau-y += core/engine/mpeg/nv31.o
--nouveau-y += core/engine/mpeg/nv40.o
-+nouveau-y += core/engine/mpeg/nv44.o
- nouveau-y += core/engine/mpeg/nv50.o
- nouveau-y += core/engine/mpeg/nv84.o
- nouveau-y += core/engine/ppp/nv98.o
-diff --git a/drivers/gpu/drm/nouveau/core/engine/device/nv40.c b/drivers/gpu/drm/nouveau/core/engine/device/nv40.c
-index 1719cb0..0e52942 100644
---- a/drivers/gpu/drm/nouveau/core/engine/device/nv40.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/device/nv40.c
-@@ -66,7 +66,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv31_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x41:
-@@ -87,7 +87,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv31_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x42:
-@@ -108,7 +108,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv31_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x43:
-@@ -129,7 +129,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv31_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x45:
-@@ -150,7 +150,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv44_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x47:
-@@ -171,7 +171,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv44_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x49:
-@@ -192,7 +192,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv44_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x4b:
-@@ -213,7 +213,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv44_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x44:
-@@ -234,7 +234,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv44_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x46:
-@@ -255,7 +255,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv44_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x4a:
-@@ -276,7 +276,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv44_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x4c:
-@@ -297,7 +297,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv44_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x4e:
-@@ -318,7 +318,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv44_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x63:
-@@ -339,7 +339,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv44_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x67:
-@@ -360,7 +360,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv44_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	case 0x68:
-@@ -381,7 +381,7 @@ nv40_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_FIFO   ] = &nv40_fifo_oclass;
- 		device->oclass[NVDEV_ENGINE_SW     ] = &nv10_software_oclass;
- 		device->oclass[NVDEV_ENGINE_GR     ] = &nv40_graph_oclass;
--		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv40_mpeg_oclass;
-+		device->oclass[NVDEV_ENGINE_MPEG   ] = &nv44_mpeg_oclass;
- 		device->oclass[NVDEV_ENGINE_DISP   ] = &nv04_disp_oclass;
- 		break;
- 	default:
-diff --git a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv44.c
-similarity index 82%
-rename from drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c
-rename to drivers/gpu/drm/nouveau/core/engine/mpeg/nv44.c
-index dd61960..8a2fb65 100644
---- a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv44.c
-@@ -33,11 +33,11 @@
- #include <engine/mpeg.h>
- #include <engine/graph/nv40.h>
- 
--struct nv40_mpeg_priv {
-+struct nv44_mpeg_priv {
- 	struct nouveau_mpeg base;
- };
- 
--struct nv40_mpeg_chan {
-+struct nv44_mpeg_chan {
- 	struct nouveau_mpeg_chan base;
- };
- 
-@@ -46,12 +46,12 @@ struct nv40_mpeg_chan {
-  ******************************************************************************/
- 
- static int
--nv40_mpeg_context_ctor(struct nouveau_object *parent,
-+nv44_mpeg_context_ctor(struct nouveau_object *parent,
- 		       struct nouveau_object *engine,
- 		       struct nouveau_oclass *oclass, void *data, u32 size,
- 		       struct nouveau_object **pobject)
- {
--	struct nv40_mpeg_chan *chan;
-+	struct nv44_mpeg_chan *chan;
- 	int ret;
- 
- 	ret = nouveau_mpeg_context_create(parent, engine, oclass, NULL,
-@@ -66,11 +66,11 @@ nv40_mpeg_context_ctor(struct nouveau_object *parent,
- }
- 
- static int
--nv40_mpeg_context_fini(struct nouveau_object *object, bool suspend)
-+nv44_mpeg_context_fini(struct nouveau_object *object, bool suspend)
- {
- 
--	struct nv40_mpeg_priv *priv = (void *)object->engine;
--	struct nv40_mpeg_chan *chan = (void *)object;
-+	struct nv44_mpeg_priv *priv = (void *)object->engine;
-+	struct nv44_mpeg_chan *chan = (void *)object;
- 	u32 inst = 0x80000000 | nv_gpuobj(chan)->addr >> 4;
- 
- 	nv_mask(priv, 0x00b32c, 0x00000001, 0x00000000);
-@@ -81,13 +81,13 @@ nv40_mpeg_context_fini(struct nouveau_object *object, bool suspend)
- }
- 
- static struct nouveau_oclass
--nv40_mpeg_cclass = {
-+nv44_mpeg_cclass = {
- 	.handle = NV_ENGCTX(MPEG, 0x40),
- 	.ofuncs = &(struct nouveau_ofuncs) {
--		.ctor = nv40_mpeg_context_ctor,
-+		.ctor = nv44_mpeg_context_ctor,
- 		.dtor = _nouveau_mpeg_context_dtor,
- 		.init = _nouveau_mpeg_context_init,
--		.fini = nv40_mpeg_context_fini,
-+		.fini = nv44_mpeg_context_fini,
- 		.rd32 = _nouveau_mpeg_context_rd32,
- 		.wr32 = _nouveau_mpeg_context_wr32,
- 	},
-@@ -98,9 +98,9 @@ nv40_mpeg_cclass = {
-  ******************************************************************************/
- 
- static void
--nv40_mpeg_intr(struct nouveau_subdev *subdev)
-+nv44_mpeg_intr(struct nouveau_subdev *subdev)
- {
--	struct nv40_mpeg_priv *priv = (void *)subdev;
-+	struct nv44_mpeg_priv *priv = (void *)subdev;
- 	u32 stat;
- 
- 	if ((stat = nv_rd32(priv, 0x00b100)))
-@@ -113,11 +113,11 @@ nv40_mpeg_intr(struct nouveau_subdev *subdev)
- }
- 
- static int
--nv40_mpeg_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
-+nv44_mpeg_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	       struct nouveau_oclass *oclass, void *data, u32 size,
- 	       struct nouveau_object **pobject)
- {
--	struct nv40_mpeg_priv *priv;
-+	struct nv44_mpeg_priv *priv;
- 	int ret;
- 
- 	ret = nouveau_mpeg_create(parent, engine, oclass, &priv);
-@@ -126,18 +126,18 @@ nv40_mpeg_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 		return ret;
- 
- 	nv_subdev(priv)->unit = 0x00000002;
--	nv_subdev(priv)->intr = nv40_mpeg_intr;
--	nv_engine(priv)->cclass = &nv40_mpeg_cclass;
-+	nv_subdev(priv)->intr = nv44_mpeg_intr;
-+	nv_engine(priv)->cclass = &nv44_mpeg_cclass;
- 	nv_engine(priv)->sclass = nv31_mpeg_sclass;
- 	nv_engine(priv)->tile_prog = nv31_mpeg_tile_prog;
- 	return 0;
- }
- 
- struct nouveau_oclass
--nv40_mpeg_oclass = {
--	.handle = NV_ENGINE(MPEG, 0x40),
-+nv44_mpeg_oclass = {
-+	.handle = NV_ENGINE(MPEG, 0x44),
- 	.ofuncs = &(struct nouveau_ofuncs) {
--		.ctor = nv40_mpeg_ctor,
-+		.ctor = nv44_mpeg_ctor,
- 		.dtor = _nouveau_mpeg_dtor,
- 		.init = nv31_mpeg_init,
- 		.fini = _nouveau_mpeg_fini,
-diff --git a/drivers/gpu/drm/nouveau/core/include/engine/mpeg.h b/drivers/gpu/drm/nouveau/core/include/engine/mpeg.h
-index 1d1a89a..d97a1b5 100644
---- a/drivers/gpu/drm/nouveau/core/include/engine/mpeg.h
-+++ b/drivers/gpu/drm/nouveau/core/include/engine/mpeg.h
-@@ -41,7 +41,7 @@ struct nouveau_mpeg {
- #define _nouveau_mpeg_fini _nouveau_engine_fini
- 
- extern struct nouveau_oclass nv31_mpeg_oclass;
--extern struct nouveau_oclass nv40_mpeg_oclass;
-+extern struct nouveau_oclass nv44_mpeg_oclass;
- extern struct nouveau_oclass nv50_mpeg_oclass;
- extern struct nouveau_oclass nv84_mpeg_oclass;
- 
+
+--1378377343.7daFAb71.24309
+Date: Thu, 5 Sep 2013 10:35:43 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=68665
+
+--- Comment #9 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
+revert b77316ad7594fa5873717992b6986cb4c0179d23, that should fix it
+
 -- 
-1.8.1.5
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1378377343.7daFAb71.24309
+Date: Thu, 5 Sep 2013 10:35:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NVE4] Crashing games when set AA to x2 on GTX760"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68665#c9">Comment # 9</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NVE4] Crashing games when set AA to x2 on GTX760"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68665">bug 68665</a>
+              from <span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
+</span></b>
+        <pre>revert b77316ad7594fa5873717992b6986cb4c0179d23, that should fix it</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1378377343.7daFAb71.24309--
+
+--===============2081701329==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2081701329==--
