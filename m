@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68665] [NVE4] Crashing games when set AA to x2 on
-	GTX760
-Date: Fri, 06 Sep 2013 18:34:55 +0000
-Message-ID: <bug-68665-8800-tfNo4eIUxC@http.bugs.freedesktop.org/>
-References: <bug-68665-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 61765] Regression: null pointer dereference on
+ reboot after switcheroo use
+Date: Fri, 06 Sep 2013 20:22:50 +0000
+Message-ID: <bug-61765-8800-ocZDvSkqOe@http.bugs.freedesktop.org/>
+References: <bug-61765-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0910798800=="
+Content-Type: multipart/mixed; boundary="===============0109357700=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-61765-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0910798800==
-Content-Type: multipart/alternative; boundary="1378492495.d7fA480.27973"; charset="us-ascii"
+--===============0109357700==
+Content-Type: multipart/alternative; boundary="1378498970.8eEC41.9663"; charset="us-ascii"
 
 
---1378492495.d7fA480.27973
-Date: Fri, 6 Sep 2013 18:34:55 +0000
+--1378498970.8eEC41.9663
+Date: Fri, 6 Sep 2013 20:22:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68665
+https://bugs.freedesktop.org/show_bug.cgi?id=61765
 
---- Comment #10 from Igor Gnatenko <i.gnatenko.brain-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #9)
-> revert b77316ad7594fa5873717992b6986cb4c0179d23, that should fix it
-yes. thats fixed problem.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you explain what steps you take in order to make this happen? It seems like
+vgaswitcheroo turns off the nvidia card, and then Xorg sends it an ioctl (which
+I would have assumed should fail) which breaks since the card is off.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378492495.d7fA480.27973
-Date: Fri, 6 Sep 2013 18:34:55 +0000
+--1378498970.8eEC41.9663
+Date: Fri, 6 Sep 2013 20:22:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,18 +54,18 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NVE4] Crashing games when set AA to x2 on GTX760"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68665#c10">Comment # 10</a>
+          bz_status_NEW "
+   title="NEW --- - Regression: null pointer dereference on reboot after switcheroo use"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61765#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NVE4] Crashing games when set AA to x2 on GTX760"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68665">bug 68665</a>
-              from <span class="vcard"><a class="email" href="mailto:i.gnatenko.brain&#64;gmail.com" title="Igor Gnatenko &lt;i.gnatenko.brain&#64;gmail.com&gt;"> <span class="fn">Igor Gnatenko</span></a>
+          bz_status_NEW "
+   title="NEW --- - Regression: null pointer dereference on reboot after switcheroo use"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61765">bug 61765</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=68665#c9">comment #9</a>)
-<span class="quote">&gt; revert b77316ad7594fa5873717992b6986cb4c0179d23, that should fix it</span >
-yes. thats fixed problem.</pre>
+        <pre>Can you explain what steps you take in order to make this happen? It seems like
+vgaswitcheroo turns off the nvidia card, and then Xorg sends it an ioctl (which
+I would have assumed should fail) which breaks since the card is off.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +77,9 @@ yes. thats fixed problem.</pre>
     </body>
 </html>
 
---1378492495.d7fA480.27973--
+--1378498970.8eEC41.9663--
 
---===============0910798800==
+--===============0109357700==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0910798800==--
+--===============0109357700==--
