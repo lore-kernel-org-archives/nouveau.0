@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 65251] [NV84] nouveau E[ PFIFO][0000:01:00.0]
- CACHE_ERROR - Ch 6/0 Mthd 0x0060 Data 0x8000000f
-Date: Fri, 06 Sep 2013 22:55:47 +0000
-Message-ID: <bug-65251-8800-Q6NkmpbUe2@http.bugs.freedesktop.org/>
-References: <bug-65251-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 21273] [NV17] PowerMac3,
+ 6 Driver can't detect video output and xserver doesn't start
+Date: Fri, 06 Sep 2013 23:03:34 +0000
+Message-ID: <bug-21273-8800-A4jUYcepXt@http.bugs.freedesktop.org/>
+References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0531675515=="
+Content-Type: multipart/mixed; boundary="===============1434775343=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-65251-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0531675515==
-Content-Type: multipart/alternative; boundary="1378508147.cc0e7BB10.2854"; charset="us-ascii"
+--===============1434775343==
+Content-Type: multipart/alternative; boundary="1378508614.fCeE1.3882"; charset="us-ascii"
 
 
---1378508147.cc0e7BB10.2854
-Date: Fri, 6 Sep 2013 22:55:47 +0000
+--1378508614.fCeE1.3882
+Date: Fri, 6 Sep 2013 23:03:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=65251
+https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #2 from eldmannen+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Shortly after this, the graphics card died.
-The graphics was garbled even at POST for couple of times, then it died
-alltogeher.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-So we can close this bug as a hardware failure.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Driver can't detect video   |[NV17] PowerMac3,6 Driver
+                   |output and xserver doesn't  |can't detect video output
+                   |start                       |and xserver doesn't start
+
+--- Comment #76 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I noticed that in your patch you have OUTPUT_TMDS twice instead of
+OUTPUT_ANALOG the second time. Was that on purpose? Esp since it sounds like
+you're using the analog "part" of the DVI cable, that seems like it could be
+relevant. Does this hardware still exist in a working state to test potential
+patches?
+
+Also, am I correct in understanding that the old "nv" driver worked fine?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378508147.cc0e7BB10.2854
-Date: Fri, 6 Sep 2013 22:55:47 +0000
+--1378508614.fCeE1.3882
+Date: Fri, 6 Sep 2013 23:03:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,24 +62,46 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Driver can't detect video output and xserver doesn't start
+           </td>
+           <td>[NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV84] nouveau E[ PFIFO][0000:01:00.0] CACHE_ERROR - Ch 6/0 Mthd 0x0060 Data 0x8000000f"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65251#c2">Comment # 2</a>
+   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c76">Comment # 76</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV84] nouveau E[ PFIFO][0000:01:00.0] CACHE_ERROR - Ch 6/0 Mthd 0x0060 Data 0x8000000f"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65251">bug 65251</a>
-              from <span class="vcard"><a class="email" href="mailto:eldmannen+freedesktop&#64;gmail.com" title="eldmannen+freedesktop&#64;gmail.com">eldmannen+freedesktop&#64;gmail.com</a>
+   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Shortly after this, the graphics card died.
-The graphics was garbled even at POST for couple of times, then it died
-alltogeher.
+        <pre>I noticed that in your patch you have OUTPUT_TMDS twice instead of
+OUTPUT_ANALOG the second time. Was that on purpose? Esp since it sounds like
+you're using the analog &quot;part&quot; of the DVI cable, that seems like it could be
+relevant. Does this hardware still exist in a working state to test potential
+patches?
 
-So we can close this bug as a hardware failure.</pre>
+Also, am I correct in understanding that the old &quot;nv&quot; driver worked fine?</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +113,9 @@ So we can close this bug as a hardware failure.</pre>
     </body>
 </html>
 
---1378508147.cc0e7BB10.2854--
+--1378508614.fCeE1.3882--
 
---===============0531675515==
+--===============1434775343==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +126,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0531675515==--
+--===============1434775343==--
