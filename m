@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69029] New: GT218 (NVA8): GPU lockup since kernel
-	3.11 upgrade
-Date: Fri, 06 Sep 2013 11:35:17 +0000
-Message-ID: <bug-69029-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69029] GT218 (NVA8): GPU lockup since kernel 3.11
+	upgrade
+Date: Fri, 06 Sep 2013 11:36:08 +0000
+Message-ID: <bug-69029-8800-ccAhL9IdA1@http.bugs.freedesktop.org/>
+References: <bug-69029-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0421696582=="
+Content-Type: multipart/mixed; boundary="===============1469325066=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-69029-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,46 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0421696582==
-Content-Type: multipart/alternative; boundary="1378467317.d7b4E31.18784"; charset="us-ascii"
+--===============1469325066==
+Content-Type: multipart/alternative; boundary="1378467368.A82F6db21.19129"; charset="us-ascii"
 
 
---1378467317.d7b4E31.18784
-Date: Fri, 6 Sep 2013 11:35:17 +0000
+--1378467368.A82F6db21.19129
+Date: Fri, 6 Sep 2013 11:36:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69029
 
-          Priority: medium
-            Bug ID: 69029
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: GT218 (NVA8): GPU lockup since kernel 3.11 upgrade
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: fred-ku13qjcBzYesTnJN9+BGXg@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: git
-         Component: Driver/nouveau
-           Product: xorg
-
-Created attachment 85322
-  --> https://bugs.freedesktop.org/attachment.cgi?id=85322&action=edit
-one lockup
-
-on openSUSE Factory (nouveau driver 1.0.9, Mesa 9.2), since kernel was updated
-from 3.10.1 to 3.11.0 (rc6 or rc7), I'm getting very often GPU lockup when
-using Xorg (GNOME Shell).
+--- Comment #1 from Frederic Crozat <fred-ku13qjcBzYesTnJN9+BGXg@public.gmane.org> ---
+Created attachment 85323
+  --> https://bugs.freedesktop.org/attachment.cgi?id=85323&action=edit
+another lockup
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378467317.d7b4E31.18784
-Date: Fri, 6 Sep 2013 11:35:17 +0000
+--1378467368.A82F6db21.19129
+Date: Fri, 6 Sep 2013 11:36:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,101 +50,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - GT218 (NVA8): GPU lockup since kernel 3.11 upgrade"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69029">69029</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>GT218 (NVA8): GPU lockup since kernel 3.11 upgrade
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>fred&#64;crozat.net
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=85322" name="attach_85322" title="one lockup">attachment 85322</a> <a href="attachment.cgi?id=85322&amp;action=edit" title="one lockup">[details]</a></span>
-one lockup
-
-on openSUSE Factory (nouveau driver 1.0.9, Mesa 9.2), since kernel was updated
-from 3.10.1 to 3.11.0 (rc6 or rc7), I'm getting very often GPU lockup when
-using Xorg (GNOME Shell).</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - GT218 (NVA8): GPU lockup since kernel 3.11 upgrade"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69029#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - GT218 (NVA8): GPU lockup since kernel 3.11 upgrade"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69029">bug 69029</a>
+              from <span class="vcard"><a class="email" href="mailto:fred&#64;crozat.net" title="Frederic Crozat &lt;fred&#64;crozat.net&gt;"> <span class="fn">Frederic Crozat</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=85323" name="attach_85323" title="another lockup">attachment 85323</a> <a href="attachment.cgi?id=85323&amp;action=edit" title="another lockup">[details]</a></span>
+another lockup</pre>
         </div>
       </p>
       <hr>
@@ -172,9 +76,9 @@ using Xorg (GNOME Shell).</pre>
     </body>
 </html>
 
---1378467317.d7b4E31.18784--
+--1378467368.A82F6db21.19129--
 
---===============0421696582==
+--===============1469325066==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -185,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0421696582==--
+--===============1469325066==--
