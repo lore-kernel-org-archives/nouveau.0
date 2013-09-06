@@ -1,11 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49736] piglit quick.driver tests kill X server on
-	nv43
-Date: Fri, 06 Sep 2013 22:47:42 +0000
-Message-ID: <bug-49736-8800-FToYVrGZwO@http.bugs.freedesktop.org/>
+Subject: [Bug 49736] [NV43] piglit quick.driver tests kill X server
+Date: Fri, 06 Sep 2013 22:48:01 +0000
+Message-ID: <bug-49736-8800-mXvmnEMAgi@http.bugs.freedesktop.org/>
 References: <bug-49736-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0413449671=="
+Content-Type: multipart/mixed; boundary="===============1179682306=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-49736-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0413449671==
-Content-Type: multipart/alternative; boundary="1378507662.e4ddfA1.1252"; charset="us-ascii"
+--===============1179682306==
+Content-Type: multipart/alternative; boundary="1378507681.2DBf1.1346"; charset="us-ascii"
 
 
---1378507662.e4ddfA1.1252
-Date: Fri, 6 Sep 2013 22:47:42 +0000
+--1378507681.2DBf1.1346
+Date: Fri, 6 Sep 2013 22:48:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49736
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-It'd be really interesting to see what the Xorg backtrace looks like with debug
-libraries (so that we can see the symbol names). BTW, does this still happen
-with fresh software (xf86-video-nouveau 1.0.9, mesa 9.2, libdrm 2.4.46)?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|piglit quick.driver tests   |[NV43] piglit quick.driver
+                   |kill X server  on nv43      |tests kill X server
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378507662.e4ddfA1.1252
-Date: Fri, 6 Sep 2013 22:47:42 +0000
+--1378507681.2DBf1.1346
+Date: Fri, 6 Sep 2013 22:48:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,23 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_REOPENED "
-   title="REOPENED --- - piglit quick.driver tests kill X server on nv43"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49736#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - piglit quick.driver tests kill X server on nv43"
+   title="REOPENED --- - [NV43] piglit quick.driver tests kill X server"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=49736">bug 49736</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>It'd be really interesting to see what the Xorg backtrace looks like with debug
-libraries (so that we can see the symbol names). BTW, does this still happen
-with fresh software (xf86-video-nouveau 1.0.9, mesa 9.2, libdrm 2.4.46)?</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>piglit quick.driver tests kill X server  on nv43
+           </td>
+           <td>[NV43] piglit quick.driver tests kill X server
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -77,9 +83,9 @@ with fresh software (xf86-video-nouveau 1.0.9, mesa 9.2, libdrm 2.4.46)?</pre>
     </body>
 </html>
 
---1378507662.e4ddfA1.1252--
+--1378507681.2DBf1.1346--
 
---===============0413449671==
+--===============1179682306==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0413449671==--
+--===============1179682306==--
