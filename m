@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49736] [NV43] piglit quick.driver tests kill X server
-Date: Fri, 06 Sep 2013 22:48:01 +0000
-Message-ID: <bug-49736-8800-mXvmnEMAgi@http.bugs.freedesktop.org/>
-References: <bug-49736-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 65251] [NV84] nouveau E[ PFIFO][0000:01:00.0]
+ CACHE_ERROR - Ch 6/0 Mthd 0x0060 Data 0x8000000f
+Date: Fri, 06 Sep 2013 22:55:47 +0000
+Message-ID: <bug-65251-8800-Q6NkmpbUe2@http.bugs.freedesktop.org/>
+References: <bug-65251-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1179682306=="
+Content-Type: multipart/mixed; boundary="===============0531675515=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49736-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-65251-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1179682306==
-Content-Type: multipart/alternative; boundary="1378507681.2DBf1.1346"; charset="us-ascii"
+--===============0531675515==
+Content-Type: multipart/alternative; boundary="1378508147.cc0e7BB10.2854"; charset="us-ascii"
 
 
---1378507681.2DBf1.1346
-Date: Fri, 6 Sep 2013 22:48:01 +0000
+--1378508147.cc0e7BB10.2854
+Date: Fri, 6 Sep 2013 22:55:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=49736
+https://bugs.freedesktop.org/show_bug.cgi?id=65251
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #2 from eldmannen+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Shortly after this, the graphics card died.
+The graphics was garbled even at POST for couple of times, then it died
+alltogeher.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|piglit quick.driver tests   |[NV43] piglit quick.driver
-                   |kill X server  on nv43      |tests kill X server
+So we can close this bug as a hardware failure.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378507681.2DBf1.1346
-Date: Fri, 6 Sep 2013 22:48:01 +0000
+--1378508147.cc0e7BB10.2854
+Date: Fri, 6 Sep 2013 22:55:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,28 +52,25 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV43] piglit quick.driver tests kill X server"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49736">bug 49736</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>piglit quick.driver tests kill X server  on nv43
-           </td>
-           <td>[NV43] piglit quick.driver tests kill X server
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV84] nouveau E[ PFIFO][0000:01:00.0] CACHE_ERROR - Ch 6/0 Mthd 0x0060 Data 0x8000000f"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65251#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV84] nouveau E[ PFIFO][0000:01:00.0] CACHE_ERROR - Ch 6/0 Mthd 0x0060 Data 0x8000000f"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65251">bug 65251</a>
+              from <span class="vcard"><a class="email" href="mailto:eldmannen+freedesktop&#64;gmail.com" title="eldmannen+freedesktop&#64;gmail.com">eldmannen+freedesktop&#64;gmail.com</a>
+</span></b>
+        <pre>Shortly after this, the graphics card died.
+The graphics was garbled even at POST for couple of times, then it died
+alltogeher.
+
+So we can close this bug as a hardware failure.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +81,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1378507681.2DBf1.1346--
+--1378508147.cc0e7BB10.2854--
 
---===============1179682306==
+--===============0531675515==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1179682306==--
+--===============0531675515==--
