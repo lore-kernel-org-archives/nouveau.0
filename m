@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
-Date: Thu, 05 Sep 2013 19:25:50 +0000
-Message-ID: <bug-35267-8800-2g1rVadNlC@http.bugs.freedesktop.org/>
+Date: Fri, 06 Sep 2013 01:03:47 +0000
+Message-ID: <bug-35267-8800-Abznbc8odp@http.bugs.freedesktop.org/>
 References: <bug-35267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0023492419=="
+Content-Type: multipart/mixed; boundary="===============1643618093=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-35267-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,44 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0023492419==
-Content-Type: multipart/alternative; boundary="1378409150.24052a2.29674"; charset="us-ascii"
+--===============1643618093==
+Content-Type: multipart/alternative; boundary="1378429427.fbB1c83.21710"; charset="us-ascii"
 
 
---1378409150.24052a2.29674
-Date: Thu, 5 Sep 2013 19:25:50 +0000
+--1378429427.fbB1c83.21710
+Date: Fri, 6 Sep 2013 01:03:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=35267
 
---- Comment #23 from hanfi <freedesktop.org-6Pg49yFQ+vvtRgLqZ5aouw@public.gmane.org> ---
-(In reply to comment #22)
-> Ooops, did I say nouveau.NvBios? (Yes, I did...) That was a lie.
-> 
-> Try: nouveau.config=NvBios=path/to/vbios.rom
-> 
-> Note that this path is passed to the firmware loader, which might only work
-> in paths relative to /lib/firmware -- I don't think doing "/boot/blah" will
-> work. But I've never tried it. (Or it'll call out to the usermode helper,
-> which will do who knows what.)
-
-Ok, I can load the driver now; No errors from the vbios loading.
-I copied the vbios.rom into /lib/firmware and used
-"modprobe nouveau config=NvBios=vbios.rom"
-
-This worked fine on the console, I had some problems starting X, but I need
-rebuild xorg and related stuff.
-
-As this is not related to loading the vbios i think we can close this bug as a
-proper way to load the vbios exists without need using Grub/bootloader.
+--- Comment #24 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+How did you get that vbios though? There ought to be a way to retrieve the
+vbios... does a recent nvidia blob load OK? If so it'd be interesting to see a
+mmiotrace of it loading to see where it's getting a vbios from.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378409150.24052a2.29674
-Date: Thu, 5 Sep 2013 19:25:50 +0000
+--1378429427.fbB1c83.21710
+Date: Fri, 6 Sep 2013 01:03:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,32 +55,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau fails to load BIOS on EFI boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=35267#c23">Comment # 23</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=35267#c24">Comment # 24</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nouveau fails to load BIOS on EFI boot."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=35267">bug 35267</a>
-              from <span class="vcard"><a class="email" href="mailto:freedesktop.org&#64;spahan.ch" title="hanfi &lt;freedesktop.org&#64;spahan.ch&gt;"> <span class="fn">hanfi</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=35267#c22">comment #22</a>)
-<span class="quote">&gt; Ooops, did I say nouveau.NvBios? (Yes, I did...) That was a lie.
-&gt; 
-&gt; Try: nouveau.config=NvBios=path/to/vbios.rom
-&gt; 
-&gt; Note that this path is passed to the firmware loader, which might only work
-&gt; in paths relative to /lib/firmware -- I don't think doing &quot;/boot/blah&quot; will
-&gt; work. But I've never tried it. (Or it'll call out to the usermode helper,
-&gt; which will do who knows what.)</span >
-
-Ok, I can load the driver now; No errors from the vbios loading.
-I copied the vbios.rom into /lib/firmware and used
-&quot;modprobe nouveau config=NvBios=vbios.rom&quot;
-
-This worked fine on the console, I had some problems starting X, but I need
-rebuild xorg and related stuff.
-
-As this is not related to loading the vbios i think we can close this bug as a
-proper way to load the vbios exists without need using Grub/bootloader.</pre>
+        <pre>How did you get that vbios though? There ought to be a way to retrieve the
+vbios... does a recent nvidia blob load OK? If so it'd be interesting to see a
+mmiotrace of it loading to see where it's getting a vbios from.</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +76,9 @@ proper way to load the vbios exists without need using Grub/bootloader.</pre>
     </body>
 </html>
 
---1378409150.24052a2.29674--
+--1378429427.fbB1c83.21710--
 
---===============0023492419==
+--===============1643618093==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0023492419==--
+--===============1643618093==--
