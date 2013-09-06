@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47556] [NV17] nouveau driver can't handle xrandr
-	requests
-Date: Fri, 06 Sep 2013 22:29:15 +0000
-Message-ID: <bug-47556-8800-6BbUxneNog@http.bugs.freedesktop.org/>
-References: <bug-47556-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57484] [NV43] fail resume after suspend
+Date: Fri, 06 Sep 2013 22:33:33 +0000
+Message-ID: <bug-57484-8800-tNhMYcglkQ@http.bugs.freedesktop.org/>
+References: <bug-57484-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0044284010=="
+Content-Type: multipart/mixed; boundary="===============1271068697=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57484-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0044284010==
-Content-Type: multipart/alternative; boundary="1378506555.CBAeF2.30262"; charset="us-ascii"
+--===============1271068697==
+Content-Type: multipart/alternative; boundary="1378506813.c2aEEDCE2.31125"; charset="us-ascii"
 
 
---1378506555.CBAeF2.30262
-Date: Fri, 6 Sep 2013 22:29:15 +0000
+--1378506813.c2aEEDCE2.31125
+Date: Fri, 6 Sep 2013 22:33:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47556
+https://bugs.freedesktop.org/show_bug.cgi?id=57484
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|nouveau driver can`t handle |[NV17] nouveau driver can't
-                   |xrandr requests             |handle xrandr requests
+            Summary|NV43: fail resume after     |[NV43] fail resume after
+                   |suspend                     |suspend
 
---- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could you retest with more recent software? I think there have been a lot of
-changes both to xf86-video-nouveau/libdrm and the kernel since you tested this.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you retest this with the latest kernel (3.11)?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378506555.CBAeF2.30262
-Date: Fri, 6 Sep 2013 22:29:15 +0000
+--1378506813.c2aEEDCE2.31125
+Date: Fri, 6 Sep 2013 22:33:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,8 +58,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV17] nouveau driver can't handle xrandr requests"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47556">bug 47556</a>
+   title="NEW --- - [NV43] fail resume after suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57484">bug 57484</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -72,25 +70,24 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>nouveau driver can`t handle xrandr requests
+           <td>NV43: fail resume after suspend
            </td>
-           <td>[NV17] nouveau driver can't handle xrandr requests
+           <td>[NV43] fail resume after suspend
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV17] nouveau driver can't handle xrandr requests"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47556#c11">Comment # 11</a>
+   title="NEW --- - [NV43] fail resume after suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57484#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV17] nouveau driver can't handle xrandr requests"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47556">bug 47556</a>
+   title="NEW --- - [NV43] fail resume after suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57484">bug 57484</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Could you retest with more recent software? I think there have been a lot of
-changes both to xf86-video-nouveau/libdrm and the kernel since you tested this.</pre>
+        <pre>Can you retest this with the latest kernel (3.11)?</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +99,9 @@ changes both to xf86-video-nouveau/libdrm and the kernel since you tested this.<
     </body>
 </html>
 
---1378506555.CBAeF2.30262--
+--1378506813.c2aEEDCE2.31125--
 
---===============0044284010==
+--===============1271068697==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +112,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0044284010==--
+--===============1271068697==--
