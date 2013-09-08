@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69083] [NV84] using DVI to VGA adapter for CRT and
- specifying supported "PreferredMode" >EDID preferred mode,
- screen output is compressed into small fraction of top scan lines
-Date: Sun, 08 Sep 2013 04:18:50 +0000
-Message-ID: <bug-69083-8800-OEhXuttuyd@http.bugs.freedesktop.org/>
-References: <bug-69083-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 21273] [NV17] PowerMac3,
+ 6 Driver can't detect video output and xserver doesn't start
+Date: Sun, 08 Sep 2013 04:35:29 +0000
+Message-ID: <bug-21273-8800-3UlmIDhoXO@http.bugs.freedesktop.org/>
+References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0399516661=="
+Content-Type: multipart/mixed; boundary="===============0932409031=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69083-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,53 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0399516661==
-Content-Type: multipart/alternative; boundary="1378613930.CBFBc4DF1.9683"; charset="us-ascii"
+--===============0932409031==
+Content-Type: multipart/alternative; boundary="1378614929.04E7Ab1.11311"; charset="us-ascii"
 
 
---1378613930.CBFBc4DF1.9683
-Date: Sun, 8 Sep 2013 04:18:50 +0000
+--1378614929.04E7Ab1.11311
+Date: Sun, 8 Sep 2013 04:35:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69083
+https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|using DVI to VGA adapter    |[NV84] using DVI to VGA
-                   |for CRT and specifying      |adapter for CRT and
-                   |supported "PreferredMode"   |specifying supported
-                   |>EDID preferred mode,       |"PreferredMode" >EDID
-                   |screen output is compressed |preferred mode, screen
-                   |into small fraction of top  |output is compressed into
-                   |scan lines                  |small fraction of top scan
-                   |                            |lines
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Are you sure that the display is actually compressed into the top few
-scanlines? e.g. do you see the mouse cursor in there when you move it around?
-Does it show your normal background? Or is it just garbage that happens to not
-have 0's for the top few scanlines' worth of data?
-
-I've never used PreferredMode before. If you remove it, I assume everything
-works fine? What happens if you run something like
-
-xrandr --output DVI-I-1 --mode 1920x1440
-
-does that fix things for you? Can you supply the output of
-
-xrandr --verbose
-
-after X has started? (You can e.g. ssh in and run DISPLAY=:0 xrandr --verbose)
+--- Comment #77 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> ---
+This card doesn't have analog output, see attachment 25009 in this bug. I have
+this hardware and use dvi output with nv driver. I tried to find rams from
+other cards and emulate tables from bios, but it doesn't help.
+I saw workarounds was removed from kernel part. It would be good if kernel
+driver have options for such cases. I haven't tried kms in last kernel, but I
+think nothing changed. Patches are welcome. I don't know enough about hardware
+to fix it.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378613930.CBFBc4DF1.9683
-Date: Sun, 8 Sep 2013 04:18:50 +0000
+--1378614929.04E7Ab1.11311
+Date: Sun, 8 Sep 2013 04:35:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -76,54 +54,26 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV84] using DVI to VGA adapter for CRT and specifying supported &quot;PreferredMode&quot; &gt;EDID preferred mode, screen output is compressed into small fraction of top scan lines"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69083">bug 69083</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>using DVI to VGA adapter for CRT and specifying supported &quot;PreferredMode&quot; &gt;EDID preferred mode, screen output is compressed into small fraction of top scan lines
-           </td>
-           <td>[NV84] using DVI to VGA adapter for CRT and specifying supported &quot;PreferredMode&quot; &gt;EDID preferred mode, screen output is compressed into small fraction of top scan lines
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV84] using DVI to VGA adapter for CRT and specifying supported &quot;PreferredMode&quot; &gt;EDID preferred mode, screen output is compressed into small fraction of top scan lines"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69083#c1">Comment # 1</a>
+   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c77">Comment # 77</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV84] using DVI to VGA adapter for CRT and specifying supported &quot;PreferredMode&quot; &gt;EDID preferred mode, screen output is compressed into small fraction of top scan lines"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69083">bug 69083</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
+              from <span class="vcard"><a class="email" href="mailto:ronne&#64;list.ru" title="Andrey Gusev &lt;ronne&#64;list.ru&gt;"> <span class="fn">Andrey Gusev</span></a>
 </span></b>
-        <pre>Are you sure that the display is actually compressed into the top few
-scanlines? e.g. do you see the mouse cursor in there when you move it around?
-Does it show your normal background? Or is it just garbage that happens to not
-have 0's for the top few scanlines' worth of data?
-
-I've never used PreferredMode before. If you remove it, I assume everything
-works fine? What happens if you run something like
-
-xrandr --output DVI-I-1 --mode 1920x1440
-
-does that fix things for you? Can you supply the output of
-
-xrandr --verbose
-
-after X has started? (You can e.g. ssh in and run DISPLAY=:0 xrandr --verbose)</pre>
+        <pre>This card doesn't have analog output, see <span class=""><a href="attachment.cgi?id=25009" name="attach_25009" title="Back side of videocard">attachment 25009</a> <a href="attachment.cgi?id=25009&amp;action=edit" title="Back side of videocard">[details]</a></span> in this bug. I have
+this hardware and use dvi output with nv driver. I tried to find rams from
+other cards and emulate tables from bios, but it doesn't help.
+I saw workarounds was removed from kernel part. It would be good if kernel
+driver have options for such cases. I haven't tried kms in last kernel, but I
+think nothing changed. Patches are welcome. I don't know enough about hardware
+to fix it.</pre>
         </div>
       </p>
       <hr>
@@ -135,9 +85,9 @@ after X has started? (You can e.g. ssh in and run DISPLAY=:0 xrandr --verbose)</
     </body>
 </html>
 
---1378613930.CBFBc4DF1.9683--
+--1378614929.04E7Ab1.11311--
 
---===============0399516661==
+--===============0932409031==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0399516661==--
+--===============0932409031==--
