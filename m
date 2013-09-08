@@ -1,11 +1,16 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: [PATCH 1/2] drm/nouveau/therm: ack any pending IRQ at init
-Date: Mon,  9 Sep 2013 00:43:27 +0200
-Message-ID: <1378680208-11431-1-git-send-email-martin.peres@free.fr>
+From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/therm: ack any pending IRQ at
+ init v2
+Date: Mon, 09 Sep 2013 00:44:48 +0200
+Message-ID: <522CFDE0.7000009@labri.fr>
+References: <1377907131-15099-2-git-send-email-martin.peres@free.fr>
+	<1377907571-15301-1-git-send-email-martin.peres@free.fr>
+	<CACAvsv6+9TqeTjMeMPdAwDrxLbbZ1sBJDQFmE7Xum9ryebns7g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CACAvsv6+9TqeTjMeMPdAwDrxLbbZ1sBJDQFmE7Xum9ryebns7g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,108 +20,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
+On 04/09/2013 03:52, Ben Skeggs wrote:
+> On Sat, Aug 31, 2013 at 10:06 AM, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> wrote:
+>> From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
+>>
+>> This is safe because ptherm hasn't been configured yet and will be a
+>> little further down the initialization path. Ptherm should be safe
+>> regarding to runtime reconfiguration.
+> Any objections to instead sticking the ACK in a single fini() hook
+> (along with additional code to disable all therm interrupts), and
+> having the IRQ handle silently ignore any non-requested IRQs (see what
+> the copy engine irq handler does, for example)?
+>
+> Ben.
 
-This is safe because ptherm hasn't been configured yet and will be a
-little further down the initialization path. Ptherm should be safe
-regarding to runtime reconfiguration.
+Hi Ben,
 
-v2:
-  - do not limit this patch to nv84-a3 and make it nv84+
-
-v3:
-  - move the ack to fini()
-  - disable IRQs on fini()
-  - silently ignore un-requested IRQs
-
-Signed-off-by: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
----
- drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c | 17 +++++++++++++++--
- drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c |  2 +-
- drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c |  2 +-
- drivers/gpu/drm/nouveau/core/subdev/therm/priv.h |  1 +
- 4 files changed, 18 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c b/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c
-index 42ba633..1d15c52 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c
-@@ -126,7 +126,7 @@ nv84_therm_intr(struct nouveau_subdev *subdev)
- 
- 	spin_lock_irqsave(&priv->sensor.alarm_program_lock, flags);
- 
--	intr = nv_rd32(therm, 0x20100);
-+	intr = nv_rd32(therm, 0x20100) & 0x3ff;
- 
- 	/* THRS_4: downclock */
- 	if (intr & 0x002) {
-@@ -209,6 +209,19 @@ nv84_therm_ctor(struct nouveau_object *parent,
- 	return nouveau_therm_preinit(&priv->base.base);
- }
- 
-+int
-+nv84_therm_fini(struct nouveau_object *object, bool suspend)
-+{
-+	/* Disable PTherm IRQs */
-+	nv_wr32(object, 0x20000, 0x00000000);
-+
-+	/* ACK all PTherm IRQs */
-+	nv_wr32(object, 0x20100, 0xffffffff);
-+	nv_wr32(object, 0x1100, 0x10000); /* PBUS */
-+
-+	return _nouveau_therm_fini(object, suspend);
-+}
-+
- struct nouveau_oclass
- nv84_therm_oclass = {
- 	.handle = NV_SUBDEV(THERM, 0x84),
-@@ -216,6 +229,6 @@ nv84_therm_oclass = {
- 		.ctor = nv84_therm_ctor,
- 		.dtor = _nouveau_therm_dtor,
- 		.init = _nouveau_therm_init,
--		.fini = _nouveau_therm_fini,
-+		.fini = nv84_therm_fini,
- 	},
- };
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c b/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c
-index d11a7c4..3b2c458 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c
-@@ -94,6 +94,6 @@ nva3_therm_oclass = {
- 		.ctor = nva3_therm_ctor,
- 		.dtor = _nouveau_therm_dtor,
- 		.init = nva3_therm_init,
--		.fini = _nouveau_therm_fini,
-+		.fini = nv84_therm_fini,
- 	},
- };
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c b/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
-index 54c28bd..4dd4f81 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
-@@ -148,6 +148,6 @@ nvd0_therm_oclass = {
- 		.ctor = nvd0_therm_ctor,
- 		.dtor = _nouveau_therm_dtor,
- 		.init = nvd0_therm_init,
--		.fini = _nouveau_therm_fini,
-+		.fini = nv84_therm_fini,
- 	},
- };
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h b/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h
-index dd38529..508b1ec 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h
-+++ b/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h
-@@ -144,6 +144,7 @@ int nv50_fan_pwm_get(struct nouveau_therm *, int, u32 *, u32 *);
- int nv50_fan_pwm_set(struct nouveau_therm *, int, u32, u32);
- int nv50_fan_pwm_clock(struct nouveau_therm *);
- int nv84_temp_get(struct nouveau_therm *therm);
-+int nv84_therm_fini(struct nouveau_object *object, bool suspend);
- 
- int nva3_therm_fan_sense(struct nouveau_therm *);
- 
--- 
-1.8.4
+Sorry for the late answer. This all perfectly make sense. Please have a 
+look at the patches I've just sent.
