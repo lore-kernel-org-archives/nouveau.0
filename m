@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51477] bad/missing graphics with NV11 / GeForce
-	2MX/MX400
-Date: Sun, 08 Sep 2013 06:43:28 +0000
-Message-ID: <bug-51477-8800-tYj0nvC9zS@http.bugs.freedesktop.org/>
-References: <bug-51477-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 21273] [NV17] PowerMac3,
+ 6 Driver can't detect video output and xserver doesn't start
+Date: Sun, 08 Sep 2013 06:45:09 +0000
+Message-ID: <bug-21273-8800-3e0pAdhF8B@http.bugs.freedesktop.org/>
+References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1764532605=="
+Content-Type: multipart/mixed; boundary="===============0139395097=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1764532605==
-Content-Type: multipart/alternative; boundary="1378622608.61ecc763.26620"; charset="us-ascii"
+--===============0139395097==
+Content-Type: multipart/alternative; boundary="1378622709.2a56a1.26797"; charset="us-ascii"
 
 
---1378622608.61ecc763.26620
-Date: Sun, 8 Sep 2013 06:43:28 +0000
+--1378622709.2a56a1.26797
+Date: Sun, 8 Sep 2013 06:45:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51477
+https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #16 from Tobias Bauer <donald_Ph-S0/GAf8tV78@public.gmane.org> ---
-The same problem exists with Lubuntu 13.04 and a Geforce 2 Pro (NV15).
+--- Comment #82 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> ---
+1)ls /sys/class/drm/
+card0
+card0-VGA-1
+controlD64
+ttm
+version
+
+2)grep . /sys/class/drm/card*-*/*
+grep: /sys/class/drm/card0-VGA-1/device: Is a directory
+/sys/class/drm/card0-VGA-1/dpms:On
+/sys/class/drm/card0-VGA-1/enabled:disabled
+/sys/class/drm/card0-VGA-1/status:disconnected
+grep: /sys/class/drm/card0-VGA-1/subsystem: Is a directory
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378622608.61ecc763.26620
-Date: Sun, 8 Sep 2013 06:43:28 +0000
+--1378622709.2a56a1.26797
+Date: Sun, 8 Sep 2013 06:45:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,15 +65,27 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c16">Comment # 16</a>
+   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c82">Comment # 82</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
-              from <span class="vcard"><a class="email" href="mailto:donald_Ph&#64;web.de" title="Tobias Bauer &lt;donald_Ph&#64;web.de&gt;"> <span class="fn">Tobias Bauer</span></a>
+   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
+              from <span class="vcard"><a class="email" href="mailto:ronne&#64;list.ru" title="Andrey Gusev &lt;ronne&#64;list.ru&gt;"> <span class="fn">Andrey Gusev</span></a>
 </span></b>
-        <pre>The same problem exists with Lubuntu 13.04 and a Geforce 2 Pro (NV15).</pre>
+        <pre>1)ls /sys/class/drm/
+card0
+card0-VGA-1
+controlD64
+ttm
+version
+
+2)grep . /sys/class/drm/card*-*/*
+grep: /sys/class/drm/card0-VGA-1/device: Is a directory
+/sys/class/drm/card0-VGA-1/dpms:On
+/sys/class/drm/card0-VGA-1/enabled:disabled
+/sys/class/drm/card0-VGA-1/status:disconnected
+grep: /sys/class/drm/card0-VGA-1/subsystem: Is a directory</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +97,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1378622608.61ecc763.26620--
+--1378622709.2a56a1.26797--
 
---===============1764532605==
+--===============0139395097==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +110,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1764532605==--
+--===============0139395097==--
