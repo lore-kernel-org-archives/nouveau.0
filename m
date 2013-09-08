@@ -1,16 +1,14 @@
-From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: 3.12rc1-pre Nouveau? oops
-Date: Mon, 9 Sep 2013 08:29:05 +1000
-Message-ID: <CAPM=9twkyQGbnPEerqCpJNfXxSRo1pw7MBvGMuz8zs1pQ+Fcng@mail.gmail.com>
-References: <CAKb7UviRb_ao_nB8Q3pa9ePm+yUGd8u7PDREv5wNfCheyGTZjQ@mail.gmail.com>
-	<1378675264-3005-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
-	<CAPM=9tyCOdzC1NYy7jt+zh3WOuzubaO3b8vwFVast9ec=BWOkA@mail.gmail.com>
-	<522CF3D1.2020303@mni.thm.de>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: [PATCH 2/2] drm/nouveau/therm: enable fan management by
+	default
+Date: Mon,  9 Sep 2013 00:43:28 +0200
+Message-ID: <1378680208-11431-2-git-send-email-martin.peres@free.fr>
+References: <1378680208-11431-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <522CF3D1.2020303-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+In-Reply-To: <1378680208-11431-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +18,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Sep 9, 2013 at 8:01 AM, Tobias Klausmann
-<tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> wrote:
->
-> On 08.09.2013 23:33, Dave Airlie wrote:
->>>>
->>>> Looks like you have Optimus (intel + nvidia), and the backtrace has
->>>> runtime pm in it, which is something new Dave added for 3.12, adding
->>>> him in explicitly. The simplest explanation is that disp->init is
->>>> NULL. And it seems like there are no outputs from the earlier nouveau
->>>> init prints. I guess that the call to nouveau_display_resume from
->>>> nouveau_pmops_runtime_resume should be guarded by a if
->>>> (dev->mode_config.num_crtc) like it is everywhere else.
->>>>
->>>>    -ilia
->>>
->>> Your guess was right, this (hopefully attached patch) fixes it for me!
->>
->> Does it look like this one?
->>
->> Dave.
->
-> No, mine was quick and dirty, reverted it and took yours. But i'm a little
-> bit confused that this is a suspend/resume problem, i booted the kernel for
-> the first time while seeing the oops. But anyway i tested it and it works.
+From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 
-It's runtime suspend/resume - so it turns the nvidia gpu off at boot since it
-isn't being used.
+This should enable automatic fan management for all cards by default, at
+boot time. However, this commit actually affects only nv40-c0 as nvc0+
+cards already have vbios's PDAEMON fw already taking care of fan management.
 
-you should see longer battery life.
-Dave.
+Signed-off-by: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/subdev/therm/base.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/base.c b/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
+index f1de7a9..aaf8285 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
+@@ -335,7 +335,7 @@ nouveau_therm_preinit(struct nouveau_therm *therm)
+ 	nouveau_therm_ic_ctor(therm);
+ 	nouveau_therm_fan_ctor(therm);
+ 
+-	nouveau_therm_fan_mode(therm, NOUVEAU_THERM_CTRL_NONE);
++	nouveau_therm_fan_mode(therm, NOUVEAU_THERM_CTRL_AUTO);
+ 	nouveau_therm_sensor_preinit(therm);
+ 	return 0;
+ }
+-- 
+1.8.4
