@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] [NV17] PowerMac3,
  6 Driver can't detect video output and xserver doesn't start
-Date: Sun, 08 Sep 2013 04:59:29 +0000
-Message-ID: <bug-21273-8800-ouAvsIoGFX@http.bugs.freedesktop.org/>
+Date: Sun, 08 Sep 2013 05:44:40 +0000
+Message-ID: <bug-21273-8800-c0BeaorPne@http.bugs.freedesktop.org/>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0465904343=="
+Content-Type: multipart/mixed; boundary="===============1868916736=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0465904343==
-Content-Type: multipart/alternative; boundary="1378616369.D7A4Feb81.14390"; charset="us-ascii"
+--===============1868916736==
+Content-Type: multipart/alternative; boundary="1378619080.2eA721.20089"; charset="us-ascii"
 
 
---1378616369.D7A4Feb81.14390
-Date: Sun, 8 Sep 2013 04:59:29 +0000
+--1378619080.2eA721.20089
+Date: Sun, 8 Sep 2013 05:44:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #79 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Also, with nouveau loaded (with modesetting), would be great to see the output
-of
-
-ls /sys/class/drm/
-grep . /sys/class/drm/card*-*/*
+--- Comment #80 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> ---
+Created attachment 85418
+  --> https://bugs.freedesktop.org/attachment.cgi?id=85418&action=edit
+xrandr --verbose
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378616369.D7A4Feb81.14390
-Date: Sun, 8 Sep 2013 04:59:29 +0000
+--1378619080.2eA721.20089
+Date: Sun, 8 Sep 2013 05:44:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c79">Comment # 79</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c80">Comment # 80</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:ronne&#64;list.ru" title="Andrey Gusev &lt;ronne&#64;list.ru&gt;"> <span class="fn">Andrey Gusev</span></a>
 </span></b>
-        <pre>Also, with nouveau loaded (with modesetting), would be great to see the output
-of
-
-ls /sys/class/drm/
-grep . /sys/class/drm/card*-*/*</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=85418" name="attach_85418" title="xrandr --verbose">attachment 85418</a> <a href="attachment.cgi?id=85418&amp;action=edit" title="xrandr --verbose">[details]</a></span>
+xrandr --verbose</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +76,9 @@ grep . /sys/class/drm/card*-*/*</pre>
     </body>
 </html>
 
---1378616369.D7A4Feb81.14390--
+--1378619080.2eA721.20089--
 
---===============0465904343==
+--===============1868916736==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0465904343==--
+--===============1868916736==--
