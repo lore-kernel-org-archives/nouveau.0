@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] [NV17] PowerMac3,
  6 Driver can't detect video output and xserver doesn't start
-Date: Sun, 08 Sep 2013 12:10:23 +0000
-Message-ID: <bug-21273-8800-huQHb9Jebz@http.bugs.freedesktop.org/>
+Date: Sun, 08 Sep 2013 12:13:23 +0000
+Message-ID: <bug-21273-8800-ecpYXKXRuQ@http.bugs.freedesktop.org/>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0864422420=="
+Content-Type: multipart/mixed; boundary="===============1499670922=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0864422420==
-Content-Type: multipart/alternative; boundary="1378642223.11ff01.2782"; charset="us-ascii"
+--===============1499670922==
+Content-Type: multipart/alternative; boundary="1378642403.5EecDb1.3328"; charset="us-ascii"
 
 
---1378642223.11ff01.2782
-Date: Sun, 8 Sep 2013 12:10:23 +0000
+--1378642403.5EecDb1.3328
+Date: Sun, 8 Sep 2013 12:13:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #87 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> ---
-Created attachment 85424
-  --> https://bugs.freedesktop.org/attachment.cgi?id=85424&action=edit
-vbios from debugfs
+--- Comment #88 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> ---
+Also, there is a file /sys/kernel/debug/dri/64/vbios.rom in the file system.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378642223.11ff01.2782
-Date: Sun, 8 Sep 2013 12:10:23 +0000
+--1378642403.5EecDb1.3328
+Date: Sun, 8 Sep 2013 12:13:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c87">Comment # 87</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c88">Comment # 88</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
               from <span class="vcard"><a class="email" href="mailto:ronne&#64;list.ru" title="Andrey Gusev &lt;ronne&#64;list.ru&gt;"> <span class="fn">Andrey Gusev</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=85424" name="attach_85424" title="vbios from debugfs">attachment 85424</a> <a href="attachment.cgi?id=85424&amp;action=edit" title="vbios from debugfs">[details]</a></span>
-vbios from debugfs</pre>
+        <pre>Also, there is a file /sys/kernel/debug/dri/64/vbios.rom in the file system.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +73,9 @@ vbios from debugfs</pre>
     </body>
 </html>
 
---1378642223.11ff01.2782--
+--1378642403.5EecDb1.3328--
 
---===============0864422420==
+--===============1499670922==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0864422420==--
+--===============1499670922==--
