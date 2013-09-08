@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 21273] [NV17] PowerMac3,
  6 Driver can't detect video output and xserver doesn't start
-Date: Sun, 08 Sep 2013 07:23:31 +0000
-Message-ID: <bug-21273-8800-FMkdxM3YZG@http.bugs.freedesktop.org/>
+Date: Sun, 08 Sep 2013 07:26:41 +0000
+Message-ID: <bug-21273-8800-ctjXPltUdz@http.bugs.freedesktop.org/>
 References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0365349010=="
+Content-Type: multipart/mixed; boundary="===============1372116334=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0365349010==
-Content-Type: multipart/alternative; boundary="1378625011.ABB8e1.31817"; charset="us-ascii"
+--===============1372116334==
+Content-Type: multipart/alternative; boundary="1378625201.CD72A1.32154"; charset="us-ascii"
 
 
---1378625011.ABB8e1.31817
-Date: Sun, 8 Sep 2013 07:23:31 +0000
+--1378625201.CD72A1.32154
+Date: Sun, 8 Sep 2013 07:26:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #85 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> ---
-Created attachment 85421
-  --> https://bugs.freedesktop.org/attachment.cgi?id=85421&action=edit
-boot on 3.10.9 kernel
+--- Comment #86 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> ---
+I don't have debugfs enabled in kernel. I can rebuild it, but it need time.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378625011.ABB8e1.31817
-Date: Sun, 8 Sep 2013 07:23:31 +0000
+--1378625201.CD72A1.32154
+Date: Sun, 8 Sep 2013 07:26:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c85">Comment # 85</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c86">Comment # 86</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
               from <span class="vcard"><a class="email" href="mailto:ronne&#64;list.ru" title="Andrey Gusev &lt;ronne&#64;list.ru&gt;"> <span class="fn">Andrey Gusev</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=85421" name="attach_85421" title="boot on 3.10.9 kernel">attachment 85421</a> <a href="attachment.cgi?id=85421&amp;action=edit" title="boot on 3.10.9 kernel">[details]</a></span>
-boot on 3.10.9 kernel</pre>
+        <pre>I don't have debugfs enabled in kernel. I can rebuild it, but it need time.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +73,9 @@ boot on 3.10.9 kernel</pre>
     </body>
 </html>
 
---1378625011.ABB8e1.31817--
+--1378625201.CD72A1.32154--
 
---===============0365349010==
+--===============1372116334==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0365349010==--
+--===============1372116334==--
