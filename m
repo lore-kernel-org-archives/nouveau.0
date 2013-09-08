@@ -1,7 +1,8 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 3/5] drm/nv40/mpeg: use the nv31-provided classes
-Date: Sat,  7 Sep 2013 21:04:10 -0400
-Message-ID: <1378602252-11521-3-git-send-email-imirkin@alum.mit.edu>
+Subject: [PATCH 4/5] drm/nv31/mpeg: store chan singleton in engine,
+	use it for dispatch
+Date: Sat,  7 Sep 2013 21:04:11 -0400
+Message-ID: <1378602252-11521-4-git-send-email-imirkin@alum.mit.edu>
 References: <1378602252-11521-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,181 +22,115 @@ To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Since nv40 only covers pre-nv44 now, it can use the nv31-provided
-functions.
+This makes nv31+ able to actually perform the nv_call, since previously
+the inst was not available.
 
 Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c    | 12 +---
- drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.h    | 15 +++++
- drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c    | 68 ++--------------------
- drivers/gpu/drm/nouveau/core/include/engine/mpeg.h |  2 +-
- 4 files changed, 22 insertions(+), 75 deletions(-)
- create mode 100644 drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.h
+ drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c | 27 +++++++++++++++----------
+ drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.h |  9 +++++----
+ 2 files changed, 21 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c
-index 5c54aa1..2f80b223 100644
+index 2f80b223..9330fc4 100644
 --- a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c
 +++ b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.c
-@@ -34,15 +34,7 @@
+@@ -147,6 +147,8 @@ nv31_mpeg_context_ctor(struct nouveau_object *parent,
+ 	if (ret)
+ 		return ret;
  
- #include <engine/fifo.h>
- #include <engine/mpeg.h>
--
--struct nv31_mpeg_priv {
--	struct nouveau_mpeg base;
--	atomic_t refcount;
--};
--
--struct nv31_mpeg_chan {
--	struct nouveau_object base;
--};
-+#include <engine/mpeg/nv31.h>
- 
- /*******************************************************************************
-  * MPEG object classes
-@@ -167,7 +159,7 @@ nv31_mpeg_context_dtor(struct nouveau_object *object)
- 	nouveau_object_destroy(&chan->base);
++	priv->chan = chan;
++
+ 	return 0;
  }
  
--static struct nouveau_oclass
-+struct nouveau_oclass
- nv31_mpeg_cclass = {
- 	.handle = NV_ENGCTX(MPEG, 0x31),
- 	.ofuncs = &(struct nouveau_ofuncs) {
+@@ -155,8 +157,11 @@ nv31_mpeg_context_dtor(struct nouveau_object *object)
+ {
+ 	struct nv31_mpeg_priv *priv = (void *)object->engine;
+ 	struct nv31_mpeg_chan *chan = (void *)object;
+-	atomic_dec(&priv->refcount);
++
++	WARN_ON(priv->chan != chan);
++	priv->chan = NULL;
+ 	nouveau_object_destroy(&chan->base);
++	atomic_dec(&priv->refcount);
+ }
+ 
+ struct nouveau_oclass
+@@ -189,20 +194,19 @@ void
+ nv31_mpeg_intr(struct nouveau_subdev *subdev)
+ {
+ 	struct nouveau_fifo *pfifo = nouveau_fifo(subdev);
+-	struct nouveau_engine *engine = nv_engine(subdev);
+-	struct nouveau_object *engctx;
+ 	struct nouveau_handle *handle;
+ 	struct nv31_mpeg_priv *priv = (void *)subdev;
+-	u32 inst = nv_rd32(priv, 0x00b318) & 0x000fffff;
++	struct nouveau_object *engctx = &priv->chan->base;
+ 	u32 stat = nv_rd32(priv, 0x00b100);
+ 	u32 type = nv_rd32(priv, 0x00b230);
+ 	u32 mthd = nv_rd32(priv, 0x00b234);
+ 	u32 data = nv_rd32(priv, 0x00b238);
+ 	u32 show = stat;
+-	int chid;
++	int chid = pfifo->chid(pfifo, engctx);
+ 
+-	engctx = nouveau_engctx_get(engine, inst);
+-	chid   = pfifo->chid(pfifo, engctx);
++	if (engctx)
++		if (nouveau_object_inc(engctx))
++			engctx = NULL;
+ 
+ 	if (stat & 0x01000000) {
+ 		/* happens on initial binding of the object */
+@@ -211,7 +215,7 @@ nv31_mpeg_intr(struct nouveau_subdev *subdev)
+ 			show &= ~0x01000000;
+ 		}
+ 
+-		if (type == 0x00000010) {
++		if (type == 0x00000010 && engctx) {
+ 			handle = nouveau_handle_get_class(engctx, 0x3174);
+ 			if (handle && !nv_call(handle->object, mthd, data))
+ 				show &= ~0x01000000;
+@@ -224,12 +228,13 @@ nv31_mpeg_intr(struct nouveau_subdev *subdev)
+ 
+ 	if (show) {
+ 		nv_error(priv,
+-			 "ch %d [0x%08x %s] 0x%08x 0x%08x 0x%08x 0x%08x\n",
+-			 chid, inst << 4, nouveau_client_name(engctx), stat,
++			 "ch %d [%s] 0x%08x 0x%08x 0x%08x 0x%08x\n",
++			 chid, nouveau_client_name(engctx), stat,
+ 			 type, mthd, data);
+ 	}
+ 
+-	nouveau_engctx_put(engctx);
++	if (engctx)
++		WARN_ON(nouveau_object_dec(engctx, false));
+ }
+ 
+ static int
 diff --git a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.h b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.h
-new file mode 100644
-index 0000000..a488c13
---- /dev/null
+index a488c13..62d04e4 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.h
 +++ b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv31.h
-@@ -0,0 +1,15 @@
-+#ifndef __NV31_MPEG_H__
-+#define __NV31_MPEG_H__
-+
-+#include <engine/mpeg.h>
-+
-+struct nv31_mpeg_priv {
-+	struct nouveau_mpeg base;
-+	atomic_t refcount;
-+};
-+
+@@ -3,13 +3,14 @@
+ 
+ #include <engine/mpeg.h>
+ 
 +struct nv31_mpeg_chan {
 +	struct nouveau_object base;
 +};
 +
-+#endif
-diff --git a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c
-index dd61960..26f3262 100644
---- a/drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/mpeg/nv40.c
-@@ -31,67 +31,7 @@
- #include <subdev/instmem.h>
- 
- #include <engine/mpeg.h>
--#include <engine/graph/nv40.h>
--
--struct nv40_mpeg_priv {
--	struct nouveau_mpeg base;
+ struct nv31_mpeg_priv {
+ 	struct nouveau_mpeg base;
+ 	atomic_t refcount;
 -};
 -
--struct nv40_mpeg_chan {
--	struct nouveau_mpeg_chan base;
--};
--
--/*******************************************************************************
-- * PMPEG context
-- ******************************************************************************/
--
--static int
--nv40_mpeg_context_ctor(struct nouveau_object *parent,
--		       struct nouveau_object *engine,
--		       struct nouveau_oclass *oclass, void *data, u32 size,
--		       struct nouveau_object **pobject)
--{
--	struct nv40_mpeg_chan *chan;
--	int ret;
--
--	ret = nouveau_mpeg_context_create(parent, engine, oclass, NULL,
--					  264 * 4, 16,
--					  NVOBJ_FLAG_ZERO_ALLOC, &chan);
--	*pobject = nv_object(chan);
--	if (ret)
--		return ret;
--
--	nv_wo32(&chan->base.base, 0x78, 0x02001ec1);
--	return 0;
--}
--
--static int
--nv40_mpeg_context_fini(struct nouveau_object *object, bool suspend)
--{
--
--	struct nv40_mpeg_priv *priv = (void *)object->engine;
--	struct nv40_mpeg_chan *chan = (void *)object;
--	u32 inst = 0x80000000 | nv_gpuobj(chan)->addr >> 4;
--
--	nv_mask(priv, 0x00b32c, 0x00000001, 0x00000000);
--	if (nv_rd32(priv, 0x00b318) == inst)
--		nv_mask(priv, 0x00b318, 0x80000000, 0x00000000);
--	nv_mask(priv, 0x00b32c, 0x00000001, 0x00000001);
--	return 0;
--}
--
--static struct nouveau_oclass
--nv40_mpeg_cclass = {
--	.handle = NV_ENGCTX(MPEG, 0x40),
--	.ofuncs = &(struct nouveau_ofuncs) {
--		.ctor = nv40_mpeg_context_ctor,
--		.dtor = _nouveau_mpeg_context_dtor,
--		.init = _nouveau_mpeg_context_init,
--		.fini = nv40_mpeg_context_fini,
--		.rd32 = _nouveau_mpeg_context_rd32,
--		.wr32 = _nouveau_mpeg_context_wr32,
--	},
--};
-+#include <engine/mpeg/nv31.h>
+-struct nv31_mpeg_chan {
+-	struct nouveau_object base;
++	struct nv31_mpeg_chan *chan;
+ };
  
- /*******************************************************************************
-  * PMPEG engine/subdev functions
-@@ -100,7 +40,7 @@ nv40_mpeg_cclass = {
- static void
- nv40_mpeg_intr(struct nouveau_subdev *subdev)
- {
--	struct nv40_mpeg_priv *priv = (void *)subdev;
-+	struct nv31_mpeg_priv *priv = (void *)subdev;
- 	u32 stat;
- 
- 	if ((stat = nv_rd32(priv, 0x00b100)))
-@@ -117,7 +57,7 @@ nv40_mpeg_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	       struct nouveau_oclass *oclass, void *data, u32 size,
- 	       struct nouveau_object **pobject)
- {
--	struct nv40_mpeg_priv *priv;
-+	struct nv31_mpeg_priv *priv;
- 	int ret;
- 
- 	ret = nouveau_mpeg_create(parent, engine, oclass, &priv);
-@@ -127,7 +67,7 @@ nv40_mpeg_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 
- 	nv_subdev(priv)->unit = 0x00000002;
- 	nv_subdev(priv)->intr = nv40_mpeg_intr;
--	nv_engine(priv)->cclass = &nv40_mpeg_cclass;
-+	nv_engine(priv)->cclass = &nv31_mpeg_cclass;
- 	nv_engine(priv)->sclass = nv31_mpeg_sclass;
- 	nv_engine(priv)->tile_prog = nv31_mpeg_tile_prog;
- 	return 0;
-diff --git a/drivers/gpu/drm/nouveau/core/include/engine/mpeg.h b/drivers/gpu/drm/nouveau/core/include/engine/mpeg.h
-index 6f4263d..8b7560e 100644
---- a/drivers/gpu/drm/nouveau/core/include/engine/mpeg.h
-+++ b/drivers/gpu/drm/nouveau/core/include/engine/mpeg.h
-@@ -45,7 +45,7 @@ extern struct nouveau_oclass nv40_mpeg_oclass;
- extern struct nouveau_oclass nv44_mpeg_oclass;
- extern struct nouveau_oclass nv50_mpeg_oclass;
- extern struct nouveau_oclass nv84_mpeg_oclass;
--
-+extern struct nouveau_oclass nv31_mpeg_cclass;
- extern struct nouveau_oclass nv31_mpeg_sclass[];
- void nv31_mpeg_intr(struct nouveau_subdev *);
- void nv31_mpeg_tile_prog(struct nouveau_engine *, int);
+ #endif
 -- 
 1.8.1.5
