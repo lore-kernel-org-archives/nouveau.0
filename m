@@ -1,96 +1,105 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21273] [NV17] PowerMac3,
- 6 Driver can't detect video output and xserver doesn't start
-Date: Sun, 08 Sep 2013 17:34:58 +0000
-Message-ID: <bug-21273-8800-OIrB15W9VY@http.bugs.freedesktop.org/>
-References: <bug-21273-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: Re: 3.12rc1-pre Nouveau? oops
+Date: Sun, 8 Sep 2013 15:39:46 -0400
+Message-ID: <CAKb7UviRb_ao_nB8Q3pa9ePm+yUGd8u7PDREv5wNfCheyGTZjQ@mail.gmail.com>
+References: <522CAB88.4020907@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1698907093=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=ISO-8859-1
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <522CAB88.4020907@mni.thm.de>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>, David Airlie <airlied@linux.ie>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
+On Sun, Sep 8, 2013 at 12:53 PM, Tobias Klausmann
+<tobias.johannes.klausmann@mni.thm.de> wrote:
+> Hi there,
+> with the latest snapshot of linus tree, i see a stack trace and my system
+> does not start X! Maybe someone finds this useful! (3.11 is working like a
+> charm)
 
---===============1698907093==
-Content-Type: multipart/alternative; boundary="1378661698.b2E54f1.17708"; charset="us-ascii"
+Looks like you have Optimus (intel + nvidia), and the backtrace has
+runtime pm in it, which is something new Dave added for 3.12, adding
+him in explicitly. The simplest explanation is that disp->init is
+NULL. And it seems like there are no outputs from the earlier nouveau
+init prints. I guess that the call to nouveau_display_resume from
+nouveau_pmops_runtime_resume should be guarded by a if
+(dev->mode_config.num_crtc) like it is everywhere else.
 
+  -ilia
 
---1378661698.b2E54f1.17708
-Date: Sun, 8 Sep 2013 17:34:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=21273
-
---- Comment #91 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> ---
-Created attachment 85443
-  --> https://bugs.freedesktop.org/attachment.cgi?id=85443&action=edit
-kernel log with parameters drm.debug=0xe nouveau.debug=debug
-
-Yes, 1600X1200 is my resolution.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1378661698.b2E54f1.17708
-Date: Sun, 8 Sep 2013 17:34:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c91">Comment # 91</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
-              from <span class="vcard"><a class="email" href="mailto:ronne&#64;list.ru" title="Andrey Gusev &lt;ronne&#64;list.ru&gt;"> <span class="fn">Andrey Gusev</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=85443" name="attach_85443" title="kernel log with parameters drm.debug=0xe nouveau.debug=debug">attachment 85443</a> <a href="attachment.cgi?id=85443&amp;action=edit" title="kernel log with parameters drm.debug=0xe nouveau.debug=debug">[details]</a></span>
-kernel log with parameters drm.debug=0xe nouveau.debug=debug
-
-Yes, 1600X1200 is my resolution.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1378661698.b2E54f1.17708--
-
---===============1698907093==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1698907093==--
+>
+> BUG: unable to handle kernel NULL pointer dereference at (null)
+> IP: [<          (null)>]           (null)
+> PGD 24eaa0067 PUD 24e7ac067 PMD 0
+> Oops: 0010 [#1] PREEMPT SMP
+> Modules linked in: bnep snd_hda_codec_hdmi snd_hda_codec_realtek fuse
+> x86_pkg_temp_thermal coretemp snd_hda_intel kvm_intel snd_hda_codec
+> snd_hwdep kvm snd_pcm uvcvideo snd_seq videobuf2_core snd_timer
+> crct10dif_pclmul crc32_pclmul arc4 crc32c_intel snd_seq_device
+> ghash_clmulni_intel ath9k videodev snd sdhci_pci sdhci aesni_intel iTCO_wdt
+> iTCO_vendor_support mac80211 ablk_helper acer_wmi ath9k_common ath3k
+> ath9k_hw sr_mod lpc_ich cryptd mmc_core joydev btusb sg ath cfg80211 tg3
+> acpi_cpufreq ptp pps_core ipheth cdrom videobuf2_vmalloc mfd_core
+> sparse_keymap soundcore serio_raw bluetooth videobuf2_memops shpchp rfkill
+> i2c_i801 pcspkr snd_page_alloc lrw gf128mul glue_helper aes_x86_64 microcode
+> battery ac autofs4 nouveau i915 ttm drm_kms_helper drm xhci_hcd mxm_wmi
+> i2c_algo_bit wmi video button processor thermal_sys scsi_dh_emc scsi_dh_alua
+> scsi_dh_rdac scsi_dh_hp_sw scsi_dh
+> CPU: 0 PID: 792 Comm: Xorg Not tainted 3.11.0-desktop+ #1
+> Hardware name: Acer Aspire V3-571G/VA50_HC_CR, BIOS V1.13 10/09/2012
+> task: ffff880253031040 ti: ffff880253256000 task.ti: ffff880253256000
+> RIP: 0010:[<0000000000000000>]  [< (null)>]           (null)
+> RSP: 0018:ffff8802532579a0  EFLAGS: 00010246
+> RAX: ffff88024fabb000 RBX: ffff88024f3e2800 RCX: ffff88024eacf5c0
+> RDX: ffff88024fabb000 RSI: ffff88024f7fe760 RDI: ffff88024f3e2800
+> RBP: ffff88024ea2f480 R08: 0000000000000004 R09: 0000000000000000
+> R10: ffff88025f1e1f80 R11: 000000000000000f R12: ffff88024f3e2800
+> R13: ffff88024f3e2800 R14: 0000000000000004 R15: ffff880253257ab8
+> FS:  00007fe73cdd8880(0000) GS:ffff88025f200000(0000) knlGS:0000000000000000
+> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> CR2: 0000000000000000 CR3: 000000025022c000 CR4: 00000000001407f0
+> Stack:
+>  ffffffffa021e4a2 ffff88024f234000 ffff88024f3e2800 ffff88024f3e2c38
+>  0000000000000000 ffff88024f3e2800 ffffffffa021eda5 ffff88025401d000
+>  ffff88024fabb000 ffff88025401d000 ffffffffa020e7cb ffff880253257ab8
+> Call Trace:
+>  [<ffffffffa021e4a2>] ? nouveau_display_init+0x42/0xd0 [nouveau]
+>  [<ffffffffa021eda5>] ? nouveau_display_resume+0x15/0xa0 [nouveau]
+>  [<ffffffffa020e7cb>] ? nouveau_pmops_runtime_resume+0x9b/0x100 [nouveau]
+>  [<ffffffff812ac745>] ? pci_pm_runtime_resume+0x85/0xc0
+>  [<ffffffff812ac6c0>] ? pci_restore_standard_config+0x30/0x30
+>  [<ffffffff8137b6f6>] ? __rpm_callback+0x36/0x80
+>  [<ffffffff8137b768>] ? rpm_callback+0x28/0x90
+>  [<ffffffff8137c48d>] ? rpm_resume+0x39d/0x570
+>  [<ffffffff81071483>] ? __wake_up+0x43/0x70
+>  [<ffffffff8137c8f8>] ? __pm_runtime_resume+0x48/0x70
+>  [<ffffffffa020e5a2>] ? nouveau_drm_open+0x42/0x1d0 [nouveau]
+>  [<ffffffff811bb858>] ? ext4_da_write_end+0xa8/0x2b0
+>  [<ffffffff811ef559>] ? jbd2_journal_stop+0x1d9/0x2c0
+>  [<ffffffff8124a56f>] ? apparmor_capable+0x1f/0x90
+>  [<ffffffffa00c5cab>] ? drm_open+0x28b/0x6e0 [drm]
+>  [<ffffffffa00c6206>] ? drm_stub_open+0x106/0x1a0 [drm]
+>  [<ffffffff81143bc0>] ? cdev_put+0x30/0x30
+>  [<ffffffff81143c56>] ? chrdev_open+0x96/0x1d0
+>  [<ffffffff81143bc0>] ? cdev_put+0x30/0x30
+>  [<ffffffff8113d186>] ? do_dentry_open+0x216/0x2a0
+>  [<ffffffff8113d238>] ? finish_open+0x28/0x40
+>  [<ffffffff8114e5e9>] ? do_last+0x709/0xe70
+>  [<ffffffff8114a9e8>] ? link_path_walk+0x68/0x860
+>  [<ffffffff81124b24>] ? kmem_cache_alloc+0x1b4/0x1d0
+>  [<ffffffff8114ee21>] ? path_openat+0xd1/0x660
+>  [<ffffffff8114f755>] ? do_filp_open+0x45/0xb0
+>  [<ffffffff8115bb65>] ? __alloc_fd+0xc5/0x120
+>  [<ffffffff8113e5f0>] ? do_sys_open+0x140/0x230
+>  [<ffffffff8156c5ed>] ? system_call_fastpath+0x1a/0x1f
+> Code:  Bad RIP value.
+> RIP  [<          (null)>]           (null)
+>  RSP <ffff8802532579a0>
+> CR2: 0000000000000000
+> ---[ end trace b6ce5041151511a5 ]---
+>
+> Thanks,
+> Tobias Klausmann
+>
