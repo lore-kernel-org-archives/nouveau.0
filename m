@@ -1,14 +1,11 @@
 From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: [PATCH 2/2] drm/nouveau/therm: enable fan management by
-	default
-Date: Mon,  9 Sep 2013 00:43:28 +0200
-Message-ID: <1378680208-11431-2-git-send-email-martin.peres@free.fr>
-References: <1378680208-11431-1-git-send-email-martin.peres@free.fr>
+Subject: [PATCH 1/2] drm/nouveau/therm: ack any pending IRQ at init
+Date: Mon,  9 Sep 2013 00:43:27 +0200
+Message-ID: <1378680208-11431-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1378680208-11431-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,27 +21,102 @@ List-Id: nouveau.vger.kernel.org
 
 From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 
-This should enable automatic fan management for all cards by default, at
-boot time. However, this commit actually affects only nv40-c0 as nvc0+
-cards already have vbios's PDAEMON fw already taking care of fan management.
+This is safe because ptherm hasn't been configured yet and will be a
+little further down the initialization path. Ptherm should be safe
+regarding to runtime reconfiguration.
+
+v2:
+  - do not limit this patch to nv84-a3 and make it nv84+
+
+v3:
+  - move the ack to fini()
+  - disable IRQs on fini()
+  - silently ignore un-requested IRQs
 
 Signed-off-by: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/subdev/therm/base.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c | 17 +++++++++++++++--
+ drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c |  2 +-
+ drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c |  2 +-
+ drivers/gpu/drm/nouveau/core/subdev/therm/priv.h |  1 +
+ 4 files changed, 18 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/base.c b/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
-index f1de7a9..aaf8285 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/therm/base.c
-@@ -335,7 +335,7 @@ nouveau_therm_preinit(struct nouveau_therm *therm)
- 	nouveau_therm_ic_ctor(therm);
- 	nouveau_therm_fan_ctor(therm);
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c b/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c
+index 42ba633..1d15c52 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c
+@@ -126,7 +126,7 @@ nv84_therm_intr(struct nouveau_subdev *subdev)
  
--	nouveau_therm_fan_mode(therm, NOUVEAU_THERM_CTRL_NONE);
-+	nouveau_therm_fan_mode(therm, NOUVEAU_THERM_CTRL_AUTO);
- 	nouveau_therm_sensor_preinit(therm);
- 	return 0;
+ 	spin_lock_irqsave(&priv->sensor.alarm_program_lock, flags);
+ 
+-	intr = nv_rd32(therm, 0x20100);
++	intr = nv_rd32(therm, 0x20100) & 0x3ff;
+ 
+ 	/* THRS_4: downclock */
+ 	if (intr & 0x002) {
+@@ -209,6 +209,19 @@ nv84_therm_ctor(struct nouveau_object *parent,
+ 	return nouveau_therm_preinit(&priv->base.base);
  }
+ 
++int
++nv84_therm_fini(struct nouveau_object *object, bool suspend)
++{
++	/* Disable PTherm IRQs */
++	nv_wr32(object, 0x20000, 0x00000000);
++
++	/* ACK all PTherm IRQs */
++	nv_wr32(object, 0x20100, 0xffffffff);
++	nv_wr32(object, 0x1100, 0x10000); /* PBUS */
++
++	return _nouveau_therm_fini(object, suspend);
++}
++
+ struct nouveau_oclass
+ nv84_therm_oclass = {
+ 	.handle = NV_SUBDEV(THERM, 0x84),
+@@ -216,6 +229,6 @@ nv84_therm_oclass = {
+ 		.ctor = nv84_therm_ctor,
+ 		.dtor = _nouveau_therm_dtor,
+ 		.init = _nouveau_therm_init,
+-		.fini = _nouveau_therm_fini,
++		.fini = nv84_therm_fini,
+ 	},
+ };
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c b/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c
+index d11a7c4..3b2c458 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c
+@@ -94,6 +94,6 @@ nva3_therm_oclass = {
+ 		.ctor = nva3_therm_ctor,
+ 		.dtor = _nouveau_therm_dtor,
+ 		.init = nva3_therm_init,
+-		.fini = _nouveau_therm_fini,
++		.fini = nv84_therm_fini,
+ 	},
+ };
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c b/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
+index 54c28bd..4dd4f81 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
+@@ -148,6 +148,6 @@ nvd0_therm_oclass = {
+ 		.ctor = nvd0_therm_ctor,
+ 		.dtor = _nouveau_therm_dtor,
+ 		.init = nvd0_therm_init,
+-		.fini = _nouveau_therm_fini,
++		.fini = nv84_therm_fini,
+ 	},
+ };
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h b/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h
+index dd38529..508b1ec 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h
++++ b/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h
+@@ -144,6 +144,7 @@ int nv50_fan_pwm_get(struct nouveau_therm *, int, u32 *, u32 *);
+ int nv50_fan_pwm_set(struct nouveau_therm *, int, u32, u32);
+ int nv50_fan_pwm_clock(struct nouveau_therm *);
+ int nv84_temp_get(struct nouveau_therm *therm);
++int nv84_therm_fini(struct nouveau_object *object, bool suspend);
+ 
+ int nva3_therm_fan_sense(struct nouveau_therm *);
+ 
 -- 
 1.8.4
