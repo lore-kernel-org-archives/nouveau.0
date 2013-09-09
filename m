@@ -1,135 +1,55 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/2] drm/nouveau/therm: ack any pending IRQ at
-	init
-Date: Mon, 9 Sep 2013 15:37:03 +1000
-Message-ID: <CACAvsv6rDc5U1hHS796g82bfvgJLW13SmTbawx3Wvjeixd2nQQ@mail.gmail.com>
-References: <1378680208-11431-1-git-send-email-martin.peres@free.fr>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [PATCH] drm/nv84-: write fence value on exit, and restore value
+	on init.
+Date: Mon, 9 Sep 2013 15:43:21 +1000
+Message-ID: <CACAvsv5H9pwuyeCXt+fRDZ_HEYbT-tu2Lp0q-dxw=f+1eLzC2g@mail.gmail.com>
+References: <1378132262-19453-1-git-send-email-maarten.lankhorst@canonical.com>
+	<CACAvsv6Aj2abkDV4-HPykMT9gKWw5U8AHkiBzvnOH5UND6nUDQ@mail.gmail.com>
+	<52272973.9010303@canonical.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1378680208-11431-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <52272973.9010303@canonical.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Sep 9, 2013 at 8:43 AM, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> wrote:
-> From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
->
-> This is safe because ptherm hasn't been configured yet and will be a
-> little further down the initialization path. Ptherm should be safe
-> regarding to runtime reconfiguration.
-Merged: http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=2ef5018234b80e6bc78816c09cc6baef3081fb8d
+On Wed, Sep 4, 2013 at 10:37 PM, Maarten Lankhorst
+<maarten.lankhorst@canonical.com> wrote:
+> Op 04-09-13 05:21, Ben Skeggs schreef:
+>> On Tue, Sep 3, 2013 at 12:31 AM, Maarten Lankhorst
+>> <maarten.lankhorst@canonical.com> wrote:
+>>> This increases the chance slightly that recovery from lockup can happen
+>>> succesfully.
+>> I'd *really* love to see proof of this.  When channels die, all
+>> outstanding fences are marked as signalled.  This should do absolutely
+>> nothing...
+> nv84+ heavily rely on fences though, and a race like this is possible:
+> - channel 0 uses a bo from channel 1, queues a wait somewhere in the command stream for it.
+> - channel 1 dies cleanly, but userspace creates a new channel in its place, fence counter is reset to 0.
+> - channel 0 reaches the NV84_SUBCHAN_SEMAPHORE_TRIGGER.ACQUIRE_GEQUAL op, waits on fence in channel 1 to signal forever.
+Ok, this isn't exactly the issue you implied in the commit message.
+But yes, this could possibly be an issue for sure.  I don't think this
+is the right way to fix it however.  I'll have a bit of a think on the
+problem and see what I can come up with.
 
-Thanks!
+Thanks,
+Ben.
 
 >
-> v2:
->   - do not limit this patch to nv84-a3 and make it nv84+
+> Channel 0 could be the global drm channel used for buffer moves, which would result in a hang. This may seem unlikely, but I believe that parallel piglit runs could trigger it.
 >
-> v3:
->   - move the ack to fini()
->   - disable IRQs on fini()
->   - silently ignore un-requested IRQs
+> If not, simply creating an operation that takes a few seconds in channel 0 and then queuing a command that uses a bo from channel 1 while chan1 is still busy, then deleting/recreating chan1 could trigger it.
 >
-> Signed-off-by: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c | 17 +++++++++++++++--
->  drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c |  2 +-
->  drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c |  2 +-
->  drivers/gpu/drm/nouveau/core/subdev/therm/priv.h |  1 +
->  4 files changed, 18 insertions(+), 4 deletions(-)
+> ~Maarten
 >
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c b/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c
-> index 42ba633..1d15c52 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/therm/nv84.c
-> @@ -126,7 +126,7 @@ nv84_therm_intr(struct nouveau_subdev *subdev)
->
->         spin_lock_irqsave(&priv->sensor.alarm_program_lock, flags);
->
-> -       intr = nv_rd32(therm, 0x20100);
-> +       intr = nv_rd32(therm, 0x20100) & 0x3ff;
->
->         /* THRS_4: downclock */
->         if (intr & 0x002) {
-> @@ -209,6 +209,19 @@ nv84_therm_ctor(struct nouveau_object *parent,
->         return nouveau_therm_preinit(&priv->base.base);
->  }
->
-> +int
-> +nv84_therm_fini(struct nouveau_object *object, bool suspend)
-> +{
-> +       /* Disable PTherm IRQs */
-> +       nv_wr32(object, 0x20000, 0x00000000);
-> +
-> +       /* ACK all PTherm IRQs */
-> +       nv_wr32(object, 0x20100, 0xffffffff);
-> +       nv_wr32(object, 0x1100, 0x10000); /* PBUS */
-> +
-> +       return _nouveau_therm_fini(object, suspend);
-> +}
-> +
->  struct nouveau_oclass
->  nv84_therm_oclass = {
->         .handle = NV_SUBDEV(THERM, 0x84),
-> @@ -216,6 +229,6 @@ nv84_therm_oclass = {
->                 .ctor = nv84_therm_ctor,
->                 .dtor = _nouveau_therm_dtor,
->                 .init = _nouveau_therm_init,
-> -               .fini = _nouveau_therm_fini,
-> +               .fini = nv84_therm_fini,
->         },
->  };
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c b/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c
-> index d11a7c4..3b2c458 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/therm/nva3.c
-> @@ -94,6 +94,6 @@ nva3_therm_oclass = {
->                 .ctor = nva3_therm_ctor,
->                 .dtor = _nouveau_therm_dtor,
->                 .init = nva3_therm_init,
-> -               .fini = _nouveau_therm_fini,
-> +               .fini = nv84_therm_fini,
->         },
->  };
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c b/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
-> index 54c28bd..4dd4f81 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
-> @@ -148,6 +148,6 @@ nvd0_therm_oclass = {
->                 .ctor = nvd0_therm_ctor,
->                 .dtor = _nouveau_therm_dtor,
->                 .init = nvd0_therm_init,
-> -               .fini = _nouveau_therm_fini,
-> +               .fini = nv84_therm_fini,
->         },
->  };
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h b/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h
-> index dd38529..508b1ec 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/therm/priv.h
-> @@ -144,6 +144,7 @@ int nv50_fan_pwm_get(struct nouveau_therm *, int, u32 *, u32 *);
->  int nv50_fan_pwm_set(struct nouveau_therm *, int, u32, u32);
->  int nv50_fan_pwm_clock(struct nouveau_therm *);
->  int nv84_temp_get(struct nouveau_therm *therm);
-> +int nv84_therm_fini(struct nouveau_object *object, bool suspend);
->
->  int nva3_therm_fan_sense(struct nouveau_therm *);
->
-> --
-> 1.8.4
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
