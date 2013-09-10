@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69180] [NVC1] Delays when using nouveau and
-	switcheroo
-Date: Tue, 10 Sep 2013 15:14:24 +0000
-Message-ID: <bug-69180-8800-QtQpoaoLlr@http.bugs.freedesktop.org/>
-References: <bug-69180-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69168] [NVA8]Arbitrary crashes
+Date: Tue, 10 Sep 2013 18:31:18 +0000
+Message-ID: <bug-69168-8800-E1bVJsxwJ8@http.bugs.freedesktop.org/>
+References: <bug-69168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1825732393=="
+Content-Type: multipart/mixed; boundary="===============1433931077=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +20,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1825732393==
-Content-Type: multipart/alternative; boundary="1378826064.cB4cBfAB2.2366"; charset="us-ascii"
+--===============1433931077==
+Content-Type: multipart/alternative; boundary="1378837878.7c30Da1.24205"; charset="us-ascii"
 
 
---1378826064.cB4cBfAB2.2366
-Date: Tue, 10 Sep 2013 15:14:24 +0000
+--1378837878.7c30Da1.24205
+Date: Tue, 10 Sep 2013 18:31:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69180
+https://bugs.freedesktop.org/show_bug.cgi?id=69168
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #2 from Wompy Dompy <wompy-KK0ffGbhmjU@public.gmane.org> ---
+Created attachment 85581
+  --> https://bugs.freedesktop.org/attachment.cgi?id=85581&action=edit
+latest Xorg-log
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Delays when using nouveau   |[NVC1] Delays when using
-                   |and switcheroo              |nouveau and switcheroo
+Thanks for that quick response.
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #0)
-> AFAIK the Nvidia graphics card sends its output to the Intel card, which is
-> responsible for the graphics output to the screen. So I guess the problem is
-> that switcheroo disables the Intel card which causes the graphics output to
-> stop.
+That one is from the latest crash today. I don't think X restarts though. What
+happens is that I can move my mice, but gnome is not reacting any more, but I
+can still switch to the tty-consoles. Sometimes the gdm-login appears on tty2
+though. Since I heard about a lot of improvements in 3.11 I asked the guys in
+#archlinux and they told me I could try to go the "testing" repo, install the
+kernel and go back. That's what I did. When it crahes, is there a possiblity to
+"restore" the gnome session? I tried to work with gnome-shell --replace
+--display :0 but that didn't work.
 
-If you don't have a hardware mux, stay away from vgaswitcheroo. Take a look at
-http://nouveau.freedesktop.org/wiki/Optimus/.
+Kind regards,
+wompy
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378826064.cB4cBfAB2.2366
-Date: Tue, 10 Sep 2013 15:14:24 +0000
+--1378837878.7c30Da1.24205
+Date: Tue, 10 Sep 2013 18:31:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,47 +63,35 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] Delays when using nouveau and switcheroo"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69180">bug 69180</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Delays when using nouveau and switcheroo
-           </td>
-           <td>[NVC1] Delays when using nouveau and switcheroo
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] Delays when using nouveau and switcheroo"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69180#c4">Comment # 4</a>
+   title="NEW --- - [NVA8]Arbitrary crashes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69168#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] Delays when using nouveau and switcheroo"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69180">bug 69180</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NVA8]Arbitrary crashes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69168">bug 69168</a>
+              from <span class="vcard"><a class="email" href="mailto:wompy&#64;gmx.com" title="Wompy Dompy &lt;wompy&#64;gmx.com&gt;"> <span class="fn">Wompy Dompy</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=69180#c0">comment #0</a>)
-<span class="quote">&gt; AFAIK the Nvidia graphics card sends its output to the Intel card, which is
-&gt; responsible for the graphics output to the screen. So I guess the problem is
-&gt; that switcheroo disables the Intel card which causes the graphics output to
-&gt; stop.</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=85581" name="attach_85581" title="latest Xorg-log">attachment 85581</a> <a href="attachment.cgi?id=85581&amp;action=edit" title="latest Xorg-log">[details]</a></span>
+latest Xorg-log
 
-If you don't have a hardware mux, stay away from vgaswitcheroo. Take a look at
-<a href="http://nouveau.freedesktop.org/wiki/Optimus/">http://nouveau.freedesktop.org/wiki/Optimus/</a>.</pre>
+Thanks for that quick response.
+
+That one is from the latest crash today. I don't think X restarts though. What
+happens is that I can move my mice, but gnome is not reacting any more, but I
+can still switch to the tty-consoles. Sometimes the gdm-login appears on tty2
+though. Since I heard about a lot of improvements in 3.11 I asked the guys in
+#archlinux and they told me I could try to go the &quot;testing&quot; repo, install the
+kernel and go back. That's what I did. When it crahes, is there a possiblity to
+&quot;restore&quot; the gnome session? I tried to work with gnome-shell --replace
+--display :0 but that didn't work.
+
+Kind regards,
+wompy</pre>
         </div>
       </p>
       <hr>
@@ -114,9 +103,9 @@ If you don't have a hardware mux, stay away from vgaswitcheroo. Take a look at
     </body>
 </html>
 
---1378826064.cB4cBfAB2.2366--
+--1378837878.7c30Da1.24205--
 
---===============1825732393==
+--===============1433931077==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1825732393==--
+--===============1433931077==--
