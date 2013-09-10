@@ -1,15 +1,10 @@
-From: Ramkumar Ramachandra <artagnon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: 3.12rc1-pre Nouveau? oops
-Date: Mon, 9 Sep 2013 03:44:59 +0530
-Message-ID: <CALkWK0=17XhUdxj0PX_+JrZtmDt-GnArHwXYocJSLM-P_4geHw@mail.gmail.com>
-References: <CAKb7UviRb_ao_nB8Q3pa9ePm+yUGd8u7PDREv5wNfCheyGTZjQ@mail.gmail.com>
-	<1378675264-3005-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
-	<CAPM=9tyCOdzC1NYy7jt+zh3WOuzubaO3b8vwFVast9ec=BWOkA@mail.gmail.com>
-	<522CF3D1.2020303@mni.thm.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 69168] New: Arbitrary crashes
+Date: Tue, 10 Sep 2013 08:12:51 +0000
+Message-ID: <bug-69168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0067418430=="
+Content-Type: multipart/mixed; boundary="===============1350377390=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <522CF3D1.2020303-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,55 +14,204 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0067418430==
-Content-Type: multipart/alternative; boundary=001a11c30f7897160a04e5e69c15
 
---001a11c30f7897160a04e5e69c15
-Content-Type: text/plain; charset=UTF-8
-
-Tobias Klausmann wrote:
-
-> No, mine was quick and dirty, reverted it and took yours. But i'm a little
-> bit confused that this is a suspend/resume problem, i booted the kernel for
-> the first time while seeing the oops. But anyway i tested it and it works.
->
-
-Don't use quick-and-dirty solutions; without regular garbage collection,
-all work becomes boring.
+--===============1350377390==
+Content-Type: multipart/alternative; boundary="1378800772.E72F866f1.30012"; charset="us-ascii"
 
 
->
->
+--1378800772.E72F866f1.30012
+Date: Tue, 10 Sep 2013 08:12:52 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
---001a11c30f7897160a04e5e69c15
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+https://bugs.freedesktop.org/show_bug.cgi?id=69168
 
-<div dir=3D"ltr">Tobias Klausmann wrote:<br><div class=3D"gmail_extra"><div=
- class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 =
-0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"=
-><div class=3D"h5">
+          Priority: medium
+            Bug ID: 69168
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Arbitrary crashes
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: wompy-KK0ffGbhmjU@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-<span style=3D"color:rgb(34,34,34)">No, mine was quick and dirty, reverted =
-it and took yours. But i&#39;m a little bit confused that this is a suspend=
-/resume problem, i booted the kernel for the first time while seeing the oo=
-ps. But anyway i tested it and it works.</span></div>
+Created attachment 85540
+  --> https://bugs.freedesktop.org/attachment.cgi?id=85540&action=edit
+dmesg-log with log_buf_len=1M
 
-</div></blockquote><div><br></div><div>Don&#39;t use quick-and-dirty soluti=
-ons; without regular garbage collection, all work becomes boring.</div><div=
->=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;b=
-order-left:1px #ccc solid;padding-left:1ex">
+Hi,
+using nouveau on arch linux my system crashes arbitrarily. I tried to force it
+with maximum load (running tons of videos in parallel) but it would crash with
+log on. Unplugging the external monitor was finally the trigger, even though I
+am not sure if that is my actual problem. The picture on my external monitor
+looks crappy (don't know how to describe, but some kind of "fuzzy", like Win
+98) even though the right resolution 1920*1080 is used. 
+uname -a
+Linux wom 3.11.0-1-ARCH #1 SMP PREEMPT Tue Sep 3 08:58:01 CEST 2013 x86_64
+GNU/Linux
 
-<div class=3D"HOEnZb"><div class=3D"h5"><span style=3D"color:rgb(34,34,34)"=
->=C2=A0</span></div></div></blockquote></div></div></div>
+lspci|grep NVIDIA
+01:00.0 VGA compatible controller: NVIDIA Corporation GT218M [GeForce 310M]
+(rev a2)
+01:00.1 Audio device: NVIDIA Corporation High Definition Audio Controller (rev
+a1)
 
---001a11c30f7897160a04e5e69c15--
+xf86-video-nouveau-1.0.9-1
+mesa-9.2.0-1
+libdrm-2.4.46-2
 
---===============0067418430==
+Attached the dmesg-log with log_buf_len=1M
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1378800772.E72F866f1.30012
+Date: Tue, 10 Sep 2013 08:12:52 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Arbitrary crashes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69168">69168</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Arbitrary crashes
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>wompy&#64;gmx.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=85540" name="attach_85540" title="dmesg-log with log_buf_len=1M">attachment 85540</a> <a href="attachment.cgi?id=85540&amp;action=edit" title="dmesg-log with log_buf_len=1M">[details]</a></span>
+dmesg-log with log_buf_len=1M
+
+Hi,
+using nouveau on arch linux my system crashes arbitrarily. I tried to force it
+with maximum load (running tons of videos in parallel) but it would crash with
+log on. Unplugging the external monitor was finally the trigger, even though I
+am not sure if that is my actual problem. The picture on my external monitor
+looks crappy (don't know how to describe, but some kind of &quot;fuzzy&quot;, like Win
+98) even though the right resolution 1920*1080 is used. 
+uname -a
+Linux wom 3.11.0-1-ARCH #1 SMP PREEMPT Tue Sep 3 08:58:01 CEST 2013 x86_64
+GNU/Linux
+
+lspci|grep NVIDIA
+01:00.0 VGA compatible controller: NVIDIA Corporation GT218M [GeForce 310M]
+(rev a2)
+01:00.1 Audio device: NVIDIA Corporation High Definition Audio Controller (rev
+a1)
+
+xf86-video-nouveau-1.0.9-1
+mesa-9.2.0-1
+libdrm-2.4.46-2
+
+Attached the dmesg-log with log_buf_len=1M</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1378800772.E72F866f1.30012--
+
+--===============1350377390==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -78,4 +222,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0067418430==--
+--===============1350377390==--
