@@ -1,17 +1,18 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH] drm/nouveau: do not move buffers when not needed
-Date: Tue, 10 Sep 2013 18:14:14 +1000
-Message-ID: <CACAvsv5bngw_ODqfjLRveZvnom1EYo_NP1LMZtwftNJ=EpO5ug@mail.gmail.com>
-References: <51DFFA52.6010102@canonical.com>
-	<CACAvsv74X7xU0BkfhN0gXHvFG+Ooe=7wrFBzKnqUF7PMeB5wLw@mail.gmail.com>
-	<51E3B55D.8080403@canonical.com>
-	<CACAvsv5Srz2DrDjKtU+YhhgoOTp3Ydnzz_AG=YfzOGHbwhHbrA@mail.gmail.com>
-	<522734C6.9060109@canonical.com>
+From: Pasi =?iso-8859-1?Q?K=E4rkk=E4inen?= <pasik@iki.fi>
+Subject: Re: [PATCH] drm/nouveau: avoid null deref on bad arguments to
+	nouveau_vma_getmap
+Date: Tue, 10 Sep 2013 13:39:14 +0300
+Message-ID: <20130910103914.GL2924@reaktio.net>
+References: <1377130214-17522-1-git-send-email-imirkin@alum.mit.edu>
+	<5215B9E8.5080108@canonical.com>
+	<CACAvsv7ygYoM6ZzFdY-Zov0herPMQDERaw6jzj6VuB+p20FcJQ@mail.gmail.com>
+	<5226DA41.5060203@canonical.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <522734C6.9060109@canonical.com>
+Content-Disposition: inline
+In-Reply-To: <5226DA41.5060203@canonical.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
 	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
@@ -22,81 +23,129 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
 Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
 Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
 To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Sep 4, 2013 at 11:25 PM, Maarten Lankhorst
-<maarten.lankhorst@canonical.com> wrote:
-> Op 04-09-13 03:24, Ben Skeggs schreef:
->> On Mon, Jul 15, 2013 at 6:39 PM, Maarten Lankhorst
->> <maarten.lankhorst@canonical.com> wrote:
->>> Op 15-07-13 08:05, Ben Skeggs schreef:
->>>> On Fri, Jul 12, 2013 at 10:45 PM, Maarten Lankhorst
->>>> <maarten.lankhorst@canonical.com> wrote:
->>>>> I have no idea what this bogus restriction on placement is, but it breaks decoding 1080p
->>>>> VDPAU at boot speed. With this patch applied I only need to bump the vdec clock to
->>>>> get real-time 1080p decoding. It prevents a lot of VRAM <-> VRAM buffer moves.
->>>> It's not bogus, and is required for pre-GF8 boards with VRAM > BAR size.
->>>>
->>>> What configuration does the buffer that's getting moved here have
->>>> exactly?  The placement restriction isn't necessary on GF8, the rest
->>>> of the restrictions may currently be required still however.
->>>>
->>>> = vdpau on NVC0 with tiling. I upload the raw bitstream to a tiling bo. This is ok because
->>> the vm hides all the tiling translations, and the engines will read the raw bitstream correctly.
->> Why would you be doing such a thing in the first place?  It seems
->> pointless, and quite possibly counter-productive to use a tiled layout
->> for a linear data structure...
-> Initially I just allocated everything I didn't need to access directly tiled, and it seems I did the same for
-> the bitstream bo. I only found out later about the bug with excessive moves causing a major slowdown.
+On Wed, Sep 04, 2013 at 08:59:13AM +0200, Maarten Lankhorst wrote:
+> Op 04-09-13 05:41, Ben Skeggs schreef:
+> > On Thu, Aug 22, 2013 at 5:12 PM, Maarten Lankhorst
+> > <maarten.lankhorst@canonical.com> wrote:
+> >> Op 22-08-13 02:10, Ilia Mirkin schreef:
+> >>> The code expects non-VRAM mem nodes to have a pages list. If that's n=
+ot
+> >>> set, it will do a null deref down the line. Warn on that condition and
+> >>> return an error.
+> >>>
+> >>> See https://bugs.freedesktop.org/show_bug.cgi?id=3D64774
+> >>>
+> >>> Reported-by: Pasi K=E4rkk=E4inen <pasik@iki.fi>
+> >>> Tested-by: Pasi K=E4rkk=E4inen <pasik@iki.fi>
+> >>> Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+> >>> Cc: <stable@vger.kernel.org> # 3.8+
+> >>> ---
+> >>>
+> >>> I don't exactly understand what's going on, but this is just a
+> >>> straightforward way to avoid a null deref that you see happens in the
+> >>> bug. I haven't figured out the root cause of this, but it's getting
+> >>> well into the "I have no idea how TTM works" space. However this seems
+> >>> like a bit of defensive programming -- nouveau_vm_map_sg will pass
+> >>> node->pages as a list down, which will be dereferenced by
+> >>> nvc0_vm_map_sg. Perhaps the other arguments should make that
+> >>> dereferencing not happen, but it definitely was happening here, as you
+> >>> can see in the bug.
+> >>>
+> >>> Ben/Maarten, I'll let you judge whether this check is appropriate,
+> >>> since like I hope I was able to convey above, I'm just not really sur=
+e :)
+> >> Not it really isn't appropriate..
+> >>
+> >> You'd have to call call nouveau_vm_map_sg_table instead, the only plac=
+e that doesn't handle that correctly
+> >> is where it's not expected to be called.
+> >>
+> >> Here, have a completely untested patch to fix things...
+> >>
+> >> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/d=
+rm/nouveau/nouveau_display.c
+> >> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
+> >> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+> >> @@ -138,17 +143,26 @@ nouveau_user_framebuffer_create(struct drm_devic=
+e *dev,
+> >>  {
+> >>         struct nouveau_framebuffer *nouveau_fb;
+> >>         struct drm_gem_object *gem;
+> >> +       struct nouveau_bo *nvbo;
+> >>         int ret =3D -ENOMEM;
+> >>
+> >>         gem =3D drm_gem_object_lookup(dev, file_priv, mode_cmd->handle=
+s[0]);
+> >>         if (!gem)
+> >>                 return ERR_PTR(-ENOENT);
+> >>
+> >> +       nvbo =3D nouveau_gem_object(gem);
+> >> +       if (!(nvbo->valid_domains & NOUVEAU_GEM_DOMAIN_VRAM)) {
+> >> +               nv_warn(nouveau_drm(dev), "Trying to create a fb in vr=
+am with"
+> >> +                       " valid_domains=3D%08x\n", nvbo->valid_domains=
+);
+> >> +               ret =3D -EINVAL;
+> >> +               goto err_unref;
+> >> +       }
+> >> +
+> > Definitely the right idea, we can't handle this case right now.
+> > However, we may someday want/need to be able to scan out of system
+> > memory, so this is the wrong place.
+> >
+> > I suspect the correct thing to do (which'll also handle the
+> > "defensive" part) is to bail in nouveau_bo_move() on attempts to move
+> > a DMA-BUF backed object into VRAM.
+> >
+> > Sound OK?
+> >
+> If it has a WARN_ON or something that would be ok, I didn't find any othe=
+r places that attempt to move buffers to VRAM though, so it's probably harm=
+less.
+> =
+
+
+So hmm.. I guess another patch is needed for the original issue in this thr=
+ead.
+Is someone going to submit that? =
+
+
+
+> When looking into this bug I noticed that nouveau_bo_vma_add needs to hav=
+e a check for nvbo->page_shift =3D=3D vma->vm->vmm->spg_shift,
+> and only if the check is true it should map the page in TTM_PL_TT. Patch =
+below.
+> Should probably also be cc'd to stable.
 >
->>> 8<---
->>> This prevents buffer moves from being done on NV50+, where remapping is not needed because
->>> the bar has its own VM, instead of only having the first BAR1-size chunk of VRAM accessible.
->>> nouveau_bo_tile_layout is always 0 on < NV_50.
->>>
->>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
->>> ---
->>> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
->>> index d506da5..762bfcd 100644
->>> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
->>> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
->>> @@ -1346,14 +1361,13 @@ nouveau_ttm_fault_reserve_notify(struct ttm_buffer_object *bo)
->>>         struct nouveau_device *device = nv_device(drm->device);
->>>         u32 mappable = pci_resource_len(device->pdev, 1) >> PAGE_SHIFT;
->>>
->>> -       /* as long as the bo isn't in vram, and isn't tiled, we've got
->>> -        * nothing to do here.
->>> +       /*
->>> +        * if the bo is not in vram, or remapping can be done (nv50+)
->>> +        * do not worry about placement, any location is valid
->>>          */
->>> -       if (bo->mem.mem_type != TTM_PL_VRAM) {
->>> -               if (nv_device(drm->device)->card_type < NV_50 ||
->>> -                   !nouveau_bo_tile_layout(nvbo))
->>> -                       return 0;
->>> -       }
->>> +       if (nv_device(drm->device)->card_type >= NV_50 ||
->>> +           bo->mem.mem_type != TTM_PL_VRAM)
->>> +               return 0;
->> I get what you're trying to do here, and we should definitely avoid
->> the "mappable vram" check on GF8, but I suspect this condition is too
->> broad.  I'll think about it more after I finish reviewing the rest of
->> the patches on the list..
->>
-> I think this relaxed check is fine. If it's !VRAM, the host can always access it because it has direct access to the
-> pages without needing anything from the gpu. On >= NV50 the move can always be skipped too because the
-> memory is mapped to the vm, and always accessible.
-Yeah, I think the check is sane, after thinking it through.  We shall
-find out :)
 
-But first, if you're going to not move tiled system memory to vram
-first, you're going to need to deal with mapping it into bar1 so the
-vm deals with some of the reordering.  See what's done in
-io_mem_reserve() for TTM_PL_VRAM.
+Thanks! Is this patch ready to be merged?
 
-Ben.
 
->
+-- Pasi
+ =
+
+
 > ~Maarten
->
+> =
+
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouve=
+au/nouveau_bo.c
+> index 89b992e..355a1b7 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> @@ -1560,7 +1560,8 @@ nouveau_bo_vma_add(struct nouveau_bo *nvbo, struct =
+nouveau_vm *vm,
+>  =
+
+>  	if (nvbo->bo.mem.mem_type =3D=3D TTM_PL_VRAM)
+>  		nouveau_vm_map(vma, nvbo->bo.mem.mm_node);
+> -	else if (nvbo->bo.mem.mem_type =3D=3D TTM_PL_TT) {
+> +	else if (nvbo->bo.mem.mem_type =3D=3D TTM_PL_TT &&
+> +		 nvbo->page_shift =3D=3D vma->vm->vmm->spg_shift) {
+>  		if (node->sg)
+>  			nouveau_vm_map_sg_table(vma, 0, size, node);
+>  		else
+> =
