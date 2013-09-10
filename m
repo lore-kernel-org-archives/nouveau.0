@@ -1,225 +1,102 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69168] New: Arbitrary crashes
-Date: Tue, 10 Sep 2013 08:12:51 +0000
-Message-ID: <bug-69168-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [PATCH] drm/nouveau: do not move buffers when not needed
+Date: Tue, 10 Sep 2013 18:14:14 +1000
+Message-ID: <CACAvsv5bngw_ODqfjLRveZvnom1EYo_NP1LMZtwftNJ=EpO5ug@mail.gmail.com>
+References: <51DFFA52.6010102@canonical.com>
+	<CACAvsv74X7xU0BkfhN0gXHvFG+Ooe=7wrFBzKnqUF7PMeB5wLw@mail.gmail.com>
+	<51E3B55D.8080403@canonical.com>
+	<CACAvsv5Srz2DrDjKtU+YhhgoOTp3Ydnzz_AG=YfzOGHbwhHbrA@mail.gmail.com>
+	<522734C6.9060109@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1350377390=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <522734C6.9060109@canonical.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
+On Wed, Sep 4, 2013 at 11:25 PM, Maarten Lankhorst
+<maarten.lankhorst@canonical.com> wrote:
+> Op 04-09-13 03:24, Ben Skeggs schreef:
+>> On Mon, Jul 15, 2013 at 6:39 PM, Maarten Lankhorst
+>> <maarten.lankhorst@canonical.com> wrote:
+>>> Op 15-07-13 08:05, Ben Skeggs schreef:
+>>>> On Fri, Jul 12, 2013 at 10:45 PM, Maarten Lankhorst
+>>>> <maarten.lankhorst@canonical.com> wrote:
+>>>>> I have no idea what this bogus restriction on placement is, but it breaks decoding 1080p
+>>>>> VDPAU at boot speed. With this patch applied I only need to bump the vdec clock to
+>>>>> get real-time 1080p decoding. It prevents a lot of VRAM <-> VRAM buffer moves.
+>>>> It's not bogus, and is required for pre-GF8 boards with VRAM > BAR size.
+>>>>
+>>>> What configuration does the buffer that's getting moved here have
+>>>> exactly?  The placement restriction isn't necessary on GF8, the rest
+>>>> of the restrictions may currently be required still however.
+>>>>
+>>>> = vdpau on NVC0 with tiling. I upload the raw bitstream to a tiling bo. This is ok because
+>>> the vm hides all the tiling translations, and the engines will read the raw bitstream correctly.
+>> Why would you be doing such a thing in the first place?  It seems
+>> pointless, and quite possibly counter-productive to use a tiled layout
+>> for a linear data structure...
+> Initially I just allocated everything I didn't need to access directly tiled, and it seems I did the same for
+> the bitstream bo. I only found out later about the bug with excessive moves causing a major slowdown.
+>
+>>> 8<---
+>>> This prevents buffer moves from being done on NV50+, where remapping is not needed because
+>>> the bar has its own VM, instead of only having the first BAR1-size chunk of VRAM accessible.
+>>> nouveau_bo_tile_layout is always 0 on < NV_50.
+>>>
+>>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+>>> ---
+>>> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+>>> index d506da5..762bfcd 100644
+>>> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+>>> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+>>> @@ -1346,14 +1361,13 @@ nouveau_ttm_fault_reserve_notify(struct ttm_buffer_object *bo)
+>>>         struct nouveau_device *device = nv_device(drm->device);
+>>>         u32 mappable = pci_resource_len(device->pdev, 1) >> PAGE_SHIFT;
+>>>
+>>> -       /* as long as the bo isn't in vram, and isn't tiled, we've got
+>>> -        * nothing to do here.
+>>> +       /*
+>>> +        * if the bo is not in vram, or remapping can be done (nv50+)
+>>> +        * do not worry about placement, any location is valid
+>>>          */
+>>> -       if (bo->mem.mem_type != TTM_PL_VRAM) {
+>>> -               if (nv_device(drm->device)->card_type < NV_50 ||
+>>> -                   !nouveau_bo_tile_layout(nvbo))
+>>> -                       return 0;
+>>> -       }
+>>> +       if (nv_device(drm->device)->card_type >= NV_50 ||
+>>> +           bo->mem.mem_type != TTM_PL_VRAM)
+>>> +               return 0;
+>> I get what you're trying to do here, and we should definitely avoid
+>> the "mappable vram" check on GF8, but I suspect this condition is too
+>> broad.  I'll think about it more after I finish reviewing the rest of
+>> the patches on the list..
+>>
+> I think this relaxed check is fine. If it's !VRAM, the host can always access it because it has direct access to the
+> pages without needing anything from the gpu. On >= NV50 the move can always be skipped too because the
+> memory is mapped to the vm, and always accessible.
+Yeah, I think the check is sane, after thinking it through.  We shall
+find out :)
 
---===============1350377390==
-Content-Type: multipart/alternative; boundary="1378800772.E72F866f1.30012"; charset="us-ascii"
+But first, if you're going to not move tiled system memory to vram
+first, you're going to need to deal with mapping it into bar1 so the
+vm deals with some of the reordering.  See what's done in
+io_mem_reserve() for TTM_PL_VRAM.
 
+Ben.
 
---1378800772.E72F866f1.30012
-Date: Tue, 10 Sep 2013 08:12:52 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=69168
-
-          Priority: medium
-            Bug ID: 69168
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Arbitrary crashes
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: wompy-KK0ffGbhmjU@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
-
-Created attachment 85540
-  --> https://bugs.freedesktop.org/attachment.cgi?id=85540&action=edit
-dmesg-log with log_buf_len=1M
-
-Hi,
-using nouveau on arch linux my system crashes arbitrarily. I tried to force it
-with maximum load (running tons of videos in parallel) but it would crash with
-log on. Unplugging the external monitor was finally the trigger, even though I
-am not sure if that is my actual problem. The picture on my external monitor
-looks crappy (don't know how to describe, but some kind of "fuzzy", like Win
-98) even though the right resolution 1920*1080 is used. 
-uname -a
-Linux wom 3.11.0-1-ARCH #1 SMP PREEMPT Tue Sep 3 08:58:01 CEST 2013 x86_64
-GNU/Linux
-
-lspci|grep NVIDIA
-01:00.0 VGA compatible controller: NVIDIA Corporation GT218M [GeForce 310M]
-(rev a2)
-01:00.1 Audio device: NVIDIA Corporation High Definition Audio Controller (rev
-a1)
-
-xf86-video-nouveau-1.0.9-1
-mesa-9.2.0-1
-libdrm-2.4.46-2
-
-Attached the dmesg-log with log_buf_len=1M
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1378800772.E72F866f1.30012
-Date: Tue, 10 Sep 2013 08:12:52 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Arbitrary crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69168">69168</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Arbitrary crashes
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>wompy&#64;gmx.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=85540" name="attach_85540" title="dmesg-log with log_buf_len=1M">attachment 85540</a> <a href="attachment.cgi?id=85540&amp;action=edit" title="dmesg-log with log_buf_len=1M">[details]</a></span>
-dmesg-log with log_buf_len=1M
-
-Hi,
-using nouveau on arch linux my system crashes arbitrarily. I tried to force it
-with maximum load (running tons of videos in parallel) but it would crash with
-log on. Unplugging the external monitor was finally the trigger, even though I
-am not sure if that is my actual problem. The picture on my external monitor
-looks crappy (don't know how to describe, but some kind of &quot;fuzzy&quot;, like Win
-98) even though the right resolution 1920*1080 is used. 
-uname -a
-Linux wom 3.11.0-1-ARCH #1 SMP PREEMPT Tue Sep 3 08:58:01 CEST 2013 x86_64
-GNU/Linux
-
-lspci|grep NVIDIA
-01:00.0 VGA compatible controller: NVIDIA Corporation GT218M [GeForce 310M]
-(rev a2)
-01:00.1 Audio device: NVIDIA Corporation High Definition Audio Controller (rev
-a1)
-
-xf86-video-nouveau-1.0.9-1
-mesa-9.2.0-1
-libdrm-2.4.46-2
-
-Attached the dmesg-log with log_buf_len=1M</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1378800772.E72F866f1.30012--
-
---===============1350377390==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1350377390==--
+>
+> ~Maarten
+>
