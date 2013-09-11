@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69203] Kernel 3.11 - Xorg hangs immediately after
-	invocation
-Date: Wed, 11 Sep 2013 04:01:55 +0000
-Message-ID: <bug-69203-8800-145HJCLr4D@http.bugs.freedesktop.org/>
+Subject: [Bug 69203] [NVC1] Kernel 3.11 - Xorg hangs immediately
+ after invocation
+Date: Wed, 11 Sep 2013 04:05:02 +0000
+Message-ID: <bug-69203-8800-2Rmn0LWFO9@http.bugs.freedesktop.org/>
 References: <bug-69203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0504376628=="
+Content-Type: multipart/mixed; boundary="===============1996711656=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,38 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0504376628==
-Content-Type: multipart/alternative; boundary="1378872115.aaa82a1.16003"; charset="us-ascii"
+--===============1996711656==
+Content-Type: multipart/alternative; boundary="1378872302.8fcbFC781.16783"; charset="us-ascii"
 
 
---1378872115.aaa82a1.16003
-Date: Wed, 11 Sep 2013 04:01:55 +0000
+--1378872302.8fcbFC781.16783
+Date: Wed, 11 Sep 2013 04:05:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69203
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The stuff in the X logs is just a side effect of nouveau_bo_wait hanging. Is
-there anything interesting in dmesg?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Can you try
-
-git checkout 5ee86c4190f9e
-git cherry-pick d2989b534ef6834ebf2425aecc040b894b567c91
-
-And run that kernel? (After that you'll need to use git reset --hard to get
-back into a good state.)
-
-BTW, don't let the dates confuse you -- they have nothing to do with commit
-order. e.g. 5ee86c41 is an ancestor of 56fbd2b65 even though it's dated later.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Kernel 3.11 - Xorg hangs    |[NVC1] Kernel 3.11 - Xorg
+                   |immediately after           |hangs immediately after
+                   |invocation                  |invocation
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378872115.aaa82a1.16003
-Date: Wed, 11 Sep 2013 04:01:55 +0000
+--1378872302.8fcbFC781.16783
+Date: Wed, 11 Sep 2013 04:05:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,33 +53,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Kernel 3.11 - Xorg hangs immediately after invocation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Kernel 3.11 - Xorg hangs immediately after invocation"
+   title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69203">bug 69203</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>The stuff in the X logs is just a side effect of nouveau_bo_wait hanging. Is
-there anything interesting in dmesg?
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-Can you try
-
-git checkout 5ee86c4190f9e
-git cherry-pick d2989b534ef6834ebf2425aecc040b894b567c91
-
-And run that kernel? (After that you'll need to use git reset --hard to get
-back into a good state.)
-
-BTW, don't let the dates confuse you -- they have nothing to do with commit
-order. e.g. 5ee86c41 is an ancestor of 56fbd2b65 even though it's dated later.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Kernel 3.11 - Xorg hangs immediately after invocation
+           </td>
+           <td>[NVC1] Kernel 3.11 - Xorg hangs immediately after invocation
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -97,9 +85,9 @@ order. e.g. 5ee86c41 is an ancestor of 56fbd2b65 even though it's dated later.</
     </body>
 </html>
 
---1378872115.aaa82a1.16003--
+--1378872302.8fcbFC781.16783--
 
---===============0504376628==
+--===============1996711656==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0504376628==--
+--===============1996711656==--
