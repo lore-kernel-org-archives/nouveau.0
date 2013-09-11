@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69203] Kernel 3.11 - Xorg hangs immediately after
 	invocation
-Date: Wed, 11 Sep 2013 03:37:24 +0000
-Message-ID: <bug-69203-8800-pPmTXGVUkF@http.bugs.freedesktop.org/>
+Date: Wed, 11 Sep 2013 03:38:47 +0000
+Message-ID: <bug-69203-8800-cS1PrpQTcw@http.bugs.freedesktop.org/>
 References: <bug-69203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0006208212=="
+Content-Type: multipart/mixed; boundary="===============1780935057=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0006208212==
-Content-Type: multipart/alternative; boundary="1378870644.CCdd0.10274"; charset="us-ascii"
+--===============1780935057==
+Content-Type: multipart/alternative; boundary="1378870727.eAfE0.10406"; charset="us-ascii"
 
 
---1378870644.CCdd0.10274
-Date: Wed, 11 Sep 2013 03:37:24 +0000
+--1378870727.eAfE0.10406
+Date: Wed, 11 Sep 2013 03:38:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69203
 
---- Comment #1 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 85596
-  --> https://bugs.freedesktop.org/attachment.cgi?id=85596&action=edit
-Xorg log of the buggy version, 3.11
+--- Comment #2 from Alex <alupu01-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 85597
+  --> https://bugs.freedesktop.org/attachment.cgi?id=85597&action=edit
+Xorg log of the last "official" release of 3.10.x, 3.10.10
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378870644.CCdd0.10274
-Date: Wed, 11 Sep 2013 03:37:24 +0000
+--1378870727.eAfE0.10406
+Date: Wed, 11 Sep 2013 03:38:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Kernel 3.11 - Xorg hangs immediately after invocation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Kernel 3.11 - Xorg hangs immediately after invocation"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69203">bug 69203</a>
               from <span class="vcard"><a class="email" href="mailto:alupu01&#64;gmail.com" title="Alex &lt;alupu01&#64;gmail.com&gt;"> <span class="fn">Alex</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=85596" name="attach_85596" title="Xorg log of the buggy version, 3.11">attachment 85596</a> <a href="attachment.cgi?id=85596&amp;action=edit" title="Xorg log of the buggy version, 3.11">[details]</a></span>
-Xorg log of the buggy version, 3.11</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=85597" name="attach_85597" title="Xorg log of the last &quot;official&quot; release of 3.10.x, 3.10.10">attachment 85597</a> <a href="attachment.cgi?id=85597&amp;action=edit" title="Xorg log of the last &quot;official&quot; release of 3.10.x, 3.10.10">[details]</a></span>
+Xorg log of the last &quot;official&quot; release of 3.10.x, 3.10.10</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ Xorg log of the buggy version, 3.11</pre>
     </body>
 </html>
 
---1378870644.CCdd0.10274--
+--1378870727.eAfE0.10406--
 
---===============0006208212==
+--===============1780935057==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0006208212==--
+--===============1780935057==--
