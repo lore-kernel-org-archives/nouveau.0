@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58305] Kernel crashes if nVidia card is powered off
  and X restartted
-Date: Fri, 13 Sep 2013 06:54:10 +0000
-Message-ID: <bug-58305-8800-QmDS5Uwdce@http.bugs.freedesktop.org/>
+Date: Fri, 13 Sep 2013 12:22:34 +0000
+Message-ID: <bug-58305-8800-xLqwvkEoJo@http.bugs.freedesktop.org/>
 References: <bug-58305-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1405229200=="
+Content-Type: multipart/mixed; boundary="===============1363026267=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1405229200==
-Content-Type: multipart/alternative; boundary="1379055250.ebA478e1.32636"; charset="us-ascii"
+--===============1363026267==
+Content-Type: multipart/alternative; boundary="1379074954.f5fBFd61.21175"; charset="us-ascii"
 
 
---1379055250.ebA478e1.32636
-Date: Fri, 13 Sep 2013 06:54:10 +0000
+--1379074954.f5fBFd61.21175
+Date: Fri, 13 Sep 2013 12:22:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58305
 
---- Comment #8 from Dimitar Kosev <buboleck-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #7)
-> Can you confirm that this issue still exists in the latest kernel
-> (3.11-rc7)? A bunch of locking/ordering stuff has been redone since 3.8, I
-> think.
-
-I just tested with 3.11 and I can can confirm that suspend/resume works,
-however still crashes on shut down/reboot.
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you supply a full kernel log that includes the backtrace from 3.11? You can
+probably trigger the issue by unloading the nouveau module -- see how to do
+this at http://nouveau.freedesktop.org/wiki/KernelModeSetting/ (you can't just
+rmmod it, you have to unbind the console first)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379055250.ebA478e1.32636
-Date: Fri, 13 Sep 2013 06:54:10 +0000
+--1379074954.f5fBFd61.21175
+Date: Fri, 13 Sep 2013 12:22:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,20 +57,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Kernel crashes if nVidia card is powered off and X restartted"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Kernel crashes if nVidia card is powered off and X restartted"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58305">bug 58305</a>
-              from <span class="vcard"><a class="email" href="mailto:buboleck&#64;gmail.com" title="Dimitar Kosev &lt;buboleck&#64;gmail.com&gt;"> <span class="fn">Dimitar Kosev</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=58305#c7">comment #7</a>)
-<span class="quote">&gt; Can you confirm that this issue still exists in the latest kernel
-&gt; (3.11-rc7)? A bunch of locking/ordering stuff has been redone since 3.8, I
-&gt; think.</span >
-
-I just tested with 3.11 and I can can confirm that suspend/resume works,
-however still crashes on shut down/reboot.</pre>
+        <pre>Can you supply a full kernel log that includes the backtrace from 3.11? You can
+probably trigger the issue by unloading the nouveau module -- see how to do
+this at <a href="http://nouveau.freedesktop.org/wiki/KernelModeSetting/">http://nouveau.freedesktop.org/wiki/KernelModeSetting/</a> (you can't just
+rmmod it, you have to unbind the console first)</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +79,9 @@ however still crashes on shut down/reboot.</pre>
     </body>
 </html>
 
---1379055250.ebA478e1.32636--
+--1379074954.f5fBFd61.21175--
 
---===============1405229200==
+--===============1363026267==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1405229200==--
+--===============1363026267==--
