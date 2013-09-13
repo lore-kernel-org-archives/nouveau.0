@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 53101] [NVC0+] Fedora 17 "PFIFO - playlist update
- failed" on boot
-Date: Thu, 12 Sep 2013 06:26:46 +0000
-Message-ID: <bug-53101-8800-zMQfoIjxcP@http.bugs.freedesktop.org/>
-References: <bug-53101-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58305] Kernel crashes if nVidia card is powered off
+ and X restartted
+Date: Fri, 13 Sep 2013 06:54:10 +0000
+Message-ID: <bug-58305-8800-QmDS5Uwdce@http.bugs.freedesktop.org/>
+References: <bug-58305-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0648749062=="
+Content-Type: multipart/mixed; boundary="===============1405229200=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-53101-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0648749062==
-Content-Type: multipart/alternative; boundary="1378967206.2e774.3413"; charset="us-ascii"
+--===============1405229200==
+Content-Type: multipart/alternative; boundary="1379055250.ebA478e1.32636"; charset="us-ascii"
 
 
---1378967206.2e774.3413
-Date: Thu, 12 Sep 2013 06:26:46 +0000
+--1379055250.ebA478e1.32636
+Date: Fri, 13 Sep 2013 06:54:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=53101
+https://bugs.freedesktop.org/show_bug.cgi?id=58305
 
---- Comment #20 from sdlarsen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I'm seeing this for the first time on a 3.11 kernel, so I'd say it's still a
-problem. I haven't seen it on 3.9.* or 3.10.* kernels though.
+--- Comment #8 from Dimitar Kosev <buboleck-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #7)
+> Can you confirm that this issue still exists in the latest kernel
+> (3.11-rc7)? A bunch of locking/ordering stuff has been redone since 3.8, I
+> think.
+
+I just tested with 3.11 and I can can confirm that suspend/resume works,
+however still crashes on shut down/reboot.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1378967206.2e774.3413
-Date: Thu, 12 Sep 2013 06:26:46 +0000
+--1379055250.ebA478e1.32636
+Date: Fri, 13 Sep 2013 06:54:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +59,21 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC0+] Fedora 17 &quot;PFIFO - playlist update failed&quot; on boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=53101#c20">Comment # 20</a>
+   title="NEW --- - Kernel crashes if nVidia card is powered off and X restartted"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC0+] Fedora 17 &quot;PFIFO - playlist update failed&quot; on boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=53101">bug 53101</a>
-              from <span class="vcard"><a class="email" href="mailto:sdlarsen&#64;gmail.com" title="sdlarsen&#64;gmail.com">sdlarsen&#64;gmail.com</a>
+   title="NEW --- - Kernel crashes if nVidia card is powered off and X restartted"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305">bug 58305</a>
+              from <span class="vcard"><a class="email" href="mailto:buboleck&#64;gmail.com" title="Dimitar Kosev &lt;buboleck&#64;gmail.com&gt;"> <span class="fn">Dimitar Kosev</span></a>
 </span></b>
-        <pre>I'm seeing this for the first time on a 3.11 kernel, so I'd say it's still a
-problem. I haven't seen it on 3.9.* or 3.10.* kernels though.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=58305#c7">comment #7</a>)
+<span class="quote">&gt; Can you confirm that this issue still exists in the latest kernel
+&gt; (3.11-rc7)? A bunch of locking/ordering stuff has been redone since 3.8, I
+&gt; think.</span >
+
+I just tested with 3.11 and I can can confirm that suspend/resume works,
+however still crashes on shut down/reboot.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +85,9 @@ problem. I haven't seen it on 3.9.* or 3.10.* kernels though.</pre>
     </body>
 </html>
 
---1378967206.2e774.3413--
+--1379055250.ebA478e1.32636--
 
---===============0648749062==
+--===============1405229200==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0648749062==--
+--===============1405229200==--
