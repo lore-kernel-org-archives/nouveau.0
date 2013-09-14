@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69345] nouveau no longer reports D3cold on
- linux-next as of at least 20130906
-Date: Sat, 14 Sep 2013 06:56:10 +0000
-Message-ID: <bug-69345-8800-7q7hMr71Ir@http.bugs.freedesktop.org/>
-References: <bug-69345-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69349] New: Random image corruptions (in Debian
+ Wheezy with Linux 3.2)
+Date: Sat, 14 Sep 2013 08:25:11 +0000
+Message-ID: <bug-69349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0569248888=="
+Content-Type: multipart/mixed; boundary="===============1462193084=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69345-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +19,69 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0569248888==
-Content-Type: multipart/alternative; boundary="1379141770.27bA27d40.1513"; charset="us-ascii"
+--===============1462193084==
+Content-Type: multipart/alternative; boundary="1379147111.a30Af51E2.21419"; charset="us-ascii"
 
 
---1379141770.27bA27d40.1513
-Date: Sat, 14 Sep 2013 06:56:10 +0000
+--1379147111.a30Af51E2.21419
+Date: Sat, 14 Sep 2013 08:25:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69345
+https://bugs.freedesktop.org/show_bug.cgi?id=69349
 
---- Comment #1 from tod.jackson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 85810
-  --> https://bugs.freedesktop.org/attachment.cgi?id=85810&action=edit
-current dmesg
+          Priority: medium
+            Bug ID: 69349
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Random image corruptions (in Debian Wheezy with Linux
+                    3.2)
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: paulepanter-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
+
+Created attachment 85813
+  --> https://bugs.freedesktop.org/attachment.cgi?id=85813&action=edit
+Screenshot taken with `import` after opening a new tab in Iceweasel 17.0.8
+
+Using Debian Wheezy with
+
+    linux-image-3.2.0-4-686-pae 3.2.46-1+deb7u1
+    xserver-xorg-video-nouveau 1:1.0.1-5
+    libglu1-mesa:i386 8.0.5-4+deb7u2
+    libdrm2                                2.4.40-1~deb7u2
+    libudev0                               175-7.2
+    xserver-xorg-core [xorg-video-abi-12]  2:1.12.4-6
+
+sometimes there is an image corruption where some areas are garbled with other
+colors. See the attached screenshot taken with `import` from the ImageMagick
+suite. (What is that type of corruption called?)
+
+The obfuscation was done with the following command.
+
+    $ convert 20130909-Debian_Wheezy-nouveau-corruption.png -draw "rectangle
+231,165 1703,953" 20130909-Debian_Wheezy-nouveau-corruption--obfuscated.png
+
+This issue happened five times and I do not know how to force it. Three of
+these five times it happened after resuming from suspend to RAM. Additionally
+after these corruption start, the system is going to freeze after some time.
+There are no error messages in `/var/log/syslog`, `/var/log/messages`,
+`/var/log/Xorg.0.log` and `~/.xsession-errors`.
+
+Please tell me, what else you need for debugging.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379141770.27bA27d40.1513
-Date: Sat, 14 Sep 2013 06:56:10 +0000
+--1379147111.a30Af51E2.21419
+Date: Sat, 14 Sep 2013 08:25:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,21 +89,123 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Random image corruptions (in Debian Wheezy with Linux 3.2)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69349">69349</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Random image corruptions (in Debian Wheezy with Linux 3.2)
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>paulepanter&#64;users.sourceforge.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau no longer reports D3cold on linux-next as of at least 20130906"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69345#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau no longer reports D3cold on linux-next as of at least 20130906"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69345">bug 69345</a>
-              from <span class="vcard"><a class="email" href="mailto:tod.jackson&#64;gmail.com" title="tod.jackson&#64;gmail.com">tod.jackson&#64;gmail.com</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=85810" name="attach_85810" title="current dmesg">attachment 85810</a> <a href="attachment.cgi?id=85810&amp;action=edit" title="current dmesg">[details]</a></span>
-current dmesg</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=85813" name="attach_85813" title="Screenshot taken with `import` after opening a new tab in Iceweasel 17.0.8">attachment 85813</a> <a href="attachment.cgi?id=85813&amp;action=edit" title="Screenshot taken with `import` after opening a new tab in Iceweasel 17.0.8">[details]</a></span>
+Screenshot taken with `import` after opening a new tab in Iceweasel 17.0.8
+
+Using Debian Wheezy with
+
+    linux-image-3.2.0-4-686-pae 3.2.46-1+deb7u1
+    xserver-xorg-video-nouveau 1:1.0.1-5
+    libglu1-mesa:i386 8.0.5-4+deb7u2
+    libdrm2                                2.4.40-1~deb7u2
+    libudev0                               175-7.2
+    xserver-xorg-core [xorg-video-abi-12]  2:1.12.4-6
+
+sometimes there is an image corruption where some areas are garbled with other
+colors. See the attached screenshot taken with `import` from the ImageMagick
+suite. (What is that type of corruption called?)
+
+The obfuscation was done with the following command.
+
+    $ convert 20130909-Debian_Wheezy-nouveau-corruption.png -draw &quot;rectangle
+231,165 1703,953&quot; 20130909-Debian_Wheezy-nouveau-corruption--obfuscated.png
+
+This issue happened five times and I do not know how to force it. Three of
+these five times it happened after resuming from suspend to RAM. Additionally
+after these corruption start, the system is going to freeze after some time.
+There are no error messages in `/var/log/syslog`, `/var/log/messages`,
+`/var/log/Xorg.0.log` and `~/.xsession-errors`.
+
+Please tell me, what else you need for debugging.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +217,9 @@ current dmesg</pre>
     </body>
 </html>
 
---1379141770.27bA27d40.1513--
+--1379147111.a30Af51E2.21419--
 
---===============0569248888==
+--===============1462193084==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +230,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0569248888==--
+--===============1462193084==--
