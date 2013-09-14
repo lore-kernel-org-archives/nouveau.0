@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69345] New: nouveau no longer reports D3cold on
- linux-next as of at least 20130906
-Date: Sat, 14 Sep 2013 06:38:57 +0000
-Message-ID: <bug-69345-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69346] New: nouveau card permanently stays in D3 on
+ VT switch with Optimus laptops
+Date: Sat, 14 Sep 2013 06:43:40 +0000
+Message-ID: <bug-69346-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1564661847=="
+Content-Type: multipart/mixed; boundary="===============1546500633=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,23 +19,23 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1564661847==
-Content-Type: multipart/alternative; boundary="1379140737.d7f4d6f10.28986"; charset="us-ascii"
+--===============1546500633==
+Content-Type: multipart/alternative; boundary="1379141020.14d6df00.30313"; charset="us-ascii"
 
 
---1379140737.d7f4d6f10.28986
-Date: Sat, 14 Sep 2013 06:38:57 +0000
+--1379141020.14d6df00.30313
+Date: Sat, 14 Sep 2013 06:43:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69345
+https://bugs.freedesktop.org/show_bug.cgi?id=69346
 
           Priority: medium
-            Bug ID: 69345
+            Bug ID: 69346
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: nouveau no longer reports D3cold on linux-next as of
-                    at least 20130906
-          Severity: minor
+           Summary: nouveau card permanently stays in D3 on VT switch with
+                    Optimus laptops
+          Severity: normal
     Classification: Unclassified
                 OS: Linux (All)
           Reporter: tod.jackson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
@@ -47,31 +47,21 @@ https://bugs.freedesktop.org/show_bug.cgi?id=69345
 
 Hi there,
 
-I saw Rafael made this recent commit:
-http://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/?id=8ad928d52e63a9b7d69f0873d7318c4561e2f8cd
+This is re: recent nouveau runtime PM functionality. For the most part it works
+great, but the Nvidia card powers up briefly when it shouldn't, e.g. opening a
+video with VA-API in mplayer. Which is alright - I greatly appreciate the
+cooler temperatures.
 
-That may not be the culprit at all, sorry. I noticed that if I'm using, say,
-the latest drm-intel-next kernel or nouveau kernel ACPI reports nouveau's
-status properly, e.g. nouveau: power state changed by ACPI to D3cold, however
-in next I no longer get these messages, although the device seems to be in
-D3cold (?). At least temperatures are much lower, especially when building
-software.
-
-[23301.994315] ACPI Warning: \_SB_.PCI0.P0P2.PEGP._DSM: Argument #4 type
-mismatch - Found [Buffer], ACPI requires [Package] (20130725/nsarguments-95)
-(That's the only indicator of power transitions now - a warning that might go
-away in the future - p.s., do I need to do some DSDT hacking for that or is it
-on the Linux-side?)
-
-Invoking lm_sensors' sensors command shows N/A for the nouveau device on
-Optimus laptops, as expected if the device is in D3cold.
+However, a VT switch, e.g. ctrl + alt + F2 and back, the Nvidia card never
+turns off again until all X sessions are closed. Is that just a limitation of X
+or fixable?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379140737.d7f4d6f10.28986
-Date: Sat, 14 Sep 2013 06:38:57 +0000
+--1379141020.14d6df00.30313
+Date: Sat, 14 Sep 2013 06:43:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -90,8 +80,8 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau no longer reports D3cold on linux-next as of at least 20130906"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69345">69345</a>
+   title="NEW --- - nouveau card permanently stays in D3 on VT switch with Optimus laptops"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69346">69346</a>
           </td>
         </tr>
 
@@ -103,13 +93,13 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Summary</th>
-          <td>nouveau no longer reports D3cold on linux-next as of at least 20130906
+          <td>nouveau card permanently stays in D3 on VT switch with Optimus laptops
           </td>
         </tr>
 
         <tr>
           <th>Severity</th>
-          <td>minor
+          <td>normal
           </td>
         </tr>
 
@@ -164,24 +154,14 @@ Content-Type: text/html; charset="UTF-8"
         <div>
         <pre>Hi there,
 
-I saw Rafael made this recent commit:
-<a href="http://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/?id=8ad928d52e63a9b7d69f0873d7318c4561e2f8cd">http://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/?id=8ad928d52e63a9b7d69f0873d7318c4561e2f8cd</a>
+This is re: recent nouveau runtime PM functionality. For the most part it works
+great, but the Nvidia card powers up briefly when it shouldn't, e.g. opening a
+video with VA-API in mplayer. Which is alright - I greatly appreciate the
+cooler temperatures.
 
-That may not be the culprit at all, sorry. I noticed that if I'm using, say,
-the latest drm-intel-next kernel or nouveau kernel ACPI reports nouveau's
-status properly, e.g. nouveau: power state changed by ACPI to D3cold, however
-in next I no longer get these messages, although the device seems to be in
-D3cold (?). At least temperatures are much lower, especially when building
-software.
-
-[23301.994315] ACPI Warning: \_SB_.PCI0.P0P2.PEGP._DSM: Argument #4 type
-mismatch - Found [Buffer], ACPI requires [Package] (20130725/nsarguments-95)
-(That's the only indicator of power transitions now - a warning that might go
-away in the future - p.s., do I need to do some DSDT hacking for that or is it
-on the Linux-side?)
-
-Invoking lm_sensors' sensors command shows N/A for the nouveau device on
-Optimus laptops, as expected if the device is in D3cold.</pre>
+However, a VT switch, e.g. ctrl + alt + F2 and back, the Nvidia card never
+turns off again until all X sessions are closed. Is that just a limitation of X
+or fixable?</pre>
         </div>
       </p>
       <hr>
@@ -193,9 +173,9 @@ Optimus laptops, as expected if the device is in D3cold.</pre>
     </body>
 </html>
 
---1379140737.d7f4d6f10.28986--
+--1379141020.14d6df00.30313--
 
---===============1564661847==
+--===============1546500633==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -206,4 +186,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1564661847==--
+--===============1546500633==--
