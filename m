@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69349] New: Random image corruptions (in Debian
- Wheezy with Linux 3.2)
-Date: Sat, 14 Sep 2013 08:25:11 +0000
-Message-ID: <bug-69349-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69350] New: [NV96] Second card output corrupted
+	after suspend
+Date: Sat, 14 Sep 2013 08:45:49 +0000
+Message-ID: <bug-69350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1462193084=="
+Content-Type: multipart/mixed; boundary="===============1191352468=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,69 +19,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1462193084==
-Content-Type: multipart/alternative; boundary="1379147111.a30Af51E2.21419"; charset="us-ascii"
+--===============1191352468==
+Content-Type: multipart/alternative; boundary="1379148349.E58fA2aA1.25991"; charset="us-ascii"
 
 
---1379147111.a30Af51E2.21419
-Date: Sat, 14 Sep 2013 08:25:11 +0000
+--1379148349.E58fA2aA1.25991
+Date: Sat, 14 Sep 2013 08:45:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69349
+https://bugs.freedesktop.org/show_bug.cgi?id=69350
 
           Priority: medium
-            Bug ID: 69349
+            Bug ID: 69350
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Random image corruptions (in Debian Wheezy with Linux
-                    3.2)
+           Summary: [NV96] Second card output corrupted after suspend
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
           Severity: normal
     Classification: Unclassified
-                OS: All
-          Reporter: paulepanter-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org
-          Hardware: Other
+                OS: Linux (All)
+          Reporter: thomas.bettler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
             Status: NEW
            Version: git
          Component: Driver/nouveau
            Product: xorg
 
-Created attachment 85813
-  --> https://bugs.freedesktop.org/attachment.cgi?id=85813&action=edit
-Screenshot taken with `import` after opening a new tab in Iceweasel 17.0.8
-
-Using Debian Wheezy with
-
-    linux-image-3.2.0-4-686-pae 3.2.46-1+deb7u1
-    xserver-xorg-video-nouveau 1:1.0.1-5
-    libglu1-mesa:i386 8.0.5-4+deb7u2
-    libdrm2                                2.4.40-1~deb7u2
-    libudev0                               175-7.2
-    xserver-xorg-core [xorg-video-abi-12]  2:1.12.4-6
-
-sometimes there is an image corruption where some areas are garbled with other
-colors. See the attached screenshot taken with `import` from the ImageMagick
-suite. (What is that type of corruption called?)
-
-The obfuscation was done with the following command.
-
-    $ convert 20130909-Debian_Wheezy-nouveau-corruption.png -draw "rectangle
-231,165 1703,953" 20130909-Debian_Wheezy-nouveau-corruption--obfuscated.png
-
-This issue happened five times and I do not know how to force it. Three of
-these five times it happened after resuming from suspend to RAM. Additionally
-after these corruption start, the system is going to freeze after some time.
-There are no error messages in `/var/log/syslog`, `/var/log/messages`,
-`/var/log/Xorg.0.log` and `~/.xsession-errors`.
-
-Please tell me, what else you need for debugging.
+I have a multiseat configuration with 2 cards, each connected to 2 monitors.
+(Total 4 monitors)
+The second card (read: seat) of my multiseat configuration has a corrupted
+output after suspend - however hibernation works fine.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379147111.a30Af51E2.21419
-Date: Sat, 14 Sep 2013 08:25:11 +0000
+--1379148349.E58fA2aA1.25991
+Date: Sat, 14 Sep 2013 08:45:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -100,8 +74,8 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Random image corruptions (in Debian Wheezy with Linux 3.2)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69349">69349</a>
+   title="NEW --- - [NV96] Second card output corrupted after suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69350">69350</a>
           </td>
         </tr>
 
@@ -113,7 +87,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Summary</th>
-          <td>Random image corruptions (in Debian Wheezy with Linux 3.2)
+          <td>[NV96] Second card output corrupted after suspend
           </td>
         </tr>
 
@@ -137,19 +111,19 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>OS</th>
-          <td>All
+          <td>Linux (All)
           </td>
         </tr>
 
         <tr>
           <th>Reporter</th>
-          <td>paulepanter&#64;users.sourceforge.net
+          <td>thomas.bettler&#64;gmail.com
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>Other
+          <td>x86-64 (AMD64)
           </td>
         </tr>
 
@@ -178,34 +152,10 @@ Content-Type: text/html; charset="UTF-8"
         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=85813" name="attach_85813" title="Screenshot taken with `import` after opening a new tab in Iceweasel 17.0.8">attachment 85813</a> <a href="attachment.cgi?id=85813&amp;action=edit" title="Screenshot taken with `import` after opening a new tab in Iceweasel 17.0.8">[details]</a></span>
-Screenshot taken with `import` after opening a new tab in Iceweasel 17.0.8
-
-Using Debian Wheezy with
-
-    linux-image-3.2.0-4-686-pae 3.2.46-1+deb7u1
-    xserver-xorg-video-nouveau 1:1.0.1-5
-    libglu1-mesa:i386 8.0.5-4+deb7u2
-    libdrm2                                2.4.40-1~deb7u2
-    libudev0                               175-7.2
-    xserver-xorg-core [xorg-video-abi-12]  2:1.12.4-6
-
-sometimes there is an image corruption where some areas are garbled with other
-colors. See the attached screenshot taken with `import` from the ImageMagick
-suite. (What is that type of corruption called?)
-
-The obfuscation was done with the following command.
-
-    $ convert 20130909-Debian_Wheezy-nouveau-corruption.png -draw &quot;rectangle
-231,165 1703,953&quot; 20130909-Debian_Wheezy-nouveau-corruption--obfuscated.png
-
-This issue happened five times and I do not know how to force it. Three of
-these five times it happened after resuming from suspend to RAM. Additionally
-after these corruption start, the system is going to freeze after some time.
-There are no error messages in `/var/log/syslog`, `/var/log/messages`,
-`/var/log/Xorg.0.log` and `~/.xsession-errors`.
-
-Please tell me, what else you need for debugging.</pre>
+        <pre>I have a multiseat configuration with 2 cards, each connected to 2 monitors.
+(Total 4 monitors)
+The second card (read: seat) of my multiseat configuration has a corrupted
+output after suspend - however hibernation works fine.</pre>
         </div>
       </p>
       <hr>
@@ -217,9 +167,9 @@ Please tell me, what else you need for debugging.</pre>
     </body>
 </html>
 
---1379147111.a30Af51E2.21419--
+--1379148349.E58fA2aA1.25991--
 
---===============1462193084==
+--===============1191352468==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -230,4 +180,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1462193084==--
+--===============1191352468==--
