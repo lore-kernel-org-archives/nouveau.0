@@ -1,10 +1,9 @@
-From: P NIKOLIC <p.nikolic1-FhtRXb7CoQBt1OO0OYaSVA@public.gmane.org>
-Subject: nouveau errors failure  lockups
-Date: Sun, 15 Sep 2013 10:38:55 +0100
-Message-ID: <20130915103855.18b73ef8.p.nikolic1@btinternet.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 69375] New: [NV4E] GPU lockup when using chrome/flash
+Date: Sun, 15 Sep 2013 12:36:09 +0000
+Message-ID: <bug-69375-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1708024949=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,100 +17,221 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi .
 
-For some time now i have had problems with video on this system  .
-
-from dmesg iget the following 
-
- 6.408406] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0a5000a2
-[    6.408411] nouveau  [  DEVICE][0000:01:00.0] Chipset: GT216 (NVA5)
-[    6.408414] nouveau  [  DEVICE][0000:01:00.0] Family : NV50
-[    6.409206] nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for image...
-[    6.513939] nouveau  [   VBIOS][0000:01:00.0] ... appears to be valid
-[    6.513941] nouveau  [   VBIOS][0000:01:00.0] using image from PRAMIN
-[    6.514101] nouveau  [   VBIOS][0000:01:00.0] BIT signature found
-[    6.514104] nouveau  [   VBIOS][0000:01:00.0] version 70.16.39.00.0f
-[    6.514469] nouveau  [     PFB][0000:01:00.0] RAM type: DDR2
-[    6.514471] nouveau  [     PFB][0000:01:00.0] RAM size: 1024 MiB
-[    6.514473] nouveau  [     PFB][0000:01:00.0]    ZCOMP: 1920 tags
+--===============1708024949==
+Content-Type: multipart/alternative; boundary="1379248569.85baa1.10087"; charset="us-ascii"
 
 
- 7.188561] nouveau  [     DRM] VRAM: 1024 MiB
-[    7.188567] nouveau  [     DRM] GART: 512 MiB
-[    7.188575] nouveau  [     DRM] TMDS table version 2.0
-[    7.188577] nouveau  [     DRM] DCB version 4.0
-[    7.188581] nouveau  [     DRM] DCB outp 00: 01000302 00020030
-[    7.188583] nouveau  [     DRM] DCB outp 01: 02000300 00000000
-[    7.188586] nouveau  [     DRM] DCB outp 02: 01032310 00000000
-[    7.188587] nouveau  [     DRM] DCB outp 03: 02021362 00020010
-[    7.188589] nouveau  [     DRM] DCB conn 00: 00001030
-[    7.188592] nouveau  [     DRM] DCB conn 01: 00002161
-[    7.188594] nouveau  [     DRM] DCB conn 02: 00000200
-[    7.197040] [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
-[    7.197042] [drm] No driver support for vblank timestamp query.
-[    7.197188] nouveau  [     DRM] 3 available performance level(s)
-[    7.197191] nouveau  [     DRM] 0: core 135MHz shader 270MHz memory 135MHz
- voltage 850mV [    7.197194] nouveau  [     DRM] 1: core 405MHz shader 810MHz
- memory 324MHz voltage 900mV [    7.197197] nouveau  [     DRM] 3: core 625MHz
- shader 1360MHz memory 400MHz voltage 1000mV [    7.197200] nouveau  [     DRM] c:
- core 405MHz shader 810MHz memory 324MHz voltage 900mV fanspeed 32% [    7.205654]
- nouveau  [     DRM] MM: using COPY for buffer copies [    7.267852] nouveau
- [     DRM] allocated 1280x1024 fb: 0x70000, bo ffff8800c277e000 [    7.267939]
- fbcon: nouveaufb (fb0) is primary device
+--1379248569.85baa1.10087
+Date: Sun, 15 Sep 2013 12:36:09 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
+https://bugs.freedesktop.org/show_bug.cgi?id=69375
 
- 730.397758] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 2 [X[274]] get
- 0x00200294bc put 0x0020029508 ib_get 0x00000255 ib_put 0x00000256 state 0x80004290
- (err: INVALID_CMD) push 0x00400040 [  730.397937] nouveau E[  PGRAPH][0000:01:00.0]
- DATA_ERROR INVALID_VALUE [  730.397946] nouveau E[  PGRAPH][0000:01:00.0]
- DATA_ERROR [  730.397955] nouveau E[  PGRAPH][0000:01:00.0] ch 2 [0x003fb3a000
- X[274]] subc 2 class 0x502d mthd 0x0284 data 0xffffffff [  730.397982] nouveau
- E[  PGRAPH][0000:01:00.0] DATA_ERROR INVALID_VALUE [  730.397987] nouveau
- E[  PGRAPH][0000:01:00.0]  DATA_ERROR [  730.397999] nouveau
- E[  PGRAPH][0000:01:00.0] ch 2 [0x003fb3a000 X[274]] subc 2 class 0x502d mthd
- 0x0288 data 0xffffffff [  730.398023] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR
- INVALID_VALUE [  730.398027] nouveau E[  PGRAPH][0000:01:00.0]  DATA_ERROR
- [  730.398033] nouveau E[  PGRAPH][0000:01:00.0] ch 2 [0x003fb3a000 X[274]] subc 2
- class 0x502d mthd 0x028c data 0xffffffff [ 1468.048083] nouveau
- E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 2 [X[274]] get 0x00200333f0 put
- 0x002003343c ib_get 0x00000098 ib_put 0x00000099 state 0x80004290 (err:
- INVALID_CMD) push 0x00400040 [ 1468.048262] nouveau E[  PGRAPH][0000:01:00.0]
- DATA_ERROR INVALID_VALUE [ 1468.048270] nouveau E[  PGRAPH][0000:01:00.0]
- DATA_ERROR [ 1468.048279] nouveau E[  PGRAPH][0000:01:00.0] ch 2 [0x003fb3a000
- X[274]] subc 2 class 0x502d mthd 0x0280 data 0xffffffff [ 1468.048306] nouveau
- E[  PGRAPH][0000:01:00.0] DATA_ERROR INVALID_VALUE [ 1468.048311] nouveau
- E[  PGRAPH][0000:01:00.0]  DATA_ERROR [ 1468.048319] nouveau
- E[  PGRAPH][0000:01:00.0] ch 2 [0x003fb3a000 X[274]] subc 2 class 0x502d mthd
- 0x0284 data 0xffffffff [ 1468.048339] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR
- INVALID_VALUE [ 1468.048349] nouveau E[  PGRAPH][0000:01:00.0]  DATA_ERROR
- [ 1468.048355] nouveau E[  PGRAPH][0000:01:00.0] ch 2 [0x003fb3a000 X[274]] subc 2
- class 0x502d mthd 0x0288 data 0xffffffff [ 1468.048376] nouveau
- E[  PGRAPH][0000:01:00.0] DATA_ERROR INVALID_VALUE [ 1468.048385] nouveau
- E[  PGRAPH][0000:01:00.0]  DATA_ERROR [ 1468.048391] nouveau
- E[  PGRAPH][0000:01:00.0] ch 2 [0x003fb3a000 X[274]] subc 2 class 0x502d mthd
- 0x028c data 0xffffffff [ 1488.832401] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER
- - ch 2 [X[274]] get 0x002003226c put 0x0020032324 ib_get 0x000001ca ib_put
- 0x000001cb state 0x80000020 (err: INVALID_CMD) push 0x00400040
+          Priority: medium
+            Bug ID: 69375
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [NV4E] GPU lockup when using chrome/flash
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: taylor_tails-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
+Created attachment 85858
+  --> https://bugs.freedesktop.org/attachment.cgi?id=85858&action=edit
+dmesg output
 
-this leads to a completely locked system the onoy sucsessful way out is a hard reset
+I recent upgrade using apt-get dist-upgrade on debian testing ~2 weeks ago has
+caused chrome to start looking up the GPU.
 
-the system is 
- Linux 7-of-9 3.10.10-1-ARCH #1 SMP PREEMPT Fri Aug 30 11:30:06 CEST 2013 x86_64
-GNU/Linux
+dmesg highlights:
+Linux version 3.9-1-amd64
 
-AMD Phenome quad core  4Gb ram  GT216 video card 1Gb  
-latest Arch linux fully updated KDE 4.11.1   
-
-This has been happening for the last 6 kernel upgrades  
-
-Thanks for any insight 
-
-
-Pete .
-
+[  805.747928] nouveau E[  PGRAPH][0000:00:05.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  805.747945] nouveau E[  PGRAPH][0000:00:05.0] ch 3 [0x00056000 chrome[3853]]
+subc 2 class 0x0039 mthd 0x0314 data 0x01197000
+[  836.696327] nouveau E[   PFIFO][0000:00:05.0] DMA_PUSHER - ch 3
+[chrome[3853]] get 0xbeef0200 put 0x0065a6f4 state 0xc0028188 (err: MEM_FAULT)
+push 0x00001000
+[  850.504026] nouveau E[chrome[3853]] failed to idle channel 0xcccc0000
+[chrome[3853]]
+[  853.508018] nouveau E[chrome[3853]] failed to idle channel 0xcccc0000
+[chrome[3853]]
+[  863.804030] nouveau E[Xorg[2162]] reloc wait_idle failed: -16
+[  863.804036] nouveau E[Xorg[2162]] reloc apply: -16
+[  865.743035] nouveau E[     DRM] GPU lockup - switching to software fbcon
+[  866.804032] nouveau E[Xorg[2162]] reloc wait_idle failed: -16
+[  866.804079] nouveau E[Xorg[2162]] reloc apply: -16
+[  869.804037] nouveau E[Xorg[2162]] reloc wait_idle failed: -16
+[  869.804103] nouveau E[Xorg[2162]] reloc apply: -16
+[  887.836034] nouveau E[Xorg[2162]] failed to idle channel 0xcccc0000
+[Xorg[2162]]
+[  890.836025] nouveau E[Xorg[2162]] failed to idle channel 0xcccc0000
+[Xorg[2162]]
 
 -- 
-Linux 7-of-9 3.10.10-1-ARCH #1 SMP PREEMPT Fri Aug 30 11:30:06 CEST 2013 x86_64
-GNU/Linux
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1379248569.85baa1.10087
+Date: Sun, 15 Sep 2013 12:36:09 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV4E] GPU lockup when using chrome/flash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69375">69375</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NV4E] GPU lockup when using chrome/flash
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>taylor_tails&#64;hotmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=85858" name="attach_85858" title="dmesg output">attachment 85858</a> <a href="attachment.cgi?id=85858&amp;action=edit" title="dmesg output">[details]</a></span>
+dmesg output
+
+I recent upgrade using apt-get dist-upgrade on debian testing ~2 weeks ago has
+caused chrome to start looking up the GPU.
+
+dmesg highlights:
+Linux version 3.9-1-amd64
+
+[  805.747928] nouveau E[  PGRAPH][0000:00:05.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  805.747945] nouveau E[  PGRAPH][0000:00:05.0] ch 3 [0x00056000 chrome[3853]]
+subc 2 class 0x0039 mthd 0x0314 data 0x01197000
+[  836.696327] nouveau E[   PFIFO][0000:00:05.0] DMA_PUSHER - ch 3
+[chrome[3853]] get 0xbeef0200 put 0x0065a6f4 state 0xc0028188 (err: MEM_FAULT)
+push 0x00001000
+[  850.504026] nouveau E[chrome[3853]] failed to idle channel 0xcccc0000
+[chrome[3853]]
+[  853.508018] nouveau E[chrome[3853]] failed to idle channel 0xcccc0000
+[chrome[3853]]
+[  863.804030] nouveau E[Xorg[2162]] reloc wait_idle failed: -16
+[  863.804036] nouveau E[Xorg[2162]] reloc apply: -16
+[  865.743035] nouveau E[     DRM] GPU lockup - switching to software fbcon
+[  866.804032] nouveau E[Xorg[2162]] reloc wait_idle failed: -16
+[  866.804079] nouveau E[Xorg[2162]] reloc apply: -16
+[  869.804037] nouveau E[Xorg[2162]] reloc wait_idle failed: -16
+[  869.804103] nouveau E[Xorg[2162]] reloc apply: -16
+[  887.836034] nouveau E[Xorg[2162]] failed to idle channel 0xcccc0000
+[Xorg[2162]]
+[  890.836025] nouveau E[Xorg[2162]] failed to idle channel 0xcccc0000
+[Xorg[2162]]</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1379248569.85baa1.10087--
+
+--===============1708024949==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1708024949==--
