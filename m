@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69376] F19 Gnome-3 does not display icons for All
-	Applications
-Date: Sun, 15 Sep 2013 15:00:08 +0000
-Message-ID: <bug-69376-8800-y6Lh76xUEO@http.bugs.freedesktop.org/>
-References: <bug-69376-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 52411] NV43 [GeForce 6600] nouveau in linux kernel
+ 3.4.0 to 3.4.5 hangs at boot
+Date: Sun, 15 Sep 2013 17:55:06 +0000
+Message-ID: <bug-52411-8800-nrd5lYntsy@http.bugs.freedesktop.org/>
+References: <bug-52411-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0681176916=="
+Content-Type: multipart/mixed; boundary="===============0234110594=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69376-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-52411-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,44 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0681176916==
-Content-Type: multipart/alternative; boundary="1379257207.7eced2.30536"; charset="us-ascii"
+--===============0234110594==
+Content-Type: multipart/alternative; boundary="1379267706.7abb2.21721"; charset="us-ascii"
 
 
---1379257207.7eced2.30536
-Date: Sun, 15 Sep 2013 15:00:07 +0000
+--1379267706.7abb2.21721
+Date: Sun, 15 Sep 2013 17:55:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69376
+https://bugs.freedesktop.org/show_bug.cgi?id=52411
 
---- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-You would need to retrieve the code and rebuild mesa (note that fedora and
-other distributions split mesa into lots of separate packages)
+Hans de Graaff <hans-aqmcjHYS7FBg9hUCZPvPmw@public.gmane.org> changed:
 
-Upon rebuilding you can either create a RPM package (A) or use it from
-standalone location (B).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|INVALID                     |---
 
-A) With regards to rebuilding and installing a RPM, this article [1] will be of
-use, as well as the fedora irc channel. Note that you do not need to
-write/create a mesa.spec file, a simple copy of the current one used by fedora
-should work like a charm (remember to bump the version number).
-
-B) Whereas if you prefer to build and install mesa to a separate location our
-wiki has some instructions on how you can do that [2]. Note in this case may
-have to resolve build dependencies, and configure flags by checking with
-fedora's mesa.spec file.
-
-
-[1] http://fedoraproject.org/wiki/How_to_create_an_RPM_package
-[2] http://nouveau.freedesktop.org/wiki/InstallNouveau/
+--- Comment #5 from Hans de Graaff <hans-aqmcjHYS7FBg9hUCZPvPmw@public.gmane.org> ---
+Unfortunately I don't have much time to play around with this machine and test
+things, but this bug is still present in linux 3.10.7. I realize that without
+additional information this is going to be hard to fix. Hopefully I'll be able
+to provide more information in the future if I find some time for that.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379257207.7eced2.30536
-Date: Sun, 15 Sep 2013 15:00:07 +0000
+--1379267706.7abb2.21721
+Date: Sun, 15 Sep 2013 17:55:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,38 +58,51 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:hans&#64;degraaff.org" title="Hans de Graaff &lt;hans&#64;degraaff.org&gt;"> <span class="fn">Hans de Graaff</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - NV43 [GeForce 6600] nouveau in linux kernel 3.4.0 to 3.4.5 hangs at boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=52411">bug 52411</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>INVALID
+           </td>
+           <td>---
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - F19 Gnome-3 does not display icons for All Applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69376#c4">Comment # 4</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - NV43 [GeForce 6600] nouveau in linux kernel 3.4.0 to 3.4.5 hangs at boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=52411#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - F19 Gnome-3 does not display icons for All Applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69376">bug 69376</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+          bz_status_REOPENED "
+   title="REOPENED --- - NV43 [GeForce 6600] nouveau in linux kernel 3.4.0 to 3.4.5 hangs at boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=52411">bug 52411</a>
+              from <span class="vcard"><a class="email" href="mailto:hans&#64;degraaff.org" title="Hans de Graaff &lt;hans&#64;degraaff.org&gt;"> <span class="fn">Hans de Graaff</span></a>
 </span></b>
-        <pre>You would need to retrieve the code and rebuild mesa (note that fedora and
-other distributions split mesa into lots of separate packages)
-
-Upon rebuilding you can either create a RPM package (A) or use it from
-standalone location (B).
-
-A) With regards to rebuilding and installing a RPM, this article [1] will be of
-use, as well as the fedora irc channel. Note that you do not need to
-write/create a mesa.spec file, a simple copy of the current one used by fedora
-should work like a charm (remember to bump the version number).
-
-B) Whereas if you prefer to build and install mesa to a separate location our
-wiki has some instructions on how you can do that [2]. Note in this case may
-have to resolve build dependencies, and configure flags by checking with
-fedora's mesa.spec file.
-
-
-[1] <a href="http://fedoraproject.org/wiki/How_to_create_an_RPM_package">http://fedoraproject.org/wiki/How_to_create_an_RPM_package</a>
-[2] <a href="http://nouveau.freedesktop.org/wiki/InstallNouveau/">http://nouveau.freedesktop.org/wiki/InstallNouveau/</a></pre>
+        <pre>Unfortunately I don't have much time to play around with this machine and test
+things, but this bug is still present in linux 3.10.7. I realize that without
+additional information this is going to be hard to fix. Hopefully I'll be able
+to provide more information in the future if I find some time for that.</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +114,9 @@ fedora's mesa.spec file.
     </body>
 </html>
 
---1379257207.7eced2.30536--
+--1379267706.7abb2.21721--
 
---===============0681176916==
+--===============0234110594==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +127,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0681176916==--
+--===============0234110594==--
