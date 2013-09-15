@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69387] New: X hangs on resume/monitor blank with
- nv50cal_space: -16
-Date: Sun, 15 Sep 2013 18:08:31 +0000
-Message-ID: <bug-69387-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69387] X hangs on resume/monitor blank with
+	nv50cal_space: -16
+Date: Sun, 15 Sep 2013 18:11:00 +0000
+Message-ID: <bug-69387-8800-ZRJXVQTvwK@http.bugs.freedesktop.org/>
+References: <bug-69387-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1666280042=="
+Content-Type: multipart/mixed; boundary="===============0243580800=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-69387-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,53 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1666280042==
-Content-Type: multipart/alternative; boundary="1379268511.40e056CE1.23420"; charset="us-ascii"
+--===============0243580800==
+Content-Type: multipart/alternative; boundary="1379268660.F02aA81.23884"; charset="us-ascii"
 
 
---1379268511.40e056CE1.23420
-Date: Sun, 15 Sep 2013 18:08:31 +0000
+--1379268660.F02aA81.23884
+Date: Sun, 15 Sep 2013 18:11:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69387
 
-          Priority: medium
-            Bug ID: 69387
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: X hangs on resume/monitor blank with nv50cal_space:
-                    -16
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: maris.nartiss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #1 from Maris Nartiss <maris.nartiss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 85874
+  --> https://bugs.freedesktop.org/attachment.cgi?id=85874&action=edit
+System log file when resuming from power save failed
 
-Created attachment 85873
-  --> https://bugs.freedesktop.org/attachment.cgi?id=85873&action=edit
-Xorg log file when X failed to recover from power save state
-
-When resuming from suspend to ram or blank screen (power saving), mouse is
-working but screen is stuck (not garbage).
-
-After SSHing into system, it was under high load as X and kworker processes
-where fighting for CPU. dmesg was full with "nouveau E[ X[2406]] nv50cal_space:
--16"
-Reboot fixes the issue.
-
-Gentoo ~AMD64
+A system log file as dmesg had wrapped over due to repeating error messages
+(trimmed from the end of log file as were identical)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379268511.40e056CE1.23420
-Date: Sun, 15 Sep 2013 18:08:31 +0000
+--1379268660.F02aA81.23884
+Date: Sun, 15 Sep 2013 18:11:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,107 +53,24 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - X hangs on resume/monitor blank with nv50cal_space: -16"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69387">69387</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>X hangs on resume/monitor blank with nv50cal_space: -16
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>maris.nartiss&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=85873" name="attach_85873" title="Xorg log file when X failed to recover from power save state">attachment 85873</a> <a href="attachment.cgi?id=85873&amp;action=edit" title="Xorg log file when X failed to recover from power save state">[details]</a></span>
-Xorg log file when X failed to recover from power save state
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - X hangs on resume/monitor blank with nv50cal_space: -16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69387#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - X hangs on resume/monitor blank with nv50cal_space: -16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69387">bug 69387</a>
+              from <span class="vcard"><a class="email" href="mailto:maris.nartiss&#64;gmail.com" title="Maris Nartiss &lt;maris.nartiss&#64;gmail.com&gt;"> <span class="fn">Maris Nartiss</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=85874" name="attach_85874" title="System log file when resuming from power save failed">attachment 85874</a> <a href="attachment.cgi?id=85874&amp;action=edit" title="System log file when resuming from power save failed">[details]</a></span>
+System log file when resuming from power save failed
 
-When resuming from suspend to ram or blank screen (power saving), mouse is
-working but screen is stuck (not garbage).
-
-After SSHing into system, it was under high load as X and kworker processes
-where fighting for CPU. dmesg was full with &quot;nouveau E[ X[2406]] nv50cal_space:
--16&quot;
-Reboot fixes the issue.
-
-Gentoo ~AMD64</pre>
+A system log file as dmesg had wrapped over due to repeating error messages
+(trimmed from the end of log file as were identical)</pre>
         </div>
       </p>
       <hr>
@@ -185,9 +82,9 @@ Gentoo ~AMD64</pre>
     </body>
 </html>
 
---1379268511.40e056CE1.23420--
+--1379268660.F02aA81.23884--
 
---===============1666280042==
+--===============0243580800==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -198,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1666280042==--
+--===============0243580800==--
