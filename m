@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69376] F19 Gnome-3 does not display icons for All
 	Applications
-Date: Sun, 15 Sep 2013 13:15:10 +0000
-Message-ID: <bug-69376-8800-C8xZFrwNbr@http.bugs.freedesktop.org/>
+Date: Sun, 15 Sep 2013 13:34:28 +0000
+Message-ID: <bug-69376-8800-WaWiSMAxNR@http.bugs.freedesktop.org/>
 References: <bug-69376-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0469616252=="
+Content-Type: multipart/mixed; boundary="===============0185113494=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69376-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,47 +21,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0469616252==
-Content-Type: multipart/alternative; boundary="1379250910.F5Ce81.15192"; charset="us-ascii"
+--===============0185113494==
+Content-Type: multipart/alternative; boundary="1379252068.CbA8B2.18550"; charset="us-ascii"
 
 
---1379250910.F5Ce81.15192
-Date: Sun, 15 Sep 2013 13:15:10 +0000
+--1379252068.CbA8B2.18550
+Date: Sun, 15 Sep 2013 13:34:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69376
 
-shotboy-b+rK3gkWh8pAfugRpC6u6w@public.gmane.org changed:
+--- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Can you try a mesa containing this
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Hardware|Other                       |x86-64 (AMD64)
-                 OS|All                         |Linux (All)
+commit 3282697621241e646247b85327c50747416a766b
+Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Date:   Sun Sep 1 12:38:52 2013 -0400
 
---- Comment #1 from shotboy-b+rK3gkWh8pAfugRpC6u6w@public.gmane.org ---
-Fedora19 on a Gigabyte A-M68MT-S2PE motherboard.
-Fedora Settings : Details : Overview
-    Memory: 7.6 GiB
-    Processor: AMD Phenom(tm) II X4 840 Processor x 4
-    OS Type: 64-bit
-    Graphics: Gallium 0.4 on NV4C
-    Gnome: Version 3.8.4
-Gnome-Bugzilla-ID: 706062 determined this to be a driver problem and suggested
-filing a bug against the nouveau driver
-https://bugzilla.gnome.org/show_bug.cgi?id=706062
-Thank you for your help
-Note: Icons are active (can be clicked) but are simply not displayed in the All
-Applications view (nor is the vertical scrollbar).  Frequently Used view
-displays application icons properly, but have not tried using enough to get a
-scrollbar in that display.
+    nv30: find first unused texcoord rather than bailing if first is used
+
+    This fixes shaders produced by supertuxkart.
+
+    Cc: "9.2" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+    Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+
+
+Which at the current stage is available only in the master branch in the mesa
+tree [1]. I'm expecting this commit to be part of 9.2.1 in due course 
+
+
+[1] http://cgit.freedesktop.org/mesa/mesa/
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379250910.F5Ce81.15192
-Date: Sun, 15 Sep 2013 13:15:10 +0000
+--1379252068.CbA8B2.18550
+Date: Sun, 15 Sep 2013 13:34:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,62 +66,38 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:shotboy&#64;gammage.org" title="shotboy&#64;gammage.org">shotboy&#64;gammage.org</a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - F19 Gnome-3 does not display icons for All Applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69376">bug 69376</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">OS</td>
-           <td>All
-           </td>
-           <td>Linux (All)
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - F19 Gnome-3 does not display icons for All Applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69376#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69376#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - F19 Gnome-3 does not display icons for All Applications"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69376">bug 69376</a>
-              from <span class="vcard"><a class="email" href="mailto:shotboy&#64;gammage.org" title="shotboy&#64;gammage.org">shotboy&#64;gammage.org</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Fedora19 on a Gigabyte A-M68MT-S2PE motherboard.
-Fedora Settings : Details : Overview
-    Memory: 7.6 GiB
-    Processor: AMD Phenom(tm) II X4 840 Processor x 4
-    OS Type: 64-bit
-    Graphics: Gallium 0.4 on NV4C
-    Gnome: Version 3.8.4
-Gnome-Bugzilla-ID: 706062 determined this to be a driver problem and suggested
-filing a bug against the nouveau driver
-<a href="https://bugzilla.gnome.org/show_bug.cgi?id=706062">https://bugzilla.gnome.org/show_bug.cgi?id=706062</a>
-Thank you for your help
-Note: Icons are active (can be clicked) but are simply not displayed in the All
-Applications view (nor is the vertical scrollbar).  Frequently Used view
-displays application icons properly, but have not tried using enough to get a
-scrollbar in that display.</pre>
+        <pre>Can you try a mesa containing this
+
+commit 3282697621241e646247b85327c50747416a766b
+Author: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
+Date:   Sun Sep 1 12:38:52 2013 -0400
+
+    nv30: find first unused texcoord rather than bailing if first is used
+
+    This fixes shaders produced by supertuxkart.
+
+    Cc: &quot;9.2&quot; &lt;<a href="mailto:mesa-stable&#64;lists.freedesktop.org">mesa-stable&#64;lists.freedesktop.org</a>&gt;
+    Signed-off-by: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
+
+
+Which at the current stage is available only in the master branch in the mesa
+tree [1]. I'm expecting this commit to be part of 9.2.1 in due course 
+
+
+[1] <a href="http://cgit.freedesktop.org/mesa/mesa/">http://cgit.freedesktop.org/mesa/mesa/</a></pre>
         </div>
       </p>
       <hr>
@@ -136,9 +109,9 @@ scrollbar in that display.</pre>
     </body>
 </html>
 
---1379250910.F5Ce81.15192--
+--1379252068.CbA8B2.18550--
 
---===============0469616252==
+--===============0185113494==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -149,4 +122,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0469616252==--
+--===============0185113494==--
