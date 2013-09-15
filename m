@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 52411] NV43 [GeForce 6600] nouveau in linux kernel
- 3.4.0 to 3.4.5 hangs at boot
-Date: Sun, 15 Sep 2013 17:55:06 +0000
-Message-ID: <bug-52411-8800-nrd5lYntsy@http.bugs.freedesktop.org/>
-References: <bug-52411-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69387] New: X hangs on resume/monitor blank with
+ nv50cal_space: -16
+Date: Sun, 15 Sep 2013 18:08:31 +0000
+Message-ID: <bug-69387-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0234110594=="
+Content-Type: multipart/mixed; boundary="===============1666280042=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-52411-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +19,53 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0234110594==
-Content-Type: multipart/alternative; boundary="1379267706.7abb2.21721"; charset="us-ascii"
+--===============1666280042==
+Content-Type: multipart/alternative; boundary="1379268511.40e056CE1.23420"; charset="us-ascii"
 
 
---1379267706.7abb2.21721
-Date: Sun, 15 Sep 2013 17:55:06 +0000
+--1379268511.40e056CE1.23420
+Date: Sun, 15 Sep 2013 18:08:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=52411
+https://bugs.freedesktop.org/show_bug.cgi?id=69387
 
-Hans de Graaff <hans-aqmcjHYS7FBg9hUCZPvPmw@public.gmane.org> changed:
+          Priority: medium
+            Bug ID: 69387
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: X hangs on resume/monitor blank with nv50cal_space:
+                    -16
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: maris.nartiss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|INVALID                     |---
+Created attachment 85873
+  --> https://bugs.freedesktop.org/attachment.cgi?id=85873&action=edit
+Xorg log file when X failed to recover from power save state
 
---- Comment #5 from Hans de Graaff <hans-aqmcjHYS7FBg9hUCZPvPmw@public.gmane.org> ---
-Unfortunately I don't have much time to play around with this machine and test
-things, but this bug is still present in linux 3.10.7. I realize that without
-additional information this is going to be hard to fix. Hopefully I'll be able
-to provide more information in the future if I find some time for that.
+When resuming from suspend to ram or blank screen (power saving), mouse is
+working but screen is stuck (not garbage).
+
+After SSHing into system, it was under high load as X and kworker processes
+where fighting for CPU. dmesg was full with "nouveau E[ X[2406]] nv50cal_space:
+-16"
+Reboot fixes the issue.
+
+Gentoo ~AMD64
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379267706.7abb2.21721
-Date: Sun, 15 Sep 2013 17:55:06 +0000
+--1379268511.40e056CE1.23420
+Date: Sun, 15 Sep 2013 18:08:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,51 +73,107 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:hans&#64;degraaff.org" title="Hans de Graaff &lt;hans&#64;degraaff.org&gt;"> <span class="fn">Hans de Graaff</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - NV43 [GeForce 6600] nouveau in linux kernel 3.4.0 to 3.4.5 hangs at boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=52411">bug 52411</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
-           <td>REOPENED
-           </td>
-         </tr>
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - X hangs on resume/monitor blank with nv50cal_space: -16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69387">69387</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>INVALID
-           </td>
-           <td>---
-           </td>
-         </tr></table>
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>X hangs on resume/monitor blank with nv50cal_space: -16
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>maris.nartiss&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - NV43 [GeForce 6600] nouveau in linux kernel 3.4.0 to 3.4.5 hangs at boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=52411#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - NV43 [GeForce 6600] nouveau in linux kernel 3.4.0 to 3.4.5 hangs at boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=52411">bug 52411</a>
-              from <span class="vcard"><a class="email" href="mailto:hans&#64;degraaff.org" title="Hans de Graaff &lt;hans&#64;degraaff.org&gt;"> <span class="fn">Hans de Graaff</span></a>
-</span></b>
-        <pre>Unfortunately I don't have much time to play around with this machine and test
-things, but this bug is still present in linux 3.10.7. I realize that without
-additional information this is going to be hard to fix. Hopefully I'll be able
-to provide more information in the future if I find some time for that.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=85873" name="attach_85873" title="Xorg log file when X failed to recover from power save state">attachment 85873</a> <a href="attachment.cgi?id=85873&amp;action=edit" title="Xorg log file when X failed to recover from power save state">[details]</a></span>
+Xorg log file when X failed to recover from power save state
+
+When resuming from suspend to ram or blank screen (power saving), mouse is
+working but screen is stuck (not garbage).
+
+After SSHing into system, it was under high load as X and kworker processes
+where fighting for CPU. dmesg was full with &quot;nouveau E[ X[2406]] nv50cal_space:
+-16&quot;
+Reboot fixes the issue.
+
+Gentoo ~AMD64</pre>
         </div>
       </p>
       <hr>
@@ -114,9 +185,9 @@ to provide more information in the future if I find some time for that.</pre>
     </body>
 </html>
 
---1379267706.7abb2.21721--
+--1379268511.40e056CE1.23420--
 
---===============0234110594==
+--===============1666280042==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,4 +198,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0234110594==--
+--===============1666280042==--
