@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 52411] NV43 [GeForce 6600] nouveau in linux kernel
- 3.4.0 to 3.4.5 hangs at boot
-Date: Mon, 16 Sep 2013 10:07:12 +0000
-Message-ID: <bug-52411-8800-a68IiexyBz@http.bugs.freedesktop.org/>
-References: <bug-52411-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69345] nouveau no longer reports D3cold on
+ linux-next as of at least 20130906
+Date: Mon, 16 Sep 2013 10:41:08 +0000
+Message-ID: <bug-69345-8800-opzx3viGTb@http.bugs.freedesktop.org/>
+References: <bug-69345-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0936740272=="
+Content-Type: multipart/mixed; boundary="===============1485799238=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-52411-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69345-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0936740272==
-Content-Type: multipart/alternative; boundary="1379326033.e8f0DA62.16172"; charset="us-ascii"
+--===============1485799238==
+Content-Type: multipart/alternative; boundary="1379328068.dA5B31.24325"; charset="us-ascii"
 
 
---1379326033.e8f0DA62.16172
-Date: Mon, 16 Sep 2013 10:07:13 +0000
+--1379328068.dA5B31.24325
+Date: Mon, 16 Sep 2013 10:41:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=52411
+https://bugs.freedesktop.org/show_bug.cgi?id=69345
 
---- Comment #7 from Hans de Graaff <hans-aqmcjHYS7FBg9hUCZPvPmw@public.gmane.org> ---
-Created attachment 85900
-  --> https://bugs.freedesktop.org/attachment.cgi?id=85900&action=edit
-vbios.rom - kernel 3.10.7
+Peter Wu <lekensteyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |lekensteyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #2 from Peter Wu <lekensteyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+That DSM argument mismatch warning is caused by the modules (nouveau and
+bbswitch) and is a workaround for buggy DSDTs. It is possible to make the
+warning go away, but that will confuse machines with buggy DSDTs.
+
+I haven't looked in the code yet, but what is the issue with D3cold not being
+mentioned in dmesg?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379326033.e8f0DA62.16172
-Date: Mon, 16 Sep 2013 10:07:13 +0000
+--1379328068.dA5B31.24325
+Date: Mon, 16 Sep 2013 10:41:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,21 +59,46 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:lekensteyn&#64;gmail.com" title="Peter Wu &lt;lekensteyn&#64;gmail.com&gt;"> <span class="fn">Peter Wu</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nouveau no longer reports D3cold on linux-next as of at least 20130906"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69345">bug 69345</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>lekensteyn&#64;gmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - NV43 [GeForce 6600] nouveau in linux kernel 3.4.0 to 3.4.5 hangs at boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=52411#c7">Comment # 7</a>
+          bz_status_NEW "
+   title="NEW --- - nouveau no longer reports D3cold on linux-next as of at least 20130906"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69345#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - NV43 [GeForce 6600] nouveau in linux kernel 3.4.0 to 3.4.5 hangs at boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=52411">bug 52411</a>
-              from <span class="vcard"><a class="email" href="mailto:hans&#64;degraaff.org" title="Hans de Graaff &lt;hans&#64;degraaff.org&gt;"> <span class="fn">Hans de Graaff</span></a>
+          bz_status_NEW "
+   title="NEW --- - nouveau no longer reports D3cold on linux-next as of at least 20130906"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69345">bug 69345</a>
+              from <span class="vcard"><a class="email" href="mailto:lekensteyn&#64;gmail.com" title="Peter Wu &lt;lekensteyn&#64;gmail.com&gt;"> <span class="fn">Peter Wu</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=85900" name="attach_85900" title="vbios.rom - kernel 3.10.7">attachment 85900</a> <a href="attachment.cgi?id=85900&amp;action=edit" title="vbios.rom - kernel 3.10.7">[details]</a></span>
-vbios.rom - kernel 3.10.7</pre>
+        <pre>That DSM argument mismatch warning is caused by the modules (nouveau and
+bbswitch) and is a workaround for buggy DSDTs. It is possible to make the
+warning go away, but that will confuse machines with buggy DSDTs.
+
+I haven't looked in the code yet, but what is the issue with D3cold not being
+mentioned in dmesg?</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +110,9 @@ vbios.rom - kernel 3.10.7</pre>
     </body>
 </html>
 
---1379326033.e8f0DA62.16172--
+--1379328068.dA5B31.24325--
 
---===============0936740272==
+--===============1485799238==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +123,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0936740272==--
+--===============1485799238==--
