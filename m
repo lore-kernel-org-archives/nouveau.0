@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69375] [NV4E] GPU lockup when using chrome/flash
-Date: Mon, 16 Sep 2013 15:33:59 +0000
-Message-ID: <bug-69375-8800-jnIU7KIA1T@http.bugs.freedesktop.org/>
+Date: Mon, 16 Sep 2013 15:35:38 +0000
+Message-ID: <bug-69375-8800-TSDTUTmdzL@http.bugs.freedesktop.org/>
 References: <bug-69375-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0725666966=="
+Content-Type: multipart/mixed; boundary="===============1340232499=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69375-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0725666966==
-Content-Type: multipart/alternative; boundary="1379345639.C1E782.22190"; charset="us-ascii"
+--===============1340232499==
+Content-Type: multipart/alternative; boundary="1379345738.4F28456E2.22430"; charset="us-ascii"
 
 
---1379345639.C1E782.22190
-Date: Mon, 16 Sep 2013 15:33:59 +0000
+--1379345738.4F28456E2.22430
+Date: Mon, 16 Sep 2013 15:35:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69375
 
---- Comment #5 from Andrew Travneff <travneff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 85922
-  --> https://bugs.freedesktop.org/attachment.cgi?id=85922&action=edit
-dmesg for a debug kernel (Nouveau)
+--- Comment #6 from Andrew Travneff <travneff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 85923
+  --> https://bugs.freedesktop.org/attachment.cgi?id=85923&action=edit
+dmesg for Nvidia (proprietary)
+
+Uploaded to compare the errors.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379345639.C1E782.22190
-Date: Mon, 16 Sep 2013 15:33:59 +0000
+--1379345738.4F28456E2.22430
+Date: Mon, 16 Sep 2013 15:35:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +57,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4E] GPU lockup when using chrome/flash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69375#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69375#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4E] GPU lockup when using chrome/flash"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69375">bug 69375</a>
               from <span class="vcard"><a class="email" href="mailto:travneff&#64;gmail.com" title="Andrew Travneff &lt;travneff&#64;gmail.com&gt;"> <span class="fn">Andrew Travneff</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=85922" name="attach_85922" title="dmesg for a debug kernel (Nouveau)">attachment 85922</a> <a href="attachment.cgi?id=85922&amp;action=edit" title="dmesg for a debug kernel (Nouveau)">[details]</a></span>
-dmesg for a debug kernel (Nouveau)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=85923" name="attach_85923" title="dmesg for Nvidia (proprietary)">attachment 85923</a> <a href="attachment.cgi?id=85923&amp;action=edit" title="dmesg for Nvidia (proprietary)">[details]</a></span>
+dmesg for Nvidia (proprietary)
+
+Uploaded to compare the errors.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +79,9 @@ dmesg for a debug kernel (Nouveau)</pre>
     </body>
 </html>
 
---1379345639.C1E782.22190--
+--1379345738.4F28456E2.22430--
 
---===============0725666966==
+--===============1340232499==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0725666966==--
+--===============1340232499==--
