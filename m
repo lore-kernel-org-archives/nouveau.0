@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 49736] [NV43] piglit quick.driver tests kill X server
-Date: Thu, 19 Sep 2013 10:58:05 +0000
-Message-ID: <bug-49736-8800-Oa54g6u7ji@http.bugs.freedesktop.org/>
+Date: Thu, 19 Sep 2013 11:01:44 +0000
+Message-ID: <bug-49736-8800-khWFsWtOvT@http.bugs.freedesktop.org/>
 References: <bug-49736-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1004054093=="
+Content-Type: multipart/mixed; boundary="===============1469311453=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-49736-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,34 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1004054093==
-Content-Type: multipart/alternative; boundary="1379588285.d7cc540E0.25470"; charset="us-ascii"
+--===============1469311453==
+Content-Type: multipart/alternative; boundary="1379588504.3aEE0.26226"; charset="us-ascii"
 
 
---1379588285.d7cc540E0.25470
-Date: Thu, 19 Sep 2013 10:58:05 +0000
+--1379588504.3aEE0.26226
+Date: Thu, 19 Sep 2013 11:01:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=49736
 
---- Comment #7 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-(In reply to comment #6)
-> It'd be really interesting to see what the Xorg backtrace looks like with
-> debug libraries (so that we can see the symbol names). BTW, does this still
-> happen with fresh software (xf86-video-nouveau 1.0.9, mesa 9.2, libdrm
-> 2.4.46)?
-
-using kernel 3.12.0-rc1-00020-ga1d2bdc and mesa git master (OpenGL version
-string: 2.1 Mesa 9.3.0-devel (git-e150c0d)) it still crash, but now I  think it
- just  hang GPU and  X  crashes  due  to  this ....
+--- Comment #8 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Created attachment 86134
+  --> https://bugs.freedesktop.org/attachment.cgi?id=86134&action=edit
+nv43 dmesg
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379588285.d7cc540E0.25470
-Date: Thu, 19 Sep 2013 10:58:05 +0000
+--1379588504.3aEE0.26226
+Date: Thu, 19 Sep 2013 11:01:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,22 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [NV43] piglit quick.driver tests kill X server"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=49736#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49736#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [NV43] piglit quick.driver tests kill X server"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=49736">bug 49736</a>
               from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=49736#c6">comment #6</a>)
-<span class="quote">&gt; It'd be really interesting to see what the Xorg backtrace looks like with
-&gt; debug libraries (so that we can see the symbol names). BTW, does this still
-&gt; happen with fresh software (xf86-video-nouveau 1.0.9, mesa 9.2, libdrm
-&gt; 2.4.46)?</span >
-
-using kernel 3.12.0-rc1-00020-ga1d2bdc and mesa git master (OpenGL version
-string: 2.1 Mesa 9.3.0-devel (git-e150c0d)) it still crash, but now I  think it
- just  hang GPU and  X  crashes  due  to  this ....</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=86134" name="attach_86134" title="nv43 dmesg">attachment 86134</a> <a href="attachment.cgi?id=86134&amp;action=edit" title="nv43 dmesg">[details]</a></span>
+nv43 dmesg</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +75,9 @@ string: 2.1 Mesa 9.3.0-devel (git-e150c0d)) it still crash, but now I  think it
     </body>
 </html>
 
---1379588285.d7cc540E0.25470--
+--1379588504.3aEE0.26226--
 
---===============1004054093==
+--===============1469311453==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1004054093==--
+--===============1469311453==--
