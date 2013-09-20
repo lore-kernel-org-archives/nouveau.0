@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69594] NVA3 - Flash overlays all tabs
-Date: Fri, 20 Sep 2013 06:47:42 +0000
-Message-ID: <bug-69594-8800-MdSukcc5ta@http.bugs.freedesktop.org/>
+Subject: [Bug 69594] NVA3 - Adobe Flash overlays all Chromium tabs
+Date: Fri, 20 Sep 2013 06:52:40 +0000
+Message-ID: <bug-69594-8800-wfTOi1blNF@http.bugs.freedesktop.org/>
 References: <bug-69594-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1588460040=="
+Content-Type: multipart/mixed; boundary="===============1256361585=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69594-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1588460040==
-Content-Type: multipart/alternative; boundary="1379659662.Ab0EEA220.28683"; charset="us-ascii"
+--===============1256361585==
+Content-Type: multipart/alternative; boundary="1379659959.BFfF51f0.29251"; charset="us-ascii"
 
 
---1379659662.Ab0EEA220.28683
-Date: Fri, 20 Sep 2013 06:47:42 +0000
+--1379659959.BFfF51f0.29251
+Date: Fri, 20 Sep 2013 06:52:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69594
 
---- Comment #2 from tod.jackson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 86172
-  --> https://bugs.freedesktop.org/attachment.cgi?id=86172&action=edit
-funny screenshot
+tod.jackson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|NVA3 - Flash overlays all   |NVA3 - Adobe Flash overlays
+                   |tabs                        |all Chromium tabs
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379659662.Ab0EEA220.28683
-Date: Fri, 20 Sep 2013 06:47:42 +0000
+--1379659959.BFfF51f0.29251
+Date: Fri, 20 Sep 2013 06:52:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,22 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:tod.jackson&#64;gmail.com" title="tod.jackson&#64;gmail.com">tod.jackson&#64;gmail.com</a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - NVA3 - Flash overlays all tabs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69594#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - NVA3 - Flash overlays all tabs"
+   title="NEW --- - NVA3 - Adobe Flash overlays all Chromium tabs"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69594">bug 69594</a>
-              from <span class="vcard"><a class="email" href="mailto:tod.jackson&#64;gmail.com" title="tod.jackson&#64;gmail.com">tod.jackson&#64;gmail.com</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=86172" name="attach_86172" title="funny screenshot">attachment 86172</a> <a href="attachment.cgi?id=86172&amp;action=edit" title="funny screenshot">[details]</a></span>
-funny screenshot</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>NVA3 - Flash overlays all tabs
+           </td>
+           <td>NVA3 - Adobe Flash overlays all Chromium tabs
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -75,9 +83,9 @@ funny screenshot</pre>
     </body>
 </html>
 
---1379659662.Ab0EEA220.28683--
+--1379659959.BFfF51f0.29251--
 
---===============1588460040==
+--===============1256361585==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1588460040==--
+--===============1256361585==--
