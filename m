@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68075] nouveau inconsistent changing output
- connector names in xrandr
-Date: Fri, 20 Sep 2013 16:33:56 +0000
-Message-ID: <bug-68075-8800-aawk1RmcK8@http.bugs.freedesktop.org/>
-References: <bug-68075-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69465] [NVA3] Kernel freeze with kernel 3.11.1 /
+ PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail
+Date: Fri, 20 Sep 2013 16:39:51 +0000
+Message-ID: <bug-69465-8800-br6Kj2MJgk@http.bugs.freedesktop.org/>
+References: <bug-69465-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0992894345=="
+Content-Type: multipart/mixed; boundary="===============1913848981=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68075-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69465-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0992894345==
-Content-Type: multipart/alternative; boundary="1379694836.F28fb0C51.14147"; charset="us-ascii"
+--===============1913848981==
+Content-Type: multipart/alternative; boundary="1379695190.b1Cd1.15120"; charset="us-ascii"
 
 
---1379694836.F28fb0C51.14147
-Date: Fri, 20 Sep 2013 16:33:56 +0000
+--1379695190.b1Cd1.15120
+Date: Fri, 20 Sep 2013 16:39:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68075
+https://bugs.freedesktop.org/show_bug.cgi?id=69465
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+            Summary|Kernel freeze with NVA3     |[NVA3] Kernel freeze with
+                   |kernel 3.11.1 /             |kernel 3.11.1 /
+                   |PGRAPH][0000:01:00.0]       |PGRAPH][0000:01:00.0]
+                   |PGRAPH TLB flush idle       |PGRAPH TLB flush idle
+                   |timeout fail                |timeout fail
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Did this hardware work reliably with an older kernel? If you can find a
+reasonable reproducer, can you do a bisect?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379694836.F28fb0C51.14147
-Date: Fri, 20 Sep 2013 16:33:56 +0000
+--1379695190.b1Cd1.15120
+Date: Fri, 20 Sep 2013 16:39:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,9 +62,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nouveau inconsistent changing output connector names in xrandr"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68075">bug 68075</a>
+          bz_status_NEW "
+   title="NEW --- - [NVA3] Kernel freeze with kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69465">bug 69465</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -67,21 +74,27 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">Summary</td>
+           <td>Kernel freeze with NVA3 kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
+           <td>[NVA3] Kernel freeze with kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA3] Kernel freeze with kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69465#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA3] Kernel freeze with kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69465">bug 69465</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Did this hardware work reliably with an older kernel? If you can find a
+reasonable reproducer, can you do a bisect?</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -92,9 +105,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1379694836.F28fb0C51.14147--
+--1379695190.b1Cd1.15120--
 
---===============0992894345==
+--===============1913848981==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +118,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0992894345==--
+--===============1913848981==--
