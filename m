@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69465] [NVA3] Kernel freeze with kernel 3.11.1 /
- PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail
-Date: Fri, 20 Sep 2013 16:47:47 +0000
-Message-ID: <bug-69465-8800-j4AC7tguHb@http.bugs.freedesktop.org/>
-References: <bug-69465-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: remove dead/ums code from
+	nouveau_ioc32.c
+Date: Fri, 20 Sep 2013 22:17:17 +0100
+Message-ID: <1379711837-12242-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0388208638=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69465-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,82 +17,53 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Ever since the initial import of nouveau into upstream
+kernel it has been a KMS only driver. Drop the old and
+unused code, and update the comments while we're there.
 
---===============0388208638==
-Content-Type: multipart/alternative; boundary="1379695667.33311.16097"; charset="us-ascii"
+Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_ioc32.c | 17 +++--------------
+ 1 file changed, 3 insertions(+), 14 deletions(-)
 
-
---1379695667.33311.16097
-Date: Fri, 20 Sep 2013 16:47:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=69465
-
---- Comment #4 from gorilla.maguila-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-To be honest never worked before on older kernels. Maybe the title is
-misleading sorry for that.
-
-If I recall correctly I've switching from the blob to nouveau from to time
-since kernel 3.0 with the same kernel hangs results. Only this time I wasn't
-lazy enough to setup netconsole logging and fill a bug report.
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_ioc32.c b/drivers/gpu/drm/nouveau/nouveau_ioc32.c
+index c1a7e5a..58ba807 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_ioc32.c
++++ b/drivers/gpu/drm/nouveau/nouveau_ioc32.c
+@@ -1,7 +1,7 @@
+ /**
+- * \file mga_ioc32.c
++ * \file nouveau_ioc32.c
+  *
+- * 32-bit ioctl compatibility routines for the MGA DRM.
++ * 32-bit ioctl compatibility routines for the NOUVEAU DRM.
+  *
+  * \author Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org> with code from patches by Egbert Eich
+  *
+@@ -50,20 +50,9 @@ long nouveau_compat_ioctl(struct file *filp, unsigned int cmd,
+ 			 unsigned long arg)
+ {
+ 	unsigned int nr = DRM_IOCTL_NR(cmd);
+-	drm_ioctl_compat_t *fn = NULL;
+-	int ret;
+ 
+ 	if (nr < DRM_COMMAND_BASE)
+ 		return drm_compat_ioctl(filp, cmd, arg);
+ 
+-#if 0
+-	if (nr < DRM_COMMAND_BASE + DRM_ARRAY_SIZE(mga_compat_ioctls))
+-		fn = nouveau_compat_ioctls[nr - DRM_COMMAND_BASE];
+-#endif
+-	if (fn != NULL)
+-		ret = (*fn)(filp, cmd, arg);
+-	else
+-		ret = nouveau_drm_ioctl(filp, cmd, arg);
+-
+-	return ret;
++	return nouveau_drm_ioctl(filp, cmd, arg);
+ }
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1379695667.33311.16097
-Date: Fri, 20 Sep 2013 16:47:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA3] Kernel freeze with kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69465#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA3] Kernel freeze with kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69465">bug 69465</a>
-              from <span class="vcard"><a class="email" href="mailto:gorilla.maguila&#64;gmail.com" title="gorilla.maguila&#64;gmail.com">gorilla.maguila&#64;gmail.com</a>
-</span></b>
-        <pre>To be honest never worked before on older kernels. Maybe the title is
-misleading sorry for that.
-
-If I recall correctly I've switching from the blob to nouveau from to time
-since kernel 3.0 with the same kernel hangs results. Only this time I wasn't
-lazy enough to setup netconsole logging and fill a bug report.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1379695667.33311.16097--
-
---===============0388208638==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0388208638==--
+1.8.4
