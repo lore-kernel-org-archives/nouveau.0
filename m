@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69594] NVA3 - Adobe Flash overlays all Chromium tabs
-Date: Fri, 20 Sep 2013 06:52:40 +0000
-Message-ID: <bug-69594-8800-wfTOi1blNF@http.bugs.freedesktop.org/>
+Date: Fri, 20 Sep 2013 07:11:27 +0000
+Message-ID: <bug-69594-8800-j55ogytW18@http.bugs.freedesktop.org/>
 References: <bug-69594-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1256361585=="
+Content-Type: multipart/mixed; boundary="===============0630681124=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69594-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1256361585==
-Content-Type: multipart/alternative; boundary="1379659959.BFfF51f0.29251"; charset="us-ascii"
+--===============0630681124==
+Content-Type: multipart/alternative; boundary="1379661087.87CBd0.32168"; charset="us-ascii"
 
 
---1379659959.BFfF51f0.29251
-Date: Fri, 20 Sep 2013 06:52:39 +0000
+--1379661087.87CBd0.32168
+Date: Fri, 20 Sep 2013 07:11:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,15 +35,18 @@ tod.jackson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|NVA3 - Flash overlays all   |NVA3 - Adobe Flash overlays
-                   |tabs                        |all Chromium tabs
+           Priority|medium                      |low
+
+--- Comment #3 from tod.jackson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I'm going to set the priority to low since if you uncheck 'Enable hardware
+acceleration' in the player settings and reload the tab, the problem goes away.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379659959.BFfF51f0.29251
-Date: Fri, 20 Sep 2013 06:52:39 +0000
+--1379661087.87CBd0.32168
+Date: Fri, 20 Sep 2013 07:11:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,13 +69,27 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>NVA3 - Flash overlays all tabs
+           <td style="text-align:right;">Priority</td>
+           <td>medium
            </td>
-           <td>NVA3 - Adobe Flash overlays all Chromium tabs
+           <td>low
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - NVA3 - Adobe Flash overlays all Chromium tabs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69594#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - NVA3 - Adobe Flash overlays all Chromium tabs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69594">bug 69594</a>
+              from <span class="vcard"><a class="email" href="mailto:tod.jackson&#64;gmail.com" title="tod.jackson&#64;gmail.com">tod.jackson&#64;gmail.com</a>
+</span></b>
+        <pre>I'm going to set the priority to low since if you uncheck 'Enable hardware
+acceleration' in the player settings and reload the tab, the problem goes away.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +100,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1379659959.BFfF51f0.29251--
+--1379661087.87CBd0.32168--
 
---===============1256361585==
+--===============0630681124==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +113,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1256361585==--
+--===============0630681124==--
