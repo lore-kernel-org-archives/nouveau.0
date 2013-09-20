@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69465] [NVA3] Kernel freeze with kernel 3.11.1 /
  PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail
-Date: Fri, 20 Sep 2013 16:39:51 +0000
-Message-ID: <bug-69465-8800-br6Kj2MJgk@http.bugs.freedesktop.org/>
+Date: Fri, 20 Sep 2013 16:47:47 +0000
+Message-ID: <bug-69465-8800-j4AC7tguHb@http.bugs.freedesktop.org/>
 References: <bug-69465-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1913848981=="
+Content-Type: multipart/mixed; boundary="===============0388208638=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69465-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1913848981==
-Content-Type: multipart/alternative; boundary="1379695190.b1Cd1.15120"; charset="us-ascii"
+--===============0388208638==
+Content-Type: multipart/alternative; boundary="1379695667.33311.16097"; charset="us-ascii"
 
 
---1379695190.b1Cd1.15120
-Date: Fri, 20 Sep 2013 16:39:50 +0000
+--1379695667.33311.16097
+Date: Fri, 20 Sep 2013 16:47:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69465
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #4 from gorilla.maguila-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+To be honest never worked before on older kernels. Maybe the title is
+misleading sorry for that.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Kernel freeze with NVA3     |[NVA3] Kernel freeze with
-                   |kernel 3.11.1 /             |kernel 3.11.1 /
-                   |PGRAPH][0000:01:00.0]       |PGRAPH][0000:01:00.0]
-                   |PGRAPH TLB flush idle       |PGRAPH TLB flush idle
-                   |timeout fail                |timeout fail
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Did this hardware work reliably with an older kernel? If you can find a
-reasonable reproducer, can you do a bisect?
+If I recall correctly I've switching from the blob to nouveau from to time
+since kernel 3.0 with the same kernel hangs results. Only this time I wasn't
+lazy enough to setup netconsole logging and fill a bug report.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379695190.b1Cd1.15120
-Date: Fri, 20 Sep 2013 16:39:50 +0000
+--1379695667.33311.16097
+Date: Fri, 20 Sep 2013 16:47:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,41 +53,25 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA3] Kernel freeze with kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69465">bug 69465</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Kernel freeze with NVA3 kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail
-           </td>
-           <td>[NVA3] Kernel freeze with kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA3] Kernel freeze with kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69465#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69465#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA3] Kernel freeze with kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69465">bug 69465</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:gorilla.maguila&#64;gmail.com" title="gorilla.maguila&#64;gmail.com">gorilla.maguila&#64;gmail.com</a>
 </span></b>
-        <pre>Did this hardware work reliably with an older kernel? If you can find a
-reasonable reproducer, can you do a bisect?</pre>
+        <pre>To be honest never worked before on older kernels. Maybe the title is
+misleading sorry for that.
+
+If I recall correctly I've switching from the blob to nouveau from to time
+since kernel 3.0 with the same kernel hangs results. Only this time I wasn't
+lazy enough to setup netconsole logging and fill a bug report.</pre>
         </div>
       </p>
       <hr>
@@ -105,9 +83,9 @@ reasonable reproducer, can you do a bisect?</pre>
     </body>
 </html>
 
---1379695190.b1Cd1.15120--
+--1379695667.33311.16097--
 
---===============1913848981==
+--===============0388208638==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -118,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1913848981==--
+--===============0388208638==--
