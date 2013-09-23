@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69029] [NVA8] GPU lockup since kernel 3.11 upgrade
-Date: Mon, 23 Sep 2013 19:20:10 +0000
-Message-ID: <bug-69029-8800-tzFJQEl7GJ@http.bugs.freedesktop.org/>
-References: <bug-69029-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 36090] [NV34] [NV49] terminal's visual bell is very
+ slow with nouveau
+Date: Mon, 23 Sep 2013 19:32:24 +0000
+Message-ID: <bug-36090-8800-MOjDjpAvo9@http.bugs.freedesktop.org/>
+References: <bug-36090-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0940855716=="
+Content-Type: multipart/mixed; boundary="===============1342945014=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69029-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-36090-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0940855716==
-Content-Type: multipart/alternative; boundary="1379964010.6Cb22.4036"; charset="us-ascii"
+--===============1342945014==
+Content-Type: multipart/alternative; boundary="1379964744.ee42a2F4.5930"; charset="us-ascii"
 
 
---1379964010.6Cb22.4036
-Date: Mon, 23 Sep 2013 19:20:10 +0000
+--1379964744.ee42a2F4.5930
+Date: Mon, 23 Sep 2013 19:32:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69029
+https://bugs.freedesktop.org/show_bug.cgi?id=36090
 
---- Comment #4 from charon00-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I have also been encountering problems with the X server crashing in kernel
-3.11.1 in Fedora 19 64-bit (KDE desktop).  Usually the desktop locks up and
-eventually drops to command line where messages like the following are printed:
+aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org changed:
 
-nouveau E[ X[945]] failed to idle channel 0xcccc0000 [X[945]]
-nouveau E[ X[945]] failed to idle channel 0xcccc0000 [X[945]]
-nouveau E[    PFB][0000:01:00.0] trapped read at 0x002001a040 on channel
-0x0003fb1a [unknown] SEMAPHORE_BG/PFIFO_READ/00 reason: PAGE_NOT_PRESENT
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|INVALID                     |---
+
+--- Comment #5 from aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org ---
+Problem still exists with:
+
+# uname -a
+Linux panda.opentext.com 3.10.12-100.fc18.i686 #1 SMP Mon Sep 16 13:25:43 UTC
+2013 i686 i686 i386 GNU/Linux
+
+VGA compatible controller: NVIDIA Corporation G72M [Quadro NVS 110M/GeForce Go
+7300] (rev a1) (prog-if 00 [VGA controller])
+
+Let me know if you need more information.
+
+Adam
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379964010.6Cb22.4036
-Date: Mon, 23 Sep 2013 19:20:10 +0000
+--1379964744.ee42a2F4.5930
+Date: Mon, 23 Sep 2013 19:32:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,27 +66,59 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:aebenjam&#64;opentext.com" title="aebenjam&#64;opentext.com">aebenjam&#64;opentext.com</a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV34] [NV49] terminal's visual bell is very slow with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=36090">bug 36090</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>INVALID
+           </td>
+           <td>---
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA8] GPU lockup since kernel 3.11 upgrade"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69029#c4">Comment # 4</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV34] [NV49] terminal's visual bell is very slow with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=36090#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA8] GPU lockup since kernel 3.11 upgrade"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69029">bug 69029</a>
-              from <span class="vcard"><a class="email" href="mailto:charon00&#64;gmail.com" title="charon00&#64;gmail.com">charon00&#64;gmail.com</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV34] [NV49] terminal's visual bell is very slow with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=36090">bug 36090</a>
+              from <span class="vcard"><a class="email" href="mailto:aebenjam&#64;opentext.com" title="aebenjam&#64;opentext.com">aebenjam&#64;opentext.com</a>
 </span></b>
-        <pre>I have also been encountering problems with the X server crashing in kernel
-3.11.1 in Fedora 19 64-bit (KDE desktop).  Usually the desktop locks up and
-eventually drops to command line where messages like the following are printed:
+        <pre>Problem still exists with:
 
-nouveau E[ X[945]] failed to idle channel 0xcccc0000 [X[945]]
-nouveau E[ X[945]] failed to idle channel 0xcccc0000 [X[945]]
-nouveau E[    PFB][0000:01:00.0] trapped read at 0x002001a040 on channel
-0x0003fb1a [unknown] SEMAPHORE_BG/PFIFO_READ/00 reason: PAGE_NOT_PRESENT</pre>
+# uname -a
+Linux panda.opentext.com 3.10.12-100.fc18.i686 #1 SMP Mon Sep 16 13:25:43 UTC
+2013 i686 i686 i386 GNU/Linux
+
+VGA compatible controller: NVIDIA Corporation G72M [Quadro NVS 110M/GeForce Go
+7300] (rev a1) (prog-if 00 [VGA controller])
+
+Let me know if you need more information.
+
+Adam</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +130,9 @@ nouveau E[    PFB][0000:01:00.0] trapped read at 0x002001a040 on channel
     </body>
 </html>
 
---1379964010.6Cb22.4036--
+--1379964744.ee42a2F4.5930--
 
---===============0940855716==
+--===============1342945014==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +143,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0940855716==--
+--===============1342945014==--
