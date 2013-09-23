@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 36090] [NV34] [NV49] terminal's visual bell is very
  slow with nouveau
-Date: Mon, 23 Sep 2013 19:55:54 +0000
-Message-ID: <bug-36090-8800-qBIJBH2uxw@http.bugs.freedesktop.org/>
+Date: Mon, 23 Sep 2013 20:08:37 +0000
+Message-ID: <bug-36090-8800-YhEwHe983i@http.bugs.freedesktop.org/>
 References: <bug-36090-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1738095451=="
+Content-Type: multipart/mixed; boundary="===============0915464478=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-36090-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,40 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1738095451==
-Content-Type: multipart/alternative; boundary="1379966154.A7f04.9917"; charset="us-ascii"
+--===============0915464478==
+Content-Type: multipart/alternative; boundary="1379966917.8Dc6Aac4.12159"; charset="us-ascii"
 
 
---1379966154.A7f04.9917
-Date: Mon, 23 Sep 2013 19:55:54 +0000
+--1379966917.8Dc6Aac4.12159
+Date: Mon, 23 Sep 2013 20:08:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=36090
 
---- Comment #7 from aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org ---
-I'm not sure how to answer your question about the ddx... is this what you
-mean?
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+dmesg | grep -i chipset
 
-rpm -qa |grep -i nouveau
-xorg-x11-drv-nouveau-1.0.7-1.fc18.i686
+sounds like your ddx is new enough though.
 
-Re: the card, dmidecode suggests it is:
-
-Quadro NVS 110M
-
-Let me know if you need more.
-
-Thanks,
-
-Adam
+Can you provide detailed repro steps? I'm not even sure how to enable visual
+bell.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1379966154.A7f04.9917
-Date: Mon, 23 Sep 2013 19:55:54 +0000
+--1379966917.8Dc6Aac4.12159
+Date: Mon, 23 Sep 2013 20:08:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,28 +59,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [NV34] [NV49] terminal's visual bell is very slow with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=36090#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=36090#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [NV34] [NV49] terminal's visual bell is very slow with nouveau"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=36090">bug 36090</a>
-              from <span class="vcard"><a class="email" href="mailto:aebenjam&#64;opentext.com" title="aebenjam&#64;opentext.com">aebenjam&#64;opentext.com</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I'm not sure how to answer your question about the ddx... is this what you
-mean?
+        <pre>dmesg | grep -i chipset
 
-rpm -qa |grep -i nouveau
-xorg-x11-drv-nouveau-1.0.7-1.fc18.i686
+sounds like your ddx is new enough though.
 
-Re: the card, dmidecode suggests it is:
-
-Quadro NVS 110M
-
-Let me know if you need more.
-
-Thanks,
-
-Adam</pre>
+Can you provide detailed repro steps? I'm not even sure how to enable visual
+bell.</pre>
         </div>
       </p>
       <hr>
@@ -101,9 +83,9 @@ Adam</pre>
     </body>
 </html>
 
---1379966154.A7f04.9917--
+--1379966917.8Dc6Aac4.12159--
 
---===============1738095451==
+--===============0915464478==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -114,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1738095451==--
+--===============0915464478==--
