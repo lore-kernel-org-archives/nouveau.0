@@ -1,15 +1,10 @@
-From: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: offer to help, DCB
-Date: Tue, 24 Sep 2013 11:19:38 -0700
-Message-ID: <20130924181938.GD27823@parker.nvidia.com>
-References: <20130924044457.GA25785@parker.nvidia.com>
-	<52413B42.9050101@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 69768] New: not able to do a suspend
+Date: Tue, 24 Sep 2013 18:37:21 +0000
+Message-ID: <bug-69768-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1392452713=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <52413B42.9050101-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,67 +14,174 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Sep 24, 2013 at 12:12:02AM -0700, Maarten Lankhorst wrote:
-> Hey,
-> 
-> Op 24-09-13 06:44, Andy Ritger schreef:
-> > Hi Nouveau developers,
-> >
-> > NVIDIA is releasing public documentation on certain aspects of our GPUs,
-> > with the intent to address areas that impact the out-of-the-box usability
-> > of NVIDIA GPUs with Nouveau.  We intend to provide more documentation
-> > over time, and guidance in additional areas as we are able.
-> >
-> > As a first step towards that, we've posted a document here:
-> >
-> >     ftp://download.nvidia.com/open-gpu-doc/DCB/1/DCB-4.0-Specification.html
-> >
-> > that documents the Device Control Block ("DCB") layout in the VBIOS.
-> > The DCB describes board topology and the board's display connectors.
-> >
-> > I suspect much of the information in that document is not news for
-> > the Nouveau community, but hopefully it will be helpful to confirm your
-> > understanding or flesh out the implementation of a few unhandled cases.
-> >
-> > A few of us who work on NVIDIA's proprietary Linux GPU driver will pay
-> > attention to nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org and try to chime in when
-> > we can.
-> >
-> > If there are specific areas of documentation that would most help you, that
-> > feedback would help NVIDIA prioritize our documentation efforts.
-> >
-> > If you have specific questions for NVIDIA, you can ask here, or direct
-> > them to: open-gpu-doc-DDmLM1+adcqXj1p+fO2waQ@public.gmane.org
 
-Sorry, I got the email address wrong.  The right address is:
+--===============1392452713==
+Content-Type: multipart/alternative; boundary="1380047841.a75bBC1.13621"; charset="us-ascii"
 
-gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
 
-sorry I didn't double check the address before sending the announcement.
+--1380047841.a75bBC1.13621
+Date: Tue, 24 Sep 2013 18:37:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-> > I can't promise we'll be able to answer
-> > everything, but we'll provide best-effort in areas where we are able.
-> You rock! :D
+https://bugs.freedesktop.org/show_bug.cgi?id=69768
 
-:)  Thanks, Maarten.
+          Priority: medium
+            Bug ID: 69768
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: not able to do a suspend
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-> Our biggest struggle at the moment is the video clocking and power management, which is highly device specific
-> and depends on configuration too.
+Created attachment 86468
+  --> https://bugs.freedesktop.org/attachment.cgi?id=86468&action=edit
+dmesg
 
-Those will be two of the more difficult areas for us to address, but
-we'll see what can be done.
+with kernel 3.10.9 and 3.11.1 i'm not able to do a suspend to ram.
 
-> A complete video bios documentation would be nice too, I understand that will
-> take a bit longer than just the dcb. :)
+i have a lenovo s430.
 
-BIOS-related information should be a bit easier to get through the
-pipeline than other things, so we'll focus on that to start.
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-I'm looking forward to collaborating with you guys,
-- Andy
+--1380047841.a75bBC1.13621
+Date: Tue, 24 Sep 2013 18:37:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
-> ~Maarten
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - not able to do a suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69768">69768</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>not able to do a suspend
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>marccollin7379&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=86468" name="attach_86468" title="dmesg">attachment 86468</a> <a href="attachment.cgi?id=86468&amp;action=edit" title="dmesg">[details]</a></span>
+dmesg
+
+with kernel 3.10.9 and 3.11.1 i'm not able to do a suspend to ram.
+
+i have a lenovo s430.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1380047841.a75bBC1.13621--
+
+--===============1392452713==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1392452713==--
