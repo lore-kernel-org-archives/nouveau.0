@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 36090] [NV34] [NV49] terminal's visual bell is very
- slow with nouveau
-Date: Tue, 24 Sep 2013 15:44:55 +0000
-Message-ID: <bug-36090-8800-EdfdiF6Oo5@http.bugs.freedesktop.org/>
-References: <bug-36090-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: offer to help, DCB
+Date: Wed, 25 Sep 2013 03:27:20 +1000
+Message-ID: <CACAvsv6vcHP0-hQq1EGtG_Qn0CcjO98VP6jxkcZnDL1mT+6UOg@mail.gmail.com>
+References: <20130924044457.GA25785@parker.nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1640829647=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-36090-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20130924044457.GA25785-4K9zQNqW3/fFT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,121 +17,55 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Tue, Sep 24, 2013 at 2:44 PM, Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+>
+> Hi Nouveau developers,
+Hey Andy, and all you other NVIDIA guys :)
 
---===============1640829647==
-Content-Type: multipart/alternative; boundary="1380037495.FAF118C4.8633"; charset="us-ascii"
+This was a very pleasant shock over breakfast this morning, and is
+very much appreciated!
 
+I look forward to seeing how we can all work together in the future!
 
---1380037495.FAF118C4.8633
-Date: Tue, 24 Sep 2013 15:44:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Thanks again,
+Ben.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=36090
-
---- Comment #11 from aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org ---
-Interesting.  So, I'm a Fedora (currently v18) user.  I created a stock
-account, logged in to a standard Gnome environment, and fired up an xterm with
-visual bell running, and it doesn't have the same problem.  In fact, I couldn't
-even SEE a visual bell. Odd.  All I could tell was that the audible bell went
-away when I enabled the visual bell.
-
-Now, that's not my usual scenario. My usual is using fvwm2 as my window
-manager.  And while it might take a second or so for the visual bell to run on
-a reasonable sized xterm, when I full-screen it, it really does take multiple
-seconds to complete.  Running xcompmgr didn't speed that up, but instead of the
-bell visually progressing up/down the screeen (watching each line draw) it drew
-it all at once, then waited, then removed it all at once.  Same (or, at least,
-similar) delay, but visually different.
-
-Note that whatever is going right/wrong didn't used to happen using the nvidia
-provided driver.  I've been using the nouveau driver, and am happy to do so,
-but it does have this one interesting downside.
-
-Interesting fact.  If I run the program, "screen", it changes things somehow. 
-I'm not sure how... but all of a sudden the visual bell becomes reasonable
-again.  Exiting back out of screen reverts to the undesired behaviour.
-
-I hope that helps.
-
-Adam
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1380037495.FAF118C4.8633
-Date: Tue, 24 Sep 2013 15:44:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV34] [NV49] terminal's visual bell is very slow with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=36090#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV34] [NV49] terminal's visual bell is very slow with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=36090">bug 36090</a>
-              from <span class="vcard"><a class="email" href="mailto:aebenjam&#64;opentext.com" title="aebenjam&#64;opentext.com">aebenjam&#64;opentext.com</a>
-</span></b>
-        <pre>Interesting.  So, I'm a Fedora (currently v18) user.  I created a stock
-account, logged in to a standard Gnome environment, and fired up an xterm with
-visual bell running, and it doesn't have the same problem.  In fact, I couldn't
-even SEE a visual bell. Odd.  All I could tell was that the audible bell went
-away when I enabled the visual bell.
-
-Now, that's not my usual scenario. My usual is using fvwm2 as my window
-manager.  And while it might take a second or so for the visual bell to run on
-a reasonable sized xterm, when I full-screen it, it really does take multiple
-seconds to complete.  Running xcompmgr didn't speed that up, but instead of the
-bell visually progressing up/down the screeen (watching each line draw) it drew
-it all at once, then waited, then removed it all at once.  Same (or, at least,
-similar) delay, but visually different.
-
-Note that whatever is going right/wrong didn't used to happen using the nvidia
-provided driver.  I've been using the nouveau driver, and am happy to do so,
-but it does have this one interesting downside.
-
-Interesting fact.  If I run the program, &quot;screen&quot;, it changes things somehow. 
-I'm not sure how... but all of a sudden the visual bell becomes reasonable
-again.  Exiting back out of screen reverts to the undesired behaviour.
-
-I hope that helps.
-
-Adam</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1380037495.FAF118C4.8633--
-
---===============1640829647==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1640829647==--
+>
+> NVIDIA is releasing public documentation on certain aspects of our GPUs,
+> with the intent to address areas that impact the out-of-the-box usability
+> of NVIDIA GPUs with Nouveau.  We intend to provide more documentation
+> over time, and guidance in additional areas as we are able.
+>
+> As a first step towards that, we've posted a document here:
+>
+>     ftp://download.nvidia.com/open-gpu-doc/DCB/1/DCB-4.0-Specification.html
+>
+> that documents the Device Control Block ("DCB") layout in the VBIOS.
+> The DCB describes board topology and the board's display connectors.
+>
+> I suspect much of the information in that document is not news for
+> the Nouveau community, but hopefully it will be helpful to confirm your
+> understanding or flesh out the implementation of a few unhandled cases.
+>
+> A few of us who work on NVIDIA's proprietary Linux GPU driver will pay
+> attention to nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org and try to chime in when
+> we can.
+>
+> If there are specific areas of documentation that would most help you, that
+> feedback would help NVIDIA prioritize our documentation efforts.
+>
+> If you have specific questions for NVIDIA, you can ask here, or direct
+> them to: open-gpu-doc-DDmLM1+adcqXj1p+fO2waQ@public.gmane.org  I can't promise we'll be able to answer
+> everything, but we'll provide best-effort in areas where we are able.
+>
+> Thanks,
+> - Andy Ritger
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
