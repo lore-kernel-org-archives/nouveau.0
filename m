@@ -1,14 +1,12 @@
-From: =?UTF-8?B?TWFyY2luIEtvxZtjaWVsbmlja2k=?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: Re: offer to help, DCB
-Date: Wed, 25 Sep 2013 09:46:12 +0200
-Message-ID: <524294C4.20701@0x04.net>
-References: <20130924044457.GA25785@parker.nvidia.com>	<52413B42.9050101@canonical.com>	<20130924181938.GD27823@parker.nvidia.com>	<CAPM=9tykSx_p-SgK9+JpUADD8E_M6ciS5kXd68UaE-A9-sgiYg@mail.gmail.com>
-	<20130925003422.GE28691@parker.nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 69029] [NVA8] GPU lockup since kernel 3.11 upgrade
+Date: Wed, 25 Sep 2013 13:20:40 +0000
+Message-ID: <bug-69029-8800-w7vPL10baA@http.bugs.freedesktop.org/>
+References: <bug-69029-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1750908868=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20130925003422.GE28691-4K9zQNqW3/fFT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
+In-Reply-To: <bug-69029-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,34 +16,75 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-PiBEb2VzIE5vdXZlYXUgcmVpbXBsZW1lbnQgRmFsY29uIG1pY3JvY29kZSBkdWUgdG8gcGFydGlj
-dWxhciBkZWZpY2llbmNpZXMKPiBpbiBOVklESUEncyBtaWNyb2NvZGUsIG9yIGJlY2F1c2UgeW91
-IGNvdWxkbid0IGdldCBwZXJtaXNzaW9uIGluIHRoZSBwYXN0Cj4gdG8gcmVkaXN0cmlidXRlIHRo
-ZSBmaXJtd2FyZSBleHRyYWN0ZWQgZnJvbSBOVklESUEncyBwcm9wcmlldGFyeSBkcml2ZXI/Cj4g
-SWYgdGhlIGxhdHRlciwgSSB0aGluayB3ZSBjYW4gZ2V0IHRvIHRoZSBwb2ludCBvZiBzb2x2aW5n
-IHRoYXQgd2l0aCBtb3JlCj4gYW1lbmFibGUgbGljZW5zaW5nLiAgSWYgdGhlIGZvcm1lciwgSSdk
-IGxpa2UgdG8gcmVwb3J0IHRoZSBkZWZpY2llbmNpZXMKPiBmcm9tIHlvdXIgcG9pbnQgb2Ygdmll
-dyBiYWNrIHRvIE5WSURJQSdzIGZpcm13YXJlIHRlYW0sIHNvIHRoYXQgd2UgY2FuCj4gaW1wcm92
-ZSB0aGUgZmlybXdhcmUgZm9yIE5vdXZlYXUgdXNlLgoKV2hpbGUgSSdtIHBlcnNvbmFsbHkgb25l
-IG9mIHRoZSBndXlzIHdobyB3b3VsZG4ndCBsaWtlIHRvIHNlZSBhIGJpbmFyeSAKYmxvYiBpbiBu
-b3V2ZWF1LCBubyBtYXR0ZXIgdGhlIHRlcm1zLCBJJ3ZlIHJlYWQgdGhlIGZpcm13YXJlIGJsb2Jz
-IApkZWNvbXBpbGF0aW9uIGFuZCBJJ20gcXVpdGUgY29uY2VybmVkIGFib3V0IHBvc3NpYmxlIHNl
-Y3VyaXR5IGltcGxpY2F0aW9ucy4KClRoZSBQR1JBUEggY29udGV4dCBzd2l0Y2ggbWljcm9jb2Rl
-IGFsbG93cyB1c2VyIHRvIHJlYWQvd3JpdGUgYXJiaXRyYXJ5IApNTUlPIHJlZ2lzdGVycyBieSBz
-dWJtaXR0aW5nIHRoZSBmaXJtd2FyZSBtZXRob2RzLiBUaGUgR0YxMDArIHZpZGVvIApkZWNvZGlu
-ZyBldGMuIGZhbGNvbiBtaWNyb2NvZGVzIGFsbG93IHlvdSB0byBqdXN0IGFzayBmb3IgcGh5c2lj
-YWwgCmluc3RlYWQgb2YgdmlydHVhbCBhZGRyZXNzaW5nLCBhbmQgdGhhdCBpbmNsdWRlcyBwaHlz
-aWNhbCBzeXN0ZW0gbWVtb3J5LiAKV2h5IGRpZCBuVmlkaWEgaW5jbHVkZSBzdWNoIG9idmlvdXNs
-eSBzZWN1cml0eS1icmVha2luZyBmdW5jdGlvbmFsaXR5IGluIAp0aGUgZmlybXdhcmUgaW1hZ2Vz
-PyBBcyBJIHVuZGVyc3RhbmQgaXQsIGEgdXNlciBoYXZpbmcgYWNjZXNzIHRvIGp1c3QgCnRoZSBG
-SUZPIHN1Ym1pc3Npb24gaW50ZXJmYWNlIHNob3VsZCBvbmx5IGhhdmUgYWNjZXNzIHRvIGhpcyBv
-d24gVk0gCmFyZWEsIGFuZCBub3QgaGF2ZSBlbm91Z2ggcG93ZXIgdG8gdGFrZSBvdmVyIHRoZSBt
-YWNoaW5lLiBJcyB0aGVyZSBhbnkgCnNlY3VyaXR5IG1vZGVsIGZvciBuVmlkaWEgaGFyZHdhcmUv
-ZmlybXdhcmUva2VybmVsIGRyaXZlciBzeXN0ZW0/CgpNYXJjaW4gS2/Fm2NpZWxuaWNraQpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
-bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1750908868==
+Content-Type: multipart/alternative; boundary="1380115240.B05582F81.13864"; charset="us-ascii"
+
+
+--1380115240.B05582F81.13864
+Date: Wed, 25 Sep 2013 13:20:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=69029
+
+--- Comment #5 from Frederic Crozat <fred-ku13qjcBzYesTnJN9+BGXg@public.gmane.org> ---
+Since upgrading to 3.11.1 (and some other update), I haven't been able to get
+GPU lockup for a week..
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1380115240.B05582F81.13864
+Date: Wed, 25 Sep 2013 13:20:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA8] GPU lockup since kernel 3.11 upgrade"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69029#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA8] GPU lockup since kernel 3.11 upgrade"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69029">bug 69029</a>
+              from <span class="vcard"><a class="email" href="mailto:fred&#64;crozat.net" title="Frederic Crozat &lt;fred&#64;crozat.net&gt;"> <span class="fn">Frederic Crozat</span></a>
+</span></b>
+        <pre>Since upgrading to 3.11.1 (and some other update), I haven't been able to get
+GPU lockup for a week..</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1380115240.B05582F81.13864--
+
+--===============1750908868==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1750908868==--
