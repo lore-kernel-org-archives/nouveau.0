@@ -1,15 +1,17 @@
-From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 Subject: Re: offer to help, DCB
-Date: Wed, 25 Sep 2013 05:43:46 +1000
-Message-ID: <CAPM=9tykSx_p-SgK9+JpUADD8E_M6ciS5kXd68UaE-A9-sgiYg@mail.gmail.com>
+Date: Tue, 24 Sep 2013 17:34:22 -0700
+Message-ID: <20130925003422.GE28691@parker.nvidia.com>
 References: <20130924044457.GA25785@parker.nvidia.com>
 	<52413B42.9050101@canonical.com>
 	<20130924181938.GD27823@parker.nvidia.com>
+	<CAPM=9tykSx_p-SgK9+JpUADD8E_M6ciS5kXd68UaE-A9-sgiYg@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20130924181938.GD27823-4K9zQNqW3/fFT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <CAPM=9tykSx_p-SgK9+JpUADD8E_M6ciS5kXd68UaE-A9-sgiYg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,69 +21,64 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
->> >
->> > NVIDIA is releasing public documentation on certain aspects of our GPUs,
->> > with the intent to address areas that impact the out-of-the-box usability
->> > of NVIDIA GPUs with Nouveau.  We intend to provide more documentation
->> > over time, and guidance in additional areas as we are able.
->> >
->> > As a first step towards that, we've posted a document here:
->> >
->> >     ftp://download.nvidia.com/open-gpu-doc/DCB/1/DCB-4.0-Specification.html
->> >
->> > that documents the Device Control Block ("DCB") layout in the VBIOS.
->> > The DCB describes board topology and the board's display connectors.
->> >
->> > I suspect much of the information in that document is not news for
->> > the Nouveau community, but hopefully it will be helpful to confirm your
->> > understanding or flesh out the implementation of a few unhandled cases.
->> >
->> > A few of us who work on NVIDIA's proprietary Linux GPU driver will pay
->> > attention to nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org and try to chime in when
->> > we can.
->> >
->> > If there are specific areas of documentation that would most help you, that
->> > feedback would help NVIDIA prioritize our documentation efforts.
->> >
->> > If you have specific questions for NVIDIA, you can ask here, or direct
->> > them to: open-gpu-doc-DDmLM1+adcqXj1p+fO2waQ@public.gmane.org
->
-> Sorry, I got the email address wrong.  The right address is:
->
-> gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
->
-> sorry I didn't double check the address before sending the announcement.
->
->> > I can't promise we'll be able to answer
->> > everything, but we'll provide best-effort in areas where we are able.
->> You rock! :D
->
-> :)  Thanks, Maarten.
->
->> Our biggest struggle at the moment is the video clocking and power management, which is highly device specific
->> and depends on configuration too.
->
-> Those will be two of the more difficult areas for us to address, but
-> we'll see what can be done.
->
->> A complete video bios documentation would be nice too, I understand that will
->> take a bit longer than just the dcb. :)
+On Tue, Sep 24, 2013 at 12:43:46PM -0700, Dave Airlie wrote:
+...
+> 
+> Hey Andy,
+> 
+> this is great news,
+> 
+> I suppose the question I have is there any known upfront limits on
+> what you can release or is it going to be a per-request type thing?
 
-Hey Andy,
+Hi Dave.
 
-this is great news,
+I think we're going to have to deal with things on a case-by-case basis.
+I wouldn't take anything off the table, yet.  You all can probably
+imagine what areas may have IP/security/whatever entanglements, which
+will be more painful for NVIDIA to sort through.  But, for now, just
+enumerate what information would be most useful.  The more specific and
+targeted the request, the more focused (and hopefully efficient) the
+internal vetting process can be.
 
-I suppose the question I have is there any known upfront limits on
-what you can release or is it going to be a per-request type thing?
+> My main request if you give Ben whatever he asks for :-P, but I'm
+> interested if you guys would be also able to say review things like
+> the microcode situation and say explaining what might be missing from
+> the nouveau microcode for context switching etc,
 
-My main request if you give Ben whatever he asks for :-P, but I'm
-interested if you guys would be also able to say review things like
-the microcode situation and say explaining what might be missing from
-the nouveau microcode for context switching etc, along with VM things
-like hw with pagefaults etc.
+For microcode: from NVIDIA's perspective, I think we'd like to move to
+a model where NVIDIA releases microcode firmware (as binary-only) with a
+defined ABI, versioning, and reasonable licensing to allow redistribution.
+We have some release engineering process improvements to make there, since
+today the firmware is allowed to evolve along side the NVIDIA proprietary
+driver code, and the two are released in lock-step.  But longer-term,
+I think we'd like to move things to the firmware that either we're not
+comfortable documenting, or things that are Real Hard to get right,
+like P-state switching.
 
-Dave.
+Does Nouveau reimplement Falcon microcode due to particular deficiencies
+in NVIDIA's microcode, or because you couldn't get permission in the past
+to redistribute the firmware extracted from NVIDIA's proprietary driver?
+If the latter, I think we can get to the point of solving that with more
+amenable licensing.  If the former, I'd like to report the deficiencies
+from your point of view back to NVIDIA's firmware team, so that we can
+improve the firmware for Nouveau use.
+
+While I know open firmware would be preferred over binary-only firmware
+images, hopefully we can find a reasonable compromise there.
+
+> along with VM things like hw with pagefaults etc.
+
+I don't have a great sense for how much internal concern there will be
+around pagetable-related documentation.  My guess is that it might be
+a little harder than DCB and other BIOS-related docs, but much easier
+than clock programming.
+
+Thanks,
+- Andy
+
+> Dave.
