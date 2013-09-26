@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55980] X Segfault on second screen resize
-Date: Thu, 26 Sep 2013 23:09:48 +0000
-Message-ID: <bug-55980-8800-gi4Cu011Do@http.bugs.freedesktop.org/>
-References: <bug-55980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54056] [NVAF] plenty of errors trapped write at plus
+ PGRAPH error
+Date: Thu, 26 Sep 2013 23:12:08 +0000
+Message-ID: <bug-54056-8800-iL6ljyxcRV@http.bugs.freedesktop.org/>
+References: <bug-54056-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1471569394=="
+Content-Type: multipart/mixed; boundary="===============1313107848=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-55980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-54056-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1471569394==
-Content-Type: multipart/alternative; boundary="1380236988.EC052.14955"; charset="us-ascii"
+--===============1313107848==
+Content-Type: multipart/alternative; boundary="1380237128.Ea2ADE082.15338"; charset="us-ascii"
 
 
---1380236988.EC052.14955
-Date: Thu, 26 Sep 2013 23:09:48 +0000
+--1380237128.Ea2ADE082.15338
+Date: Thu, 26 Sep 2013 23:12:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=55980
+https://bugs.freedesktop.org/show_bug.cgi?id=54056
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -38,15 +39,15 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 No response to re-test request in over a month. Closing as invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380236988.EC052.14955
-Date: Thu, 26 Sep 2013 23:09:48 +0000
+--1380237128.Ea2ADE082.15338
+Date: Thu, 26 Sep 2013 23:12:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,8 +59,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - X Segfault on second screen resize"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55980">bug 55980</a>
+   title="RESOLVED INVALID - [NVAF] plenty of errors trapped write at plus PGRAPH error"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54056">bug 54056</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -87,12 +88,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - X Segfault on second screen resize"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55980#c8">Comment # 8</a>
+   title="RESOLVED INVALID - [NVAF] plenty of errors trapped write at plus PGRAPH error"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54056#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - X Segfault on second screen resize"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55980">bug 55980</a>
+   title="RESOLVED INVALID - [NVAF] plenty of errors trapped write at plus PGRAPH error"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54056">bug 54056</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>No response to re-test request in over a month. Closing as invalid.</pre>
@@ -107,9 +108,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1380236988.EC052.14955--
+--1380237128.Ea2ADE082.15338--
 
---===============1471569394==
+--===============1313107848==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1471569394==--
+--===============1313107848==--
