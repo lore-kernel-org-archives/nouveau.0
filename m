@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61463] Freeze after resume from standby/suspend
-Date: Thu, 26 Sep 2013 23:20:43 +0000
-Message-ID: <bug-61463-8800-LPr5rtXoHl@http.bugs.freedesktop.org/>
-References: <bug-61463-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56748] [NVAF] Graphic Elements Displayed Partially
+Date: Thu, 26 Sep 2013 23:21:10 +0000
+Message-ID: <bug-56748-8800-yDdxuU0p8b@http.bugs.freedesktop.org/>
+References: <bug-56748-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0021134034=="
+Content-Type: multipart/mixed; boundary="===============2036627197=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61463-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-56748-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0021134034==
-Content-Type: multipart/alternative; boundary="1380237643.FEdfd582.17886"; charset="us-ascii"
+--===============2036627197==
+Content-Type: multipart/alternative; boundary="1380237670.8b70E72.18014"; charset="us-ascii"
 
 
---1380237643.FEdfd582.17886
-Date: Thu, 26 Sep 2013 23:20:43 +0000
+--1380237670.8b70E72.18014
+Date: Thu, 26 Sep 2013 23:21:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=61463
+https://bugs.freedesktop.org/show_bug.cgi?id=56748
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -38,15 +38,15 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 No response to re-test request in over a month. Closing as invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380237643.FEdfd582.17886
-Date: Thu, 26 Sep 2013 23:20:43 +0000
+--1380237670.8b70E72.18014
+Date: Thu, 26 Sep 2013 23:21:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,8 +58,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Freeze after resume from standby/suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61463">bug 61463</a>
+   title="RESOLVED INVALID - [NVAF] Graphic Elements Displayed Partially"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56748">bug 56748</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -87,12 +87,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Freeze after resume from standby/suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61463#c5">Comment # 5</a>
+   title="RESOLVED INVALID - [NVAF] Graphic Elements Displayed Partially"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56748#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Freeze after resume from standby/suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61463">bug 61463</a>
+   title="RESOLVED INVALID - [NVAF] Graphic Elements Displayed Partially"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56748">bug 56748</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>No response to re-test request in over a month. Closing as invalid.</pre>
@@ -107,9 +107,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1380237643.FEdfd582.17886--
+--1380237670.8b70E72.18014--
 
---===============0021134034==
+--===============2036627197==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0021134034==--
+--===============2036627197==--
