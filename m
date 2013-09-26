@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47191] random xorg hang with PGRAPH_TRAP_TPDMA_2D -
- TP 0 - Unknown fault at address
-Date: Thu, 26 Sep 2013 23:42:39 +0000
-Message-ID: <bug-47191-8800-8Eg18e7gko@http.bugs.freedesktop.org/>
-References: <bug-47191-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 65310] [regression] failure in building nvc0_vbo.lo:
+ /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression
+ `-8589934576
+Date: Thu, 26 Sep 2013 23:44:13 +0000
+Message-ID: <bug-65310-8800-yMZ7FMA4pY@http.bugs.freedesktop.org/>
+References: <bug-65310-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1609577249=="
+Content-Type: multipart/mixed; boundary="===============0481545723=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47191-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-65310-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +22,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1609577249==
-Content-Type: multipart/alternative; boundary="1380238959.a78cb1.22497"; charset="us-ascii"
+--===============0481545723==
+Content-Type: multipart/alternative; boundary="1380239053.d0046AD41.22739"; charset="us-ascii"
 
 
---1380238959.a78cb1.22497
-Date: Thu, 26 Sep 2013 23:42:39 +0000
+--1380239053.d0046AD41.22739
+Date: Thu, 26 Sep 2013 23:44:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47191
+https://bugs.freedesktop.org/show_bug.cgi?id=65310
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
+             Status|NEEDINFO                    |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-No response to re-test request in over a month. Closing as invalid.
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No response to information request in over a month. Closing as invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380238959.a78cb1.22497
-Date: Thu, 26 Sep 2013 23:42:39 +0000
+--1380239053.d0046AD41.22739
+Date: Thu, 26 Sep 2013 23:44:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,8 +60,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - random xorg hang with PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47191">bug 47191</a>
+   title="RESOLVED INVALID - [regression] failure in building nvc0_vbo.lo: /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression `-8589934576"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65310">bug 65310</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -71,7 +72,7 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td>NEEDINFO
            </td>
            <td>RESOLVED
            </td>
@@ -88,15 +89,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - random xorg hang with PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47191#c2">Comment # 2</a>
+   title="RESOLVED INVALID - [regression] failure in building nvc0_vbo.lo: /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression `-8589934576"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65310#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - random xorg hang with PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47191">bug 47191</a>
+   title="RESOLVED INVALID - [regression] failure in building nvc0_vbo.lo: /tmp/cclDjdRp.s:1270: Error: missing or invalid displacement expression `-8589934576"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65310">bug 65310</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>No response to re-test request in over a month. Closing as invalid.</pre>
+        <pre>No response to information request in over a month. Closing as invalid.</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +109,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1380238959.a78cb1.22497--
+--1380239053.d0046AD41.22739--
 
---===============1609577249==
+--===============0481545723==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +122,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1609577249==--
+--===============0481545723==--
