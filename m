@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 20341] [NV31] lockup when using AGP. agpmode=0 fixes
-	it.
-Date: Thu, 26 Sep 2013 23:41:34 +0000
-Message-ID: <bug-20341-8800-zTcHLqqEXp@http.bugs.freedesktop.org/>
-References: <bug-20341-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47191] random xorg hang with PGRAPH_TRAP_TPDMA_2D -
+ TP 0 - Unknown fault at address
+Date: Thu, 26 Sep 2013 23:42:39 +0000
+Message-ID: <bug-47191-8800-8Eg18e7gko@http.bugs.freedesktop.org/>
+References: <bug-47191-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1831426849=="
+Content-Type: multipart/mixed; boundary="===============1609577249=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-20341-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47191-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1831426849==
-Content-Type: multipart/alternative; boundary="1380238894.f77f1.22313"; charset="us-ascii"
+--===============1609577249==
+Content-Type: multipart/alternative; boundary="1380238959.a78cb1.22497"; charset="us-ascii"
 
 
---1380238894.f77f1.22313
-Date: Thu, 26 Sep 2013 23:41:34 +0000
+--1380238959.a78cb1.22497
+Date: Thu, 26 Sep 2013 23:42:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=20341
+https://bugs.freedesktop.org/show_bug.cgi?id=47191
 
---- Comment #23 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Do nouveau.agpmode=1 or agpmode=2 produce the same corruption? I don't remember
-the KT133 as being the most reliable chipset in the world... even the
-proprietary driver has the NvAGP setting (or something along those lines). Does
-the blob work for you btw? Can you play with forcing different AGP speeds on
-it, and/or perhaps figure out from logs what AGP speed it's defaulting to?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No response to re-test request in over a month. Closing as invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380238894.f77f1.22313
-Date: Thu, 26 Sep 2013 23:41:34 +0000
+--1380238959.a78cb1.22497
+Date: Thu, 26 Sep 2013 23:42:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,24 +55,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - random xorg hang with PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47191">bug 47191</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV31] lockup when using AGP. agpmode=0 fixes it."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=20341#c23">Comment # 23</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - random xorg hang with PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47191#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV31] lockup when using AGP. agpmode=0 fixes it."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=20341">bug 20341</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - random xorg hang with PGRAPH_TRAP_TPDMA_2D - TP 0 - Unknown fault at address"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47191">bug 47191</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Do nouveau.agpmode=1 or agpmode=2 produce the same corruption? I don't remember
-the KT133 as being the most reliable chipset in the world... even the
-proprietary driver has the NvAGP setting (or something along those lines). Does
-the blob work for you btw? Can you play with forcing different AGP speeds on
-it, and/or perhaps figure out from logs what AGP speed it's defaulting to?</pre>
+        <pre>No response to re-test request in over a month. Closing as invalid.</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +108,9 @@ it, and/or perhaps figure out from logs what AGP speed it's defaulting to?</pre>
     </body>
 </html>
 
---1380238894.f77f1.22313--
+--1380238959.a78cb1.22497--
 
---===============1831426849==
+--===============1609577249==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1831426849==--
+--===============1609577249==--
