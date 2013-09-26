@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 48434] [NV43] X freezes with "EQ overflowing"
-Date: Thu, 26 Sep 2013 23:23:43 +0000
-Message-ID: <bug-48434-8800-vhjDO5S9Uc@http.bugs.freedesktop.org/>
-References: <bug-48434-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 45957] xorg-server 1.12rc3,
+ mesa 8.0 crashes when starting totem 3.2(uses clutter-gst)
+Date: Thu, 26 Sep 2013 23:24:31 +0000
+Message-ID: <bug-45957-8800-ceo5790C7T@http.bugs.freedesktop.org/>
+References: <bug-45957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1157937923=="
+Content-Type: multipart/mixed; boundary="===============0626878318=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-48434-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-45957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1157937923==
-Content-Type: multipart/alternative; boundary="1380237823.DDC03.18634"; charset="us-ascii"
+--===============0626878318==
+Content-Type: multipart/alternative; boundary="1380237871.cD3Cbe1b2.18864"; charset="us-ascii"
 
 
---1380237823.DDC03.18634
-Date: Thu, 26 Sep 2013 23:23:43 +0000
+--1380237871.cD3Cbe1b2.18864
+Date: Thu, 26 Sep 2013 23:24:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=48434
+https://bugs.freedesktop.org/show_bug.cgi?id=45957
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|REOPENED                    |RESOLVED
+             Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-No response to retest request in over a month. Closing as invalid.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No response to re-test request in over a month. Closing as invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380237823.DDC03.18634
-Date: Thu, 26 Sep 2013 23:23:43 +0000
+--1380237871.cD3Cbe1b2.18864
+Date: Thu, 26 Sep 2013 23:24:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,8 +59,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NV43] X freezes with &quot;EQ overflowing&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48434">bug 48434</a>
+   title="RESOLVED INVALID - xorg-server 1.12rc3, mesa 8.0 crashes when starting totem 3.2(uses clutter-gst)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=45957">bug 45957</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -70,7 +71,7 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Status</td>
-           <td>REOPENED
+           <td>NEW
            </td>
            <td>RESOLVED
            </td>
@@ -87,15 +88,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NV43] X freezes with &quot;EQ overflowing&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48434#c15">Comment # 15</a>
+   title="RESOLVED INVALID - xorg-server 1.12rc3, mesa 8.0 crashes when starting totem 3.2(uses clutter-gst)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=45957#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NV43] X freezes with &quot;EQ overflowing&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=48434">bug 48434</a>
+   title="RESOLVED INVALID - xorg-server 1.12rc3, mesa 8.0 crashes when starting totem 3.2(uses clutter-gst)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=45957">bug 45957</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>No response to retest request in over a month. Closing as invalid.</pre>
+        <pre>No response to re-test request in over a month. Closing as invalid.</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +108,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1380237823.DDC03.18634--
+--1380237871.cD3Cbe1b2.18864--
 
---===============1157937923==
+--===============0626878318==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1157937923==--
+--===============0626878318==--
