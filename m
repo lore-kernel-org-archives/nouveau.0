@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68456] [NV4B] null deref on load,
-	NvI2C=1 makes it work
-Date: Thu, 26 Sep 2013 23:06:10 +0000
-Message-ID: <bug-68456-8800-iSiGLuOE8f@http.bugs.freedesktop.org/>
-References: <bug-68456-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57837] [NV86] invalid opcode on login into dm
+Date: Thu, 26 Sep 2013 23:07:43 +0000
+Message-ID: <bug-57837-8800-aXrRwOlmU9@http.bugs.freedesktop.org/>
+References: <bug-57837-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1617230982=="
+Content-Type: multipart/mixed; boundary="===============0737971328=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68456-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57837-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1617230982==
-Content-Type: multipart/alternative; boundary="1380236770.C78CD2.14209"; charset="us-ascii"
+--===============0737971328==
+Content-Type: multipart/alternative; boundary="1380236863.4e1f0e2.14521"; charset="us-ascii"
 
 
---1380236770.C78CD2.14209
-Date: Thu, 26 Sep 2013 23:06:10 +0000
+--1380236863.4e1f0e2.14521
+Date: Thu, 26 Sep 2013 23:07:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68456
+https://bugs.freedesktop.org/show_bug.cgi?id=57837
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+         Resolution|---                         |INVALID
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This patch should now be in 3.12-rc1.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No re-test in over a month. Closing as invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380236770.C78CD2.14209
-Date: Thu, 26 Sep 2013 23:06:10 +0000
+--1380236863.4e1f0e2.14521
+Date: Thu, 26 Sep 2013 23:07:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,8 +58,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV4B] null deref on load, NvI2C=1 makes it work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68456">bug 68456</a>
+   title="RESOLVED INVALID - [NV86] invalid opcode on login into dm"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57837">bug 57837</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -81,22 +80,22 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Resolution</td>
            <td>---
            </td>
-           <td>FIXED
+           <td>INVALID
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV4B] null deref on load, NvI2C=1 makes it work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68456#c4">Comment # 4</a>
+   title="RESOLVED INVALID - [NV86] invalid opcode on login into dm"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57837#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV4B] null deref on load, NvI2C=1 makes it work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68456">bug 68456</a>
+   title="RESOLVED INVALID - [NV86] invalid opcode on login into dm"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57837">bug 57837</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>This patch should now be in 3.12-rc1.</pre>
+        <pre>No re-test in over a month. Closing as invalid.</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +107,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1380236770.C78CD2.14209--
+--1380236863.4e1f0e2.14521--
 
---===============1617230982==
+--===============0737971328==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1617230982==--
+--===============0737971328==--
