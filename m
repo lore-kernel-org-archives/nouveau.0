@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54970] [NV34] EOG Eye of gnome shows black stripe in
- pictures with nouveau driver
-Date: Thu, 26 Sep 2013 23:45:50 +0000
-Message-ID: <bug-54970-8800-X5fFlyKFAl@http.bugs.freedesktop.org/>
-References: <bug-54970-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40050] [NV94] freezing nouveau,
+ when playing videos on a 2nd screen
+Date: Thu, 26 Sep 2013 23:46:44 +0000
+Message-ID: <bug-40050-8800-SpItm5LzlD@http.bugs.freedesktop.org/>
+References: <bug-40050-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1624935020=="
+Content-Type: multipart/mixed; boundary="===============0156245892=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54970-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40050-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1624935020==
-Content-Type: multipart/alternative; boundary="1380239150.Ed21db2.22998"; charset="us-ascii"
+--===============0156245892==
+Content-Type: multipart/alternative; boundary="1380239204.eFc22.23187"; charset="us-ascii"
 
 
---1380239150.Ed21db2.22998
-Date: Thu, 26 Sep 2013 23:45:50 +0000
+--1380239204.eFc22.23187
+Date: Thu, 26 Sep 2013 23:46:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54970
+https://bugs.freedesktop.org/show_bug.cgi?id=40050
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -39,15 +39,15 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 No response to re-test request in over a month. Closing as invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380239150.Ed21db2.22998
-Date: Thu, 26 Sep 2013 23:45:50 +0000
+--1380239204.eFc22.23187
+Date: Thu, 26 Sep 2013 23:46:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,8 +59,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NV34] EOG Eye of gnome shows black stripe in pictures with nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54970">bug 54970</a>
+   title="RESOLVED INVALID - [NV94] freezing nouveau, when playing videos on a 2nd screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40050">bug 40050</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -88,12 +88,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NV34] EOG Eye of gnome shows black stripe in pictures with nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54970#c3">Comment # 3</a>
+   title="RESOLVED INVALID - [NV94] freezing nouveau, when playing videos on a 2nd screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40050#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NV34] EOG Eye of gnome shows black stripe in pictures with nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54970">bug 54970</a>
+   title="RESOLVED INVALID - [NV94] freezing nouveau, when playing videos on a 2nd screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40050">bug 40050</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>No response to re-test request in over a month. Closing as invalid.</pre>
@@ -108,9 +108,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1380239150.Ed21db2.22998--
+--1380239204.eFc22.23187--
 
---===============1624935020==
+--===============0156245892==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1624935020==--
+--===============0156245892==--
