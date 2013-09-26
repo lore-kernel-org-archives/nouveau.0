@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54537] native mode, forcing panel scaling
-Date: Thu, 26 Sep 2013 23:35:13 +0000
-Message-ID: <bug-54537-8800-QU8YKY0vuG@http.bugs.freedesktop.org/>
-References: <bug-54537-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 63139] No signal trouble using HDMI on Nvidia
+	GF8200M G
+Date: Thu, 26 Sep 2013 23:35:53 +0000
+Message-ID: <bug-63139-8800-iqkRUgGqvY@http.bugs.freedesktop.org/>
+References: <bug-63139-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2104583139=="
+Content-Type: multipart/mixed; boundary="===============0016464379=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54537-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-63139-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2104583139==
-Content-Type: multipart/alternative; boundary="1380238513.c43Af1.20941"; charset="us-ascii"
+--===============0016464379==
+Content-Type: multipart/alternative; boundary="1380238553.218bB1e2.21066"; charset="us-ascii"
 
 
---1380238513.c43Af1.20941
-Date: Thu, 26 Sep 2013 23:35:13 +0000
+--1380238553.218bB1e2.21066
+Date: Thu, 26 Sep 2013 23:35:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54537
+https://bugs.freedesktop.org/show_bug.cgi?id=63139
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -45,8 +46,8 @@ No response to re-test request in over a month. Closing as invalid.
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380238513.c43Af1.20941
-Date: Thu, 26 Sep 2013 23:35:13 +0000
+--1380238553.218bB1e2.21066
+Date: Thu, 26 Sep 2013 23:35:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,8 +59,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - native mode, forcing panel scaling"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54537">bug 54537</a>
+   title="RESOLVED INVALID - No signal trouble using HDMI on Nvidia GF8200M G"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63139">bug 63139</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -87,12 +88,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - native mode, forcing panel scaling"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54537#c2">Comment # 2</a>
+   title="RESOLVED INVALID - No signal trouble using HDMI on Nvidia GF8200M G"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63139#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - native mode, forcing panel scaling"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54537">bug 54537</a>
+   title="RESOLVED INVALID - No signal trouble using HDMI on Nvidia GF8200M G"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63139">bug 63139</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>No response to re-test request in over a month. Closing as invalid.</pre>
@@ -107,9 +108,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1380238513.c43Af1.20941--
+--1380238553.218bB1e2.21066--
 
---===============2104583139==
+--===============0016464379==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2104583139==--
+--===============0016464379==--
