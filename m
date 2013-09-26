@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56748] [NVAF] Graphic Elements Displayed Partially
-Date: Thu, 26 Sep 2013 23:21:10 +0000
-Message-ID: <bug-56748-8800-yDdxuU0p8b@http.bugs.freedesktop.org/>
-References: <bug-56748-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 48434] [NV43] X freezes with "EQ overflowing"
+Date: Thu, 26 Sep 2013 23:23:43 +0000
+Message-ID: <bug-48434-8800-vhjDO5S9Uc@http.bugs.freedesktop.org/>
+References: <bug-48434-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2036627197=="
+Content-Type: multipart/mixed; boundary="===============1157937923=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56748-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-48434-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2036627197==
-Content-Type: multipart/alternative; boundary="1380237670.8b70E72.18014"; charset="us-ascii"
+--===============1157937923==
+Content-Type: multipart/alternative; boundary="1380237823.DDC03.18634"; charset="us-ascii"
 
 
---1380237670.8b70E72.18014
-Date: Thu, 26 Sep 2013 23:21:10 +0000
+--1380237823.DDC03.18634
+Date: Thu, 26 Sep 2013 23:23:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56748
+https://bugs.freedesktop.org/show_bug.cgi?id=48434
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
+             Status|REOPENED                    |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-No response to re-test request in over a month. Closing as invalid.
+--- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No response to retest request in over a month. Closing as invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380237670.8b70E72.18014
-Date: Thu, 26 Sep 2013 23:21:10 +0000
+--1380237823.DDC03.18634
+Date: Thu, 26 Sep 2013 23:23:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,8 +58,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NVAF] Graphic Elements Displayed Partially"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56748">bug 56748</a>
+   title="RESOLVED INVALID - [NV43] X freezes with &quot;EQ overflowing&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48434">bug 48434</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -70,7 +70,7 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td>REOPENED
            </td>
            <td>RESOLVED
            </td>
@@ -87,15 +87,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NVAF] Graphic Elements Displayed Partially"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56748#c2">Comment # 2</a>
+   title="RESOLVED INVALID - [NV43] X freezes with &quot;EQ overflowing&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48434#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NVAF] Graphic Elements Displayed Partially"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56748">bug 56748</a>
+   title="RESOLVED INVALID - [NV43] X freezes with &quot;EQ overflowing&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=48434">bug 48434</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>No response to re-test request in over a month. Closing as invalid.</pre>
+        <pre>No response to retest request in over a month. Closing as invalid.</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +107,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1380237670.8b70E72.18014--
+--1380237823.DDC03.18634--
 
---===============2036627197==
+--===============1157937923==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2036627197==--
+--===============1157937923==--
