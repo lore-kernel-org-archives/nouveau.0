@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69882] [NVE6] GPU lockups
-Date: Fri, 27 Sep 2013 16:40:14 +0000
-Message-ID: <bug-69882-8800-5n02yrURjk@http.bugs.freedesktop.org/>
-References: <bug-69882-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64772] [NVC1] nouveau GF108 kernel errors and
+ graphics corruption when enabling second output
+Date: Fri, 27 Sep 2013 16:55:37 +0000
+Message-ID: <bug-64772-8800-wa35HjgpFF@http.bugs.freedesktop.org/>
+References: <bug-64772-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2107810842=="
+Content-Type: multipart/mixed; boundary="===============0921422902=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69882-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-64772-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2107810842==
-Content-Type: multipart/alternative; boundary="1380300014.2a851.12635"; charset="us-ascii"
+--===============0921422902==
+Content-Type: multipart/alternative; boundary="1380300937.e25a1.15353"; charset="us-ascii"
 
 
---1380300014.2a851.12635
-Date: Fri, 27 Sep 2013 16:40:14 +0000
+--1380300937.e25a1.15353
+Date: Fri, 27 Sep 2013 16:55:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D69882
+https://bugs.freedesktop.org/show_bug.cgi?id=3D64772
 
-Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #3 from Pasi K=C3=A4rkk=C3=A4inen <pasik-X3B1VOXEql0@public.gmane.org> ---
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                URL|                            |https://bugzilla.novell.com
-                   |                            |/show_bug.cgi?id=3D842838
+Running Fedora 19 with latest updates and linux 3.11.1-200.fc19.x86_64 and =
+it
+seems to work better now.=20
+
+I can successfully enable second DVI output, and there's no corruption anym=
+ore,
+the graphics on the second DVI display look OK now.
+
+So that issue seems to be fixed!
+
+I still get this in dmesg though:
+[  353.398552] nouveau E[      VM][0000:01:00.0] failed to create 0x0400000=
+0,
+-28
+[  353.398556] nouveau E[      VM][0000:01:00.0] failed to create 0x0200000=
+0,
+-28
+
+But it doesn't seem fatal..
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380300014.2a851.12635
-Date: Fri, 27 Sep 2013 16:40:14 +0000
+--1380300937.e25a1.15353
+Date: Fri, 27 Sep 2013 16:55:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -53,32 +69,46 @@ Content-Transfer-Encoding: quoted-printable
     <head>
       <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pastas4&#=
-64;gmail.com" title=3D"Dainius Masili=C5=ABnas &lt;pastas4&#64;gmail.com&gt=
-;"> <span class=3D"fn">Dainius Masili=C5=ABnas</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVE6] GPU lockups"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69882">bug 69882<=
-/a>
-        <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">URL</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://bugzilla.novell.com/show_bug.cgi?id=3D842838
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NVC1] nouveau GF108 kernel errors and graphics corru=
+ption when enabling second output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64772#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NVC1] nouveau GF108 kernel errors and graphics corru=
+ption when enabling second output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64772">bug 64772<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pasik&#64;iki.fi" title=3D"Pasi K=C3=A4rkk=C3=A4inen &lt;pasik&#64;iki.fi&g=
+t;"> <span class=3D"fn">Pasi K=C3=A4rkk=C3=A4inen</span></a>
+</span></b>
+        <pre>
+Running Fedora 19 with latest updates and linux 3.11.1-200.fc19.x86_64 and =
+it
+seems to work better now.=20
+
+I can successfully enable second DVI output, and there's no corruption anym=
+ore,
+the graphics on the second DVI display look OK now.
+
+So that issue seems to be fixed!
+
+I still get this in dmesg though:
+[  353.398552] nouveau E[      VM][0000:01:00.0] failed to create 0x0400000=
+0,
+-28
+[  353.398556] nouveau E[      VM][0000:01:00.0] failed to create 0x0200000=
+0,
+-28
+
+But it doesn't seem fatal..</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -89,9 +119,9 @@ Content-Transfer-Encoding: quoted-printable
     </body>
 </html>
 
---1380300014.2a851.12635--
+--1380300937.e25a1.15353--
 
---===============2107810842==
+--===============0921422902==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +132,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2107810842==--
+--===============0921422902==--
