@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69876] [NVC3] Reverse prime sometimes freezes the
-	machine
-Date: Fri, 27 Sep 2013 16:16:22 +0000
-Message-ID: <bug-69876-8800-1UdG4OcCnS@http.bugs.freedesktop.org/>
-References: <bug-69876-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69882] New: [NVE6] GPU lockups
+Date: Fri, 27 Sep 2013 16:33:45 +0000
+Message-ID: <bug-69882-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1445799636=="
+Content-Type: multipart/mixed; boundary="===============1986390835=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,43 +18,60 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1445799636==
-Content-Type: multipart/alternative; boundary="1380298582.5E77B602.7230"; charset="us-ascii"
+--===============1986390835==
+Content-Type: multipart/alternative; boundary="1380299625.7b36dEdf1.11557"; charset="us-ascii"
 
 
---1380298582.5E77B602.7230
-Date: Fri, 27 Sep 2013 16:16:22 +0000
+--1380299625.7b36dEdf1.11557
+Date: Fri, 27 Sep 2013 16:33:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69876
+https://bugs.freedesktop.org/show_bug.cgi?id=69882
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+          Priority: medium
+            Bug ID: 69882
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [NVE6] GPU lockups
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: critical
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Revers prime sometime       |[NVC3] Reverse prime
-                   |freezes the machine         |sometimes freezes the
-                   |                            |machine
+Created attachment 86731
+  --> https://bugs.freedesktop.org/attachment.cgi?id=86731&action=edit
+Kernel log
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Perhaps an interesting resource for you:
-http://nouveau.freedesktop.org/wiki/Optimus/
+Sometimes the X server crashes due to a GPU lockup, caused by a page fault. It
+happens seemingly randomly, at irregular intervals (sometimes it takes several
+hours, sometimes it crashes in half an hour).
 
-I'm no expect in the matter, but I'm pretty sure that you shouldn't be using
-vgaswitcheroo in conjunction with the new runtime pm stuff. Try disabling it
-(vgaswitcheroo). Alternatively (or in addition to), try disabling the new
-runtime pm logic, perhaps it doesn't work correctly for you.
+Before that happens, I see a small amount of corruption (noise around the
+cursor), then everything but the mouse hangs. After a while, the mouse also
+hangs, the screen becomes black with a "_" symbol in the upper right corner of
+the screen (but the mouse is still displayed), and after some more time the
+whole screen becomes corrupt in vertical blocks. If I press Ctrl+Alt+F1 fast
+enough, I can switch out of X and use the console for a while, otherwise the
+whole PC hangs and I need to do a hard reboot.
 
-Is this a new issue? IOW, did this work properly on older kernels? If so, and
-the above fails, a bisect may be in order.
+This issue may or may not be related to bug #69029 (the symptoms seem similar,
+but the errors are different).
+
+I am using a GeForce 660 card on openSUSE 13.1 x86_64 Beta. I also reported the
+bug downstream.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380298582.5E77B602.7230
-Date: Fri, 27 Sep 2013 16:16:22 +0000
+--1380299625.7b36dEdf1.11557
+Date: Fri, 27 Sep 2013 16:33:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,49 +79,118 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC3] Reverse prime sometimes freezes the machine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876">bug 69876</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Revers prime sometime freezes the machine
-           </td>
-           <td>[NVC3] Reverse prime sometimes freezes the machine
-           </td>
-         </tr></table>
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE6] GPU lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69882">69882</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVE6] GPU lockups
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>pastas4&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC3] Reverse prime sometimes freezes the machine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC3] Reverse prime sometimes freezes the machine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876">bug 69876</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Perhaps an interesting resource for you:
-<a href="http://nouveau.freedesktop.org/wiki/Optimus/">http://nouveau.freedesktop.org/wiki/Optimus/</a>
+        <pre>Created <span class=""><a href="attachment.cgi?id=86731" name="attach_86731" title="Kernel log">attachment 86731</a> <a href="attachment.cgi?id=86731&amp;action=edit" title="Kernel log">[details]</a></span>
+Kernel log
 
-I'm no expect in the matter, but I'm pretty sure that you shouldn't be using
-vgaswitcheroo in conjunction with the new runtime pm stuff. Try disabling it
-(vgaswitcheroo). Alternatively (or in addition to), try disabling the new
-runtime pm logic, perhaps it doesn't work correctly for you.
+Sometimes the X server crashes due to a GPU lockup, caused by a page fault. It
+happens seemingly randomly, at irregular intervals (sometimes it takes several
+hours, sometimes it crashes in half an hour).
 
-Is this a new issue? IOW, did this work properly on older kernels? If so, and
-the above fails, a bisect may be in order.</pre>
+Before that happens, I see a small amount of corruption (noise around the
+cursor), then everything but the mouse hangs. After a while, the mouse also
+hangs, the screen becomes black with a &quot;_&quot; symbol in the upper right corner of
+the screen (but the mouse is still displayed), and after some more time the
+whole screen becomes corrupt in vertical blocks. If I press Ctrl+Alt+F1 fast
+enough, I can switch out of X and use the console for a while, otherwise the
+whole PC hangs and I need to do a hard reboot.
+
+This issue may or may not be related to <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA8] GPU lockup since kernel 3.11 upgrade"
+   href="show_bug.cgi?id=69029">bug #69029</a> (the symptoms seem similar,
+but the errors are different).
+
+I am using a GeForce 660 card on openSUSE 13.1 x86_64 Beta. I also reported the
+bug downstream.</pre>
         </div>
       </p>
       <hr>
@@ -119,9 +202,9 @@ the above fails, a bisect may be in order.</pre>
     </body>
 </html>
 
---1380298582.5E77B602.7230--
+--1380299625.7b36dEdf1.11557--
 
---===============1445799636==
+--===============1986390835==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +215,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1445799636==--
+--===============1986390835==--
