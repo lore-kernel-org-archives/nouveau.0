@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51144] significant pixel corruption in text ;
- driver nouveau - GF116 [GeForce GTS 450]
-Date: Fri, 27 Sep 2013 02:00:58 +0000
-Message-ID: <bug-51144-8800-c8sk0aYin8@http.bugs.freedesktop.org/>
-References: <bug-51144-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56546] crash at the second render when applying
+ gamma correction
+Date: Fri, 27 Sep 2013 02:01:42 +0000
+Message-ID: <bug-56546-8800-mRQI4zc032@http.bugs.freedesktop.org/>
+References: <bug-56546-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0630291423=="
+Content-Type: multipart/mixed; boundary="===============0596065763=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51144-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-56546-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0630291423==
-Content-Type: multipart/alternative; boundary="1380247258.AAddAc4.18216"; charset="us-ascii"
+--===============0596065763==
+Content-Type: multipart/alternative; boundary="1380247301.5EaA58231.18373"; charset="us-ascii"
 
 
---1380247258.AAddAc4.18216
-Date: Fri, 27 Sep 2013 02:00:58 +0000
+--1380247301.5EaA58231.18373
+Date: Fri, 27 Sep 2013 02:01:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51144
+https://bugs.freedesktop.org/show_bug.cgi?id=56546
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -39,15 +39,15 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #17 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 No response to re-test request in a month. Closing as invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380247258.AAddAc4.18216
-Date: Fri, 27 Sep 2013 02:00:58 +0000
+--1380247301.5EaA58231.18373
+Date: Fri, 27 Sep 2013 02:01:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,8 +59,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - significant pixel corruption in text ; driver nouveau - GF116 [GeForce GTS 450]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51144">bug 51144</a>
+   title="RESOLVED INVALID - crash at the second render when applying gamma correction"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56546">bug 56546</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -88,12 +88,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - significant pixel corruption in text ; driver nouveau - GF116 [GeForce GTS 450]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51144#c17">Comment # 17</a>
+   title="RESOLVED INVALID - crash at the second render when applying gamma correction"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56546#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - significant pixel corruption in text ; driver nouveau - GF116 [GeForce GTS 450]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51144">bug 51144</a>
+   title="RESOLVED INVALID - crash at the second render when applying gamma correction"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56546">bug 56546</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>No response to re-test request in a month. Closing as invalid.</pre>
@@ -108,9 +108,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1380247258.AAddAc4.18216--
+--1380247301.5EaA58231.18373--
 
---===============0630291423==
+--===============0596065763==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0630291423==--
+--===============0596065763==--
