@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69488] GF108 (NVC1) GPU lockup
-Date: Fri, 27 Sep 2013 00:29:08 +0000
-Message-ID: <bug-69488-8800-dtJCyaGdnJ@http.bugs.freedesktop.org/>
-References: <bug-69488-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60150] [NVAF] Garbled Screen
+Date: Fri, 27 Sep 2013 01:56:49 +0000
+Message-ID: <bug-60150-8800-LhmPXW1gtf@http.bugs.freedesktop.org/>
+References: <bug-60150-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2050486157=="
+Content-Type: multipart/mixed; boundary="===============0874288973=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-60150-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2050486157==
-Content-Type: multipart/alternative; boundary="1380241748.04bE32.32365"; charset="us-ascii"
+--===============0874288973==
+Content-Type: multipart/alternative; boundary="1380247009.Ec27adB2.17252"; charset="us-ascii"
 
 
---1380241748.04bE32.32365
-Date: Fri, 27 Sep 2013 00:29:08 +0000
+--1380247009.Ec27adB2.17252
+Date: Fri, 27 Sep 2013 01:56:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69488
+https://bugs.freedesktop.org/show_bug.cgi?id=60150
 
---- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Looks like Pavel may have already narrowed it down. Feel free to try his patch
-http://lists.freedesktop.org/archives/nouveau/2013-September/014521.html
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please supply a kernel log for a recent kernel, without nomodeset or noaccel
+(i.e. a boot that exhibits the issue).
+
+Potentially relevant -- also make sure you have a recent DDX
+(xf86-video-nouveau).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380241748.04bE32.32365
-Date: Fri, 27 Sep 2013 00:29:08 +0000
+--1380247009.Ec27adB2.17252
+Date: Fri, 27 Sep 2013 01:56:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,17 +55,20 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c4">Comment # 4</a>
+          bz_status_NEW "
+   title="NEW --- - [NVAF] Garbled Screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60150#c8">Comment # 8</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488">bug 69488</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NVAF] Garbled Screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60150">bug 60150</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Looks like Pavel may have already narrowed it down. Feel free to try his patch
-<a href="http://lists.freedesktop.org/archives/nouveau/2013-September/014521.html">http://lists.freedesktop.org/archives/nouveau/2013-September/014521.html</a></pre>
+        <pre>Please supply a kernel log for a recent kernel, without nomodeset or noaccel
+(i.e. a boot that exhibits the issue).
+
+Potentially relevant -- also make sure you have a recent DDX
+(xf86-video-nouveau).</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +80,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1380241748.04bE32.32365--
+--1380247009.Ec27adB2.17252--
 
---===============2050486157==
+--===============0874288973==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2050486157==--
+--===============0874288973==--
