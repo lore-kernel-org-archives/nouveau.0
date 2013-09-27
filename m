@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60150] [NVAF] Garbled Screen
-Date: Fri, 27 Sep 2013 01:56:49 +0000
-Message-ID: <bug-60150-8800-LhmPXW1gtf@http.bugs.freedesktop.org/>
-References: <bug-60150-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51144] significant pixel corruption in text ;
+ driver nouveau - GF116 [GeForce GTS 450]
+Date: Fri, 27 Sep 2013 02:00:58 +0000
+Message-ID: <bug-51144-8800-c8sk0aYin8@http.bugs.freedesktop.org/>
+References: <bug-51144-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0874288973=="
+Content-Type: multipart/mixed; boundary="===============0630291423=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60150-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51144-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0874288973==
-Content-Type: multipart/alternative; boundary="1380247009.Ec27adB2.17252"; charset="us-ascii"
+--===============0630291423==
+Content-Type: multipart/alternative; boundary="1380247258.AAddAc4.18216"; charset="us-ascii"
 
 
---1380247009.Ec27adB2.17252
-Date: Fri, 27 Sep 2013 01:56:49 +0000
+--1380247258.AAddAc4.18216
+Date: Fri, 27 Sep 2013 02:00:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60150
+https://bugs.freedesktop.org/show_bug.cgi?id=51144
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please supply a kernel log for a recent kernel, without nomodeset or noaccel
-(i.e. a boot that exhibits the issue).
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Potentially relevant -- also make sure you have a recent DDX
-(xf86-video-nouveau).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #17 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No response to re-test request in a month. Closing as invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380247009.Ec27adB2.17252
-Date: Fri, 27 Sep 2013 01:56:49 +0000
+--1380247258.AAddAc4.18216
+Date: Fri, 27 Sep 2013 02:00:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,24 +55,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - significant pixel corruption in text ; driver nouveau - GF116 [GeForce GTS 450]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51144">bug 51144</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAF] Garbled Screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60150#c8">Comment # 8</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - significant pixel corruption in text ; driver nouveau - GF116 [GeForce GTS 450]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51144#c17">Comment # 17</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAF] Garbled Screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60150">bug 60150</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - significant pixel corruption in text ; driver nouveau - GF116 [GeForce GTS 450]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51144">bug 51144</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Please supply a kernel log for a recent kernel, without nomodeset or noaccel
-(i.e. a boot that exhibits the issue).
-
-Potentially relevant -- also make sure you have a recent DDX
-(xf86-video-nouveau).</pre>
+        <pre>No response to re-test request in a month. Closing as invalid.</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +108,9 @@ Potentially relevant -- also make sure you have a recent DDX
     </body>
 </html>
 
---1380247009.Ec27adB2.17252--
+--1380247258.AAddAc4.18216--
 
---===============0874288973==
+--===============0630291423==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0874288973==--
+--===============0630291423==--
