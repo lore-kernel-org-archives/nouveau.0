@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69827] [NVC1] Uneven, jerky mouse movement,
- increasing CPU usage
-Date: Thu, 26 Sep 2013 23:55:14 +0000
-Message-ID: <bug-69827-8800-KAgD4zwNyR@http.bugs.freedesktop.org/>
-References: <bug-69827-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69488] GF108 (NVC1) GPU lockup
+Date: Fri, 27 Sep 2013 00:18:42 +0000
+Message-ID: <bug-69488-8800-pG3SnBzFWe@http.bugs.freedesktop.org/>
+References: <bug-69488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0734324084=="
+Content-Type: multipart/mixed; boundary="===============0069540650=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69827-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0734324084==
-Content-Type: multipart/alternative; boundary="1380239714.21452.25271"; charset="us-ascii"
+--===============0069540650==
+Content-Type: multipart/alternative; boundary="1380241121.dD2731.30433"; charset="us-ascii"
 
 
---1380239714.21452.25271
-Date: Thu, 26 Sep 2013 23:55:14 +0000
+--1380241121.dD2731.30433
+Date: Fri, 27 Sep 2013 00:18:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69827
+https://bugs.freedesktop.org/show_bug.cgi?id=69488
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Uneven, jerky mouse         |[NVC1] Uneven, jerky mouse
-                   |movement, increasing CPU    |movement, increasing CPU
-                   |usage                       |usage
+--- Comment #2 from Kevin N. <vekinn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I can tell you that it doesn't occur on the following kernels.
+vmlinuz-3.9.5-301.fc19.x86_64
+vmlinuz-3.11.1-200.fc19.x86_64
+vmlinuz-3.10.11-200.fc19.x86_64
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380239714.21452.25271
-Date: Thu, 26 Sep 2013 23:55:14 +0000
+--1380241121.dD2731.30433
+Date: Fri, 27 Sep 2013 00:18:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,28 +50,24 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69827">bug 69827</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Uneven, jerky mouse movement, increasing CPU usage
-           </td>
-           <td>[NVC1] Uneven, jerky mouse movement, increasing CPU usage
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - GF108 (NVC1) GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - GF108 (NVC1) GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488">bug 69488</a>
+              from <span class="vcard"><a class="email" href="mailto:vekinn&#64;gmail.com" title="Kevin N. &lt;vekinn&#64;gmail.com&gt;"> <span class="fn">Kevin N.</span></a>
+</span></b>
+        <pre>I can tell you that it doesn't occur on the following kernels.
+vmlinuz-3.9.5-301.fc19.x86_64
+vmlinuz-3.11.1-200.fc19.x86_64
+vmlinuz-3.10.11-200.fc19.x86_64</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +78,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1380239714.21452.25271--
+--1380241121.dD2731.30433--
 
---===============0734324084==
+--===============0069540650==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0734324084==--
+--===============0069540650==--
