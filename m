@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47288] System hangs with GeForce 6150SE nForce 430
- ("EQ overflowing")
-Date: Fri, 27 Sep 2013 02:03:21 +0000
-Message-ID: <bug-47288-8800-HkUyTG29Qi@http.bugs.freedesktop.org/>
-References: <bug-47288-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69488] GF108 (NVC1) GPU lockup
+Date: Fri, 27 Sep 2013 03:07:42 +0000
+Message-ID: <bug-69488-8800-14DwYwkjCG@http.bugs.freedesktop.org/>
+References: <bug-69488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0801057215=="
+Content-Type: multipart/mixed; boundary="===============2070020171=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47288-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0801057215==
-Content-Type: multipart/alternative; boundary="1380247401.5DFB5D202.18734"; charset="us-ascii"
+--===============2070020171==
+Content-Type: multipart/alternative; boundary="1380251262.7C46783D1.30654"; charset="us-ascii"
 
 
---1380247401.5DFB5D202.18734
-Date: Fri, 27 Sep 2013 02:03:21 +0000
+--1380251262.7C46783D1.30654
+Date: Fri, 27 Sep 2013 03:07:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47288
+https://bugs.freedesktop.org/show_bug.cgi?id=69488
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #5 from Kevin N. <vekinn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #4)
+> Looks like Pavel may have already narrowed it down. Feel free to try his
+> patch
+> http://lists.freedesktop.org/archives/nouveau/2013-September/014521.html
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
-
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-No response to re-test request in a month. Closing as invalid.
+I used this patch on 3.12-rc2 and the issues are gone.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380247401.5DFB5D202.18734
-Date: Fri, 27 Sep 2013 02:03:21 +0000
+--1380251262.7C46783D1.30654
+Date: Fri, 27 Sep 2013 03:07:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,48 +52,25 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - System hangs with GeForce 6150SE nForce 430 (&quot;EQ overflowing&quot;)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47288">bug 47288</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - System hangs with GeForce 6150SE nForce 430 (&quot;EQ overflowing&quot;)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47288#c14">Comment # 14</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - GF108 (NVC1) GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - System hangs with GeForce 6150SE nForce 430 (&quot;EQ overflowing&quot;)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47288">bug 47288</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_REOPENED "
+   title="REOPENED --- - GF108 (NVC1) GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488">bug 69488</a>
+              from <span class="vcard"><a class="email" href="mailto:vekinn&#64;gmail.com" title="Kevin N. &lt;vekinn&#64;gmail.com&gt;"> <span class="fn">Kevin N.</span></a>
 </span></b>
-        <pre>No response to re-test request in a month. Closing as invalid.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=69488#c4">comment #4</a>)
+<span class="quote">&gt; Looks like Pavel may have already narrowed it down. Feel free to try his
+&gt; patch
+&gt; <a href="http://lists.freedesktop.org/archives/nouveau/2013-September/014521.html">http://lists.freedesktop.org/archives/nouveau/2013-September/014521.html</a></span >
+
+I used this patch on 3.12-rc2 and the issues are gone.</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +82,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1380247401.5DFB5D202.18734--
+--1380251262.7C46783D1.30654--
 
---===============0801057215==
+--===============2070020171==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0801057215==--
+--===============2070020171==--
