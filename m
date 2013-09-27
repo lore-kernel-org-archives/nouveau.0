@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69882] [NVE6] GPU lockups
-Date: Fri, 27 Sep 2013 16:35:17 +0000
-Message-ID: <bug-69882-8800-eO3Bae0twp@http.bugs.freedesktop.org/>
+Date: Fri, 27 Sep 2013 16:39:04 +0000
+Message-ID: <bug-69882-8800-Vkh0Pp9D22@http.bugs.freedesktop.org/>
 References: <bug-69882-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1550502209=="
+Content-Type: multipart/mixed; boundary="===============1101785538=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69882-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,33 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1550502209==
-Content-Type: multipart/alternative; boundary="1380299717.7a0f751.11767"; charset="us-ascii"
+--===============1101785538==
+Content-Type: multipart/alternative; boundary="1380299944.Bb7e60a21.12373"; charset="us-ascii"
 
 
---1380299717.7a0f751.11767
-Date: Fri, 27 Sep 2013 16:35:17 +0000
+--1380299944.Bb7e60a21.12373
+Date: Fri, 27 Sep 2013 16:39:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D69882
 
---- Comment #1 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 86732
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D86732&action=3Dedit
-Xorg crash log
+--- Comment #2 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 86733
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D86733&action=3Dedit
+Second kernel log
 
-Attached the Xorg crash log. It seems to be fairly consistent during differ=
-ent
-crash instances.
+Attached two kernel logs. The first one happened at the same time as the
+attached Xorg crash log (if the timestamps are important). The second log is
+/dev/kmsg during another crash instance, which seems to have caused differe=
+nt
+errors, but the same outcome.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380299717.7a0f751.11767
-Date: Fri, 27 Sep 2013 16:35:17 +0000
+--1380299944.Bb7e60a21.12373
+Date: Fri, 27 Sep 2013 16:39:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,8 +63,8 @@ Content-Transfer-Encoding: quoted-printable
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW --- - [NVE6] GPU lockups"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69882#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69882#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW --- - [NVE6] GPU lockups"
@@ -72,15 +74,17 @@ Content-Transfer-Encoding: quoted-printable
 pastas4&#64;gmail.com" title=3D"Dainius Masili=C5=ABnas &lt;pastas4&#64;gma=
 il.com&gt;"> <span class=3D"fn">Dainius Masili=C5=ABnas</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D86732"=
- name=3D"attach_86732" title=3D"Xorg crash log">attachment 86732</a> <a hre=
-f=3D"attachment.cgi?id=3D86732&amp;action=3Dedit" title=3D"Xorg crash log">=
-[details]</a></span>
-Xorg crash log
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D86733"=
+ name=3D"attach_86733" title=3D"Second kernel log">attachment 86733</a> <a =
+href=3D"attachment.cgi?id=3D86733&amp;action=3Dedit" title=3D"Second kernel=
+ log">[details]</a></span>
+Second kernel log
 
-Attached the Xorg crash log. It seems to be fairly consistent during differ=
-ent
-crash instances.</pre>
+Attached two kernel logs. The first one happened at the same time as the
+attached Xorg crash log (if the timestamps are important). The second log is
+/dev/kmsg during another crash instance, which seems to have caused differe=
+nt
+errors, but the same outcome.</pre>
         </div>
       </p>
       <hr>
@@ -92,9 +96,9 @@ crash instances.</pre>
     </body>
 </html>
 
---1380299717.7a0f751.11767--
+--1380299944.Bb7e60a21.12373--
 
---===============1550502209==
+--===============1101785538==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +109,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1550502209==--
+--===============1101785538==--
