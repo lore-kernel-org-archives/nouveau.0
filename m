@@ -1,12 +1,13 @@
-From: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: NV_PMC_BOOT_0 architecture field
-Date: Fri, 27 Sep 2013 11:03:35 -0700
-Message-ID: <20130927180335.GB5577@parker.nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 69876] [NVC3] Reverse prime sometimes freezes the
+	machine
+Date: Fri, 27 Sep 2013 18:28:12 +0000
+Message-ID: <bug-69876-8800-s7K7NCIlgi@http.bugs.freedesktop.org/>
+References: <bug-69876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0823754530=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <bug-69876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,20 +17,75 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi Ben,
 
-At XDC you asked about the architecture field in NV_PMC_BOOT_0, and how
-to correctly determine the GPU architecture.
+--===============0823754530==
+Content-Type: multipart/alternative; boundary="1380306491.b6aEef5c1.4021"; charset="us-ascii"
 
-It looks like Nouveau is getting the architecture from bits 20-27 
-in NV_PMC_BOOT_0 (though masking off bits 20-23).  For >= NV10, the
-architecture field in NV_PMC_BOOT_0 is bits 24-28.  E.g., the GK2xx
-architecture has architecture value 0x10, while GK11x has value 0xF and
-GK10x has value 0xE.
 
-I hope that helps,
-- Andy
+--1380306491.b6aEef5c1.4021
+Date: Fri, 27 Sep 2013 18:28:11 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=69876
+
+--- Comment #3 from Mike <michele.cane-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+With 3.10 is working fine. Have not tried with 3.11. I recompiled 3.12-rc1
+without vgaswitcheroo and the problem persists.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1380306491.b6aEef5c1.4021
+Date: Fri, 27 Sep 2013 18:28:11 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC3] Reverse prime sometimes freezes the machine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC3] Reverse prime sometimes freezes the machine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876">bug 69876</a>
+              from <span class="vcard"><a class="email" href="mailto:michele.cane&#64;gmail.com" title="Mike &lt;michele.cane&#64;gmail.com&gt;"> <span class="fn">Mike</span></a>
+</span></b>
+        <pre>With 3.10 is working fine. Have not tried with 3.11. I recompiled 3.12-rc1
+without vgaswitcheroo and the problem persists.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1380306491.b6aEef5c1.4021--
+
+--===============0823754530==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0823754530==--
