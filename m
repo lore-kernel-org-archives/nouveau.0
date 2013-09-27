@@ -1,15 +1,13 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Resource map sanity check fails after GRUB "keeps"
- the gfx mode
-Date: Fri, 27 Sep 2013 10:33:26 +0100
-Message-ID: <524550E6.6040909@gmail.com>
-References: <20130925200706.2e6f5947@IRBT4585>
-	<20130926183743.0d2420c4@IRBT4585>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 69830] [NVC1] Kernel 3.11 and newer hang at X11
+ start (bisected)
+Date: Fri, 27 Sep 2013 14:51:46 +0000
+Message-ID: <bug-69830-8800-u876zrrvdg@http.bugs.freedesktop.org/>
+References: <bug-69830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0237380387=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20130926183743.0d2420c4@IRBT4585>
+In-Reply-To: <bug-69830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,59 +17,113 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Pavel Roskin <proski-mXXj517/zsQ@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, David Herrmann <dh.herrmann-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 26/09/13 23:37, Pavel Roskin wrote:
-> Hello!
-> 
-> I have spent some time on the issue.  I'm not sure it's a nouveau bug.
-> I have a fix that changes arch/x86/kernel/sysfb_simplefb.c only.
-> 
-> GRUB actually uses graphic mode on my card.  That mode is supported by
-> simplefb.  However, the resource conflict happens regardless of whether
-> simplefb is enabled.  It's sysfb_simplefb that causes it, a completely
-> different driver.
-> 
-> If GRUB keeps the graphic mode, I have this entry in /proc/iomem:
-> 
->       f1000000-f112bfff : BOOTFB
-> 
-> It is reserved by sysfb_simplefb.  Nouveau tries to map an area at
-> 0xf0000000-0xf1ffffff, so it includes the existing resource without
-> being equivalent to it.
-> 
-> Nouveau correctly calls remove_conflicting_framebuffers() before trying
-> to map that resource.  However, sysfb_simplefb is not a real
-> framebuffer, so it doesn't free its resources.
-> 
-> iomem_map_sanity_check() doesn't check regions with IORESOURCE_BUSY
-> set.  That's the comment from the code:
-> 
->     /*
->      * if a resource is "BUSY", it's not a hardware resource
->      * but a driver mapping of such a resource; we don't want
->      * to warn for those; some drivers legitimately map only
->      * partial hardware resources. (example: vesafb)
->      */
-> 
-> So I added IORESOURCE_BUSY to sysfb_simplefb.c and the problem is fixed
-> now.  Actually, it prevents nvidiafb from claiming the device:
-> 
-> nvidiafb 0000:01:00.0: BAR 3: can't reserve [mem 0xf0000000-0xf1ffffff
-> 64bit pref]
-> 
-> But maybe that's the point of sysfb_simplefb?  Anyway, here's the
-> patch/hack, signed off in case it's correct :)
-> 
-> 
-FWIW another nvc0 user is experiencing the same/similar issue and the
-patch seems to resolve the problem in his case.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69488
-
-Thanks Pavel :)
+--===============0237380387==
+Content-Type: multipart/alternative; boundary="1380293506.bF5AD0.17700"; charset="us-ascii"
 
 
-Cheers
-Emil
+--1380293506.bF5AD0.17700
+Date: Fri, 27 Sep 2013 14:51:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=69830
+
+--- Comment #8 from Alan Ott <alan-yzvJWuRpmD1zbRFIqnYvSA@public.gmane.org> ---
+I'm on mainline. As evidence, noice the SHA1 of my HEAD:
+
+alan@ato:~/work/linux-3.12$ git log |head
+commit 4a10c2ac2f368583138b774ca41fac4207911983
+Author: Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+Date:   Mon Sep 23 15:41:09 2013 -0700
+
+    Linux 3.12-rc2
+
+commit 9d23108df359e572a0dca0b631bfee9f5e0fa9ea
+Merge: e04a0a5 6174081
+Author: Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+Date:   Mon Sep 23 12:53:07 2013 -0700
+
+See 3.12-rc2 has the same SHA1:
+https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=4a10c2ac2f368583138b774ca41fac4207911983
+
+
+The gitk shows that while 791dc is the parent of 30f, there was a lot of merge
+activity in between, so I think we're looking at the same thing. Sorry to
+confuse the matter.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1380293506.bF5AD0.17700
+Date: Fri, 27 Sep 2013 14:51:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NVC1] Kernel 3.11 and newer hang at X11 start (bisected)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69830#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NVC1] Kernel 3.11 and newer hang at X11 start (bisected)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69830">bug 69830</a>
+              from <span class="vcard"><a class="email" href="mailto:alan&#64;signal11.us" title="Alan Ott &lt;alan&#64;signal11.us&gt;"> <span class="fn">Alan Ott</span></a>
+</span></b>
+        <pre>I'm on mainline. As evidence, noice the SHA1 of my HEAD:
+
+alan&#64;ato:~/work/linux-3.12$ git log |head
+commit 4a10c2ac2f368583138b774ca41fac4207911983
+Author: Linus Torvalds &lt;<a href="mailto:torvalds&#64;linux-foundation.org">torvalds&#64;linux-foundation.org</a>&gt;
+Date:   Mon Sep 23 15:41:09 2013 -0700
+
+    Linux 3.12-rc2
+
+commit 9d23108df359e572a0dca0b631bfee9f5e0fa9ea
+Merge: e04a0a5 6174081
+Author: Linus Torvalds &lt;<a href="mailto:torvalds&#64;linux-foundation.org">torvalds&#64;linux-foundation.org</a>&gt;
+Date:   Mon Sep 23 12:53:07 2013 -0700
+
+See 3.12-rc2 has the same SHA1:
+<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=4a10c2ac2f368583138b774ca41fac4207911983">https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=4a10c2ac2f368583138b774ca41fac4207911983</a>
+
+
+The gitk shows that while 791dc is the parent of 30f, there was a lot of merge
+activity in between, so I think we're looking at the same thing. Sorry to
+confuse the matter.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1380293506.bF5AD0.17700--
+
+--===============0237380387==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0237380387==--
