@@ -1,19 +1,12 @@
 From: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: offer to help, DCB
-Date: Fri, 27 Sep 2013 10:52:05 -0700
-Message-ID: <20130927175205.GA5577@parker.nvidia.com>
-References: <20130924044457.GA25785@parker.nvidia.com>
-	<52413B42.9050101@canonical.com>
-	<20130924181938.GD27823@parker.nvidia.com>
-	<CAPM=9tykSx_p-SgK9+JpUADD8E_M6ciS5kXd68UaE-A9-sgiYg@mail.gmail.com>
-	<20130925003422.GE28691@parker.nvidia.com>
-	<524294C4.20701@0x04.net>
+Subject: NV_PMC_BOOT_0 architecture field
+Date: Fri, 27 Sep 2013 11:03:35 -0700
+Message-ID: <20130927180335.GB5577@parker.nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <524294C4.20701-mP9o5jsk0RY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,52 +16,20 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Marcin =?utf-8?Q?Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBTZXAgMjUsIDIwMTMgYXQgMTI6NDY6MTJBTSAtMDcwMCwgTWFyY2luIEtvxZtjaWVs
-bmlja2kgd3JvdGU6Cj4gPiBEb2VzIE5vdXZlYXUgcmVpbXBsZW1lbnQgRmFsY29uIG1pY3JvY29k
-ZSBkdWUgdG8gcGFydGljdWxhciBkZWZpY2llbmNpZXMKPiA+IGluIE5WSURJQSdzIG1pY3JvY29k
-ZSwgb3IgYmVjYXVzZSB5b3UgY291bGRuJ3QgZ2V0IHBlcm1pc3Npb24gaW4gdGhlIHBhc3QKPiA+
-IHRvIHJlZGlzdHJpYnV0ZSB0aGUgZmlybXdhcmUgZXh0cmFjdGVkIGZyb20gTlZJRElBJ3MgcHJv
-cHJpZXRhcnkgZHJpdmVyPwo+ID4gSWYgdGhlIGxhdHRlciwgSSB0aGluayB3ZSBjYW4gZ2V0IHRv
-IHRoZSBwb2ludCBvZiBzb2x2aW5nIHRoYXQgd2l0aCBtb3JlCj4gPiBhbWVuYWJsZSBsaWNlbnNp
-bmcuICBJZiB0aGUgZm9ybWVyLCBJJ2QgbGlrZSB0byByZXBvcnQgdGhlIGRlZmljaWVuY2llcwo+
-ID4gZnJvbSB5b3VyIHBvaW50IG9mIHZpZXcgYmFjayB0byBOVklESUEncyBmaXJtd2FyZSB0ZWFt
-LCBzbyB0aGF0IHdlIGNhbgo+ID4gaW1wcm92ZSB0aGUgZmlybXdhcmUgZm9yIE5vdXZlYXUgdXNl
-Lgo+IAo+IFdoaWxlIEknbSBwZXJzb25hbGx5IG9uZSBvZiB0aGUgZ3V5cyB3aG8gd291bGRuJ3Qg
-bGlrZSB0byBzZWUgYSBiaW5hcnkgCj4gYmxvYiBpbiBub3V2ZWF1LCBubyBtYXR0ZXIgdGhlIHRl
-cm1zLCBJJ3ZlIHJlYWQgdGhlIGZpcm13YXJlIGJsb2JzIAo+IGRlY29tcGlsYXRpb24gYW5kIEkn
-bSBxdWl0ZSBjb25jZXJuZWQgYWJvdXQgcG9zc2libGUgc2VjdXJpdHkgaW1wbGljYXRpb25zLgo+
-IAo+IFRoZSBQR1JBUEggY29udGV4dCBzd2l0Y2ggbWljcm9jb2RlIGFsbG93cyB1c2VyIHRvIHJl
-YWQvd3JpdGUgYXJiaXRyYXJ5IAo+IE1NSU8gcmVnaXN0ZXJzIGJ5IHN1Ym1pdHRpbmcgdGhlIGZp
-cm13YXJlIG1ldGhvZHMuIFRoZSBHRjEwMCsgdmlkZW8gCj4gZGVjb2RpbmcgZXRjLiBmYWxjb24g
-bWljcm9jb2RlcyBhbGxvdyB5b3UgdG8ganVzdCBhc2sgZm9yIHBoeXNpY2FsIAo+IGluc3RlYWQg
-b2YgdmlydHVhbCBhZGRyZXNzaW5nLCBhbmQgdGhhdCBpbmNsdWRlcyBwaHlzaWNhbCBzeXN0ZW0g
-bWVtb3J5LiAKPiBXaHkgZGlkIG5WaWRpYSBpbmNsdWRlIHN1Y2ggb2J2aW91c2x5IHNlY3VyaXR5
-LWJyZWFraW5nIGZ1bmN0aW9uYWxpdHkgaW4gCj4gdGhlIGZpcm13YXJlIGltYWdlcz8gQXMgSSB1
-bmRlcnN0YW5kIGl0LCBhIHVzZXIgaGF2aW5nIGFjY2VzcyB0byBqdXN0IAo+IHRoZSBGSUZPIHN1
-Ym1pc3Npb24gaW50ZXJmYWNlIHNob3VsZCBvbmx5IGhhdmUgYWNjZXNzIHRvIGhpcyBvd24gVk0g
-Cj4gYXJlYSwgYW5kIG5vdCBoYXZlIGVub3VnaCBwb3dlciB0byB0YWtlIG92ZXIgdGhlIG1hY2hp
-bmUuIElzIHRoZXJlIGFueSAKPiBzZWN1cml0eSBtb2RlbCBmb3IgblZpZGlhIGhhcmR3YXJlL2Zp
-cm13YXJlL2tlcm5lbCBkcml2ZXIgc3lzdGVtPwo+IAo+IE1hcmNpbiBLb8WbY2llbG5pY2tpCgpI
-aSBNYXJjaW4uCgpJJ20gbm90IHBlcnNvbmFsbHkgZmFtaWxpYXIgd2l0aCB0aGUgY3VycmVudCBp
-bXBsZW1lbnRhdGlvbiBvZiBhbnkKb2YgTlZJRElBJ3MgbWljcm9jb2RlLCBidXQgd2hhdCB5b3Ug
-ZGVzY3JpYmUgc291bmRzIHF1aXRlIHNlcmlvdXMuCkknbSB0YWtpbmcgdGhpcyB1cCB3aXRoIHRo
-ZSBjb3JyZWN0IGdyb3VwcyB3aXRoaW4gTlZJRElBLiAgVGhhbmsgeW91CmZvciByYWlzaW5nIHRo
-b3NlIGNvbmNlcm5zLgoKR2l2ZW4gdGhhdCwgSSBuZWVkIHRvIHJldHJhY3QgbXkgc3VnZ2VzdGlv
-biBvZiBOb3V2ZWF1IHVzaW5nIE5WSURJQSdzCmJpbmFyeS1vbmx5IG1pY3JvY29kZSwgYXQgbGVh
-c3QgdW50aWwgd2UgZ2V0IHRvIGEgcG9pbnQgd2hlcmUgTlZJRElBCmhhcyBlYXJuZWQgc29tZSB0
-cnVzdCBmcm9tIE5vdXZlYXUgaW4gb3VyIG1pY3JvY29kZSBpbXBsZW1lbnRhdGlvbnMuCgpJbmNp
-ZGVudGFsbHksIGlmIHlvdSBoYXZlIGFkZGl0aW9uYWwgc2VjdXJpdHkgY29uY2VybnMgd2l0aCBO
-VklESUEncwpwcm9wcmlldGFyeSBkcml2ZXIsIHBsZWFzZSBmZWVsIGZyZWUgdG8gcmVwb3J0IHRo
-ZW0gdG8gTlZJRElBIHRocm91Z2gKdW5peC1zZWN1cml0eUBudmlkaWEuY29tLiAgSSBhZG1pdCB0
-aGF0IE5WSURJQSBoYXNuJ3QgYWx3YXlzIGJlZW4gdGhlIG1vc3QKcmVzcG9uc2libGUgaW4gdGhl
-IHBhc3QsIGFuZCB3ZSBkZWZpbml0ZWx5IGhhdmUgc29tZSBhcmNoaXRlY3R1cmFsIHdvcmsKdG8g
-ZG8gaW4gdGhlIHByb3ByaWV0YXJ5IGRyaXZlciAoZS5nLiwgbW92aW5nIGtpY2tvZmZzIHRvIGtl
-cm5lbC1zcGFjZSwKbGVzcyBicmFpbiBkZWFkIHVzYWdlIG9mIHRoZSBNTVUsIGV0YyksIGJ1dCB3
-ZSBhcmUgdHJ5aW5nIHRvIHRha2Ugc2VjdXJpdHkKbW9yZSBzZXJpb3VzbHkuCgpUaGFua3MsCi0g
-QW5keQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
-dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+Hi Ben,
+
+At XDC you asked about the architecture field in NV_PMC_BOOT_0, and how
+to correctly determine the GPU architecture.
+
+It looks like Nouveau is getting the architecture from bits 20-27 
+in NV_PMC_BOOT_0 (though masking off bits 20-23).  For >= NV10, the
+architecture field in NV_PMC_BOOT_0 is bits 24-28.  E.g., the GK2xx
+architecture has architecture value 0x10, while GK11x has value 0xF and
+GK10x has value 0xE.
+
+I hope that helps,
+- Andy
