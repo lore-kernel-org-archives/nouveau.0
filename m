@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69488] GF108 (NVC1) GPU lockup
-Date: Fri, 27 Sep 2013 15:51:49 +0000
-Message-ID: <bug-69488-8800-2Efr8tvh4W@http.bugs.freedesktop.org/>
-References: <bug-69488-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69876] Revers prime sometime freezes the machine
+Date: Fri, 27 Sep 2013 16:07:34 +0000
+Message-ID: <bug-69876-8800-YbO2IQCVbq@http.bugs.freedesktop.org/>
+References: <bug-69876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0849204119=="
+Content-Type: multipart/mixed; boundary="===============1899289538=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0849204119==
-Content-Type: multipart/alternative; boundary="1380297109.cd3a80731.725"; charset="us-ascii"
+--===============1899289538==
+Content-Type: multipart/alternative; boundary="1380298054.5bC36d2.5057"; charset="us-ascii"
 
 
---1380297109.cd3a80731.725
-Date: Fri, 27 Sep 2013 15:51:49 +0000
+--1380298054.5bC36d2.5057
+Date: Fri, 27 Sep 2013 16:07:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69488
+https://bugs.freedesktop.org/show_bug.cgi?id=69876
 
---- Comment #7 from Kevin N. <vekinn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #6)
-> Created attachment 86729 [details] [review]
-> better patch for sysfb_simplefb that adjusts the BOOTFB resource
-> 
-> sysfb_simplefb.c checks all PCI BARs on all VGA devices and adjust the
-> resource to match the BAR in which the original area from screen_info is
-> located.  Please test.  I'm not sure why nouveau hangs in your case.  It
-> doesn't hang for me even if it shows the stack trace.
+Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> changed:
 
-I tried with your better patch and it also works fine.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Assignee|aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org        |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
+          Component|Driver/nVidia (open)        |Driver/nouveau
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380297109.cd3a80731.725
-Date: Fri, 27 Sep 2013 15:51:49 +0000
+--1380298054.5bC36d2.5057
+Date: Fri, 27 Sep 2013 16:07:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,30 +52,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488">bug 69488</a>
-              from <span class="vcard"><a class="email" href="mailto:vekinn&#64;gmail.com" title="Kevin N. &lt;vekinn&#64;gmail.com&gt;"> <span class="fn">Kevin N.</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=69488#c6">comment #6</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=86729" name="attach_86729" title="better patch for sysfb_simplefb that adjusts the BOOTFB resource">attachment 86729</a> <a href="attachment.cgi?id=86729&amp;action=edit" title="better patch for sysfb_simplefb that adjusts the BOOTFB resource">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=69488&amp;attachment=86729'>[review]</a> [review]
-&gt; better patch for sysfb_simplefb that adjusts the BOOTFB resource
-&gt; 
-&gt; sysfb_simplefb.c checks all PCI BARs on all VGA devices and adjust the
-&gt; resource to match the BAR in which the original area from screen_info is
-&gt; located.  Please test.  I'm not sure why nouveau hangs in your case.  It
-&gt; doesn't hang for me even if it shows the stack trace.</span >
+    <body><span class="vcard"><a class="email" href="mailto:aplattner&#64;nvidia.com" title="Aaron Plattner &lt;aplattner&#64;nvidia.com&gt;"> <span class="fn">Aaron Plattner</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Revers prime sometime freezes the machine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876">bug 69876</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-I tried with your better patch and it also works fine.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>aplattner&#64;nvidia.com
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>Driver/nVidia (open)
+           </td>
+           <td>Driver/nouveau
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -90,9 +92,9 @@ I tried with your better patch and it also works fine.</pre>
     </body>
 </html>
 
---1380297109.cd3a80731.725--
+--1380298054.5bC36d2.5057--
 
---===============0849204119==
+--===============1899289538==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0849204119==--
+--===============1899289538==--
