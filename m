@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54910] Problems with nouveau and Gforce 2MX
-Date: Sun, 29 Sep 2013 14:46:49 +0000
-Message-ID: <bug-54910-8800-aGkn3lqkuE@http.bugs.freedesktop.org/>
+Date: Sun, 29 Sep 2013 14:49:25 +0000
+Message-ID: <bug-54910-8800-2b0U9MtptN@http.bugs.freedesktop.org/>
 References: <bug-54910-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1206631667=="
+Content-Type: multipart/mixed; boundary="===============0107655777=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54910-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,18 +20,23 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1206631667==
-Content-Type: multipart/alternative; boundary="1380466009.CFAe60.4579"; charset="us-ascii"
+--===============0107655777==
+Content-Type: multipart/alternative; boundary="1380466165.285DF0.5240"; charset="us-ascii"
 
 
---1380466009.CFAe60.4579
-Date: Sun, 29 Sep 2013 14:46:48 +0000
+--1380466165.285DF0.5240
+Date: Sun, 29 Sep 2013 14:49:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54910
 
---- Comment #3 from klxout <klxout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+--- Comment #4 from klxout <klxout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+OK, I'll try with latest Debian Stable and give you the results
+
+Thanks
+
+
 2013/8/25 <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
 
 >   *Comment # 1 <https://bugs.freedesktop.org/show_bug.cgi?id=54910#c1> on bug
@@ -53,8 +58,8 @@ https://bugs.freedesktop.org/show_bug.cgi?id=54910
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380466009.CFAe60.4579
-Date: Sun, 29 Sep 2013 14:46:49 +0000
+--1380466165.285DF0.5240
+Date: Sun, 29 Sep 2013 14:49:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,14 +73,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED INVALID - Problems with nouveau and Gforce 2MX"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54910#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54910#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED INVALID - Problems with nouveau and Gforce 2MX"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54910">bug 54910</a>
               from <span class="vcard"><a class="email" href="mailto:klxout&#64;gmail.com" title="klxout &lt;klxout&#64;gmail.com&gt;"> <span class="fn">klxout</span></a>
 </span></b>
-        <pre>2013/8/25 &lt;<a href="mailto:bugzilla-daemon&#64;freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a>&gt;
+        <pre>OK, I'll try with latest Debian Stable and give you the results
+
+Thanks
+
+
+2013/8/25 &lt;<a href="mailto:bugzilla-daemon&#64;freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a>&gt;
 
 <span class="quote">&gt;   *<a href="show_bug.cgi?id=54910#c1">Comment # 1</a> &lt;<a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
@@ -108,9 +118,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1380466009.CFAe60.4579--
+--1380466165.285DF0.5240--
 
---===============1206631667==
+--===============0107655777==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +131,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1206631667==--
+--===============0107655777==--
