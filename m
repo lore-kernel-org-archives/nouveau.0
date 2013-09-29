@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54910] Problems with nouveau and Gforce 2MX
-Date: Sun, 29 Sep 2013 14:49:25 +0000
-Message-ID: <bug-54910-8800-2b0U9MtptN@http.bugs.freedesktop.org/>
+Date: Sun, 29 Sep 2013 15:39:36 +0000
+Message-ID: <bug-54910-8800-qnWG7Y49W4@http.bugs.freedesktop.org/>
 References: <bug-54910-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0107655777=="
+Content-Type: multipart/mixed; boundary="===============1646750458=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54910-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,46 +20,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0107655777==
-Content-Type: multipart/alternative; boundary="1380466165.285DF0.5240"; charset="us-ascii"
+--===============1646750458==
+Content-Type: multipart/alternative; boundary="1380469176.0aA140611.14783"; charset="us-ascii"
 
 
---1380466165.285DF0.5240
-Date: Sun, 29 Sep 2013 14:49:25 +0000
+--1380469176.0aA140611.14783
+Date: Sun, 29 Sep 2013 15:39:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54910
 
---- Comment #4 from klxout <klxout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-OK, I'll try with latest Debian Stable and give you the results
+--- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #4)
+> OK, I'll try with latest Debian Stable and give you the results
+> 
+> Thanks
+> 
+Note when we say latest software we do not mean "latest ones provided by your
+distributions". Latest software is a moving target dictated by upstream
+which is currently at
+ * kernel        3.11
+ * libdrm        2.4.46
+ * Mesa            9.2
+ * xf86-video-nouveau    1.0.9
 
-Thanks
+AFAIK Debian stable likes to provide 1-2 year old "latest" software.
 
-
-2013/8/25 <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
-
->   *Comment # 1 <https://bugs.freedesktop.org/show_bug.cgi?id=54910#c1> on bug
-> 54910 <https://bugs.freedesktop.org/show_bug.cgi?id=54910> from Ilia
-> Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> *
->
-> Does this still happen with the latest software? If so, please attach logs
-> individually rather than compressed all together (unless they're _enormous_).
-> That way one can see them in a browser without downloading/extracting/etc.
->
->  ------------------------------
-> You are receiving this mail because:
->
->    - You reported the bug.
->
->
+Cheers
+Emil
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380466165.285DF0.5240
-Date: Sun, 29 Sep 2013 14:49:25 +0000
+--1380469176.0aA140611.14783
+Date: Sun, 29 Sep 2013 15:39:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,40 +69,30 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED INVALID - Problems with nouveau and Gforce 2MX"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54910#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54910#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED INVALID - Problems with nouveau and Gforce 2MX"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54910">bug 54910</a>
-              from <span class="vcard"><a class="email" href="mailto:klxout&#64;gmail.com" title="klxout &lt;klxout&#64;gmail.com&gt;"> <span class="fn">klxout</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>OK, I'll try with latest Debian Stable and give you the results
+        <pre>(In reply to <a href="show_bug.cgi?id=54910#c4">comment #4</a>)
+<span class="quote">&gt; OK, I'll try with latest Debian Stable and give you the results
+&gt; 
+&gt; Thanks
+&gt; </span >
+Note when we say latest software we do not mean &quot;latest ones provided by your
+distributions&quot;. Latest software is a moving target dictated by upstream
+which is currently at
+ * kernel        3.11
+ * libdrm        2.4.46
+ * Mesa            9.2
+ * xf86-video-nouveau    1.0.9
 
-Thanks
+AFAIK Debian stable likes to provide 1-2 year old &quot;latest&quot; software.
 
-
-2013/8/25 &lt;<a href="mailto:bugzilla-daemon&#64;freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a>&gt;
-
-<span class="quote">&gt;   *<a href="show_bug.cgi?id=54910#c1">Comment # 1</a> &lt;<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Problems with nouveau and Gforce 2MX"
-   href="show_bug.cgi?id=54910#c1">https://bugs.freedesktop.org/show_bug.cgi?id=54910#c1</a>&gt; on bug
-&gt; 54910 &lt;<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Problems with nouveau and Gforce 2MX"
-   href="show_bug.cgi?id=54910">https://bugs.freedesktop.org/show_bug.cgi?id=54910</a>&gt; from Ilia
-&gt; Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt; *</span >
-&gt;
-<span class="quote">&gt; Does this still happen with the latest software? If so, please attach logs
-&gt; individually rather than compressed all together (unless they're _enormous_).
-&gt; That way one can see them in a browser without downloading/extracting/etc.</span >
-&gt;
-<span class="quote">&gt;  ------------------------------
-&gt; You are receiving this mail because:</span >
-&gt;
-<span class="quote">&gt;    - You reported the bug.</span >
-&gt;
-&gt;</pre>
+Cheers
+Emil</pre>
         </div>
       </p>
       <hr>
@@ -118,9 +104,9 @@ Thanks
     </body>
 </html>
 
---1380466165.285DF0.5240--
+--1380469176.0aA140611.14783--
 
---===============0107655777==
+--===============1646750458==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -131,4 +117,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0107655777==--
+--===============1646750458==--
