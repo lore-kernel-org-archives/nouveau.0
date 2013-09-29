@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69928] [NVAA] Boot of linux kernel 3.12-rc2 hangs
-Date: Sun, 29 Sep 2013 15:46:17 +0000
-Message-ID: <bug-69928-8800-Jxjx0CLBHs@http.bugs.freedesktop.org/>
+Date: Sun, 29 Sep 2013 19:27:20 +0000
+Message-ID: <bug-69928-8800-SbabcwJPAo@http.bugs.freedesktop.org/>
 References: <bug-69928-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0829074078=="
+Content-Type: multipart/mixed; boundary="===============1517155525=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69928-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,49 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0829074078==
-Content-Type: multipart/alternative; boundary="1380469577.e40fffC2.15870"; charset="us-ascii"
+--===============1517155525==
+Content-Type: multipart/alternative; boundary="1380482840.8f57711.19387"; charset="us-ascii"
 
 
---1380469577.e40fffC2.15870
-Date: Sun, 29 Sep 2013 15:46:17 +0000
+--1380482840.8f57711.19387
+Date: Sun, 29 Sep 2013 19:27:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69928
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #3 from dirkneukirchen-S0/GAf8tV78@public.gmane.org ---
+Created attachment 86806
+  --> https://bugs.freedesktop.org/attachment.cgi?id=86806&action=edit
+dmesg 3.12-rc2 boots successful with nouveau.config=NvMSI=0
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
+> note the timestamps
+I noticed but that was my 1st usage of netconsole - maybe it was some issue
+with target system (a VM), router or something else.
 
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Your 3.12-rc2 lod looks incomplete - note the timestamps.
+> You should be able to toggle MSI off using "nouveau.config=NvMSI=0" appended to > your kernel command line. Can you give it a try and attach the resulting dmesg
 
-AFAICS the only commit that should be affecting you is
-commit a27e56996687e79416d69a7e6dc26f9d8fe06059
-Author: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Date:   Wed Aug 28 02:00:50 2013 +0200
-
-    drm/nouveau: use MSI interrupts
-
-    MSIs were only problematic on some old, broken chipsets. But now that we
-    already see systems where PCI legacy interrupts are somewhat flaky, it's
-    really time to move to MSIs.
-
-    v2 (Ben Skeggs): blacklist BR02 boards
-
-
-You should be able to toggle MSI off using "nouveau.config=NvMSI=0" appended to
-your kernel command line. Can you give it a try and attach the resulting dmesg
+see new attachment
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380469577.e40fffC2.15870
-Date: Sun, 29 Sep 2013 15:46:17 +0000
+--1380482840.8f57711.19387
+Date: Sun, 29 Sep 2013 19:27:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,57 +57,29 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928">bug 69928</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEEDINFO "
    title="NEEDINFO --- - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEEDINFO "
    title="NEEDINFO --- - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69928">bug 69928</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:dirkneukirchen&#64;web.de" title="dirkneukirchen&#64;web.de">dirkneukirchen&#64;web.de</a>
 </span></b>
-        <pre>Your 3.12-rc2 lod looks incomplete - note the timestamps.
+        <pre>Created <span class=""><a href="attachment.cgi?id=86806" name="attach_86806" title="dmesg 3.12-rc2 boots successful with nouveau.config=NvMSI=0">attachment 86806</a> <a href="attachment.cgi?id=86806&amp;action=edit" title="dmesg 3.12-rc2 boots successful with nouveau.config=NvMSI=0">[details]</a></span>
+dmesg 3.12-rc2 boots successful with nouveau.config=NvMSI=0
 
-AFAICS the only commit that should be affecting you is
-commit a27e56996687e79416d69a7e6dc26f9d8fe06059
-Author: Lucas Stach &lt;<a href="mailto:dev&#64;lynxeye.de">dev&#64;lynxeye.de</a>&gt;
-Date:   Wed Aug 28 02:00:50 2013 +0200
+<span class="quote">&gt; note the timestamps</span >
+I noticed but that was my 1st usage of netconsole - maybe it was some issue
+with target system (a VM), router or something else.
 
-    drm/nouveau: use MSI interrupts
+<span class="quote">&gt; You should be able to toggle MSI off using &quot;nouveau.config=NvMSI=0&quot; appended to &gt; your kernel command line. Can you give it a try and attach the resulting dmesg</span >
 
-    MSIs were only problematic on some old, broken chipsets. But now that we
-    already see systems where PCI legacy interrupts are somewhat flaky, it's
-    really time to move to MSIs.
-
-    v2 (Ben Skeggs): blacklist BR02 boards
-
-
-You should be able to toggle MSI off using &quot;nouveau.config=NvMSI=0&quot; appended to
-your kernel command line. Can you give it a try and attach the resulting dmesg</pre>
+see new attachment</pre>
         </div>
       </p>
       <hr>
@@ -132,9 +91,9 @@ your kernel command line. Can you give it a try and attach the resulting dmesg</
     </body>
 </html>
 
---1380469577.e40fffC2.15870--
+--1380482840.8f57711.19387--
 
---===============0829074078==
+--===============1517155525==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -145,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0829074078==--
+--===============1517155525==--
