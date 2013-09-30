@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69982] GPU+system crash with nouveau and kernel
-	3.12-rc3
-Date: Mon, 30 Sep 2013 20:15:25 +0000
-Message-ID: <bug-69982-8800-t2RHy5OYID@http.bugs.freedesktop.org/>
+Subject: [Bug 69982] [NV86] GPU+system crash with nouveau and
+	kernel 3.12-rc3
+Date: Mon, 30 Sep 2013 20:17:34 +0000
+Message-ID: <bug-69982-8800-dhWzOLIRrw@http.bugs.freedesktop.org/>
 References: <bug-69982-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1269712796=="
+Content-Type: multipart/mixed; boundary="===============1733995405=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69982-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1269712796==
-Content-Type: multipart/alternative; boundary="1380572125.BCAB1.1209"; charset="us-ascii"
+--===============1733995405==
+Content-Type: multipart/alternative; boundary="1380572253.f73da2.1844"; charset="us-ascii"
 
 
---1380572125.BCAB1.1209
-Date: Mon, 30 Sep 2013 20:15:25 +0000
+--1380572253.f73da2.1844
+Date: Mon, 30 Sep 2013 20:17:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69982
 
---- Comment #2 from Mike C <mike.cloaked-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 86873
-  --> https://bugs.freedesktop.org/attachment.cgi?id=86873&action=edit
-xorg log file at the point the system crashed
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|GPU+system crash with       |[NV86] GPU+system crash
+                   |nouveau and kernel 3.12-rc3 |with nouveau and kernel
+                   |                            |3.12-rc3
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you see if booting with nouveau.config=NvMSI=0 helps?
+
+(In the future, unless you're on some super-mega-secret machine whose full
+configuration you can't reveal, editing logs down is undesirable.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380572125.BCAB1.1209
-Date: Mon, 30 Sep 2013 20:15:25 +0000
+--1380572253.f73da2.1844
+Date: Mon, 30 Sep 2013 20:17:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,21 +59,43 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982">bug 69982</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>GPU+system crash with nouveau and kernel 3.12-rc3
+           </td>
+           <td>[NV86] GPU+system crash with nouveau and kernel 3.12-rc3
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - GPU+system crash with nouveau and kernel 3.12-rc3"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982#c2">Comment # 2</a>
+   title="NEW --- - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - GPU+system crash with nouveau and kernel 3.12-rc3"
+   title="NEW --- - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69982">bug 69982</a>
-              from <span class="vcard"><a class="email" href="mailto:mike.cloaked&#64;gmail.com" title="Mike C &lt;mike.cloaked&#64;gmail.com&gt;"> <span class="fn">Mike C</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=86873" name="attach_86873" title="xorg log file at the point the system crashed">attachment 86873</a> <a href="attachment.cgi?id=86873&amp;action=edit" title="xorg log file at the point the system crashed">[details]</a></span>
-xorg log file at the point the system crashed</pre>
+        <pre>Can you see if booting with nouveau.config=NvMSI=0 helps?
+
+(In the future, unless you're on some super-mega-secret machine whose full
+configuration you can't reveal, editing logs down is undesirable.)</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +107,9 @@ xorg log file at the point the system crashed</pre>
     </body>
 </html>
 
---1380572125.BCAB1.1209--
+--1380572253.f73da2.1844--
 
---===============1269712796==
+--===============1733995405==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1269712796==--
+--===============1733995405==--
