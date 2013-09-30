@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69982] [NV86] GPU+system crash with nouveau and
 	kernel 3.12-rc3
-Date: Mon, 30 Sep 2013 20:17:34 +0000
-Message-ID: <bug-69982-8800-dhWzOLIRrw@http.bugs.freedesktop.org/>
+Date: Mon, 30 Sep 2013 20:25:23 +0000
+Message-ID: <bug-69982-8800-EcQ2BMNK0n@http.bugs.freedesktop.org/>
 References: <bug-69982-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1733995405=="
+Content-Type: multipart/mixed; boundary="===============1489441775=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69982-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1733995405==
-Content-Type: multipart/alternative; boundary="1380572253.f73da2.1844"; charset="us-ascii"
+--===============1489441775==
+Content-Type: multipart/alternative; boundary="1380572723.54241.4311"; charset="us-ascii"
 
 
---1380572253.f73da2.1844
-Date: Mon, 30 Sep 2013 20:17:33 +0000
+--1380572723.54241.4311
+Date: Mon, 30 Sep 2013 20:25:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69982
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|GPU+system crash with       |[NV86] GPU+system crash
-                   |nouveau and kernel 3.12-rc3 |with nouveau and kernel
-                   |                            |3.12-rc3
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you see if booting with nouveau.config=NvMSI=0 helps?
-
-(In the future, unless you're on some super-mega-secret machine whose full
-configuration you can't reveal, editing logs down is undesirable.)
+--- Comment #4 from Mike C <mike.cloaked-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+OK I will try adding the kernel line you suggest and I will attach the full
+version of the log files for you shortly.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380572253.f73da2.1844
-Date: Mon, 30 Sep 2013 20:17:33 +0000
+--1380572723.54241.4311
+Date: Mon, 30 Sep 2013 20:25:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,43 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982">bug 69982</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>GPU+system crash with nouveau and kernel 3.12-rc3
-           </td>
-           <td>[NV86] GPU+system crash with nouveau and kernel 3.12-rc3
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69982">bug 69982</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:mike.cloaked&#64;gmail.com" title="Mike C &lt;mike.cloaked&#64;gmail.com&gt;"> <span class="fn">Mike C</span></a>
 </span></b>
-        <pre>Can you see if booting with nouveau.config=NvMSI=0 helps?
-
-(In the future, unless you're on some super-mega-secret machine whose full
-configuration you can't reveal, editing logs down is undesirable.)</pre>
+        <pre>OK I will try adding the kernel line you suggest and I will attach the full
+version of the log files for you shortly.</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +75,9 @@ configuration you can't reveal, editing logs down is undesirable.)</pre>
     </body>
 </html>
 
---1380572253.f73da2.1844--
+--1380572723.54241.4311--
 
---===============1733995405==
+--===============1489441775==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1733995405==--
+--===============1489441775==--
