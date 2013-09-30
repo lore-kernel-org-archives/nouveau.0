@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69982] [NV86] GPU+system crash with nouveau and
 	kernel 3.12-rc3
-Date: Mon, 30 Sep 2013 20:25:23 +0000
-Message-ID: <bug-69982-8800-EcQ2BMNK0n@http.bugs.freedesktop.org/>
+Date: Mon, 30 Sep 2013 20:26:30 +0000
+Message-ID: <bug-69982-8800-d1EQBHz9cR@http.bugs.freedesktop.org/>
 References: <bug-69982-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1489441775=="
+Content-Type: multipart/mixed; boundary="===============0134486603=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69982-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1489441775==
-Content-Type: multipart/alternative; boundary="1380572723.54241.4311"; charset="us-ascii"
+--===============0134486603==
+Content-Type: multipart/alternative; boundary="1380572790.2Aa7fb1.4564"; charset="us-ascii"
 
 
---1380572723.54241.4311
-Date: Mon, 30 Sep 2013 20:25:23 +0000
+--1380572790.2Aa7fb1.4564
+Date: Mon, 30 Sep 2013 20:26:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69982
 
---- Comment #4 from Mike C <mike.cloaked-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-OK I will try adding the kernel line you suggest and I will attach the full
-version of the log files for you shortly.
+--- Comment #5 from Mike C <mike.cloaked-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 86874
+  --> https://bugs.freedesktop.org/attachment.cgi?id=86874&action=edit
+full kernel log file without editing down
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380572723.54241.4311
-Date: Mon, 30 Sep 2013 20:25:23 +0000
+--1380572790.2Aa7fb1.4564
+Date: Mon, 30 Sep 2013 20:26:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69982">bug 69982</a>
               from <span class="vcard"><a class="email" href="mailto:mike.cloaked&#64;gmail.com" title="Mike C &lt;mike.cloaked&#64;gmail.com&gt;"> <span class="fn">Mike C</span></a>
 </span></b>
-        <pre>OK I will try adding the kernel line you suggest and I will attach the full
-version of the log files for you shortly.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=86874" name="attach_86874" title="full kernel log file without editing down">attachment 86874</a> <a href="attachment.cgi?id=86874&amp;action=edit" title="full kernel log file without editing down">[details]</a></span>
+full kernel log file without editing down</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +76,9 @@ version of the log files for you shortly.</pre>
     </body>
 </html>
 
---1380572723.54241.4311--
+--1380572790.2Aa7fb1.4564--
 
---===============1489441775==
+--===============0134486603==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1489441775==--
+--===============0134486603==--
