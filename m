@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69982] GPU+system crash with nouveau and kernel
 	3.12-rc3
-Date: Mon, 30 Sep 2013 20:14:50 +0000
-Message-ID: <bug-69982-8800-xXPtVOLGRE@http.bugs.freedesktop.org/>
+Date: Mon, 30 Sep 2013 20:15:25 +0000
+Message-ID: <bug-69982-8800-t2RHy5OYID@http.bugs.freedesktop.org/>
 References: <bug-69982-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1417299442=="
+Content-Type: multipart/mixed; boundary="===============1269712796=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69982-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1417299442==
-Content-Type: multipart/alternative; boundary="1380572090.c3d41.1063"; charset="us-ascii"
+--===============1269712796==
+Content-Type: multipart/alternative; boundary="1380572125.BCAB1.1209"; charset="us-ascii"
 
 
---1380572090.c3d41.1063
-Date: Mon, 30 Sep 2013 20:14:50 +0000
+--1380572125.BCAB1.1209
+Date: Mon, 30 Sep 2013 20:15:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69982
 
---- Comment #1 from Mike C <mike.cloaked-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 86872
-  --> https://bugs.freedesktop.org/attachment.cgi?id=86872&action=edit
-errors.log edited for lines relevant to the crash
+--- Comment #2 from Mike C <mike.cloaked-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 86873
+  --> https://bugs.freedesktop.org/attachment.cgi?id=86873&action=edit
+xorg log file at the point the system crashed
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380572090.c3d41.1063
-Date: Mon, 30 Sep 2013 20:14:50 +0000
+--1380572125.BCAB1.1209
+Date: Mon, 30 Sep 2013 20:15:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - GPU+system crash with nouveau and kernel 3.12-rc3"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - GPU+system crash with nouveau and kernel 3.12-rc3"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69982">bug 69982</a>
               from <span class="vcard"><a class="email" href="mailto:mike.cloaked&#64;gmail.com" title="Mike C &lt;mike.cloaked&#64;gmail.com&gt;"> <span class="fn">Mike C</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=86872" name="attach_86872" title="errors.log edited for lines relevant to the crash">attachment 86872</a> <a href="attachment.cgi?id=86872&amp;action=edit" title="errors.log edited for lines relevant to the crash">[details]</a></span>
-errors.log edited for lines relevant to the crash</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=86873" name="attach_86873" title="xorg log file at the point the system crashed">attachment 86873</a> <a href="attachment.cgi?id=86873&amp;action=edit" title="xorg log file at the point the system crashed">[details]</a></span>
+xorg log file at the point the system crashed</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ errors.log edited for lines relevant to the crash</pre>
     </body>
 </html>
 
---1380572090.c3d41.1063--
+--1380572125.BCAB1.1209--
 
---===============1417299442==
+--===============1269712796==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1417299442==--
+--===============1269712796==--
