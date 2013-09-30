@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69982] [NV86] GPU+system crash with nouveau and
 	kernel 3.12-rc3
-Date: Mon, 30 Sep 2013 20:26:30 +0000
-Message-ID: <bug-69982-8800-d1EQBHz9cR@http.bugs.freedesktop.org/>
+Date: Mon, 30 Sep 2013 20:27:07 +0000
+Message-ID: <bug-69982-8800-j607C6Uo5E@http.bugs.freedesktop.org/>
 References: <bug-69982-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0134486603=="
+Content-Type: multipart/mixed; boundary="===============0529955575=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69982-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0134486603==
-Content-Type: multipart/alternative; boundary="1380572790.2Aa7fb1.4564"; charset="us-ascii"
+--===============0529955575==
+Content-Type: multipart/alternative; boundary="1380572827.7ab3fDec1.4881"; charset="us-ascii"
 
 
---1380572790.2Aa7fb1.4564
-Date: Mon, 30 Sep 2013 20:26:30 +0000
+--1380572827.7ab3fDec1.4881
+Date: Mon, 30 Sep 2013 20:27:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69982
 
---- Comment #5 from Mike C <mike.cloaked-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 86874
-  --> https://bugs.freedesktop.org/attachment.cgi?id=86874&action=edit
-full kernel log file without editing down
+--- Comment #6 from Mike C <mike.cloaked-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 86875
+  --> https://bugs.freedesktop.org/attachment.cgi?id=86875&action=edit
+full errors log file without editing down
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380572790.2Aa7fb1.4564
-Date: Mon, 30 Sep 2013 20:26:30 +0000
+--1380572827.7ab3fDec1.4881
+Date: Mon, 30 Sep 2013 20:27:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69982">bug 69982</a>
               from <span class="vcard"><a class="email" href="mailto:mike.cloaked&#64;gmail.com" title="Mike C &lt;mike.cloaked&#64;gmail.com&gt;"> <span class="fn">Mike C</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=86874" name="attach_86874" title="full kernel log file without editing down">attachment 86874</a> <a href="attachment.cgi?id=86874&amp;action=edit" title="full kernel log file without editing down">[details]</a></span>
-full kernel log file without editing down</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=86875" name="attach_86875" title="full errors log file without editing down">attachment 86875</a> <a href="attachment.cgi?id=86875&amp;action=edit" title="full errors log file without editing down">[details]</a></span>
+full errors log file without editing down</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ full kernel log file without editing down</pre>
     </body>
 </html>
 
---1380572790.2Aa7fb1.4564--
+--1380572827.7ab3fDec1.4881--
 
---===============0134486603==
+--===============0529955575==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0134486603==--
+--===============0529955575==--
