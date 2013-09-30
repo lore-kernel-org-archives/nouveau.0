@@ -1,11 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69952] New: [NVAA] Xorg crash+restart after glxgears
- on 3.12-rc2
-Date: Mon, 30 Sep 2013 09:47:29 +0000
-Message-ID: <bug-69952-8800@http.bugs.freedesktop.org/>
+From: Daniel Melo Jorge da Cunha <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: nouveau freezes
+Date: Mon, 30 Sep 2013 10:23:13 -0400
+Message-ID: <CANbfre7zbEjs+FJNDw+7eGABtFdRU9ZzkUmVpJX1t-YwGZL9hQ@mail.gmail.com>
+References: <CANbfre6us4iWWEqhW13PUGWawzzcPoEjj2b4aw6-4yCffxCNvQ@mail.gmail.com>
+	<CAKb7UvjrBzmtKDkan6rGvcRSJHne7hdjQGXaRaEAcrpUMP4DiA@mail.gmail.com>
+	<CANbfre4r1Kj6HMFAvB4G+SU18njGXDf+egx_Cy=KreUf5UFijA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1625390630=="
+Content-Type: multipart/mixed; boundary="===============0556416466=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CANbfre4r1Kj6HMFAvB4G+SU18njGXDf+egx_Cy=KreUf5UFijA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,232 +18,149 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+--===============0556416466==
+Content-Type: multipart/alternative; boundary=bcaec53965c89083bc04e79a93e5
 
---===============1625390630==
-Content-Type: multipart/alternative; boundary="1380534450.fa8d4311.15587"; charset="us-ascii"
+--bcaec53965c89083bc04e79a93e5
+Content-Type: text/plain; charset=ISO-8859-1
 
+2013/9/26 Daniel Melo Jorge da Cunha <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 
---1380534450.fa8d4311.15587
-Date: Mon, 30 Sep 2013 09:47:30 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=69952
-
-          Priority: medium
-            Bug ID: 69952
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NVAA] Xorg crash+restart after glxgears on 3.12-rc2
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: dirkneukirchen-S0/GAf8tV78@public.gmane.org
-          Hardware: x86 (IA32)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
-
-Created attachment 86837
-  --> https://bugs.freedesktop.org/attachment.cgi?id=86837&action=edit
-3.12-rc2 Xorg crash when running glxgears
-
-How to replicate:
-- booting and doing random desktop stuff
-
-- 1st errors in log: TRAP_TPDMA_2D
-thats "normal"/possibly dangerous too:
-occured with playing video: mplayer -vo xv -ao sdl 
-mplayer: MPlayer svn r34540 (Ubuntu), built with gcc-4.7 (C) 2000-2012 MPlayer
-Team
-
-
-later Crash in log:
-- open glxgears on 1st virtual desktop
-- switch to 4th virtual desktop 
-- open rdesktop program
-- xorg is nonresponsive - try keyboard shortcuts to change desktop (dont work)
-- wait until Xorg is restarted 
-
-System:
--Linux Mint 15 (Ubuntu 13.04)
--NVAA (Geforce 8200) onboard (Jetway JNC62K)
--dual monitor setup
-
--Kernel 3.12-rc2
-
-The attached dmesg contains several error messages that are missing from 68037
-or are added compared to 69387.
-It could be the same "bug"/"bugs" that are described in 68037.
-Accel. Video often freeze, stability is increased when playing with x11(without
-overlay) in vlc or mplayer. But that might be subjective.
-
-possibly related:
-https://bugs.freedesktop.org/show_bug.cgi?id=68037 (same setup from me)
-https://bugs.freedesktop.org/show_bug.cgi?id=69387
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1380534450.fa8d4311.15587
-Date: Mon, 30 Sep 2013 09:47:30 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAA] Xorg crash+restart after glxgears on 3.12-rc2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69952">69952</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVAA] Xorg crash+restart after glxgears on 3.12-rc2
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>dirkneukirchen&#64;web.de
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86 (IA32)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=86837" name="attach_86837" title="3.12-rc2 Xorg crash when running glxgears">attachment 86837</a> <a href="attachment.cgi?id=86837&amp;action=edit" title="3.12-rc2 Xorg crash when running glxgears">[details]</a></span>
-3.12-rc2 Xorg crash when running glxgears
-
-How to replicate:
-- booting and doing random desktop stuff
-
-- 1st errors in log: TRAP_TPDMA_2D
-thats &quot;normal&quot;/possibly dangerous too:
-occured with playing video: mplayer -vo xv -ao sdl 
-mplayer: MPlayer svn r34540 (Ubuntu), built with gcc-4.7 (C) 2000-2012 MPlayer
-Team
+> 2013/9/26 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+>
+>> On Wed, Sep 25, 2013 at 4:46 PM, Daniel Melo Jorge da Cunha
+>> <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> > Hi, is the following a (obsolete and nobody cares) bug?
+>> >
+>> > I have a fedora 19 i386 with nouveau and a GeForce 7100.
+>> > The option "all" in gnome shell does not show any icon, although they
+>> are
+>> > there
+>> > because if I click on the black screen it opens the program supposedly
+>> > there.
+>> >
+>> > Also when I open and close programs in a session sometimes the screen
+>> > freezes.
+>> >
+>> > My apologies because I know this is an expertise group (but I found no
+>> help
+>> > on the
+>> > internet).
+>> > Thanks in advance.
+>>
+>> Take a look at http://nouveau.freedesktop.org/wiki/Bugs/ for some of
+>> the requisite information to aid debugging. Your bug sounds a lot like
+>> https://bugs.freedesktop.org/show_bug.cgi?id=69376, check the advice
+>> in there and see if it helps. (Or, conversely, if it has no effect,
+>> which would be interesting to know as well.)
+>>
+>>   -ilia
+>>
+>
+> Hi, unfortunately I will not follow the advice because I'm not literate
+> and I would probably do more harm to my comp. Also I found strange
+> because the advice is regarding mesa and I think the problem could
+> also be on other drivers like nouveau, xf86-video-nouveau (or Gnome 3)
+> but this is beyond my scope.
+>
+> Because shotboy has already reported the bug I will hopefully wait
+> for a fedora fix-package :)
+>
+> Thank you very much!
+>
 
 
-later Crash in log:
-- open glxgears on 1st virtual desktop
-- switch to 4th virtual desktop 
-- open rdesktop program
-- xorg is nonresponsive - try keyboard shortcuts to change desktop (dont work)
-- wait until Xorg is restarted 
+Coincidentally the last fedora 19 update fixed the problem of option "all"
+and it looks like it fixed the intermittent freezing too.
 
-System:
--Linux Mint 15 (Ubuntu 13.04)
--NVAA (Geforce 8200) onboard (Jetway JNC62K)
--dual monitor setup
+But when I "valgrind --tool=mmt  --mmt-trace-file=/dev/dri/card0 glxgears"
+it freezes. Does someone experience this same problem? What could
+be done?
 
--Kernel 3.12-rc2
+Thanks in advance.
 
-The attached dmesg contains several error messages that are missing from 68037
-or are added compared to 69387.
-It could be the same &quot;bug&quot;/&quot;bugs&quot; that are described in 68037.
-Accel. Video often freeze, stability is increased when playing with x11(without
-overlay) in vlc or mplayer. But that might be subjective.
+--bcaec53965c89083bc04e79a93e5
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-possibly related:
-<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - TRAP_TPDMA - TP0: Unhandled ustatus 0x00000008 ; and other NV50 log spam errors"
-   href="show_bug.cgi?id=68037">https://bugs.freedesktop.org/show_bug.cgi?id=68037</a> (same setup from me)
-<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - X hangs on resume/monitor blank with nv50cal_space: -16"
-   href="show_bug.cgi?id=69387">https://bugs.freedesktop.org/show_bug.cgi?id=69387</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">2013/9/26 Daniel Melo Jorge da Cunha <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank">dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt;=
+</span><br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div><di=
+v class=3D"h5"><div class=3D"gmail_extra"><div class=3D"gmail_quote">2013/9=
+/26 Ilia Mirkin <span dir=3D"ltr">&lt;<a href=3D"mailto:imirkin-FrUbXkNCsVen+EJxYGL2xA@public.gmane.org=
+u" target=3D"_blank">imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org</a>&gt;</span><br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex">
+<div><div>On Wed, Sep 25, 2013 at 4:46 PM, Daniel Melo Jorge da Cunha<br>
+&lt;<a href=3D"mailto:dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank">dmjcunha@gmail.=
+com</a>&gt; wrote:<br>
+&gt; Hi, is the following a (obsolete and nobody cares) bug?<br>
+&gt;<br>
+&gt; I have a fedora 19 i386 with nouveau and a GeForce 7100.<br>
+&gt; The option &quot;all&quot; in gnome shell does not show any icon, alth=
+ough they are<br>
+&gt; there<br>
+&gt; because if I click on the black screen it opens the program supposedly=
+<br>
+&gt; there.<br>
+&gt;<br>
+&gt; Also when I open and close programs in a session sometimes the screen<=
+br>
+&gt; freezes.<br>
+&gt;<br>
+&gt; My apologies because I know this is an expertise group (but I found no=
+ help<br>
+&gt; on the<br>
+&gt; internet).<br>
+&gt; Thanks in advance.<br>
+<br>
+</div></div>Take a look at <a href=3D"http://nouveau.freedesktop.org/wiki/B=
+ugs/" target=3D"_blank">http://nouveau.freedesktop.org/wiki/Bugs/</a> for s=
+ome of<br>
+the requisite information to aid debugging. Your bug sounds a lot like<br>
+<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69376" target=3D"=
+_blank">https://bugs.freedesktop.org/show_bug.cgi?id=3D69376</a>, check the=
+ advice<br>
+in there and see if it helps. (Or, conversely, if it has no effect,<br>
+which would be interesting to know as well.)<br>
+<span><font color=3D"#888888"><br>
+=A0 -ilia<br>
+</font></span></blockquote></div><br></div></div></div><div class=3D"gmail_=
+extra">Hi, unfortunately I will not follow the advice because I&#39;m not l=
+iterate<br></div><div class=3D"gmail_extra">and I would probably do more ha=
+rm to my comp. Also I found strange<br>
 
---1380534450.fa8d4311.15587--
+</div><div class=3D"gmail_extra">because the advice is regarding mesa and I=
+ think the problem could<br></div><div class=3D"gmail_extra">also be on oth=
+er drivers like nouveau, xf86-video-nouveau (or Gnome 3)<br>but this is bey=
+ond my scope.<br>
 
---===============1625390630==
+<br></div><div class=3D"gmail_extra">Because shotboy has already reported t=
+he bug I will hopefully wait<br></div><div class=3D"gmail_extra">for a fedo=
+ra fix-package :)<br><br></div><div class=3D"gmail_extra">Thank you very mu=
+ch!<br>
+
+</div></div>
+</blockquote></div><br><br></div><div class=3D"gmail_extra">Coincidentally =
+the last fedora 19 update fixed the problem of option &quot;all&quot;<br>an=
+d it looks like it fixed the intermittent freezing too.<br><br></div><div c=
+lass=3D"gmail_extra">
+But when I &quot;valgrind --tool=3Dmmt=A0 --mmt-trace-file=3D/dev/dri/card0=
+ glxgears&quot;<br></div><div class=3D"gmail_extra">it freezes. Does someon=
+e experience this same problem? What could<br></div><div class=3D"gmail_ext=
+ra">be done?<br>
+<br></div><div class=3D"gmail_extra">Thanks in advance.<br></div></div>
+
+--bcaec53965c89083bc04e79a93e5--
+
+--===============0556416466==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -251,4 +171,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1625390630==--
+--===============0556416466==--
