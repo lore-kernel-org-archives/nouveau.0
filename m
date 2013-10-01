@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
-Date: Tue, 01 Oct 2013 16:15:49 +0000
-Message-ID: <bug-59069-8800-owEyQCaRRd@http.bugs.freedesktop.org/>
-References: <bug-59069-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60007] BUG: nouveau crashes in various ways in
+ 32-bits Fedora 18
+Date: Tue, 01 Oct 2013 16:18:55 +0000
+Message-ID: <bug-60007-8800-TDNeF1vEAC@http.bugs.freedesktop.org/>
+References: <bug-60007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0644901847=="
+Content-Type: multipart/mixed; boundary="===============0101793856=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-60007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,38 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0644901847==
-Content-Type: multipart/alternative; boundary="1380644149.dDFD3.21973"; charset="us-ascii"
+--===============0101793856==
+Content-Type: multipart/alternative; boundary="1380644335.Aef11.22967"; charset="us-ascii"
 
 
---1380644149.dDFD3.21973
-Date: Tue, 1 Oct 2013 16:15:49 +0000
+--1380644335.Aef11.22967
+Date: Tue, 1 Oct 2013 16:18:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59069
+https://bugs.freedesktop.org/show_bug.cgi?id=60007
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
+         Resolution|---                         |FIXED
 
---- Comment #27 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-No response to re-test request in over a month. Closing as invalid.
-
-Also, this bug appears to have been a hodge-podge of potentially unrelated
-issues, I can't even really tell what this issue was about. If things persist,
-open new separate issues, and follow the advice on
-http://nouveau.freedesktop.org/wiki/Bugs/ for what information to provide.
+--- Comment #20 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No response after a month, I'm presuming that this is fixed. Feel free to
+re-open if that is not the case.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380644149.dDFD3.21973
-Date: Tue, 1 Oct 2013 16:15:49 +0000
+--1380644335.Aef11.22967
+Date: Tue, 1 Oct 2013 16:18:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,8 +60,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau E[ DRM] fail ttm_validate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
+   title="RESOLVED FIXED - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">bug 60007</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -85,27 +82,23 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Resolution</td>
            <td>---
            </td>
-           <td>INVALID
+           <td>FIXED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau E[ DRM] fail ttm_validate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c27">Comment # 27</a>
+   title="RESOLVED FIXED - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007#c20">Comment # 20</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau E[ DRM] fail ttm_validate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
+   title="RESOLVED FIXED - BUG: nouveau crashes in various ways in 32-bits Fedora 18"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60007">bug 60007</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>No response to re-test request in over a month. Closing as invalid.
-
-Also, this bug appears to have been a hodge-podge of potentially unrelated
-issues, I can't even really tell what this issue was about. If things persist,
-open new separate issues, and follow the advice on
-<a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a> for what information to provide.</pre>
+        <pre>No response after a month, I'm presuming that this is fixed. Feel free to
+re-open if that is not the case.</pre>
         </div>
       </p>
       <hr>
@@ -117,9 +110,9 @@ open new separate issues, and follow the advice on
     </body>
 </html>
 
---1380644149.dDFD3.21973--
+--1380644335.Aef11.22967--
 
---===============0644901847==
+--===============0101793856==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -130,4 +123,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0644901847==--
+--===============0101793856==--
