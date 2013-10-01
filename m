@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57278] [NV50 gallium] flightgear crash when loading
- scenary: nv50_pc.h:351: nv_alloc_instruction: Assertion
- `pc->num_instructions < 2048
-Date: Tue, 01 Oct 2013 16:24:30 +0000
-Message-ID: <bug-57278-8800-N0MhiTaUCV@http.bugs.freedesktop.org/>
-References: <bug-57278-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 41588] suspend/resume with active CRTC,
+ but disconnected output causes problems
+Date: Tue, 01 Oct 2013 16:24:59 +0000
+Message-ID: <bug-41588-8800-u8OM0GA2hp@http.bugs.freedesktop.org/>
+References: <bug-41588-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1099254433=="
+Content-Type: multipart/mixed; boundary="===============1240858347=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57278-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-41588-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1099254433==
-Content-Type: multipart/alternative; boundary="1380644669.00d01.24632"; charset="us-ascii"
+--===============1240858347==
+Content-Type: multipart/alternative; boundary="1380644699.62ea6AD1.24766"; charset="us-ascii"
 
 
---1380644669.00d01.24632
-Date: Tue, 1 Oct 2013 16:24:29 +0000
+--1380644699.62ea6AD1.24766
+Date: Tue, 1 Oct 2013 16:24:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57278
+https://bugs.freedesktop.org/show_bug.cgi?id=41588
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -47,8 +46,8 @@ No response to re-test request for over a month. Closing as invalid.
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380644669.00d01.24632
-Date: Tue, 1 Oct 2013 16:24:29 +0000
+--1380644699.62ea6AD1.24766
+Date: Tue, 1 Oct 2013 16:24:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,8 +59,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NV50 gallium] flightgear crash when loading scenary: nv50_pc.h:351: nv_alloc_instruction: Assertion `pc-&gt;num_instructions &lt; 2048"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57278">bug 57278</a>
+   title="RESOLVED INVALID - suspend/resume with active CRTC, but disconnected output causes problems"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=41588">bug 41588</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -89,12 +88,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NV50 gallium] flightgear crash when loading scenary: nv50_pc.h:351: nv_alloc_instruction: Assertion `pc-&gt;num_instructions &lt; 2048"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57278#c7">Comment # 7</a>
+   title="RESOLVED INVALID - suspend/resume with active CRTC, but disconnected output causes problems"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=41588#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NV50 gallium] flightgear crash when loading scenary: nv50_pc.h:351: nv_alloc_instruction: Assertion `pc-&gt;num_instructions &lt; 2048"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57278">bug 57278</a>
+   title="RESOLVED INVALID - suspend/resume with active CRTC, but disconnected output causes problems"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=41588">bug 41588</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
         <pre>No response to re-test request for over a month. Closing as invalid.</pre>
@@ -109,9 +108,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1380644669.00d01.24632--
+--1380644699.62ea6AD1.24766--
 
---===============1099254433==
+--===============1240858347==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1099254433==--
+--===============1240858347==--
