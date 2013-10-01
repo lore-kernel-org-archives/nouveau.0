@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69488] GF108 (NVC1) GPU lockup
-Date: Mon, 30 Sep 2013 22:33:26 +0000
-Message-ID: <bug-69488-8800-rMNbL90whh@http.bugs.freedesktop.org/>
-References: <bug-69488-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69982] [NV86] GPU+system crash with nouveau and
+	kernel 3.12-rc3
+Date: Tue, 01 Oct 2013 13:02:27 +0000
+Message-ID: <bug-69982-8800-VRSRBBpzRn@http.bugs.freedesktop.org/>
+References: <bug-69982-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2090721599=="
+Content-Type: multipart/mixed; boundary="===============1966087300=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69982-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2090721599==
-Content-Type: multipart/alternative; boundary="1380580406.cE6EC8d1.5118"; charset="us-ascii"
+--===============1966087300==
+Content-Type: multipart/alternative; boundary="1380632547.4D5b0D5d1.5015"; charset="us-ascii"
 
 
---1380580406.cE6EC8d1.5118
-Date: Mon, 30 Sep 2013 22:33:26 +0000
+--1380632547.4D5b0D5d1.5015
+Date: Tue, 1 Oct 2013 13:02:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69488
+https://bugs.freedesktop.org/show_bug.cgi?id=69982
 
---- Comment #9 from Kevin N. <vekinn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 86881
-  --> https://bugs.freedesktop.org/attachment.cgi?id=86881&action=edit
-dmesg from 3.12-rc2
-
-Sorry for the confusion, I went back to a Gentoo install and am more able to
-test now, for some reason on Fedora I was able to get into X with 3.12-rc2 with
-that patch.
-
-dmesg of a boot with 3.12-rc2
+--- Comment #10 from Mike C <mike.cloaked-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Having now also seen that there was a long running thread "drm/nouveau: use MSI
+interrupts" in the nouveau devel list, and that Ilia is a key developer, I
+would appreciate knowing if a patch to fix this issue will get into the
+upstream code? Thank you for any new info about this.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380580406.cE6EC8d1.5118
-Date: Mon, 30 Sep 2013 22:33:26 +0000
+--1380632547.4D5b0D5d1.5015
+Date: Tue, 1 Oct 2013 13:02:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,23 +55,19 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c9">Comment # 9</a>
+          bz_status_NEW "
+   title="NEW --- - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982#c10">Comment # 10</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488">bug 69488</a>
-              from <span class="vcard"><a class="email" href="mailto:vekinn&#64;gmail.com" title="Kevin N. &lt;vekinn&#64;gmail.com&gt;"> <span class="fn">Kevin N.</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982">bug 69982</a>
+              from <span class="vcard"><a class="email" href="mailto:mike.cloaked&#64;gmail.com" title="Mike C &lt;mike.cloaked&#64;gmail.com&gt;"> <span class="fn">Mike C</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=86881" name="attach_86881" title="dmesg from 3.12-rc2">attachment 86881</a> <a href="attachment.cgi?id=86881&amp;action=edit" title="dmesg from 3.12-rc2">[details]</a></span>
-dmesg from 3.12-rc2
-
-Sorry for the confusion, I went back to a Gentoo install and am more able to
-test now, for some reason on Fedora I was able to get into X with 3.12-rc2 with
-that patch.
-
-dmesg of a boot with 3.12-rc2</pre>
+        <pre>Having now also seen that there was a long running thread &quot;drm/nouveau: use MSI
+interrupts&quot; in the nouveau devel list, and that Ilia is a key developer, I
+would appreciate knowing if a patch to fix this issue will get into the
+upstream code? Thank you for any new info about this.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +79,9 @@ dmesg of a boot with 3.12-rc2</pre>
     </body>
 </html>
 
---1380580406.cE6EC8d1.5118--
+--1380632547.4D5b0D5d1.5015--
 
---===============2090721599==
+--===============1966087300==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2090721599==--
+--===============1966087300==--
