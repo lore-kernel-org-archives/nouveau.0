@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38074] [NV96] Dual head doesn't work for some
- combination of monitors (second screen still off)
-Date: Tue, 01 Oct 2013 16:11:20 +0000
-Message-ID: <bug-38074-8800-eWI2cJy5MK@http.bugs.freedesktop.org/>
-References: <bug-38074-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
+Date: Tue, 01 Oct 2013 16:15:49 +0000
+Message-ID: <bug-59069-8800-owEyQCaRRd@http.bugs.freedesktop.org/>
+References: <bug-59069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1935190691=="
+Content-Type: multipart/mixed; boundary="===============0644901847=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1935190691==
-Content-Type: multipart/alternative; boundary="1380643880.af745bcB3.20706"; charset="us-ascii"
+--===============0644901847==
+Content-Type: multipart/alternative; boundary="1380644149.dDFD3.21973"; charset="us-ascii"
 
 
---1380643880.af745bcB3.20706
-Date: Tue, 1 Oct 2013 16:11:20 +0000
+--1380644149.dDFD3.21973
+Date: Tue, 1 Oct 2013 16:15:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38074
+https://bugs.freedesktop.org/show_bug.cgi?id=59069
 
---- Comment #23 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There's a small chance that 9a7046d55f319b2dde5d2536cc2adb01ebdbe09e would fix
-things for you. It is included in 3.11+. (If it doesn't, no need to attach a
-new log, the one you had from from 3.10 should do just fine.)
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #27 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No response to re-test request in over a month. Closing as invalid.
+
+Also, this bug appears to have been a hodge-podge of potentially unrelated
+issues, I can't even really tell what this issue was about. If things persist,
+open new separate issues, and follow the advice on
+http://nouveau.freedesktop.org/wiki/Bugs/ for what information to provide.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380643880.af745bcB3.20706
-Date: Tue, 1 Oct 2013 16:11:20 +0000
+--1380644149.dDFD3.21973
+Date: Tue, 1 Oct 2013 16:15:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +59,53 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV96] Dual head doesn't work for some combination of monitors (second screen still off)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074#c23">Comment # 23</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c27">Comment # 27</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV96] Dual head doesn't work for some combination of monitors (second screen still off)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074">bug 38074</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>There's a small chance that 9a7046d55f319b2dde5d2536cc2adb01ebdbe09e would fix
-things for you. It is included in 3.11+. (If it doesn't, no need to attach a
-new log, the one you had from from 3.10 should do just fine.)</pre>
+        <pre>No response to re-test request in over a month. Closing as invalid.
+
+Also, this bug appears to have been a hodge-podge of potentially unrelated
+issues, I can't even really tell what this issue was about. If things persist,
+open new separate issues, and follow the advice on
+<a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a> for what information to provide.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +117,9 @@ new log, the one you had from from 3.10 should do just fine.)</pre>
     </body>
 </html>
 
---1380643880.af745bcB3.20706--
+--1380644149.dDFD3.21973--
 
---===============1935190691==
+--===============0644901847==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +130,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1935190691==--
+--===============0644901847==--
