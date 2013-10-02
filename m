@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 66809] Compiz segfault with latest mesa-git
-Date: Tue, 01 Oct 2013 23:13:38 +0000
-Message-ID: <bug-66809-8800-y4xAKT4rqf@http.bugs.freedesktop.org/>
-References: <bug-66809-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 41114] [NVCx] nouveau module crashes on boot
+Date: Wed, 02 Oct 2013 06:22:18 +0000
+Message-ID: <bug-41114-8800-PiKWJeGJ7d@http.bugs.freedesktop.org/>
+References: <bug-41114-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1897311906=="
+Content-Type: multipart/mixed; boundary="===============0963535549=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-66809-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-41114-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1897311906==
-Content-Type: multipart/alternative; boundary="1380669218.CBfb1.4037"; charset="us-ascii"
+--===============0963535549==
+Content-Type: multipart/alternative; boundary="1380694938.267a074.26416"; charset="us-ascii"
 
 
---1380669218.CBfb1.4037
-Date: Tue, 1 Oct 2013 23:13:38 +0000
+--1380694938.267a074.26416
+Date: Wed, 2 Oct 2013 06:22:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=66809
+https://bugs.freedesktop.org/show_bug.cgi?id=41114
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-My guess is that this is fixed in latest mesa-git. Can you test this out again?
+Timo Aaltonen <tjaalton-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org> changed:
 
-Unfortunately you did not provide an annotated stack trace as requested, but
-the commit you bisected to caused all sorts of problem for nouveau. It was
-changed by
-http://cgit.freedesktop.org/mesa/mesa/commit/?id=b217d48364f368f541e53006af5dd56f664be24d
-in such a way that it appears to work much better for nouveau.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|INVALID                     |FIXED
+
+--- Comment #20 from Timo Aaltonen <tjaalton-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org> ---
+yeah, sorry for the delay.
+
+My old T420s works pretty good these days, running on ubuntu 13.10 now with
+3.11 kernel and tested booting the discrete gpu with it, all fine (NVD9 here
+though). Acceleration seems to be enabled as well :)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380669218.CBfb1.4037
-Date: Tue, 1 Oct 2013 23:13:38 +0000
+--1380694938.267a074.26416
+Date: Wed, 2 Oct 2013 06:22:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,26 +57,44 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:tjaalton&#64;ubuntu.com" title="Timo Aaltonen &lt;tjaalton&#64;ubuntu.com&gt;"> <span class="fn">Timo Aaltonen</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVCx] nouveau module crashes on boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=41114">bug 41114</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>INVALID
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Compiz segfault with latest mesa-git"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66809#c7">Comment # 7</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVCx] nouveau module crashes on boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=41114#c20">Comment # 20</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Compiz segfault with latest mesa-git"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66809">bug 66809</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVCx] nouveau module crashes on boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=41114">bug 41114</a>
+              from <span class="vcard"><a class="email" href="mailto:tjaalton&#64;ubuntu.com" title="Timo Aaltonen &lt;tjaalton&#64;ubuntu.com&gt;"> <span class="fn">Timo Aaltonen</span></a>
 </span></b>
-        <pre>My guess is that this is fixed in latest mesa-git. Can you test this out again?
+        <pre>yeah, sorry for the delay.
 
-Unfortunately you did not provide an annotated stack trace as requested, but
-the commit you bisected to caused all sorts of problem for nouveau. It was
-changed by
-<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=b217d48364f368f541e53006af5dd56f664be24d">http://cgit.freedesktop.org/mesa/mesa/commit/?id=b217d48364f368f541e53006af5dd56f664be24d</a>
-in such a way that it appears to work much better for nouveau.</pre>
+My old T420s works pretty good these days, running on ubuntu 13.10 now with
+3.11 kernel and tested booting the discrete gpu with it, all fine (NVD9 here
+though). Acceleration seems to be enabled as well :)</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +106,9 @@ in such a way that it appears to work much better for nouveau.</pre>
     </body>
 </html>
 
---1380669218.CBfb1.4037--
+--1380694938.267a074.26416--
 
---===============1897311906==
+--===============0963535549==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +119,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1897311906==--
+--===============0963535549==--
