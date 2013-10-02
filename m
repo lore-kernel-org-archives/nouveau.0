@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 68488] [NV86] Lockup and reboot on T61 with nouveau
 	driver/exa
-Date: Wed, 02 Oct 2013 16:00:25 +0000
-Message-ID: <bug-68488-8800-O2LTRTVldd@http.bugs.freedesktop.org/>
+Date: Wed, 02 Oct 2013 16:03:52 +0000
+Message-ID: <bug-68488-8800-rIahIQaldP@http.bugs.freedesktop.org/>
 References: <bug-68488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0309607033=="
+Content-Type: multipart/mixed; boundary="===============0814720450=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-68488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0309607033==
-Content-Type: multipart/alternative; boundary="1380729626.dEC1fbc2.26129"; charset="us-ascii"
+--===============0814720450==
+Content-Type: multipart/alternative; boundary="1380729832.C0D0bC72.26771"; charset="us-ascii"
 
 
---1380729626.dEC1fbc2.26129
-Date: Wed, 2 Oct 2013 16:00:25 +0000
+--1380729832.C0D0bC72.26771
+Date: Wed, 2 Oct 2013 16:03:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=68488
 
---- Comment #5 from Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> ---
-Created attachment 86976
-  --> https://bugs.freedesktop.org/attachment.cgi?id=86976&action=edit
-cat /proc/kmsg
-
-SSH'ed onto the sick machine which is still crashing twice a day.
-Attached output is "just" from some artifacts like letters and thumbnails in
-gnome-shell replaced by different shades of blue.
+--- Comment #6 from Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> ---
+Created attachment 86977
+  --> https://bugs.freedesktop.org/attachment.cgi?id=86977&action=edit
+Photo of screen (gnome-shell 3.8)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380729626.dEC1fbc2.26129
-Date: Wed, 2 Oct 2013 16:00:25 +0000
+--1380729832.C0D0bC72.26771
+Date: Wed, 2 Oct 2013 16:03:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,19 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Lockup and reboot on T61 with nouveau driver/exa"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68488#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68488#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Lockup and reboot on T61 with nouveau driver/exa"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=68488">bug 68488</a>
               from <span class="vcard"><a class="email" href="mailto:a9016009&#64;gmx.de" title="Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <span class="fn">Andre Klapper</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=86976" name="attach_86976" title="cat /proc/kmsg">attachment 86976</a> <a href="attachment.cgi?id=86976&amp;action=edit" title="cat /proc/kmsg">[details]</a></span>
-cat /proc/kmsg
-
-SSH'ed onto the sick machine which is still crashing twice a day.
-Attached output is &quot;just&quot; from some artifacts like letters and thumbnails in
-gnome-shell replaced by different shades of blue.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=86977" name="attach_86977" title="Photo of screen (gnome-shell 3.8)">attachment 86977</a> <a href="attachment.cgi?id=86977&amp;action=edit" title="Photo of screen (gnome-shell 3.8)">[details]</a></span>
+Photo of screen (gnome-shell 3.8)</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +76,9 @@ gnome-shell replaced by different shades of blue.</pre>
     </body>
 </html>
 
---1380729626.dEC1fbc2.26129--
+--1380729832.C0D0bC72.26771--
 
---===============0309607033==
+--===============0814720450==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0309607033==--
+--===============0814720450==--
