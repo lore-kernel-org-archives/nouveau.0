@@ -1,11 +1,13 @@
-From: =?UTF-8?B?RmVybmFuZG8gTmVncm8=?= <fernando.negro-JGs/UdohzUI@public.gmane.org>
-Subject: =?utf-8?q?GeForce_8400_GS?=
-Date: Thu, 03 Oct 2013 22:45:34 +0400
-Message-ID: <1380825934.841834684@f291.i.mail.ru>
-Reply-To: =?UTF-8?B?RmVybmFuZG8gTmVncm8=?= <fernando.negro-JGs/UdohzUI@public.gmane.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: GeForce 8400 GS
+Date: Thu, 3 Oct 2013 17:57:24 -0400
+Message-ID: <CAKb7UvhWkTnsJLxgwVPxVSEpcX+38fxjBqKP26t8NqvEHmCOmg@mail.gmail.com>
+References: <1380825934.841834684@f291.i.mail.ru>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1758269512=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1380825934.841834684-MnY5EB7xCO9sdVUOrk1QfQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,57 +17,41 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Fernando Negro <fernando.negro-JGs/UdohzUI@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Thu, Oct 3, 2013 at 2:45 PM, Fernando Negro <fernando.negro-JGs/UdohzUI@public.gmane.org> wrote:
+> Hi everyone.
+>
+> I read on a 2011 article -
+> http://www.phoronix.com/scan.php?page=article&item=nouveau_comp_2011&num=19
+> - that my particular card, GeForce 8400 GS, overheats with nouveau. (So, I
+> never tried using if for long, before, as soon as possible, installing the
+> proprietary drivers...) But, because it's a 2-year-old article, I was
+> wondering if that problem could have been, in the meantime, solved?... (Can
+> anyone tell me if that is so, or not - or indicate me a place where I can
+> know that?)
 
---===============1758269512==
-Content-Type: multipart/alternative;
-	boundary="--ALT--ZJ5Z6JlA1380825934"
+There are actually several versions of the 8400 GS, the exact chipset
+would be a better indicator (if you're trying to compare to Phoronix
+results). It seems like the complaint in the article was that the
+passively cooled GPU was running at 80 degC. While that's quite warm,
+I'm pretty sure that's not nearly enough to be damaging. I had run my
+9500GT (which started out with a fan that I later removed) at 90-95
+degC with no apparent ill effect.
 
+If you do have a fan, there is some semblance of control in the latest
+kernels. Take a look at
+http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/thermal/nouveau_thermal
+for more details. There is also experimental reclocking support for
+the nv50 family chipsets (as well as nv40), which tends to be very
+much hit or miss. Works great when it works, but hangs the card when
+it doesn't. Take a look at
+http://nouveau.freedesktop.org/wiki/KernelModuleParameters/,
+specifically perflvl_wr. Note that this only provides manual control,
+not dynamic like the latest radeon and nvidia proprietary drivers.
 
-----ALT--ZJ5Z6JlA1380825934
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+Hope this helps,
 
-IEhpIGV2ZXJ5b25lLgoKSSByZWFkIG9uIGEgMjAxMSBhcnRpY2xlIC0gaHR0cDovL3d3dy5waG9y
-b25peC5jb20vc2Nhbi5waHA/cGFnZT1hcnRpY2xlJml0ZW09bm91dmVhdV9jb21wXzIwMTEmbnVt
-PTE5IC0gdGhhdCBteSBwYXJ0aWN1bGFyIGNhcmQsIEdlRm9yY2UgODQwMCBHUywgb3ZlcmhlYXRz
-IHdpdGggbm91dmVhdS4gKFNvLCBJIG5ldmVyIHRyaWVkIHVzaW5nIGlmIGZvciBsb25nLCBiZWZv
-cmUsIGFzIHNvb24gYXMgcG9zc2libGUsIGluc3RhbGxpbmcgdGhlIHByb3ByaWV0YXJ5IGRyaXZl
-cnMuLi4pIEJ1dCwgYmVjYXVzZSBpdCdzIGEgMi15ZWFyLW9sZCBhcnRpY2xlLCBJIHdhcyB3b25k
-ZXJpbmcgaWYgdGhhdCBwcm9ibGVtIGNvdWxkIGhhdmUgYmVlbiwgaW4gdGhlIG1lYW50aW1lLCBz
-b2x2ZWQ/Li4uIChDYW4gYW55b25lIHRlbGwgbWUgaWYgdGhhdCBpcyBzbywgb3Igbm90IC0gb3Ig
-aW5kaWNhdGUgbWUgYSBwbGFjZSB3aGVyZSBJIGNhbiBrbm93IHRoYXQ/KQoKVGhhbmsgeW91LCBh
-bGwsIGluIGFkdmFuY2UuCg==
-
-----ALT--ZJ5Z6JlA1380825934
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
-
-CjxIVE1MPjxCT0RZPkhpIGV2ZXJ5b25lLjxicj48YnI+SSByZWFkIG9uIGEgMjAxMSBhcnRpY2xl
-IC0gaHR0cDovL3d3dy5waG9yb25peC5jb20vc2Nhbi5waHA/cGFnZT1hcnRpY2xlJmFtcDtpdGVt
-PW5vdXZlYXVfY29tcF8yMDExJmFtcDtudW09MTkgLSB0aGF0IG15IHBhcnRpY3VsYXIgY2FyZCwg
-R2VGb3JjZSA4NDAwIEdTLCBvdmVyaGVhdHMgd2l0aCBub3V2ZWF1LiAoU28sIEkgbmV2ZXIgdHJp
-ZWQgdXNpbmcgaWYgZm9yIGxvbmcsIGJlZm9yZSwgYXMgc29vbiBhcyBwb3NzaWJsZSwgaW5zdGFs
-bGluZyB0aGUgcHJvcHJpZXRhcnkgZHJpdmVycy4uLikgQnV0LCBiZWNhdXNlIGl0J3MgYSAyLXll
-YXItb2xkIGFydGljbGUsIEkgd2FzIHdvbmRlcmluZyBpZiB0aGF0IHByb2JsZW0gY291bGQgaGF2
-ZSBiZWVuLCBpbiB0aGUgbWVhbnRpbWUsIHNvbHZlZD8uLi4gKENhbiBhbnlvbmUgdGVsbCBtZSBp
-ZiB0aGF0IGlzIHNvLCBvciBub3QgLSBvciBpbmRpY2F0ZSBtZSBhIHBsYWNlIHdoZXJlIEkgY2Fu
-IGtub3cgdGhhdD8pPGJyPjxicj5UaGFuayB5b3UsIGFsbCwgaW4gYWR2YW5jZS48YnI+PC9CT0RZ
-PjwvSFRNTD4K
-
-----ALT--ZJ5Z6JlA1380825934--
-
---===============1758269512==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1758269512==--
+  -ilia
