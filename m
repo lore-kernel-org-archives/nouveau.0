@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58556] MacBook Pro 5, 1 with nVidia 9400m and 9600m,
- scrambled screen
-Date: Thu, 03 Oct 2013 22:08:55 +0000
-Message-ID: <bug-58556-8800-jj4ROkVOMP@http.bugs.freedesktop.org/>
-References: <bug-58556-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 62835] Screen freezes after resume from s2ram
+Date: Thu, 03 Oct 2013 22:10:36 +0000
+Message-ID: <bug-62835-8800-2XCfjhwuLR@http.bugs.freedesktop.org/>
+References: <bug-62835-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0728554308=="
+Content-Type: multipart/mixed; boundary="===============0177927083=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-62835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,18 +20,18 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0728554308==
-Content-Type: multipart/alternative; boundary="1380838135.0Beee8E3.15072"; charset="us-ascii"
+--===============0177927083==
+Content-Type: multipart/alternative; boundary="1380838236.7d314.15545"; charset="us-ascii"
 
 
---1380838135.0Beee8E3.15072
-Date: Thu, 3 Oct 2013 22:08:55 +0000
+--1380838236.7d314.15545
+Date: Thu, 3 Oct 2013 22:10:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58556
+https://bugs.freedesktop.org/show_bug.cgi?id=62835
 
---- Comment #19 from chr[] <chris-4cZEHNAa5IdBDgjK7y7TUQ@public.gmane.org> ---
+--- Comment #6 from chr[] <chris-4cZEHNAa5IdBDgjK7y7TUQ@public.gmane.org> ---
 Hi!
 
 Regarding suspend/resume scrambling screen issues, try this patch:
@@ -48,8 +47,8 @@ chr[]
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380838135.0Beee8E3.15072
-Date: Thu, 3 Oct 2013 22:08:55 +0000
+--1380838236.7d314.15545
+Date: Thu, 3 Oct 2013 22:10:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,13 +60,13 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556#c19">Comment # 19</a>
+          bz_status_NEW "
+   title="NEW --- - Screen freezes after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62835#c6">Comment # 6</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
+          bz_status_NEW "
+   title="NEW --- - Screen freezes after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=62835">bug 62835</a>
               from <span class="vcard"><a class="email" href="mailto:chris&#64;rudorff.com" title="chr[] &lt;chris&#64;rudorff.com&gt;"> <span class="fn">chr[]</span></a>
 </span></b>
         <pre>Hi!
@@ -91,9 +90,9 @@ chr[]</pre>
     </body>
 </html>
 
---1380838135.0Beee8E3.15072--
+--1380838236.7d314.15545--
 
---===============0728554308==
+--===============0177927083==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0728554308==--
+--===============0177927083==--
