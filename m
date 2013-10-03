@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69488] GF108 (NVC1) GPU lockup
-Date: Thu, 03 Oct 2013 07:39:04 +0000
-Message-ID: <bug-69488-8800-GmxcEBtStM@http.bugs.freedesktop.org/>
-References: <bug-69488-8800@http.bugs.freedesktop.org/>
+From: Christoph Rudorff <chris-4cZEHNAa5IdBDgjK7y7TUQ@public.gmane.org>
+Subject: [PATCH] drm/nouveau/fb: fix suspend/resume fbcon
+Date: Thu, 03 Oct 2013 16:41:52 +0200
+Message-ID: <1380811312.8640.6.camel@localhost>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1872867588=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,70 +18,72 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On resume of a hibernated notebook, I get garbled virtual consoles.
 
---===============1872867588==
-Content-Type: multipart/alternative; boundary="1380785944.C2Fa8D2.18527"; charset="us-ascii"
+fb_set_suspend(*dev, state == 0 means dev is running ...)
 
+This patch fixes that issue for me:
 
---1380785944.C2Fa8D2.18527
-Date: Thu, 3 Oct 2013 07:39:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+hibernate:
+kernel: nouveau  [     DRM] suspending fbcon...
+kernel: nouveau  [     DRM] suspending display...
+kernel: nouveau  [     DRM] unpinning framebuffer(s)...
+kernel: nouveau  [     DRM] evicting buffers...
+kernel: nouveau  [     DRM] waiting for kernel channels to go idle...
+kernel: nouveau  [     DRM] suspending client object trees...
+kernel: nouveau  [     DRM] suspending kernel object tree...
+resume:
+kernel: nouveau  [     DRM] re-enabling device...
+kernel: nouveau  [     DRM] resuming kernel object tree...
+kernel: nouveau  [   VBIOS][0000:01:00.0] running init tables
+kernel: nouveau  [     DRM] resuming client object trees...
+kernel: nouveau  [     DRM] resuming display...
+kernel: nouveau E[     PFB][0000:01:00.0] trapped write at 0x00007fe000 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAGE_NOT_PRESENT
+kernel: nouveau E[     PFB][0000:01:00.0] trapped write at 0x00007fe000 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAGE_NOT_PRESENT
+kernel: nouveau E[     PFB][0000:01:00.0] trapped write at 0x00007fe240 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAGE_NOT_PRESENT
+kernel: nouveau E[     PFB][0000:01:00.0] trapped write at 0x00007fe400 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAGE_NOT_PRESENT
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69488
+https://bugs.freedesktop.org/buglist.cgi?query_format=specific&order=relevance+desc&bug_status=__open__&product=&content=PAGE_NOT_PRESENT
 
---- Comment #16 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
-Can you try with nouveau.config=NvMSI=0 ?
+https://bugs.freedesktop.org/show_bug.cgi?id=58556
+https://bugs.freedesktop.org/show_bug.cgi?id=62835
+https://bugs.freedesktop.org/show_bug.cgi?id=68037
+https://bugs.freedesktop.org/show_bug.cgi?id=69029
+https://bugs.freedesktop.org/show_bug.cgi?id=69928
+---
+ drivers/gpu/drm/nouveau/nouveau_drm.c   |    2 +-
+ drivers/gpu/drm/nouveau/nouveau_fbcon.c |    4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 383f4e6..6148758 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -544,7 +544,7 @@ nouveau_do_resume(struct drm_device *dev)
+ 	nouveau_pm_resume(dev);
+ 
+ 	if (dev->mode_config.num_crtc) {
+-		NV_INFO(drm, "resuming display...\n");
++		NV_INFO(drm, "resuming display and fbcon...\n");
+ 		nouveau_display_resume(dev);
+ 	}
+ 	return 0;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+index b035317..46e37c0 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+@@ -514,10 +514,10 @@ void nouveau_fbcon_set_suspend(struct drm_device *dev, int state)
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	console_lock();
+ 	if (state == 0)
+-		nouveau_fbcon_save_disable_accel(dev);
++		nouveau_fbcon_restore_accel(dev);
+ 	fb_set_suspend(drm->fbcon->helper.fbdev, state);
+ 	if (state == 1)
+-		nouveau_fbcon_restore_accel(dev);
++		nouveau_fbcon_save_disable_accel(dev);
+ 	console_unlock();
+ }
+ 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1380785944.C2Fa8D2.18527
-Date: Thu, 3 Oct 2013 07:39:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c16">Comment # 16</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488">bug 69488</a>
-              from <span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
-</span></b>
-        <pre>Can you try with nouveau.config=NvMSI=0 ?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1380785944.C2Fa8D2.18527--
-
---===============1872867588==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1872867588==--
+1.7.10.4
