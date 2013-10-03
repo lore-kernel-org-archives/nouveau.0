@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69488] GF108 (NVC1) GPU lockup
-Date: Thu, 03 Oct 2013 07:33:14 +0000
-Message-ID: <bug-69488-8800-GrP5hgCUin@http.bugs.freedesktop.org/>
+Date: Thu, 03 Oct 2013 07:39:04 +0000
+Message-ID: <bug-69488-8800-GmxcEBtStM@http.bugs.freedesktop.org/>
 References: <bug-69488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1995332834=="
+Content-Type: multipart/mixed; boundary="===============1872867588=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1995332834==
-Content-Type: multipart/alternative; boundary="1380785594.a0ACa7C2.17255"; charset="us-ascii"
+--===============1872867588==
+Content-Type: multipart/alternative; boundary="1380785944.C2Fa8D2.18527"; charset="us-ascii"
 
 
---1380785594.a0ACa7C2.17255
-Date: Thu, 3 Oct 2013 07:33:14 +0000
+--1380785944.C2Fa8D2.18527
+Date: Thu, 3 Oct 2013 07:39:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69488
 
---- Comment #15 from Dave Airlie <airlied-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> ---
-sounds like runtime pm is killing it,
-
-boot with nouveau.runpm=0 maybe, though it does seem like the GPU is in trouble
-before that point.
+--- Comment #16 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
+Can you try with nouveau.config=NvMSI=0 ?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380785594.a0ACa7C2.17255
-Date: Thu, 3 Oct 2013 07:33:14 +0000
+--1380785944.C2Fa8D2.18527
+Date: Thu, 3 Oct 2013 07:39:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,17 +53,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - GF108 (NVC1) GPU lockup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69488">bug 69488</a>
-              from <span class="vcard"><a class="email" href="mailto:airlied&#64;freedesktop.org" title="Dave Airlie &lt;airlied&#64;freedesktop.org&gt;"> <span class="fn">Dave Airlie</span></a>
+              from <span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
 </span></b>
-        <pre>sounds like runtime pm is killing it,
-
-boot with nouveau.runpm=0 maybe, though it does seem like the GPU is in trouble
-before that point.</pre>
+        <pre>Can you try with nouveau.config=NvMSI=0 ?</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +72,9 @@ before that point.</pre>
     </body>
 </html>
 
---1380785594.a0ACa7C2.17255--
+--1380785944.C2Fa8D2.18527--
 
---===============1995332834==
+--===============1872867588==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1995332834==--
+--===============1872867588==--
