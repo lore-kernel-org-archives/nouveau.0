@@ -1,12 +1,21 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62835] Screen freezes after resume from s2ram
-Date: Thu, 03 Oct 2013 22:10:36 +0000
-Message-ID: <bug-62835-8800-2XCfjhwuLR@http.bugs.freedesktop.org/>
-References: <bug-62835-8800@http.bugs.freedesktop.org/>
+From: Pavel Roskin <proski-mXXj517/zsQ@public.gmane.org>
+Subject: Re: Resource map sanity check fails after GRUB "keeps"
+ the gfx mode
+Date: Thu, 3 Oct 2013 18:10:49 -0400
+Message-ID: <20131003181049.5cf83c9a@IRBT4585>
+References: <20130925200706.2e6f5947@IRBT4585>
+	<20130926183743.0d2420c4@IRBT4585> <524550E6.6040909@gmail.com>
+	<20130927113743.1383f9b5@IRBT4585>
+	<CANq1E4STGCp8X+i-OOd1KYCZQEoUeYuEw8=tkWuXY8_8wcieuw@mail.gmail.com>
+	<20130927154031.khkhbl17s0ow4sgc-cebfxv@webmail.spamcop.net>
+	<CANq1E4T6Wa5ReKqBd=-3fDKGs8frMCQ5RQxAOM19C4dnwL_sOA@mail.gmail.com>
+	<20131002174652.5907a2d0@IRBT4585>
+	<CANq1E4TxPg5ZM6WxDZiqi_ZFsY-qqhh8C56aBgSDVKzqt0m2pg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0177927083=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CANq1E4TxPg5ZM6WxDZiqi_ZFsY-qqhh8C56aBgSDVKzqt0m2pg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,91 +25,47 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: David Herrmann <dh.herrmann-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Hi David,
 
---===============0177927083==
-Content-Type: multipart/alternative; boundary="1380838236.7d314.15545"; charset="us-ascii"
+On Thu, 3 Oct 2013 00:19:56 +0200
+David Herrmann <dh.herrmann-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
 
+> >> And your PCI-BAR adjustment doesn't change
+> >> anything either, sorry.
+> >
+> > I simply tried another approach to pacify the resource checker.
+> >
+> > However, there is some difference.  nvidiafb cannot access the
+> > resources if IORESOURCE_BUSY is used.
+> 
+> Are you sure this is related to IORESOURCE_BUSY? Or is it related to
+> CONFIG_X86_SYSFB?
 
---1380838236.7d314.15545
-Date: Thu, 3 Oct 2013 22:10:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+CONFIG_X86_SYSFB is always defined.  I doubt an x86 kernel would
+compile without it.  create_simplefb() is used in
+arch/x86/kernel/sysfb.c that is compiled unconditionally and that
+function is defined in arch/x86/kernel/sysfb_simplefb.c that is only
+compiled if CONFIG_X86_SYSFB is defined.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62835
+I tried four combinations: with and without IORESOURCE_BUSY and with
+and without the PCI resource adjustment.  The only combination when
+nvidiafb probes the hardware is when IORESOURCE_BUSY is not used and
+the BOOTFP resource is adjusted to match the PCI BAR.
 
---- Comment #6 from chr[] <chris-4cZEHNAa5IdBDgjK7y7TUQ@public.gmane.org> ---
-Hi!
+It means that your patch by itself won't prevent nvidiafb from getting
+the resource on my hardware (ThinkPad W530).  However, if the BOOTFP
+resource matches the PCI BAR for the video card, adding IORESOURCE_BUSY
+might prevent some framebuffer drivers from accessing the resource.
 
-Regarding suspend/resume scrambling screen issues, try this patch:
-
-
-[PATCH] drm/nouveau/fb: fix suspend/resume fbcon
-
-http://lists.freedesktop.org/archives/nouveau/2013-October/014656.html
-
-chr[]
+This complexity doesn't seem right.  I think specific drivers should
+trump generic once and DRI drivers should trump non-DRI.  It shouldn't
+matter whether the BOOTFP area from screen_info coincides with the PCI
+BAR or occupies a part of it.
 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1380838236.7d314.15545
-Date: Thu, 3 Oct 2013 22:10:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Screen freezes after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62835#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Screen freezes after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62835">bug 62835</a>
-              from <span class="vcard"><a class="email" href="mailto:chris&#64;rudorff.com" title="chr[] &lt;chris&#64;rudorff.com&gt;"> <span class="fn">chr[]</span></a>
-</span></b>
-        <pre>Hi!
-
-Regarding suspend/resume scrambling screen issues, try this patch:
-
-
-[PATCH] drm/nouveau/fb: fix suspend/resume fbcon
-
-<a href="http://lists.freedesktop.org/archives/nouveau/2013-October/014656.html">http://lists.freedesktop.org/archives/nouveau/2013-October/014656.html</a>
-
-chr[]</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1380838236.7d314.15545--
-
---===============0177927083==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0177927083==--
+Regards,
+Pavel Roskin
