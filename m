@@ -1,13 +1,11 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: GeForce 8400 GS
-Date: Fri, 04 Oct 2013 16:10:50 +0200
-Message-ID: <524ECC6A.8070505@gmail.com>
-References: <1380825934.841834684@f291.i.mail.ru>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70135] New: [nv34 PowerMac G5] gnome-shell random
+ crashes and rendering issues
+Date: Fri, 04 Oct 2013 14:28:09 +0000
+Message-ID: <bug-70135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/mixed; boundary="===============1760355967=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1380825934.841834684-MnY5EB7xCO9sdVUOrk1QfQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,63 +18,214 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 03.10.2013 20:45, Fernando Negro wrote:
->  Hi everyone.
-> =
 
-> I read on a 2011 article - http://www.phoronix.com/scan.php?page=3Darticl=
-e&item=3Dnouveau_comp_2011&num=3D19 - that my particular card, GeForce 8400=
- GS, overheats with nouveau. (So, I never tried using if for long, before, =
-as soon as possible, installing the proprietary drivers...) But, because it=
-'s a 2-year-old article, I was wondering if that problem could have been, i=
-n the meantime, solved?... (Can anyone tell me if that is so, or not - or i=
-ndicate me a place where I can know that?)
-> =
+--===============1760355967==
+Content-Type: multipart/alternative; boundary="1380896890.A3BcA1.22160"; charset="us-ascii"
 
 
-http://www.asus.com/Graphics_Cards/EN8400GS_SILENTHTP512M
+--1380896890.A3BcA1.22160
+Date: Fri, 4 Oct 2013 14:28:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-$ modinfo -F filename nouveau
-/lib/modules/3.11.2-201.fc19.x86_64/kernel/drivers/gpu/drm/nouveau/nouveau.=
-ko
+https://bugs.freedesktop.org/show_bug.cgi?id=70135
 
-$ sensors nouveau-pci-0200
-nouveau-pci-0200
-Adapter: PCI adapter
-temp1:        +61.0=B0C  (high =3D +95.0=B0C, hyst =3D  +3.0=B0C)
-                       (crit =3D +122.0=B0C, hyst =3D  +2.0=B0C)
-                       (emerg =3D +135.0=B0C, hyst =3D  +5.0=B0C)
+          Priority: medium
+            Bug ID: 70135
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [nv34 PowerMac G5] gnome-shell random crashes and
+                    rendering issues
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: glaubitz-1Olz3AKvcsuAKZTfuerNgRvVK+yQ3ZXh@public.gmane.org
+          Hardware: PowerPC
+            Status: NEW
+           Version: 7.7 (2011)
+         Component: Driver/nouveau
+           Product: xorg
 
-# nvclock -i
-Xlib:  extension "NV-CONTROL" missing on display ":0.0".
--- General info --
-Card: 		nVidia Geforce 8400GS
-Architecture: 	G98 A2
-PCI id: 	0x6e4
-GPU clock: 	612.000 MHz
-Bustype: 	PCI-Express
+Created attachment 87123
+  --> https://bugs.freedesktop.org/attachment.cgi?id=87123&action=edit
+dmesg of PowerMac G5 Model A1047 with NV34 after crash
 
--- Shader info --
-Clock: 1512.000 MHz
-Stream units: 16 (1b)
-ROP units: 4 (1b)
--- Memory info --
-Amount: 	512 MB
-Type: 		128 bit DDR2
-Clock: 		399.600 MHz
+Hello!
 
--- PCI-Express info --
-Current Rate: 	16X
-Maximum rate: 	16X
+I have recently performed a test installation of Debian unstable on a PowerMac
+G5 (Apple Model: A1047) which exposed some reproducible crashes and rendering
+issues with nouveau and the Apple-branded GeForce FX 5200 Ultra.
 
--- Sensor info --
-Sensor: GPU Internal Sensor
-GPU temperature: 61C
+After installing Debian Wheezy which ships xf86-video-nouveau 1.0.1 I
+experienced some serious rendering issues when starting gnome-shell 3.4.2.
+After upgrading to Debian unstable which installed xf86-video-nouveau 1.0.9,
+most of the rendering were gone. The version of gnome-shell was still 3.4.2 for
+Debian unstable at that point.
 
--- VideoBios information --
-Version: 62.98.2c.00.00
-Signon message: ASUS EN8400GS VGA BIOS Ver 62.98.2C.00.AS07
-Performance level 0: gpu 567MHz/shader 1400MHz/memory 400MHz/100%
+With the driver from unstable, some minor glitches were still left. However,
+the main issue was that it was possible to reproducibly crash the X server by
+hovering the mouse over the applications menu of gnome-shell. This crash
+produced some output in the dmesg buffer as well in the Xorg.0.log.
 
+I am attaching all related log files and well as a dump of the video ROM of the
+GeForce FX5200 Ultra used in this Macintosh. If you need further log files or
+want me to perform some debugging, please let me know.
 
-poma
+Cheers,
+
+Adrian
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1380896890.A3BcA1.22160
+Date: Fri, 4 Oct 2013 14:28:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135">70135</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[nv34 PowerMac G5] gnome-shell random crashes and rendering issues
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>glaubitz&#64;physik.fu-berlin.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>PowerPC
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>7.7 (2011)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=87123" name="attach_87123" title="dmesg of PowerMac G5 Model A1047 with NV34 after crash">attachment 87123</a> <a href="attachment.cgi?id=87123&amp;action=edit" title="dmesg of PowerMac G5 Model A1047 with NV34 after crash">[details]</a></span>
+dmesg of PowerMac G5 Model A1047 with NV34 after crash
+
+Hello!
+
+I have recently performed a test installation of Debian unstable on a PowerMac
+G5 (Apple Model: A1047) which exposed some reproducible crashes and rendering
+issues with nouveau and the Apple-branded GeForce FX 5200 Ultra.
+
+After installing Debian Wheezy which ships xf86-video-nouveau 1.0.1 I
+experienced some serious rendering issues when starting gnome-shell 3.4.2.
+After upgrading to Debian unstable which installed xf86-video-nouveau 1.0.9,
+most of the rendering were gone. The version of gnome-shell was still 3.4.2 for
+Debian unstable at that point.
+
+With the driver from unstable, some minor glitches were still left. However,
+the main issue was that it was possible to reproducibly crash the X server by
+hovering the mouse over the applications menu of gnome-shell. This crash
+produced some output in the dmesg buffer as well in the Xorg.0.log.
+
+I am attaching all related log files and well as a dump of the video ROM of the
+GeForce FX5200 Ultra used in this Macintosh. If you need further log files or
+want me to perform some debugging, please let me know.
+
+Cheers,
+
+Adrian</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1380896890.A3BcA1.22160--
+
+--===============1760355967==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1760355967==--
