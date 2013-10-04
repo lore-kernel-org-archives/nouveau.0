@@ -1,88 +1,60 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 41114] [NVCx] nouveau module crashes on boot
-Date: Fri, 04 Oct 2013 02:41:37 +0000
-Message-ID: <bug-41114-8800-yYDAdAz9Bg@http.bugs.freedesktop.org/>
-References: <bug-41114-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nouveau_vieux: add AllocTextureImageBuffer
+	implementation
+Date: Fri,  4 Oct 2013 04:28:58 -0400
+Message-ID: <1380875338-25572-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1166954920=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-41114-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+Errors-To: mesa-dev-bounces+gcvmd-mesa3d-493=gmane.org@lists.freedesktop.org
+To: Francisco Jerez <currojerez@riseup.net>
+Cc: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+This fixes issues where get_rt_format would see a 0 format because the
+nouveau_surface had not been properly initialized. Fixes crash on
+supertuxkart startup (which still fails due to out-of-vram issues).
 
---===============1166954920==
-Content-Type: multipart/alternative; boundary="1380854497.A4bFad5.31790"; charset="us-ascii"
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+---
+ src/mesa/drivers/dri/nouveau/nouveau_texture.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-
---1380854497.A4bFad5.31790
-Date: Fri, 4 Oct 2013 02:41:37 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=41114
-
---- Comment #23 from Robert Riches <rm.riches-BRax14MUi1YI9MI5TlNUSA@public.gmane.org> ---
-Thank you for the info.
-
+diff --git a/src/mesa/drivers/dri/nouveau/nouveau_texture.c b/src/mesa/drivers/dri/nouveau/nouveau_texture.c
+index da74e8f..8904389 100644
+--- a/src/mesa/drivers/dri/nouveau/nouveau_texture.c
++++ b/src/mesa/drivers/dri/nouveau/nouveau_texture.c
+@@ -494,6 +494,14 @@ nouveau_compressed_teximage(struct gl_context *ctx, GLuint dims,
+ 			 &ctx->Unpack, GL_TRUE);
+ }
+ 
++static GLboolean
++nouveau_teximage_alloc(struct gl_context *ctx, struct gl_texture_image *ti)
++{
++	nouveau_teximage(ctx, 3, ti, 0, 0, 0, NULL,
++			 &ctx->DefaultPacking, GL_FALSE);
++	return GL_TRUE;
++}
++
+ static void
+ nouveau_texsubimage(struct gl_context *ctx, GLint dims,
+ 		    struct gl_texture_image *ti,
+@@ -634,6 +642,7 @@ nouveau_texture_functions_init(struct dd_function_table *functions)
+ 	functions->DeleteTexture = nouveau_texture_free;
+ 	functions->NewTextureImage = nouveau_teximage_new;
+ 	functions->FreeTextureImageBuffer = nouveau_teximage_free;
++	functions->AllocTextureImageBuffer = nouveau_teximage_alloc;
+ 	functions->ChooseTextureFormat = nouveau_choose_tex_format;
+ 	functions->TexImage = nouveau_teximage_123d;
+ 	functions->TexSubImage = nouveau_texsubimage_123d;
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1380854497.A4bFad5.31790
-Date: Fri, 4 Oct 2013 02:41:37 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVCx] nouveau module crashes on boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=41114#c23">Comment # 23</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVCx] nouveau module crashes on boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=41114">bug 41114</a>
-              from <span class="vcard"><a class="email" href="mailto:rm.riches&#64;jacob21819.net" title="Robert Riches &lt;rm.riches&#64;jacob21819.net&gt;"> <span class="fn">Robert Riches</span></a>
-</span></b>
-        <pre>Thank you for the info.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1380854497.A4bFad5.31790--
-
---===============1166954920==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1166954920==--
+1.8.1.5
