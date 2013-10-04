@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70135] [nv34 PowerMac G5] gnome-shell random crashes
- and rendering issues
-Date: Fri, 04 Oct 2013 14:30:06 +0000
-Message-ID: <bug-70135-8800-yrtzTz6hO9@http.bugs.freedesktop.org/>
-References: <bug-70135-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70130] unable to compile fragment shader program
+Date: Fri, 04 Oct 2013 16:08:08 +0000
+Message-ID: <bug-70130-8800-AfqGbsUqYn@http.bugs.freedesktop.org/>
+References: <bug-70130-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1941717941=="
+Content-Type: multipart/mixed; boundary="===============1210827452=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70130-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1941717941==
-Content-Type: multipart/alternative; boundary="1380897006.71F21.22594"; charset="us-ascii"
+--===============1210827452==
+Content-Type: multipart/alternative; boundary="1380902887.Bc413D0b1.8032"; charset="us-ascii"
 
 
---1380897006.71F21.22594
-Date: Fri, 4 Oct 2013 14:30:06 +0000
+--1380902887.Bc413D0b1.8032
+Date: Fri, 4 Oct 2013 16:08:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70135
+https://bugs.freedesktop.org/show_bug.cgi?id=70130
 
---- Comment #4 from John Paul Adrian Glaubitz <glaubitz-1Olz3AKvcsuAKZTfuerNgRvVK+yQ3ZXh@public.gmane.org> ---
-Created attachment 87127
-  --> https://bugs.freedesktop.org/attachment.cgi?id=87127&action=edit
-X.org.0.log of PowerMac G5 Model A1047 with NV34
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I believe this should be fixed in
+http://cgit.freedesktop.org/mesa/mesa/commit/?h=9.2&id=3b852f9d52732066bffd498313b3ccae4b615481
+on the 9.2 branch, and
+http://cgit.freedesktop.org/mesa/mesa/commit/?id=3282697621241e646247b85327c50747416a766b
+on master. Whenever 9.2.1 comes out, it should include the fix.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380897006.71F21.22594
-Date: Fri, 4 Oct 2013 14:30:06 +0000
+--1380902887.Bc413D0b1.8032
+Date: Fri, 4 Oct 2013 16:08:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,21 +58,52 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - unable to compile fragment shader program"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70130">bug 70130</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135#c4">Comment # 4</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - unable to compile fragment shader program"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70130#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135">bug 70135</a>
-              from <span class="vcard"><a class="email" href="mailto:glaubitz&#64;physik.fu-berlin.de" title="John Paul Adrian Glaubitz &lt;glaubitz&#64;physik.fu-berlin.de&gt;"> <span class="fn">John Paul Adrian Glaubitz</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - unable to compile fragment shader program"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70130">bug 70130</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=87127" name="attach_87127" title="X.org.0.log of PowerMac G5 Model A1047 with NV34">attachment 87127</a> <a href="attachment.cgi?id=87127&amp;action=edit" title="X.org.0.log of PowerMac G5 Model A1047 with NV34">[details]</a></span>
-X.org.0.log of PowerMac G5 Model A1047 with NV34</pre>
+        <pre>I believe this should be fixed in
+<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?h=9.2&amp;id=3b852f9d52732066bffd498313b3ccae4b615481">http://cgit.freedesktop.org/mesa/mesa/commit/?h=9.2&amp;id=3b852f9d52732066bffd498313b3ccae4b615481</a>
+on the 9.2 branch, and
+<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=3282697621241e646247b85327c50747416a766b">http://cgit.freedesktop.org/mesa/mesa/commit/?id=3282697621241e646247b85327c50747416a766b</a>
+on master. Whenever 9.2.1 comes out, it should include the fix.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +115,9 @@ X.org.0.log of PowerMac G5 Model A1047 with NV34</pre>
     </body>
 </html>
 
---1380897006.71F21.22594--
+--1380902887.Bc413D0b1.8032--
 
---===============1941717941==
+--===============1210827452==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +128,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1941717941==--
+--===============1210827452==--
