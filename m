@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
-Date: Fri, 04 Oct 2013 11:05:31 +0000
-Message-ID: <bug-15758-8800-RH7NSIsOus@http.bugs.freedesktop.org/>
-References: <bug-15758-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 38074] [NV96] Dual head doesn't work for some
+ combination of monitors (second screen still off)
+Date: Fri, 04 Oct 2013 12:14:44 +0000
+Message-ID: <bug-38074-8800-bYzLq9aiuE@http.bugs.freedesktop.org/>
+References: <bug-38074-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0939022377=="
+Content-Type: multipart/mixed; boundary="===============2085776487=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,79 +21,79 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0939022377==
-Content-Type: multipart/alternative; boundary="1380884732.B0f8Ea76.16148"; charset="us-ascii"
+--===============2085776487==
+Content-Type: multipart/alternative; boundary="1380888884.67B32.28199"; charset="us-ascii"
 
 
---1380884732.B0f8Ea76.16148
-Date: Fri, 4 Oct 2013 11:05:32 +0000
+--1380888884.67B32.28199
+Date: Fri, 4 Oct 2013 12:14:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=15758
+https://bugs.freedesktop.org/show_bug.cgi?id=3D38074
 
---- Comment #33 from ^m'e <marcoep-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #1)
-> I think this is most likely caused by the hardware issue fixed for nv in bug
-> 7309. I'm not sure where the fix (delay) should go in nouveau however, since
-> simply delaying for a second each time the cursor is turned off is not an
-> option, as the hwcursor gets turned on and off many times during normal
-> operation.
+--- Comment #24 from Jarom=C3=ADr C=C3=A1p=C3=ADk <jcapik-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
+Hello Ilia.
 
-I recently tried the nv driver on gentoo and it also suffers from the same
-problem -- always reproductible: just wait enough with an open X session.
-The problem might then well be in xorg itself...
+The issue is still present (tested with kernel-3.11.2).
 
--- 
+Regards,
+Jaromir.
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1380884732.B0f8Ea76.16148
-Date: Fri, 4 Oct 2013 11:05:32 +0000
+--1380888884.67B32.28199
+Date: Fri, 4 Oct 2013 12:14:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_REOPENED "
-   title="REOPENED --- - Invisible mouse pointer on NV4E (C51)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=15758#c33">Comment # 33</a>
-              on <a class="bz_bug_link 
+   title=3D"REOPENED --- - [NV96] Dual head doesn't work for some combinati=
+on of monitors (second screen still off)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D38074#c24">Commen=
+t # 24</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_REOPENED "
-   title="REOPENED --- - Invisible mouse pointer on NV4E (C51)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=15758">bug 15758</a>
-              from <span class="vcard"><a class="email" href="mailto:marcoep&#64;gmail.com" title="^m'e &lt;marcoep&#64;gmail.com&gt;"> <span class="fn">^m'e</span></a>
+   title=3D"REOPENED --- - [NV96] Dual head doesn't work for some combinati=
+on of monitors (second screen still off)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D38074">bug 38074<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jcapik&#64;redhat.com" title=3D"Jarom=C3=ADr C=C3=A1p=C3=ADk &lt;jcapik&#64=
+;redhat.com&gt;"> <span class=3D"fn">Jarom=C3=ADr C=C3=A1p=C3=ADk</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=15758#c1">comment #1</a>)
-<span class="quote">&gt; I think this is most likely caused by the hardware issue fixed for nv in bug
-&gt; 7309. I'm not sure where the fix (delay) should go in nouveau however, since
-&gt; simply delaying for a second each time the cursor is turned off is not an
-&gt; option, as the hwcursor gets turned on and off many times during normal
-&gt; operation.</span >
+        <pre>Hello Ilia.
 
-I recently tried the nv driver on gentoo and it also suffers from the same
-problem -- always reproductible: just wait enough with an open X session.
-The problem might then well be in xorg itself...</pre>
+The issue is still present (tested with kernel-3.11.2).
+
+Regards,
+Jaromir.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1380884732.B0f8Ea76.16148--
+--1380888884.67B32.28199--
 
---===============0939022377==
+--===============2085776487==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0939022377==--
+--===============2085776487==--
