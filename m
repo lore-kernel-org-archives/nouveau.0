@@ -1,13 +1,12 @@
-From: Christoph Rudorff <chris-4cZEHNAa5IdBDgjK7y7TUQ@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/fb: fix suspend/resume fbcon
-Date: Fri, 04 Oct 2013 02:54:59 +0200
-Message-ID: <1380848099.8990.15.camel@localhost>
-References: <1380811312.8640.6.camel@localhost> <524DF4CF.6040907@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 41114] [NVCx] nouveau module crashes on boot
+Date: Fri, 04 Oct 2013 02:41:37 +0000
+Message-ID: <bug-41114-8800-yYDAdAz9Bg@http.bugs.freedesktop.org/>
+References: <bug-41114-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1166954920=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <524DF4CF.6040907-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-41114-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,38 +16,73 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Am Donnerstag, den 03.10.2013, 23:50 +0100 schrieb Emil Velikov:
-> I'm not entirely sure this is correct. One needs to save and disable
-> accleration before suspending the fb. Please try the following
-> 
-> -	if (state == 0)
-> +	if (state == 1)
-> 		nouveau_fbcon_save_disable_accel(dev);
-> 	fb_set_suspend(drm->fbcon->helper.fbdev, state);
-> -	if (state == 1)
-> +	if (state == 0)
-> 		nouveau_fbcon_restore_accel(dev);
-> 	console_unlock();
-> 
-> Cheers,
-> Emil
 
-Hi!
+--===============1166954920==
+Content-Type: multipart/alternative; boundary="1380854497.A4bFad5.31790"; charset="us-ascii"
 
-That was my first try! I guessed the same but I got exactly one trap
-message on resume.
 
-So it's about first put the bucket and then open the water tap.
+--1380854497.A4bFad5.31790
+Date: Fri, 4 Oct 2013 02:41:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-;)
+https://bugs.freedesktop.org/show_bug.cgi?id=41114
 
-chris
+--- Comment #23 from Robert Riches <rm.riches-BRax14MUi1YI9MI5TlNUSA@public.gmane.org> ---
+Thank you for the info.
 
-ps: just found these macros for the state in fb.h:
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-FBINFO_STATE_RUNNING = 0
-FBINFO_STATE_SUSPENDED = 1
+--1380854497.A4bFad5.31790
+Date: Fri, 4 Oct 2013 02:41:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVCx] nouveau module crashes on boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=41114#c23">Comment # 23</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVCx] nouveau module crashes on boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=41114">bug 41114</a>
+              from <span class="vcard"><a class="email" href="mailto:rm.riches&#64;jacob21819.net" title="Robert Riches &lt;rm.riches&#64;jacob21819.net&gt;"> <span class="fn">Robert Riches</span></a>
+</span></b>
+        <pre>Thank you for the info.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1380854497.A4bFad5.31790--
+
+--===============1166954920==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1166954920==--
