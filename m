@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70208] Nouveau driver doesn't find vbios for Geforce
  GT 750M on Asus N750JV laptop
-Date: Sun, 06 Oct 2013 21:42:30 +0000
-Message-ID: <bug-70208-8800-jUFcqUUBlY@http.bugs.freedesktop.org/>
+Date: Sun, 06 Oct 2013 21:51:22 +0000
+Message-ID: <bug-70208-8800-lUswVtIEcQ@http.bugs.freedesktop.org/>
 References: <bug-70208-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0489182246=="
+Content-Type: multipart/mixed; boundary="===============0341014083=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70208-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0489182246==
-Content-Type: multipart/alternative; boundary="1381095750.cEAA1.32695"; charset="us-ascii"
+--===============0341014083==
+Content-Type: multipart/alternative; boundary="1381096282.6e78EE1.1640"; charset="us-ascii"
 
 
---1381095750.cEAA1.32695
-Date: Sun, 6 Oct 2013 21:42:30 +0000
+--1381096282.6e78EE1.1640
+Date: Sun, 6 Oct 2013 21:51:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70208
 
---- Comment #6 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 87214
-  --> https://bugs.freedesktop.org/attachment.cgi?id=87214&action=edit
-count DISPLAY_3D devices while considering dsm/optimus presence
+--- Comment #7 from 4712.joey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 87215
+  --> https://bugs.freedesktop.org/attachment.cgi?id=87215&action=edit
+Full dmesg with the count DISPLAY_3D devices patch
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381095750.cEAA1.32695
-Date: Sun, 6 Oct 2013 21:42:30 +0000
+--1381096282.6e78EE1.1640
+Date: Sun, 6 Oct 2013 21:51:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau driver doesn't find vbios for Geforce GT 750M on Asus N750JV laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70208#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70208#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau driver doesn't find vbios for Geforce GT 750M on Asus N750JV laptop"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70208">bug 70208</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:4712.joey&#64;gmail.com" title="4712.joey&#64;gmail.com">4712.joey&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=87214" name="attach_87214" title="count DISPLAY_3D devices while considering dsm/optimus presence">attachment 87214</a> <a href="attachment.cgi?id=87214&amp;action=edit" title="count DISPLAY_3D devices while considering dsm/optimus presence">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=70208&amp;attachment=87214'>[review]</a>
-count DISPLAY_3D devices while considering dsm/optimus presence</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=87215" name="attach_87215" title="Full dmesg with the count DISPLAY_3D devices patch">attachment 87215</a> <a href="attachment.cgi?id=87215&amp;action=edit" title="Full dmesg with the count DISPLAY_3D devices patch">[details]</a></span>
+Full dmesg with the count DISPLAY_3D devices patch</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ count DISPLAY_3D devices while considering dsm/optimus presence</pre>
     </body>
 </html>
 
---1381095750.cEAA1.32695--
+--1381096282.6e78EE1.1640--
 
---===============0489182246==
+--===============0341014083==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0489182246==--
+--===============0341014083==--
