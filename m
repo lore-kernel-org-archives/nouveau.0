@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70135] [nv34 PowerMac G5] gnome-shell random crashes
  and rendering issues
-Date: Sun, 06 Oct 2013 01:11:08 +0000
-Message-ID: <bug-70135-8800-R4rCnx5sVD@http.bugs.freedesktop.org/>
+Date: Sun, 06 Oct 2013 01:20:09 +0000
+Message-ID: <bug-70135-8800-xI852Ql6wa@http.bugs.freedesktop.org/>
 References: <bug-70135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1358363915=="
+Content-Type: multipart/mixed; boundary="===============2118323964=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1358363915==
-Content-Type: multipart/alternative; boundary="1381021868.5B6C2A1.688"; charset="us-ascii"
+--===============2118323964==
+Content-Type: multipart/alternative; boundary="1381022409.DD0eB1.2076"; charset="us-ascii"
 
 
---1381021868.5B6C2A1.688
-Date: Sun, 6 Oct 2013 01:11:08 +0000
+--1381022409.DD0eB1.2076
+Date: Sun, 6 Oct 2013 01:20:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70135
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Mesa 9.2.1 was just released today, try that. Although for the issue I was
-talking about, I thought that it was only introduced in 9.2, and should not
-have existed in 9.1, but perhaps I was wrong. Still worth a shot.
+--- Comment #8 from John Paul Adrian Glaubitz <glaubitz-1Olz3AKvcsuAKZTfuerNgRvVK+yQ3ZXh@public.gmane.org> ---
+Alright, I'll try that.
 
-As I mentioned, logs from gnome-shell would be useful, as well as a full
-backtrace when it crashes (preferably with symbols).
+Although the PowerMac is in a different office and currently MacOS X, I still
+have the hard disk with Debian lying on my desk and I can simply pop it back in
+and upgrade the packages.
+
+We currently have mesa 9.2.0 in the experimental repositories, so I'll give it
+a shot with that first, then upgrade to 9.2.1 from source and report back.
+
+If gnome-shell still crashes, I'll get a gdb backtrace and post it here.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381021868.5B6C2A1.688
-Date: Sun, 6 Oct 2013 01:11:08 +0000
+--1381022409.DD0eB1.2076
+Date: Sun, 6 Oct 2013 01:20:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,19 +63,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70135">bug 70135</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:glaubitz&#64;physik.fu-berlin.de" title="John Paul Adrian Glaubitz &lt;glaubitz&#64;physik.fu-berlin.de&gt;"> <span class="fn">John Paul Adrian Glaubitz</span></a>
 </span></b>
-        <pre>Mesa 9.2.1 was just released today, try that. Although for the issue I was
-talking about, I thought that it was only introduced in 9.2, and should not
-have existed in 9.1, but perhaps I was wrong. Still worth a shot.
+        <pre>Alright, I'll try that.
 
-As I mentioned, logs from gnome-shell would be useful, as well as a full
-backtrace when it crashes (preferably with symbols).</pre>
+Although the PowerMac is in a different office and currently MacOS X, I still
+have the hard disk with Debian lying on my desk and I can simply pop it back in
+and upgrade the packages.
+
+We currently have mesa 9.2.0 in the experimental repositories, so I'll give it
+a shot with that first, then upgrade to 9.2.1 from source and report back.
+
+If gnome-shell still crashes, I'll get a gdb backtrace and post it here.</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +91,9 @@ backtrace when it crashes (preferably with symbols).</pre>
     </body>
 </html>
 
---1381021868.5B6C2A1.688--
+--1381022409.DD0eB1.2076--
 
---===============1358363915==
+--===============2118323964==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1358363915==--
+--===============2118323964==--
