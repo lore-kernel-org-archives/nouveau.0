@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70135] [nv34 PowerMac G5] gnome-shell random crashes
  and rendering issues
-Date: Sun, 06 Oct 2013 01:22:14 +0000
-Message-ID: <bug-70135-8800-vfjGCZyKPq@http.bugs.freedesktop.org/>
+Date: Sun, 06 Oct 2013 01:23:29 +0000
+Message-ID: <bug-70135-8800-U8XnhT4Ytw@http.bugs.freedesktop.org/>
 References: <bug-70135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0573003487=="
+Content-Type: multipart/mixed; boundary="===============1933322893=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0573003487==
-Content-Type: multipart/alternative; boundary="1381022534.BDb3fA1.2349"; charset="us-ascii"
+--===============1933322893==
+Content-Type: multipart/alternative; boundary="1381022608.fb0310a51.2550"; charset="us-ascii"
 
 
---1381022534.BDb3fA1.2349
-Date: Sun, 6 Oct 2013 01:22:14 +0000
+--1381022608.fb0310a51.2550
+Date: Sun, 6 Oct 2013 01:23:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70135
 
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Don't bother with 9.2.0 -- that'll _definitely_ have some issues.
+--- Comment #10 from John Paul Adrian Glaubitz <glaubitz-1Olz3AKvcsuAKZTfuerNgRvVK+yQ3ZXh@public.gmane.org> ---
+Ok, I'll jump right into 9.2.1 then. Thanks for the heads-up!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381022534.BDb3fA1.2349
-Date: Sun, 6 Oct 2013 01:22:14 +0000
+--1381022608.fb0310a51.2550
+Date: Sun, 6 Oct 2013 01:23:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70135">bug 70135</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:glaubitz&#64;physik.fu-berlin.de" title="John Paul Adrian Glaubitz &lt;glaubitz&#64;physik.fu-berlin.de&gt;"> <span class="fn">John Paul Adrian Glaubitz</span></a>
 </span></b>
-        <pre>Don't bother with 9.2.0 -- that'll _definitely_ have some issues.</pre>
+        <pre>Ok, I'll jump right into 9.2.1 then. Thanks for the heads-up!</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +73,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1381022534.BDb3fA1.2349--
+--1381022608.fb0310a51.2550--
 
---===============0573003487==
+--===============1933322893==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0573003487==--
+--===============1933322893==--
