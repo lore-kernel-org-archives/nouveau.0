@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70208] Nouveau driver doesn't find vbios for Geforce
- GT 750M on Asus N750JV laptop
-Date: Sun, 06 Oct 2013 19:46:08 +0000
-Message-ID: <bug-70208-8800-lsEqjqzdEH@http.bugs.freedesktop.org/>
-References: <bug-70208-8800@http.bugs.freedesktop.org/>
+From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Subject: Re: [PATCH] nouveau_vieux: add AllocTextureImageBuffer
+	implementation
+Date: Sun, 06 Oct 2013 13:31:28 -0700
+Message-ID: <87vc1ata3j.fsf@riseup.net>
+References: <1380875338-25572-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0511222311=="
+Content-Type: multipart/mixed; boundary="===============1037518229=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70208-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1380875338-25572-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,72 +17,85 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============1037518229==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
 
---===============0511222311==
-Content-Type: multipart/alternative; boundary="1381088768.d0df1.10233"; charset="us-ascii"
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
+
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> writes:
+
+> This fixes issues where get_rt_format would see a 0 format because the
+> nouveau_surface had not been properly initialized. Fixes crash on
+> supertuxkart startup (which still fails due to out-of-vram issues).
+>
+> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 
 
---1381088768.d0df1.10233
-Date: Sun, 6 Oct 2013 19:46:08 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Thanks, pushed.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70208
+>  src/mesa/drivers/dri/nouveau/nouveau_texture.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/src/mesa/drivers/dri/nouveau/nouveau_texture.c b/src/mesa/dr=
+ivers/dri/nouveau/nouveau_texture.c
+> index da74e8f..8904389 100644
+> --- a/src/mesa/drivers/dri/nouveau/nouveau_texture.c
+> +++ b/src/mesa/drivers/dri/nouveau/nouveau_texture.c
+> @@ -494,6 +494,14 @@ nouveau_compressed_teximage(struct gl_context *ctx, =
+GLuint dims,
+>  			 &ctx->Unpack, GL_TRUE);
+>  }
+>=20=20
+> +static GLboolean
+> +nouveau_teximage_alloc(struct gl_context *ctx, struct gl_texture_image *=
+ti)
+> +{
+> +	nouveau_teximage(ctx, 3, ti, 0, 0, 0, NULL,
+> +			 &ctx->DefaultPacking, GL_FALSE);
+> +	return GL_TRUE;
+> +}
+> +
+>  static void
+>  nouveau_texsubimage(struct gl_context *ctx, GLint dims,
+>  		    struct gl_texture_image *ti,
+> @@ -634,6 +642,7 @@ nouveau_texture_functions_init(struct dd_function_tab=
+le *functions)
+>  	functions->DeleteTexture =3D nouveau_texture_free;
+>  	functions->NewTextureImage =3D nouveau_teximage_new;
+>  	functions->FreeTextureImageBuffer =3D nouveau_teximage_free;
+> +	functions->AllocTextureImageBuffer =3D nouveau_teximage_alloc;
+>  	functions->ChooseTextureFormat =3D nouveau_choose_tex_format;
+>  	functions->TexImage =3D nouveau_teximage_123d;
+>  	functions->TexSubImage =3D nouveau_texsubimage_123d;
+> --=20
+> 1.8.1.5
 
---- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 87207
-  --> https://bugs.freedesktop.org/attachment.cgi?id=87207&action=edit
-retry 16 times to retrieve the vbios from ACPI
+--=-=-=--
 
-Give this patch a try, and attach the resulting dmesg. Thanks
+--==-=-=
+Content-Type: application/pgp-signature
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.21 (GNU/Linux)
 
---1381088768.d0df1.10233
-Date: Sun, 6 Oct 2013 19:46:08 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+iF4EAREIAAYFAlJRyKAACgkQg5k4nX1Sv1u79QEAlF+nGq7QfkMsNwdXXC50D8jQ
+PlGqF3ija8a6wG1ojewA/1aYx6Qe4Z2Qx6zbZQdmYdBFON2yppbGQJDfO6R76yLY
+=nkcS
+-----END PGP SIGNATURE-----
+--==-=-=--
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau driver doesn't find vbios for Geforce GT 750M on Asus N750JV laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70208#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau driver doesn't find vbios for Geforce GT 750M on Asus N750JV laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70208">bug 70208</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=87207" name="attach_87207" title="retry 16 times to retrieve the vbios from ACPI">attachment 87207</a> <a href="attachment.cgi?id=87207&amp;action=edit" title="retry 16 times to retrieve the vbios from ACPI">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=70208&amp;attachment=87207'>[review]</a>
-retry 16 times to retrieve the vbios from ACPI
-
-Give this patch a try, and attach the resulting dmesg. Thanks</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1381088768.d0df1.10233--
-
---===============0511222311==
+--===============1037518229==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +106,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0511222311==--
+--===============1037518229==--
