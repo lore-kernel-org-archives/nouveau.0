@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70208] Nouveau driver doesn't find vbios for Geforce
  GT 750M on Asus N750JV laptop
-Date: Sun, 06 Oct 2013 21:51:22 +0000
-Message-ID: <bug-70208-8800-lUswVtIEcQ@http.bugs.freedesktop.org/>
+Date: Sun, 06 Oct 2013 21:55:28 +0000
+Message-ID: <bug-70208-8800-QWK3zAwQFj@http.bugs.freedesktop.org/>
 References: <bug-70208-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0341014083=="
+Content-Type: multipart/mixed; boundary="===============0274026704=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70208-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0341014083==
-Content-Type: multipart/alternative; boundary="1381096282.6e78EE1.1640"; charset="us-ascii"
+--===============0274026704==
+Content-Type: multipart/alternative; boundary="1381096528.61a3baf71.2534"; charset="us-ascii"
 
 
---1381096282.6e78EE1.1640
-Date: Sun, 6 Oct 2013 21:51:22 +0000
+--1381096528.61a3baf71.2534
+Date: Sun, 6 Oct 2013 21:55:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70208
 
---- Comment #7 from 4712.joey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 87215
-  --> https://bugs.freedesktop.org/attachment.cgi?id=87215&action=edit
-Full dmesg with the count DISPLAY_3D devices patch
+--- Comment #8 from 4712.joey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 87216
+  --> https://bugs.freedesktop.org/attachment.cgi?id=87216&action=edit
+Full dmesg with the count DISPLAY_3D devices and starting X
+
+When starting X with the patch it now crashes. See dmesg for details.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381096282.6e78EE1.1640
-Date: Sun, 6 Oct 2013 21:51:22 +0000
+--1381096528.61a3baf71.2534
+Date: Sun, 6 Oct 2013 21:55:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +58,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau driver doesn't find vbios for Geforce GT 750M on Asus N750JV laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70208#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70208#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau driver doesn't find vbios for Geforce GT 750M on Asus N750JV laptop"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70208">bug 70208</a>
               from <span class="vcard"><a class="email" href="mailto:4712.joey&#64;gmail.com" title="4712.joey&#64;gmail.com">4712.joey&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=87215" name="attach_87215" title="Full dmesg with the count DISPLAY_3D devices patch">attachment 87215</a> <a href="attachment.cgi?id=87215&amp;action=edit" title="Full dmesg with the count DISPLAY_3D devices patch">[details]</a></span>
-Full dmesg with the count DISPLAY_3D devices patch</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=87216" name="attach_87216" title="Full dmesg with the count DISPLAY_3D devices and starting X">attachment 87216</a> <a href="attachment.cgi?id=87216&amp;action=edit" title="Full dmesg with the count DISPLAY_3D devices and starting X">[details]</a></span>
+Full dmesg with the count DISPLAY_3D devices and starting X
+
+When starting X with the patch it now crashes. See dmesg for details.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +80,9 @@ Full dmesg with the count DISPLAY_3D devices patch</pre>
     </body>
 </html>
 
---1381096282.6e78EE1.1640--
+--1381096528.61a3baf71.2534--
 
---===============0341014083==
+--===============0274026704==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0341014083==--
+--===============0274026704==--
