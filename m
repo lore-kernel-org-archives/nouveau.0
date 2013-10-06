@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70212] glxinfo triggers assert in cso_release_all
- after 3f0627c2ad6
-Date: Mon, 07 Oct 2013 18:08:15 +0000
-Message-ID: <bug-70212-8800-dQZFycATDb@http.bugs.freedesktop.org/>
-References: <bug-70212-8800@http.bugs.freedesktop.org/>
+From: Robert Hancock <hancockrwd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: GeForce 8400 GS
+Date: Sat, 05 Oct 2013 19:13:02 -0600
+Message-ID: <5250B91E.108@gmail.com>
+References: <1380825934.841834684@f291.i.mail.ru>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1501504186=="
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70212-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1380825934.841834684-MnY5EB7xCO9sdVUOrk1QfQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,91 +17,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Fernando Negro <public-fernando.negro-JGs/UdohzUI-wOFGN7rlS/M9smdsby/KFg@public.gmane.org>
+Cc: public-nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW-wOFGN7rlS/M9smdsby/KFg@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1501504186==
-Content-Type: multipart/alternative; boundary="1381169294.1bBEfa22.23624"; charset="us-ascii"
 
+On 10/03/2013 12:45 PM, Fernando Negro wrote:
+> Hi everyone.
+>
+> I read on a 2011 article -
+> http://www.phoronix.com/scan.php?page=article&item=nouveau_comp_2011&num=19
+> - that my particular card, GeForce 8400 GS, overheats with nouveau. (So,
+> I never tried using if for long, before, as soon as possible, installing
+> the proprietary drivers...) But, because it's a 2-year-old article, I
+> was wondering if that problem could have been, in the meantime,
+> solved?... (Can anyone tell me if that is so, or not - or indicate me a
+> place where I can know that?)
 
---1381169294.1bBEfa22.23624
-Date: Mon, 7 Oct 2013 18:08:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=70212
-
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi Brian
-
-The nv50 driver returns max=32 for sh=PIPE_SHADER_{VERTEX,FRAGMENT,GEOMETRY}
-and max=0 otherwise.
-
-Another interesting point is that with the bind_*_sampler_states hooks the
-drivers where left to handle cases of 0 samplers on their own - with nouveau
-and radeon doing additional work (state tracking afaics). Whereas with the
-unified bind_sampler_states() in case of 0 samplers the driver hook is not
-executed. Is that change intentional ?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1381169294.1bBEfa22.23624
-Date: Mon, 7 Oct 2013 18:08:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - glxinfo triggers assert in cso_release_all after 3f0627c2ad6"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70212#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - glxinfo triggers assert in cso_release_all after 3f0627c2ad6"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70212">bug 70212</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>Hi Brian
-
-The nv50 driver returns max=32 for sh=PIPE_SHADER_{VERTEX,FRAGMENT,GEOMETRY}
-and max=0 otherwise.
-
-Another interesting point is that with the bind_*_sampler_states hooks the
-drivers where left to handle cases of 0 samplers on their own - with nouveau
-and radeon doing additional work (state tracking afaics). Whereas with the
-unified bind_sampler_states() in case of 0 samplers the driver hook is not
-executed. Is that change intentional ?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1381169294.1bBEfa22.23624--
-
---===============1501504186==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1501504186==--
+That situation likely hasn't changed as far as I know. But I think that 
+article was overreacting. 80 degrees C on an NVIDIA GPU really should 
+not be dangerous. There are GPUs that can normally hit over 100 degrees 
+even with active cooling. Passively cooled GPUs like that will normally 
+run pretty warm.
