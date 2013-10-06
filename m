@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70208] Nouveau driver doesn't find vbios for Geforce
  GT 750M on Asus N750JV laptop
-Date: Sun, 06 Oct 2013 23:12:55 +0000
-Message-ID: <bug-70208-8800-nCZdiYiFG5@http.bugs.freedesktop.org/>
+Date: Sun, 06 Oct 2013 23:19:38 +0000
+Message-ID: <bug-70208-8800-3vcr3DmUwz@http.bugs.freedesktop.org/>
 References: <bug-70208-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0583366507=="
+Content-Type: multipart/mixed; boundary="===============0792055681=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70208-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0583366507==
-Content-Type: multipart/alternative; boundary="1381101175.68e8dce1.17088"; charset="us-ascii"
+--===============0792055681==
+Content-Type: multipart/alternative; boundary="1381101577.B85C688f1.18073"; charset="us-ascii"
 
 
---1381101175.68e8dce1.17088
-Date: Sun, 6 Oct 2013 23:12:55 +0000
+--1381101577.B85C688f1.18073
+Date: Sun, 6 Oct 2013 23:19:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70208
 
---- Comment #13 from 4712.joey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Tested about 30 minutes running things with "DRI_PRIME=1 someprogramm" and
-everything is working fine now. Also running full gnome 3 session with
-DRI_PRIME=1 now.
+--- Comment #14 from 4712.joey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Note: I did not test it with the newer patch 87218 yet. (will do so during the
+next days if I find the time)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381101175.68e8dce1.17088
-Date: Sun, 6 Oct 2013 23:12:55 +0000
+--1381101577.B85C688f1.18073
+Date: Sun, 6 Oct 2013 23:19:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,16 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau driver doesn't find vbios for Geforce GT 750M on Asus N750JV laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70208#c13">Comment # 13</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70208#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau driver doesn't find vbios for Geforce GT 750M on Asus N750JV laptop"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70208">bug 70208</a>
               from <span class="vcard"><a class="email" href="mailto:4712.joey&#64;gmail.com" title="4712.joey&#64;gmail.com">4712.joey&#64;gmail.com</a>
 </span></b>
-        <pre>Tested about 30 minutes running things with &quot;DRI_PRIME=1 someprogramm&quot; and
-everything is working fine now. Also running full gnome 3 session with
-DRI_PRIME=1 now.</pre>
+        <pre>Note: I did not test it with the newer patch 87218 yet. (will do so during the
+next days if I find the time)</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +75,9 @@ DRI_PRIME=1 now.</pre>
     </body>
 </html>
 
---1381101175.68e8dce1.17088--
+--1381101577.B85C688f1.18073--
 
---===============0583366507==
+--===============0792055681==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0583366507==--
+--===============0792055681==--
