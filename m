@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70208] Nouveau driver doesn't find vbios for Geforce
  GT 750M on Asus N750JV laptop
-Date: Sun, 06 Oct 2013 22:11:34 +0000
-Message-ID: <bug-70208-8800-taMv0CZvwD@http.bugs.freedesktop.org/>
+Date: Sun, 06 Oct 2013 22:17:51 +0000
+Message-ID: <bug-70208-8800-3Xv4CFLnrU@http.bugs.freedesktop.org/>
 References: <bug-70208-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2098670107=="
+Content-Type: multipart/mixed; boundary="===============0929647101=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70208-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2098670107==
-Content-Type: multipart/alternative; boundary="1381097494.70A8231.5933"; charset="us-ascii"
+--===============0929647101==
+Content-Type: multipart/alternative; boundary="1381097871.7Da3b1.6889"; charset="us-ascii"
 
 
---1381097494.70A8231.5933
-Date: Sun, 6 Oct 2013 22:11:34 +0000
+--1381097871.7Da3b1.6889
+Date: Sun, 6 Oct 2013 22:17:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70208
 
---- Comment #10 from 4712.joey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 87217
-  --> https://bugs.freedesktop.org/attachment.cgi?id=87217&action=edit
-Full dmesg with additional stub opcode 0xaa patch
-
-In addition to the count DISPLAY_RD devices patch now I applied this patch:
-
+--- Comment #11 from 4712.joey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Good news: with the "count DISPLAY_3D devices" patch and
 http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=drm-nouveau-next&id=5495e39fb3695182b9f2a72fe4169056cada37a1
+applied nouveau loads successfully and I can now also start X without crashing.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381097494.70A8231.5933
-Date: Sun, 6 Oct 2013 22:11:34 +0000
+--1381097871.7Da3b1.6889
+Date: Sun, 6 Oct 2013 22:17:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,19 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau driver doesn't find vbios for Geforce GT 750M on Asus N750JV laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70208#c10">Comment # 10</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70208#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau driver doesn't find vbios for Geforce GT 750M on Asus N750JV laptop"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70208">bug 70208</a>
               from <span class="vcard"><a class="email" href="mailto:4712.joey&#64;gmail.com" title="4712.joey&#64;gmail.com">4712.joey&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=87217" name="attach_87217" title="Full dmesg with additional stub opcode 0xaa patch">attachment 87217</a> <a href="attachment.cgi?id=87217&amp;action=edit" title="Full dmesg with additional stub opcode 0xaa patch">[details]</a></span>
-Full dmesg with additional stub opcode 0xaa patch
-
-In addition to the count DISPLAY_RD devices patch now I applied this patch:
-
-<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=drm-nouveau-next&amp;id=5495e39fb3695182b9f2a72fe4169056cada37a1">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=drm-nouveau-next&amp;id=5495e39fb3695182b9f2a72fe4169056cada37a1</a></pre>
+        <pre>Good news: with the &quot;count DISPLAY_3D devices&quot; patch and
+<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=drm-nouveau-next&amp;id=5495e39fb3695182b9f2a72fe4169056cada37a1">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=drm-nouveau-next&amp;id=5495e39fb3695182b9f2a72fe4169056cada37a1</a>
+applied nouveau loads successfully and I can now also start X without crashing.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +77,9 @@ In addition to the count DISPLAY_RD devices patch now I applied this patch:
     </body>
 </html>
 
---1381097494.70A8231.5933--
+--1381097871.7Da3b1.6889--
 
---===============2098670107==
+--===============0929647101==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2098670107==--
+--===============0929647101==--
