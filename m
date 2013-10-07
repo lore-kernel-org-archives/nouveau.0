@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70212] New: glxinfo triggers assert in
- cso_release_all after 3f0627c2ad6
-Date: Sun, 06 Oct 2013 23:48:20 +0000
-Message-ID: <bug-70212-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70213] New: [git-v3.12-rc3 + nouveau HEAD] Vmalloc
+ failure -> pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12
+Date: Mon, 07 Oct 2013 05:27:25 +0000
+Message-ID: <bug-70213-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1753968941=="
+Content-Type: multipart/mixed; boundary="===============0103143516=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,59 +19,99 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1753968941==
-Content-Type: multipart/alternative; boundary="1381103300.302BBA440.23561"; charset="us-ascii"
+--===============0103143516==
+Content-Type: multipart/alternative; boundary="1381123645.DC221.5254"; charset="us-ascii"
 
 
---1381103300.302BBA440.23561
-Date: Sun, 6 Oct 2013 23:48:20 +0000
+--1381123645.DC221.5254
+Date: Mon, 7 Oct 2013 05:27:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70212
+https://bugs.freedesktop.org/show_bug.cgi?id=70213
 
           Priority: medium
-            Bug ID: 70212
+            Bug ID: 70213
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: glxinfo triggers assert in cso_release_all after
-                    3f0627c2ad6
+           Summary: [git-v3.12-rc3 + nouveau HEAD] Vmalloc failure ->
+                    pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns
+                    -12
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
           Severity: normal
     Classification: Unclassified
                 OS: All
-          Reporter: awatry-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: All
+          Reporter: ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: Other
             Status: NEW
            Version: git
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
+         Component: Driver/nouveau
+           Product: xorg
 
-I just switched my GF9400M from Nvidia's blob to nouveau with mesa/drm from
-git.
+Created attachment 87219
+  --> https://bugs.freedesktop.org/attachment.cgi?id=87219&action=edit
+Dmesg containing failed s2disk output.
 
-When executing glxinfo with git master, I get the following assert after the
-list of core profile extensions are printed:
+Tried to do s2disk under high memory pressure. I have attached a dmesg
+excluding the noise from my firewall and wireless card. The log has wrapped due
+to these messages so it's starting exactly at the point where I do 's2disk'.
 
-cso_cache/cso_context.c:315:cso_release_all: Assertion `max <= 16' failed.
-Trace/breakpoint trap (core dumped)
+This is the card:
 
-
-I've bisected the regression to this commit:
-3f0627c2ad605b006737312c478907859411ffa8 is the first bad commit
-commit 3f0627c2ad605b006737312c478907859411ffa8
-Author: Brian Paul <brianp-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
-Date:   Thu Sep 12 18:09:33 2013 -0600
-
-    nouveau: implement pipe_context::bind_sampler_states()
-
-:040000 040000 b09183c220eb383907e212299a3ed5d66bd26c18
-cbfe533aeb6e5ff8648ac8efdf60a28b86ffe5e0 M    src
+[    0.355731] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0d90a0a1
+[    0.355734] nouveau  [  DEVICE][0000:01:00.0] Chipset: GF119 (NVD9)
+[    0.355737] nouveau  [  DEVICE][0000:01:00.0] Family : NVD0
+[    0.356330] nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for image...
+[    0.429669] nouveau  [   VBIOS][0000:01:00.0] ... appears to be valid
+[    0.429671] nouveau  [   VBIOS][0000:01:00.0] using image from PRAMIN
+[    0.429874] nouveau  [   VBIOS][0000:01:00.0] BIT signature found
+[    0.429878] nouveau  [   VBIOS][0000:01:00.0] version 75.19.55.00.02
+[    0.430371] nouveau 0000:01:00.0: irq 44 for MSI/MSI-X
+[    0.430381] nouveau  [     PMC][0000:01:00.0] MSI interrupts enabled
+[    0.430413] nouveau  [     PFB][0000:01:00.0] RAM type: DDR3
+[    0.430416] nouveau  [     PFB][0000:01:00.0] RAM size: 1024 MiB
+[    0.430418] nouveau  [     PFB][0000:01:00.0]    ZCOMP: 0 tags
+[    0.453371] nouveau  [  PTHERM][0000:01:00.0] FAN control: PWM
+[    0.453393] nouveau  [  PTHERM][0000:01:00.0] fan management: disabled
+[    0.453398] nouveau  [  PTHERM][0000:01:00.0] internal sensor: yes
+[    0.455773] [TTM] Zone  kernel: Available graphics memory: 1025304 kiB
+[    0.455775] [TTM] Initializing pool allocator
+[    0.455782] [TTM] Initializing DMA pool allocator
+[    0.455794] nouveau  [     DRM] VRAM: 1024 MiB
+[    0.455797] nouveau  [     DRM] GART: 1048576 MiB
+[    0.455802] nouveau  [     DRM] TMDS table version 2.0
+[    0.455804] nouveau  [     DRM] DCB version 4.0
+[    0.455807] nouveau  [     DRM] DCB outp 00: 02000300 00000000
+[    0.455810] nouveau  [     DRM] DCB outp 01: 01000302 00020030
+[    0.455812] nouveau  [     DRM] DCB outp 02: 02011362 00020010
+[    0.455815] nouveau  [     DRM] DCB outp 03: 04022310 00000000
+[    0.455817] nouveau  [     DRM] DCB conn 00: 00001030
+[    0.455820] nouveau  [     DRM] DCB conn 01: 00002161
+[    0.455822] nouveau  [     DRM] DCB conn 02: 00000200
+[    0.456951] [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
+[    0.456953] [drm] No driver support for vblank timestamp query.
+[    0.457177] nouveau  [     DRM] 2 available performance level(s)
+[    0.457181] nouveau  [     DRM] 1: core 270MHz shader 540MHz memory 405MHz
+voltage 900mV
+[    0.457185] nouveau  [     DRM] 3: core 810MHz shader 1620MHz memory 500MHz
+voltage 1110mV
+[    0.457189] nouveau  [     DRM] c: core 270MHz shader 540MHz memory 405MHz
+voltage 900mV fanspeed 40%
+[    0.461446] nouveau  [     DRM] MM: using COPY0 for buffer copies
+[    0.537183] nouveau  [     DRM] allocated 1280x1024 fb: 0x60000, bo
+ffff88007cc94000
+[    0.537284] fbcon: nouveaufb (fb0) is primary device
+[    0.605604] Console: switching to colour frame buffer device 160x64
+[    0.607900] nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
+[    0.607902] nouveau 0000:01:00.0: registered panic notifier
+[    0.607908] [drm] Initialized nouveau 1.1.1 20120801 for 0000:01:00.0 on
+minor 0
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381103300.302BBA440.23561
-Date: Sun, 6 Oct 2013 23:48:20 +0000
+--1381123645.DC221.5254
+Date: Mon, 7 Oct 2013 05:27:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -90,8 +130,8 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - glxinfo triggers assert in cso_release_all after 3f0627c2ad6"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70212">70212</a>
+   title="NEW --- - [git-v3.12-rc3 + nouveau HEAD] Vmalloc failure -&gt; pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70213">70213</a>
           </td>
         </tr>
 
@@ -103,7 +143,13 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Summary</th>
-          <td>glxinfo triggers assert in cso_release_all after 3f0627c2ad6
+          <td>[git-v3.12-rc3 + nouveau HEAD] Vmalloc failure -&gt; pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
           </td>
         </tr>
 
@@ -127,13 +173,13 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Reporter</th>
-          <td>awatry&#64;gmail.com
+          <td>ronald645&#64;gmail.com
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>All
+          <td>Other
           </td>
         </tr>
 
@@ -151,37 +197,74 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Component</th>
-          <td>Drivers/DRI/nouveau
+          <td>Driver/nouveau
           </td>
         </tr>
 
         <tr>
           <th>Product</th>
-          <td>Mesa
+          <td>xorg
           </td>
         </tr></table>
       <p>
         <div>
-        <pre>I just switched my GF9400M from Nvidia's blob to nouveau with mesa/drm from
-git.
+        <pre>Created <span class=""><a href="attachment.cgi?id=87219" name="attach_87219" title="Dmesg containing failed s2disk output.">attachment 87219</a> <a href="attachment.cgi?id=87219&amp;action=edit" title="Dmesg containing failed s2disk output.">[details]</a></span>
+Dmesg containing failed s2disk output.
 
-When executing glxinfo with git master, I get the following assert after the
-list of core profile extensions are printed:
+Tried to do s2disk under high memory pressure. I have attached a dmesg
+excluding the noise from my firewall and wireless card. The log has wrapped due
+to these messages so it's starting exactly at the point where I do 's2disk'.
 
-cso_cache/cso_context.c:315:cso_release_all: Assertion `max &lt;= 16' failed.
-Trace/breakpoint trap (core dumped)
+This is the card:
 
-
-I've bisected the regression to this commit:
-3f0627c2ad605b006737312c478907859411ffa8 is the first bad commit
-commit 3f0627c2ad605b006737312c478907859411ffa8
-Author: Brian Paul &lt;<a href="mailto:brianp&#64;vmware.com">brianp&#64;vmware.com</a>&gt;
-Date:   Thu Sep 12 18:09:33 2013 -0600
-
-    nouveau: implement pipe_context::bind_sampler_states()
-
-:040000 040000 b09183c220eb383907e212299a3ed5d66bd26c18
-cbfe533aeb6e5ff8648ac8efdf60a28b86ffe5e0 M    src</pre>
+[    0.355731] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0d90a0a1
+[    0.355734] nouveau  [  DEVICE][0000:01:00.0] Chipset: GF119 (NVD9)
+[    0.355737] nouveau  [  DEVICE][0000:01:00.0] Family : NVD0
+[    0.356330] nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for image...
+[    0.429669] nouveau  [   VBIOS][0000:01:00.0] ... appears to be valid
+[    0.429671] nouveau  [   VBIOS][0000:01:00.0] using image from PRAMIN
+[    0.429874] nouveau  [   VBIOS][0000:01:00.0] BIT signature found
+[    0.429878] nouveau  [   VBIOS][0000:01:00.0] version 75.19.55.00.02
+[    0.430371] nouveau 0000:01:00.0: irq 44 for MSI/MSI-X
+[    0.430381] nouveau  [     PMC][0000:01:00.0] MSI interrupts enabled
+[    0.430413] nouveau  [     PFB][0000:01:00.0] RAM type: DDR3
+[    0.430416] nouveau  [     PFB][0000:01:00.0] RAM size: 1024 MiB
+[    0.430418] nouveau  [     PFB][0000:01:00.0]    ZCOMP: 0 tags
+[    0.453371] nouveau  [  PTHERM][0000:01:00.0] FAN control: PWM
+[    0.453393] nouveau  [  PTHERM][0000:01:00.0] fan management: disabled
+[    0.453398] nouveau  [  PTHERM][0000:01:00.0] internal sensor: yes
+[    0.455773] [TTM] Zone  kernel: Available graphics memory: 1025304 kiB
+[    0.455775] [TTM] Initializing pool allocator
+[    0.455782] [TTM] Initializing DMA pool allocator
+[    0.455794] nouveau  [     DRM] VRAM: 1024 MiB
+[    0.455797] nouveau  [     DRM] GART: 1048576 MiB
+[    0.455802] nouveau  [     DRM] TMDS table version 2.0
+[    0.455804] nouveau  [     DRM] DCB version 4.0
+[    0.455807] nouveau  [     DRM] DCB outp 00: 02000300 00000000
+[    0.455810] nouveau  [     DRM] DCB outp 01: 01000302 00020030
+[    0.455812] nouveau  [     DRM] DCB outp 02: 02011362 00020010
+[    0.455815] nouveau  [     DRM] DCB outp 03: 04022310 00000000
+[    0.455817] nouveau  [     DRM] DCB conn 00: 00001030
+[    0.455820] nouveau  [     DRM] DCB conn 01: 00002161
+[    0.455822] nouveau  [     DRM] DCB conn 02: 00000200
+[    0.456951] [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
+[    0.456953] [drm] No driver support for vblank timestamp query.
+[    0.457177] nouveau  [     DRM] 2 available performance level(s)
+[    0.457181] nouveau  [     DRM] 1: core 270MHz shader 540MHz memory 405MHz
+voltage 900mV
+[    0.457185] nouveau  [     DRM] 3: core 810MHz shader 1620MHz memory 500MHz
+voltage 1110mV
+[    0.457189] nouveau  [     DRM] c: core 270MHz shader 540MHz memory 405MHz
+voltage 900mV fanspeed 40%
+[    0.461446] nouveau  [     DRM] MM: using COPY0 for buffer copies
+[    0.537183] nouveau  [     DRM] allocated 1280x1024 fb: 0x60000, bo
+ffff88007cc94000
+[    0.537284] fbcon: nouveaufb (fb0) is primary device
+[    0.605604] Console: switching to colour frame buffer device 160x64
+[    0.607900] nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
+[    0.607902] nouveau 0000:01:00.0: registered panic notifier
+[    0.607908] [drm] Initialized nouveau 1.1.1 20120801 for 0000:01:00.0 on
+minor 0</pre>
         </div>
       </p>
       <hr>
@@ -193,9 +276,9 @@ cbfe533aeb6e5ff8648ac8efdf60a28b86ffe5e0 M    src</pre>
     </body>
 </html>
 
---1381103300.302BBA440.23561--
+--1381123645.DC221.5254--
 
---===============1753968941==
+--===============0103143516==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -206,4 +289,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1753968941==--
+--===============0103143516==--
