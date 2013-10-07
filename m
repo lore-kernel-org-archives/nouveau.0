@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70213] [git-v3.12-rc3 + nouveau HEAD] Vmalloc
- failure -> pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12
-Date: Mon, 07 Oct 2013 05:28:36 +0000
-Message-ID: <bug-70213-8800-IQTNRc715P@http.bugs.freedesktop.org/>
-References: <bug-70213-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69876] [NVC3] Reverse prime sometimes freezes the
+	machine
+Date: Mon, 07 Oct 2013 08:33:08 +0000
+Message-ID: <bug-69876-8800-TC4G1H7gBc@http.bugs.freedesktop.org/>
+References: <bug-69876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1633213382=="
+Content-Type: multipart/mixed; boundary="===============0389620254=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1633213382==
-Content-Type: multipart/alternative; boundary="1381123716.3EaE381.5430"; charset="us-ascii"
+--===============0389620254==
+Content-Type: multipart/alternative; boundary="1381134788.dcF72.4204"; charset="us-ascii"
 
 
---1381123716.3EaE381.5430
-Date: Mon, 7 Oct 2013 05:28:36 +0000
+--1381134788.dcF72.4204
+Date: Mon, 7 Oct 2013 08:33:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70213
+https://bugs.freedesktop.org/show_bug.cgi?id=69876
 
---- Comment #1 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Btw, card fails to come back properly:
-- Cursor gone
-- TTY's show black screen (maybe the process was killed, I don't know)
+--- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+There has been quite a few changes in the window you've mentioned. Thus to
+narrow it down further you can try - boot with "nouveau.config=MSI=0" to
+disable MSI interrupts(introduced in 3.12)
+
+If that does not help git bisect might be in order :)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381123716.3EaE381.5430
-Date: Mon, 7 Oct 2013 05:28:36 +0000
+--1381134788.dcF72.4204
+Date: Mon, 7 Oct 2013 08:33:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,17 +57,19 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [git-v3.12-rc3 + nouveau HEAD] Vmalloc failure -&gt; pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70213#c1">Comment # 1</a>
+   title="NEW --- - [NVC3] Reverse prime sometimes freezes the machine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [git-v3.12-rc3 + nouveau HEAD] Vmalloc failure -&gt; pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70213">bug 70213</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+   title="NEW --- - [NVC3] Reverse prime sometimes freezes the machine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876">bug 69876</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Btw, card fails to come back properly:
-- Cursor gone
-- TTY's show black screen (maybe the process was killed, I don't know)</pre>
+        <pre>There has been quite a few changes in the window you've mentioned. Thus to
+narrow it down further you can try - boot with &quot;nouveau.config=MSI=0&quot; to
+disable MSI interrupts(introduced in 3.12)
+
+If that does not help git bisect might be in order :)</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +81,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1381123716.3EaE381.5430--
+--1381134788.dcF72.4204--
 
---===============1633213382==
+--===============0389620254==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1633213382==--
+--===============0389620254==--
