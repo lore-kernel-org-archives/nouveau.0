@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70208] Nouveau driver doesn't find vbios for Geforce
  GT 750M on Asus N750JV laptop
-Date: Mon, 07 Oct 2013 14:48:11 +0000
-Message-ID: <bug-70208-8800-myFQB8xjJA@http.bugs.freedesktop.org/>
+Date: Mon, 07 Oct 2013 15:19:32 +0000
+Message-ID: <bug-70208-8800-Db3J4LJTix@http.bugs.freedesktop.org/>
 References: <bug-70208-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1338133768=="
+Content-Type: multipart/mixed; boundary="===============0257001653=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70208-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1338133768==
-Content-Type: multipart/alternative; boundary="1381157291.7c1be1.17284"; charset="us-ascii"
+--===============0257001653==
+Content-Type: multipart/alternative; boundary="1381159172.D5F1bDa1.24053"; charset="us-ascii"
 
 
---1381157291.7c1be1.17284
-Date: Mon, 7 Oct 2013 14:48:11 +0000
+--1381159172.D5F1bDa1.24053
+Date: Mon, 7 Oct 2013 15:19:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70208
 
---- Comment #17 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Joey can we keep one bug per report please. It's quite easy to jump on the
-wagon and describe any issue and/or glitch within the same report, but it's
-never a good idea :)
-
-Thanks
+--- Comment #18 from 4712.joey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Emil, you're right, sorry ... As the subject from this report already tells
+this one is about the vbios issue which is already solved by the patch and we
+should have a look at the other issue separately :-) (Will try to check this on
+IRC and open a new bug if required)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381157291.7c1be1.17284
-Date: Mon, 7 Oct 2013 14:48:11 +0000
+--1381159172.D5F1bDa1.24053
+Date: Mon, 7 Oct 2013 15:19:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +57,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau driver doesn't find vbios for Geforce GT 750M on Asus N750JV laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70208#c17">Comment # 17</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70208#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau driver doesn't find vbios for Geforce GT 750M on Asus N750JV laptop"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70208">bug 70208</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:4712.joey&#64;gmail.com" title="4712.joey&#64;gmail.com">4712.joey&#64;gmail.com</a>
 </span></b>
-        <pre>Joey can we keep one bug per report please. It's quite easy to jump on the
-wagon and describe any issue and/or glitch within the same report, but it's
-never a good idea :)
-
-Thanks</pre>
+        <pre>Emil, you're right, sorry ... As the subject from this report already tells
+this one is about the vbios issue which is already solved by the patch and we
+should have a look at the other issue separately :-) (Will try to check this on
+IRC and open a new bug if required)</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +79,9 @@ Thanks</pre>
     </body>
 </html>
 
---1381157291.7c1be1.17284--
+--1381159172.D5F1bDa1.24053--
 
---===============1338133768==
+--===============0257001653==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1338133768==--
+--===============0257001653==--
