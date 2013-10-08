@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69982] [NV86] GPU+system crash with nouveau and
-	kernel 3.12-rc3
-Date: Tue, 08 Oct 2013 09:19:18 +0000
-Message-ID: <bug-69982-8800-pauzuU96QR@http.bugs.freedesktop.org/>
-References: <bug-69982-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69876] [NVC3] Reverse prime sometimes freezes the
+	machine
+Date: Tue, 08 Oct 2013 14:08:52 +0000
+Message-ID: <bug-69876-8800-jxGGB1lHwo@http.bugs.freedesktop.org/>
+References: <bug-69876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0629254112=="
+Content-Type: multipart/mixed; boundary="===============1741345557=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69982-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0629254112==
-Content-Type: multipart/alternative; boundary="1381223958.65Ee1.7363"; charset="us-ascii"
+--===============1741345557==
+Content-Type: multipart/alternative; boundary="1381241333.BCDa61.6289"; charset="us-ascii"
 
 
---1381223958.65Ee1.7363
-Date: Tue, 8 Oct 2013 09:19:18 +0000
+--1381241333.BCDa61.6289
+Date: Tue, 8 Oct 2013 14:08:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69982
+https://bugs.freedesktop.org/show_bug.cgi?id=69876
 
---- Comment #12 from Mike C <mike.cloaked-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I have now tested kernel 3.12 rc4 with my arch linux system which had updates
-to nouveau-dri to version 9.2.1-1, and to mesa-libgl version 9.2.1-1
-
-The original problem of the system freezing within a minute or so of logging in
-to KDE has come back, despite using NvMSI=0 so the issue remains, but I don't
-know if this is due to the mesa/nouveau updates or to changes in the rc4
-kernel.
+--- Comment #7 from Mike <michele.cane-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 87285
+  --> https://bugs.freedesktop.org/attachment.cgi?id=87285&action=edit
+dmesg output from nouveau.debug=trace
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381223958.65Ee1.7363
-Date: Tue, 8 Oct 2013 09:19:18 +0000
+--1381241333.BCDa61.6289
+Date: Tue, 8 Oct 2013 14:08:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,21 +55,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982#c12">Comment # 12</a>
+   title="NEW --- - [NVC3] Reverse prime sometimes freezes the machine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982">bug 69982</a>
-              from <span class="vcard"><a class="email" href="mailto:mike.cloaked&#64;gmail.com" title="Mike C &lt;mike.cloaked&#64;gmail.com&gt;"> <span class="fn">Mike C</span></a>
+   title="NEW --- - [NVC3] Reverse prime sometimes freezes the machine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876">bug 69876</a>
+              from <span class="vcard"><a class="email" href="mailto:michele.cane&#64;gmail.com" title="Mike &lt;michele.cane&#64;gmail.com&gt;"> <span class="fn">Mike</span></a>
 </span></b>
-        <pre>I have now tested kernel 3.12 rc4 with my arch linux system which had updates
-to nouveau-dri to version 9.2.1-1, and to mesa-libgl version 9.2.1-1
-
-The original problem of the system freezing within a minute or so of logging in
-to KDE has come back, despite using NvMSI=0 so the issue remains, but I don't
-know if this is due to the mesa/nouveau updates or to changes in the rc4
-kernel.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=87285" name="attach_87285" title="dmesg output from nouveau.debug=trace">attachment 87285</a> <a href="attachment.cgi?id=87285&amp;action=edit" title="dmesg output from nouveau.debug=trace">[details]</a></span>
+dmesg output from nouveau.debug=trace</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +76,9 @@ kernel.</pre>
     </body>
 </html>
 
---1381223958.65Ee1.7363--
+--1381241333.BCDa61.6289--
 
---===============0629254112==
+--===============1741345557==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0629254112==--
+--===============1741345557==--
