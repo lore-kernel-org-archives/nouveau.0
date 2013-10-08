@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+From: Fernando Negro <f3rn4nd0.n3gr0-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: GeForce 8400 GS (follow-up)
-Date: Tue, 8 Oct 2013 00:08:48 -0400
-Message-ID: <CAKb7Uvi3mOdvfm7mQZK3bDC+rfd+gJOqPsRFR6Pth_AwEyhRnw@mail.gmail.com>
-References: <CANc-zbwkOsc==fya5nk+GnRHu12uzOcu5Qts482AsakWoc_UMQ@mail.gmail.com>
+Date: Tue, 08 Oct 2013 07:21:10 +0100
+Message-ID: <5253A456.6070908@gmail.com>
+References: <CAKb7Uvi3mOdvfm7mQZK3bDC+rfd+gJOqPsRFR6Pth_AwEyhRnw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CANc-zbwkOsc==fya5nk+GnRHu12uzOcu5Qts482AsakWoc_UMQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAKb7Uvi3mOdvfm7mQZK3bDC+rfd+gJOqPsRFR6Pth_AwEyhRnw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,34 +17,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Fernando Negro <f3rn4nd0.n3gr0-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Oct 6, 2013 at 6:31 AM, Fernando Negro <f3rn4nd0.n3gr0-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> The thing is, that, although I thought I had already run nouveau in it, I
-> was, after all, only running a generic vesa driver, every time before I
-> installed the proprietary drivers... And, I suppose that the wrong idea I
-> had, of having been able to run nouveau already, was either: due to error
-> messages that appeared, before I added the "nomodeset" parameter in the
-> kernel line (that I didn't know that made it impossible for nouveau to
-> load); or due to having used a previous NVIDIA card that, maybe, could
-> already run nouveau, before it started malfunctioning...
->
-> Anyway, I decided to finally seriously try running the nouveau driver in it.
-> But, after many failed attempts, I was, unfortunately, not able to... And, I
-> suspect the main cause for it to be the particular brand of my card, that
-> doesn't seem to be very good. (Since that, I know of other people that have
-> the same NVIDIA chip, and that are able to run nouveau on their cards...)
->
-> The report of my experience, for anyone interested in it, can be read here:
-> http://trisquel.info/en/forum/nouveau-mi-eq-overflowing
->
->
-> Thank you very much, all of you, for your help.
+Hello, again, ilia.
 
-The logs in the post show that you're using a 3.2.0 kernel, which is
-several years old. Might I recommend trying something a bit more
-recent? Like 3.11.
 
-  -ilia
+I already followed that same suggestion, that someone, in that forum 
+that I linked to, made 
+(http://trisquel.info/en/forum/nouveau-mi-eq-overflowing#comment-43713) 
+and tried all sorts of different kernels - including the 3.11.3-gnu one 
+- with no results.
+
+The best thing that I could get was the boot splash screen with kernel 
+3.4.64-gnu1, and then a black screen.
+
+Different kernels didn't solve the problem, and the message that 
+appeared in the Xorg log, with the best trial that I mentioned, was 
+still the same that I initially reported in that forum.
+
+I, unfortunately, ended up having to revert to the proprietary drivers, 
+and lost my patience to try anything else... I managed to find a version 
+of a distro where I can get the card to work, with no problems - so I'll 
+stick to that, for the time being.
+
+I may try this free driver again, in the future. But, for now, I have an 
+urgency in having this computer functional.
+
+
+Thank you very much, all of you, for your help and your efforts, and 
+good luck with your project.
