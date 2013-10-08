@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70208] Nouveau driver doesn't find vbios for Geforce
  GT 750M on Asus N750JV laptop
-Date: Tue, 08 Oct 2013 07:31:21 +0000
-Message-ID: <bug-70208-8800-9RzX3w2GNy@http.bugs.freedesktop.org/>
+Date: Tue, 08 Oct 2013 07:49:33 +0000
+Message-ID: <bug-70208-8800-P9dUMBpj2D@http.bugs.freedesktop.org/>
 References: <bug-70208-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1253951608=="
+Content-Type: multipart/mixed; boundary="===============2128583527=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70208-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1253951608==
-Content-Type: multipart/alternative; boundary="1381217481.fbDBE1.16961"; charset="us-ascii"
+--===============2128583527==
+Content-Type: multipart/alternative; boundary="1381218572.2AAE1.22476"; charset="us-ascii"
 
 
---1381217481.fbDBE1.16961
-Date: Tue, 8 Oct 2013 07:31:21 +0000
+--1381218572.2AAE1.22476
+Date: Tue, 8 Oct 2013 07:49:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70208
 
---- Comment #20 from Fred New <fred.new2911-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Oops, make that patch 87218 that had the problem.
+--- Comment #21 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Ouch, yes. Seems like the function pci_get_dev_by_id() in undefined outside of
+drivers/pci
+
+In that case I see two solution - iterate through each device type (vga/3d) or
+making the symbol accessible at a larger scale.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381217481.fbDBE1.16961
-Date: Tue, 8 Oct 2013 07:31:21 +0000
+--1381218572.2AAE1.22476
+Date: Tue, 8 Oct 2013 07:49:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau driver doesn't find vbios for Geforce GT 750M on Asus N750JV laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70208#c20">Comment # 20</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70208#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau driver doesn't find vbios for Geforce GT 750M on Asus N750JV laptop"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70208">bug 70208</a>
-              from <span class="vcard"><a class="email" href="mailto:fred.new2911&#64;gmail.com" title="Fred New &lt;fred.new2911&#64;gmail.com&gt;"> <span class="fn">Fred New</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Oops, make that patch 87218 that had the problem.</pre>
+        <pre>Ouch, yes. Seems like the function pci_get_dev_by_id() in undefined outside of
+drivers/pci
+
+In that case I see two solution - iterate through each device type (vga/3d) or
+making the symbol accessible at a larger scale.</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +81,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1381217481.fbDBE1.16961--
+--1381218572.2AAE1.22476--
 
---===============1253951608==
+--===============2128583527==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1253951608==--
+--===============2128583527==--
