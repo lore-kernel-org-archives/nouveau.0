@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58428] [NVA8] X crashes when running opengl
- application after reclocking nouveau driver to use highest speed
-Date: Tue, 08 Oct 2013 17:03:58 +0000
-Message-ID: <bug-58428-8800-OeoUMmcTR9@http.bugs.freedesktop.org/>
-References: <bug-58428-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57484] [NV43] fail resume after suspend
+Date: Tue, 08 Oct 2013 17:04:31 +0000
+Message-ID: <bug-57484-8800-18mq2e0CRq@http.bugs.freedesktop.org/>
+References: <bug-57484-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0977304389=="
+Content-Type: multipart/mixed; boundary="===============1450291142=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58428-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57484-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0977304389==
-Content-Type: multipart/alternative; boundary="1381251838.ef0ceF1e2.11987"; charset="us-ascii"
+--===============1450291142==
+Content-Type: multipart/alternative; boundary="1381251871.12e53A2.12076"; charset="us-ascii"
 
 
---1381251838.ef0ceF1e2.11987
-Date: Tue, 8 Oct 2013 17:03:58 +0000
+--1381251871.12e53A2.12076
+Date: Tue, 8 Oct 2013 17:04:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58428
+https://bugs.freedesktop.org/show_bug.cgi?id=57484
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|---                         |WONTFIX
+         Resolution|---                         |INVALID
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Reclocking is presently not supported. We know it kills many different cards
-for many different reasons. Closing as WONTFIX. (Not that it'll never get
-fixed, just not worth keeping this bug open for a presently-unsupported
-feature.) When/if we get good reclocking support, and you still have issues,
-feel free to reopen.
-
-[It appears that you're seeing mem faults, and reclocking memory is one of the
-buggiest parts of the current reclocking logic. Makes sense.]
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No resposne to re-test request after a month. Closing as invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381251838.ef0ceF1e2.11987
-Date: Tue, 8 Oct 2013 17:03:58 +0000
+--1381251871.12e53A2.12076
+Date: Tue, 8 Oct 2013 17:04:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,8 +58,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - [NVA8] X crashes when running opengl application after reclocking nouveau driver to use highest speed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58428">bug 58428</a>
+   title="RESOLVED INVALID - [NV43] fail resume after suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57484">bug 57484</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -88,29 +80,22 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Resolution</td>
            <td>---
            </td>
-           <td>WONTFIX
+           <td>INVALID
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - [NVA8] X crashes when running opengl application after reclocking nouveau driver to use highest speed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58428#c8">Comment # 8</a>
+   title="RESOLVED INVALID - [NV43] fail resume after suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57484#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - [NVA8] X crashes when running opengl application after reclocking nouveau driver to use highest speed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58428">bug 58428</a>
+   title="RESOLVED INVALID - [NV43] fail resume after suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57484">bug 57484</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Reclocking is presently not supported. We know it kills many different cards
-for many different reasons. Closing as WONTFIX. (Not that it'll never get
-fixed, just not worth keeping this bug open for a presently-unsupported
-feature.) When/if we get good reclocking support, and you still have issues,
-feel free to reopen.
-
-[It appears that you're seeing mem faults, and reclocking memory is one of the
-buggiest parts of the current reclocking logic. Makes sense.]</pre>
+        <pre>No resposne to re-test request after a month. Closing as invalid.</pre>
         </div>
       </p>
       <hr>
@@ -122,9 +107,9 @@ buggiest parts of the current reclocking logic. Makes sense.]</pre>
     </body>
 </html>
 
---1381251838.ef0ceF1e2.11987--
+--1381251871.12e53A2.12076--
 
---===============0977304389==
+--===============1450291142==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -135,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0977304389==--
+--===============1450291142==--
