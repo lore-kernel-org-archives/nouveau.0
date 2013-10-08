@@ -1,11 +1,13 @@
-From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Subject: [PATCH] drm/nouveau: suspend to D3hot, not to D3cold
-Date: Tue, 08 Oct 2013 17:36:38 +0200
-Message-ID: <52542686.6000602@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 49148] nv20_state_fb.c:50: get_rt_format: Assertion
+	`0' failed.
+Date: Tue, 08 Oct 2013 16:52:42 +0000
+Message-ID: <bug-49148-8800-FS4OBAghZx@http.bugs.freedesktop.org/>
+References: <bug-49148-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1400274664=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-49148-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,27 +17,112 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-In the autumn and winter it's considered bad form to set power state to D3cold, it might
-cause the device to freeze to death. This is also the case in the other seasons, so any
-device in the southern hemisphere is affected too.
 
-D3cold is not a valid state in a call to pci_set_power_state, only up to D3hot is allowed.
+--===============1400274664==
+Content-Type: multipart/alternative; boundary="1381251162.d1405372.9990"; charset="us-ascii"
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
----
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 89efeff..566e544 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -945,7 +945,7 @@ static int nouveau_pmops_runtime_suspend(struct device *dev)
- 	ret = nouveau_do_suspend(drm_dev);
- 	pci_save_state(pdev);
- 	pci_disable_device(pdev);
--	pci_set_power_state(pdev, PCI_D3cold);
-+	pci_set_power_state(pdev, PCI_D3hot);
- 	drm_dev->switch_power_state = DRM_SWITCH_POWER_DYNAMIC_OFF;
- 	return ret;
- }
+
+--1381251162.d1405372.9990
+Date: Tue, 8 Oct 2013 16:52:42 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=49148
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+These assertions should be fixed with
+http://cgit.freedesktop.org/mesa/mesa/commit/?id=7178d6ac590211cf123254688da1a540cce6c0a9
+on mesa-git.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1381251162.d1405372.9990
+Date: Tue, 8 Oct 2013 16:52:42 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nv20_state_fb.c:50: get_rt_format: Assertion `0' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49148">bug 49148</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nv20_state_fb.c:50: get_rt_format: Assertion `0' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49148#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nv20_state_fb.c:50: get_rt_format: Assertion `0' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49148">bug 49148</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>These assertions should be fixed with
+<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=7178d6ac590211cf123254688da1a540cce6c0a9">http://cgit.freedesktop.org/mesa/mesa/commit/?id=7178d6ac590211cf123254688da1a540cce6c0a9</a>
+on mesa-git.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1381251162.d1405372.9990--
+
+--===============1400274664==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1400274664==--
