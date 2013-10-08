@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 35267] nouveau fails to load BIOS on EFI boot.
-Date: Tue, 08 Oct 2013 16:58:53 +0000
-Message-ID: <bug-35267-8800-ZnMTJPuipU@http.bugs.freedesktop.org/>
-References: <bug-35267-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 39980] [NV86] freezing nouveau
+Date: Tue, 08 Oct 2013 17:01:03 +0000
+Message-ID: <bug-39980-8800-y0IglgFj26@http.bugs.freedesktop.org/>
+References: <bug-39980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0642653052=="
+Content-Type: multipart/mixed; boundary="===============1542819222=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-35267-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-39980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0642653052==
-Content-Type: multipart/alternative; boundary="1381251533.7cc843.11165"; charset="us-ascii"
+--===============1542819222==
+Content-Type: multipart/alternative; boundary="1381251663.Ea242.11542"; charset="us-ascii"
 
 
---1381251533.7cc843.11165
-Date: Tue, 8 Oct 2013 16:58:53 +0000
+--1381251663.Ea242.11542
+Date: Tue, 8 Oct 2013 17:01:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=35267
+https://bugs.freedesktop.org/show_bug.cgi?id=39980
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+         Resolution|---                         |INVALID
 
---- Comment #25 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Marking this as fixed as per the last comments.
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No response to re-test request after a month. Closing as invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381251533.7cc843.11165
-Date: Tue, 8 Oct 2013 16:58:53 +0000
+--1381251663.Ea242.11542
+Date: Tue, 8 Oct 2013 17:01:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,8 +58,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nouveau fails to load BIOS on EFI boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=35267">bug 35267</a>
+   title="RESOLVED INVALID - [NV86] freezing nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=39980">bug 39980</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -80,22 +80,22 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Resolution</td>
            <td>---
            </td>
-           <td>FIXED
+           <td>INVALID
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nouveau fails to load BIOS on EFI boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=35267#c25">Comment # 25</a>
+   title="RESOLVED INVALID - [NV86] freezing nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=39980#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nouveau fails to load BIOS on EFI boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=35267">bug 35267</a>
+   title="RESOLVED INVALID - [NV86] freezing nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=39980">bug 39980</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Marking this as fixed as per the last comments.</pre>
+        <pre>No response to re-test request after a month. Closing as invalid.</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +107,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1381251533.7cc843.11165--
+--1381251663.Ea242.11542--
 
---===============0642653052==
+--===============1542819222==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0642653052==--
+--===============1542819222==--
