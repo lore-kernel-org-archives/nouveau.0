@@ -1,99 +1,110 @@
-From: "Albert Pool" <albertpool-2BgBnwcziRhmR6Xm/wNWPw@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Do not show an error if the TMDS
-	table pointer is invalid
-Date: Wed, 9 Oct 2013 22:02:58 GMT
-Message-ID: <20131009220337.33683E7EAF@gabe.freedesktop.org>
+From: Martin Nyhus <martin.nyhus@gmx.com>
+Subject: Re: [Nouveau] Panic in nouveau on resume after 5addcf0a
+Date: Thu, 10 Oct 2013 00:26:24 +0200
+Message-ID: <5255D810.1040702@gmx.com>
+References: <5255AFFA.60104@gmx.com> <CAPM=9tzSNjingreRyVPaHXF4zf6AgaEX_YoqJj7rFmFgwkKQXw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1225112052=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: =?utf-8?B?QmVuIFNrZWdncw==?= <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: =?utf-8?B?bm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmc=?= <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAPM=9tzSNjingreRyVPaHXF4zf6AgaEX_YoqJj7rFmFgwkKQXw@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Dave Airlie <airlied@gmail.com>
+Cc: Dave Airlie <airlied@redhat.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1225112052==
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: base64
+On 10/09/2013 11:34 PM, Dave Airlie wrote:
+> On Thu, Oct 10, 2013 at 5:35 AM, Martin Nyhus <martin.nyhus@gmx.com> wrote:
+>> After 5addcf0a (nouveau: add runtime PM support (v0.9)) I'm getting kernel
+>> panics immediately after resuming from suspend. Unfortunately it happens so
+>> early that I don't get any more info than the blinking keyboard lights...
+>>
+>> The nouveau tree still panics up to 2fb9d6c, which fails before I can test
+>> it.
+>
+> Looks like you've got bigger problems here though, the chip doesn't
+> seem to initialise properly at all.
+>
+> does it s/r okay with nouveau.runpm=0 on the command line?
+
+No, it still panics on resume (aa4cf96 from nouveau tree).
+
+I've included dmesg output again since it seems to find the vbios image 
+earlier than before (acpi vs platform), but that might be due to 
+different kernel versions, not 100% which one I got the last log from.
+
+Martin
 
 
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0OyI+Cgo8cCBzdHlsZT0iZm9udC1zaXplOjEwcHQ7
-bWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDsiPlRoYW5rIHlvdSBmb3IgeW91ciByZXBseS4g
-SSBob3BlIEkgd29uJ3QgZm9yZ2V0IHRvIHVwbG9hZCB0aGUgQklPUyBvZiBKb2V5NDcxMidzIE5W
-RTcgdG8gdGhlIHJlcG8gdG9tb3Jyb3csIHRoZW4geW91IGd1eXMgY2FuIHRha2UgYSBsb29rIGF0
-IGl0IHRvby4gVGhhdCBpcyBhIEdQVSB3aXRob3V0IGFueSBvdXRwdXRzIGFuZCBpdCB0cmlnZ2Vy
-cyB0aGlzIG1lc3NhZ2UuPC9wPjxwIHN0eWxlPSJmb250LXNpemU6MTBwdDttYXJnaW4tdG9wOjA7
-bWFyZ2luLWJvdHRvbTowOyI+SSdtIHdyaXRpbmcgdGhpcyBvbiBteSBwaG9uZSwgc28gZG9uJ3Qg
-aGF2ZSB0aGUgZmlsZSBhdCBoYW5kIHJpZ2h0IG5vdy48L3A+PHAgc3R5bGU9ImZvbnQtc2l6ZTox
-MHB0O21hcmdpbi10b3A6MDttYXJnaW4tYm90dG9tOjA7Ij4mbmJzcDs8L3A+PHAgc3R5bGU9ImZv
-bnQtc2l6ZToxMHB0O21hcmdpbi10b3A6MDttYXJnaW4tYm90dG9tOjA7Ij5BbGJlcnQ8L3A+PGZv
-bnQ+PHAgc3R5bGU9ImZvbnQtc2l6ZToxMHB0O21hcmdpbi10b3A6MDttYXJnaW4tYm90dG9tOjA7
-Ij4mbmJzcDs8L3A+LS0tLS0tIE9yaWdpbmVlbCBiZXJpY2h0IC0tLS0tLTxicj48Yj5WYW46Jm5i
-c3A7PC9iPkJlbiBTa2VnZ3MgPHNrZWdnc2JAZ21haWwuY29tPjxicj48Yj5EYXR1bTombmJzcDs8
-L2I+MDktMTAtMjAxMyAyMjo1NTxicj48Yj5OYWFyOiZuYnNwOzwvYj5BbGJlcnQgUG9vbDs8YnI+
-PGI+Q0M6Jm5ic3A7PC9iPm5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOzxicj48Yj5PbmRl
-cndlcnA6PC9iPlJlOiBbTm91dmVhdV0gW1BBVENIXSBkcm0vbm91dmVhdTogRG8gbm90IHNob3cg
-YW4gZXJyb3IgaWYgdGhlIFRNRFMgdGFibGUgcG9pbnRlciBpcyBpbnZhbGlkPGJyPjxicj48cHJl
-Pk9uIFRodSwgT2N0IDEwLCAyMDEzIGF0IDU6NDAgQU0sIEFsYmVydCBQb29sJm5ic3A7PGFsYmVy
-dHBvb2xAc29sY29uLm5sPiB3cm90ZToNCiZndDsgT3B0aW11cyBjYXJkcyB3aXRoIG5vIG91dHB1
-dHMgdHJpZ2dlciB0aGlzIG1lc3NhZ2UgKE5WRDcsIGZvciBleGFtcGxlKQ0KJmd0OyBUaGlzIGNv
-bW1pdCBjaGFuZ2VzIHRoZSB3YXJuaW5nIGludG8gYW4gaW5mb3JtYXRpb25hbCBtZXNzYWdlLg0K
-Jmd0OyBUaGUgcmV0dXJuIHZhbHVlIG9mIHRoZSBmdW5jdGlvbiBpcyBub3QgdXNlZCwgc28gSSBs
-ZWZ0IGl0IGF0IC1FSU5WQUwuDQomZ3Q7DQomZ3Q7IFNpZ25lZC1vZmYtYnk6IEFsYmVydCBQb29s
-Jm5ic3A7PGFsYmVydHBvb2xAc29sY29uLm5sPg0KJmd0OyBDYzogRW1pbCBWZWxpa292Jm5ic3A7
-PGVtaWwubC52ZWxpa292QGdtYWlsLmNvbT4NCiZndDsgLS0tDQomZ3Q7ICZuYnNwO2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmlvcy5jIHwgJm5ic3A7Jm5ic3A7Jm5ic3A7MyArKy0N
-CiZndDsgJm5ic3A7MSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigt
-KQ0KJmd0Ow0KJmd0OyBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9iaW9zLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Jpb3MuYw0KJmd0OyBp
-bmRleCAzZTcyODc2Li43NjgxYjAxIDEwMDY0NA0KJmd0OyAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9ub3V2ZWF1X2Jpb3MuYw0KJmd0OyArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X2Jpb3MuYw0KJmd0OyBAQCAtOTM2LDcgKzkzNiw4IEBAIHN0YXRpYyBpbnQgcGFy
-c2VfYml0X3RtZHNfdGJsX2VudHJ5KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBudmJp
-b3MgKmJpb3MsDQomZ3Q7DQomZ3Q7ICZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwO3RtZHN0YWJsZXB0ciA9IFJPTTE2KGJpb3MtJmd0O2RhdGFbYml0ZW50cnkt
-Jmd0O29mZnNldF0pOw0KJmd0OyAmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDtpZiAoIXRtZHN0YWJsZXB0cikgew0KJmd0OyAtICZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwO05WX0VSUk9SKGRybSwgJnF1b3Q7UG9pbnRlciB0byBUTURTIHRhYmxlIGludmFs
-aWRcbiZxdW90Oyk7DQomZ3Q7ICsgJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7LyogSGFwcGVu
-cyBvbiBOVkQ3IGFuZCBvdGhlciBPcHRpbXVzIGNhcmRzIHdpdGggbm8gb3V0cHV0cyAqLw0KJmd0
-OyArICZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO05WX0lORk8oZHJtLCAmcXVvdDtUTURTIHRh
-YmxlIG5vdCBmb3VuZFxuJnF1b3Q7KTsNCkhtbSwgaWRlYWxseSB0aGlzIGNvZGUgd291bGRuJ3Qg
-ZXhpc3QgYW55bW9yZSwgYnV0IHdlJ3JlIG5vdCB0aGVyZQ0KeWV0LiAmbmJzcDtTbywgSSdsbCB0
-YWtlIHRoZSBwYXRjaC4gJm5ic3A7QnV0LCBJIHN1c3BlY3QgTlZfREVCVUcoKSB3aWxsIGJlDQpi
-ZXR0ZXIgaGVyZSwgYW55b25lIGxvb2tpbmcgd2lsbCBsaWtlbHkgdGhpbmcgJnF1b3Q7bm90IGZv
-dW5kJnF1b3Q7IG1lYW5zIGFuDQplcnJvciBhbnl3YXkuDQoNClRoYW5rcywNCkJlbi4NCg0KJmd0
-OyAmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtyZXR1cm4gLUVJTlZBTDsN
-CiZndDsgJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7fQ0K
-Jmd0Ow0KJmd0OyAtLQ0KJmd0OyAxLjcuMTAuNA0KJmd0Ow0KJmd0OyBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KJmd0OyBOb3V2ZWF1IG1haWxpbmcgbGlz
-dA0KJmd0OyBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KJmd0OyBodHRwOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ0KPC9wcmU+PC9zcGFuPg==
-
-
-
-
---===============1225112052==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1225112052==--
+$ dmesg | grep nouveau
+[    0.000000] Command line: 
+BOOT_IMAGE=/vmlinuz-3.12.0-rc3-00024-gaa4cf96 
+root=/dev/mapper/fedora_anthea-root ro rd.lvm.lv=fedora_anthea/root 
+rd.md=0 rd.dm=0 vconsole.keymap=no 
+rd.luks.uuid=luks-f3e174cb-3b82-4283-90e7-6fef94e72d3a 
+vconsole.font=latarcyrheb-sun16 rd.lvm.lv=fedora_anthea/swap rhgb quiet 
+LANG=en_US.UTF-8 nouveau.runpm=0
+[    0.000000] Kernel command line: 
+BOOT_IMAGE=/vmlinuz-3.12.0-rc3-00024-gaa4cf96 
+root=/dev/mapper/fedora_anthea-root ro rd.lvm.lv=fedora_anthea/root 
+rd.md=0 rd.dm=0 vconsole.keymap=no 
+rd.luks.uuid=luks-f3e174cb-3b82-4283-90e7-6fef94e72d3a 
+vconsole.font=latarcyrheb-sun16 rd.lvm.lv=fedora_anthea/swap rhgb quiet 
+LANG=en_US.UTF-8 nouveau.runpm=0
+[    2.499656] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0e71f0a2
+[    2.499659] nouveau  [  DEVICE][0000:01:00.0] Chipset: GK107 (NVE7)
+[    2.499660] nouveau  [  DEVICE][0000:01:00.0] Family : NVE0
+[    2.504978] nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for 
+image...
+[    2.553165] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+[    2.553168] nouveau  [   VBIOS][0000:01:00.0] checking PROM for image...
+[    2.553245] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+[    2.553248] nouveau  [   VBIOS][0000:01:00.0] checking ACPI for image...
+[    2.746196] nouveau  [   VBIOS][0000:01:00.0] ... appears to be valid
+[    2.746199] nouveau  [   VBIOS][0000:01:00.0] using image from ACPI
+[    2.746288] nouveau  [   VBIOS][0000:01:00.0] BIT signature found
+[    2.746291] nouveau  [   VBIOS][0000:01:00.0] version 80.07.95.00.07
+[    2.832854] nouveau 0000:01:00.0: irq 43 for MSI/MSI-X
+[    2.832875] nouveau  [     PMC][0000:01:00.0] MSI interrupts enabled
+[    2.832957] nouveau  [     PFB][0000:01:00.0] RAM type: DDR3
+[    2.832959] nouveau  [     PFB][0000:01:00.0] RAM size: 2048 MiB
+[    2.832960] nouveau  [     PFB][0000:01:00.0]    ZCOMP: 0 tags
+[    2.870677] nouveau  [  PTHERM][0000:01:00.0] FAN control: none / 
+external
+[    2.870685] nouveau  [  PTHERM][0000:01:00.0] fan management: disabled
+[    2.870737] nouveau  [  PTHERM][0000:01:00.0] internal sensor: yes
+[    2.904920] nouveau E[    PBUS][0000:01:00.0] MMIO read of 0x00000000 
+FAULT at 0x300000 [ IBUS ]
+[    2.905631] nouveau  [     DRM] VRAM: 2048 MiB
+[    2.905633] nouveau  [     DRM] GART: 1048576 MiB
+[    2.905637] nouveau E[     DRM] Pointer to TMDS table invalid
+[    2.905664] nouveau  [     DRM] DCB version 4.0
+[    2.905666] nouveau E[     DRM] Pointer to flat panel table invalid
+[    2.906153] nouveau  [     DRM] ACPI backlight interface available, 
+not registering our own
+[    2.906157] nouveau W[     DRM] voltage table 0x50 unknown
+[    2.906162] nouveau  [     DRM] 2 available performance level(s)
+[    2.906165] nouveau  [     DRM] 1: core 202MHz shader 405MHz memory 
+405MHz voltage 490mV
+[    2.906167] nouveau  [     DRM] 3: core 450MHz shader 901MHz memory 
+1080MHz voltage 580mV
+[    2.906169] nouveau  [     DRM] c:
+[    2.918550] nouveau  [     DRM] MM: using COPY for buffer copies
+[    2.918555] [drm] Initialized nouveau 1.1.1 20120801 for 0000:01:00.0 
+on minor 0
+[   54.136097] nouveau E[    PBUS][0000:01:00.0] MMIO write of 
+0x00000000 FAULT at 0x418880 [ IBUS ]
+[   54.136153] nouveau E[   PIBUS][0000:01:00.0] GPC0: 0x419eb4 
+0xbadf1000 (0x3800820c)
+[   56.138049] nouveau E[  PGRAPH][0000:01:00.0] HUB_INIT timed out
+[   56.138058] nouveau E[  PGRAPH][0000:01:00.0] 409000 - done 0x00000244
+[   56.138068] nouveau E[  PGRAPH][0000:01:00.0] 409000 - stat 
+0x00000000 0x00000000 0x00000000 0x00000000
+[   56.138078] nouveau E[  PGRAPH][0000:01:00.0] 409000 - stat 
+0x00000000 0x00000000 0x00000002 0x00000009
+[   56.138082] nouveau E[  PGRAPH][0000:01:00.0] 502000 - done 0x00000300
+[   56.138087] nouveau E[  PGRAPH][0000:01:00.0] 502000 - stat 
+0x00000000 0x00000000 0x00000000 0x00000000
+[   56.138092] nouveau E[  PGRAPH][0000:01:00.0] 502000 - stat 
+0x00000000 0x00000000 0x00000000 0x00000000
+[   56.138095] nouveau E[  PGRAPH][0000:01:00.0] init failed, -16
