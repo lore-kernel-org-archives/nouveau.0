@@ -1,28 +1,99 @@
-From: Dave Airlie <airlied@gmail.com>
-Subject: Re: [Nouveau] Panic in nouveau on resume after 5addcf0a
-Date: Thu, 10 Oct 2013 07:34:25 +1000
-Message-ID: <CAPM=9tzSNjingreRyVPaHXF4zf6AgaEX_YoqJj7rFmFgwkKQXw@mail.gmail.com>
-References: <5255AFFA.60104@gmx.com>
+From: "Albert Pool" <albertpool-2BgBnwcziRhmR6Xm/wNWPw@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Do not show an error if the TMDS
+	table pointer is invalid
+Date: Wed, 9 Oct 2013 22:02:58 GMT
+Message-ID: <20131009220337.33683E7EAF@gabe.freedesktop.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=ISO-8859-1
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <5255AFFA.60104@gmx.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Martin Nyhus <martin.nyhus@gmx.com>
-Cc: Dave Airlie <airlied@redhat.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============1225112052=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?utf-8?B?QmVuIFNrZWdncw==?= <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: =?utf-8?B?bm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmc=?= <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Oct 10, 2013 at 5:35 AM, Martin Nyhus <martin.nyhus@gmx.com> wrote:
-> After 5addcf0a (nouveau: add runtime PM support (v0.9)) I'm getting kernel
-> panics immediately after resuming from suspend. Unfortunately it happens so
-> early that I don't get any more info than the blinking keyboard lights...
->
-> The nouveau tree still panics up to 2fb9d6c, which fails before I can test
-> it.
+--===============1225112052==
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: base64
 
-Looks like you've got bigger problems here though, the chip doesn't
-seem to initialise properly at all.
 
-does it s/r okay with nouveau.runpm=0 on the command line?
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0OyI+Cgo8cCBzdHlsZT0iZm9udC1zaXplOjEwcHQ7
+bWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDsiPlRoYW5rIHlvdSBmb3IgeW91ciByZXBseS4g
+SSBob3BlIEkgd29uJ3QgZm9yZ2V0IHRvIHVwbG9hZCB0aGUgQklPUyBvZiBKb2V5NDcxMidzIE5W
+RTcgdG8gdGhlIHJlcG8gdG9tb3Jyb3csIHRoZW4geW91IGd1eXMgY2FuIHRha2UgYSBsb29rIGF0
+IGl0IHRvby4gVGhhdCBpcyBhIEdQVSB3aXRob3V0IGFueSBvdXRwdXRzIGFuZCBpdCB0cmlnZ2Vy
+cyB0aGlzIG1lc3NhZ2UuPC9wPjxwIHN0eWxlPSJmb250LXNpemU6MTBwdDttYXJnaW4tdG9wOjA7
+bWFyZ2luLWJvdHRvbTowOyI+SSdtIHdyaXRpbmcgdGhpcyBvbiBteSBwaG9uZSwgc28gZG9uJ3Qg
+aGF2ZSB0aGUgZmlsZSBhdCBoYW5kIHJpZ2h0IG5vdy48L3A+PHAgc3R5bGU9ImZvbnQtc2l6ZTox
+MHB0O21hcmdpbi10b3A6MDttYXJnaW4tYm90dG9tOjA7Ij4mbmJzcDs8L3A+PHAgc3R5bGU9ImZv
+bnQtc2l6ZToxMHB0O21hcmdpbi10b3A6MDttYXJnaW4tYm90dG9tOjA7Ij5BbGJlcnQ8L3A+PGZv
+bnQ+PHAgc3R5bGU9ImZvbnQtc2l6ZToxMHB0O21hcmdpbi10b3A6MDttYXJnaW4tYm90dG9tOjA7
+Ij4mbmJzcDs8L3A+LS0tLS0tIE9yaWdpbmVlbCBiZXJpY2h0IC0tLS0tLTxicj48Yj5WYW46Jm5i
+c3A7PC9iPkJlbiBTa2VnZ3MgPHNrZWdnc2JAZ21haWwuY29tPjxicj48Yj5EYXR1bTombmJzcDs8
+L2I+MDktMTAtMjAxMyAyMjo1NTxicj48Yj5OYWFyOiZuYnNwOzwvYj5BbGJlcnQgUG9vbDs8YnI+
+PGI+Q0M6Jm5ic3A7PC9iPm5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOzxicj48Yj5PbmRl
+cndlcnA6PC9iPlJlOiBbTm91dmVhdV0gW1BBVENIXSBkcm0vbm91dmVhdTogRG8gbm90IHNob3cg
+YW4gZXJyb3IgaWYgdGhlIFRNRFMgdGFibGUgcG9pbnRlciBpcyBpbnZhbGlkPGJyPjxicj48cHJl
+Pk9uIFRodSwgT2N0IDEwLCAyMDEzIGF0IDU6NDAgQU0sIEFsYmVydCBQb29sJm5ic3A7PGFsYmVy
+dHBvb2xAc29sY29uLm5sPiB3cm90ZToNCiZndDsgT3B0aW11cyBjYXJkcyB3aXRoIG5vIG91dHB1
+dHMgdHJpZ2dlciB0aGlzIG1lc3NhZ2UgKE5WRDcsIGZvciBleGFtcGxlKQ0KJmd0OyBUaGlzIGNv
+bW1pdCBjaGFuZ2VzIHRoZSB3YXJuaW5nIGludG8gYW4gaW5mb3JtYXRpb25hbCBtZXNzYWdlLg0K
+Jmd0OyBUaGUgcmV0dXJuIHZhbHVlIG9mIHRoZSBmdW5jdGlvbiBpcyBub3QgdXNlZCwgc28gSSBs
+ZWZ0IGl0IGF0IC1FSU5WQUwuDQomZ3Q7DQomZ3Q7IFNpZ25lZC1vZmYtYnk6IEFsYmVydCBQb29s
+Jm5ic3A7PGFsYmVydHBvb2xAc29sY29uLm5sPg0KJmd0OyBDYzogRW1pbCBWZWxpa292Jm5ic3A7
+PGVtaWwubC52ZWxpa292QGdtYWlsLmNvbT4NCiZndDsgLS0tDQomZ3Q7ICZuYnNwO2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmlvcy5jIHwgJm5ic3A7Jm5ic3A7Jm5ic3A7MyArKy0N
+CiZndDsgJm5ic3A7MSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigt
+KQ0KJmd0Ow0KJmd0OyBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9iaW9zLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Jpb3MuYw0KJmd0OyBp
+bmRleCAzZTcyODc2Li43NjgxYjAxIDEwMDY0NA0KJmd0OyAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2Jpb3MuYw0KJmd0OyArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9ub3V2ZWF1X2Jpb3MuYw0KJmd0OyBAQCAtOTM2LDcgKzkzNiw4IEBAIHN0YXRpYyBpbnQgcGFy
+c2VfYml0X3RtZHNfdGJsX2VudHJ5KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBudmJp
+b3MgKmJpb3MsDQomZ3Q7DQomZ3Q7ICZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwO3RtZHN0YWJsZXB0ciA9IFJPTTE2KGJpb3MtJmd0O2RhdGFbYml0ZW50cnkt
+Jmd0O29mZnNldF0pOw0KJmd0OyAmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDtpZiAoIXRtZHN0YWJsZXB0cikgew0KJmd0OyAtICZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwO05WX0VSUk9SKGRybSwgJnF1b3Q7UG9pbnRlciB0byBUTURTIHRhYmxlIGludmFs
+aWRcbiZxdW90Oyk7DQomZ3Q7ICsgJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7LyogSGFwcGVu
+cyBvbiBOVkQ3IGFuZCBvdGhlciBPcHRpbXVzIGNhcmRzIHdpdGggbm8gb3V0cHV0cyAqLw0KJmd0
+OyArICZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO05WX0lORk8oZHJtLCAmcXVvdDtUTURTIHRh
+YmxlIG5vdCBmb3VuZFxuJnF1b3Q7KTsNCkhtbSwgaWRlYWxseSB0aGlzIGNvZGUgd291bGRuJ3Qg
+ZXhpc3QgYW55bW9yZSwgYnV0IHdlJ3JlIG5vdCB0aGVyZQ0KeWV0LiAmbmJzcDtTbywgSSdsbCB0
+YWtlIHRoZSBwYXRjaC4gJm5ic3A7QnV0LCBJIHN1c3BlY3QgTlZfREVCVUcoKSB3aWxsIGJlDQpi
+ZXR0ZXIgaGVyZSwgYW55b25lIGxvb2tpbmcgd2lsbCBsaWtlbHkgdGhpbmcgJnF1b3Q7bm90IGZv
+dW5kJnF1b3Q7IG1lYW5zIGFuDQplcnJvciBhbnl3YXkuDQoNClRoYW5rcywNCkJlbi4NCg0KJmd0
+OyAmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtyZXR1cm4gLUVJTlZBTDsN
+CiZndDsgJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7fQ0K
+Jmd0Ow0KJmd0OyAtLQ0KJmd0OyAxLjcuMTAuNA0KJmd0Ow0KJmd0OyBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KJmd0OyBOb3V2ZWF1IG1haWxpbmcgbGlz
+dA0KJmd0OyBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KJmd0OyBodHRwOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ0KPC9wcmU+PC9zcGFuPg==
 
-Dave.
+
+
+
+--===============1225112052==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1225112052==--
