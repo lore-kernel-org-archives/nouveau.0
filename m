@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70388] [NV34] failed to idle channel 0xcccc0000
-Date: Fri, 11 Oct 2013 19:20:37 +0000
-Message-ID: <bug-70388-8800-AlH20mE5rA@http.bugs.freedesktop.org/>
-References: <bug-70388-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70389] [prime] unsynchronised rendering on secondary
+	displays
+Date: Fri, 11 Oct 2013 19:31:26 +0000
+Message-ID: <bug-70389-8800-vqQLF8Hyyv@http.bugs.freedesktop.org/>
+References: <bug-70389-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0482439561=="
+Content-Type: multipart/mixed; boundary="===============1227739687=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70388-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70389-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0482439561==
-Content-Type: multipart/alternative; boundary="1381519237.A81Bf0.19124"; charset="us-ascii"
+--===============1227739687==
+Content-Type: multipart/alternative; boundary="1381519887.44E52F6.21755"; charset="us-ascii"
 
 
---1381519237.A81Bf0.19124
-Date: Fri, 11 Oct 2013 19:20:37 +0000
+--1381519887.44E52F6.21755
+Date: Fri, 11 Oct 2013 19:31:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70388
+https://bugs.freedesktop.org/show_bug.cgi?id=70389
 
-Rostislav Krasny <rosti.bsd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Priority|medium                      |high
+           Assignee|chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org    |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
+         QA Contact|intel-gfx-bugs-PD4FTy7X32lMiVNPc3mojA@public.gmane.org |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+                   |sktop.org                   |
+            Summary|[dual monitor, xorg, intel] |[prime] unsynchronised
+                   |Corrupted rendering         |rendering on secondary
+                   |                            |displays
+          Component|Driver/intel                |Driver/nouveau
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381519237.A81Bf0.19124
-Date: Fri, 11 Oct 2013 19:20:37 +0000
+--1381519887.44E52F6.21755
+Date: Fri, 11 Oct 2013 19:31:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,12 +58,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:rosti.bsd&#64;gmail.com" title="Rostislav Krasny &lt;rosti.bsd&#64;gmail.com&gt;"> <span class="fn">Rostislav Krasny</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:chris&#64;chris-wilson.co.uk" title="Chris Wilson &lt;chris&#64;chris-wilson.co.uk&gt;"> <span class="fn">Chris Wilson</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV34] failed to idle channel 0xcccc0000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388">bug 70388</a>
+   title="NEW --- - [prime] unsynchronised rendering on secondary displays"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70389">bug 70389</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -65,10 +73,34 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Priority</td>
-           <td>medium
+           <td style="text-align:right;">Assignee</td>
+           <td>chris&#64;chris-wilson.co.uk
            </td>
-           <td>high
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">QA Contact</td>
+           <td>intel-gfx-bugs&#64;lists.freedesktop.org
+           </td>
+           <td>xorg-team&#64;lists.x.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[dual monitor, xorg, intel] Corrupted rendering
+           </td>
+           <td>[prime] unsynchronised rendering on secondary displays
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>Driver/intel
+           </td>
+           <td>Driver/nouveau
            </td>
          </tr></table>
       <p>
@@ -82,9 +114,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1381519237.A81Bf0.19124--
+--1381519887.44E52F6.21755--
 
---===============0482439561==
+--===============1227739687==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +127,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0482439561==--
+--===============1227739687==--
