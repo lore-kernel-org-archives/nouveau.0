@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70390] [NV84] Repeated system crashes under graphics
  load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]
-Date: Fri, 11 Oct 2013 21:30:44 +0000
-Message-ID: <bug-70390-8800-TcyFrh8pTF@http.bugs.freedesktop.org/>
+Date: Fri, 11 Oct 2013 22:07:19 +0000
+Message-ID: <bug-70390-8800-eqNQaAubYb@http.bugs.freedesktop.org/>
 References: <bug-70390-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1349421115=="
+Content-Type: multipart/mixed; boundary="===============0927808663=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70390-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,101 +21,155 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1349421115==
-Content-Type: multipart/alternative; boundary="1381527044.cEdAFfAe2.13362"; charset="us-ascii"
+--===============0927808663==
+Content-Type: multipart/alternative; boundary="1381529239.Ae1e1f2E1.19804"; charset="us-ascii"
 
 
---1381527044.cEdAFfAe2.13362
-Date: Fri, 11 Oct 2013 21:30:44 +0000
+--1381529239.Ae1e1f2E1.19804
+Date: Fri, 11 Oct 2013 22:07:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70390
+https://bugs.freedesktop.org/show_bug.cgi?id=3D70390
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The commonality here is that in all cases you get
+--- Comment #7 from Martin von Gagern <Martin.vGagern-hi6Y0CQ0nG0@public.gmane.org> ---
+Not sure whether this will be of any use, but I'm trying to think of ways w=
+hich
+might cause this, in my own pretty naive way of thinking about hardware dri=
+vers
+and graphics cards. Simply ignore dumb ideas. I don't need answers to these
+questions, as long as you know that the answers exists and don't help us he=
+re.
 
-[22145.017855] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 4
-[stellarium[17059]] get 0x0020049408 put 0x0020053fcc ib_get 0x00000349 ib_put
-0x00000352 state 0x80007641 (err: INVALID_CMD) push 0x00406040
+(In reply to comment #6)
+> But 0x00406040 is a perfectly valid command, ever since the Riva TNT chip=
+s.
 
-But 0x00406040 is a perfectly valid command, ever since the Riva TNT chips. It
-should decode as
+Could it be that the command is invalid AT THAT TIME? Perhaps due to a race
+condition? Could it be that the semaphore is already high?
 
-method = 0x10
-subchan = 3
-count = 0x10
+> happens a fair bit for CPU vs GPU syncs.
 
-This makes sense. These 4 methods deal with semaphore manipulation.
+Therefore the command likely won't fail all the time. The load pattern must=
+ be
+part of the issue.
 
-<reg32 offset="0x10" name="SEMAPHORE_ADDRESS_HIGH" variants="NV84-"/>
-<reg32 offset="0x14" name="SEMAPHORE_ADDRESS_LOW" variants="NV84-"/>
-<reg32 offset="0x18" name="SEMAPHORE_SEQUENCE" variants="NV84-"/>
-<reg32 offset="0x1c" name="SEMAPHORE_TRIGGER" variants="NV84-">
+Do things like stack overflows occur in GPU memory? Could excessive allocat=
+ion
+of e.g. texture memory somehow clobber memory needed by GPU firmware for
+methods such like this?
 
-which happens a fair bit for CPU vs GPU syncs.
+What other resources might become exhausted by concurrent access from
+graphics-intensive applications? Would that exhaustion be reported in some =
+way?
 
--- 
+Of course, actual hardware breakage is always an option. But the thing does=
+n't
+seem random enough to suggest a simple hardware defect as the main cause, i=
+mho.
+Of course it would be nice if I had another card with the same kind of chip=
+s to
+plug into my system, just to rule out that alternative=E2=80=A6
+
+I must confess, I cannot follow how you decode 0x00406040 to method =3D 0x1=
+0. The
+way I read BEGIN_NV04, I can find your subc =3D 0, and size =3D 0x10, but I=
+'d read
+mthd =3D 0x40 directly from the least significant bits. Did I miss somethin=
+g?
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381527044.cEdAFfAe2.13362
-Date: Fri, 11 Oct 2013 21:30:44 +0000
+--1381529239.Ae1e1f2E1.19804
+Date: Fri, 11 Oct 2013 22:07:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV84] Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70390#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - [NV84] Repeated system crashes under graphics load, E=
+[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70390#c7">Comment=
+ # 7</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV84] Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70390">bug 70390</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW --- - [NV84] Repeated system crashes under graphics load, E=
+[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70390">bug 70390<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+Martin.vGagern&#64;gmx.net" title=3D"Martin von Gagern &lt;Martin.vGagern&#=
+64;gmx.net&gt;"> <span class=3D"fn">Martin von Gagern</span></a>
 </span></b>
-        <pre>The commonality here is that in all cases you get
+        <pre>Not sure whether this will be of any use, but I'm trying to th=
+ink of ways which
+might cause this, in my own pretty naive way of thinking about hardware dri=
+vers
+and graphics cards. Simply ignore dumb ideas. I don't need answers to these
+questions, as long as you know that the answers exists and don't help us he=
+re.
 
-[22145.017855] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 4
-[stellarium[17059]] get 0x0020049408 put 0x0020053fcc ib_get 0x00000349 ib_put
-0x00000352 state 0x80007641 (err: INVALID_CMD) push 0x00406040
+(In reply to <a href=3D"show_bug.cgi?id=3D70390#c6">comment #6</a>)
+<span class=3D"quote">&gt; But 0x00406040 is a perfectly valid command, eve=
+r since the Riva TNT chips.</span >
 
-But 0x00406040 is a perfectly valid command, ever since the Riva TNT chips. It
-should decode as
+Could it be that the command is invalid AT THAT TIME? Perhaps due to a race
+condition? Could it be that the semaphore is already high?
 
-method = 0x10
-subchan = 3
-count = 0x10
+<span class=3D"quote">&gt; happens a fair bit for CPU vs GPU syncs.</span >
 
-This makes sense. These 4 methods deal with semaphore manipulation.
+Therefore the command likely won't fail all the time. The load pattern must=
+ be
+part of the issue.
 
-&lt;reg32 offset=&quot;0x10&quot; name=&quot;SEMAPHORE_ADDRESS_HIGH&quot; variants=&quot;NV84-&quot;/&gt;
-&lt;reg32 offset=&quot;0x14&quot; name=&quot;SEMAPHORE_ADDRESS_LOW&quot; variants=&quot;NV84-&quot;/&gt;
-&lt;reg32 offset=&quot;0x18&quot; name=&quot;SEMAPHORE_SEQUENCE&quot; variants=&quot;NV84-&quot;/&gt;
-&lt;reg32 offset=&quot;0x1c&quot; name=&quot;SEMAPHORE_TRIGGER&quot; variants=&quot;NV84-&quot;&gt;
+Do things like stack overflows occur in GPU memory? Could excessive allocat=
+ion
+of e.g. texture memory somehow clobber memory needed by GPU firmware for
+methods such like this?
 
-which happens a fair bit for CPU vs GPU syncs.</pre>
+What other resources might become exhausted by concurrent access from
+graphics-intensive applications? Would that exhaustion be reported in some =
+way?
+
+Of course, actual hardware breakage is always an option. But the thing does=
+n't
+seem random enough to suggest a simple hardware defect as the main cause, i=
+mho.
+Of course it would be nice if I had another card with the same kind of chip=
+s to
+plug into my system, just to rule out that alternative=E2=80=A6
+
+I must confess, I cannot follow how you decode 0x00406040 to method =3D 0x1=
+0. The
+way I read BEGIN_NV04, I can find your subc =3D 0, and size =3D 0x10, but I=
+'d read
+mthd =3D 0x40 directly from the least significant bits. Did I miss somethin=
+g?</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1381527044.cEdAFfAe2.13362--
+--1381529239.Ae1e1f2E1.19804--
 
---===============1349421115==
+--===============0927808663==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -126,4 +180,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1349421115==--
+--===============0927808663==--
