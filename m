@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69819] [NVE7] can't able start X dsiplay
-Date: Fri, 11 Oct 2013 01:11:27 +0000
-Message-ID: <bug-69819-8800-ylrC0klCk4@http.bugs.freedesktop.org/>
-References: <bug-69819-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69876] [NVC3] Reverse prime sometimes freezes the
+	machine
+Date: Fri, 11 Oct 2013 14:58:45 +0000
+Message-ID: <bug-69876-8800-dA8VTQo6LY@http.bugs.freedesktop.org/>
+References: <bug-69876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0215209399=="
+Content-Type: multipart/mixed; boundary="===============1300927650=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69819-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0215209399==
-Content-Type: multipart/alternative; boundary="1381453886.D76A4BD1.27821"; charset="us-ascii"
+--===============1300927650==
+Content-Type: multipart/alternative; boundary="1381503525.EFd0B84B1.28127"; charset="us-ascii"
 
 
---1381453886.D76A4BD1.27821
-Date: Fri, 11 Oct 2013 01:11:26 +0000
+--1381503525.EFd0B84B1.28127
+Date: Fri, 11 Oct 2013 14:58:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69819
+https://bugs.freedesktop.org/show_bug.cgi?id=69876
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-What exactly is the problem? See http://nouveau.freedesktop.org/wiki/Bugs/ for
-some of the things we like to see in bug reports.
+--- Comment #9 from Mike <michele.cane-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+When nouveau.runpm=0 no freeze occurs.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381453886.D76A4BD1.27821
-Date: Fri, 11 Oct 2013 01:11:26 +0000
+--1381503525.EFd0B84B1.28127
+Date: Fri, 11 Oct 2013 14:58:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,16 +53,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] can't able start X dsiplay"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69819#c1">Comment # 1</a>
+   title="NEW --- - [NVC3] Reverse prime sometimes freezes the machine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] can't able start X dsiplay"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69819">bug 69819</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NVC3] Reverse prime sometimes freezes the machine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876">bug 69876</a>
+              from <span class="vcard"><a class="email" href="mailto:michele.cane&#64;gmail.com" title="Mike &lt;michele.cane&#64;gmail.com&gt;"> <span class="fn">Mike</span></a>
 </span></b>
-        <pre>What exactly is the problem? See <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a> for
-some of the things we like to see in bug reports.</pre>
+        <pre>When nouveau.runpm=0 no freeze occurs.</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +73,9 @@ some of the things we like to see in bug reports.</pre>
     </body>
 </html>
 
---1381453886.D76A4BD1.27821--
+--1381503525.EFd0B84B1.28127--
 
---===============0215209399==
+--===============1300927650==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0215209399==--
+--===============1300927650==--
