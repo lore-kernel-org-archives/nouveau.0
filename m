@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70390] [NV84] Repeated system crashes under graphics
  load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]
-Date: Fri, 11 Oct 2013 20:37:51 +0000
-Message-ID: <bug-70390-8800-bdYUg3CHLS@http.bugs.freedesktop.org/>
+Date: Fri, 11 Oct 2013 20:44:04 +0000
+Message-ID: <bug-70390-8800-5QAbNEC9yi@http.bugs.freedesktop.org/>
 References: <bug-70390-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1389455525=="
+Content-Type: multipart/mixed; boundary="===============0987880377=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70390-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1389455525==
-Content-Type: multipart/alternative; boundary="1381523871.42a7AcB2.2905"; charset="us-ascii"
+--===============0987880377==
+Content-Type: multipart/alternative; boundary="1381524244.CaBd6Fc71.4224"; charset="us-ascii"
 
 
---1381523871.42a7AcB2.2905
-Date: Fri, 11 Oct 2013 20:37:51 +0000
+--1381524244.CaBd6Fc71.4224
+Date: Fri, 11 Oct 2013 20:44:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70390
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #4 from Martin von Gagern <Martin.vGagern-hi6Y0CQ0nG0@public.gmane.org> ---
+I noticed (after reading http://nouveau.freedesktop.org/wiki/Bugs/ the second
+time) that I forgot about the various version numbers besides kernel version.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|G84: Repeated system        |[NV84] Repeated system
-                   |crashes under graphics      |crashes under graphics
-                   |load, E[PFIFO] DMA_PUSHER   |load, E[PFIFO] DMA_PUSHER
-                   |and lots of E[PGRAPH]       |and lots of E[PGRAPH]
+sys-kernel/gentoo-sources-3.11.4
+x11-base/xorg-server-1.14.3-r2
+x11-drivers/xf86-video-nouveau-1.0.9
+x11-libs/libdrm-2.4.46-r1
+media-libs/mesa-9.2.0-r1
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381523871.42a7AcB2.2905
-Date: Fri, 11 Oct 2013 20:37:51 +0000
+--1381524244.CaBd6Fc71.4224
+Date: Fri, 11 Oct 2013 20:44:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,28 +55,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV84] Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70390#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV84] Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70390">bug 70390</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:Martin.vGagern&#64;gmx.net" title="Martin von Gagern &lt;Martin.vGagern&#64;gmx.net&gt;"> <span class="fn">Martin von Gagern</span></a>
+</span></b>
+        <pre>I noticed (after reading <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a> the second
+time) that I forgot about the various version numbers besides kernel version.
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>G84: Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]
-           </td>
-           <td>[NV84] Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]
-           </td>
-         </tr></table>
-      <p>
+sys-kernel/gentoo-sources-3.11.4
+x11-base/xorg-server-1.14.3-r2
+x11-drivers/xf86-video-nouveau-1.0.9
+x11-libs/libdrm-2.4.46-r1
+media-libs/mesa-9.2.0-r1</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -86,9 +87,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1381523871.42a7AcB2.2905--
+--1381524244.CaBd6Fc71.4224--
 
---===============1389455525==
+--===============0987880377==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1389455525==--
+--===============0987880377==--
