@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70388] [NV34] failed to idle channel 0xcccc0000
-Date: Sat, 12 Oct 2013 17:04:19 +0000
-Message-ID: <bug-70388-8800-ulAE5tCJma@http.bugs.freedesktop.org/>
-References: <bug-70388-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70212] glxinfo triggers assert in cso_release_all
+ after 3f0627c2ad6
+Date: Sat, 12 Oct 2013 18:52:24 +0000
+Message-ID: <bug-70212-8800-BtkOIainwa@http.bugs.freedesktop.org/>
+References: <bug-70212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0355337670=="
+Content-Type: multipart/mixed; boundary="===============1538166440=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70388-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70212-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0355337670==
-Content-Type: multipart/alternative; boundary="1381597459.4FFa8CA0.21290"; charset="us-ascii"
+--===============1538166440==
+Content-Type: multipart/alternative; boundary="1381603944.Cf8cE2.7824"; charset="us-ascii"
 
 
---1381597459.4FFa8CA0.21290
-Date: Sat, 12 Oct 2013 17:04:19 +0000
+--1381603944.Cf8cE2.7824
+Date: Sat, 12 Oct 2013 18:52:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70388
+https://bugs.freedesktop.org/show_bug.cgi?id=70212
 
---- Comment #5 from Rostislav Krasny <rosti.bsd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #4)
-> Mentioned in the log dump will be attached in the next message.
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-The dump archive is too big for attachment (more then 5MB). Tell me if you
-really need it and then I will find a way to send it.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |ASSIGNED
+
+--- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #2)
+> Another interesting point is that with the bind_*_sampler_states hooks the
+> drivers where left to handle cases of 0 samplers on their own - with nouveau
+> and radeon doing additional work (state tracking afaics). Whereas with the
+> unified bind_sampler_states() in case of 0 samplers the driver hook is not
+> executed. Is that change intentional ?
+
+Scratch that
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381597459.4FFa8CA0.21290
-Date: Sat, 12 Oct 2013 17:04:19 +0000
+--1381603944.Cf8cE2.7824
+Date: Sat, 12 Oct 2013 18:52:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,24 +61,47 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED --- - glxinfo triggers assert in cso_release_all after 3f0627c2ad6"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70212">bug 70212</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>ASSIGNED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV34] failed to idle channel 0xcccc0000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388#c5">Comment # 5</a>
+          bz_status_ASSIGNED "
+   title="ASSIGNED --- - glxinfo triggers assert in cso_release_all after 3f0627c2ad6"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70212#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV34] failed to idle channel 0xcccc0000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388">bug 70388</a>
-              from <span class="vcard"><a class="email" href="mailto:rosti.bsd&#64;gmail.com" title="Rostislav Krasny &lt;rosti.bsd&#64;gmail.com&gt;"> <span class="fn">Rostislav Krasny</span></a>
+          bz_status_ASSIGNED "
+   title="ASSIGNED --- - glxinfo triggers assert in cso_release_all after 3f0627c2ad6"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70212">bug 70212</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=70388#c4">comment #4</a>)
-<span class="quote">&gt; Mentioned in the log dump will be attached in the next message.</span >
+        <pre>(In reply to <a href="show_bug.cgi?id=70212#c2">comment #2</a>)
+<span class="quote">&gt; Another interesting point is that with the bind_*_sampler_states hooks the
+&gt; drivers where left to handle cases of 0 samplers on their own - with nouveau
+&gt; and radeon doing additional work (state tracking afaics). Whereas with the
+&gt; unified bind_sampler_states() in case of 0 samplers the driver hook is not
+&gt; executed. Is that change intentional ?</span >
 
-The dump archive is too big for attachment (more then 5MB). Tell me if you
-really need it and then I will find a way to send it.</pre>
+Scratch that</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +113,9 @@ really need it and then I will find a way to send it.</pre>
     </body>
 </html>
 
---1381597459.4FFa8CA0.21290--
+--1381603944.Cf8cE2.7824--
 
---===============0355337670==
+--===============1538166440==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +126,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0355337670==--
+--===============1538166440==--
