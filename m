@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70354] [NVE7] Failed to initialise context object:
  2D_NVC0 (0) (for my GeForce GT 750M)
-Date: Sat, 12 Oct 2013 20:25:38 +0000
-Message-ID: <bug-70354-8800-nkaulrMQij@http.bugs.freedesktop.org/>
+Date: Sat, 12 Oct 2013 20:35:57 +0000
+Message-ID: <bug-70354-8800-6URYiip1Bf@http.bugs.freedesktop.org/>
 References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0368843415=="
+Content-Type: multipart/mixed; boundary="===============0990494518=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0368843415==
-Content-Type: multipart/alternative; boundary="1381609538.A227ba42.24714"; charset="us-ascii"
+--===============0990494518==
+Content-Type: multipart/alternative; boundary="1381610157.0Dd0D2E2.26806"; charset="us-ascii"
 
 
---1381609538.A227ba42.24714
-Date: Sat, 12 Oct 2013 20:25:38 +0000
+--1381610157.0Dd0D2E2.26806
+Date: Sat, 12 Oct 2013 20:35:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70354
 
---- Comment #11 from 4712.joey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 87533
-  --> https://bugs.freedesktop.org/attachment.cgi?id=87533&action=edit
-Full dmesg on linux-3.11.4-1 - with config=NvGrUseFw=1
+--- Comment #12 from Joey 4712 <4712.joey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I've sent the mmiotrace to mmio dot dumps at gmail dot com.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381609538.A227ba42.24714
-Date: Sat, 12 Oct 2013 20:25:38 +0000
+--1381610157.0Dd0D2E2.26806
+Date: Sat, 12 Oct 2013 20:35:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] Failed to initialise context object: 2D_NVC0 (0) (for my GeForce GT 750M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] Failed to initialise context object: 2D_NVC0 (0) (for my GeForce GT 750M)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-              from <span class="vcard"><a class="email" href="mailto:4712.joey&#64;gmail.com" title="4712.joey&#64;gmail.com">4712.joey&#64;gmail.com</a>
+              from <span class="vcard"><a class="email" href="mailto:4712.joey&#64;gmail.com" title="Joey 4712 &lt;4712.joey&#64;gmail.com&gt;"> <span class="fn">Joey 4712</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=87533" name="attach_87533" title="Full dmesg on linux-3.11.4-1 - with config=NvGrUseFw=1">attachment 87533</a> <a href="attachment.cgi?id=87533&amp;action=edit" title="Full dmesg on linux-3.11.4-1 - with config=NvGrUseFw=1">[details]</a></span>
-Full dmesg on linux-3.11.4-1 - with config=NvGrUseFw=1</pre>
+        <pre>I've sent the mmiotrace to mmio dot dumps at gmail dot com.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +73,9 @@ Full dmesg on linux-3.11.4-1 - with config=NvGrUseFw=1</pre>
     </body>
 </html>
 
---1381609538.A227ba42.24714--
+--1381610157.0Dd0D2E2.26806--
 
---===============0368843415==
+--===============0990494518==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0368843415==--
+--===============0990494518==--
