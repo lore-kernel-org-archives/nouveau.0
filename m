@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51477] bad/missing graphics with NV11 / GeForce
 	2MX/MX400
-Date: Sat, 12 Oct 2013 20:11:38 +0000
-Message-ID: <bug-51477-8800-oipJ0sbzx8@http.bugs.freedesktop.org/>
+Date: Sat, 12 Oct 2013 20:12:31 +0000
+Message-ID: <bug-51477-8800-tDXaymEU9B@http.bugs.freedesktop.org/>
 References: <bug-51477-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2000063669=="
+Content-Type: multipart/mixed; boundary="===============1624369497=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,21 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2000063669==
-Content-Type: multipart/alternative; boundary="1381608698.c4Dfb3.22429"; charset="us-ascii"
+--===============1624369497==
+Content-Type: multipart/alternative; boundary="1381608751.edB4aA3.22629"; charset="us-ascii"
 
 
---1381608698.c4Dfb3.22429
-Date: Sat, 12 Oct 2013 20:11:38 +0000
+--1381608751.edB4aA3.22629
+Date: Sat, 12 Oct 2013 20:12:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51477
 
---- Comment #17 from Compaq <vendobici2010-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I have an NV17 ( NVIDIA Corporation NV17 [GeForce4 440 Go 64M] (rev a3) ) and
-the same problems. 
+--- Comment #18 from Compaq <vendobici2010-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Sorry for the missing screenshots:
 
-Unfortunatly it's a notebook (that would be still fine from my point of view)
-and so i can't change the graphic card.
-
-I attach some screenshot made with xubuntu 13.10 beta2 with the problems in
-gimp, terminal and the missing icons in thunar.
+http://goo.gl/zWU9gn
 
 Thank you.
 
@@ -48,8 +43,8 @@ Thank you.
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381608698.c4Dfb3.22429
-Date: Sat, 12 Oct 2013 20:11:38 +0000
+--1381608751.edB4aA3.22629
+Date: Sat, 12 Oct 2013 20:12:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,21 +58,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c17">Comment # 17</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
               from <span class="vcard"><a class="email" href="mailto:vendobici2010&#64;gmail.com" title="Compaq &lt;vendobici2010&#64;gmail.com&gt;"> <span class="fn">Compaq</span></a>
 </span></b>
-        <pre>I have an NV17 ( NVIDIA Corporation NV17 [GeForce4 440 Go 64M] (rev a3) ) and
-the same problems. 
+        <pre>Sorry for the missing screenshots:
 
-Unfortunatly it's a notebook (that would be still fine from my point of view)
-and so i can't change the graphic card.
-
-I attach some screenshot made with xubuntu 13.10 beta2 with the problems in
-gimp, terminal and the missing icons in thunar.
+<a href="http://goo.gl/zWU9gn">http://goo.gl/zWU9gn</a>
 
 Thank you.</pre>
         </div>
@@ -91,9 +81,9 @@ Thank you.</pre>
     </body>
 </html>
 
---1381608698.c4Dfb3.22429--
+--1381608751.edB4aA3.22629--
 
---===============2000063669==
+--===============1624369497==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2000063669==--
+--===============1624369497==--
