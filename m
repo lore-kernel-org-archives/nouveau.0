@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 55450] [NV17] nouveau driver fails to restore screen
  content / video mode after resume from s2ram
-Date: Tue, 15 Oct 2013 21:33:32 +0000
-Message-ID: <bug-55450-8800-xCh9xbaZ3o@http.bugs.freedesktop.org/>
+Date: Tue, 15 Oct 2013 21:37:08 +0000
+Message-ID: <bug-55450-8800-VgmCB02TAu@http.bugs.freedesktop.org/>
 References: <bug-55450-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1204197672=="
+Content-Type: multipart/mixed; boundary="===============1921592494=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-55450-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1204197672==
-Content-Type: multipart/alternative; boundary="1381872812.d2AB07DF1.12750"; charset="us-ascii"
+--===============1921592494==
+Content-Type: multipart/alternative; boundary="1381873028.DCd327ee1.13202"; charset="us-ascii"
 
 
---1381872812.d2AB07DF1.12750
-Date: Tue, 15 Oct 2013 21:33:32 +0000
+--1381873028.DCd327ee1.13202
+Date: Tue, 15 Oct 2013 21:37:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=55450
 
---- Comment #8 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 87700
-  --> https://bugs.freedesktop.org/attachment.cgi?id=87700&action=edit
-/var/log/messages
-
-.. though with the proprietary driver it had been working on much elder
-kernels.
+--- Comment #9 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+I don`t see how that with log_buf_len=1M should work as the pure dmesg will be
+lost after a cold start.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381872812.d2AB07DF1.12750
-Date: Tue, 15 Oct 2013 21:33:32 +0000
+--1381873028.DCd327ee1.13202
+Date: Tue, 15 Oct 2013 21:37:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,18 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [NV17] nouveau driver fails to restore screen content / video mode after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55450#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55450#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [NV17] nouveau driver fails to restore screen content / video mode after resume from s2ram"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=55450">bug 55450</a>
               from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=87700" name="attach_87700" title="/var/log/messages">attachment 87700</a> <a href="attachment.cgi?id=87700&amp;action=edit" title="/var/log/messages">[details]</a></span>
-/var/log/messages
-
-.. though with the proprietary driver it had been working on much elder
-kernels.</pre>
+        <pre>I don`t see how that with log_buf_len=1M should work as the pure dmesg will be
+lost after a cold start.</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +75,9 @@ kernels.</pre>
     </body>
 </html>
 
---1381872812.d2AB07DF1.12750--
+--1381873028.DCd327ee1.13202--
 
---===============1204197672==
+--===============1921592494==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1204197672==--
+--===============1921592494==--
