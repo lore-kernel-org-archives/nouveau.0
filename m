@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70464] [NVC3] runpm not working
-Date: Tue, 15 Oct 2013 10:16:45 +0000
-Message-ID: <bug-70464-8800-5QpLRjMY1v@http.bugs.freedesktop.org/>
+Date: Tue, 15 Oct 2013 10:47:21 +0000
+Message-ID: <bug-70464-8800-tSa1F1zQDC@http.bugs.freedesktop.org/>
 References: <bug-70464-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1342838327=="
+Content-Type: multipart/mixed; boundary="===============2020659587=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70464-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,36 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1342838327==
-Content-Type: multipart/alternative; boundary="1381832205.Dbbf5F2.24592"; charset="us-ascii"
+--===============2020659587==
+Content-Type: multipart/alternative; boundary="1381834041.0761ddE1.30110"; charset="us-ascii"
 
 
---1381832205.Dbbf5F2.24592
-Date: Tue, 15 Oct 2013 10:16:45 +0000
+--1381834041.0761ddE1.30110
+Date: Tue, 15 Oct 2013 10:47:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70464
 
-Dave Airlie <airlied-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> changed:
+--- Comment #3 from Mike <michele.cane-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I do not have /sys/kernel/debug/vgaswitcheroo/state
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
+I only have /sys/kernel/debug/vgaswitcheroo/switch
 
---- Comment #2 from Dave Airlie <airlied-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> ---
-look in /sys/kernel/debug/vgaswitcheroo/state
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :DynOff:0000:01:00.0
 
-to see if it says DynOff and DynPwr arond the glxinfo command
+I think in a way this bug is related to this other one which I reported
+concerning reverse PRIME:
 
-it sounds liek the gpu is waking up fine.
+https://bugs.freedesktop.org/show_bug.cgi?id=69876
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381832205.Dbbf5F2.24592
-Date: Tue, 15 Oct 2013 10:16:45 +0000
+--1381834041.0761ddE1.30110
+Date: Tue, 15 Oct 2013 10:47:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,44 +57,33 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:airlied&#64;freedesktop.org" title="Dave Airlie &lt;airlied&#64;freedesktop.org&gt;"> <span class="fn">Dave Airlie</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [NVC3] runpm not working"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70464">bug 70464</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEEDINFO "
    title="NEEDINFO --- - [NVC3] runpm not working"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70464#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70464#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEEDINFO "
    title="NEEDINFO --- - [NVC3] runpm not working"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70464">bug 70464</a>
-              from <span class="vcard"><a class="email" href="mailto:airlied&#64;freedesktop.org" title="Dave Airlie &lt;airlied&#64;freedesktop.org&gt;"> <span class="fn">Dave Airlie</span></a>
+              from <span class="vcard"><a class="email" href="mailto:michele.cane&#64;gmail.com" title="Mike &lt;michele.cane&#64;gmail.com&gt;"> <span class="fn">Mike</span></a>
 </span></b>
-        <pre>look in /sys/kernel/debug/vgaswitcheroo/state
+        <pre>I do not have /sys/kernel/debug/vgaswitcheroo/state
 
-to see if it says DynOff and DynPwr arond the glxinfo command
+I only have /sys/kernel/debug/vgaswitcheroo/switch
 
-it sounds liek the gpu is waking up fine.</pre>
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :DynOff:0000:01:00.0
+
+I think in a way this bug is related to this other one which I reported
+concerning reverse PRIME:
+
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC3] Reverse prime sometimes freezes the machine"
+   href="show_bug.cgi?id=69876">https://bugs.freedesktop.org/show_bug.cgi?id=69876</a></pre>
         </div>
       </p>
       <hr>
@@ -106,9 +95,9 @@ it sounds liek the gpu is waking up fine.</pre>
     </body>
 </html>
 
---1381832205.Dbbf5F2.24592--
+--1381834041.0761ddE1.30110--
 
---===============1342838327==
+--===============2020659587==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -119,4 +108,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1342838327==--
+--===============2020659587==--
