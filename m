@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69928] [NVAA] Boot of linux kernel 3.12-rc2 hangs
-Date: Tue, 15 Oct 2013 16:48:39 +0000
-Message-ID: <bug-69928-8800-pw6aMLHzuJ@http.bugs.freedesktop.org/>
+Date: Tue, 15 Oct 2013 17:02:58 +0000
+Message-ID: <bug-69928-8800-4VJnpkWW9K@http.bugs.freedesktop.org/>
 References: <bug-69928-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0746076706=="
+Content-Type: multipart/mixed; boundary="===============0300175568=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69928-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,36 +20,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0746076706==
-Content-Type: multipart/alternative; boundary="1381855719.accB3c1.28538"; charset="us-ascii"
+--===============0300175568==
+Content-Type: multipart/alternative; boundary="1381856578.F43fC1.31131"; charset="us-ascii"
 
 
---1381855719.accB3c1.28538
-Date: Tue, 15 Oct 2013 16:48:39 +0000
+--1381856578.F43fC1.31131
+Date: Tue, 15 Oct 2013 17:02:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69928
 
---- Comment #7 from dirkneukirchen-S0/GAf8tV78@public.gmane.org ---
-Created attachment 87677
-  --> https://bugs.freedesktop.org/attachment.cgi?id=87677&action=edit
-mmiotrace loading module nvidia 304
+--- Comment #8 from dirkneukirchen-S0/GAf8tV78@public.gmane.org ---
+additional mmio traces:
 
-i hope kernel version doesn't play a role in mmio tracing
+simple xinit with sleep:
+mmiotrace_xinit.log.xz (3.1 MB)
+https://mega.co.nz/#!u4RwFLjK!Yzi4UVujupmRdEIMFZtbQBOtjyoJFR1jrXheO1RUpew
 
-trace was done from fresh ubuntu 13.04 install (on usb stick)
-Linux vm1304 3.8.0-19-generic #30-Ubuntu SMP Wed May 1 16:36:13 UTC 2013 i686
-athlon i686 GNU/Linux
+starting glxgears:
+mmiotrace_glxgears.log.xz (3.4 MB)
+https://mega.co.nz/#!744wlQ7b!CBnbnEYfsIwOuXKFojgy3kuecVkC6U43Bye4nZkKMUk
 
-with nvidia blobs from ubuntu repos (nvidia-304)
+starting nvidia-settings - since dual screen is active already just browse
+through options and then quit:
+mmiotrace_dualsettings.log.xz (2.7 MB)
+https://mega.co.nz/#!L1ZR3ApZ!XEuYymYmvLyQSQdpwQ0HaiBEipp2CBHz9y3PHNBNn6Q
+
+
+glxgears posted because: https://bugs.freedesktop.org/show_bug.cgi?id=69952
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381855719.accB3c1.28538
-Date: Tue, 15 Oct 2013 16:48:39 +0000
+--1381856578.F43fC1.31131
+Date: Tue, 15 Oct 2013 17:02:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,23 +69,33 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69928">bug 69928</a>
               from <span class="vcard"><a class="email" href="mailto:dirkneukirchen&#64;web.de" title="dirkneukirchen&#64;web.de">dirkneukirchen&#64;web.de</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=87677" name="attach_87677" title="mmiotrace loading module nvidia 304">attachment 87677</a> <a href="attachment.cgi?id=87677&amp;action=edit" title="mmiotrace loading module nvidia 304">[details]</a></span>
-mmiotrace loading module nvidia 304
+        <pre>additional mmio traces:
 
-i hope kernel version doesn't play a role in mmio tracing
+simple xinit with sleep:
+mmiotrace_xinit.log.xz (3.1 MB)
+<a href="https://mega.co.nz/#!u4RwFLjK!Yzi4UVujupmRdEIMFZtbQBOtjyoJFR1jrXheO1RUpew">https://mega.co.nz/#!u4RwFLjK!Yzi4UVujupmRdEIMFZtbQBOtjyoJFR1jrXheO1RUpew</a>
 
-trace was done from fresh ubuntu 13.04 install (on usb stick)
-Linux vm1304 3.8.0-19-generic #30-Ubuntu SMP Wed May 1 16:36:13 UTC 2013 i686
-athlon i686 GNU/Linux
+starting glxgears:
+mmiotrace_glxgears.log.xz (3.4 MB)
+<a href="https://mega.co.nz/#!744wlQ7b!CBnbnEYfsIwOuXKFojgy3kuecVkC6U43Bye4nZkKMUk">https://mega.co.nz/#!744wlQ7b!CBnbnEYfsIwOuXKFojgy3kuecVkC6U43Bye4nZkKMUk</a>
 
-with nvidia blobs from ubuntu repos (nvidia-304)</pre>
+starting nvidia-settings - since dual screen is active already just browse
+through options and then quit:
+mmiotrace_dualsettings.log.xz (2.7 MB)
+<a href="https://mega.co.nz/#!L1ZR3ApZ!XEuYymYmvLyQSQdpwQ0HaiBEipp2CBHz9y3PHNBNn6Q">https://mega.co.nz/#!L1ZR3ApZ!XEuYymYmvLyQSQdpwQ0HaiBEipp2CBHz9y3PHNBNn6Q</a>
+
+
+glxgears posted because: <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVAA] Xorg crash+restart after glxgears on 3.12-rc2"
+   href="show_bug.cgi?id=69952">https://bugs.freedesktop.org/show_bug.cgi?id=69952</a></pre>
         </div>
       </p>
       <hr>
@@ -91,9 +107,9 @@ with nvidia blobs from ubuntu repos (nvidia-304)</pre>
     </body>
 </html>
 
---1381855719.accB3c1.28538--
+--1381856578.F43fC1.31131--
 
---===============0746076706==
+--===============0300175568==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0746076706==--
+--===============0300175568==--
