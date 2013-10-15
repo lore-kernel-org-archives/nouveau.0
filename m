@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70135] [nv34 PowerMac G5] gnome-shell random crashes
  and rendering issues
-Date: Tue, 15 Oct 2013 20:34:55 +0000
-Message-ID: <bug-70135-8800-cB1UyttBwy@http.bugs.freedesktop.org/>
+Date: Tue, 15 Oct 2013 20:38:47 +0000
+Message-ID: <bug-70135-8800-Dqppuh3Lkf@http.bugs.freedesktop.org/>
 References: <bug-70135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0242750015=="
+Content-Type: multipart/mixed; boundary="===============0135797173=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0242750015==
-Content-Type: multipart/alternative; boundary="1381869294.6A36a1.1841"; charset="us-ascii"
+--===============0135797173==
+Content-Type: multipart/alternative; boundary="1381869527.dbBdA1.2767"; charset="us-ascii"
 
 
---1381869294.6A36a1.1841
-Date: Tue, 15 Oct 2013 20:34:54 +0000
+--1381869527.dbBdA1.2767
+Date: Tue, 15 Oct 2013 20:38:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70135
 
---- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-libGL error: failed to load driver: nouveau
-libGL error: Try again with LIBGL_DEBUG=verbose for more details.
-libGL error: failed to load driver: swrast
-libGL error: Try again with LIBGL_DEBUG=verbose for more details.
-gnome-session-is-accelerated: No hardware 3D support.
+--- Comment #14 from John Paul Adrian Glaubitz <glaubitz-1Olz3AKvcsuAKZTfuerNgRvVK+yQ3ZXh@public.gmane.org> ---
+Yeah, I saw this as well after carefully reading xession-errors when the Mac
+was already turned off.
 
+The machine is in my office and I'm home already, however I have the machine
+hooked up to my main machine now and have access to all files on the disk to
+provide further log files maybe.
 
-That's probably not great. What does glxinfo report?
+I had to shutdown the PowerMac since it's having issues with the fan control
+when running Linux with the fans running at full power. It sounds like a jet
+engine starting.
+
+So, any specific logs you'd be interested in besides the output of glxinfo
+(which apparantly needs the machine to be running)?
+
+Adrian
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381869294.6A36a1.1841
-Date: Tue, 15 Oct 2013 20:34:54 +0000
+--1381869527.dbBdA1.2767
+Date: Tue, 15 Oct 2013 20:38:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,21 +68,28 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135#c13">Comment # 13</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70135">bug 70135</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:glaubitz&#64;physik.fu-berlin.de" title="John Paul Adrian Glaubitz &lt;glaubitz&#64;physik.fu-berlin.de&gt;"> <span class="fn">John Paul Adrian Glaubitz</span></a>
 </span></b>
-        <pre>libGL error: failed to load driver: nouveau
-libGL error: Try again with LIBGL_DEBUG=verbose for more details.
-libGL error: failed to load driver: swrast
-libGL error: Try again with LIBGL_DEBUG=verbose for more details.
-gnome-session-is-accelerated: No hardware 3D support.
+        <pre>Yeah, I saw this as well after carefully reading xession-errors when the Mac
+was already turned off.
 
+The machine is in my office and I'm home already, however I have the machine
+hooked up to my main machine now and have access to all files on the disk to
+provide further log files maybe.
 
-That's probably not great. What does glxinfo report?</pre>
+I had to shutdown the PowerMac since it's having issues with the fan control
+when running Linux with the fans running at full power. It sounds like a jet
+engine starting.
+
+So, any specific logs you'd be interested in besides the output of glxinfo
+(which apparantly needs the machine to be running)?
+
+Adrian</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +101,9 @@ That's probably not great. What does glxinfo report?</pre>
     </body>
 </html>
 
---1381869294.6A36a1.1841--
+--1381869527.dbBdA1.2767--
 
---===============0242750015==
+--===============0135797173==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +114,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0242750015==--
+--===============0135797173==--
