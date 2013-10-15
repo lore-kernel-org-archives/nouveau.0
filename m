@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70135] [nv34 PowerMac G5] gnome-shell random crashes
- and rendering issues
-Date: Tue, 15 Oct 2013 20:39:38 +0000
-Message-ID: <bug-70135-8800-NuY4mFU5BS@http.bugs.freedesktop.org/>
-References: <bug-70135-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 55450] [NV17] nouveau driver fails to restore screen
+ content / video mode after resume from s2ram
+Date: Tue, 15 Oct 2013 21:11:56 +0000
+Message-ID: <bug-55450-8800-Tbfji5C7MC@http.bugs.freedesktop.org/>
+References: <bug-55450-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1342675283=="
+Content-Type: multipart/mixed; boundary="===============0909962048=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-55450-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1342675283==
-Content-Type: multipart/alternative; boundary="1381869578.E6B4A1.2967"; charset="us-ascii"
+--===============0909962048==
+Content-Type: multipart/alternative; boundary="1381871517.Dd7fFf1.8528"; charset="us-ascii"
 
 
---1381869578.E6B4A1.2967
-Date: Tue, 15 Oct 2013 20:39:38 +0000
+--1381871517.Dd7fFf1.8528
+Date: Tue, 15 Oct 2013 21:11:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70135
+https://bugs.freedesktop.org/show_bug.cgi?id=55450
 
---- Comment #15 from John Paul Adrian Glaubitz <glaubitz-1Olz3AKvcsuAKZTfuerNgRvVK+yQ3ZXh@public.gmane.org> ---
-> The machine is in my office and I'm home already, however I have the machine hooked up to my main machine now
+--- Comment #6 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 87692
+  --> https://bugs.freedesktop.org/attachment.cgi?id=87692&action=edit
+screenshot after resume from pm-suspend/s2ram
 
-I was talking about the hard disk here, sorry.
+Unfortunately it does not work yet. The screen is garbeled upon resume from
+s2ram (can not read the backtrace behind) and the kernel halts without even
+allowing to shut down by SysRq keys (Alt-PrnScr-S/U/B).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381869578.E6B4A1.2967
-Date: Tue, 15 Oct 2013 20:39:38 +0000
+--1381871517.Dd7fFf1.8528
+Date: Tue, 15 Oct 2013 21:11:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,18 +58,21 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135#c15">Comment # 15</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV17] nouveau driver fails to restore screen content / video mode after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55450#c6">Comment # 6</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135">bug 70135</a>
-              from <span class="vcard"><a class="email" href="mailto:glaubitz&#64;physik.fu-berlin.de" title="John Paul Adrian Glaubitz &lt;glaubitz&#64;physik.fu-berlin.de&gt;"> <span class="fn">John Paul Adrian Glaubitz</span></a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV17] nouveau driver fails to restore screen content / video mode after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55450">bug 55450</a>
+              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre><span class="quote">&gt; The machine is in my office and I'm home already, however I have the machine hooked up to my main machine now</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=87692" name="attach_87692" title="screenshot after resume from pm-suspend/s2ram">attachment 87692</a> <a href="attachment.cgi?id=87692&amp;action=edit" title="screenshot after resume from pm-suspend/s2ram">[details]</a></span>
+screenshot after resume from pm-suspend/s2ram
 
-I was talking about the hard disk here, sorry.</pre>
+Unfortunately it does not work yet. The screen is garbeled upon resume from
+s2ram (can not read the backtrace behind) and the kernel halts without even
+allowing to shut down by SysRq keys (Alt-PrnScr-S/U/B).</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +84,9 @@ I was talking about the hard disk here, sorry.</pre>
     </body>
 </html>
 
---1381869578.E6B4A1.2967--
+--1381871517.Dd7fFf1.8528--
 
---===============1342675283==
+--===============0909962048==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1342675283==--
+--===============0909962048==--
