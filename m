@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69928] [NVAA] Boot of linux kernel 3.12-rc2 hangs
-Date: Tue, 15 Oct 2013 21:39:41 +0000
-Message-ID: <bug-69928-8800-3CZozB9vRW@http.bugs.freedesktop.org/>
-References: <bug-69928-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54056] [NVAF] plenty of errors trapped write at plus
+ PGRAPH error
+Date: Tue, 15 Oct 2013 22:59:51 +0000
+Message-ID: <bug-54056-8800-Rcx1fc7ZKa@http.bugs.freedesktop.org/>
+References: <bug-54056-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1183321604=="
+Content-Type: multipart/mixed; boundary="===============0059901064=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69928-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-54056-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +21,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1183321604==
-Content-Type: multipart/alternative; boundary="1381873180.6aDA2.13511"; charset="us-ascii"
+--===============0059901064==
+Content-Type: multipart/alternative; boundary="1381877991.F2fEF2.24461"; charset="us-ascii"
 
 
---1381873180.6aDA2.13511
-Date: Tue, 15 Oct 2013 21:39:40 +0000
+--1381877991.F2fEF2.24461
+Date: Tue, 15 Oct 2013 22:59:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69928
+https://bugs.freedesktop.org/show_bug.cgi?id=54056
 
---- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Can you also show the contents of /proc/interrupts while X is running with the
-NVIDIA binary driver?
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Thanks!
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|REOPENED                    |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #7 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Arun S A G
+
+I'm not sure that reopening a bug, that you've did not report nor respond
+previously is a reasonable thing to do.
+
+With that said, noone can imagine what the issue on your system could be
+considering the isolated snippet from dmesg.
+For more info what is required take a look in here [1] and open a separate bug
+report.
+
+Thanks
+Emil
+
+FWIW The *class 0x8697 mthd 0x0e0{4,8} data 0x* messages should not cause any
+issues.
+
+[1] http://nouveau.freedesktop.org/wiki/Bugs/
+http://nouveau.freedesktop.org/wiki/TroubleShooting/
+http://nouveau.freedesktop.org/wiki/FAQ/
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381873180.6aDA2.13511
-Date: Tue, 15 Oct 2013 21:39:40 +0000
+--1381877991.F2fEF2.24461
+Date: Tue, 15 Oct 2013 22:59:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,23 +73,66 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - [NVAF] plenty of errors trapped write at plus PGRAPH error"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54056">bug 54056</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>REOPENED
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928#c9">Comment # 9</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - [NVAF] plenty of errors trapped write at plus PGRAPH error"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54056#c7">Comment # 7</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928">bug 69928</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - [NVAF] plenty of errors trapped write at plus PGRAPH error"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54056">bug 54056</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Can you also show the contents of /proc/interrupts while X is running with the
-NVIDIA binary driver?
+        <pre>Arun S A G
 
-Thanks!</pre>
+I'm not sure that reopening a bug, that you've did not report nor respond
+previously is a reasonable thing to do.
+
+With that said, noone can imagine what the issue on your system could be
+considering the isolated snippet from dmesg.
+For more info what is required take a look in here [1] and open a separate bug
+report.
+
+Thanks
+Emil
+
+FWIW The *class 0x8697 mthd 0x0e0{4,8} data 0x* messages should not cause any
+issues.
+
+[1] <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a>
+<a href="http://nouveau.freedesktop.org/wiki/TroubleShooting/">http://nouveau.freedesktop.org/wiki/TroubleShooting/</a>
+<a href="http://nouveau.freedesktop.org/wiki/FAQ/">http://nouveau.freedesktop.org/wiki/FAQ/</a></pre>
         </div>
       </p>
       <hr>
@@ -78,9 +144,9 @@ Thanks!</pre>
     </body>
 </html>
 
---1381873180.6aDA2.13511--
+--1381877991.F2fEF2.24461--
 
---===============1183321604==
+--===============0059901064==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +157,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1183321604==--
+--===============0059901064==--
