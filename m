@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69928] [NVAA] Boot of linux kernel 3.12-rc2 hangs
-Date: Tue, 15 Oct 2013 17:02:58 +0000
-Message-ID: <bug-69928-8800-4VJnpkWW9K@http.bugs.freedesktop.org/>
-References: <bug-69928-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69952] [NVAA] Xorg crash+restart after glxgears on
+	3.12-rc2
+Date: Tue, 15 Oct 2013 17:04:19 +0000
+Message-ID: <bug-69952-8800-kY0JzpxI8c@http.bugs.freedesktop.org/>
+References: <bug-69952-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0300175568=="
+Content-Type: multipart/mixed; boundary="===============2036503192=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69928-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69952-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0300175568==
-Content-Type: multipart/alternative; boundary="1381856578.F43fC1.31131"; charset="us-ascii"
+--===============2036503192==
+Content-Type: multipart/alternative; boundary="1381856658.ADc5CA1.31321"; charset="us-ascii"
 
 
---1381856578.F43fC1.31131
-Date: Tue, 15 Oct 2013 17:02:58 +0000
+--1381856658.ADc5CA1.31321
+Date: Tue, 15 Oct 2013 17:04:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69928
+https://bugs.freedesktop.org/show_bug.cgi?id=69952
 
---- Comment #8 from dirkneukirchen-S0/GAf8tV78@public.gmane.org ---
-additional mmio traces:
+--- Comment #1 from dirkneukirchen-S0/GAf8tV78@public.gmane.org ---
+mmio traces:
+
+filed in another bug (https://bugs.freedesktop.org/show_bug.cgi?id=69928)
+on the same hw:
+
+module load:
+https://bugs.freedesktop.org/attachment.cgi?id=87677
+
 
 simple xinit with sleep:
 mmiotrace_xinit.log.xz (3.1 MB)
@@ -54,8 +62,8 @@ glxgears posted because: https://bugs.freedesktop.org/show_bug.cgi?id=69952
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381856578.F43fC1.31131
-Date: Tue, 15 Oct 2013 17:02:58 +0000
+--1381856658.ADc5CA1.31321
+Date: Tue, 15 Oct 2013 17:04:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,15 +76,25 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928#c8">Comment # 8</a>
+   title="NEW --- - [NVAA] Xorg crash+restart after glxgears on 3.12-rc2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69952#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928">bug 69928</a>
+   title="NEW --- - [NVAA] Xorg crash+restart after glxgears on 3.12-rc2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69952">bug 69952</a>
               from <span class="vcard"><a class="email" href="mailto:dirkneukirchen&#64;web.de" title="dirkneukirchen&#64;web.de">dirkneukirchen&#64;web.de</a>
 </span></b>
-        <pre>additional mmio traces:
+        <pre>mmio traces:
+
+filed in another bug (<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
+   href="show_bug.cgi?id=69928">https://bugs.freedesktop.org/show_bug.cgi?id=69928</a>)
+on the same hw:
+
+module load:
+<a href="https://bugs.freedesktop.org/attachment.cgi?id=87677">https://bugs.freedesktop.org/attachment.cgi?id=87677</a>
+
 
 simple xinit with sleep:
 mmiotrace_xinit.log.xz (3.1 MB)
@@ -107,9 +125,9 @@ glxgears posted because: <a class="bz_bug_link
     </body>
 </html>
 
---1381856578.F43fC1.31131--
+--1381856658.ADc5CA1.31321--
 
---===============0300175568==
+--===============2036503192==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +138,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0300175568==--
+--===============2036503192==--
