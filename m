@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 55450] [NV17] nouveau driver fails to restore screen
- content / video mode after resume from s2ram
-Date: Tue, 15 Oct 2013 21:37:08 +0000
-Message-ID: <bug-55450-8800-VgmCB02TAu@http.bugs.freedesktop.org/>
-References: <bug-55450-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69928] [NVAA] Boot of linux kernel 3.12-rc2 hangs
+Date: Tue, 15 Oct 2013 21:39:41 +0000
+Message-ID: <bug-69928-8800-3CZozB9vRW@http.bugs.freedesktop.org/>
+References: <bug-69928-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1921592494=="
+Content-Type: multipart/mixed; boundary="===============1183321604=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-55450-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69928-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1921592494==
-Content-Type: multipart/alternative; boundary="1381873028.DCd327ee1.13202"; charset="us-ascii"
+--===============1183321604==
+Content-Type: multipart/alternative; boundary="1381873180.6aDA2.13511"; charset="us-ascii"
 
 
---1381873028.DCd327ee1.13202
-Date: Tue, 15 Oct 2013 21:37:08 +0000
+--1381873180.6aDA2.13511
+Date: Tue, 15 Oct 2013 21:39:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=55450
+https://bugs.freedesktop.org/show_bug.cgi?id=69928
 
---- Comment #9 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-I don`t see how that with log_buf_len=1M should work as the pure dmesg will be
-lost after a cold start.
+--- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Can you also show the contents of /proc/interrupts while X is running with the
+NVIDIA binary driver?
+
+Thanks!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381873028.DCd327ee1.13202
-Date: Tue, 15 Oct 2013 21:37:08 +0000
+--1381873180.6aDA2.13511
+Date: Tue, 15 Oct 2013 21:39:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,17 +54,19 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV17] nouveau driver fails to restore screen content / video mode after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55450#c9">Comment # 9</a>
+          bz_status_NEW "
+   title="NEW --- - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928#c9">Comment # 9</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV17] nouveau driver fails to restore screen content / video mode after resume from s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=55450">bug 55450</a>
-              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928">bug 69928</a>
+              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
 </span></b>
-        <pre>I don`t see how that with log_buf_len=1M should work as the pure dmesg will be
-lost after a cold start.</pre>
+        <pre>Can you also show the contents of /proc/interrupts while X is running with the
+NVIDIA binary driver?
+
+Thanks!</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +78,9 @@ lost after a cold start.</pre>
     </body>
 </html>
 
---1381873028.DCd327ee1.13202--
+--1381873180.6aDA2.13511--
 
---===============1921592494==
+--===============1183321604==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1921592494==--
+--===============1183321604==--
