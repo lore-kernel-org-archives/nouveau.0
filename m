@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70510] Xorg crash on KDE init
-Date: Wed, 16 Oct 2013 15:12:55 +0000
-Message-ID: <bug-70510-8800-pUdezr34qy@http.bugs.freedesktop.org/>
+Date: Wed, 16 Oct 2013 15:38:30 +0000
+Message-ID: <bug-70510-8800-44dlwh7A3l@http.bugs.freedesktop.org/>
 References: <bug-70510-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0415130313=="
+Content-Type: multipart/mixed; boundary="===============1492511128=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70510-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0415130313==
-Content-Type: multipart/alternative; boundary="1381936375.54f0056E2.16142"; charset="us-ascii"
+--===============1492511128==
+Content-Type: multipart/alternative; boundary="1381937910.AFc31.20132"; charset="us-ascii"
 
 
---1381936375.54f0056E2.16142
-Date: Wed, 16 Oct 2013 15:12:55 +0000
+--1381937910.AFc31.20132
+Date: Wed, 16 Oct 2013 15:38:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70510
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you get symbols + disassembly for that backtrace? Specifically the
-nouveau_drv bit of it. If you're unsure how to do that, let us know, and what
-distribution you're using, and we'll attempt to come up with some instructions.
+--- Comment #8 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+damn openSUSE! It always installs outdated -debuginfo packages
+(https://bugzilla.novell.com/show_bug.cgi?id=845626). Can`t you recommend me
+another distribution with up-to-date factory and working debuginfo?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381936375.54f0056E2.16142
-Date: Wed, 16 Oct 2013 15:12:55 +0000
+--1381937910.AFc31.20132
+Date: Wed, 16 Oct 2013 15:38:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +55,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Xorg crash on KDE init"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70510#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70510#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Xorg crash on KDE init"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70510">bug 70510</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Can you get symbols + disassembly for that backtrace? Specifically the
-nouveau_drv bit of it. If you're unsure how to do that, let us know, and what
-distribution you're using, and we'll attempt to come up with some instructions.</pre>
+        <pre>damn openSUSE! It always installs outdated -debuginfo packages
+(<a href="https://bugzilla.novell.com/show_bug.cgi?id=845626">https://bugzilla.novell.com/show_bug.cgi?id=845626</a>). Can`t you recommend me
+another distribution with up-to-date factory and working debuginfo?</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ distribution you're using, and we'll attempt to come up with some instructions.<
     </body>
 </html>
 
---1381936375.54f0056E2.16142--
+--1381937910.AFc31.20132--
 
---===============0415130313==
+--===============1492511128==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0415130313==--
+--===============1492511128==--
