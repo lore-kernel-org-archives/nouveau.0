@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70510] Xorg crash on KDE init
-Date: Wed, 16 Oct 2013 14:26:33 +0000
-Message-ID: <bug-70510-8800-jGdUaql05g@http.bugs.freedesktop.org/>
+Date: Wed, 16 Oct 2013 14:34:39 +0000
+Message-ID: <bug-70510-8800-mLPeuY05pt@http.bugs.freedesktop.org/>
 References: <bug-70510-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0919576969=="
+Content-Type: multipart/mixed; boundary="===============1062105615=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70510-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0919576969==
-Content-Type: multipart/alternative; boundary="1381933593.C2Ede1.8245"; charset="us-ascii"
+--===============1062105615==
+Content-Type: multipart/alternative; boundary="1381934078.2a211.9396"; charset="us-ascii"
 
 
---1381933593.C2Ede1.8245
-Date: Wed, 16 Oct 2013 14:26:33 +0000
+--1381934078.2a211.9396
+Date: Wed, 16 Oct 2013 14:34:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70510
 
---- Comment #5 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 87738
-  --> https://bugs.freedesktop.org/attachment.cgi?id=87738&action=edit
-Xorg.0.log for dmesg
+--- Comment #6 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Well, without nouveau_vieux_dri.so it even crashes immediately on startkde
+rather than at the end of startkde as usual (can`t do without that file).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381933593.C2Ede1.8245
-Date: Wed, 16 Oct 2013 14:26:33 +0000
+--1381934078.2a211.9396
+Date: Wed, 16 Oct 2013 14:34:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +54,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Xorg crash on KDE init"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70510#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70510#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Xorg crash on KDE init"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70510">bug 70510</a>
               from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=87738" name="attach_87738" title="Xorg.0.log for dmesg">attachment 87738</a> <a href="attachment.cgi?id=87738&amp;action=edit" title="Xorg.0.log for dmesg">[details]</a></span>
-Xorg.0.log for dmesg</pre>
+        <pre>Well, without nouveau_vieux_dri.so it even crashes immediately on startkde
+rather than at the end of startkde as usual (can`t do without that file).</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +74,9 @@ Xorg.0.log for dmesg</pre>
     </body>
 </html>
 
---1381933593.C2Ede1.8245--
+--1381934078.2a211.9396--
 
---===============0919576969==
+--===============1062105615==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0919576969==--
+--===============1062105615==--
