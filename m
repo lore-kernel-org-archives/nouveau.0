@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70510] Xorg crash on KDE init
-Date: Wed, 16 Oct 2013 17:06:57 +0000
-Message-ID: <bug-70510-8800-4TkSA4gv4s@http.bugs.freedesktop.org/>
-References: <bug-70510-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47556] [NV17] nouveau fails to handle/set
+ resolutions over certain size, nouveau_bo_new() -ENOMEM
+Date: Wed, 16 Oct 2013 17:49:07 +0000
+Message-ID: <bug-47556-8800-78Yi0mkXhJ@http.bugs.freedesktop.org/>
+References: <bug-47556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1872857567=="
+Content-Type: multipart/mixed; boundary="===============0629677698=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70510-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,50 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1872857567==
-Content-Type: multipart/alternative; boundary="1381943217.A4eCa2.4961"; charset="us-ascii"
+--===============0629677698==
+Content-Type: multipart/alternative; boundary="1381945747.fEd2210d2.12847"; charset="us-ascii"
 
 
---1381943217.A4eCa2.4961
-Date: Wed, 16 Oct 2013 17:06:57 +0000
+--1381945747.fEd2210d2.12847
+Date: Wed, 16 Oct 2013 17:49:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70510
+https://bugs.freedesktop.org/show_bug.cgi?id=47556
 
---- Comment #9 from Johannes Obermayr <johannesobermayr-Mmb7MZpHnFY@public.gmane.org> ---
-(In reply to comment #8)
-> damn openSUSE! It always installs outdated -debuginfo packages
-> (https://bugzilla.novell.com/show_bug.cgi?id=845626). Can`t you recommend me
-> another distribution with up-to-date factory and working debuginfo?
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-$ osc getbinaries -d $DIR openSUSE:13.1 $PACKAGE standard $ARCHITECTURE $FILE
-$ cd $DIR
-$ sudo zypper in $(ls)
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NV17] nouveau driver can't |[NV17] nouveau fails to
+                   |handle xrandr requests      |handle/set resolutions over
+                   |                            |certain size,
+                   |                            |nouveau_bo_new() -ENOMEM
+
+--- Comment #19 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Almost the same issue as originally, short on memory :'(
+
+I admit some work on optimising such cases for low (gpu/vram) memory may be
+needed, but I do not think it high up the priority list. Read - it's a most
+likely a gem/ttm work than nouveau specific. Either way anyone is welcome to
+give it a crack
+
+Following the messages from xorg.log
+
+drmmode_crtc_shadow_allocate >
+nouveau_allocate_surface >
+(libdrm) nouveau_bo_new >
+(most likely) drmCommandWriteRead(dev->fd, DRM_NOUVEAU_GEM_NEW...) >
+(kernel) nouveau_gem_ioctl_new >
+(most likely) nouveau_gem_new >
+chaos x)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381943217.A4eCa2.4961
-Date: Wed, 16 Oct 2013 17:06:57 +0000
+--1381945747.fEd2210d2.12847
+Date: Wed, 16 Oct 2013 17:49:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,27 +72,55 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV17] nouveau fails to handle/set resolutions over certain size, nouveau_bo_new() -ENOMEM"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47556">bug 47556</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NV17] nouveau driver can't handle xrandr requests
+           </td>
+           <td>[NV17] nouveau fails to handle/set resolutions over certain size, nouveau_bo_new() -ENOMEM
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Xorg crash on KDE init"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70510#c9">Comment # 9</a>
+   title="NEW --- - [NV17] nouveau fails to handle/set resolutions over certain size, nouveau_bo_new() -ENOMEM"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47556#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Xorg crash on KDE init"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70510">bug 70510</a>
-              from <span class="vcard"><a class="email" href="mailto:johannesobermayr&#64;gmx.de" title="Johannes Obermayr &lt;johannesobermayr&#64;gmx.de&gt;"> <span class="fn">Johannes Obermayr</span></a>
+   title="NEW --- - [NV17] nouveau fails to handle/set resolutions over certain size, nouveau_bo_new() -ENOMEM"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47556">bug 47556</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=70510#c8">comment #8</a>)
-<span class="quote">&gt; damn openSUSE! It always installs outdated -debuginfo packages
-&gt; (<a href="https://bugzilla.novell.com/show_bug.cgi?id=845626">https://bugzilla.novell.com/show_bug.cgi?id=845626</a>). Can`t you recommend me
-&gt; another distribution with up-to-date factory and working debuginfo?</span >
+        <pre>Almost the same issue as originally, short on memory :'(
 
-$ osc getbinaries -d $DIR openSUSE:13.1 $PACKAGE standard $ARCHITECTURE $FILE
-$ cd $DIR
-$ sudo zypper in $(ls)</pre>
+I admit some work on optimising such cases for low (gpu/vram) memory may be
+needed, but I do not think it high up the priority list. Read - it's a most
+likely a gem/ttm work than nouveau specific. Either way anyone is welcome to
+give it a crack
+
+Following the messages from xorg.log
+
+drmmode_crtc_shadow_allocate &gt;
+nouveau_allocate_surface &gt;
+(libdrm) nouveau_bo_new &gt;
+(most likely) drmCommandWriteRead(dev-&gt;fd, DRM_NOUVEAU_GEM_NEW...) &gt;
+(kernel) nouveau_gem_ioctl_new &gt;
+(most likely) nouveau_gem_new &gt;
+chaos x)</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +132,9 @@ $ sudo zypper in $(ls)</pre>
     </body>
 </html>
 
---1381943217.A4eCa2.4961--
+--1381945747.fEd2210d2.12847--
 
---===============1872857567==
+--===============0629677698==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +145,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1872857567==--
+--===============0629677698==--
