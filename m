@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69876] [NVC3] Reverse prime sometimes freezes the
-	machine
-Date: Wed, 16 Oct 2013 19:14:16 +0000
-Message-ID: <bug-69876-8800-SKNHdkYjEH@http.bugs.freedesktop.org/>
-References: <bug-69876-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 55450] [NV17] nouveau driver fails to restore screen
+ content / video mode after resume from s2ram
+Date: Wed, 16 Oct 2013 19:20:57 +0000
+Message-ID: <bug-55450-8800-TeJrKkLnNp@http.bugs.freedesktop.org/>
+References: <bug-55450-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1817698111=="
+Content-Type: multipart/mixed; boundary="===============1747098733=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-55450-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1817698111==
-Content-Type: multipart/alternative; boundary="1381950856.1E0bEaBB1.26798"; charset="us-ascii"
+--===============1747098733==
+Content-Type: multipart/alternative; boundary="1381951256.E85e1.27959"; charset="us-ascii"
 
 
---1381950856.1E0bEaBB1.26798
-Date: Wed, 16 Oct 2013 19:14:16 +0000
+--1381951256.E85e1.27959
+Date: Wed, 16 Oct 2013 19:20:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69876
+https://bugs.freedesktop.org/show_bug.cgi?id=55450
 
---- Comment #10 from Mike <michele.cane-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-If after xrandr --setprovideroffloadsink nouveau Intel
+--- Comment #14 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Well the problem was that nouveau has gone into my initrd. A simple
+NO_KMS_IN_INITRD="yes" followed by an mkinitrd did the trick. However the just
+gained test results are not encouraging:
+* echo mem >/sys/power/state  without nouveau  -> bluescreen
+* echo mem >/sys/power/state  without nouveau and with vga=0  -> funny text
+screen flicker
 
-i turn on the card with, for example, DRI_PRIME glxgers
-
-and then I
-
-xrandr --setprovideroutputsource nouveau Intel
-
-there is no freeze
+I guess we have to post this as a regression at kernel.org. Will have to find
+the last working kernel (uff. so much broken about Linux at the moment). I
+guess I would not have reported that as Xorg issue if it were not had been
+issue-free in console mode.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1381950856.1E0bEaBB1.26798
-Date: Wed, 16 Oct 2013 19:14:16 +0000
+--1381951256.E85e1.27959
+Date: Wed, 16 Oct 2013 19:20:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,24 +62,26 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC3] Reverse prime sometimes freezes the machine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876#c10">Comment # 10</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV17] nouveau driver fails to restore screen content / video mode after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55450#c14">Comment # 14</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC3] Reverse prime sometimes freezes the machine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876">bug 69876</a>
-              from <span class="vcard"><a class="email" href="mailto:michele.cane&#64;gmail.com" title="Mike &lt;michele.cane&#64;gmail.com&gt;"> <span class="fn">Mike</span></a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV17] nouveau driver fails to restore screen content / video mode after resume from s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=55450">bug 55450</a>
+              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>If after xrandr --setprovideroffloadsink nouveau Intel
+        <pre>Well the problem was that nouveau has gone into my initrd. A simple
+NO_KMS_IN_INITRD=&quot;yes&quot; followed by an mkinitrd did the trick. However the just
+gained test results are not encouraging:
+* echo mem &gt;/sys/power/state  without nouveau  -&gt; bluescreen
+* echo mem &gt;/sys/power/state  without nouveau and with vga=0  -&gt; funny text
+screen flicker
 
-i turn on the card with, for example, DRI_PRIME glxgers
-
-and then I
-
-xrandr --setprovideroutputsource nouveau Intel
-
-there is no freeze</pre>
+I guess we have to post this as a regression at kernel.org. Will have to find
+the last working kernel (uff. so much broken about Linux at the moment). I
+guess I would not have reported that as Xorg issue if it were not had been
+issue-free in console mode.</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +93,9 @@ there is no freeze</pre>
     </body>
 </html>
 
---1381950856.1E0bEaBB1.26798--
+--1381951256.E85e1.27959--
 
---===============1817698111==
+--===============1747098733==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +106,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1817698111==--
+--===============1747098733==--
