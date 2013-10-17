@@ -1,76 +1,101 @@
-From: Pekka Paalanen <pq@iki.fi>
-Subject: Re: MmioTrace: Using the Instruction Decoder, etc.
-Date: Thu, 17 Oct 2013 19:46:14 +0300
-Message-ID: <20131017194614.64a6b70e@farn.lan>
-References: <CAL5fWtDBJUT0sK+rT9fD+BbFtwPuF4oBCUo8Gs+_aRMH4R_p=w@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70135] [nv34 PowerMac G5] gnome-shell random crashes
+ and rendering issues
+Date: Thu, 17 Oct 2013 18:35:32 +0000
+Message-ID: <bug-70135-8800-YmpzKAi9ZW@http.bugs.freedesktop.org/>
+References: <bug-70135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <CAL5fWtDBJUT0sK+rT9fD+BbFtwPuF4oBCUo8Gs+_aRMH4R_p=w@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Eugene Shatokhin <euspectre@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1994441745=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-70135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, 14 Oct 2013 22:45:09 +0400
-Eugene Shatokhin <euspectre@gmail.com> wrote:
 
-> Hi,
-> 
-> There is an interesting TODO item on MmioTraceDeveloper page:
-> "kprobes has a generic instruction decoding facility, use that instead of
-> homebrewn (or KVM), and use emulation instead of page faulting"
-> 
-> Actually, I have done something similar in one of my systems, KernelStrider
-> (http://code.google.com/p/kernel-strider/). The system instruments a kernel
-> module when that module is being loaded. The instrumented code executes
-> instead of the original one and provides information about the memory
-> accesses it makes and the functions it calls. These data are sent to user
-> space for further analysis.
-> 
-> Currently, I use this system to detect data races in the Linux kernel (and
-> have found some). I suppose, it could probably be useful to MmioTrace as
-> well.
-> 
-> KernelStrider uses an enhanced version of the x86 instruction decoder that
-> Kprobes use and relies on binary instrumentation rather than on page
-> faults. So, it can track:
-> - memory accesses (address and size of the accessed memory as well as the
-> access type are recorded)
-> - function calls (exported functions and callbacks, one can setup pre- and
-> post- handlers for these)
-> 
-> Is there any interest in trying this approach to the task of MmioTrace?
-> 
-> If so, we can discuss it. When I have time, I could try to create a
-> prototype based on KernelStrider's core that tracks the memory accesses
-> Mmiotrace needs.
-> What do you think?
-
-Hi Eugene,
-
-that is very interesting! I assume emulating the instructions is
-not only cleaner, but also faster than page-faulting, right? Maybe
-even more reliable, perhaps up to the point where we would not need
-to disable all but one CPU.
-
-Unfortunately, my job exhausts my coding energy, and I haven't even
-touched mmiotrace in years.
-
-However, let's see if there are interested people on the mailing
-lists. I'm CC'ing nouveau, since that is where mmiotrace started,
-and dri-devel in the hopes to catch other drivers' reverse
-engineers.
+--===============1994441745==
+Content-Type: multipart/alternative; boundary="1382034932.DcfBDDa1.31800"; charset="us-ascii"
 
 
-Thanks,
-pq
+--1382034932.DcfBDDa1.31800
+Date: Thu, 17 Oct 2013 18:35:32 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=70135
+
+--- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Doesn't have much to do with X, just mesa. If you don't have a nouveau_dri.so
+file, you can't expect 3d acceleration to work, which I think in turn makes
+gnome-shell rather unhappy. You also seem to be missing swrast, which is the
+fallback, so libGL-related things are just totally buggered.
+
+If you do have the file, you need to figure out why it's in the wrong
+place/can't be loaded/etc.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1382034932.DcfBDDa1.31800
+Date: Thu, 17 Oct 2013 18:35:32 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135#c18">Comment # 18</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135">bug 70135</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Doesn't have much to do with X, just mesa. If you don't have a nouveau_dri.so
+file, you can't expect 3d acceleration to work, which I think in turn makes
+gnome-shell rather unhappy. You also seem to be missing swrast, which is the
+fallback, so libGL-related things are just totally buggered.
+
+If you do have the file, you need to figure out why it's in the wrong
+place/can't be loaded/etc.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1382034932.DcfBDDa1.31800--
+
+--===============1994441745==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1994441745==--
