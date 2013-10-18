@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70510] Xorg crash on KDE init
-Date: Fri, 18 Oct 2013 16:42:28 +0000
-Message-ID: <bug-70510-8800-5y8cjDQdi2@http.bugs.freedesktop.org/>
-References: <bug-70510-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70388] [NV34] failed to idle channel 0xcccc0000
+Date: Fri, 18 Oct 2013 18:57:06 +0000
+Message-ID: <bug-70388-8800-wq04nUkMz5@http.bugs.freedesktop.org/>
+References: <bug-70388-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1211753552=="
+Content-Type: multipart/mixed; boundary="===============1854363566=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70510-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70388-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +20,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1211753552==
-Content-Type: multipart/alternative; boundary="1382114547.f33fC1.11739"; charset="us-ascii"
+--===============1854363566==
+Content-Type: multipart/alternative; boundary="1382122626.cF8f730.31529"; charset="us-ascii"
 
 
---1382114547.f33fC1.11739
-Date: Fri, 18 Oct 2013 16:42:27 +0000
+--1382122626.cF8f730.31529
+Date: Fri, 18 Oct 2013 18:57:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70510
+https://bugs.freedesktop.org/show_bug.cgi?id=70388
 
---- Comment #18 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-To me it looks like a memory allocation issue as re-testing with a smaller
-external screen with low resolution did not yield any crash.
+--- Comment #9 from Rostislav Krasny <rosti.bsd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #8)
+> Depending on circumstances, you might find it in /var/log/messages, or if
+> you can ssh in while the machine is "hung", just run dmesg, or if you can't,
+> set up netconsole.
+
+The /var/log/messages contains the same output to that of journalctl.
+journalctl is the systemd way of working with the system logs.
+
+dmesg also doesn't have much information about this crash. I will attach a
+dmesg2.txt and a journalctl2.txt files in the next messages.
+
+The nouveau Bugs wiki (http://nouveau.freedesktop.org/wiki/Bugs/) suggests to
+add log_buf_len=1M into the kernel parameters. But I doubt it would help in my
+case, would it? Maybe there is some other kernel/mesa parameter that will
+change the log level to something more informative?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1382114547.f33fC1.11739
-Date: Fri, 18 Oct 2013 16:42:27 +0000
+--1382122626.cF8f730.31529
+Date: Fri, 18 Oct 2013 18:57:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,16 +66,29 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Xorg crash on KDE init"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70510#c18">Comment # 18</a>
+   title="NEW --- - [NV34] failed to idle channel 0xcccc0000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Xorg crash on KDE init"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70510">bug 70510</a>
-              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+   title="NEW --- - [NV34] failed to idle channel 0xcccc0000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388">bug 70388</a>
+              from <span class="vcard"><a class="email" href="mailto:rosti.bsd&#64;gmail.com" title="Rostislav Krasny &lt;rosti.bsd&#64;gmail.com&gt;"> <span class="fn">Rostislav Krasny</span></a>
 </span></b>
-        <pre>To me it looks like a memory allocation issue as re-testing with a smaller
-external screen with low resolution did not yield any crash.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=70388#c8">comment #8</a>)
+<span class="quote">&gt; Depending on circumstances, you might find it in /var/log/messages, or if
+&gt; you can ssh in while the machine is &quot;hung&quot;, just run dmesg, or if you can't,
+&gt; set up netconsole.</span >
+
+The /var/log/messages contains the same output to that of journalctl.
+journalctl is the systemd way of working with the system logs.
+
+dmesg also doesn't have much information about this crash. I will attach a
+dmesg2.txt and a journalctl2.txt files in the next messages.
+
+The nouveau Bugs wiki (<a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a>) suggests to
+add log_buf_len=1M into the kernel parameters. But I doubt it would help in my
+case, would it? Maybe there is some other kernel/mesa parameter that will
+change the log level to something more informative?</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +100,9 @@ external screen with low resolution did not yield any crash.</pre>
     </body>
 </html>
 
---1382114547.f33fC1.11739--
+--1382122626.cF8f730.31529--
 
---===============1211753552==
+--===============1854363566==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +113,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1211753552==--
+--===============1854363566==--
