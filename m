@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70388] [NV34] failed to idle channel 0xcccc0000
-Date: Fri, 18 Oct 2013 18:58:49 +0000
-Message-ID: <bug-70388-8800-6VGLf8n6z1@http.bugs.freedesktop.org/>
+Date: Fri, 18 Oct 2013 19:00:14 +0000
+Message-ID: <bug-70388-8800-hqWNEd2soh@http.bugs.freedesktop.org/>
 References: <bug-70388-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0881161903=="
+Content-Type: multipart/mixed; boundary="===============0616484710=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70388-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0881161903==
-Content-Type: multipart/alternative; boundary="1382122729.825ac56b0.31903"; charset="us-ascii"
+--===============0616484710==
+Content-Type: multipart/alternative; boundary="1382122814.cAdC0.32257"; charset="us-ascii"
 
 
---1382122729.825ac56b0.31903
-Date: Fri, 18 Oct 2013 18:58:49 +0000
+--1382122814.cAdC0.32257
+Date: Fri, 18 Oct 2013 19:00:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70388
 
---- Comment #10 from Rostislav Krasny <rosti.bsd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 87833
-  --> https://bugs.freedesktop.org/attachment.cgi?id=87833&action=edit
-Full dmesg output after the crash
+--- Comment #11 from Rostislav Krasny <rosti.bsd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 87834
+  --> https://bugs.freedesktop.org/attachment.cgi?id=87834&action=edit
+journalctl (same to /var/log/messages) chunk, related to the crash
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1382122729.825ac56b0.31903
-Date: Fri, 18 Oct 2013 18:58:49 +0000
+--1382122814.cAdC0.32257
+Date: Fri, 18 Oct 2013 19:00:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV34] failed to idle channel 0xcccc0000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388#c10">Comment # 10</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV34] failed to idle channel 0xcccc0000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70388">bug 70388</a>
               from <span class="vcard"><a class="email" href="mailto:rosti.bsd&#64;gmail.com" title="Rostislav Krasny &lt;rosti.bsd&#64;gmail.com&gt;"> <span class="fn">Rostislav Krasny</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=87833" name="attach_87833" title="Full dmesg output after the crash">attachment 87833</a> <a href="attachment.cgi?id=87833&amp;action=edit" title="Full dmesg output after the crash">[details]</a></span>
-Full dmesg output after the crash</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=87834" name="attach_87834" title="journalctl (same to /var/log/messages) chunk, related to the crash">attachment 87834</a> <a href="attachment.cgi?id=87834&amp;action=edit" title="journalctl (same to /var/log/messages) chunk, related to the crash">[details]</a></span>
+journalctl (same to /var/log/messages) chunk, related to the crash</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ Full dmesg output after the crash</pre>
     </body>
 </html>
 
---1382122729.825ac56b0.31903--
+--1382122814.cAdC0.32257--
 
---===============0881161903==
+--===============0616484710==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0881161903==--
+--===============0616484710==--
