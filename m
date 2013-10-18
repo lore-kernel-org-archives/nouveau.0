@@ -1,81 +1,95 @@
-From: Pasi =?iso-8859-1?Q?K=E4rkk=E4inen?= <pasik@iki.fi>
-Subject: Re: [PATCH] drm/nouveau: avoid null deref on bad arguments to
-	nouveau_vma_getmap
-Date: Fri, 18 Oct 2013 17:45:56 +0300
-Message-ID: <20131018144556.GQ2924@reaktio.net>
-References: <1377130214-17522-1-git-send-email-imirkin@alum.mit.edu>
-	<5215B9E8.5080108@canonical.com>
-	<CACAvsv7ygYoM6ZzFdY-Zov0herPMQDERaw6jzj6VuB+p20FcJQ@mail.gmail.com>
-	<5226DA41.5060203@canonical.com>
-	<20130925144246.GL2924@reaktio.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70510] Xorg crash on KDE init
+Date: Fri, 18 Oct 2013 16:31:35 +0000
+Message-ID: <bug-70510-8800-NqqAP1g4jA@http.bugs.freedesktop.org/>
+References: <bug-70510-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20130925144246.GL2924@reaktio.net>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1413922820=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-70510-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Sep 25, 2013 at 05:42:46PM +0300, Pasi K=E4rkk=E4inen wrote:
-> On Wed, Sep 04, 2013 at 08:59:13AM +0200, Maarten Lankhorst wrote:
-> > =
 
-> > When looking into this bug I noticed that nouveau_bo_vma_add needs to h=
-ave a check for nvbo->page_shift =3D=3D vma->vm->vmm->spg_shift,
-> > and only if the check is true it should map the page in TTM_PL_TT. Patc=
-h below.
-> > Should probably also be cc'd to stable.
-> >
-> =
-
-> How about this patch? Is it ready to go in? =
-
->
-
-Ping on this patch aswell..
+--===============1413922820==
+Content-Type: multipart/alternative; boundary="1382113895.3FCf7fA1.9980"; charset="us-ascii"
 
 
--- Pasi
+--1382113895.3FCf7fA1.9980
+Date: Fri, 18 Oct 2013 16:31:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
- =
+https://bugs.freedesktop.org/show_bug.cgi?id=70510
 
-> Thanks,
-> =
+--- Comment #16 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 87830
+  --> https://bugs.freedesktop.org/attachment.cgi?id=87830&action=edit
+gdb output of running Xorg (kernel 3.12.0-rc5-1-default)
 
-> -- Pasi
-> =
+Now that seems somehow useful though gdb still recommended more debuginfo.
 
->  =
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-> > ~Maarten
-> > =
+--1382113895.3FCf7fA1.9980
+Date: Fri, 18 Oct 2013 16:31:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nou=
-veau/nouveau_bo.c
-> > index 89b992e..355a1b7 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> > @@ -1560,7 +1560,8 @@ nouveau_bo_vma_add(struct nouveau_bo *nvbo, struc=
-t nouveau_vm *vm,
-> >  =
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Xorg crash on KDE init"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70510#c16">Comment # 16</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Xorg crash on KDE init"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70510">bug 70510</a>
+              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=87830" name="attach_87830" title="gdb output of running Xorg (kernel 3.12.0-rc5-1-default)">attachment 87830</a> <a href="attachment.cgi?id=87830&amp;action=edit" title="gdb output of running Xorg (kernel 3.12.0-rc5-1-default)">[details]</a></span>
+gdb output of running Xorg (kernel 3.12.0-rc5-1-default)
 
-> >  	if (nvbo->bo.mem.mem_type =3D=3D TTM_PL_VRAM)
-> >  		nouveau_vm_map(vma, nvbo->bo.mem.mm_node);
-> > -	else if (nvbo->bo.mem.mem_type =3D=3D TTM_PL_TT) {
-> > +	else if (nvbo->bo.mem.mem_type =3D=3D TTM_PL_TT &&
-> > +		 nvbo->page_shift =3D=3D vma->vm->vmm->spg_shift) {
-> >  		if (node->sg)
-> >  			nouveau_vm_map_sg_table(vma, 0, size, node);
-> >  		else
-> > =
+Now that seems somehow useful though gdb still recommended more debuginfo.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1382113895.3FCf7fA1.9980--
+
+--===============1413922820==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1413922820==--
