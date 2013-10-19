@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70326] [NVF0] Kernel/Driver fails to initialize
  acceleration on GTX Titan
-Date: Sat, 19 Oct 2013 06:43:59 +0000
-Message-ID: <bug-70326-8800-F3D3hX950m@http.bugs.freedesktop.org/>
+Date: Sat, 19 Oct 2013 06:47:11 +0000
+Message-ID: <bug-70326-8800-rg1NBQqtBj@http.bugs.freedesktop.org/>
 References: <bug-70326-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1853887416=="
+Content-Type: multipart/mixed; boundary="===============1776186578=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70326-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1853887416==
-Content-Type: multipart/alternative; boundary="1382165039.cC45fec31.29603"; charset="us-ascii"
+--===============1776186578==
+Content-Type: multipart/alternative; boundary="1382165231.62382.30058"; charset="us-ascii"
 
 
---1382165039.cC45fec31.29603
-Date: Sat, 19 Oct 2013 06:43:59 +0000
+--1382165231.62382.30058
+Date: Sat, 19 Oct 2013 06:47:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70326
 
---- Comment #2 from Vladimir <bobahu4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thanks, I did that, and after news about gtx780 being supported back in july I
-hoped it will work. But it seems textures coordinates are messed up, at least
-in kde.
-
-https://www.dropbox.com/s/wyvyaiklbi5jqhn/2013-10-19%2000.06.53.jpg
-
-Unity is much worse 
-
-https://www.dropbox.com/s/vxxk8gxlvcqzlz2/2013-10-19%2000.04.46.jpg
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Which "that" did you do? BTW, the news item on the page about NVF0 support
+might be a bit misleading. It does presently still require mmiotrace'd
+firmware.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1382165039.cC45fec31.29603
-Date: Sat, 19 Oct 2013 06:43:59 +0000
+--1382165231.62382.30058
+Date: Sat, 19 Oct 2013 06:47:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,22 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVF0] Kernel/Driver fails to initialize acceleration on GTX Titan"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70326#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70326#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVF0] Kernel/Driver fails to initialize acceleration on GTX Titan"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70326">bug 70326</a>
-              from <span class="vcard"><a class="email" href="mailto:bobahu4&#64;gmail.com" title="Vladimir &lt;bobahu4&#64;gmail.com&gt;"> <span class="fn">Vladimir</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Thanks, I did that, and after news about gtx780 being supported back in july I
-hoped it will work. But it seems textures coordinates are messed up, at least
-in kde.
-
-<a href="https://www.dropbox.com/s/wyvyaiklbi5jqhn/2013-10-19%2000.06.53.jpg">https://www.dropbox.com/s/wyvyaiklbi5jqhn/2013-10-19%2000.06.53.jpg</a>
-
-Unity is much worse 
-
-<a href="https://www.dropbox.com/s/vxxk8gxlvcqzlz2/2013-10-19%2000.04.46.jpg">https://www.dropbox.com/s/vxxk8gxlvcqzlz2/2013-10-19%2000.04.46.jpg</a></pre>
+        <pre>Which &quot;that&quot; did you do? BTW, the news item on the page about NVF0 support
+might be a bit misleading. It does presently still require mmiotrace'd
+firmware.</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +77,9 @@ Unity is much worse
     </body>
 </html>
 
---1382165039.cC45fec31.29603--
+--1382165231.62382.30058--
 
---===============1853887416==
+--===============1776186578==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1853887416==--
+--===============1776186578==--
