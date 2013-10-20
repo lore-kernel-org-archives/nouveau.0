@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70135] [nv34 PowerMac G5] gnome-shell random crashes
- and rendering issues
-Date: Sun, 20 Oct 2013 15:19:18 +0000
-Message-ID: <bug-70135-8800-YaQxZq3io7@http.bugs.freedesktop.org/>
-References: <bug-70135-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69882] [NVE6] GPU lockups
+Date: Sun, 20 Oct 2013 19:02:47 +0000
+Message-ID: <bug-69882-8800-V1FnvHGxsw@http.bugs.freedesktop.org/>
+References: <bug-69882-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0038711656=="
+Content-Type: multipart/mixed; boundary="===============1235078850=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69882-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,104 +20,80 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0038711656==
-Content-Type: multipart/alternative; boundary="1382282358.c76cAd1.23538"; charset="us-ascii"
+--===============1235078850==
+Content-Type: multipart/alternative; boundary="1382295767.720aA1.27601"; charset="us-ascii"
 
 
---1382282358.c76cAd1.23538
-Date: Sun, 20 Oct 2013 15:19:18 +0000
+--1382295767.720aA1.27601
+Date: Sun, 20 Oct 2013 19:02:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70135
+https://bugs.freedesktop.org/show_bug.cgi?id=3D69882
 
---- Comment #19 from John Paul Adrian Glaubitz <glaubitz-1Olz3AKvcsuAKZTfuerNgRvVK+yQ3ZXh@public.gmane.org> ---
-Created attachment 87882
-  --> https://bugs.freedesktop.org/attachment.cgi?id=87882&action=edit
-Output of glxinfo for nv34 of PowerMac G5 Model A1047 with mesa-dri 9.1.7
+--- Comment #7 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Actually, I think the lockups on KWin switch were induced by some openSUSE
+update. After another update, I could no longer reproduce that behaviour, a=
+nd
+it's back to random lockups at any given time, no matter the compositing
+settings. Though it might still be notable that this issue can also be indu=
+ced
+by certain bugs elsewhere in the system.
 
-Ok, after playing around a bit, I figured out that downgrading the
-libgl1-mesa-dri package in Debian from 9.2.1 to 9.1.7 fixes the issue with
-nouveau_dri.so not to be found and 3D acceleration and gnome-shell work as
-expected again like it did with all mesa packages from unstable.
-
-I guess it is an issue with the specific Debian package libgl1-mesa-dri from
-experimental now and not mesa in general, even though the package actually
-installs the nouveau_dri.so file at the expected location
-(/usr/lib/powerpc-linux-gnu/dri/nouveau_dri.so).
-
-I guess I wait until mesa 9.2.1 (or even 9.2.2) hits Debian unstable and I'll
-try again.
-
-Furthermore, I will also check the Debian bug tracker for libgl1-mesa-dri and
-file a bug if necessary.
-
-Cheers,
-
-Adrian
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1382282358.c76cAd1.23538
-Date: Sun, 20 Oct 2013 15:19:18 +0000
+--1382295767.720aA1.27601
+Date: Sun, 20 Oct 2013 19:02:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135#c19">Comment # 19</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - [NVE6] GPU lockups"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69882#c7">Comment=
+ # 7</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135">bug 70135</a>
-              from <span class="vcard"><a class="email" href="mailto:glaubitz&#64;physik.fu-berlin.de" title="John Paul Adrian Glaubitz &lt;glaubitz&#64;physik.fu-berlin.de&gt;"> <span class="fn">John Paul Adrian Glaubitz</span></a>
+   title=3D"NEW --- - [NVE6] GPU lockups"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69882">bug 69882<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pastas4&#64;gmail.com" title=3D"Dainius Masili=C5=ABnas &lt;pastas4&#64;gma=
+il.com&gt;"> <span class=3D"fn">Dainius Masili=C5=ABnas</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=87882" name="attach_87882" title="Output of glxinfo for nv34 of PowerMac G5 Model A1047 with mesa-dri 9.1.7">attachment 87882</a> <a href="attachment.cgi?id=87882&amp;action=edit" title="Output of glxinfo for nv34 of PowerMac G5 Model A1047 with mesa-dri 9.1.7">[details]</a></span>
-Output of glxinfo for nv34 of PowerMac G5 Model A1047 with mesa-dri 9.1.7
-
-Ok, after playing around a bit, I figured out that downgrading the
-libgl1-mesa-dri package in Debian from 9.2.1 to 9.1.7 fixes the issue with
-nouveau_dri.so not to be found and 3D acceleration and gnome-shell work as
-expected again like it did with all mesa packages from unstable.
-
-I guess it is an issue with the specific Debian package libgl1-mesa-dri from
-experimental now and not mesa in general, even though the package actually
-installs the nouveau_dri.so file at the expected location
-(/usr/lib/powerpc-linux-gnu/dri/nouveau_dri.so).
-
-I guess I wait until mesa 9.2.1 (or even 9.2.2) hits Debian unstable and I'll
-try again.
-
-Furthermore, I will also check the Debian bug tracker for libgl1-mesa-dri and
-file a bug if necessary.
-
-Cheers,
-
-Adrian</pre>
+        <pre>Actually, I think the lockups on KWin switch were induced by s=
+ome openSUSE
+update. After another update, I could no longer reproduce that behaviour, a=
+nd
+it's back to random lockups at any given time, no matter the compositing
+settings. Though it might still be notable that this issue can also be indu=
+ced
+by certain bugs elsewhere in the system.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1382282358.c76cAd1.23538--
+--1382295767.720aA1.27601--
 
---===============0038711656==
+--===============1235078850==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -129,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0038711656==--
+--===============1235078850==--
