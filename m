@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70212] glxinfo triggers assert in cso_release_all
- after 3f0627c2ad6
-Date: Sun, 20 Oct 2013 14:52:12 +0000
-Message-ID: <bug-70212-8800-l0iCiWTxi8@http.bugs.freedesktop.org/>
-References: <bug-70212-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70135] [nv34 PowerMac G5] gnome-shell random crashes
+ and rendering issues
+Date: Sun, 20 Oct 2013 15:19:18 +0000
+Message-ID: <bug-70135-8800-YaQxZq3io7@http.bugs.freedesktop.org/>
+References: <bug-70135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1743858399=="
+Content-Type: multipart/mixed; boundary="===============0038711656=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70212-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,108 +21,104 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1743858399==
-Content-Type: multipart/alternative; boundary="1382280732.D8E1Dd03.19271"; charset="us-ascii"
+--===============0038711656==
+Content-Type: multipart/alternative; boundary="1382282358.c76cAd1.23538"; charset="us-ascii"
 
 
---1382280732.D8E1Dd03.19271
-Date: Sun, 20 Oct 2013 14:52:12 +0000
+--1382282358.c76cAd1.23538
+Date: Sun, 20 Oct 2013 15:19:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D70212
+https://bugs.freedesktop.org/show_bug.cgi?id=70135
 
---- Comment #4 from exc <exclusive_tm-JGs/UdohzUI@public.gmane.org> ---
-It's because value returned by nv50_screen_get_shader_param with
-param=3DPIPE_SHADER_CAP_MAX_TEXTURE_SAMPLERS is greater than PIPE_MAX_SAMPL=
-ERS.
-Setting either of them to another fixes the problem, dunno which is right.=
-=20
+--- Comment #19 from John Paul Adrian Glaubitz <glaubitz-1Olz3AKvcsuAKZTfuerNgRvVK+yQ3ZXh@public.gmane.org> ---
+Created attachment 87882
+  --> https://bugs.freedesktop.org/attachment.cgi?id=87882&action=edit
+Output of glxinfo for nv34 of PowerMac G5 Model A1047 with mesa-dri 9.1.7
 
-git blame outputs:
+Ok, after playing around a bit, I figured out that downgrading the
+libgl1-mesa-dri package in Debian from 9.2.1 to 9.1.7 fixes the issue with
+nouveau_dri.so not to be found and 3D acceleration and gnome-shell work as
+expected again like it did with all mesa packages from unstable.
 
-% git blame src/gallium/drivers/nouveau/nv50/nv50_screen.c -L 251,252
-f5bfe54a src/gallium/drivers/nv50/nv50_screen.c (Marek Ol=C5=A1=C3=A1k 2011=
--09-27
-22:22:06 +0200 251)    case PIPE_SHADER_CAP_MAX_TEXTURE_SAMPLERS:
-f5bfe54a src/gallium/drivers/nv50/nv50_screen.c (Marek Ol=C5=A1=C3=A1k 2011=
--09-27
-22:22:06 +0200 252)       return 32;
+I guess it is an issue with the specific Debian package libgl1-mesa-dri from
+experimental now and not mesa in general, even though the package actually
+installs the nouveau_dri.so file at the expected location
+(/usr/lib/powerpc-linux-gnu/dri/nouveau_dri.so).
 
-% git blame src/gallium/include/pipe/p_state.h -L 60,60
-da893403 (Brian 2008-04-08 21:43:36 -0600 60) #define PIPE_MAX_SAMPLERS=20=
-=20=20=20=20=20=20=20
-16
+I guess I wait until mesa 9.2.1 (or even 9.2.2) hits Debian unstable and I'll
+try again.
 
---=20
+Furthermore, I will also check the Debian bug tracker for libgl1-mesa-dri and
+file a bug if necessary.
+
+Cheers,
+
+Adrian
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1382280732.D8E1Dd03.19271
-Date: Sun, 20 Oct 2013 14:52:12 +0000
+--1382282358.c76cAd1.23538
+Date: Sun, 20 Oct 2013 15:19:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED --- - glxinfo triggers assert in cso_release_all after=
- 3f0627c2ad6"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70212#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED --- - glxinfo triggers assert in cso_release_all after=
- 3f0627c2ad6"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70212">bug 70212<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-exclusive_tm&#64;mail.ru" title=3D"exc &lt;exclusive_tm&#64;mail.ru&gt;"> <=
-span class=3D"fn">exc</span></a>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135#c19">Comment # 19</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135">bug 70135</a>
+              from <span class="vcard"><a class="email" href="mailto:glaubitz&#64;physik.fu-berlin.de" title="John Paul Adrian Glaubitz &lt;glaubitz&#64;physik.fu-berlin.de&gt;"> <span class="fn">John Paul Adrian Glaubitz</span></a>
 </span></b>
-        <pre>It's because value returned by nv50_screen_get_shader_param wi=
-th
-param=3DPIPE_SHADER_CAP_MAX_TEXTURE_SAMPLERS is greater than PIPE_MAX_SAMPL=
-ERS.
-Setting either of them to another fixes the problem, dunno which is right.=
-=20
+        <pre>Created <span class=""><a href="attachment.cgi?id=87882" name="attach_87882" title="Output of glxinfo for nv34 of PowerMac G5 Model A1047 with mesa-dri 9.1.7">attachment 87882</a> <a href="attachment.cgi?id=87882&amp;action=edit" title="Output of glxinfo for nv34 of PowerMac G5 Model A1047 with mesa-dri 9.1.7">[details]</a></span>
+Output of glxinfo for nv34 of PowerMac G5 Model A1047 with mesa-dri 9.1.7
 
-git blame outputs:
+Ok, after playing around a bit, I figured out that downgrading the
+libgl1-mesa-dri package in Debian from 9.2.1 to 9.1.7 fixes the issue with
+nouveau_dri.so not to be found and 3D acceleration and gnome-shell work as
+expected again like it did with all mesa packages from unstable.
 
-% git blame src/gallium/drivers/nouveau/nv50/nv50_screen.c -L 251,252
-f5bfe54a src/gallium/drivers/nv50/nv50_screen.c (Marek Ol=C5=A1=C3=A1k 2011=
--09-27
-22:22:06 +0200 251)    case PIPE_SHADER_CAP_MAX_TEXTURE_SAMPLERS:
-f5bfe54a src/gallium/drivers/nv50/nv50_screen.c (Marek Ol=C5=A1=C3=A1k 2011=
--09-27
-22:22:06 +0200 252)       return 32;
+I guess it is an issue with the specific Debian package libgl1-mesa-dri from
+experimental now and not mesa in general, even though the package actually
+installs the nouveau_dri.so file at the expected location
+(/usr/lib/powerpc-linux-gnu/dri/nouveau_dri.so).
 
-% git blame src/gallium/include/pipe/p_state.h -L 60,60
-da893403 (Brian 2008-04-08 21:43:36 -0600 60) #define PIPE_MAX_SAMPLERS=20=
-=20=20=20=20=20=20=20
-16</pre>
+I guess I wait until mesa 9.2.1 (or even 9.2.2) hits Debian unstable and I'll
+try again.
+
+Furthermore, I will also check the Debian bug tracker for libgl1-mesa-dri and
+file a bug if necessary.
+
+Cheers,
+
+Adrian</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1382280732.D8E1Dd03.19271--
+--1382282358.c76cAd1.23538--
 
---===============1743858399==
+--===============0038711656==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -133,4 +129,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1743858399==--
+--===============0038711656==--
