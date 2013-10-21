@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69882] [NVE6] GPU lockups
-Date: Sun, 20 Oct 2013 19:02:47 +0000
-Message-ID: <bug-69882-8800-V1FnvHGxsw@http.bugs.freedesktop.org/>
-References: <bug-69882-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60704] [nouveau,
+ git regression] - I2C PWM fan control broken on nv50 adt7475 on
+ kernels 3.3.x+
+Date: Mon, 21 Oct 2013 00:02:33 +0000
+Message-ID: <bug-60704-8800-HoLvPMGbCQ@http.bugs.freedesktop.org/>
+References: <bug-60704-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1235078850=="
+Content-Type: multipart/mixed; boundary="===============0186736408=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69882-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-60704-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,80 +22,70 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1235078850==
-Content-Type: multipart/alternative; boundary="1382295767.720aA1.27601"; charset="us-ascii"
+--===============0186736408==
+Content-Type: multipart/alternative; boundary="1382313753.D27babff2.12712"; charset="us-ascii"
 
 
---1382295767.720aA1.27601
-Date: Sun, 20 Oct 2013 19:02:47 +0000
+--1382313753.D27babff2.12712
+Date: Mon, 21 Oct 2013 00:02:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D69882
+https://bugs.freedesktop.org/show_bug.cgi?id=60704
 
---- Comment #7 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Actually, I think the lockups on KWin switch were induced by some openSUSE
-update. After another update, I could no longer reproduce that behaviour, a=
-nd
-it's back to random lockups at any given time, no matter the compositing
-settings. Though it might still be notable that this issue can also be indu=
-ced
-by certain bugs elsewhere in the system.
+--- Comment #19 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+Created attachment 87907
+  --> https://bugs.freedesktop.org/attachment.cgi?id=87907&action=edit
+This patch should work
 
---=20
+This patch should work, at least it does for me. Sorry it took me so long to
+actually do something about it.
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1382295767.720aA1.27601
-Date: Sun, 20 Oct 2013 19:02:47 +0000
+--1382313753.D27babff2.12712
+Date: Mon, 21 Oct 2013 00:02:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - [NVE6] GPU lockups"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69882#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60704#c19">Comment # 19</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - [NVE6] GPU lockups"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69882">bug 69882<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pastas4&#64;gmail.com" title=3D"Dainius Masili=C5=ABnas &lt;pastas4&#64;gma=
-il.com&gt;"> <span class=3D"fn">Dainius Masili=C5=ABnas</span></a>
+   title="NEW --- - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60704">bug 60704</a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>Actually, I think the lockups on KWin switch were induced by s=
-ome openSUSE
-update. After another update, I could no longer reproduce that behaviour, a=
-nd
-it's back to random lockups at any given time, no matter the compositing
-settings. Though it might still be notable that this issue can also be indu=
-ced
-by certain bugs elsewhere in the system.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=87907" name="attach_87907" title="This patch should work">attachment 87907</a> <a href="attachment.cgi?id=87907&amp;action=edit" title="This patch should work">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=60704&amp;attachment=87907'>[review]</a>
+This patch should work
+
+This patch should work, at least it does for me. Sorry it took me so long to
+actually do something about it.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1382295767.720aA1.27601--
+--1382313753.D27babff2.12712--
 
---===============1235078850==
+--===============0186736408==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1235078850==--
+--===============0186736408==--
