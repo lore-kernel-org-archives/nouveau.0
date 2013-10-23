@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70212] glxinfo triggers assert in cso_release_all
  after 3f0627c2ad6
-Date: Wed, 23 Oct 2013 18:42:16 +0000
-Message-ID: <bug-70212-8800-HPNO2KZEeg@http.bugs.freedesktop.org/>
+Date: Wed, 23 Oct 2013 19:43:50 +0000
+Message-ID: <bug-70212-8800-qCdfGR9DkV@http.bugs.freedesktop.org/>
 References: <bug-70212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2057868311=="
+Content-Type: multipart/mixed; boundary="===============0300224098=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70212-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,36 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2057868311==
-Content-Type: multipart/alternative; boundary="1382553736.84C32.14671"; charset="us-ascii"
+--===============0300224098==
+Content-Type: multipart/alternative; boundary="1382557430.Ec44Ba2.27444"; charset="us-ascii"
 
 
---1382553736.84C32.14671
-Date: Wed, 23 Oct 2013 18:42:16 +0000
+--1382557430.Ec44Ba2.27444
+Date: Wed, 23 Oct 2013 19:43:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70212
 
---- Comment #7 from Aaron Watry <awatry-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #6)
-> Created attachment 88040 [details] [review]
-> limit samplers returned to PIPE_MAX_SAMPLERS
-> 
-> Can someone verify this patch to nv50?
+Brian Paul <brianp-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org> changed:
 
-I can confirm that this patch avoids the assert in glxinfo on the original
-hardware which encountered the bug (NVAC, GF9400M).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|ASSIGNED                    |RESOLVED
+         Resolution|---                         |FIXED
 
-Thanks,
-Aaron
+--- Comment #8 from Brian Paul <brianp-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org> ---
+Fixed w/ commit c1345720c86639bb570f3495b834916849d50e37
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1382553736.84C32.14671
-Date: Wed, 23 Oct 2013 18:42:16 +0000
+--1382557430.Ec44Ba2.27444
+Date: Wed, 23 Oct 2013 19:43:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,30 +55,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:brianp&#64;vmware.com" title="Brian Paul &lt;brianp&#64;vmware.com&gt;"> <span class="fn">Brian Paul</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - glxinfo triggers assert in cso_release_all after 3f0627c2ad6"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70212">bug 70212</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>ASSIGNED
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED --- - glxinfo triggers assert in cso_release_all after 3f0627c2ad6"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70212#c7">Comment # 7</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - glxinfo triggers assert in cso_release_all after 3f0627c2ad6"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70212#c8">Comment # 8</a>
               on <a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED --- - glxinfo triggers assert in cso_release_all after 3f0627c2ad6"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - glxinfo triggers assert in cso_release_all after 3f0627c2ad6"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70212">bug 70212</a>
-              from <span class="vcard"><a class="email" href="mailto:awatry&#64;gmail.com" title="Aaron Watry &lt;awatry&#64;gmail.com&gt;"> <span class="fn">Aaron Watry</span></a>
+              from <span class="vcard"><a class="email" href="mailto:brianp&#64;vmware.com" title="Brian Paul &lt;brianp&#64;vmware.com&gt;"> <span class="fn">Brian Paul</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=70212#c6">comment #6</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=88040" name="attach_88040" title="limit samplers returned to PIPE_MAX_SAMPLERS">attachment 88040</a> <a href="attachment.cgi?id=88040&amp;action=edit" title="limit samplers returned to PIPE_MAX_SAMPLERS">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=70212&amp;attachment=88040'>[review]</a> [review]
-&gt; limit samplers returned to PIPE_MAX_SAMPLERS
-&gt; 
-&gt; Can someone verify this patch to nv50?</span >
-
-I can confirm that this patch avoids the assert in glxinfo on the original
-hardware which encountered the bug (NVAC, GF9400M).
-
-Thanks,
-Aaron</pre>
+        <pre>Fixed w/ commit c1345720c86639bb570f3495b834916849d50e37</pre>
         </div>
       </p>
       <hr>
@@ -93,9 +108,9 @@ Aaron</pre>
     </body>
 </html>
 
---1382553736.84C32.14671--
+--1382557430.Ec44Ba2.27444--
 
---===============2057868311==
+--===============0300224098==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2057868311==--
+--===============0300224098==--
