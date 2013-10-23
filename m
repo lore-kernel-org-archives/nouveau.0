@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70212] glxinfo triggers assert in cso_release_all
  after 3f0627c2ad6
-Date: Wed, 23 Oct 2013 14:19:22 +0000
-Message-ID: <bug-70212-8800-VLUNF3zmIq@http.bugs.freedesktop.org/>
+Date: Wed, 23 Oct 2013 15:47:28 +0000
+Message-ID: <bug-70212-8800-NB5WVV8MC1@http.bugs.freedesktop.org/>
 References: <bug-70212-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0630336770=="
+Content-Type: multipart/mixed; boundary="===============0668826806=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70212-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,36 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0630336770==
-Content-Type: multipart/alternative; boundary="1382537962.1bfbcc2.4376"; charset="us-ascii"
+--===============0668826806==
+Content-Type: multipart/alternative; boundary="1382543248.8ECE31b12.19624"; charset="us-ascii"
 
 
---1382537962.1bfbcc2.4376
-Date: Wed, 23 Oct 2013 14:19:22 +0000
+--1382543248.8ECE31b12.19624
+Date: Wed, 23 Oct 2013 15:47:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70212
 
---- Comment #5 from Alen Skondro <askondro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I had the same problem with nv50. 
-Now that I own an NVE4 the issue is gone, the assert passes.
+--- Comment #6 from Brian Paul <brianp-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org> ---
+Created attachment 88040
+  --> https://bugs.freedesktop.org/attachment.cgi?id=88040&action=edit
+limit samplers returned to PIPE_MAX_SAMPLERS
 
-in src/gallium/drivers/nvc0/nvc0_screen.c
-
- case PIPE_SHADER_CAP_MAX_TEXTURE_SAMPLERS:
-254       return 16; /* would be 32 in linked (OpenGL-style) mode */
-255       /*
-256    case PIPE_SHADER_CAP_MAX_TEXTURE_SAMPLER_VIEWS:
-257       return 32;
-258       */
+Can someone verify this patch to nv50?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1382537962.1bfbcc2.4376
-Date: Wed, 23 Oct 2013 14:19:22 +0000
+--1382543248.8ECE31b12.19624
+Date: Wed, 23 Oct 2013 15:47:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,24 +58,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_ASSIGNED "
    title="ASSIGNED --- - glxinfo triggers assert in cso_release_all after 3f0627c2ad6"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70212#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70212#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_ASSIGNED "
    title="ASSIGNED --- - glxinfo triggers assert in cso_release_all after 3f0627c2ad6"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70212">bug 70212</a>
-              from <span class="vcard"><a class="email" href="mailto:askondro&#64;gmail.com" title="Alen Skondro &lt;askondro&#64;gmail.com&gt;"> <span class="fn">Alen Skondro</span></a>
+              from <span class="vcard"><a class="email" href="mailto:brianp&#64;vmware.com" title="Brian Paul &lt;brianp&#64;vmware.com&gt;"> <span class="fn">Brian Paul</span></a>
 </span></b>
-        <pre>I had the same problem with nv50. 
-Now that I own an NVE4 the issue is gone, the assert passes.
+        <pre>Created <span class=""><a href="attachment.cgi?id=88040" name="attach_88040" title="limit samplers returned to PIPE_MAX_SAMPLERS">attachment 88040</a> <a href="attachment.cgi?id=88040&amp;action=edit" title="limit samplers returned to PIPE_MAX_SAMPLERS">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=70212&amp;attachment=88040'>[review]</a>
+limit samplers returned to PIPE_MAX_SAMPLERS
 
-in src/gallium/drivers/nvc0/nvc0_screen.c
-
- case PIPE_SHADER_CAP_MAX_TEXTURE_SAMPLERS:
-254       return 16; /* would be 32 in linked (OpenGL-style) mode */
-255       /*
-256    case PIPE_SHADER_CAP_MAX_TEXTURE_SAMPLER_VIEWS:
-257       return 32;
-258       */</pre>
+Can someone verify this patch to nv50?</pre>
         </div>
       </p>
       <hr>
@@ -93,9 +80,9 @@ in src/gallium/drivers/nvc0/nvc0_screen.c
     </body>
 </html>
 
---1382537962.1bfbcc2.4376--
+--1382543248.8ECE31b12.19624--
 
---===============0630336770==
+--===============0668826806==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0630336770==--
+--===============0668826806==--
