@@ -1,16 +1,16 @@
-From: Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: known MSI errata?
-Date: Thu, 24 Oct 2013 16:10:56 -0700
-Message-ID: <20131024231056.GL19847@morell.nvidia.com>
+Date: Fri, 25 Oct 2013 09:26:42 +1000
+Message-ID: <CACAvsv5LOkdyvevcyme64T9QqzS8j3Bow1xoySE=7gU=ki6j9g@mail.gmail.com>
 References: <1380563052.1686.6.camel@tellur>
 	<20131024214313.GF19847@morell.nvidia.com>
 	<CACAvsv68wpsWwJgTpMfYGRVNB4-qQv-v5zPX3Zv=kevtkzLYKg@mail.gmail.com>
+	<20131024231056.GL19847@morell.nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CACAvsv68wpsWwJgTpMfYGRVNB4-qQv-v5zPX3Zv=kevtkzLYKg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <20131024231056.GL19847-f3YH7lVHJt/FT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,46 +20,52 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Oct 24, 2013 at 04:03:12PM -0700, Ben Skeggs wrote:
-> On Fri, Oct 25, 2013 at 7:43 AM, Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
-> > On Mon, Sep 30, 2013 at 10:44:12AM -0700, Lucas Stach wrote:
-> >> Hi,
-> >>
-> >> recently we tried to enable MSI interrupts with nouveau. Unfortunately
-> >> there have been some reports of things failing with certain cards, where
-> >> it isn't entirely clear if this is a GPU errata or some other component
-> >> in the PCIe chain failing.
-> >>
-> >> Could you perhaps investigate if there are any known Nvidia GPU erratas
-> >> with regard to MSI interrupts, or maybe tell us the generations of cards
-> >> that are generally safe to enable MSIs with?
-> >
-> > Sorry for the slow reply, Lucas.
-> >
-> > We enabled MSI interrupts by default relatively recently in the proprietary
-> > driver (version 325.08, released 2013-07-01 according to our public
-> > changelog).  This was enabled across the board for all of the GPUs supported
-> > by the latest release series, so NV50 and up.  We believe it should be safe to
-> > enable MSI on those GPUs.  We never enabled MSI by default on earlier GPUs so
-> > I can't comment there.
-> >
-> > I investigated our internal documentation and source code, and found a couple
-> > of things that are probably interesting to you:
-> > - For all pre-Fermi GPUs, we use a write through PCI config space to the "EOI"
-> >   register to rearm the MSI interrupt after servicing it, rather than a write
-> >   through the MMIO pcicfg shadow region in the GPU's PCI BAR0 window at offset
-> >   0x88000.  (This was actually originally implemented for NV4x, so you'll
-> >   probably want to do that there as well.)
-> Hm, I recently discovered this while looking for the errata myself,
-> but it seems you guys only do it on G80/G84/G86, and use 0x88068 at
-> some point after that, before Fermi (G96/GT200, for example).
+On Fri, Oct 25, 2013 at 9:10 AM, Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+> On Thu, Oct 24, 2013 at 04:03:12PM -0700, Ben Skeggs wrote:
+>> On Fri, Oct 25, 2013 at 7:43 AM, Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+>> > On Mon, Sep 30, 2013 at 10:44:12AM -0700, Lucas Stach wrote:
+>> >> Hi,
+>> >>
+>> >> recently we tried to enable MSI interrupts with nouveau. Unfortunately
+>> >> there have been some reports of things failing with certain cards, where
+>> >> it isn't entirely clear if this is a GPU errata or some other component
+>> >> in the PCIe chain failing.
+>> >>
+>> >> Could you perhaps investigate if there are any known Nvidia GPU erratas
+>> >> with regard to MSI interrupts, or maybe tell us the generations of cards
+>> >> that are generally safe to enable MSIs with?
+>> >
+>> > Sorry for the slow reply, Lucas.
+>> >
+>> > We enabled MSI interrupts by default relatively recently in the proprietary
+>> > driver (version 325.08, released 2013-07-01 according to our public
+>> > changelog).  This was enabled across the board for all of the GPUs supported
+>> > by the latest release series, so NV50 and up.  We believe it should be safe to
+>> > enable MSI on those GPUs.  We never enabled MSI by default on earlier GPUs so
+>> > I can't comment there.
+>> >
+>> > I investigated our internal documentation and source code, and found a couple
+>> > of things that are probably interesting to you:
+>> > - For all pre-Fermi GPUs, we use a write through PCI config space to the "EOI"
+>> >   register to rearm the MSI interrupt after servicing it, rather than a write
+>> >   through the MMIO pcicfg shadow region in the GPU's PCI BAR0 window at offset
+>> >   0x88000.  (This was actually originally implemented for NV4x, so you'll
+>> >   probably want to do that there as well.)
+>> Hm, I recently discovered this while looking for the errata myself,
+>> but it seems you guys only do it on G80/G84/G86, and use 0x88068 at
+>> some point after that, before Fermi (G96/GT200, for example).
+>
+> Yes, you're right; I was reading this wrong.  The config space path
+> described above is used on G8x and G92.  Newer GPUs (other than GF100
+> and GF104 as mentioned previously) use the "normal" path.
+Ah, excellent.  I probably should've guessed G92 would be involved here too.
 
-Yes, you're right; I was reading this wrong.  The config space path
-described above is used on G8x and G92.  Newer GPUs (other than GF100
-and GF104 as mentioned previously) use the "normal" path.
+Thanks again,
+Ben.
 
-- Robert
+>
+> - Robert
