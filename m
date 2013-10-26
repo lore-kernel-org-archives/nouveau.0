@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70875] [NVC1] NOUVEAU(0): [drm] failed to set drm
  interface version
-Date: Sat, 26 Oct 2013 14:47:14 +0000
-Message-ID: <bug-70875-8800-wLll6XTYkM@http.bugs.freedesktop.org/>
+Date: Sat, 26 Oct 2013 14:50:12 +0000
+Message-ID: <bug-70875-8800-mrh3IT4Hic@http.bugs.freedesktop.org/>
 References: <bug-70875-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1588275458=="
+Content-Type: multipart/mixed; boundary="===============1815011485=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70875-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1588275458==
-Content-Type: multipart/alternative; boundary="1382798834.AA5EB81.25200"; charset="us-ascii"
+--===============1815011485==
+Content-Type: multipart/alternative; boundary="1382799012.e7F87ff1.25534"; charset="us-ascii"
 
 
---1382798834.AA5EB81.25200
-Date: Sat, 26 Oct 2013 14:47:14 +0000
+--1382799012.e7F87ff1.25534
+Date: Sat, 26 Oct 2013 14:50:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70875
 
---- Comment #6 from Marcin Zajaczkowski <mszpak-5tc4TXWwyLM@public.gmane.org> ---
-Created attachment 88152
-  --> https://bugs.freedesktop.org/attachment.cgi?id=88152&action=edit
-Xorg log with descete card forced to use by switcheroo
+--- Comment #7 from Marcin Zajaczkowski <mszpak-5tc4TXWwyLM@public.gmane.org> ---
+Created attachment 88153
+  --> https://bugs.freedesktop.org/attachment.cgi?id=88153&action=edit
+system log when switching cards with switcheroo (black screens)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1382798834.AA5EB81.25200
-Date: Sat, 26 Oct 2013 14:47:14 +0000
+--1382799012.e7F87ff1.25534
+Date: Sat, 26 Oct 2013 14:50:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] NOUVEAU(0): [drm] failed to set drm interface version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70875#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70875#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] NOUVEAU(0): [drm] failed to set drm interface version"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70875">bug 70875</a>
               from <span class="vcard"><a class="email" href="mailto:mszpak&#64;wp.pl" title="Marcin Zajaczkowski &lt;mszpak&#64;wp.pl&gt;"> <span class="fn">Marcin Zajaczkowski</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=88152" name="attach_88152" title="Xorg log with descete card forced to use by switcheroo">attachment 88152</a> <a href="attachment.cgi?id=88152&amp;action=edit" title="Xorg log with descete card forced to use by switcheroo">[details]</a></span>
-Xorg log with descete card forced to use by switcheroo</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=88153" name="attach_88153" title="system log when switching cards with switcheroo (black screens)">attachment 88153</a> <a href="attachment.cgi?id=88153&amp;action=edit" title="system log when switching cards with switcheroo (black screens)">[details]</a></span>
+system log when switching cards with switcheroo (black screens)</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ Xorg log with descete card forced to use by switcheroo</pre>
     </body>
 </html>
 
---1382798834.AA5EB81.25200--
+--1382799012.e7F87ff1.25534--
 
---===============1588275458==
+--===============1815011485==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1588275458==--
+--===============1815011485==--
