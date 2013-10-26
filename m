@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70875] [NVC1] NOUVEAU(0): [drm] failed to set drm
  interface version
-Date: Sat, 26 Oct 2013 14:45:36 +0000
-Message-ID: <bug-70875-8800-4dKdgfRC9k@http.bugs.freedesktop.org/>
+Date: Sat, 26 Oct 2013 14:47:14 +0000
+Message-ID: <bug-70875-8800-wLll6XTYkM@http.bugs.freedesktop.org/>
 References: <bug-70875-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1905922512=="
+Content-Type: multipart/mixed; boundary="===============1588275458=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70875-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1905922512==
-Content-Type: multipart/alternative; boundary="1382798736.FD32e11.25068"; charset="us-ascii"
+--===============1588275458==
+Content-Type: multipart/alternative; boundary="1382798834.AA5EB81.25200"; charset="us-ascii"
 
 
---1382798736.FD32e11.25068
-Date: Sat, 26 Oct 2013 14:45:36 +0000
+--1382798834.AA5EB81.25200
+Date: Sat, 26 Oct 2013 14:47:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70875
 
---- Comment #5 from Marcin Zajaczkowski <mszpak-5tc4TXWwyLM@public.gmane.org> ---
-Created attachment 88151
-  --> https://bugs.freedesktop.org/attachment.cgi?id=88151&action=edit
-vgaswitcheroo without bumblebee
+--- Comment #6 from Marcin Zajaczkowski <mszpak-5tc4TXWwyLM@public.gmane.org> ---
+Created attachment 88152
+  --> https://bugs.freedesktop.org/attachment.cgi?id=88152&action=edit
+Xorg log with descete card forced to use by switcheroo
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1382798736.FD32e11.25068
-Date: Sat, 26 Oct 2013 14:45:36 +0000
+--1382798834.AA5EB81.25200
+Date: Sat, 26 Oct 2013 14:47:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] NOUVEAU(0): [drm] failed to set drm interface version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70875#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70875#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] NOUVEAU(0): [drm] failed to set drm interface version"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70875">bug 70875</a>
               from <span class="vcard"><a class="email" href="mailto:mszpak&#64;wp.pl" title="Marcin Zajaczkowski &lt;mszpak&#64;wp.pl&gt;"> <span class="fn">Marcin Zajaczkowski</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=88151" name="attach_88151" title="vgaswitcheroo without bumblebee">attachment 88151</a> <a href="attachment.cgi?id=88151&amp;action=edit" title="vgaswitcheroo without bumblebee">[details]</a></span>
-vgaswitcheroo without bumblebee</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=88152" name="attach_88152" title="Xorg log with descete card forced to use by switcheroo">attachment 88152</a> <a href="attachment.cgi?id=88152&amp;action=edit" title="Xorg log with descete card forced to use by switcheroo">[details]</a></span>
+Xorg log with descete card forced to use by switcheroo</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ vgaswitcheroo without bumblebee</pre>
     </body>
 </html>
 
---1382798736.FD32e11.25068--
+--1382798834.AA5EB81.25200--
 
---===============1905922512==
+--===============1588275458==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1905922512==--
+--===============1588275458==--
