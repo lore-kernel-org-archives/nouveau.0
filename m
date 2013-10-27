@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 43939] [NV96] monitor connected via HDMI->DVI
- adapter is blank / standby (9500GS)
-Date: Sun, 27 Oct 2013 17:19:47 +0000
-Message-ID: <bug-43939-8800-V2K30SN4ux@http.bugs.freedesktop.org/>
-References: <bug-43939-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70927] New: nv50_instobj_wr32 kernel panic
+Date: Sun, 27 Oct 2013 18:02:42 +0000
+Message-ID: <bug-70927-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0927492020=="
+Content-Type: multipart/mixed; boundary="===============1732158384=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-43939-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,48 +18,55 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0927492020==
-Content-Type: multipart/alternative; boundary="1382894387.cA44DFba3.20809"; charset="us-ascii"
+--===============1732158384==
+Content-Type: multipart/alternative; boundary="1382896962.6a080.28192"; charset="us-ascii"
 
 
---1382894387.cA44DFba3.20809
-Date: Sun, 27 Oct 2013 17:19:47 +0000
+--1382896962.6a080.28192
+Date: Sun, 27 Oct 2013 18:02:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=43939
+https://bugs.freedesktop.org/show_bug.cgi?id=70927
 
---- Comment #17 from shade <shade.poczta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I was thinking about adding a bug, but i found this. Looks like i could have a
-small clue or it is just in my case.
+          Priority: medium
+            Bug ID: 70927
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: nv50_instobj_wr32 kernel panic
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: antoniovazquezblanco-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: 9.2
+         Component: Drivers/DRI/nouveau
+           Product: Mesa
 
-I have standard HDMI cable, and my screen is black after grub, but monitor have
-signal all the time. I found that i need to force monitor to check again for
-signal settings, aka change zoom in/hdmi overscan (in monitor device settings
-using pilot/buttons on it) or something simular and then all shows up. After
-every restart or changing monitor input from hdmi to other and again to hdmi it
-brakes again. I wasn't sure if that wasn't my monitor problem but this bug
-looks same and its about hdmi output signal. Every log dmesg/xorg/others does
-not show any problems also.
+Created attachment 88189
+  --> https://bugs.freedesktop.org/attachment.cgi?id=88189&action=edit
+Kernel panic log.
 
-Changing resolution or other settings with xrandr does not affect information
-showed by monitor info section (all time shows full hd@60Hz) even if xrandr
-says its set to other.
+I usually get kernel panics on my Alienware M14X R2.
 
-I got:
-3.11.5 kernel (same on 3.11.6)
-xorg 1.14.3 (same on live trunk from today)
-nouveau 1.0.9 (same on live trunk from today)
+Using Archlinux up to date.
+Linux alienarch 3.11.6-1-ARCH #1 SMP PREEMPT Fri Oct 18 23:22:36 CEST 2013
+x86_64 GNU/Linux
 
-Hardware:
-GFX 950 TI Boost aka NVE6
+Nouveau is at 9.2.2
+
+Kernel panic log attached.
+
+What else can I do in order to help?
+
+Thanks.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1382894387.cA44DFba3.20809
-Date: Sun, 27 Oct 2013 17:19:47 +0000
+--1382896962.6a080.28192
+Date: Sun, 27 Oct 2013 18:02:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,42 +74,105 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nv50_instobj_wr32 kernel panic"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70927">70927</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>nv50_instobj_wr32 kernel panic
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>antoniovazquezblanco&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>9.2
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939#c17">Comment # 17</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939">bug 43939</a>
-              from <span class="vcard"><a class="email" href="mailto:shade.poczta&#64;gmail.com" title="shade &lt;shade.poczta&#64;gmail.com&gt;"> <span class="fn">shade</span></a>
-</span></b>
-        <pre>I was thinking about adding a bug, but i found this. Looks like i could have a
-small clue or it is just in my case.
+        <pre>Created <span class=""><a href="attachment.cgi?id=88189" name="attach_88189" title="Kernel panic log.">attachment 88189</a> <a href="attachment.cgi?id=88189&amp;action=edit" title="Kernel panic log.">[details]</a></span>
+Kernel panic log.
 
-I have standard HDMI cable, and my screen is black after grub, but monitor have
-signal all the time. I found that i need to force monitor to check again for
-signal settings, aka change zoom in/hdmi overscan (in monitor device settings
-using pilot/buttons on it) or something simular and then all shows up. After
-every restart or changing monitor input from hdmi to other and again to hdmi it
-brakes again. I wasn't sure if that wasn't my monitor problem but this bug
-looks same and its about hdmi output signal. Every log dmesg/xorg/others does
-not show any problems also.
+I usually get kernel panics on my Alienware M14X R2.
 
-Changing resolution or other settings with xrandr does not affect information
-showed by monitor info section (all time shows full hd&#64;60Hz) even if xrandr
-says its set to other.
+Using Archlinux up to date.
+Linux alienarch 3.11.6-1-ARCH #1 SMP PREEMPT Fri Oct 18 23:22:36 CEST 2013
+x86_64 GNU/Linux
 
-I got:
-3.11.5 kernel (same on 3.11.6)
-xorg 1.14.3 (same on live trunk from today)
-nouveau 1.0.9 (same on live trunk from today)
+Nouveau is at 9.2.2
 
-Hardware:
-GFX 950 TI Boost aka NVE6</pre>
+Kernel panic log attached.
+
+What else can I do in order to help?
+
+Thanks.</pre>
         </div>
       </p>
       <hr>
@@ -117,9 +184,9 @@ GFX 950 TI Boost aka NVE6</pre>
     </body>
 </html>
 
---1382894387.cA44DFba3.20809--
+--1382896962.6a080.28192--
 
---===============0927492020==
+--===============1732158384==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -130,4 +197,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0927492020==--
+--===============1732158384==--
