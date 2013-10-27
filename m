@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38687] Wrong resolution on LCD TV's
-Date: Sun, 27 Oct 2013 16:05:01 +0000
-Message-ID: <bug-38687-8800-wCNLQ3THae@http.bugs.freedesktop.org/>
-References: <bug-38687-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 43939] [NV96] monitor connected via HDMI->DVI
+ adapter is blank / standby (9500GS)
+Date: Sun, 27 Oct 2013 17:19:47 +0000
+Message-ID: <bug-43939-8800-V2K30SN4ux@http.bugs.freedesktop.org/>
+References: <bug-43939-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2023637733=="
+Content-Type: multipart/mixed; boundary="===============0927492020=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38687-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-43939-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +21,48 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2023637733==
-Content-Type: multipart/alternative; boundary="1382889901.DdB72.7347"; charset="us-ascii"
+--===============0927492020==
+Content-Type: multipart/alternative; boundary="1382894387.cA44DFba3.20809"; charset="us-ascii"
 
 
---1382889901.DdB72.7347
-Date: Sun, 27 Oct 2013 16:05:01 +0000
+--1382894387.cA44DFba3.20809
+Date: Sun, 27 Oct 2013 17:19:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38687
+https://bugs.freedesktop.org/show_bug.cgi?id=43939
 
-Damian <damianatorrpm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #17 from shade <shade.poczta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I was thinking about adding a bug, but i found this. Looks like i could have a
+small clue or it is just in my case.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-                   |rg                          |
-          Component|Driver/nouveau              |Driver/Radeon
+I have standard HDMI cable, and my screen is black after grub, but monitor have
+signal all the time. I found that i need to force monitor to check again for
+signal settings, aka change zoom in/hdmi overscan (in monitor device settings
+using pilot/buttons on it) or something simular and then all shows up. After
+every restart or changing monitor input from hdmi to other and again to hdmi it
+brakes again. I wasn't sure if that wasn't my monitor problem but this bug
+looks same and its about hdmi output signal. Every log dmesg/xorg/others does
+not show any problems also.
 
---- Comment #16 from Damian <damianatorrpm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Same problem now with free radeon driver (still problem was never fixed) on
-openSUSE 13.1 and Fedora 19.
+Changing resolution or other settings with xrandr does not affect information
+showed by monitor info section (all time shows full hd@60Hz) even if xrandr
+says its set to other.
+
+I got:
+3.11.5 kernel (same on 3.11.6)
+xorg 1.14.3 (same on live trunk from today)
+nouveau 1.0.9 (same on live trunk from today)
+
+Hardware:
+GFX 950 TI Boost aka NVE6
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1382889901.DdB72.7347
-Date: Sun, 27 Oct 2013 16:05:01 +0000
+--1382894387.cA44DFba3.20809
+Date: Sun, 27 Oct 2013 17:19:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,49 +70,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:damianatorrpm&#64;gmail.com" title="Damian &lt;damianatorrpm&#64;gmail.com&gt;"> <span class="fn">Damian</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - Wrong resolution on LCD TV's"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38687">bug 38687</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>xorg-driver-ati&#64;lists.x.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Driver/nouveau
-           </td>
-           <td>Driver/Radeon
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - Wrong resolution on LCD TV's"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38687#c16">Comment # 16</a>
+          bz_status_NEW "
+   title="NEW --- - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939#c17">Comment # 17</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - Wrong resolution on LCD TV's"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38687">bug 38687</a>
-              from <span class="vcard"><a class="email" href="mailto:damianatorrpm&#64;gmail.com" title="Damian &lt;damianatorrpm&#64;gmail.com&gt;"> <span class="fn">Damian</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939">bug 43939</a>
+              from <span class="vcard"><a class="email" href="mailto:shade.poczta&#64;gmail.com" title="shade &lt;shade.poczta&#64;gmail.com&gt;"> <span class="fn">shade</span></a>
 </span></b>
-        <pre>Same problem now with free radeon driver (still problem was never fixed) on
-openSUSE 13.1 and Fedora 19.</pre>
+        <pre>I was thinking about adding a bug, but i found this. Looks like i could have a
+small clue or it is just in my case.
+
+I have standard HDMI cable, and my screen is black after grub, but monitor have
+signal all the time. I found that i need to force monitor to check again for
+signal settings, aka change zoom in/hdmi overscan (in monitor device settings
+using pilot/buttons on it) or something simular and then all shows up. After
+every restart or changing monitor input from hdmi to other and again to hdmi it
+brakes again. I wasn't sure if that wasn't my monitor problem but this bug
+looks same and its about hdmi output signal. Every log dmesg/xorg/others does
+not show any problems also.
+
+Changing resolution or other settings with xrandr does not affect information
+showed by monitor info section (all time shows full hd&#64;60Hz) even if xrandr
+says its set to other.
+
+I got:
+3.11.5 kernel (same on 3.11.6)
+xorg 1.14.3 (same on live trunk from today)
+nouveau 1.0.9 (same on live trunk from today)
+
+Hardware:
+GFX 950 TI Boost aka NVE6</pre>
         </div>
       </p>
       <hr>
@@ -110,9 +117,9 @@ openSUSE 13.1 and Fedora 19.</pre>
     </body>
 </html>
 
---1382889901.DdB72.7347--
+--1382894387.cA44DFba3.20809--
 
---===============2023637733==
+--===============0927492020==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +130,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2023637733==--
+--===============0927492020==--
