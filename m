@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38687] Wrong resolution on LCD TV's
-Date: Sun, 27 Oct 2013 16:03:21 +0000
-Message-ID: <bug-38687-8800-zDIK9OYwHc@http.bugs.freedesktop.org/>
+Date: Sun, 27 Oct 2013 16:05:01 +0000
+Message-ID: <bug-38687-8800-wCNLQ3THae@http.bugs.freedesktop.org/>
 References: <bug-38687-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1891697301=="
+Content-Type: multipart/mixed; boundary="===============2023637733=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-38687-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1891697301==
-Content-Type: multipart/alternative; boundary="1382889801.Ced31.7113"; charset="us-ascii"
+--===============2023637733==
+Content-Type: multipart/alternative; boundary="1382889901.DdB72.7347"; charset="us-ascii"
 
 
---1382889801.Ced31.7113
-Date: Sun, 27 Oct 2013 16:03:21 +0000
+--1382889901.DdB72.7347
+Date: Sun, 27 Oct 2013 16:05:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,19 +35,20 @@ Damian <damianatorrpm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|INVALID                     |---
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |xorg-driver-ati-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+                   |rg                          |
+          Component|Driver/nouveau              |Driver/Radeon
 
---- Comment #15 from Damian <damianatorrpm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I have the same problem now with free radeon driver on openSUSE 13.1 as well as
-on Fedora 19.
+--- Comment #16 from Damian <damianatorrpm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Same problem now with free radeon driver (still problem was never fixed) on
+openSUSE 13.1 and Fedora 19.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1382889801.Ced31.7113
-Date: Sun, 27 Oct 2013 16:03:21 +0000
+--1382889901.DdB72.7347
+Date: Sun, 27 Oct 2013 16:05:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,18 +71,18 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>RESOLVED
+           <td style="text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
            </td>
-           <td>REOPENED
+           <td>xorg-driver-ati&#64;lists.x.org
            </td>
          </tr>
 
          <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>INVALID
+           <td style="text-align:right;">Component</td>
+           <td>Driver/nouveau
            </td>
-           <td>---
+           <td>Driver/Radeon
            </td>
          </tr></table>
       <p>
@@ -89,15 +90,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - Wrong resolution on LCD TV's"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38687#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38687#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - Wrong resolution on LCD TV's"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=38687">bug 38687</a>
               from <span class="vcard"><a class="email" href="mailto:damianatorrpm&#64;gmail.com" title="Damian &lt;damianatorrpm&#64;gmail.com&gt;"> <span class="fn">Damian</span></a>
 </span></b>
-        <pre>I have the same problem now with free radeon driver on openSUSE 13.1 as well as
-on Fedora 19.</pre>
+        <pre>Same problem now with free radeon driver (still problem was never fixed) on
+openSUSE 13.1 and Fedora 19.</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +110,9 @@ on Fedora 19.</pre>
     </body>
 </html>
 
---1382889801.Ced31.7113--
+--1382889901.DdB72.7347--
 
---===============1891697301==
+--===============2023637733==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +123,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1891697301==--
+--===============2023637733==--
