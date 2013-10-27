@@ -1,120 +1,125 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] drm/nouveau/agp: add a quirk list to limit agp modes
-Date: Sun, 27 Oct 2013 11:54:09 -0400
-Message-ID: <1382889249-6822-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 38687] Wrong resolution on LCD TV's
+Date: Sun, 27 Oct 2013 16:03:21 +0000
+Message-ID: <bug-38687-8800-zDIK9OYwHc@http.bugs.freedesktop.org/>
+References: <bug-38687-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: Jason Detring <detringj@gmail.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1891697301=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-38687-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Certain combinations of hardware can't actually support the maximum
-detected speed. Add a quirk list that lists pairs of hostbridge/chip pci
-ids and the mode that they should work with.
 
-See https://bugs.freedesktop.org/show_bug.cgi?id=20341
+--===============1891697301==
+Content-Type: multipart/alternative; boundary="1382889801.Ced31.7113"; charset="us-ascii"
 
-Reported-by: Jason Detring <detringj@gmail.com>
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
----
 
-I didn't go as far as subdevice matching... IMO that's overkill for now.
+--1382889801.Ced31.7113
+Date: Sun, 27 Oct 2013 16:03:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
- drivers/gpu/drm/nouveau/nouveau_agp.c | 44 +++++++++++++++++++++++++++++++----
- 1 file changed, 39 insertions(+), 5 deletions(-)
+https://bugs.freedesktop.org/show_bug.cgi?id=38687
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_agp.c b/drivers/gpu/drm/nouveau/nouveau_agp.c
-index 6e7a55f..2953c4e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_agp.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_agp.c
-@@ -11,10 +11,28 @@ MODULE_PARM_DESC(agpmode, "AGP mode (0 to disable AGP)");
- static int nouveau_agpmode = -1;
- module_param_named(agpmode, nouveau_agpmode, int, 0400);
- 
-+struct nouveau_agpmode_quirk {
-+	u16 hostbridge_vendor;
-+	u16 hostbridge_device;
-+	u16 chip_vendor;
-+	u16 chip_device;
-+	int mode;
-+};
-+
-+static struct nouveau_agpmode_quirk nouveau_agpmode_quirk_list[] = {
-+	/* VIA Apollo PRO133x / GeForce FX 5600 Ultra, max agpmode 2, fdo #20341 */
-+	{ PCI_VENDOR_ID_VIA, 0x0691, PCI_VENDOR_ID_NVIDIA, 0x0311, 2 },
-+
-+	{},
-+};
-+
- static unsigned long
--get_agp_mode(struct nouveau_drm *drm, unsigned long mode)
-+get_agp_mode(struct nouveau_drm *drm, const struct drm_agp_info *info)
- {
- 	struct nouveau_device *device = nv_device(drm->device);
-+	struct nouveau_agpmode_quirk *quirk = nouveau_agpmode_quirk_list;
-+	int agpmode = nouveau_agpmode;
-+	unsigned long mode = info->mode;
- 
- 	/*
- 	 * FW seems to be broken on nv18, it makes the card lock up
-@@ -24,11 +42,27 @@ get_agp_mode(struct nouveau_drm *drm, unsigned long mode)
- 		mode &= ~PCI_AGP_COMMAND_FW;
- 
- 	/*
-+	 * Go through the quirks list and adjust the agpmode accordingly.
-+	 */
-+	while (agpmode == -1 && quirk->hostbridge_vendor) {
-+		if (info->id_vendor == quirk->hostbridge_vendor &&
-+		    info->id_device == quirk->hostbridge_device &&
-+		    device->pdev->vendor == quirk->chip_vendor &&
-+		    device->pdev->device == quirk->chip_device) {
-+			agpmode = quirk->mode;
-+			nv_info(device, "Forcing agp mode to %dX. Use agpmode to override.\n",
-+				agpmode);
-+			break;
-+		}
-+		++quirk;
-+	}
-+
-+	/*
- 	 * AGP mode set in the command line.
- 	 */
--	if (nouveau_agpmode > 0) {
-+	if (agpmode > 0) {
- 		bool agpv3 = mode & 0x8;
--		int rate = agpv3 ? nouveau_agpmode / 4 : nouveau_agpmode;
-+		int rate = agpv3 ? agpmode / 4 : agpmode;
- 
- 		mode = (mode & ~0x7) | (rate & 0x7);
- 	}
-@@ -90,7 +124,7 @@ nouveau_agp_reset(struct nouveau_drm *drm)
- 		if (ret)
- 			return;
- 
--		mode.mode  = get_agp_mode(drm, info.mode);
-+		mode.mode  = get_agp_mode(drm, &info);
- 		mode.mode &= ~PCI_AGP_COMMAND_FW;
- 
- 		ret = drm_agp_enable(dev, mode);
-@@ -139,7 +173,7 @@ nouveau_agp_init(struct nouveau_drm *drm)
- 	}
- 
- 	/* see agp.h for the AGPSTAT_* modes available */
--	mode.mode = get_agp_mode(drm, info.mode);
-+	mode.mode = get_agp_mode(drm, &info);
- 
- 	ret = drm_agp_enable(dev, mode);
- 	if (ret) {
+Damian <damianatorrpm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|INVALID                     |---
+
+--- Comment #15 from Damian <damianatorrpm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I have the same problem now with free radeon driver on openSUSE 13.1 as well as
+on Fedora 19.
+
 -- 
-1.8.1.5
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1382889801.Ced31.7113
+Date: Sun, 27 Oct 2013 16:03:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:damianatorrpm&#64;gmail.com" title="Damian &lt;damianatorrpm&#64;gmail.com&gt;"> <span class="fn">Damian</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - Wrong resolution on LCD TV's"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38687">bug 38687</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>INVALID
+           </td>
+           <td>---
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - Wrong resolution on LCD TV's"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38687#c15">Comment # 15</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - Wrong resolution on LCD TV's"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38687">bug 38687</a>
+              from <span class="vcard"><a class="email" href="mailto:damianatorrpm&#64;gmail.com" title="Damian &lt;damianatorrpm&#64;gmail.com&gt;"> <span class="fn">Damian</span></a>
+</span></b>
+        <pre>I have the same problem now with free radeon driver on openSUSE 13.1 as well as
+on Fedora 19.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1382889801.Ced31.7113--
+
+--===============1891697301==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1891697301==--
