@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70927] New: nv50_instobj_wr32 kernel panic
-Date: Sun, 27 Oct 2013 18:02:42 +0000
-Message-ID: <bug-70927-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70927] nv50_instobj_wr32 kernel panic
+Date: Sun, 27 Oct 2013 18:48:49 +0000
+Message-ID: <bug-70927-8800-WjhGfi8N8l@http.bugs.freedesktop.org/>
+References: <bug-70927-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1732158384=="
+Content-Type: multipart/mixed; boundary="===============2006691869=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-70927-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,175 +20,79 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1732158384==
-Content-Type: multipart/alternative; boundary="1382896962.6a080.28192"; charset="us-ascii"
+--===============2006691869==
+Content-Type: multipart/alternative; boundary="1382899729.CcE8B3AA0.3431"; charset="us-ascii"
 
 
---1382896962.6a080.28192
-Date: Sun, 27 Oct 2013 18:02:42 +0000
+--1382899729.CcE8B3AA0.3431
+Date: Sun, 27 Oct 2013 18:48:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70927
+https://bugs.freedesktop.org/show_bug.cgi?id=3D70927
 
-          Priority: medium
-            Bug ID: 70927
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: nv50_instobj_wr32 kernel panic
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: antoniovazquezblanco-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: 9.2
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
+--- Comment #1 from Antonio V=C3=A1zquez Blanco <antoniovazquezblanco@gmail=
+.com> ---
+Created attachment 88193
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D88193&action=3Dedit
+Kernel log vw
 
-Created attachment 88189
-  --> https://bugs.freedesktop.org/attachment.cgi?id=88189&action=edit
-Kernel panic log.
+Updated log. Previous was not ok.
 
-I usually get kernel panics on my Alienware M14X R2.
-
-Using Archlinux up to date.
-Linux alienarch 3.11.6-1-ARCH #1 SMP PREEMPT Fri Oct 18 23:22:36 CEST 2013
-x86_64 GNU/Linux
-
-Nouveau is at 9.2.2
-
-Kernel panic log attached.
-
-What else can I do in order to help?
-
-Thanks.
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1382896962.6a080.28192
-Date: Sun, 27 Oct 2013 18:02:42 +0000
+--1382899729.CcE8B3AA0.3431
+Date: Sun, 27 Oct 2013 18:48:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nv50_instobj_wr32 kernel panic"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70927">70927</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>nv50_instobj_wr32 kernel panic
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>antoniovazquezblanco&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>9.2
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=88189" name="attach_88189" title="Kernel panic log.">attachment 88189</a> <a href="attachment.cgi?id=88189&amp;action=edit" title="Kernel panic log.">[details]</a></span>
-Kernel panic log.
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - nv50_instobj_wr32 kernel panic"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70927#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - nv50_instobj_wr32 kernel panic"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70927">bug 70927<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+antoniovazquezblanco&#64;gmail.com" title=3D"Antonio V=C3=A1zquez Blanco &l=
+t;antoniovazquezblanco&#64;gmail.com&gt;"> <span class=3D"fn">Antonio V=C3=
+=A1zquez Blanco</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D88193"=
+ name=3D"attach_88193" title=3D"Kernel log vw">attachment 88193</a> <a href=
+=3D"attachment.cgi?id=3D88193&amp;action=3Dedit" title=3D"Kernel log vw">[d=
+etails]</a></span>
+Kernel log vw
 
-I usually get kernel panics on my Alienware M14X R2.
-
-Using Archlinux up to date.
-Linux alienarch 3.11.6-1-ARCH #1 SMP PREEMPT Fri Oct 18 23:22:36 CEST 2013
-x86_64 GNU/Linux
-
-Nouveau is at 9.2.2
-
-Kernel panic log attached.
-
-What else can I do in order to help?
-
-Thanks.</pre>
+Updated log. Previous was not ok.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1382896962.6a080.28192--
+--1382899729.CcE8B3AA0.3431--
 
---===============1732158384==
+--===============2006691869==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -197,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1732158384==--
+--===============2006691869==--
