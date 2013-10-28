@@ -1,19 +1,11 @@
-From: Eugene Shatokhin <euspectre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: MmioTrace: Using the Instruction Decoder, etc.
-Date: Mon, 28 Oct 2013 22:57:04 +0400
-Message-ID: <CAL5fWtCFYru81wJoe3F9ysn0emq=C3tunRmUMcr_tKXCJTsQbw@mail.gmail.com>
-References: <CAL5fWtDBJUT0sK+rT9fD+BbFtwPuF4oBCUo8Gs+_aRMH4R_p=w@mail.gmail.com>
-	<20131017194614.64a6b70e@farn.lan>
-	<CAL5fWtBS88Ni3bUiUgmaj32PQ7QHTnnRd9GEKW5uRJycxYY4Hg@mail.gmail.com>
-	<20131019101417.50a33eaf@farn.lan>
-	<CAL5fWtCUEfSSY=i-50SfgmTeuKgEh28wz492Be1ORJPidj_CvA@mail.gmail.com>
-	<20131025120846.277e85aa@farn.lan>
-	<CAL5fWtBggbZF3a3TaQ_Cx3QD_vXa2bT2behV20OdJN9DCKYh9g@mail.gmail.com>
-	<20131028133049.65adf92e@farn.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70972] New: Nouveau fails with broken screen on nv40
+ with kernel 3.12
+Date: Mon, 28 Oct 2013 22:01:43 +0000
+Message-ID: <bug-70972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1070847673=="
+Content-Type: multipart/mixed; boundary="===============1789484964=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20131028133049.65adf92e-DA5HUFbJnAM@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,110 +15,199 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1070847673==
-Content-Type: multipart/alternative; boundary=001a11c1e9808446fc04e9d1aaa5
 
---001a11c1e9808446fc04e9d1aaa5
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hi,
-
-That's OK.
-
-The first rule of a good software developer is, they say, 'if that works -
-don't touch it'. :-)
-
-There are definitely many other things to do.
-
-Thanks for your feedback!
-
-Regards,
-Eugene
+--===============1789484964==
+Content-Type: multipart/alternative; boundary="1382997703.Fb6e801.11128"; charset="us-ascii"
 
 
+--1382997703.Fb6e801.11128
+Date: Mon, 28 Oct 2013 22:01:43 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-2013/10/28 Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+https://bugs.freedesktop.org/show_bug.cgi?id=70972
 
-> On Fri, 25 Oct 2013 17:19:56 +0400
-> Eugene Shatokhin <euspectre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->
-> > Hi,
-> >
-> > 2013/10/25 Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
-> >
-> ...
-> > > We could use some comments from the real reverse-engineers. I used
-> > > to be mostly a tool writer.
-> > >
-> >
-> > Yes, if some experts could share their knowledge of this matter, this
-> would
-> > be most welcome!
->
-> Hi,
->
-> I got one comment in IRC, saying that a faster mmiotrace would be
-> nice, but probably not something he would invest time in.
->
-> Looking at it from that point of view, I guess mmiotrace works well enough,
-> and is "only" a reverse-engineering tool, not something used daily.
-> That, and the lack of replies here indicate that rewriting mmiotrace
-> with your approach might not be worth it. I don't think anyone
-> opposes to the idea, they just have better things to do.
->
-> It's all up to you, I believe.
->
->
-> Thanks,
-> pq
->
+          Priority: medium
+            Bug ID: 70972
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Nouveau fails with broken screen on nv40 with kernel
+                    3.12
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: major
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: larry.finger-tQ5ms3gMjBLk1uMJSBkQmQ@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
---001a11c1e9808446fc04e9d1aaa5
-Content-Type: text/html; charset=ISO-8859-1
+Created attachment 88259
+  --> https://bugs.freedesktop.org/attachment.cgi?id=88259&action=edit
+Output of dmesg
 
-<div dir="ltr"><div>Hi,<br></div><div><br></div><div>That&#39;s OK. </div><div><br></div><div>The first rule of a good software developer is, they say, &#39;if that works - don&#39;t touch it&#39;. :-)</div><div><br></div>
-<div>There are definitely many other things to do.</div><div><br></div><div>Thanks for your feedback!</div><div><br></div><div>Regards,</div><div>Eugene</div><div><br></div></div><div class="gmail_extra"><br><br><div class="gmail_quote">
-2013/10/28 Pekka Paalanen <span dir="ltr">&lt;<a href="mailto:pq-X3B1VOXEql0@public.gmane.org" target="_blank">pq-X3B1VOXEql0@public.gmane.org</a>&gt;</span><br><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class="im">
-On Fri, 25 Oct 2013 17:19:56 +0400<br>
-Eugene Shatokhin &lt;<a href="mailto:euspectre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">euspectre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wrote:<br>
-<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; 2013/10/25 Pekka Paalanen &lt;<a href="mailto:pq-X3B1VOXEql0@public.gmane.org">pq-X3B1VOXEql0@public.gmane.org</a>&gt;<br>
-&gt;<br>
-</div>...<br>
-<div class="im">&gt; &gt; We could use some comments from the real reverse-engineers. I used<br>
-&gt; &gt; to be mostly a tool writer.<br>
-&gt; &gt;<br>
-&gt;<br>
-&gt; Yes, if some experts could share their knowledge of this matter, this would<br>
-&gt; be most welcome!<br>
-<br>
-</div>Hi,<br>
-<br>
-I got one comment in IRC, saying that a faster mmiotrace would be<br>
-nice, but probably not something he would invest time in.<br>
-<br>
-Looking at it from that point of view, I guess mmiotrace works well enough,<br>
-and is &quot;only&quot; a reverse-engineering tool, not something used daily.<br>
-That, and the lack of replies here indicate that rewriting mmiotrace<br>
-with your approach might not be worth it. I don&#39;t think anyone<br>
-opposes to the idea, they just have better things to do.<br>
-<br>
-It&#39;s all up to you, I believe.<br>
-<br>
-<br>
-Thanks,<br>
-pq<br>
-</blockquote></div><br></div>
+With nouveau on the graphics adapter on an HP dv2815nr laptop, both console and
+X displays show an incorrect scan length with a resulting garbled screen.
 
---001a11c1e9808446fc04e9d1aaa5--
+The 'lspci -nnv' for this adapter is
 
---===============1070847673==
+00:12.0 VGA compatible controller [0300]: NVIDIA Corporation C67 [GeForce 7150M
+/ nForce 630M] [10de:0531] (rev a2) (prog-if 00 [VGA controller])
+        Subsystem: Hewlett-Packard Company Device [103c:30d6]
+        Flags: bus master, 66MHz, fast devsel, latency 0, IRQ 10
+        Memory at f4000000 (32-bit, non-prefetchable) [size=16M]
+        Memory at d0000000 (64-bit, prefetchable) [size=256M]
+        Memory at f0000000 (64-bit, non-prefetchable) [size=16M]
+        [virtual] Expansion ROM at c0000000 [disabled] [size=128K]
+        Capabilities: <access denied>
+        Kernel modules: nouveau
+
+This device has never worked with nouveau on any kernel. I am trying to make it
+work now as the nv driver is failing in certain cases, and fbdev cannot use the
+optimum resolution (1600 x 800) for this laptop.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1382997703.Fb6e801.11128
+Date: Mon, 28 Oct 2013 22:01:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Nouveau fails with broken screen on nv40 with kernel 3.12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972">70972</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nouveau fails with broken screen on nv40 with kernel 3.12
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>larry.finger&#64;lwfinger.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=88259" name="attach_88259" title="Output of dmesg">attachment 88259</a> <a href="attachment.cgi?id=88259&amp;action=edit" title="Output of dmesg">[details]</a></span>
+Output of dmesg
+
+With nouveau on the graphics adapter on an HP dv2815nr laptop, both console and
+X displays show an incorrect scan length with a resulting garbled screen.
+
+The 'lspci -nnv' for this adapter is
+
+00:12.0 VGA compatible controller [0300]: NVIDIA Corporation C67 [GeForce 7150M
+/ nForce 630M] [10de:0531] (rev a2) (prog-if 00 [VGA controller])
+        Subsystem: Hewlett-Packard Company Device [103c:30d6]
+        Flags: bus master, 66MHz, fast devsel, latency 0, IRQ 10
+        Memory at f4000000 (32-bit, non-prefetchable) [size=16M]
+        Memory at d0000000 (64-bit, prefetchable) [size=256M]
+        Memory at f0000000 (64-bit, non-prefetchable) [size=16M]
+        [virtual] Expansion ROM at c0000000 [disabled] [size=128K]
+        Capabilities: &lt;access denied&gt;
+        Kernel modules: nouveau
+
+This device has never worked with nouveau on any kernel. I am trying to make it
+work now as the nv driver is failing in certain cases, and fbdev cannot use the
+optimum resolution (1600 x 800) for this laptop.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1382997703.Fb6e801.11128--
+
+--===============1789484964==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -137,4 +218,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1070847673==--
+--===============1789484964==--
