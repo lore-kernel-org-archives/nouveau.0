@@ -1,60 +1,118 @@
-From: Pekka Paalanen <pq@iki.fi>
-Subject: Re: MmioTrace: Using the Instruction Decoder, etc.
-Date: Mon, 28 Oct 2013 13:30:49 +0200
-Message-ID: <20131028133049.65adf92e@farn.lan>
-References: <CAL5fWtDBJUT0sK+rT9fD+BbFtwPuF4oBCUo8Gs+_aRMH4R_p=w@mail.gmail.com>
-	<20131017194614.64a6b70e@farn.lan>
-	<CAL5fWtBS88Ni3bUiUgmaj32PQ7QHTnnRd9GEKW5uRJycxYY4Hg@mail.gmail.com>
-	<20131019101417.50a33eaf@farn.lan>
-	<CAL5fWtCUEfSSY=i-50SfgmTeuKgEh28wz492Be1ORJPidj_CvA@mail.gmail.com>
-	<20131025120846.277e85aa@farn.lan>
-	<CAL5fWtBggbZF3a3TaQ_Cx3QD_vXa2bT2behV20OdJN9DCKYh9g@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
+Date: Mon, 28 Oct 2013 11:59:01 +0000
+Message-ID: <bug-64323-8800-nx1mfjM3yY@http.bugs.freedesktop.org/>
+References: <bug-64323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <CAL5fWtBggbZF3a3TaQ_Cx3QD_vXa2bT2behV20OdJN9DCKYh9g@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Eugene Shatokhin <euspectre@gmail.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0363818024=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 25 Oct 2013 17:19:56 +0400
-Eugene Shatokhin <euspectre@gmail.com> wrote:
 
-> Hi,
-> 
-> 2013/10/25 Pekka Paalanen <pq@iki.fi>
-> 
-...
-> > We could use some comments from the real reverse-engineers. I used
-> > to be mostly a tool writer.
-> >
-> 
-> Yes, if some experts could share their knowledge of this matter, this would
-> be most welcome!
-
-Hi,
-
-I got one comment in IRC, saying that a faster mmiotrace would be
-nice, but probably not something he would invest time in.
-
-Looking at it from that point of view, I guess mmiotrace works well enough,
-and is "only" a reverse-engineering tool, not something used daily.
-That, and the lack of replies here indicate that rewriting mmiotrace
-with your approach might not be worth it. I don't think anyone
-opposes to the idea, they just have better things to do.
-
-It's all up to you, I believe.
+--===============0363818024==
+Content-Type: multipart/alternative; boundary="1382961541.CAFfE02.3356"; charset="us-ascii"
 
 
-Thanks,
-pq
+--1382961541.CAFfE02.3356
+Date: Mon, 28 Oct 2013 11:59:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=64323
+
+--- Comment #7 from anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I'm getting similar rendering issues with a 8800 GT card in all Source Engine
+games (tested in Team Fortress 2, Counter-Strike Source and Dota 2), but I'm
+not sure if it's the same bug.
+Mine is similar to the one reported in Valve's tracker:
+https://github.com/ValveSoftware/Source-1-Games/issues/200
+There's a youtube video with show the exact same problem I am experiencing:
+https://www.youtube.com/watch?v=XLtl7VqnXoE
+
+I'm using ArchLinux.
+xf86-video-nouveau 1.0.9-1
+nouveau-dri 9.2.2-1
+libdrm 2.4.47-1
+linux 3.11.6-1
+mesa 9.2.2-1
+
+Should I open another bug report, or is this the same problem?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1382961541.CAFfE02.3356
+Date: Mon, 28 Oct 2013 11:59:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
+              from <span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="anakin.cs&#64;gmail.com">anakin.cs&#64;gmail.com</a>
+</span></b>
+        <pre>I'm getting similar rendering issues with a 8800 GT card in all Source Engine
+games (tested in Team Fortress 2, Counter-Strike Source and Dota 2), but I'm
+not sure if it's the same bug.
+Mine is similar to the one reported in Valve's tracker:
+<a href="https://github.com/ValveSoftware/Source-1-Games/issues/200">https://github.com/ValveSoftware/Source-1-Games/issues/200</a>
+There's a youtube video with show the exact same problem I am experiencing:
+<a href="https://www.youtube.com/watch?v=XLtl7VqnXoE">https://www.youtube.com/watch?v=XLtl7VqnXoE</a>
+
+I'm using ArchLinux.
+xf86-video-nouveau 1.0.9-1
+nouveau-dri 9.2.2-1
+libdrm 2.4.47-1
+linux 3.11.6-1
+mesa 9.2.2-1
+
+Should I open another bug report, or is this the same problem?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1382961541.CAFfE02.3356--
+
+--===============0363818024==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0363818024==--
