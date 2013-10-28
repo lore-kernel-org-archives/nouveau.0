@@ -1,14 +1,19 @@
-From: Martin Kaffanke <martin.kaffanke-RbZlAiThDcE@public.gmane.org>
-Subject: Re: Trouble on kernel
-Date: Mon, 28 Oct 2013 18:23:29 +0100
-Message-ID: <526E9D91.2030003@gmx.at>
-References: <526E1619.9060402@gmx.at>	<CAKb7UvgaEqjAS7JDnQYio6DynTNk+yaDekwWPQpeEDdDDPmhpA@mail.gmail.com>	<526E915B.6070509@gmx.at>
-	<CAKb7UvjctRR3KMaTGroeSY7=N4SQgnGvZERo+X8fMh2uJahphA@mail.gmail.com>
+From: Eugene Shatokhin <euspectre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: MmioTrace: Using the Instruction Decoder, etc.
+Date: Mon, 28 Oct 2013 22:57:04 +0400
+Message-ID: <CAL5fWtCFYru81wJoe3F9ysn0emq=C3tunRmUMcr_tKXCJTsQbw@mail.gmail.com>
+References: <CAL5fWtDBJUT0sK+rT9fD+BbFtwPuF4oBCUo8Gs+_aRMH4R_p=w@mail.gmail.com>
+	<20131017194614.64a6b70e@farn.lan>
+	<CAL5fWtBS88Ni3bUiUgmaj32PQ7QHTnnRd9GEKW5uRJycxYY4Hg@mail.gmail.com>
+	<20131019101417.50a33eaf@farn.lan>
+	<CAL5fWtCUEfSSY=i-50SfgmTeuKgEh28wz492Be1ORJPidj_CvA@mail.gmail.com>
+	<20131025120846.277e85aa@farn.lan>
+	<CAL5fWtBggbZF3a3TaQ_Cx3QD_vXa2bT2behV20OdJN9DCKYh9g@mail.gmail.com>
+	<20131028133049.65adf92e@farn.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1070847673=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvjctRR3KMaTGroeSY7=N4SQgnGvZERo+X8fMh2uJahphA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <20131028133049.65adf92e-DA5HUFbJnAM@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,60 +23,118 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Am 2013-10-28 17:55, schrieb Ilia Mirkin:
-> On Mon, Oct 28, 2013 at 12:31 PM, Martin Kaffanke
-> <martin.kaffanke-RbZlAiThDcE@public.gmane.org> wrote:
->> Am 2013-10-28 15:42, schrieb Ilia Mirkin:
->>>> dmesg tells me:
->>>>
->>>> [  686.209019] nouveau E[    PBUS][0000:00:0d.0] MMIO write of 0x00000000
->>>> FAULT at 0x00b020
->>>
->>>
->>> Odd. That's VPE. You should have one... maybe not. Nothing to worry
->>> about though. (Especially odd that it's showing up multiple times --
->>> are you trying to use xvmc?)
->>
->>
->> At the moment I'm trying nothing, its the default installation, i didn't
->> change something.
->>
->> Where do I have to look to find it out?
+--===============1070847673==
+Content-Type: multipart/alternative; boundary=001a11c1e9808446fc04e9d1aaa5
+
+--001a11c1e9808446fc04e9d1aaa5
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi,
+
+That's OK.
+
+The first rule of a good software developer is, they say, 'if that works -
+don't touch it'. :-)
+
+There are definitely many other things to do.
+
+Thanks for your feedback!
+
+Regards,
+Eugene
+
+
+
+2013/10/28 Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+
+> On Fri, 25 Oct 2013 17:19:56 +0400
+> Eugene Shatokhin <euspectre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
 >
-> Meh. Like I said, don't worry about it. On closer inspection, it's
-> most likely the nv31_mpeg_tile_prog function. Although why it's
-> getting addresses of 0... I don't know. (And also why it's getting
-> run, I don't know either. Something must be starting up either xvmc or
-> vdpau, the latter of which won't work for your card.)
-
-Ok, if that is not my problem, so that doesn't matter.
-
+> > Hi,
+> >
+> > 2013/10/25 Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+> >
+> ...
+> > > We could use some comments from the real reverse-engineers. I used
+> > > to be mostly a tool writer.
+> > >
+> >
+> > Yes, if some experts could share their knowledge of this matter, this
+> would
+> > be most welcome!
 >
-> Well, if compiz/something else *crashes* (i.e.
-> segfault/sigbus/whatever), it's likely there's a log of it. Perhaps
-> look in .xsession-errors, or run it inside gdb? Or are you saying that
-> you get a hard hang? Can you ssh into the machine when that happens?
+> Hi,
+>
+> I got one comment in IRC, saying that a faster mmiotrace would be
+> nice, but probably not something he would invest time in.
+>
+> Looking at it from that point of view, I guess mmiotrace works well enough,
+> and is "only" a reverse-engineering tool, not something used daily.
+> That, and the lack of replies here indicate that rewriting mmiotrace
+> with your approach might not be worth it. I don't think anyone
+> opposes to the idea, they just have better things to do.
+>
+> It's all up to you, I believe.
+>
+>
+> Thanks,
+> pq
+>
 
-Hm.  I don't really know, i installed the ssh server not so i can test this.
+--001a11c1e9808446fc04e9d1aaa5
+Content-Type: text/html; charset=ISO-8859-1
 
-but the last 'crash', the xserver was not possible to work on it any more,
-just seeing horizontal stripes instead of a picture, let me go back to the
-console and dmesg gives now additional:
+<div dir="ltr"><div>Hi,<br></div><div><br></div><div>That&#39;s OK. </div><div><br></div><div>The first rule of a good software developer is, they say, &#39;if that works - don&#39;t touch it&#39;. :-)</div><div><br></div>
+<div>There are definitely many other things to do.</div><div><br></div><div>Thanks for your feedback!</div><div><br></div><div>Regards,</div><div>Eugene</div><div><br></div></div><div class="gmail_extra"><br><br><div class="gmail_quote">
+2013/10/28 Pekka Paalanen <span dir="ltr">&lt;<a href="mailto:pq-X3B1VOXEql0@public.gmane.org" target="_blank">pq-X3B1VOXEql0@public.gmane.org</a>&gt;</span><br><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class="im">
+On Fri, 25 Oct 2013 17:19:56 +0400<br>
+Eugene Shatokhin &lt;<a href="mailto:euspectre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">euspectre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wrote:<br>
+<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; 2013/10/25 Pekka Paalanen &lt;<a href="mailto:pq-X3B1VOXEql0@public.gmane.org">pq-X3B1VOXEql0@public.gmane.org</a>&gt;<br>
+&gt;<br>
+</div>...<br>
+<div class="im">&gt; &gt; We could use some comments from the real reverse-engineers. I used<br>
+&gt; &gt; to be mostly a tool writer.<br>
+&gt; &gt;<br>
+&gt;<br>
+&gt; Yes, if some experts could share their knowledge of this matter, this would<br>
+&gt; be most welcome!<br>
+<br>
+</div>Hi,<br>
+<br>
+I got one comment in IRC, saying that a faster mmiotrace would be<br>
+nice, but probably not something he would invest time in.<br>
+<br>
+Looking at it from that point of view, I guess mmiotrace works well enough,<br>
+and is &quot;only&quot; a reverse-engineering tool, not something used daily.<br>
+That, and the lack of replies here indicate that rewriting mmiotrace<br>
+with your approach might not be worth it. I don&#39;t think anyone<br>
+opposes to the idea, they just have better things to do.<br>
+<br>
+It&#39;s all up to you, I believe.<br>
+<br>
+<br>
+Thanks,<br>
+pq<br>
+</blockquote></div><br></div>
 
-[29361.912198] nouveau E[   PFIFO][0000:00:0d.0] CACHE_ERROR - ch 1 
-[Xorg[1029]] subc 4 mthd 0x0188 data 0x80000003
-[29361.912206] nouveau E[  PGRAPH][0000:00:0d.0]  ERROR nsource: 
-ILLEGAL_MTHD nstatus: INVALID_STATE BAD_ARGUMENT PROTECTION_FAULT
+--001a11c1e9808446fc04e9d1aaa5--
 
-see the full dmesg:
-http://ubuntuone.com/5rZQABeUirzvxUSIDhWTcY
+--===============1070847673==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-After that i made a reboot, because a 'sudo service lightdm restart' 
-does something strange:  I have an additional LightDM User there, which 
-is not there after reboot....  - but thats another problem. :)
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
 
-Martin
+--===============1070847673==--
