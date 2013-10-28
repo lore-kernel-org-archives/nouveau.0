@@ -1,155 +1,60 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70927] nv50_instobj_wr32 kernel panic
-Date: Mon, 28 Oct 2013 08:23:00 +0000
-Message-ID: <bug-70927-8800-u2Z4A2d16C@http.bugs.freedesktop.org/>
-References: <bug-70927-8800@http.bugs.freedesktop.org/>
+From: Pekka Paalanen <pq@iki.fi>
+Subject: Re: MmioTrace: Using the Instruction Decoder, etc.
+Date: Mon, 28 Oct 2013 13:30:49 +0200
+Message-ID: <20131028133049.65adf92e@farn.lan>
+References: <CAL5fWtDBJUT0sK+rT9fD+BbFtwPuF4oBCUo8Gs+_aRMH4R_p=w@mail.gmail.com>
+	<20131017194614.64a6b70e@farn.lan>
+	<CAL5fWtBS88Ni3bUiUgmaj32PQ7QHTnnRd9GEKW5uRJycxYY4Hg@mail.gmail.com>
+	<20131019101417.50a33eaf@farn.lan>
+	<CAL5fWtCUEfSSY=i-50SfgmTeuKgEh28wz492Be1ORJPidj_CvA@mail.gmail.com>
+	<20131025120846.277e85aa@farn.lan>
+	<CAL5fWtBggbZF3a3TaQ_Cx3QD_vXa2bT2behV20OdJN9DCKYh9g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0034092180=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70927-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
+In-Reply-To: <CAL5fWtBggbZF3a3TaQ_Cx3QD_vXa2bT2behV20OdJN9DCKYh9g@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
+To: Eugene Shatokhin <euspectre@gmail.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
+On Fri, 25 Oct 2013 17:19:56 +0400
+Eugene Shatokhin <euspectre@gmail.com> wrote:
 
---===============0034092180==
-Content-Type: multipart/alternative; boundary="1382948580.1D3fe0.17751"; charset="us-ascii"
+> Hi,
+> 
+> 2013/10/25 Pekka Paalanen <pq@iki.fi>
+> 
+...
+> > We could use some comments from the real reverse-engineers. I used
+> > to be mostly a tool writer.
+> >
+> 
+> Yes, if some experts could share their knowledge of this matter, this would
+> be most welcome!
+
+Hi,
+
+I got one comment in IRC, saying that a faster mmiotrace would be
+nice, but probably not something he would invest time in.
+
+Looking at it from that point of view, I guess mmiotrace works well enough,
+and is "only" a reverse-engineering tool, not something used daily.
+That, and the lack of replies here indicate that rewriting mmiotrace
+with your approach might not be worth it. I don't think anyone
+opposes to the idea, they just have better things to do.
+
+It's all up to you, I believe.
 
 
---1382948580.1D3fe0.17751
-Date: Mon, 28 Oct 2013 08:23:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D70927
-
-Antonio V=C3=A1zquez Blanco <antoniovazquezblanco-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #88189|0                           |1
-        is obsolete|                            |
-  Attachment #88193|0                           |1
-        is obsolete|                            |
-
---- Comment #3 from Antonio V=C3=A1zquez Blanco <antoniovazquezblanco@gmail=
-.com> ---
-Created attachment 88210
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D88210&action=3Dedit
-Full log
-
-Now having a look to the full log I can see a lot of other things that shou=
-ld
-be taken into account. Sorry for cutting the information.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1382948580.1D3fe0.17751
-Date: Mon, 28 Oct 2013 08:23:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:antoniova=
-zquezblanco&#64;gmail.com" title=3D"Antonio V=C3=A1zquez Blanco &lt;antonio=
-vazquezblanco&#64;gmail.com&gt;"> <span class=3D"fn">Antonio V=C3=A1zquez B=
-lanco</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nv50_instobj_wr32 kernel panic"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70927">bug 70927<=
-/a>
-        <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #88189 is obsolete</t=
-d>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #88193 is obsolete</t=
-d>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nv50_instobj_wr32 kernel panic"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70927#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nv50_instobj_wr32 kernel panic"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70927">bug 70927<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-antoniovazquezblanco&#64;gmail.com" title=3D"Antonio V=C3=A1zquez Blanco &l=
-t;antoniovazquezblanco&#64;gmail.com&gt;"> <span class=3D"fn">Antonio V=C3=
-=A1zquez Blanco</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D88210"=
- name=3D"attach_88210" title=3D"Full log">attachment 88210</a> <a href=3D"a=
-ttachment.cgi?id=3D88210&amp;action=3Dedit" title=3D"Full log">[details]</a=
-></span>
-Full log
-
-Now having a look to the full log I can see a lot of other things that shou=
-ld
-be taken into account. Sorry for cutting the information.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1382948580.1D3fe0.17751--
-
---===============0034092180==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0034092180==--
+Thanks,
+pq
