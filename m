@@ -1,11 +1,13 @@
-From: Martin Kaffanke <martin.kaffanke-RbZlAiThDcE@public.gmane.org>
-Subject: Trouble on kernel
-Date: Mon, 28 Oct 2013 08:45:29 +0100
-Message-ID: <526E1619.9060402@gmx.at>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70452] [NV43] Graphical corruption after resume from
+ suspend or hibernation
+Date: Mon, 28 Oct 2013 08:02:01 +0000
+Message-ID: <bug-70452-8800-geZuiucwtn@http.bugs.freedesktop.org/>
+References: <bug-70452-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1701686577=="
 Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-70452-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,27 +20,82 @@ Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8Q
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi there,
 
-Sometimes my computer crashes since i use now ubuntu 13.10 with 
-unity/compiz.
+--===============1701686577==
+Content-Type: multipart/alternative; boundary="1382947321.CFdcE5e41.14141"; charset="us-ascii"
 
-dmesg tells me:
 
-[  686.209019] nouveau E[    PBUS][0000:00:0d.0] MMIO write of 
-0x00000000 FAULT at 0x00b020
+--1382947321.CFdcE5e41.14141
+Date: Mon, 28 Oct 2013 08:02:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-and later:
+https://bugs.freedesktop.org/show_bug.cgi?id=70452
 
-[ 1425.565441] nouveau E[  PGRAPH][0000:00:0d.0]  ERROR nsource: 
-DATA_ERROR nstatus: BAD_ARGUMENT
-[ 1425.565462] nouveau E[  PGRAPH][0000:00:0d.0] ch 3 [0x00056000 
-compiz[1970]] subc 2 class 0x0039 mthd 0x0314 data 0x031dc000
+Moi Jaiunvelo <moijaiunvelo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-So I don't really know where to start for debugging,
-if you could help me that would be great.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           See Also|                            |http://bugs.debian.org/7258
+                   |                            |71
 
-Full dmesg output on http://ubuntuone.com/3AVhp6HT2jU26HdfguAbdV
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-thanks,
-Martin
+--1382947321.CFdcE5e41.14141
+Date: Mon, 28 Oct 2013 08:02:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:moijaiunvelo&#64;gmail.com" title="Moi Jaiunvelo &lt;moijaiunvelo&#64;gmail.com&gt;"> <span class="fn">Moi Jaiunvelo</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV43] Graphical corruption after resume from suspend or hibernation"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70452">bug 70452</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">See Also</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>http://bugs.debian.org/725871
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1382947321.CFdcE5e41.14141--
+
+--===============1701686577==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1701686577==--
