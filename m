@@ -1,11 +1,15 @@
-From: Reid Vail <rsv869-XauvlLoUTru+XT7JhA+gdA@public.gmane.org>
-Subject: Fw: Dual monitor question
-Date: Mon, 28 Oct 2013 20:12:05 -0400
-Message-ID: <20131028201205.ed21f0472091cee806588733@roadrunner.com>
+From: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/agp: add a quirk list to limit
+	agp modes
+Date: Tue, 29 Oct 2013 09:23:28 -0400
+Message-ID: <CADnq5_PszKN2M8+Lb7d0ZvXftHMx8O0kBzYQ-aiPrzXqV9N0jg@mail.gmail.com>
+References: <1382889249-6822-1-git-send-email-imirkin@alum.mit.edu>
+	<526DD3A5.6080001@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <526DD3A5.6080001-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,46 +19,138 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Robert Hancock <hancockrwd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Jason Detring <detringj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Never heard a peep about this....wasn't sure it was actually posted.  Anyone seen this before.
+On Sun, Oct 27, 2013 at 11:01 PM, Robert Hancock <hancockrwd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On 10/27/2013 09:54 AM, Ilia Mirkin wrote:
+>>
+>> Certain combinations of hardware can't actually support the maximum
+>> detected speed. Add a quirk list that lists pairs of hostbridge/chip pci
+>> ids and the mode that they should work with.
+>>
+>> See https://bugs.freedesktop.org/show_bug.cgi?id=20341
+>
+>
+> It seems like this quirk is likely too specific. This almost certainly
+> affects more than 5600 Ultra cards and probably not just NV cards either. It
+> probably affects more VIA chipsets than this too.
+>
+> Given the amount of breakage that seems to exist with VIA AGP chipsets, I
+> would think that being much more aggressive and forcing AGP mode to 2X
+> maximum at the AGP driver level for all VIA chipsets doesn't seem like it
+> would be a bad idea.
 
-Thx
+The tricky part with AGP in general is that lowering the mode does not
+always improve stability.  There are a lot of cases where the only
+stable mode is the one set up by the bios and lowering it causes more
+instability.
 
-RSV869
+Alex
 
-
-
-Begin forwarded message:
-
-Date: Sat, 26 Oct 2013 11:45:35 -0400
-From: Gmail <rsv869-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Subject: Dual monitor question
-
-
-Hello Nouveau group -
-
-I am an OpenSuSE 12.3 user that's been struggling with a specific nouveau feature which I think should work, but not  so far for me.
-
-I have this card installed in my laptop; 	02:00.0 VGA compatible controller
-
-These are my Nouveau libs:			libdrm_nouvear2	2.4.42-1.1.1
-								xorg-x11-driver-video-nouveau	1.0.6-2.1.1
-
-My goal is to configure my settings so I can run with the normal laptop screen when mobile but change to DVI output by plugging in the monitor, closing the laptop and have ALL video output go to the DVI.  So far I can't get that to work.
-
-The desktop-settings config seems to recognize that the DVI is there, but no video actually appears on it. After I can see that that part works I want to change outputs from laptop to DVI port (secondary monitor) exclusively.
-
-Thoughts welcome.
-
-RSV869
-
-
--- 
-Gmail <rsv869-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-
-
--- 
-Reid Vail <rsv869-XauvlLoUTru+XT7JhA+gdA@public.gmane.org>
+>
+>>
+>> Reported-by: Jason Detring <detringj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+>> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+>> ---
+>>
+>> I didn't go as far as subdevice matching... IMO that's overkill for now.
+>>
+>>   drivers/gpu/drm/nouveau/nouveau_agp.c | 44
+>> +++++++++++++++++++++++++++++++----
+>>   1 file changed, 39 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/nouveau/nouveau_agp.c
+>> b/drivers/gpu/drm/nouveau/nouveau_agp.c
+>> index 6e7a55f..2953c4e 100644
+>> --- a/drivers/gpu/drm/nouveau/nouveau_agp.c
+>> +++ b/drivers/gpu/drm/nouveau/nouveau_agp.c
+>> @@ -11,10 +11,28 @@ MODULE_PARM_DESC(agpmode, "AGP mode (0 to disable
+>> AGP)");
+>>   static int nouveau_agpmode = -1;
+>>   module_param_named(agpmode, nouveau_agpmode, int, 0400);
+>>
+>> +struct nouveau_agpmode_quirk {
+>> +       u16 hostbridge_vendor;
+>> +       u16 hostbridge_device;
+>> +       u16 chip_vendor;
+>> +       u16 chip_device;
+>> +       int mode;
+>> +};
+>> +
+>> +static struct nouveau_agpmode_quirk nouveau_agpmode_quirk_list[] = {
+>> +       /* VIA Apollo PRO133x / GeForce FX 5600 Ultra, max agpmode 2, fdo
+>> #20341 */
+>> +       { PCI_VENDOR_ID_VIA, 0x0691, PCI_VENDOR_ID_NVIDIA, 0x0311, 2 },
+>> +
+>> +       {},
+>> +};
+>> +
+>>   static unsigned long
+>> -get_agp_mode(struct nouveau_drm *drm, unsigned long mode)
+>> +get_agp_mode(struct nouveau_drm *drm, const struct drm_agp_info *info)
+>>   {
+>>         struct nouveau_device *device = nv_device(drm->device);
+>> +       struct nouveau_agpmode_quirk *quirk = nouveau_agpmode_quirk_list;
+>> +       int agpmode = nouveau_agpmode;
+>> +       unsigned long mode = info->mode;
+>>
+>>         /*
+>>          * FW seems to be broken on nv18, it makes the card lock up
+>> @@ -24,11 +42,27 @@ get_agp_mode(struct nouveau_drm *drm, unsigned long
+>> mode)
+>>                 mode &= ~PCI_AGP_COMMAND_FW;
+>>
+>>         /*
+>> +        * Go through the quirks list and adjust the agpmode accordingly.
+>> +        */
+>> +       while (agpmode == -1 && quirk->hostbridge_vendor) {
+>> +               if (info->id_vendor == quirk->hostbridge_vendor &&
+>> +                   info->id_device == quirk->hostbridge_device &&
+>> +                   device->pdev->vendor == quirk->chip_vendor &&
+>> +                   device->pdev->device == quirk->chip_device) {
+>> +                       agpmode = quirk->mode;
+>> +                       nv_info(device, "Forcing agp mode to %dX. Use
+>> agpmode to override.\n",
+>> +                               agpmode);
+>> +                       break;
+>> +               }
+>> +               ++quirk;
+>> +       }
+>> +
+>> +       /*
+>>          * AGP mode set in the command line.
+>>          */
+>> -       if (nouveau_agpmode > 0) {
+>> +       if (agpmode > 0) {
+>>                 bool agpv3 = mode & 0x8;
+>> -               int rate = agpv3 ? nouveau_agpmode / 4 : nouveau_agpmode;
+>> +               int rate = agpv3 ? agpmode / 4 : agpmode;
+>>
+>>                 mode = (mode & ~0x7) | (rate & 0x7);
+>>         }
+>> @@ -90,7 +124,7 @@ nouveau_agp_reset(struct nouveau_drm *drm)
+>>                 if (ret)
+>>                         return;
+>>
+>> -               mode.mode  = get_agp_mode(drm, info.mode);
+>> +               mode.mode  = get_agp_mode(drm, &info);
+>>                 mode.mode &= ~PCI_AGP_COMMAND_FW;
+>>
+>>                 ret = drm_agp_enable(dev, mode);
+>> @@ -139,7 +173,7 @@ nouveau_agp_init(struct nouveau_drm *drm)
+>>         }
+>>
+>>         /* see agp.h for the AGPSTAT_* modes available */
+>> -       mode.mode = get_agp_mode(drm, info.mode);
+>> +       mode.mode = get_agp_mode(drm, &info);
+>>
+>>         ret = drm_agp_enable(dev, mode);
+>>         if (ret) {
+>>
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
