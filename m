@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69350] [NV96] Second card output corrupted after
  suspend / resume
-Date: Tue, 29 Oct 2013 20:03:27 +0000
-Message-ID: <bug-69350-8800-RYoJrTBgn1@http.bugs.freedesktop.org/>
+Date: Tue, 29 Oct 2013 20:42:50 +0000
+Message-ID: <bug-69350-8800-cgQHLn5dyP@http.bugs.freedesktop.org/>
 References: <bug-69350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1259506976=="
+Content-Type: multipart/mixed; boundary="===============0393551777=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1259506976==
-Content-Type: multipart/alternative; boundary="1383077007.64FbB61.19139"; charset="us-ascii"
+--===============0393551777==
+Content-Type: multipart/alternative; boundary="1383079370.4ac23f31.26781"; charset="us-ascii"
 
 
---1383077007.64FbB61.19139
-Date: Tue, 29 Oct 2013 20:03:27 +0000
+--1383079370.4ac23f31.26781
+Date: Tue, 29 Oct 2013 20:42:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,16 +36,15 @@ Thomas Bettler <thomas.bettler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|[NV96] Second card output   |[NV96] Second card output
-                   |corrupted after suspend     |corrupted after suspend /
-                   |                            |resume
+                URL|                            |https://bugzilla.kernel.org
+                   |                            |/show_bug.cgi?id=64021
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383077007.64FbB61.19139
-Date: Tue, 29 Oct 2013 20:03:27 +0000
+--1383079370.4ac23f31.26781
+Date: Tue, 29 Oct 2013 20:42:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,10 +67,11 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NV96] Second card output corrupted after suspend
+           <td style="text-align:right;">URL</td>
+           <td>
+               &nbsp;
            </td>
-           <td>[NV96] Second card output corrupted after suspend / resume
+           <td>https://bugzilla.kernel.org/show_bug.cgi?id=64021
            </td>
          </tr></table>
       <p>
@@ -85,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1383077007.64FbB61.19139--
+--1383079370.4ac23f31.26781--
 
---===============1259506976==
+--===============0393551777==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1259506976==--
+--===============0393551777==--
