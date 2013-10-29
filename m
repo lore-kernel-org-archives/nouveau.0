@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
-Date: Mon, 28 Oct 2013 23:22:09 +0000
-Message-ID: <bug-64323-8800-EyX5PntjPK@http.bugs.freedesktop.org/>
-References: <bug-64323-8800@http.bugs.freedesktop.org/>
+From: Gmail <rsv869-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Fw: Dual monitor question
+Date: Mon, 28 Oct 2013 21:15:18 -0400
+Message-ID: <20131028211518.5b4de9382493e53e24f3b1e4@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1770835376=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -14,75 +13,49 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Hello group -
 
---===============1770835376==
-Content-Type: multipart/alternative; boundary="1383002529.fBa3F1842.27008"; charset="us-ascii"
+Never heard a peep about this....wasn't sure it was actually posted.  Anyone seen this before?
+
+Thx
+
+RSV869
 
 
---1383002529.fBa3F1842.27008
-Date: Mon, 28 Oct 2013 23:22:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Begin forwarded message:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64323
+Date: Sat, 26 Oct 2013 11:45:35 -0400
+From: Gmail <rsv869-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Subject: Dual monitor question
 
---- Comment #9 from anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Is there anything I can do to help ?
+
+Hello Nouveau group -
+
+I am an OpenSuSE 12.3 user that's been struggling with a specific nouveau feature which I think should work, but not  so far for me.
+
+I have this card installed in my laptop; 	02:00.0 VGA compatible controller
+
+These are my Nouveau libs:			libdrm_nouvear2	2.4.42-1.1.1
+								xorg-x11-driver-video-nouveau	1.0.6-2.1.1
+
+My goal is to configure my settings so I can run with the normal laptop screen when mobile but change to DVI output by plugging in the monitor, closing the laptop and have ALL video output go to the DVI.  So far I can't get that to work.
+
+The desktop-settings config seems to recognize that the DVI is there, but no video actually appears on it. After I can see that that part works I want to change outputs from laptop to DVI port (secondary monitor) exclusively.
+
+Thoughts welcome.
+
+RSV869
+
 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
+Gmail <rsv869-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 
---1383002529.fBa3F1842.27008
-Date: Mon, 28 Oct 2013 23:22:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
-              from <span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="anakin.cs&#64;gmail.com">anakin.cs&#64;gmail.com</a>
-</span></b>
-        <pre>Is there anything I can do to help ?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1383002529.fBa3F1842.27008--
-
---===============1770835376==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1770835376==--
+-- 
+Gmail <rsv869-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
