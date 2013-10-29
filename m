@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 53101] [NVC0+] Fedora 17 "PFIFO - playlist update
- failed" on boot
-Date: Tue, 29 Oct 2013 16:38:56 +0000
-Message-ID: <bug-53101-8800-1VRjUoSKxO@http.bugs.freedesktop.org/>
-References: <bug-53101-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69350] [NV96] Second card output corrupted after
+ suspend / resume
+Date: Tue, 29 Oct 2013 20:03:27 +0000
+Message-ID: <bug-69350-8800-RYoJrTBgn1@http.bugs.freedesktop.org/>
+References: <bug-69350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0090356411=="
+Content-Type: multipart/mixed; boundary="===============1259506976=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-53101-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0090356411==
-Content-Type: multipart/alternative; boundary="1383064736.8f0eE64.5390"; charset="us-ascii"
+--===============1259506976==
+Content-Type: multipart/alternative; boundary="1383077007.64FbB61.19139"; charset="us-ascii"
 
 
---1383064736.8f0eE64.5390
-Date: Tue, 29 Oct 2013 16:38:56 +0000
+--1383077007.64FbB61.19139
+Date: Tue, 29 Oct 2013 20:03:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=53101
+https://bugs.freedesktop.org/show_bug.cgi?id=69350
 
---- Comment #22 from Giorgio Pretto <radulican-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-http://bpaste.net/show/144880/
-Xorg.0.log
+Thomas Bettler <thomas.bettler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-While this problem persist even with nouveau.noaccel=1, with modesetting
-everything works fine
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NV96] Second card output   |[NV96] Second card output
+                   |corrupted after suspend     |corrupted after suspend /
+                   |                            |resume
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383064736.8f0eE64.5390
-Date: Tue, 29 Oct 2013 16:38:56 +0000
+--1383077007.64FbB61.19139
+Date: Tue, 29 Oct 2013 20:03:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,25 +53,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:thomas.bettler&#64;gmail.com" title="Thomas Bettler &lt;thomas.bettler&#64;gmail.com&gt;"> <span class="fn">Thomas Bettler</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC0+] Fedora 17 &quot;PFIFO - playlist update failed&quot; on boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=53101#c22">Comment # 22</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC0+] Fedora 17 &quot;PFIFO - playlist update failed&quot; on boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=53101">bug 53101</a>
-              from <span class="vcard"><a class="email" href="mailto:radulican&#64;gmail.com" title="Giorgio Pretto &lt;radulican&#64;gmail.com&gt;"> <span class="fn">Giorgio Pretto</span></a>
-</span></b>
-        <pre><a href="http://bpaste.net/show/144880/">http://bpaste.net/show/144880/</a>
-Xorg.0.log
+   title="NEW --- - [NV96] Second card output corrupted after suspend / resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69350">bug 69350</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-While this problem persist even with nouveau.noaccel=1, with modesetting
-everything works fine</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NV96] Second card output corrupted after suspend
+           </td>
+           <td>[NV96] Second card output corrupted after suspend / resume
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -81,9 +85,9 @@ everything works fine</pre>
     </body>
 </html>
 
---1383064736.8f0eE64.5390--
+--1383077007.64FbB61.19139--
 
---===============0090356411==
+--===============1259506976==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0090356411==--
+--===============1259506976==--
