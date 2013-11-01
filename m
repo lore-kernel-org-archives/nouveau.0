@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69203] [NVC1] Kernel 3.11 - Xorg hangs immediately
- after invocation
-Date: Fri, 01 Nov 2013 17:20:27 +0000
-Message-ID: <bug-69203-8800-nCSJw8VxJn@http.bugs.freedesktop.org/>
-References: <bug-69203-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69768] [NVC1] [regression] machine is unable to
+	suspend
+Date: Fri, 01 Nov 2013 17:23:06 +0000
+Message-ID: <bug-69768-8800-qIFb4Mr1rq@http.bugs.freedesktop.org/>
+References: <bug-69768-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0555411348=="
+Content-Type: multipart/mixed; boundary="===============0318172495=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69768-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0555411348==
-Content-Type: multipart/alternative; boundary="1383326427.0d8BffEF3.7028"; charset="us-ascii"
+--===============0318172495==
+Content-Type: multipart/alternative; boundary="1383326586.f665F1.7364"; charset="us-ascii"
 
 
---1383326427.0d8BffEF3.7028
-Date: Fri, 1 Nov 2013 17:20:27 +0000
+--1383326586.f665F1.7364
+Date: Fri, 1 Nov 2013 17:23:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69203
+https://bugs.freedesktop.org/show_bug.cgi?id=69768
 
---- Comment #15 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I've tried going through the commit, but after ~30minutes and half of the patch
-gone there was still more than 6000 lines left :\
-
-Alex, Alan, Marc can anyone of you guys do a mmio trace of _nouveau_ before and
-after the offending patch ?
-
-Thanks
-
-[1] http://nouveau.freedesktop.org/wiki/MmioTrace/
+--- Comment #11 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+what command i will need to type to do the step missing?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383326427.0d8BffEF3.7028
-Date: Fri, 1 Nov 2013 17:20:27 +0000
+--1383326586.f665F1.7364
+Date: Fri, 1 Nov 2013 17:23:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,24 +52,16 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c15">Comment # 15</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NVC1] [regression] machine is unable to suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69768#c11">Comment # 11</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203">bug 69203</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NVC1] [regression] machine is unable to suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69768">bug 69768</a>
+              from <span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
 </span></b>
-        <pre>I've tried going through the commit, but after ~30minutes and half of the patch
-gone there was still more than 6000 lines left :\
-
-Alex, Alan, Marc can anyone of you guys do a mmio trace of _nouveau_ before and
-after the offending patch ?
-
-Thanks
-
-[1] <a href="http://nouveau.freedesktop.org/wiki/MmioTrace/">http://nouveau.freedesktop.org/wiki/MmioTrace/</a></pre>
+        <pre>what command i will need to type to do the step missing?</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +73,9 @@ Thanks
     </body>
 </html>
 
---1383326427.0d8BffEF3.7028--
+--1383326586.f665F1.7364--
 
---===============0555411348==
+--===============0318172495==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0555411348==--
+--===============0318172495==--
