@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69203] [NVC1] Kernel 3.11 - Xorg hangs immediately
  after invocation
-Date: Fri, 01 Nov 2013 17:39:35 +0000
-Message-ID: <bug-69203-8800-tjd0Zt145r@http.bugs.freedesktop.org/>
+Date: Fri, 01 Nov 2013 17:43:06 +0000
+Message-ID: <bug-69203-8800-5eUkFbqZht@http.bugs.freedesktop.org/>
 References: <bug-69203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1183390991=="
+Content-Type: multipart/mixed; boundary="===============0946113552=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1183390991==
-Content-Type: multipart/alternative; boundary="1383327575.be0F35BF3.9989"; charset="us-ascii"
+--===============0946113552==
+Content-Type: multipart/alternative; boundary="1383327786.1Bd613.10596"; charset="us-ascii"
 
 
---1383327575.be0F35BF3.9989
-Date: Fri, 1 Nov 2013 17:39:35 +0000
+--1383327786.1Bd613.10596
+Date: Fri, 1 Nov 2013 17:43:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69203
 
---- Comment #18 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #17)
-> 5. Checkout the first bad/non-working commit 
-> $ git checkout -B fdo69203.good 30f4e0870d1726f31aa59804337cfd5e0a3f2e
-ouch s/fdo69203.good/fdo69203.bad
+--- Comment #19 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+it miss something...
 
-A couple of notes:
-* The branch names "fdo69203.good, fdo69203.bad" and chosen just for clarity.
-* The commit in step 2 differs from that in step 5. The "~1" at the end refers
-to the parent commit.
+ouch
+
+what is this command?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383327575.be0F35BF3.9989
-Date: Fri, 1 Nov 2013 17:39:35 +0000
+--1383327786.1Bd613.10596
+Date: Fri, 1 Nov 2013 17:43:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,22 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c18">Comment # 18</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69203">bug 69203</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=69203#c17">comment #17</a>)
-<span class="quote">&gt; 5. Checkout the first bad/non-working commit 
-&gt; $ git checkout -B fdo69203.good 30f4e0870d1726f31aa59804337cfd5e0a3f2e</span >
-ouch s/fdo69203.good/fdo69203.bad
+        <pre>it miss something...
 
-A couple of notes:
-* The branch names &quot;fdo69203.good, fdo69203.bad&quot; and chosen just for clarity.
-* The commit in step 2 differs from that in step 5. The &quot;~1&quot; at the end refers
-to the parent commit.</pre>
+ouch
+
+what is this command?</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +81,9 @@ to the parent commit.</pre>
     </body>
 </html>
 
---1383327575.be0F35BF3.9989--
+--1383327786.1Bd613.10596--
 
---===============1183390991==
+--===============0946113552==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1183390991==--
+--===============0946113552==--
