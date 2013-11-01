@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71116] [Ubuntu userspace upgrade 13.04 ->
- 13.10][regression] NV34 card fails to properly resume.
-Date: Fri, 01 Nov 2013 08:41:44 +0000
-Message-ID: <bug-71116-8800-29K7Pgodyu@http.bugs.freedesktop.org/>
-References: <bug-71116-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69350] [NV96] Second card output corrupted after
+ suspend / resume
+Date: Fri, 01 Nov 2013 08:53:06 +0000
+Message-ID: <bug-69350-8800-UHDbIvMRjo@http.bugs.freedesktop.org/>
+References: <bug-69350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1909423775=="
+Content-Type: multipart/mixed; boundary="===============2016184114=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1909423775==
-Content-Type: multipart/alternative; boundary="1383295304.ddB52bC01.2253"; charset="us-ascii"
+--===============2016184114==
+Content-Type: multipart/alternative; boundary="1383295986.ff5F31.4848"; charset="us-ascii"
 
 
---1383295304.ddB52bC01.2253
-Date: Fri, 1 Nov 2013 08:41:44 +0000
+--1383295986.ff5F31.4848
+Date: Fri, 1 Nov 2013 08:53:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71116
+https://bugs.freedesktop.org/show_bug.cgi?id=69350
 
---- Comment #2 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 88464
-  --> https://bugs.freedesktop.org/attachment.cgi?id=88464&action=edit
-Full list of all upgraded packages
+--- Comment #6 from Thomas Bettler <thomas.bettler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Restarting the X Server would restore the correct colors. however this is not a
+real fix as running X sessions are lost.
+
+The bug is still present with 3.12-rc7
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383295304.ddB52bC01.2253
-Date: Fri, 1 Nov 2013 08:41:44 +0000
+--1383295986.ff5F31.4848
+Date: Fri, 1 Nov 2013 08:53:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +56,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [Ubuntu userspace upgrade 13.04 -&gt; 13.10][regression] NV34 card fails to properly resume."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116#c2">Comment # 2</a>
+   title="NEW --- - [NV96] Second card output corrupted after suspend / resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69350#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [Ubuntu userspace upgrade 13.04 -&gt; 13.10][regression] NV34 card fails to properly resume."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116">bug 71116</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+   title="NEW --- - [NV96] Second card output corrupted after suspend / resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69350">bug 69350</a>
+              from <span class="vcard"><a class="email" href="mailto:thomas.bettler&#64;gmail.com" title="Thomas Bettler &lt;thomas.bettler&#64;gmail.com&gt;"> <span class="fn">Thomas Bettler</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=88464" name="attach_88464" title="Full list of all upgraded packages">attachment 88464</a> <a href="attachment.cgi?id=88464&amp;action=edit" title="Full list of all upgraded packages">[details]</a></span>
-Full list of all upgraded packages</pre>
+        <pre>Restarting the X Server would restore the correct colors. however this is not a
+real fix as running X sessions are lost.
+
+The bug is still present with 3.12-rc7</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +79,9 @@ Full list of all upgraded packages</pre>
     </body>
 </html>
 
---1383295304.ddB52bC01.2253--
+--1383295986.ff5F31.4848--
 
---===============1909423775==
+--===============2016184114==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1909423775==--
+--===============2016184114==--
