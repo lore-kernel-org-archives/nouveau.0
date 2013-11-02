@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71116] [Ubuntu userspace upgrade 13.04 ->
  13.10][regression] NV34 card fails to properly resume.
-Date: Sat, 02 Nov 2013 14:59:07 +0000
-Message-ID: <bug-71116-8800-c4Jw7QJ3He@http.bugs.freedesktop.org/>
+Date: Sat, 02 Nov 2013 16:34:25 +0000
+Message-ID: <bug-71116-8800-EGpcNXb3CL@http.bugs.freedesktop.org/>
 References: <bug-71116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0676470157=="
+Content-Type: multipart/mixed; boundary="===============0312399006=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0676470157==
-Content-Type: multipart/alternative; boundary="1383404346.446E1.22304"; charset="us-ascii"
+--===============0312399006==
+Content-Type: multipart/alternative; boundary="1383410065.E00eE221.4663"; charset="us-ascii"
 
 
---1383404346.446E1.22304
-Date: Sat, 2 Nov 2013 14:59:06 +0000
+--1383410065.E00eE221.4663
+Date: Sat, 2 Nov 2013 16:34:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71116
 
---- Comment #3 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Woa, tried nvidia-173 on
+--- Comment #4 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Using agp=off for the Linux 3.11 kernel and NvAGP=1 in xorg.conf it works with
+the blob again.
 
-- 3.11
-- 3.10
-- 3.4
+Let me know if you would like to have a trace and all.
 
-All failed to resume with a black screen. I guess nouveau used to have an edge
-on this one!
-
-So, no mmiotraces =( ...
+https://bugs.launchpad.net/suse/+bug/255601
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383404346.446E1.22304
-Date: Sat, 2 Nov 2013 14:59:06 +0000
+--1383410065.E00eE221.4663
+Date: Sat, 2 Nov 2013 16:34:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,23 +59,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Ubuntu userspace upgrade 13.04 -&gt; 13.10][regression] NV34 card fails to properly resume."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Ubuntu userspace upgrade 13.04 -&gt; 13.10][regression] NV34 card fails to properly resume."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71116">bug 71116</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Woa, tried nvidia-173 on
+        <pre>Using agp=off for the Linux 3.11 kernel and NvAGP=1 in xorg.conf it works with
+the blob again.
 
-- 3.11
-- 3.10
-- 3.4
+Let me know if you would like to have a trace and all.
 
-All failed to resume with a black screen. I guess nouveau used to have an edge
-on this one!
-
-So, no mmiotraces =( ...</pre>
+<a href="https://bugs.launchpad.net/suse/+bug/255601">https://bugs.launchpad.net/suse/+bug/255601</a></pre>
         </div>
       </p>
       <hr>
@@ -91,9 +83,9 @@ So, no mmiotraces =( ...</pre>
     </body>
 </html>
 
---1383404346.446E1.22304--
+--1383410065.E00eE221.4663--
 
---===============0676470157==
+--===============0312399006==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0676470157==--
+--===============0312399006==--
