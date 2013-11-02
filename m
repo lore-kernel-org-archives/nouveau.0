@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71116] [Ubuntu userspace upgrade 13.04 ->
  13.10][regression] NV34 card fails to properly resume.
-Date: Sat, 02 Nov 2013 16:34:25 +0000
-Message-ID: <bug-71116-8800-EGpcNXb3CL@http.bugs.freedesktop.org/>
+Date: Sat, 02 Nov 2013 19:12:59 +0000
+Message-ID: <bug-71116-8800-i87IBLceT0@http.bugs.freedesktop.org/>
 References: <bug-71116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0312399006=="
+Content-Type: multipart/mixed; boundary="===============1149055079=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0312399006==
-Content-Type: multipart/alternative; boundary="1383410065.E00eE221.4663"; charset="us-ascii"
+--===============1149055079==
+Content-Type: multipart/alternative; boundary="1383419578.eeA7eC02.28423"; charset="us-ascii"
 
 
---1383410065.E00eE221.4663
-Date: Sat, 2 Nov 2013 16:34:25 +0000
+--1383419578.eeA7eC02.28423
+Date: Sat, 2 Nov 2013 19:12:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71116
 
---- Comment #4 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Using agp=off for the Linux 3.11 kernel and NvAGP=1 in xorg.conf it works with
-the blob again.
+--- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi Ronald
 
-Let me know if you would like to have a trace and all.
+AFAICS there are two routes you/we can take this
+* Find out which package update caused the breakage
+* Disable AGP with nouveau (similar to what you did with the blob)
 
-https://bugs.launchpad.net/suse/+bug/255601
+If you're going for the first one, here is a list of packages that you'll need
+to check (other may not me related):
+* xserver-xorg-core
+* xserver-xorg-video-nouveau
+* All *mesa*
+
+The above can be rather messy and hard, as you'll need to track that the
+dependencies are met and/or rebuild packages.
+
+The latter route is much easier
+* Append nouveau.agpmode=0 to your kernel command line (i.e. grub/lilo)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383410065.E00eE221.4663
-Date: Sat, 2 Nov 2013 16:34:25 +0000
+--1383419578.eeA7eC02.28423
+Date: Sat, 2 Nov 2013 19:12:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,19 +70,30 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Ubuntu userspace upgrade 13.04 -&gt; 13.10][regression] NV34 card fails to properly resume."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [Ubuntu userspace upgrade 13.04 -&gt; 13.10][regression] NV34 card fails to properly resume."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71116">bug 71116</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Using agp=off for the Linux 3.11 kernel and NvAGP=1 in xorg.conf it works with
-the blob again.
+        <pre>Hi Ronald
 
-Let me know if you would like to have a trace and all.
+AFAICS there are two routes you/we can take this
+* Find out which package update caused the breakage
+* Disable AGP with nouveau (similar to what you did with the blob)
 
-<a href="https://bugs.launchpad.net/suse/+bug/255601">https://bugs.launchpad.net/suse/+bug/255601</a></pre>
+If you're going for the first one, here is a list of packages that you'll need
+to check (other may not me related):
+* xserver-xorg-core
+* xserver-xorg-video-nouveau
+* All *mesa*
+
+The above can be rather messy and hard, as you'll need to track that the
+dependencies are met and/or rebuild packages.
+
+The latter route is much easier
+* Append nouveau.agpmode=0 to your kernel command line (i.e. grub/lilo)</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +105,9 @@ Let me know if you would like to have a trace and all.
     </body>
 </html>
 
---1383410065.E00eE221.4663--
+--1383419578.eeA7eC02.28423--
 
---===============0312399006==
+--===============1149055079==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +118,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0312399006==--
+--===============1149055079==--
