@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71116] [NV34] libdrm built with gcc4.8 causes
-	crashes/lockups
-Date: Sun, 03 Nov 2013 16:16:07 +0000
-Message-ID: <bug-71116-8800-04pExU7bVb@http.bugs.freedesktop.org/>
-References: <bug-71116-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71172] Segfault when running glxinfo. NV25GL
+	[Quadro4 900 XGL]
+Date: Mon, 04 Nov 2013 03:33:16 +0000
+Message-ID: <bug-71172-8800-sNhdfgPy8S@http.bugs.freedesktop.org/>
+References: <bug-71172-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1462539519=="
+Content-Type: multipart/mixed; boundary="===============0495648174=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71172-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,49 +21,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1462539519==
-Content-Type: multipart/alternative; boundary="1383495367.353F8D2.20307"; charset="us-ascii"
+--===============0495648174==
+Content-Type: multipart/alternative; boundary="1383535996.de1b1e0.22791"; charset="us-ascii"
 
 
---1383495367.353F8D2.20307
-Date: Sun, 3 Nov 2013 16:16:07 +0000
+--1383535996.de1b1e0.22791
+Date: Mon, 4 Nov 2013 03:33:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71116
+https://bugs.freedesktop.org/show_bug.cgi?id=71172
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #4 from Simon <simon-wM4F9T/ekXmXDw4h08c5KA@public.gmane.org> ---
+Created attachment 88585
+  --> https://bugs.freedesktop.org/attachment.cgi?id=88585&action=edit
+output from working glxinfo
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[Ubuntu userspace upgrade   |[NV34] libdrm built with
-                   |13.04 -> 13.10][regression] |gcc4.8 causes
-                   |NV34 card fails to properly |crashes/lockups
-                   |resume.                     |
+I'm not set up with the git sources, but managed to muddle-through with
+building via the package system....
+--
+$ apt-get source libgl1-mesa-dri
+$ sudo apt-get build-dep libgl1-mesa-dri
+$ cd mesa-10.0~git1310311233.b16b3c~gd~s/
+$ dpkg-buildpackage -b
+--
 
---- Comment #17 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Ronald all the thanks goes to the Andreas Radke (Arch developer) for finding
-and bisecting the issue. FWIW Arch has been using clang for ~3 months to build
-libdrm and it seems to work great.
+After patching the file and installing the newly built package I was able to
+run glxinfo without segfault. So that looks to be the problem solved.
+--
+$ sudo dpkg --install libgl1-mesa-dri_10.0~git1310311233.b16b3c~gd~s_i386.deb
+libgl1-mesa-dri-dbg_10.0~git1310311233.b16b3c~gd~s_i386.deb
+--
 
-Ideally one of the Ubuntu/GCC devs can take a look and provide more bit more
-clarity than
-"This hints at something depending on undefined evaluation order between
-sequence points" [1]
-
-Would that be an issue with nouveau code, gcc and/or both will hopefully be
-determined soon.
-
-Cheers
-Emil
-[1] http://gcc.gnu.org/ml/gcc-help/2013-07/msg00151.html
+Thanks,
+Simon.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383495367.353F8D2.20307
-Date: Sun, 3 Nov 2013 16:16:07 +0000
+--1383535996.de1b1e0.22791
+Date: Mon, 4 Nov 2013 03:33:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,54 +69,40 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV34] libdrm built with gcc4.8 causes crashes/lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116">bug 71116</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[Ubuntu userspace upgrade 13.04 -&gt; 13.10][regression] NV34 card fails to properly resume.
-           </td>
-           <td>[NV34] libdrm built with gcc4.8 causes crashes/lockups
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV34] libdrm built with gcc4.8 causes crashes/lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116#c17">Comment # 17</a>
+   title="NEW --- - Segfault when running glxinfo. NV25GL [Quadro4 900 XGL]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71172#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV34] libdrm built with gcc4.8 causes crashes/lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116">bug 71116</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+   title="NEW --- - Segfault when running glxinfo. NV25GL [Quadro4 900 XGL]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71172">bug 71172</a>
+              from <span class="vcard"><a class="email" href="mailto:simon&#64;mungewell.org" title="Simon &lt;simon&#64;mungewell.org&gt;"> <span class="fn">Simon</span></a>
 </span></b>
-        <pre>Ronald all the thanks goes to the Andreas Radke (Arch developer) for finding
-and bisecting the issue. FWIW Arch has been using clang for ~3 months to build
-libdrm and it seems to work great.
+        <pre>Created <span class=""><a href="attachment.cgi?id=88585" name="attach_88585" title="output from working glxinfo">attachment 88585</a> <a href="attachment.cgi?id=88585&amp;action=edit" title="output from working glxinfo">[details]</a></span>
+output from working glxinfo
 
-Ideally one of the Ubuntu/GCC devs can take a look and provide more bit more
-clarity than
-&quot;This hints at something depending on undefined evaluation order between
-sequence points&quot; [1]
+I'm not set up with the git sources, but managed to muddle-through with
+building via the package system....
+--
+$ apt-get source libgl1-mesa-dri
+$ sudo apt-get build-dep libgl1-mesa-dri
+$ cd mesa-10.0~git1310311233.b16b3c~gd~s/
+$ dpkg-buildpackage -b
+--
 
-Would that be an issue with nouveau code, gcc and/or both will hopefully be
-determined soon.
+After patching the file and installing the newly built package I was able to
+run glxinfo without segfault. So that looks to be the problem solved.
+--
+$ sudo dpkg --install libgl1-mesa-dri_10.0~git1310311233.b16b3c~gd~s_i386.deb
+libgl1-mesa-dri-dbg_10.0~git1310311233.b16b3c~gd~s_i386.deb
+--
 
-Cheers
-Emil
-[1] <a href="http://gcc.gnu.org/ml/gcc-help/2013-07/msg00151.html">http://gcc.gnu.org/ml/gcc-help/2013-07/msg00151.html</a></pre>
+Thanks,
+Simon.</pre>
         </div>
       </p>
       <hr>
@@ -130,9 +114,9 @@ Emil
     </body>
 </html>
 
---1383495367.353F8D2.20307--
+--1383535996.de1b1e0.22791--
 
---===============1462539519==
+--===============0495648174==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -143,4 +127,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1462539519==--
+--===============0495648174==--
