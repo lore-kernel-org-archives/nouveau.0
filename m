@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69203] [NVC1] Kernel 3.11 - Xorg hangs immediately
  after invocation
-Date: Wed, 06 Nov 2013 16:25:13 +0000
-Message-ID: <bug-69203-8800-YDa7ykXyOZ@http.bugs.freedesktop.org/>
+Date: Wed, 06 Nov 2013 21:42:04 +0000
+Message-ID: <bug-69203-8800-cY6pu2fAhc@http.bugs.freedesktop.org/>
 References: <bug-69203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0556210048=="
+Content-Type: multipart/mixed; boundary="===============1509307148=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0556210048==
-Content-Type: multipart/alternative; boundary="1383755113.CC667513.14160"; charset="us-ascii"
+--===============1509307148==
+Content-Type: multipart/alternative; boundary="1383774124.E3ce3.15826"; charset="us-ascii"
 
 
---1383755113.CC667513.14160
-Date: Wed, 6 Nov 2013 16:25:13 +0000
+--1383774124.E3ce3.15826
+Date: Wed, 6 Nov 2013 21:42:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69203
 
---- Comment #25 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-i get: 
-*** No rule to make target `drivers/ata/libata-core.o', needed by
-`drivers/ata/libata.o'.  Stop.
+--- Comment #26 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #25)
+> i get: 
+> *** No rule to make target `drivers/ata/libata-core.o', needed by
+> `drivers/ata/libata.o'.  Stop.
+> 
+> when i run make.
+Sorry but this is not even remotely related to nouveau :\
 
-when i run make.
+Follow your distributions instructions on "how to rebuild the kernel" or
+request $insert_distro_name$ package maintainer to apply the mentioned commit.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383755113.CC667513.14160
-Date: Wed, 6 Nov 2013 16:25:13 +0000
+--1383774124.E3ce3.15826
+Date: Wed, 6 Nov 2013 21:42:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +63,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c25">Comment # 25</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c26">Comment # 26</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69203">bug 69203</a>
-              from <span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>i get: 
-*** No rule to make target `drivers/ata/libata-core.o', needed by
-`drivers/ata/libata.o'.  Stop.
+        <pre>(In reply to <a href="show_bug.cgi?id=69203#c25">comment #25</a>)
+<span class="quote">&gt; i get: 
+&gt; *** No rule to make target `drivers/ata/libata-core.o', needed by
+&gt; `drivers/ata/libata.o'.  Stop.
+&gt; 
+&gt; when i run make.</span >
+Sorry but this is not even remotely related to nouveau :\
 
-when i run make.</pre>
+Follow your distributions instructions on &quot;how to rebuild the kernel&quot; or
+request $insert_distro_name$ package maintainer to apply the mentioned commit.</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +91,9 @@ when i run make.</pre>
     </body>
 </html>
 
---1383755113.CC667513.14160--
+--1383774124.E3ce3.15826--
 
---===============0556210048==
+--===============1509307148==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0556210048==--
+--===============1509307148==--
