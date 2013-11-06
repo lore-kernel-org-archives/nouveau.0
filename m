@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE7] Failed to initialise context object:
- 2D_NVC0 (0) (for my GeForce GT 750M)
-Date: Wed, 06 Nov 2013 11:46:14 +0000
-Message-ID: <bug-70354-8800-s0b5tII2td@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69203] [NVC1] Kernel 3.11 - Xorg hangs immediately
+ after invocation
+Date: Wed, 06 Nov 2013 14:36:52 +0000
+Message-ID: <bug-69203-8800-3lmQNVhjks@http.bugs.freedesktop.org/>
+References: <bug-69203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0627870215=="
+Content-Type: multipart/mixed; boundary="===============0895372645=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0627870215==
-Content-Type: multipart/alternative; boundary="1383738374.d78CbbB2.22212"; charset="us-ascii"
+--===============0895372645==
+Content-Type: multipart/alternative; boundary="1383748612.ffaf6b503.20899"; charset="us-ascii"
 
 
---1383738374.d78CbbB2.22212
-Date: Wed, 6 Nov 2013 11:46:14 +0000
+--1383748612.ffaf6b503.20899
+Date: Wed, 6 Nov 2013 14:36:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
+https://bugs.freedesktop.org/show_bug.cgi?id=69203
 
---- Comment #16 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #14)
-> This is my bug I think, but i got some more dmesg messages, as far as I can
-> see, I'll try to upload...
+--- Comment #24 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+ok i downloaded: https://github.com/evelikov/linux/archive/nouveau-master.zip
 
-Your card and dmesg output is very different from the one(s) concentrated in
-this bug report.
-I would suggest taking a look at our wiki [1] [2] and filling a separate bug.
-
-[1] http://nouveau.freedesktop.org/wiki/Bugs/
-[2] http://nouveau.freedesktop.org/wiki/TroubleShooting/
+should be ok?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383738374.d78CbbB2.22212
-Date: Wed, 6 Nov 2013 11:46:14 +0000
+--1383748612.ffaf6b503.20899
+Date: Wed, 6 Nov 2013 14:36:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,24 +55,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] Failed to initialise context object: 2D_NVC0 (0) (for my GeForce GT 750M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c16">Comment # 16</a>
+   title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c24">Comment # 24</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] Failed to initialise context object: 2D_NVC0 (0) (for my GeForce GT 750M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+   title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203">bug 69203</a>
+              from <span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=70354#c14">comment #14</a>)
-<span class="quote">&gt; This is my bug I think, but i got some more dmesg messages, as far as I can
-&gt; see, I'll try to upload...</span >
+        <pre>ok i downloaded: <a href="https://github.com/evelikov/linux/archive/nouveau-master.zip">https://github.com/evelikov/linux/archive/nouveau-master.zip</a>
 
-Your card and dmesg output is very different from the one(s) concentrated in
-this bug report.
-I would suggest taking a look at our wiki [1] [2] and filling a separate bug.
-
-[1] <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a>
-[2] <a href="http://nouveau.freedesktop.org/wiki/TroubleShooting/">http://nouveau.freedesktop.org/wiki/TroubleShooting/</a></pre>
+should be ok?</pre>
         </div>
       </p>
       <hr>
@@ -91,9 +77,9 @@ I would suggest taking a look at our wiki [1] [2] and filling a separate bug.
     </body>
 </html>
 
---1383738374.d78CbbB2.22212--
+--1383748612.ffaf6b503.20899--
 
---===============0627870215==
+--===============0895372645==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0627870215==--
+--===============0895372645==--
