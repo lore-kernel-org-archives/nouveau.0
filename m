@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69203] [NVC1] Kernel 3.11 - Xorg hangs immediately
- after invocation
-Date: Wed, 06 Nov 2013 21:42:04 +0000
-Message-ID: <bug-69203-8800-cY6pu2fAhc@http.bugs.freedesktop.org/>
-References: <bug-69203-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69488] GF108 (NVC1) GPU lockup
+Date: Wed, 06 Nov 2013 21:42:23 +0000
+Message-ID: <bug-69488-8800-D52KqiLdoX@http.bugs.freedesktop.org/>
+References: <bug-69488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1509307148=="
+Content-Type: multipart/mixed; boundary="===============0808780175=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1509307148==
-Content-Type: multipart/alternative; boundary="1383774124.E3ce3.15826"; charset="us-ascii"
+--===============0808780175==
+Content-Type: multipart/alternative; boundary="1383774143.08cf33672.15918"; charset="us-ascii"
 
 
---1383774124.E3ce3.15826
-Date: Wed, 6 Nov 2013 21:42:04 +0000
+--1383774143.08cf33672.15918
+Date: Wed, 6 Nov 2013 21:42:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69203
+https://bugs.freedesktop.org/show_bug.cgi?id=69488
 
---- Comment #26 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #25)
-> i get: 
-> *** No rule to make target `drivers/ata/libata-core.o', needed by
-> `drivers/ata/libata.o'.  Stop.
-> 
-> when i run make.
-Sorry but this is not even remotely related to nouveau :\
+--- Comment #23 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This issue suspitciously looks like bug 69203. Same chipset, same PBUS MMIO
+write error(s). 
 
-Follow your distributions instructions on "how to rebuild the kernel" or
-request $insert_distro_name$ package maintainer to apply the mentioned commit.
+Give this commit a try
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=968a8d1b6c32c9f466f236032770b9165ece045a
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383774124.E3ce3.15826
-Date: Wed, 6 Nov 2013 21:42:04 +0000
+--1383774143.08cf33672.15918
+Date: Wed, 6 Nov 2013 21:42:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,25 +55,23 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c26">Comment # 26</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - GF108 (NVC1) GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c23">Comment # 23</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203">bug 69203</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - GF108 (NVC1) GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488">bug 69488</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=69203#c25">comment #25</a>)
-<span class="quote">&gt; i get: 
-&gt; *** No rule to make target `drivers/ata/libata-core.o', needed by
-&gt; `drivers/ata/libata.o'.  Stop.
-&gt; 
-&gt; when i run make.</span >
-Sorry but this is not even remotely related to nouveau :\
+        <pre>This issue suspitciously looks like <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
+   href="show_bug.cgi?id=69203">bug 69203</a>. Same chipset, same PBUS MMIO
+write error(s). 
 
-Follow your distributions instructions on &quot;how to rebuild the kernel&quot; or
-request $insert_distro_name$ package maintainer to apply the mentioned commit.</pre>
+Give this commit a try
+<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=968a8d1b6c32c9f466f236032770b9165ece045a">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=968a8d1b6c32c9f466f236032770b9165ece045a</a></pre>
         </div>
       </p>
       <hr>
@@ -91,9 +83,9 @@ request $insert_distro_name$ package maintainer to apply the mentioned commit.</
     </body>
 </html>
 
---1383774124.E3ce3.15826--
+--1383774143.08cf33672.15918--
 
---===============1509307148==
+--===============0808780175==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1509307148==--
+--===============0808780175==--
