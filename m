@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69203] [NVC1] Kernel 3.11 - Xorg hangs immediately
  after invocation
-Date: Wed, 06 Nov 2013 14:36:52 +0000
-Message-ID: <bug-69203-8800-3lmQNVhjks@http.bugs.freedesktop.org/>
+Date: Wed, 06 Nov 2013 16:25:13 +0000
+Message-ID: <bug-69203-8800-YDa7ykXyOZ@http.bugs.freedesktop.org/>
 References: <bug-69203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0895372645=="
+Content-Type: multipart/mixed; boundary="===============0556210048=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0895372645==
-Content-Type: multipart/alternative; boundary="1383748612.ffaf6b503.20899"; charset="us-ascii"
+--===============0556210048==
+Content-Type: multipart/alternative; boundary="1383755113.CC667513.14160"; charset="us-ascii"
 
 
---1383748612.ffaf6b503.20899
-Date: Wed, 6 Nov 2013 14:36:52 +0000
+--1383755113.CC667513.14160
+Date: Wed, 6 Nov 2013 16:25:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69203
 
---- Comment #24 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-ok i downloaded: https://github.com/evelikov/linux/archive/nouveau-master.zip
+--- Comment #25 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+i get: 
+*** No rule to make target `drivers/ata/libata-core.o', needed by
+`drivers/ata/libata.o'.  Stop.
 
-should be ok?
+when i run make.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383748612.ffaf6b503.20899
-Date: Wed, 6 Nov 2013 14:36:52 +0000
+--1383755113.CC667513.14160
+Date: Wed, 6 Nov 2013 16:25:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,16 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c24">Comment # 24</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c25">Comment # 25</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69203">bug 69203</a>
               from <span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
 </span></b>
-        <pre>ok i downloaded: <a href="https://github.com/evelikov/linux/archive/nouveau-master.zip">https://github.com/evelikov/linux/archive/nouveau-master.zip</a>
+        <pre>i get: 
+*** No rule to make target `drivers/ata/libata-core.o', needed by
+`drivers/ata/libata.o'.  Stop.
 
-should be ok?</pre>
+when i run make.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +81,9 @@ should be ok?</pre>
     </body>
 </html>
 
---1383748612.ffaf6b503.20899--
+--1383755113.CC667513.14160--
 
---===============0895372645==
+--===============0556210048==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0895372645==--
+--===============0556210048==--
