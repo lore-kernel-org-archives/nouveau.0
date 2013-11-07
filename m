@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71116] [any/all(?) cards below nv50(?)] libdrm built
- with gcc4.8 causes crashes/lockups normal operation,
+ with gcc4.8 causes crashes/lockups during normal operation,
  and resume from disk/memory
-Date: Thu, 07 Nov 2013 10:05:02 +0000
-Message-ID: <bug-71116-8800-gFfsuqfTpP@http.bugs.freedesktop.org/>
+Date: Thu, 07 Nov 2013 10:05:14 +0000
+Message-ID: <bug-71116-8800-QNI3AH3ZSx@http.bugs.freedesktop.org/>
 References: <bug-71116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0812594389=="
+Content-Type: multipart/mixed; boundary="===============0380996200=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,12 +22,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0812594389==
-Content-Type: multipart/alternative; boundary="1383818702.a17ddB1.3014"; charset="us-ascii"
+--===============0380996200==
+Content-Type: multipart/alternative; boundary="1383818713.D0DD0AA4.3014"; charset="us-ascii"
 
 
---1383818702.a17ddB1.3014
-Date: Thu, 7 Nov 2013 10:05:02 +0000
+--1383818713.D0DD0AA4.3014
+Date: Thu, 7 Nov 2013 10:05:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -40,16 +40,16 @@ Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
             Summary|[any/all(?) cards below     |[any/all(?) cards below
                    |nv50(?)] libdrm built with  |nv50(?)] libdrm built with
                    |gcc4.8 causes               |gcc4.8 causes
-                   |crashes/lockups             |crashes/lockups normal
-                   |                            |operation, and resume from
-                   |                            |disk/memory
+                   |crashes/lockups normal      |crashes/lockups during
+                   |operation, and resume from  |normal operation, and
+                   |disk/memory                 |resume from disk/memory
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383818702.a17ddB1.3014
-Date: Thu, 7 Nov 2013 10:05:02 +0000
+--1383818713.D0DD0AA4.3014
+Date: Thu, 7 Nov 2013 10:05:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,7 +61,7 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups normal operation, and resume from disk/memory"
+   title="NEW --- - [any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups during normal operation, and resume from disk/memory"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71116">bug 71116</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -73,9 +73,9 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>[any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups
-           </td>
            <td>[any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups normal operation, and resume from disk/memory
+           </td>
+           <td>[any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups during normal operation, and resume from disk/memory
            </td>
          </tr></table>
       <p>
@@ -89,9 +89,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1383818702.a17ddB1.3014--
+--1383818713.D0DD0AA4.3014--
 
---===============0812594389==
+--===============0380996200==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +102,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0812594389==--
+--===============0380996200==--
