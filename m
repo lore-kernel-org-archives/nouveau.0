@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69203] [NVC1] Kernel 3.11 - Xorg hangs immediately
  after invocation
-Date: Thu, 07 Nov 2013 20:48:56 +0000
-Message-ID: <bug-69203-8800-tUOLq0RAoq@http.bugs.freedesktop.org/>
+Date: Thu, 07 Nov 2013 20:52:09 +0000
+Message-ID: <bug-69203-8800-F47VifDD24@http.bugs.freedesktop.org/>
 References: <bug-69203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0115809396=="
+Content-Type: multipart/mixed; boundary="===============0106031104=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0115809396==
-Content-Type: multipart/alternative; boundary="1383857336.6Bc527bD3.26201"; charset="us-ascii"
+--===============0106031104==
+Content-Type: multipart/alternative; boundary="1383857529.d0A273.26705"; charset="us-ascii"
 
 
---1383857336.6Bc527bD3.26201
-Date: Thu, 7 Nov 2013 20:48:56 +0000
+--1383857529.d0A273.26705
+Date: Thu, 7 Nov 2013 20:52:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69203
 
---- Comment #33 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #32)
-> i cloned kernel 3.12.0
-> 
-> i took this patch:
-> http://cgit.freedesktop.org/nouveau/linux-2.6/patch/
-> ?id=968a8d1b6c32c9f466f236032770b9165ece045a
-> 
-> so the file look like this one without email inside...:
-> http://pastebin.ca/2474649
+--- Comment #34 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+remove email part.... now same thing
 
-Perhaps take a moment to follow those links and see whether they look similar?
-[hint, they don't]
+patching file drivers/gpu/drm/nouveau/core/engine/graph/ctxnvc1.c
+patching file drivers/gpu/drm/nouveau/core/engine/graph/ctxnvd7.c
+patching file drivers/gpu/drm/nouveau/core/engine/graph/ctxnvd9.c
+patch unexpectedly ends in middle of line
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383857336.6Bc527bD3.26201
-Date: Thu, 7 Nov 2013 20:48:56 +0000
+--1383857529.d0A273.26705
+Date: Thu, 7 Nov 2013 20:52:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,25 +59,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c33">Comment # 33</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c34">Comment # 34</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69203">bug 69203</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=69203#c32">comment #32</a>)
-<span class="quote">&gt; i cloned kernel 3.12.0
-&gt; 
-&gt; i took this patch:
-&gt; <a href="http://cgit.freedesktop.org/nouveau/linux-2.6/patch/">http://cgit.freedesktop.org/nouveau/linux-2.6/patch/</a>
-&gt; ?id=968a8d1b6c32c9f466f236032770b9165ece045a
-&gt; 
-&gt; so the file look like this one without email inside...:
-&gt; <a href="http://pastebin.ca/2474649">http://pastebin.ca/2474649</a></span >
+        <pre>remove email part.... now same thing
 
-Perhaps take a moment to follow those links and see whether they look similar?
-[hint, they don't]</pre>
+patching file drivers/gpu/drm/nouveau/core/engine/graph/ctxnvc1.c
+patching file drivers/gpu/drm/nouveau/core/engine/graph/ctxnvd7.c
+patching file drivers/gpu/drm/nouveau/core/engine/graph/ctxnvd9.c
+patch unexpectedly ends in middle of line</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +83,9 @@ Perhaps take a moment to follow those links and see whether they look similar?
     </body>
 </html>
 
---1383857336.6Bc527bD3.26201--
+--1383857529.d0A273.26705--
 
---===============0115809396==
+--===============0106031104==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0115809396==--
+--===============0106031104==--
