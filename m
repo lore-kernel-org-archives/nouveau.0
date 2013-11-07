@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71116] [any/all(?) cards below nv50(?)] libdrm built
  with gcc4.8 causes crashes/lockups
-Date: Thu, 07 Nov 2013 10:02:35 +0000
-Message-ID: <bug-71116-8800-CRWlxpwh6A@http.bugs.freedesktop.org/>
+Date: Thu, 07 Nov 2013 10:04:27 +0000
+Message-ID: <bug-71116-8800-OxO8miZ2lZ@http.bugs.freedesktop.org/>
 References: <bug-71116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1161178368=="
+Content-Type: multipart/mixed; boundary="===============1165382770=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1161178368==
-Content-Type: multipart/alternative; boundary="1383818555.3dfbe1.2665"; charset="us-ascii"
+--===============1165382770==
+Content-Type: multipart/alternative; boundary="1383818667.862F8A1.2906"; charset="us-ascii"
 
 
---1383818555.3dfbe1.2665
-Date: Thu, 7 Nov 2013 10:02:35 +0000
+--1383818667.862F8A1.2906
+Date: Thu, 7 Nov 2013 10:04:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71116
 
-Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #19 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+So, we have nv34, nv43 and nv44 affected by this. I updated the bugreport title
+so hopefully more people will stumble on it earlier (hope that is okay).
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NV34] libdrm built with    |[any/all(?) cards below
-                   |gcc4.8 causes               |nv50(?)] libdrm built with
-                   |crashes/lockups             |gcc4.8 causes
-                   |                            |crashes/lockups
+- nv44: GCC thread: During normal operation.
+- nv43: Resuming from suspend-to-mem
+- nv34: Resuming from suspend-to-disk
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383818555.3dfbe1.2665
-Date: Thu, 7 Nov 2013 10:02:35 +0000
+--1383818667.862F8A1.2906
+Date: Thu, 7 Nov 2013 10:04:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,28 +53,26 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116#c19">Comment # 19</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71116">bug 71116</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+</span></b>
+        <pre>So, we have nv34, nv43 and nv44 affected by this. I updated the bugreport title
+so hopefully more people will stumble on it earlier (hope that is okay).
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NV34] libdrm built with gcc4.8 causes crashes/lockups
-           </td>
-           <td>[any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups
-           </td>
-         </tr></table>
-      <p>
+- nv44: GCC thread: During normal operation.
+- nv43: Resuming from suspend-to-mem
+- nv34: Resuming from suspend-to-disk</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -86,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1383818555.3dfbe1.2665--
+--1383818667.862F8A1.2906--
 
---===============1161178368==
+--===============1165382770==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1161178368==--
+--===============1165382770==--
