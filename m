@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69203] [NVC1] Kernel 3.11 - Xorg hangs immediately
  after invocation
-Date: Thu, 07 Nov 2013 01:03:15 +0000
-Message-ID: <bug-69203-8800-Hn8lBGgDEQ@http.bugs.freedesktop.org/>
+Date: Thu, 07 Nov 2013 01:03:56 +0000
+Message-ID: <bug-69203-8800-xmb7Nbc2J8@http.bugs.freedesktop.org/>
 References: <bug-69203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0807846823=="
+Content-Type: multipart/mixed; boundary="===============1420596440=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0807846823==
-Content-Type: multipart/alternative; boundary="1383786195.78bCD3f3.14848"; charset="us-ascii"
+--===============1420596440==
+Content-Type: multipart/alternative; boundary="1383786236.CF3EfCA23.14928"; charset="us-ascii"
 
 
---1383786195.78bCD3f3.14848
-Date: Thu, 7 Nov 2013 01:03:15 +0000
+--1383786236.CF3EfCA23.14928
+Date: Thu, 7 Nov 2013 01:03:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69203
 
---- Comment #28 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 88797
-  --> https://bugs.freedesktop.org/attachment.cgi?id=88797&action=edit
+--- Comment #29 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 88798
+  --> https://bugs.freedesktop.org/attachment.cgi?id=88798&action=edit
 picture error boot kernel 3.12
 
 picture error boot kernel 3.12
@@ -43,8 +43,8 @@ picture error boot kernel 3.12
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383786195.78bCD3f3.14848
-Date: Thu, 7 Nov 2013 01:03:15 +0000
+--1383786236.CF3EfCA23.14928
+Date: Thu, 7 Nov 2013 01:03:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,14 +58,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c28">Comment # 28</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c29">Comment # 29</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69203">bug 69203</a>
               from <span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=88797" name="attach_88797" title="picture error boot kernel 3.12">attachment 88797</a> <a href="attachment.cgi?id=88797&amp;action=edit" title="picture error boot kernel 3.12">[details]</a></span>
+        <pre>Created <span class=""><a href="attachment.cgi?id=88798" name="attach_88798" title="picture error boot kernel 3.12">attachment 88798</a> <a href="attachment.cgi?id=88798&amp;action=edit" title="picture error boot kernel 3.12">[details]</a></span>
 picture error boot kernel 3.12
 
 picture error boot kernel 3.12</pre>
@@ -80,9 +80,9 @@ picture error boot kernel 3.12</pre>
     </body>
 </html>
 
---1383786195.78bCD3f3.14848--
+--1383786236.CF3EfCA23.14928--
 
---===============0807846823==
+--===============1420596440==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0807846823==--
+--===============1420596440==--
