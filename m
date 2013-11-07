@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71116] [any/all(?) cards below nv50(?)] libdrm built
  with gcc4.8 causes crashes/lockups during normal operation,
  and resume from disk/memory
-Date: Thu, 07 Nov 2013 12:24:40 +0000
-Message-ID: <bug-71116-8800-myTMSFmDvd@http.bugs.freedesktop.org/>
+Date: Thu, 07 Nov 2013 12:57:02 +0000
+Message-ID: <bug-71116-8800-9wpjP9VdX3@http.bugs.freedesktop.org/>
 References: <bug-71116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0319435781=="
+Content-Type: multipart/mixed; boundary="===============1931070748=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,32 +22,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0319435781==
-Content-Type: multipart/alternative; boundary="1383827080.B3A52.28666"; charset="us-ascii"
+--===============1931070748==
+Content-Type: multipart/alternative; boundary="1383829022.bB3F8272.1442"; charset="us-ascii"
 
 
---1383827080.B3A52.28666
-Date: Thu, 7 Nov 2013 12:24:40 +0000
+--1383829022.bB3F8272.1442
+Date: Thu, 7 Nov 2013 12:57:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71116
 
---- Comment #25 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
-Well, pedantically gcc-4.7 behavior is this:
-
-u32 *ptr = push->cur;
-*ptr = func();
-push->cur++;
-
-But since func only reads push->cur it's the same.
+--- Comment #26 from Kelly Doran <kel.p.doran-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I am pretty sure the order of execution is considered undefined behavior here
+in C, thus the nouveau code is wrong (it is a side effect).  Check out chapter
+2.12 in "The C Programming Language" if you have it.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383827080.B3A52.28666
-Date: Thu, 7 Nov 2013 12:24:40 +0000
+--1383829022.bB3F8272.1442
+Date: Thu, 7 Nov 2013 12:57:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,20 +57,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups during normal operation, and resume from disk/memory"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116#c25">Comment # 25</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116#c26">Comment # 26</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups during normal operation, and resume from disk/memory"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71116">bug 71116</a>
-              from <span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
+              from <span class="vcard"><a class="email" href="mailto:kel.p.doran&#64;gmail.com" title="Kelly Doran &lt;kel.p.doran&#64;gmail.com&gt;"> <span class="fn">Kelly Doran</span></a>
 </span></b>
-        <pre>Well, pedantically gcc-4.7 behavior is this:
-
-u32 *ptr = push-&gt;cur;
-*ptr = func();
-push-&gt;cur++;
-
-But since func only reads push-&gt;cur it's the same.</pre>
+        <pre>I am pretty sure the order of execution is considered undefined behavior here
+in C, thus the nouveau code is wrong (it is a side effect).  Check out chapter
+2.12 in &quot;The C Programming Language&quot; if you have it.</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +78,9 @@ But since func only reads push-&gt;cur it's the same.</pre>
     </body>
 </html>
 
---1383827080.B3A52.28666--
+--1383829022.bB3F8272.1442--
 
---===============0319435781==
+--===============1931070748==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0319435781==--
+--===============1931070748==--
