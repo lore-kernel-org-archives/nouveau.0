@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69203] [NVC1] Kernel 3.11 - Xorg hangs immediately
  after invocation
-Date: Thu, 07 Nov 2013 01:03:56 +0000
-Message-ID: <bug-69203-8800-xmb7Nbc2J8@http.bugs.freedesktop.org/>
+Date: Thu, 07 Nov 2013 01:10:52 +0000
+Message-ID: <bug-69203-8800-cV7Mm1TzmT@http.bugs.freedesktop.org/>
 References: <bug-69203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1420596440=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1078292551=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,36 +15,35 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1420596440==
-Content-Type: multipart/alternative; boundary="1383786236.CF3EfCA23.14928"; charset="us-ascii"
+--===============1078292551==
+Content-Type: multipart/alternative; boundary="1383786652.a77EA4c43.15785"; charset="us-ascii"
 
 
---1383786236.CF3EfCA23.14928
-Date: Thu, 7 Nov 2013 01:03:56 +0000
+--1383786652.a77EA4c43.15785
+Date: Thu, 7 Nov 2013 01:10:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69203
 
---- Comment #29 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 88798
-  --> https://bugs.freedesktop.org/attachment.cgi?id=88798&action=edit
-picture error boot kernel 3.12
-
-picture error boot kernel 3.12
+--- Comment #30 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+If the suggested patch indeed fixes your issue, it would be expected that the
+final 3.12 release would still exhibit problems, as that patch is not upstream.
+Either pull the branch Emil pointed you at + build kernel, or pull
+nouveau/master from fd.o, or apply the patch manually to (nearly) any tree.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383786236.CF3EfCA23.14928
-Date: Thu, 7 Nov 2013 01:03:56 +0000
+--1383786652.a77EA4c43.15785
+Date: Thu, 7 Nov 2013 01:10:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,17 +57,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c29">Comment # 29</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c30">Comment # 30</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69203">bug 69203</a>
-              from <span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=88798" name="attach_88798" title="picture error boot kernel 3.12">attachment 88798</a> <a href="attachment.cgi?id=88798&amp;action=edit" title="picture error boot kernel 3.12">[details]</a></span>
-picture error boot kernel 3.12
-
-picture error boot kernel 3.12</pre>
+        <pre>If the suggested patch indeed fixes your issue, it would be expected that the
+final 3.12 release would still exhibit problems, as that patch is not upstream.
+Either pull the branch Emil pointed you at + build kernel, or pull
+nouveau/master from fd.o, or apply the patch manually to (nearly) any tree.</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +79,9 @@ picture error boot kernel 3.12</pre>
     </body>
 </html>
 
---1383786236.CF3EfCA23.14928--
+--1383786652.a77EA4c43.15785--
 
---===============1420596440==
+--===============1078292551==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1420596440==--
+--===============1078292551==--
