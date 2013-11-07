@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69203] [NVC1] Kernel 3.11 - Xorg hangs immediately
  after invocation
-Date: Thu, 07 Nov 2013 01:10:52 +0000
-Message-ID: <bug-69203-8800-cV7Mm1TzmT@http.bugs.freedesktop.org/>
+Date: Thu, 07 Nov 2013 02:21:17 +0000
+Message-ID: <bug-69203-8800-JLb7bEM2J5@http.bugs.freedesktop.org/>
 References: <bug-69203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1078292551=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1270092160=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,35 +15,32 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1078292551==
-Content-Type: multipart/alternative; boundary="1383786652.a77EA4c43.15785"; charset="us-ascii"
+--===============1270092160==
+Content-Type: multipart/alternative; boundary="1383790877.d4F1db5c3.28415"; charset="us-ascii"
 
 
---1383786652.a77EA4c43.15785
-Date: Thu, 7 Nov 2013 01:10:52 +0000
+--1383790877.d4F1db5c3.28415
+Date: Thu, 7 Nov 2013 02:21:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69203
 
---- Comment #30 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-If the suggested patch indeed fixes your issue, it would be expected that the
-final 3.12 release would still exhibit problems, as that patch is not upstream.
-Either pull the branch Emil pointed you at + build kernel, or pull
-nouveau/master from fd.o, or apply the patch manually to (nearly) any tree.
+--- Comment #31 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+it's not possible to get only the module to install?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383786652.a77EA4c43.15785
-Date: Thu, 7 Nov 2013 01:10:52 +0000
+--1383790877.d4F1db5c3.28415
+Date: Thu, 7 Nov 2013 02:21:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c30">Comment # 30</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69203#c31">Comment # 31</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] Kernel 3.11 - Xorg hangs immediately after invocation"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69203">bug 69203</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
 </span></b>
-        <pre>If the suggested patch indeed fixes your issue, it would be expected that the
-final 3.12 release would still exhibit problems, as that patch is not upstream.
-Either pull the branch Emil pointed you at + build kernel, or pull
-nouveau/master from fd.o, or apply the patch manually to (nearly) any tree.</pre>
+        <pre>it's not possible to get only the module to install?</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +73,9 @@ nouveau/master from fd.o, or apply the patch manually to (nearly) any tree.</pre
     </body>
 </html>
 
---1383786652.a77EA4c43.15785--
+--1383790877.d4F1db5c3.28415--
 
---===============1078292551==
+--===============1270092160==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1078292551==--
+--===============1270092160==--
