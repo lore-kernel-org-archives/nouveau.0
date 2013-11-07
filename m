@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71362] [NVC1] X hang with drop to console after some
- time / GPU lockup
-Date: Thu, 07 Nov 2013 22:17:38 +0000
-Message-ID: <bug-71362-8800-Rts2AHHPih@http.bugs.freedesktop.org/>
+ time / GPU lockup - PFIFO error and TTM error @dmesg
+Date: Thu, 07 Nov 2013 22:18:42 +0000
+Message-ID: <bug-71362-8800-iU4JYT309U@http.bugs.freedesktop.org/>
 References: <bug-71362-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0230892588=="
+Content-Type: multipart/mixed; boundary="===============0963191192=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71362-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0230892588==
-Content-Type: multipart/alternative; boundary="1383862658.Aa025Ed0.11524"; charset="us-ascii"
+--===============0963191192==
+Content-Type: multipart/alternative; boundary="1383862721.e8e80.11665"; charset="us-ascii"
 
 
---1383862658.Aa025Ed0.11524
-Date: Thu, 7 Nov 2013 22:17:38 +0000
+--1383862721.e8e80.11665
+Date: Thu, 7 Nov 2013 22:18:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71362
 
---- Comment #3 from Torsten Krah <krah.tm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 88854
-  --> https://bugs.freedesktop.org/attachment.cgi?id=88854&action=edit
-backtrace from gdb with VTSwitch
+Torsten Krah <krah.tm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NVC1] X hang with drop to  |[NVC1] X hang with drop to
+                   |console after some time /   |console after some time /
+                   |GPU lockup                  |GPU lockup - PFIFO error
+                   |                            |and TTM error @dmesg
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383862658.Aa025Ed0.11524
-Date: Thu, 7 Nov 2013 22:17:38 +0000
+--1383862721.e8e80.11665
+Date: Thu, 7 Nov 2013 22:18:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +54,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:krah.tm&#64;gmail.com" title="Torsten Krah &lt;krah.tm&#64;gmail.com&gt;"> <span class="fn">Torsten Krah</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] X hang with drop to console after some time / GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71362#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] X hang with drop to console after some time / GPU lockup"
+   title="NEW --- - [NVC1] X hang with drop to console after some time / GPU lockup - PFIFO error and TTM error &#64;dmesg"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71362">bug 71362</a>
-              from <span class="vcard"><a class="email" href="mailto:krah.tm&#64;gmail.com" title="Torsten Krah &lt;krah.tm&#64;gmail.com&gt;"> <span class="fn">Torsten Krah</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=88854" name="attach_88854" title="backtrace from gdb with VTSwitch">attachment 88854</a> <a href="attachment.cgi?id=88854&amp;action=edit" title="backtrace from gdb with VTSwitch">[details]</a></span>
-backtrace from gdb with VTSwitch</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NVC1] X hang with drop to console after some time / GPU lockup
+           </td>
+           <td>[NVC1] X hang with drop to console after some time / GPU lockup - PFIFO error and TTM error &#64;dmesg
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +86,9 @@ backtrace from gdb with VTSwitch</pre>
     </body>
 </html>
 
---1383862658.Aa025Ed0.11524--
+--1383862721.e8e80.11665--
 
---===============0230892588==
+--===============0963191192==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0230892588==--
+--===============0963191192==--
