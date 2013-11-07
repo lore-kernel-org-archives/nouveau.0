@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71116] [NV34] libdrm built with gcc4.8 causes
-	crashes/lockups
-Date: Thu, 07 Nov 2013 09:58:44 +0000
-Message-ID: <bug-71116-8800-pqP0YGZuID@http.bugs.freedesktop.org/>
+Subject: [Bug 71116] [any/all(?) cards below nv50(?)] libdrm built
+ with gcc4.8 causes crashes/lockups
+Date: Thu, 07 Nov 2013 10:02:35 +0000
+Message-ID: <bug-71116-8800-CRWlxpwh6A@http.bugs.freedesktop.org/>
 References: <bug-71116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0284742474=="
+Content-Type: multipart/mixed; boundary="===============1161178368=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,38 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0284742474==
-Content-Type: multipart/alternative; boundary="1383818323.d2822.2041"; charset="us-ascii"
+--===============1161178368==
+Content-Type: multipart/alternative; boundary="1383818555.3dfbe1.2665"; charset="us-ascii"
 
 
---1383818323.d2822.2041
-Date: Thu, 7 Nov 2013 09:58:43 +0000
+--1383818555.3dfbe1.2665
+Date: Thu, 7 Nov 2013 10:02:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71116
 
---- Comment #18 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
-Wow this is definitely a weird interesting bug.
+Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-It affects suspend-to-mem on my pci-e nv43 too.
-
-<after resume from suspend to memory>
-[   40.107810] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT
-[   40.108059] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x000f7000 compiz[1713]]
-subc 2 class 0x0039 mthd 0x0314 data 0x0051f000
-(error repeats)
-
-I can confirm that rebuilding only libdrm-nouveau2 with the raring toolchain
-fixes it.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NV34] libdrm built with    |[any/all(?) cards below
+                   |gcc4.8 causes               |nv50(?)] libdrm built with
+                   |crashes/lockups             |gcc4.8 causes
+                   |                            |crashes/lockups
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383818323.d2822.2041
-Date: Thu, 7 Nov 2013 09:58:43 +0000
+--1383818555.3dfbe1.2665
+Date: Thu, 7 Nov 2013 10:02:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,33 +54,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV34] libdrm built with gcc4.8 causes crashes/lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116#c18">Comment # 18</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV34] libdrm built with gcc4.8 causes crashes/lockups"
+   title="NEW --- - [any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71116">bug 71116</a>
-              from <span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
-</span></b>
-        <pre>Wow this is definitely a weird interesting bug.
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-It affects suspend-to-mem on my pci-e nv43 too.
-
-&lt;after resume from suspend to memory&gt;
-[   40.107810] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT
-[   40.108059] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x000f7000 compiz[1713]]
-subc 2 class 0x0039 mthd 0x0314 data 0x0051f000
-(error repeats)
-
-I can confirm that rebuilding only libdrm-nouveau2 with the raring toolchain
-fixes it.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NV34] libdrm built with gcc4.8 causes crashes/lockups
+           </td>
+           <td>[any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -97,9 +86,9 @@ fixes it.</pre>
     </body>
 </html>
 
---1383818323.d2822.2041--
+--1383818555.3dfbe1.2665--
 
---===============0284742474==
+--===============1161178368==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0284742474==--
+--===============1161178368==--
