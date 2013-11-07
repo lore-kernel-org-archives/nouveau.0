@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71116] [any/all(?) cards below nv50(?)] libdrm built
  with gcc4.8 causes crashes/lockups during normal operation,
  and resume from disk/memory
-Date: Thu, 07 Nov 2013 11:59:11 +0000
-Message-ID: <bug-71116-8800-DSVtkuGjwX@http.bugs.freedesktop.org/>
+Date: Thu, 07 Nov 2013 12:07:01 +0000
+Message-ID: <bug-71116-8800-MyJab8f9p1@http.bugs.freedesktop.org/>
 References: <bug-71116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1333916664=="
+Content-Type: multipart/mixed; boundary="===============0960121382=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,34 +22,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1333916664==
-Content-Type: multipart/alternative; boundary="1383825551.fe6cfcd2.23898"; charset="us-ascii"
+--===============0960121382==
+Content-Type: multipart/alternative; boundary="1383826021.d3776C2.25065"; charset="us-ascii"
 
 
---1383825551.fe6cfcd2.23898
-Date: Thu, 7 Nov 2013 11:59:11 +0000
+--1383826021.d3776C2.25065
+Date: Thu, 7 Nov 2013 12:07:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71116
 
---- Comment #23 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
-while gcc-4.7 evaluates it as:
+--- Comment #24 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
+Because the function also increments the push->cur pointer, it's a subtle but
+real difference:
 
-void
-nouveau_pushbuf_reloc(struct nouveau_pushbuf *push, struct nouveau_bo *bo,
-              uint32_t data, uint32_t flags, uint32_t vor, uint32_t tor)
-{
-    *push->cur = pushbuf_krel(push, bo, data, flags, vor, tor);
-    push->cur++;
-}
+gcc-4.7:
+
+u32 ret = func(); // May change push->cur ptr
+*push->cur = ret;
+push->cur++;
+
+gcc-4.8:
+u32 *ptr = push->cur;
+push->cur++;
+
+*ptr = func(); // Already sees the push->cur ptr
+
+
+I'm not a language expert, so no idea if I'm right, but it seems the updated
+gcc-4.8 behavior is wrong here.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383825551.fe6cfcd2.23898
-Date: Thu, 7 Nov 2013 11:59:11 +0000
+--1383826021.d3776C2.25065
+Date: Thu, 7 Nov 2013 12:07:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,22 +72,31 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups during normal operation, and resume from disk/memory"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116#c23">Comment # 23</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116#c24">Comment # 24</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups during normal operation, and resume from disk/memory"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71116">bug 71116</a>
               from <span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
 </span></b>
-        <pre>while gcc-4.7 evaluates it as:
+        <pre>Because the function also increments the push-&gt;cur pointer, it's a subtle but
+real difference:
 
-void
-nouveau_pushbuf_reloc(struct nouveau_pushbuf *push, struct nouveau_bo *bo,
-              uint32_t data, uint32_t flags, uint32_t vor, uint32_t tor)
-{
-    *push-&gt;cur = pushbuf_krel(push, bo, data, flags, vor, tor);
-    push-&gt;cur++;
-}</pre>
+gcc-4.7:
+
+u32 ret = func(); // May change push-&gt;cur ptr
+*push-&gt;cur = ret;
+push-&gt;cur++;
+
+gcc-4.8:
+u32 *ptr = push-&gt;cur;
+push-&gt;cur++;
+
+*ptr = func(); // Already sees the push-&gt;cur ptr
+
+
+I'm not a language expert, so no idea if I'm right, but it seems the updated
+gcc-4.8 behavior is wrong here.</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +108,9 @@ nouveau_pushbuf_reloc(struct nouveau_pushbuf *push, struct nouveau_bo *bo,
     </body>
 </html>
 
---1383825551.fe6cfcd2.23898--
+--1383826021.d3776C2.25065--
 
---===============1333916664==
+--===============0960121382==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1333916664==--
+--===============0960121382==--
