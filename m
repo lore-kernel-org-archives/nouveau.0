@@ -2,12 +2,12 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71116] [any/all(?) cards below nv50(?)] libdrm built
  with gcc4.8 causes crashes/lockups during normal operation,
  and resume from disk/memory
-Date: Thu, 07 Nov 2013 10:05:14 +0000
-Message-ID: <bug-71116-8800-QNI3AH3ZSx@http.bugs.freedesktop.org/>
+Date: Thu, 07 Nov 2013 10:31:40 +0000
+Message-ID: <bug-71116-8800-5TYQAtXaRw@http.bugs.freedesktop.org/>
 References: <bug-71116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0380996200=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0058422481=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -16,40 +16,40 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0380996200==
-Content-Type: multipart/alternative; boundary="1383818713.D0DD0AA4.3014"; charset="us-ascii"
+--===============0058422481==
+Content-Type: multipart/alternative; boundary="1383820300.cC7a2.8672"; charset="us-ascii"
 
 
---1383818713.D0DD0AA4.3014
-Date: Thu, 7 Nov 2013 10:05:13 +0000
+--1383820300.cC7a2.8672
+Date: Thu, 7 Nov 2013 10:31:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71116
 
-Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #20 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
+Created attachment 88817
+  --> https://bugs.freedesktop.org/attachment.cgi?id=88817&action=edit
+hack to force defined behavior
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[any/all(?) cards below     |[any/all(?) cards below
-                   |nv50(?)] libdrm built with  |nv50(?)] libdrm built with
-                   |gcc4.8 causes               |gcc4.8 causes
-                   |crashes/lockups normal      |crashes/lockups during
-                   |operation, and resume from  |normal operation, and
-                   |disk/memory                 |resume from disk/memory
+As I feared, recompiling only pushbuf.c with gcc-4.7 fixes this bug. So
+something in pushbuf.c is miscompiled. Unfortunately it's also the biggest
+abuser of post increment ops.
+
+A simple workaround seems to be this patch.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383818713.D0DD0AA4.3014
-Date: Thu, 7 Nov 2013 10:05:13 +0000
+--1383820300.cC7a2.8672
+Date: Thu, 7 Nov 2013 10:31:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,28 +57,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups during normal operation, and resume from disk/memory"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71116#c20">Comment # 20</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups during normal operation, and resume from disk/memory"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71116">bug 71116</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=88817" name="attach_88817" title="hack to force defined behavior">attachment 88817</a> <a href="attachment.cgi?id=88817&amp;action=edit" title="hack to force defined behavior">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=71116&amp;attachment=88817'>[review]</a>
+hack to force defined behavior
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups normal operation, and resume from disk/memory
-           </td>
-           <td>[any/all(?) cards below nv50(?)] libdrm built with gcc4.8 causes crashes/lockups during normal operation, and resume from disk/memory
-           </td>
-         </tr></table>
-      <p>
+As I feared, recompiling only pushbuf.c with gcc-4.7 fixes this bug. So
+something in pushbuf.c is miscompiled. Unfortunately it's also the biggest
+abuser of post increment ops.
+
+A simple workaround seems to be this patch.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -89,9 +89,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1383818713.D0DD0AA4.3014--
+--1383820300.cC7a2.8672--
 
---===============0380996200==
+--===============0058422481==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +102,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0380996200==--
+--===============0058422481==--
