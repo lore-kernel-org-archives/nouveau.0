@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71357] [NVC1] After S3 resume X is broken and reboot
 	needed
-Date: Fri, 08 Nov 2013 08:20:56 +0000
-Message-ID: <bug-71357-8800-rPMa3l6e1R@http.bugs.freedesktop.org/>
+Date: Fri, 08 Nov 2013 08:19:57 +0000
+Message-ID: <bug-71357-8800-KeKS6kYQW7@http.bugs.freedesktop.org/>
 References: <bug-71357-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0793311340=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============2087960636=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71357-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,34 +15,34 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0793311340==
-Content-Type: multipart/alternative; boundary="1383898856.aD4200.16419"; charset="us-ascii"
+--===============2087960636==
+Content-Type: multipart/alternative; boundary="1383898797.8827AD0.16250"; charset="us-ascii"
 
 
---1383898856.aD4200.16419
-Date: Fri, 8 Nov 2013 08:20:56 +0000
+--1383898797.8827AD0.16250
+Date: Fri, 8 Nov 2013 08:19:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71357
 
---- Comment #8 from Torsten Krah <krah.tm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 88883
-  --> https://bugs.freedesktop.org/attachment.cgi?id=88883&action=edit
-full bt with patch after trying to kill X
+--- Comment #6 from Torsten Krah <krah.tm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 88881
+  --> https://bugs.freedesktop.org/attachment.cgi?id=88881&action=edit
+Xorg.0.log with patch applied
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383898856.aD4200.16419
-Date: Fri, 8 Nov 2013 08:20:56 +0000
+--1383898797.8827AD0.16250
+Date: Fri, 8 Nov 2013 08:19:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] After S3 resume X is broken and reboot needed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71357#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71357#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] After S3 resume X is broken and reboot needed"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71357">bug 71357</a>
               from <span class="vcard"><a class="email" href="mailto:krah.tm&#64;gmail.com" title="Torsten Krah &lt;krah.tm&#64;gmail.com&gt;"> <span class="fn">Torsten Krah</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=88883" name="attach_88883" title="full bt with patch after trying to kill X">attachment 88883</a> <a href="attachment.cgi?id=88883&amp;action=edit" title="full bt with patch after trying to kill X">[details]</a></span>
-full bt with patch after trying to kill X</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=88881" name="attach_88881" title="Xorg.0.log with patch applied">attachment 88881</a> <a href="attachment.cgi?id=88881&amp;action=edit" title="Xorg.0.log with patch applied">[details]</a></span>
+Xorg.0.log with patch applied</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ full bt with patch after trying to kill X</pre>
     </body>
 </html>
 
---1383898856.aD4200.16419--
+--1383898797.8827AD0.16250--
 
---===============0793311340==
+--===============2087960636==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0793311340==--
+--===============2087960636==--
