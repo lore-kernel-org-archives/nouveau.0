@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71357] [NVC1] After S3 resume X is broken and reboot
-	needed
-Date: Fri, 08 Nov 2013 08:20:26 +0000
-Message-ID: <bug-71357-8800-SuRwXdm0Sx@http.bugs.freedesktop.org/>
-References: <bug-71357-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71382] Nouveau dmesg error, computer hangs
+Date: Fri, 08 Nov 2013 10:12:46 +0000
+Message-ID: <bug-71382-8800-7XQksMfoFq@http.bugs.freedesktop.org/>
+References: <bug-71382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1538416391=="
+Content-Type: multipart/mixed; boundary="===============1224457056=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71357-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1538416391==
-Content-Type: multipart/alternative; boundary="1383898826.e0aD8ff41.16250"; charset="us-ascii"
+--===============1224457056==
+Content-Type: multipart/alternative; boundary="1383905566.4A7EBA1.3740"; charset="us-ascii"
 
 
---1383898826.e0aD8ff41.16250
-Date: Fri, 8 Nov 2013 08:20:26 +0000
+--1383905566.4A7EBA1.3740
+Date: Fri, 8 Nov 2013 10:12:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71357
+https://bugs.freedesktop.org/show_bug.cgi?id=71382
 
---- Comment #7 from Torsten Krah <krah.tm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 88882
-  --> https://bugs.freedesktop.org/attachment.cgi?id=88882&action=edit
-dmesg with patch
+Martin <martin.kaffanke-RbZlAiThDcE@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Hardware|Other                       |All
+                 OS|All                         |Linux (All)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383898826.e0aD8ff41.16250
-Date: Fri, 8 Nov 2013 08:20:26 +0000
+--1383905566.4A7EBA1.3740
+Date: Fri, 8 Nov 2013 10:12:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +51,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:martin.kaffanke&#64;gmx.at" title="Martin &lt;martin.kaffanke&#64;gmx.at&gt;"> <span class="fn">Martin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Nouveau dmesg error, computer hangs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382">bug 71382</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Hardware</td>
+           <td>Other
+           </td>
+           <td>All
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">OS</td>
+           <td>All
+           </td>
+           <td>Linux (All)
+           </td>
+         </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] After S3 resume X is broken and reboot needed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71357#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] After S3 resume X is broken and reboot needed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71357">bug 71357</a>
-              from <span class="vcard"><a class="email" href="mailto:krah.tm&#64;gmail.com" title="Torsten Krah &lt;krah.tm&#64;gmail.com&gt;"> <span class="fn">Torsten Krah</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=88882" name="attach_88882" title="dmesg with patch">attachment 88882</a> <a href="attachment.cgi?id=88882&amp;action=edit" title="dmesg with patch">[details]</a></span>
-dmesg with patch</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +91,9 @@ dmesg with patch</pre>
     </body>
 </html>
 
---1383898826.e0aD8ff41.16250--
+--1383905566.4A7EBA1.3740--
 
---===============1538416391==
+--===============1224457056==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1538416391==--
+--===============1224457056==--
