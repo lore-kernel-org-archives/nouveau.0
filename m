@@ -1,12 +1,14 @@
 From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Subject: [PATCH] drm/nouveau/clk: Initial implementation for
-	reclocking NVAA/NVAC
-Date: Sat,  9 Nov 2013 19:51:58 +0100
-Message-ID: <1384023120-11958-1-git-send-email-rspliet@eclipso.eu>
+Subject: [PATCH 1/2] drm/nouveau/fifo: Hook up pause methods for
+	NV50 and NV84
+Date: Sat,  9 Nov 2013 19:51:59 +0100
+Message-ID: <1384023120-11958-2-git-send-email-rspliet@eclipso.eu>
+References: <1384023120-11958-1-git-send-email-rspliet@eclipso.eu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1384023120-11958-1-git-send-email-rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,11 +19,56 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Reclocking of NVAA/NVAC is substantially different from NV50+, enough to justify a separate clock implementation. This code is a forward-port of reclocking code that has been sitting in a branch for a while, and has been tested on my NVAC. Traces show no significant reasons why this shouldn't work on NVAA, but testers are always welcome. And since these are IGPs without dedicated RAM to reclock, I'm quite confident this should work on the majority of machines (if not all).
+Signed-off-by: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/engine/fifo/nv50.c | 3 +++
+ drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c | 3 +++
+ 2 files changed, 6 insertions(+)
 
-In order to reclock, PFIFO must be paused. The first patch hooks up the corrent pausing method for NV50/NV84. Unfortunately, SUBDEV_CLOCK is initialised before ENFINE_FIFO, leading to a nullptr dereference when trying to reclock using config="NvClkMode=xx". Although "failure" on other cards is not as explicit, they do seem to stir up some registers in the PFIFO space as well. I am therefore led to believe the proper fix is initialising PFIFO earlier. However, although I can simply reorder some bits in device.h, I don't oversee the consequences of doing so. May I ask you to look into this for me Ben?
-
-Apart from that, all works fine! Reclocking through the sysfs interface is as stable as I can hope for... at least on my machine.
+diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/nv50.c b/drivers/gpu/drm/nouveau/core/engine/fifo/nv50.c
+index 5f55578..e6352bd 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/fifo/nv50.c
++++ b/drivers/gpu/drm/nouveau/core/engine/fifo/nv50.c
+@@ -33,6 +33,7 @@
+ #include <engine/dmaobj.h>
+ #include <engine/fifo.h>
+ 
++#include "nv04.h"
+ #include "nv50.h"
+ 
+ /*******************************************************************************
+@@ -460,6 +461,8 @@ nv50_fifo_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	nv_subdev(priv)->intr = nv04_fifo_intr;
+ 	nv_engine(priv)->cclass = &nv50_fifo_cclass;
+ 	nv_engine(priv)->sclass = nv50_fifo_sclass;
++	priv->base.pause = nv04_fifo_pause;
++	priv->base.start = nv04_fifo_start;
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c b/drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c
+index 0908dc8..fe0f41e 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c
++++ b/drivers/gpu/drm/nouveau/core/engine/fifo/nv84.c
+@@ -35,6 +35,7 @@
+ #include <engine/dmaobj.h>
+ #include <engine/fifo.h>
+ 
++#include "nv04.h"
+ #include "nv50.h"
+ 
+ /*******************************************************************************
+@@ -432,6 +433,8 @@ nv84_fifo_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	nv_subdev(priv)->intr = nv04_fifo_intr;
+ 	nv_engine(priv)->cclass = &nv84_fifo_cclass;
+ 	nv_engine(priv)->sclass = nv84_fifo_sclass;
++	priv->base.pause = nv04_fifo_pause;
++	priv->base.start = nv04_fifo_start;
+ 	return 0;
+ }
+ 
+-- 
+1.8.3.1
