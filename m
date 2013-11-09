@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69488] GF108 (NVC1) GPU lockup
-Date: Sat, 09 Nov 2013 02:49:08 +0000
-Message-ID: <bug-69488-8800-LJGvnAaB8d@http.bugs.freedesktop.org/>
-References: <bug-69488-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71382] Nouveau dmesg error, computer hangs
+Date: Sat, 09 Nov 2013 11:18:55 +0000
+Message-ID: <bug-71382-8800-W7pcBZ1sEp@http.bugs.freedesktop.org/>
+References: <bug-71382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1428924548=="
+Content-Type: multipart/mixed; boundary="===============0524134867=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +20,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1428924548==
-Content-Type: multipart/alternative; boundary="1383965348.00Eb2.32014"; charset="us-ascii"
+--===============0524134867==
+Content-Type: multipart/alternative; boundary="1383995935.Cdb351.26703"; charset="us-ascii"
 
 
---1383965348.00Eb2.32014
-Date: Sat, 9 Nov 2013 02:49:08 +0000
+--1383995935.Cdb351.26703
+Date: Sat, 9 Nov 2013 11:18:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69488
+https://bugs.freedesktop.org/show_bug.cgi?id=71382
 
-Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
+--- Comment #2 from Martin <martin.kaffanke-RbZlAiThDcE@public.gmane.org> ---
+Thanks so much, this seems to be the solution.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|REOPENED                    |RESOLVED
-         Resolution|---                         |FIXED
+I took the original ubuntu saucy (13.10) package, created the patch to linked
+for me by hand, compiled it and installed it, so it differs realy just with
+that patch from the original ubuntu package.
 
---- Comment #26 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-Thank you for testing Jean-Louis. I mark this bug as fixed as the patch will
-land in Linux 3.13.
+I put it on launchpad 
+https://launchpad.net/~martin-kaffanke/+archive/personalbugfixes
+
+So ubuntu saucy (13.10) users can use it by doing
+
+# sudo add-apt-repository ppa:martin-kaffanke/personalbugfixes
+# sudo apt-get update && sudo apt-get upgrade
+
+in the terminal.
+
+Thanks.
+
+PS. If the bug comes again because I tested it just a few hours till now,
+I'll come back. :)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383965348.00Eb2.32014
-Date: Sat, 9 Nov 2013 02:49:08 +0000
+--1383995935.Cdb351.26703
+Date: Sat, 9 Nov 2013 11:18:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,49 +66,39 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488">bug 69488</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>REOPENED
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c26">Comment # 26</a>
+          bz_status_NEW "
+   title="NEW --- - Nouveau dmesg error, computer hangs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488">bug 69488</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+          bz_status_NEW "
+   title="NEW --- - Nouveau dmesg error, computer hangs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382">bug 71382</a>
+              from <span class="vcard"><a class="email" href="mailto:martin.kaffanke&#64;gmx.at" title="Martin &lt;martin.kaffanke&#64;gmx.at&gt;"> <span class="fn">Martin</span></a>
 </span></b>
-        <pre>Thank you for testing Jean-Louis. I mark this bug as fixed as the patch will
-land in Linux 3.13.</pre>
+        <pre>Thanks so much, this seems to be the solution.
+
+I took the original ubuntu saucy (13.10) package, created the patch to linked
+for me by hand, compiled it and installed it, so it differs realy just with
+that patch from the original ubuntu package.
+
+I put it on launchpad 
+<a href="https://launchpad.net/~martin-kaffanke/+archive/personalbugfixes">https://launchpad.net/~martin-kaffanke/+archive/personalbugfixes</a>
+
+So ubuntu saucy (13.10) users can use it by doing
+
+# sudo add-apt-repository ppa:martin-kaffanke/personalbugfixes
+# sudo apt-get update &amp;&amp; sudo apt-get upgrade
+
+in the terminal.
+
+Thanks.
+
+PS. If the bug comes again because I tested it just a few hours till now,
+I'll come back. :)</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +110,9 @@ land in Linux 3.13.</pre>
     </body>
 </html>
 
---1383965348.00Eb2.32014--
+--1383995935.Cdb351.26703--
 
---===============1428924548==
+--===============0524134867==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +123,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1428924548==--
+--===============0524134867==--
