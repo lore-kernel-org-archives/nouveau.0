@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40858] nForce Go 430 onboard GPU GeForce 6100 Go
- (C51G) is not supported
-Date: Sat, 09 Nov 2013 19:48:31 +0000
-Message-ID: <bug-40858-8800-Af8H29EAGD@http.bugs.freedesktop.org/>
-References: <bug-40858-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 56196] Geforce GTX 580 unable to boot w/ nouveau,
+ but works with nvidia proprietary (tested in Arch Linux, Ubuntu, Linux Mint)
+Date: Sat, 09 Nov 2013 20:16:04 +0000
+Message-ID: <bug-56196-8800-skkmYobMvu@http.bugs.freedesktop.org/>
+References: <bug-56196-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1502152340=="
+Content-Type: multipart/mixed; boundary="===============0654715043=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40858-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-56196-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1502152340==
-Content-Type: multipart/alternative; boundary="1384026511.e63825be2.25841"; charset="us-ascii"
+--===============0654715043==
+Content-Type: multipart/alternative; boundary="1384028164.beB07b2.30788"; charset="us-ascii"
 
 
---1384026511.e63825be2.25841
-Date: Sat, 9 Nov 2013 19:48:31 +0000
+--1384028164.beB07b2.30788
+Date: Sat, 9 Nov 2013 20:16:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40858
+https://bugs.freedesktop.org/show_bug.cgi?id=56196
 
-v.v.b. <vvb.backup-HPQIj1OAFZMvJsYlp49lxw@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|INVALID                     |WONTFIX
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
 
---- Comment #5 from v.v.b. <vvb.backup-HPQIj1OAFZMvJsYlp49lxw@public.gmane.org> ---
-I have MSI VR330 notebook with GeForce 6100 Go.
-Debian jessie x86_64, updated to current status.
-Bug still here. When I try to launch openbox, all fonts are just mess of
-pixels.
-When I blindly start terminal and start glxgears from it, it start to show
-rotating trinagles.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+This bug contains next to no information. See
+http://nouveau.freedesktop.org/wiki/Bugs/ for what we need. If you need help
+retrieving that information, try #nouveau on irc.freenode.net.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1384026511.e63825be2.25841
-Date: Sat, 9 Nov 2013 19:48:31 +0000
+--1384028164.beB07b2.30788
+Date: Sat, 9 Nov 2013 20:16:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,12 +57,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:vvb.backup&#64;rambler.ru" title="v.v.b. &lt;vvb.backup&#64;rambler.ru&gt;"> <span class="fn">v.v.b.</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - nForce Go 430 onboard GPU GeForce 6100 Go (C51G) is not supported"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40858">bug 40858</a>
+   title="RESOLVED INVALID - Geforce GTX 580 unable to boot w/ nouveau, but works with nvidia proprietary (tested in Arch Linux, Ubuntu, Linux Mint)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56196">bug 56196</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -74,30 +72,35 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>INVALID
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>WONTFIX
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - nForce Go 430 onboard GPU GeForce 6100 Go (C51G) is not supported"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40858#c5">Comment # 5</a>
+   title="RESOLVED INVALID - Geforce GTX 580 unable to boot w/ nouveau, but works with nvidia proprietary (tested in Arch Linux, Ubuntu, Linux Mint)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56196#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WONTFIX - nForce Go 430 onboard GPU GeForce 6100 Go (C51G) is not supported"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40858">bug 40858</a>
-              from <span class="vcard"><a class="email" href="mailto:vvb.backup&#64;rambler.ru" title="v.v.b. &lt;vvb.backup&#64;rambler.ru&gt;"> <span class="fn">v.v.b.</span></a>
+   title="RESOLVED INVALID - Geforce GTX 580 unable to boot w/ nouveau, but works with nvidia proprietary (tested in Arch Linux, Ubuntu, Linux Mint)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56196">bug 56196</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I have MSI VR330 notebook with GeForce 6100 Go.
-Debian jessie x86_64, updated to current status.
-Bug still here. When I try to launch openbox, all fonts are just mess of
-pixels.
-When I blindly start terminal and start glxgears from it, it start to show
-rotating trinagles.</pre>
+        <pre>This bug contains next to no information. See
+<a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a> for what we need. If you need help
+retrieving that information, try #nouveau on irc.freenode.net.</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +112,9 @@ rotating trinagles.</pre>
     </body>
 </html>
 
---1384026511.e63825be2.25841--
+--1384028164.beB07b2.30788--
 
---===============1502152340==
+--===============0654715043==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +125,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1502152340==--
+--===============0654715043==--
