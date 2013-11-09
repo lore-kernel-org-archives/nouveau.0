@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71382] Nouveau dmesg error, computer hangs
-Date: Sat, 09 Nov 2013 14:31:43 +0000
-Message-ID: <bug-71382-8800-4Crx4fiGEf@http.bugs.freedesktop.org/>
-References: <bug-71382-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40858] nForce Go 430 onboard GPU GeForce 6100 Go
+ (C51G) is not supported
+Date: Sat, 09 Nov 2013 19:48:31 +0000
+Message-ID: <bug-40858-8800-Af8H29EAGD@http.bugs.freedesktop.org/>
+References: <bug-40858-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0949130400=="
+Content-Type: multipart/mixed; boundary="===============1502152340=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40858-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,56 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0949130400==
-Content-Type: multipart/alternative; boundary="1384007503.66CbFb0C1.31816"; charset="us-ascii"
+--===============1502152340==
+Content-Type: multipart/alternative; boundary="1384026511.e63825be2.25841"; charset="us-ascii"
 
 
---1384007503.66CbFb0C1.31816
-Date: Sat, 9 Nov 2013 14:31:43 +0000
+--1384026511.e63825be2.25841
+Date: Sat, 9 Nov 2013 19:48:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71382
+https://bugs.freedesktop.org/show_bug.cgi?id=40858
 
---- Comment #6 from Martin <martin.kaffanke-RbZlAiThDcE@public.gmane.org> ---
-(In reply to comment #5)
-> Can you do us a favour and attach complete dmesg output :) Posting random
-> snippets does not provide any context or background.
+v.v.b. <vvb.backup-HPQIj1OAFZMvJsYlp49lxw@public.gmane.org> changed:
 
-Ok, I'll try to get a new one.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|INVALID                     |WONTFIX
 
-> AFAIK messages like the following should be (relatively) harmless.
-> nouveau E[    PBUS][0000:00:0d.0] MMIO write of 0x???????? FAULT at 0x00b???
-
-Ok, thanks.
-
-> * How often does this happen
-
-Sometimes its hard to work on my computer, but the fix above seems to catch
-many of the hangs, I will see that the next days.   Normally its about twice a
-day.
-
-The last time it was, when I switched on HUD for unity.  I disabled this now,
-since then it works fine.  The hud gave me:
-
-Nov  9 14:28:13 martin-desktop kernel: [ 4841.054362] traps: hud-service[2006]
-trap int3 ip:7f8ce47263d9 sp:7fff1d1bcde0 error:0
-
-I don't know if this can hang a machine...
-
-> * How can we reproduce it
-
-That would be great if I could find that out. :)  For me I cannot see any
-systematic process behind this hangs.
-
-Martin
+--- Comment #5 from v.v.b. <vvb.backup-HPQIj1OAFZMvJsYlp49lxw@public.gmane.org> ---
+I have MSI VR330 notebook with GeForce 6100 Go.
+Debian jessie x86_64, updated to current status.
+Bug still here. When I try to launch openbox, all fonts are just mess of
+pixels.
+When I blindly start terminal and start glxgears from it, it start to show
+rotating trinagles.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1384007503.66CbFb0C1.31816
-Date: Sat, 9 Nov 2013 14:31:43 +0000
+--1384026511.e63825be2.25841
+Date: Sat, 9 Nov 2013 19:48:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -77,50 +59,45 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:vvb.backup&#64;rambler.ru" title="v.v.b. &lt;vvb.backup&#64;rambler.ru&gt;"> <span class="fn">v.v.b.</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - nForce Go 430 onboard GPU GeForce 6100 Go (C51G) is not supported"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40858">bug 40858</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>INVALID
+           </td>
+           <td>WONTFIX
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau dmesg error, computer hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382#c6">Comment # 6</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - nForce Go 430 onboard GPU GeForce 6100 Go (C51G) is not supported"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40858#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau dmesg error, computer hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382">bug 71382</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.kaffanke&#64;gmx.at" title="Martin &lt;martin.kaffanke&#64;gmx.at&gt;"> <span class="fn">Martin</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - nForce Go 430 onboard GPU GeForce 6100 Go (C51G) is not supported"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40858">bug 40858</a>
+              from <span class="vcard"><a class="email" href="mailto:vvb.backup&#64;rambler.ru" title="v.v.b. &lt;vvb.backup&#64;rambler.ru&gt;"> <span class="fn">v.v.b.</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=71382#c5">comment #5</a>)
-<span class="quote">&gt; Can you do us a favour and attach complete dmesg output :) Posting random
-&gt; snippets does not provide any context or background.</span >
-
-Ok, I'll try to get a new one.
-
-<span class="quote">&gt; AFAIK messages like the following should be (relatively) harmless.
-&gt; nouveau E[    PBUS][0000:00:0d.0] MMIO write of 0x???????? FAULT at 0x00b???</span >
-
-Ok, thanks.
-
-<span class="quote">&gt; * How often does this happen</span >
-
-Sometimes its hard to work on my computer, but the fix above seems to catch
-many of the hangs, I will see that the next days.   Normally its about twice a
-day.
-
-The last time it was, when I switched on HUD for unity.  I disabled this now,
-since then it works fine.  The hud gave me:
-
-Nov  9 14:28:13 martin-desktop kernel: [ 4841.054362] traps: hud-service[2006]
-trap int3 ip:7f8ce47263d9 sp:7fff1d1bcde0 error:0
-
-I don't know if this can hang a machine...
-
-<span class="quote">&gt; * How can we reproduce it</span >
-
-That would be great if I could find that out. :)  For me I cannot see any
-systematic process behind this hangs.
-
-Martin</pre>
+        <pre>I have MSI VR330 notebook with GeForce 6100 Go.
+Debian jessie x86_64, updated to current status.
+Bug still here. When I try to launch openbox, all fonts are just mess of
+pixels.
+When I blindly start terminal and start glxgears from it, it start to show
+rotating trinagles.</pre>
         </div>
       </p>
       <hr>
@@ -132,9 +109,9 @@ Martin</pre>
     </body>
 </html>
 
---1384007503.66CbFb0C1.31816--
+--1384026511.e63825be2.25841--
 
---===============0949130400==
+--===============1502152340==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -145,4 +122,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0949130400==--
+--===============1502152340==--
