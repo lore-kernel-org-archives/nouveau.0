@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71382] Nouveau dmesg error, computer hangs
-Date: Sat, 09 Nov 2013 11:18:55 +0000
-Message-ID: <bug-71382-8800-W7pcBZ1sEp@http.bugs.freedesktop.org/>
+Date: Sat, 09 Nov 2013 13:22:06 +0000
+Message-ID: <bug-71382-8800-Y8p60es7z4@http.bugs.freedesktop.org/>
 References: <bug-71382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0524134867=="
+Content-Type: multipart/mixed; boundary="===============1617105754=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,45 +20,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0524134867==
-Content-Type: multipart/alternative; boundary="1383995935.Cdb351.26703"; charset="us-ascii"
+--===============1617105754==
+Content-Type: multipart/alternative; boundary="1384003326.5625D11.19890"; charset="us-ascii"
 
 
---1383995935.Cdb351.26703
-Date: Sat, 9 Nov 2013 11:18:55 +0000
+--1384003326.5625D11.19890
+Date: Sat, 9 Nov 2013 13:22:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71382
 
---- Comment #2 from Martin <martin.kaffanke-RbZlAiThDcE@public.gmane.org> ---
-Thanks so much, this seems to be the solution.
+--- Comment #3 from Martin <martin.kaffanke-RbZlAiThDcE@public.gmane.org> ---
+Ok, I was to fast, I had another hang with the bad stripes, but I don't know
+how to debug that.
 
-I took the original ubuntu saucy (13.10) package, created the patch to linked
-for me by hand, compiled it and installed it, so it differs realy just with
-that patch from the original ubuntu package.
+Do you think there could be aditional log for that somewhere in the logfiles?
 
-I put it on launchpad 
-https://launchpad.net/~martin-kaffanke/+archive/personalbugfixes
 
-So ubuntu saucy (13.10) users can use it by doing
+Do you think its that?
 
-# sudo add-apt-repository ppa:martin-kaffanke/personalbugfixes
-# sudo apt-get update && sudo apt-get upgrade
+Nov  9 13:09:41 martin-desktop kernel: [  129.247153] nouveau E[   
+PBUS][0000:00:0d.0] MMIO write of 0x00000000 FAULT at 0x00b020
+Nov  9 13:09:41 martin-desktop kernel: [  129.251668] nouveau E[   
+PBUS][0000:00:0d.0] MMIO write of 0x0a220001 FAULT at 0x00b020
 
-in the terminal.
+(maybe you know how to patch my packages to get rid of that?)
 
-Thanks.
+Where is more information?
 
-PS. If the bug comes again because I tested it just a few hours till now,
-I'll come back. :)
+Thanks,
+Martin
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1383995935.Cdb351.26703
-Date: Sat, 9 Nov 2013 11:18:55 +0000
+--1384003326.5625D11.19890
+Date: Sat, 9 Nov 2013 13:22:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,33 +71,32 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau dmesg error, computer hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau dmesg error, computer hangs"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71382">bug 71382</a>
               from <span class="vcard"><a class="email" href="mailto:martin.kaffanke&#64;gmx.at" title="Martin &lt;martin.kaffanke&#64;gmx.at&gt;"> <span class="fn">Martin</span></a>
 </span></b>
-        <pre>Thanks so much, this seems to be the solution.
+        <pre>Ok, I was to fast, I had another hang with the bad stripes, but I don't know
+how to debug that.
 
-I took the original ubuntu saucy (13.10) package, created the patch to linked
-for me by hand, compiled it and installed it, so it differs realy just with
-that patch from the original ubuntu package.
+Do you think there could be aditional log for that somewhere in the logfiles?
 
-I put it on launchpad 
-<a href="https://launchpad.net/~martin-kaffanke/+archive/personalbugfixes">https://launchpad.net/~martin-kaffanke/+archive/personalbugfixes</a>
 
-So ubuntu saucy (13.10) users can use it by doing
+Do you think its that?
 
-# sudo add-apt-repository ppa:martin-kaffanke/personalbugfixes
-# sudo apt-get update &amp;&amp; sudo apt-get upgrade
+Nov  9 13:09:41 martin-desktop kernel: [  129.247153] nouveau E[   
+PBUS][0000:00:0d.0] MMIO write of 0x00000000 FAULT at 0x00b020
+Nov  9 13:09:41 martin-desktop kernel: [  129.251668] nouveau E[   
+PBUS][0000:00:0d.0] MMIO write of 0x0a220001 FAULT at 0x00b020
 
-in the terminal.
+(maybe you know how to patch my packages to get rid of that?)
 
-Thanks.
+Where is more information?
 
-PS. If the bug comes again because I tested it just a few hours till now,
-I'll come back. :)</pre>
+Thanks,
+Martin</pre>
         </div>
       </p>
       <hr>
@@ -110,9 +108,9 @@ I'll come back. :)</pre>
     </body>
 </html>
 
---1383995935.Cdb351.26703--
+--1384003326.5625D11.19890--
 
---===============0524134867==
+--===============1617105754==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0524134867==--
+--===============1617105754==--
