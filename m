@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71438] [NV10/nouveau_vieux] Application Konqueror
- crashes when connecting to asus.com
-Date: Sun, 10 Nov 2013 02:27:45 +0000
-Message-ID: <bug-71438-8800-gJcfu1q8s4@http.bugs.freedesktop.org/>
-References: <bug-71438-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
+Date: Sun, 10 Nov 2013 18:35:58 +0000
+Message-ID: <bug-70972-8800-xBXFgdQz1j@http.bugs.freedesktop.org/>
+References: <bug-70972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0719806166=="
+Content-Type: multipart/mixed; boundary="===============1042647126=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0719806166==
-Content-Type: multipart/alternative; boundary="1384050465.a3B02.27254"; charset="us-ascii"
+--===============1042647126==
+Content-Type: multipart/alternative; boundary="1384108558.cfcE1.15370"; charset="us-ascii"
 
 
---1384050465.a3B02.27254
-Date: Sun, 10 Nov 2013 02:27:45 +0000
+--1384108558.cfcE1.15370
+Date: Sun, 10 Nov 2013 18:35:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71438
+https://bugs.freedesktop.org/show_bug.cgi?id=70972
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, well it seems like eventually you start getting allocation errors. This
-could mean that we're somehow leaking video memory, or just not using it
-wisely, or that there's just not enough to go 'round. Modern applications will
-want a lot more 3d than this card can provide anyways... unless you plan on
-using it for 3d activities, you could set LIBGL_ALWAYS_SOFTWARE=1 somewhere in
-your environment which will cause mesa to fall back on llvmpipe or swrast.
+--- Comment #5 from Larry Finger <larry.finger-tQ5ms3gMjBLk1uMJSBkQmQ@public.gmane.org> ---
+Yes, I did mean 1280x800.
 
-Another possibility is that you're being bitten by the libdrm bug that was
-exposed by gcc-4.8 (which I see your kernel is compiled with). Try a libdrm
-with commit
-http://cgit.freedesktop.org/mesa/drm/commit/?id=482abbfafb56cbceaf5355c026434e638cddd0f1
-applied and see if it helps.
+Thanks for the hint. I will look at the two routines you suggest.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1384050465.a3B02.27254
-Date: Sun, 10 Nov 2013 02:27:45 +0000
+--1384108558.cfcE1.15370
+Date: Sun, 10 Nov 2013 18:35:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,26 +54,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV10/nouveau_vieux] Application Konqueror crashes when connecting to asus.com"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71438#c6">Comment # 6</a>
+   title="NEW --- - [NV67] Modesetting failure at 1280x800"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV10/nouveau_vieux] Application Konqueror crashes when connecting to asus.com"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71438">bug 71438</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NV67] Modesetting failure at 1280x800"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972">bug 70972</a>
+              from <span class="vcard"><a class="email" href="mailto:larry.finger&#64;lwfinger.net" title="Larry Finger &lt;larry.finger&#64;lwfinger.net&gt;"> <span class="fn">Larry Finger</span></a>
 </span></b>
-        <pre>OK, well it seems like eventually you start getting allocation errors. This
-could mean that we're somehow leaking video memory, or just not using it
-wisely, or that there's just not enough to go 'round. Modern applications will
-want a lot more 3d than this card can provide anyways... unless you plan on
-using it for 3d activities, you could set LIBGL_ALWAYS_SOFTWARE=1 somewhere in
-your environment which will cause mesa to fall back on llvmpipe or swrast.
+        <pre>Yes, I did mean 1280x800.
 
-Another possibility is that you're being bitten by the libdrm bug that was
-exposed by gcc-4.8 (which I see your kernel is compiled with). Try a libdrm
-with commit
-<a href="http://cgit.freedesktop.org/mesa/drm/commit/?id=482abbfafb56cbceaf5355c026434e638cddd0f1">http://cgit.freedesktop.org/mesa/drm/commit/?id=482abbfafb56cbceaf5355c026434e638cddd0f1</a>
-applied and see if it helps.</pre>
+Thanks for the hint. I will look at the two routines you suggest.</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +76,9 @@ applied and see if it helps.</pre>
     </body>
 </html>
 
---1384050465.a3B02.27254--
+--1384108558.cfcE1.15370--
 
---===============0719806166==
+--===============1042647126==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0719806166==--
+--===============1042647126==--
