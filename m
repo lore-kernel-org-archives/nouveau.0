@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71484] [NVAA] random graphical corruption with vlc
- on 3.12 (and earlier)
-Date: Mon, 11 Nov 2013 11:14:57 +0000
-Message-ID: <bug-71484-8800-4Z4qt16j7w@http.bugs.freedesktop.org/>
-References: <bug-71484-8800@http.bugs.freedesktop.org/>
+From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: Re: drm/nouveau contiguous bo check produces lots of
+	output
+Date: Mon, 11 Nov 2013 16:57:48 +0100
+Message-ID: <5280FE7C.3030704@canonical.com>
+References: <5280F855.1020900@linuxfoundation.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1480550134=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71484-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <5280F855.1020900-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,82 +18,52 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Jerry Cooperstein <coop-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+op 11-11-13 16:31, Jerry Cooperstein schreef:
+> Hi:
+>
+> commit bd9c5a2016307164c419c5e24a46921c10e620a0
+>
+> (drm/nouveau: require contiguous bo for framebuffer)
+> produces about 2000 lines of
+>
+> nouveau E[     DRM] framebuffer requires contiguous bo
+>
+> on system boot and more on shutdown, but I don't see other
+> negative effects.  I tried deploying a trivial patch removing the check and saw
+> no other problems.
+>
+> Is this a problem you have heard about?
+>
+> My hardware is an NVIDIA Geoforce G98 (8400 GS), lspci -v gives:
+>
+> 01:00.0 VGA compatible controller: NVIDIA Corporation G98 [GeForce 8400 GS] (rev a1) (prog-if 00 [VGA controller])
+>     Subsystem: ASUSTeK Computer Inc. Device 8278
+>     Flags: bus master, fast devsel, latency 0, IRQ 16
+>     Memory at fd000000 (32-bit, non-prefetchable) [size=16M]
+>     Memory at d0000000 (64-bit, prefetchable) [size=256M]
+>     Memory at fa000000 (64-bit, non-prefetchable) [size=32M]
+>     I/O ports at cc00 [size=128]
+>     Expansion ROM at fe9e0000 [disabled] [size=128K]
+>     Capabilities: [60] Power Management version 3
+>     Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
+>     Capabilities: [78] Express Endpoint, MSI 00
+>     Capabilities: [100] Virtual Channel
+>     Capabilities: [128] Power Budgeting <?>
+>     Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024 <?>
+>     Kernel driver in use: nouveau
+>     Kernel modules: nouveau
+>
+> This appeared in the 3.12 rc kernels and is in 3.12.0
+>
+> If there is anything I can do to help you debug this please let me know.
+> I don't understand the drm code well enough to dive in deep on my own.
+It's a paranoia patch and any bo should not be created with NOUVEAU_GEM_TILE_NONCONTIG flag.
+Even if it happens to work it will fail on any sufficiently fragmented vram.
 
---===============1480550134==
-Content-Type: multipart/alternative; boundary="1384168497.8aEBfC3c1.11356"; charset="us-ascii"
+What driver versions do you use?
 
-
---1384168497.8aEBfC3c1.11356
-Date: Mon, 11 Nov 2013 11:14:57 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=71484
-
---- Comment #2 from dirkneukirchen-S0/GAf8tV78@public.gmane.org ---
-Created attachment 89016
-  --> https://bugs.freedesktop.org/attachment.cgi?id=89016&action=edit
-examples of some screen corruption
-
-screen corruption visible on 2nd monitor 
-(dual screen setup)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1384168497.8aEBfC3c1.11356
-Date: Mon, 11 Nov 2013 11:14:57 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAA] random graphical corruption with vlc on 3.12 (and earlier)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71484#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAA] random graphical corruption with vlc on 3.12 (and earlier)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71484">bug 71484</a>
-              from <span class="vcard"><a class="email" href="mailto:dirkneukirchen&#64;web.de" title="dirkneukirchen&#64;web.de">dirkneukirchen&#64;web.de</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=89016" name="attach_89016" title="examples of some screen corruption">attachment 89016</a> <a href="attachment.cgi?id=89016&amp;action=edit" title="examples of some screen corruption">[details]</a></span>
-examples of some screen corruption
-
-screen corruption visible on 2nd monitor 
-(dual screen setup)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1384168497.8aEBfC3c1.11356--
-
---===============1480550134==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1480550134==--
+~Maarten
