@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71455] Thermal management in nouveau running hot
-	3.12.0+ kernel
-Date: Tue, 12 Nov 2013 02:12:51 +0000
-Message-ID: <bug-71455-8800-4grCex5ogM@http.bugs.freedesktop.org/>
-References: <bug-71455-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: "Funny" index buffer transfers (was: Bug 64323] New:
+ Severe misrendering in Left 4 Dead 2)
+Date: Tue, 12 Nov 2013 08:35:10 +0000
+Message-ID: <5281E83E.8080804@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1145898502=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,83 +16,28 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Christoph Bumiller <christoph.bumiller-D4IDLmZPRBc@public.gmane.org>, Nouveau devlist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Hello Christoph,
 
---===============1145898502==
-Content-Type: multipart/alternative; boundary="1384222371.Fd461.27962"; charset="us-ascii"
+I was looking at bug 64323[1] over the weekend as to why this case works
+under nvc0+ hardware and does not under nv50. Here are some of the
+things I've noticed:
+* nvc0 uses immediate(s) for VERTEX_BEGIN_GL/VERTEX_END_GL
+* nvc0 is more consistent for doing pushbuffer space checks
+* nvc0 uses dirty tracking in set_index_buffer()
+* nvc0 uses "VERTEX_DATA push mode" over the FIFO for nv50
 
+AFAICS the second and third one have no effect when ported to nv50. I'm
+highly suspecting that "push mode" or actually the type of buffers used
+will be the solution to this problem.
 
---1384222371.Fd461.27962
-Date: Tue, 12 Nov 2013 02:12:51 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Would you have any input/ideas? It would be nice to have this issue
+resolved properly but until then can we use one of the workarounds
+mentioned in the bugreport?
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71455
+Thanks
+Emil
 
-Bob Gleitsmann <rjgleits-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Priority|medium                      |high
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1384222371.Fd461.27962
-Date: Tue, 12 Nov 2013 02:12:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:rjgleits&#64;bellsouth.net" title="Bob Gleitsmann &lt;rjgleits&#64;bellsouth.net&gt;"> <span class="fn">Bob Gleitsmann</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Thermal management in nouveau running hot 3.12.0+ kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71455">bug 71455</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Priority</td>
-           <td>medium
-           </td>
-           <td>high
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1384222371.Fd461.27962--
-
---===============1145898502==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1145898502==--
+[1] https://bugs.freedesktop.org/show_bug.cgi?id=64323
