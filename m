@@ -1,13 +1,12 @@
-From: maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org
-Subject: [PATCH 2/7] drm/nv50-: untile mmap'd bo's
-Date: Tue, 12 Nov 2013 13:34:09 +0100
-Message-ID: <1384259656-29483-2-git-send-email-maarten.lankhorst@canonical.com>
-References: <1384259656-29483-1-git-send-email-maarten.lankhorst@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 69488] GF108 (NVC1) GPU lockup
+Date: Tue, 12 Nov 2013 18:44:47 +0000
+Message-ID: <bug-69488-8800-I2RMa6mEGZ@http.bugs.freedesktop.org/>
+References: <bug-69488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1152312627=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1384259656-29483-1-git-send-email-maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+In-Reply-To: <bug-69488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,113 +16,83 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
 
-Map the GART to the bar and use that mapping, to hide all the tiling details from users.
+--===============1152312627==
+Content-Type: multipart/alternative; boundary="1384281887.1FdfaC1.25210"; charset="us-ascii"
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
----
- drivers/gpu/drm/nouveau/core/subdev/bar/nv50.c |  5 ++++-
- drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c |  5 ++++-
- drivers/gpu/drm/nouveau/nouveau_bo.c           | 20 +++++++++++++++++---
- 3 files changed, 25 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/bar/nv50.c b/drivers/gpu/drm/nouveau/core/subdev/bar/nv50.c
-index 160d27f..9907a25 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/bar/nv50.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/bar/nv50.c
-@@ -67,7 +67,10 @@ nv50_bar_umap(struct nouveau_bar *bar, struct nouveau_mem *mem,
- 	if (ret)
- 		return ret;
- 
--	nouveau_vm_map(vma, mem);
-+	if (mem->pages)
-+		nouveau_vm_map_sg(vma, 0, mem->size << 12, mem);
-+	else
-+		nouveau_vm_map(vma, mem);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c b/drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c
-index b2ec741..badd835 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c
-@@ -66,7 +66,10 @@ nvc0_bar_umap(struct nouveau_bar *bar, struct nouveau_mem *mem,
- 	if (ret)
- 		return ret;
- 
--	nouveau_vm_map(vma, mem);
-+	if (mem->pages)
-+		nouveau_vm_map_sg(vma, 0, mem->size << 12, mem);
-+	else
-+		nouveau_vm_map(vma, mem);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 639d7cd..9ecb874 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -1259,6 +1259,7 @@ nouveau_ttm_io_mem_reserve(struct ttm_bo_device *bdev, struct ttm_mem_reg *mem)
- {
- 	struct ttm_mem_type_manager *man = &bdev->man[mem->mem_type];
- 	struct nouveau_drm *drm = nouveau_bdev(bdev);
-+	struct nouveau_mem *node = mem->mm_node;
- 	struct drm_device *dev = drm->dev;
- 	int ret;
- 
-@@ -1281,14 +1282,16 @@ nouveau_ttm_io_mem_reserve(struct ttm_bo_device *bdev, struct ttm_mem_reg *mem)
- 			mem->bus.is_iomem = !dev->agp->cant_use_aperture;
- 		}
- #endif
--		break;
-+		if (!node->memtype)
-+			/* untiled */
-+			break;
-+		/* fallthrough, tiled memory */
- 	case TTM_PL_VRAM:
- 		mem->bus.offset = mem->start << PAGE_SHIFT;
- 		mem->bus.base = pci_resource_start(dev->pdev, 1);
- 		mem->bus.is_iomem = true;
- 		if (nv_device(drm->device)->card_type >= NV_50) {
- 			struct nouveau_bar *bar = nouveau_bar(drm->device);
--			struct nouveau_mem *node = mem->mm_node;
- 
- 			ret = bar->umap(bar, node, NV_MEM_ACCESS_RW,
- 					&node->bar_vma);
-@@ -1324,6 +1327,7 @@ nouveau_ttm_fault_reserve_notify(struct ttm_buffer_object *bo)
- 	struct nouveau_bo *nvbo = nouveau_bo(bo);
- 	struct nouveau_device *device = nv_device(drm->device);
- 	u32 mappable = pci_resource_len(device->pdev, 1) >> PAGE_SHIFT;
-+	int ret;
- 
- 	/* as long as the bo isn't in vram, and isn't tiled, we've got
- 	 * nothing to do here.
-@@ -1332,10 +1336,20 @@ nouveau_ttm_fault_reserve_notify(struct ttm_buffer_object *bo)
- 		if (nv_device(drm->device)->card_type < NV_50 ||
- 		    !nouveau_bo_tile_layout(nvbo))
- 			return 0;
-+
-+		if (bo->mem.mem_type == TTM_PL_SYSTEM) {
-+			nouveau_bo_placement_set(nvbo, TTM_PL_TT, 0);
-+
-+			ret = nouveau_bo_validate(nvbo, false, false);
-+			if (ret)
-+				return ret;
-+		}
-+		return 0;
- 	}
- 
- 	/* make sure bo is in mappable vram */
--	if (bo->mem.start + bo->mem.num_pages < mappable)
-+	if (nv_device(drm->device)->card_type >= NV_50 ||
-+	    bo->mem.start + bo->mem.num_pages < mappable)
- 		return 0;
- 
- 
+--1384281887.1FdfaC1.25210
+Date: Tue, 12 Nov 2013 18:44:47 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=69488
+
+--- Comment #28 from Kevin N. <vekinn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=968a8d1b6c32c9f466f236032770b9165ece045a
+
+With this patch the system no longer hangs.
+
+However runtime power management seems broken as the card never goes to D3, so
+its effectively the same as using nouveau.runpm=0
+
 -- 
-1.8.4
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1384281887.1FdfaC1.25210
+Date: Tue, 12 Nov 2013 18:44:47 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - GF108 (NVC1) GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c28">Comment # 28</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - GF108 (NVC1) GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488">bug 69488</a>
+              from <span class="vcard"><a class="email" href="mailto:vekinn&#64;gmail.com" title="Kevin N. &lt;vekinn&#64;gmail.com&gt;"> <span class="fn">Kevin N.</span></a>
+</span></b>
+        <pre><a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=968a8d1b6c32c9f466f236032770b9165ece045a">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=968a8d1b6c32c9f466f236032770b9165ece045a</a>
+
+With this patch the system no longer hangs.
+
+However runtime power management seems broken as the card never goes to D3, so
+its effectively the same as using nouveau.runpm=0</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1384281887.1FdfaC1.25210--
+
+--===============1152312627==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1152312627==--
