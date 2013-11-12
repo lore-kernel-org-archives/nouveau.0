@@ -1,8 +1,8 @@
 From: maarten.lankhorst@canonical.com
-Subject: [PATCH 5/7] drm/nouveau: do not map evicted vram buffers in
-	nouveau_bo_vma_add
-Date: Tue, 12 Nov 2013 13:34:12 +0100
-Message-ID: <1384259656-29483-5-git-send-email-maarten.lankhorst@canonical.com>
+Subject: [PATCH 4/7] drm/nvc0-/gr: shift wrapping bug in
+	nvc0_grctx_generate_r406800
+Date: Tue, 12 Nov 2013 13:34:11 +0100
+Message-ID: <1384259656-29483-4-git-send-email-maarten.lankhorst@canonical.com>
 References: <1384259656-29483-1-git-send-email-maarten.lankhorst@canonical.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -19,29 +19,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
 Sender: dri-devel-bounces@lists.freedesktop.org
 Errors-To: dri-devel-bounces@lists.freedesktop.org
 To: bskeggs@redhat.com
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, Dan Carpenter <dan.carpenter@oracle.com>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+From: Dan Carpenter <dan.carpenter@oracle.com>
 
+We care about the upper 32 bits here so we have to use 1ULL instead of 1
+to avoid a shift wrapping bug.
+
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_bo.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/core/engine/graph/ctxnvc0.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 9ecb874..bb3734d 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -1549,7 +1549,8 @@ nouveau_bo_vma_add(struct nouveau_bo *nvbo, struct nouveau_vm *vm,
+diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/ctxnvc0.c b/drivers/gpu/drm/nouveau/core/engine/graph/ctxnvc0.c
+index 64dca26..fe67415 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/graph/ctxnvc0.c
++++ b/drivers/gpu/drm/nouveau/core/engine/graph/ctxnvc0.c
+@@ -1039,7 +1039,7 @@ nvc0_grctx_generate_r406800(struct nvc0_graph_priv *priv)
+ 			} while (!tpcnr[gpc]);
+ 			tpc = priv->tpc_nr[gpc] - tpcnr[gpc]--;
  
- 	if (nvbo->bo.mem.mem_type == TTM_PL_VRAM)
- 		nouveau_vm_map(vma, nvbo->bo.mem.mm_node);
--	else if (nvbo->bo.mem.mem_type == TTM_PL_TT) {
-+	else if (nvbo->bo.mem.mem_type == TTM_PL_TT &&
-+		 nvbo->page_shift == vma->vm->vmm->spg_shift) {
- 		if (node->sg)
- 			nouveau_vm_map_sg_table(vma, 0, size, node);
- 		else
+-			tpc_set |= 1 << ((gpc * 8) + tpc);
++			tpc_set |= 1ULL << ((gpc * 8) + tpc);
+ 		}
+ 
+ 		nv_wr32(priv, 0x406800 + (i * 0x20), lower_32_bits(tpc_set));
 -- 
 1.8.4
