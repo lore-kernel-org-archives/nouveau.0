@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70389] [prime] unsynchronised rendering on secondary
-	displays
-Date: Wed, 13 Nov 2013 01:59:32 +0000
-Message-ID: <bug-70389-8800-SI216cYoRh@http.bugs.freedesktop.org/>
-References: <bug-70389-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
+Date: Wed, 13 Nov 2013 05:05:59 +0000
+Message-ID: <bug-70972-8800-AHvR0hgGkj@http.bugs.freedesktop.org/>
+References: <bug-70972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1452512838=="
+Content-Type: multipart/mixed; boundary="===============0307621697=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70389-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,61 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1452512838==
-Content-Type: multipart/alternative; boundary="1384307972.DBa12.14608"; charset="us-ascii"
+--===============0307621697==
+Content-Type: multipart/alternative; boundary="1384319159.cfCD1.14181"; charset="us-ascii"
 
 
---1384307972.DBa12.14608
-Date: Wed, 13 Nov 2013 01:59:32 +0000
+--1384319159.cfCD1.14181
+Date: Wed, 13 Nov 2013 05:05:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70389
+https://bugs.freedesktop.org/show_bug.cgi?id=70972
 
---- Comment #1 from Kevin Murphy <kemurphy.cmu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Also experiencing this on a Thinkpad T530 running Arch with kernel 3.11.6.
-
-00:02.0 VGA compatible controller: Intel Corporation 3rd Gen Core processor
-Graphics Controller (rev 09) (prog-if 00 [VGA controller])
-        Subsystem: Lenovo Device 21f5
-        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR- FastB2B- DisINTx+
-        Status: Cap+ 66MHz- UDF- FastB2B+ ParErr- DEVSEL=fast >TAbort- <TAbort-
-<MAbort- >SERR- <PERR- INTx-
-        Latency: 0
-        Interrupt: pin A routed to IRQ 47
-        Region 0: Memory at f1400000 (64-bit, non-prefetchable) [size=4M]
-        Region 2: Memory at e0000000 (64-bit, prefetchable) [size=256M]
-        Region 4: I/O ports at 5000 [size=64]
-        Expansion ROM at <unassigned> [disabled]
-        Capabilities: <access denied>
-        Kernel driver in use: i915
-        Kernel modules: i915
-
-01:00.0 VGA compatible controller: NVIDIA Corporation GF108M [NVS 5400M] (rev
-a1) (prog-if 00 [VGA controller])
-        Subsystem: Lenovo Device 21f5
-        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR- FastB2B- DisINTx-
-        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort-
-<MAbort- >SERR- <PERR- INTx-
-        Latency: 0, Cache Line Size: 64 bytes
-        Interrupt: pin A routed to IRQ 16
-        Region 0: Memory at f0000000 (32-bit, non-prefetchable) [size=16M]
-        Region 1: Memory at c0000000 (64-bit, prefetchable) [size=256M]
-        Region 3: Memory at d0000000 (64-bit, prefetchable) [size=32M]
-        Region 5: I/O ports at 4000 [size=128]
-        Expansion ROM at f1000000 [disabled] [size=512K]
-        Capabilities: <access denied>
-        Kernel driver in use: nouveau
-        Kernel modules: nouveau
+--- Comment #6 from Larry Finger <larry.finger-tQ5ms3gMjBLk1uMJSBkQmQ@public.gmane.org> ---
+I tested 640x480. After X started, it was OK for about 5 seconds, and then it
+failed in the same way as 1280x800.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1384307972.DBa12.14608
-Date: Wed, 13 Nov 2013 01:59:32 +0000
+--1384319159.cfCD1.14181
+Date: Wed, 13 Nov 2013 05:05:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -88,50 +53,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [prime] unsynchronised rendering on secondary displays"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70389#c1">Comment # 1</a>
+   title="NEW --- - [NV67] Modesetting failure at 1280x800"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [prime] unsynchronised rendering on secondary displays"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70389">bug 70389</a>
-              from <span class="vcard"><a class="email" href="mailto:kemurphy.cmu&#64;gmail.com" title="Kevin Murphy &lt;kemurphy.cmu&#64;gmail.com&gt;"> <span class="fn">Kevin Murphy</span></a>
+   title="NEW --- - [NV67] Modesetting failure at 1280x800"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972">bug 70972</a>
+              from <span class="vcard"><a class="email" href="mailto:larry.finger&#64;lwfinger.net" title="Larry Finger &lt;larry.finger&#64;lwfinger.net&gt;"> <span class="fn">Larry Finger</span></a>
 </span></b>
-        <pre>Also experiencing this on a Thinkpad T530 running Arch with kernel 3.11.6.
-
-00:02.0 VGA compatible controller: Intel Corporation 3rd Gen Core processor
-Graphics Controller (rev 09) (prog-if 00 [VGA controller])
-        Subsystem: Lenovo Device 21f5
-        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR- FastB2B- DisINTx+
-        Status: Cap+ 66MHz- UDF- FastB2B+ ParErr- DEVSEL=fast &gt;TAbort- &lt;TAbort-
-&lt;MAbort- &gt;SERR- &lt;PERR- INTx-
-        Latency: 0
-        Interrupt: pin A routed to IRQ 47
-        Region 0: Memory at f1400000 (64-bit, non-prefetchable) [size=4M]
-        Region 2: Memory at e0000000 (64-bit, prefetchable) [size=256M]
-        Region 4: I/O ports at 5000 [size=64]
-        Expansion ROM at &lt;unassigned&gt; [disabled]
-        Capabilities: &lt;access denied&gt;
-        Kernel driver in use: i915
-        Kernel modules: i915
-
-01:00.0 VGA compatible controller: NVIDIA Corporation GF108M [NVS 5400M] (rev
-a1) (prog-if 00 [VGA controller])
-        Subsystem: Lenovo Device 21f5
-        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR- FastB2B- DisINTx-
-        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast &gt;TAbort- &lt;TAbort-
-&lt;MAbort- &gt;SERR- &lt;PERR- INTx-
-        Latency: 0, Cache Line Size: 64 bytes
-        Interrupt: pin A routed to IRQ 16
-        Region 0: Memory at f0000000 (32-bit, non-prefetchable) [size=16M]
-        Region 1: Memory at c0000000 (64-bit, prefetchable) [size=256M]
-        Region 3: Memory at d0000000 (64-bit, prefetchable) [size=32M]
-        Region 5: I/O ports at 4000 [size=128]
-        Expansion ROM at f1000000 [disabled] [size=512K]
-        Capabilities: &lt;access denied&gt;
-        Kernel driver in use: nouveau
-        Kernel modules: nouveau</pre>
+        <pre>I tested 640x480. After X started, it was OK for about 5 seconds, and then it
+failed in the same way as 1280x800.</pre>
         </div>
       </p>
       <hr>
@@ -143,9 +74,9 @@ Stepping- SERR- FastB2B- DisINTx-
     </body>
 </html>
 
---1384307972.DBa12.14608--
+--1384319159.cfCD1.14181--
 
---===============1452512838==
+--===============0307621697==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -156,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1452512838==--
+--===============0307621697==--
