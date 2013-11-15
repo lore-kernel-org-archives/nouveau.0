@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71662] [nvd9 regression] 3d application hang
-Date: Fri, 15 Nov 2013 22:35:41 +0000
-Message-ID: <bug-71662-8800-OaE6uU8Mbo@http.bugs.freedesktop.org/>
+Date: Fri, 15 Nov 2013 22:38:00 +0000
+Message-ID: <bug-71662-8800-ZmTPoOMECh@http.bugs.freedesktop.org/>
 References: <bug-71662-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0029929073=="
+Content-Type: multipart/mixed; boundary="===============1058385906=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71662-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0029929073==
-Content-Type: multipart/alternative; boundary="1384554941.aFFe5Ef0.24000"; charset="us-ascii"
+--===============1058385906==
+Content-Type: multipart/alternative; boundary="1384555080.2E33c30.24249"; charset="us-ascii"
 
 
---1384554941.aFFe5Ef0.24000
-Date: Fri, 15 Nov 2013 22:35:40 +0000
+--1384555080.2E33c30.24249
+Date: Fri, 15 Nov 2013 22:38:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71662
 
---- Comment #1 from Jan Vesely <jano.vesely-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #0)
-> This is a regression from 3.12 to 3.13 (still present on nouveau master).
-should have been 3.11 to 3.12.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+A git bisect would be useful. You should be able to just run the bisect under
+drivers/gpu/drm/nouveau, i.e.
+
+git bisect start v3.12 v3.11 -- drivers/gpu/drm/nouveau
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1384554941.aFFe5Ef0.24000
-Date: Fri, 15 Nov 2013 22:35:41 +0000
+--1384555080.2E33c30.24249
+Date: Fri, 15 Nov 2013 22:38:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nvd9 regression] 3d application hang"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71662#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71662#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nvd9 regression] 3d application hang"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71662">bug 71662</a>
-              from <span class="vcard"><a class="email" href="mailto:jano.vesely&#64;gmail.com" title="Jan Vesely &lt;jano.vesely&#64;gmail.com&gt;"> <span class="fn">Jan Vesely</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=71662#c0">comment #0</a>)
-<span class="quote">&gt; This is a regression from 3.12 to 3.13 (still present on nouveau master).</span >
-should have been 3.11 to 3.12.</pre>
+        <pre>A git bisect would be useful. You should be able to just run the bisect under
+drivers/gpu/drm/nouveau, i.e.
+
+git bisect start v3.12 v3.11 -- drivers/gpu/drm/nouveau</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +78,9 @@ should have been 3.11 to 3.12.</pre>
     </body>
 </html>
 
---1384554941.aFFe5Ef0.24000--
+--1384555080.2E33c30.24249--
 
---===============0029929073==
+--===============1058385906==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0029929073==--
+--===============1058385906==--
