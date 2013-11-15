@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71659] [NVD9] Hangs under load with ![
  PFIFO][0000:01:00.0] unhandled status 0x00800000
-Date: Fri, 15 Nov 2013 20:16:10 +0000
-Message-ID: <bug-71659-8800-f2Zr3mnCjl@http.bugs.freedesktop.org/>
+Date: Fri, 15 Nov 2013 20:16:30 +0000
+Message-ID: <bug-71659-8800-MFytRCUXYY@http.bugs.freedesktop.org/>
 References: <bug-71659-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1807819712=="
+Content-Type: multipart/mixed; boundary="===============1529118727=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71659-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1807819712==
-Content-Type: multipart/alternative; boundary="1384546570.ff6Bac1.32099"; charset="us-ascii"
+--===============1529118727==
+Content-Type: multipart/alternative; boundary="1384546590.b08e6Ab3.32099"; charset="us-ascii"
 
 
---1384546570.ff6Bac1.32099
-Date: Fri, 15 Nov 2013 20:16:10 +0000
+--1384546590.b08e6Ab3.32099
+Date: Fri, 15 Nov 2013 20:16:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71659
 
---- Comment #1 from R.Palmer-mHdZ94l+r7K1Qrn1Bg8BZw@public.gmane.org ---
-Created attachment 89286
-  --> https://bugs.freedesktop.org/attachment.cgi?id=89286&action=edit
-kernel log
+R.Palmer-mHdZ94l+r7K1Qrn1Bg8BZw@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #89286|kernel log                  |Xorg log
+        description|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1384546570.ff6Bac1.32099
-Date: Fri, 15 Nov 2013 20:16:10 +0000
+--1384546590.b08e6Ab3.32099
+Date: Fri, 15 Nov 2013 20:16:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +52,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:R.Palmer&#64;bham.ac.uk" title="R.Palmer&#64;bham.ac.uk">R.Palmer&#64;bham.ac.uk</a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71659">bug 71659</a>
-              from <span class="vcard"><a class="email" href="mailto:R.Palmer&#64;bham.ac.uk" title="R.Palmer&#64;bham.ac.uk">R.Palmer&#64;bham.ac.uk</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=89286" name="attach_89286" title="kernel log">attachment 89286</a> <a href="attachment.cgi?id=89286&amp;action=edit" title="kernel log">[details]</a></span>
-kernel log</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #89286 description</td>
+           <td>kernel log
+           </td>
+           <td>Xorg log
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +84,9 @@ kernel log</pre>
     </body>
 </html>
 
---1384546570.ff6Bac1.32099--
+--1384546590.b08e6Ab3.32099--
 
---===============1807819712==
+--===============1529118727==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1807819712==--
+--===============1529118727==--
