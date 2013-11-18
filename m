@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71659] [NVD9] Hangs under load with ![
  PFIFO][0000:01:00.0] unhandled status 0x00800000
-Date: Mon, 18 Nov 2013 18:54:51 +0000
-Message-ID: <bug-71659-8800-sfAmear1AE@http.bugs.freedesktop.org/>
+Date: Mon, 18 Nov 2013 18:59:34 +0000
+Message-ID: <bug-71659-8800-b0LKeWT1Up@http.bugs.freedesktop.org/>
 References: <bug-71659-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1294307154=="
+Content-Type: multipart/mixed; boundary="===============2129349983=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71659-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1294307154==
-Content-Type: multipart/alternative; boundary="1384800892.DB76FC281.6786"; charset="us-ascii"
+--===============2129349983==
+Content-Type: multipart/alternative; boundary="1384801174.E1DdBaD1.7634"; charset="us-ascii"
 
 
---1384800892.DB76FC281.6786
-Date: Mon, 18 Nov 2013 18:54:52 +0000
+--1384801174.E1DdBaD1.7634
+Date: Mon, 18 Nov 2013 18:59:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71659
 
---- Comment #6 from R.Palmer-mHdZ94l+r7K1Qrn1Bg8BZw@public.gmane.org ---
-Created attachment 89422
-  --> https://bugs.freedesktop.org/attachment.cgi?id=89422&action=edit
-Xorg log 2
+--- Comment #7 from R.Palmer-mHdZ94l+r7K1Qrn1Bg8BZw@public.gmane.org ---
+Switching to the 9.2 branch of mesa makes the git userspace start, but it still
+has the original bug.  In the attached logs:
+
+Nov 18 16:29 and Xorg log: git kernel, git userspace (libdrm head,
+xf86-video-nouveau head, mesa 9.2 branch head)
+Nov 18 16:37: Ubuntu kernel, git userspace
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1384800892.DB76FC281.6786
-Date: Mon, 18 Nov 2013 18:54:52 +0000
+--1384801174.E1DdBaD1.7634
+Date: Mon, 18 Nov 2013 18:59:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +59,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71659">bug 71659</a>
               from <span class="vcard"><a class="email" href="mailto:R.Palmer&#64;bham.ac.uk" title="R.Palmer&#64;bham.ac.uk">R.Palmer&#64;bham.ac.uk</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=89422" name="attach_89422" title="Xorg log 2">attachment 89422</a> <a href="attachment.cgi?id=89422&amp;action=edit" title="Xorg log 2">[details]</a></span>
-Xorg log 2</pre>
+        <pre>Switching to the 9.2 branch of mesa makes the git userspace start, but it still
+has the original bug.  In the attached logs:
+
+Nov 18 16:29 and Xorg log: git kernel, git userspace (libdrm head,
+xf86-video-nouveau head, mesa 9.2 branch head)
+Nov 18 16:37: Ubuntu kernel, git userspace</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +83,9 @@ Xorg log 2</pre>
     </body>
 </html>
 
---1384800892.DB76FC281.6786--
+--1384801174.E1DdBaD1.7634--
 
---===============1294307154==
+--===============2129349983==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1294307154==--
+--===============2129349983==--
