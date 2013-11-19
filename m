@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71659] [NVD9] Hangs under load with ![
- PFIFO][0000:01:00.0] unhandled status 0x00800000
-Date: Mon, 18 Nov 2013 23:46:11 +0000
-Message-ID: <bug-71659-8800-YrHGoJ49rz@http.bugs.freedesktop.org/>
-References: <bug-71659-8800@http.bugs.freedesktop.org/>
+From: Christoph Rudorff <chris-4cZEHNAa5IdBDgjK7y7TUQ@public.gmane.org>
+Subject: [PATCH] drm/nouveau/fbcon: fix suspend/resume fbcon
+Date: Tue, 19 Nov 2013 17:59:13 +0100
+Message-ID: <1384880353.25836.12.camel@localhost>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0979066861=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71659-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,134 +13,63 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Current code disables fbcon acceleration before fbcon is suspended,
+leading to corrupted console after resume from s2disk. In a similar
+fashion we must make sure that fbcon acceleration is enabled before we
+revive the console.
 
---===============0979066861==
-Content-Type: multipart/alternative; boundary="1384818371.Bfb8AAF1.23613"; charset="us-ascii"
+With this patch s2disk works correctly on my MacBookPro6,2 with GT216
+[GeForce GT 330M]
 
+hibernate:
+kernel: nouveau  [     DRM] suspending fbcon...
+kernel: nouveau  [     DRM] suspending display...
+kernel: nouveau  [     DRM] unpinning framebuffer(s)...
+kernel: nouveau  [     DRM] evicting buffers...
+kernel: nouveau  [     DRM] waiting for kernel channels to go idle...
+kernel: nouveau  [     DRM] suspending client object trees...
+kernel: nouveau  [     DRM] suspending kernel object tree...
+resume:
+kernel: nouveau  [     DRM] re-enabling device...
+kernel: nouveau  [     DRM] resuming kernel object tree...
+kernel: nouveau  [   VBIOS][0000:01:00.0] running init tables
+kernel: nouveau  [     DRM] resuming client object trees...
+kernel: nouveau  [     DRM] resuming display...
+kernel: nouveau E[     PFB][0000:01:00.0] trapped write at 0x00007fe000 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAGE_NOT_PRESENT
+kernel: nouveau E[     PFB][0000:01:00.0] trapped write at 0x00007fe000 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAGE_NOT_PRESENT
+kernel: nouveau E[     PFB][0000:01:00.0] trapped write at 0x00007fe240 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAGE_NOT_PRESENT
+kernel: nouveau E[     PFB][0000:01:00.0] trapped write at 0x00007fe400 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAGE_NOT_PRESENT
 
---1384818371.Bfb8AAF1.23613
-Date: Mon, 18 Nov 2013 23:46:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+http://lists.freedesktop.org/archives/nouveau/2013-October/014656.html
+---
+ drivers/gpu/drm/nouveau/nouveau_fbcon.c |    8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71659
-
-R.Palmer-mHdZ94l+r7K1Qrn1Bg8BZw@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |jano.vesely-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #8 from R.Palmer-mHdZ94l+r7K1Qrn1Bg8BZw@public.gmane.org ---
-This bug seemed to become harder to trigger when I installed git-as-of-Oct-26,
-then easier again when I installed git-as-of-Nov-14, but given that this change
-seemed to persist after returning to 3.11 (suggesting a left-behind
-configuration change) and the general randomness of the bug, this would not
-give a reliable bisection (so the date mismatch doesn't rule out #71662 being
-the same bug).
-
-In 3.8.0 the same symptoms occur but the log message is
-nouveau ![   PFIFO][0000:01:00.0] unhandled status 0x01000000
-I suspect (but have not tested) that this change was
-http://cgit.freedesktop.org/nouveau/linux-2.6/commit/drivers/gpu/drm/nouveau/core/engine/fifo/nvc0.c?id=32256c87ead3edec86bed5023a0ff96a6d907931
-,i.e. this error was what is now the warning.
-
-Is 0x00800000 unhandled because it is an inherently fatal error, or because
-nobody outside Nvidia knows what it means?
-https://github.com/envytools/envytools/blob/master/hwdocs/fifo/nvc0-pfifo.rst
-is a contentless stub.
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+index b035317..3fa6628 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+@@ -513,11 +513,11 @@ void nouveau_fbcon_set_suspend(struct drm_device *dev, int state)
+ {
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	console_lock();
+-	if (state == 0)
+-		nouveau_fbcon_save_disable_accel(dev);
+-	fb_set_suspend(drm->fbcon->helper.fbdev, state);
+-	if (state == 1)
++	if (state == FBINFO_STATE_RUNNING)
+ 		nouveau_fbcon_restore_accel(dev);
++	fb_set_suspend(drm->fbcon->helper.fbdev, state);
++	if (state == FBINFO_STATE_SUSPENDED)
++		nouveau_fbcon_save_disable_accel(dev);
+ 	console_unlock();
+ }
+ 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1384818371.Bfb8AAF1.23613
-Date: Mon, 18 Nov 2013 23:46:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:R.Palmer&#64;bham.ac.uk" title="R.Palmer&#64;bham.ac.uk">R.Palmer&#64;bham.ac.uk</a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659">bug 71659</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>jano.vesely&#64;gmail.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659">bug 71659</a>
-              from <span class="vcard"><a class="email" href="mailto:R.Palmer&#64;bham.ac.uk" title="R.Palmer&#64;bham.ac.uk">R.Palmer&#64;bham.ac.uk</a>
-</span></b>
-        <pre>This bug seemed to become harder to trigger when I installed git-as-of-Oct-26,
-then easier again when I installed git-as-of-Nov-14, but given that this change
-seemed to persist after returning to 3.11 (suggesting a left-behind
-configuration change) and the general randomness of the bug, this would not
-give a reliable bisection (so the date mismatch doesn't rule out #71662 being
-the same bug).
-
-In 3.8.0 the same symptoms occur but the log message is
-nouveau ![   PFIFO][0000:01:00.0] unhandled status 0x01000000
-I suspect (but have not tested) that this change was
-<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/drivers/gpu/drm/nouveau/core/engine/fifo/nvc0.c?id=32256c87ead3edec86bed5023a0ff96a6d907931">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/drivers/gpu/drm/nouveau/core/engine/fifo/nvc0.c?id=32256c87ead3edec86bed5023a0ff96a6d907931</a>
-,i.e. this error was what is now the warning.
-
-Is 0x00800000 unhandled because it is an inherently fatal error, or because
-nobody outside Nvidia knows what it means?
-<a href="https://github.com/envytools/envytools/blob/master/hwdocs/fifo/nvc0-pfifo.rst">https://github.com/envytools/envytools/blob/master/hwdocs/fifo/nvc0-pfifo.rst</a>
-is a contentless stub.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1384818371.Bfb8AAF1.23613--
-
---===============0979066861==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0979066861==--
+1.7.10.4
