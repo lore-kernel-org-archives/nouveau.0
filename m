@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71900] [NV40] GPU lockup and segmentation fault of
  Nouveau-1.0.10 on PowerMac G5 with acceleration
-Date: Fri, 22 Nov 2013 02:17:11 +0000
-Message-ID: <bug-71900-8800-ylnvwOlrb2@http.bugs.freedesktop.org/>
+Date: Fri, 22 Nov 2013 02:23:20 +0000
+Message-ID: <bug-71900-8800-nMQdlXNEJ9@http.bugs.freedesktop.org/>
 References: <bug-71900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0982153579=="
+Content-Type: multipart/mixed; boundary="===============0388177342=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0982153579==
-Content-Type: multipart/alternative; boundary="1385086631.7ceae2e31.10392"; charset="us-ascii"
+--===============0388177342==
+Content-Type: multipart/alternative; boundary="1385087000.867DDd21.11430"; charset="us-ascii"
 
 
---1385086631.7ceae2e31.10392
-Date: Fri, 22 Nov 2013 02:17:11 +0000
+--1385087000.867DDd21.11430
+Date: Fri, 22 Nov 2013 02:23:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71900
 
---- Comment #1 from dehua.yang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 89612
-  --> https://bugs.freedesktop.org/attachment.cgi?id=89612&action=edit
-Xorg.0.log
+--- Comment #2 from dehua.yang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I tried also Fedora 20 Beta PPC64 and Lubuntu 13.10 Powerpc Desktop, they all
+have the same problem.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385086631.7ceae2e31.10392
-Date: Fri, 22 Nov 2013 02:17:11 +0000
+--1385087000.867DDd21.11430
+Date: Fri, 22 Nov 2013 02:23:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV40] GPU lockup and segmentation fault of Nouveau-1.0.10 on PowerMac G5 with acceleration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71900#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71900#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV40] GPU lockup and segmentation fault of Nouveau-1.0.10 on PowerMac G5 with acceleration"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71900">bug 71900</a>
               from <span class="vcard"><a class="email" href="mailto:dehua.yang&#64;gmail.com" title="dehua.yang&#64;gmail.com">dehua.yang&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=89612" name="attach_89612" title="Xorg.0.log">attachment 89612</a> <a href="attachment.cgi?id=89612&amp;action=edit" title="Xorg.0.log">[details]</a></span>
-Xorg.0.log</pre>
+        <pre>I tried also Fedora 20 Beta PPC64 and Lubuntu 13.10 Powerpc Desktop, they all
+have the same problem.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +75,9 @@ Xorg.0.log</pre>
     </body>
 </html>
 
---1385086631.7ceae2e31.10392--
+--1385087000.867DDd21.11430--
 
---===============0982153579==
+--===============0388177342==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0982153579==--
+--===============0388177342==--
