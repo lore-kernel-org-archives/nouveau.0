@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71900] [NV40] GPU lockup and segmentation fault of
  Nouveau-1.0.10 on PowerMac G5 with acceleration
-Date: Fri, 22 Nov 2013 12:18:06 +0000
-Message-ID: <bug-71900-8800-QHjRJ35CIY@http.bugs.freedesktop.org/>
+Date: Fri, 22 Nov 2013 12:36:47 +0000
+Message-ID: <bug-71900-8800-gjAp9hpnJb@http.bugs.freedesktop.org/>
 References: <bug-71900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0964094976=="
+Content-Type: multipart/mixed; boundary="===============0862828758=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0964094976==
-Content-Type: multipart/alternative; boundary="1385122686.EdDAFCa1.11250"; charset="us-ascii"
+--===============0862828758==
+Content-Type: multipart/alternative; boundary="1385123807.f10e1.14242"; charset="us-ascii"
 
 
---1385122686.EdDAFCa1.11250
-Date: Fri, 22 Nov 2013 12:18:06 +0000
+--1385123807.f10e1.14242
+Date: Fri, 22 Nov 2013 12:36:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71900
 
---- Comment #5 from dehua.yang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I updated my system, now with:
-kernel 3.12.1
-mesa 9.2.3
-nouveau 1.9.10
-xorg-server 1.14.4
-After I put option '"ShadowBF" "true"' in xorg.conf, the nouveau driver works
-with acceleration.  In glxinfo it has "direct rendering: Yes", and no nouveau
-error in dmesg and Xorg.0.log.
+--- Comment #6 from dehua.yang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Sorry for the error above. nouveau 1.0.10, not 1.9.10.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385122686.EdDAFCa1.11250
-Date: Fri, 22 Nov 2013 12:18:06 +0000
+--1385123807.f10e1.14242
+Date: Fri, 22 Nov 2013 12:36:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,21 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV40] GPU lockup and segmentation fault of Nouveau-1.0.10 on PowerMac G5 with acceleration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71900#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71900#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV40] GPU lockup and segmentation fault of Nouveau-1.0.10 on PowerMac G5 with acceleration"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71900">bug 71900</a>
               from <span class="vcard"><a class="email" href="mailto:dehua.yang&#64;gmail.com" title="dehua.yang&#64;gmail.com">dehua.yang&#64;gmail.com</a>
 </span></b>
-        <pre>I updated my system, now with:
-kernel 3.12.1
-mesa 9.2.3
-nouveau 1.9.10
-xorg-server 1.14.4
-After I put option '&quot;ShadowBF&quot; &quot;true&quot;' in xorg.conf, the nouveau driver works
-with acceleration.  In glxinfo it has &quot;direct rendering: Yes&quot;, and no nouveau
-error in dmesg and Xorg.0.log.</pre>
+        <pre>Sorry for the error above. nouveau 1.0.10, not 1.9.10.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +73,9 @@ error in dmesg and Xorg.0.log.</pre>
     </body>
 </html>
 
---1385122686.EdDAFCa1.11250--
+--1385123807.f10e1.14242--
 
---===============0964094976==
+--===============0862828758==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0964094976==--
+--===============0862828758==--
