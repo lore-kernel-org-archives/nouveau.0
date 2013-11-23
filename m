@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71900] [NV40] GPU lockup and segmentation fault of
  Nouveau-1.0.10 on PowerMac G5 with acceleration
-Date: Fri, 22 Nov 2013 12:36:47 +0000
-Message-ID: <bug-71900-8800-gjAp9hpnJb@http.bugs.freedesktop.org/>
+Date: Sat, 23 Nov 2013 01:09:48 +0000
+Message-ID: <bug-71900-8800-cUvoO74BUz@http.bugs.freedesktop.org/>
 References: <bug-71900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0862828758=="
+Content-Type: multipart/mixed; boundary="===============0551168065=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0862828758==
-Content-Type: multipart/alternative; boundary="1385123807.f10e1.14242"; charset="us-ascii"
+--===============0551168065==
+Content-Type: multipart/alternative; boundary="1385168987.0CF61.13772"; charset="us-ascii"
 
 
---1385123807.f10e1.14242
-Date: Fri, 22 Nov 2013 12:36:47 +0000
+--1385168987.0CF61.13772
+Date: Sat, 23 Nov 2013 01:09:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71900
 
---- Comment #6 from dehua.yang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Sorry for the error above. nouveau 1.0.10, not 1.9.10.
+--- Comment #7 from dehua.yang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Actually this is not HW acceleration by using ShadowFB. In Xorg.0.log there is
+"Using Shadow Framebuffer - acceleration disabled", so I still have a broken
+nouveau driver with acceleration. When using ShadowFB it seems the graphics
+operations are faster than that NoAccel option is enabled on my system. The 3D
+seems not supported, there is no difference in FPS running glxgears in both
+situations.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385123807.f10e1.14242
-Date: Fri, 22 Nov 2013 12:36:47 +0000
+--1385168987.0CF61.13772
+Date: Sat, 23 Nov 2013 01:09:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +59,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV40] GPU lockup and segmentation fault of Nouveau-1.0.10 on PowerMac G5 with acceleration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71900#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71900#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV40] GPU lockup and segmentation fault of Nouveau-1.0.10 on PowerMac G5 with acceleration"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71900">bug 71900</a>
               from <span class="vcard"><a class="email" href="mailto:dehua.yang&#64;gmail.com" title="dehua.yang&#64;gmail.com">dehua.yang&#64;gmail.com</a>
 </span></b>
-        <pre>Sorry for the error above. nouveau 1.0.10, not 1.9.10.</pre>
+        <pre>Actually this is not HW acceleration by using ShadowFB. In Xorg.0.log there is
+&quot;Using Shadow Framebuffer - acceleration disabled&quot;, so I still have a broken
+nouveau driver with acceleration. When using ShadowFB it seems the graphics
+operations are faster than that NoAccel option is enabled on my system. The 3D
+seems not supported, there is no difference in FPS running glxgears in both
+situations.</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1385123807.f10e1.14242--
+--1385168987.0CF61.13772--
 
---===============0862828758==
+--===============0551168065==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0862828758==--
+--===============0551168065==--
