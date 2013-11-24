@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
-Date: Sun, 01 Dec 2013 00:43:06 +0000
-Message-ID: <bug-64323-8800-5BcsrwrLoe@http.bugs.freedesktop.org/>
-References: <bug-64323-8800@http.bugs.freedesktop.org/>
+From: Anthony Deane <adeane-qY8H8KNAdkPJKwlM9GxbOw@public.gmane.org>
+Subject: Nouveau GPU lockup
+Date: Sun, 24 Nov 2013 21:41:52 +0000
+Message-ID: <89038AA2F5A1C349ADDA843B2929078816BCE77A@ONENETEXCH06.services.onenet.co.nz>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0906067118=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Type: multipart/mixed; boundary="===============1162652238=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -14,97 +13,110 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+--===============1162652238==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_89038AA2F5A1C349ADDA843B2929078816BCE77AONENETEXCH06ser_"
 
---===============0906067118==
-Content-Type: multipart/alternative; boundary="1385858587.73dE4f6.568"; charset="us-ascii"
+--_000_89038AA2F5A1C349ADDA843B2929078816BCE77AONENETEXCH06ser_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+Dear All,
 
---1385858587.73dE4f6.568
-Date: Sun, 1 Dec 2013 00:43:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+I am periodically experiencing GPU lockup of my NVIDIA Quadro 400 Graphics =
+card. I run Fedora 19 on my PC, and am trying to find a way to verify wheth=
+er Nouveau has the required driver for this card and to update nouveau if n=
+ecessary. I have recognised that the driver I required is NVA5 (GT216) from=
+ the NV50 family (Tesla).
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64323
+Any help would be gladly appreciated.
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Kind Regards,
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |chrisf-GC9Nvf0HxqylVyrhU4qvOw@public.gmane.org
+Anthony Deane
+Trainee Technician
 
---- Comment #24 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-*** Bug 64888 has been marked as a duplicate of this bug. ***
+BIO SERVE
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+Ph (09) 846 4802
 
---1385858587.73dE4f6.568
-Date: Sun, 1 Dec 2013 00:43:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+adeane-qY8H8KNAdkPJKwlM9GxbOw@public.gmane.org<mailto:ramkumar-qY8H8KNAdkPJKwlM9GxbOw@public.gmane.org>
+www.bioserve.co.nz<http://www.bioserve.co.nz/>
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+--_000_89038AA2F5A1C349ADDA843B2929078816BCE77AONENETEXCH06ser_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>chrisf&#64;ijw.co.nz
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c24">Comment # 24</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [nva5] Garbage rendering in Portal"
-   href="show_bug.cgi?id=64888">Bug 64888</a> has been marked as a duplicate of this bug. ***</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
+0;}</style>
+</head>
+<body ocsi=3D"0" fpstyle=3D"1">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">Dear All,
+<br>
+<br>
+I am periodically experiencing GPU lockup of my NVIDIA Quadro 400 Graphics =
+card. I run Fedora 19 on my PC, and am trying to find a way to verify wheth=
+er Nouveau has the required driver for this card and to update nouveau if n=
+ecessary. I have recognised that
+ the driver I required is NVA5 (GT216) from the NV50 family (Tesla).<br>
+<br>
+Any help would be gladly appreciated.<br>
+<div><br>
+<div style=3D"font-family:Tahoma; font-size:13px"><span lang=3D"en-NZ">
+<div style=3D"margin:0"><font face=3D"Calibri,sans-serif" size=3D"2"><span =
+style=3D"font-size:11pt"><span lang=3D"en-US">Kind Regards,<br>
+<br>
+</span></span></font></div>
+<div style=3D"margin:0"><font face=3D"Calibri,sans-serif" size=3D"2"><span =
+style=3D"font-size:11pt"><font color=3D"gray">Anthony Deane<br>
+</font></span></font></div>
+<div style=3D"margin:0"><font face=3D"Calibri,sans-serif" size=3D"2"><span =
+style=3D"font-size:11pt"><font color=3D"gray">Trainee Technician<br>
+</font></span></font></div>
+<div style=3D"margin:0"><font face=3D"Calibri,sans-serif" size=3D"2"><span =
+style=3D"font-size:11pt"><font color=3D"#339933">&nbsp;</font></span></font=
+></div>
+<div style=3D"margin:0"><font face=3D"Calibri,sans-serif" size=3D"2"><span =
+style=3D"font-size:11pt"><font color=3D"#339933" face=3D"Eras Bold ITC,sans=
+-serif" size=3D"4"><span style=3D"font-size:14pt"><b>BIO SERVE</b></span></=
+font></span></font></div>
+<div style=3D"margin:0"><font face=3D"Calibri,sans-serif" size=3D"2"><span =
+style=3D"font-size:11pt"><font color=3D"#006600" face=3D"Arial,sans-serif">=
+<b>&nbsp;</b></font></span></font></div>
+<div style=3D"margin:0"><font face=3D"Calibri,sans-serif" size=3D"2"><span =
+style=3D"font-size:11pt"><font color=3D"#7F7F7F">Ph (09) 846 4802</font></s=
+pan></font></div>
+<div style=3D"margin:0 0 0 56.69pt"><font face=3D"Calibri,sans-serif" size=
+=3D"2"><span style=3D"font-size:11pt"><font color=3D"#1F497D">&nbsp;</font>=
+</span></font></div>
+<div style=3D"margin:0"><font face=3D"Calibri,sans-serif" size=3D"2"><span =
+style=3D"font-size:11pt"><font color=3D"008000"><a href=3D"mailto:ramkumar@=
+bioserve.co.nz" target=3D"_blank">adeane-qY8H8KNAdkPJKwlM9GxbOw@public.gmane.org</a></font></span></=
+font></div>
+<div style=3D"margin:0"><font face=3D"Calibri,sans-serif" size=3D"2"><span =
+style=3D"font-size:11pt"><a href=3D"http://www.bioserve.co.nz/" target=3D"_=
+blank"><font color=3D"#339933">www.bioserve.co.nz</font></a></span></font><=
+/div>
+</span></div>
+</div>
+</div>
+</body>
 </html>
 
---1385858587.73dE4f6.568--
+--_000_89038AA2F5A1C349ADDA843B2929078816BCE77AONENETEXCH06ser_--
 
---===============0906067118==
+--===============1162652238==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +127,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0906067118==--
+--===============1162652238==--
