@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71967] error message during boot
-Date: Sun, 24 Nov 2013 15:46:11 +0000
-Message-ID: <bug-71967-8800-Q5zMWgaWb8@http.bugs.freedesktop.org/>
+Date: Sun, 24 Nov 2013 16:02:44 +0000
+Message-ID: <bug-71967-8800-RGT5pGiCbk@http.bugs.freedesktop.org/>
 References: <bug-71967-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0374550657=="
+Content-Type: multipart/mixed; boundary="===============0480358308=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71967-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,40 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0374550657==
-Content-Type: multipart/alternative; boundary="1385307970.Cf7Cfe82.4708"; charset="us-ascii"
+--===============0480358308==
+Content-Type: multipart/alternative; boundary="1385308964.385750a1.8194"; charset="us-ascii"
 
 
---1385307970.Cf7Cfe82.4708
-Date: Sun, 24 Nov 2013 15:46:10 +0000
+--1385308964.385750a1.8194
+Date: Sun, 24 Nov 2013 16:02:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71967
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-From http://nouveau.freedesktop.org/wiki/Bugs/, which I encourage you to read
-slowly and carefully:
-
-"""
-Attach complete, unfiltered, untrimmed kernel log from the boot up to and
-including the problem, and a complete X log if the problem manifests with X.
-Note, that /var/log/messages is not a kernel log. Running dmesg is the best way
-to get a kernel log, but assuming, that the log buffer has not wrapped around.
-"""
-
-You say that you're on a 525M -- does this correspond to a NVC1? (This would be
-apparent from the various logs, one of the many reasons we ask for one.) If so,
-there's a bug in 3.11 and 3.12 related to NVC1. Either use 3.10 or 3.13-rc1 or
-apply this patch:
-https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=13d2b35a0653
+--- Comment #6 from adham3322-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+sorry next time when it appears because it shows randomly i will use dmesg
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385307970.Cf7Cfe82.4708
-Date: Sun, 24 Nov 2013 15:46:10 +0000
+--1385308964.385750a1.8194
+Date: Sun, 24 Nov 2013 16:02:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,28 +53,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - error message during boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71967#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71967#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - error message during boot"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71967">bug 71967</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:adham3322&#64;gmail.com" title="adham3322&#64;gmail.com">adham3322&#64;gmail.com</a>
 </span></b>
-        <pre>From <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a>, which I encourage you to read
-slowly and carefully:
-
-&quot;&quot;&quot;
-Attach complete, unfiltered, untrimmed kernel log from the boot up to and
-including the problem, and a complete X log if the problem manifests with X.
-Note, that /var/log/messages is not a kernel log. Running dmesg is the best way
-to get a kernel log, but assuming, that the log buffer has not wrapped around.
-&quot;&quot;&quot;
-
-You say that you're on a 525M -- does this correspond to a NVC1? (This would be
-apparent from the various logs, one of the many reasons we ask for one.) If so,
-there's a bug in 3.11 and 3.12 related to NVC1. Either use 3.10 or 3.13-rc1 or
-apply this patch:
-<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=13d2b35a0653">https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=13d2b35a0653</a></pre>
+        <pre>sorry next time when it appears because it shows randomly i will use dmesg</pre>
         </div>
       </p>
       <hr>
@@ -100,9 +72,9 @@ apply this patch:
     </body>
 </html>
 
---1385307970.Cf7Cfe82.4708--
+--1385308964.385750a1.8194--
 
---===============0374550657==
+--===============0480358308==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -113,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0374550657==--
+--===============0480358308==--
