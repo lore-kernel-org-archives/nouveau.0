@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71967] error message during boot
-Date: Sun, 24 Nov 2013 16:02:44 +0000
-Message-ID: <bug-71967-8800-RGT5pGiCbk@http.bugs.freedesktop.org/>
+Date: Sun, 24 Nov 2013 17:00:54 +0000
+Message-ID: <bug-71967-8800-L0WMmecbZO@http.bugs.freedesktop.org/>
 References: <bug-71967-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0480358308=="
+Content-Type: multipart/mixed; boundary="===============0499453478=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71967-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,26 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0480358308==
-Content-Type: multipart/alternative; boundary="1385308964.385750a1.8194"; charset="us-ascii"
+--===============0499453478==
+Content-Type: multipart/alternative; boundary="1385312454.5dDE8EbF1.20442"; charset="us-ascii"
 
 
---1385308964.385750a1.8194
-Date: Sun, 24 Nov 2013 16:02:44 +0000
+--1385312454.5dDE8EbF1.20442
+Date: Sun, 24 Nov 2013 17:00:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71967
 
---- Comment #6 from adham3322-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-sorry next time when it appears because it shows randomly i will use dmesg
+--- Comment #7 from adham3322-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+using the 3.13 rc1 seems to solve the error so i want to thank you very much
+and hope u keep up the good work and i am sorry because this is my first time
+reporting a bug
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385308964.385750a1.8194
-Date: Sun, 24 Nov 2013 16:02:44 +0000
+--1385312454.5dDE8EbF1.20442
+Date: Sun, 24 Nov 2013 17:00:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,14 +55,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - error message during boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71967#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71967#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - error message during boot"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71967">bug 71967</a>
               from <span class="vcard"><a class="email" href="mailto:adham3322&#64;gmail.com" title="adham3322&#64;gmail.com">adham3322&#64;gmail.com</a>
 </span></b>
-        <pre>sorry next time when it appears because it shows randomly i will use dmesg</pre>
+        <pre>using the 3.13 rc1 seems to solve the error so i want to thank you very much
+and hope u keep up the good work and i am sorry because this is my first time
+reporting a bug</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1385308964.385750a1.8194--
+--1385312454.5dDE8EbF1.20442--
 
---===============0480358308==
+--===============0499453478==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -85,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0480358308==--
+--===============0499453478==--
