@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71967] error message during boot
-Date: Sun, 24 Nov 2013 15:13:34 +0000
-Message-ID: <bug-71967-8800-sPCS8JkQJx@http.bugs.freedesktop.org/>
+Date: Sun, 24 Nov 2013 15:18:03 +0000
+Message-ID: <bug-71967-8800-HHZeOaOtfx@http.bugs.freedesktop.org/>
 References: <bug-71967-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1100187650=="
+Content-Type: multipart/mixed; boundary="===============0242272716=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71967-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1100187650==
-Content-Type: multipart/alternative; boundary="1385306014.bcFb8a451.30041"; charset="us-ascii"
+--===============0242272716==
+Content-Type: multipart/alternative; boundary="1385306283.dbb022.30679"; charset="us-ascii"
 
 
---1385306014.bcFb8a451.30041
-Date: Sun, 24 Nov 2013 15:13:34 +0000
+--1385306283.dbb022.30679
+Date: Sun, 24 Nov 2013 15:18:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71967
 
-adham3322-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Priority|medium                      |highest
+           Severity|critical                    |normal
+           Priority|highest                     |medium
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please don't touch importance. All it does is annoy the people who look at
+bugs.
+
+This bug does not appear to provide any information. Take a look at
+http://nouveau.freedesktop.org/wiki/Bugs/ for some of the information we're
+looking for.
+
+It appears that you forgot to describe what the issue is? Just the warning?
+What kernel were you using before where you didn't see it?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385306014.bcFb8a451.30041
-Date: Sun, 24 Nov 2013 15:13:34 +0000
+--1385306283.dbb022.30679
+Date: Sun, 24 Nov 2013 15:18:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,7 +62,7 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:adham3322&#64;gmail.com" title="adham3322&#64;gmail.com">adham3322&#64;gmail.com</a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
@@ -65,13 +77,42 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Priority</td>
-           <td>medium
+           <td style="text-align:right;">Severity</td>
+           <td>critical
            </td>
+           <td>normal
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Priority</td>
            <td>highest
+           </td>
+           <td>medium
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - error message during boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71967#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - error message during boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71967">bug 71967</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Please don't touch importance. All it does is annoy the people who look at
+bugs.
+
+This bug does not appear to provide any information. Take a look at
+<a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a> for some of the information we're
+looking for.
+
+It appears that you forgot to describe what the issue is? Just the warning?
+What kernel were you using before where you didn't see it?</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -82,9 +123,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1385306014.bcFb8a451.30041--
+--1385306283.dbb022.30679--
 
---===============1100187650==
+--===============0242272716==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +136,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1100187650==--
+--===============0242272716==--
