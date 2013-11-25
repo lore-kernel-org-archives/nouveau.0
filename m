@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71994] New: Can't set performance level on Fermi
- card, Linux 3.13
-Date: Mon, 25 Nov 2013 14:34:45 +0000
-Message-ID: <bug-71994-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71994] Can't set performance level on Fermi card,
+	Linux 3.13
+Date: Mon, 25 Nov 2013 17:35:22 +0000
+Message-ID: <bug-71994-8800-gMegNGRVK8@http.bugs.freedesktop.org/>
+References: <bug-71994-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1166465103=="
+Content-Type: multipart/mixed; boundary="===============0867093526=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-71994-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,200 +21,110 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1166465103==
-Content-Type: multipart/alternative; boundary="1385390085.7C7C30.24563"; charset="us-ascii"
+--===============0867093526==
+Content-Type: multipart/alternative; boundary="1385400922.567d1b6b1.31860"; charset="us-ascii"
 
 
---1385390085.7C7C30.24563
-Date: Mon, 25 Nov 2013 14:34:45 +0000
+--1385400922.567d1b6b1.31860
+Date: Mon, 25 Nov 2013 17:35:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D71994
+https://bugs.freedesktop.org/show_bug.cgi?id=71994
 
-          Priority: medium
-            Bug ID: 71994
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Can't set performance level on Fermi card, Linux 3.13
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: 9.2
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Created attachment 89753
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D89753&action=3Dedit
-kernel log
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |NOTABUG
 
-I guess reclocking is supposed to work with Linux 3.13 with Fermi cards (I =
-have
-a GT 540M), but it doesn't seem to on mine:
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Nope, not supposed to work.
 
-# cat /sys/class/drm/card0/device/pstate=20
-03: core 50 MHz memory 135 MHz
-07: core 202 MHz memory 324 MHz
-0f: core 672 MHz memory 800 MHz
---: core 0 MHz memory 0 MHz *
+Feel free to apply the equivalent of
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?h=devel-pm&id=ffbf93ba1eb5f05d22bd5419e5f314188801155b
+to your kernel, and if you want memory reclocking in addition to engine
+reclocking, you can boot with nouveau.config=NvMemExec=1. However at this point
+we're not interested in whether it works or not -- it (probably) doesn't on a
+whole bunch of cards.
 
-# echo "0f" > /sys/class/drm/card0/device/pstate=20
-bash: echo: erreur d'=C3=A9criture : Fonction non implant=C3=A9e
-
-It means in English:
-bash: echo: write error : Function not implemented
-
-Am I doing anything wrong ?
-
-I'm on ArchLinux.
-linux-mainline 3.13rc1-1
-nouveau-dri 9.2.3-2
-
-Best regards,
-
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385390085.7C7C30.24563
-Date: Mon, 25 Nov 2013 14:34:45 +0000
+--1385400922.567d1b6b1.31860
+Date: Mon, 25 Nov 2013 17:35:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - Can't set performance level on Fermi card, Linux 3.13"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71994">bug 71994</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - Can't set performance level on Fermi card, Linux 3.13"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71994">71994</a>
-          </td>
-        </tr>
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
 
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Can't set performance level on Fermi card, Linux 3.13
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>anakin.cs&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>9.2
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>NOTABUG
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D89753"=
- name=3D"attach_89753" title=3D"kernel log">attachment 89753</a> <a href=3D=
-"attachment.cgi?id=3D89753&amp;action=3Dedit" title=3D"kernel log">[details=
-]</a></span>
-kernel log
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - Can't set performance level on Fermi card, Linux 3.13"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71994#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - Can't set performance level on Fermi card, Linux 3.13"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71994">bug 71994</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Nope, not supposed to work.
 
-I guess reclocking is supposed to work with Linux 3.13 with Fermi cards (I =
-have
-a GT 540M), but it doesn't seem to on mine:
-
-# cat /sys/class/drm/card0/device/pstate=20
-03: core 50 MHz memory 135 MHz
-07: core 202 MHz memory 324 MHz
-0f: core 672 MHz memory 800 MHz
---: core 0 MHz memory 0 MHz *
-
-# echo &quot;0f&quot; &gt; /sys/class/drm/card0/device/pstate=20
-bash: echo: erreur d'=C3=A9criture : Fonction non implant=C3=A9e
-
-It means in English:
-bash: echo: write error : Function not implemented
-
-Am I doing anything wrong ?
-
-I'm on ArchLinux.
-linux-mainline 3.13rc1-1
-nouveau-dri 9.2.3-2
-
-Best regards,</pre>
+Feel free to apply the equivalent of
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?h=devel-pm&amp;id=ffbf93ba1eb5f05d22bd5419e5f314188801155b">http://cgit.freedesktop.org/~darktama/nouveau/commit/?h=devel-pm&amp;id=ffbf93ba1eb5f05d22bd5419e5f314188801155b</a>
+to your kernel, and if you want memory reclocking in addition to engine
+reclocking, you can boot with nouveau.config=NvMemExec=1. However at this point
+we're not interested in whether it works or not -- it (probably) doesn't on a
+whole bunch of cards.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1385390085.7C7C30.24563--
+--1385400922.567d1b6b1.31860--
 
---===============1166465103==
+--===============0867093526==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -223,4 +135,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1166465103==--
+--===============0867093526==--
