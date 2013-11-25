@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71824] [NVE6] NULL deref on boot when there is
- nothing in DCB on 3.13-rc
-Date: Mon, 25 Nov 2013 10:27:50 +0000
-Message-ID: <bug-71824-8800-zwAjQF2ziw@http.bugs.freedesktop.org/>
-References: <bug-71824-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
+Date: Mon, 25 Nov 2013 13:10:11 +0000
+Message-ID: <bug-64323-8800-o8LA5HWIaU@http.bugs.freedesktop.org/>
+References: <bug-64323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2048116460=="
+Content-Type: multipart/mixed; boundary="===============0251368003=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71824-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,43 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2048116460==
-Content-Type: multipart/alternative; boundary="1385375271.e76fFeEB3.4409"; charset="us-ascii"
+--===============0251368003==
+Content-Type: multipart/alternative; boundary="1385385011.786EAA2.4443"; charset="us-ascii"
 
 
---1385375271.e76fFeEB3.4409
-Date: Mon, 25 Nov 2013 10:27:51 +0000
+--1385385011.786EAA2.4443
+Date: Mon, 25 Nov 2013 13:10:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71824
+https://bugs.freedesktop.org/show_bug.cgi?id=64323
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[HSW mobile                 |[NVE6] NULL deref on boot
-                   |Regression]System booting   |when there is nothing in
-                   |with Call Trace             |DCB on 3.13-rc
-
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Looks like you have no outputs. I think this will lead to
-
-    chan->vblank.nr_event = pdisp->vblank->index_nr;
-
-failing in nv50_software_context_ctor, called from nouveau_accel_init since
-pdisp->vblank == NULL. I suspect that ->index_nr is at offset 0x130 which
-explains the CR2 that you see.
-
-As a temporary workaround, booting with nouveau.noaccel=1 will avoid the crash
-(and also remove your ability to use the card).
+--- Comment #10 from anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Still happening in 3.13.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385375271.e76fFeEB3.4409
-Date: Mon, 25 Nov 2013 10:27:51 +0000
+--1385385011.786EAA2.4443
+Date: Mon, 25 Nov 2013 13:10:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,49 +47,20 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] NULL deref on boot when there is nothing in DCB on 3.13-rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71824">bug 71824</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[HSW mobile Regression]System booting with Call Trace
-           </td>
-           <td>[NVE6] NULL deref on boot when there is nothing in DCB on 3.13-rc
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] NULL deref on boot when there is nothing in DCB on 3.13-rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71824#c6">Comment # 6</a>
+   title="NEW --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] NULL deref on boot when there is nothing in DCB on 3.13-rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71824">bug 71824</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
+              from <span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="anakin.cs&#64;gmail.com">anakin.cs&#64;gmail.com</a>
 </span></b>
-        <pre>Looks like you have no outputs. I think this will lead to
-
-    chan-&gt;vblank.nr_event = pdisp-&gt;vblank-&gt;index_nr;
-
-failing in nv50_software_context_ctor, called from nouveau_accel_init since
-pdisp-&gt;vblank == NULL. I suspect that -&gt;index_nr is at offset 0x130 which
-explains the CR2 that you see.
-
-As a temporary workaround, booting with nouveau.noaccel=1 will avoid the crash
-(and also remove your ability to use the card).</pre>
+        <pre>Still happening in 3.13.</pre>
         </div>
       </p>
       <hr>
@@ -119,9 +72,9 @@ As a temporary workaround, booting with nouveau.noaccel=1 will avoid the crash
     </body>
 </html>
 
---1385375271.e76fFeEB3.4409--
+--1385385011.786EAA2.4443--
 
---===============2048116460==
+--===============0251368003==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2048116460==--
+--===============0251368003==--
