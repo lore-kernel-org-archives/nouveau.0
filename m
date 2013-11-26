@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70452] [NV43] Graphical corruption after resume from
- suspend or hibernation
-Date: Tue, 26 Nov 2013 14:03:17 +0000
-Message-ID: <bug-70452-8800-zoFLOvSsgT@http.bugs.freedesktop.org/>
-References: <bug-70452-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70875] [NVC1] NOUVEAU(0): [drm] failed to set drm
+ interface version
+Date: Tue, 26 Nov 2013 18:44:05 +0000
+Message-ID: <bug-70875-8800-GLl12UbmhW@http.bugs.freedesktop.org/>
+References: <bug-70875-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0290643146=="
+Content-Type: multipart/mixed; boundary="===============0076847654=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70452-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70875-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,43 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0290643146==
-Content-Type: multipart/alternative; boundary="1385474597.d1dA4dD61.25197"; charset="us-ascii"
+--===============0076847654==
+Content-Type: multipart/alternative; boundary="1385491445.53F12002.8051"; charset="us-ascii"
 
 
---1385474597.d1dA4dD61.25197
-Date: Tue, 26 Nov 2013 14:03:17 +0000
+--1385491445.53F12002.8051
+Date: Tue, 26 Nov 2013 18:44:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70452
+https://bugs.freedesktop.org/show_bug.cgi?id=70875
 
---- Comment #6 from Moi Jaiunvelo <moijaiunvelo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I tried to backport libdrm from debian/sid and it fixed the graphical
-corruption. More precisely for users who would like to reproduce it, I
-backported libdrm2, libdrm-intel1, libdrm-radeon1 and libdrm-nouveau2 from
-debian/sid to have them in 2.4.49-1 version.
+--- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #9)
+> (In reply to comment #8)
+> > I don't see anything that suggests that you have a hardware mux. The VGA/DVI
+> > connectors appear to be on the nvidia card -- they're inaccessible from
+> > intel, right? (A bit hard to tell from your logs...)
+> 
+> Hmm, I thought I have one (or maybe I don't understand a problem :) ).
+> Currently with bumblebee I have NVidia card off and still can use both
+> screen (though VGA or HDMI output).
 
-Start-Date: 2013-11-26  10:49:54
-Commandline: apt-get dist-upgrade
-Upgrade: libdrm2:i386 (2.4.46-4, 2.4.49-1)
-End-Date: 2013-11-26  10:49:58
-
-Start-Date: 2013-11-26  10:55:27
-Commandline: apt-get dist-upgrade
-Upgrade: libdrm-intel1:i386 (2.4.46-4, 2.4.49-1), libdrm-radeon1:i386
-(2.4.46-4, 2.4.49-1), libdrm-nouveau2:i386 (2.4.46-4, 2.4.49-1)
-End-Date: 2013-11-26  10:55:34
-
-Thank you for the advice,
-Moi
+Oh, if you can get to all your outputs from the intel card, but can also get
+them from the nvidia card, then you do have a hardware mux. My bad. But I think
+you can still use the xrandr offload stuff in that case, as shown on
+http://nouveau.freedesktop.org/wiki/Optimus/. In the end, what are you looking
+for from your nvidia card? If it's the occasional 3d game/whatever, you can use
+DRI_PRIME=1 for that, at which point it should turn on and then turn back off
+when you're done due to runtime pm. [Make sure that your kernel is configured
+with CONFIG_RUNTIME_PM.]
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385474597.d1dA4dD61.25197
-Date: Tue, 26 Nov 2013 14:03:17 +0000
+--1385491445.53F12002.8051
+Date: Tue, 26 Nov 2013 18:44:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,32 +70,32 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV43] Graphical corruption after resume from suspend or hibernation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70452#c6">Comment # 6</a>
+   title="NEW --- - [NVC1] NOUVEAU(0): [drm] failed to set drm interface version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70875#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV43] Graphical corruption after resume from suspend or hibernation"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70452">bug 70452</a>
-              from <span class="vcard"><a class="email" href="mailto:moijaiunvelo&#64;gmail.com" title="Moi Jaiunvelo &lt;moijaiunvelo&#64;gmail.com&gt;"> <span class="fn">Moi Jaiunvelo</span></a>
+   title="NEW --- - [NVC1] NOUVEAU(0): [drm] failed to set drm interface version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70875">bug 70875</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I tried to backport libdrm from debian/sid and it fixed the graphical
-corruption. More precisely for users who would like to reproduce it, I
-backported libdrm2, libdrm-intel1, libdrm-radeon1 and libdrm-nouveau2 from
-debian/sid to have them in 2.4.49-1 version.
+        <pre>(In reply to <a href="show_bug.cgi?id=70875#c9">comment #9</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=70875#c8">comment #8</a>)
+&gt; &gt; I don't see anything that suggests that you have a hardware mux. The VGA/DVI
+&gt; &gt; connectors appear to be on the nvidia card -- they're inaccessible from
+&gt; &gt; intel, right? (A bit hard to tell from your logs...)
+&gt; 
+&gt; Hmm, I thought I have one (or maybe I don't understand a problem :) ).
+&gt; Currently with bumblebee I have NVidia card off and still can use both
+&gt; screen (though VGA or HDMI output).</span >
 
-Start-Date: 2013-11-26  10:49:54
-Commandline: apt-get dist-upgrade
-Upgrade: libdrm2:i386 (2.4.46-4, 2.4.49-1)
-End-Date: 2013-11-26  10:49:58
-
-Start-Date: 2013-11-26  10:55:27
-Commandline: apt-get dist-upgrade
-Upgrade: libdrm-intel1:i386 (2.4.46-4, 2.4.49-1), libdrm-radeon1:i386
-(2.4.46-4, 2.4.49-1), libdrm-nouveau2:i386 (2.4.46-4, 2.4.49-1)
-End-Date: 2013-11-26  10:55:34
-
-Thank you for the advice,
-Moi</pre>
+Oh, if you can get to all your outputs from the intel card, but can also get
+them from the nvidia card, then you do have a hardware mux. My bad. But I think
+you can still use the xrandr offload stuff in that case, as shown on
+<a href="http://nouveau.freedesktop.org/wiki/Optimus/">http://nouveau.freedesktop.org/wiki/Optimus/</a>. In the end, what are you looking
+for from your nvidia card? If it's the occasional 3d game/whatever, you can use
+DRI_PRIME=1 for that, at which point it should turn on and then turn back off
+when you're done due to runtime pm. [Make sure that your kernel is configured
+with CONFIG_RUNTIME_PM.]</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +107,9 @@ Moi</pre>
     </body>
 </html>
 
---1385474597.d1dA4dD61.25197--
+--1385491445.53F12002.8051--
 
---===============0290643146==
+--===============0076847654==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0290643146==--
+--===============0076847654==--
