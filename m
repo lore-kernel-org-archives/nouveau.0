@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
-Date: Tue, 26 Nov 2013 11:46:25 +0000
-Message-ID: <bug-64323-8800-egiCOjRSHh@http.bugs.freedesktop.org/>
-References: <bug-64323-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70452] [NV43] Graphical corruption after resume from
+ suspend or hibernation
+Date: Tue, 26 Nov 2013 14:03:17 +0000
+Message-ID: <bug-70452-8800-zoFLOvSsgT@http.bugs.freedesktop.org/>
+References: <bug-70452-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1479206482=="
+Content-Type: multipart/mixed; boundary="===============0290643146=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70452-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1479206482==
-Content-Type: multipart/alternative; boundary="1385466385.1Cd8B6Aa3.4181"; charset="us-ascii"
+--===============0290643146==
+Content-Type: multipart/alternative; boundary="1385474597.d1dA4dD61.25197"; charset="us-ascii"
 
 
---1385466385.1Cd8B6Aa3.4181
-Date: Tue, 26 Nov 2013 11:46:25 +0000
+--1385474597.d1dA4dD61.25197
+Date: Tue, 26 Nov 2013 14:03:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64323
+https://bugs.freedesktop.org/show_bug.cgi?id=70452
 
---- Comment #11 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
-A suspiciously similar bug for nvc0 was fixed with
-72295c5f6715555082455072bfd29a1e5ae545de
+--- Comment #6 from Moi Jaiunvelo <moijaiunvelo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I tried to backport libdrm from debian/sid and it fixed the graphical
+corruption. More precisely for users who would like to reproduce it, I
+backported libdrm2, libdrm-intel1, libdrm-radeon1 and libdrm-nouveau2 from
+debian/sid to have them in 2.4.49-1 version.
 
-nvc0: restore viewport after blit
+Start-Date: 2013-11-26  10:49:54
+Commandline: apt-get dist-upgrade
+Upgrade: libdrm2:i386 (2.4.46-4, 2.4.49-1)
+End-Date: 2013-11-26  10:49:58
 
-I think you need to set viewport in nv50_blit_3d in the same way nvc0_blit_3d
-does, and then restore the old viewport afterwards in similar to the referenced
-commit. I didn't fix it at the time for nv50, because it wasn't setting the
-viewport. It looks like this was a bug.
+Start-Date: 2013-11-26  10:55:27
+Commandline: apt-get dist-upgrade
+Upgrade: libdrm-intel1:i386 (2.4.46-4, 2.4.49-1), libdrm-radeon1:i386
+(2.4.46-4, 2.4.49-1), libdrm-nouveau2:i386 (2.4.46-4, 2.4.49-1)
+End-Date: 2013-11-26  10:55:34
+
+Thank you for the advice,
+Moi
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385466385.1Cd8B6Aa3.4181
-Date: Tue, 26 Nov 2013 11:46:25 +0000
+--1385474597.d1dA4dD61.25197
+Date: Tue, 26 Nov 2013 14:03:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,23 +70,32 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c11">Comment # 11</a>
+   title="NEW --- - [NV43] Graphical corruption after resume from suspend or hibernation"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70452#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
-              from <span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
+   title="NEW --- - [NV43] Graphical corruption after resume from suspend or hibernation"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70452">bug 70452</a>
+              from <span class="vcard"><a class="email" href="mailto:moijaiunvelo&#64;gmail.com" title="Moi Jaiunvelo &lt;moijaiunvelo&#64;gmail.com&gt;"> <span class="fn">Moi Jaiunvelo</span></a>
 </span></b>
-        <pre>A suspiciously similar bug for nvc0 was fixed with
-72295c5f6715555082455072bfd29a1e5ae545de
+        <pre>I tried to backport libdrm from debian/sid and it fixed the graphical
+corruption. More precisely for users who would like to reproduce it, I
+backported libdrm2, libdrm-intel1, libdrm-radeon1 and libdrm-nouveau2 from
+debian/sid to have them in 2.4.49-1 version.
 
-nvc0: restore viewport after blit
+Start-Date: 2013-11-26  10:49:54
+Commandline: apt-get dist-upgrade
+Upgrade: libdrm2:i386 (2.4.46-4, 2.4.49-1)
+End-Date: 2013-11-26  10:49:58
 
-I think you need to set viewport in nv50_blit_3d in the same way nvc0_blit_3d
-does, and then restore the old viewport afterwards in similar to the referenced
-commit. I didn't fix it at the time for nv50, because it wasn't setting the
-viewport. It looks like this was a bug.</pre>
+Start-Date: 2013-11-26  10:55:27
+Commandline: apt-get dist-upgrade
+Upgrade: libdrm-intel1:i386 (2.4.46-4, 2.4.49-1), libdrm-radeon1:i386
+(2.4.46-4, 2.4.49-1), libdrm-nouveau2:i386 (2.4.46-4, 2.4.49-1)
+End-Date: 2013-11-26  10:55:34
+
+Thank you for the advice,
+Moi</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +107,9 @@ viewport. It looks like this was a bug.</pre>
     </body>
 </html>
 
---1385466385.1Cd8B6Aa3.4181--
+--1385474597.d1dA4dD61.25197--
 
---===============1479206482==
+--===============0290643146==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1479206482==--
+--===============0290643146==--
