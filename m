@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70875] [NVC1] NOUVEAU(0): [drm] failed to set drm
- interface version
-Date: Tue, 26 Nov 2013 10:07:07 +0000
-Message-ID: <bug-70875-8800-NIVvhyaZ8U@http.bugs.freedesktop.org/>
-References: <bug-70875-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
+Date: Tue, 26 Nov 2013 11:46:25 +0000
+Message-ID: <bug-64323-8800-egiCOjRSHh@http.bugs.freedesktop.org/>
+References: <bug-64323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0451232766=="
+Content-Type: multipart/mixed; boundary="===============1479206482=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70875-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,44 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0451232766==
-Content-Type: multipart/alternative; boundary="1385460427.De4fF871.20237"; charset="us-ascii"
+--===============1479206482==
+Content-Type: multipart/alternative; boundary="1385466385.1Cd8B6Aa3.4181"; charset="us-ascii"
 
 
---1385460427.De4fF871.20237
-Date: Tue, 26 Nov 2013 10:07:07 +0000
+--1385466385.1Cd8B6Aa3.4181
+Date: Tue, 26 Nov 2013 11:46:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70875
+https://bugs.freedesktop.org/show_bug.cgi?id=64323
 
---- Comment #9 from Marcin Zajaczkowski <mszpak-5tc4TXWwyLM@public.gmane.org> ---
-(In reply to comment #8)
-> I don't see anything that suggests that you have a hardware mux. The VGA/DVI
-> connectors appear to be on the nvidia card -- they're inaccessible from
-> intel, right? (A bit hard to tell from your logs...)
+--- Comment #11 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
+A suspiciously similar bug for nvc0 was fixed with
+72295c5f6715555082455072bfd29a1e5ae545de
 
-Hmm, I thought I have one (or maybe I don't understand a problem :) ).
-Currently with bumblebee I have NVidia card off and still can use both screen
-(though VGA or HDMI output).
+nvc0: restore viewport after blit
 
-$ cat /proc/acpi/bbswitch
-0000:01:00.0 OFF
-$ lsmod | grep nouveau
-$ lsmod | grep nv
-
-> So... please try the following:
-> 
-> linux 3.13-rc1 -- this has some fixes for nvc1 as well as runtime pm.
-
-Ok, I will try to get this kernel and let you know.
+I think you need to set viewport in nv50_blit_3d in the same way nvc0_blit_3d
+does, and then restore the old viewport afterwards in similar to the referenced
+commit. I didn't fix it at the time for nv50, because it wasn't setting the
+viewport. It looks like this was a bug.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385460427.De4fF871.20237
-Date: Tue, 26 Nov 2013 10:07:07 +0000
+--1385466385.1Cd8B6Aa3.4181
+Date: Tue, 26 Nov 2013 11:46:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,33 +60,23 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] NOUVEAU(0): [drm] failed to set drm interface version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70875#c9">Comment # 9</a>
+   title="NEW --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] NOUVEAU(0): [drm] failed to set drm interface version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70875">bug 70875</a>
-              from <span class="vcard"><a class="email" href="mailto:mszpak&#64;wp.pl" title="Marcin Zajaczkowski &lt;mszpak&#64;wp.pl&gt;"> <span class="fn">Marcin Zajaczkowski</span></a>
+   title="NEW --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
+              from <span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=70875#c8">comment #8</a>)
-<span class="quote">&gt; I don't see anything that suggests that you have a hardware mux. The VGA/DVI
-&gt; connectors appear to be on the nvidia card -- they're inaccessible from
-&gt; intel, right? (A bit hard to tell from your logs...)</span >
+        <pre>A suspiciously similar bug for nvc0 was fixed with
+72295c5f6715555082455072bfd29a1e5ae545de
 
-Hmm, I thought I have one (or maybe I don't understand a problem :) ).
-Currently with bumblebee I have NVidia card off and still can use both screen
-(though VGA or HDMI output).
+nvc0: restore viewport after blit
 
-$ cat /proc/acpi/bbswitch
-0000:01:00.0 OFF
-$ lsmod | grep nouveau
-$ lsmod | grep nv
-
-<span class="quote">&gt; So... please try the following:
-&gt; 
-&gt; linux 3.13-rc1 -- this has some fixes for nvc1 as well as runtime pm.</span >
-
-Ok, I will try to get this kernel and let you know.</pre>
+I think you need to set viewport in nv50_blit_3d in the same way nvc0_blit_3d
+does, and then restore the old viewport afterwards in similar to the referenced
+commit. I didn't fix it at the time for nv50, because it wasn't setting the
+viewport. It looks like this was a bug.</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +88,9 @@ Ok, I will try to get this kernel and let you know.</pre>
     </body>
 </html>
 
---1385460427.De4fF871.20237--
+--1385466385.1Cd8B6Aa3.4181--
 
---===============0451232766==
+--===============1479206482==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0451232766==--
+--===============1479206482==--
