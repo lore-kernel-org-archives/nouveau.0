@@ -1,14 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: Selecting supported chipsets in the driver?
-Date: Fri, 29 Nov 2013 15:13:46 +0100
-Message-ID: <5298A11A.4090608@free.fr>
-References: <CAMjv+TQLp4dCfa0FHmfUOYZR3H_RMwiev=59Ocr3WN=drky=YQ@mail.gmail.com>	<51F83EA7.8050704@gmail.com>	<CAKb7UvgNmvcuUD4T0+0MdK_Drk3vp9CgLGGtANJC_up04otvvA@mail.gmail.com>	<51F922E7.1050100@free.fr>	<CAKb7UvhyvHXN5dXdfp_By6K3fdr_17S87ptgLP-EHLpw_G=V6g@mail.gmail.com>	<51F9306B.1020602@free.fr>	<CAMjv+TTjz40ry-i7XaVTS488_iFrT0rj-K2LHiDEhxZmW69Law@mail.gmail.com>
-	<CAMjv+TSscEmtCzW+oJ9oQ5hOewmZDWQwJ-FRb3cg==bkY=Bm1A@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70875] [NVC1] NOUVEAU(0): [drm] failed to set drm
+ interface version
+Date: Fri, 29 Nov 2013 23:23:57 +0000
+Message-ID: <bug-70875-8800-cVXwckgmHz@http.bugs.freedesktop.org/>
+References: <bug-70875-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/mixed; boundary="===============1477936367=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAMjv+TSscEmtCzW+oJ9oQ5hOewmZDWQwJ-FRb3cg==bkY=Bm1A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-70875-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,46 +20,120 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Le 29/11/2013 14:17, Christ-Jan Wijtmans a =E9crit :
-> so uhm, as far as i know in ATI drivers this is possible, why no nouveau?
 
-Well, because we share a lot of code between chipsets and it would be a =
+--===============1477936367==
+Content-Type: multipart/alternative; boundary="1385767436.dF7C281.21665"; charset="us-ascii"
 
-pain not to compile everything.
 
-FYI, on Archlinux:
--rw-r--r-- 1 root root 379K 26 nov.  11:18 =
+--1385767436.dF7C281.21665
+Date: Fri, 29 Nov 2013 23:23:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-/lib/modules/3.12.1-3-ARCH/kernel/drivers/gpu/drm/nouveau/nouveau.ko.gz
--rw-r--r-- 1 mupuf mupuf 1,5M 29 nov.  15:06 nouveau.ko
--rwxr-xr-x 1 root root 180K 16 nov.  16:00 =
+https://bugs.freedesktop.org/show_bug.cgi?id=70875
 
-/usr/lib/xorg/modules/dri/nouveau_vieux_dri.so
--rwxr-xr-x 1 root root 6,5M 16 nov.  16:00 =
+--- Comment #12 from Marcin Zajaczkowski <mszpak-5tc4TXWwyLM@public.gmane.org> ---
+I managed to build and install 3.13-rc1 with CONFIG_PM_RUNTIME on my Fedora,
+but I have two issues.
 
-/usr/lib/xorg/modules/dri/nouveau_dri.so
+1. I can't determine if NVidia card is disabled when become not used (basing on
+a system temperature it's not). vga_switchero always returns DynPwr - can
+vgaswitcheroo be more verbose?
 
--rw-r--r-- 1 root root 583K 26 nov.  11:18 =
+$ sudo cat /sys/kernel/debug/vgaswitcheroo/switch
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :DynPwr:0000:01:00.0
 
-/lib/modules/3.12.1-3-ARCH/kernel/drivers/gpu/drm/radeon/radeon.ko.gz
--rw-r--r-- 1 mupuf mupuf 2,2M 29 nov.  15:07 radeon.ko
+I need to build and install patched for 3.13 bbswitch version which shows:
+$ cat /proc/acpi/bbswitch
+0000:01:00.0 ON
 
--rw-r--r-- 1 root root 337K 26 nov.  11:18 =
+and I cannot disable it using bbswitch.
+bbswitch: device 0000:01:00.0 is in use by driver 'nouveau', refusing OFF
 
-/lib/modules/3.12.1-3-ARCH/kernel/drivers/gpu/drm/i915/i915.ko.gz
--rw-r--r-- 1 mupuf mupuf 1,2M 29 nov.  15:08 i915.ko
+I also cannot unload nouveau driver. There is nothing more in the kernel log.
 
-So, the whole of nouveau weights a little more than 7MB. Even by floppy =
+2. I tried to boot with bbswitch (then vgaswitcheroo become disabled) and a
+discrete is turn off. Unfortunately and cannot tell Prime to use it for
+offloading because xrandr --listproviders returns only Intel card. Even when I
+manually enable discrete card and later load nouveau driver xrandr returns the
+second card with modesetting instead of nouveau (can I do something in that
+case?)
 
-standards, it isn't huge! And I'm not talking about nvidia's driver that =
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-is WAY bigger.
+--1385767436.dF7C281.21665
+Date: Fri, 29 Nov 2013 23:23:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
-So, If you manage to make a good patch a prove you can save a =
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC1] NOUVEAU(0): [drm] failed to set drm interface version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70875#c12">Comment # 12</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC1] NOUVEAU(0): [drm] failed to set drm interface version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70875">bug 70875</a>
+              from <span class="vcard"><a class="email" href="mailto:mszpak&#64;wp.pl" title="Marcin Zajaczkowski &lt;mszpak&#64;wp.pl&gt;"> <span class="fn">Marcin Zajaczkowski</span></a>
+</span></b>
+        <pre>I managed to build and install 3.13-rc1 with CONFIG_PM_RUNTIME on my Fedora,
+but I have two issues.
 
-substential amount of space and that isn't a pain to maintain, then =
+1. I can't determine if NVidia card is disabled when become not used (basing on
+a system temperature it's not). vga_switchero always returns DynPwr - can
+vgaswitcheroo be more verbose?
 
-maybe we'll consider this.
+$ sudo cat /sys/kernel/debug/vgaswitcheroo/switch
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :DynPwr:0000:01:00.0
 
-Cheers,
-Martin
+I need to build and install patched for 3.13 bbswitch version which shows:
+$ cat /proc/acpi/bbswitch
+0000:01:00.0 ON
+
+and I cannot disable it using bbswitch.
+bbswitch: device 0000:01:00.0 is in use by driver 'nouveau', refusing OFF
+
+I also cannot unload nouveau driver. There is nothing more in the kernel log.
+
+2. I tried to boot with bbswitch (then vgaswitcheroo become disabled) and a
+discrete is turn off. Unfortunately and cannot tell Prime to use it for
+offloading because xrandr --listproviders returns only Intel card. Even when I
+manually enable discrete card and later load nouveau driver xrandr returns the
+second card with modesetting instead of nouveau (can I do something in that
+case?)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1385767436.dF7C281.21665--
+
+--===============1477936367==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1477936367==--
