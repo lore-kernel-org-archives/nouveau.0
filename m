@@ -1,13 +1,18 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58378] Distorted graphics on NVIDIA GeForce 8400M G
- after upgrade the kernel to 3.7.0 version
-Date: Fri, 29 Nov 2013 10:48:58 +0000
-Message-ID: <bug-58378-8800-W8XygsThd9@http.bugs.freedesktop.org/>
-References: <bug-58378-8800@http.bugs.freedesktop.org/>
+From: Christ-Jan Wijtmans <cj.wijtmans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Selecting supported chipsets in the driver?
+Date: Fri, 29 Nov 2013 14:17:37 +0100
+Message-ID: <CAMjv+TSscEmtCzW+oJ9oQ5hOewmZDWQwJ-FRb3cg==bkY=Bm1A@mail.gmail.com>
+References: <CAMjv+TQLp4dCfa0FHmfUOYZR3H_RMwiev=59Ocr3WN=drky=YQ@mail.gmail.com>
+	<51F83EA7.8050704@gmail.com>
+	<CAKb7UvgNmvcuUD4T0+0MdK_Drk3vp9CgLGGtANJC_up04otvvA@mail.gmail.com>
+	<51F922E7.1050100@free.fr>
+	<CAKb7UvhyvHXN5dXdfp_By6K3fdr_17S87ptgLP-EHLpw_G=V6g@mail.gmail.com>
+	<51F9306B.1020602@free.fr>
+	<CAMjv+TTjz40ry-i7XaVTS488_iFrT0rj-K2LHiDEhxZmW69Law@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0204294986=="
+Content-Type: multipart/mixed; boundary="===============0544907603=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAMjv+TTjz40ry-i7XaVTS488_iFrT0rj-K2LHiDEhxZmW69Law-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,191 +22,299 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+--===============0544907603==
+Content-Type: multipart/alternative; boundary=089e01182da868d86b04ec50a738
 
---===============0204294986==
-Content-Type: multipart/alternative; boundary="1385722138.C20Fc4eF5.1585"; charset="us-ascii"
+--089e01182da868d86b04ec50a738
+Content-Type: text/plain; charset=UTF-8
 
-
---1385722138.C20Fc4eF5.1585
-Date: Fri, 29 Nov 2013 10:48:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=58378
-
---- Comment #14 from torsten.stocklossa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-HI again, in addition some error messages 
-
-Nov 29 11:21:47 torsten-LIFEBOOK-E8410 kernel: [   66.215782] nouveau E[ 
-PGRAPH][0000:01:00.0] ch 2 [0x0007b23000] subc 7 class 0x8297 mthd 0x15e0 data
-0x00000000
-Nov 29 11:21:47 torsten-LIFEBOOK-E8410 kernel: [   66.304180] nouveau E[ 
-PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 0: INVALID_OPCODE at 000004 warp
-10, opcode ffb9c1d8 ffbac2d9
-Nov 29 11:21:47 torsten-LIFEBOOK-E8410 kernel: [   66.304188] nouveau E[ 
-PGRAPH][0000:01:00.0]  TRAP
-Nov 29 11:21:47 torsten-LIFEBOOK-E8410 kernel: [   66.304193] nouveau E[ 
-PGRAPH][0000:01:00.0] ch 2 [0x0007b23000] subc 7 class 0x8297 mthd 0x15e0 data
-0x00000000
-Nov 29 11:21:47 torsten-LIFEBOOK-E8410 kernel: [   66.304477] nouveau E[ 
-PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 0: INVALID_OPCODE at 000004 warp
-10, opcode ffb9c1d8 ffbac2d9
-Nov 29 11:21:47 torsten-LIFEBOOK-E8410 kernel: [   66.304483] nouveau E[ 
-PGRAPH][0000:01:00.0]  TRAP
-Nov 29 11:21:47 torsten-LIFEBOOK-E8410 kernel: [   66.304487] nouveau E[ 
-PGRAPH][0000:01:00.0] ch 2 [0x0007b23000] subc 7 class 0x8297 mthd 0x15e0 data
-0x00000000
+so uhm, as far as i know in ATI drivers this is possible, why no nouveau?
 
 
-and 
+Live long and prosper,
 
-Nov 29 11:26:04 torsten-LIFEBOOK-E8410 kernel: [  323.106306] nouveau E[    
-DRM] GPU lockup - switching to software fbcon
-Nov 29 11:27:07 torsten-LIFEBOOK-E8410 kernel: [  386.736037] nouveau E[   
-3431] failed to idle channel 0xcccc0001
-Nov 29 11:27:09 torsten-LIFEBOOK-E8410 kernel: [  388.735098] nouveau E[  
-PFIFO][0000:01:00.0] channel 3 unload timeout
-Nov 29 11:27:12 torsten-LIFEBOOK-E8410 kernel: [  391.732025] nouveau E[   
-3431] failed to idle channel 0xcccc0000
-Nov 29 11:27:14 torsten-LIFEBOOK-E8410 kernel: [  393.731221] nouveau E[  
-PFIFO][0000:01:00.0] channel 2 unload timeout
-Nov 29 11:28:09 torsten-LIFEBOOK-E8410 kernel: [  448.580025] nouveau E[   
-4056] failed to idle channel 0xcccc0001
-Nov 29 11:28:11 torsten-LIFEBOOK-E8410 kernel: [  450.579162] nouveau E[  
-PFIFO][0000:01:00.0] channel 3 unload timeout
-Nov 29 11:28:14 torsten-LIFEBOOK-E8410 kernel: [  453.576022] nouveau E[   
-4056] failed to idle channel 0xcccc0000
-Nov 29 11:28:16 torsten-LIFEBOOK-E8410 kernel: [  455.575198] nouveau E[  
-PFIFO][0000:01:00.0] channel 2 unload timeout
-Nov 29 11:29:17 torsten-LIFEBOOK-E8410 kernel: [  516.552036] nouveau E[   
-4211] failed to idle channel 0xcccc0001
-Nov 29 11:29:19 torsten-LIFEBOOK-E8410 kernel: [  518.553893] nouveau E[  
-PFIFO][0000:01:00.0] channel 3 unload timeout
-Nov 29 11:29:22 torsten-LIFEBOOK-E8410 kernel: [  521.556024] nouveau E[   
-4211] failed to idle channel 0xcccc0000
-Nov 29 11:29:24 torsten-LIFEBOOK-E8410 kernel: [  523.555077] nouveau E[  
-PFIFO][0000:01:00.0] channel 2 unload timeout
+Christ-Jan Wijtmans
+https://github.com/cjwijtmans
+http://facebook.com/cj.wijtmans
+http://twitter.com/cjwijtmans
 
 
-For both the session is Gnome. Now when running on Gnome (no effects ) ist is
-slighly more stable.
+On Thu, Aug 1, 2013 at 2:15 AM, Christ-Jan Wijtmans
+<cj.wijtmans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>wrote:
 
-As mentioned I also tried NVIDIA drivers .... with the effect that the system
-was unusable at all. 
+> Sorry but 1.7 and 6.3 MB are huge...
+>
+>
+> Live long and prosper,
+>
+> Christ-Jan Wijtmans
+> http://facebook.com/cj.wijtmans
+> http://twitter.com/cjwijtmans
+>
+>
+> On Wed, Jul 31, 2013 at 5:42 PM, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>wrote:
+>
+>> On 31/07/2013 11:03, Ilia Mirkin wrote:
+>>
+>>> On Wed, Jul 31, 2013 at 10:44 AM, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+>>> wrote:
+>>>
+>>>> On 30/07/2013 18:43, Ilia Mirkin wrote:
+>>>>
+>>>>> On Tue, Jul 30, 2013 at 6:31 PM, Emil Velikov <
+>>>>> emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+>>>>> wrote:
+>>>>>
+>>>>>> On 30/07/13 21:39, Christ-Jan Wijtmans wrote:
+>>>>>>
+>>>>>>> Hi, my apologies if this is the wrong place to post this.
+>>>>>>> I had the desire to turn on or off support for certain chipsets.
+>>>>>>> Because i felt like the nouveau drivers are (relatively) quite large
+>>>>>>> and
+>>>>>>> depends on some kernel code that would only be used for certain
+>>>>>>> chipsets.
+>>>>>>> I will take some time this week to see how this is coded and if its
+>>>>>>> possible but i just wanted a head sup opinion on you guys before i
+>>>>>>> start
+>>>>>>> wasting my time.
+>>>>>>>
+>>>>>>>  I'm not entirely sure if you're talking about the kernel module, ddx
+>>>>>> (xf86-video-nouveau) or mesa.
+>>>>>>
+>>>>>> In either case, all three should be relatively easy to do, as normally
+>>>>>> the generation specific code is divided. Not too sure if it's worth
+>>>>>> the
+>>>>>> effort though
+>>>>>>
+>>>>>> * kernel module - 1.7 MiB, ~400KiB gzip
+>>>>>> * ddx - ~200KiB
+>>>>>> * mesa - 6.3 MiB (nouveau/gallium only)
+>>>>>>
+>>>>>> As you can see the sizes are not that big, and I'm not sure if the
+>>>>>> maintainers would be up-to the idea
+>>>>>>
+>>>>>> Not a maintainer myself so take the last statement if a healthy pinch
+>>>>>> of
+>>>>>> salt :)
+>>>>>>
+>>>>> I'm not a maintainer either, but to provide an opposing opinion, I
+>>>>> strongly support the notion of being able to select card generations
+>>>>> to build support for. 1.7M of kernel code is huge. I don't even think
+>>>>> it'd be that hard (at least for the kernel module and mesa, and I
+>>>>> think there's a lot less value in doing it for the DDX). I think it
+>>>>> might be as easy as some Makefile changes + a couple of ifdefs in the
+>>>>> init code to do Y/N selects. Making it so that the additional
+>>>>> functionality can be loaded on demand (i.e. Y/M/N) may be much
+>>>>> trickier, to the point of it not being worth it for the additional
+>>>>> complexity.
+>>>>>
+>>>>>     -ilia
+>>>>>
+>>>>
+>>>> In mesa, it is possible to build the driver you want (nouveau_vieux,
+>>>> nv30,
+>>>> nv50 or nvc0) so the feature is already there.
+>>>>
+>>> Really? How do you compile only nv50? (Hint: you can't. nv30/nv50/nvc0
+>>> are all linked together in the nouveau driver, no way to split them
+>>> out, largely because of the nouveau_drm_screen_create function.)
+>>>
+>> Hmm, as I need to specify which driver I want in configure, I thought
+>> they were separated. My bad
+>>
+>>
+>>>  There is no point for the ddx.
+>>>>
+>>>> As for drm, I sure would use this feature as this would cut down
+>>>> compilation
+>>>> time a lot when doing out of the tree builds. With the core arch, in
+>>>> theory,
+>>>> it shouldn't be that hard if you want plan on using old cards only.
+>>>> However,
+>>>> if you plan on doing the opposite (drop old cards support), it is harder
+>>>> as newer cards still use code written for the old ones. If you like,
+>>>> you can draw a dependency map quite easily by looking into the device
+>>>> directory that will contain all the dependencies for every chipset.
+>>>>
+>>>> One more thing, maintaining these dependencies will be done poorly and
+>>>> eat development time. So I'm not in huge favour of this unless you
+>>>> introduce a system that only compiles code for chipsets up to a certain
+>>>> point (which is useless IMO).
+>>>>
+>>>>
+>>>>
+>>>> _______________________________________________
+>>>> Nouveau mailing list
+>>>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>>>> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>>>>
+>>>
+>> _______________________________________________
+>> Nouveau mailing list
+>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>>
+>
+>
 
-Since the issue seems to be quite old . . . there should be an appropriate
-solution by now !
+--089e01182da868d86b04ec50a738
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-cheers
-TS
+<div dir=3D"ltr">so uhm, as far as i know in ATI drivers this is possible, =
+why no nouveau?</div><div class=3D"gmail_extra"><br clear=3D"all"><div><div=
+ dir=3D"ltr"><br>Live long and prosper,<br><br>Christ-Jan Wijtmans<br><a hr=
+ef=3D"https://github.com/cjwijtmans" target=3D"_blank">https://github.com/c=
+jwijtmans</a><br>
+<a href=3D"http://facebook.com/cj.wijtmans" target=3D"_blank">http://facebo=
+ok.com/cj.wijtmans</a><br><a href=3D"http://twitter.com/cjwijtmans" target=
+=3D"_blank">http://twitter.com/cjwijtmans</a></div></div>
+<br><br><div class=3D"gmail_quote">On Thu, Aug 1, 2013 at 2:15 AM, Christ-J=
+an Wijtmans <span dir=3D"ltr">&lt;<a href=3D"mailto:cj.wijtmans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" =
+target=3D"_blank">cj.wijtmans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt;</span> wrote:<br><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
+id;padding-left:1ex">
+<div dir=3D"ltr">Sorry but 1.7 and 6.3 MB are huge...<div class=3D"gmail_ex=
+tra"><br clear=3D"all"><div><div dir=3D"ltr"><div class=3D"im"><br>Live lon=
+g and prosper,<br><br>Christ-Jan Wijtmans<br></div><a href=3D"http://facebo=
+ok.com/cj.wijtmans" target=3D"_blank">http://facebook.com/cj.wijtmans</a><b=
+r>
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+<a href=3D"http://twitter.com/cjwijtmans" target=3D"_blank">http://twitter.=
+com/cjwijtmans</a></div></div><div><div class=3D"h5">
+<br><br><div class=3D"gmail_quote">On Wed, Jul 31, 2013 at 5:42 PM, Martin =
+Peres <span dir=3D"ltr">&lt;<a href=3D"mailto:martin.peres-GANU6spQydw@public.gmane.org" target=
+=3D"_blank">martin.peres-GANU6spQydw@public.gmane.org</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex">
 
---1385722138.C20Fc4eF5.1585
-Date: Fri, 29 Nov 2013 10:48:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+<div><div>On 31/07/2013 11:03, Ilia Mirkin wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+On Wed, Jul 31, 2013 at 10:44 AM, Martin Peres &lt;<a href=3D"mailto:martin=
+.peres-GANU6spQydw@public.gmane.org" target=3D"_blank">martin.peres-GANU6spQydw@public.gmane.org</a>&gt; wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+On 30/07/2013 18:43, Ilia Mirkin wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+On Tue, Jul 30, 2013 at 6:31 PM, Emil Velikov &lt;<a href=3D"mailto:emil.l.=
+velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank">emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt;<br>
+wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+On 30/07/13 21:39, Christ-Jan Wijtmans wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Hi, my apologies if this is the wrong place to post this.<br>
+I had the desire to turn on or off support for certain chipsets.<br>
+Because i felt like the nouveau drivers are (relatively) quite large and<br=
+>
+depends on some kernel code that would only be used for certain<br>
+chipsets.<br>
+I will take some time this week to see how this is coded and if its<br>
+possible but i just wanted a head sup opinion on you guys before i start<br=
+>
+wasting my time.<br>
+<br>
+</blockquote>
+I&#39;m not entirely sure if you&#39;re talking about the kernel module, dd=
+x<br>
+(xf86-video-nouveau) or mesa.<br>
+<br>
+In either case, all three should be relatively easy to do, as normally<br>
+the generation specific code is divided. Not too sure if it&#39;s worth the=
+<br>
+effort though<br>
+<br>
+* kernel module - 1.7 MiB, ~400KiB gzip<br>
+* ddx - ~200KiB<br>
+* mesa - 6.3 MiB (nouveau/gallium only)<br>
+<br>
+As you can see the sizes are not that big, and I&#39;m not sure if the<br>
+maintainers would be up-to the idea<br>
+<br>
+Not a maintainer myself so take the last statement if a healthy pinch of<br=
+>
+salt :)<br>
+</blockquote>
+I&#39;m not a maintainer either, but to provide an opposing opinion, I<br>
+strongly support the notion of being able to select card generations<br>
+to build support for. 1.7M of kernel code is huge. I don&#39;t even think<b=
+r>
+it&#39;d be that hard (at least for the kernel module and mesa, and I<br>
+think there&#39;s a lot less value in doing it for the DDX). I think it<br>
+might be as easy as some Makefile changes + a couple of ifdefs in the<br>
+init code to do Y/N selects. Making it so that the additional<br>
+functionality can be loaded on demand (i.e. Y/M/N) may be much<br>
+trickier, to the point of it not being worth it for the additional<br>
+complexity.<br>
+<br>
+=C2=A0 =C2=A0 -ilia<br>
+</blockquote>
+<br>
+In mesa, it is possible to build the driver you want (nouveau_vieux, nv30,<=
+br>
+nv50 or nvc0) so the feature is already there.<br>
+</blockquote>
+Really? How do you compile only nv50? (Hint: you can&#39;t. nv30/nv50/nvc0<=
+br>
+are all linked together in the nouveau driver, no way to split them<br>
+out, largely because of the nouveau_drm_screen_create function.)<br>
+</blockquote></div></div>
+Hmm, as I need to specify which driver I want in configure, I thought<br>
+they were separated. My bad<div><div><br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+There is no point for the ddx.<br>
+<br>
+As for drm, I sure would use this feature as this would cut down compilatio=
+n<br>
+time a lot when doing out of the tree builds. With the core arch, in theory=
+,<br>
+it shouldn&#39;t be that hard if you want plan on using old cards only. How=
+ever,<br>
+if you plan on doing the opposite (drop old cards support), it is harder<br=
+>
+as newer cards still use code written for the old ones. If you like,<br>
+you can draw a dependency map quite easily by looking into the device<br>
+directory that will contain all the dependencies for every chipset.<br>
+<br>
+One more thing, maintaining these dependencies will be done poorly and<br>
+eat development time. So I&#39;m not in huge favour of this unless you<br>
+introduce a system that only compiles code for chipsets up to a certain<br>
+point (which is useless IMO).<br>
+<br>
+<br>
+<br>
+______________________________<u></u>_________________<br>
+Nouveau mailing list<br>
+<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" target=3D"_blank">Nouveau@=
+lists.freedesktop.org</a><br>
+<a href=3D"http://lists.freedesktop.org/mailman/listinfo/nouveau" target=3D=
+"_blank">http://lists.freedesktop.org/<u></u>mailman/listinfo/nouveau</a><b=
+r>
+</blockquote></blockquote>
+<br>
+______________________________<u></u>_________________<br>
+Nouveau mailing list<br>
+<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" target=3D"_blank">Nouveau@=
+lists.freedesktop.org</a><br>
+<a href=3D"http://lists.freedesktop.org/mailman/listinfo/nouveau" target=3D=
+"_blank">http://lists.freedesktop.org/<u></u>mailman/listinfo/nouveau</a><b=
+r>
+</div></div></blockquote></div><br></div></div></div></div>
+</blockquote></div><br></div>
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:torsten.stocklossa&#64;gmail.com" title="torsten.stocklossa&#64;gmail.com">torsten.stocklossa&#64;gmail.com</a>
-</span></b>
-        <pre>HI again, in addition some error messages 
+--089e01182da868d86b04ec50a738--
 
-Nov 29 11:21:47 torsten-LIFEBOOK-E8410 kernel: [   66.215782] nouveau E[ 
-PGRAPH][0000:01:00.0] ch 2 [0x0007b23000] subc 7 class 0x8297 mthd 0x15e0 data
-0x00000000
-Nov 29 11:21:47 torsten-LIFEBOOK-E8410 kernel: [   66.304180] nouveau E[ 
-PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 0: INVALID_OPCODE at 000004 warp
-10, opcode ffb9c1d8 ffbac2d9
-Nov 29 11:21:47 torsten-LIFEBOOK-E8410 kernel: [   66.304188] nouveau E[ 
-PGRAPH][0000:01:00.0]  TRAP
-Nov 29 11:21:47 torsten-LIFEBOOK-E8410 kernel: [   66.304193] nouveau E[ 
-PGRAPH][0000:01:00.0] ch 2 [0x0007b23000] subc 7 class 0x8297 mthd 0x15e0 data
-0x00000000
-Nov 29 11:21:47 torsten-LIFEBOOK-E8410 kernel: [   66.304477] nouveau E[ 
-PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 0: INVALID_OPCODE at 000004 warp
-10, opcode ffb9c1d8 ffbac2d9
-Nov 29 11:21:47 torsten-LIFEBOOK-E8410 kernel: [   66.304483] nouveau E[ 
-PGRAPH][0000:01:00.0]  TRAP
-Nov 29 11:21:47 torsten-LIFEBOOK-E8410 kernel: [   66.304487] nouveau E[ 
-PGRAPH][0000:01:00.0] ch 2 [0x0007b23000] subc 7 class 0x8297 mthd 0x15e0 data
-0x00000000
-
-
-and 
-
-Nov 29 11:26:04 torsten-LIFEBOOK-E8410 kernel: [  323.106306] nouveau E[    
-DRM] GPU lockup - switching to software fbcon
-Nov 29 11:27:07 torsten-LIFEBOOK-E8410 kernel: [  386.736037] nouveau E[   
-3431] failed to idle channel 0xcccc0001
-Nov 29 11:27:09 torsten-LIFEBOOK-E8410 kernel: [  388.735098] nouveau E[  
-PFIFO][0000:01:00.0] channel 3 unload timeout
-Nov 29 11:27:12 torsten-LIFEBOOK-E8410 kernel: [  391.732025] nouveau E[   
-3431] failed to idle channel 0xcccc0000
-Nov 29 11:27:14 torsten-LIFEBOOK-E8410 kernel: [  393.731221] nouveau E[  
-PFIFO][0000:01:00.0] channel 2 unload timeout
-Nov 29 11:28:09 torsten-LIFEBOOK-E8410 kernel: [  448.580025] nouveau E[   
-4056] failed to idle channel 0xcccc0001
-Nov 29 11:28:11 torsten-LIFEBOOK-E8410 kernel: [  450.579162] nouveau E[  
-PFIFO][0000:01:00.0] channel 3 unload timeout
-Nov 29 11:28:14 torsten-LIFEBOOK-E8410 kernel: [  453.576022] nouveau E[   
-4056] failed to idle channel 0xcccc0000
-Nov 29 11:28:16 torsten-LIFEBOOK-E8410 kernel: [  455.575198] nouveau E[  
-PFIFO][0000:01:00.0] channel 2 unload timeout
-Nov 29 11:29:17 torsten-LIFEBOOK-E8410 kernel: [  516.552036] nouveau E[   
-4211] failed to idle channel 0xcccc0001
-Nov 29 11:29:19 torsten-LIFEBOOK-E8410 kernel: [  518.553893] nouveau E[  
-PFIFO][0000:01:00.0] channel 3 unload timeout
-Nov 29 11:29:22 torsten-LIFEBOOK-E8410 kernel: [  521.556024] nouveau E[   
-4211] failed to idle channel 0xcccc0000
-Nov 29 11:29:24 torsten-LIFEBOOK-E8410 kernel: [  523.555077] nouveau E[  
-PFIFO][0000:01:00.0] channel 2 unload timeout
-
-
-For both the session is Gnome. Now when running on Gnome (no effects ) ist is
-slighly more stable.
-
-As mentioned I also tried NVIDIA drivers .... with the effect that the system
-was unusable at all. 
-
-Since the issue seems to be quite old . . . there should be an appropriate
-solution by now !
-
-cheers
-TS</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1385722138.C20Fc4eF5.1585--
-
---===============0204294986==
+--===============0544907603==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -212,4 +325,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0204294986==--
+--===============0544907603==--
