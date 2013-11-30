@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
-Date: Sat, 30 Nov 2013 22:53:45 +0000
-Message-ID: <bug-64323-8800-tZLYsNk5dm@http.bugs.freedesktop.org/>
+Date: Sat, 30 Nov 2013 23:16:18 +0000
+Message-ID: <bug-64323-8800-OTQb4fnsqH@http.bugs.freedesktop.org/>
 References: <bug-64323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1207561486=="
+Content-Type: multipart/mixed; boundary="===============1626968895=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,34 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1207561486==
-Content-Type: multipart/alternative; boundary="1385852025.d084e563.14270"; charset="us-ascii"
+--===============1626968895==
+Content-Type: multipart/alternative; boundary="1385853378.EBAe64152.18179"; charset="us-ascii"
 
 
---1385852025.d084e563.14270
-Date: Sat, 30 Nov 2013 22:53:45 +0000
+--1385853378.EBAe64152.18179
+Date: Sat, 30 Nov 2013 23:16:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=64323
 
---- Comment #22 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Just want to confirm a theory --
-
-can you test
-
-https://bugs.freedesktop.org/attachment.cgi?id=81517
-https://bugs.freedesktop.org/attachment.cgi?id=90011
-
-*together* (i.e. apply both patches). They shouldn't conflict. My theory is
-that this will have the same "higher" performance.
+--- Comment #23 from anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Indeed, I still have ~62 FPS with both patches.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385852025.d084e563.14270
-Date: Sat, 30 Nov 2013 22:53:45 +0000
+--1385853378.EBAe64152.18179
+Date: Sat, 30 Nov 2013 23:16:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,22 +53,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c22">Comment # 22</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c23">Comment # 23</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Severe misrendering in Left 4 Dead 2"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="anakin.cs&#64;gmail.com">anakin.cs&#64;gmail.com</a>
 </span></b>
-        <pre>Just want to confirm a theory --
-
-can you test
-
-<a href="https://bugs.freedesktop.org/attachment.cgi?id=81517">https://bugs.freedesktop.org/attachment.cgi?id=81517</a>
-<a href="https://bugs.freedesktop.org/attachment.cgi?id=90011">https://bugs.freedesktop.org/attachment.cgi?id=90011</a>
-
-*together* (i.e. apply both patches). They shouldn't conflict. My theory is
-that this will have the same &quot;higher&quot; performance.</pre>
+        <pre>Indeed, I still have ~62 FPS with both patches.</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +72,9 @@ that this will have the same &quot;higher&quot; performance.</pre>
     </body>
 </html>
 
---1385852025.d084e563.14270--
+--1385853378.EBAe64152.18179--
 
---===============1207561486==
+--===============1626968895==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1207561486==--
+--===============1626968895==--
