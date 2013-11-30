@@ -1,68 +1,81 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 1/2] nouveau: avoid leaking fences while waiting
-Date: Fri, 29 Nov 2013 23:33:42 -0500
-Message-ID: <1385786023-24566-1-git-send-email-imirkin@alum.mit.edu>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH 2/2] nv50: wait on the buf's fence before
+	sticking it into pushbuf
+Date: Fri, 29 Nov 2013 23:33:43 -0500
+Message-ID: <1385786023-24566-2-git-send-email-imirkin@alum.mit.edu>
+References: <1385786023-24566-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "9.2 10.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <1385786023-24566-1-git-send-email-imirkin@alum.mit.edu>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces@lists.freedesktop.org
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+To: Christoph Bumiller <e0425955@student.tuwien.ac.at>
+Cc: nouveau@lists.freedesktop.org, "9.2 10.0" <mesa-stable@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, mesa-dev@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-This fixes a memory leak in some situations. Also avoids emitting an
-extra fence if the kick handler does the call to nouveau_fence_next
-itself.
+This resolves some rendering issues in source games.
+See https://bugs.freedesktop.org/show_bug.cgi?id=64323
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "9.2 10.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: "9.2 10.0" <mesa-stable@lists.freedesktop.org>
 ---
 
-TBH I'm pretty confused by the whole fence refcounting logic and its
-interaction with emits, updates, etc. However valgrind was happy with
-this. But it wasn't happy when I was doing nouveau_fence_wait from
-nv50_draw_elements, saying that the fence allocated by nouveau_fence_new was
-leaked. (Note that the kick handler when doing vbo stuff does NOT do
-nouveau_fence_next on its own... but adding that there still didn't fix all my
-issues, nor is it likely desirable.)
+Doing a nouveau_bo_wait works as well, but I got a slightly higher framerate
+from glretrace doing it this way. I tried to get an actual source game running,
+but was unsuccessful... (something about a missing filesystem_steam.so which
+indeed was absent)
 
- src/gallium/drivers/nouveau/nouveau_fence.c | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+This is clearly not optimal, but neither is having broken source games. The
+other workaround simply went the other path which would have to do a wait and
+a double-copy (vram -> pushbuf, pushbuf xfer from gart), which is worse than
+just the wait.
 
-diff --git a/src/gallium/drivers/nouveau/nouveau_fence.c b/src/gallium/drivers/nouveau/nouveau_fence.c
-index dea146c..c686710 100644
---- a/src/gallium/drivers/nouveau/nouveau_fence.c
-+++ b/src/gallium/drivers/nouveau/nouveau_fence.c
-@@ -189,16 +189,15 @@ nouveau_fence_wait(struct nouveau_fence *fence)
-    /* wtf, someone is waiting on a fence in flush_notify handler? */
-    assert(fence->state != NOUVEAU_FENCE_STATE_EMITTING);
- 
--   if (fence->state < NOUVEAU_FENCE_STATE_EMITTED) {
-+   if (fence->state < NOUVEAU_FENCE_STATE_EMITTED)
-       nouveau_fence_emit(fence);
- 
--      if (fence == screen->fence.current)
--         nouveau_fence_new(screen, &screen->fence.current, FALSE);
--   }
--   if (fence->state < NOUVEAU_FENCE_STATE_FLUSHED) {
-+   if (fence->state < NOUVEAU_FENCE_STATE_FLUSHED)
-       if (nouveau_pushbuf_kick(screen->pushbuf, screen->pushbuf->channel))
-          return FALSE;
--   }
+ src/gallium/drivers/nouveau/nouveau_buffer.c | 3 +++
+ src/gallium/drivers/nouveau/nv50/nv50_vbo.c  | 9 +++++++++
+ 2 files changed, 12 insertions(+)
+
+diff --git a/src/gallium/drivers/nouveau/nouveau_buffer.c b/src/gallium/drivers/nouveau/nouveau_buffer.c
+index 3e04049..95905a8 100644
+--- a/src/gallium/drivers/nouveau/nouveau_buffer.c
++++ b/src/gallium/drivers/nouveau/nouveau_buffer.c
+@@ -205,6 +205,9 @@ nouveau_transfer_write(struct nouveau_context *nv, struct nouveau_transfer *tx,
+                   base, size / 4, (const uint32_t *)data);
+    else
+       nv->push_data(nv, buf->bo, buf->offset + base, buf->domain, size, data);
 +
-+   if (fence == screen->fence.current)
-+      nouveau_fence_next(screen);
++   nouveau_fence_ref(nv->screen->fence.current, &buf->fence);
++   nouveau_fence_ref(nv->screen->fence.current, &buf->fence_wr);
+ }
  
-    do {
-       nouveau_fence_update(screen, FALSE);
+ 
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_vbo.c b/src/gallium/drivers/nouveau/nv50/nv50_vbo.c
+index c6162b5..947c67d 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_vbo.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_vbo.c
+@@ -597,6 +597,15 @@ nv50_draw_elements(struct nv50_context *nv50, boolean shorten,
+ 
+       assert(nouveau_resource_mapped_by_gpu(nv50->idxbuf.buffer));
+ 
++      /* This shouldn't have to be here. The going theory is that the buffer
++       * is being filled in by PGRAPH, and it's not done yet by the time it
++       * gets submitted to PFIFO, which in turn starts immediately prefetching
++       * the not-yet-written data. Ideally this wait would only happen on
++       * pushbuf submit, but it's probably not a big performance difference.
++       */
++      if (buf->fence_wr && !nouveau_fence_signalled(buf->fence_wr))
++         nouveau_fence_wait(buf->fence_wr);
++
+       while (instance_count--) {
+          BEGIN_NV04(push, NV50_3D(VERTEX_BEGIN_GL), 1);
+          PUSH_DATA (push, prim);
 -- 
 1.8.3.2
