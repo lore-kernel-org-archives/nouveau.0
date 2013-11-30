@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
-Date: Sat, 30 Nov 2013 22:09:09 +0000
-Message-ID: <bug-64323-8800-ujitqIyymx@http.bugs.freedesktop.org/>
-References: <bug-64323-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72180] [NVE6] Random GPU Lockups
+Date: Sat, 30 Nov 2013 22:11:35 +0000
+Message-ID: <bug-72180-8800-XFvP2CMHRd@http.bugs.freedesktop.org/>
+References: <bug-72180-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2086147701=="
+Content-Type: multipart/mixed; boundary="===============1337243569=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2086147701==
-Content-Type: multipart/alternative; boundary="1385849349.AE23ec5e2.6492"; charset="us-ascii"
+--===============1337243569==
+Content-Type: multipart/alternative; boundary="1385849495.B8B1dE2.7026"; charset="us-ascii"
 
 
---1385849349.AE23ec5e2.6492
-Date: Sat, 30 Nov 2013 22:09:09 +0000
+--1385849495.B8B1dE2.7026
+Date: Sat, 30 Nov 2013 22:11:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64323
+https://bugs.freedesktop.org/show_bug.cgi?id=72180
 
---- Comment #21 from anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-That one:
-https://bugs.freedesktop.org/attachment.cgi?id=81517
-is the best one, I have same performance with it as without any patch (62 fps).
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+My personal guess, based on roughly 0 real information, is that the graph
+firmware is "wrong". Could one of you try to extract the graph firmware from
+the blob and use it with nouveau to see if it improves things?
+
+http://nouveau.freedesktop.org/wiki/NVC0_Firmware/
+
+(You don't need the video firmware bits.)
+
+Don't forget to add nouveau.config=NvGrUseFw=1 in order for nouveau to actually
+load the external firmware.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385849349.AE23ec5e2.6492
-Date: Sat, 30 Nov 2013 22:09:09 +0000
+--1385849495.B8B1dE2.7026
+Date: Sat, 30 Nov 2013 22:11:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,17 +61,24 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c21">Comment # 21</a>
+   title="NEW --- - [NVE6] Random GPU Lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
-              from <span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="anakin.cs&#64;gmail.com">anakin.cs&#64;gmail.com</a>
+   title="NEW --- - [NVE6] Random GPU Lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>That one:
-<a href="https://bugs.freedesktop.org/attachment.cgi?id=81517">https://bugs.freedesktop.org/attachment.cgi?id=81517</a>
-is the best one, I have same performance with it as without any patch (62 fps).</pre>
+        <pre>My personal guess, based on roughly 0 real information, is that the graph
+firmware is &quot;wrong&quot;. Could one of you try to extract the graph firmware from
+the blob and use it with nouveau to see if it improves things?
+
+<a href="http://nouveau.freedesktop.org/wiki/NVC0_Firmware/">http://nouveau.freedesktop.org/wiki/NVC0_Firmware/</a>
+
+(You don't need the video firmware bits.)
+
+Don't forget to add nouveau.config=NvGrUseFw=1 in order for nouveau to actually
+load the external firmware.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +90,9 @@ is the best one, I have same performance with it as without any patch (62 fps).<
     </body>
 </html>
 
---1385849349.AE23ec5e2.6492--
+--1385849495.B8B1dE2.7026--
 
---===============2086147701==
+--===============1337243569==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2086147701==--
+--===============1337243569==--
