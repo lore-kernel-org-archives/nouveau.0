@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69180] [NVC1] Delays when using nouveau and
-	switcheroo
-Date: Sat, 30 Nov 2013 06:39:03 +0000
-Message-ID: <bug-69180-8800-8jdJIZPCgK@http.bugs.freedesktop.org/>
-References: <bug-69180-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71824] [NVE6] NULL deref on boot when there is
+ nothing in DCB on 3.13-rc
+Date: Sat, 30 Nov 2013 06:42:47 +0000
+Message-ID: <bug-71824-8800-67Ehng02pE@http.bugs.freedesktop.org/>
+References: <bug-71824-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0464365827=="
+Content-Type: multipart/mixed; boundary="===============0881565050=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71824-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0464365827==
-Content-Type: multipart/alternative; boundary="1385793543.F31a2.5456"; charset="us-ascii"
+--===============0881565050==
+Content-Type: multipart/alternative; boundary="1385793767.e8eaB3.6005"; charset="us-ascii"
 
 
---1385793543.F31a2.5456
-Date: Sat, 30 Nov 2013 06:39:03 +0000
+--1385793767.e8eaB3.6005
+Date: Sat, 30 Nov 2013 06:42:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69180
+https://bugs.freedesktop.org/show_bug.cgi?id=71824
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please try this with 3.11.10 or 3.12.2 or 3.13-rc2. There was a patch that
-could help NVC1 cards included in all 3 of those (well, it went into 3.13-rc1).
-https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=13d2b35a065399
-. Note that 3.12+ also have runtime pm for optimus setups, which will
-automatically turn the nvidia card on/off depending on whether it's being used
-(in theory).
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+You can apply the equivalent of this patch to your tree (the paths are wrong,
+but it should be obvious how to fix them up):
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=2c2e48684dbe49f27e51ec0b2a4aa50df0f0f295
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385793543.F31a2.5456
-Date: Sat, 30 Nov 2013 06:39:03 +0000
+--1385793767.e8eaB3.6005
+Date: Sat, 30 Nov 2013 06:42:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,20 +55,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] Delays when using nouveau and switcheroo"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69180#c5">Comment # 5</a>
+   title="NEW --- - [NVE6] NULL deref on boot when there is nothing in DCB on 3.13-rc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71824#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] Delays when using nouveau and switcheroo"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69180">bug 69180</a>
+   title="NEW --- - [NVE6] NULL deref on boot when there is nothing in DCB on 3.13-rc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71824">bug 71824</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Please try this with 3.11.10 or 3.12.2 or 3.13-rc2. There was a patch that
-could help NVC1 cards included in all 3 of those (well, it went into 3.13-rc1).
-<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=13d2b35a065399">https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=13d2b35a065399</a>
-. Note that 3.12+ also have runtime pm for optimus setups, which will
-automatically turn the nvidia card on/off depending on whether it's being used
-(in theory).</pre>
+        <pre>You can apply the equivalent of this patch to your tree (the paths are wrong,
+but it should be obvious how to fix them up):
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=2c2e48684dbe49f27e51ec0b2a4aa50df0f0f295">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=2c2e48684dbe49f27e51ec0b2a4aa50df0f0f295</a></pre>
         </div>
       </p>
       <hr>
@@ -83,9 +77,9 @@ automatically turn the nvidia card on/off depending on whether it's being used
     </body>
 </html>
 
---1385793543.F31a2.5456--
+--1385793767.e8eaB3.6005--
 
---===============0464365827==
+--===============0881565050==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0464365827==--
+--===============0881565050==--
