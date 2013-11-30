@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72180] Nouveau Random GPU Lockups
-Date: Sat, 30 Nov 2013 18:07:21 +0000
-Message-ID: <bug-72180-8800-Wn2R1epJAM@http.bugs.freedesktop.org/>
-References: <bug-72180-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72181] New: [v3.13][regression] NULL pointer deref
+ (_nouveau_clock_init)
+Date: Sat, 30 Nov 2013 18:08:47 +0000
+Message-ID: <bug-72181-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1281338893=="
+Content-Type: multipart/mixed; boundary="===============1462563691=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +19,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1281338893==
-Content-Type: multipart/alternative; boundary="1385834841.ec0Ceb761.27166"; charset="us-ascii"
+--===============1462563691==
+Content-Type: multipart/alternative; boundary="1385834927.2cAFBe2E1.27324"; charset="us-ascii"
 
 
---1385834841.ec0Ceb761.27166
-Date: Sat, 30 Nov 2013 18:07:21 +0000
+--1385834927.2cAFBe2E1.27324
+Date: Sat, 30 Nov 2013 18:08:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72180
+https://bugs.freedesktop.org/show_bug.cgi?id=72181
 
---- Comment #2 from Jordan Bass <bass.jordan+bugzilla-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 90037
-  --> https://bugs.freedesktop.org/attachment.cgi?id=90037&action=edit
-lspci output
+          Priority: medium
+            Bug ID: 72181
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [v3.13][regression] NULL pointer deref
+                    (_nouveau_clock_init)
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
+
+Bug looks like: https://bugs.freedesktop.org/show_bug.cgi?id=71824
+
+Dmesg: http://pastebin.com/raw.php?i=2QyAqsuA
+
+Dmesg with patch mentioned in bug #71824:
+http://pastebin.com/raw.php?i=fdsLkdK4
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385834841.ec0Ceb761.27166
-Date: Sat, 30 Nov 2013 18:07:21 +0000
+--1385834927.2cAFBe2E1.27324
+Date: Sat, 30 Nov 2013 18:08:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,21 +66,107 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [v3.13][regression] NULL pointer deref (_nouveau_clock_init)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72181">72181</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[v3.13][regression] NULL pointer deref (_nouveau_clock_init)
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>ronald645&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+        <pre>Bug looks like: <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Nouveau Random GPU Lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
+   title="NEW --- - [NVE6] NULL deref on boot when there is nothing in DCB on 3.13-rc"
+   href="show_bug.cgi?id=71824">https://bugs.freedesktop.org/show_bug.cgi?id=71824</a>
+
+Dmesg: <a href="http://pastebin.com/raw.php?i=2QyAqsuA">http://pastebin.com/raw.php?i=2QyAqsuA</a>
+
+Dmesg with patch mentioned in <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Nouveau Random GPU Lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
-              from <span class="vcard"><a class="email" href="mailto:bass.jordan+bugzilla&#64;gmail.com" title="Jordan Bass &lt;bass.jordan+bugzilla&#64;gmail.com&gt;"> <span class="fn">Jordan Bass</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=90037" name="attach_90037" title="lspci output">attachment 90037</a> <a href="attachment.cgi?id=90037&amp;action=edit" title="lspci output">[details]</a></span>
-lspci output</pre>
+   title="NEW --- - [NVE6] NULL deref on boot when there is nothing in DCB on 3.13-rc"
+   href="show_bug.cgi?id=71824">bug #71824</a>:
+<a href="http://pastebin.com/raw.php?i=fdsLkdK4">http://pastebin.com/raw.php?i=fdsLkdK4</a></pre>
         </div>
       </p>
       <hr>
@@ -75,9 +178,9 @@ lspci output</pre>
     </body>
 </html>
 
---1385834841.ec0Ceb761.27166--
+--1385834927.2cAFBe2E1.27324--
 
---===============1281338893==
+--===============1462563691==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +191,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1281338893==--
+--===============1462563691==--
