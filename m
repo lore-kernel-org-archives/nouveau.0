@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
-Date: Sat, 30 Nov 2013 15:04:28 +0000
-Message-ID: <bug-64323-8800-AJbmnN7lFy@http.bugs.freedesktop.org/>
+Date: Sat, 30 Nov 2013 16:02:37 +0000
+Message-ID: <bug-64323-8800-qCakPa95qf@http.bugs.freedesktop.org/>
 References: <bug-64323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1137692555=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1872382417=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -14,36 +14,35 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1137692555==
-Content-Type: multipart/alternative; boundary="1385823868.6C55f2.3097"; charset="us-ascii"
+--===============1872382417==
+Content-Type: multipart/alternative; boundary="1385827357.33a732.9540"; charset="us-ascii"
 
 
---1385823868.6C55f2.3097
-Date: Sat, 30 Nov 2013 15:04:28 +0000
+--1385827357.33a732.9540
+Date: Sat, 30 Nov 2013 16:02:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=64323
 
---- Comment #17 from anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-workaround_calim.patch: 46 fps
-0001-wait-for-the-buffer-to-be-done.patch: 34 fps
-0001-nv50-wait-on-the-buf-s-fence-before-sticking-it-into.patch: 37 fps
-
-What about Maarten Lankhorst's suggestion?
+--- Comment #18 from anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Two others benchmarks shows 44 and 48 fps with your latest patch (had 45
+before, as written above).
+I'm not sure, but *maybe* it was more laggy than calim patch (like the getting
+stuck from time to time, as if I had 1 fps). Could just be a placebo though.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385823868.6C55f2.3097
-Date: Sat, 30 Nov 2013 15:04:28 +0000
+--1385827357.33a732.9540
+Date: Sat, 30 Nov 2013 16:02:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,18 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c17">Comment # 17</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Severe misrendering in Left 4 Dead 2"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
               from <span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="anakin.cs&#64;gmail.com">anakin.cs&#64;gmail.com</a>
 </span></b>
-        <pre>workaround_calim.patch: 46 fps
-0001-wait-for-the-buffer-to-be-done.patch: 34 fps
-0001-nv50-wait-on-the-buf-s-fence-before-sticking-it-into.patch: 37 fps
-
-What about Maarten Lankhorst's suggestion?</pre>
+        <pre>Two others benchmarks shows 44 and 48 fps with your latest patch (had 45
+before, as written above).
+I'm not sure, but *maybe* it was more laggy than calim patch (like the getting
+stuck from time to time, as if I had 1 fps). Could just be a placebo though.</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +78,9 @@ What about Maarten Lankhorst's suggestion?</pre>
     </body>
 </html>
 
---1385823868.6C55f2.3097--
+--1385827357.33a732.9540--
 
---===============1137692555==
+--===============1872382417==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1137692555==--
+--===============1872382417==--
