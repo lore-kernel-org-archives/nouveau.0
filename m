@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
-Date: Sat, 30 Nov 2013 23:16:18 +0000
-Message-ID: <bug-64323-8800-OTQb4fnsqH@http.bugs.freedesktop.org/>
-References: <bug-64323-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64888] [nva5] Garbage rendering in Portal
+Date: Sun, 01 Dec 2013 00:43:06 +0000
+Message-ID: <bug-64888-8800-xRZkejRqFB@http.bugs.freedesktop.org/>
+References: <bug-64888-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1626968895=="
+Content-Type: multipart/mixed; boundary="===============1166013496=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-64888-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1626968895==
-Content-Type: multipart/alternative; boundary="1385853378.EBAe64152.18179"; charset="us-ascii"
+--===============1166013496==
+Content-Type: multipart/alternative; boundary="1385858586.DCEF661.568"; charset="us-ascii"
 
 
---1385853378.EBAe64152.18179
-Date: Sat, 30 Nov 2013 23:16:18 +0000
+--1385858586.DCEF661.568
+Date: Sun, 1 Dec 2013 00:43:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64323
+https://bugs.freedesktop.org/show_bug.cgi?id=64888
 
---- Comment #23 from anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Indeed, I still have ~62 FPS with both patches.
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
+
+--- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+
+
+*** This bug has been marked as a duplicate of bug 64323 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385853378.EBAe64152.18179
-Date: Sat, 30 Nov 2013 23:16:18 +0000
+--1385858586.DCEF661.568
+Date: Sun, 1 Dec 2013 00:43:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -47,20 +56,53 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [nva5] Garbage rendering in Portal"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64888">bug 64888</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c23">Comment # 23</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [nva5] Garbage rendering in Portal"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64888#c2">Comment # 2</a>
               on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [nva5] Garbage rendering in Portal"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64888">bug 64888</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
-              from <span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="anakin.cs&#64;gmail.com">anakin.cs&#64;gmail.com</a>
-</span></b>
-        <pre>Indeed, I still have ~62 FPS with both patches.</pre>
+   href="show_bug.cgi?id=64323">bug 64323</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +114,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1385853378.EBAe64152.18179--
+--1385858586.DCEF661.568--
 
---===============1626968895==
+--===============1166013496==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -85,4 +127,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1626968895==--
+--===============1166013496==--
