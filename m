@@ -1,11 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nv50: report 15 max inputs for fragment programs
-Date: Sun,  1 Dec 2013 04:01:34 -0500
-Message-ID: <1385888494-12366-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 69155] [NV50 gallium] [piglit]
+ bin/varying-packing-simple triggers memory corruption/failures
+Date: Sun, 01 Dec 2013 09:03:21 +0000
+Message-ID: <bug-69155-8800-BAOfqsaj2b@http.bugs.freedesktop.org/>
+References: <bug-69155-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1943319658=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-69155-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,35 +17,75 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "9.2 10.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-First off, nv50_program only has 16 in/out varyings. However reporting
-16 makes 'm' become 68 in nv50_fp_linkage_validate with the
-varying-packing-simple piglit test. (Subverting the assert makes it
-compile but fail.) With this patch, varying-packing-simple passes.
 
-See: https://bugs.freedesktop.org/show_bug.cgi?id=69155
+--===============1943319658==
+Content-Type: multipart/alternative; boundary="1385888601.0DBe6E1.14025"; charset="us-ascii"
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "9.2 10.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
----
- src/gallium/drivers/nouveau/nv50/nv50_screen.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_screen.c b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
-index 762b48f..e07ffb6 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_screen.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
-@@ -225,7 +225,7 @@ nv50_screen_get_shader_param(struct pipe_screen *pscreen, unsigned shader,
-    case PIPE_SHADER_CAP_MAX_INPUTS:
-       if (shader == PIPE_SHADER_VERTEX)
-          return 32;
--      return 0x300 / 16;
-+      return 15;
-    case PIPE_SHADER_CAP_MAX_CONSTS:
-       return 65536 / 16;
-    case PIPE_SHADER_CAP_MAX_CONST_BUFFERS:
+--1385888601.0DBe6E1.14025
+Date: Sun, 1 Dec 2013 09:03:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=69155
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Looks like making it report 15 instead of 0x300/16 makes piglit (and valgrind)
+happy. Just sent a patch that did that.
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1385888601.0DBe6E1.14025
+Date: Sun, 1 Dec 2013 09:03:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50 gallium] [piglit] bin/varying-packing-simple triggers memory corruption/failures"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69155#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50 gallium] [piglit] bin/varying-packing-simple triggers memory corruption/failures"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69155">bug 69155</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Looks like making it report 15 instead of 0x300/16 makes piglit (and valgrind)
+happy. Just sent a patch that did that.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1385888601.0DBe6E1.14025--
+
+--===============1943319658==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1943319658==--
