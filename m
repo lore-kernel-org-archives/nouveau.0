@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72181] [v3.13][regression] NULL pointer deref
- (_nouveau_clock_init)
-Date: Sun, 01 Dec 2013 21:15:19 +0000
-Message-ID: <bug-72181-8800-5yZGVFEbqC@http.bugs.freedesktop.org/>
-References: <bug-72181-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72180] [NVE6] Random GPU Lockups
+Date: Sun, 01 Dec 2013 23:01:24 +0000
+Message-ID: <bug-72180-8800-Q10waeeMaq@http.bugs.freedesktop.org/>
+References: <bug-72180-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1104704424=="
+Content-Type: multipart/mixed; boundary="===============1621785554=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72181-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1104704424==
-Content-Type: multipart/alternative; boundary="1385932519.E427FaFf2.12340"; charset="us-ascii"
+--===============1621785554==
+Content-Type: multipart/alternative; boundary="1385938884.6A006F3.30868"; charset="us-ascii"
 
 
---1385932519.E427FaFf2.12340
-Date: Sun, 1 Dec 2013 21:15:18 +0000
+--1385938884.6A006F3.30868
+Date: Sun, 1 Dec 2013 23:01:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72181
+https://bugs.freedesktop.org/show_bug.cgi?id=72180
 
---- Comment #3 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #2)
-> Thank you, xexaxo already suggested that patch on IRC. This fixed the bug.
-> Too bad it's not upstream yet :/ .
-Technically, Linus's tree is downstream :P But, I'll be sending a fixes tree
-during the week. 
-
-Ben.
+--- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The files need to be in /lib/firmware/nouveau and need to be called
+nve6_fuc409c (and so on for the other ones) -- is that what you did? If so, is
+/lib/firmware/nouveau available when the nouveau driver is being loaded? If
+nouveau is being loaded off an initrd, make sure that the firmware files are in
+the initrd as well.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385932519.E427FaFf2.12340
-Date: Sun, 1 Dec 2013 21:15:18 +0000
+--1385938884.6A006F3.30868
+Date: Sun, 1 Dec 2013 23:01:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,21 +56,19 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [v3.13][regression] NULL pointer deref (_nouveau_clock_init)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72181#c3">Comment # 3</a>
+   title="NEW --- - [NVE6] Random GPU Lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [v3.13][regression] NULL pointer deref (_nouveau_clock_init)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72181">bug 72181</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
+   title="NEW --- - [NVE6] Random GPU Lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=72181#c2">comment #2</a>)
-<span class="quote">&gt; Thank you, xexaxo already suggested that patch on IRC. This fixed the bug.
-&gt; Too bad it's not upstream yet :/ .</span >
-Technically, Linus's tree is downstream :P But, I'll be sending a fixes tree
-during the week. 
-
-Ben.</pre>
+        <pre>The files need to be in /lib/firmware/nouveau and need to be called
+nve6_fuc409c (and so on for the other ones) -- is that what you did? If so, is
+/lib/firmware/nouveau available when the nouveau driver is being loaded? If
+nouveau is being loaded off an initrd, make sure that the firmware files are in
+the initrd as well.</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +80,9 @@ Ben.</pre>
     </body>
 </html>
 
---1385932519.E427FaFf2.12340--
+--1385938884.6A006F3.30868--
 
---===============1104704424==
+--===============1621785554==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1104704424==--
+--===============1621785554==--
