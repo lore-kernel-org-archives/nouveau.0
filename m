@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72180] [NVE6] Random GPU Lockups
-Date: Sun, 01 Dec 2013 21:11:41 +0000
-Message-ID: <bug-72180-8800-2O2Z9P5sGG@http.bugs.freedesktop.org/>
-References: <bug-72180-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72181] [v3.13][regression] NULL pointer deref
+ (_nouveau_clock_init)
+Date: Sun, 01 Dec 2013 21:15:19 +0000
+Message-ID: <bug-72181-8800-5yZGVFEbqC@http.bugs.freedesktop.org/>
+References: <bug-72181-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0611307103=="
+Content-Type: multipart/mixed; boundary="===============1104704424=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72181-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0611307103==
-Content-Type: multipart/alternative; boundary="1385932302.685FCceB3.11523"; charset="us-ascii"
+--===============1104704424==
+Content-Type: multipart/alternative; boundary="1385932519.E427FaFf2.12340"; charset="us-ascii"
 
 
---1385932302.685FCceB3.11523
-Date: Sun, 1 Dec 2013 21:11:42 +0000
+--1385932519.E427FaFf2.12340
+Date: Sun, 1 Dec 2013 21:15:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72180
+https://bugs.freedesktop.org/show_bug.cgi?id=72181
 
---- Comment #14 from Jordan Bass <bass.jordan+bugzilla-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 90061
-  --> https://bugs.freedesktop.org/attachment.cgi?id=90061&action=edit
-dmesg nouveau log
+--- Comment #3 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #2)
+> Thank you, xexaxo already suggested that patch on IRC. This fixed the bug.
+> Too bad it's not upstream yet :/ .
+Technically, Linus's tree is downstream :P But, I'll be sending a fixes tree
+during the week. 
 
-Okay I took another one, this time doing some more stuff I thought could have a
-chance of triggering it. This one came out as expected. The downside is loading
-it causes nouveau to fail. Attached the log from dmesg with the relevant
-nouveau bits.
+Ben.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385932302.685FCceB3.11523
-Date: Sun, 1 Dec 2013 21:11:42 +0000
+--1385932519.E427FaFf2.12340
+Date: Sun, 1 Dec 2013 21:15:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,21 +59,21 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] Random GPU Lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c14">Comment # 14</a>
+   title="NEW --- - [v3.13][regression] NULL pointer deref (_nouveau_clock_init)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72181#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] Random GPU Lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
-              from <span class="vcard"><a class="email" href="mailto:bass.jordan+bugzilla&#64;gmail.com" title="Jordan Bass &lt;bass.jordan+bugzilla&#64;gmail.com&gt;"> <span class="fn">Jordan Bass</span></a>
+   title="NEW --- - [v3.13][regression] NULL pointer deref (_nouveau_clock_init)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72181">bug 72181</a>
+              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=90061" name="attach_90061" title="dmesg nouveau log">attachment 90061</a> <a href="attachment.cgi?id=90061&amp;action=edit" title="dmesg nouveau log">[details]</a></span>
-dmesg nouveau log
+        <pre>(In reply to <a href="show_bug.cgi?id=72181#c2">comment #2</a>)
+<span class="quote">&gt; Thank you, xexaxo already suggested that patch on IRC. This fixed the bug.
+&gt; Too bad it's not upstream yet :/ .</span >
+Technically, Linus's tree is downstream :P But, I'll be sending a fixes tree
+during the week. 
 
-Okay I took another one, this time doing some more stuff I thought could have a
-chance of triggering it. This one came out as expected. The downside is loading
-it causes nouveau to fail. Attached the log from dmesg with the relevant
-nouveau bits.</pre>
+Ben.</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +85,9 @@ nouveau bits.</pre>
     </body>
 </html>
 
---1385932302.685FCceB3.11523--
+--1385932519.E427FaFf2.12340--
 
---===============0611307103==
+--===============1104704424==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0611307103==--
+--===============1104704424==--
