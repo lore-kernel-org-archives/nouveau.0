@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
-Date: Sun, 01 Dec 2013 17:14:51 +0000
-Message-ID: <bug-64323-8800-RlWnEiS49w@http.bugs.freedesktop.org/>
-References: <bug-64323-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71455] Thermal management in nouveau running hot
+	3.12.0+ kernel
+Date: Sun, 01 Dec 2013 17:25:18 +0000
+Message-ID: <bug-71455-8800-RE58WP53Pl@http.bugs.freedesktop.org/>
+References: <bug-71455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1757632488=="
+Content-Type: multipart/mixed; boundary="===============0124042320=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1757632488==
-Content-Type: multipart/alternative; boundary="1385918092.373c1B83.3683"; charset="us-ascii"
+--===============0124042320==
+Content-Type: multipart/alternative; boundary="1385918718.6B5C4D1.5545"; charset="us-ascii"
 
 
---1385918092.373c1B83.3683
-Date: Sun, 1 Dec 2013 17:14:51 +0000
+--1385918718.6B5C4D1.5545
+Date: Sun, 1 Dec 2013 17:25:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64323
+https://bugs.freedesktop.org/show_bug.cgi?id=71455
 
---- Comment #26 from anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I'd suggest you launch the game normally and use timedemo_runcount 3 + timedemo
-xx instead. I've seen that the first time you play the demo with timedemo, it
-is usually less accurate (probably because the game hasn't loaded yet most
-resources in memory).
-For example I'd sometimes get 55 FPS the first time, then a constant 62 every
-time after.
+--- Comment #2 from Bob Gleitsmann <rjgleits-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org> ---
+Here is an additional data point. The problematic kernel sets 0xb20010f0 to
+0x83ff03ff. The driver reports that the PWM is 100%. In fact it is 100% off. As
+can be expected, the temperature immediately begins repidly rising.
+Interestingly, the card seems to self protect by turning the fan on when the
+temperature gets above the "critical" temperature and restoring the default PWM
+(fan off). I suppose that is what "auto" means. The value in 0xb200010f0 never
+changes while the fan speed goes up and down. 
+The blob sets the same mmio address to 0x81ff03ff and reports the fan to be
+50%. I can't tell you if "100%" PWM is fan off on all NV cards. I'm sure you
+already know anyway. The fan speeds up significantly if the PWM setting is
+either 0x00007fff or 0x80007fff. 
+I guess that's more than one data point. Other than that, I'm completely in the
+dark. However, I think I will patch my kernel so that it sets the PWM to 50%
+instead of 100%. 50% off is a lot better than 100% off.
+
+Bob
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385918092.373c1B83.3683
-Date: Sun, 1 Dec 2013 17:14:52 +0000
+--1385918718.6B5C4D1.5545
+Date: Sun, 1 Dec 2013 17:25:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,20 +68,30 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c26">Comment # 26</a>
+   title="NEW --- - Thermal management in nouveau running hot 3.12.0+ kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71455#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
-              from <span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="anakin.cs&#64;gmail.com">anakin.cs&#64;gmail.com</a>
+   title="NEW --- - Thermal management in nouveau running hot 3.12.0+ kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71455">bug 71455</a>
+              from <span class="vcard"><a class="email" href="mailto:rjgleits&#64;bellsouth.net" title="Bob Gleitsmann &lt;rjgleits&#64;bellsouth.net&gt;"> <span class="fn">Bob Gleitsmann</span></a>
 </span></b>
-        <pre>I'd suggest you launch the game normally and use timedemo_runcount 3 + timedemo
-xx instead. I've seen that the first time you play the demo with timedemo, it
-is usually less accurate (probably because the game hasn't loaded yet most
-resources in memory).
-For example I'd sometimes get 55 FPS the first time, then a constant 62 every
-time after.</pre>
+        <pre>Here is an additional data point. The problematic kernel sets 0xb20010f0 to
+0x83ff03ff. The driver reports that the PWM is 100%. In fact it is 100% off. As
+can be expected, the temperature immediately begins repidly rising.
+Interestingly, the card seems to self protect by turning the fan on when the
+temperature gets above the &quot;critical&quot; temperature and restoring the default PWM
+(fan off). I suppose that is what &quot;auto&quot; means. The value in 0xb200010f0 never
+changes while the fan speed goes up and down. 
+The blob sets the same mmio address to 0x81ff03ff and reports the fan to be
+50%. I can't tell you if &quot;100%&quot; PWM is fan off on all NV cards. I'm sure you
+already know anyway. The fan speeds up significantly if the PWM setting is
+either 0x00007fff or 0x80007fff. 
+I guess that's more than one data point. Other than that, I'm completely in the
+dark. However, I think I will patch my kernel so that it sets the PWM to 50%
+instead of 100%. 50% off is a lot better than 100% off.
+
+Bob</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +103,9 @@ time after.</pre>
     </body>
 </html>
 
---1385918092.373c1B83.3683--
+--1385918718.6B5C4D1.5545--
 
---===============1757632488==
+--===============0124042320==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1757632488==--
+--===============0124042320==--
