@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72180] [NVE6] Random GPU Lockups
-Date: Sun, 01 Dec 2013 17:37:27 +0000
-Message-ID: <bug-72180-8800-8uQj5zaBXs@http.bugs.freedesktop.org/>
-References: <bug-72180-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
+Date: Sun, 01 Dec 2013 18:29:01 +0000
+Message-ID: <bug-64323-8800-7kVjVu9Haq@http.bugs.freedesktop.org/>
+References: <bug-64323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1006718018=="
+Content-Type: multipart/mixed; boundary="===============1214823829=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1006718018==
-Content-Type: multipart/alternative; boundary="1385919447.DE7dc8733.7850"; charset="us-ascii"
+--===============1214823829==
+Content-Type: multipart/alternative; boundary="1385922541.14efBadC4.16758"; charset="us-ascii"
 
 
---1385919447.DE7dc8733.7850
-Date: Sun, 1 Dec 2013 17:37:27 +0000
+--1385922541.14efBadC4.16758
+Date: Sun, 1 Dec 2013 18:29:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72180
+https://bugs.freedesktop.org/show_bug.cgi?id=64323
 
---- Comment #13 from Jordan Bass <bass.jordan+bugzilla-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-https://spideroak.com/storage/NJXXEYTBOM/shared/709942-4-6416/trace.txt?db8d9c5616249125da0eb60f7b18f4a6
+--- Comment #27 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #26)
+> I'd suggest you launch the game normally and use timedemo_runcount 3 +
+> timedemo xx instead. I've seen that the first time you play the demo with
+> timedemo, it is usually less accurate (probably because the game hasn't
+> loaded yet most resources in memory).
+> For example I'd sometimes get 55 FPS the first time, then a constant 62
+> every time after.
+
+Despite using the same engine dota2, is rather different from the other source
+titles - tf2, cs:s, l4d2. It pre-loads (almost?) every resource required.
+
+Thanks for the timedemo_runcount tip, although dota2 is a bit short in that
+regard. Running a couple sequential runs, using "timedemoquit" provides rather
+consistent results.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1385919447.DE7dc8733.7850
-Date: Sun, 1 Dec 2013 17:37:27 +0000
+--1385922541.14efBadC4.16758
+Date: Sun, 1 Dec 2013 18:29:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,15 +65,28 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] Random GPU Lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c13">Comment # 13</a>
+   title="NEW --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c27">Comment # 27</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] Random GPU Lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
-              from <span class="vcard"><a class="email" href="mailto:bass.jordan+bugzilla&#64;gmail.com" title="Jordan Bass &lt;bass.jordan+bugzilla&#64;gmail.com&gt;"> <span class="fn">Jordan Bass</span></a>
+   title="NEW --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre><a href="https://spideroak.com/storage/NJXXEYTBOM/shared/709942-4-6416/trace.txt?db8d9c5616249125da0eb60f7b18f4a6">https://spideroak.com/storage/NJXXEYTBOM/shared/709942-4-6416/trace.txt?db8d9c5616249125da0eb60f7b18f4a6</a></pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=64323#c26">comment #26</a>)
+<span class="quote">&gt; I'd suggest you launch the game normally and use timedemo_runcount 3 +
+&gt; timedemo xx instead. I've seen that the first time you play the demo with
+&gt; timedemo, it is usually less accurate (probably because the game hasn't
+&gt; loaded yet most resources in memory).
+&gt; For example I'd sometimes get 55 FPS the first time, then a constant 62
+&gt; every time after.</span >
+
+Despite using the same engine dota2, is rather different from the other source
+titles - tf2, cs:s, l4d2. It pre-loads (almost?) every resource required.
+
+Thanks for the timedemo_runcount tip, although dota2 is a bit short in that
+regard. Running a couple sequential runs, using &quot;timedemoquit&quot; provides rather
+consistent results.</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +98,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1385919447.DE7dc8733.7850--
+--1385922541.14efBadC4.16758--
 
---===============1006718018==
+--===============1214823829==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -85,4 +111,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1006718018==--
+--===============1214823829==--
