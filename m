@@ -1,10 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72180] [NVE6] Random GPU Lockups
-Date: Mon, 02 Dec 2013 23:10:06 +0000
-Message-ID: <bug-72180-8800-gFqDYgVRVU@http.bugs.freedesktop.org/>
+Subject: [Bug 72180] [NVE6] Random GPU Lockups,
+	works with blob PGRAPH fw
+Date: Tue, 03 Dec 2013 00:38:09 +0000
+Message-ID: <bug-72180-8800-t96Tb2pOG5@http.bugs.freedesktop.org/>
 References: <bug-72180-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1551845538=="
+Content-Type: multipart/mixed; boundary="===============0860683082=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,27 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1551845538==
-Content-Type: multipart/alternative; boundary="1386025806.bd608Ec83.22757"; charset="us-ascii"
+--===============0860683082==
+Content-Type: multipart/alternative; boundary="1386031089.dd55b263.4081"; charset="us-ascii"
 
 
---1386025806.bd608Ec83.22757
-Date: Mon, 2 Dec 2013 23:10:06 +0000
+--1386031089.dd55b263.4081
+Date: Tue, 3 Dec 2013 00:38:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=72180
 
---- Comment #17 from Jordan Bass <bass.jordan+bugzilla-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-5 hours now without a lockup, not even a peep in dmesg from nouveau. I would be
-locking up every 30 minutes to an hour on average before. What now?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NVE6] Random GPU Lockups   |[NVE6] Random GPU Lockups,
+                   |                            |works with blob PGRAPH fw
+
+--- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Sit back and enjoy the lockup-free graphics?
+
+You might also upload a copy of your vbios (/sys/kernel/debug/dri/0/vbios.rom)
+as well as the files you extracted. Perhaps a clue will lie there.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1386025806.bd608Ec83.22757
-Date: Mon, 2 Dec 2013 23:10:06 +0000
+--1386031089.dd55b263.4081
+Date: Tue, 3 Dec 2013 00:38:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -48,21 +58,43 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NVE6] Random GPU Lockups
+           </td>
+           <td>[NVE6] Random GPU Lockups, works with blob PGRAPH fw
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] Random GPU Lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c17">Comment # 17</a>
+   title="NEW --- - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] Random GPU Lockups"
+   title="NEW --- - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
-              from <span class="vcard"><a class="email" href="mailto:bass.jordan+bugzilla&#64;gmail.com" title="Jordan Bass &lt;bass.jordan+bugzilla&#64;gmail.com&gt;"> <span class="fn">Jordan Bass</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>5 hours now without a lockup, not even a peep in dmesg from nouveau. I would be
-locking up every 30 minutes to an hour on average before. What now?</pre>
+        <pre>Sit back and enjoy the lockup-free graphics?
+
+You might also upload a copy of your vbios (/sys/kernel/debug/dri/0/vbios.rom)
+as well as the files you extracted. Perhaps a clue will lie there.</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +106,9 @@ locking up every 30 minutes to an hour on average before. What now?</pre>
     </body>
 </html>
 
---1386025806.bd608Ec83.22757--
+--1386031089.dd55b263.4081--
 
---===============1551845538==
+--===============0860683082==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +119,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1551845538==--
+--===============0860683082==--
