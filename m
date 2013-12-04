@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70388] [NV34] failed to idle channel 0xcccc0000
-Date: Wed, 04 Dec 2013 21:04:27 +0000
-Message-ID: <bug-70388-8800-UQkqT8VUu4@http.bugs.freedesktop.org/>
+Date: Wed, 04 Dec 2013 21:35:28 +0000
+Message-ID: <bug-70388-8800-1ySAvoBRAZ@http.bugs.freedesktop.org/>
 References: <bug-70388-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1906303192=="
+Content-Type: multipart/mixed; boundary="===============0167220885=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70388-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,88 +20,84 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1906303192==
-Content-Type: multipart/alternative; boundary="1386191067.3e3c4c0.12727"; charset="us-ascii"
+--===============0167220885==
+Content-Type: multipart/alternative; boundary="1386192928.F7362bE0.18664"; charset="us-ascii"
 
 
---1386191067.3e3c4c0.12727
-Date: Wed, 4 Dec 2013 21:04:27 +0000
+--1386192928.F7362bE0.18664
+Date: Wed, 4 Dec 2013 21:35:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70388
 
---- Comment #16 from Rostislav Krasny <rosti.bsd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #15)
-> Please take a look at https://bugs.freedesktop.org/show_bug.cgi?id=69375#c7
-> and see if doing that helps. I see that, at the very least, your kernel was
-> compiled with gcc 4.8, which likely means libdrm was too.
-
-Installed fresh Fedora 19 with latest RPMs, including libdrm-2.4.47-1.fc19.i686
-package, that has the above patch in it. Unfortunatelly this doesn't help:
-
-Dec  4 22:01:12 localhost abrt-hook-ccpp[2105]: Saved core dump of pid 1553
-(/usr/bin/Xorg) to /var/tmp/abrt/ccpp-2013-12-04-22:01:11-1553 (21499904 bytes)
-Dec  4 22:01:12 localhost abrt-server[2106]: Generating core_backtrace
-Dec  4 22:01:12 localhost abrt-server[2106]: Generating backtrace
-Dec  4 22:01:15 localhost abrt-server[2106]: journalctl: unrecognized option
-'--system'
-Dec  4 22:01:27 localhost kernel: [  534.189018] nouveau E[ X[1553]] failed to
-idle channel 0xcccc0000 [X[1553]]
-Dec  4 22:01:42 localhost kernel: [  549.189017] nouveau E[ X[1553]] failed to
-idle channel 0xcccc0000 [X[1553]]
-Dec  4 22:01:42 localhost kdm[309]: X server for display :0 terminated
-unexpectedly
-Dec  4 22:01:42 localhost kdm[309]: plymouth should quit after server startup
-Dec  4 22:01:42 localhost NetworkManager[372]: <warn> error requesting auth for
-org.freedesktop.NetworkManager.wifi.share.open: (3)
-GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner:
-GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not get UID of
-name ':1.56': no such name
-Dec  4 22:01:42 localhost NetworkManager[372]: <warn> error requesting auth for
-org.freedesktop.NetworkManager.wifi.share.protected: (3)
-GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner:
-GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not get UID of
-name ':1.56': no such name
-Dec  4 22:01:42 localhost NetworkManager[372]: <warn> error requesting auth for
-org.freedesktop.NetworkManager.wifi.share.open: (3)
-GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner:
-GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not get UID of
-name ':1.56': no such name
-Dec  4 22:01:57 localhost kernel: [  564.388018] nouveau E[kwin[1815]] failed
-to idle channel 0xcccc0000 [kwin[1815]]
-Dec  4 22:02:12 localhost kernel: [  579.388016] nouveau E[kwin[1815]] failed
-to idle channel 0xcccc0000 [kwin[1815]]
-Dec  4 22:02:12 localhost kdm[309]: Quitting Plymouth with transition
-Dec  4 22:02:12 localhost kdm[309]: Is Plymouth still running? no
+--- Comment #17 from Rostislav Krasny <rosti.bsd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+...and /var/log/kdm.log has the similar backtraces like it was in a past:
 
 
-(gdb) bt
-#0  0xb777e424 in __kernel_vsyscall ()
-#1  0xb7235936 in __GI_raise (sig=sig@entry=6) at
-../nptl/sysdeps/unix/sysv/linux/raise.c:56
-#2  0xb7237173 in __GI_abort () at abort.c:90
-#3  0x080b98ea in OsAbort () at utils.c:1299
-#4  0x080d2d97 in ddxGiveUp (error=error@entry=EXIT_ERR_ABORT) at
-xf86Init.c:1075
-#5  0x080d2e3b in AbortDDX (error=error@entry=EXIT_ERR_ABORT) at
-xf86Init.c:1119
-#6  0x080b4eb2 in AbortServer () at log.c:767
-#7  0x080b598f in FatalError (f=f@entry=0x81f83f4 "Caught signal %d (%s).
-Server aborting\n") at log.c:908
-#8  0x080b6c76 in OsSigHandler (signo=11, sip=0xbfa247cc, unused=0xbfa2484c) at
-osinit.c:147
-#9  <signal handler called>
-#10 __memcpy_ia32 () at ../sysdeps/i386/i686/memcpy.S:74
-#11 0xb42f4008 in ?? ()
-(gdb)
+(EE) Backtrace:
+(EE) 0: /usr/bin/X (mieqEnqueue+0x21b) [0x81d4adb]
+(EE) 1: /usr/bin/X (QueuePointerEvents+0x6c) [0x8092f2c]
+(EE) 2: /usr/bin/X (xf86PostMotionEventM+0x253) [0x80e0a93]
+(EE) 3: /usr/lib/xorg/modules/input/evdev_drv.so (_init+0x31c7) [0xb70a5147]
+(EE) 4: /usr/bin/X (DPMSSupported+0xc6) [0x80cff06]
+(EE) 5: /usr/bin/X (xf86SerialModemClearBits+0x19b) [0x80fb54b]
+(EE) 6: ? (?+0x19b) [0xb77bf59a]
+(EE) 7: ? (?+0x19b) [0xb77bf5af]
+(EE) 8: /lib/libc.so.6 (ioctl+0x19) [0xb7335989]
+(EE) 9: /lib/libdrm.so.2 (drmIoctl+0x40) [0xb755dbf0]
+(EE) 10: /lib/libdrm.so.2 (drmCommandWrite+0x3f) [0xb75604ff]
+(EE) 11: /lib/libdrm_nouveau.so.2 (nouveau_bo_wait+0xa6) [0xb6d09146]
+(EE) 12: /usr/lib/xorg/modules/drivers/nouveau_drv.so (_init+0x2019)
+[0xb6d15cf9]
+(EE) 13: /usr/lib/xorg/modules/libexa.so (exaMoveOutPixmap+0x6e2e) [0xb6cd48ae]
+(EE) 14: /usr/bin/X (miFillUniqueSpanGroup+0x1adf) [0x81e65bf]
+(EE) 15: /usr/bin/X (xf86I2CGetScreenBuses+0x1dfb) [0x81251ab]
+(EE) 16: /usr/bin/X (dixDestroyPixmap+0x1ba9) [0x8078f79]
+(EE) 17: /usr/bin/X (SendErrorToClient+0x3dd) [0x807aa5d]
+(EE) 18: /usr/bin/X (_init+0x4665) [0x806c8c5]
+(EE) 19: /lib/libc.so.6 (__libc_start_main+0xf3) [0xb7261963]
+(EE) 20: /usr/bin/X (_start+0x21) [0x8068a5a]
+(EE) 
+(EE) [mi] These backtraces from mieqEnqueue may point to a culprit higher up
+the stack.
+(EE) [mi] mieq is *NOT* the cause.  It is a victim.
+(EE) [mi] EQ overflow continuing.  100 events have been dropped.
+(EE) 
+(EE) Backtrace:
+(EE) 0: /usr/bin/X (mieqEnqueue+0xe8) [0x81d49a8]
+(EE) 1: /usr/bin/X (QueuePointerEvents+0x6c) [0x8092f2c]
+(EE) 2: /usr/bin/X (xf86PostMotionEventM+0x253) [0x80e0a93]
+(EE) 3: /usr/lib/xorg/modules/input/evdev_drv.so (_init+0x31c7) [0xb70a5147]
+(EE) 4: /usr/bin/X (DPMSSupported+0xc6) [0x80cff06]
+(EE) 5: /usr/bin/X (xf86SerialModemClearBits+0x19b) [0x80fb54b]
+(EE) 6: ? (?+0x19b) [0xb77bf59a]
+(EE) 7: ? (?+0x19b) [0xb77bf5af]
+(EE) 8: /lib/libc.so.6 (ioctl+0x19) [0xb7335989]
+(EE) 9: /lib/libdrm.so.2 (drmIoctl+0x40) [0xb755dbf0]
+(EE) 10: /lib/libdrm.so.2 (drmCommandWrite+0x3f) [0xb75604ff]
+(EE) 11: /lib/libdrm_nouveau.so.2 (nouveau_bo_wait+0xa6) [0xb6d09146]
+(EE) 12: /usr/lib/xorg/modules/drivers/nouveau_drv.so (_init+0x2019)
+[0xb6d15cf9]
+(EE) 13: /usr/lib/xorg/modules/libexa.so (exaMoveOutPixmap+0x6e2e) [0xb6cd48ae]
+(EE) 14: /usr/bin/X (miFillUniqueSpanGroup+0x1adf) [0x81e65bf]
+(EE) 15: /usr/bin/X (xf86I2CGetScreenBuses+0x1dfb) [0x81251ab]
+(EE) 16: /usr/bin/X (dixDestroyPixmap+0x1ba9) [0x8078f79]
+(EE) 17: /usr/bin/X (SendErrorToClient+0x3dd) [0x807aa5d]
+(EE) 18: /usr/bin/X (_init+0x4665) [0x806c8c5]
+(EE) 19: /lib/libc.so.6 (__libc_start_main+0xf3) [0xb7261963]
+(EE) 20: /usr/bin/X (_start+0x21) [0x8068a5a]
+(EE) 
+(EE) [mi] EQ overflow continuing.  200 events have been dropped.
+
+and so on...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1386191067.3e3c4c0.12727
-Date: Wed, 4 Dec 2013 21:04:27 +0000
+--1386192928.F7362bE0.18664
+Date: Wed, 4 Dec 2013 21:35:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -115,79 +111,72 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV34] failed to idle channel 0xcccc0000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388#c16">Comment # 16</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388#c17">Comment # 17</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV34] failed to idle channel 0xcccc0000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70388">bug 70388</a>
               from <span class="vcard"><a class="email" href="mailto:rosti.bsd&#64;gmail.com" title="Rostislav Krasny &lt;rosti.bsd&#64;gmail.com&gt;"> <span class="fn">Rostislav Krasny</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=70388#c15">comment #15</a>)
-<span class="quote">&gt; Please take a look at <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV4E] GPU lockup when using chrome/flash"
-   href="show_bug.cgi?id=69375#c7">https://bugs.freedesktop.org/show_bug.cgi?id=69375#c7</a>
-&gt; and see if doing that helps. I see that, at the very least, your kernel was
-&gt; compiled with gcc 4.8, which likely means libdrm was too.</span >
-
-Installed fresh Fedora 19 with latest RPMs, including libdrm-2.4.47-1.fc19.i686
-package, that has the above patch in it. Unfortunatelly this doesn't help:
-
-Dec  4 22:01:12 localhost abrt-hook-ccpp[2105]: Saved core dump of pid 1553
-(/usr/bin/Xorg) to /var/tmp/abrt/ccpp-2013-12-04-22:01:11-1553 (21499904 bytes)
-Dec  4 22:01:12 localhost abrt-server[2106]: Generating core_backtrace
-Dec  4 22:01:12 localhost abrt-server[2106]: Generating backtrace
-Dec  4 22:01:15 localhost abrt-server[2106]: journalctl: unrecognized option
-'--system'
-Dec  4 22:01:27 localhost kernel: [  534.189018] nouveau E[ X[1553]] failed to
-idle channel 0xcccc0000 [X[1553]]
-Dec  4 22:01:42 localhost kernel: [  549.189017] nouveau E[ X[1553]] failed to
-idle channel 0xcccc0000 [X[1553]]
-Dec  4 22:01:42 localhost kdm[309]: X server for display :0 terminated
-unexpectedly
-Dec  4 22:01:42 localhost kdm[309]: plymouth should quit after server startup
-Dec  4 22:01:42 localhost NetworkManager[372]: &lt;warn&gt; error requesting auth for
-org.freedesktop.NetworkManager.wifi.share.open: (3)
-GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner:
-GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not get UID of
-name ':1.56': no such name
-Dec  4 22:01:42 localhost NetworkManager[372]: &lt;warn&gt; error requesting auth for
-org.freedesktop.NetworkManager.wifi.share.protected: (3)
-GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner:
-GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not get UID of
-name ':1.56': no such name
-Dec  4 22:01:42 localhost NetworkManager[372]: &lt;warn&gt; error requesting auth for
-org.freedesktop.NetworkManager.wifi.share.open: (3)
-GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner:
-GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not get UID of
-name ':1.56': no such name
-Dec  4 22:01:57 localhost kernel: [  564.388018] nouveau E[kwin[1815]] failed
-to idle channel 0xcccc0000 [kwin[1815]]
-Dec  4 22:02:12 localhost kernel: [  579.388016] nouveau E[kwin[1815]] failed
-to idle channel 0xcccc0000 [kwin[1815]]
-Dec  4 22:02:12 localhost kdm[309]: Quitting Plymouth with transition
-Dec  4 22:02:12 localhost kdm[309]: Is Plymouth still running? no
+        <pre>...and /var/log/kdm.log has the similar backtraces like it was in a past:
 
 
-(gdb) bt
-#0  0xb777e424 in __kernel_vsyscall ()
-#1  0xb7235936 in __GI_raise (sig=sig&#64;entry=6) at
-../nptl/sysdeps/unix/sysv/linux/raise.c:56
-#2  0xb7237173 in __GI_abort () at abort.c:90
-#3  0x080b98ea in OsAbort () at utils.c:1299
-#4  0x080d2d97 in ddxGiveUp (error=error&#64;entry=EXIT_ERR_ABORT) at
-xf86Init.c:1075
-#5  0x080d2e3b in AbortDDX (error=error&#64;entry=EXIT_ERR_ABORT) at
-xf86Init.c:1119
-#6  0x080b4eb2 in AbortServer () at log.c:767
-#7  0x080b598f in FatalError (f=f&#64;entry=0x81f83f4 &quot;Caught signal %d (%s).
-Server aborting\n&quot;) at log.c:908
-#8  0x080b6c76 in OsSigHandler (signo=11, sip=0xbfa247cc, unused=0xbfa2484c) at
-osinit.c:147
-#9  &lt;signal handler called&gt;
-#10 __memcpy_ia32 () at ../sysdeps/i386/i686/memcpy.S:74
-#11 0xb42f4008 in ?? ()
-(gdb)</pre>
+(EE) Backtrace:
+(EE) 0: /usr/bin/X (mieqEnqueue+0x21b) [0x81d4adb]
+(EE) 1: /usr/bin/X (QueuePointerEvents+0x6c) [0x8092f2c]
+(EE) 2: /usr/bin/X (xf86PostMotionEventM+0x253) [0x80e0a93]
+(EE) 3: /usr/lib/xorg/modules/input/evdev_drv.so (_init+0x31c7) [0xb70a5147]
+(EE) 4: /usr/bin/X (DPMSSupported+0xc6) [0x80cff06]
+(EE) 5: /usr/bin/X (xf86SerialModemClearBits+0x19b) [0x80fb54b]
+(EE) 6: ? (?+0x19b) [0xb77bf59a]
+(EE) 7: ? (?+0x19b) [0xb77bf5af]
+(EE) 8: /lib/libc.so.6 (ioctl+0x19) [0xb7335989]
+(EE) 9: /lib/libdrm.so.2 (drmIoctl+0x40) [0xb755dbf0]
+(EE) 10: /lib/libdrm.so.2 (drmCommandWrite+0x3f) [0xb75604ff]
+(EE) 11: /lib/libdrm_nouveau.so.2 (nouveau_bo_wait+0xa6) [0xb6d09146]
+(EE) 12: /usr/lib/xorg/modules/drivers/nouveau_drv.so (_init+0x2019)
+[0xb6d15cf9]
+(EE) 13: /usr/lib/xorg/modules/libexa.so (exaMoveOutPixmap+0x6e2e) [0xb6cd48ae]
+(EE) 14: /usr/bin/X (miFillUniqueSpanGroup+0x1adf) [0x81e65bf]
+(EE) 15: /usr/bin/X (xf86I2CGetScreenBuses+0x1dfb) [0x81251ab]
+(EE) 16: /usr/bin/X (dixDestroyPixmap+0x1ba9) [0x8078f79]
+(EE) 17: /usr/bin/X (SendErrorToClient+0x3dd) [0x807aa5d]
+(EE) 18: /usr/bin/X (_init+0x4665) [0x806c8c5]
+(EE) 19: /lib/libc.so.6 (__libc_start_main+0xf3) [0xb7261963]
+(EE) 20: /usr/bin/X (_start+0x21) [0x8068a5a]
+(EE) 
+(EE) [mi] These backtraces from mieqEnqueue may point to a culprit higher up
+the stack.
+(EE) [mi] mieq is *NOT* the cause.  It is a victim.
+(EE) [mi] EQ overflow continuing.  100 events have been dropped.
+(EE) 
+(EE) Backtrace:
+(EE) 0: /usr/bin/X (mieqEnqueue+0xe8) [0x81d49a8]
+(EE) 1: /usr/bin/X (QueuePointerEvents+0x6c) [0x8092f2c]
+(EE) 2: /usr/bin/X (xf86PostMotionEventM+0x253) [0x80e0a93]
+(EE) 3: /usr/lib/xorg/modules/input/evdev_drv.so (_init+0x31c7) [0xb70a5147]
+(EE) 4: /usr/bin/X (DPMSSupported+0xc6) [0x80cff06]
+(EE) 5: /usr/bin/X (xf86SerialModemClearBits+0x19b) [0x80fb54b]
+(EE) 6: ? (?+0x19b) [0xb77bf59a]
+(EE) 7: ? (?+0x19b) [0xb77bf5af]
+(EE) 8: /lib/libc.so.6 (ioctl+0x19) [0xb7335989]
+(EE) 9: /lib/libdrm.so.2 (drmIoctl+0x40) [0xb755dbf0]
+(EE) 10: /lib/libdrm.so.2 (drmCommandWrite+0x3f) [0xb75604ff]
+(EE) 11: /lib/libdrm_nouveau.so.2 (nouveau_bo_wait+0xa6) [0xb6d09146]
+(EE) 12: /usr/lib/xorg/modules/drivers/nouveau_drv.so (_init+0x2019)
+[0xb6d15cf9]
+(EE) 13: /usr/lib/xorg/modules/libexa.so (exaMoveOutPixmap+0x6e2e) [0xb6cd48ae]
+(EE) 14: /usr/bin/X (miFillUniqueSpanGroup+0x1adf) [0x81e65bf]
+(EE) 15: /usr/bin/X (xf86I2CGetScreenBuses+0x1dfb) [0x81251ab]
+(EE) 16: /usr/bin/X (dixDestroyPixmap+0x1ba9) [0x8078f79]
+(EE) 17: /usr/bin/X (SendErrorToClient+0x3dd) [0x807aa5d]
+(EE) 18: /usr/bin/X (_init+0x4665) [0x806c8c5]
+(EE) 19: /lib/libc.so.6 (__libc_start_main+0xf3) [0xb7261963]
+(EE) 20: /usr/bin/X (_start+0x21) [0x8068a5a]
+(EE) 
+(EE) [mi] EQ overflow continuing.  200 events have been dropped.
+
+and so on...</pre>
         </div>
       </p>
       <hr>
@@ -199,9 +188,9 @@ osinit.c:147
     </body>
 </html>
 
---1386191067.3e3c4c0.12727--
+--1386192928.F7362bE0.18664--
 
---===============1906303192==
+--===============0167220885==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -212,4 +201,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1906303192==--
+--===============0167220885==--
