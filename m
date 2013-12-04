@@ -1,15 +1,10 @@
-From: Bruno =?UTF-8?B?UHLDqW1vbnQ=?= <bonbons-ud5FBsm0p/xEiooADzr8i9i2O/JbrIOy@public.gmane.org>
-Subject: Re: Nouveau failing during probe followed by GPF on
-	3.13-rc2
-Date: Wed, 4 Dec 2013 15:45:00 +0100
-Message-ID: <20131204154500.0b6d792b@pluto.restena.lu>
-References: <20131204120100.5331f1c6@pluto.restena.lu>
-	<CAKb7Uvg2XpchxYxVTRgbwBWZzk9ONrSOAQcUQoM8GECn8-w=8g@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 72315] New: Fedora 19 64-bit X crash
+Date: Wed, 04 Dec 2013 14:56:46 +0000
+Message-ID: <bug-72315-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1614975727=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvg2XpchxYxVTRgbwBWZzk9ONrSOAQcUQoM8GECn8-w=8g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,155 +14,423 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgSWxpYSwKCk9uIFdlZCwgNCBEZWMgMjAxMyAwNjoxNTozMCAtMDUwMCBJbGlhIE1pcmtpbiB3
-cm90ZToKPiBPbiBXZWQsIERlYyA0LCAyMDEzIGF0IDY6MDEgQU0sIEJydW5vIFByw6ltb250IHdy
-b3RlOgo+ID4gV2l0aCAzLjEzLXJjMSBhbmQgMy4xMy1yYzIga2VybmVsIGNyYXNoZXMvQlVHcyB3
-aGlsZSBsb2FkaW5nIG5vdXZlYXU6Cj4gPiBbICA2NTcuNjU0OTE1XSBBQ1BJIFdhcm5pbmc6IFxf
-U0JfLlBDSTAuSVhWRS5JR1BVLl9EU006IEFyZ3VtZW50ICM0IHR5cGUgbWlzbWF0Y2ggLSBGb3Vu
-ZCBbSW50ZWdlcl0sIEFDUEkgcmVxdWlyZXMgW1BhY2thZ2VdICgyMDEzMTExNS9uc2FyZ3VtZW50
-cy05NSkKPiA+IFsgIDY1Ny42NTUwOTldIEFDUEkgV2FybmluZzogXF9TQl8uUENJMC5JWFZFLklH
-UFUuX0RTTTogQXJndW1lbnQgIzQgdHlwZSBtaXNtYXRjaCAtIEZvdW5kIFtCdWZmZXJdLCBBQ1BJ
-IHJlcXVpcmVzIFtQYWNrYWdlXSAoMjAxMzExMTUvbnNhcmd1bWVudHMtOTUpCj4gPiBbICA2NTcu
-NjU1MjcwXSBjaGVja2luZyBnZW5lcmljICg4MDAxMDAwMCA2NDAwMDApIHZzIGh3ICg4MDAwMDAw
-MCAxMDAwMDAwMCkKPiA+IFsgIDY1Ny42NTUyNzNdIGZiOiBjb25mbGljdGluZyBmYiBodyB1c2Fn
-ZSBub3V2ZWF1ZmIgdnMgc2ltcGxlIC0gcmVtb3ZpbmcgZ2VuZXJpYyBkcml2ZXIKPiA+IFsgIDY1
-Ny42NTUzODNdIENvbnNvbGU6IHN3aXRjaGluZyB0byBjb2xvdXIgZHVtbXkgZGV2aWNlIDgweDI1
-Cj4gPiBbICA2NTcuNjU1NjMyXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogZW5hYmxpbmcgZGV2aWNl
-ICgwMDA2IC0+IDAwMDcpCj4gPiBbICA2NTcuNjU3MTQ5XSBBQ1BJOiBQQ0kgSW50ZXJydXB0IExp
-bmsgW0xHUFVdIGVuYWJsZWQgYXQgSVJRIDE2Cj4gPiBbICA2NTcuNjU3NDU2XSBbZHJtXSBoZG1p
-IGRldmljZSAgbm90IGZvdW5kIDIgMCAxCj4gPiBbICA2NTcuNjU3OTU0XSBub3V2ZWF1ICBbICBE
-RVZJQ0VdWzAwMDA6MDI6MDAuMF0gQk9PVDAgIDogMHgwYWM4MDBiMQo+ID4gWyAgNjU3LjY1Nzk1
-OF0gbm91dmVhdSAgWyAgREVWSUNFXVswMDAwOjAyOjAwLjBdIENoaXBzZXQ6IE1DUDc5L01DUDdB
-IChOVkFDKQo+ID4gWyAgNjU3LjY1Nzk2MF0gbm91dmVhdSAgWyAgREVWSUNFXVswMDAwOjAyOjAw
-LjBdIEZhbWlseSA6IE5WNTAKPiA+IFsgIDY1Ny42NjUyNzRdIG5vdXZlYXUgIFsgICBWQklPU11b
-MDAwMDowMjowMC4wXSBjaGVja2luZyBQUkFNSU4gZm9yIGltYWdlLi4uCj4gPiBbICA2NTcuNzIy
-NDc4XSBub3V2ZWF1ICBbICAgVkJJT1NdWzAwMDA6MDI6MDAuMF0gLi4uIGFwcGVhcnMgdG8gYmUg
-dmFsaWQKPiA+IFsgIDY1Ny43MjI0ODFdIG5vdXZlYXUgIFsgICBWQklPU11bMDAwMDowMjowMC4w
-XSB1c2luZyBpbWFnZSBmcm9tIFBSQU1JTgo+ID4gWyAgNjU3LjcyMjYyNF0gbm91dmVhdSAgWyAg
-IFZCSU9TXVswMDAwOjAyOjAwLjBdIEJJVCBzaWduYXR1cmUgZm91bmQKPiA+IFsgIDY1Ny43MjI2
-MjddIG5vdXZlYXUgIFsgICBWQklPU11bMDAwMDowMjowMC4wXSB2ZXJzaW9uIDYyLjc5LjQ3LjAw
-LjAxCj4gPiBbICA2NTcuNzQ1MzI0XSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogaXJxIDQyIGZvciBN
-U0kvTVNJLVgKPiA+IFsgIDY1Ny43NDUzNjBdIG5vdXZlYXUgIFsgICAgIFBNQ11bMDAwMDowMjow
-MC4wXSBNU0kgaW50ZXJydXB0cyBlbmFibGVkCj4gPiBbICA2NTcuNzQ1NDM3XSBub3V2ZWF1ICBb
-ICAgICBQRkJdWzAwMDA6MDI6MDAuMF0gUkFNIHR5cGU6IHN0b2xlbiBzeXN0ZW0gbWVtb3J5Cj4g
-PiBbICA2NTcuNzQ1NDQxXSBub3V2ZWF1ICBbICAgICBQRkJdWzAwMDA6MDI6MDAuMF0gUkFNIHNp
-emU6IDI1NiBNaUIKPiA+IFsgIDY1Ny43NDU0NDRdIG5vdXZlYXUgIFsgICAgIFBGQl1bMDAwMDow
-MjowMC4wXSAgICBaQ09NUDogMCB0YWdzCj4gPiBbICA2NTcuODAwMDcyXSBub3V2ZWF1ICBbICBQ
-VEhFUk1dWzAwMDA6MDI6MDAuMF0gRkFOIGNvbnRyb2w6IG5vbmUgLyBleHRlcm5hbAo+ID4gWyAg
-NjU3LjgwMDA4M10gbm91dmVhdSAgWyAgUFRIRVJNXVswMDAwOjAyOjAwLjBdIGZhbiBtYW5hZ2Vt
-ZW50OiBhdXRvbWF0aWMKPiA+IFsgIDY1Ny44MDAwODZdIG5vdXZlYXUgIFsgIFBUSEVSTV1bMDAw
-MDowMjowMC4wXSBpbnRlcm5hbCBzZW5zb3I6IHllcwo+ID4gWyAgNjU3LjgwMDEwNV0gbm91dmVh
-dSAgWyAgICAgQ0xLXVswMDAwOjAyOjAwLjBdIDAzOiBjb3JlIDEwMCBNSHogc2hhZGVyIDIwMCBN
-SHoKPiA+IFsgIDY1Ny44MDAxMTFdIG5vdXZlYXUgIFsgICAgIENMS11bMDAwMDowMjowMC4wXSAw
-NTogY29yZSAxNTAgTUh6IHNoYWRlciAzMDAgTUh6Cj4gPiBbICA2NTcuODAwMTE2XSBub3V2ZWF1
-ICBbICAgICBDTEtdWzAwMDA6MDI6MDAuMF0gMGU6IGNvcmUgMzAwIE1IeiBzaGFkZXIgNjAwIE1I
-ego+ID4gWyAgNjU3LjgwMDEyMV0gbm91dmVhdSAgWyAgICAgQ0xLXVswMDAwOjAyOjAwLjBdIDBm
-OiBjb3JlIDM1MCBNSHogc2hhZGVyIDgwMCBNSHoKPiA+IFsgIDY1Ny44MDAxMzVdIG5vdXZlYXUg
-RVsgICAgIENMS11bMDAwMDowMjowMC4wXSAxNyBmcmVxIHVua25vd24KPiA+IFsgIDY1Ny44MDAx
-MzddIG5vdXZlYXUgRVsgICAgIENMS11bMDAwMDowMjowMC4wXSBpbml0IGZhaWxlZCwgLTIyCj4g
-Cj4gVGhlcmUgYXJlIHNvbWUgcGF0Y2hlcyBpbgo+IGh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9y
-Zy9ub3V2ZWF1L2xpbnV4LTIuNi9sb2cvP2g9ZHJtLW5vdXZlYXUtbmV4dAo+IHRoYXQgc2hvdWxk
-IGhlbHAgd2l0aCB0aGF0LCBzcGVjaWZpY2FsbHk6Cj4gCj4gaHR0cDovL2NnaXQuZnJlZWRlc2t0
-b3Aub3JnL25vdXZlYXUvbGludXgtMi42L2NvbW1pdC8/aD1kcm0tbm91dmVhdS1uZXh0JmlkPWE3
-ZTQyMDFmMGY3ZDQ3ZTAzYjg1MWYwNmY4OTg3ODU2ZThkMzMwODMKClllcywgdGhhdCBvbmUgcHJl
-dmVudHMgdGhlICJmcmVxIHVua25vd24iIGVycm9yIQpJdCBzaG91bGQgcHJvYmFibHkgYmUgcHVz
-aGVkIHRvIGRhdmUvbGludXMgZm9yIHJjMy4KCldpdGggaXQgYXBwbGllZCBub3V2ZWF1IGxvYWRz
-IHN1Y2Nlc3NmdWxseS4KCj4gPiBbICA2NTcuODAwMTQwXSBub3V2ZWF1IEVbICAgICBEUk1dIGZh
-aWxlZCB0byBjcmVhdGUgMHg4MDAwMDA4MCwgLTIyCj4gPiBbICA2NTcuODAyMTIzXSBnZW5lcmFs
-IHByb3RlY3Rpb24gZmF1bHQ6IDAwMDAgWyMxXSBTTVAKPiA+IFsgIDY1Ny44MDIxMzBdIE1vZHVs
-ZXMgbGlua2VkIGluOiBub3V2ZWF1KCspIHR0bSBkcm1fa21zX2hlbHBlcgo+ID4gWyAgNjU3Ljgw
-MjE0MF0gQ1BVOiAwIFBJRDogMjk5OSBDb21tOiBtb2Rwcm9iZSBOb3QgdGFpbnRlZCAzLjEzLjAt
-cmMyLWFpcisgIzUKPiA+IFsgIDY1Ny44MDIxNDRdIEhhcmR3YXJlIG5hbWU6IEFwcGxlIEluYy4g
-TWFjQm9va0FpcjIsMS9NYWMtRjQyRDg4QzgsIEJJT1MgICAgTUJBMjEuODhaLjAwNzUuQjAzLjA4
-MTExNDEzMjUgMTEvMTQvMDgKPiA+IFsgIDY1Ny44MDIxNTBdIHRhc2s6IGZmZmY4ODAwN2YxNjE1
-MjAgdGk6IGZmZmY4ODAwN2RlZmUwMDAgdGFzay50aTogZmZmZjg4MDA3ZGVmZTAwMAo+ID4gWyAg
-NjU3LjgwMjE1NF0gUklQOiAwMDEwOls8ZmZmZmZmZmY4MTNkMmFmMD5dICBbPGZmZmZmZmZmODEz
-ZDJhZjA+XSBkZXZpY2VfZGVsKzB4MTAvMHgxYjAKPiA+IFsgIDY1Ny44MDIxNjVdIFJTUDogMDAx
-ODpmZmZmODgwMDdkZWZmOWY4ICBFRkxBR1M6IDAwMDEwMjkyCj4gPiBbICA2NTcuODAyMTY4XSBS
-QVg6IDAwMDAwMDAwMDAwMDAwMDAgUkJYOiA2YjZiNmI2YjZiNmI2YjZiIFJDWDogZmZmZmZmZmY4
-MWE2ZjIzNwo+ID4gWyAgNjU3LjgwMjE3M10gUkRYOiBmZmZmZmZmZjgxODc2ZGVhIFJTSTogZmZm
-ZmZmZmY4MWE2ZTgxMSBSREk6IDZiNmI2YjZiNmI2YjZiNmIKPiA+IFsgIDY1Ny44MDIxNzddIFJC
-UDogZmZmZjg4MDA3ZGVmZmExOCBSMDg6IDAwMDAwMDAwNmI2YjZiNmIgUjA5OiAwMDAwMDAwMDAw
-MDAwMDAwCj4gPiBbICA2NTcuODAyMTgxXSBSMTA6IGZmZmY4ODAwNzg4MDFkMDAgUjExOiAwMDAw
-MDAwMDAwMDAwMDJlIFIxMjogNmI2YjZiNmI2YjZiNmI2Ygo+ID4gWyAgNjU3LjgwMjE4NV0gUjEz
-OiBmZmZmODgwMDdmNTcyMGY4IFIxNDogZmZmZmZmZmZhMDEwZTdhMCBSMTU6IDAwMDAwMDAwZmZm
-ZmZmZWEKPiA+IFsgIDY1Ny44MDIxODldIEZTOiAgMDAwMDdmM2MyM2Q3NTcwMCgwMDAwKSBHUzpm
-ZmZmODgwMDdiMDAwMDAwKDAwMDApIGtubEdTOjAwMDAwMDAwMDAwMDAwMDAKPiA+IFsgIDY1Ny44
-MDIxOTRdIENTOiAgMDAxMCBEUzogMDAwMCBFUzogMDAwMCBDUjA6IDAwMDAwMDAwODAwNTAwM2IK
-PiA+IFsgIDY1Ny44MDIxOThdIENSMjogMDAwMDdmMjc0MzZlNDBmMCBDUjM6IDAwMDAwMDAwN2Ri
-NGUwMDAgQ1I0OiAwMDAwMDAwMDAwMDAwN2YwCj4gPiBbICA2NTcuODAyMjAxXSBTdGFjazoKPiA+
-IFsgIDY1Ny44MDIyMDRdICBmZmZmZmZmZjgxMzRmZDBiIDZiNmI2YjZiNmI2YjZiNmIgZmZmZjg4
-MDA3ZjU3MjA2MCBmZmZmODgwMDdmNTcyMGY4Cj4gPiBbICA2NTcuODAyMjExXSAgZmZmZjg4MDA3
-ZGVmZmEzOCBmZmZmZmZmZjgxM2QyY2ExIGZmZmY4ODAwN2Q5MzgwNTggZmZmZjg4MDA3ZGEwMWNh
-OAo+ID4gWyAgNjU3LjgwMjIxN10gIGZmZmY4ODAwN2RlZmZhNTggZmZmZmZmZmY4MTNiZGQ2YSBm
-ZmZmODgwMDdmNTcyMDYwIGZmZmY4ODAwN2RhMDFjYTgKPiA+IFsgIDY1Ny44MDIyMjRdIENhbGwg
-VHJhY2U6Cj4gPiBbICA2NTcuODAyMjMxXSAgWzxmZmZmZmZmZjgxMzRmZDBiPl0gPyBhY3BpX3Bj
-aV9pcnFfZGlzYWJsZSsweDNjLzB4NDkKPiA+IFsgIDY1Ny44MDIyMzddICBbPGZmZmZmZmZmODEz
-ZDJjYTE+XSBkZXZpY2VfdW5yZWdpc3RlcisweDExLzB4MjAKPiA+IFsgIDY1Ny44MDIyNDNdICBb
-PGZmZmZmZmZmODEzYmRkNmE+XSBkcm1fc3lzZnNfZGV2aWNlX3JlbW92ZSsweDFhLzB4MzAKPiA+
-IFsgIDY1Ny44MDIyNDldICBbPGZmZmZmZmZmODEzYjlkYmQ+XSBkcm1fdW5wbHVnX21pbm9yKzB4
-MWQvMHg0MAo+ID4gWyAgNjU3LjgwMjI1NV0gIFs8ZmZmZmZmZmY4MTNiYTBjZD5dIGRybV9wdXRf
-bWlub3IrMHgzZC8weDUwCj4gPiBbICA2NTcuODAyMjYwXSAgWzxmZmZmZmZmZjgxM2JhMGY4Pl0g
-ZHJtX2Rldl9mcmVlKzB4MTgvMHg4MAo+ID4gWyAgNjU3LjgwMjI2NV0gIFs8ZmZmZmZmZmY4MTNi
-YzY3Zj5dIGRybV9nZXRfcGNpX2RldisweGFmLzB4MTUwCj4gPiBbICA2NTcuODAyMjcyXSAgWzxm
-ZmZmZmZmZjgxMzFkOGNlPl0gPyBwY2liaW9zX3NldF9tYXN0ZXIrMHg1ZS8weDkwCj4gPiBbICA2
-NTcuODAyMzE1XSAgWzxmZmZmZmZmZmEwMGE3ZWJhPl0gbm91dmVhdV9kcm1fcHJvYmUrMHgyNGEv
-MHgyOTAgW25vdXZlYXVdCj4gPiBbICA2NTcuODAyMzIxXSAgWzxmZmZmZmZmZjgxMzFmMzZjPl0g
-cGNpX2RldmljZV9wcm9iZSsweDljLzB4ZjAKPiA+IFsgIDY1Ny44MDIzMjhdICBbPGZmZmZmZmZm
-ODEzZDYwNDY+XSBkcml2ZXJfcHJvYmVfZGV2aWNlKzB4NzYvMHgyNDAKPiA+IFsgIDY1Ny44MDIz
-MzNdICBbPGZmZmZmZmZmODEzZDYyYWI+XSBfX2RyaXZlcl9hdHRhY2grMHg5Yi8weGEwCj4gPiBb
-ICA2NTcuODAyMzM5XSAgWzxmZmZmZmZmZjgxM2Q2MjEwPl0gPyBkcml2ZXJfcHJvYmVfZGV2aWNl
-KzB4MjQwLzB4MjQwCj4gPiBbICA2NTcuODAyMzQ1XSAgWzxmZmZmZmZmZjgxM2Q0M2I1Pl0gYnVz
-X2Zvcl9lYWNoX2RldisweDU1LzB4OTAKPiA+IFsgIDY1Ny44MDIzNTBdICBbPGZmZmZmZmZmODEz
-ZDViNzk+XSBkcml2ZXJfYXR0YWNoKzB4MTkvMHgyMAo+ID4gWyAgNjU3LjgwMjM1NV0gIFs8ZmZm
-ZmZmZmY4MTNkNTc3Yz5dIGJ1c19hZGRfZHJpdmVyKzB4MTBjLzB4MjEwCj4gPiBbICA2NTcuODAy
-MzYwXSAgWzxmZmZmZmZmZmEwMTMzMDAwPl0gPyAweGZmZmZmZmZmYTAxMzJmZmYKPiA+IFsgIDY1
-Ny44MDIzNjVdICBbPGZmZmZmZmZmODEzZDY5MmY+XSBkcml2ZXJfcmVnaXN0ZXIrMHg1Zi8weGYw
-Cj4gPiBbICA2NTcuODAyMzcwXSAgWzxmZmZmZmZmZmEwMTMzMDAwPl0gPyAweGZmZmZmZmZmYTAx
-MzJmZmYKPiA+IFsgIDY1Ny44MDIzNzVdICBbPGZmZmZmZmZmODEzMWU2OTc+XSBfX3BjaV9yZWdp
-c3Rlcl9kcml2ZXIrMHg0Ny8weDUwCj4gPiBbICA2NTcuODAyMzgxXSAgWzxmZmZmZmZmZjgxM2Jj
-ODM1Pl0gZHJtX3BjaV9pbml0KzB4MTE1LzB4MTMwCj4gPiBbICA2NTcuODAyMzg2XSAgWzxmZmZm
-ZmZmZmEwMTMzMDAwPl0gPyAweGZmZmZmZmZmYTAxMzJmZmYKPiA+IFsgIDY1Ny44MDIzOTBdICBb
-PGZmZmZmZmZmYTAxMzMwMDA+XSA/IDB4ZmZmZmZmZmZhMDEzMmZmZgo+ID4gWyAgNjU3LjgwMjQx
-NF0gIFs8ZmZmZmZmZmZhMDEzMzA0Mz5dIG5vdXZlYXVfZHJtX2luaXQrMHg0My8weDEwMDAgW25v
-dXZlYXVdCj4gPiBbICA2NTcuODAyNDIyXSAgWzxmZmZmZmZmZjgxMDAwMzRhPl0gZG9fb25lX2lu
-aXRjYWxsKzB4MTFhLzB4MTcwCj4gPiBbICA2NTcuODAyNDI5XSAgWzxmZmZmZmZmZjgxMDcxZTMz
-Pl0gPyBzZXRfbWVtb3J5X254KzB4NDMvMHg1MAo+ID4gWyAgNjU3LjgwMjQzNV0gIFs8ZmZmZmZm
-ZmY4MTEzYTEzMj5dID8gX192dW5tYXArMHhiMi8weDEwMAo+ID4gWyAgNjU3LjgwMjQ0MV0gIFs8
-ZmZmZmZmZmY4MTBlZWIyNj5dIGxvYWRfbW9kdWxlKzB4MTk2Ni8weDIxYjAKPiA+IFsgIDY1Ny44
-MDI0NDZdICBbPGZmZmZmZmZmODEwZWMwNzA+XSA/IHNob3dfaW5pdHN0YXRlKzB4NTAvMHg1MAo+
-ID4gWyAgNjU3LjgwMjQ1M10gIFs8ZmZmZmZmZmY4MTE1YmM5ND5dID8gdmZzX3JlYWQrMHgxMTQv
-MHgxNjAKPiA+IFsgIDY1Ny44MDI0NThdICBbPGZmZmZmZmZmODEwZWY0YTY+XSBTeVNfZmluaXRf
-bW9kdWxlKzB4ODYvMHg5MAo+ID4gWyAgNjU3LjgwMjQ2NV0gIFs8ZmZmZmZmZmY4MTcyMzVlMj5d
-IHN5c3RlbV9jYWxsX2Zhc3RwYXRoKzB4MTYvMHgxYgo+ID4gWyAgNjU3LjgwMjQ2OV0gQ29kZTog
-NzQgMjQgMTggNDggODkgZGYgZTggOTAgZmYgZmYgZmYgNDggOGIgNWQgZTggNGMgOGIgNjUgZjAg
-NGMgOGIgNmQgZjggYzkgYzMgNjYgOTAgNTUgNDggODkgZTUgNDEgNTUgNDEgNTQgNDkgODkgZmMg
-NTMgNDggODMgZWMgMDggPDQ4PiA4YiA4NyA4OCAwMCAwMCAwMCA0YyA4YiAyZiA0OCA4NSBjMCA3
-NCAxYiA0OCA4YiBiOCA5MCAwMCAwMAo+ID4gWyAgNjU3LjgwMjUxNF0gUklQICBbPGZmZmZmZmZm
-ODEzZDJhZjA+XSBkZXZpY2VfZGVsKzB4MTAvMHgxYjAKPiA+IFsgIDY1Ny44MDI1MjBdICBSU1Ag
-PGZmZmY4ODAwN2RlZmY5Zjg+Cj4gPiBbICA2NTcuODAyNTI0XSAtLS1bIGVuZCB0cmFjZSAxMWU3
-ODBjNjFkODhhZmFmIF0tLS0KPiA+Cj4gPiBJJ20gYm9vdGluZyB3aXRoIGVmaSBzdHViIGFuZCBT
-WVNGQj15LCBGQl9TSU1QTEU9eSwgRFJNX05PVVZFQVU9bQo+ID4gU2FtZSBjb25maWcgZGlkIGJv
-b3QgcHJvcGVybHkgd2l0aCAzLjEyLiBBYm92ZSBvdXRwdXQgY29udGFpbnMgY29tcGxldGUKPiA+
-IG91dHB1dCBmcm9tIHRoZSB0aW1lIG9mIGNhbGxpbmcgbW9kcHJvYmUgbm91dmVhdS4KPiAKPiBI
-cm0uLi4uIHRoYXQgaXMgYSBzZXBhcmF0ZSBidWcgdGhhdCB3ZSBzaG91bGQgcHJvYmFibHkgZmln
-dXJlIG91dC4KPiBMb29rcyBsaWtlIHNvbWUgdXNlLWFmdGVyLWZyZWUgd2hlbiBub3V2ZWF1IGZh
-aWxzIHRvIGNvbWUgdXAgKG5vdGUgdGhlCj4gcG9pc29uIDB4NmIgdmFsdWVzIGluIHZhcmlvdXMg
-cmVnaXN0ZXJzKS4gQnV0IHRoZSBhYm92ZSBwYXRjaCB3aWxsCj4gaG9wZWZ1bGx5IHByZXZlbnQg
-dGhhdCBzaXR1YXRpb24uCgpZZXAsIEkgZW5hYmxlIFNMVUIgcG9pc29uIG9uIGFsbCBteSBrZXJu
-ZWxzIHdpdGggc2x1Yl9kZWJ1Zz1GWlAKCkhvdyBtdWNoIG9mIHRoZSB0cmFjZSBjYW4gYmUgdHJ1
-c3RlZCBhcyBiZWluZyByZWFsIGNvZGUgYW5kIG5vdCBzb21lCnJlbWFpbmRlciBvZiBub24tb3Zl
-cndyaXR0ZW4gZGF0YSBtaXMtcGFyc2VkPwoKSWYgaXQgY2FuIGJlIHRydXN0ZWQsIHRoZSBwb2lu
-dCBpbiBub3V2ZWF1X2RybV9wcm9iZSgpIGlzIHdpdGhpbgphbGxvY19hcGVydHVyZXMoKSB3aGlj
-aCBkb2VzIG5vdCByZWFsbHkgbWFrZSBzZW5zZSBhcyBlZmlmYiBoYXMgYWxyZWFkeQpiZWVuIHJl
-bW92ZWQsIHRodXMgd2Ugc2hvdWxkIHNlZSBjb2RlIGhhcHBlbmluZyBhZnRlcgpyZW1vdmVfY29u
-ZmxpY3RpbmdfZnJhbWVidWZmZXJzKCkuCgpQcm9iYWJseSBTeVNfZmluaXRfbW9kdWxlKCkgaXMg
-dGhlIG9ubHkgcmVsZXZhbnQgcGFydCBvZiB0aGUgc3RhY2stdHJhY2UKYW5kIHNvbWUgbW9kdWxl
-LWFzc2lnbmVkIGRhdGEgaGFzIGJlZW4gZG91YmxlLWZyZWVkL3BvaXNvbmVkLgoKVGhhbmtzLApC
-cnVubwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1614975727==
+Content-Type: multipart/alternative; boundary="1386169006.6cFD7ECa1.8704"; charset="us-ascii"
+
+
+--1386169006.6cFD7ECa1.8704
+Date: Wed, 4 Dec 2013 14:56:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=72315
+
+          Priority: medium
+            Bug ID: 72315
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Fedora 19 64-bit X crash
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: major
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: bryan.coleman-SAIwBcqG6t4@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
+
+I am running Fedora 19 kernel 3.11.9-200.fc19.x86_64.  My X session went blank
+and a console window started spewing the following messages.  Restarted the
+system and all is well now.
+
+xorg-x11-server 1.14.4-3.fc19
+
+dmesg:
+[434020.166070] nouveau E[   PIBUS][0000:03:00.0] GPC0: 0x505014 0x00000004
+(0x04000200)
+[477412.197564] nouveau E[   PIBUS][0000:03:00.0] GPC0: 0x505014 0x00000004
+(0x04000200)
+[544227.607544] nouveau E[   PIBUS][0000:03:00.0] GPC0: 0x505014 0x00000004
+(0x04000200)
+[681684.974381] nouveau E[   PFIFO][0000:03:00.0] PFIFO: write fault at
+0x00002a0000 [PAGE_NOT_PRESENT] from (unknown enum 0x00000000)/GPC0/(unknown
+enum 0x0000000f) on channel 0x007f96f000 [unknown]
+[681691.606820] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[1473]]
+[681691.606833] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681691.606839] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681704.871500] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[1473]]
+[681704.871512] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681704.871518] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681707.939524] nouveau E[     DRM] GPU lockup - switching to software fbcon
+[681718.136111] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[1473]]
+[681718.136144] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681718.136166] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681723.678476] nouveau E[ X[1473]] failed to idle channel 0xcccc0001 [X[1473]]
+[681731.400803] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[1473]]
+[681731.400833] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681731.400855] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681738.689165] nouveau E[ X[1473]] failed to idle channel 0xcccc0001 [X[1473]]
+[681740.693295] nouveau E[   PFIFO][0000:03:00.0] playlist 0 update timeout
+[681742.989755] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681744.665484] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[1473]]
+[681744.665516] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681744.665538] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681747.287525] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681751.585296] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681755.704304] nouveau E[ X[1473]] failed to idle channel 0xcccc0000 [X[1473]]
+[681755.883068] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681757.930171] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[1473]]
+[681757.930200] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681757.930222] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681760.180832] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681764.478598] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681768.776363] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681770.714985] nouveau E[ X[1473]] failed to idle channel 0xcccc0000 [X[1473]]
+[681771.194848] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[1473]]
+[681771.194877] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681771.194899] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681772.716434] nouveau E[   PFIFO][0000:03:00.0] channel 2 [X[1473]] kick
+timeout
+[681772.716924] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681774.718239] nouveau E[   PFIFO][0000:03:00.0] channel 2 [X[1473]] kick
+timeout
+[681774.720867] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681776.722174] nouveau E[   PFIFO][0000:03:00.0] playlist 0 update timeout
+[681776.722197] nouveau ![   PFIFO][0000:03:00.0] unhandled status 0x00000001
+[681780.482484] nouveau E[   PFIFO][0000:03:00.0] playlist 0 update timeout
+[681782.497932] nouveau E[   PFIFO][0000:03:00.0] playlist 0 update timeout
+[681784.459542] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681784.459551] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681784.459555] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681792.850755] nouveau E[kwin[1835]] failed to idle channel 0xcccc0000
+[kwin[1835]]
+[681797.724232] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681797.724241] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681797.724245] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681807.861455] nouveau E[kwin[1835]] failed to idle channel 0xcccc0000
+[kwin[1835]]
+[681809.865465] nouveau E[   PFIFO][0000:03:00.0] playlist 0 update timeout
+[681810.988917] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681810.988925] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681810.988929] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681824.253604] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681824.253611] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681824.253616] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681824.876572] nouveau E[amarok[1964]] failed to idle channel 0xcccc0000
+[amarok[1964]]
+[681824.877570] [sched_delayed] sched: RT throttling activated
+[681837.518292] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681837.518300] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681837.518304] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681839.887268] nouveau E[amarok[1964]] failed to idle channel 0xcccc0000
+[amarok[1964]]
+[681841.891290] nouveau E[   PFIFO][0000:03:00.0] playlist 0 update timeout
+[681850.783002] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681850.783011] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681850.783015] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681864.047688] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681864.047696] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681864.047700] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681877.312386] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681877.312394] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681877.312398] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681890.577062] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681890.577070] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681890.577074] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681903.841732] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681903.841741] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681903.841745] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681913.097443] nouveau E[X[12349]] failed to idle channel 0xcccc0001
+[X[12349]]
+[681917.106418] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681917.106426] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681917.106430] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681928.108139] nouveau E[X[12349]] failed to idle channel 0xcccc0001
+[X[12349]]
+[681930.112203] nouveau E[   PFIFO][0000:03:00.0] playlist 0 update timeout
+[681930.371105] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681930.371113] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681930.371117] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1386169006.6cFD7ECa1.8704
+Date: Wed, 4 Dec 2013 14:56:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Fedora 19 64-bit X crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72315">72315</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Fedora 19 64-bit X crash
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>bryan.coleman&#64;dart.biz
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>I am running Fedora 19 kernel 3.11.9-200.fc19.x86_64.  My X session went blank
+and a console window started spewing the following messages.  Restarted the
+system and all is well now.
+
+xorg-x11-server 1.14.4-3.fc19
+
+dmesg:
+[434020.166070] nouveau E[   PIBUS][0000:03:00.0] GPC0: 0x505014 0x00000004
+(0x04000200)
+[477412.197564] nouveau E[   PIBUS][0000:03:00.0] GPC0: 0x505014 0x00000004
+(0x04000200)
+[544227.607544] nouveau E[   PIBUS][0000:03:00.0] GPC0: 0x505014 0x00000004
+(0x04000200)
+[681684.974381] nouveau E[   PFIFO][0000:03:00.0] PFIFO: write fault at
+0x00002a0000 [PAGE_NOT_PRESENT] from (unknown enum 0x00000000)/GPC0/(unknown
+enum 0x0000000f) on channel 0x007f96f000 [unknown]
+[681691.606820] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[1473]]
+[681691.606833] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681691.606839] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681704.871500] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[1473]]
+[681704.871512] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681704.871518] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681707.939524] nouveau E[     DRM] GPU lockup - switching to software fbcon
+[681718.136111] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[1473]]
+[681718.136144] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681718.136166] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681723.678476] nouveau E[ X[1473]] failed to idle channel 0xcccc0001 [X[1473]]
+[681731.400803] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[1473]]
+[681731.400833] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681731.400855] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681738.689165] nouveau E[ X[1473]] failed to idle channel 0xcccc0001 [X[1473]]
+[681740.693295] nouveau E[   PFIFO][0000:03:00.0] playlist 0 update timeout
+[681742.989755] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681744.665484] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[1473]]
+[681744.665516] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681744.665538] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681747.287525] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681751.585296] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681755.704304] nouveau E[ X[1473]] failed to idle channel 0xcccc0000 [X[1473]]
+[681755.883068] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681757.930171] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[1473]]
+[681757.930200] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681757.930222] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681760.180832] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681764.478598] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681768.776363] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681770.714985] nouveau E[ X[1473]] failed to idle channel 0xcccc0000 [X[1473]]
+[681771.194848] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[1473]]
+[681771.194877] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681771.194899] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681772.716434] nouveau E[   PFIFO][0000:03:00.0] channel 2 [X[1473]] kick
+timeout
+[681772.716924] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681774.718239] nouveau E[   PFIFO][0000:03:00.0] channel 2 [X[1473]] kick
+timeout
+[681774.720867] nouveau W[   PFIFO][0000:03:00.0] unknown status 0x00000100
+[681776.722174] nouveau E[   PFIFO][0000:03:00.0] playlist 0 update timeout
+[681776.722197] nouveau ![   PFIFO][0000:03:00.0] unhandled status 0x00000001
+[681780.482484] nouveau E[   PFIFO][0000:03:00.0] playlist 0 update timeout
+[681782.497932] nouveau E[   PFIFO][0000:03:00.0] playlist 0 update timeout
+[681784.459542] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681784.459551] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681784.459555] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681792.850755] nouveau E[kwin[1835]] failed to idle channel 0xcccc0000
+[kwin[1835]]
+[681797.724232] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681797.724241] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681797.724245] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681807.861455] nouveau E[kwin[1835]] failed to idle channel 0xcccc0000
+[kwin[1835]]
+[681809.865465] nouveau E[   PFIFO][0000:03:00.0] playlist 0 update timeout
+[681810.988917] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681810.988925] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681810.988929] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681824.253604] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681824.253611] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681824.253616] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681824.876572] nouveau E[amarok[1964]] failed to idle channel 0xcccc0000
+[amarok[1964]]
+[681824.877570] [sched_delayed] sched: RT throttling activated
+[681837.518292] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681837.518300] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681837.518304] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681839.887268] nouveau E[amarok[1964]] failed to idle channel 0xcccc0000
+[amarok[1964]]
+[681841.891290] nouveau E[   PFIFO][0000:03:00.0] playlist 0 update timeout
+[681850.783002] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681850.783011] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681850.783015] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681864.047688] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681864.047696] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681864.047700] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681877.312386] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681877.312394] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681877.312398] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681890.577062] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681890.577070] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681890.577074] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681903.841732] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681903.841741] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681903.841745] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681913.097443] nouveau E[X[12349]] failed to idle channel 0xcccc0001
+[X[12349]]
+[681917.106418] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681917.106426] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681917.106430] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001
+[681928.108139] nouveau E[X[12349]] failed to idle channel 0xcccc0001
+[X[12349]]
+[681930.112203] nouveau E[   PFIFO][0000:03:00.0] playlist 0 update timeout
+[681930.371105] nouveau E[  PGRAPH][0000:03:00.0] TRAP ch 2 [0x007f96f000
+X[12349]]
+[681930.371113] nouveau E[  PGRAPH][0000:03:00.0] ROP0 0x80000000 0x80000001
+[681930.371117] nouveau E[  PGRAPH][0000:03:00.0] ROP1 0x80000000 0x80000001</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1386169006.6cFD7ECa1.8704--
+
+--===============1614975727==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1614975727==--
