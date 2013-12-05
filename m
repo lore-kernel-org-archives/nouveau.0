@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
-Date: Wed, 04 Dec 2013 21:43:21 +0000
-Message-ID: <bug-64323-8800-D42YCdOXnv@http.bugs.freedesktop.org/>
-References: <bug-64323-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72315] Fedora 19 64-bit X crash
+Date: Thu, 05 Dec 2013 13:48:43 +0000
+Message-ID: <bug-72315-8800-1GVJAWGTPX@http.bugs.freedesktop.org/>
+References: <bug-72315-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1650198367=="
+Content-Type: multipart/mixed; boundary="===============0012952982=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,45 +20,59 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1650198367==
-Content-Type: multipart/alternative; boundary="1386193401.56Fc1Fd4.21086"; charset="us-ascii"
+--===============0012952982==
+Content-Type: multipart/alternative; boundary="1386251323.086f1c31.20667"; charset="us-ascii"
 
 
---1386193401.56Fc1Fd4.21086
-Date: Wed, 4 Dec 2013 21:43:21 +0000
+--1386251323.086f1c31.20667
+Date: Thu, 5 Dec 2013 13:48:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64323
+https://bugs.freedesktop.org/show_bug.cgi?id=72315
 
---- Comment #29 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The wait is correct and always needed. I believe that the last patch is
-actually incorrect. I've added a whole bunch of comments to that function which
-reflect my understanding of how it works. It appears to be correct.
+--- Comment #2 from bryan.coleman-SAIwBcqG6t4@public.gmane.org ---
+Yes, things seem to work just fine with the one exception being this case. 
 
-I think what's happening is that
 
-(a) inline write to GART. no staging, just returns the buffer's memory
-(b) something happens
-(c) inline write to GART. at this point, the GPU is now reading the buffer. so
-it has to do the whole staging dance to schedule the write to be done by the
-GPU.
-(d) render happens, and has to wait for that second inline write to complete.
+This was a one-time-ever occurrence and hopefully the last.  My thought 
+was to pass on the information to see if it could be helpful to the 
+developer.
 
-I have yet to figure out what (b) is -- I did some printf-debugging and I'm
-fairly sure about parts (a) and (c). But by the time (c) happened, the buffer's
-status had the GPU_READING bit set, and it had a ->fence set on it.
+The card is a NVS 510.
 
-I made yet-another attempt at improving this by forcing the second inline write
-to wait for the gpu to stop reading and then do the GART copy directly, but
-that didn't seem to help.
+
+
+
+From:   <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
+To:     <bryan.coleman-SAIwBcqG6t4@public.gmane.org>
+Date:   12/04/2013 03:09 PM
+Subject:        [Bug 72315] Fedora 19 64-bit X crash
+
+
+
+Comment # 1 on bug 72315 from Ilia Mirkin 
+Do things work well otherwise? Might this card be a NVC1? If so, get 
+3.11.10+,
+3.12.2+ or 3.13-rc1+, there's a commit that fixes semi-random failures in 
+there
+for NVC1.
+
+Take a look at http://nouveau.freedesktop.org/wiki/Bugs/ for some of the
+information that could be useful. At the very least complete logs and what
+hardware you have.
+
+Is this issue reproducible in any way, or one-time-ever occurrence?
+You are receiving this mail because: 
+You are on the CC list for the bug.
+You reported the bug.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1386193401.56Fc1Fd4.21086
-Date: Wed, 4 Dec 2013 21:43:21 +0000
+--1386251323.086f1c31.20667
+Date: Thu, 5 Dec 2013 13:48:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,34 +85,54 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c29">Comment # 29</a>
+   title="NEW --- - Fedora 19 64-bit X crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72315#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - Fedora 19 64-bit X crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72315">bug 72315</a>
+              from <span class="vcard"><a class="email" href="mailto:bryan.coleman&#64;dart.biz" title="bryan.coleman&#64;dart.biz">bryan.coleman&#64;dart.biz</a>
 </span></b>
-        <pre>The wait is correct and always needed. I believe that the last patch is
-actually incorrect. I've added a whole bunch of comments to that function which
-reflect my understanding of how it works. It appears to be correct.
+        <pre>Yes, things seem to work just fine with the one exception being this case. 
 
-I think what's happening is that
 
-(a) inline write to GART. no staging, just returns the buffer's memory
-(b) something happens
-(c) inline write to GART. at this point, the GPU is now reading the buffer. so
-it has to do the whole staging dance to schedule the write to be done by the
-GPU.
-(d) render happens, and has to wait for that second inline write to complete.
+This was a one-time-ever occurrence and hopefully the last.  My thought 
+was to pass on the information to see if it could be helpful to the 
+developer.
 
-I have yet to figure out what (b) is -- I did some printf-debugging and I'm
-fairly sure about parts (a) and (c). But by the time (c) happened, the buffer's
-status had the GPU_READING bit set, and it had a -&gt;fence set on it.
+The card is a NVS 510.
 
-I made yet-another attempt at improving this by forcing the second inline write
-to wait for the gpu to stop reading and then do the GART copy directly, but
-that didn't seem to help.</pre>
+
+
+
+From:   &lt;<a href="mailto:bugzilla-daemon&#64;freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a>&gt;
+To:     &lt;<a href="mailto:bryan.coleman&#64;dart.biz">bryan.coleman&#64;dart.biz</a>&gt;
+Date:   12/04/2013 03:09 PM
+Subject:        [<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Fedora 19 64-bit X crash"
+   href="show_bug.cgi?id=72315">Bug 72315</a>] Fedora 19 64-bit X crash
+
+
+
+<a href="show_bug.cgi?id=72315#c1">Comment # 1</a> on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Fedora 19 64-bit X crash"
+   href="show_bug.cgi?id=72315">bug 72315</a> from Ilia Mirkin 
+Do things work well otherwise? Might this card be a NVC1? If so, get 
+3.11.10+,
+3.12.2+ or 3.13-rc1+, there's a commit that fixes semi-random failures in 
+there
+for NVC1.
+
+Take a look at <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a> for some of the
+information that could be useful. At the very least complete logs and what
+hardware you have.
+
+Is this issue reproducible in any way, or one-time-ever occurrence?
+You are receiving this mail because: 
+You are on the CC list for the bug.
+You reported the bug.</pre>
         </div>
       </p>
       <hr>
@@ -110,9 +144,9 @@ that didn't seem to help.</pre>
     </body>
 </html>
 
---1386193401.56Fc1Fd4.21086--
+--1386251323.086f1c31.20667--
 
---===============1650198367==
+--===============0012952982==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +157,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1650198367==--
+--===============0012952982==--
