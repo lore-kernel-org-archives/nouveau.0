@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72399] New: [NVAA][NV50][Regression] Oops : nouveau:
+Subject: [Bug 72399] [NVAA][NV50][Regression] Oops : nouveau:
  3.13-rc1+ probe of 0000:02:00.0 failed with error -22
-Date: Fri, 06 Dec 2013 14:31:54 +0000
-Message-ID: <bug-72399-8800@http.bugs.freedesktop.org/>
+Date: Fri, 06 Dec 2013 14:36:01 +0000
+Message-ID: <bug-72399-8800-te9B6l7c5z@http.bugs.freedesktop.org/>
+References: <bug-72399-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0666618762=="
+Content-Type: multipart/mixed; boundary="===============1429102148=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-72399-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,58 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0666618762==
-Content-Type: multipart/alternative; boundary="1386340314.Eb6F851.6659"; charset="us-ascii"
+--===============1429102148==
+Content-Type: multipart/alternative; boundary="1386340561.48acef652.7381"; charset="us-ascii"
 
 
---1386340314.Eb6F851.6659
-Date: Fri, 6 Dec 2013 14:31:54 +0000
+--1386340561.48acef652.7381
+Date: Fri, 6 Dec 2013 14:36:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=72399
 
-          Priority: medium
-            Bug ID: 72399
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NVAA][NV50][Regression] Oops : nouveau: 3.13-rc1+
-                    probe of 0000:02:00.0 failed with error -22
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: critical
-    Classification: Unclassified
-                OS: All
-          Reporter: dirkneukirchen-S0/GAf8tV78@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Created attachment 90360
-  --> https://bugs.freedesktop.org/attachment.cgi?id=90360&action=edit
-lspci -vv -nn output
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-[   11.132901] nouveau E[     CLK][0000:02:00.0] init failed, -22
-[   11.132966] nouveau E[     DRM] failed to create 0x80000080, -22
-[   11.133734] nouveau: probe of 0000:02:00.0 failed with error -22
-[   11.138028] BUG: unable to handle kernel paging request at 08097000
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+http://lists.freedesktop.org/archives/nouveau/2013-December/015304.html
 
-Kernel version with that bug:
-3.13-rc1
-3.13-rc2
+Fixed in drm-nouveau-next, or in airlied's drm-fixes, should be upstream
+soonish.
 
-Kernel versions without the bug: 3.12.1 (and before)
+The oops itself actually has nothing to do with nouveau. It is fixed by
 
-I already filed a bug report and attached a netconsole log of
-3.13-rc1 + 3.12.1 on
-Kernel Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=65771
+http://lists.freedesktop.org/archives/dri-devel/2013-December/050098.html
+
+and will hopefully be picked up in the drm-fixes branch and make its way to
+3.13.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1386340314.Eb6F851.6659
-Date: Fri, 6 Dec 2013 14:31:54 +0000
+--1386340561.48acef652.7381
+Date: Fri, 6 Dec 2013 14:36:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -78,112 +65,58 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVAA][NV50][Regression] Oops : nouveau: 3.13-rc1+ probe of 0000:02:00.0 failed with error -22"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72399">bug 72399</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAA][NV50][Regression] Oops : nouveau: 3.13-rc1+ probe of 0000:02:00.0 failed with error -22"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72399">72399</a>
-          </td>
-        </tr>
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
 
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVAA][NV50][Regression] Oops : nouveau: 3.13-rc1+ probe of 0000:02:00.0 failed with error -22
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>critical
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>dirkneukirchen&#64;web.de
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=90360" name="attach_90360" title="lspci -vv -nn output">attachment 90360</a> <a href="attachment.cgi?id=90360&amp;action=edit" title="lspci -vv -nn output">[details]</a></span>
-lspci -vv -nn output
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVAA][NV50][Regression] Oops : nouveau: 3.13-rc1+ probe of 0000:02:00.0 failed with error -22"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72399#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVAA][NV50][Regression] Oops : nouveau: 3.13-rc1+ probe of 0000:02:00.0 failed with error -22"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72399">bug 72399</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre><a href="http://lists.freedesktop.org/archives/nouveau/2013-December/015304.html">http://lists.freedesktop.org/archives/nouveau/2013-December/015304.html</a>
 
-[   11.132901] nouveau E[     CLK][0000:02:00.0] init failed, -22
-[   11.132966] nouveau E[     DRM] failed to create 0x80000080, -22
-[   11.133734] nouveau: probe of 0000:02:00.0 failed with error -22
-[   11.138028] BUG: unable to handle kernel paging request at 08097000
+Fixed in drm-nouveau-next, or in airlied's drm-fixes, should be upstream
+soonish.
 
-Kernel version with that bug:
-3.13-rc1
-3.13-rc2
+The oops itself actually has nothing to do with nouveau. It is fixed by
 
-Kernel versions without the bug: 3.12.1 (and before)
+<a href="http://lists.freedesktop.org/archives/dri-devel/2013-December/050098.html">http://lists.freedesktop.org/archives/dri-devel/2013-December/050098.html</a>
 
-I already filed a bug report and attached a netconsole log of
-3.13-rc1 + 3.12.1 on
-Kernel Bugzilla: <a href="https://bugzilla.kernel.org/show_bug.cgi?id=65771">https://bugzilla.kernel.org/show_bug.cgi?id=65771</a></pre>
+and will hopefully be picked up in the drm-fixes branch and make its way to
+3.13.</pre>
         </div>
       </p>
       <hr>
@@ -195,9 +128,9 @@ Kernel Bugzilla: <a href="https://bugzilla.kernel.org/show_bug.cgi?id=65771">htt
     </body>
 </html>
 
---1386340314.Eb6F851.6659--
+--1386340561.48acef652.7381--
 
---===============0666618762==
+--===============1429102148==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -208,4 +141,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0666618762==--
+--===============1429102148==--
