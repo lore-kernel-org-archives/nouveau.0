@@ -1,11 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nv50: enable H.264 for NV98+ (VP3, VP4.0)
-Date: Fri,  6 Dec 2013 23:43:07 -0500
-Message-ID: <1386391387-26182-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 61069] [NV17] Crash while displaying large image
+Date: Sat, 07 Dec 2013 08:17:05 +0000
+Message-ID: <bug-61069-8800-S0NJLlXYCI@http.bugs.freedesktop.org/>
+References: <bug-61069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1767231423=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-61069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,55 +16,115 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "10.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Create the ref_bo without any storage type flags set for now. This can
-probably be split up somehow later on, but this seems to work.
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "10.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
----
+--===============1767231423==
+Content-Type: multipart/alternative; boundary="1386404225.234f4Ee2.8927"; charset="us-ascii"
 
-Would be great if someone could see if this also makes MPEG4 work on NVA3+. In
-order to do that, remove the if (chipset < 0xc0) conditional entirely from
-nouveau_vp3_video.c (which I modify in this patch).
 
- src/gallium/drivers/nouveau/nouveau_vp3_video.c | 5 +++--
- src/gallium/drivers/nouveau/nv50/nv98_video.c   | 2 +-
- 2 files changed, 4 insertions(+), 3 deletions(-)
+--1386404225.234f4Ee2.8927
+Date: Sat, 7 Dec 2013 08:17:05 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/src/gallium/drivers/nouveau/nouveau_vp3_video.c b/src/gallium/drivers/nouveau/nouveau_vp3_video.c
-index 07ce016..2f4196c 100644
---- a/src/gallium/drivers/nouveau/nouveau_vp3_video.c
-+++ b/src/gallium/drivers/nouveau/nouveau_vp3_video.c
-@@ -362,10 +362,11 @@ nouveau_vp3_screen_get_video_param(struct pipe_screen *pscreen,
-    enum pipe_video_format codec = u_reduce_video_profile(profile);
-    switch (param) {
-    case PIPE_VIDEO_CAP_SUPPORTED:
--      /* For now, h264 and mpeg4 don't work on pre-nvc0. */
-+      /* For now, mpeg4 doesn't work on pre-nvc0. */
-       if (chipset < 0xc0)
-          return codec == PIPE_VIDEO_FORMAT_MPEG12 ||
--            codec == PIPE_VIDEO_FORMAT_VC1;
-+            codec == PIPE_VIDEO_FORMAT_VC1 ||
-+            codec == PIPE_VIDEO_FORMAT_MPEG4_AVC;
-       /* In the general case, this should work, once the pre-nvc0 problems are
-        * resolved. */
-       return profile >= PIPE_VIDEO_PROFILE_MPEG1 && (
-diff --git a/src/gallium/drivers/nouveau/nv50/nv98_video.c b/src/gallium/drivers/nouveau/nv50/nv98_video.c
-index 069481d..f748c81 100644
---- a/src/gallium/drivers/nouveau/nv50/nv98_video.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv98_video.c
-@@ -200,7 +200,7 @@ nv98_create_decoder(struct pipe_context *context,
-    dec->ref_stride = mb(templ->width)*16 * (mb_half(templ->height)*32 + nouveau_vp3_video_align(templ->height)/2);
-    ret = nouveau_bo_new(screen->device, NOUVEAU_BO_VRAM, 0,
-                         dec->ref_stride * (templ->max_references+2) + tmp_size,
--                        &cfg, &dec->ref_bo);
-+                        NULL, &dec->ref_bo);
-    if (ret)
-       goto fail;
- 
+https://bugs.freedesktop.org/show_bug.cgi?id=61069
+
+--- Comment #7 from dave.mueller-OI3hZJvNYWs@public.gmane.org ---
+In the meantime i updated my system (kernel 3.12, X Server 1.14.3,
+nouveau_drv.so module version = 1.0.9) and the crash with the 3200x2700 picture
+is gone. 
+
+But i see the following lines in the kernel logs:
+
+nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 1 [X[1287]] get 0xbeef0200
+put 0x00022a9c state 0xc000018c (err: MEM_FAULT) push 0x00000000
+nouveau E[ X[1287]] reloc wait_idle failed: -16
+nouveau E[ X[1287]] reloc apply: -16
+
+which seems to be accompanied by a short "hang" of the GUI.
+
+Unfortunately these "hangs" seem not only be triggered by my synthetic test
+case, but also by normal daily work. 
+
+The system seems to be able to recover from this state but from time to time
+(mostly if the system is under load) this results in a complete GUI freeze and
+i need to reboot the whole system.
+
+But i am not sure if this is just a new symptom of the same problem or a
+totally unrelated new problem.
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1386404225.234f4Ee2.8927
+Date: Sat, 7 Dec 2013 08:17:05 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [NV17] Crash while displaying large image"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61069#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [NV17] Crash while displaying large image"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61069">bug 61069</a>
+              from <span class="vcard"><a class="email" href="mailto:dave.mueller&#64;gmx.ch" title="dave.mueller&#64;gmx.ch">dave.mueller&#64;gmx.ch</a>
+</span></b>
+        <pre>In the meantime i updated my system (kernel 3.12, X Server 1.14.3,
+nouveau_drv.so module version = 1.0.9) and the crash with the 3200x2700 picture
+is gone. 
+
+But i see the following lines in the kernel logs:
+
+nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 1 [X[1287]] get 0xbeef0200
+put 0x00022a9c state 0xc000018c (err: MEM_FAULT) push 0x00000000
+nouveau E[ X[1287]] reloc wait_idle failed: -16
+nouveau E[ X[1287]] reloc apply: -16
+
+which seems to be accompanied by a short &quot;hang&quot; of the GUI.
+
+Unfortunately these &quot;hangs&quot; seem not only be triggered by my synthetic test
+case, but also by normal daily work. 
+
+The system seems to be able to recover from this state but from time to time
+(mostly if the system is under load) this results in a complete GUI freeze and
+i need to reboot the whole system.
+
+But i am not sure if this is just a new symptom of the same problem or a
+totally unrelated new problem.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1386404225.234f4Ee2.8927--
+
+--===============1767231423==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1767231423==--
