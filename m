@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68344] [NV50 gallium] [piglit]
- shaders/glsl-fs-texture2d-dependent-4 randomly passes or fails on NVAA/NV50
-Date: Sun, 08 Dec 2013 08:25:51 +0000
-Message-ID: <bug-68344-8800-EV8UeSf9nU@http.bugs.freedesktop.org/>
-References: <bug-68344-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67878] [NV98] [BISECTED] Hardware freeze after
+ resume from suspend
+Date: Sun, 08 Dec 2013 16:29:40 +0000
+Message-ID: <bug-67878-8800-VexatF3twj@http.bugs.freedesktop.org/>
+References: <bug-67878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0689406334=="
+Content-Type: multipart/mixed; boundary="===============0568832292=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68344-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0689406334==
-Content-Type: multipart/alternative; boundary="1386491151.c4cc7Ac02.14387"; charset="us-ascii"
+--===============0568832292==
+Content-Type: multipart/alternative; boundary="1386520180.bFEb24B73.14065"; charset="us-ascii"
 
 
---1386491151.c4cc7Ac02.14387
-Date: Sun, 8 Dec 2013 08:25:51 +0000
+--1386520180.bFEb24B73.14065
+Date: Sun, 8 Dec 2013 16:29:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68344
+https://bugs.freedesktop.org/show_bug.cgi?id=67878
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Hmmm... I just went and retested this with latest mesa, and I can't get it to
-fail on NV98. There have been a few patches that went in that may affect this
-type of issue.
+Pontus Fuchs <pontus.fuchs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Could you verify that this still happens with mesa-git?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           See Also|                            |https://bugs.freedesktop.or
+                   |                            |g/show_bug.cgi?id=62835
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1386491151.c4cc7Ac02.14387
-Date: Sun, 8 Dec 2013 08:25:51 +0000
+--1386520180.bFEb24B73.14065
+Date: Sun, 8 Dec 2013 16:29:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,25 +52,29 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:pontus.fuchs&#64;gmail.com" title="Pontus Fuchs &lt;pontus.fuchs&#64;gmail.com&gt;"> <span class="fn">Pontus Fuchs</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50 gallium] [piglit] shaders/glsl-fs-texture2d-dependent-4 randomly passes or fails on NVAA/NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68344#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV50 gallium] [piglit] shaders/glsl-fs-texture2d-dependent-4 randomly passes or fails on NVAA/NV50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68344">bug 68344</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Hmmm... I just went and retested this with latest mesa, and I can't get it to
-fail on NV98. There have been a few patches that went in that may affect this
-type of issue.
+   title="NEW --- - [NV98] [BISECTED] Hardware freeze after resume from suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">bug 67878</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-Could you verify that this still happens with mesa-git?</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">See Also</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=62835
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -81,9 +85,9 @@ Could you verify that this still happens with mesa-git?</pre>
     </body>
 </html>
 
---1386491151.c4cc7Ac02.14387--
+--1386520180.bFEb24B73.14065--
 
---===============0689406334==
+--===============0568832292==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0689406334==--
+--===============0568832292==--
