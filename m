@@ -1,12 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nv50: TXF already has integer arguments,
-	don't try to convert from f32
-Date: Sun,  8 Dec 2013 03:16:38 -0500
-Message-ID: <1386490598-32666-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 68344] [NV50 gallium] [piglit]
+ shaders/glsl-fs-texture2d-dependent-4 randomly passes or fails on NVAA/NV50
+Date: Sun, 08 Dec 2013 08:25:51 +0000
+Message-ID: <bug-68344-8800-EV8UeSf9nU@http.bugs.freedesktop.org/>
+References: <bug-68344-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0689406334=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-68344-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,52 +17,81 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Fixes the texelFetch piglit tests.
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
----
+--===============0689406334==
+Content-Type: multipart/alternative; boundary="1386491151.c4cc7Ac02.14387"; charset="us-ascii"
 
-Verified a few things, but it's hard to check this fully. They array-texture
-piglit test fails if the conversion isn't done at all, and texelFetch starts
-passing if the conversion is removed.
 
-Dunno if this is the sort of thing worth sticking a stable tag on, so leaving
-it out. Feel free to add on commit.
+--1386491151.c4cc7Ac02.14387
+Date: Sun, 8 Dec 2013 08:25:51 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
- .../drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp    | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+https://bugs.freedesktop.org/show_bug.cgi?id=68344
 
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp
-index caaf09f..07f3a21 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp
-@@ -575,14 +575,16 @@ NV50LoweringPreSSA::handleTEX(TexInstruction *i)
-       if (i->op == OP_TXB || i->op == OP_TXL)
-          i->swapSources(dref, lod);
- 
--   // array index must be converted to u32
-    if (i->tex.target.isArray()) {
--      Value *layer = i->getSrc(arg - 1);
--      LValue *src = new_LValue(func, FILE_GPR);
--      bld.mkCvt(OP_CVT, TYPE_U32, src, TYPE_F32, layer);
--      bld.mkOp2(OP_MIN, TYPE_U32, src, src, bld.loadImm(NULL, 511));
--      i->setSrc(arg - 1, src);
--
-+      if (i->op != OP_TXF) {
-+         // array index must be converted to u32, but it's already an integer
-+         // for TXF
-+         Value *layer = i->getSrc(arg - 1);
-+         LValue *src = new_LValue(func, FILE_GPR);
-+         bld.mkCvt(OP_CVT, TYPE_U32, src, TYPE_F32, layer);
-+         bld.mkOp2(OP_MIN, TYPE_U32, src, src, bld.loadImm(NULL, 511));
-+         i->setSrc(arg - 1, src);
-+      }
-       if (i->tex.target.isCube()) {
-          std::vector<Value *> acube, a2d;
-          int c;
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Hmmm... I just went and retested this with latest mesa, and I can't get it to
+fail on NV98. There have been a few patches that went in that may affect this
+type of issue.
+
+Could you verify that this still happens with mesa-git?
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1386491151.c4cc7Ac02.14387
+Date: Sun, 8 Dec 2013 08:25:51 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50 gallium] [piglit] shaders/glsl-fs-texture2d-dependent-4 randomly passes or fails on NVAA/NV50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68344#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50 gallium] [piglit] shaders/glsl-fs-texture2d-dependent-4 randomly passes or fails on NVAA/NV50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68344">bug 68344</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Hmmm... I just went and retested this with latest mesa, and I can't get it to
+fail on NV98. There have been a few patches that went in that may affect this
+type of issue.
+
+Could you verify that this still happens with mesa-git?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1386491151.c4cc7Ac02.14387--
+
+--===============0689406334==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0689406334==--
