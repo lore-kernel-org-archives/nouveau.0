@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72458] [NV63] Machine freezes when launching Firefox
-Date: Sun, 08 Dec 2013 04:08:07 +0000
-Message-ID: <bug-72458-8800-pDKIlMoWnV@http.bugs.freedesktop.org/>
-References: <bug-72458-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH] nv50: enable H.264 for NV98+ (VP3, VP4.0)
+Date: Sun, 8 Dec 2013 00:31:16 -0500
+Message-ID: <CAKb7UvjrKP6gjXEQyNNv36UyXreeVFm-bM64F3Bhf3PebDXi9g@mail.gmail.com>
+References: <1386391387-26182-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1127510062=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72458-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1386391387-26182-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,248 +17,61 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "10.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Fri, Dec 6, 2013 at 11:43 PM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+> Create the ref_bo without any storage type flags set for now. This can
+> probably be split up somehow later on, but this seems to work.
+>
+> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+> Cc: "10.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+> ---
+>
+> Would be great if someone could see if this also makes MPEG4 work on NVA3+. In
+> order to do that, remove the if (chipset < 0xc0) conditional entirely from
+> nouveau_vp3_video.c (which I modify in this patch).
 
---===============1127510062==
-Content-Type: multipart/alternative; boundary="1386475687.e2a8Ef1.10593"; charset="us-ascii"
+Martin Peres did that, and it seems to work. I'm going to send an
+updated series.
 
-
---1386475687.e2a8Ef1.10593
-Date: Sun, 8 Dec 2013 04:08:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=72458
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Machine freezes when        |[NV63] Machine freezes when
-                   |launching Firefox           |launching Firefox
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Some relevant bits from the log. Pretty sure that the MMIO writes to b010/b020
-aren't an issue... although I am a bit surprised you're seeing them. I wonder
-if firefox is somehow managing to invoke PMPEG. Or it could be the fifo getting
-fed random stuff causing it.
-
-Also, your kernel is compiled with gcc-4.8. Are you using a libdrm before
-2.4.48 also compiled with gcc-4.8? If so, upgrade, or use an older gcc.
-
-[ 4986.606330] nouveau E[   PFIFO][0000:00:10.0] DMA_PUSHER - ch 4
-[firefox[3578]] get 0x0036a000 put 0x0036a088 state 0xc0000000 (err: MEM_FAULT)
-push 0x00000000
-
-MEM_FAULT? A little coincidental that the get pointer is at a page boundary.
-But this is pre-nv50, so there's no paging... what does MEM_FAULT mean?
-
-[ 4986.606336] nouveau W[   PFIFO][0000:00:10.0] unknown intr 0x00010000, ch 4
-[ 4987.074657] nouveau E[    PBUS][0000:00:10.0] MMIO write of 0x00dd0001 FAULT
-at 0x00b010
-[ 4987.080772] nouveau E[    PBUS][0000:00:10.0] MMIO write of 0x00e90001 FAULT
-at 0x00b020
-[ 5002.116004] nouveau E[firefox[3578]] failed to idle channel 0xcccc0000
-[firefox[3578]]
-[ 5002.116006] nouveau E[firefox[3574]] failed to idle channel 0xcccc0000
-[firefox[3574]]
-[ 5002.118725] [sched_delayed] sched: RT throttling activated
-[ 5002.129735] nouveau E[    PBUS][0000:00:10.0] MMIO write of 0x00000000 FAULT
-at 0x00b010
-[ 5002.136251] nouveau E[    PBUS][0000:00:10.0] MMIO write of 0x00000000 FAULT
-at 0x00b020
-[ 5017.116005] nouveau E[firefox[3578]] failed to idle channel 0xcccc0000
-[firefox[3578]]
-[ 5017.136003] nouveau E[firefox[3574]] failed to idle channel 0xcccc0000
-[firefox[3574]]
-[ 5024.076000] BUG: soft lockup - CPU#1 stuck for 21s! [firefox:3574]
-[ 5024.076000] CPU: 1 PID: 3574 Comm: firefox Tainted: GF           
-3.11.0-13-generic #20-Ubuntu
-[ 5024.076000] Hardware name: Gigabyte Technology Co., Ltd.
-GA-73PVM-S2H/GA-73PVM-S2H, BIOS F6 03/11/2008
-[ 5024.076000] task: ffff88003ba51770 ti: ffff88003df4e000 task.ti:
-ffff88003df4e000
-[ 5024.076000] RIP: 0010:[<ffffffff8136f892>]  [<ffffffff8136f892>]
-ioread32+0x42/0x50
-[ 5024.076000] RSP: 0018:ffff88003df4fca0  EFLAGS: 00000292
-[ 5024.076000] RAX: 0000000000000000 RBX: ffff88003df42280 RCX:
-000000000000f7f3
-[ 5024.076000] RDX: 000000000000f7f3 RSI: ffffc900023c6048 RDI:
-ffffc900023c6048
-[ 5024.076000] RBP: ffff88003df4fca8 R08: 0000000000017360 R09:
-ffff880061979780
-[ 5024.076000] R10: ffffffffa0253b00 R11: ffff88003df4fe10 R12:
-ffff88005ea3a808
-[ 5024.076000] R13: ffff880072936000 R14: 0000000000000008 R15:
-0000000000000001
-[ 5024.076000] FS:  00007faf14955740(0000) GS:ffff88007fa80000(0000)
-knlGS:0000000000000000
-[ 5024.076000] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[ 5024.076000] CR2: 00007fffbc0f1b08 CR3: 000000005eb19000 CR4:
-00000000000007e0
-[ 5024.076000] Stack:
-[ 5024.076000]  ffffffffa01c06e5 ffff88003df4fcb8 ffffffffa01f2f3f
-ffff88003df4fcf0
-[ 5024.076000]  ffffffffa01ea83f ffff880061979780 0000000000000000
-0000000000000000
-[ 5024.076000]  ffff88003ba51770 0000000000000000 ffff88003df4fd48
-ffffffffa01eaed5
-[ 5024.076000] Call Trace:
-[ 5024.076000]  [<ffffffffa01c06e5>] ? _nouveau_fifo_channel_rd32+0x15/0x20
-[nouveau]
-[ 5024.076000]  [<ffffffffa01f2f3f>] nv10_fence_read+0x1f/0x30 [nouveau]
-[ 5024.076000]  [<ffffffffa01ea83f>] nouveau_fence_update+0x6f/0x90 [nouveau]
-[ 5024.076000]  [<ffffffffa01eaed5>] nouveau_fence_wait+0xc5/0x1a0 [nouveau]
-[ 5024.076000]  [<ffffffffa01eb238>] ? nouveau_fence_new+0x68/0xc0 [nouveau]
-[ 5024.076000]  [<ffffffffa01e9495>] nouveau_channel_idle+0x75/0xa0 [nouveau]
-[ 5024.076000]  [<ffffffffa01f2bbe>] nouveau_abi16_ioctl_gpuobj_free+0x8e/0x170
-[nouveau]
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1386475687.e2a8Ef1.10593
-Date: Sun, 8 Dec 2013 04:08:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV63] Machine freezes when launching Firefox"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72458">bug 72458</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Machine freezes when launching Firefox
-           </td>
-           <td>[NV63] Machine freezes when launching Firefox
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV63] Machine freezes when launching Firefox"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72458#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV63] Machine freezes when launching Firefox"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72458">bug 72458</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Some relevant bits from the log. Pretty sure that the MMIO writes to b010/b020
-aren't an issue... although I am a bit surprised you're seeing them. I wonder
-if firefox is somehow managing to invoke PMPEG. Or it could be the fifo getting
-fed random stuff causing it.
-
-Also, your kernel is compiled with gcc-4.8. Are you using a libdrm before
-2.4.48 also compiled with gcc-4.8? If so, upgrade, or use an older gcc.
-
-[ 4986.606330] nouveau E[   PFIFO][0000:00:10.0] DMA_PUSHER - ch 4
-[firefox[3578]] get 0x0036a000 put 0x0036a088 state 0xc0000000 (err: MEM_FAULT)
-push 0x00000000
-
-MEM_FAULT? A little coincidental that the get pointer is at a page boundary.
-But this is pre-nv50, so there's no paging... what does MEM_FAULT mean?
-
-[ 4986.606336] nouveau W[   PFIFO][0000:00:10.0] unknown intr 0x00010000, ch 4
-[ 4987.074657] nouveau E[    PBUS][0000:00:10.0] MMIO write of 0x00dd0001 FAULT
-at 0x00b010
-[ 4987.080772] nouveau E[    PBUS][0000:00:10.0] MMIO write of 0x00e90001 FAULT
-at 0x00b020
-[ 5002.116004] nouveau E[firefox[3578]] failed to idle channel 0xcccc0000
-[firefox[3578]]
-[ 5002.116006] nouveau E[firefox[3574]] failed to idle channel 0xcccc0000
-[firefox[3574]]
-[ 5002.118725] [sched_delayed] sched: RT throttling activated
-[ 5002.129735] nouveau E[    PBUS][0000:00:10.0] MMIO write of 0x00000000 FAULT
-at 0x00b010
-[ 5002.136251] nouveau E[    PBUS][0000:00:10.0] MMIO write of 0x00000000 FAULT
-at 0x00b020
-[ 5017.116005] nouveau E[firefox[3578]] failed to idle channel 0xcccc0000
-[firefox[3578]]
-[ 5017.136003] nouveau E[firefox[3574]] failed to idle channel 0xcccc0000
-[firefox[3574]]
-[ 5024.076000] BUG: soft lockup - CPU#1 stuck for 21s! [firefox:3574]
-[ 5024.076000] CPU: 1 PID: 3574 Comm: firefox Tainted: GF           
-3.11.0-13-generic #20-Ubuntu
-[ 5024.076000] Hardware name: Gigabyte Technology Co., Ltd.
-GA-73PVM-S2H/GA-73PVM-S2H, BIOS F6 03/11/2008
-[ 5024.076000] task: ffff88003ba51770 ti: ffff88003df4e000 task.ti:
-ffff88003df4e000
-[ 5024.076000] RIP: 0010:[&lt;ffffffff8136f892&gt;]  [&lt;ffffffff8136f892&gt;]
-ioread32+0x42/0x50
-[ 5024.076000] RSP: 0018:ffff88003df4fca0  EFLAGS: 00000292
-[ 5024.076000] RAX: 0000000000000000 RBX: ffff88003df42280 RCX:
-000000000000f7f3
-[ 5024.076000] RDX: 000000000000f7f3 RSI: ffffc900023c6048 RDI:
-ffffc900023c6048
-[ 5024.076000] RBP: ffff88003df4fca8 R08: 0000000000017360 R09:
-ffff880061979780
-[ 5024.076000] R10: ffffffffa0253b00 R11: ffff88003df4fe10 R12:
-ffff88005ea3a808
-[ 5024.076000] R13: ffff880072936000 R14: 0000000000000008 R15:
-0000000000000001
-[ 5024.076000] FS:  00007faf14955740(0000) GS:ffff88007fa80000(0000)
-knlGS:0000000000000000
-[ 5024.076000] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[ 5024.076000] CR2: 00007fffbc0f1b08 CR3: 000000005eb19000 CR4:
-00000000000007e0
-[ 5024.076000] Stack:
-[ 5024.076000]  ffffffffa01c06e5 ffff88003df4fcb8 ffffffffa01f2f3f
-ffff88003df4fcf0
-[ 5024.076000]  ffffffffa01ea83f ffff880061979780 0000000000000000
-0000000000000000
-[ 5024.076000]  ffff88003ba51770 0000000000000000 ffff88003df4fd48
-ffffffffa01eaed5
-[ 5024.076000] Call Trace:
-[ 5024.076000]  [&lt;ffffffffa01c06e5&gt;] ? _nouveau_fifo_channel_rd32+0x15/0x20
-[nouveau]
-[ 5024.076000]  [&lt;ffffffffa01f2f3f&gt;] nv10_fence_read+0x1f/0x30 [nouveau]
-[ 5024.076000]  [&lt;ffffffffa01ea83f&gt;] nouveau_fence_update+0x6f/0x90 [nouveau]
-[ 5024.076000]  [&lt;ffffffffa01eaed5&gt;] nouveau_fence_wait+0xc5/0x1a0 [nouveau]
-[ 5024.076000]  [&lt;ffffffffa01eb238&gt;] ? nouveau_fence_new+0x68/0xc0 [nouveau]
-[ 5024.076000]  [&lt;ffffffffa01e9495&gt;] nouveau_channel_idle+0x75/0xa0 [nouveau]
-[ 5024.076000]  [&lt;ffffffffa01f2bbe&gt;] nouveau_abi16_ioctl_gpuobj_free+0x8e/0x170
-[nouveau]</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1386475687.e2a8Ef1.10593--
-
---===============1127510062==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1127510062==--
+>
+>  src/gallium/drivers/nouveau/nouveau_vp3_video.c | 5 +++--
+>  src/gallium/drivers/nouveau/nv50/nv98_video.c   | 2 +-
+>  2 files changed, 4 insertions(+), 3 deletions(-)
+>
+> diff --git a/src/gallium/drivers/nouveau/nouveau_vp3_video.c b/src/gallium/drivers/nouveau/nouveau_vp3_video.c
+> index 07ce016..2f4196c 100644
+> --- a/src/gallium/drivers/nouveau/nouveau_vp3_video.c
+> +++ b/src/gallium/drivers/nouveau/nouveau_vp3_video.c
+> @@ -362,10 +362,11 @@ nouveau_vp3_screen_get_video_param(struct pipe_screen *pscreen,
+>     enum pipe_video_format codec = u_reduce_video_profile(profile);
+>     switch (param) {
+>     case PIPE_VIDEO_CAP_SUPPORTED:
+> -      /* For now, h264 and mpeg4 don't work on pre-nvc0. */
+> +      /* For now, mpeg4 doesn't work on pre-nvc0. */
+>        if (chipset < 0xc0)
+>           return codec == PIPE_VIDEO_FORMAT_MPEG12 ||
+> -            codec == PIPE_VIDEO_FORMAT_VC1;
+> +            codec == PIPE_VIDEO_FORMAT_VC1 ||
+> +            codec == PIPE_VIDEO_FORMAT_MPEG4_AVC;
+>        /* In the general case, this should work, once the pre-nvc0 problems are
+>         * resolved. */
+>        return profile >= PIPE_VIDEO_PROFILE_MPEG1 && (
+> diff --git a/src/gallium/drivers/nouveau/nv50/nv98_video.c b/src/gallium/drivers/nouveau/nv50/nv98_video.c
+> index 069481d..f748c81 100644
+> --- a/src/gallium/drivers/nouveau/nv50/nv98_video.c
+> +++ b/src/gallium/drivers/nouveau/nv50/nv98_video.c
+> @@ -200,7 +200,7 @@ nv98_create_decoder(struct pipe_context *context,
+>     dec->ref_stride = mb(templ->width)*16 * (mb_half(templ->height)*32 + nouveau_vp3_video_align(templ->height)/2);
+>     ret = nouveau_bo_new(screen->device, NOUVEAU_BO_VRAM, 0,
+>                          dec->ref_stride * (templ->max_references+2) + tmp_size,
+> -                        &cfg, &dec->ref_bo);
+> +                        NULL, &dec->ref_bo);
+>     if (ret)
+>        goto fail;
+>
+> --
+> 1.8.3.2
+>
