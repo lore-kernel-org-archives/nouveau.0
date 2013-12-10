@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37681] Tearing with composite extension
-Date: Tue, 10 Dec 2013 04:28:24 +0000
-Message-ID: <bug-37681-8800-tavsMjJCod@http.bugs.freedesktop.org/>
-References: <bug-37681-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69155] [NV50 gallium] [piglit]
+ bin/varying-packing-simple triggers memory corruption/failures
+Date: Tue, 10 Dec 2013 10:50:14 +0000
+Message-ID: <bug-69155-8800-jxFGEHvz2w@http.bugs.freedesktop.org/>
+References: <bug-69155-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1889547036=="
+Content-Type: multipart/mixed; boundary="===============1320450648=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37681-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69155-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1889547036==
-Content-Type: multipart/alternative; boundary="1386649704.b3614704.30234"; charset="us-ascii"
+--===============1320450648==
+Content-Type: multipart/alternative; boundary="1386672614.843baDa01.4002"; charset="us-ascii"
 
 
---1386649704.b3614704.30234
-Date: Tue, 10 Dec 2013 04:28:24 +0000
+--1386672614.843baDa01.4002
+Date: Tue, 10 Dec 2013 10:50:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37681
+https://bugs.freedesktop.org/show_bug.cgi?id=69155
 
---- Comment #5 from Joe <random342-EMRzualFZlQ@public.gmane.org> ---
-Actually it's even worse on my end. Tearing does not go away on nouveau's
-drivers no matter what I do. Even with compositing completely disabled, opengl
-video output still tears. The best I can do is enable opengl compositing with
-compton or something similiar and enable sync to Vblank, but there's still
-tearing at the top of any fullscreen video even with opengl video output. I'm
-on Arch with a Nvidia GTX 650. The tearing issue does not happen in the
-proprietary drivers either. I hope this issue gets more attention as the
-proprietary drivers have some other problems of their own for me.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+OK, a patch to make it return 15 has been checked in. This corresponds to
+returning 60 for the max varying floats thing, which in turn is what the blob
+reports on my hardware.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1386649704.b3614704.30234
-Date: Tue, 10 Dec 2013 04:28:24 +0000
+--1386672614.843baDa01.4002
+Date: Tue, 10 Dec 2013 10:50:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,27 +57,50 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV50 gallium] [piglit] bin/varying-packing-simple triggers memory corruption/failures"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69155">bug 69155</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Tearing with composite extension"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37681#c5">Comment # 5</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV50 gallium] [piglit] bin/varying-packing-simple triggers memory corruption/failures"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69155#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Tearing with composite extension"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37681">bug 37681</a>
-              from <span class="vcard"><a class="email" href="mailto:random342&#64;live.com" title="Joe &lt;random342&#64;live.com&gt;"> <span class="fn">Joe</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV50 gallium] [piglit] bin/varying-packing-simple triggers memory corruption/failures"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69155">bug 69155</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Actually it's even worse on my end. Tearing does not go away on nouveau's
-drivers no matter what I do. Even with compositing completely disabled, opengl
-video output still tears. The best I can do is enable opengl compositing with
-compton or something similiar and enable sync to Vblank, but there's still
-tearing at the top of any fullscreen video even with opengl video output. I'm
-on Arch with a Nvidia GTX 650. The tearing issue does not happen in the
-proprietary drivers either. I hope this issue gets more attention as the
-proprietary drivers have some other problems of their own for me.</pre>
+        <pre>OK, a patch to make it return 15 has been checked in. This corresponds to
+returning 60 for the max varying floats thing, which in turn is what the blob
+reports on my hardware.</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +112,9 @@ proprietary drivers have some other problems of their own for me.</pre>
     </body>
 </html>
 
---1386649704.b3614704.30234--
+--1386672614.843baDa01.4002--
 
---===============1889547036==
+--===============1320450648==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +125,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1889547036==--
+--===============1320450648==--
