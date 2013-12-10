@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE7] Failed to initialise context object:
- 2D_NVC0 (0) (for my GeForce GT 750M)
-Date: Tue, 10 Dec 2013 13:12:05 +0000
-Message-ID: <bug-70354-8800-LZPMvyY6p3@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51477] bad/missing graphics with NV11 / GeForce
+	2MX/MX400
+Date: Tue, 10 Dec 2013 17:57:50 +0000
+Message-ID: <bug-51477-8800-EJbjgRQhwJ@http.bugs.freedesktop.org/>
+References: <bug-51477-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0474673605=="
+Content-Type: multipart/mixed; boundary="===============1781363349=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +21,55 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0474673605==
-Content-Type: multipart/alternative; boundary="1386681125.54E02.31757"; charset="us-ascii"
+--===============1781363349==
+Content-Type: multipart/alternative; boundary="1386698270.847Ed3.21492"; charset="us-ascii"
 
 
---1386681125.54E02.31757
-Date: Tue, 10 Dec 2013 13:12:05 +0000
+--1386698270.847Ed3.21492
+Date: Tue, 10 Dec 2013 17:57:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
+https://bugs.freedesktop.org/show_bug.cgi?id=51477
 
---- Comment #17 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-If any of you are up for it, there's a HUB_INIT timeout fix in Ben's
-repository. It's set up as an out-of-tree module:
+--- Comment #19 from ajhurtado21-/E1597aS9LQAvxtiuMwx3w@public.gmane.org ---
+(In reply to comment #17)
+> I have an NV17 ( NVIDIA Corporation NV17 [GeForce4 440 Go 64M] (rev a3) )
+> and the same problems. 
+> 
+> Unfortunatly it's a notebook (that would be still fine from my point of
+> view) and so i can't change the graphic card.
+> 
+> I attach some screenshot made with xubuntu 13.10 beta2 with the problems in
+> gimp, terminal and the missing icons in thunar.
+> 
+> Thank you.
 
-git clone git://people.freedesktop.org/~darktama/nouveau
-cd nouveau/drm; make
+I just recently had this same problem with my old desktop with the same
+graphics card.
 
-That should create a nouveau.ko that you can use. The tree it will compile
-against probably has to be 3.13-rc1+. (You can also port the patches over to
-the linux tree with a bunch of sed work.)
+My problem: I'm still a novice in Linux. I started out with Xubutnu 13 awhile
+ago, then found out it's not a bug but i support issue. *ubuntu 13 maybe even
+12 only supports Xorg server 11 which doesn't support Nvidia driver 96.**. So i
+downgraded to Xubuntu 11 which automatically installed my graphics card but
+after a couple ppl told me its not a good idea to switch to unsupported OS and
+i found out Debian 7 is current and still supports older Nvidia drivers. When i
+switch to Debian 7 it doesnt auto install so i had some problems there but
+nothing to complex. and for the missing icons and such (which isnt a problem in
+Debian 7) just go to Settings> Appearance> Fonts tab uncheck "Enable
+Anti-Aliasing and/or Icon tab and switch the icon option.
 
-P.S. The patch in question is:
-http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=0c463bb767a0af0781256ec118c5890077c2f46c
+My Fix: Here's a link to a forum i posted on with the fix
+http://www.linuxquestions.org/questions/showthread.php?p=5078340#post5078340
+
+Hopes this helps!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1386681125.54E02.31757
-Date: Tue, 10 Dec 2013 13:12:05 +0000
+--1386698270.847Ed3.21492
+Date: Tue, 10 Dec 2013 17:57:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,26 +82,44 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] Failed to initialise context object: 2D_NVC0 (0) (for my GeForce GT 750M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c17">Comment # 17</a>
+   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] Failed to initialise context object: 2D_NVC0 (0) (for my GeForce GT 750M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
+              from <span class="vcard"><a class="email" href="mailto:ajhurtado21&#64;yahoo.com" title="ajhurtado21&#64;yahoo.com">ajhurtado21&#64;yahoo.com</a>
 </span></b>
-        <pre>If any of you are up for it, there's a HUB_INIT timeout fix in Ben's
-repository. It's set up as an out-of-tree module:
+        <pre>(In reply to <a href="show_bug.cgi?id=51477#c17">comment #17</a>)
+<span class="quote">&gt; I have an NV17 ( NVIDIA Corporation NV17 [GeForce4 440 Go 64M] (rev a3) )
+&gt; and the same problems. 
+&gt; 
+&gt; Unfortunatly it's a notebook (that would be still fine from my point of
+&gt; view) and so i can't change the graphic card.
+&gt; 
+&gt; I attach some screenshot made with xubuntu 13.10 beta2 with the problems in
+&gt; gimp, terminal and the missing icons in thunar.
+&gt; 
+&gt; Thank you.</span >
 
-git clone git://people.freedesktop.org/~darktama/nouveau
-cd nouveau/drm; make
+I just recently had this same problem with my old desktop with the same
+graphics card.
 
-That should create a nouveau.ko that you can use. The tree it will compile
-against probably has to be 3.13-rc1+. (You can also port the patches over to
-the linux tree with a bunch of sed work.)
+My problem: I'm still a novice in Linux. I started out with Xubutnu 13 awhile
+ago, then found out it's not a bug but i support issue. *ubuntu 13 maybe even
+12 only supports Xorg server 11 which doesn't support Nvidia driver 96.**. So i
+downgraded to Xubuntu 11 which automatically installed my graphics card but
+after a couple ppl told me its not a good idea to switch to unsupported OS and
+i found out Debian 7 is current and still supports older Nvidia drivers. When i
+switch to Debian 7 it doesnt auto install so i had some problems there but
+nothing to complex. and for the missing icons and such (which isnt a problem in
+Debian 7) just go to Settings&gt; Appearance&gt; Fonts tab uncheck &quot;Enable
+Anti-Aliasing and/or Icon tab and switch the icon option.
 
-P.S. The patch in question is:
-<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=0c463bb767a0af0781256ec118c5890077c2f46c">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=0c463bb767a0af0781256ec118c5890077c2f46c</a></pre>
+My Fix: Here's a link to a forum i posted on with the fix
+<a href="http://www.linuxquestions.org/questions/showthread.php?p=5078340#post5078340">http://www.linuxquestions.org/questions/showthread.php?p=5078340#post5078340</a>
+
+Hopes this helps!</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +131,9 @@ P.S. The patch in question is:
     </body>
 </html>
 
---1386681125.54E02.31757--
+--1386698270.847Ed3.21492--
 
---===============0474673605==
+--===============1781363349==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +144,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0474673605==--
+--===============1781363349==--
