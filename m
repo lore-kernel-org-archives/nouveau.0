@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51477] bad/missing graphics with NV11 / GeForce
-	2MX/MX400
-Date: Tue, 10 Dec 2013 17:57:50 +0000
-Message-ID: <bug-51477-8800-EJbjgRQhwJ@http.bugs.freedesktop.org/>
-References: <bug-51477-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68344] [NV50 gallium] [piglit]
+ shaders/glsl-fs-texture2d-dependent-4 randomly passes or fails on NVAA/NV50
+Date: Tue, 10 Dec 2013 20:14:33 +0000
+Message-ID: <bug-68344-8800-qer0yWGKhb@http.bugs.freedesktop.org/>
+References: <bug-68344-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1781363349=="
+Content-Type: multipart/mixed; boundary="===============0434507791=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68344-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,55 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1781363349==
-Content-Type: multipart/alternative; boundary="1386698270.847Ed3.21492"; charset="us-ascii"
+--===============0434507791==
+Content-Type: multipart/alternative; boundary="1386706473.a3C41.16813"; charset="us-ascii"
 
 
---1386698270.847Ed3.21492
-Date: Tue, 10 Dec 2013 17:57:50 +0000
+--1386706473.a3C41.16813
+Date: Tue, 10 Dec 2013 20:14:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51477
+https://bugs.freedesktop.org/show_bug.cgi?id=68344
 
---- Comment #19 from ajhurtado21-/E1597aS9LQAvxtiuMwx3w@public.gmane.org ---
-(In reply to comment #17)
-> I have an NV17 ( NVIDIA Corporation NV17 [GeForce4 440 Go 64M] (rev a3) )
-> and the same problems. 
-> 
-> Unfortunatly it's a notebook (that would be still fine from my point of
-> view) and so i can't change the graphic card.
-> 
-> I attach some screenshot made with xubuntu 13.10 beta2 with the problems in
-> gimp, terminal and the missing icons in thunar.
-> 
-> Thank you.
+--- Comment #3 from dirkneukirchen-S0/GAf8tV78@public.gmane.org ---
+It will take a while to set up because several other things are not working
+with NVAA too and temporary "removal" of the driver in 3.13-rc1 - 3.13-rc3 is
+not helping either
 
-I just recently had this same problem with my old desktop with the same
-graphics card.
+see (similar?) NVAA / NVAC:
+https://bugs.freedesktop.org/show_bug.cgi?id=72399
+and on the mailing list:
+http://lists.freedesktop.org/archives/dri-devel/2013-December/050037.html
 
-My problem: I'm still a novice in Linux. I started out with Xubutnu 13 awhile
-ago, then found out it's not a bug but i support issue. *ubuntu 13 maybe even
-12 only supports Xorg server 11 which doesn't support Nvidia driver 96.**. So i
-downgraded to Xubuntu 11 which automatically installed my graphics card but
-after a couple ppl told me its not a good idea to switch to unsupported OS and
-i found out Debian 7 is current and still supports older Nvidia drivers. When i
-switch to Debian 7 it doesnt auto install so i had some problems there but
-nothing to complex. and for the missing icons and such (which isnt a problem in
-Debian 7) just go to Settings> Appearance> Fonts tab uncheck "Enable
-Anti-Aliasing and/or Icon tab and switch the icon option.
 
-My Fix: Here's a link to a forum i posted on with the fix
-http://www.linuxquestions.org/questions/showthread.php?p=5078340#post5078340
-
-Hopes this helps!
+building with Ubuntu wasnt as nice ... now trying to set up with Fedora
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1386698270.847Ed3.21492
-Date: Tue, 10 Dec 2013 17:57:50 +0000
+--1386706473.a3C41.16813
+Date: Tue, 10 Dec 2013 20:14:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -82,44 +63,28 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c19">Comment # 19</a>
+   title="NEW --- - [NV50 gallium] [piglit] shaders/glsl-fs-texture2d-dependent-4 randomly passes or fails on NVAA/NV50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68344#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
-              from <span class="vcard"><a class="email" href="mailto:ajhurtado21&#64;yahoo.com" title="ajhurtado21&#64;yahoo.com">ajhurtado21&#64;yahoo.com</a>
+   title="NEW --- - [NV50 gallium] [piglit] shaders/glsl-fs-texture2d-dependent-4 randomly passes or fails on NVAA/NV50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68344">bug 68344</a>
+              from <span class="vcard"><a class="email" href="mailto:dirkneukirchen&#64;web.de" title="dirkneukirchen&#64;web.de">dirkneukirchen&#64;web.de</a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=51477#c17">comment #17</a>)
-<span class="quote">&gt; I have an NV17 ( NVIDIA Corporation NV17 [GeForce4 440 Go 64M] (rev a3) )
-&gt; and the same problems. 
-&gt; 
-&gt; Unfortunatly it's a notebook (that would be still fine from my point of
-&gt; view) and so i can't change the graphic card.
-&gt; 
-&gt; I attach some screenshot made with xubuntu 13.10 beta2 with the problems in
-&gt; gimp, terminal and the missing icons in thunar.
-&gt; 
-&gt; Thank you.</span >
+        <pre>It will take a while to set up because several other things are not working
+with NVAA too and temporary &quot;removal&quot; of the driver in 3.13-rc1 - 3.13-rc3 is
+not helping either
 
-I just recently had this same problem with my old desktop with the same
-graphics card.
+see (similar?) NVAA / NVAC:
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVAA][NV50][Regression] Oops : nouveau: 3.13-rc1+ probe of 0000:02:00.0 failed with error -22"
+   href="show_bug.cgi?id=72399">https://bugs.freedesktop.org/show_bug.cgi?id=72399</a>
+and on the mailing list:
+<a href="http://lists.freedesktop.org/archives/dri-devel/2013-December/050037.html">http://lists.freedesktop.org/archives/dri-devel/2013-December/050037.html</a>
 
-My problem: I'm still a novice in Linux. I started out with Xubutnu 13 awhile
-ago, then found out it's not a bug but i support issue. *ubuntu 13 maybe even
-12 only supports Xorg server 11 which doesn't support Nvidia driver 96.**. So i
-downgraded to Xubuntu 11 which automatically installed my graphics card but
-after a couple ppl told me its not a good idea to switch to unsupported OS and
-i found out Debian 7 is current and still supports older Nvidia drivers. When i
-switch to Debian 7 it doesnt auto install so i had some problems there but
-nothing to complex. and for the missing icons and such (which isnt a problem in
-Debian 7) just go to Settings&gt; Appearance&gt; Fonts tab uncheck &quot;Enable
-Anti-Aliasing and/or Icon tab and switch the icon option.
 
-My Fix: Here's a link to a forum i posted on with the fix
-<a href="http://www.linuxquestions.org/questions/showthread.php?p=5078340#post5078340">http://www.linuxquestions.org/questions/showthread.php?p=5078340#post5078340</a>
-
-Hopes this helps!</pre>
+building with Ubuntu wasnt as nice ... now trying to set up with Fedora</pre>
         </div>
       </p>
       <hr>
@@ -131,9 +96,9 @@ Hopes this helps!</pre>
     </body>
 </html>
 
---1386698270.847Ed3.21492--
+--1386706473.a3C41.16813--
 
---===============1781363349==
+--===============0434507791==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -144,4 +109,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1781363349==--
+--===============0434507791==--
