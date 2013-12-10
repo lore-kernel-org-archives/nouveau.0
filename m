@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58556] MacBook Pro 5, 1 with nVidia 9400m and 9600m,
- scrambled screen
-Date: Mon, 09 Dec 2013 11:04:50 +0000
-Message-ID: <bug-58556-8800-8IClecjoRk@http.bugs.freedesktop.org/>
-References: <bug-58556-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37681] Tearing with composite extension
+Date: Tue, 10 Dec 2013 04:28:24 +0000
+Message-ID: <bug-37681-8800-tavsMjJCod@http.bugs.freedesktop.org/>
+References: <bug-37681-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1794386093=="
+Content-Type: multipart/mixed; boundary="===============1889547036=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-37681-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1794386093==
-Content-Type: multipart/alternative; boundary="1386587090.8c1EDf3.8886"; charset="us-ascii"
+--===============1889547036==
+Content-Type: multipart/alternative; boundary="1386649704.b3614704.30234"; charset="us-ascii"
 
 
---1386587090.8c1EDf3.8886
-Date: Mon, 9 Dec 2013 11:04:50 +0000
+--1386649704.b3614704.30234
+Date: Tue, 10 Dec 2013 04:28:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58556
+https://bugs.freedesktop.org/show_bug.cgi?id=37681
 
---- Comment #21 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Necessary part from nouveau_channel_new to get a clean screan are:
-- nouveau_channel_ind
-- nouveau_channel_init, but only the beginning:
-  - vram creation
-  - gart creation
-  - dma variables initialisation
-
-There are some MEM_CACHE errors, but at least it boosts and screen is clean.
-
-I found out that nouveau_abi16_ioctl_channel_alloc was also calling
-nouveau_channel_new, but with other arguments for vram and gart, and it is
-called whether or not acceleration is enabled.
-Is there a specific reason to call at first nouveau_channel_new only when
-acceleration is enabled, and later on when starting the GUI, to always call it?
+--- Comment #5 from Joe <random342-EMRzualFZlQ@public.gmane.org> ---
+Actually it's even worse on my end. Tearing does not go away on nouveau's
+drivers no matter what I do. Even with compositing completely disabled, opengl
+video output still tears. The best I can do is enable opengl compositing with
+compton or something similiar and enable sync to Vblank, but there's still
+tearing at the top of any fullscreen video even with opengl video output. I'm
+on Arch with a Nvidia GTX 650. The tearing issue does not happen in the
+proprietary drivers either. I hope this issue gets more attention as the
+proprietary drivers have some other problems of their own for me.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1386587090.8c1EDf3.8886
-Date: Mon, 9 Dec 2013 11:04:50 +0000
+--1386649704.b3614704.30234
+Date: Tue, 10 Dec 2013 04:28:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,29 +58,23 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556#c21">Comment # 21</a>
+          bz_status_NEW "
+   title="NEW --- - Tearing with composite extension"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=37681#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+          bz_status_NEW "
+   title="NEW --- - Tearing with composite extension"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=37681">bug 37681</a>
+              from <span class="vcard"><a class="email" href="mailto:random342&#64;live.com" title="Joe &lt;random342&#64;live.com&gt;"> <span class="fn">Joe</span></a>
 </span></b>
-        <pre>Necessary part from nouveau_channel_new to get a clean screan are:
-- nouveau_channel_ind
-- nouveau_channel_init, but only the beginning:
-  - vram creation
-  - gart creation
-  - dma variables initialisation
-
-There are some MEM_CACHE errors, but at least it boosts and screen is clean.
-
-I found out that nouveau_abi16_ioctl_channel_alloc was also calling
-nouveau_channel_new, but with other arguments for vram and gart, and it is
-called whether or not acceleration is enabled.
-Is there a specific reason to call at first nouveau_channel_new only when
-acceleration is enabled, and later on when starting the GUI, to always call it?</pre>
+        <pre>Actually it's even worse on my end. Tearing does not go away on nouveau's
+drivers no matter what I do. Even with compositing completely disabled, opengl
+video output still tears. The best I can do is enable opengl compositing with
+compton or something similiar and enable sync to Vblank, but there's still
+tearing at the top of any fullscreen video even with opengl video output. I'm
+on Arch with a Nvidia GTX 650. The tearing issue does not happen in the
+proprietary drivers either. I hope this issue gets more attention as the
+proprietary drivers have some other problems of their own for me.</pre>
         </div>
       </p>
       <hr>
@@ -99,9 +86,9 @@ acceleration is enabled, and later on when starting the GUI, to always call it?<
     </body>
 </html>
 
---1386587090.8c1EDf3.8886--
+--1386649704.b3614704.30234--
 
---===============1794386093==
+--===============1889547036==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -112,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1794386093==--
+--===============1889547036==--
