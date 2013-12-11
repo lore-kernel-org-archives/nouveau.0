@@ -1,15 +1,16 @@
-From: Bruno =?UTF-8?B?UHLDqW1vbnQ=?= <bonbons-ud5FBsm0p/xEiooADzr8i9i2O/JbrIOy@public.gmane.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Subject: Re: drm-nouveau-next - write trapped by fbcon
-Date: Wed, 11 Dec 2013 12:43:11 +0100
-Message-ID: <20131211124311.016c005f@neptune.home>
+Date: Wed, 11 Dec 2013 07:21:05 -0500
+Message-ID: <CAKb7UvjcgYkPeU8gTegSOCaWM99g=-Eo832aanpVGv7g=SfFoA@mail.gmail.com>
 References: <20131205161724.204d6585@pluto.restena.lu>
 	<CAKb7UviUWrYPww1R3r1CdX4R8nrnQpqopojcRSxqQDAvwthNMA@mail.gmail.com>
 	<20131206095858.6dcac328@pluto.restena.lu>
+	<20131211124311.016c005f@neptune.home>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20131206095858.6dcac328-I2t2yFIzmohO7ya8xxV06g@public.gmane.org>
+In-Reply-To: <20131211124311.016c005f-hY15tx4IgV39zxVx7UNMDg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,63 +20,85 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+To: =?ISO-8859-1?Q?Bruno_Pr=E9mont?= <bonbons-ud5FBsm0p/xEiooADzr8i9i2O/JbrIOy@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SGkgSWxpYSwKCj4gT24gVGh1LCA1IERlYyAyMDEzIDEwOjU1OjA2IC0wNTAwIElsaWEgTWlya2lu
-IHdyb3RlOgo+ID4gT24gVGh1LCBEZWMgNSwgMjAxMyBhdCAxMDoxNyBBTSwgQnJ1bm8gUHLDqW1v
-bnQgd3JvdGU6Cj4gPiA+IFdpdGggZHJtLW5vdXZlYXUtbmV4dCBicmFuY2ggb24gdG9wIG9mIDMu
-MTMtcmMyIGFuZCBhIGZldyBzb3VuZCBjb21taXRzCj4gPiA+IEkgZ2V0IGZvbGxvd2luZyBlcnJv
-cnMgaW4ga2VybmVsIGxvZyAocmVwZWF0aW5nIG11Y2ggbW9yZSBvZnRlbikuCj4gPiA+IChvbmNl
-IHRoZXJlIHdhcyBhIGNvcnJ1cHRlZCBmYmNvbiB3aXRoIG1hdHJpeC1saWtlIHN0cmluZ3Mgb2YK
-PiA+ID4gdW5yZWNvZ25pemFibGUgZ2x5cGgtc3RyaW5ncyBoYW5naW5nIGRvd24gZnJvbSBzY3Jl
-ZW4gdG9wIGJvcmRlcikKPiA+ID4KPiA+ID4gVGhlc2UgZXJyb3JzIGRvIHN0b3Agb25jZSBJIHN3
-aXRjaCB0byBYb3JnLgo+ID4gPgo+ID4gPiBbICAgMTMuODI1NjI3XSBub3V2ZWF1IEVbICAgICBQ
-RkJdWzAwMDA6MDI6MDAuMF0gdHJhcHBlZCB3cml0ZSBhdCAweDAwMDA0MDgyODAgb24gY2hhbm5l
-bCAweDAwMDBmZWUwIFt1bmtub3duXSBCQVIvUEZJRk9fV1JJVEUvRkIgcmVhc29uOiBQQUdFX05P
-VF9QUkVTRU5UCj4gPiA+IFsgICAxMy44MjY1MDZdIG5vdXZlYXUgRVsgICAgIFBGQl1bMDAwMDow
-MjowMC4wXSB0cmFwcGVkIHdyaXRlIGF0IDB4MDAwMDQwODI4MCBvbiBjaGFubmVsIDB4MDAwMGZl
-ZTAgW3Vua25vd25dIEJBUi9QRklGT19XUklURS9GQiByZWFzb246IFBBR0VfTk9UX1BSRVNFTlQK
-PiA+ID4gWyAgIDEzLjgyNzMxOV0gbm91dmVhdSBFWyAgICAgUEZCXVswMDAwOjAyOjAwLjBdIHRy
-YXBwZWQgd3JpdGUgYXQgMHgwMDAwNDA4MjgwIG9uIGNoYW5uZWwgMHgwMDAwZmVlMCBbdW5rbm93
-bl0gQkFSL1BGSUZPX1dSSVRFL0ZCIHJlYXNvbjogUEFHRV9OT1RfUFJFU0VOVAo+ID4gPiBbICAg
-MTMuODI4MTM5XSBub3V2ZWF1IEVbICAgICBQRkJdWzAwMDA6MDI6MDAuMF0gdHJhcHBlZCB3cml0
-ZSBhdCAweDAwMDA0MDgyODAgb24gY2hhbm5lbCAweDAwMDBmZWUwIFt1bmtub3duXSBCQVIvUEZJ
-Rk9fV1JJVEUvRkIgcmVhc29uOiBQQUdFX05PVF9QUkVTRU5UCj4gPiA+IFsgICAxMy44Mjg5NTdd
-IG5vdXZlYXUgRVsgICAgIFBGQl1bMDAwMDowMjowMC4wXSB0cmFwcGVkIHdyaXRlIGF0IDB4MDAw
-MDQwMDMwMCBvbiBjaGFubmVsIDB4MDAwMGZlZTAgW3Vua25vd25dIEJBUi9QRklGT19XUklURS9G
-QiByZWFzb246IFBBR0VfTk9UX1BSRVNFTlQKPiA+ID4KPiA+ID4gU3lzdGVtIE1CQTIsMSB3aXRo
-Ogo+ID4gPiAwMjowMC4wIFZHQSBjb21wYXRpYmxlIGNvbnRyb2xsZXIgWzAzMDBdOiBOVklESUEg
-Q29ycG9yYXRpb24gQzc5IFtHZUZvcmNlIDk0MDBNXSBbMTBkZTowODcwXSAocmV2IGIxKQo+ID4g
-Cj4gPiBEbyB5b3UgYWxzbyBzZWUgdGhlc2UgaW4gMy4xMy1yYzIgKwo+ID4gaHR0cDovL2NnaXQu
-ZnJlZWRlc2t0b3Aub3JnL25vdXZlYXUvbGludXgtMi42L2NvbW1pdC8/aD1kcm0tbm91dmVhdS1u
-ZXh0JmlkPWE3ZTQyMDFmMGY3ZDQ3ZTAzYjg1MWYwNmY4OTg3ODU2ZThkMzMwODMKPiA+ID8gSWYg
-bm90LCB5b3UgY2FuIHJlb3JkZXIgdGhlIHBhdGNoZXMgKGdpdCByZWJhc2UgLWkpIGFuZCBiaXNl
-Y3QgdGhlCj4gPiByZXN0LiBCYXNpY2FsbHkgdGhlIEdQVSBpcyB0cnlpbmcgdG8gd3JpdGUgdG8g
-c29tZSBhZGRyZXNzIHRoYXQgaXMKPiA+IGVpdGhlciBjb21wbGV0ZWx5IGJvZ3VzIG9yIGlzIHN0
-YWxlLCBhbmQgaXRzIGludGVybmFsIE1NVSB3b24ndCBsZXQKPiA+IGl0Lgo+IAo+IElmIEkgcmVt
-ZW1iZXIgY29ycmVjdGx5IHRoZXNlIGRpZCBub3QgaGFwcGVuIHdpdGggTGludXMnIHJjMiBidXQg
-b25seQo+IGRvIGhhcHBlbiB3aXRoIGRybS1ub3V2ZWF1LW5leHQgb24gdG9wIG9mIGl0Lgo+IAo+
-IEkgd2lsbCBjaGVjayBhbmQgYmlzZWN0IHRob3VnaCBwcm9iYWJseSB3aWxsIG5vdCBnZXQgdGlt
-ZSB0byBjb21wbGV0ZQo+IGJpc2VjdCBiZWZvcmUgbGF0ZSBTYXR1cmRheS4KPiAKPiAKPiBBIGRp
-c3BsYXkgZ2xpdGNoIGR1cmluZyBrZXJuZWwgYm9vdCB3aXRoIGZiY29uIG1pZ2h0IGJlIHJlbGF0
-ZWQgdG8gdGhpcy4KPiAodmVyeSB3aWxkIGd1ZXNzIGJhc2VkIG9uIHdoZW4gdGhlIHRyYXBwZWQg
-d3JpdGVzIGhhcHBlbikKPiBUaGUgcGVuZ3VpbiBsb2dvIHNob3duIGJ5IGZiY29uIGxvb2tzIGxp
-a2UgbWVtY29weSdlZCB0byBhIHRpbGVkCj4gZnJhbWVidWZmZXIgd2l0aG91dCByZXNwZWN0aW5n
-IHRoZSBmYWN0IHRoYXQgZnJhbWVidWZmZXIgaXMgdGlsZWQuCgpJdCB3YXMgaW50cm9kdWNlZCBz
-b21ld2hlcmUgYmV0d2VlbiAzLjEyIGFuZCAzLjEzLXJjMiB0aG91Z2ggZG9lcyBub3QgaGFwcGVu
-Cm9uIGV2ZXJ5IGJvb3QgYW5kIHdoZW4gaXQgaGFwcGVucyBpdCBtaWdodCBiZSBvbmx5IGEgY291
-cGxlIG9mIHRyYXBwZWQgd3JpdGVzCm9yIGEgd2hvbGUgbG90IGZsb29kaW5nIGNvbXBsZXRlIGxv
-ZyBidWZmZXIuCgpWaXN1YWxseSBpdCBtYW5pZmVzdHMgaXRzZWxmIGFzIGEgc2NyYW1ibGVkIGZy
-YW1lYnVmZmVyCihsb29raW5nIGxpa2UgdGlsZWQgdmVyc3VzIHVudGlsZWQgd3JpdGluZyB0byBm
-cmFtZWJ1ZmZlcikuCldoZW4gaXQgaGFwcGVucywgaXQgc2VlbSB0byBiZSBjb3JyZWxhdGVkIHRv
-IGNhbGwgdG8gZGlhbG9nIHRvIGFzayBmb3IKbHVrcyBwYXNzd29yZCBhbmQgc2NyZWVuIHNjcmFt
-YmxpbmcgaGFwcGVucyB3aGVuIGJvb3QgbWVzc2FnZXMKKGtlcm5lbC91c2Vyc3BhY2UpIHNob3cv
-c2Nyb2xsIGJ5IFt0aGV5IHdpcGUgb3V0IHNvbWUgc2NyYW1ibGVkIGFyZWEKd2hlbiBzY3JvbGxp
-bmcgYnldLgoKVW5mb3J0dW5hdGVseSBpdCB3aWxsIGJlIHJhdGhlciBoYXJkIHRvIGJpc2VjdCBi
-ZWNhdXNlIHNvbWV0aW1lcyBpdCBkb2VzIG5vdApoYXBwZW4uCkFkZGluZyBkcm0tbm91dmVhdS1u
-ZXh0IG9uIHRvcCBvZiByYzIvcmMzIGRvZXMgbm8gYXBwYXJlbnQgZGlmZmVyZW5jZS4KCkJydW5v
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On Wed, Dec 11, 2013 at 6:43 AM, Bruno Pr=E9mont
+<bonbons-ud5FBsm0p/xEiooADzr8i9i2O/JbrIOy@public.gmane.org> wrote:
+> Hi Ilia,
+>
+>> On Thu, 5 Dec 2013 10:55:06 -0500 Ilia Mirkin wrote:
+>> > On Thu, Dec 5, 2013 at 10:17 AM, Bruno Pr=E9mont wrote:
+>> > > With drm-nouveau-next branch on top of 3.13-rc2 and a few sound comm=
+its
+>> > > I get following errors in kernel log (repeating much more often).
+>> > > (once there was a corrupted fbcon with matrix-like strings of
+>> > > unrecognizable glyph-strings hanging down from screen top border)
+>> > >
+>> > > These errors do stop once I switch to Xorg.
+>> > >
+>> > > [   13.825627] nouveau E[     PFB][0000:02:00.0] trapped write at 0x=
+0000408280 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAGE_=
+NOT_PRESENT
+>> > > [   13.826506] nouveau E[     PFB][0000:02:00.0] trapped write at 0x=
+0000408280 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAGE_=
+NOT_PRESENT
+>> > > [   13.827319] nouveau E[     PFB][0000:02:00.0] trapped write at 0x=
+0000408280 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAGE_=
+NOT_PRESENT
+>> > > [   13.828139] nouveau E[     PFB][0000:02:00.0] trapped write at 0x=
+0000408280 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAGE_=
+NOT_PRESENT
+>> > > [   13.828957] nouveau E[     PFB][0000:02:00.0] trapped write at 0x=
+0000400300 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAGE_=
+NOT_PRESENT
+>> > >
+>> > > System MBA2,1 with:
+>> > > 02:00.0 VGA compatible controller [0300]: NVIDIA Corporation C79 [Ge=
+Force 9400M] [10de:0870] (rev b1)
+>> >
+>> > Do you also see these in 3.13-rc2 +
+>> > http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=3Ddrm-nouveau-=
+next&id=3Da7e4201f0f7d47e03b851f06f8987856e8d33083
+>> > ? If not, you can reorder the patches (git rebase -i) and bisect the
+>> > rest. Basically the GPU is trying to write to some address that is
+>> > either completely bogus or is stale, and its internal MMU won't let
+>> > it.
+>>
+>> If I remember correctly these did not happen with Linus' rc2 but only
+>> do happen with drm-nouveau-next on top of it.
+>>
+>> I will check and bisect though probably will not get time to complete
+>> bisect before late Saturday.
+>>
+>>
+>> A display glitch during kernel boot with fbcon might be related to this.
+>> (very wild guess based on when the trapped writes happen)
+>> The penguin logo shown by fbcon looks like memcopy'ed to a tiled
+>> framebuffer without respecting the fact that framebuffer is tiled.
+>
+> It was introduced somewhere between 3.12 and 3.13-rc2 though does not hap=
+pen
+> on every boot and when it happens it might be only a couple of trapped wr=
+ites
+> or a whole lot flooding complete log buffer.
+>
+> Visually it manifests itself as a scrambled framebuffer
+> (looking like tiled versus untiled writing to framebuffer).
+> When it happens, it seem to be correlated to call to dialog to ask for
+> luks password and screen scrambling happens when boot messages
+> (kernel/userspace) show/scroll by [they wipe out some scrambled area
+> when scrolling by].
+>
+> Unfortunately it will be rather hard to bisect because sometimes it does =
+not
+> happen.
+> Adding drm-nouveau-next on top of rc2/rc3 does no apparent difference.
+
+A shot in the dark -- try booting with nouveau.config=3DNvMSI=3D0. We
+already disable MSI for NVAA, perhaps we should do it for NVAC as
+well. Although the blob drivers have it enabled... but we could be
+doing something wrong.
+
+  -ilia
