@@ -1,14 +1,14 @@
-From: Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
 Subject: Re: Is binary firmware still necessary for GTX660 card
  (NVE0 family) in order to use DRM and/or VDPAU video acceleration?
-Date: Thu, 12 Dec 2013 08:58:10 +0100
-Message-ID: <CAN39ZY_QyO8N2TG2+JeAKvW1b9L74jmG8GEMRVfBexKsKFiFow@mail.gmail.com>
-References: <CAN39ZY-1Z=t7i8e=jFYaNH8Tj32J62da085N3uTi-P-8-rp9Uw@mail.gmail.com>
-	<52A9697A.4050204@free.fr>
+Date: Thu, 12 Dec 2013 13:16:17 +0100
+Message-ID: <52A9A911.7000100@free.fr>
+References: <CAN39ZY-1Z=t7i8e=jFYaNH8Tj32J62da085N3uTi-P-8-rp9Uw@mail.gmail.com>	<52A9697A.4050204@free.fr>
+	<CAN39ZY_QyO8N2TG2+JeAKvW1b9L74jmG8GEMRVfBexKsKFiFow@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1583234279=="
+Content-Type: multipart/mixed; boundary="===============0165587642=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <52A9697A.4050204-GANU6spQydw@public.gmane.org>
+In-Reply-To: <CAN39ZY_QyO8N2TG2+JeAKvW1b9L74jmG8GEMRVfBexKsKFiFow-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,192 +21,168 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1583234279==
-Content-Type: multipart/alternative; boundary=089e015373bcf6c21604ed51b47a
+This is a multi-part message in MIME format.
+--===============0165587642==
+Content-Type: multipart/alternative;
+ boundary="------------090901020704020100010406"
 
---089e015373bcf6c21604ed51b47a
-Content-Type: text/plain; charset=UTF-8
+This is a multi-part message in MIME format.
+--------------090901020704020100010406
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi Martin,
-if you refer to my kernel version. 3.10.17 is the latest, stable version in
-the official gentoo repository for the amd64 architeture. See here
-
-[4] https://packages.gentoo.org/package/sys-kernel/gentoo-sources?full_cat
-
-As long as I do not miss any features, I stay with the stable version.
-
-Hence, if I understand you correctly, there are kernel version (newer than
-some unknown point in time) that already include the firmware? If this is
-the case, someone who knows the exact kernel version should mention that
-point on
-
-[1] http://nouveau.freedesktop.org/wiki/InstallDRM/
-[2] http://nouveau.freedesktop.org/wiki/VideoAcceleration/
-[3] https://bugs.gentoo.org/show_bug.cgi?id=3D480832
-
-and update the information.
-
-Matthias
-
-
-
-2013/12/12 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-
-> On 12/12/2013 08:32, Matthias Nagel wrote:
+Le 12/12/2013 08:58, Matthias Nagel a =E9crit :
+> Hi Martin,
+> if you refer to my kernel version. 3.10.17 is the latest, stable=20
+> version in the official gentoo repository for the amd64 architeture.=20
+> See here
+...
+> [4] https://packages.gentoo.org/package/sys-kernel/gentoo-sources?full_=
+cat
 >
->> Hello,
->>
->> I run the Gentoo Linux distribution and use a self-compiled Linux 3.10.1=
-7
->> kernel. According to
->>
->> [1] http://nouveau.freedesktop.org/wiki/InstallDRM/
->> [2] http://nouveau.freedesktop.org/wiki/VideoAcceleration/
->>
->> I need the original firmware from the binary driver in order to
->> sucessully use DRM and to use VDPAU video acceleration. I used the pytho=
-n
->> script from [2] and I had a look at the ebuild from
->>
->> [3] https://bugs.gentoo.org/show_bug.cgi?id=3D480832
->>
->> to extract the firmware and to place it at /lib/firmware/nouveau. But I
->> do not see any dmesg output about loading the firmware. I do not see any
->> dmesg output about nouveau failing to do so either. I neither do no see =
-any
->> "nouveau <pci id>: firmware: requesting nouveau/" in my kernel output.
->>
->> Anyway VDPAU seems to work. If I call mplayer with "-vo vdpau -vc
->> ffmpeg12vdpau,...", I don't get any error message and my CPU load drops
->> from 30% to 7% for a recent mpeg transport stream 1080p video.
->>
->> In conclusion, do I still need the firmware? Do the information given at
->> [1], [2] still apply or are they outdated?
->>
+> As long as I do not miss any features, I stay with the stable version.
+Indeed, you are doing the right thing, I guess. But if you encounter any=20
+sort of crash, I really advise you to go against gentoo on this and=20
+update your kernel to the latest official release (3.12.x at the=20
+moment). FYI, the 3.12 brings performance improvements to Nouveau too.
 >
-> Thanks for your first hand investigation. To be honest, I can't remember
-> which kernel provides a working-enough open source pgraph fw.
+> Hence, if I understand you correctly, there are kernel version (newer=20
+> than some unknown point in time) that already include the firmware? If=20
+> this is the case, someone who knows the exact kernel version should=20
+> mention that point on
 >
-> As you figured out, it works for you, but you should update your kernel,
-> there is no point in staying on old Linux releases, at least Nouveau-wise=
-.
-> If there was a regression, let us know instead of staying on an old kerne=
-l.
+> [1] http://nouveau.freedesktop.org/wiki/InstallDRM/
+> [2] http://nouveau.freedesktop.org/wiki/VideoAcceleration/
+> [3] https://bugs.gentoo.org/show_bug.cgi?id=3D480832
 >
-> Cheers,
-> Martin Peres
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
+> and update the information.
 
+What I wanted to say is that adding good fw support usually spans across=20
+multiple kernels. Even 3.13 has kepler fw fixes IIRC and 3.14 will=20
+receive some more updates to support new chipsets. It isn't a binary=20
+thing so this is hard to tell we support a feature...
 
+I guess we could tell when is the first free implementation (with the=20
+possible fallback of using the blob's firmware[1]) and then when we=20
+added support for all chipsets of the family and it has been=20
+fairly-extensively tested and bug-free. Some cards would never pass the=20
+test though :s
 
---=20
-Matthias Nagel
-Parkstra=C3=9Fe 27
-76131 Karlsruhe
+[1] NvGrUseFw, http://nouveau.freedesktop.org/wiki/KernelModuleParameters=
+/
 
-Festnetz: +49-721-96869289
-Mobil: +49-151-15998774
-e-Mail: matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-ICQ: 499797758
-Skype: nagmat84
+Cheers,
+Martin
+<http://nouveau.freedesktop.org/wiki/KernelModuleParameters/>
 
---089e015373bcf6c21604ed51b47a
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--------------090901020704020100010406
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-<div dir=3D"ltr"><div><div>Hi Martin,<br></div>if you refer to my kernel ve=
-rsion. 3.10.17 is the latest, stable version in the official gentoo reposit=
-ory for the amd64 architeture. See here<br><br>[4] <a href=3D"https://packa=
-ges.gentoo.org/package/sys-kernel/gentoo-sources?full_cat">https://packages=
-.gentoo.org/package/sys-kernel/gentoo-sources?full_cat</a><br>
-<br></div><div>As long as I do not miss any features, I stay with the stabl=
-e version.<br></div><div><br></div>Hence, if I understand you correctly, th=
-ere are kernel version (newer than some unknown point in time) that already=
- include the firmware? If this is the case, someone who knows the exact ker=
-nel version should mention that point on<br>
-<br>[1] <a href=3D"http://nouveau.freedesktop.org/wiki/InstallDRM/" target=
-=3D"_blank">http://nouveau.freedesktop.org/wiki/InstallDRM/</a><br>
-[2] <a href=3D"http://nouveau.freedesktop.org/wiki/VideoAcceleration/" targ=
-et=3D"_blank">http://nouveau.freedesktop.org/wiki/VideoAcceleration/</a><br=
->[3] <a href=3D"https://bugs.gentoo.org/show_bug.cgi?id=3D480832" target=3D=
-"_blank">https://bugs.gentoo.org/show_bug.cgi?id=3D480832</a><br>
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">and update =
-the information.<br><br></div><div class=3D"gmail_extra">Matthias<br></div>=
-<div class=3D"gmail_extra"><br><br></div><div class=3D"gmail_extra"><br><di=
-v class=3D"gmail_quote">
-2013/12/12 Martin Peres <span dir=3D"ltr">&lt;<a href=3D"mailto:martin.pere=
-s@free.fr" target=3D"_blank">martin.peres-GANU6spQydw@public.gmane.org</a>&gt;</span><br><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc =
-solid;padding-left:1ex">
-<div class=3D"im">On 12/12/2013 08:32, Matthias Nagel wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-Hello,<br>
-<br>
-I run the Gentoo Linux distribution and use a self-compiled Linux 3.10.17 k=
-ernel. According to<br>
-<br>
-[1] <a href=3D"http://nouveau.freedesktop.org/wiki/InstallDRM/" target=3D"_=
-blank">http://nouveau.freedesktop.<u></u>org/wiki/InstallDRM/</a><br>
-[2] <a href=3D"http://nouveau.freedesktop.org/wiki/VideoAcceleration/" targ=
-et=3D"_blank">http://nouveau.freedesktop.<u></u>org/wiki/VideoAcceleration/=
-</a><br>
-<br>
-I need the original firmware from the binary driver in order to sucessully =
-use DRM and to use VDPAU video acceleration. I used the python script from =
-[2] and I had a look at the ebuild from<br>
-<br>
-[3] <a href=3D"https://bugs.gentoo.org/show_bug.cgi?id=3D480832" target=3D"=
-_blank">https://bugs.gentoo.org/show_<u></u>bug.cgi?id=3D480832</a><br>
-<br>
-to extract the firmware and to place it at /lib/firmware/nouveau. But I do =
-not see any dmesg output about loading the firmware. I do not see any dmesg=
- output about nouveau failing to do so either. I neither do no see any &quo=
-t;nouveau &lt;pci id&gt;: firmware: requesting nouveau/&quot; in my kernel =
-output.<br>
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix">Le 12/12/2013 08:58, Matthias Nagel a
+      &eacute;crit&nbsp;:<br>
+    </div>
+    <blockquote
+cite="mid:CAN39ZY_QyO8N2TG2+JeAKvW1b9L74jmG8GEMRVfBexKsKFiFow-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org"
+      type="cite">
+      <div dir="ltr">
+        <div>
+          <div>Hi Martin,<br>
+          </div>
+          if you refer to my kernel version. 3.10.17 is the latest,
+          stable version in the official gentoo repository for the amd64
+          architeture. See here<br>
+        </div>
+      </div>
+    </blockquote>
+    ...<br>
+    <blockquote
+cite="mid:CAN39ZY_QyO8N2TG2+JeAKvW1b9L74jmG8GEMRVfBexKsKFiFow-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org"
+      type="cite">
+      <div dir="ltr">
+        <div>[4] <a moz-do-not-send="true"
+href="https://packages.gentoo.org/package/sys-kernel/gentoo-sources?full_cat">https://packages.gentoo.org/package/sys-kernel/gentoo-sources?full_cat</a><br>
+          <br>
+        </div>
+        <div>As long as I do not miss any features, I stay with the
+          stable version.<br>
+        </div>
+      </div>
+    </blockquote>
+    Indeed, you are doing the right thing, I guess. But if you encounter
+    any sort of crash, I really advise you to go against gentoo on this
+    and update your kernel to the latest official release (3.12.x at the
+    moment). FYI, the 3.12 brings performance improvements to Nouveau
+    too.<br>
+    <blockquote
+cite="mid:CAN39ZY_QyO8N2TG2+JeAKvW1b9L74jmG8GEMRVfBexKsKFiFow-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org"
+      type="cite">
+      <div dir="ltr">
+        <div><br>
+        </div>
+        Hence, if I understand you correctly, there are kernel version
+        (newer than some unknown point in time) that already include the
+        firmware? If this is the case, someone who knows the exact
+        kernel version should mention that point on<br>
+        <br>
+        [1] <a moz-do-not-send="true"
+          href="http://nouveau.freedesktop.org/wiki/InstallDRM/"
+          target="_blank">http://nouveau.freedesktop.org/wiki/InstallDRM/</a><br>
+        [2] <a moz-do-not-send="true"
+          href="http://nouveau.freedesktop.org/wiki/VideoAcceleration/"
+          target="_blank">http://nouveau.freedesktop.org/wiki/VideoAcceleration/</a><br>
+        [3] <a moz-do-not-send="true"
+          href="https://bugs.gentoo.org/show_bug.cgi?id=480832"
+          target="_blank">https://bugs.gentoo.org/show_bug.cgi?id=480832</a><br>
+        <div class="gmail_extra"><br>
+        </div>
+        <div class="gmail_extra">and update the information.<br>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+    What I wanted to say is that adding good fw support usually spans
+    across multiple kernels. Even 3.13 has kepler fw fixes IIRC and 3.14
+    will receive some more updates to support new chipsets. It isn't a
+    binary thing so this is hard to tell we support a feature...<br>
+    <br>
+    I guess we could tell when is the first free implementation (with
+    the possible fallback of using the blob's firmware[1]) and then when
+    we added support for all chipsets of the family and it has been
+    fairly-extensively tested and bug-free. Some cards would never pass
+    the test though :s<br>
+    <br>
+    [1]
+    <meta http-equiv="content-type" content="text/html;
+      charset=ISO-8859-1">
+    <span style="color: rgb(46, 26, 5); font-family: monospace;
+      font-size: 13px; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: left; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: auto; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); display: inline !important; float: none;">NvGrUseFw,</span>
+    <meta http-equiv="content-type" content="text/html;
+      charset=ISO-8859-1">
+    <a
+      href="http://nouveau.freedesktop.org/wiki/KernelModuleParameters/">http://nouveau.freedesktop.org/wiki/KernelModuleParameters/</a><br>
+    <br>
+    Cheers,<br>
+    Martin<br>
+    <a
+      href="http://nouveau.freedesktop.org/wiki/KernelModuleParameters/"></a>
+  </body>
+</html>
 
-<br>
-Anyway VDPAU seems to work. If I call mplayer with &quot;-vo vdpau -vc ffmp=
-eg12vdpau,...&quot;, I don&#39;t get any error message and my CPU load drop=
-s from 30% to 7% for a recent mpeg transport stream 1080p video.<br>
-<br>
-In conclusion, do I still need the firmware? Do the information given at [1=
-], [2] still apply or are they outdated?<br>
-</blockquote>
-<br></div>
-Thanks for your first hand investigation. To be honest, I can&#39;t remembe=
-r which kernel provides a working-enough open source pgraph fw.<br>
-<br>
-As you figured out, it works for you, but you should update your kernel, th=
-ere is no point in staying on old Linux releases, at least Nouveau-wise. If=
- there was a regression, let us know instead of staying on an old kernel.<b=
-r>
+--------------090901020704020100010406--
 
-<br>
-Cheers,<br>
-Martin Peres<br>
-______________________________<u></u>_________________<br>
-Nouveau mailing list<br>
-<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" target=3D"_blank">Nouveau@=
-lists.freedesktop.org</a><br>
-<a href=3D"http://lists.freedesktop.org/mailman/listinfo/nouveau" target=3D=
-"_blank">http://lists.freedesktop.org/<u></u>mailman/listinfo/nouveau</a><b=
-r>
-</blockquote></div><br><br clear=3D"all"><br>-- <br>Matthias Nagel<br>Parks=
-tra=C3=9Fe 27<br>76131 Karlsruhe<br><br>Festnetz: +49-721-96869289<br>Mobil=
-: +49-151-15998774<br>e-Mail: <a href=3D"mailto:matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org"=
- target=3D"_blank">matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a><br>
-ICQ: 499797758<br>Skype: nagmat84
-</div></div>
-
---089e015373bcf6c21604ed51b47a--
-
---===============1583234279==
+--===============0165587642==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -217,4 +193,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1583234279==--
+--===============0165587642==--
