@@ -1,131 +1,57 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72599] [NVC0] null pointer dereference
- (nouveau_fence_wait_uevent.isra.5)
-Date: Thu, 12 Dec 2013 02:58:34 +0000
-Message-ID: <bug-72599-8800-T5lU6YfgF6@http.bugs.freedesktop.org/>
-References: <bug-72599-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] drm/nouveau: only runtime suspend by default in optimus
+	configuration
+Date: Wed, 11 Dec 2013 22:19:01 -0500
+Message-ID: <1386818341-11506-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0691220322=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72599-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces@lists.freedesktop.org
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+To: Dave Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, Stefan Lippers-Hollmann <s.l-h@gmx.de>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+The intent was to only enable it by default for optimus, e.g. see the
+runtime_idle callback. The suspend callback may be called directly, e.g.
+as a result of nouveau_crtc_set_config.
 
---===============0691220322==
-Content-Type: multipart/alternative; boundary="1386817114.1F52EFA2.14774"; charset="us-ascii"
+Reported-by: Stefan Lippers-Hollmann <s.l-h@gmx.de>
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: stable@vger.kernel.org
+---
 
+See http://lists.freedesktop.org/archives/dri-devel/2013-November/049738.html
+for my analysis of the situation. Since this has been around since 3.12, I'm
+tagging it for stable.
 
---1386817114.1F52EFA2.14774
-Date: Thu, 12 Dec 2013 02:58:34 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72599
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-
-
-*** This bug has been marked as a duplicate of bug 71620 ***
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 7a3759f..98a22e6 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -858,6 +858,12 @@ static int nouveau_pmops_runtime_suspend(struct device *dev)
+ 	if (nouveau_runtime_pm == 0)
+ 		return -EINVAL;
+ 
++	/* are we optimus enabled? */
++	if (nouveau_runtime_pm == -1 && !nouveau_is_optimus() && !nouveau_is_v1_dsm()) {
++		DRM_DEBUG_DRIVER("failing to power off - not optimus\n");
++		return -EINVAL;
++	}
++
+ 	nv_debug_level(SILENT);
+ 	drm_kms_helper_poll_disable(drm_dev);
+ 	vga_switcheroo_set_dynamic_switch(pdev, VGA_SWITCHEROO_OFF);
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1386817114.1F52EFA2.14774
-Date: Thu, 12 Dec 2013 02:58:34 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [NVC0] null pointer dereference (nouveau_fence_wait_uevent.isra.5)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72599">bug 72599</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [NVC0] null pointer dereference (nouveau_fence_wait_uevent.isra.5)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72599#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [NVC0] null pointer dereference (nouveau_fence_wait_uevent.isra.5)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72599">bug 72599</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>
-
-*** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau_fence_wait_uevent NULL pointer dereference"
-   href="show_bug.cgi?id=71620">bug 71620</a> ***</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1386817114.1F52EFA2.14774--
-
---===============0691220322==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0691220322==--
+1.8.3.2
