@@ -1,42 +1,92 @@
-From: "Stefan Lippers-Hollmann" <s.L-H@gmx.de>
-Subject: Re: [PATCH] drm/nouveau: only runtime suspend by default in optimus
-	configuration
-Date: Thu, 12 Dec 2013 19:48:25 +0000
-Message-ID: <201312121949.49613.s.L-H@gmx.de>
-References: <1386818341-11506-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
+ 8400M G after upgrade the kernel to 3.7.0 version
+Date: Fri, 13 Dec 2013 12:19:43 +0000
+Message-ID: <bug-58378-8800-ZvpaYIx7Ls@http.bugs.freedesktop.org/>
+References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1386818341-11506-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1278377446=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkKCk9uIFRodXJzZGF5IDEyIERlY2VtYmVyIDIwMTMsIElsaWEgTWlya2luIHdyb3RlOgo+IFRo
-ZSBpbnRlbnQgd2FzIHRvIG9ubHkgZW5hYmxlIGl0IGJ5IGRlZmF1bHQgZm9yIG9wdGltdXMsIGUu
-Zy4gc2VlIHRoZQo+IHJ1bnRpbWVfaWRsZSBjYWxsYmFjay4gVGhlIHN1c3BlbmQgY2FsbGJhY2sg
-bWF5IGJlIGNhbGxlZCBkaXJlY3RseSwgZS5nLgo+IGFzIGEgcmVzdWx0IG9mIG5vdXZlYXVfY3J0
-Y19zZXRfY29uZmlnLgo+IAo+IFJlcG9ydGVkLWJ5OiBTdGVmYW4gTGlwcGVycy1Ib2xsbWFubiA8
-cy5sLWhAZ214LmRlPgo+IFNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0u
-bWl0LmVkdT4KPiBDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZwo+IC0tLQo+IAo+IFNlZSBodHRw
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZlbC8yMDEzLU5vdmVtYmVy
-LzA0OTczOC5odG1sCj4gZm9yIG15IGFuYWx5c2lzIG9mIHRoZSBzaXR1YXRpb24uIFNpbmNlIHRo
-aXMgaGFzIGJlZW4gYXJvdW5kIHNpbmNlIDMuMTIsIEknbQo+IHRhZ2dpbmcgaXQgZm9yIHN0YWJs
-ZS4KW+KApl0KClRoYW5rcyBhIGxvdCwgdGhpcyB3b3JrcyBmaW5lIG9uIHRoZSBhZmZlY3RlZCBz
-eXN0ZW1bMV0gKHdpdGggYW5kIAp3aXRob3V0IGEgbW9uaXRvciBhdHRhY2hlZCBhbmQgd2l0aG91
-dCB0aGUgbm91dmVhdS5ydW5wbT0wIHdvcmthcm91bmQpOwpmZWVsIGZyZWUgdG8gYWRkCgpUZXN0
-ZWQtYnk6IFN0ZWZhbiBMaXBwZXJzLUhvbGxtYW5uIDxzLmwtaEBnbXguZGU+CgpSZWdhcmRzCglT
-dGVmYW4gTGlwcGVycy1Ib2xsbWFubgoKWzFdCXRyaXZpYWxseSByZWJhc2VkIGFnYWluc3QgMy4x
-Mi40Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1k
-ZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============1278377446==
+Content-Type: multipart/alternative; boundary="1386937184.d7cd5.30085"; charset="us-ascii"
+
+
+--1386937184.d7cd5.30085
+Date: Fri, 13 Dec 2013 12:19:44 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=58378
+
+--- Comment #17 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
+Created attachment 90715
+  --> https://bugs.freedesktop.org/attachment.cgi?id=90715&action=edit
+Distorted graphics with RHEL6/OL6 showing uname -a kernel 3.12.4
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1386937184.d7cd5.30085
+Date: Fri, 13 Dec 2013 12:19:44 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c17">Comment # 17</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
+              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=90715" name="attach_90715" title="Distorted graphics with RHEL6/OL6 showing uname -a kernel 3.12.4">attachment 90715</a> <a href="attachment.cgi?id=90715&amp;action=edit" title="Distorted graphics with RHEL6/OL6 showing uname -a kernel 3.12.4">[details]</a></span>
+Distorted graphics with RHEL6/OL6 showing uname -a kernel 3.12.4</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1386937184.d7cd5.30085--
+
+--===============1278377446==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1278377446==--
