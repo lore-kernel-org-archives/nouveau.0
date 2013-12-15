@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
  8400M G after upgrade the kernel to 3.7.0 version
-Date: Sun, 15 Dec 2013 23:16:08 +0000
-Message-ID: <bug-58378-8800-1xDrBJeqZx@http.bugs.freedesktop.org/>
+Date: Sun, 15 Dec 2013 23:44:21 +0000
+Message-ID: <bug-58378-8800-q6vmvYHF29@http.bugs.freedesktop.org/>
 References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1852825050=="
+Content-Type: multipart/mixed; boundary="===============0570087603=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,75 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1852825050==
-Content-Type: multipart/alternative; boundary="1387149368.2A3f5.5348"; charset="us-ascii"
+--===============0570087603==
+Content-Type: multipart/alternative; boundary="1387151062.feEbf525.11031"; charset="us-ascii"
 
 
---1387149368.2A3f5.5348
-Date: Sun, 15 Dec 2013 23:16:08 +0000
+--1387151062.feEbf525.11031
+Date: Sun, 15 Dec 2013 23:44:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
---- Comment #34 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
-Bad news once again...
+--- Comment #35 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
+Follow-up question note that I am digging deeper into git... ;-)
 
-I applied the following single-line patch to a stock 3.12.4 kernel in order to
-switch to the NV50 fence:
+From the commits in the v3.4..v3.5 range, only two of them:
 
-diff -Nrpu linux-3.12.4.orig/drivers/gpu/drm/nouveau/nouveau_drm.c
-linux-3.12.4/drivers/gpu/drm/nouveau/nouveau_drm.c
---- linux-3.12.4.orig/drivers/gpu/drm/nouveau/nouveau_drm.c    2013-12-08
-17:18:58.000000000 +0100
-+++ linux-3.12.4/drivers/gpu/drm/nouveau/nouveau_drm.c    2013-12-15
-16:37:25.000000000 +0100
-@@ -180,7 +180,7 @@ nouveau_accel_init(struct nouveau_drm *d
-     else if (device->chipset   <  0x17) ret = nv10_fence_create(drm);
-     else if (device->card_type < NV_50) ret = nv17_fence_create(drm);
-     else if (device->chipset   <  0x84) ret = nv50_fence_create(drm);
--    else if (device->card_type < NV_C0) ret = nv84_fence_create(drm);
-+    else if (device->card_type < NV_C0) ret = nv50_fence_create(drm);
-     else                                ret = nvc0_fence_create(drm);
-     if (ret) {
-         NV_ERROR(drm, "failed to initialise sync subsystem, %d\n", ret);
+9bd0c15fcfb42f6245447c53347d65ad9e72080b (dated Jun 26, 2012) and
+e9bf5f36b09f8ec6c168ef58ee7d4890545ede1c (dated Jun 27)
 
-but the result is that after the GUI login screen (gdm) which works fine, I get
-a complete hang when GNOME starts up using compiz (cannot even switch to a text
-vt any more) and lots of the following output:
+when looking at the global Makefile:
 
-Dec 15 23:23:05 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 0 mthd 0x0018 data 0x00000002
-Dec 15 23:23:05 aloew-lap kernel: nouveau E[     PFB][0000:01:00.0] trapped
-write at 0x0000000114 on channel 0x0000f949 [unknown]
-PFIFO/PFIFO_READ/SEMAPHORE reason: PT_NOT_PRESENT
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 2 mthd 0x0860 data 0x6f000000
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[     PFB][0000:01:00.0] trapped
-write at 0x0000000114 on channel 0x0000f949 [unknown]
-PFIFO/PFIFO_READ/SEMAPHORE reason: PT_NOT_PRESENT
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 2 mthd 0x0860 data 0x72000000
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 2 mthd 0x0860 data 0x76000000
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 2 mthd 0x0860 data 0x74000000
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 2 mthd 0x0860 data 0x6f000000
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 2 mthd 0x0860 data 0x60000000
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 2 mthd 0x0860 data 0x41000000
-(...)
+git show <commit-sha1>:Makefile
 
-(see the attached bz2 for the full log).
+have been done on 3.5.0-rc4 version of the kernel.
 
-So does this mean that your proposal of switching to the nv50_fence won't work
-for me?
+All other commits in this range had been done on 3.4.0 and less:
 
-In the meantime, I will continue and try kernel builds based on commits
-"5e120f6e4b3f35b741c5445dfc755f50128c3c44^" and
-"5e120f6e4b3f35b741c5445dfc755f50128c3c44" tomorrow...
+35916acedd8dadb361ef6439d05d60fbe8f53032 (dated May 31)
+
+and all earlier commits have been done on 3.4.0 and its rc builds.
+
+As the issue is NOT present in the 3.4.x series anyway, I assume that only the
+two commits on 3.5.0-rc4 above (if any) from this interval are relevant, and we
+rather need to look at the subsequent v3.5..v3.6 range!?
+
+Am I correct (and please bear with me in case I got it wrong - I had never used
+git before looking into this...)?
 
 Thanks & BR,
 Andreas
@@ -98,8 +66,8 @@ Andreas
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1387149368.2A3f5.5348
-Date: Sun, 15 Dec 2013 23:16:08 +0000
+--1387151062.feEbf525.11031
+Date: Sun, 15 Dec 2013 23:44:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -113,70 +81,38 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c34">Comment # 34</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c35">Comment # 35</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
               from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
 </span></b>
-        <pre>Bad news once again...
+        <pre>Follow-up question note that I am digging deeper into git... ;-)
 
-I applied the following single-line patch to a stock 3.12.4 kernel in order to
-switch to the NV50 fence:
+From the commits in the v3.4..v3.5 range, only two of them:
 
-diff -Nrpu linux-3.12.4.orig/drivers/gpu/drm/nouveau/nouveau_drm.c
-linux-3.12.4/drivers/gpu/drm/nouveau/nouveau_drm.c
---- linux-3.12.4.orig/drivers/gpu/drm/nouveau/nouveau_drm.c    2013-12-08
-17:18:58.000000000 +0100
-+++ linux-3.12.4/drivers/gpu/drm/nouveau/nouveau_drm.c    2013-12-15
-16:37:25.000000000 +0100
-&#64;&#64; -180,7 +180,7 &#64;&#64; nouveau_accel_init(struct nouveau_drm *d
-     else if (device-&gt;chipset   &lt;  0x17) ret = nv10_fence_create(drm);
-     else if (device-&gt;card_type &lt; NV_50) ret = nv17_fence_create(drm);
-     else if (device-&gt;chipset   &lt;  0x84) ret = nv50_fence_create(drm);
--    else if (device-&gt;card_type &lt; NV_C0) ret = nv84_fence_create(drm);
-+    else if (device-&gt;card_type &lt; NV_C0) ret = nv50_fence_create(drm);
-     else                                ret = nvc0_fence_create(drm);
-     if (ret) {
-         NV_ERROR(drm, &quot;failed to initialise sync subsystem, %d\n&quot;, ret);
+9bd0c15fcfb42f6245447c53347d65ad9e72080b (dated Jun 26, 2012) and
+e9bf5f36b09f8ec6c168ef58ee7d4890545ede1c (dated Jun 27)
 
-but the result is that after the GUI login screen (gdm) which works fine, I get
-a complete hang when GNOME starts up using compiz (cannot even switch to a text
-vt any more) and lots of the following output:
+when looking at the global Makefile:
 
-Dec 15 23:23:05 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 0 mthd 0x0018 data 0x00000002
-Dec 15 23:23:05 aloew-lap kernel: nouveau E[     PFB][0000:01:00.0] trapped
-write at 0x0000000114 on channel 0x0000f949 [unknown]
-PFIFO/PFIFO_READ/SEMAPHORE reason: PT_NOT_PRESENT
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 2 mthd 0x0860 data 0x6f000000
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[     PFB][0000:01:00.0] trapped
-write at 0x0000000114 on channel 0x0000f949 [unknown]
-PFIFO/PFIFO_READ/SEMAPHORE reason: PT_NOT_PRESENT
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 2 mthd 0x0860 data 0x72000000
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 2 mthd 0x0860 data 0x76000000
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 2 mthd 0x0860 data 0x74000000
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 2 mthd 0x0860 data 0x6f000000
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 2 mthd 0x0860 data 0x60000000
-Dec 15 23:23:06 aloew-lap kernel: nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
-- ch 4 [compiz[4637]] subc 2 mthd 0x0860 data 0x41000000
-(...)
+git show &lt;commit-sha1&gt;:Makefile
 
-(see the attached bz2 for the full log).
+have been done on 3.5.0-rc4 version of the kernel.
 
-So does this mean that your proposal of switching to the nv50_fence won't work
-for me?
+All other commits in this range had been done on 3.4.0 and less:
 
-In the meantime, I will continue and try kernel builds based on commits
-&quot;5e120f6e4b3f35b741c5445dfc755f50128c3c44^&quot; and
-&quot;5e120f6e4b3f35b741c5445dfc755f50128c3c44&quot; tomorrow...
+35916acedd8dadb361ef6439d05d60fbe8f53032 (dated May 31)
+
+and all earlier commits have been done on 3.4.0 and its rc builds.
+
+As the issue is NOT present in the 3.4.x series anyway, I assume that only the
+two commits on 3.5.0-rc4 above (if any) from this interval are relevant, and we
+rather need to look at the subsequent v3.5..v3.6 range!?
+
+Am I correct (and please bear with me in case I got it wrong - I had never used
+git before looking into this...)?
 
 Thanks &amp; BR,
 Andreas</pre>
@@ -191,9 +127,9 @@ Andreas</pre>
     </body>
 </html>
 
---1387149368.2A3f5.5348--
+--1387151062.feEbf525.11031--
 
---===============1852825050==
+--===============0570087603==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -204,4 +140,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1852825050==--
+--===============0570087603==--
