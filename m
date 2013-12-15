@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
  8400M G after upgrade the kernel to 3.7.0 version
-Date: Sun, 15 Dec 2013 14:09:55 +0000
-Message-ID: <bug-58378-8800-NSI7H5nRsS@http.bugs.freedesktop.org/>
+Date: Sun, 15 Dec 2013 14:13:11 +0000
+Message-ID: <bug-58378-8800-jjzRMmE8Rz@http.bugs.freedesktop.org/>
 References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0312239416=="
+Content-Type: multipart/mixed; boundary="===============0834148106=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,52 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0312239416==
-Content-Type: multipart/alternative; boundary="1387116595.1cDA24f5.14523"; charset="us-ascii"
+--===============0834148106==
+Content-Type: multipart/alternative; boundary="1387116791.Aa3f5.14982"; charset="us-ascii"
 
 
---1387116595.1cDA24f5.14523
-Date: Sun, 15 Dec 2013 14:09:55 +0000
+--1387116791.Aa3f5.14982
+Date: Sun, 15 Dec 2013 14:13:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
---- Comment #29 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
-OK, finally I have some more encouraging news:
+--- Comment #30 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
+In addition, one more request to all the other people who raised this issue
+here and/or have also seen it before myself:
 
-It now looks like the issue indeed started much earlier than initially thought,
-namely already between the 3.4 and 3.5 kernel series!!!
+Can you confirm that for you, the issue indeed also already started after the
+3.4 series like it does for me, i.e. you never tried a 3.5.x or 3.6.x kernels?
 
-Results from my testing with stock kernels obtained from kernel.org (I've never
-ever before compiled so many kernels in such a short period of time...):
-
-* 3.4.5 -> NO ISSUE
-* 3.4.74 -> NO ISSUE
-* 3.5.1 -> ISSUE SEEN
-* 3.5.5 -> ISSUE SEEN
-* all later versions (3.6 onwards) -> ISSUE SEEN.
-
-So please advise now what next steps I should undertake to track it down more
-closely:
-
-What new commits have happened between the 3.4 and 3.5 series, and did one of
-them possibly affect so-called "fencing" on NV86/NV50 chips?
-
-(And - in order to learn some more git - how can I find out the associated
-commits using git command-line, such that I can produce the respective kernel
-tarballs for testing out of git?)
-
-Many thanks in advance for your feedback! :-)
-
+Thanks & BR,
 Andreas
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1387116595.1cDA24f5.14523
-Date: Sun, 15 Dec 2013 14:09:55 +0000
+--1387116791.Aa3f5.14982
+Date: Sun, 15 Dec 2013 14:13:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -80,39 +61,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c29">Comment # 29</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c30">Comment # 30</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
               from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
 </span></b>
-        <pre>OK, finally I have some more encouraging news:
+        <pre>In addition, one more request to all the other people who raised this issue
+here and/or have also seen it before myself:
 
-It now looks like the issue indeed started much earlier than initially thought,
-namely already between the 3.4 and 3.5 kernel series!!!
+Can you confirm that for you, the issue indeed also already started after the
+3.4 series like it does for me, i.e. you never tried a 3.5.x or 3.6.x kernels?
 
-Results from my testing with stock kernels obtained from kernel.org (I've never
-ever before compiled so many kernels in such a short period of time...):
-
-* 3.4.5 -&gt; NO ISSUE
-* 3.4.74 -&gt; NO ISSUE
-* 3.5.1 -&gt; ISSUE SEEN
-* 3.5.5 -&gt; ISSUE SEEN
-* all later versions (3.6 onwards) -&gt; ISSUE SEEN.
-
-So please advise now what next steps I should undertake to track it down more
-closely:
-
-What new commits have happened between the 3.4 and 3.5 series, and did one of
-them possibly affect so-called &quot;fencing&quot; on NV86/NV50 chips?
-
-(And - in order to learn some more git - how can I find out the associated
-commits using git command-line, such that I can produce the respective kernel
-tarballs for testing out of git?)
-
-Many thanks in advance for your feedback! :-)
-
+Thanks &amp; BR,
 Andreas</pre>
         </div>
       </p>
@@ -125,9 +87,9 @@ Andreas</pre>
     </body>
 </html>
 
---1387116595.1cDA24f5.14523--
+--1387116791.Aa3f5.14982--
 
---===============0312239416==
+--===============0834148106==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -138,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0312239416==--
+--===============0834148106==--
