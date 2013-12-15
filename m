@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72717] [NVE6] No sound via display port (hdmi works)
-Date: Sun, 15 Dec 2013 08:39:48 +0000
-Message-ID: <bug-72717-8800-Cd2ISMwdGx@http.bugs.freedesktop.org/>
-References: <bug-72717-8800@http.bugs.freedesktop.org/>
+From: Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Is binary firmware still necessary for GTX660 card
+	(NVE0 family) in order to use DRM and/or VDPAU video acceleration?
+Date: Sun, 15 Dec 2013 10:28:45 +0100
+Message-ID: <7227979.fYKVc1ZQS9@matthias-pc>
+References: <CAN39ZY-1Z=t7i8e=jFYaNH8Tj32J62da085N3uTi-P-8-rp9Uw@mail.gmail.com>
+	<CAKb7Uvjh2hKeoyLZFAgkQotPGhALyoyRoLksfQBBk-Pp3VQPhg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1507823015=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72717-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvjh2hKeoyLZFAgkQotPGhALyoyRoLksfQBBk-Pp3VQPhg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,75 +19,84 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Hi,
 
---===============1507823015==
-Content-Type: multipart/alternative; boundary="1387096788.00f002.32147"; charset="us-ascii"
+just a note for everybody who stumble across this thread in the future in 
+order to bring this thread to a proper end.
 
+If I run the kernel with
 
---1387096788.00f002.32147
-Date: Sun, 15 Dec 2013 08:39:48 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+nouveau.debug="PVP=debug,PBSP=debug,PPPP=debug"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72717
+I see messages about the firmware files gettings loaded. If the firmware files are 
+missing, I get some warnings/errors. So far everything works as expected.
 
---- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It's not expected to work actually.  Nobody as of yet has cared at all, and I
-totally forgot about it, personally.
+But if I invoke "mplayer" with the "-vo vdpau -vc ..." option either way 
+mplayer claims to use vdpau and starts playing the video, even if the firmware 
+files are not there. Hence, either mplayer or the nouveau driver can do vdpau 
+without the firmware files, but then I wonder how, or mplayer silently falls 
+back to another output driver.
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+Anyway, as far as I am concerned, the issue is closed. I use vdpau with the 
+firmware files and I am happy.
 
---1387096788.00f002.32147
-Date: Sun, 15 Dec 2013 08:39:48 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+Matthias
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] No sound via display port (hdmi works)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72717#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] No sound via display port (hdmi works)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72717">bug 72717</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>It's not expected to work actually.  Nobody as of yet has cared at all, and I
-totally forgot about it, personally.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1387096788.00f002.32147--
-
---===============1507823015==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1507823015==--
+Am Donnerstag, 12. Dezember 2013, 07:18:48 schrieb Ilia Mirkin:
+> On Thu, Dec 12, 2013 at 2:32 AM, Matthias Nagel
+> 
+> <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> > Hello,
+> > 
+> > I run the Gentoo Linux distribution and use a self-compiled Linux 3.10.17
+> > kernel. According to
+> > 
+> > [1] http://nouveau.freedesktop.org/wiki/InstallDRM/
+> > [2] http://nouveau.freedesktop.org/wiki/VideoAcceleration/
+> > 
+> > I need the original firmware from the binary driver in order to sucessully
+> > use DRM and to use VDPAU video acceleration. I used the python script from
+> > [2] and I had a look at the ebuild from
+> > 
+> > [3] https://bugs.gentoo.org/show_bug.cgi?id=480832
+> > 
+> > to extract the firmware and to place it at /lib/firmware/nouveau. But I do
+> > not see any dmesg output about loading the firmware. I do not see any
+> > dmesg
+> > output about nouveau failing to do so either. I neither do no see any
+> > "nouveau <pci id>: firmware: requesting nouveau/" in my kernel output.
+> 
+> Try booting with
+> 
+> nouveau.debug=PVP=debug,PBSP=debug,PPPP=debug
+> 
+> Note the new-found kernel output.
+> 
+> > Anyway VDPAU seems to work. If I call mplayer with "-vo vdpau -vc
+> > ffmpeg12vdpau,...", I don't get any error message and my CPU load drops
+> > from 30% to 7% for a recent mpeg transport stream 1080p video.
+> > 
+> > In conclusion, do I still need the firmware? Do the information given at
+> > [1], [2] still apply or are they outdated?
+> 
+> You definitely need firmware to do vdpau (just try removing it and
+> reboot, and see what happens) on all NV84+ cards. AFAIK there is no
+> active work being done to replace the firmware on VP5 cards (nvd0+),
+> although that is the one that is probably the most feasible since the
+> actual video decoding is done with firmware that's on the card (or
+> with dedicated hardware, who knows) so all that's left is providing
+> the little "os" running on the connected falcon processors.
+> 
+> Unless you're booting with nouveau.NvGrUseFW=1, you don't need the
+> pgraph firmware. It generally tends to work for nve0 cards nowadays,
+> although some people have issues with hangs (e.g.
+> https://bugs.freedesktop.org/show_bug.cgi?id=70354,
+> https://bugs.freedesktop.org/show_bug.cgi?id=72180). I believe there
+> were a bunch of fixes to the fuc ucode in 3.11, which is probably why
+> Martin suggested you use a more recent kernel. But if it's working
+> fine for you, no need to worry about it.
+> 
+>   -ilia
