@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56757] [NV42/NV30 gallium] UrbanTerror4.2 gets parts
  of images cut off
-Date: Mon, 16 Dec 2013 17:03:33 +0000
-Message-ID: <bug-56757-8800-iU6xzHItPc@http.bugs.freedesktop.org/>
+Date: Mon, 16 Dec 2013 17:03:15 +0000
+Message-ID: <bug-56757-8800-E4mP3ZgjgN@http.bugs.freedesktop.org/>
 References: <bug-56757-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1741548971=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0486716299=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56757-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,18 +15,18 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1741548971==
-Content-Type: multipart/alternative; boundary="1387213414.bc4CC811.5455"; charset="us-ascii"
+--===============0486716299==
+Content-Type: multipart/alternative; boundary="1387213395.440d5.5455"; charset="us-ascii"
 
 
---1387213414.bc4CC811.5455
-Date: Mon, 16 Dec 2013 17:03:34 +0000
+--1387213395.440d5.5455
+Date: Mon, 16 Dec 2013 17:03:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,15 +36,15 @@ Papamatti <matti_lx-LWAfsSFWpa4@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           See Also|https://bugs.freedesktop.or |
-                   |g/show_bug.cgi?id=54155     |
+           See Also|                            |https://bugs.freedesktop.or
+                   |                            |g/show_bug.cgi?id=54155
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1387213414.bc4CC811.5455
-Date: Mon, 16 Dec 2013 17:03:34 +0000
+--1387213395.440d5.5455
+Date: Mon, 16 Dec 2013 17:03:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,10 +68,10 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">See Also</td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=54155
-           </td>
            <td>
                &nbsp;
+           </td>
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=54155
            </td>
          </tr></table>
       <p>
@@ -85,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1387213414.bc4CC811.5455--
+--1387213395.440d5.5455--
 
---===============1741548971==
+--===============0486716299==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1741548971==--
+--===============0486716299==--
