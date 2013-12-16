@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
  8400M G after upgrade the kernel to 3.7.0 version
-Date: Mon, 16 Dec 2013 13:02:11 +0000
-Message-ID: <bug-58378-8800-frmpsy6OyD@http.bugs.freedesktop.org/>
+Date: Mon, 16 Dec 2013 13:19:47 +0000
+Message-ID: <bug-58378-8800-p5ISQpkKuZ@http.bugs.freedesktop.org/>
 References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1861400811=="
+Content-Type: multipart/mixed; boundary="===============0437589337=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,61 +21,71 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1861400811==
-Content-Type: multipart/alternative; boundary="1387198931.7afF35.19155"; charset="us-ascii"
+--===============0437589337==
+Content-Type: multipart/alternative; boundary="1387199987.BbF26.26100"; charset="us-ascii"
 
 
---1387198931.7afF35.19155
-Date: Mon, 16 Dec 2013 13:02:11 +0000
+--1387199987.BbF26.26100
+Date: Mon, 16 Dec 2013 13:19:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
---- Comment #37 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
-Hello again, Ilia,
+Tom Wijsman <TomWij-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org> changed:
 
-ok, I see - did some further reading and I think I now fully understand the way
-it works:
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|TomWij-EMRzualFZlQ@public.gmane.org             |TomWij-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org
 
-This also means that you are NOT regularly pulling the updates from Linus'
-central git into the nouveau git, but typically only do this ONCE after Linus
-released a new version (here: 3.4.0) and then NOT for any minor subsequent
-release by Linus (3.4.1, 3.4.2 and so on), but ONLY shortly before he opens the
-"rc" pull window for his next release series (here: 3.5-rc1).
+--- Comment #38 from Tom Wijsman <TomWij-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org> ---
+(In reply to comment #37)
+> This also means that you are NOT regularly pulling the updates from Linus'
+> central git into the nouveau git, but typically only do this ONCE after
+> Linus released a new version (here: 3.4.0)
 
-So it indeed looks as if all the local commits on the nouveau git have been
-made on a 3.4.0 kernel, although they ended up in the official 3.5 version
-released by Linus.
+That usually is done as often as necessary; if one does it more often, it could
+lead to situations where you have pulled a new broken commit that could slow
+down Nouveau development. And thus, pulling major releases is efficient.
 
+> and then NOT for any minor
+> subsequent release by Linus (3.4.1, 3.4.2 and so on)
 
-Besed on this, I did further testing:
+Note that those releases happen by Greg KH and consist of backported patches.
 
-Both "5e120f6e4b3f35b741c5445dfc755f50128c3c44^" and
-"5e120f6e4b3f35b741c5445dfc755f50128c3c44" do still run fine, i.e. the commit
-5e120f6e4b3f35b741c5445dfc755f50128c3c44 - which actually introduced the
-nv84_fence - does NOT seem to be causing the distortion issue.
+> but ONLY shortly
+> before he opens the "rc" pull window for his next release series (here:
+> 3.5-rc1).
 
-I will now move forward (slowly, as I need to do the tarball-based rpmbuild
-process), and keep you updated on my findings.
+That would be one possible moment where the conditions are ideal enough to
+pull.
 
+Though I am in doubt whether it matters when this was pulled from Linus. If you
+don't like to bisect the Nouveau development branch, you can bisect kernel git.
 
-Also, I repeat my question to the other folks who had reported this issue
-before:
+> Besed on this, I did further testing:
+> 
+> Both "5e120f6e4b3f35b741c5445dfc755f50128c3c44^" and
+> "5e120f6e4b3f35b741c5445dfc755f50128c3c44" do still run fine, i.e. the
+> commit 5e120f6e4b3f35b741c5445dfc755f50128c3c44 - which actually introduced
+> the nv84_fence - does NOT seem to be causing the distortion issue.
+> 
+> I will now move forward (slowly, as I need to do the tarball-based rpmbuild
+> process), and keep you updated on my findings.
 
-Can you confirm that you also already see the issue when you use any stock
-3.5.x or 3.6.x kernels, i.e. the issue did start long before 3.7.0 and the
-3.4.x is the most recent release that works fine?
+You really want to be doing a git bisect to do the least amount of work; I
+don't see what you mean by "move forward" but I really hope that you are
+testing the commits in a binary tree style.
 
-Thanks & BR,
-Andreas
+You can put the tarball-based process in a script so you only need to run a
+single command after moving further in the bisection.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1387198931.7afF35.19155
-Date: Mon, 16 Dec 2013 13:02:11 +0000
+--1387199987.BbF26.26100
+Date: Mon, 16 Dec 2013 13:19:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -83,55 +93,79 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:TomWij&#64;gentoo.org" title="Tom Wijsman &lt;TomWij&#64;gentoo.org&gt;"> <span class="fn">Tom Wijsman</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>TomWij&#64;live.com
+           </td>
+           <td>TomWij&#64;gentoo.org
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c37">Comment # 37</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c38">Comment # 38</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
+              from <span class="vcard"><a class="email" href="mailto:TomWij&#64;gentoo.org" title="Tom Wijsman &lt;TomWij&#64;gentoo.org&gt;"> <span class="fn">Tom Wijsman</span></a>
 </span></b>
-        <pre>Hello again, Ilia,
+        <pre>(In reply to <a href="show_bug.cgi?id=58378#c37">comment #37</a>)
+<span class="quote">&gt; This also means that you are NOT regularly pulling the updates from Linus'
+&gt; central git into the nouveau git, but typically only do this ONCE after
+&gt; Linus released a new version (here: 3.4.0)</span >
 
-ok, I see - did some further reading and I think I now fully understand the way
-it works:
+That usually is done as often as necessary; if one does it more often, it could
+lead to situations where you have pulled a new broken commit that could slow
+down Nouveau development. And thus, pulling major releases is efficient.
 
-This also means that you are NOT regularly pulling the updates from Linus'
-central git into the nouveau git, but typically only do this ONCE after Linus
-released a new version (here: 3.4.0) and then NOT for any minor subsequent
-release by Linus (3.4.1, 3.4.2 and so on), but ONLY shortly before he opens the
-&quot;rc&quot; pull window for his next release series (here: 3.5-rc1).
+<span class="quote">&gt; and then NOT for any minor
+&gt; subsequent release by Linus (3.4.1, 3.4.2 and so on)</span >
 
-So it indeed looks as if all the local commits on the nouveau git have been
-made on a 3.4.0 kernel, although they ended up in the official 3.5 version
-released by Linus.
+Note that those releases happen by Greg KH and consist of backported patches.
 
+<span class="quote">&gt; but ONLY shortly
+&gt; before he opens the &quot;rc&quot; pull window for his next release series (here:
+&gt; 3.5-rc1).</span >
 
-Besed on this, I did further testing:
+That would be one possible moment where the conditions are ideal enough to
+pull.
 
-Both &quot;5e120f6e4b3f35b741c5445dfc755f50128c3c44^&quot; and
-&quot;5e120f6e4b3f35b741c5445dfc755f50128c3c44&quot; do still run fine, i.e. the commit
-5e120f6e4b3f35b741c5445dfc755f50128c3c44 - which actually introduced the
-nv84_fence - does NOT seem to be causing the distortion issue.
+Though I am in doubt whether it matters when this was pulled from Linus. If you
+don't like to bisect the Nouveau development branch, you can bisect kernel git.
 
-I will now move forward (slowly, as I need to do the tarball-based rpmbuild
-process), and keep you updated on my findings.
+<span class="quote">&gt; Besed on this, I did further testing:
+&gt; 
+&gt; Both &quot;5e120f6e4b3f35b741c5445dfc755f50128c3c44^&quot; and
+&gt; &quot;5e120f6e4b3f35b741c5445dfc755f50128c3c44&quot; do still run fine, i.e. the
+&gt; commit 5e120f6e4b3f35b741c5445dfc755f50128c3c44 - which actually introduced
+&gt; the nv84_fence - does NOT seem to be causing the distortion issue.
+&gt; 
+&gt; I will now move forward (slowly, as I need to do the tarball-based rpmbuild
+&gt; process), and keep you updated on my findings.</span >
 
+You really want to be doing a git bisect to do the least amount of work; I
+don't see what you mean by &quot;move forward&quot; but I really hope that you are
+testing the commits in a binary tree style.
 
-Also, I repeat my question to the other folks who had reported this issue
-before:
-
-Can you confirm that you also already see the issue when you use any stock
-3.5.x or 3.6.x kernels, i.e. the issue did start long before 3.7.0 and the
-3.4.x is the most recent release that works fine?
-
-Thanks &amp; BR,
-Andreas</pre>
+You can put the tarball-based process in a script so you only need to run a
+single command after moving further in the bisection.</pre>
         </div>
       </p>
       <hr>
@@ -143,9 +177,9 @@ Andreas</pre>
     </body>
 </html>
 
---1387198931.7afF35.19155--
+--1387199987.BbF26.26100--
 
---===============1861400811==
+--===============0437589337==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -156,4 +190,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1861400811==--
+--===============0437589337==--
