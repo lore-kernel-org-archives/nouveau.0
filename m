@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
- 8400M G after upgrade the kernel to 3.7.0 version
-Date: Mon, 16 Dec 2013 14:18:21 +0000
-Message-ID: <bug-58378-8800-WYpWDiVeNE@http.bugs.freedesktop.org/>
-References: <bug-58378-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72760] New: gdm hangs, sometimes everything else also
+Date: Mon, 16 Dec 2013 15:46:17 +0000
+Message-ID: <bug-72760-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0438272436=="
+Content-Type: multipart/mixed; boundary="===============0192711569=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,57 +18,65 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0438272436==
-Content-Type: multipart/alternative; boundary="1387203501.DAcB065.4999"; charset="us-ascii"
+--===============0192711569==
+Content-Type: multipart/alternative; boundary="1387208777.80C51.21801"; charset="us-ascii"
 
 
---1387203501.DAcB065.4999
-Date: Mon, 16 Dec 2013 14:18:21 +0000
+--1387208777.80C51.21801
+Date: Mon, 16 Dec 2013 15:46:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58378
+https://bugs.freedesktop.org/show_bug.cgi?id=72760
 
---- Comment #39 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
-> You really want to be doing a git bisect to do the least amount of work; I
-> don't see what you mean by "move forward" but I really hope that you are
-> testing the commits in a binary tree style.
+          Priority: medium
+            Bug ID: 72760
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: gdm hangs, sometimes everything else also
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: jklawiter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-Yup. Indeed, I am trying to use a "binary" approach to minimize work, but am
-not using git bisect, but hope to augment augment cutting the solution tree in
-half by reading the commit comments and letting my intellect suggest which ones
-look like more or less likely candidates...
+Created attachment 90840
+  --> https://bugs.freedesktop.org/attachment.cgi?id=90840&action=edit
+dmesg
 
-> You can put the tarball-based process in a script so you only need to run a
-> single command after moving further in the bisection.
+Since few weeks i have strange problems with my computer. In fact maybe i have
+them more than few weeks but i'm looking and trying to solve it just 2-3 weeks.
 
-I have indeed already done so (not based on git bisect, but a commit id).
+Computer (gdm and over part) is hanging from time to time. I cannot reproduce
+it always but most times i need just open few windows and wait. Same time
+computer is working, I can connect to it via ssh and everything is working
+normal except i cannot poweroff computer because it hangs.
 
-Note that while I'm indeed a complete newbie to git, I am not at all a newbie
-Linux/Unix shell scripting. In my main job, though, I am a Java
-architect/developer/support engineer, so I typically am only a "dummy user" of
-Linux kernels - unless it very rarely happens that something breaks which is
-really important for me, so I try and see whether I can help... ;-)
+What i find few days ago was broken capacitors on my GfX card, i replaced them
+but it did not help.
 
-I started trying to drive this forward when I became suddenly affected by this
-issue because it has indeed been introduced into RHEL6 mainline kernels with
-the most recent RHEL 6.5 kernel update - so I hope that once we're done and you
-have been able to successfully fix the issue, you can take care of the fix also
-being ported into subsequent RHEL6 kernels (working at Red Hat, I hope that Ben
-Skeggs should hopefully be interested enough in doing so...).
+Sometimes (not very often) it ends with Kernel Panic.
 
-Will report back here as soon as I have been able to track things down to a
-particular commit... :-)
+i'm using:
+05:00.0 VGA compatible controller: NVIDIA Corporation NV43 [GeForce 6600] (rev
+a2)
 
-Thanks & BR,
-Andreas
+kernel: 3.12.5-gentoo
+xf86-video-nouveau-1.0.10
+libdrm-2.4.50
+mesa-9.2.4
+xorg-server-1.14.3
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1387203501.DAcB065.4999
-Date: Mon, 16 Dec 2013 14:18:21 +0000
+--1387208777.80C51.21801
+Date: Mon, 16 Dec 2013 15:46:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -79,51 +84,120 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - gdm hangs, sometimes everything else also"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72760">72760</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>gdm hangs, sometimes everything else also
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jklawiter&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c39">Comment # 39</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
-</span></b>
-        <pre><span class="quote">&gt; You really want to be doing a git bisect to do the least amount of work; I
-&gt; don't see what you mean by &quot;move forward&quot; but I really hope that you are
-&gt; testing the commits in a binary tree style.</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=90840" name="attach_90840" title="dmesg">attachment 90840</a> <a href="attachment.cgi?id=90840&amp;action=edit" title="dmesg">[details]</a></span>
+dmesg
 
-Yup. Indeed, I am trying to use a &quot;binary&quot; approach to minimize work, but am
-not using git bisect, but hope to augment augment cutting the solution tree in
-half by reading the commit comments and letting my intellect suggest which ones
-look like more or less likely candidates...
+Since few weeks i have strange problems with my computer. In fact maybe i have
+them more than few weeks but i'm looking and trying to solve it just 2-3 weeks.
 
-<span class="quote">&gt; You can put the tarball-based process in a script so you only need to run a
-&gt; single command after moving further in the bisection.</span >
+Computer (gdm and over part) is hanging from time to time. I cannot reproduce
+it always but most times i need just open few windows and wait. Same time
+computer is working, I can connect to it via ssh and everything is working
+normal except i cannot poweroff computer because it hangs.
 
-I have indeed already done so (not based on git bisect, but a commit id).
+What i find few days ago was broken capacitors on my GfX card, i replaced them
+but it did not help.
 
-Note that while I'm indeed a complete newbie to git, I am not at all a newbie
-Linux/Unix shell scripting. In my main job, though, I am a Java
-architect/developer/support engineer, so I typically am only a &quot;dummy user&quot; of
-Linux kernels - unless it very rarely happens that something breaks which is
-really important for me, so I try and see whether I can help... ;-)
+Sometimes (not very often) it ends with Kernel Panic.
 
-I started trying to drive this forward when I became suddenly affected by this
-issue because it has indeed been introduced into RHEL6 mainline kernels with
-the most recent RHEL 6.5 kernel update - so I hope that once we're done and you
-have been able to successfully fix the issue, you can take care of the fix also
-being ported into subsequent RHEL6 kernels (working at Red Hat, I hope that Ben
-Skeggs should hopefully be interested enough in doing so...).
+i'm using:
+05:00.0 VGA compatible controller: NVIDIA Corporation NV43 [GeForce 6600] (rev
+a2)
 
-Will report back here as soon as I have been able to track things down to a
-particular commit... :-)
-
-Thanks &amp; BR,
-Andreas</pre>
+kernel: 3.12.5-gentoo
+xf86-video-nouveau-1.0.10
+libdrm-2.4.50
+mesa-9.2.4
+xorg-server-1.14.3</pre>
         </div>
       </p>
       <hr>
@@ -135,9 +209,9 @@ Andreas</pre>
     </body>
 </html>
 
---1387203501.DAcB065.4999--
+--1387208777.80C51.21801--
 
---===============0438272436==
+--===============0192711569==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +222,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0438272436==--
+--===============0192711569==--
