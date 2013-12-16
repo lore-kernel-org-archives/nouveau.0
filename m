@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
  8400M G after upgrade the kernel to 3.7.0 version
-Date: Sun, 15 Dec 2013 23:51:11 +0000
-Message-ID: <bug-58378-8800-0z3hu6BF8q@http.bugs.freedesktop.org/>
+Date: Mon, 16 Dec 2013 13:02:11 +0000
+Message-ID: <bug-58378-8800-frmpsy6OyD@http.bugs.freedesktop.org/>
 References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1002680719=="
+Content-Type: multipart/mixed; boundary="===============1861400811=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,58 +21,61 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1002680719==
-Content-Type: multipart/alternative; boundary="1387151472.aDCf3a6.12067"; charset="us-ascii"
+--===============1861400811==
+Content-Type: multipart/alternative; boundary="1387198931.7afF35.19155"; charset="us-ascii"
 
 
---1387151472.aDCf3a6.12067
-Date: Sun, 15 Dec 2013 23:51:12 +0000
+--1387198931.7afF35.19155
+Date: Mon, 16 Dec 2013 13:02:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
---- Comment #36 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #35)
-> Follow-up question note that I am digging deeper into git... ;-)
-> 
-> From the commits in the v3.4..v3.5 range, only two of them:
-> 
-> 9bd0c15fcfb42f6245447c53347d65ad9e72080b (dated Jun 26, 2012) and
-> e9bf5f36b09f8ec6c168ef58ee7d4890545ede1c (dated Jun 27)
-> 
-> when looking at the global Makefile:
-> 
-> git show <commit-sha1>:Makefile
-> 
-> have been done on 3.5.0-rc4 version of the kernel.
+--- Comment #37 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
+Hello again, Ilia,
 
-Most assuredly not the right way to look at it.
+ok, I see - did some further reading and I think I now fully understand the way
+it works:
 
-> 
-> All other commits in this range had been done on 3.4.0 and less:
-> 
-> 35916acedd8dadb361ef6439d05d60fbe8f53032 (dated May 31)
+This also means that you are NOT regularly pulling the updates from Linus'
+central git into the nouveau git, but typically only do this ONCE after Linus
+released a new version (here: 3.4.0) and then NOT for any minor subsequent
+release by Linus (3.4.1, 3.4.2 and so on), but ONLY shortly before he opens the
+"rc" pull window for his next release series (here: 3.5-rc1).
 
-And of course date of the commit has nothing to do with anything either.
+So it indeed looks as if all the local commits on the nouveau git have been
+made on a 3.4.0 kernel, although they ended up in the official 3.5 version
+released by Linus.
 
-Think about the branched development model. Let's say I do some work, basing my
-work on, say, 2.6.0. I spend a lot of time on it. Then I send a pull request to
-Linus (or whoever). He merges it. When looking at my commits, you might think
-that you're looking at a 2.6.0 kernel, based on the Makefile. And in a large
-sense you are. But in reality the commits were merged into some much later
-release. Same with dates.
 
-You can either read about git and fully understand it, or you can kinda trust
-that the tools aren't lying to you when you ask for a bisect in a range, or a
-log of commits between two revisions.
+Besed on this, I did further testing:
+
+Both "5e120f6e4b3f35b741c5445dfc755f50128c3c44^" and
+"5e120f6e4b3f35b741c5445dfc755f50128c3c44" do still run fine, i.e. the commit
+5e120f6e4b3f35b741c5445dfc755f50128c3c44 - which actually introduced the
+nv84_fence - does NOT seem to be causing the distortion issue.
+
+I will now move forward (slowly, as I need to do the tarball-based rpmbuild
+process), and keep you updated on my findings.
+
+
+Also, I repeat my question to the other folks who had reported this issue
+before:
+
+Can you confirm that you also already see the issue when you use any stock
+3.5.x or 3.6.x kernels, i.e. the issue did start long before 3.7.0 and the
+3.4.x is the most recent release that works fine?
+
+Thanks & BR,
+Andreas
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1387151472.aDCf3a6.12067
-Date: Sun, 15 Dec 2013 23:51:12 +0000
+--1387198931.7afF35.19155
+Date: Mon, 16 Dec 2013 13:02:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -86,46 +89,49 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c36">Comment # 36</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c37">Comment # 37</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=58378#c35">comment #35</a>)
-<span class="quote">&gt; Follow-up question note that I am digging deeper into git... ;-)
-&gt; 
-&gt; From the commits in the v3.4..v3.5 range, only two of them:
-&gt; 
-&gt; 9bd0c15fcfb42f6245447c53347d65ad9e72080b (dated Jun 26, 2012) and
-&gt; e9bf5f36b09f8ec6c168ef58ee7d4890545ede1c (dated Jun 27)
-&gt; 
-&gt; when looking at the global Makefile:
-&gt; 
-&gt; git show &lt;commit-sha1&gt;:Makefile
-&gt; 
-&gt; have been done on 3.5.0-rc4 version of the kernel.</span >
+        <pre>Hello again, Ilia,
 
-Most assuredly not the right way to look at it.
+ok, I see - did some further reading and I think I now fully understand the way
+it works:
 
-<span class="quote">&gt; 
-&gt; All other commits in this range had been done on 3.4.0 and less:
-&gt; 
-&gt; 35916acedd8dadb361ef6439d05d60fbe8f53032 (dated May 31)</span >
+This also means that you are NOT regularly pulling the updates from Linus'
+central git into the nouveau git, but typically only do this ONCE after Linus
+released a new version (here: 3.4.0) and then NOT for any minor subsequent
+release by Linus (3.4.1, 3.4.2 and so on), but ONLY shortly before he opens the
+&quot;rc&quot; pull window for his next release series (here: 3.5-rc1).
 
-And of course date of the commit has nothing to do with anything either.
+So it indeed looks as if all the local commits on the nouveau git have been
+made on a 3.4.0 kernel, although they ended up in the official 3.5 version
+released by Linus.
 
-Think about the branched development model. Let's say I do some work, basing my
-work on, say, 2.6.0. I spend a lot of time on it. Then I send a pull request to
-Linus (or whoever). He merges it. When looking at my commits, you might think
-that you're looking at a 2.6.0 kernel, based on the Makefile. And in a large
-sense you are. But in reality the commits were merged into some much later
-release. Same with dates.
 
-You can either read about git and fully understand it, or you can kinda trust
-that the tools aren't lying to you when you ask for a bisect in a range, or a
-log of commits between two revisions.</pre>
+Besed on this, I did further testing:
+
+Both &quot;5e120f6e4b3f35b741c5445dfc755f50128c3c44^&quot; and
+&quot;5e120f6e4b3f35b741c5445dfc755f50128c3c44&quot; do still run fine, i.e. the commit
+5e120f6e4b3f35b741c5445dfc755f50128c3c44 - which actually introduced the
+nv84_fence - does NOT seem to be causing the distortion issue.
+
+I will now move forward (slowly, as I need to do the tarball-based rpmbuild
+process), and keep you updated on my findings.
+
+
+Also, I repeat my question to the other folks who had reported this issue
+before:
+
+Can you confirm that you also already see the issue when you use any stock
+3.5.x or 3.6.x kernels, i.e. the issue did start long before 3.7.0 and the
+3.4.x is the most recent release that works fine?
+
+Thanks &amp; BR,
+Andreas</pre>
         </div>
       </p>
       <hr>
@@ -137,9 +143,9 @@ log of commits between two revisions.</pre>
     </body>
 </html>
 
---1387151472.aDCf3a6.12067--
+--1387198931.7afF35.19155--
 
---===============1002680719==
+--===============1861400811==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -150,4 +156,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1002680719==--
+--===============1861400811==--
