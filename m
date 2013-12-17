@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 72180] [NVE6] Random GPU Lockups,
 	works with blob PGRAPH fw
-Date: Tue, 17 Dec 2013 22:11:34 +0000
-Message-ID: <bug-72180-8800-Ql9q19jKIL@http.bugs.freedesktop.org/>
+Date: Tue, 17 Dec 2013 22:22:05 +0000
+Message-ID: <bug-72180-8800-oC5qV0XXO4@http.bugs.freedesktop.org/>
 References: <bug-72180-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0284967502=="
+Content-Type: multipart/mixed; boundary="===============1543815623=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,41 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0284967502==
-Content-Type: multipart/alternative; boundary="1387318294.B13b763.5906"; charset="us-ascii"
+--===============1543815623==
+Content-Type: multipart/alternative; boundary="1387318925.e0454.8508"; charset="us-ascii"
 
 
---1387318294.B13b763.5906
-Date: Tue, 17 Dec 2013 22:11:34 +0000
+--1387318925.e0454.8508
+Date: Tue, 17 Dec 2013 22:22:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=72180
 
---- Comment #20 from Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I suspected to have the same problem and tried to use the orginal firmware, but
-failed to do so. I did not try to excract my "own" firmware but tried to use
-the firmware from the zip file that was attached by Jordan as we have the same
-card (both GTX 660).
+--- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Whether the firmware needs to be in the initrd or not depends on how you have
+it  set up. It needs to be there when the nouveau code is initialized (if you
+have a module, that means when the module is loaded, if it's built-in, then it
+needs to be added to the kernel image itself with the ADDITIONAL_FIRMWARE thing
+or whatever it's called).
 
-But if I boot with the nouveau.config="NvGrUseFw=1" kernel option, the kernel
-stops directly on the attemp to load the nouveau fb driver.
+e.g. the way I set up my initrd is that it does next to nothing, just asks for
+a password, decrypts the partition, mounts it, and swaps it in as the 'new'
+root. I never need to touch it (unless I want to make changes to the decryption
+logic). Modules are loaded with my regular '/' in place.
 
-I must mention that I use UEFI boot and my kernel resides on the EFI partion
-(/dev/sda1) at /boot/EFI/Boot/gentoo/bzImage-3.12.5.efi (the mount point is
-/boot). On the other hand my firmware is at /lib/firmware/nouveau/ on partition
-/dev/sda5, which is mounted at /.
-
-Let me guess: I need an initrd file in order to make it work? :-( Then I must
-figure out how to make this work together with UEFI boot. Until now, I tried to
-avoid initrd and UEFI.
+Most distros prefer the complex route and have their initrd's load everything,
+which in turn means that the firmware needs to be in the intird, and the initrd
+needs to be updated for every kernel. [Aside: This makes sense when you're
+creating something that must work on every hardware combination ever imagined
+(and not) whereby you don't want to build every driver in, but you do want to
+support various esoteric devices that are may be required for booting, like
+disk or network. And once you do that, might as well do everything there. But
+it's very rare that I solder some crazy raid controller into my laptop, so it
+doesn't really make sense for more tailored setups.]
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1387318294.B13b763.5906
-Date: Tue, 17 Dec 2013 22:11:34 +0000
+--1387318925.e0454.8508
+Date: Tue, 17 Dec 2013 22:22:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,29 +73,33 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c20">Comment # 20</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
-              from <span class="vcard"><a class="email" href="mailto:matthias.h.nagel&#64;gmail.com" title="Matthias Nagel &lt;matthias.h.nagel&#64;gmail.com&gt;"> <span class="fn">Matthias Nagel</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I suspected to have the same problem and tried to use the orginal firmware, but
-failed to do so. I did not try to excract my &quot;own&quot; firmware but tried to use
-the firmware from the zip file that was attached by Jordan as we have the same
-card (both GTX 660).
+        <pre>Whether the firmware needs to be in the initrd or not depends on how you have
+it  set up. It needs to be there when the nouveau code is initialized (if you
+have a module, that means when the module is loaded, if it's built-in, then it
+needs to be added to the kernel image itself with the ADDITIONAL_FIRMWARE thing
+or whatever it's called).
 
-But if I boot with the nouveau.config=&quot;NvGrUseFw=1&quot; kernel option, the kernel
-stops directly on the attemp to load the nouveau fb driver.
+e.g. the way I set up my initrd is that it does next to nothing, just asks for
+a password, decrypts the partition, mounts it, and swaps it in as the 'new'
+root. I never need to touch it (unless I want to make changes to the decryption
+logic). Modules are loaded with my regular '/' in place.
 
-I must mention that I use UEFI boot and my kernel resides on the EFI partion
-(/dev/sda1) at /boot/EFI/Boot/gentoo/bzImage-3.12.5.efi (the mount point is
-/boot). On the other hand my firmware is at /lib/firmware/nouveau/ on partition
-/dev/sda5, which is mounted at /.
-
-Let me guess: I need an initrd file in order to make it work? :-( Then I must
-figure out how to make this work together with UEFI boot. Until now, I tried to
-avoid initrd and UEFI.</pre>
+Most distros prefer the complex route and have their initrd's load everything,
+which in turn means that the firmware needs to be in the intird, and the initrd
+needs to be updated for every kernel. [Aside: This makes sense when you're
+creating something that must work on every hardware combination ever imagined
+(and not) whereby you don't want to build every driver in, but you do want to
+support various esoteric devices that are may be required for booting, like
+disk or network. And once you do that, might as well do everything there. But
+it's very rare that I solder some crazy raid controller into my laptop, so it
+doesn't really make sense for more tailored setups.]</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +111,9 @@ avoid initrd and UEFI.</pre>
     </body>
 </html>
 
---1387318294.B13b763.5906--
+--1387318925.e0454.8508--
 
---===============0284967502==
+--===============1543815623==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -116,4 +124,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0284967502==--
+--===============1543815623==--
