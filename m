@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
  8400M G after upgrade the kernel to 3.7.0 version
-Date: Wed, 18 Dec 2013 19:01:01 +0000
-Message-ID: <bug-58378-8800-3fR5nZP9EX@http.bugs.freedesktop.org/>
+Date: Wed, 18 Dec 2013 19:16:45 +0000
+Message-ID: <bug-58378-8800-5oxugeGsA8@http.bugs.freedesktop.org/>
 References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1911139498=="
+Content-Type: multipart/mixed; boundary="===============0416182935=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,56 +21,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1911139498==
-Content-Type: multipart/alternative; boundary="1387393261.2fc533d6.15366"; charset="us-ascii"
+--===============0416182935==
+Content-Type: multipart/alternative; boundary="1387394205.A58D7A1D5.18472"; charset="us-ascii"
 
 
---1387393261.2fc533d6.15366
-Date: Wed, 18 Dec 2013 19:01:01 +0000
+--1387394205.A58D7A1D5.18472
+Date: Wed, 18 Dec 2013 19:16:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
---- Comment #54 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #52)
-> Hello again, Ilia,
-> 
-> > Can you grab envytools (https://github.com/envytools/envytools) and run
-> 
-> bad news (or maybe expected from what we have been seeing earlier): 
-> 
-> [aloew@aloew-lap envytools-master]$ ./nva/nvapeek 10200c
-> WARN: Can't probe 0000:01:00.0
-> PCI init failure!
-> 
-> [aloew@aloew-lap envytools-master]$ ./nva/nvapoke 10200c 10
-> WARN: Can't probe 0000:01:00.0
-> PCI init failure!
+--- Comment #55 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
+> > [aloew@aloew-lap envytools-master]$ ./nva/nvapoke 10200c 10
+> > WARN: Can't probe 0000:01:00.0
+> > PCI init failure!
 
-You need to run these as root.
+> You need to run these as root.
 
-> > I'd also still be interested in knowing whether a previously-known-good 
-> > version of the blob still works.
-> 
-> I am 99.9% certain it does, as my Windows install with NVidia 285.09 driver
-> also still runs fine, while any more recent Windows driver from NVidia hangs
-> with the same symptoms as their Linux "blob" - I had just checked this last
-> week with their latest Windows version 331.82, once again without any luck.
+Ouch - sorry - could have indeed had this idea myself... :-(
 
-Ah OK, that's probably good enough of a test.
+Here are the results as root:
 
-> Maybe indeed you could ask your new friends/contacts at NVidia about this?
+[aloew@aloew-lap envytools-master]$ sudo ./nva/nvapeek 10200c 10
+0010200c: SS SS SS SS SS SS SS SS SS SS SS SS SS SS SS SS
+[aloew@aloew-lap envytools-master]$ sudo ./nva/nvapoke 10200c 10
+0010200c: ERR S
+[aloew@aloew-lap envytools-master]$ sudo ./nva/nvapeek 10200c 10
+0010200c: SS SS SS SS SS SS SS SS SS SS SS SS SS SS SS SS
+[aloew@aloew-lap envytools-master]$ 
 
-I just bugged them about video decoding stuff a few weeks ago, don't want to
-use up all of my brownie points :)
+And no new messages in "dmesg" output at all. Still not enlightening... :-(
+
+BR,
+Andreas
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1387393261.2fc533d6.15366
-Date: Wed, 18 Dec 2013 19:01:01 +0000
+--1387394205.A58D7A1D5.18472
+Date: Wed, 18 Dec 2013 19:16:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -84,44 +75,35 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c54">Comment # 54</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c55">Comment # 55</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=58378#c52">comment #52</a>)
-<span class="quote">&gt; Hello again, Ilia,
-&gt; 
-&gt; &gt; Can you grab envytools (<a href="https://github.com/envytools/envytools">https://github.com/envytools/envytools</a>) and run
-&gt; 
-&gt; bad news (or maybe expected from what we have been seeing earlier): 
-&gt; 
-&gt; [aloew&#64;aloew-lap envytools-master]$ ./nva/nvapeek 10200c
-&gt; WARN: Can't probe 0000:01:00.0
-&gt; PCI init failure!
-&gt; 
-&gt; [aloew&#64;aloew-lap envytools-master]$ ./nva/nvapoke 10200c 10
-&gt; WARN: Can't probe 0000:01:00.0
-&gt; PCI init failure!</span >
+        <pre><span class="quote">&gt; &gt; [aloew&#64;aloew-lap envytools-master]$ ./nva/nvapoke 10200c 10
+&gt; &gt; WARN: Can't probe 0000:01:00.0
+&gt; &gt; PCI init failure!</span >
 
-You need to run these as root.
+<span class="quote">&gt; You need to run these as root.</span >
 
-<span class="quote">&gt; &gt; I'd also still be interested in knowing whether a previously-known-good 
-&gt; &gt; version of the blob still works.
-&gt; 
-&gt; I am 99.9% certain it does, as my Windows install with NVidia 285.09 driver
-&gt; also still runs fine, while any more recent Windows driver from NVidia hangs
-&gt; with the same symptoms as their Linux &quot;blob&quot; - I had just checked this last
-&gt; week with their latest Windows version 331.82, once again without any luck.</span >
+Ouch - sorry - could have indeed had this idea myself... :-(
 
-Ah OK, that's probably good enough of a test.
+Here are the results as root:
 
-<span class="quote">&gt; Maybe indeed you could ask your new friends/contacts at NVidia about this?</span >
+[aloew&#64;aloew-lap envytools-master]$ sudo ./nva/nvapeek 10200c 10
+0010200c: SS SS SS SS SS SS SS SS SS SS SS SS SS SS SS SS
+[aloew&#64;aloew-lap envytools-master]$ sudo ./nva/nvapoke 10200c 10
+0010200c: ERR S
+[aloew&#64;aloew-lap envytools-master]$ sudo ./nva/nvapeek 10200c 10
+0010200c: SS SS SS SS SS SS SS SS SS SS SS SS SS SS SS SS
+[aloew&#64;aloew-lap envytools-master]$ 
 
-I just bugged them about video decoding stuff a few weeks ago, don't want to
-use up all of my brownie points :)</pre>
+And no new messages in &quot;dmesg&quot; output at all. Still not enlightening... :-(
+
+BR,
+Andreas</pre>
         </div>
       </p>
       <hr>
@@ -133,9 +115,9 @@ use up all of my brownie points :)</pre>
     </body>
 </html>
 
---1387393261.2fc533d6.15366--
+--1387394205.A58D7A1D5.18472--
 
---===============1911139498==
+--===============0416182935==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -146,4 +128,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1911139498==--
+--===============0416182935==--
