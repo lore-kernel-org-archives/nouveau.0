@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
  8400M G after upgrade the kernel to 3.7.0 version
-Date: Wed, 18 Dec 2013 15:48:57 +0000
-Message-ID: <bug-58378-8800-WNUeuujcJh@http.bugs.freedesktop.org/>
+Date: Wed, 18 Dec 2013 16:28:14 +0000
+Message-ID: <bug-58378-8800-mKABHX5ZHZ@http.bugs.freedesktop.org/>
 References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1943293801=="
+Content-Type: multipart/mixed; boundary="===============2090669982=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1943293801==
-Content-Type: multipart/alternative; boundary="1387381737.fAe26.7089"; charset="us-ascii"
+--===============2090669982==
+Content-Type: multipart/alternative; boundary="1387384094.3863dE76.15183"; charset="us-ascii"
 
 
---1387381737.fAe26.7089
-Date: Wed, 18 Dec 2013 15:48:57 +0000
+--1387384094.3863dE76.15183
+Date: Wed, 18 Dec 2013 16:28:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
---- Comment #50 from anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-For the reclocking to work on 3.13 you need to apply this patch:
+--- Comment #51 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+So actually I'm told that pcrypt is on the main clock, so that theory is out.
+Can you grab envytools (https://github.com/envytools/envytools) and run
 
-http://cgit.freedesktop.org/~darktama/nouveau/commit/?h=devel-pm&id=74556533b2cc3dd787ba9fc8a346177116d1a68e
+nvapeek 10200c
+nvapoke 10200c 10
+nvapeek 10200c
 
-And you can change the performance level with
-/sys/class/drm/card0/device/pstate
-(I think the command line options don't do anything anymore)
+and see what's in dmesg?Do you see additional MMIO read/write failures, or is
+it all good?  What does the peek return? (I'm wondering if it's an
+initialization order issue or something.)
 
-This new 3.13 reclocking might just hang your system though (it does for mine
-on the two computers I tested on).
+What issues are you seeing with the blob driver? I'd also still be interested
+in knowing whether a previously-known-good version of the blob still works.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1387381737.fAe26.7089
-Date: Wed, 18 Dec 2013 15:48:57 +0000
+--1387384094.3863dE76.15183
+Date: Wed, 18 Dec 2013 16:28:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,23 +66,26 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c50">Comment # 50</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c51">Comment # 51</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="anakin.cs&#64;gmail.com">anakin.cs&#64;gmail.com</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>For the reclocking to work on 3.13 you need to apply this patch:
+        <pre>So actually I'm told that pcrypt is on the main clock, so that theory is out.
+Can you grab envytools (<a href="https://github.com/envytools/envytools">https://github.com/envytools/envytools</a>) and run
 
-<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?h=devel-pm&amp;id=74556533b2cc3dd787ba9fc8a346177116d1a68e">http://cgit.freedesktop.org/~darktama/nouveau/commit/?h=devel-pm&amp;id=74556533b2cc3dd787ba9fc8a346177116d1a68e</a>
+nvapeek 10200c
+nvapoke 10200c 10
+nvapeek 10200c
 
-And you can change the performance level with
-/sys/class/drm/card0/device/pstate
-(I think the command line options don't do anything anymore)
+and see what's in dmesg?Do you see additional MMIO read/write failures, or is
+it all good?  What does the peek return? (I'm wondering if it's an
+initialization order issue or something.)
 
-This new 3.13 reclocking might just hang your system though (it does for mine
-on the two computers I tested on).</pre>
+What issues are you seeing with the blob driver? I'd also still be interested
+in knowing whether a previously-known-good version of the blob still works.</pre>
         </div>
       </p>
       <hr>
@@ -91,9 +97,9 @@ on the two computers I tested on).</pre>
     </body>
 </html>
 
---1387381737.fAe26.7089--
+--1387384094.3863dE76.15183--
 
---===============1943293801==
+--===============2090669982==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +110,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1943293801==--
+--===============2090669982==--
