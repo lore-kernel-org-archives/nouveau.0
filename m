@@ -1,13 +1,24 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
- 8400M G after upgrade the kernel to 3.7.0 version
-Date: Wed, 18 Dec 2013 13:39:51 +0000
-Message-ID: <bug-58378-8800-TqzAblItlj@http.bugs.freedesktop.org/>
-References: <bug-58378-8800@http.bugs.freedesktop.org/>
+From: David Herrmann <dh.herrmann-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Resource map sanity check fails after GRUB "keeps"
+ the gfx mode
+Date: Wed, 18 Dec 2013 15:14:33 +0100
+Message-ID: <CANq1E4Sh7_+REtafq-=D8qhdh7ToQAJBxK97r7boXLWQTDx6Zg@mail.gmail.com>
+References: <20130925200706.2e6f5947@IRBT4585>
+	<20130926183743.0d2420c4@IRBT4585> <524550E6.6040909@gmail.com>
+	<20130927113743.1383f9b5@IRBT4585>
+	<CANq1E4STGCp8X+i-OOd1KYCZQEoUeYuEw8=tkWuXY8_8wcieuw@mail.gmail.com>
+	<20130927154031.khkhbl17s0ow4sgc-cebfxv@webmail.spamcop.net>
+	<CANq1E4T6Wa5ReKqBd=-3fDKGs8frMCQ5RQxAOM19C4dnwL_sOA@mail.gmail.com>
+	<20131002174652.5907a2d0@IRBT4585>
+	<CANq1E4TxPg5ZM6WxDZiqi_ZFsY-qqhh8C56aBgSDVKzqt0m2pg@mail.gmail.com>
+	<20131003181049.5cf83c9a@IRBT4585>
+	<CANq1E4Sib6+Z4H3B-DnsB_Eqk4X7ni2Ttj6AgW9gBKcaBf=z6w@mail.gmail.com>
+	<20131004181154.67e5d9c2@IRBT4585>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0656340995=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20131004181154.67e5d9c2@IRBT4585>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,233 +26,93 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Pavel Roskin <proski-mXXj517/zsQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Hi Pavel
 
---===============0656340995==
-Content-Type: multipart/alternative; boundary="1387373991.F4aCFB5.11866"; charset="us-ascii"
+On Sat, Oct 5, 2013 at 12:11 AM, Pavel Roskin <proski-mXXj517/zsQ@public.gmane.org> wrote:
+> On Fri, 4 Oct 2013 01:08:34 +0200
+> David Herrmann <dh.herrmann-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>
+>> > CONFIG_X86_SYSFB is always defined.  I doubt an x86 kernel would
+>> > compile without it.  create_simplefb() is used in
+>> > arch/x86/kernel/sysfb.c that is compiled unconditionally and that
+>> > function is defined in arch/x86/kernel/sysfb_simplefb.c that is only
+>> > compiled if CONFIG_X86_SYSFB is defined.
+>>
+>> You can set CONFIG_X86_SYSFB=n and everything works fine. It's the
+>> default and is what pre-3.12 kernels always did.
+>
+> Of course, you are right, I missed sysfb.h.
+>
+>> > I tried four combinations: with and without IORESOURCE_BUSY and with
+>> > and without the PCI resource adjustment.  The only combination when
+>> > nvidiafb probes the hardware is when IORESOURCE_BUSY is not used and
+>> > the BOOTFP resource is adjusted to match the PCI BAR.
+>>
+>> A dmesg log would be nice, but I assume nvidiafb fails because it
+>> cannot map its BAR regions?
+>
+> The logs are adjusted and so it the kernel config file.
+>
+> $ grep nvidiafb *
+> dm-busy-adjust:nvidiafb_setup START
+> dm-busy-adjust:nvidiafb_probe START
+> dm-busy-adjust:nvidiafb 0000:01:00.0: BAR 3: can't reserve [mem
+> 0xf0000000-0xf1ffffff 64bit pref] dm-busy-adjust:nvidiafb: cannot
+> request PCI regions dm-busy-noadjust:nvidiafb_setup START
+> dm-busy-noadjust:nvidiafb_probe START
+> dm-busy-noadjust:nvidiafb 0000:01:00.0: BAR 3: can't reserve [mem
+> 0xf0000000-0xf1ffffff 64bit pref] dm-busy-noadjust:nvidiafb: cannot
+> request PCI regions dm-nobusy-adjust:nvidiafb_setup START
+> dm-nobusy-adjust:nvidiafb_probe START
+> dm-nobusy-adjust:nvidiafb: Device ID: 10de0ffc
+> dm-nobusy-adjust:nvidiafb: unknown NV_ARCH
+> dm-nobusy-noadjust:nvidiafb_setup START
+> dm-nobusy-noadjust:nvidiafb_probe START
+> dm-nobusy-noadjust:nvidiafb 0000:01:00.0: BAR 3: can't reserve [mem
+> 0xf0000000-0xf1ffffff 64bit pref] dm-nobusy-noadjust:nvidiafb: cannot
+> request PCI regions
+>
+> The error comes from pci_request_regions() called in
+> drivers/video/nvidia/nvidia.c
+>
+>> > It means that your patch by itself won't prevent nvidiafb from
+>> > getting the resource on my hardware (ThinkPad W530).  However, if
+>> > the BOOTFP resource matches the PCI BAR for the video card, adding
+>> > IORESOURCE_BUSY might prevent some framebuffer drivers from
+>> > accessing the resource.
+>>
+>> Meh! I now understand the problem:
+>
+> Great!
+>
+>> In other words: The fact that we used to not reserve
+>> platform-framebuffer regions before 3.12 trips us now because it is
+>> actually _wrong_ to load real hw drivers like nvidiafb while the
+>> platform-framebuffer is still available. So the failure we get now
+>> just tells us that nvidiafb and friends do horrible things.
+>
+> I actually hoped to hear from you something like that.  It's good to
+> have limitations if they are well understood and not arbitrary.
+>
+>> Fortunately, no real DRM drivers actually request pci regions (why
+>> would they? pci-probing already guarantees exclusive access) and the
+>> platform-FB drivers have already been converted. So this bug can only
+>> be triggered with legacy hw-fbdev drivers (a simple search for
+>> pci_request_regions in ./drivers/video/ shows them).
+>
+> It's very reassuring.  Your work is greatly appreciated!
 
+2 months late, but there's a patch pending on LKML:
+http://thread.gmane.org/gmane.linux.kernel/1616367/focus=1616583
 
---1387373991.F4aCFB5.11866
-Date: Wed, 18 Dec 2013 13:39:51 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+This should fix your issues as it removes simple-framebuffer devices
+on remove_conflicting_framebuffers() now.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58378
-
---- Comment #49 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
-OK, tired with RHEL 6.5 kernel 2.6.32.431 and the two options:
-
-Command line: ro root=UUID=034d34cd-a464-4ee3-8db9-d6061a318a16 rd_NO_LUKS
-LANG=en_US.UTF-8  KEYBOARDTYPE=pc KEYTABLE=de-latin1-nodeadkeys rd_NO_MD
-SYSFONT=latarcyrheb-sun16 rd_NO_LVM rd_NO_DM nouveau.perflvl_wr=7777
-nouveau.perflvl=1 crashkernel=auto
-
-and saw
-
-nouveau 0000:01:00.0: setting latency timer to 64
-nouveau 0000:01:00.0: power state changed by ACPI to D0
-nouveau 0000:01:00.0: power state changed by ACPI to D0
-nouveau 0000:01:00.0: PCI INT A -> GSI 16 (level, low) -> IRQ 16
-nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x086a00a2
-nouveau  [  DEVICE][0000:01:00.0] Chipset: G86 (NV86)
-nouveau  [  DEVICE][0000:01:00.0] Family : NV50
-nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for image...
-nouveau  [   VBIOS][0000:01:00.0] ... appears to be valid
-nouveau  [   VBIOS][0000:01:00.0] using image from PRAMIN
-nouveau  [   VBIOS][0000:01:00.0] BIT signature found
-nouveau  [   VBIOS][0000:01:00.0] version 60.86.49.00.27
-nouveau  [     PFB][0000:01:00.0] RAM type: DDR2
-nouveau  [     PFB][0000:01:00.0] RAM size: 256 MiB
-nouveau  [     PFB][0000:01:00.0]    ZCOMP: 646 tags
-nouveau  [  PTHERM][0000:01:00.0] FAN control: none / external
-nouveau  [  PTHERM][0000:01:00.0] fan management: disabled
-nouveau  [  PTHERM][0000:01:00.0] internal sensor: yes
-nouveau  [  PTHERM][0000:01:00.0] Programmed thresholds [ 90(3), 95(3), 125(5),
-125(5) ]
-[TTM] Zone  kernel: Available graphics memory: 2963482 kiB
-[TTM] Zone   dma32: Available graphics memory: 2097152 kiB
-[TTM] Initializing pool allocator
-[TTM] Initializing DMA pool allocator
-nouveau  [     DRM] VRAM: 256 MiB
-nouveau  [     DRM] GART: 512 MiB
-nouveau  [     DRM] TMDS table version 2.0
-nouveau  [     DRM] DCB version 4.0
-nouveau  [     DRM] DCB outp 00: 010003f3 00010035
-nouveau  [     DRM] DCB outp 01: 02811300 00000028
-nouveau  [     DRM] DCB outp 02: 02822312 00000030
-nouveau  [     DRM] DCB outp 03: 01833320 00000028
-nouveau  [     DRM] DCB conn 00: 0040
-nouveau  [     DRM] DCB conn 01: 0100
-nouveau  [     DRM] DCB conn 02: 1255
-nouveau  [     DRM] DCB conn 03: 0351
-nouveau  [     DRM] BIOS FP mode: 1680x1050 (119880kHz pixel clock)
-nouveau E[  PTHERM][0000:01:00.0] unhandled intr 0x000001e1
-Slow work thread pool: Starting up
-Slow work thread pool: Ready
-nouveau W[     DRM] unknown connector type 55
-nouveau W[     DRM] unknown connector type 51
-[drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
-[drm] No driver support for vblank timestamp query.
-nouveau  [     DRM] ACPI backlight interface available, not registering our own
-nouveau  [     DRM] 3 available performance level(s)
-nouveau  [     DRM] 0: core 169MHz shader 338MHz memory 100MHz voltage 1150mV
-fanspeed 100%
-nouveau  [     DRM] 1: core 275MHz shader 550MHz memory 200MHz voltage 1150mV
-fanspeed 100%
-nouveau  [     DRM] 2: core 400MHz shader 800MHz memory 400MHz voltage 1200mV
-fanspeed 100%
-nouveau  [     DRM] c: core 275MHz shader 550MHz memory 99MHz voltage 1200mV
-nouveau  [     DRM] setting performance level: 1
-nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x88888888 FAULT at 0x100844
-nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x11111111 FAULT at 0x100764
-nouveau  [     DRM] > reclocking took 8299680ns
-
-nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000010 FAULT at 0x10200c
-nouveau  [     DRM] MM: using CRYPT for buffer copies
-nouveau  [     DRM] allocated 1680x1050 fb: 0x60000, bo ffff8801b3e6d400
-fbcon: nouveaufb (fb0) is primary device
-
-So it seems we had some "reclocking" taking place, but also we still have the
-errors about "MMIO write" errors, and also the screen is distorted in the exact
-same way like before even after just two minutes...
-
-Any comments?
-
-Thanks,
-Andreas
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1387373991.F4aCFB5.11866
-Date: Wed, 18 Dec 2013 13:39:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c49">Comment # 49</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
-</span></b>
-        <pre>OK, tired with RHEL 6.5 kernel 2.6.32.431 and the two options:
-
-Command line: ro root=UUID=034d34cd-a464-4ee3-8db9-d6061a318a16 rd_NO_LUKS
-LANG=en_US.UTF-8  KEYBOARDTYPE=pc KEYTABLE=de-latin1-nodeadkeys rd_NO_MD
-SYSFONT=latarcyrheb-sun16 rd_NO_LVM rd_NO_DM nouveau.perflvl_wr=7777
-nouveau.perflvl=1 crashkernel=auto
-
-and saw
-
-nouveau 0000:01:00.0: setting latency timer to 64
-nouveau 0000:01:00.0: power state changed by ACPI to D0
-nouveau 0000:01:00.0: power state changed by ACPI to D0
-nouveau 0000:01:00.0: PCI INT A -&gt; GSI 16 (level, low) -&gt; IRQ 16
-nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x086a00a2
-nouveau  [  DEVICE][0000:01:00.0] Chipset: G86 (NV86)
-nouveau  [  DEVICE][0000:01:00.0] Family : NV50
-nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for image...
-nouveau  [   VBIOS][0000:01:00.0] ... appears to be valid
-nouveau  [   VBIOS][0000:01:00.0] using image from PRAMIN
-nouveau  [   VBIOS][0000:01:00.0] BIT signature found
-nouveau  [   VBIOS][0000:01:00.0] version 60.86.49.00.27
-nouveau  [     PFB][0000:01:00.0] RAM type: DDR2
-nouveau  [     PFB][0000:01:00.0] RAM size: 256 MiB
-nouveau  [     PFB][0000:01:00.0]    ZCOMP: 646 tags
-nouveau  [  PTHERM][0000:01:00.0] FAN control: none / external
-nouveau  [  PTHERM][0000:01:00.0] fan management: disabled
-nouveau  [  PTHERM][0000:01:00.0] internal sensor: yes
-nouveau  [  PTHERM][0000:01:00.0] Programmed thresholds [ 90(3), 95(3), 125(5),
-125(5) ]
-[TTM] Zone  kernel: Available graphics memory: 2963482 kiB
-[TTM] Zone   dma32: Available graphics memory: 2097152 kiB
-[TTM] Initializing pool allocator
-[TTM] Initializing DMA pool allocator
-nouveau  [     DRM] VRAM: 256 MiB
-nouveau  [     DRM] GART: 512 MiB
-nouveau  [     DRM] TMDS table version 2.0
-nouveau  [     DRM] DCB version 4.0
-nouveau  [     DRM] DCB outp 00: 010003f3 00010035
-nouveau  [     DRM] DCB outp 01: 02811300 00000028
-nouveau  [     DRM] DCB outp 02: 02822312 00000030
-nouveau  [     DRM] DCB outp 03: 01833320 00000028
-nouveau  [     DRM] DCB conn 00: 0040
-nouveau  [     DRM] DCB conn 01: 0100
-nouveau  [     DRM] DCB conn 02: 1255
-nouveau  [     DRM] DCB conn 03: 0351
-nouveau  [     DRM] BIOS FP mode: 1680x1050 (119880kHz pixel clock)
-nouveau E[  PTHERM][0000:01:00.0] unhandled intr 0x000001e1
-Slow work thread pool: Starting up
-Slow work thread pool: Ready
-nouveau W[     DRM] unknown connector type 55
-nouveau W[     DRM] unknown connector type 51
-[drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
-[drm] No driver support for vblank timestamp query.
-nouveau  [     DRM] ACPI backlight interface available, not registering our own
-nouveau  [     DRM] 3 available performance level(s)
-nouveau  [     DRM] 0: core 169MHz shader 338MHz memory 100MHz voltage 1150mV
-fanspeed 100%
-nouveau  [     DRM] 1: core 275MHz shader 550MHz memory 200MHz voltage 1150mV
-fanspeed 100%
-nouveau  [     DRM] 2: core 400MHz shader 800MHz memory 400MHz voltage 1200mV
-fanspeed 100%
-nouveau  [     DRM] c: core 275MHz shader 550MHz memory 99MHz voltage 1200mV
-nouveau  [     DRM] setting performance level: 1
-nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x88888888 FAULT at 0x100844
-nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x11111111 FAULT at 0x100764
-nouveau  [     DRM] &gt; reclocking took 8299680ns
-
-nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000010 FAULT at 0x10200c
-nouveau  [     DRM] MM: using CRYPT for buffer copies
-nouveau  [     DRM] allocated 1680x1050 fb: 0x60000, bo ffff8801b3e6d400
-fbcon: nouveaufb (fb0) is primary device
-
-So it seems we had some &quot;reclocking&quot; taking place, but also we still have the
-errors about &quot;MMIO write&quot; errors, and also the screen is distorted in the exact
-same way like before even after just two minutes...
-
-Any comments?
-
-Thanks,
-Andreas</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1387373991.F4aCFB5.11866--
-
---===============0656340995==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0656340995==--
+Thanks
+David
