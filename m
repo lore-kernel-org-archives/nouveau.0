@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
  8400M G after upgrade the kernel to 3.7.0 version
-Date: Thu, 19 Dec 2013 15:32:45 +0000
-Message-ID: <bug-58378-8800-1FsgqoboA9@http.bugs.freedesktop.org/>
+Date: Thu, 19 Dec 2013 15:40:11 +0000
+Message-ID: <bug-58378-8800-gWPyaVrUWN@http.bugs.freedesktop.org/>
 References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0763853357=="
+Content-Type: multipart/mixed; boundary="===============1980316985=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0763853357==
-Content-Type: multipart/alternative; boundary="1387467165.faB335.14913"; charset="us-ascii"
+--===============1980316985==
+Content-Type: multipart/alternative; boundary="1387467611.bE326.16076"; charset="us-ascii"
 
 
---1387467165.faB335.14913
-Date: Thu, 19 Dec 2013 15:32:45 +0000
+--1387467611.bE326.16076
+Date: Thu, 19 Dec 2013 15:40:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
---- Comment #62 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
-But generally, nvapeek seems to work fine now:
-
-[aloew@aloew-lap nva]$ sudo ./nvapeek 0
-00000000: 086a00a2
-
-Looking forward to your comments...
-
-BR,
-Andreas
+--- Comment #63 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Yeah, it prints "..." instead of 0. This makes a lot of sense when you're
+peeking a large range full of 0's. Anyways, were there any additional messages
+in dmesg, e.g. MMIO read/write failures as a result?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1387467165.faB335.14913
-Date: Thu, 19 Dec 2013 15:32:45 +0000
+--1387467611.bE326.16076
+Date: Thu, 19 Dec 2013 15:40:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,22 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c62">Comment # 62</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c63">Comment # 63</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>But generally, nvapeek seems to work fine now:
-
-[aloew&#64;aloew-lap nva]$ sudo ./nvapeek 0
-00000000: 086a00a2
-
-Looking forward to your comments...
-
-BR,
-Andreas</pre>
+        <pre>Yeah, it prints &quot;...&quot; instead of 0. This makes a lot of sense when you're
+peeking a large range full of 0's. Anyways, were there any additional messages
+in dmesg, e.g. MMIO read/write failures as a result?</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +77,9 @@ Andreas</pre>
     </body>
 </html>
 
---1387467165.faB335.14913--
+--1387467611.bE326.16076--
 
---===============0763853357==
+--===============1980316985==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0763853357==--
+--===============1980316985==--
