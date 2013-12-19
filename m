@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
- 8400M G after upgrade the kernel to 3.7.0 version
-Date: Wed, 18 Dec 2013 19:36:57 +0000
-Message-ID: <bug-58378-8800-2630JX0OcX@http.bugs.freedesktop.org/>
-References: <bug-58378-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72760] [NV43] gdm hangs,
+	sometimes everything else also
+Date: Thu, 19 Dec 2013 11:49:10 +0000
+Message-ID: <bug-72760-8800-Uiah4vNkZS@http.bugs.freedesktop.org/>
+References: <bug-72760-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1669954059=="
+Content-Type: multipart/mixed; boundary="===============0309520938=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72760-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,127 +21,160 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1669954059==
-Content-Type: multipart/alternative; boundary="1387395418.A1CE2C5.23350"; charset="us-ascii"
+--===============0309520938==
+Content-Type: multipart/alternative; boundary="1387453750.ECC221.18222"; charset="us-ascii"
 
 
---1387395418.A1CE2C5.23350
-Date: Wed, 18 Dec 2013 19:36:58 +0000
+--1387453750.ECC221.18222
+Date: Thu, 19 Dec 2013 11:49:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58378
+https://bugs.freedesktop.org/show_bug.cgi?id=3D72760
 
---- Comment #58 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
-> > [aloew@aloew-lap envytools-master]$ sudo ./nva/nvapeek 10200c 10
-> > 0010200c: SS SS SS SS SS SS SS SS SS SS SS SS SS SS SS SS
-> 
-> nvapeek 10200c without the 10. (Not sure what that does.... maybe reads out
-> 0x10 regs)
+--- Comment #2 from Jakub Klawiter <jklawiter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 90990
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D90990&action=3Dedit
+dmesg output made on 19.12.2013 with nouveau.config=3DNvPCIE=3D0 option
 
-yes - seems to read 10 registers:
+First of all in the meantime i've bought new GfX card (also nvidia) and it =
+is
+working fine so rest of my hardware is probably ok.
+maybe the old one is broken. No idea how to test it.
 
-[aloew@aloew-lap envytools-master]$ sudo ./nva/nvapeek 10200c   
-0010200c: SS
+I've added nouveau.config=3DNvPCIE=3D0 option. This time it died in a littl=
+e other
+way.
+I'm attaching dmesg output.=20
 
-> Well, no one's heard of a "missing" PCRYPT before, but it's certainly
-> conceivable that certain blocks were omitted. I'd feel better with that
-> diagnosis if more people chimed in saying that they had the same issue.
+The last line (about gnome shell) appeard there after i've tried:
 
-From the screenshots of the corrupted graphics, I definitely think that this is
-the exact same issue.
+# systemctl status gdm
 
-But I fully agree that it is a pity that nobody of the folks who had raised
-this previously and/or commented, do react now that it has probably been
-tracked down to its root cause.
+with this output (I don't know if it is interesting to you).
 
-And something else seems interesting:
+gdm.service - GNOME Display Manager
+   Loaded: loaded (/usr/lib64/systemd/system/gdm.service; enabled)
+   Active: active (running) since czw 2013-12-19 12:23:43 CET; 24min ago
+ Main PID: 169 (gdm)
+   CGroup: /system.slice/gdm.service
+           =E2=94=9C=E2=94=80 169 /usr/sbin/gdm
+           =E2=94=9C=E2=94=801301 /usr/libexec/gdm-simple-slave --display-id
+/org/gnome/DisplayManager/Displays/_0
+           =E2=94=94=E2=94=801305 /usr/bin/Xorg :0 -background none -verbos=
+e -auth
+/run/gdm/auth-for-gdm-iV9gRm/database -sea...
 
-All other people who saw the corruption issue (except nemasu with his/her 8800
-GTS, who might have seen a different issue indeed from the dmesg output) also
-were using early G86 chips, particularly 8400M-based, and mostly the "mobile"
-variants...
+gru 19 12:23:43 mickey systemd[1]: Started GNOME Display Manager.
+gru 19 12:23:49 mickey gdm[169]: Failed to give slave programs access to the
+display. Trying to proceed.
+gru 19 12:24:49 mickey gdm[169]: Failed to remove slave program access to t=
+he
+display. Trying to proceed.
+gru 19 12:38:15 mickey gdm[169]: Child process 183 was already dead.
+gru 19 12:38:15 mickey gdm[169]: Child process 183 was already dead.
+gru 19 12:38:15 mickey gdm[169]: GLib-GObject: g_object_ref: assertion
+`object->ref_count > 0' failed
+gru 19 12:38:15 mickey gdm[169]: GLib-GObject: g_object_unref: assertion
+`object->ref_count > 0' failed
+gru 19 12:38:15 mickey gdm[169]: Failed to give slave programs access to the
+display. Trying to proceed.
 
-Maybe NVidia omitted part of the 8400 functionality in the mobile variants?
-This would again make up a nice (and easy) question to them...!? ;-)
-
-Thanks again & BR,
-Andreas
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1387395418.A1CE2C5.23350
-Date: Wed, 18 Dec 2013 19:36:58 +0000
+--1387453750.ECC221.18222
+Date: Thu, 19 Dec 2013 11:49:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c58">Comment # 58</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - [NV43] gdm hangs, sometimes everything else also"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72760#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
+   title=3D"NEW --- - [NV43] gdm hangs, sometimes everything else also"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72760">bug 72760<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jklawiter&#64;gmail.com" title=3D"Jakub Klawiter &lt;jklawiter&#64;gmail.co=
+m&gt;"> <span class=3D"fn">Jakub Klawiter</span></a>
 </span></b>
-        <pre><span class="quote">&gt; &gt; [aloew&#64;aloew-lap envytools-master]$ sudo ./nva/nvapeek 10200c 10
-&gt; &gt; 0010200c: SS SS SS SS SS SS SS SS SS SS SS SS SS SS SS SS
-&gt; 
-&gt; nvapeek 10200c without the 10. (Not sure what that does.... maybe reads out
-&gt; 0x10 regs)</span >
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D90990"=
+ name=3D"attach_90990" title=3D"dmesg output made on 19.12.2013 with nouvea=
+u.config=3DNvPCIE=3D0 option">attachment 90990</a> <a href=3D"attachment.cg=
+i?id=3D90990&amp;action=3Dedit" title=3D"dmesg output made on 19.12.2013 wi=
+th nouveau.config=3DNvPCIE=3D0 option">[details]</a></span>
+dmesg output made on 19.12.2013 with nouveau.config=3DNvPCIE=3D0 option
 
-yes - seems to read 10 registers:
+First of all in the meantime i've bought new GfX card (also nvidia) and it =
+is
+working fine so rest of my hardware is probably ok.
+maybe the old one is broken. No idea how to test it.
 
-[aloew&#64;aloew-lap envytools-master]$ sudo ./nva/nvapeek 10200c   
-0010200c: SS
+I've added nouveau.config=3DNvPCIE=3D0 option. This time it died in a littl=
+e other
+way.
+I'm attaching dmesg output.=20
 
-<span class="quote">&gt; Well, no one's heard of a &quot;missing&quot; PCRYPT before, but it's certainly
-&gt; conceivable that certain blocks were omitted. I'd feel better with that
-&gt; diagnosis if more people chimed in saying that they had the same issue.</span >
+The last line (about gnome shell) appeard there after i've tried:
 
-From the screenshots of the corrupted graphics, I definitely think that this is
-the exact same issue.
+# systemctl status gdm
 
-But I fully agree that it is a pity that nobody of the folks who had raised
-this previously and/or commented, do react now that it has probably been
-tracked down to its root cause.
+with this output (I don't know if it is interesting to you).
 
-And something else seems interesting:
+gdm.service - GNOME Display Manager
+   Loaded: loaded (/usr/lib64/systemd/system/gdm.service; enabled)
+   Active: active (running) since czw 2013-12-19 12:23:43 CET; 24min ago
+ Main PID: 169 (gdm)
+   CGroup: /system.slice/gdm.service
+           =E2=94=9C=E2=94=80 169 /usr/sbin/gdm
+           =E2=94=9C=E2=94=801301 /usr/libexec/gdm-simple-slave --display-id
+/org/gnome/DisplayManager/Displays/_0
+           =E2=94=94=E2=94=801305 /usr/bin/Xorg :0 -background none -verbos=
+e -auth
+/run/gdm/auth-for-gdm-iV9gRm/database -sea...
 
-All other people who saw the corruption issue (except nemasu with his/her 8800
-GTS, who might have seen a different issue indeed from the dmesg output) also
-were using early G86 chips, particularly 8400M-based, and mostly the &quot;mobile&quot;
-variants...
-
-Maybe NVidia omitted part of the 8400 functionality in the mobile variants?
-This would again make up a nice (and easy) question to them...!? ;-)
-
-Thanks again &amp; BR,
-Andreas</pre>
+gru 19 12:23:43 mickey systemd[1]: Started GNOME Display Manager.
+gru 19 12:23:49 mickey gdm[169]: Failed to give slave programs access to the
+display. Trying to proceed.
+gru 19 12:24:49 mickey gdm[169]: Failed to remove slave program access to t=
+he
+display. Trying to proceed.
+gru 19 12:38:15 mickey gdm[169]: Child process 183 was already dead.
+gru 19 12:38:15 mickey gdm[169]: Child process 183 was already dead.
+gru 19 12:38:15 mickey gdm[169]: GLib-GObject: g_object_ref: assertion
+`object-&gt;ref_count &gt; 0' failed
+gru 19 12:38:15 mickey gdm[169]: GLib-GObject: g_object_unref: assertion
+`object-&gt;ref_count &gt; 0' failed
+gru 19 12:38:15 mickey gdm[169]: Failed to give slave programs access to the
+display. Trying to proceed.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1387395418.A1CE2C5.23350--
+--1387453750.ECC221.18222--
 
---===============1669954059==
+--===============0309520938==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -152,4 +185,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1669954059==--
+--===============0309520938==--
