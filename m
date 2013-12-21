@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 72952] [NV94] no HDMI output,
  xrands claims DVI-D-1 disconnected
-Date: Sat, 21 Dec 2013 20:01:17 +0000
-Message-ID: <bug-72952-8800-rHJvCWfxVu@http.bugs.freedesktop.org/>
+Date: Sat, 21 Dec 2013 22:02:48 +0000
+Message-ID: <bug-72952-8800-EebQ1ia02D@http.bugs.freedesktop.org/>
 References: <bug-72952-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0258748996=="
+Content-Type: multipart/mixed; boundary="===============0104387119=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-72952-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,46 +21,65 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0258748996==
-Content-Type: multipart/alternative; boundary="1387656077.ea7652.13018"; charset="us-ascii"
+--===============0104387119==
+Content-Type: multipart/alternative; boundary="1387663368.Bfa4Cc271.4367"; charset="us-ascii"
 
 
---1387656077.ea7652.13018
-Date: Sat, 21 Dec 2013 20:01:17 +0000
+--1387663368.Bfa4Cc271.4367
+Date: Sat, 21 Dec 2013 22:02:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72952
+https://bugs.freedesktop.org/show_bug.cgi?id=3D72952
 
-Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> changed:
+J=C3=B6rg H=C3=B6hle <Joerg-Cyril.Hoehle-02uNIv46f66akBO8gow8eQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Assignee|aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org        |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
-          Component|Driver/nVidia (open)        |Driver/nouveau
+  Attachment #91095|0                           |1
+        is obsolete|                            |
 
--- 
+--- Comment #3 from J=C3=B6rg H=C3=B6hle <Joerg-Cyril.Hoehle-02uNIv46f66akBO8gow8eQ@public.gmane.org>=
+ ---
+Created attachment 91105
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D91105&action=3Dedit
+dmesg.log when booting with drm.debug=3D4, incl. suspend/resume cycle
+
+Perhaps a dmesg.log including a suspend/resume cycle is more revealing?
+I'm not sure whether I was entirely clear. I never observed a HDMI signal on
+the monitor, but the weird behaviour at resume proves that at least the EDID
+signals transit through the cable, some time. Perhaps that's 2 bugs?
+ - No immediate EDID at boot time;
+ - no HDMI out, even past resume where EDID happened
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1387656077.ea7652.13018
-Date: Sat, 21 Dec 2013 20:01:17 +0000
+--1387663368.Bfa4Cc271.4367
+Date: Sat, 21 Dec 2013 22:02:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:aplattner&#64;nvidia.com" title="Aaron Plattner &lt;aplattner&#64;nvidia.com&gt;"> <span class="fn">Aaron Plattner</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:Joerg-Cyr=
+il.Hoehle&#64;T-Systems.com" title=3D"J=C3=B6rg H=C3=B6hle &lt;Joerg-Cyril.=
+Hoehle&#64;T-Systems.com&gt;"> <span class=3D"fn">J=C3=B6rg H=C3=B6hle</spa=
+n></a>
 </span> changed
-              <a class="bz_bug_link 
+              <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV94] no HDMI output, xrands claims DVI-D-1 disconnected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72952">bug 72952</a>
+   title=3D"NEW --- - [NV94] no HDMI output, xrands claims DVI-D-1 disconne=
+cted"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72952">bug 72952<=
+/a>
         <br>
-             <table border="1" cellspacing="0" cellpadding="8">
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
             <th>What</th>
             <th>Removed</th>
@@ -68,34 +87,60 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>aplattner&#64;nvidia.com
+           <td style=3D"text-align:right;">Attachment #91095 is obsolete</t=
+d>
+           <td>
+               &nbsp;
            </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Driver/nVidia (open)
-           </td>
-           <td>Driver/nouveau
+           <td>1
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NV94] no HDMI output, xrands claims DVI-D-1 disconne=
+cted"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72952#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NV94] no HDMI output, xrands claims DVI-D-1 disconne=
+cted"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72952">bug 72952<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+Joerg-Cyril.Hoehle&#64;T-Systems.com" title=3D"J=C3=B6rg H=C3=B6hle &lt;Joe=
+rg-Cyril.Hoehle&#64;T-Systems.com&gt;"> <span class=3D"fn">J=C3=B6rg H=C3=
+=B6hle</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D91105"=
+ name=3D"attach_91105" title=3D"dmesg.log when booting with drm.debug=3D4, =
+incl. suspend/resume cycle">attachment 91105</a> <a href=3D"attachment.cgi?=
+id=3D91105&amp;action=3Dedit" title=3D"dmesg.log when booting with drm.debu=
+g=3D4, incl. suspend/resume cycle">[details]</a></span>
+dmesg.log when booting with drm.debug=3D4, incl. suspend/resume cycle
+
+Perhaps a dmesg.log including a suspend/resume cycle is more revealing?
+I'm not sure whether I was entirely clear. I never observed a HDMI signal on
+the monitor, but the weird behaviour at resume proves that at least the EDID
+signals transit through the cable, some time. Perhaps that's 2 bugs?
+ - No immediate EDID at boot time;
+ - no HDMI out, even past resume where EDID happened</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1387656077.ea7652.13018--
+--1387663368.Bfa4Cc271.4367--
 
---===============0258748996==
+--===============0104387119==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +151,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0258748996==--
+--===============0104387119==--
