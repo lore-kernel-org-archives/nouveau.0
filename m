@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72943] NV98 [GeForce 9300 gs m] hangs on boot- all
- linux kernel versions > 3.2
-Date: Sat, 21 Dec 2013 03:53:15 +0000
-Message-ID: <bug-72943-8800-WtPCfFQJh0@http.bugs.freedesktop.org/>
+Subject: [Bug 72943] [NV98] hangs in nvbios_init on probe (worked
+	in 3.2)
+Date: Sat, 21 Dec 2013 03:54:37 +0000
+Message-ID: <bug-72943-8800-FAUGzpdhB9@http.bugs.freedesktop.org/>
 References: <bug-72943-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1296050839=="
+Content-Type: multipart/mixed; boundary="===============0333551014=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-72943-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1296050839==
-Content-Type: multipart/alternative; boundary="1387597995.6daBE1.10159"; charset="us-ascii"
+--===============0333551014==
+Content-Type: multipart/alternative; boundary="1387598077.f2eCC1.10389"; charset="us-ascii"
 
 
---1387597995.6daBE1.10159
-Date: Sat, 21 Dec 2013 03:53:15 +0000
+--1387598077.f2eCC1.10389
+Date: Sat, 21 Dec 2013 03:54:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=72943
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-It's obviously getting stuck somewhere in the vbios execution logic. I should
-have thought of this while we were talking on IRC, but can you try this again
-with
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-modprobe nouveau modeset=1 debug=trace
-
-That should produce a bunch more logs that show exactly what is being executed.
-Hopefully.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|NV98 [GeForce 9300 gs m]    |[NV98] hangs in nvbios_init
+                   |hangs on boot- all linux    |on probe (worked in 3.2)
+                   |kernel versions > 3.2       |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1387597995.6daBE1.10159
-Date: Sat, 21 Dec 2013 03:53:15 +0000
+--1387598077.f2eCC1.10389
+Date: Sat, 21 Dec 2013 03:54:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,28 +53,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - NV98 [GeForce 9300 gs m] hangs on boot- all linux kernel versions &gt; 3.2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72943#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - NV98 [GeForce 9300 gs m] hangs on boot- all linux kernel versions &gt; 3.2"
+   title="NEW --- - [NV98] hangs in nvbios_init on probe (worked in 3.2)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=72943">bug 72943</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>It's obviously getting stuck somewhere in the vbios execution logic. I should
-have thought of this while we were talking on IRC, but can you try this again
-with
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-modprobe nouveau modeset=1 debug=trace
-
-That should produce a bunch more logs that show exactly what is being executed.
-Hopefully.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>NV98 [GeForce 9300 gs m] hangs on boot- all linux kernel versions &gt; 3.2
+           </td>
+           <td>[NV98] hangs in nvbios_init on probe (worked in 3.2)
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -87,9 +85,9 @@ Hopefully.</pre>
     </body>
 </html>
 
---1387597995.6daBE1.10159--
+--1387598077.f2eCC1.10389--
 
---===============1296050839==
+--===============0333551014==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1296050839==--
+--===============0333551014==--
