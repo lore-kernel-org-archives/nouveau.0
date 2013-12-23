@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72978] [NV92] nouveau E[ PFIFO][0000:01:00.0]
-	CACHE_ERROR
-Date: Sun, 22 Dec 2013 22:22:55 +0000
-Message-ID: <bug-72978-8800-9jRAim3WNG@http.bugs.freedesktop.org/>
-References: <bug-72978-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72943] [NV98] hangs in nvbios_init on probe (worked
+	in 3.2)
+Date: Mon, 23 Dec 2013 06:25:05 +0000
+Message-ID: <bug-72943-8800-rK6BFlW4yu@http.bugs.freedesktop.org/>
+References: <bug-72943-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0160344642=="
+Content-Type: multipart/mixed; boundary="===============0835615254=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72978-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72943-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,51 +21,59 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0160344642==
-Content-Type: multipart/alternative; boundary="1387750975.FADc8fc2.3273"; charset="us-ascii"
+--===============0835615254==
+Content-Type: multipart/alternative; boundary="1387779906.Dd3FDeB1.3354"; charset="us-ascii"
 
 
---1387750975.FADc8fc2.3273
-Date: Sun, 22 Dec 2013 22:22:55 +0000
+--1387779906.Dd3FDeB1.3354
+Date: Mon, 23 Dec 2013 06:25:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72978
+https://bugs.freedesktop.org/show_bug.cgi?id=3D72943
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+Darcy Br=C3=A1s da Silva <dardevelin-R9hm4oqK0XJGyKhy+UYuEA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|nouveau E[                  |[NV92] nouveau E[
-                   |PFIFO][0000:01:00.0]        |PFIFO][0000:01:00.0]
-                   |CACHE_ERROR                 |CACHE_ERROR
+             Status|NEW                         |NEEDINFO
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-FWIW I've seen the invalid cmd 0x00406040 thing in other reports. Not sure if
-that binds them to some common root cause or not, but thought I'd mention the
-observation.
+--- Comment #3 from Darcy Br=C3=A1s da Silva <dardevelin-R9hm4oqK0XJGyKhy+UYuEA@public.gmane.org> ---
+Hi, sorry for not being able to reply earlier. I am now attaching a syslog.1
+with debug=3Dtrace flag.
+Feel free to request me any testing/data which may help you help me. :D
+A copy of the log may also be found
+http://cidadecool.com/z-tunes/debian/problem/syslog.1-debug=3Dtrace
 
--- 
+PS: Dec 23 [around 5-6AM]
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1387750975.FADc8fc2.3273
-Date: Sun, 22 Dec 2013 22:22:55 +0000
+--1387779906.Dd3FDeB1.3354
+Date: Mon, 23 Dec 2013 06:25:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:dardeveli=
+n&#64;cidadecool.com" title=3D"Darcy Br=C3=A1s da Silva &lt;dardevelin&#64;=
+cidadecool.com&gt;"> <span class=3D"fn">Darcy Br=C3=A1s da Silva</span></a>
 </span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV92] nouveau E[ PFIFO][0000:01:00.0] CACHE_ERROR"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72978">bug 72978</a>
+              <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO --- - [NV98] hangs in nvbios_init on probe (worked in =
+3.2)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72943">bug 72943<=
+/a>
         <br>
-             <table border="1" cellspacing="0" cellpadding="8">
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
             <th>What</th>
             <th>Removed</th>
@@ -73,41 +81,54 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>[NV92] nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR
+           <td>NEEDINFO
            </td>
          </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV92] nouveau E[ PFIFO][0000:01:00.0] CACHE_ERROR"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72978#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV92] nouveau E[ PFIFO][0000:01:00.0] CACHE_ERROR"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72978">bug 72978</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO --- - [NV98] hangs in nvbios_init on probe (worked in =
+3.2)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72943#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO --- - [NV98] hangs in nvbios_init on probe (worked in =
+3.2)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72943">bug 72943<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+dardevelin&#64;cidadecool.com" title=3D"Darcy Br=C3=A1s da Silva &lt;dardev=
+elin&#64;cidadecool.com&gt;"> <span class=3D"fn">Darcy Br=C3=A1s da Silva</=
+span></a>
 </span></b>
-        <pre>FWIW I've seen the invalid cmd 0x00406040 thing in other reports. Not sure if
-that binds them to some common root cause or not, but thought I'd mention the
-observation.</pre>
+        <pre>Hi, sorry for not being able to reply earlier. I am now attach=
+ing a syslog.1
+with debug=3Dtrace flag.
+Feel free to request me any testing/data which may help you help me. :D
+A copy of the log may also be found
+<a href=3D"http://cidadecool.com/z-tunes/debian/problem/syslog.1-debug=3Dtr=
+ace">http://cidadecool.com/z-tunes/debian/problem/syslog.1-debug=3Dtrace</a>
+
+PS: Dec 23 [around 5-6AM]</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1387750975.FADc8fc2.3273--
+--1387779906.Dd3FDeB1.3354--
 
---===============0160344642==
+--===============0835615254==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -118,4 +139,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0160344642==--
+--===============0835615254==--
