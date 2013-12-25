@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72943] [NV98] hangs in nvbios_init on probe (worked
-	in 3.2)
-Date: Wed, 25 Dec 2013 07:09:20 +0000
-Message-ID: <bug-72943-8800-P08GllLkIu@http.bugs.freedesktop.org/>
-References: <bug-72943-8800@http.bugs.freedesktop.org/>
+From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Subject: [PATCH] drm/nve4: fix size of POLY2ESETUP buffer
+Date: Wed, 25 Dec 2013 18:00:33 +0100
+Message-ID: <1387990833-15830-1-git-send-email-e0425955@student.tuwien.ac.at>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0656163979=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72943-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,134 +18,28 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+This fixes write faults from GPCCLIENT 5 in geometry shader tests.
 
---===============0656163979==
-Content-Type: multipart/alternative; boundary="1387955360.e5dfF41.26601"; charset="us-ascii"
+For now this is just a guess from a single mmio trace, it looks
+like 8 large pages are being used, i.e. one per TPC.
 
+Can we just ask NV for the correct sizes ?
+---
+ drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---1387955360.e5dfF41.26601
-Date: Wed, 25 Dec 2013 07:09:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D72943
-
-Darcy Br=C3=A1s da Silva <dardevelin-R9hm4oqK0XJGyKhy+UYuEA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #91141|0                           |1
-        is obsolete|                            |
-
---- Comment #7 from Darcy Br=C3=A1s da Silva <dardevelin-R9hm4oqK0XJGyKhy+UYuEA@public.gmane.org> ---
-Created attachment 91182
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D91182&action=3Dedit
-syslog with debug=3Dtrace flag, more wait time to hit the disk
-
-I think it hit the disk this time. the date is DEC25.
-I am sorry if the process seems slow on getting back to you. but I am getti=
-ng
-back as fast as I can :) . hope that does not turn you off/down.
-
-As usual the log file is also available under
-http://cidadecool.com/z-tunes/debian/problem/syslog.1-debug=3Dtrace-DEC25-
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1387955360.e5dfF41.26601
-Date: Wed, 25 Dec 2013 07:09:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:dardeveli=
-n&#64;cidadecool.com" title=3D"Darcy Br=C3=A1s da Silva &lt;dardevelin&#64;=
-cidadecool.com&gt;"> <span class=3D"fn">Darcy Br=C3=A1s da Silva</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NV98] hangs in nvbios_init on probe (worked in 3.2)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72943">bug 72943<=
-/a>
-        <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #91141 is obsolete</t=
-d>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NV98] hangs in nvbios_init on probe (worked in 3.2)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72943#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NV98] hangs in nvbios_init on probe (worked in 3.2)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72943">bug 72943<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dardevelin&#64;cidadecool.com" title=3D"Darcy Br=C3=A1s da Silva &lt;dardev=
-elin&#64;cidadecool.com&gt;"> <span class=3D"fn">Darcy Br=C3=A1s da Silva</=
-span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D91182"=
- name=3D"attach_91182" title=3D"syslog with debug=3Dtrace flag, more wait t=
-ime to hit the disk">attachment 91182</a> <a href=3D"attachment.cgi?id=3D91=
-182&amp;action=3Dedit" title=3D"syslog with debug=3Dtrace flag, more wait t=
-ime to hit the disk">[details]</a></span>
-syslog with debug=3Dtrace flag, more wait time to hit the disk
-
-I think it hit the disk this time. the date is DEC25.
-I am sorry if the process seems slow on getting back to you. but I am getti=
-ng
-back as fast as I can :) . hope that does not turn you off/down.
-
-As usual the log file is also available under
-<a href=3D"http://cidadecool.com/z-tunes/debian/problem/syslog.1-debug=3Dtr=
-ace-DEC25">http://cidadecool.com/z-tunes/debian/problem/syslog.1-debug=3Dtr=
-ace-DEC25</a>-</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1387955360.e5dfF41.26601--
-
---===============0656163979==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0656163979==--
+diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c b/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c
+index e2de73e..ff0960f 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c
++++ b/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c
+@@ -813,7 +813,7 @@ nve4_grctx_generate_mods(struct nvc0_graph_priv *priv, struct nvc0_grctx *info)
+ 
+ 	mmio_data(0x003000, 0x0100, NV_MEM_ACCESS_RW | NV_MEM_ACCESS_SYS);
+ 	mmio_data(0x008000, 0x0100, NV_MEM_ACCESS_RW | NV_MEM_ACCESS_SYS);
+-	mmio_data(0x060000, 0x1000, NV_MEM_ACCESS_RW);
++	mmio_data(priv->gpc_nr << 17, 0x1000, NV_MEM_ACCESS_RW);
+ 	mmio_list(0x40800c, 0x00000000,  8, 1);
+ 	mmio_list(0x408010, 0x80000000,  0, 0);
+ 	mmio_list(0x419004, 0x00000000,  8, 1);
+-- 
+1.8.1.5
