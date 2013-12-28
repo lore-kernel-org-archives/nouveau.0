@@ -1,12 +1,12 @@
-From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Subject: [PATCH] drm/nve4: fix size of POLY2ESETUP buffer
-	(s/gpc_nr/tpc_total)
-Date: Wed, 25 Dec 2013 18:02:00 +0100
-Message-ID: <1387990920-15919-1-git-send-email-e0425955@student.tuwien.ac.at>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 61069] [NV17] Crash while displaying large image
+Date: Sat, 28 Dec 2013 07:22:09 +0000
+Message-ID: <bug-61069-8800-RGXkJVdRXQ@http.bugs.freedesktop.org/>
+References: <bug-61069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1976401105=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-61069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,28 +19,72 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This fixes write faults from GPCCLIENT 5 in geometry shader tests.
 
-For now this is just a guess from a single mmio trace, it looks
-like 8 large pages are being used, i.e. one per TPC.
+--===============1976401105==
+Content-Type: multipart/alternative; boundary="1388215329.FF57A52.20521"; charset="us-ascii"
 
-Can we just ask NV for the correct sizes ?
----
- drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c b/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c
-index e2de73e..fc1cc32 100644
---- a/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c
-@@ -813,7 +813,7 @@ nve4_grctx_generate_mods(struct nvc0_graph_priv *priv, struct nvc0_grctx *info)
- 
- 	mmio_data(0x003000, 0x0100, NV_MEM_ACCESS_RW | NV_MEM_ACCESS_SYS);
- 	mmio_data(0x008000, 0x0100, NV_MEM_ACCESS_RW | NV_MEM_ACCESS_SYS);
--	mmio_data(0x060000, 0x1000, NV_MEM_ACCESS_RW);
-+	mmio_data(priv->tpc_total << 17, 0x1000, NV_MEM_ACCESS_RW);
- 	mmio_list(0x40800c, 0x00000000,  8, 1);
- 	mmio_list(0x408010, 0x80000000,  0, 0);
- 	mmio_list(0x419004, 0x00000000,  8, 1);
+--1388215329.FF57A52.20521
+Date: Sat, 28 Dec 2013 07:22:09 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=61069
+
+--- Comment #9 from dave.mueller-OI3hZJvNYWs@public.gmane.org ---
+Thanks for the hint. I've upgraded to libdrm-2.4.50 and the errors lines in the
+kernel log are gone.
+
 -- 
-1.8.1.5
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1388215329.FF57A52.20521
+Date: Sat, 28 Dec 2013 07:22:09 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [NV17] Crash while displaying large image"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61069#c9">Comment # 9</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [NV17] Crash while displaying large image"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61069">bug 61069</a>
+              from <span class="vcard"><a class="email" href="mailto:dave.mueller&#64;gmx.ch" title="dave.mueller&#64;gmx.ch">dave.mueller&#64;gmx.ch</a>
+</span></b>
+        <pre>Thanks for the hint. I've upgraded to libdrm-2.4.50 and the errors lines in the
+kernel log are gone.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1388215329.FF57A52.20521--
+
+--===============1976401105==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1976401105==--
