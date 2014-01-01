@@ -1,17 +1,18 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Possible 3.13-rc nouveau regression with GT 560 Ti
-Date: Wed, 1 Jan 2014 13:46:18 -0500
-Message-ID: <CAKb7Uvj97SgHp1b11_MMt1UR-NUpQ_2LuGhwjyk_a7_VLqN+KQ@mail.gmail.com>
-References: <52C29918.4060102@blueyonder.co.uk>
-	<CAKb7UvhBunpMC6mzjRg7Zb5gGPPYj99=2jd+Lgnr-qeXFs0w9A@mail.gmail.com>
-	<52C3644C.9090809@blueyonder.co.uk>
-	<CAKb7UviLpfZMtZM9X1R0Eaj=5ww2k=T+7x01dZH3ns2Ew1HuFw@mail.gmail.com>
-	<52C42079.6060604@blueyonder.co.uk>
+From: Michele Baldessari <michele-Vrs1pLNSz9odnm+yROfE0A@public.gmane.org>
+Subject: Re: drm-nouveau-next - write trapped by fbcon
+Date: Wed, 1 Jan 2014 20:29:50 +0000
+Message-ID: <20140101202950.GB25483@fante.int.rhx>
+References: <20131205161724.204d6585@pluto.restena.lu>
+	<CAKb7UviUWrYPww1R3r1CdX4R8nrnQpqopojcRSxqQDAvwthNMA@mail.gmail.com>
+	<20131206095858.6dcac328@pluto.restena.lu>
+	<20131211124311.016c005f@neptune.home>
+	<CAKb7UvjcgYkPeU8gTegSOCaWM99g=-Eo832aanpVGv7g=SfFoA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <52C42079.6060604-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <CAKb7UvjcgYkPeU8gTegSOCaWM99g=-Eo832aanpVGv7g=SfFoA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,73 +22,101 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, opensuse factory list <opensuse-factory-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org>, LKML Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Bruno =?iso-8859-1?Q?Pr=E9mont?= <bonbons-ud5FBsm0p/xEiooADzr8i9i2O/JbrIOy@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jan 1, 2014 at 9:04 AM, Sid Boyce <sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org> wrote:
-> On 01/01/14 00:55, Ilia Mirkin wrote:
->>
->> On Tue, Dec 31, 2013 at 7:41 PM, Sid Boyce <sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
->> wrote:
->>>
->>> On 31/12/13 10:36, Ilia Mirkin wrote:
->>>> Having a dmesg would be nice. One thing I can think of off-hand is
->>>> that 3.13-rc has MSI turned on by default. You can turn it off by
->>>> adding "nouveau.config=NvMSI=0" to your kernel cmdline. If that
->>>> doesn't help, a bisect restricted to drivers/gpu/drm/nouveau should
->>>> show the offending commit fairly quickly.
->>>>
->>>>     -ilia
->>>>
->>> Adding "nouveau.config=NvMSI=0" to the command line fixed the problem.
->>> So it looks like commit 049ffa8ab33a63b3bff672d1a0ee6a35ad253fe8
->>> introduced
->>> it.
->>
->> Any chance you might mmiotrace the blob (version 325 or later) to see
->> which registers it fiddles with? Or alternatively, if you have a NVCE
->> card (you never did end up providing the logs which would have made
->> that apparent), could you try replacing nvc3_mc_oclass with
->> nvc0_mc_oclass for the 0xce case in
->> drivers/gpu/drm/nouveau/core/engine/device/nvc0.c? (and boot without
->> the MSI disabling.) The switch has already been made for NVC8 in
->> 0bae1d61c75 -- perhaps there are more "odd" ones.
->>
->>    -ilia
->>
-> Fails exactly the same.
->         case 0xc3:
->                 device->cname = "GF106";
->
->                 device->oclass[NVDEV_SUBDEV_VBIOS  ] = &nouveau_bios_oclass;
->                 device->oclass[NVDEV_SUBDEV_GPIO   ] = &nv50_gpio_oclass;
->                 device->oclass[NVDEV_SUBDEV_I2C    ] = &nv94_i2c_oclass;
->                 device->oclass[NVDEV_SUBDEV_CLOCK  ] = &nvc0_clock_oclass;
->                 device->oclass[NVDEV_SUBDEV_THERM  ] = &nva3_therm_oclass;
->                 device->oclass[NVDEV_SUBDEV_MXM    ] = &nv50_mxm_oclass;
->                 device->oclass[NVDEV_SUBDEV_DEVINIT] = &nvc0_devinit_oclass;
->                 device->oclass[NVDEV_SUBDEV_MC     ] = nvc0_mc_oclass;
-> <<<<<====
->                 device->oclass[NVDEV_SUBDEV_BUS    ] = nvc0_bus_oclass;
->                 device->oclass[NVDEV_SUBDEV_TIMER  ] = &nv04_timer_oclass;
+On Wed, Dec 11, 2013 at 07:21:05AM -0500, Ilia Mirkin wrote:
+> >> On Thu, 5 Dec 2013 10:55:06 -0500 Ilia Mirkin wrote:
+> >> > On Thu, Dec 5, 2013 at 10:17 AM, Bruno Pr=E9mont wrote:
+> >> > > With drm-nouveau-next branch on top of 3.13-rc2 and a few sound co=
+mmits
+> >> > > I get following errors in kernel log (repeating much more often).
+> >> > > (once there was a corrupted fbcon with matrix-like strings of
+> >> > > unrecognizable glyph-strings hanging down from screen top border)
+> >> > >
+> >> > > These errors do stop once I switch to Xorg.
+> >> > >
+> >> > > [   13.825627] nouveau E[     PFB][0000:02:00.0] trapped write at =
+0x0000408280 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAG=
+E_NOT_PRESENT
+> >> > > [   13.826506] nouveau E[     PFB][0000:02:00.0] trapped write at =
+0x0000408280 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAG=
+E_NOT_PRESENT
+> >> > > [   13.827319] nouveau E[     PFB][0000:02:00.0] trapped write at =
+0x0000408280 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAG=
+E_NOT_PRESENT
+> >> > > [   13.828139] nouveau E[     PFB][0000:02:00.0] trapped write at =
+0x0000408280 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAG=
+E_NOT_PRESENT
+> >> > > [   13.828957] nouveau E[     PFB][0000:02:00.0] trapped write at =
+0x0000400300 on channel 0x0000fee0 [unknown] BAR/PFIFO_WRITE/FB reason: PAG=
+E_NOT_PRESENT
+> >> > >
+> >> > > System MBA2,1 with:
+> >> > > 02:00.0 VGA compatible controller [0300]: NVIDIA Corporation C79 [=
+GeForce 9400M] [10de:0870] (rev b1)
+> >> >
+> >> > Do you also see these in 3.13-rc2 +
+> >> > http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=3Ddrm-nouvea=
+u-next&id=3Da7e4201f0f7d47e03b851f06f8987856e8d33083
+> >> > ? If not, you can reorder the patches (git rebase -i) and bisect the
+> >> > rest. Basically the GPU is trying to write to some address that is
+> >> > either completely bogus or is stale, and its internal MMU won't let
+> >> > it.
+> >>
+> >> If I remember correctly these did not happen with Linus' rc2 but only
+> >> do happen with drm-nouveau-next on top of it.
+> >>
+> >> I will check and bisect though probably will not get time to complete
+> >> bisect before late Saturday.
+> >>
+> >>
+> >> A display glitch during kernel boot with fbcon might be related to thi=
+s.
+> >> (very wild guess based on when the trapped writes happen)
+> >> The penguin logo shown by fbcon looks like memcopy'ed to a tiled
+> >> framebuffer without respecting the fact that framebuffer is tiled.
+> >
+> > It was introduced somewhere between 3.12 and 3.13-rc2 though does not h=
+appen
+> > on every boot and when it happens it might be only a couple of trapped =
+writes
+> > or a whole lot flooding complete log buffer.
+> >
+> > Visually it manifests itself as a scrambled framebuffer
+> > (looking like tiled versus untiled writing to framebuffer).
+> > When it happens, it seem to be correlated to call to dialog to ask for
+> > luks password and screen scrambling happens when boot messages
+> > (kernel/userspace) show/scroll by [they wipe out some scrambled area
+> > when scrolling by].
+> >
+> > Unfortunately it will be rather hard to bisect because sometimes it doe=
+s not
+> > happen.
+> > Adding drm-nouveau-next on top of rc2/rc3 does no apparent difference.
+> =
 
-That's the 0xc3 case... you have a nvce card, not nvc3 -- you would
-need to change the NVDEV_SUBDEV_MC line to nvc0_mc_oclass for the 0xce
-case.
+> A shot in the dark -- try booting with nouveau.config=3DNvMSI=3D0. We
+> already disable MSI for NVAA, perhaps we should do it for NVAC as
+> well. Although the blob drivers have it enabled... but we could be
+> doing something wrong.
 
->
-> The dmesg and Xorg.0.log with the problem captured across a ssh link.
->
-> # ps fax|grep X
->  5633 pts/0    S+     0:00          \_ grep --color=auto X
->  5160 tty7     Ss+    0:08  \_ /usr/bin/Xorg -br :0 vt7 -nolisten tcp -auth
-> /var/lib/kdm/AuthFiles/A:0-yqspza
->
-> Also
-> # echo mmiotrace > /sys/kernel/debug/tracing/current_tracer
-> -bash: echo: write error: Invalid argument.
+Hi Ilia,
 
-Take a look at https://wiki.ubuntu.com/X/MMIOTracing
+FWIW a Fedora user got those messages on stock 3.13-rc6 with and without th=
+e =
 
-  -ilia
+"nouveau.config=3DnvMSI=3D0" boot option:
+[   10.812029] nouveau E[     PFB][0000:01:00.0] trapped write at 0x0000525=
+500 on channel 0x0001fed0 [unknown] BAR/PFIFO_WRITE/FB reason: PAGE_NOT_PRE=
+SENT
+
+This is via BZ https://bugzilla.redhat.com/show_bug.cgi?id=3D927451
+
+hth,
+Michele
+-- =
+
+Michele Baldessari            <michele-Vrs1pLNSz9odnm+yROfE0A@public.gmane.org>
+C2A5 9DA3 9961 4FFB E01B  D0BC DDD4 DCCB 7515 5C6D
