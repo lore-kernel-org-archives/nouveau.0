@@ -1,14 +1,14 @@
-From: Sid Boyce <sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
-Subject: Re: Possible 3.13-rc nouveau regression with GT 560 Ti
-Date: Thu, 02 Jan 2014 02:59:48 +0000
-Message-ID: <52C4D624.6030602@blueyonder.co.uk>
-References: <52C29918.4060102@blueyonder.co.uk>	<CAKb7UvhBunpMC6mzjRg7Zb5gGPPYj99=2jd+Lgnr-qeXFs0w9A@mail.gmail.com>	<52C3644C.9090809@blueyonder.co.uk>	<CAKb7UviLpfZMtZM9X1R0Eaj=5ww2k=T+7x01dZH3ns2Ew1HuFw@mail.gmail.com>	<52C42079.6060604@blueyonder.co.uk>	<CAKb7Uvj97SgHp1b11_MMt1UR-NUpQ_2LuGhwjyk_a7_VLqN+KQ@mail.gmail.com>	<52C4D099.9040507@blueyonder.co.uk>
-	<CAKb7UvgiYn9Wy=EsrHWsoGH7Zj2=-8n=qunyzHTLKnSW3RL=iQ@mail.gmail.com>
-Reply-To: sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nve4: fix size of POLY2ESETUP buffer
+	(s/gpc_nr/tpc_total)
+Date: Thu, 2 Jan 2014 21:37:59 +1000
+Message-ID: <CACAvsv6ZBmLOWiuWxALbjc9-J+RQ2S7qMxGaBTQ9P6xzeDkMxQ@mail.gmail.com>
+References: <1387990920-15919-1-git-send-email-e0425955@student.tuwien.ac.at>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="------------040100060603000101000709"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgiYn9Wy=EsrHWsoGH7Zj2=-8n=qunyzHTLKnSW3RL=iQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <1387990920-15919-1-git-send-email-e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,131 +18,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, opensuse factory list <opensuse-factory-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org>, LKML Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---------------040100060603000101000709
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 02/01/14 02:40, Ilia Mirkin wrote:
-> On Wed, Jan 1, 2014 at 9:36 PM, Sid Boyce <sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org> wrote:
->> On 01/01/14 18:46, Ilia Mirkin wrote:
->>> On Wed, Jan 1, 2014 at 9:04 AM, Sid Boyce <sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org> wrote:
->>>> On 01/01/14 00:55, Ilia Mirkin wrote:
->>>>> On Tue, Dec 31, 2013 at 7:41 PM, Sid Boyce <sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
->>>>> wrote:
->>>>>> On 31/12/13 10:36, Ilia Mirkin wrote:
->>>>>>> Having a dmesg would be nice. One thing I can think of off-hand is
->>>>>>> that 3.13-rc has MSI turned on by default. You can turn it off by
->>>>>>> adding "nouveau.config=NvMSI=0" to your kernel cmdline. If that
->>>>>>> doesn't help, a bisect restricted to drivers/gpu/drm/nouveau should
->>>>>>> show the offending commit fairly quickly.
->>>>>>>
->>>>>>>       -ilia
->>>>>>>
->>>>>> Adding "nouveau.config=NvMSI=0" to the command line fixed the problem.
->>>>>> So it looks like commit 049ffa8ab33a63b3bff672d1a0ee6a35ad253fe8
->>>>>> introduced
->>>>>> it.
->>>>> Any chance you might mmiotrace the blob (version 325 or later) to see
->>>>> which registers it fiddles with? Or alternatively, if you have a NVCE
->>>>> card (you never did end up providing the logs which would have made
->>>>> that apparent), could you try replacing nvc3_mc_oclass with
->>>>> nvc0_mc_oclass for the 0xce case in
->>>>> drivers/gpu/drm/nouveau/core/engine/device/nvc0.c? (and boot without
->>>>> the MSI disabling.) The switch has already been made for NVC8 in
->>>>> 0bae1d61c75 -- perhaps there are more "odd" ones.
->>>>>
->>>>>      -ilia
->>>>>
->>>> Fails exactly the same.
->>>>           case 0xc3:
->>>>                   device->cname = "GF106";
->>>>
->>>>                   device->oclass[NVDEV_SUBDEV_VBIOS  ] =
->>>> &nouveau_bios_oclass;
->>>>                   device->oclass[NVDEV_SUBDEV_GPIO   ] =
->>>> &nv50_gpio_oclass;
->>>>                   device->oclass[NVDEV_SUBDEV_I2C    ] = &nv94_i2c_oclass;
->>>>                   device->oclass[NVDEV_SUBDEV_CLOCK  ] =
->>>> &nvc0_clock_oclass;
->>>>                   device->oclass[NVDEV_SUBDEV_THERM  ] =
->>>> &nva3_therm_oclass;
->>>>                   device->oclass[NVDEV_SUBDEV_MXM    ] = &nv50_mxm_oclass;
->>>>                   device->oclass[NVDEV_SUBDEV_DEVINIT] =
->>>> &nvc0_devinit_oclass;
->>>>                   device->oclass[NVDEV_SUBDEV_MC     ] = nvc0_mc_oclass;
->>>> <<<<<====
->>>>                   device->oclass[NVDEV_SUBDEV_BUS    ] = nvc0_bus_oclass;
->>>>                   device->oclass[NVDEV_SUBDEV_TIMER  ] =
->>>> &nv04_timer_oclass;
->>> That's the 0xc3 case... you have a nvce card, not nvc3 -- you would
->>> need to change the NVDEV_SUBDEV_MC line to nvc0_mc_oclass for the 0xce
->>> case.
->>>
->>>> The dmesg and Xorg.0.log with the problem captured across a ssh link.
->>>>
->>>> # ps fax|grep X
->>>>    5633 pts/0    S+     0:00          \_ grep --color=auto X
->>>>    5160 tty7     Ss+    0:08  \_ /usr/bin/Xorg -br :0 vt7 -nolisten tcp
->>>> -auth
->>>> /var/lib/kdm/AuthFiles/A:0-yqspza
->>>>
->>>> Also
->>>> # echo mmiotrace > /sys/kernel/debug/tracing/current_tracer
->>>> -bash: echo: write error: Invalid argument.
->>> Take a look at https://wiki.ubuntu.com/X/MMIOTracing
->>>
->>>     -ilia
->>>
->> Of course it's a GF114.
->> Made the change and it boots without the command line change.
-> Great! Care to send a patch?
+On Thu, Dec 26, 2013 at 3:02 AM, Christoph Bumiller
+<e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> wrote:
+> This fixes write faults from GPCCLIENT 5 in geometry shader tests.
 >
->    -ilia
+> For now this is just a guess from a single mmio trace, it looks
+> like 8 large pages are being used, i.e. one per TPC.
 >
-Here it is.
-Regards
-Sid.
+> Can we just ask NV for the correct sizes ?
+https://android.googlesource.com/kernel/tegra/+/android-tegra-3.10/drivers/video/tegra/host/gk20a/gr_gk20a.c
+might be of some help here.
 
--- 
-Sid Boyce ... Hamradio License G3VBV, Licensed Private Pilot
-Emeritus IBM/Amdahl Mainframes and Sun/Fujitsu Servers Tech Support
-Senior Staff Specialist, Cricket Coach
-Microsoft Windows Free Zone - Linux used for all Computing Tasks
+The buffer in question is the "attribute buffer"
 
 
---------------040100060603000101000709
-Content-Type: text/x-patch;
- name="GF114.diff"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename="GF114.diff"
-
---- /usr/src/linux-3.13.0-rc6/drivers/gpu/drm/nouveau/core/engine/device/nvc0.c	2013-11-23 13:03:23.797604441 +0000
-+++ /usr/src/linux-3.13.0-rc61/drivers/gpu/drm/nouveau/core/engine/device/nvc0.c	2014-01-02 02:13:32.445643092 +0000
-@@ -161,7 +161,7 @@
- 		device->oclass[NVDEV_SUBDEV_THERM  ] = &nva3_therm_oclass;
- 		device->oclass[NVDEV_SUBDEV_MXM    ] = &nv50_mxm_oclass;
- 		device->oclass[NVDEV_SUBDEV_DEVINIT] = &nvc0_devinit_oclass;
--		device->oclass[NVDEV_SUBDEV_MC     ] =  nvc3_mc_oclass;
-+		device->oclass[NVDEV_SUBDEV_MC     ] =  nvc0_mc_oclass;
- 		device->oclass[NVDEV_SUBDEV_BUS    ] =  nvc0_bus_oclass;
- 		device->oclass[NVDEV_SUBDEV_TIMER  ] = &nv04_timer_oclass;
- 		device->oclass[NVDEV_SUBDEV_FB     ] =  nvc0_fb_oclass;
-
---------------040100060603000101000709
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---------------040100060603000101000709--
+> ---
+>  drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c b/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c
+> index e2de73e..fc1cc32 100644
+> --- a/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c
+> +++ b/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c
+> @@ -813,7 +813,7 @@ nve4_grctx_generate_mods(struct nvc0_graph_priv *priv, struct nvc0_grctx *info)
+>
+>         mmio_data(0x003000, 0x0100, NV_MEM_ACCESS_RW | NV_MEM_ACCESS_SYS);
+>         mmio_data(0x008000, 0x0100, NV_MEM_ACCESS_RW | NV_MEM_ACCESS_SYS);
+> -       mmio_data(0x060000, 0x1000, NV_MEM_ACCESS_RW);
+> +       mmio_data(priv->tpc_total << 17, 0x1000, NV_MEM_ACCESS_RW);
+>         mmio_list(0x40800c, 0x00000000,  8, 1);
+>         mmio_list(0x408010, 0x80000000,  0, 0);
+>         mmio_list(0x419004, 0x00000000,  8, 1);
+> --
+> 1.8.1.5
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
