@@ -1,14 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nve4: fix size of POLY2ESETUP buffer
-	(s/gpc_nr/tpc_total)
-Date: Thu, 2 Jan 2014 21:37:59 +1000
-Message-ID: <CACAvsv6ZBmLOWiuWxALbjc9-J+RQ2S7qMxGaBTQ9P6xzeDkMxQ@mail.gmail.com>
-References: <1387990920-15919-1-git-send-email-e0425955@student.tuwien.ac.at>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 72952] [NV94] no HDMI output,
+ xrands claims DVI-D-1 disconnected
+Date: Thu, 02 Jan 2014 11:51:57 +0000
+Message-ID: <bug-72952-8800-irYEtKIi2O@http.bugs.freedesktop.org/>
+References: <bug-72952-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0050436543=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1387990920-15919-1-git-send-email-e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+In-Reply-To: <bug-72952-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,45 +17,95 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Dec 26, 2013 at 3:02 AM, Christoph Bumiller
-<e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org> wrote:
-> This fixes write faults from GPCCLIENT 5 in geometry shader tests.
->
-> For now this is just a guess from a single mmio trace, it looks
-> like 8 large pages are being used, i.e. one per TPC.
->
-> Can we just ask NV for the correct sizes ?
-https://android.googlesource.com/kernel/tegra/+/android-tegra-3.10/drivers/video/tegra/host/gk20a/gr_gk20a.c
-might be of some help here.
 
-The buffer in question is the "attribute buffer"
+--===============0050436543==
+Content-Type: multipart/alternative; boundary="1388663516.D1Fc1.11095"; charset="us-ascii"
 
 
-> ---
->  drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c b/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c
-> index e2de73e..fc1cc32 100644
-> --- a/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c
-> +++ b/drivers/gpu/drm/nouveau/core/engine/graph/ctxnve4.c
-> @@ -813,7 +813,7 @@ nve4_grctx_generate_mods(struct nvc0_graph_priv *priv, struct nvc0_grctx *info)
->
->         mmio_data(0x003000, 0x0100, NV_MEM_ACCESS_RW | NV_MEM_ACCESS_SYS);
->         mmio_data(0x008000, 0x0100, NV_MEM_ACCESS_RW | NV_MEM_ACCESS_SYS);
-> -       mmio_data(0x060000, 0x1000, NV_MEM_ACCESS_RW);
-> +       mmio_data(priv->tpc_total << 17, 0x1000, NV_MEM_ACCESS_RW);
->         mmio_list(0x40800c, 0x00000000,  8, 1);
->         mmio_list(0x408010, 0x80000000,  0, 0);
->         mmio_list(0x419004, 0x00000000,  8, 1);
-> --
-> 1.8.1.5
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+--1388663516.D1Fc1.11095
+Date: Thu, 2 Jan 2014 11:51:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D72952
+
+--- Comment #4 from J=C3=B6rg H=C3=B6hle <Joerg-Cyril.Hoehle-02uNIv46f66akBO8gow8eQ@public.gmane.org>=
+ ---
+No HDMI either when booting Ubuntu 13.04 on the same machine from a live DV=
+D.
+
+Alas, using the live DVD, I couldn't check the behaviour described in comme=
+nt
+#2 past a suspend&resume cycle, because the machine hung shortly after resu=
+me.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1388663516.D1Fc1.11095
+Date: Thu, 2 Jan 2014 11:51:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NV94] no HDMI output, xrands claims DVI-D-1 disconne=
+cted"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72952#c4">Comment=
+ # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NV94] no HDMI output, xrands claims DVI-D-1 disconne=
+cted"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72952">bug 72952<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+Joerg-Cyril.Hoehle&#64;T-Systems.com" title=3D"J=C3=B6rg H=C3=B6hle &lt;Joe=
+rg-Cyril.Hoehle&#64;T-Systems.com&gt;"> <span class=3D"fn">J=C3=B6rg H=C3=
+=B6hle</span></a>
+</span></b>
+        <pre>No HDMI either when booting Ubuntu 13.04 on the same machine f=
+rom a live DVD.
+
+Alas, using the live DVD, I couldn't check the behaviour described in <a hr=
+ef=3D"show_bug.cgi?id=3D72952#c2">comment
+#2</a> past a suspend&amp;resume cycle, because the machine hung shortly af=
+ter resume.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1388663516.D1Fc1.11095--
+
+--===============0050436543==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0050436543==--
