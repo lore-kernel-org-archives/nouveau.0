@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72952] [NV94] no HDMI output,
- xrands claims DVI-D-1 disconnected
-Date: Thu, 02 Jan 2014 11:51:57 +0000
-Message-ID: <bug-72952-8800-irYEtKIi2O@http.bugs.freedesktop.org/>
-References: <bug-72952-8800@http.bugs.freedesktop.org/>
+From: Sid Boyce <sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
+Subject: [PATCH] Fix hang problem with GeForce GT 560 Ti and
+	nouveau in 3.13-rc
+Date: Thu, 02 Jan 2014 14:58:31 +0000
+Message-ID: <52C57E97.1050602@blueyonder.co.uk>
+References: <52C29918.4060102@blueyonder.co.uk>	<CAKb7UvhBunpMC6mzjRg7Zb5gGPPYj99=2jd+Lgnr-qeXFs0w9A@mail.gmail.com>	<52C3644C.9090809@blueyonder.co.uk>	<CAKb7UviLpfZMtZM9X1R0Eaj=5ww2k=T+7x01dZH3ns2Ew1HuFw@mail.gmail.com>	<52C42079.6060604@blueyonder.co.uk>	<CAKb7Uvj97SgHp1b11_MMt1UR-NUpQ_2LuGhwjyk_a7_VLqN+KQ@mail.gmail.com>	<52C4D099.9040507@blueyonder.co.uk>
+	<CAKb7UvgiYn9Wy=EsrHWsoGH7Zj2=-8n=qunyzHTLKnSW3RL=iQ@mail.gmail.com>
+Reply-To: sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0050436543=="
+Content-Type: multipart/mixed; boundary="------------000303030209040800000704"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72952-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvgiYn9Wy=EsrHWsoGH7Zj2=-8n=qunyzHTLKnSW3RL=iQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,87 +19,55 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, opensuse factory list <opensuse-factory-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org>, LKML Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+This is a multi-part message in MIME format.
+--------------000303030209040800000704
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---===============0050436543==
-Content-Type: multipart/alternative; boundary="1388663516.D1Fc1.11095"; charset="us-ascii"
+
+-- 
+Sid Boyce ... Hamradio License G3VBV, Licensed Private Pilot
+Emeritus IBM/Amdahl Mainframes and Sun/Fujitsu Servers Tech Support
+Senior Staff Specialist, Cricket Coach
+Microsoft Windows Free Zone - Linux used for all Computing Tasks
 
 
---1388663516.D1Fc1.11095
-Date: Thu, 2 Jan 2014 11:51:56 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--------------000303030209040800000704
+Content-Type: text/x-patch;
+ name="GF114_2.diff"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="GF114_2.diff"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D72952
+This patch stops a console hang with VGA compatible controller: NVIDIA Corporation GF114 [GeForce GTX 560 Ti] (rev a1)
+3.13-rc defines NVDEV_SUBDEV_MC as nvc3_mc_oclass, it needs to be defined as nvc0_mc_oclass
+Signed off by: Sid Boyce (sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org)
+Tested by: Sid Boyce (sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org)
+---
 
---- Comment #4 from J=C3=B6rg H=C3=B6hle <Joerg-Cyril.Hoehle-02uNIv46f66akBO8gow8eQ@public.gmane.org>=
- ---
-No HDMI either when booting Ubuntu 13.04 on the same machine from a live DV=
-D.
+drivers/gpu/drm/nouveau/core/engine/device/nvc0.c 1 -+
+1 file changed, 1 insertion(+), 1 deletion(-)
 
-Alas, using the live DVD, I couldn't check the behaviour described in comme=
-nt
-#2 past a suspend&resume cycle, because the machine hung shortly after resu=
-me.
+INDEX: linux/drivers/gpu/drm/nouveau/core/engine/device/nvc0.c
+=========================================================================
+diff -up  a/drivers/gpu/drm/nouveau/core/engine/device/nvc0.c b/drivers/gpu/drm/nouveau/core/engine/device/nvc0.c
+--- a/drivers/gpu/drm/nouveau/core/engine/device/nvc0.c	2013-11-23 13:03:23.797604441 +0000
++++ b/drivers/gpu/drm/nouveau/core/engine/device/nvc0.c	2014-01-02 02:13:32.445643092 +0000
+@@ -161,7 +161,7 @@ nvc0_identify(struct nouveau_device *dev
+ 		device->oclass[NVDEV_SUBDEV_THERM  ] = &nva3_therm_oclass;
+ 		device->oclass[NVDEV_SUBDEV_MXM    ] = &nv50_mxm_oclass;
+ 		device->oclass[NVDEV_SUBDEV_DEVINIT] = &nvc0_devinit_oclass;
+-		device->oclass[NVDEV_SUBDEV_MC     ] =  nvc3_mc_oclass;
++		device->oclass[NVDEV_SUBDEV_MC     ] =  nvc0_mc_oclass;
+ 		device->oclass[NVDEV_SUBDEV_BUS    ] =  nvc0_bus_oclass;
+ 		device->oclass[NVDEV_SUBDEV_TIMER  ] = &nv04_timer_oclass;
+ 		device->oclass[NVDEV_SUBDEV_FB     ] =  nvc0_fb_oclass;
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1388663516.D1Fc1.11095
-Date: Thu, 2 Jan 2014 11:51:56 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NV94] no HDMI output, xrands claims DVI-D-1 disconne=
-cted"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72952#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NV94] no HDMI output, xrands claims DVI-D-1 disconne=
-cted"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72952">bug 72952<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-Joerg-Cyril.Hoehle&#64;T-Systems.com" title=3D"J=C3=B6rg H=C3=B6hle &lt;Joe=
-rg-Cyril.Hoehle&#64;T-Systems.com&gt;"> <span class=3D"fn">J=C3=B6rg H=C3=
-=B6hle</span></a>
-</span></b>
-        <pre>No HDMI either when booting Ubuntu 13.04 on the same machine f=
-rom a live DVD.
-
-Alas, using the live DVD, I couldn't check the behaviour described in <a hr=
-ef=3D"show_bug.cgi?id=3D72952#c2">comment
-#2</a> past a suspend&amp;resume cycle, because the machine hung shortly af=
-ter resume.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1388663516.D1Fc1.11095--
-
---===============0050436543==
+--------------000303030209040800000704
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +78,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0050436543==--
+--------------000303030209040800000704--
