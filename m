@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 73267] Nouveau: corrupted laptop screen's EDID info
-Date: Fri, 03 Jan 2014 22:50:28 +0000
-Message-ID: <bug-73267-8800-GcEmnyYr15@http.bugs.freedesktop.org/>
+Date: Fri, 03 Jan 2014 23:51:48 +0000
+Message-ID: <bug-73267-8800-wyhOqQdk2d@http.bugs.freedesktop.org/>
 References: <bug-73267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0065908084=="
+Content-Type: multipart/mixed; boundary="===============1525365607=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73267-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0065908084==
-Content-Type: multipart/alternative; boundary="1388789428.c7E031.2315"; charset="us-ascii"
+--===============1525365607==
+Content-Type: multipart/alternative; boundary="1388793108.E3B82daB1.12107"; charset="us-ascii"
 
 
---1388789428.c7E031.2315
-Date: Fri, 3 Jan 2014 22:50:28 +0000
+--1388793108.E3B82daB1.12107
+Date: Fri, 3 Jan 2014 23:51:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73267
 
---- Comment #3 from pjv <ezelspinguin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 91473
-  --> https://bugs.freedesktop.org/attachment.cgi?id=91473&action=edit
-edid-tool.c (with fixes)
+--- Comment #4 from pjv <ezelspinguin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Ilia, is it sane to enforce an EDID in the module options? I have the habit to
+copy all my configuration when moving to a new laptop when it's time to
+replace, and then forget what this or that fix was for. I bet I would have a
+hard time getting my screen to show then.
 
-Edid-tool.c from Andy with fixes from Stuart from #34554.
+Can I help to diagnose where the corruption comes from? Is that useful/doable?
+
+I should also mention that Apple might have had some particular problems with
+this laptop model (MBP 6,2) related to the Nvidia chip:
+http://support.apple.com/kb/ts4088. This is like a recall problem for affected
+parts. Can't find enough info though.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1388789428.c7E031.2315
-Date: Fri, 3 Jan 2014 22:50:28 +0000
+--1388793108.E3B82daB1.12107
+Date: Fri, 3 Jan 2014 23:51:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +63,24 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau: corrupted laptop screen's EDID info"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73267#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73267#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau: corrupted laptop screen's EDID info"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=73267">bug 73267</a>
               from <span class="vcard"><a class="email" href="mailto:ezelspinguin&#64;gmail.com" title="pjv &lt;ezelspinguin&#64;gmail.com&gt;"> <span class="fn">pjv</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=91473" name="attach_91473" title="edid-tool.c (with fixes)">attachment 91473</a> <a href="attachment.cgi?id=91473&amp;action=edit" title="edid-tool.c (with fixes)">[details]</a></span>
-edid-tool.c (with fixes)
+        <pre>Ilia, is it sane to enforce an EDID in the module options? I have the habit to
+copy all my configuration when moving to a new laptop when it's time to
+replace, and then forget what this or that fix was for. I bet I would have a
+hard time getting my screen to show then.
 
-Edid-tool.c from Andy with fixes from Stuart from #34554.</pre>
+Can I help to diagnose where the corruption comes from? Is that useful/doable?
+
+I should also mention that Apple might have had some particular problems with
+this laptop model (MBP 6,2) related to the Nvidia chip:
+<a href="http://support.apple.com/kb/ts4088">http://support.apple.com/kb/ts4088</a>. This is like a recall problem for affected
+parts. Can't find enough info though.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +92,9 @@ Edid-tool.c from Andy with fixes from Stuart from #34554.</pre>
     </body>
 </html>
 
---1388789428.c7E031.2315--
+--1388793108.E3B82daB1.12107--
 
---===============0065908084==
+--===============1525365607==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0065908084==--
+--===============1525365607==--
