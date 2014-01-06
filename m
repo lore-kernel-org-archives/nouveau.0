@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64774] nouveau GF108 kernel crash in optimus mode
- when enabling external display output
-Date: Mon, 06 Jan 2014 16:17:35 +0000
-Message-ID: <bug-64774-8800-bgDHvLL0go@http.bugs.freedesktop.org/>
-References: <bug-64774-8800@http.bugs.freedesktop.org/>
+From: fbs 777 <fbs777-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: yuy2 not working in ubuntu 13.10
+Date: Mon, 6 Jan 2014 10:53:49 -0200
+Message-ID: <CAPET_G966gHBSNK1991aiRgHY3+eN-4Gadz=SrdKG=GCq1Kkng@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0947248320=="
+Content-Type: multipart/mixed; boundary="===============0132695298=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64774-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,88 +17,30 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============0132695298==
+Content-Type: multipart/alternative; boundary=047d7b676af250161a04ef4cc028
 
---===============0947248320==
-Content-Type: multipart/alternative; boundary="1389025055.A3e6c322.23836"; charset="us-ascii"
+--047d7b676af250161a04ef4cc028
+Content-Type: text/plain; charset=ISO-8859-1
 
+For many years im using the ubuntu with nouveau and the yuy2 scalemode in
+mame. I think the last one was 11.10 or 12.04, not sure.
+Now in the ubuntu 13.10 the yuy2 scalemode dont work in mame, but works
+fine with the intel driver.
 
---1389025055.A3e6c322.23836
-Date: Mon, 6 Jan 2014 16:17:35 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Tested with the kernels 3.11 and 3.12 from the ubuntu repository.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64774
+I think there's a regression in the nouveau used in ubuntu 13.10 with yuy2.
 
---- Comment #27 from Pawel Sikora <pluto-PIIpFW8S9c0@public.gmane.org> ---
-(In reply to comment #26)
-> FWIW, my patch, which was deemed inappropriate for inclusion:
-> http://marc.info/?l=dri-devel&m=137713025702333&w=2
-> 
-> Later in the thread, another patch was proposed:
-> http://marc.info/?l=dri-devel&m=137715564208095&w=2
-> 
-> However I don't think it has made it upstream yet as Ben had some concerns.
+--047d7b676af250161a04ef4cc028
+Content-Type: text/html; charset=ISO-8859-1
 
-the latest patch mentioned on lkml thread only changes hard system locks
-into soft locks for kernel-3.12.6-300.fc20.x86_64. the suspend/resume cycles
-works pretty stable for rawhide kernel-3.13.0-0.rc7.git0.2.fc21.x86_64.
+<div dir="ltr">For many years im using the ubuntu with nouveau and the yuy2 scalemode in mame. I think the last one was 11.10 or 12.04, not sure.<div>Now in the ubuntu 13.10 the yuy2 scalemode dont work in mame, but works fine with the intel driver.</div>
+<div><br></div><div>Tested with the kernels 3.11 and 3.12 from the ubuntu repository.</div><div><br></div><div>I think there&#39;s a regression in the nouveau used in ubuntu 13.10 with yuy2.</div></div>
 
-afaics, the 3.13 kernel contains some acpi/pm fixes in the nouveau area.
+--047d7b676af250161a04ef4cc028--
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1389025055.A3e6c322.23836
-Date: Mon, 6 Jan 2014 16:17:35 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau GF108 kernel crash in optimus mode when enabling external display output"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64774#c27">Comment # 27</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau GF108 kernel crash in optimus mode when enabling external display output"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64774">bug 64774</a>
-              from <span class="vcard"><a class="email" href="mailto:pluto&#64;agmk.net" title="Pawel Sikora &lt;pluto&#64;agmk.net&gt;"> <span class="fn">Pawel Sikora</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=64774#c26">comment #26</a>)
-<span class="quote">&gt; FWIW, my patch, which was deemed inappropriate for inclusion:
-&gt; <a href="http://marc.info/?l=dri-devel&amp;m=137713025702333&amp;w=2">http://marc.info/?l=dri-devel&amp;m=137713025702333&amp;w=2</a>
-&gt; 
-&gt; Later in the thread, another patch was proposed:
-&gt; <a href="http://marc.info/?l=dri-devel&amp;m=137715564208095&amp;w=2">http://marc.info/?l=dri-devel&amp;m=137715564208095&amp;w=2</a>
-&gt; 
-&gt; However I don't think it has made it upstream yet as Ben had some concerns.</span >
-
-the latest patch mentioned on lkml thread only changes hard system locks
-into soft locks for kernel-3.12.6-300.fc20.x86_64. the suspend/resume cycles
-works pretty stable for rawhide kernel-3.13.0-0.rc7.git0.2.fc21.x86_64.
-
-afaics, the 3.13 kernel contains some acpi/pm fixes in the nouveau area.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1389025055.A3e6c322.23836--
-
---===============0947248320==
+--===============0132695298==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -112,4 +51,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0947248320==--
+--===============0132695298==--
