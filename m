@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 72943] [NV98] hangs in nvbios_init on probe (worked
 	in 3.2)
-Date: Mon, 06 Jan 2014 00:00:02 +0000
-Message-ID: <bug-72943-8800-Yl8kUwuhSV@http.bugs.freedesktop.org/>
+Date: Mon, 06 Jan 2014 00:09:51 +0000
+Message-ID: <bug-72943-8800-GIyXJ92at7@http.bugs.freedesktop.org/>
 References: <bug-72943-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1812477879=="
+Content-Type: multipart/mixed; boundary="===============0502083910=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-72943-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,36 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1812477879==
-Content-Type: multipart/alternative; boundary="1388966402.7FDCEa832.32113"; charset="us-ascii"
+--===============0502083910==
+Content-Type: multipart/alternative; boundary="1388966991.cAd662.2441"; charset="us-ascii"
 
 
---1388966402.7FDCEa832.32113
-Date: Mon, 6 Jan 2014 00:00:02 +0000
+--1388966991.cAd662.2441
+Date: Mon, 6 Jan 2014 00:09:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=72943
 
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #7)
-> Created attachment 91182 [details]
-> syslog with debug=trace flag, more wait time to hit the disk
-> 
-> I think it hit the disk this time. the date is DEC25.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-The only messages on Dec 25 are from 3.2. Perhaps you have a second computer
-and can use netconsole to send the messages?
-
-It'd be really useful to get a log with the trace since that should immediately
-identify the failure.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #91069|text/plain                  |application/octet-stream
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1388966402.7FDCEa832.32113
-Date: Mon, 6 Jan 2014 00:00:02 +0000
+--1388966991.cAd662.2441
+Date: Mon, 6 Jan 2014 00:09:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,31 +52,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV98] hangs in nvbios_init on probe (worked in 3.2)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72943#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV98] hangs in nvbios_init on probe (worked in 3.2)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=72943">bug 72943</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=72943#c7">comment #7</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=91182" name="attach_91182" title="syslog with debug=trace flag, more wait time to hit the disk">attachment 91182</a> <a href="attachment.cgi?id=91182&amp;action=edit" title="syslog with debug=trace flag, more wait time to hit the disk">[details]</a></span>
-&gt; syslog with debug=trace flag, more wait time to hit the disk
-&gt; 
-&gt; I think it hit the disk this time. the date is DEC25.</span >
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-The only messages on Dec 25 are from 3.2. Perhaps you have a second computer
-and can use netconsole to send the messages?
-
-It'd be really useful to get a log with the trace since that should immediately
-identify the failure.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Attachment #91069 mime type</td>
+           <td>text/plain
+           </td>
+           <td>application/octet-stream
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -93,9 +84,9 @@ identify the failure.</pre>
     </body>
 </html>
 
---1388966402.7FDCEa832.32113--
+--1388966991.cAd662.2441--
 
---===============1812477879==
+--===============0502083910==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1812477879==--
+--===============0502083910==--
