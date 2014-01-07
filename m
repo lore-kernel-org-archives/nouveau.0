@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73373] New: [NVE4] GPU lockup after opening many
- tabs in Chromium web browser
-Date: Tue, 07 Jan 2014 21:44:05 +0000
-Message-ID: <bug-73373-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
+ Chromium web browser
+Date: Tue, 07 Jan 2014 21:44:49 +0000
+Message-ID: <bug-73373-8800-pq7l0My2gJ@http.bugs.freedesktop.org/>
+References: <bug-73373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0751863002=="
+Content-Type: multipart/mixed; boundary="===============0486535374=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,45 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0751863002==
-Content-Type: multipart/alternative; boundary="1389131044.A8C1810.32062"; charset="us-ascii"
+--===============0486535374==
+Content-Type: multipart/alternative; boundary="1389131088.24bA5d0.32155"; charset="us-ascii"
 
 
---1389131044.A8C1810.32062
-Date: Tue, 7 Jan 2014 21:44:04 +0000
+--1389131088.24bA5d0.32155
+Date: Tue, 7 Jan 2014 21:44:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73373
 
-          Priority: medium
-            Bug ID: 73373
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NVE4] GPU lockup after opening many tabs in Chromium
-                    web browser
-          Severity: blocker
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: mbarrera-KK0ffGbhmjU@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: 10.0
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
-
-When using the Chromium web browser, if I open too many tabs with graphics, the
-graphics will crash leaving the desktop not responsive, still the system will
-continue to work.
-
-Attached are the kernel logs I got through SSH after reproducing the bug four
-times.
+--- Comment #1 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
+Created attachment 91618
+  --> https://bugs.freedesktop.org/attachment.cgi?id=91618&action=edit
+Reproducing the bug for first time
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389131044.A8C1810.32062
-Date: Tue, 7 Jan 2014 21:44:04 +0000
+--1389131088.24bA5d0.32155
+Date: Tue, 7 Jan 2014 21:44:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,95 +50,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373">73373</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVE4] GPU lockup after opening many tabs in Chromium web browser
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>blocker
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>mbarrera&#64;gmx.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>10.0
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>When using the Chromium web browser, if I open too many tabs with graphics, the
-graphics will crash leaving the desktop not responsive, still the system will
-continue to work.
-
-Attached are the kernel logs I got through SSH after reproducing the bug four
-times.</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373">bug 73373</a>
+              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=91618" name="attach_91618" title="Reproducing the bug for first time">attachment 91618</a> <a href="attachment.cgi?id=91618&amp;action=edit" title="Reproducing the bug for first time">[details]</a></span>
+Reproducing the bug for first time</pre>
         </div>
       </p>
       <hr>
@@ -165,9 +76,9 @@ times.</pre>
     </body>
 </html>
 
---1389131044.A8C1810.32062--
+--1389131088.24bA5d0.32155--
 
---===============0751863002==
+--===============0486535374==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -178,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0751863002==--
+--===============0486535374==--
