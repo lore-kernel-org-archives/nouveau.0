@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68835] [NV04] Script offset calculated incorrectly
- for some BMP 1.x VBIOSes
-Date: Tue, 07 Jan 2014 16:33:36 +0000
-Message-ID: <bug-68835-8800-X5ieDOEpdT@http.bugs.freedesktop.org/>
-References: <bug-68835-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72943] [NV98] hangs in nvbios_init on probe (worked
+	in 3.2)
+Date: Tue, 07 Jan 2014 19:17:23 +0000
+Message-ID: <bug-72943-8800-zFCTfgPeCd@http.bugs.freedesktop.org/>
+References: <bug-72943-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0159541840=="
+Content-Type: multipart/mixed; boundary="===============2052358327=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72943-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,41 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0159541840==
-Content-Type: multipart/alternative; boundary="1389112415.8b1B1.8560"; charset="us-ascii"
+--===============2052358327==
+Content-Type: multipart/alternative; boundary="1389122242.1baD5D1.4110"; charset="us-ascii"
 
 
---1389112415.8b1B1.8560
-Date: Tue, 7 Jan 2014 16:33:35 +0000
+--1389122242.1baD5D1.4110
+Date: Tue, 7 Jan 2014 19:17:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68835
+https://bugs.freedesktop.org/show_bug.cgi?id=72943
 
---- Comment #9 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
-Hi Ilia,
-honestly I don't know if I could test this within a week or so, because I would
-need to make a Fedora installation on a new disk/partition, sort out how to
-build a custom kernel with patched nouveau and test it (I've never done this
-before, maybe something like that ages ago on a Slackware 4 distribution...
-:-P). In fact, the tests I made were on a live Fedore 19, because the actual
-installed distribution I'm currently using on this system is an OpenMediaVault
-(based on Debian Squeeze), which is too old to try this.
+--- Comment #11 from Ionut Radu <ionut.radu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 91612
+  --> https://bugs.freedesktop.org/attachment.cgi?id=91612&action=edit
+vmcore log excerpt
 
-I can afford this, but I can't bet on the time I will need.
 
-If you feel safe to check it in anyway, I will surely test a live distribution
-with the new kernel as soon as it will become available (or, in the mean time,
-I may be able to do all the steps needed to test this patch on Fedora 19...).
-By the way, if you check it in now, which new Linux kernel version do you
-expect to inherit the fix?
+Hi,
+
+For me the issue is not fixed.
+Please see the attached vmcore-excerpt.log.
+For vmcore, please check:
+
+https://www.dropbox.com/sh/e77p700zr8g1v4z/y3ldY3npQB
+
+thanks,
+Ionut Radu.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389112415.8b1B1.8560
-Date: Tue, 7 Jan 2014 16:33:35 +0000
+--1389122242.1baD5D1.4110
+Date: Tue, 7 Jan 2014 19:17:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,30 +67,28 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV04] Script offset calculated incorrectly for some BMP 1.x VBIOSes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835#c9">Comment # 9</a>
+   title="NEW --- - [NV98] hangs in nvbios_init on probe (worked in 3.2)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72943#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV04] Script offset calculated incorrectly for some BMP 1.x VBIOSes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835">bug 68835</a>
-              from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
+   title="NEW --- - [NV98] hangs in nvbios_init on probe (worked in 3.2)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72943">bug 72943</a>
+              from <span class="vcard"><a class="email" href="mailto:ionut.radu&#64;gmail.com" title="Ionut Radu &lt;ionut.radu&#64;gmail.com&gt;"> <span class="fn">Ionut Radu</span></a>
 </span></b>
-        <pre>Hi Ilia,
-honestly I don't know if I could test this within a week or so, because I would
-need to make a Fedora installation on a new disk/partition, sort out how to
-build a custom kernel with patched nouveau and test it (I've never done this
-before, maybe something like that ages ago on a Slackware 4 distribution...
-:-P). In fact, the tests I made were on a live Fedore 19, because the actual
-installed distribution I'm currently using on this system is an OpenMediaVault
-(based on Debian Squeeze), which is too old to try this.
+        <pre>Created <span class=""><a href="attachment.cgi?id=91612" name="attach_91612" title="vmcore log excerpt">attachment 91612</a> <a href="attachment.cgi?id=91612&amp;action=edit" title="vmcore log excerpt">[details]</a></span>
+vmcore log excerpt
 
-I can afford this, but I can't bet on the time I will need.
 
-If you feel safe to check it in anyway, I will surely test a live distribution
-with the new kernel as soon as it will become available (or, in the mean time,
-I may be able to do all the steps needed to test this patch on Fedora 19...).
-By the way, if you check it in now, which new Linux kernel version do you
-expect to inherit the fix?</pre>
+Hi,
+
+For me the issue is not fixed.
+Please see the attached vmcore-excerpt.log.
+For vmcore, please check:
+
+<a href="https://www.dropbox.com/sh/e77p700zr8g1v4z/y3ldY3npQB">https://www.dropbox.com/sh/e77p700zr8g1v4z/y3ldY3npQB</a>
+
+thanks,
+Ionut Radu.</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +100,9 @@ expect to inherit the fix?</pre>
     </body>
 </html>
 
---1389112415.8b1B1.8560--
+--1389122242.1baD5D1.4110--
 
---===============0159541840==
+--===============2052358327==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -116,4 +113,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0159541840==--
+--===============2052358327==--
