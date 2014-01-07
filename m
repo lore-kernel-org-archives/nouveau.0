@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
  Chromium web browser
-Date: Tue, 07 Jan 2014 21:45:59 +0000
-Message-ID: <bug-73373-8800-JF3HOuQKyf@http.bugs.freedesktop.org/>
+Date: Tue, 07 Jan 2014 21:46:24 +0000
+Message-ID: <bug-73373-8800-z8MQ8seouj@http.bugs.freedesktop.org/>
 References: <bug-73373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0186410789=="
+Content-Type: multipart/mixed; boundary="===============2020283078=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0186410789==
-Content-Type: multipart/alternative; boundary="1389131159.fdb120.32467"; charset="us-ascii"
+--===============2020283078==
+Content-Type: multipart/alternative; boundary="1389131183.Be3F170.32585"; charset="us-ascii"
 
 
---1389131159.fdb120.32467
-Date: Tue, 7 Jan 2014 21:45:59 +0000
+--1389131183.Be3F170.32585
+Date: Tue, 7 Jan 2014 21:46:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,17 +36,17 @@ Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #91619|Reproducing the bug for     |Second reproduction of the
-        description|second time                 |bug.
-  Attachment #91619|nouveau2.bug                |nouveau2
+  Attachment #91618|Reproducing the bug for     |First reproduction of the
+        description|first time                  |bug.
+  Attachment #91618|nouveau.bug                 |nouveau1
            filename|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389131159.fdb120.32467
-Date: Tue, 7 Jan 2014 21:45:59 +0000
+--1389131183.Be3F170.32585
+Date: Tue, 7 Jan 2014 21:46:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,18 +69,18 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #91619 description</td>
-           <td>Reproducing the bug for second time
+           <td style="text-align:right;">Attachment #91618 description</td>
+           <td>Reproducing the bug for first time
            </td>
-           <td>Second reproduction of the bug.
+           <td>First reproduction of the bug.
            </td>
          </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #91619 filename</td>
-           <td>nouveau2.bug
+           <td style="text-align:right;">Attachment #91618 filename</td>
+           <td>nouveau.bug
            </td>
-           <td>nouveau2
+           <td>nouveau1
            </td>
          </tr></table>
       <p>
@@ -94,9 +94,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1389131159.fdb120.32467--
+--1389131183.Be3F170.32585--
 
---===============0186410789==
+--===============2020283078==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -107,4 +107,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0186410789==--
+--===============2020283078==--
