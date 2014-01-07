@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
  Chromium web browser
-Date: Tue, 07 Jan 2014 21:46:24 +0000
-Message-ID: <bug-73373-8800-z8MQ8seouj@http.bugs.freedesktop.org/>
+Date: Tue, 07 Jan 2014 21:46:49 +0000
+Message-ID: <bug-73373-8800-w9NLtmUr74@http.bugs.freedesktop.org/>
 References: <bug-73373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2020283078=="
+Content-Type: multipart/mixed; boundary="===============0255890073=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2020283078==
-Content-Type: multipart/alternative; boundary="1389131183.Be3F170.32585"; charset="us-ascii"
+--===============0255890073==
+Content-Type: multipart/alternative; boundary="1389131209.Fe4bda8D1.32585"; charset="us-ascii"
 
 
---1389131183.Be3F170.32585
-Date: Tue, 7 Jan 2014 21:46:23 +0000
+--1389131209.Fe4bda8D1.32585
+Date: Tue, 7 Jan 2014 21:46:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73373
 
-Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #91618|Reproducing the bug for     |First reproduction of the
-        description|first time                  |bug.
-  Attachment #91618|nouveau.bug                 |nouveau1
-           filename|                            |
+--- Comment #3 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
+Created attachment 91620
+  --> https://bugs.freedesktop.org/attachment.cgi?id=91620&action=edit
+Third reproduction of the bug.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389131183.Be3F170.32585
-Date: Tue, 7 Jan 2014 21:46:23 +0000
+--1389131209.Fe4bda8D1.32585
+Date: Tue, 7 Jan 2014 21:46:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,36 +50,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=73373">bug 73373</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #91618 description</td>
-           <td>Reproducing the bug for first time
-           </td>
-           <td>First reproduction of the bug.
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #91618 filename</td>
-           <td>nouveau.bug
-           </td>
-           <td>nouveau1
-           </td>
-         </tr></table>
-      <p>
+              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=91620" name="attach_91620" title="Third reproduction of the bug.">attachment 91620</a> <a href="attachment.cgi?id=91620&amp;action=edit" title="Third reproduction of the bug.">[details]</a></span>
+Third reproduction of the bug.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -94,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1389131183.Be3F170.32585--
+--1389131209.Fe4bda8D1.32585--
 
---===============2020283078==
+--===============0255890073==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -107,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2020283078==--
+--===============0255890073==--
