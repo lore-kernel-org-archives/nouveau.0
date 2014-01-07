@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73342] nouveau not working with yuy2 overlay
-Date: Tue, 07 Jan 2014 02:43:41 +0000
-Message-ID: <bug-73342-8800-zCvoUR9HPb@http.bugs.freedesktop.org/>
+Subject: [Bug 73342] [NV86] yuy2 overlay in mame displays as black
+Date: Tue, 07 Jan 2014 03:05:26 +0000
+Message-ID: <bug-73342-8800-IkYustEFpk@http.bugs.freedesktop.org/>
 References: <bug-73342-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1991652448=="
+Content-Type: multipart/mixed; boundary="===============0506099586=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73342-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1991652448==
-Content-Type: multipart/alternative; boundary="1389062621.bF4f1.20171"; charset="us-ascii"
+--===============0506099586==
+Content-Type: multipart/alternative; boundary="1389063926.e3CAc32.23473"; charset="us-ascii"
 
 
---1389062621.bF4f1.20171
-Date: Tue, 7 Jan 2014 02:43:41 +0000
+--1389063926.e3CAc32.23473
+Date: Tue, 7 Jan 2014 03:05:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73342
 
---- Comment #1 from fbs777-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 91573
-  --> https://bugs.freedesktop.org/attachment.cgi?id=91573&action=edit
-kernel_log.txt, Xorg.0.log, lsmod.txt
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|nouveau not working with    |[NV86] yuy2 overlay in mame
+                   |yuy2 overlay                |displays as black
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389062621.bF4f1.20171
-Date: Tue, 7 Jan 2014 02:43:41 +0000
+--1389063926.e3CAc32.23473
+Date: Tue, 7 Jan 2014 03:05:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,22 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau not working with yuy2 overlay"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73342#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau not working with yuy2 overlay"
+   title="NEW --- - [NV86] yuy2 overlay in mame displays as black"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=73342">bug 73342</a>
-              from <span class="vcard"><a class="email" href="mailto:fbs777&#64;gmail.com" title="fbs777&#64;gmail.com">fbs777&#64;gmail.com</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=91573" name="attach_91573" title="kernel_log.txt, Xorg.0.log, lsmod.txt">attachment 91573</a> <a href="attachment.cgi?id=91573&amp;action=edit" title="kernel_log.txt, Xorg.0.log, lsmod.txt">[details]</a></span>
-kernel_log.txt, Xorg.0.log, lsmod.txt</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>nouveau not working with yuy2 overlay
+           </td>
+           <td>[NV86] yuy2 overlay in mame displays as black
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -75,9 +83,9 @@ kernel_log.txt, Xorg.0.log, lsmod.txt</pre>
     </body>
 </html>
 
---1389062621.bF4f1.20171--
+--1389063926.e3CAc32.23473--
 
---===============1991652448==
+--===============0506099586==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1991652448==--
+--===============0506099586==--
