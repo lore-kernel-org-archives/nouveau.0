@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
  Chromium web browser
-Date: Tue, 07 Jan 2014 21:44:49 +0000
-Message-ID: <bug-73373-8800-pq7l0My2gJ@http.bugs.freedesktop.org/>
+Date: Tue, 07 Jan 2014 21:45:10 +0000
+Message-ID: <bug-73373-8800-TCdGzT6LkU@http.bugs.freedesktop.org/>
 References: <bug-73373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0486535374=="
+Content-Type: multipart/mixed; boundary="===============0373873218=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0486535374==
-Content-Type: multipart/alternative; boundary="1389131088.24bA5d0.32155"; charset="us-ascii"
+--===============0373873218==
+Content-Type: multipart/alternative; boundary="1389131109.7f53df1.32155"; charset="us-ascii"
 
 
---1389131088.24bA5d0.32155
-Date: Tue, 7 Jan 2014 21:44:48 +0000
+--1389131109.7f53df1.32155
+Date: Tue, 7 Jan 2014 21:45:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73373
 
---- Comment #1 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
-Created attachment 91618
-  --> https://bugs.freedesktop.org/attachment.cgi?id=91618&action=edit
-Reproducing the bug for first time
+--- Comment #2 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
+Created attachment 91619
+  --> https://bugs.freedesktop.org/attachment.cgi?id=91619&action=edit
+Reproducing the bug for second time
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389131088.24bA5d0.32155
-Date: Tue, 7 Jan 2014 21:44:48 +0000
+--1389131109.7f53df1.32155
+Date: Tue, 7 Jan 2014 21:45:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=73373">bug 73373</a>
               from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=91618" name="attach_91618" title="Reproducing the bug for first time">attachment 91618</a> <a href="attachment.cgi?id=91618&amp;action=edit" title="Reproducing the bug for first time">[details]</a></span>
-Reproducing the bug for first time</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=91619" name="attach_91619" title="Reproducing the bug for second time">attachment 91619</a> <a href="attachment.cgi?id=91619&amp;action=edit" title="Reproducing the bug for second time">[details]</a></span>
+Reproducing the bug for second time</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ Reproducing the bug for first time</pre>
     </body>
 </html>
 
---1389131088.24bA5d0.32155--
+--1389131109.7f53df1.32155--
 
---===============0486535374==
+--===============0373873218==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0486535374==--
+--===============0373873218==--
