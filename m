@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
  Chromium web browser
-Date: Tue, 07 Jan 2014 21:46:49 +0000
-Message-ID: <bug-73373-8800-w9NLtmUr74@http.bugs.freedesktop.org/>
+Date: Tue, 07 Jan 2014 21:47:06 +0000
+Message-ID: <bug-73373-8800-5hAQvu6ujp@http.bugs.freedesktop.org/>
 References: <bug-73373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0255890073=="
+Content-Type: multipart/mixed; boundary="===============1137655735=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0255890073==
-Content-Type: multipart/alternative; boundary="1389131209.Fe4bda8D1.32585"; charset="us-ascii"
+--===============1137655735==
+Content-Type: multipart/alternative; boundary="1389131226.f7FD2.32585"; charset="us-ascii"
 
 
---1389131209.Fe4bda8D1.32585
-Date: Tue, 7 Jan 2014 21:46:49 +0000
+--1389131226.f7FD2.32585
+Date: Tue, 7 Jan 2014 21:47:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73373
 
---- Comment #3 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
-Created attachment 91620
-  --> https://bugs.freedesktop.org/attachment.cgi?id=91620&action=edit
-Third reproduction of the bug.
+--- Comment #4 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
+Created attachment 91621
+  --> https://bugs.freedesktop.org/attachment.cgi?id=91621&action=edit
+Fourth reproduction of the bug.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389131209.Fe4bda8D1.32585
-Date: Tue, 7 Jan 2014 21:46:49 +0000
+--1389131226.f7FD2.32585
+Date: Tue, 7 Jan 2014 21:47:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=73373">bug 73373</a>
               from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=91620" name="attach_91620" title="Third reproduction of the bug.">attachment 91620</a> <a href="attachment.cgi?id=91620&amp;action=edit" title="Third reproduction of the bug.">[details]</a></span>
-Third reproduction of the bug.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=91621" name="attach_91621" title="Fourth reproduction of the bug.">attachment 91621</a> <a href="attachment.cgi?id=91621&amp;action=edit" title="Fourth reproduction of the bug.">[details]</a></span>
+Fourth reproduction of the bug.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ Third reproduction of the bug.</pre>
     </body>
 </html>
 
---1389131209.Fe4bda8D1.32585--
+--1389131226.f7FD2.32585--
 
---===============0255890073==
+--===============1137655735==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0255890073==--
+--===============1137655735==--
