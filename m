@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72943] [NV98] hangs in nvbios_init on probe (worked
-	in 3.2)
-Date: Wed, 08 Jan 2014 05:25:01 +0000
-Message-ID: <bug-72943-8800-aGZbLiJH4T@http.bugs.freedesktop.org/>
-References: <bug-72943-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
+ 8400M G after upgrade the kernel to 3.7.0 version
+Date: Wed, 08 Jan 2014 11:43:13 +0000
+Message-ID: <bug-58378-8800-xDJpKjrKLA@http.bugs.freedesktop.org/>
+References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0261097779=="
+Content-Type: multipart/mixed; boundary="===============0020817009=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72943-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,119 +21,119 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0261097779==
-Content-Type: multipart/alternative; boundary="1389158700.6Bdb5012.3355"; charset="us-ascii"
+--===============0020817009==
+Content-Type: multipart/alternative; boundary="1389181393.ACCfA5.7117"; charset="us-ascii"
 
 
---1389158700.6Bdb5012.3355
-Date: Wed, 8 Jan 2014 05:25:00 +0000
+--1389181393.ACCfA5.7117
+Date: Wed, 8 Jan 2014 11:43:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D72943
+https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
-Darcy Br=C3=A1s da Silva <dardevelin-R9hm4oqK0XJGyKhy+UYuEA@public.gmane.org> changed:
+--- Comment #66 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
+A Happy New Year to everybody! :-)
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+Just wondering whether you intend to simply close this issue down with the
+workaround "solution" for me to set kernel option
 
---- Comment #17 from Darcy Br=C3=A1s da Silva <dardevelin-R9hm4oqK0XJGyKhy+UYuEA@public.gmane.org> -=
---
-Hi, Applying the patch provided by Ilia Mirkin to  linux kernel 3.13.0-rc6
-solves all the reported bug/behavior on my side.
+nouveau.config=PCRYPT=0
 
-*/me is impressed with Ilia Mirkin dedication*
-Thanks a million.
+or whether you are still interested in finding out *why* my Quadro NVS 130M and
+other 8400M-based cards do not seem support this functionality (or what might
+need to be done differently in the driver to ensure they do).
 
---=20
+
+Additional interesting information:
+
+I have been informed that folks at NVIDIA have recently succeeded to track down
+a Solaris hang issue in their proprietary Unix drivers ("blob") that affected
+exactly Quadro NVS 130M cards (AFAIK, NVIDIA IR # 1172500).
+
+I can indeed reproduce these hangs on Solaris 11.1, so this issue probably
+matches the unpredictable hangs that I have been also seeing with the Linux
+blob versions > 285.05.09 that made their drivers unusable for me.
+
+AFAIK, their fix is scheduled to be fixed in the third update to their R331
+series in February.
+
+
+So how would you like to proceed regarding this issue?
+
+Thanks & BR,
+Andreas
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389158700.6Bdb5012.3355
-Date: Wed, 8 Jan 2014 05:25:00 +0000
+--1389181393.ACCfA5.7117
+Date: Wed, 8 Jan 2014 11:43:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:dardeveli=
-n&#64;cidadecool.com" title=3D"Darcy Br=C3=A1s da Silva &lt;dardevelin&#64;=
-cidadecool.com&gt;"> <span class=3D"fn">Darcy Br=C3=A1s da Silva</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NV98] hangs in nvbios_init on probe (worked i=
-n 3.2)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72943">bug 72943<=
-/a>
-        <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NV98] hangs in nvbios_init on probe (worked i=
-n 3.2)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72943#c17">Commen=
-t # 17</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NV98] hangs in nvbios_init on probe (worked i=
-n 3.2)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72943">bug 72943<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dardevelin&#64;cidadecool.com" title=3D"Darcy Br=C3=A1s da Silva &lt;dardev=
-elin&#64;cidadecool.com&gt;"> <span class=3D"fn">Darcy Br=C3=A1s da Silva</=
-span></a>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c66">Comment # 66</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
+              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
 </span></b>
-        <pre>Hi, Applying the patch provided by Ilia Mirkin to  linux kerne=
-l 3.13.0-rc6
-solves all the reported bug/behavior on my side.
+        <pre>A Happy New Year to everybody! :-)
 
-*/me is impressed with Ilia Mirkin dedication*
-Thanks a million.</pre>
+Just wondering whether you intend to simply close this issue down with the
+workaround &quot;solution&quot; for me to set kernel option
+
+nouveau.config=PCRYPT=0
+
+or whether you are still interested in finding out *why* my Quadro NVS 130M and
+other 8400M-based cards do not seem support this functionality (or what might
+need to be done differently in the driver to ensure they do).
+
+
+Additional interesting information:
+
+I have been informed that folks at NVIDIA have recently succeeded to track down
+a Solaris hang issue in their proprietary Unix drivers (&quot;blob&quot;) that affected
+exactly Quadro NVS 130M cards (AFAIK, NVIDIA IR # 1172500).
+
+I can indeed reproduce these hangs on Solaris 11.1, so this issue probably
+matches the unpredictable hangs that I have been also seeing with the Linux
+blob versions &gt; 285.05.09 that made their drivers unusable for me.
+
+AFAIK, their fix is scheduled to be fixed in the third update to their R331
+series in February.
+
+
+So how would you like to proceed regarding this issue?
+
+Thanks &amp; BR,
+Andreas</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1389158700.6Bdb5012.3355--
+--1389181393.ACCfA5.7117--
 
---===============0261097779==
+--===============0020817009==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -144,4 +144,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0261097779==--
+--===============0020817009==--
