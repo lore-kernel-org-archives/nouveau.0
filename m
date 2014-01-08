@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
- 8400M G after upgrade the kernel to 3.7.0 version
-Date: Wed, 08 Jan 2014 20:51:40 +0000
-Message-ID: <bug-58378-8800-jsXT0lrcFr@http.bugs.freedesktop.org/>
-References: <bug-58378-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72943] [NV98] hangs in nvbios_init on probe (worked
+	in 3.2)
+Date: Wed, 08 Jan 2014 21:18:38 +0000
+Message-ID: <bug-72943-8800-2JB3GjzJie@http.bugs.freedesktop.org/>
+References: <bug-72943-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0827417194=="
+Content-Type: multipart/mixed; boundary="===============2108414508=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72943-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0827417194==
-Content-Type: multipart/alternative; boundary="1389214301.E8A1C4f6.28617"; charset="us-ascii"
+--===============2108414508==
+Content-Type: multipart/alternative; boundary="1389215917.F04E51.2972"; charset="us-ascii"
 
 
---1389214301.E8A1C4f6.28617
-Date: Wed, 8 Jan 2014 20:51:41 +0000
+--1389215917.F04E51.2972
+Date: Wed, 8 Jan 2014 21:18:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58378
+https://bugs.freedesktop.org/show_bug.cgi?id=72943
 
---- Comment #67 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could you provide the output of
+--- Comment #18 from Ionut Radu <ionut.radu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 
-nvapeek 154c
-nvapeek 1540
+Hi Ilia,
 
-Those registers specify which engines are there. I think we're ignoring them in
-nouveau...
+I was wrong. The fix is good in my case too.
+Great work. Thanks a lot.
+
+Regards,
+Ionut.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389214301.E8A1C4f6.28617
-Date: Wed, 8 Jan 2014 20:51:41 +0000
+--1389215917.F04E51.2972
+Date: Wed, 8 Jan 2014 21:18:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,22 +59,23 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c67">Comment # 67</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV98] hangs in nvbios_init on probe (worked in 3.2)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72943#c18">Comment # 18</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV98] hangs in nvbios_init on probe (worked in 3.2)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72943">bug 72943</a>
+              from <span class="vcard"><a class="email" href="mailto:ionut.radu&#64;gmail.com" title="Ionut Radu &lt;ionut.radu&#64;gmail.com&gt;"> <span class="fn">Ionut Radu</span></a>
 </span></b>
-        <pre>Could you provide the output of
+        <pre>
+Hi Ilia,
 
-nvapeek 154c
-nvapeek 1540
+I was wrong. The fix is good in my case too.
+Great work. Thanks a lot.
 
-Those registers specify which engines are there. I think we're ignoring them in
-nouveau...</pre>
+Regards,
+Ionut.</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +87,9 @@ nouveau...</pre>
     </body>
 </html>
 
---1389214301.E8A1C4f6.28617--
+--1389215917.F04E51.2972--
 
---===============0827417194==
+--===============2108414508==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0827417194==--
+--===============2108414508==--
