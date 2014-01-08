@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
- 8400M G after upgrade the kernel to 3.7.0 version
-Date: Wed, 08 Jan 2014 11:43:13 +0000
-Message-ID: <bug-58378-8800-xDJpKjrKLA@http.bugs.freedesktop.org/>
-References: <bug-58378-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
+ Chromium web browser
+Date: Wed, 08 Jan 2014 18:03:49 +0000
+Message-ID: <bug-73373-8800-03x1eoXGgT@http.bugs.freedesktop.org/>
+References: <bug-73373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0020817009=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Type: multipart/mixed; boundary="===============1741995628=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,61 +15,47 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0020817009==
-Content-Type: multipart/alternative; boundary="1389181393.ACCfA5.7117"; charset="us-ascii"
+--===============1741995628==
+Content-Type: multipart/alternative; boundary="1389204229.0130dA570.16081"; charset="us-ascii"
 
 
---1389181393.ACCfA5.7117
-Date: Wed, 8 Jan 2014 11:43:13 +0000
+--1389204229.0130dA570.16081
+Date: Wed, 8 Jan 2014 18:03:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58378
+https://bugs.freedesktop.org/show_bug.cgi?id=73373
 
---- Comment #66 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
-A Happy New Year to everybody! :-)
+--- Comment #7 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
+(In reply to comment #6)
+> First, try upgrading your mesa installation to at least 10.0.1.
 
-Just wondering whether you intend to simply close this issue down with the
-workaround "solution" for me to set kernel option
+Hi Ilia. My version is 10.0.1, but the most precise I could specify when filing
+the bug was 10.0.
 
-nouveau.config=PCRYPT=0
+> Second, you can see if the situation improves with blob graph fw. Take a
+> look at http://nouveau.freedesktop.org/wiki/NVC0_Firmware/ for instructions
+> on how to get the fw. (Note you only need to go up to video fw. There are
+> other ways of getting the video fw should you want it.) You'll need to boot
+> with nouveau.NvGrUseFW=1 in order for the fw to be loaded.
 
-or whether you are still interested in finding out *why* my Quadro NVS 130M and
-other 8400M-based cards do not seem support this functionality (or what might
-need to be done differently in the driver to ensure they do).
-
-
-Additional interesting information:
-
-I have been informed that folks at NVIDIA have recently succeeded to track down
-a Solaris hang issue in their proprietary Unix drivers ("blob") that affected
-exactly Quadro NVS 130M cards (AFAIK, NVIDIA IR # 1172500).
-
-I can indeed reproduce these hangs on Solaris 11.1, so this issue probably
-matches the unpredictable hangs that I have been also seeing with the Linux
-blob versions > 285.05.09 that made their drivers unusable for me.
-
-AFAIK, their fix is scheduled to be fixed in the third update to their R331
-series in February.
-
-
-So how would you like to proceed regarding this issue?
-
-Thanks & BR,
-Andreas
+I have followed your instructions and installed the fw with the aur/nouveau-fw
+package in Archlinux and added the kernel option too, but the performance seems
+to not change and I could reproduce the bug, though I am not really sure if the
+changes resulted in using the firmware correctly. How can I check that?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389181393.ACCfA5.7117
-Date: Wed, 8 Jan 2014 11:43:13 +0000
+--1389204229.0130dA570.16081
+Date: Wed, 8 Jan 2014 18:03:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -82,44 +68,30 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c66">Comment # 66</a>
+   title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
+   title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373">bug 73373</a>
+              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
 </span></b>
-        <pre>A Happy New Year to everybody! :-)
+        <pre>(In reply to <a href="show_bug.cgi?id=73373#c6">comment #6</a>)
+<span class="quote">&gt; First, try upgrading your mesa installation to at least 10.0.1.</span >
 
-Just wondering whether you intend to simply close this issue down with the
-workaround &quot;solution&quot; for me to set kernel option
+Hi Ilia. My version is 10.0.1, but the most precise I could specify when filing
+the bug was 10.0.
 
-nouveau.config=PCRYPT=0
+<span class="quote">&gt; Second, you can see if the situation improves with blob graph fw. Take a
+&gt; look at <a href="http://nouveau.freedesktop.org/wiki/NVC0_Firmware/">http://nouveau.freedesktop.org/wiki/NVC0_Firmware/</a> for instructions
+&gt; on how to get the fw. (Note you only need to go up to video fw. There are
+&gt; other ways of getting the video fw should you want it.) You'll need to boot
+&gt; with nouveau.NvGrUseFW=1 in order for the fw to be loaded.</span >
 
-or whether you are still interested in finding out *why* my Quadro NVS 130M and
-other 8400M-based cards do not seem support this functionality (or what might
-need to be done differently in the driver to ensure they do).
-
-
-Additional interesting information:
-
-I have been informed that folks at NVIDIA have recently succeeded to track down
-a Solaris hang issue in their proprietary Unix drivers (&quot;blob&quot;) that affected
-exactly Quadro NVS 130M cards (AFAIK, NVIDIA IR # 1172500).
-
-I can indeed reproduce these hangs on Solaris 11.1, so this issue probably
-matches the unpredictable hangs that I have been also seeing with the Linux
-blob versions &gt; 285.05.09 that made their drivers unusable for me.
-
-AFAIK, their fix is scheduled to be fixed in the third update to their R331
-series in February.
-
-
-So how would you like to proceed regarding this issue?
-
-Thanks &amp; BR,
-Andreas</pre>
+I have followed your instructions and installed the fw with the aur/nouveau-fw
+package in Archlinux and added the kernel option too, but the performance seems
+to not change and I could reproduce the bug, though I am not really sure if the
+changes resulted in using the firmware correctly. How can I check that?</pre>
         </div>
       </p>
       <hr>
@@ -131,9 +103,9 @@ Andreas</pre>
     </body>
 </html>
 
---1389181393.ACCfA5.7117--
+--1389204229.0130dA570.16081--
 
---===============0020817009==
+--===============1741995628==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -144,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0020817009==--
+--===============1741995628==--
