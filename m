@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72180] [NVE6] Random GPU Lockups,
-	works with blob PGRAPH fw
-Date: Thu, 09 Jan 2014 03:03:08 +0000
-Message-ID: <bug-72180-8800-8NbTfW0ZjK@http.bugs.freedesktop.org/>
-References: <bug-72180-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Handling UMAD with a negative modifier,
+	or why glsl-fs-atan-3 was failing
+Date: Thu, 9 Jan 2014 02:16:56 -0500
+Message-ID: <CAKb7UvgLOOc-iRrgo5rzoSappTBvqK9XTP7C8rtexwv8ORNWNw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0694769124=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,81 +14,41 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+So I figured out what was going on. The shader has a
 
---===============0694769124==
-Content-Type: multipart/alternative; boundary="1389236588.6d3D6b5.26126"; charset="us-ascii"
+UMAD TEMP[0].x, TEMP[0].xxxx, -TEMP[5].xxxx, TEMP[0].xxxx
 
+instruction, in which the -TEMP[5].xxxx got emitted as
 
---1389236588.6d3D6b5.26126
-Date: Thu, 9 Jan 2014 03:03:08 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+cvt neg u32 $r1 u32 $r1
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72180
+If instead I fudge mkOp() to force a s32 dtype on OP_NEG, everything
+starts to work. Similarly, if I fudge emitCVT to basically do the same
+thing, it also works. (Of note -- changing both stype and dtype to s32
+does _not_ work, which makes sense.) I'm not sure which approach is
+the right one -- advice? It's a very short patch either way. Perhaps
+someone with a NVC0+ card could check that piglit test and see if my
+patch breaks things...
 
---- Comment #26 from Brandon Bertelsen <brandon-h6AymINWW/kV+D8aMU/kSg@public.gmane.org> ---
-It's been about 5 hours since I rebooted using the blob firmware. No problems
-to report, it seems to be a work-around for this bug. 
+Thanks,
 
-Thank you previous commenters!
+  -ilia
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_build_util.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_build_util.cpp
+@@ -70,6 +70,9 @@
+    insn->setDef(0, dst);
+    insn->setSrc(0, src);
 
---1389236588.6d3D6b5.26126
-Date: Thu, 9 Jan 2014 03:03:08 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c26">Comment # 26</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
-              from <span class="vcard"><a class="email" href="mailto:brandon&#64;bertelsen.ca" title="Brandon Bertelsen &lt;brandon&#64;bertelsen.ca&gt;"> <span class="fn">Brandon Bertelsen</span></a>
-</span></b>
-        <pre>It's been about 5 hours since I rebooted using the blob firmware. No problems
-to report, it seems to be a work-around for this bug. 
-
-Thank you previous commenters!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1389236588.6d3D6b5.26126--
-
---===============0694769124==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0694769124==--
++   if (op == OP_NEG && ty == TYPE_U32)
++      insn->dType = TYPE_S32;
++
+    insert(insn);
+    return insn;
+ }
