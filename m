@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 73445] [NV4E] regression with 3.13 -rcX: glxgears
  etc. hard lockup/freezes machine, on 3.12 everything works
-Date: Thu, 09 Jan 2014 19:28:05 +0000
-Message-ID: <bug-73445-8800-zMj4MWyFxz@http.bugs.freedesktop.org/>
+Date: Thu, 09 Jan 2014 19:36:24 +0000
+Message-ID: <bug-73445-8800-3PCKN8YpAA@http.bugs.freedesktop.org/>
 References: <bug-73445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1032133272=="
+Content-Type: multipart/mixed; boundary="===============1304623014=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1032133272==
-Content-Type: multipart/alternative; boundary="1389295685.30330.30797"; charset="us-ascii"
+--===============1304623014==
+Content-Type: multipart/alternative; boundary="1389296184.abfcf7B1.384"; charset="us-ascii"
 
 
---1389295685.30330.30797
-Date: Thu, 9 Jan 2014 19:28:05 +0000
+--1389296184.abfcf7B1.384
+Date: Thu, 9 Jan 2014 19:36:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73445
 
---- Comment #1 from Christian NIemeyer <christian.niemeyer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-PS: It's a GeForce Go 6100 ("6000" was typo) but still NV4E
-" NOUVEAU(0): Chipset: "NVIDIA NV4E""
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you ssh into the machine when this happens? If so, can you look at dmesg?
+If not, the output of dmesg even before the hang may prove interesting.
+
+This seems like it'd be pretty easy to bisect -- can you give that a shot? (git
+bisect... if you're not familiar with it, there are dozens of guides online, as
+well as a good man page)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389295685.30330.30797
-Date: Thu, 9 Jan 2014 19:28:05 +0000
+--1389296184.abfcf7B1.384
+Date: Thu, 9 Jan 2014 19:36:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +59,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4E] regression with 3.13 -rcX: glxgears etc. hard lockup/freezes machine, on 3.12 everything works"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73445#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73445#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4E] regression with 3.13 -rcX: glxgears etc. hard lockup/freezes machine, on 3.12 everything works"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=73445">bug 73445</a>
-              from <span class="vcard"><a class="email" href="mailto:christian.niemeyer&#64;gmail.com" title="Christian NIemeyer &lt;christian.niemeyer&#64;gmail.com&gt;"> <span class="fn">Christian NIemeyer</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>PS: It's a GeForce Go 6100 (&quot;6000&quot; was typo) but still NV4E
-&quot; NOUVEAU(0): Chipset: &quot;NVIDIA NV4E&quot;&quot;</pre>
+        <pre>Can you ssh into the machine when this happens? If so, can you look at dmesg?
+If not, the output of dmesg even before the hang may prove interesting.
+
+This seems like it'd be pretty easy to bisect -- can you give that a shot? (git
+bisect... if you're not familiar with it, there are dozens of guides online, as
+well as a good man page)</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1389295685.30330.30797--
+--1389296184.abfcf7B1.384--
 
---===============1032133272==
+--===============1304623014==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1032133272==--
+--===============1304623014==--
