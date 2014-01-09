@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
  8400M G after upgrade the kernel to 3.7.0 version
-Date: Thu, 09 Jan 2014 16:15:35 +0000
-Message-ID: <bug-58378-8800-FGM2EImDM0@http.bugs.freedesktop.org/>
+Date: Thu, 09 Jan 2014 16:35:26 +0000
+Message-ID: <bug-58378-8800-FtLeDwHj5n@http.bugs.freedesktop.org/>
 References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1887604450=="
+Content-Type: multipart/mixed; boundary="===============2127150654=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,43 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1887604450==
-Content-Type: multipart/alternative; boundary="1389284136.FAFbB86.15971"; charset="us-ascii"
+--===============2127150654==
+Content-Type: multipart/alternative; boundary="1389285326.f54bEe5.20178"; charset="us-ascii"
 
 
---1389284136.FAFbB86.15971
-Date: Thu, 9 Jan 2014 16:15:36 +0000
+--1389285326.f54bEe5.20178
+Date: Thu, 9 Jan 2014 16:35:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #71 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
+Hello Ilia,
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #91714|0                           |1
-        is obsolete|                            |
+hmm - you just caught me with the update five minutes after I had started the
+rpmbuild with the previous version... ;-)
 
---- Comment #70 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 91765
-  --> https://bugs.freedesktop.org/attachment.cgi?id=91765&action=edit
-patch to honor hw disables after vbios
+Unfortunately, while I could make the first patch apply to a current RHEL
+kernel source with only one change (core/engine/device.c ->
+core/subdev/device.c), the new patch will need much more rework to make it
+compile against a RHEL kernel.
 
-Unfortunately the first patch runs before VBIOS, so if the manufacturer
-explicitly disables an engine for some reason (by writing a 0 to those bits) we
-should probably honor that. This patch does that (actually 2 patches munged
-into 1). I've tested it on my NV98 and it correctly doesn't disable anything,
-but would be nice to test it on a card that _does_ disable stuff.
+I am therefore looking into getting a 3.12 kernel from the Oracle Linux
+"playground":
 
-[note, this patch replaces the first patch, not in addition to it]
+http://public-yum.oracle.com/repo/OracleLinux/OL6/playground/latest/x86_64/
+
+Would 3.12.6 be an appropriate version to apply your updated patch to
+successfully?
+
+Thanks & BR,
+Andreas
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389284136.FAFbB86.15971
-Date: Thu, 9 Jan 2014 16:15:36 +0000
+--1389285326.f54bEe5.20178
+Date: Thu, 9 Jan 2014 16:35:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,50 +67,39 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #91714 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c70">Comment # 70</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c71">Comment # 71</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=91765" name="attach_91765" title="patch to honor hw disables after vbios">attachment 91765</a> <a href="attachment.cgi?id=91765&amp;action=edit" title="patch to honor hw disables after vbios">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=58378&amp;attachment=91765'>[review]</a>
-patch to honor hw disables after vbios
+        <pre>Hello Ilia,
 
-Unfortunately the first patch runs before VBIOS, so if the manufacturer
-explicitly disables an engine for some reason (by writing a 0 to those bits) we
-should probably honor that. This patch does that (actually 2 patches munged
-into 1). I've tested it on my NV98 and it correctly doesn't disable anything,
-but would be nice to test it on a card that _does_ disable stuff.
+hmm - you just caught me with the update five minutes after I had started the
+rpmbuild with the previous version... ;-)
 
-[note, this patch replaces the first patch, not in addition to it]</pre>
+Unfortunately, while I could make the first patch apply to a current RHEL
+kernel source with only one change (core/engine/device.c -&gt;
+core/subdev/device.c), the new patch will need much more rework to make it
+compile against a RHEL kernel.
+
+I am therefore looking into getting a 3.12 kernel from the Oracle Linux
+&quot;playground&quot;:
+
+<a href="http://public-yum.oracle.com/repo/OracleLinux/OL6/playground/latest/x86_64/">http://public-yum.oracle.com/repo/OracleLinux/OL6/playground/latest/x86_64/</a>
+
+Would 3.12.6 be an appropriate version to apply your updated patch to
+successfully?
+
+Thanks &amp; BR,
+Andreas</pre>
         </div>
       </p>
       <hr>
@@ -120,9 +111,9 @@ but would be nice to test it on a card that _does_ disable stuff.
     </body>
 </html>
 
---1389284136.FAFbB86.15971--
+--1389285326.f54bEe5.20178--
 
---===============1887604450==
+--===============2127150654==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -133,4 +124,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1887604450==--
+--===============2127150654==--
