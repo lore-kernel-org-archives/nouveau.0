@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71659] [NVD9] Hangs under load with ![
  PFIFO][0000:01:00.0] unhandled status 0x00800000
-Date: Thu, 09 Jan 2014 21:25:51 +0000
-Message-ID: <bug-71659-8800-flZDK7FvTM@http.bugs.freedesktop.org/>
+Date: Thu, 09 Jan 2014 21:34:04 +0000
+Message-ID: <bug-71659-8800-c6cd4eMbdg@http.bugs.freedesktop.org/>
 References: <bug-71659-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2043280985=="
+Content-Type: multipart/mixed; boundary="===============1817885784=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71659-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2043280985==
-Content-Type: multipart/alternative; boundary="1389302751.Addfef1.26786"; charset="us-ascii"
+--===============1817885784==
+Content-Type: multipart/alternative; boundary="1389303243.E73AcD31.29158"; charset="us-ascii"
 
 
---1389302751.Addfef1.26786
-Date: Thu, 9 Jan 2014 21:25:51 +0000
+--1389303243.E73AcD31.29158
+Date: Thu, 9 Jan 2014 21:34:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71659
 
---- Comment #10 from Rebecca Palmer <R.Palmer-mHdZ94l+r7K1Qrn1Bg8BZw@public.gmane.org> ---
-Created attachment 91782
-  --> https://bugs.freedesktop.org/attachment.cgi?id=91782&action=edit
-Ubuntu 14.04 (Linux 3.13.0) log
+--- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Out of curiousity, does using blob pgraph fw help with this issue?
 
-This bug is easier to trigger in Ubuntu Trusty (kernel 3.13.0, libdrm-nouveau2
-2.4.50, xserver-xorg-video-nouveau 1.0.10, mesa 10.0.1), occurring immediately
-on heavy graphics load and within a few minutes even in ordinary use.
+You can extract it yourself by using the instructions at
+http://nouveau.freedesktop.org/wiki/NVC0_Firmware/ or you can try using my
+script (https://raw2.github.com/imirkin/re-vp2/master/extract_firmware.py) with
+the 325.15 blob, although I'm not _100%_ sure that it produces the correct
+graph fw for nvd9; that's a very recently-added feature.
 
-The attached log contains more instances of the warning than were normal in
-13.10, but not the final error (I suspect it wasn't synced to disk).
+Note that you'll need to add nouveau.config=NvGrUseFW=1 to your kernel cmdline,
+and make sure that the fw is reachable when the nouveau module loads.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389302751.Addfef1.26786
-Date: Thu, 9 Jan 2014 21:25:51 +0000
+--1389303243.E73AcD31.29158
+Date: Thu, 9 Jan 2014 21:34:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,22 +63,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659#c10">Comment # 10</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71659">bug 71659</a>
-              from <span class="vcard"><a class="email" href="mailto:R.Palmer&#64;bham.ac.uk" title="Rebecca Palmer &lt;R.Palmer&#64;bham.ac.uk&gt;"> <span class="fn">Rebecca Palmer</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=91782" name="attach_91782" title="Ubuntu 14.04 (Linux 3.13.0) log">attachment 91782</a> <a href="attachment.cgi?id=91782&amp;action=edit" title="Ubuntu 14.04 (Linux 3.13.0) log">[details]</a></span>
-Ubuntu 14.04 (Linux 3.13.0) log
+        <pre>Out of curiousity, does using blob pgraph fw help with this issue?
 
-This bug is easier to trigger in Ubuntu Trusty (kernel 3.13.0, libdrm-nouveau2
-2.4.50, xserver-xorg-video-nouveau 1.0.10, mesa 10.0.1), occurring immediately
-on heavy graphics load and within a few minutes even in ordinary use.
+You can extract it yourself by using the instructions at
+<a href="http://nouveau.freedesktop.org/wiki/NVC0_Firmware/">http://nouveau.freedesktop.org/wiki/NVC0_Firmware/</a> or you can try using my
+script (<a href="https://raw2.github.com/imirkin/re-vp2/master/extract_firmware.py">https://raw2.github.com/imirkin/re-vp2/master/extract_firmware.py</a>) with
+the 325.15 blob, although I'm not _100%_ sure that it produces the correct
+graph fw for nvd9; that's a very recently-added feature.
 
-The attached log contains more instances of the warning than were normal in
-13.10, but not the final error (I suspect it wasn't synced to disk).</pre>
+Note that you'll need to add nouveau.config=NvGrUseFW=1 to your kernel cmdline,
+and make sure that the fw is reachable when the nouveau module loads.</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +91,9 @@ The attached log contains more instances of the warning than were normal in
     </body>
 </html>
 
---1389302751.Addfef1.26786--
+--1389303243.E73AcD31.29158--
 
---===============2043280985==
+--===============1817885784==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2043280985==--
+--===============1817885784==--
