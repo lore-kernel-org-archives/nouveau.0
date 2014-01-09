@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
- 8400M G after upgrade the kernel to 3.7.0 version
-Date: Thu, 09 Jan 2014 11:23:09 +0000
-Message-ID: <bug-58378-8800-iDbacD8Y40@http.bugs.freedesktop.org/>
-References: <bug-58378-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70135] [nv34 PowerMac G5] gnome-shell random crashes
+ and rendering issues
+Date: Thu, 09 Jan 2014 11:54:15 +0000
+Message-ID: <bug-70135-8800-E5UJShswqE@http.bugs.freedesktop.org/>
+References: <bug-70135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0709276925=="
+Content-Type: multipart/mixed; boundary="===============0985656770=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,77 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0709276925==
-Content-Type: multipart/alternative; boundary="1389266589.AF4F88ED5.5223"; charset="us-ascii"
+--===============0985656770==
+Content-Type: multipart/alternative; boundary="1389268455.8Ad1eC1.12309"; charset="us-ascii"
 
 
---1389266589.AF4F88ED5.5223
-Date: Thu, 9 Jan 2014 11:23:09 +0000
+--1389268455.8Ad1eC1.12309
+Date: Thu, 9 Jan 2014 11:54:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58378
+https://bugs.freedesktop.org/show_bug.cgi?id=70135
 
---- Comment #69 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
-> Could you provide the output of
-> 
-> nvapeek 154c
-> nvapeek 1540
-> 
-> Those registers specify which engines are there. I think we're ignoring them
-> in nouveau...
+John Paul Adrian Glaubitz <glaubitz-1Olz3AKvcsuAKZTfuerNgRvVK+yQ3ZXh@public.gmane.org> changed:
 
-OK - that might indeed explain the issues seen...
-Here you are:
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-[aloew@aloew-lap nva]$ sudo ./nvapeek 154c
-0000154c: 0000009c
+--- Comment #20 from John Paul Adrian Glaubitz <glaubitz-1Olz3AKvcsuAKZTfuerNgRvVK+yQ3ZXh@public.gmane.org> ---
+Hi!
 
-[aloew@aloew-lap nva]$ sudo ./nvapeek 1540
-00001540: b1010001
+I am closing this bug report now since the original problem does not occur
+anymore, as I already mentioned, after upgrading from Debian Wheezy (stable) to
+Sid (unstable).
 
-Looking at the patch you provided, if the rusty binary arithmetics chip in my
-brain is still valid, this means for my case:
+The problem with the DRI module unable to load is probably unrelated and an
+issue with the Debian package for which an appropriate bug report in Debian
+exists [1].
 
-vdec = nv_rd32(device, 0x1540) & 0x40000000;
+Adrian
 
-0xb(...) = 1011(...)
-0x4(...) = 0100(...)
-
-=> for me, vdec indeed is 0x00000000, i.e. false
-
-and as my chipset is 0x86, furthermore:
-
-MPEG -> disabled
-VP -> disabled
-
-and for the dynamic features,
-
-0x9c = 10011100 binary
-
-0x20 = 00100000 binary
-0x40 = 01000000 binary
-
-as 0x9c & 0x20 == 0x00, BSP -> disabled
-as 0x9c & 0x40 == 0x00, PCRYPT -> disabled
-
-which would probably confirm your that for me your patch is correct.
-
-That said, I will apply this patch to my current stock RHEL6 kernel and report
-back later today on whether this works fine for me (which it indeed should,
-based on the above considerations!).
-
-Thanks a million - great work! :-)
-
-Best regards,
-Andreas
+> [1] http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=724576
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389266589.AF4F88ED5.5223
-Date: Thu, 9 Jan 2014 11:23:09 +0000
+--1389268455.8Ad1eC1.12309
+Date: Thu, 9 Jan 2014 11:54:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -99,71 +67,60 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:glaubitz&#64;physik.fu-berlin.de" title="John Paul Adrian Glaubitz &lt;glaubitz&#64;physik.fu-berlin.de&gt;"> <span class="fn">John Paul Adrian Glaubitz</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135">bug 70135</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c69">Comment # 69</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135#c20">Comment # 20</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nv34 PowerMac G5] gnome-shell random crashes and rendering issues"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70135">bug 70135</a>
+              from <span class="vcard"><a class="email" href="mailto:glaubitz&#64;physik.fu-berlin.de" title="John Paul Adrian Glaubitz &lt;glaubitz&#64;physik.fu-berlin.de&gt;"> <span class="fn">John Paul Adrian Glaubitz</span></a>
 </span></b>
-        <pre><span class="quote">&gt; Could you provide the output of
-&gt; 
-&gt; nvapeek 154c
-&gt; nvapeek 1540
-&gt; 
-&gt; Those registers specify which engines are there. I think we're ignoring them
-&gt; in nouveau...</span >
+        <pre>Hi!
 
-OK - that might indeed explain the issues seen...
-Here you are:
+I am closing this bug report now since the original problem does not occur
+anymore, as I already mentioned, after upgrading from Debian Wheezy (stable) to
+Sid (unstable).
 
-[aloew&#64;aloew-lap nva]$ sudo ./nvapeek 154c
-0000154c: 0000009c
+The problem with the DRI module unable to load is probably unrelated and an
+issue with the Debian package for which an appropriate bug report in Debian
+exists [1].
 
-[aloew&#64;aloew-lap nva]$ sudo ./nvapeek 1540
-00001540: b1010001
+Adrian
 
-Looking at the patch you provided, if the rusty binary arithmetics chip in my
-brain is still valid, this means for my case:
-
-vdec = nv_rd32(device, 0x1540) &amp; 0x40000000;
-
-0xb(...) = 1011(...)
-0x4(...) = 0100(...)
-
-=&gt; for me, vdec indeed is 0x00000000, i.e. false
-
-and as my chipset is 0x86, furthermore:
-
-MPEG -&gt; disabled
-VP -&gt; disabled
-
-and for the dynamic features,
-
-0x9c = 10011100 binary
-
-0x20 = 00100000 binary
-0x40 = 01000000 binary
-
-as 0x9c &amp; 0x20 == 0x00, BSP -&gt; disabled
-as 0x9c &amp; 0x40 == 0x00, PCRYPT -&gt; disabled
-
-which would probably confirm your that for me your patch is correct.
-
-That said, I will apply this patch to my current stock RHEL6 kernel and report
-back later today on whether this works fine for me (which it indeed should,
-based on the above considerations!).
-
-Thanks a million - great work! :-)
-
-Best regards,
-Andreas</pre>
+<span class="quote">&gt; [1] <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=724576">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=724576</a></span ></pre>
         </div>
       </p>
       <hr>
@@ -175,9 +132,9 @@ Andreas</pre>
     </body>
 </html>
 
---1389266589.AF4F88ED5.5223--
+--1389268455.8Ad1eC1.12309--
 
---===============0709276925==
+--===============0985656770==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -188,4 +145,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0709276925==--
+--===============0985656770==--
