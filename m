@@ -1,11 +1,9 @@
-From: =?UTF-8?B?RmVybmFuZG8gTmVncm8=?= <fernando.negro-aPYA7nAdAYY@public.gmane.org>
-Subject: =?utf-8?q?Should_I_dump_my_Nvidia_card_from_the_less_kn?=
- =?utf-8?q?own_brand_=22Gainward=22=3F?=
-Date: Fri, 10 Jan 2014 16:36:52 +0400
-Message-ID: <1389357412.986013756@f300.i.mail.ru>
-Reply-To: =?UTF-8?B?RmVybmFuZG8gTmVncm8=?= <fernando.negro-aPYA7nAdAYY@public.gmane.org>
+From: Javier Domingo Cansino <javierdo1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Kernel release or nouveau versions
+Date: Fri, 10 Jan 2014 20:32:48 +0100
+Message-ID: <CALZVapmg_NOZuSavZxTwU0XHeCRa2sbDaQrnDg6r0yVhECxgSw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1911726484=="
+Content-Type: multipart/mixed; boundary="===============1393137413=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,119 +17,62 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============1393137413==
+Content-Type: multipart/alternative; boundary=001a1133e4debc188404efa2cb49
 
---===============1911726484==
-Content-Type: multipart/alternative;
-	boundary="--ALT--ZkycFf9l1389357412"
+--001a1133e4debc188404efa2cb49
+Content-Type: text/plain; charset=UTF-8
+
+Hi!
+
+I have just installed Debian in a GTX 650 computer, and found it's not
+working. The problem is that I have no idea which is the minimum kernel
+version required to complete the task.
+
+Wouldn't it be possible that in the listed devices page, also appear the
+nouveau/linux release where that device was added support?
+
+Can someone tell me about minimal nouveau version?
+
+Thanks for the info,
+
+Javier Domingo Cansino
+
+--001a1133e4debc188404efa2cb49
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Hi!</div><div class=3D"gmail_default" style=3D"font-fam=
+ily:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_default" styl=
+e=3D"font-family:arial,helvetica,sans-serif">
+
+I have just installed Debian in a GTX 650 computer, and found it&#39;s not =
+working. The problem is that I have no idea which is the minimum kernel ver=
+sion required to complete the task.</div><div class=3D"gmail_default" style=
+=3D"font-family:arial,helvetica,sans-serif">
+
+<br></div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica=
+,sans-serif">Wouldn&#39;t it be possible that in the listed devices page, a=
+lso appear the nouveau/linux release where that device was added support?</=
+div>
+
+<div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-seri=
+f"><br></div><div class=3D"gmail_default" style=3D"font-family:arial,helvet=
+ica,sans-serif">Can someone tell me about minimal nouveau version?</div><di=
+v class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif">
+
+<br></div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica=
+,sans-serif">Thanks for the info,</div><div class=3D"gmail_default" style=
+=3D"font-family:arial,helvetica,sans-serif"><br></div><div>Javier Domingo C=
+ansino</div>
 
 
-----ALT--ZkycFf9l1389357412
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+</div>
 
-IEhpIGV2ZXJ5b25lLgoKCkknbSBhIGJpZyBGcmVlIFNvZnR3YXJlIGVudGh1c2lhc3QgYW5kLCB0
-aGVyZWZvcmUsIEkgd291bGQgdmVyeSBtdWNoIGxpa2UgdG8gdXNlIHRoZSBub3V2ZWF1IGZyZWUg
-ZHJpdmVyLCBpbnN0ZWFkIG9mIHRoZSBwcm9wcmlldGFyeSBvbmUuCgpNeSBwcm9ibGVtIGlzIHRo
-YXQsIGxvb2tpbmcgZm9yIHRoZSBjaGVhcGVzdCBvcHRpb24gYXZhaWxhYmxlLCB3aGVuIEkgbmVl
-ZGVkIHRvIGJ1eSBhIG5ldyBncmFwaGljcyBjYXJkLCAyIHllYXJzIGFnbywgSSBkZWNpZGVkIGZv
-ciBhIG1vZGVsIGZyb20gYSBicmFuZCB0aGF0IEkgaGFkIG5ldmVyIGhlYXJkIG9mIC0gY2FsbGVk
-ICJHYWlud2FyZCIgLSBiZWNhdXNlIEkgdGhvdWdodCBpdCBoYWQgYSBiZXR0ZXIgcHJpY2UvcXVh
-bGl0eSByZWxhdGlvbnNoaXAgdGhhbiBpdHMgQVNVUyBlcXVpdmFsZW50IHdpdGggdGhlIHNhbWUg
-TnZpZGlhIGNoaXAuCgpNeSBzcGVjaWZpYyBncmFwaGljcyBjYXJkcyBpcyB0aGlzIG9uZTogaHR0
-cDovL3d3dy5nYWlud2FyZC5jb20vbWFpbi9wcm9kdWN0L3ZnYS9wcm8vcDAwNDcyL3AwMDQ3Ml9k
-YXRhc2hlZXRfMTcyMDRkYTdmZTZhZGQ2MGMucGRmP3M9MTI1CgpCZWNhdXNlIEkgdXNlZCB0byB1
-c2UgYSBub3QgY29tcGxldGVseSBmcmVlIEdOVS9MaW51eCBkaXN0cmlidXRpb24gYXQgdGhlIHRp
-bWUsIHdoZXJlIG9uZSBjb3VsZCBlYXNpbHkgaW5zdGFsbCB0aGUgcHJvcHJpZXRhcnkgZHJpdmVy
-LCByaWdodCBhZnRlciBpbnN0YWxsaW5nIHRoZSBkaXN0cm8sIEkndmUgYWx3YXlzIHJ1biB0aGlz
-IGxhc3QgZHJpdmVyIG9uIGl0LCBhbmQgbWFuYWdlZCB0byBmaW5kIGEgdmVyc2lvbiB3aGVyZSBp
-dCB3b3VsZCBydW4gd2VsbC4KCkJ1dCwgbm93IHdhbnRpbmcgdG8gbWlncmF0ZSB0byBhIGNvbXBs
-ZXRlbHkgZnJlZSBHTlUvTGludXggZGlzdHJpYnV0aW9uLCBJIG5vdyBub3RpY2UgYmV0dGVyIHRo
-ZSBwcm9ibGVtIHRoYXQgSSBoYXZlLCB3aXRoIHRoaXMgc3BlY2lmaWMgZ3JhcGhpY3MgY2FyZCwg
-d2hlcmUgSSBjYW4ndCBldmVuIG1ha2UgdGhlIG5vdXZlYXUgZHJpdmVycyBydW4gb24gaXQsIGxl
-dCBhbG9uZSBydW4gd2VsbC4uLgoKSSd2ZSBhbHJlYWR5IG1hZGUgc2V2ZXJhbCB0ZXN0cywgd2l0
-aCBkaWZmZXJlbnQga2VybmVscywgYW5kIHRoZXJlJ3MgcmVhbGx5IG5vIHdheSB0aGF0IEkgY2Fu
-IG1ha2UgdGhpcyBncmFwaGljcyBjYXJkIHdvcmsgd2l0aCB0aGUgbm91dmVhdSBkcml2ZXIuIChN
-eSByZXN1bHRzIGhlcmU6IGh0dHA6Ly90cmlzcXVlbC5pbmZvL2VuL2ZvcnVtL25vdXZlYXUtbWkt
-ZXEtb3ZlcmZsb3dpbmcjY29tbWVudC00Mzc2MikgQW5kLCB0aGUgcHJvYmxlbSB0aGF0IGFwcGVh
-cnMsIGlzIHdoYXQgaXMgbGlzdGVkIGhlcmU6IGh0dHA6Ly90cmlzcXVlbC5pbmZvL2VuL2ZvcnVt
-L25vdXZlYXUtbWktZXEtb3ZlcmZsb3dpbmcKCkFuZCwgYWZ0ZXIgbGVhcm5pbmcsIGluIHRoaXMg
-bWFpbGluZy1saXN0LCB0aGF0IHBlb3BsZSB3aG8gdXNlIHRoaXMgY2FyZCdzIEFTVVMgZXF1aXZh
-bGVudCB3aXRoIHRoZSBzYW1lIE52aWRpYSBjaGlwLCBkb24ndCBoYXZlIGFueSBvZiB0aGUgcHJv
-YmxlbXMgdGhhdCBJIGhhdmUsIEkgbm93IGtub3cgdGhhdCB0aGlzIGlzIGEgcGFydGljdWxhciB0
-eXBlL2JyYW5kIG9mIGNhcmQsIG9yIHBhcnRpY3VsYXIgZ3JhcGhpY3MgY2FyZCwgdGhhdCBpcyBu
-b3QgY3VycmVudGx5IHN1cHBvcnRlZCBieSB0aGUgbm91dmVhdSBkcml2ZXIuCgoKU28sIG15IHF1
-ZXN0aW9uIGlzLi4uCgpLbm93aW5nIHRoYXQgRnJlZSBTb2Z0d2FyZSBpcyBtYWlubHkgZGV2ZWxv
-cGVkIHRvIHJ1biBvbiB0aGUgbW9zdCB1c2VkIHR5cGUgb2YgY29tcHV0ZXIgY29tcG9uZW50cywg
-YW5kIG5vdCBiZWluZywgYXBwYXJlbnRseSwgbXkgZ3JhcGhpY3MgY2FyZCwgb25lIG9mIHRoaXMg
-dHlwZSBvZiBtb3N0IHVzZWQgY29tcG9uZW50cywgZG8gdGhlIHBlb3BsZSBoZXJlLCBpbiB0aGlz
-IG1haWxpbmctbGlzdCwga25vdyBpZiwgb3IgdGhpbmsgdGhhdCwgdGhlcmUncyBldmVyIGdvaW5n
-IHRvIGJlIHNvbWUgZWZmb3J0IG1hZGUgdG8gbWFrZSB0aGUgbm91dmVhdSBkcml2ZXIgcnVuIG9u
-IHRoZSB0eXBlIG9mIGdyYXBoaWNzIGNhcmQgdGhhdCBJIGhhdmU/CgooV2hhdCBJIHdhbnQgdG8g
-a25vdywgaW4gcHJhY3RpY2FsIHRlcm1zLCBpcyBpZiBpdCdzIHdvcnRoIGtlZXBpbmcgdGhpcyBn
-cmFwaGljcyBjYXJkIGZvciBzb21lIHBvc3NpYmxlIHVzZSBpbiB0aGUgRnV0dXJlLCB3aGVuIGl0
-IHdpbGwgYmUgc3VwcG9ydGVkLCBvciBpZiBpdCdzIGJldHRlciBmb3IgbWUgdG8ganVzdCBzZWxs
-IGl0IHRvIHNvbWVvbmUgd2hvJ3Mgbm90IGFzIGludGVyZXN0ZWQgYXMgbWUgaW4gdXNpbmcgb25s
-eSBGcmVlIFNvZnR3YXJlPykKCgpUaGFuayB5b3UsIGFsbCwgaW4gYWR2YW5jZSwgZm9yIHlvdXIg
-YW5zd2Vycy4KCkFuZCB0aGFuayB5b3UgdmVyeSBtdWNoLCBhbHNvLCBhbGwgb2YgeW91LCBmb3Ig
-dGhlICpncmVhdCByZXN1bHRzKiB0aGF0IEkndmUgYWxyZWFkeSB3aXRuZXNzZWQgb24gb3RoZXIg
-Z3JhcGhpY3MgY2FyZHMu
+--001a1133e4debc188404efa2cb49--
 
-----ALT--ZkycFf9l1389357412
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
-
-CjxIVE1MPjxCT0RZPkhpIGV2ZXJ5b25lLjxicj48YnI+PGJyPkknbSBhIGJpZyBGcmVlIFNvZnR3
-YXJlIGVudGh1c2lhc3QgYW5kLCB0aGVyZWZvcmUsIEkgd291bGQgdmVyeSBtdWNoIGxpa2UgdG8g
-dXNlIHRoZSBub3V2ZWF1IGZyZWUgZHJpdmVyLCBpbnN0ZWFkIG9mIHRoZSBwcm9wcmlldGFyeSBv
-bmUuPGJyPjxicj5NeSBwcm9ibGVtIGlzIHRoYXQsIGxvb2tpbmcgZm9yIHRoZSBjaGVhcGVzdCBv
-cHRpb24gYXZhaWxhYmxlLCB3aGVuIEkgbmVlZGVkIHRvIGJ1eSBhIG5ldyBncmFwaGljcyBjYXJk
-LCAyIHllYXJzIGFnbywgSSBkZWNpZGVkIGZvciBhIG1vZGVsIGZyb20gYSBicmFuZCB0aGF0IEkg
-aGFkIG5ldmVyIGhlYXJkIG9mIC0gY2FsbGVkICJHYWlud2FyZCIgLSBiZWNhdXNlIEkgdGhvdWdo
-dCBpdCBoYWQgYSBiZXR0ZXIgcHJpY2UvcXVhbGl0eSByZWxhdGlvbnNoaXAgdGhhbiBpdHMgQVNV
-UyBlcXVpdmFsZW50IHdpdGggdGhlIHNhbWUgTnZpZGlhIGNoaXAuPGJyPjxicj5NeSBzcGVjaWZp
-YyBncmFwaGljcyBjYXJkcyBpcyB0aGlzIG9uZTogaHR0cDovL3d3dy5nYWlud2FyZC5jb20vbWFp
-bi9wcm9kdWN0L3ZnYS9wcm8vcDAwNDcyL3AwMDQ3Ml9kYXRhc2hlZXRfMTcyMDRkYTdmZTZhZGQ2
-MGMucGRmP3M9MTI1PGJyPjxicj5CZWNhdXNlIEkgdXNlZCB0byB1c2UgYSBub3QgY29tcGxldGVs
-eSBmcmVlIEdOVS9MaW51eCBkaXN0cmlidXRpb24gYXQgdGhlIHRpbWUsIHdoZXJlIG9uZSBjb3Vs
-ZCBlYXNpbHkgaW5zdGFsbCB0aGUgcHJvcHJpZXRhcnkgZHJpdmVyLCByaWdodCBhZnRlciBpbnN0
-YWxsaW5nIHRoZSBkaXN0cm8sIEkndmUgYWx3YXlzIHJ1biB0aGlzIGxhc3QgZHJpdmVyIG9uIGl0
-LCBhbmQgbWFuYWdlZCB0byBmaW5kIGEgdmVyc2lvbiB3aGVyZSBpdCB3b3VsZCBydW4gd2VsbC48
-YnI+PGJyPkJ1dCwgbm93IHdhbnRpbmcgdG8gbWlncmF0ZSB0byBhIGNvbXBsZXRlbHkgZnJlZSBH
-TlUvTGludXggZGlzdHJpYnV0aW9uLCBJIG5vdyBub3RpY2UgYmV0dGVyIHRoZSBwcm9ibGVtIHRo
-YXQgSSBoYXZlLCB3aXRoIHRoaXMgc3BlY2lmaWMgZ3JhcGhpY3MgY2FyZCwgd2hlcmUgSSBjYW4n
-dCBldmVuIG1ha2UgdGhlIG5vdXZlYXUgZHJpdmVycyBydW4gb24gaXQsIGxldCBhbG9uZSBydW4g
-d2VsbC4uLjxicj48YnI+SSd2ZSBhbHJlYWR5IG1hZGUgc2V2ZXJhbCB0ZXN0cywgd2l0aCBkaWZm
-ZXJlbnQga2VybmVscywgYW5kIHRoZXJlJ3MgcmVhbGx5IG5vIHdheSB0aGF0IEkgY2FuIG1ha2Ug
-dGhpcyBncmFwaGljcyBjYXJkIHdvcmsgd2l0aCB0aGUgbm91dmVhdSBkcml2ZXIuIChNeSByZXN1
-bHRzIGhlcmU6IGh0dHA6Ly90cmlzcXVlbC5pbmZvL2VuL2ZvcnVtL25vdXZlYXUtbWktZXEtb3Zl
-cmZsb3dpbmcjY29tbWVudC00Mzc2MikgQW5kLCB0aGUgcHJvYmxlbSB0aGF0IGFwcGVhcnMsIGlz
-IHdoYXQgaXMgbGlzdGVkIGhlcmU6IGh0dHA6Ly90cmlzcXVlbC5pbmZvL2VuL2ZvcnVtL25vdXZl
-YXUtbWktZXEtb3ZlcmZsb3dpbmc8YnI+PGJyPkFuZCwgYWZ0ZXIgbGVhcm5pbmcsIGluIHRoaXMg
-bWFpbGluZy1saXN0LCB0aGF0IHBlb3BsZSB3aG8gdXNlIHRoaXMgY2FyZCdzIEFTVVMgZXF1aXZh
-bGVudCB3aXRoIHRoZSBzYW1lIE52aWRpYSBjaGlwLCBkb24ndCBoYXZlIGFueSBvZiB0aGUgcHJv
-YmxlbXMgdGhhdCBJIGhhdmUsIEkgbm93IGtub3cgdGhhdCB0aGlzIGlzIGEgcGFydGljdWxhciB0
-eXBlL2JyYW5kIG9mIGNhcmQsIG9yIHBhcnRpY3VsYXIgZ3JhcGhpY3MgY2FyZCwgdGhhdCBpcyBu
-b3QgY3VycmVudGx5IHN1cHBvcnRlZCBieSB0aGUgbm91dmVhdSBkcml2ZXIuPGJyPjxicj48YnI+
-U28sIG15IHF1ZXN0aW9uIGlzLi4uPGJyPjxicj5Lbm93aW5nIHRoYXQgRnJlZSBTb2Z0d2FyZSBp
-cyBtYWlubHkgZGV2ZWxvcGVkIHRvIHJ1biBvbiB0aGUgbW9zdCB1c2VkIHR5cGUgb2YgY29tcHV0
-ZXIgY29tcG9uZW50cywgYW5kIG5vdCBiZWluZywgYXBwYXJlbnRseSwgbXkgZ3JhcGhpY3MgY2Fy
-ZCwgb25lIG9mIHRoaXMgdHlwZSBvZiBtb3N0IHVzZWQgY29tcG9uZW50cywgZG8gdGhlIHBlb3Bs
-ZSBoZXJlLCBpbiB0aGlzIG1haWxpbmctbGlzdCwga25vdyBpZiwgb3IgdGhpbmsgdGhhdCwgdGhl
-cmUncyBldmVyIGdvaW5nIHRvIGJlIHNvbWUgZWZmb3J0IG1hZGUgdG8gbWFrZSB0aGUgbm91dmVh
-dSBkcml2ZXIgcnVuIG9uIHRoZSB0eXBlIG9mIGdyYXBoaWNzIGNhcmQgdGhhdCBJIGhhdmU/PGJy
-Pjxicj4oV2hhdCBJIHdhbnQgdG8ga25vdywgaW4gcHJhY3RpY2FsIHRlcm1zLCBpcyBpZiBpdCdz
-IHdvcnRoIGtlZXBpbmcgdGhpcyBncmFwaGljcyBjYXJkIGZvciBzb21lIHBvc3NpYmxlIHVzZSBp
-biB0aGUgRnV0dXJlLCB3aGVuIGl0IHdpbGwgYmUgc3VwcG9ydGVkLCBvciBpZiBpdCdzIGJldHRl
-ciBmb3IgbWUgdG8ganVzdCBzZWxsIGl0IHRvIHNvbWVvbmUgd2hvJ3Mgbm90IGFzIGludGVyZXN0
-ZWQgYXMgbWUgaW4gdXNpbmcgb25seSBGcmVlIFNvZnR3YXJlPyk8YnI+PGJyPjxicj5UaGFuayB5
-b3UsIGFsbCwgaW4gYWR2YW5jZSwgZm9yIHlvdXIgYW5zd2Vycy48YnI+PGJyPkFuZCB0aGFuayB5
-b3UgdmVyeSBtdWNoLCBhbHNvLCBhbGwgb2YgeW91LCBmb3IgdGhlICpncmVhdCByZXN1bHRzKiB0
-aGF0IEkndmUgYWxyZWFkeSB3aXRuZXNzZWQgb24gb3RoZXIgZ3JhcGhpY3MgY2FyZHMuPC9CT0RZ
-PjwvSFRNTD4K
-
-----ALT--ZkycFf9l1389357412--
-
---===============1911726484==
+--===============1393137413==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -142,4 +83,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1911726484==--
+--===============1393137413==--
