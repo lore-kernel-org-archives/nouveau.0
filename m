@@ -1,14 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: commit 0a1479c829 breaks
-	glsl-fs-lots-of-tex.shader_test on nv50/nvc0
-Date: Thu, 9 Jan 2014 23:54:00 -0500
-Message-ID: <CAKb7UvguAtB24xP+HQ+S6mSp-A30hkcmd7GXEzN_Ww1LgGJy3w@mail.gmail.com>
-References: <CAKb7UvjgZx1G0-cSU356TtdRNmEmc8spZL-JoovSWXKrvDpWXw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 73459] nv10 get_rt_format: Assertion `0' failed.
+Date: Fri, 10 Jan 2014 06:57:48 +0000
+Message-ID: <bug-73459-8800-Y4AeRo0A9L@http.bugs.freedesktop.org/>
+References: <bug-73459-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2137607959=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvjgZx1G0-cSU356TtdRNmEmc8spZL-JoovSWXKrvDpWXw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-73459-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,49 +16,95 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jan 9, 2014 at 4:04 AM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
-> Hi Marek,
->
-> I won't pretend to understand what's going on, but I just bisected a
-> failure on tests/shaders/glsl-fs-lots-of-tex.shader_test in piglit
-> between 9.1 and HEAD, and it landed on your commit. It's approximately
-> the simplest shader known to man (esp at HEAD when all the TEX
-> instructions are gone due to CSE), so I'm guessing there's some edge
-> condition in the copying logic triggered by it.
 
-Christoph,
+--===============2137607959==
+Content-Type: multipart/alternative; boundary="1389337068.cFA551.27510"; charset="us-ascii"
 
-I spoke with Marek earlier on IRC, and he thought it was probably an
-issue in our ->blit routine. I agree that this makes sense, however
-that's the only piglit test that fails in tests/shaders (well, related
-to textures), and there are plenty of other texture2D-using tests. I
-looked at the mmt traces, and they seem pretty reasonable. What's
-unique about this test is that it uses a 0.01 value in the texture
-rather than the more common 1/-1.
 
-FWIW the failure looks like:
+--1389337068.cFA551.27510
+Date: Fri, 10 Jan 2014 06:57:48 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-$ bin/shader_runner tests/shaders/glsl-fs-lots-of-tex.shader_test -auto
-Probe color at (187,187)
-  Expected: 0.400000 0.000000 0.000000
-  Observed: 0.266667 0.000000 0.000000
-PIGLIT: {'result': 'fail' }
+https://bugs.freedesktop.org/show_bug.cgi?id=73459
 
-So it's getting a value... just not the right one. The blit is being
-done from RGBA32_FLOAT to RGBA8_UNORM.
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Well, 32855 corresponds to GL_RGB5_A1. And mesa format 16 corresponds to
+MESA_FORMAT_ARGB1555, which isn't one of the supported render target formats.
+So that's all good. (So to speak.) Although it _is_ a supported texture format.
 
-So, doing the math, 0.01 * 255 = 2.55, so the value should be 3 (I
-guess "norm" is supposed to round?). 3/255 * 34 = 0.4. And 2 / 255 *
-34 = 0.266666. So... it's getting rounded down instead of up. Changing
-the value to 0.011 "fixes" the piglit test (since 0.011 * 255 = 2.8,
-which is unambiguously closer to 3).
+But I'm guessing there should be some logic somewhere that errors that out or
+creates some sort of conversion thing. Or glFramebufferTexture2D should fail.
 
-Are you aware of any rounding mode stuff, or is the hw just inaccurate
-at rounding? i.e. is there a fix here, or should I try to update the
-piglit test to use 0.011 instead of 0.01?
+Looking at the code, _mesa_FramebufferTexture2D calls framebuffer_texture,
+which in turn checks a few things about the params but never calls out to the
+driver, and then just sets the attachment. And all the completeness stuff
+largely ignores this stuff. I don't see how the driver is supposed to refuse...
+maybe it has to be done a different way.
 
-  -ilia
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1389337068.cFA551.27510
+Date: Fri, 10 Jan 2014 06:57:48 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nv10 get_rt_format: Assertion `0' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73459#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - nv10 get_rt_format: Assertion `0' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73459">bug 73459</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Well, 32855 corresponds to GL_RGB5_A1. And mesa format 16 corresponds to
+MESA_FORMAT_ARGB1555, which isn't one of the supported render target formats.
+So that's all good. (So to speak.) Although it _is_ a supported texture format.
+
+But I'm guessing there should be some logic somewhere that errors that out or
+creates some sort of conversion thing. Or glFramebufferTexture2D should fail.
+
+Looking at the code, _mesa_FramebufferTexture2D calls framebuffer_texture,
+which in turn checks a few things about the params but never calls out to the
+driver, and then just sets the attachment. And all the completeness stuff
+largely ignores this stuff. I don't see how the driver is supposed to refuse...
+maybe it has to be done a different way.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1389337068.cFA551.27510--
+
+--===============2137607959==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2137607959==--
