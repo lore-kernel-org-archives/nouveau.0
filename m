@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 73459] nv10 get_rt_format: Assertion `0' failed.
-Date: Fri, 10 Jan 2014 19:00:15 +0000
-Message-ID: <bug-73459-8800-uT7IR2eA2u@http.bugs.freedesktop.org/>
+Date: Fri, 10 Jan 2014 19:05:38 +0000
+Message-ID: <bug-73459-8800-cxWhomWj9y@http.bugs.freedesktop.org/>
 References: <bug-73459-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0998331609=="
+Content-Type: multipart/mixed; boundary="===============1888532330=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73459-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,33 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0998331609==
-Content-Type: multipart/alternative; boundary="1389380414.a78576350.25503"; charset="us-ascii"
+--===============1888532330==
+Content-Type: multipart/alternative; boundary="1389380738.d3B65e1.26491"; charset="us-ascii"
 
 
---1389380414.a78576350.25503
-Date: Fri, 10 Jan 2014 19:00:14 +0000
+--1389380738.d3B65e1.26491
+Date: Fri, 10 Jan 2014 19:05:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73459
 
---- Comment #3 from Diego Nieto Cid <dnietoc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Ilia thanks for the fast response. Yes, applying the patch prevents wine from
-crashing and at a quick glance games appear to work correctly.
-
-There's an error message:
-
-      Mesa: User error: GL_INVALID_ENUM in glDisable(GL_COLOR_SUM)
-
-but I guess it's unrelated.
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Awesome, I'll submit the patch for wider review. Out of curiousity, what games?
+Everything I tried (ok, like 2 things) on my NV18 failed pretty miserably. As
+for the glDisable(GL_COLOR_SUM) thing -- the application (well, I guess wine)
+is using that enum even though it's not enabled. I guess GL_COLOR_SUM only
+appeared with opengl-later-than-1.2 and/or some extension that's not enabled.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389380414.a78576350.25503
-Date: Fri, 10 Jan 2014 19:00:14 +0000
+--1389380738.d3B65e1.26491
+Date: Fri, 10 Jan 2014 19:05:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,21 +57,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nv10 get_rt_format: Assertion `0' failed."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73459#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73459#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - nv10 get_rt_format: Assertion `0' failed."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=73459">bug 73459</a>
-              from <span class="vcard"><a class="email" href="mailto:dnietoc&#64;gmail.com" title="Diego Nieto Cid &lt;dnietoc&#64;gmail.com&gt;"> <span class="fn">Diego Nieto Cid</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Ilia thanks for the fast response. Yes, applying the patch prevents wine from
-crashing and at a quick glance games appear to work correctly.
-
-There's an error message:
-
-      Mesa: User error: GL_INVALID_ENUM in glDisable(GL_COLOR_SUM)
-
-but I guess it's unrelated.</pre>
+        <pre>Awesome, I'll submit the patch for wider review. Out of curiousity, what games?
+Everything I tried (ok, like 2 things) on my NV18 failed pretty miserably. As
+for the glDisable(GL_COLOR_SUM) thing -- the application (well, I guess wine)
+is using that enum even though it's not enabled. I guess GL_COLOR_SUM only
+appeared with opengl-later-than-1.2 and/or some extension that's not enabled.</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +80,9 @@ but I guess it's unrelated.</pre>
     </body>
 </html>
 
---1389380414.a78576350.25503--
+--1389380738.d3B65e1.26491--
 
---===============0998331609==
+--===============1888532330==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0998331609==--
+--===============1888532330==--
