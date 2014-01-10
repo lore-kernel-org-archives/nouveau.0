@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73358] [regression?][nv34] adobe flash + firefox ->
-	DATA_ERROR
-Date: Fri, 10 Jan 2014 21:44:03 +0000
-Message-ID: <bug-73358-8800-otMLFFFlqB@http.bugs.freedesktop.org/>
-References: <bug-73358-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?B?RmVybmFuZG8gTmVncm8=?= <fernando.negro-aPYA7nAdAYY@public.gmane.org>
+Subject: =?utf-8?q?Should_I_dump_my_Nvidia_card_from_the_less_kn?=
+ =?utf-8?q?own_brand_=22Gainward=22=3F?=
+Date: Fri, 10 Jan 2014 16:36:52 +0400
+Message-ID: <1389357412.986013756@f300.i.mail.ru>
+Reply-To: =?UTF-8?B?RmVybmFuZG8gTmVncm8=?= <fernando.negro-aPYA7nAdAYY@public.gmane.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1940959111=="
+Content-Type: multipart/mixed; boundary="===============1911726484=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73358-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,89 +20,118 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1940959111==
-Content-Type: multipart/alternative; boundary="1389390242.0beD1.31574"; charset="us-ascii"
+--===============1911726484==
+Content-Type: multipart/alternative;
+	boundary="--ALT--ZkycFf9l1389357412"
 
 
---1389390242.0beD1.31574
-Date: Fri, 10 Jan 2014 21:44:02 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+----ALT--ZkycFf9l1389357412
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-https://bugs.freedesktop.org/show_bug.cgi?id=73358
+IEhpIGV2ZXJ5b25lLgoKCkknbSBhIGJpZyBGcmVlIFNvZnR3YXJlIGVudGh1c2lhc3QgYW5kLCB0
+aGVyZWZvcmUsIEkgd291bGQgdmVyeSBtdWNoIGxpa2UgdG8gdXNlIHRoZSBub3V2ZWF1IGZyZWUg
+ZHJpdmVyLCBpbnN0ZWFkIG9mIHRoZSBwcm9wcmlldGFyeSBvbmUuCgpNeSBwcm9ibGVtIGlzIHRo
+YXQsIGxvb2tpbmcgZm9yIHRoZSBjaGVhcGVzdCBvcHRpb24gYXZhaWxhYmxlLCB3aGVuIEkgbmVl
+ZGVkIHRvIGJ1eSBhIG5ldyBncmFwaGljcyBjYXJkLCAyIHllYXJzIGFnbywgSSBkZWNpZGVkIGZv
+ciBhIG1vZGVsIGZyb20gYSBicmFuZCB0aGF0IEkgaGFkIG5ldmVyIGhlYXJkIG9mIC0gY2FsbGVk
+ICJHYWlud2FyZCIgLSBiZWNhdXNlIEkgdGhvdWdodCBpdCBoYWQgYSBiZXR0ZXIgcHJpY2UvcXVh
+bGl0eSByZWxhdGlvbnNoaXAgdGhhbiBpdHMgQVNVUyBlcXVpdmFsZW50IHdpdGggdGhlIHNhbWUg
+TnZpZGlhIGNoaXAuCgpNeSBzcGVjaWZpYyBncmFwaGljcyBjYXJkcyBpcyB0aGlzIG9uZTogaHR0
+cDovL3d3dy5nYWlud2FyZC5jb20vbWFpbi9wcm9kdWN0L3ZnYS9wcm8vcDAwNDcyL3AwMDQ3Ml9k
+YXRhc2hlZXRfMTcyMDRkYTdmZTZhZGQ2MGMucGRmP3M9MTI1CgpCZWNhdXNlIEkgdXNlZCB0byB1
+c2UgYSBub3QgY29tcGxldGVseSBmcmVlIEdOVS9MaW51eCBkaXN0cmlidXRpb24gYXQgdGhlIHRp
+bWUsIHdoZXJlIG9uZSBjb3VsZCBlYXNpbHkgaW5zdGFsbCB0aGUgcHJvcHJpZXRhcnkgZHJpdmVy
+LCByaWdodCBhZnRlciBpbnN0YWxsaW5nIHRoZSBkaXN0cm8sIEkndmUgYWx3YXlzIHJ1biB0aGlz
+IGxhc3QgZHJpdmVyIG9uIGl0LCBhbmQgbWFuYWdlZCB0byBmaW5kIGEgdmVyc2lvbiB3aGVyZSBp
+dCB3b3VsZCBydW4gd2VsbC4KCkJ1dCwgbm93IHdhbnRpbmcgdG8gbWlncmF0ZSB0byBhIGNvbXBs
+ZXRlbHkgZnJlZSBHTlUvTGludXggZGlzdHJpYnV0aW9uLCBJIG5vdyBub3RpY2UgYmV0dGVyIHRo
+ZSBwcm9ibGVtIHRoYXQgSSBoYXZlLCB3aXRoIHRoaXMgc3BlY2lmaWMgZ3JhcGhpY3MgY2FyZCwg
+d2hlcmUgSSBjYW4ndCBldmVuIG1ha2UgdGhlIG5vdXZlYXUgZHJpdmVycyBydW4gb24gaXQsIGxl
+dCBhbG9uZSBydW4gd2VsbC4uLgoKSSd2ZSBhbHJlYWR5IG1hZGUgc2V2ZXJhbCB0ZXN0cywgd2l0
+aCBkaWZmZXJlbnQga2VybmVscywgYW5kIHRoZXJlJ3MgcmVhbGx5IG5vIHdheSB0aGF0IEkgY2Fu
+IG1ha2UgdGhpcyBncmFwaGljcyBjYXJkIHdvcmsgd2l0aCB0aGUgbm91dmVhdSBkcml2ZXIuIChN
+eSByZXN1bHRzIGhlcmU6IGh0dHA6Ly90cmlzcXVlbC5pbmZvL2VuL2ZvcnVtL25vdXZlYXUtbWkt
+ZXEtb3ZlcmZsb3dpbmcjY29tbWVudC00Mzc2MikgQW5kLCB0aGUgcHJvYmxlbSB0aGF0IGFwcGVh
+cnMsIGlzIHdoYXQgaXMgbGlzdGVkIGhlcmU6IGh0dHA6Ly90cmlzcXVlbC5pbmZvL2VuL2ZvcnVt
+L25vdXZlYXUtbWktZXEtb3ZlcmZsb3dpbmcKCkFuZCwgYWZ0ZXIgbGVhcm5pbmcsIGluIHRoaXMg
+bWFpbGluZy1saXN0LCB0aGF0IHBlb3BsZSB3aG8gdXNlIHRoaXMgY2FyZCdzIEFTVVMgZXF1aXZh
+bGVudCB3aXRoIHRoZSBzYW1lIE52aWRpYSBjaGlwLCBkb24ndCBoYXZlIGFueSBvZiB0aGUgcHJv
+YmxlbXMgdGhhdCBJIGhhdmUsIEkgbm93IGtub3cgdGhhdCB0aGlzIGlzIGEgcGFydGljdWxhciB0
+eXBlL2JyYW5kIG9mIGNhcmQsIG9yIHBhcnRpY3VsYXIgZ3JhcGhpY3MgY2FyZCwgdGhhdCBpcyBu
+b3QgY3VycmVudGx5IHN1cHBvcnRlZCBieSB0aGUgbm91dmVhdSBkcml2ZXIuCgoKU28sIG15IHF1
+ZXN0aW9uIGlzLi4uCgpLbm93aW5nIHRoYXQgRnJlZSBTb2Z0d2FyZSBpcyBtYWlubHkgZGV2ZWxv
+cGVkIHRvIHJ1biBvbiB0aGUgbW9zdCB1c2VkIHR5cGUgb2YgY29tcHV0ZXIgY29tcG9uZW50cywg
+YW5kIG5vdCBiZWluZywgYXBwYXJlbnRseSwgbXkgZ3JhcGhpY3MgY2FyZCwgb25lIG9mIHRoaXMg
+dHlwZSBvZiBtb3N0IHVzZWQgY29tcG9uZW50cywgZG8gdGhlIHBlb3BsZSBoZXJlLCBpbiB0aGlz
+IG1haWxpbmctbGlzdCwga25vdyBpZiwgb3IgdGhpbmsgdGhhdCwgdGhlcmUncyBldmVyIGdvaW5n
+IHRvIGJlIHNvbWUgZWZmb3J0IG1hZGUgdG8gbWFrZSB0aGUgbm91dmVhdSBkcml2ZXIgcnVuIG9u
+IHRoZSB0eXBlIG9mIGdyYXBoaWNzIGNhcmQgdGhhdCBJIGhhdmU/CgooV2hhdCBJIHdhbnQgdG8g
+a25vdywgaW4gcHJhY3RpY2FsIHRlcm1zLCBpcyBpZiBpdCdzIHdvcnRoIGtlZXBpbmcgdGhpcyBn
+cmFwaGljcyBjYXJkIGZvciBzb21lIHBvc3NpYmxlIHVzZSBpbiB0aGUgRnV0dXJlLCB3aGVuIGl0
+IHdpbGwgYmUgc3VwcG9ydGVkLCBvciBpZiBpdCdzIGJldHRlciBmb3IgbWUgdG8ganVzdCBzZWxs
+IGl0IHRvIHNvbWVvbmUgd2hvJ3Mgbm90IGFzIGludGVyZXN0ZWQgYXMgbWUgaW4gdXNpbmcgb25s
+eSBGcmVlIFNvZnR3YXJlPykKCgpUaGFuayB5b3UsIGFsbCwgaW4gYWR2YW5jZSwgZm9yIHlvdXIg
+YW5zd2Vycy4KCkFuZCB0aGFuayB5b3UgdmVyeSBtdWNoLCBhbHNvLCBhbGwgb2YgeW91LCBmb3Ig
+dGhlICpncmVhdCByZXN1bHRzKiB0aGF0IEkndmUgYWxyZWFkeSB3aXRuZXNzZWQgb24gb3RoZXIg
+Z3JhcGhpY3MgY2FyZHMu
 
---- Comment #9 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I tried to do this but browsers are so complicated it does not work.
+----ALT--ZkycFf9l1389357412
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-- apitrace trace firefox does not work
-- apitrace trace chromium does not work
-- replacing firefox plugin loader with script calling apitrace does not work
-- replacing chromium exec with a script that catches the plugin instances
-yielded no results
-- I downloaded fp_11.2.1.102.63_archive.zip and extracted the standalone
-player. Attaching apitrace seems to work. Other then the other 4 attempts it
-sucessfully catches the libGL calls. However, it only accepts direct links to
-.swf files. This will not work for youtube.
+CjxIVE1MPjxCT0RZPkhpIGV2ZXJ5b25lLjxicj48YnI+PGJyPkknbSBhIGJpZyBGcmVlIFNvZnR3
+YXJlIGVudGh1c2lhc3QgYW5kLCB0aGVyZWZvcmUsIEkgd291bGQgdmVyeSBtdWNoIGxpa2UgdG8g
+dXNlIHRoZSBub3V2ZWF1IGZyZWUgZHJpdmVyLCBpbnN0ZWFkIG9mIHRoZSBwcm9wcmlldGFyeSBv
+bmUuPGJyPjxicj5NeSBwcm9ibGVtIGlzIHRoYXQsIGxvb2tpbmcgZm9yIHRoZSBjaGVhcGVzdCBv
+cHRpb24gYXZhaWxhYmxlLCB3aGVuIEkgbmVlZGVkIHRvIGJ1eSBhIG5ldyBncmFwaGljcyBjYXJk
+LCAyIHllYXJzIGFnbywgSSBkZWNpZGVkIGZvciBhIG1vZGVsIGZyb20gYSBicmFuZCB0aGF0IEkg
+aGFkIG5ldmVyIGhlYXJkIG9mIC0gY2FsbGVkICJHYWlud2FyZCIgLSBiZWNhdXNlIEkgdGhvdWdo
+dCBpdCBoYWQgYSBiZXR0ZXIgcHJpY2UvcXVhbGl0eSByZWxhdGlvbnNoaXAgdGhhbiBpdHMgQVNV
+UyBlcXVpdmFsZW50IHdpdGggdGhlIHNhbWUgTnZpZGlhIGNoaXAuPGJyPjxicj5NeSBzcGVjaWZp
+YyBncmFwaGljcyBjYXJkcyBpcyB0aGlzIG9uZTogaHR0cDovL3d3dy5nYWlud2FyZC5jb20vbWFp
+bi9wcm9kdWN0L3ZnYS9wcm8vcDAwNDcyL3AwMDQ3Ml9kYXRhc2hlZXRfMTcyMDRkYTdmZTZhZGQ2
+MGMucGRmP3M9MTI1PGJyPjxicj5CZWNhdXNlIEkgdXNlZCB0byB1c2UgYSBub3QgY29tcGxldGVs
+eSBmcmVlIEdOVS9MaW51eCBkaXN0cmlidXRpb24gYXQgdGhlIHRpbWUsIHdoZXJlIG9uZSBjb3Vs
+ZCBlYXNpbHkgaW5zdGFsbCB0aGUgcHJvcHJpZXRhcnkgZHJpdmVyLCByaWdodCBhZnRlciBpbnN0
+YWxsaW5nIHRoZSBkaXN0cm8sIEkndmUgYWx3YXlzIHJ1biB0aGlzIGxhc3QgZHJpdmVyIG9uIGl0
+LCBhbmQgbWFuYWdlZCB0byBmaW5kIGEgdmVyc2lvbiB3aGVyZSBpdCB3b3VsZCBydW4gd2VsbC48
+YnI+PGJyPkJ1dCwgbm93IHdhbnRpbmcgdG8gbWlncmF0ZSB0byBhIGNvbXBsZXRlbHkgZnJlZSBH
+TlUvTGludXggZGlzdHJpYnV0aW9uLCBJIG5vdyBub3RpY2UgYmV0dGVyIHRoZSBwcm9ibGVtIHRo
+YXQgSSBoYXZlLCB3aXRoIHRoaXMgc3BlY2lmaWMgZ3JhcGhpY3MgY2FyZCwgd2hlcmUgSSBjYW4n
+dCBldmVuIG1ha2UgdGhlIG5vdXZlYXUgZHJpdmVycyBydW4gb24gaXQsIGxldCBhbG9uZSBydW4g
+d2VsbC4uLjxicj48YnI+SSd2ZSBhbHJlYWR5IG1hZGUgc2V2ZXJhbCB0ZXN0cywgd2l0aCBkaWZm
+ZXJlbnQga2VybmVscywgYW5kIHRoZXJlJ3MgcmVhbGx5IG5vIHdheSB0aGF0IEkgY2FuIG1ha2Ug
+dGhpcyBncmFwaGljcyBjYXJkIHdvcmsgd2l0aCB0aGUgbm91dmVhdSBkcml2ZXIuIChNeSByZXN1
+bHRzIGhlcmU6IGh0dHA6Ly90cmlzcXVlbC5pbmZvL2VuL2ZvcnVtL25vdXZlYXUtbWktZXEtb3Zl
+cmZsb3dpbmcjY29tbWVudC00Mzc2MikgQW5kLCB0aGUgcHJvYmxlbSB0aGF0IGFwcGVhcnMsIGlz
+IHdoYXQgaXMgbGlzdGVkIGhlcmU6IGh0dHA6Ly90cmlzcXVlbC5pbmZvL2VuL2ZvcnVtL25vdXZl
+YXUtbWktZXEtb3ZlcmZsb3dpbmc8YnI+PGJyPkFuZCwgYWZ0ZXIgbGVhcm5pbmcsIGluIHRoaXMg
+bWFpbGluZy1saXN0LCB0aGF0IHBlb3BsZSB3aG8gdXNlIHRoaXMgY2FyZCdzIEFTVVMgZXF1aXZh
+bGVudCB3aXRoIHRoZSBzYW1lIE52aWRpYSBjaGlwLCBkb24ndCBoYXZlIGFueSBvZiB0aGUgcHJv
+YmxlbXMgdGhhdCBJIGhhdmUsIEkgbm93IGtub3cgdGhhdCB0aGlzIGlzIGEgcGFydGljdWxhciB0
+eXBlL2JyYW5kIG9mIGNhcmQsIG9yIHBhcnRpY3VsYXIgZ3JhcGhpY3MgY2FyZCwgdGhhdCBpcyBu
+b3QgY3VycmVudGx5IHN1cHBvcnRlZCBieSB0aGUgbm91dmVhdSBkcml2ZXIuPGJyPjxicj48YnI+
+U28sIG15IHF1ZXN0aW9uIGlzLi4uPGJyPjxicj5Lbm93aW5nIHRoYXQgRnJlZSBTb2Z0d2FyZSBp
+cyBtYWlubHkgZGV2ZWxvcGVkIHRvIHJ1biBvbiB0aGUgbW9zdCB1c2VkIHR5cGUgb2YgY29tcHV0
+ZXIgY29tcG9uZW50cywgYW5kIG5vdCBiZWluZywgYXBwYXJlbnRseSwgbXkgZ3JhcGhpY3MgY2Fy
+ZCwgb25lIG9mIHRoaXMgdHlwZSBvZiBtb3N0IHVzZWQgY29tcG9uZW50cywgZG8gdGhlIHBlb3Bs
+ZSBoZXJlLCBpbiB0aGlzIG1haWxpbmctbGlzdCwga25vdyBpZiwgb3IgdGhpbmsgdGhhdCwgdGhl
+cmUncyBldmVyIGdvaW5nIHRvIGJlIHNvbWUgZWZmb3J0IG1hZGUgdG8gbWFrZSB0aGUgbm91dmVh
+dSBkcml2ZXIgcnVuIG9uIHRoZSB0eXBlIG9mIGdyYXBoaWNzIGNhcmQgdGhhdCBJIGhhdmU/PGJy
+Pjxicj4oV2hhdCBJIHdhbnQgdG8ga25vdywgaW4gcHJhY3RpY2FsIHRlcm1zLCBpcyBpZiBpdCdz
+IHdvcnRoIGtlZXBpbmcgdGhpcyBncmFwaGljcyBjYXJkIGZvciBzb21lIHBvc3NpYmxlIHVzZSBp
+biB0aGUgRnV0dXJlLCB3aGVuIGl0IHdpbGwgYmUgc3VwcG9ydGVkLCBvciBpZiBpdCdzIGJldHRl
+ciBmb3IgbWUgdG8ganVzdCBzZWxsIGl0IHRvIHNvbWVvbmUgd2hvJ3Mgbm90IGFzIGludGVyZXN0
+ZWQgYXMgbWUgaW4gdXNpbmcgb25seSBGcmVlIFNvZnR3YXJlPyk8YnI+PGJyPjxicj5UaGFuayB5
+b3UsIGFsbCwgaW4gYWR2YW5jZSwgZm9yIHlvdXIgYW5zd2Vycy48YnI+PGJyPkFuZCB0aGFuayB5
+b3UgdmVyeSBtdWNoLCBhbHNvLCBhbGwgb2YgeW91LCBmb3IgdGhlICpncmVhdCByZXN1bHRzKiB0
+aGF0IEkndmUgYWxyZWFkeSB3aXRuZXNzZWQgb24gb3RoZXIgZ3JhcGhpY3MgY2FyZHMuPC9CT0RZ
+PjwvSFRNTD4K
 
-Do you have any ideas?
+----ALT--ZkycFf9l1389357412--
 
-I have the latest apitrace from git if that matters.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1389390242.0beD1.31574
-Date: Fri, 10 Jan 2014 21:44:02 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [regression?][nv34] adobe flash + firefox -&gt; DATA_ERROR"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73358#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [regression?][nv34] adobe flash + firefox -&gt; DATA_ERROR"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73358">bug 73358</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span></b>
-        <pre>I tried to do this but browsers are so complicated it does not work.
-
-- apitrace trace firefox does not work
-- apitrace trace chromium does not work
-- replacing firefox plugin loader with script calling apitrace does not work
-- replacing chromium exec with a script that catches the plugin instances
-yielded no results
-- I downloaded fp_11.2.1.102.63_archive.zip and extracted the standalone
-player. Attaching apitrace seems to work. Other then the other 4 attempts it
-sucessfully catches the libGL calls. However, it only accepts direct links to
-.swf files. This will not work for youtube.
-
-Do you have any ideas?
-
-I have the latest apitrace from git if that matters.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1389390242.0beD1.31574--
-
---===============1940959111==
+--===============1911726484==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -114,4 +142,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1940959111==--
+--===============1911726484==--
