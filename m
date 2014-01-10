@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73358] [regression?][nv34] adobe flash + firefox ->
-	DATA_ERROR
-Date: Fri, 10 Jan 2014 19:27:25 +0000
-Message-ID: <bug-73358-8800-wFTb0ugtEb@http.bugs.freedesktop.org/>
-References: <bug-73358-8800@http.bugs.freedesktop.org/>
+From: Grant <emailgrant-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: launching Firefox causes system crash
+Date: Fri, 10 Jan 2014 11:35:53 -0800
+Message-ID: <CAN0CFw22=Qvrx_TCFbGZx_yMHeZ2-gEE4OMBMwnPF2cZjnnvvg@mail.gmail.com>
+References: <CAN0CFw2E4Om9r7FB+BFSTHHnxVsaMob-Zyq+qLNJuHZtq=OVkQ@mail.gmail.com>
+	<CAKb7UvhazyL4-u3th96k4zjpNa46Qr7JQWoEafkoz8J5DuWn+w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1418089956=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73358-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvhazyL4-u3th96k4zjpNa46Qr7JQWoEafkoz8J5DuWn+w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,205 +18,38 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+>> Launching firefox is causing a system crash with a black or white
+>> screen and diagonal lines across it.  I've tried the latest nouveau
+>> from git and the latest kernel.  I can't find anything in the logs
+>> unfortunately.  Any ideas?
+>>
+>> 00:0d.0 VGA compatible controller: NVIDIA Corporation C61 [GeForce
+>> 6150SE nForce 430] (rev a2) (prog-if 00 [VGA controller])
+>>     Subsystem: Micro-Star International Co., Ltd. Device 7309
+>>     Flags: bus master, 66MHz, fast devsel, latency 0, IRQ 40
+>>     Memory at de000000 (32-bit, non-prefetchable) [size=16M]
+>>     Memory at c0000000 (64-bit, prefetchable) [size=256M]
+>>     Memory at dd000000 (64-bit, non-prefetchable) [size=16M]
+>>     Expansion ROM at dfd40000 [disabled] [size=128K]
+>>     Capabilities: [48] Power Management version 2
+>>     Capabilities: [50] MSI: Enable+ Count=1/1 Maskable- 64bit+
+>>     Kernel driver in use: nouveau
+>
+> Someone just opened a bug about NV4E. You have NV4C, but one could
+> imagine that there would be similarities. See
+> https://bugs.freedesktop.org/show_bug.cgi?id=73445 and feel free to
+> add yourself to it if that matches your symptoms (esp if it's a 3.13
+> regression). Otherwise, more information would be nice. See
+> http://nouveau.freedesktop.org/wiki/Bugs/ for the sort of information
+> that's generally useful.
 
---===============1418089956==
-Content-Type: multipart/alternative; boundary="1389382045.7a13aC1.31804"; charset="us-ascii"
+I should also mention that rebooting allows firefox to open.  It seems
+to crash if it is opened after the system has been running for awhile.
 
+I tried nouveau.config=NvMSI=0 but it didn't help.
 
---1389382045.7a13aC1.31804
-Date: Fri, 10 Jan 2014 19:27:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=73358
-
---- Comment #8 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Yelled too soon. The latest flash for this CPU (non SSE2) for google chrome
-(11.2.202.235) (I think) gives this:
-
-[ 7036.622880] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT
-[ 7036.622912] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7036.622975] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: LIMIT_COLOR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7036.622987] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0204 data 0x00b80000
-[ 7036.623357] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7036.623372] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7036.623485] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7036.623497] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7036.623969] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7036.623981] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7036.624097] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7036.624108] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7049.173857] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7049.173889] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7049.174067] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7049.174081] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7049.174129] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7049.174140] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7049.174359] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7049.174373] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7049.174421] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7049.174433] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7052.461416] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7052.461448] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7052.461894] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7052.461908] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7052.462023] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7052.462035] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7052.462511] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7052.462525] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7052.462638] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7052.462651] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1389382045.7a13aC1.31804
-Date: Fri, 10 Jan 2014 19:27:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [regression?][nv34] adobe flash + firefox -&gt; DATA_ERROR"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73358#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [regression?][nv34] adobe flash + firefox -&gt; DATA_ERROR"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73358">bug 73358</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span></b>
-        <pre>Yelled too soon. The latest flash for this CPU (non SSE2) for google chrome
-(11.2.202.235) (I think) gives this:
-
-[ 7036.622880] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT
-[ 7036.622912] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7036.622975] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: LIMIT_COLOR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7036.622987] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0204 data 0x00b80000
-[ 7036.623357] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7036.623372] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7036.623485] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7036.623497] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7036.623969] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7036.623981] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7036.624097] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7036.624108] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7049.173857] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7049.173889] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7049.174067] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7049.174081] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7049.174129] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7049.174140] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7049.174359] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7049.174373] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7049.174421] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7049.174433] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7052.461416] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7052.461448] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7052.461894] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7052.461908] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7052.462023] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7052.462035] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7052.462511] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7052.462525] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120
-[ 7052.462638] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-nstatus: BAD_ARGUMENT PROTECTION_FAULT
-[ 7052.462651] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [chromium[5871]] subc 7
-class 0x0697 mthd 0x0208 data 0x00000120</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1389382045.7a13aC1.31804--
-
---===============1418089956==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1418089956==--
+- Grant
