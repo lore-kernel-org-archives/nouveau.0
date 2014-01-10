@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73358] [regression?][nv34] adobe flash + firefox ->
-	DATA_ERROR
-Date: Fri, 10 Jan 2014 10:19:24 +0000
-Message-ID: <bug-73358-8800-50itgRtmEn@http.bugs.freedesktop.org/>
-References: <bug-73358-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73473] New: Potential crash bug in
+ src/gallium/auxiliary/rtasm/rtasm_execmem.c
+Date: Fri, 10 Jan 2014 13:47:01 +0000
+Message-ID: <bug-73473-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0522149247=="
+Content-Type: multipart/mixed; boundary="===============1944323219=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73358-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,50 +19,57 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0522149247==
-Content-Type: multipart/alternative; boundary="1389349164.dA3355E1.28111"; charset="us-ascii"
+--===============1944323219==
+Content-Type: multipart/alternative; boundary="1389361621.bD8Bf0.28454"; charset="us-ascii"
 
 
---1389349164.dA3355E1.28111
-Date: Fri, 10 Jan 2014 10:19:24 +0000
+--1389361621.bD8Bf0.28454
+Date: Fri, 10 Jan 2014 13:47:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=73358
+https://bugs.freedesktop.org/show_bug.cgi?id=73473
 
---- Comment #5 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Yeah, the entire screen stalls. If I kill the tab playing adobe flash,
-everything is fine again. Switching tty does not work. Xorg disappears, but I
-only see the contents of tty1 on any other tty just before Xorg was started. I
-did not have these errors before when using Ubuntu. Not in this form. They
-appeared sporadically but everything was fine afterwards.
+          Priority: medium
+            Bug ID: 73473
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Potential crash bug in
+                    src/gallium/auxiliary/rtasm/rtasm_execmem.c
+          Severity: critical
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: jaak-89mTbI93R4uuvFJfX82//w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Drivers/DRI/nouveau
+           Product: Mesa
 
-Some more critical information. The first time after installation, everything
-worked fine.
+glxgears[4186]: segfault at ffffffffffffffff ip 000078805fc4b901 sp
+00007ce9598e21c0 error 7 in nouveau_dri.so[78805f7d1000+136c000]
 
-I looked at the upgrade logs:
+Stracing it revealed that the crash happens after a mmap(NULL, 10485760,
+PROT_READ|PROT_WRITE|PROT_EXEC, MAP_PRIVATE,MAP_ANONYMOUS, -1, 0) syscall
+returns -1.
 
-[2014-01-07 16:14] [PACKAGEKIT] upgraded xorg-server-common (1.14.5-1 ->
-1.14.5-2)
-[2014-01-07 16:14] [PACKAGEKIT] upgraded xorg-server (1.14.5-1 -> 1.14.5-2)
-[2014-01-09 09:19] [PACKAGEKIT] upgraded glibc (2.18-11 -> 2.18-12)
-[2014-01-09 09:19] [PACKAGEKIT] upgraded libdrm (2.4.50-1 -> 2.4.51-1)
+I think it might be caused by the return value of mmap not being checked in
+src/gallium/auxiliary/rtasm/rtasm_execmem.c, leading to the the memory being
+accessed somewhere else.
 
-It's not the kernel, I just tried v3.13-rc3.
+So it probably needs some
 
-Libdrm is not a huge upgrade and no nouveau files were touched.
+  if (exec_mem == MAP_FAILED)
 
-The xorg-server bump was about this:
-https://projects.archlinux.org/svntogit/packages.git/commit/trunk?h=packages/xorg-server&id=7943d976eef97d4d75026b6f2c3936b03aeb4648
+check somewhere.
 
-I think I got lucky the first time it all worked. I guess.
+PS: Sorry if this is not the correct component.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389349164.dA3355E1.28111
-Date: Fri, 10 Jan 2014 10:19:24 +0000
+--1389361621.bD8Bf0.28454
+Date: Fri, 10 Jan 2014 13:47:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,44 +77,107 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Potential crash bug in src/gallium/auxiliary/rtasm/rtasm_execmem.c"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73473">73473</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Potential crash bug in src/gallium/auxiliary/rtasm/rtasm_execmem.c
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jaak&#64;ristioja.ee
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [regression?][nv34] adobe flash + firefox -&gt; DATA_ERROR"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73358#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [regression?][nv34] adobe flash + firefox -&gt; DATA_ERROR"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73358">bug 73358</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span></b>
-        <pre>Yeah, the entire screen stalls. If I kill the tab playing adobe flash,
-everything is fine again. Switching tty does not work. Xorg disappears, but I
-only see the contents of tty1 on any other tty just before Xorg was started. I
-did not have these errors before when using Ubuntu. Not in this form. They
-appeared sporadically but everything was fine afterwards.
+        <pre>glxgears[4186]: segfault at ffffffffffffffff ip 000078805fc4b901 sp
+00007ce9598e21c0 error 7 in nouveau_dri.so[78805f7d1000+136c000]
 
-Some more critical information. The first time after installation, everything
-worked fine.
+Stracing it revealed that the crash happens after a mmap(NULL, 10485760,
+PROT_READ|PROT_WRITE|PROT_EXEC, MAP_PRIVATE,MAP_ANONYMOUS, -1, 0) syscall
+returns -1.
 
-I looked at the upgrade logs:
+I think it might be caused by the return value of mmap not being checked in
+src/gallium/auxiliary/rtasm/rtasm_execmem.c, leading to the the memory being
+accessed somewhere else.
 
-[2014-01-07 16:14] [PACKAGEKIT] upgraded xorg-server-common (1.14.5-1 -&gt;
-1.14.5-2)
-[2014-01-07 16:14] [PACKAGEKIT] upgraded xorg-server (1.14.5-1 -&gt; 1.14.5-2)
-[2014-01-09 09:19] [PACKAGEKIT] upgraded glibc (2.18-11 -&gt; 2.18-12)
-[2014-01-09 09:19] [PACKAGEKIT] upgraded libdrm (2.4.50-1 -&gt; 2.4.51-1)
+So it probably needs some
 
-It's not the kernel, I just tried v3.13-rc3.
+  if (exec_mem == MAP_FAILED)
 
-Libdrm is not a huge upgrade and no nouveau files were touched.
+check somewhere.
 
-The xorg-server bump was about this:
-<a href="https://projects.archlinux.org/svntogit/packages.git/commit/trunk?h=packages/xorg-server&amp;id=7943d976eef97d4d75026b6f2c3936b03aeb4648">https://projects.archlinux.org/svntogit/packages.git/commit/trunk?h=packages/xorg-server&amp;id=7943d976eef97d4d75026b6f2c3936b03aeb4648</a>
-
-I think I got lucky the first time it all worked. I guess.</pre>
+PS: Sorry if this is not the correct component.</pre>
         </div>
       </p>
       <hr>
@@ -121,9 +189,9 @@ I think I got lucky the first time it all worked. I guess.</pre>
     </body>
 </html>
 
---1389349164.dA3355E1.28111--
+--1389361621.bD8Bf0.28454--
 
---===============0522149247==
+--===============1944323219==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -134,4 +202,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0522149247==--
+--===============1944323219==--
