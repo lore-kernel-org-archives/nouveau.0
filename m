@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21273] [NV17] PowerMac3,
- 6 Driver can't detect video output and xserver doesn't start
-Date: Fri, 10 Jan 2014 19:47:01 +0000
-Message-ID: <bug-21273-8800-ZNw4XeRqhP@http.bugs.freedesktop.org/>
-References: <bug-21273-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73459] nv10 get_rt_format: Assertion `0' failed.
+Date: Fri, 10 Jan 2014 20:24:43 +0000
+Message-ID: <bug-73459-8800-Fx4wZrJN3f@http.bugs.freedesktop.org/>
+References: <bug-73459-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0657737130=="
+Content-Type: multipart/mixed; boundary="===============0591126055=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73459-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0657737130==
-Content-Type: multipart/alternative; boundary="1389383221.BBCea2601.3627"; charset="us-ascii"
+--===============0591126055==
+Content-Type: multipart/alternative; boundary="1389385483.EbF0Fad1.12912"; charset="us-ascii"
 
 
---1389383221.BBCea2601.3627
-Date: Fri, 10 Jan 2014 19:47:01 +0000
+--1389385483.EbF0Fad1.12912
+Date: Fri, 10 Jan 2014 20:24:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=21273
+https://bugs.freedesktop.org/show_bug.cgi?id=73459
 
-Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #85443|0                           |1
-        is obsolete|                            |
-
---- Comment #93 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> ---
-Created attachment 91839
-  --> https://bugs.freedesktop.org/attachment.cgi?id=91839&action=edit
-log loading kernel from git
-
-I tried to add only one line:
-fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 1, all_heads, 2);
-
-I see white horizontal lines on the screen and all hung up.
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Here's a fix for the GL_COLOR_SUM thing:
+http://lists.freedesktop.org/archives/mesa-dev/2014-January/051248.html
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389383221.BBCea2601.3627
-Date: Fri, 10 Jan 2014 19:47:01 +0000
+--1389385483.EbF0Fad1.12912
+Date: Fri, 10 Jan 2014 20:24:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,47 +48,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:ronne&#64;list.ru" title="Andrey Gusev &lt;ronne&#64;list.ru&gt;"> <span class="fn">Andrey Gusev</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #85443 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c93">Comment # 93</a>
+   title="NEW --- - nv10 get_rt_format: Assertion `0' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73459#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
-              from <span class="vcard"><a class="email" href="mailto:ronne&#64;list.ru" title="Andrey Gusev &lt;ronne&#64;list.ru&gt;"> <span class="fn">Andrey Gusev</span></a>
+   title="NEW --- - nv10 get_rt_format: Assertion `0' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73459">bug 73459</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=91839" name="attach_91839" title="log loading kernel from git">attachment 91839</a> <a href="attachment.cgi?id=91839&amp;action=edit" title="log loading kernel from git">[details]</a></span>
-log loading kernel from git
-
-I tried to add only one line:
-fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 1, all_heads, 2);
-
-I see white horizontal lines on the screen and all hung up.</pre>
+        <pre>Here's a fix for the GL_COLOR_SUM thing:
+<a href="http://lists.freedesktop.org/archives/mesa-dev/2014-January/051248.html">http://lists.freedesktop.org/archives/mesa-dev/2014-January/051248.html</a></pre>
         </div>
       </p>
       <hr>
@@ -114,9 +74,9 @@ I see white horizontal lines on the screen and all hung up.</pre>
     </body>
 </html>
 
---1389383221.BBCea2601.3627--
+--1389385483.EbF0Fad1.12912--
 
---===============0657737130==
+--===============0591126055==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0657737130==--
+--===============0591126055==--
