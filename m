@@ -1,14 +1,12 @@
-From: Grant <emailgrant-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: launching Firefox causes system crash
-Date: Thu, 9 Jan 2014 16:47:13 -0800
-Message-ID: <CAN0CFw3j44zi41-p2Py3XD_30sZQR6aK1x1NO_DK77Zw3bUaPg@mail.gmail.com>
-References: <CAN0CFw2E4Om9r7FB+BFSTHHnxVsaMob-Zyq+qLNJuHZtq=OVkQ@mail.gmail.com>
-	<CAKb7UvhazyL4-u3th96k4zjpNa46Qr7JQWoEafkoz8J5DuWn+w@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 1/3] drm/nouveau: provide a way for devinit to
+	mark engines as disabled
+Date: Thu,  9 Jan 2014 21:19:11 -0500
+Message-ID: <1389320353-21375-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvhazyL4-u3th96k4zjpNa46Qr7JQWoEafkoz8J5DuWn+w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,35 +16,72 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
->> Launching firefox is causing a system crash with a black or white
->> screen and diagonal lines across it.  I've tried the latest nouveau
->> from git and the latest kernel.  I can't find anything in the logs
->> unfortunately.  Any ideas?
->>
->> 00:0d.0 VGA compatible controller: NVIDIA Corporation C61 [GeForce
->> 6150SE nForce 430] (rev a2) (prog-if 00 [VGA controller])
->>     Subsystem: Micro-Star International Co., Ltd. Device 7309
->>     Flags: bus master, 66MHz, fast devsel, latency 0, IRQ 40
->>     Memory at de000000 (32-bit, non-prefetchable) [size=16M]
->>     Memory at c0000000 (64-bit, prefetchable) [size=256M]
->>     Memory at dd000000 (64-bit, non-prefetchable) [size=16M]
->>     Expansion ROM at dfd40000 [disabled] [size=128K]
->>     Capabilities: [48] Power Management version 2
->>     Capabilities: [50] MSI: Enable+ Count=1/1 Maskable- 64bit+
->>     Kernel driver in use: nouveau
->
-> Someone just opened a bug about NV4E. You have NV4C, but one could
-> imagine that there would be similarities. See
-> https://bugs.freedesktop.org/show_bug.cgi?id=73445 and feel free to
-> add yourself to it if that matches your symptoms (esp if it's a 3.13
-> regression). Otherwise, more information would be nice. See
-> http://nouveau.freedesktop.org/wiki/Bugs/ for the sort of information
-> that's generally useful.
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
 
-Thank you but my issue exists on 3.12 also.
+I decided to let the user still specify config=BLA=1 to override the hw
+disable in case we get something wrong or for double-checking stuff, but I
+suspect it won't really be used much. I'm not terribly fond of the message
+text, if you come up with something better, feel free to drop it in.
 
-- Grant
+ drivers/gpu/drm/nouveau/core/core/engine.c         | 21 ++++++++++++++++-----
+ drivers/gpu/drm/nouveau/core/include/core/device.h |  1 +
+ 2 files changed, 17 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/core/core/engine.c b/drivers/gpu/drm/nouveau/core/core/engine.c
+index c8bed4a..0405fba 100644
+--- a/drivers/gpu/drm/nouveau/core/core/engine.c
++++ b/drivers/gpu/drm/nouveau/core/core/engine.c
+@@ -34,6 +34,7 @@ nouveau_engine_create_(struct nouveau_object *parent,
+ 		       int length, void **pobject)
+ {
+ 	struct nouveau_engine *engine;
++	struct nouveau_device *device;
+ 	int ret;
+ 
+ 	ret = nouveau_subdev_create_(parent, engobj, oclass, NV_ENGINE_CLASS,
+@@ -42,11 +43,21 @@ nouveau_engine_create_(struct nouveau_object *parent,
+ 	if (ret)
+ 		return ret;
+ 
+-	if ( parent &&
+-	    !nouveau_boolopt(nv_device(parent)->cfgopt, iname, enable)) {
+-		if (!enable)
+-			nv_warn(engine, "disabled, %s=1 to enable\n", iname);
+-		return -ENODEV;
++	if (parent) {
++		device = nv_device(parent);
++		if (device->disable_mask & (1ULL << (oclass->handle & 0xff))) {
++			if (nouveau_boolopt(device->cfgopt, iname, false)) {
++				nv_warn(engine, "hardware is marked as disabled, but obeying explicit enable\n");
++			} else {
++				nv_info(engine, "hardware is marked as disabled\n");
++				return -ENODEV;
++			}
++		}
++		if (!nouveau_boolopt(device->cfgopt, iname, enable)) {
++			if (!enable)
++				nv_warn(engine, "disabled, %s=1 to enable\n", iname);
++			return -ENODEV;
++		}
+ 	}
+ 
+ 	INIT_LIST_HEAD(&engine->contexts);
+diff --git a/drivers/gpu/drm/nouveau/core/include/core/device.h b/drivers/gpu/drm/nouveau/core/include/core/device.h
+index ac2881d..d04c523 100644
+--- a/drivers/gpu/drm/nouveau/core/include/core/device.h
++++ b/drivers/gpu/drm/nouveau/core/include/core/device.h
+@@ -70,6 +70,7 @@ struct nouveau_device {
+ 	const char *dbgopt;
+ 	const char *name;
+ 	const char *cname;
++	u64 disable_mask;
+ 
+ 	enum {
+ 		NV_04    = 0x04,
+-- 
+1.8.3.2
