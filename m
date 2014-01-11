@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21273] [NV17] PowerMac3,
- 6 Driver can't detect video output and xserver doesn't start
-Date: Sat, 11 Jan 2014 05:44:10 +0000
-Message-ID: <bug-21273-8800-EX7SwjPDwG@http.bugs.freedesktop.org/>
-References: <bug-21273-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73358] [regression?][nv34] adobe flash + firefox ->
+	DATA_ERROR
+Date: Sat, 11 Jan 2014 06:51:10 +0000
+Message-ID: <bug-73358-8800-m3v1RRM0Oa@http.bugs.freedesktop.org/>
+References: <bug-73358-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0990577766=="
+Content-Type: multipart/mixed; boundary="===============1075784216=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73358-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0990577766==
-Content-Type: multipart/alternative; boundary="1389419050.2bDaEE71.28723"; charset="us-ascii"
+--===============1075784216==
+Content-Type: multipart/alternative; boundary="1389423070.B20F4DA21.4038"; charset="us-ascii"
 
 
---1389419050.2bDaEE71.28723
-Date: Sat, 11 Jan 2014 05:44:10 +0000
+--1389423070.B20F4DA21.4038
+Date: Sat, 11 Jan 2014 06:51:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=21273
+https://bugs.freedesktop.org/show_bug.cgi?id=73358
 
---- Comment #94 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #93)
-> Created attachment 91839 [details]
-> log loading kernel from git
-> 
-> I tried to add only one line:
-> fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 1, all_heads, 2);
-> 
-> I see white horizontal lines on the screen and all hung up.
+--- Comment #10 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Was not able to use the standalone version. Alternative apitrace methods
+yielded nill except for the most sophisticated method (LD_PRELOAD glxtrace.so).
+However, this fails:
 
-Ugh, looks like nouveau might have grown a bug on ppc or something -- the
-traceback isn't related to the line that you added (hopefully!). What if you
-apply it to a 3.10 kernel or whatever you were trying with earlier?
+apitrace: tracing to /home/gebruiker/plugin-container.trace
+apitrace: error: failed to look up real dlopen
+apitrace: error: couldn't find libGL.so
+error: unavailable function glXGetClientString
+
+Almost there :/
+
+Tried both chromium (single-process, no-sandbox etc etc) and firefox.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389419050.2bDaEE71.28723
-Date: Sat, 11 Jan 2014 05:44:10 +0000
+--1389423070.B20F4DA21.4038
+Date: Sat, 11 Jan 2014 06:51:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,26 +64,26 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c94">Comment # 94</a>
+   title="NEW --- - [regression?][nv34] adobe flash + firefox -&gt; DATA_ERROR"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73358#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [regression?][nv34] adobe flash + firefox -&gt; DATA_ERROR"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73358">bug 73358</a>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=21273#c93">comment #93</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=91839" name="attach_91839" title="log loading kernel from git">attachment 91839</a> <a href="attachment.cgi?id=91839&amp;action=edit" title="log loading kernel from git">[details]</a></span>
-&gt; log loading kernel from git
-&gt; 
-&gt; I tried to add only one line:
-&gt; fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 1, all_heads, 2);
-&gt; 
-&gt; I see white horizontal lines on the screen and all hung up.</span >
+        <pre>Was not able to use the standalone version. Alternative apitrace methods
+yielded nill except for the most sophisticated method (LD_PRELOAD glxtrace.so).
+However, this fails:
 
-Ugh, looks like nouveau might have grown a bug on ppc or something -- the
-traceback isn't related to the line that you added (hopefully!). What if you
-apply it to a 3.10 kernel or whatever you were trying with earlier?</pre>
+apitrace: tracing to /home/gebruiker/plugin-container.trace
+apitrace: error: failed to look up real dlopen
+apitrace: error: couldn't find libGL.so
+error: unavailable function glXGetClientString
+
+Almost there :/
+
+Tried both chromium (single-process, no-sandbox etc etc) and firefox.</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +95,9 @@ apply it to a 3.10 kernel or whatever you were trying with earlier?</pre>
     </body>
 </html>
 
---1389419050.2bDaEE71.28723--
+--1389423070.B20F4DA21.4038--
 
---===============0990577766==
+--===============1075784216==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +108,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0990577766==--
+--===============1075784216==--
