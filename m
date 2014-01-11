@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73358] [regression?][nv34] adobe flash + firefox ->
-	DATA_ERROR
-Date: Sat, 11 Jan 2014 16:03:50 +0000
-Message-ID: <bug-73358-8800-BNUQxZNHVX@http.bugs.freedesktop.org/>
-References: <bug-73358-8800@http.bugs.freedesktop.org/>
+From: Fernando Negro <fernando.negro-aPYA7nAdAYY@public.gmane.org>
+Subject: Re: Should I dump my Nvidia card from the less known
+ brand "Gainward"?
+Date: Sat, 11 Jan 2014 23:48:17 +0000
+Message-ID: <52D1D841.8090900@inbox.ru>
+References: <52D0C155.1030902@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0345960548=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73358-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <52D0C155.1030902-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,79 +16,34 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Hi there, Emil.
 
---===============0345960548==
-Content-Type: multipart/alternative; boundary="1389456230.06Eea1.17859"; charset="us-ascii"
+Sorry for the "long story"... :)
 
+It's just that, being an "outsider" (i.e. not a member of this 
+mailing-list) and someone who just came here once before, to ask another 
+question, I thought I should sort of "introduce" myself. :)
 
---1389456230.06Eea1.17859
-Date: Sat, 11 Jan 2014 16:03:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Unfortunately, (as I say in the link where I point to for my "results") 
+I've already tried all sorts of different kernels, including the most 
+recent ones (and I've also tried several different distributions), and 
+there's really no way that I can make nouveau run on this particular card.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=73358
+Besides the proprietary drivers (that run well on it), the only other 
+driver that I can make run on my card is the generic "vesa" one - but, 
+only if I add the "nomodeset" parameter at boot.
 
---- Comment #16 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Had to upload it:
+And, if I don't add this option to the kernel parameters (and just let 
+the nouveau driver try to load), I always get black screens, when X 
+loads, with every kernel that I try.
 
-http://www.send6.com/52258032
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1389456230.06Eea1.17859
-Date: Sat, 11 Jan 2014 16:03:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [regression?][nv34] adobe flash + firefox -&gt; DATA_ERROR"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73358#c16">Comment # 16</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [regression?][nv34] adobe flash + firefox -&gt; DATA_ERROR"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73358">bug 73358</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span></b>
-        <pre>Had to upload it:
-
-<a href="http://www.send6.com/52258032">http://www.send6.com/52258032</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1389456230.06Eea1.17859--
-
---===============0345960548==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0345960548==--
+It's something in the card, itself, that makes nouveau not able to run 
+on it... (Since that, as I said, people who have cards from well known 
+brands that use the same chip - 
+http://lists.freedesktop.org/archives/nouveau/2013-October/014677.html - 
+don't have the same problem that I have.)
