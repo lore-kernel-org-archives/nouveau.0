@@ -1,14 +1,12 @@
-From: Fernando Negro <fernando.negro-aPYA7nAdAYY@public.gmane.org>
-Subject: Re: Should I dump my Nvidia card from the less known
- brand "Gainward"?
-Date: Sat, 11 Jan 2014 23:48:17 +0000
-Message-ID: <52D1D841.8090900@inbox.ru>
-References: <52D0C155.1030902@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 73342] [NV86] yuy2 overlay in mame displays as black
+Date: Sun, 12 Jan 2014 04:36:14 +0000
+Message-ID: <bug-73342-8800-FXFzi2H7eQ@http.bugs.freedesktop.org/>
+References: <bug-73342-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1978998860=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <52D0C155.1030902-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-73342-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +19,92 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi there, Emil.
 
-Sorry for the "long story"... :)
+--===============1978998860==
+Content-Type: multipart/alternative; boundary="1389501374.dED23DCc2.16973"; charset="us-ascii"
 
-It's just that, being an "outsider" (i.e. not a member of this 
-mailing-list) and someone who just came here once before, to ask another 
-question, I thought I should sort of "introduce" myself. :)
 
-Unfortunately, (as I say in the link where I point to for my "results") 
-I've already tried all sorts of different kernels, including the most 
-recent ones (and I've also tried several different distributions), and 
-there's really no way that I can make nouveau run on this particular card.
+--1389501374.dED23DCc2.16973
+Date: Sun, 12 Jan 2014 04:36:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-Besides the proprietary drivers (that run well on it), the only other 
-driver that I can make run on my card is the generic "vesa" one - but, 
-only if I add the "nomodeset" parameter at boot.
+https://bugs.freedesktop.org/show_bug.cgi?id=73342
 
-And, if I don't add this option to the kernel parameters (and just let 
-the nouveau driver try to load), I always get black screens, when X 
-loads, with every kernel that I try.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Well, something weird is definitely going on. I'm on a NV98 (which should be
+quite similar to your NV86 in that regard), Xorg 1.4.13, xf86-video-nouveau
+1.0.10, and ~3.13-rc7+ as far as the nouveau drm is concerned. Running
 
-It's something in the card, itself, that makes nouveau not able to run 
-on it... (Since that, as I said, people who have cards from well known 
-brands that use the same chip - 
-http://lists.freedesktop.org/archives/nouveau/2013-October/014677.html - 
-don't have the same problem that I have.)
+sdlmame -video soft -sm yuy2
+
+shows the screen just fine. (games-emulation/sdlmame-0.148_p1-r1 from gentoo
+repo). I also grabbed the mame source from mamedev.org and built it, the
+resulting mame64 binary gave me similarly working results.
+
+Do you know what mame does with the yuy2 thing? Is it trying to create an
+xvideo overlay? Something else?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1389501374.dED23DCc2.16973
+Date: Sun, 12 Jan 2014 04:36:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] yuy2 overlay in mame displays as black"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73342#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] yuy2 overlay in mame displays as black"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73342">bug 73342</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Well, something weird is definitely going on. I'm on a NV98 (which should be
+quite similar to your NV86 in that regard), Xorg 1.4.13, xf86-video-nouveau
+1.0.10, and ~3.13-rc7+ as far as the nouveau drm is concerned. Running
+
+sdlmame -video soft -sm yuy2
+
+shows the screen just fine. (games-emulation/sdlmame-0.148_p1-r1 from gentoo
+repo). I also grabbed the mame source from mamedev.org and built it, the
+resulting mame64 binary gave me similarly working results.
+
+Do you know what mame does with the yuy2 thing? Is it trying to create an
+xvideo overlay? Something else?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1389501374.dED23DCc2.16973--
+
+--===============1978998860==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1978998860==--
