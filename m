@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73342] [NV86] yuy2 overlay in mame displays as black
-Date: Sun, 12 Jan 2014 04:36:14 +0000
-Message-ID: <bug-73342-8800-FXFzi2H7eQ@http.bugs.freedesktop.org/>
-References: <bug-73342-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nv50, nvc0: initialize ctx->sample_mask to ~0
+Date: Sun, 12 Jan 2014 15:01:29 -0500
+Message-ID: <1389556889-25008-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1978998860=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73342-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,95 +15,43 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Commit 95bf222603b (cso_context: Fix cso_context::sample_mask initial
+value.) fixed the cso sample mask to be initialized to ~0. The cso code
+is also careful not to needlessly call set_sample_mask, so we ended up
+with the ctx->sample_mask never being set. This broke a number of
+EXT_framebuffer_multisample piglit tests.
 
---===============1978998860==
-Content-Type: multipart/alternative; boundary="1389501374.dED23DCc2.16973"; charset="us-ascii"
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
+ src/gallium/drivers/nouveau/nv50/nv50_state.c | 2 ++
+ src/gallium/drivers/nouveau/nvc0/nvc0_state.c | 2 ++
+ 2 files changed, 4 insertions(+)
 
-
---1389501374.dED23DCc2.16973
-Date: Sun, 12 Jan 2014 04:36:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=73342
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Well, something weird is definitely going on. I'm on a NV98 (which should be
-quite similar to your NV86 in that regard), Xorg 1.4.13, xf86-video-nouveau
-1.0.10, and ~3.13-rc7+ as far as the nouveau drm is concerned. Running
-
-sdlmame -video soft -sm yuy2
-
-shows the screen just fine. (games-emulation/sdlmame-0.148_p1-r1 from gentoo
-repo). I also grabbed the mame source from mamedev.org and built it, the
-resulting mame64 binary gave me similarly working results.
-
-Do you know what mame does with the yuy2 thing? Is it trying to create an
-xvideo overlay? Something else?
-
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_state.c b/src/gallium/drivers/nouveau/nv50/nv50_state.c
+index b6a180e..87dd07f 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_state.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_state.c
+@@ -1123,4 +1123,6 @@ nv50_init_state_functions(struct nv50_context *nv50)
+    pipe->create_stream_output_target = nv50_so_target_create;
+    pipe->stream_output_target_destroy = nv50_so_target_destroy;
+    pipe->set_stream_output_targets = nv50_set_stream_output_targets;
++
++   nv50->sample_mask = ~0;
+ }
+diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_state.c b/src/gallium/drivers/nouveau/nvc0/nvc0_state.c
+index 4b8632a..0213a8e 100644
+--- a/src/gallium/drivers/nouveau/nvc0/nvc0_state.c
++++ b/src/gallium/drivers/nouveau/nvc0/nvc0_state.c
+@@ -1229,4 +1229,6 @@ nvc0_init_state_functions(struct nvc0_context *nvc0)
+    pipe->set_global_binding = nvc0_set_global_bindings;
+    pipe->set_compute_resources = nvc0_set_compute_resources;
+    pipe->set_shader_resources = nvc0_set_shader_resources;
++
++   nvc0->sample_mask = ~0;
+ }
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1389501374.dED23DCc2.16973
-Date: Sun, 12 Jan 2014 04:36:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] yuy2 overlay in mame displays as black"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73342#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] yuy2 overlay in mame displays as black"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73342">bug 73342</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Well, something weird is definitely going on. I'm on a NV98 (which should be
-quite similar to your NV86 in that regard), Xorg 1.4.13, xf86-video-nouveau
-1.0.10, and ~3.13-rc7+ as far as the nouveau drm is concerned. Running
-
-sdlmame -video soft -sm yuy2
-
-shows the screen just fine. (games-emulation/sdlmame-0.148_p1-r1 from gentoo
-repo). I also grabbed the mame source from mamedev.org and built it, the
-resulting mame64 binary gave me similarly working results.
-
-Do you know what mame does with the yuy2 thing? Is it trying to create an
-xvideo overlay? Something else?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1389501374.dED23DCc2.16973--
-
---===============1978998860==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1978998860==--
+1.8.3.2
