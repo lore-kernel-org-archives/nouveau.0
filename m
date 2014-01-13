@@ -1,44 +1,53 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 09/19] nv50: properly set the PRIMITIVE_ID enable
-	flag when it is a gp input.
-Date: Mon, 13 Jan 2014 14:19:25 -0500
-Message-ID: <1389640775-25046-10-git-send-email-imirkin@alum.mit.edu>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 12/19] nv50: allocate an extra code bo to avoid
+	dmesg spam
+Date: Mon, 13 Jan 2014 14:19:28 -0500
+Message-ID: <1389640775-25046-13-git-send-email-imirkin@alum.mit.edu>
 References: <1389640775-25046-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1389640775-25046-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces@lists.freedesktop.org
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1389640775-25046-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
----
- src/gallium/drivers/nouveau/nv50/nv50_program.c | 3 +++
- 1 file changed, 3 insertions(+)
+Each code BO is a heap that allocates at the end first, and so GPs are
+allocated at the very end of the allocated space. When executing, we see
+PAGE_NOT_PRESENT errors for the next page. Just over-allocate to make
+sure that there's something there.
 
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_program.c b/src/gallium/drivers/nouveau/nv50/nv50_program.c
-index 78a12e3..f46f240 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_program.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_program.c
-@@ -52,6 +52,9 @@ nv50_vertprog_assign_slots(struct nv50_ir_prog_info *info)
-       for (c = 0; c < 4; ++c)
-          if (info->in[i].mask & (1 << c))
-             info->in[i].slot[c] = n++;
-+
-+      if (info->in[i].sn == TGSI_SEMANTIC_PRIMID)
-+         prog->vp.attrs[2] |= NV50_3D_VP_GP_BUILTIN_ATTR_EN_PRIMITIVE_ID;
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
+ src/gallium/drivers/nouveau/nv50/nv50_screen.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_screen.c b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
+index 43e0f50..82b0207 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_screen.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
+@@ -739,8 +739,12 @@ nv50_screen_create(struct nouveau_device *dev)
+       goto fail;
     }
-    prog->in_nr = info->numInputs;
  
++   /* This over-allocates by a whole code BO. The GP, which would execute at
++    * the end of the last page, would trigger faults. The going theory is that
++    * it prefetches up to a certain amount. This avoids dmesg spam.
++    */
+    ret = nouveau_bo_new(dev, NOUVEAU_BO_VRAM, 1 << 16,
+-                        3 << NV50_CODE_BO_SIZE_LOG2, NULL, &screen->code);
++                        4 << NV50_CODE_BO_SIZE_LOG2, NULL, &screen->code);
+    if (ret) {
+       NOUVEAU_ERR("Failed to allocate code bo: %d\n", ret);
+       goto fail;
 -- 
 1.8.3.2
