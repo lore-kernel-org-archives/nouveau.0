@@ -1,64 +1,127 @@
-From: Bob Gleitsmann <rjgleits@bellsouth.net>
-Subject: [PATCH] Fix null dereference oopses for nv40 cards
-Date: Mon, 13 Jan 2014 01:45:36 -0500
-Message-ID: <1389595536.1239.15.camel@s2895bg>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
+Date: Mon, 13 Jan 2014 09:39:05 +0000
+Message-ID: <bug-64323-8800-g13VnOuaIQ@http.bugs.freedesktop.org/>
+References: <bug-64323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: bskeggs@redhat.com
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0169811301=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-The problem affects nv40 cards during booting. It comes from there being
-two places where subdev arrays are maintained. A commit was recently
-added to make the two equal. However, the struct nouveau_device version
-ends up being referenced before it is initialized. The problem arises
-during the creation of the INSTMEM and THERM subdevs. '
 
-Signed off by: Bob Gleitsmann rjgleits@bellsouth.net
+--===============0169811301==
+Content-Type: multipart/alternative; boundary="1389605945.a0EBb3.22747"; charset="us-ascii"
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c b/drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c
-index b10a143..0f494ca 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c
-@@ -23,6 +23,7 @@
-  */
- 
- #include <engine/graph/nv40.h>
-+#include <core/device.h>
- 
- #include "nv04.h"
- 
-@@ -38,6 +39,7 @@ nv40_instmem_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 
- 	ret = nouveau_instmem_create(parent, engine, oclass, &priv);
- 	*pobject = nv_object(priv);
-+	device->subdev[NVDEV_SUBDEV_INSTMEM] = *pobject;
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/nv40.c b/drivers/gpu/drm/nouveau/core/subdev/therm/nv40.c
-index 002e51b..59b25be 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/therm/nv40.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/therm/nv40.c
-@@ -187,9 +187,11 @@ nv40_therm_ctor(struct nouveau_object *parent,
- {
- 	struct nv40_therm_priv *priv;
- 	int ret;
-+	struct nouveau_device *device = nv_device(parent);
- 
- 	ret = nouveau_therm_create(parent, engine, oclass, &priv);
- 	*pobject = nv_object(priv);
-+	device->subdev[NVDEV_SUBDEV_THERM] = *pobject;
- 	if (ret)
- 		return ret;
+
+--1389605945.a0EBb3.22747
+Date: Mon, 13 Jan 2014 09:39:05 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=64323
+
+anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|FIXED                       |---
+
+--- Comment #31 from anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Are you sure this should be considered fixed? The misrendering issue is fixed,
+but there's still a problem whose Ilia was talking about in his last post
+(which is the cause for performance issues after the patch ?).
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1389605945.a0EBb3.22747
+Date: Mon, 13 Jan 2014 09:39:05 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="anakin.cs&#64;gmail.com">anakin.cs&#64;gmail.com</a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>FIXED
+           </td>
+           <td>---
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c31">Comment # 31</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
+              from <span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="anakin.cs&#64;gmail.com">anakin.cs&#64;gmail.com</a>
+</span></b>
+        <pre>Are you sure this should be considered fixed? The misrendering issue is fixed,
+but there's still a problem whose Ilia was talking about in his last post
+(which is the cause for performance issues after the patch ?).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1389605945.a0EBb3.22747--
+
+--===============0169811301==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0169811301==--
