@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
-Date: Mon, 13 Jan 2014 09:39:05 +0000
-Message-ID: <bug-64323-8800-g13VnOuaIQ@http.bugs.freedesktop.org/>
+Date: Mon, 13 Jan 2014 09:44:40 +0000
+Message-ID: <bug-64323-8800-wDPbDOm5pY@http.bugs.freedesktop.org/>
 References: <bug-64323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0169811301=="
+Content-Type: multipart/mixed; boundary="===============1932218147=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,35 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0169811301==
-Content-Type: multipart/alternative; boundary="1389605945.a0EBb3.22747"; charset="us-ascii"
+--===============1932218147==
+Content-Type: multipart/alternative; boundary="1389606280.e7feA3e4.23532"; charset="us-ascii"
 
 
---1389605945.a0EBb3.22747
-Date: Mon, 13 Jan 2014 09:39:05 +0000
+--1389606280.e7feA3e4.23532
+Date: Mon, 13 Jan 2014 09:44:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=64323
 
-anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|FIXED                       |---
+             Status|REOPENED                    |RESOLVED
+         Resolution|---                         |FIXED
 
---- Comment #31 from anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Are you sure this should be considered fixed? The misrendering issue is fixed,
-but there's still a problem whose Ilia was talking about in his last post
-(which is the cause for performance issues after the patch ?).
+--- Comment #32 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The issue is resolved. There are various optimizations that one might attempt,
+but the code path in question apparently _has_ to wait for the GPU to stop
+writing to that buffer. Any optimization would avoid situations where the GPU
+is writing to that buffer. Something like valid ranges would be helpful -- I
+understand that r600 has them, perhaps we can copy them. But this would be
+strictly an optimization.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389605945.a0EBb3.22747
-Date: Mon, 13 Jan 2014 09:39:05 +0000
+--1389606280.e7feA3e4.23532
+Date: Mon, 13 Jan 2014 09:44:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,11 +59,11 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="anakin.cs&#64;gmail.com">anakin.cs&#64;gmail.com</a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - Severe misrendering in Left 4 Dead 2"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Severe misrendering in Left 4 Dead 2"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -72,34 +75,37 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
            <td>REOPENED
+           </td>
+           <td>RESOLVED
            </td>
          </tr>
 
          <tr>
            <td style="text-align:right;">Resolution</td>
-           <td>FIXED
-           </td>
            <td>---
+           </td>
+           <td>FIXED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c31">Comment # 31</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c32">Comment # 32</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - Severe misrendering in Left 4 Dead 2"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Severe misrendering in Left 4 Dead 2"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
-              from <span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="anakin.cs&#64;gmail.com">anakin.cs&#64;gmail.com</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Are you sure this should be considered fixed? The misrendering issue is fixed,
-but there's still a problem whose Ilia was talking about in his last post
-(which is the cause for performance issues after the patch ?).</pre>
+        <pre>The issue is resolved. There are various optimizations that one might attempt,
+but the code path in question apparently _has_ to wait for the GPU to stop
+writing to that buffer. Any optimization would avoid situations where the GPU
+is writing to that buffer. Something like valid ranges would be helpful -- I
+understand that r600 has them, perhaps we can copy them. But this would be
+strictly an optimization.</pre>
         </div>
       </p>
       <hr>
@@ -111,9 +117,9 @@ but there's still a problem whose Ilia was talking about in his last post
     </body>
 </html>
 
---1389605945.a0EBb3.22747--
+--1389606280.e7feA3e4.23532--
 
---===============0169811301==
+--===============1932218147==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,4 +130,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0169811301==--
+--===============1932218147==--
