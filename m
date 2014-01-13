@@ -1,101 +1,108 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 15/19] nv50: add comments about CB_AUX contents
-Date: Mon, 13 Jan 2014 14:19:31 -0500
-Message-ID: <1389640775-25046-16-git-send-email-imirkin@alum.mit.edu>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH 08/19] nv50/ir: add support for gl_PrimitiveIDIn
+Date: Mon, 13 Jan 2014 14:19:24 -0500
+Message-ID: <1389640775-25046-9-git-send-email-imirkin@alum.mit.edu>
 References: <1389640775-25046-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1389640775-25046-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <1389640775-25046-1-git-send-email-imirkin@alum.mit.edu>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces@lists.freedesktop.org
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Updates a few inconsistencies as well, like the size of the buffer,
-location of the runout, etc.
+Note that the primitive id is stored in a[0x18], while usually the
+geometry instructions are of the form a[$a1 + 0x4] which gets mapped to
+p[] space. We need to avoid the change from a[] to p[] here, so it's
+keyed on whether the access is indirect or not.
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Note that there's also a use-case for accessing e.g. a[$r1], however
+that's not supported for now. (Could be added by checking the register
+file of the indirect parameter.)
+
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
 ---
- src/gallium/drivers/nouveau/nv50/nv50_context.h        | 10 ++++++++++
- src/gallium/drivers/nouveau/nv50/nv50_screen.c         |  8 ++++----
- src/gallium/drivers/nouveau/nv50/nv50_state_validate.c |  2 +-
- 3 files changed, 15 insertions(+), 5 deletions(-)
+ src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp   | 6 +++---
+ src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp   | 7 +++++--
+ src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp | 3 +++
+ 3 files changed, 11 insertions(+), 5 deletions(-)
 
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_context.h b/src/gallium/drivers/nouveau/nv50/nv50_context.h
-index ee6eb0e..7bf4ce3 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_context.h
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_context.h
-@@ -70,7 +70,17 @@
- #define NV50_CB_PVP 124
- #define NV50_CB_PGP 126
- #define NV50_CB_PFP 125
-+/* constant buffer permanently mapped in as c15[] */
- #define NV50_CB_AUX 127
-+/* size of the buffer: 64k. not all taken up, can be reduced if needed. */
-+#define NV50_CB_AUX_SIZE          (1 << 16)
-+/* 8 user clip planes, at 4 32-bit floats each */
-+#define NV50_CB_AUX_UCP_OFFSET    0x0
-+/* 256 textures, each with 2 16-bit integers specifying the x/y MS shift */
-+#define NV50_CB_AUX_MS_OFFSET     0x80
-+/* 4 32-bit floats for the vertex runout, put at the end */
-+#define NV50_CB_AUX_RUNOUT_OFFSET (NV50_CB_AUX_SIZE - 0x10)
-+
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
+index f4db2ed..a6ed4b0 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
+@@ -381,7 +381,7 @@ CodeEmitterNV50::setSrcFileBits(const Instruction *i, int enc)
+    case 0x00: // rrr
+       break;
+    case 0x01: // arr/grr
+-      if (progType == Program::TYPE_GEOMETRY) {
++      if (progType == Program::TYPE_GEOMETRY && i->src(0).isIndirect(0)) {
+          code[0] |= 0x01800000;
+          if (enc == NV50_OP_ENC_LONG || enc == NV50_OP_ENC_LONG_ALT)
+             code[1] |= 0x00200000;
+@@ -407,7 +407,7 @@ CodeEmitterNV50::setSrcFileBits(const Instruction *i, int enc)
+       code[1] |= (i->getSrc(1)->reg.fileIndex << 22);
+       break;
+    case 0x09: // acr/gcr
+-      if (progType == Program::TYPE_GEOMETRY) {
++      if (progType == Program::TYPE_GEOMETRY && i->src(0).isIndirect(0)) {
+          code[0] |= 0x01800000;
+       } else {
+          code[0] |= (enc == NV50_OP_ENC_LONG_ALT) ? 0x01000000 : 0x00800000;
+@@ -612,7 +612,7 @@ CodeEmitterNV50::emitLOAD(const Instruction *i)
  
- 
- struct nv50_blitctx;
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_screen.c b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
-index 82b0207..9ed2d01 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_screen.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
-@@ -472,7 +472,7 @@ nv50_screen_init_hwctx(struct nv50_screen *screen)
-    BEGIN_NV04(push, NV50_3D(CB_DEF_ADDRESS_HIGH), 3);
-    PUSH_DATAh(push, screen->uniforms->offset + (3 << 16));
-    PUSH_DATA (push, screen->uniforms->offset + (3 << 16));
--   PUSH_DATA (push, (NV50_CB_AUX << 16) | 0x0200);
-+   PUSH_DATA (push, (NV50_CB_AUX << 16) | (NV50_CB_AUX_SIZE & 0xffff));
- 
-    BEGIN_NI04(push, NV50_3D(SET_PROGRAM_CB), 3);
-    PUSH_DATA (push, (NV50_CB_AUX << 12) | 0xf01);
-@@ -481,15 +481,15 @@ nv50_screen_init_hwctx(struct nv50_screen *screen)
- 
-    /* return { 0.0, 0.0, 0.0, 0.0 } on out-of-bounds vtxbuf access */
-    BEGIN_NV04(push, NV50_3D(CB_ADDR), 1);
--   PUSH_DATA (push, ((1 << 9) << 6) | NV50_CB_AUX);
-+   PUSH_DATA (push, (NV50_CB_AUX_RUNOUT_OFFSET << 6) | NV50_CB_AUX);
-    BEGIN_NI04(push, NV50_3D(CB_DATA(0)), 4);
-    PUSH_DATAf(push, 0.0f);
-    PUSH_DATAf(push, 0.0f);
-    PUSH_DATAf(push, 0.0f);
-    PUSH_DATAf(push, 0.0f);
-    BEGIN_NV04(push, NV50_3D(VERTEX_RUNOUT_ADDRESS_HIGH), 2);
--   PUSH_DATAh(push, screen->uniforms->offset + (3 << 16) + (1 << 9));
--   PUSH_DATA (push, screen->uniforms->offset + (3 << 16) + (1 << 9));
-+   PUSH_DATAh(push, screen->uniforms->offset + (3 << 16) + NV50_CB_AUX_RUNOUT_OFFSET);
-+   PUSH_DATA (push, screen->uniforms->offset + (3 << 16) + NV50_CB_AUX_RUNOUT_OFFSET);
- 
-    /* max TIC (bits 4:8) & TSC bindings, per program type */
-    for (i = 0; i < 3; ++i) {
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c b/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
-index 86b9a23..3d99b73 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
-@@ -238,7 +238,7 @@ nv50_validate_clip(struct nv50_context *nv50)
- 
-    if (nv50->dirty & NV50_NEW_CLIP) {
-       BEGIN_NV04(push, NV50_3D(CB_ADDR), 1);
--      PUSH_DATA (push, (0 << 8) | NV50_CB_AUX);
-+      PUSH_DATA (push, (NV50_CB_AUX_UCP_OFFSET << 8) | NV50_CB_AUX);
-       BEGIN_NI04(push, NV50_3D(CB_DATA(0)), PIPE_MAX_CLIP_PLANES * 4);
-       PUSH_DATAp(push, &nv50->clip.ucp[0][0], PIPE_MAX_CLIP_PLANES * 4);
+    switch (sf) {
+    case FILE_SHADER_INPUT:
+-      if (progType == Program::TYPE_GEOMETRY)
++      if (progType == Program::TYPE_GEOMETRY && i->src(0).isIndirect(0))
+          code[0] = 0x11800001;
+       else
+          // use 'mov' where we can
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+index 3c790cf..321410e 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+@@ -1434,13 +1434,16 @@ Converter::fetchSrc(tgsi::Instruction::SrcRegister src, int c, Value *ptr)
+             return mkOp1v(OP_RDSV, TYPE_F32, getSSA(), mkSysVal(SV_FACE, 0));
+          return interpolate(src, c, shiftAddress(ptr));
+       } else
+-      if (ptr && prog->getType() == Program::TYPE_GEOMETRY) {
++      if (prog->getType() == Program::TYPE_GEOMETRY) {
++         if (!ptr && info->in[idx].sn == TGSI_SEMANTIC_PRIMID)
++            return mkOp1v(OP_RDSV, TYPE_U32, getSSA(), mkSysVal(SV_PRIMITIVE_ID, 0));
+          // XXX: This is going to be a problem with scalar arrays, i.e. when
+          // we cannot assume that the address is given in units of vec4.
+          //
+          // nv50 and nvc0 need different things here, so let the lowering
+          // passes decide what to do with the address
+-         return mkLoadv(TYPE_U32, srcToSym(src, c), ptr);
++         if (ptr)
++            return mkLoadv(TYPE_U32, srcToSym(src, c), ptr);
+       }
+       return mkLoadv(TYPE_U32, srcToSym(src, c), shiftAddress(ptr));
+    case TGSI_FILE_OUTPUT:
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp
+index a84a54a..1925c09 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp
+@@ -238,6 +238,9 @@ TargetNV50::getSVAddress(DataFile shaderFile, const Symbol *sym) const
+             addr += 4;
+       return addr;
     }
++   case SV_PRIMITIVE_ID:
++      return shaderFile == FILE_SHADER_INPUT ? 0x18 :
++         sysvalLocation[sym->reg.data.sv.sv];
+    case SV_NCTAID:
+       return 0x8 + 2 * sym->reg.data.sv.index;
+    case SV_CTAID:
 -- 
 1.8.3.2
