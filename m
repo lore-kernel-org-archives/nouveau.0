@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
-Date: Mon, 13 Jan 2014 02:28:30 +0000
-Message-ID: <bug-64323-8800-YVro0kj8VZ@http.bugs.freedesktop.org/>
-References: <bug-64323-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47306] segfault in nouveau_fence_update
+Date: Mon, 13 Jan 2014 02:31:20 +0000
+Message-ID: <bug-47306-8800-iyBllLuGjH@http.bugs.freedesktop.org/>
+References: <bug-47306-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2125691351=="
+Content-Type: multipart/mixed; boundary="===============0562368880=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47306-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2125691351==
-Content-Type: multipart/alternative; boundary="1389580110.c5Ae4.32616"; charset="us-ascii"
+--===============0562368880==
+Content-Type: multipart/alternative; boundary="1389580280.e8ffE6f0.433"; charset="us-ascii"
 
 
---1389580110.c5Ae4.32616
-Date: Mon, 13 Jan 2014 02:28:30 +0000
+--1389580280.e8ffE6f0.433
+Date: Mon, 13 Jan 2014 02:31:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64323
+https://bugs.freedesktop.org/show_bug.cgi?id=47306
 
 Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+         Resolution|---                         |INVALID
 
---- Comment #30 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The fix is present in the 9.2, 10 and master branches. Thanks for the great
-work Ilia
+--- Comment #13 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+As mentioned, closing the bug as invalid.
+
+Feel free to reopen if you still experience the problem with recent software.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389580110.c5Ae4.32616
-Date: Mon, 13 Jan 2014 02:28:30 +0000
+--1389580280.e8ffE6f0.433
+Date: Mon, 13 Jan 2014 02:31:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,8 +60,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
+   title="RESOLVED INVALID - segfault in nouveau_fence_update"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47306">bug 47306</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -81,23 +82,24 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Resolution</td>
            <td>---
            </td>
-           <td>FIXED
+           <td>INVALID
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c30">Comment # 30</a>
+   title="RESOLVED INVALID - segfault in nouveau_fence_update"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47306#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Severe misrendering in Left 4 Dead 2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
+   title="RESOLVED INVALID - segfault in nouveau_fence_update"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47306">bug 47306</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>The fix is present in the 9.2, 10 and master branches. Thanks for the great
-work Ilia</pre>
+        <pre>As mentioned, closing the bug as invalid.
+
+Feel free to reopen if you still experience the problem with recent software.</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +111,9 @@ work Ilia</pre>
     </body>
 </html>
 
---1389580110.c5Ae4.32616--
+--1389580280.e8ffE6f0.433--
 
---===============2125691351==
+--===============0562368880==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +124,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2125691351==--
+--===============0562368880==--
