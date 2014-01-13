@@ -1,17 +1,12 @@
-From: Grant <emailgrant-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: launching Firefox causes system crash
-Date: Mon, 13 Jan 2014 10:24:41 -0800
-Message-ID: <CAN0CFw09ZBVq7DbFqjFn81JapboCKe-3UuqCNzU3X2eppfehDA@mail.gmail.com>
-References: <CAN0CFw2E4Om9r7FB+BFSTHHnxVsaMob-Zyq+qLNJuHZtq=OVkQ@mail.gmail.com>
-	<CAKb7UvhazyL4-u3th96k4zjpNa46Qr7JQWoEafkoz8J5DuWn+w@mail.gmail.com>
-	<CAN0CFw22=Qvrx_TCFbGZx_yMHeZ2-gEE4OMBMwnPF2cZjnnvvg@mail.gmail.com>
-	<CAN0CFw33un9r52v5iNNDMDOSL5RFYL4vNn+kBshaBt5ytOhuLA@mail.gmail.com>
-	<CAKb7UvjVnZVMKg=RPXdujXkK+WHWs6XLatLW9hqx4riXPZWAew@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 00/19] nv50: add sampler2DMS/GP support to get
+	OpenGL 3.2
+Date: Mon, 13 Jan 2014 14:19:16 -0500
+Message-ID: <1389640775-25046-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvjVnZVMKg=RPXdujXkK+WHWs6XLatLW9hqx4riXPZWAew-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,54 +16,82 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Bryan Cain <bryancain3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
->>>>> Launching firefox is causing a system crash with a black or white
->>>>> screen and diagonal lines across it.  I've tried the latest nouveau
->>>>> from git and the latest kernel.  I can't find anything in the logs
->>>>> unfortunately.  Any ideas?
->>>>>
->>>>> 00:0d.0 VGA compatible controller: NVIDIA Corporation C61 [GeForce
->>>>> 6150SE nForce 430] (rev a2) (prog-if 00 [VGA controller])
->>>>>     Subsystem: Micro-Star International Co., Ltd. Device 7309
->>>>>     Flags: bus master, 66MHz, fast devsel, latency 0, IRQ 40
->>>>>     Memory at de000000 (32-bit, non-prefetchable) [size=16M]
->>>>>     Memory at c0000000 (64-bit, prefetchable) [size=256M]
->>>>>     Memory at dd000000 (64-bit, non-prefetchable) [size=16M]
->>>>>     Expansion ROM at dfd40000 [disabled] [size=128K]
->>>>>     Capabilities: [48] Power Management version 2
->>>>>     Capabilities: [50] MSI: Enable+ Count=1/1 Maskable- 64bit+
->>>>>     Kernel driver in use: nouveau
->>>>
->>>> Someone just opened a bug about NV4E. You have NV4C, but one could
->>>> imagine that there would be similarities. See
->>>> https://bugs.freedesktop.org/show_bug.cgi?id=73445 and feel free to
->>>> add yourself to it if that matches your symptoms (esp if it's a 3.13
->>>> regression). Otherwise, more information would be nice. See
->>>> http://nouveau.freedesktop.org/wiki/Bugs/ for the sort of information
->>>> that's generally useful.
->>>
->>> I should also mention that rebooting allows firefox to open.  It seems
->>> to crash if it is opened after the system has been running for awhile.
->>>
->>> I tried nouveau.config=NvMSI=0 but it didn't help.
->>>
->>> - Grant
->>
->> Can anyone help me out here?  This has been really disruptive to my
->> organization.  Unchecking "Use hardware acceleration when available"
->> in firefox also doesn't seem to fix it.  Anything else I could try?
->
-> Launch firefox with LIBGL_ALWAYS_SOFTWARE=1 -- that should avoid using
-> nouveau for any sort of 3d.
->
-> Is this a new thing, or has it always been the case? If it's new, any
-> idea what changed?
+OK, so there's a bunch of stuff in here. The geometry stuff is based on the
+work started by Bryan Cain and Christoph Bumiller.
 
-Thank you, I will try that ASAP.  I was trying to use the epiphany and
-midori browsers for a long time but eventually had to give up and
-switch to firefox and this problem popped up right away.
+Patches 01-12: Add support for geometry shaders and fix related issues
+Patches 13-14: Make it possible for fb clears to operate on texture attachments
+               with an explicit layer set (as is allowed in gl 3.2).
+Patches 15-17: Make ARB_texture_multisample work
+Patch      18: Enable GLSL 1.50
+Patch      19: Turn on ARB_seamless_cube_map irrespective of HW support so that                all nv50 cards can get OpenGL 3.2 and geometry shaders (which
+               are otherwise unsupported)
 
-- Grant
+There are still a few geometry-related piglits that fail -- specifically:
+  primitive-id-no-gs
+  gl-3.2-layered-rendering-gl-layer*
+
+I need to trace the blob to figure out exactly how to configure the HW for
+those situations, but I suspect that the fixes will be fairly small and
+self-contained.
+
+Note that there are also a bunch of EXT_framebuffer_multisample tests that are
+failing, but that has nothing to do with these changes. There's something
+wrong with the blit_3d function, at the very least to do with depth/stencil,
+but also some color tests fail as well.
+
+These patches are available at https://github.com/imirkin/mesa.git nv50-gs
+or https://github.com/imirkin/mesa/commits/nv50-gs for those who prefer a
+web ui.
+
+Bryan Cain (2):
+  nv50/ir: delay calculation of indirect addresses
+  nv50: add support for geometry shaders
+
+Christoph Bumiller (1):
+  nv50/ir: fix PFETCH and add RDSV to get VSTRIDE for GPs
+
+Ilia Mirkin (16):
+  nv50: allow vert_count to be >255
+  nv50/ir: disallow predicates on emit/restart ops
+  nv50/ir: disallow shader input propagation for gp
+  nv50/ir: comment out code to allow input/immed loads
+  nv50/ir: add support for gl_PrimitiveIDIn
+  nv50: properly set the PRIMITIVE_ID enable flag when it is a gp input.
+  nv50: VP_RESULT_MAP_SIZE has to be positive
+  nv50: GP_REG_ALLOC_RESULT must be positive
+  nv50: allocate an extra code bo to avoid dmesg spam
+  nv50: don't forget to also clear additional layers
+  nvc0: don't forget to also clear additional layers
+  nv50: add comments about CB_AUX contents
+  nv50: copy nvc0's get_sample_position implementation
+  nv50: add support for textureFetch'ing MS textures,
+    ARB_texture_multisample
+  nv50: report glsl 1.50 now that gp tests pass
+  nv50: enable seamless cube maps on all hw for OpenGL 3.2
+
+ src/gallium/drivers/nouveau/codegen/nv50_ir.h      |   9 ++
+ .../drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp  |  92 ++++++++++--
+ .../drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp  |  41 ++++--
+ .../nouveau/codegen/nv50_ir_lowering_nv50.cpp      | 164 ++++++++++++++++++++-
+ .../nouveau/codegen/nv50_ir_lowering_nvc0.cpp      |   7 +
+ .../drivers/nouveau/codegen/nv50_ir_print.cpp      |   1 +
+ .../nouveau/codegen/nv50_ir_target_nv50.cpp        |  18 ++-
+ src/gallium/drivers/nouveau/nv50/nv50_context.c    |  46 ++++++
+ src/gallium/drivers/nouveau/nv50/nv50_context.h    |  17 +++
+ src/gallium/drivers/nouveau/nv50/nv50_program.c    |  30 +++-
+ src/gallium/drivers/nouveau/nv50/nv50_program.h    |   2 +-
+ src/gallium/drivers/nouveau/nv50/nv50_screen.c     |  23 ++-
+ .../drivers/nouveau/nv50/nv50_shader_state.c       |   6 +
+ .../drivers/nouveau/nv50/nv50_state_validate.c     |   2 +-
+ src/gallium/drivers/nouveau/nv50/nv50_surface.c    |  25 ++--
+ src/gallium/drivers/nouveau/nv50/nv50_tex.c        |  77 +++++++++-
+ src/gallium/drivers/nouveau/nvc0/nvc0_surface.c    |  22 ++-
+ 17 files changed, 526 insertions(+), 56 deletions(-)
+
+-- 
+1.8.3.2
