@@ -1,11 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nv50, nvc0: initialize ctx->sample_mask to ~0
-Date: Sun, 12 Jan 2014 15:01:29 -0500
-Message-ID: <1389556889-25008-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 64323] Severe misrendering in Left 4 Dead 2
+Date: Mon, 13 Jan 2014 02:28:30 +0000
+Message-ID: <bug-64323-8800-YVro0kj8VZ@http.bugs.freedesktop.org/>
+References: <bug-64323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2125691351=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-64323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,43 +16,110 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Commit 95bf222603b (cso_context: Fix cso_context::sample_mask initial
-value.) fixed the cso sample mask to be initialized to ~0. The cso code
-is also careful not to needlessly call set_sample_mask, so we ended up
-with the ctx->sample_mask never being set. This broke a number of
-EXT_framebuffer_multisample piglit tests.
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
----
- src/gallium/drivers/nouveau/nv50/nv50_state.c | 2 ++
- src/gallium/drivers/nouveau/nvc0/nvc0_state.c | 2 ++
- 2 files changed, 4 insertions(+)
+--===============2125691351==
+Content-Type: multipart/alternative; boundary="1389580110.c5Ae4.32616"; charset="us-ascii"
 
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_state.c b/src/gallium/drivers/nouveau/nv50/nv50_state.c
-index b6a180e..87dd07f 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_state.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_state.c
-@@ -1123,4 +1123,6 @@ nv50_init_state_functions(struct nv50_context *nv50)
-    pipe->create_stream_output_target = nv50_so_target_create;
-    pipe->stream_output_target_destroy = nv50_so_target_destroy;
-    pipe->set_stream_output_targets = nv50_set_stream_output_targets;
-+
-+   nv50->sample_mask = ~0;
- }
-diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_state.c b/src/gallium/drivers/nouveau/nvc0/nvc0_state.c
-index 4b8632a..0213a8e 100644
---- a/src/gallium/drivers/nouveau/nvc0/nvc0_state.c
-+++ b/src/gallium/drivers/nouveau/nvc0/nvc0_state.c
-@@ -1229,4 +1229,6 @@ nvc0_init_state_functions(struct nvc0_context *nvc0)
-    pipe->set_global_binding = nvc0_set_global_bindings;
-    pipe->set_compute_resources = nvc0_set_compute_resources;
-    pipe->set_shader_resources = nvc0_set_shader_resources;
-+
-+   nvc0->sample_mask = ~0;
- }
+
+--1389580110.c5Ae4.32616
+Date: Mon, 13 Jan 2014 02:28:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=64323
+
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #30 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+The fix is present in the 9.2, 10 and master branches. Thanks for the great
+work Ilia
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1389580110.c5Ae4.32616
+Date: Mon, 13 Jan 2014 02:28:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323#c30">Comment # 30</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Severe misrendering in Left 4 Dead 2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=64323">bug 64323</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>The fix is present in the 9.2, 10 and master branches. Thanks for the great
+work Ilia</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1389580110.c5Ae4.32616--
+
+--===============2125691351==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2125691351==--
