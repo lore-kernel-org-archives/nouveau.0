@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73563] Continous output of "nouveau E[ DRM] DDC
- responded, but no EDID for VGA-1"
-Date: Mon, 13 Jan 2014 17:27:29 +0000
-Message-ID: <bug-73563-8800-iyxzN0JTEw@http.bugs.freedesktop.org/>
+Subject: [Bug 73563] [NVD9] Continous output of "nouveau E[ DRM]
+ DDC responded, but no EDID for VGA-1"
+Date: Mon, 13 Jan 2014 17:28:23 +0000
+Message-ID: <bug-73563-8800-et6A8xxkGd@http.bugs.freedesktop.org/>
 References: <bug-73563-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1481876265=="
+Content-Type: multipart/mixed; boundary="===============0757200615=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73563-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1481876265==
-Content-Type: multipart/alternative; boundary="1389634049.74b342B1.29601"; charset="us-ascii"
+--===============0757200615==
+Content-Type: multipart/alternative; boundary="1389634103.8068a41.29769"; charset="us-ascii"
 
 
---1389634049.74b342B1.29601
-Date: Mon, 13 Jan 2014 17:27:29 +0000
+--1389634103.8068a41.29769
+Date: Mon, 13 Jan 2014 17:28:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73563
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please upload your VBIOS (/sys/kernel/debug/dri/0/vbios.rom). Also, is anything
-connected to VGA-1? If not, does such a port actually exist on your device? If
-so, can you check what happens if you do plug something into it?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Also please supply a copy of your dmesg shortly after boot (i.e. before those
-messages overflow your kernel log)
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Continous output of         |[NVD9] Continous output of
+                   |"nouveau E[     DRM] DDC    |"nouveau E[     DRM] DDC
+                   |responded, but no EDID for  |responded, but no EDID for
+                   |VGA-1"                      |VGA-1"
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389634049.74b342B1.29601
-Date: Mon, 13 Jan 2014 17:27:29 +0000
+--1389634103.8068a41.29769
+Date: Mon, 13 Jan 2014 17:28:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,26 +54,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Continous output of &quot;nouveau E[ DRM] DDC responded, but no EDID for VGA-1&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73563#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Continous output of &quot;nouveau E[ DRM] DDC responded, but no EDID for VGA-1&quot;"
+   title="NEW --- - [NVD9] Continous output of &quot;nouveau E[ DRM] DDC responded, but no EDID for VGA-1&quot;"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=73563">bug 73563</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Please upload your VBIOS (/sys/kernel/debug/dri/0/vbios.rom). Also, is anything
-connected to VGA-1? If not, does such a port actually exist on your device? If
-so, can you check what happens if you do plug something into it?
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-Also please supply a copy of your dmesg shortly after boot (i.e. before those
-messages overflow your kernel log)</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Continous output of &quot;nouveau E[     DRM] DDC responded, but no EDID for VGA-1&quot;
+           </td>
+           <td>[NVD9] Continous output of &quot;nouveau E[     DRM] DDC responded, but no EDID for VGA-1&quot;
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +86,9 @@ messages overflow your kernel log)</pre>
     </body>
 </html>
 
---1389634049.74b342B1.29601--
+--1389634103.8068a41.29769--
 
---===============1481876265==
+--===============0757200615==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1481876265==--
+--===============0757200615==--
