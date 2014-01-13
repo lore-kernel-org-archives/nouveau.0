@@ -1,12 +1,14 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 00/19] nv50: add sampler2DMS/GP support to get
-	OpenGL 3.2
-Date: Mon, 13 Jan 2014 14:19:16 -0500
-Message-ID: <1389640775-25046-1-git-send-email-imirkin@alum.mit.edu>
+Subject: [PATCH 01/19] nv50/ir: fix PFETCH and add RDSV to get
+	VSTRIDE for GPs
+Date: Mon, 13 Jan 2014 14:19:17 -0500
+Message-ID: <1389640775-25046-2-git-send-email-imirkin@alum.mit.edu>
+References: <1389640775-25046-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1389640775-25046-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,81 +19,137 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Bryan Cain <bryancain3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-OK, so there's a bunch of stuff in here. The geometry stuff is based on the
-work started by Bryan Cain and Christoph Bumiller.
+From: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
 
-Patches 01-12: Add support for geometry shaders and fix related issues
-Patches 13-14: Make it possible for fb clears to operate on texture attachments
-               with an explicit layer set (as is allowed in gl 3.2).
-Patches 15-17: Make ARB_texture_multisample work
-Patch      18: Enable GLSL 1.50
-Patch      19: Turn on ARB_seamless_cube_map irrespective of HW support so that                all nv50 cards can get OpenGL 3.2 and geometry shaders (which
-               are otherwise unsupported)
+---
+ src/gallium/drivers/nouveau/codegen/nv50_ir.h      |  1 +
+ .../drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp  | 62 ++++++++++++++++++++--
+ .../drivers/nouveau/codegen/nv50_ir_print.cpp      |  1 +
+ 3 files changed, 59 insertions(+), 5 deletions(-)
 
-There are still a few geometry-related piglits that fail -- specifically:
-  primitive-id-no-gs
-  gl-3.2-layered-rendering-gl-layer*
-
-I need to trace the blob to figure out exactly how to configure the HW for
-those situations, but I suspect that the fixes will be fairly small and
-self-contained.
-
-Note that there are also a bunch of EXT_framebuffer_multisample tests that are
-failing, but that has nothing to do with these changes. There's something
-wrong with the blit_3d function, at the very least to do with depth/stencil,
-but also some color tests fail as well.
-
-These patches are available at https://github.com/imirkin/mesa.git nv50-gs
-or https://github.com/imirkin/mesa/commits/nv50-gs for those who prefer a
-web ui.
-
-Bryan Cain (2):
-  nv50/ir: delay calculation of indirect addresses
-  nv50: add support for geometry shaders
-
-Christoph Bumiller (1):
-  nv50/ir: fix PFETCH and add RDSV to get VSTRIDE for GPs
-
-Ilia Mirkin (16):
-  nv50: allow vert_count to be >255
-  nv50/ir: disallow predicates on emit/restart ops
-  nv50/ir: disallow shader input propagation for gp
-  nv50/ir: comment out code to allow input/immed loads
-  nv50/ir: add support for gl_PrimitiveIDIn
-  nv50: properly set the PRIMITIVE_ID enable flag when it is a gp input.
-  nv50: VP_RESULT_MAP_SIZE has to be positive
-  nv50: GP_REG_ALLOC_RESULT must be positive
-  nv50: allocate an extra code bo to avoid dmesg spam
-  nv50: don't forget to also clear additional layers
-  nvc0: don't forget to also clear additional layers
-  nv50: add comments about CB_AUX contents
-  nv50: copy nvc0's get_sample_position implementation
-  nv50: add support for textureFetch'ing MS textures,
-    ARB_texture_multisample
-  nv50: report glsl 1.50 now that gp tests pass
-  nv50: enable seamless cube maps on all hw for OpenGL 3.2
-
- src/gallium/drivers/nouveau/codegen/nv50_ir.h      |   9 ++
- .../drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp  |  92 ++++++++++--
- .../drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp  |  41 ++++--
- .../nouveau/codegen/nv50_ir_lowering_nv50.cpp      | 164 ++++++++++++++++++++-
- .../nouveau/codegen/nv50_ir_lowering_nvc0.cpp      |   7 +
- .../drivers/nouveau/codegen/nv50_ir_print.cpp      |   1 +
- .../nouveau/codegen/nv50_ir_target_nv50.cpp        |  18 ++-
- src/gallium/drivers/nouveau/nv50/nv50_context.c    |  46 ++++++
- src/gallium/drivers/nouveau/nv50/nv50_context.h    |  17 +++
- src/gallium/drivers/nouveau/nv50/nv50_program.c    |  30 +++-
- src/gallium/drivers/nouveau/nv50/nv50_program.h    |   2 +-
- src/gallium/drivers/nouveau/nv50/nv50_screen.c     |  23 ++-
- .../drivers/nouveau/nv50/nv50_shader_state.c       |   6 +
- .../drivers/nouveau/nv50/nv50_state_validate.c     |   2 +-
- src/gallium/drivers/nouveau/nv50/nv50_surface.c    |  25 ++--
- src/gallium/drivers/nouveau/nv50/nv50_tex.c        |  77 +++++++++-
- src/gallium/drivers/nouveau/nvc0/nvc0_surface.c    |  22 ++-
- 17 files changed, 526 insertions(+), 56 deletions(-)
-
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir.h b/src/gallium/drivers/nouveau/codegen/nv50_ir.h
+index 68c76e5..6a001d3 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir.h
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir.h
+@@ -366,6 +366,7 @@ enum SVSemantic
+    SV_CLOCK,
+    SV_LBASE,
+    SV_SBASE,
++   SV_VERTEX_STRIDE,
+    SV_UNDEFINED,
+    SV_LAST
+ };
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
+index 3eca27d..cf82e2f 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
+@@ -87,6 +87,7 @@ private:
+    void emitLOAD(const Instruction *);
+    void emitSTORE(const Instruction *);
+    void emitMOV(const Instruction *);
++   void emitRDSV(const Instruction *);
+    void emitNOP();
+    void emitINTERP(const Instruction *);
+    void emitPFETCH(const Instruction *);
+@@ -772,6 +773,29 @@ CodeEmitterNV50::emitMOV(const Instruction *i)
+    }
+ }
+ 
++static inline uint8_t getSRegEncoding(const ValueRef &ref)
++{
++   switch (SDATA(ref).sv.sv) {
++   case SV_PHYSID:        return 0;
++   case SV_CLOCK:         return 1;
++   case SV_VERTEX_STRIDE: return 3;
++// case SV_PM_COUNTER:    return 4 + SDATA(ref).sv.index;
++   case SV_SAMPLE_INDEX:  return 8;
++   default:
++      assert(!"no sreg for system value");
++      return 0;
++   }
++}
++
++void
++CodeEmitterNV50::emitRDSV(const Instruction *i)
++{
++   code[0] = 0x00000001;
++   code[1] = 0x60000000 | (getSRegEncoding(i->src(0)) << 14);
++   defId(i->def(0), 2);
++   emitFlagsRd(i);
++}
++
+ void
+ CodeEmitterNV50::emitNOP()
+ {
+@@ -794,15 +818,40 @@ CodeEmitterNV50::emitQUADOP(const Instruction *i, uint8_t lane, uint8_t quOp)
+       srcId(i->src(0), 32 + 14);
+ }
+ 
++/* NOTE: This returns the base address of a vertex inside the primitive.
++ * src0 is an immediate, the index (not offset) of the vertex
++ * inside the primitive. XXX: signed or unsigned ?
++ * src1 (may be NULL) should use whatever units the hardware requires
++ * (on nv50 this is bytes, so, relative index * 4; signed 16 bit value).
++ */
+ void
+ CodeEmitterNV50::emitPFETCH(const Instruction *i)
+ {
+-   code[0] = 0x11800001;
+-   code[1] = 0x04200000 | (0xf << 14);
++   const uint32_t prim = i->src(0).get()->reg.data.u32;
++   assert(prim <= 127);
+ 
+-   defId(i->def(0), 2);
+-   srcAddr8(i->src(0), 9);
+-   setAReg16(i, 0);
++   if (i->def(0).getFile() == FILE_ADDRESS) {
++      // shl $aX a[] 0
++      code[0] = 0x00000001 | ((DDATA(i->def(0)).id + 1) << 2);
++      code[1] = 0xc0200000;
++      code[0] |= prim << 9;
++      assert(!i->srcExists(1));
++   } else
++   if (i->srcExists(1)) {
++      // ld b32 $rX a[$aX+base]
++      code[0] = 0x00000001;
++      code[1] = 0x04200000 | (0xf << 14);
++      defId(i->def(0), 2);
++      code[0] |= prim << 9;
++      setARegBits(SDATA(i->src(1)).id + 1);
++   } else {
++      // mov b32 $rX a[]
++      code[0] = 0x10000001;
++      code[1] = 0x04200000 | (0xf << 14);
++      defId(i->def(0), 2);
++      code[0] |= prim << 9;
++   }
++   emitFlagsRd(i);
+ }
+ 
+ void
+@@ -1620,6 +1669,9 @@ CodeEmitterNV50::emitInstruction(Instruction *insn)
+    case OP_PFETCH:
+       emitPFETCH(insn);
+       break;
++   case OP_RDSV:
++      emitRDSV(insn);
++      break;
+    case OP_LINTERP:
+    case OP_PINTERP:
+       emitINTERP(insn);
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_print.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_print.cpp
+index ee39b3c..ae42d03 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_print.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_print.cpp
+@@ -265,6 +265,7 @@ static const char *SemanticStr[SV_LAST + 1] =
+    "CLOCK",
+    "LBASE",
+    "SBASE",
++   "VERTEX_STRIDE",
+    "?",
+    "(INVALID)"
+ };
 -- 
 1.8.3.2
