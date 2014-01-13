@@ -1,8 +1,7 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 13/19] nv50: don't forget to also clear additional
-	layers
-Date: Mon, 13 Jan 2014 14:19:29 -0500
-Message-ID: <1389640775-25046-14-git-send-email-imirkin@alum.mit.edu>
+Subject: [PATCH 11/19] nv50: GP_REG_ALLOC_RESULT must be positive
+Date: Mon, 13 Jan 2014 14:19:27 -0500
+Message-ID: <1389640775-25046-12-git-send-email-imirkin@alum.mit.edu>
 References: <1389640775-25046-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,63 +20,25 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Fixes most of the tests/spec/gl-3.2/layered-rendering/* piglits.
+Set max_out to 1 when there are no outputs.
 
 Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 ---
- src/gallium/drivers/nouveau/nv50/nv50_surface.c | 25 ++++++++++++++++---------
- 1 file changed, 16 insertions(+), 9 deletions(-)
+ src/gallium/drivers/nouveau/nv50/nv50_program.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_surface.c b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-index 358f57a..16a4369 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-@@ -395,7 +395,7 @@ nv50_clear(struct pipe_context *pipe, unsigned buffers,
-    struct nv50_context *nv50 = nv50_context(pipe);
-    struct nouveau_pushbuf *push = nv50->base.pushbuf;
-    struct pipe_framebuffer_state *fb = &nv50->framebuffer;
--   unsigned i;
-+   unsigned i, j;
-    uint32_t mode = 0;
- 
-    /* don't need NEW_BLEND, COLOR_MASK doesn't affect CLEAR_BUFFERS */
-@@ -408,9 +408,6 @@ nv50_clear(struct pipe_context *pipe, unsigned buffers,
-       PUSH_DATAf(push, color->f[1]);
-       PUSH_DATAf(push, color->f[2]);
-       PUSH_DATAf(push, color->f[3]);
--      mode =
--         NV50_3D_CLEAR_BUFFERS_R | NV50_3D_CLEAR_BUFFERS_G |
--         NV50_3D_CLEAR_BUFFERS_B | NV50_3D_CLEAR_BUFFERS_A;
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_program.c b/src/gallium/drivers/nouveau/nv50/nv50_program.c
+index f46f240..813795f 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_program.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_program.c
+@@ -118,6 +118,8 @@ nv50_vertprog_assign_slots(struct nv50_ir_prog_info *info)
     }
+    prog->out_nr = info->numOutputs;
+    prog->max_out = n;
++   if (!prog->max_out)
++      prog->max_out = 1;
  
-    if (buffers & PIPE_CLEAR_DEPTH) {
-@@ -425,12 +422,22 @@ nv50_clear(struct pipe_context *pipe, unsigned buffers,
-       mode |= NV50_3D_CLEAR_BUFFERS_S;
-    }
- 
--   BEGIN_NV04(push, NV50_3D(CLEAR_BUFFERS), 1);
--   PUSH_DATA (push, mode);
-+   if ((buffers & PIPE_CLEAR_DEPTH) || (buffers & PIPE_CLEAR_STENCIL)) {
-+      for (j = fb->zsbuf->u.tex.first_layer; j <= fb->zsbuf->u.tex.last_layer; j++) {
-+         BEGIN_NV04(push, NV50_3D(CLEAR_BUFFERS), 1);
-+         PUSH_DATA(push, mode | (j << NV50_3D_CLEAR_BUFFERS_LAYER__SHIFT));
-+      }
-+   }
- 
--   for (i = 1; i < fb->nr_cbufs; i++) {
--      BEGIN_NV04(push, NV50_3D(CLEAR_BUFFERS), 1);
--      PUSH_DATA (push, (i << 6) | 0x3c);
-+   if (buffers & PIPE_CLEAR_COLOR) {
-+      for (i = 0; i < fb->nr_cbufs; i++) {
-+         struct pipe_surface *sf = fb->cbufs[i];
-+         for (j = sf->u.tex.first_layer; j <= sf->u.tex.last_layer; j++) {
-+            BEGIN_NV04(push, NV50_3D(CLEAR_BUFFERS), 1);
-+            PUSH_DATA (push, (i << 6) | 0x3c |
-+                       (j << NV50_3D_CLEAR_BUFFERS_LAYER__SHIFT));
-+         }
-+      }
-    }
- }
- 
+    if (prog->vp.psiz < info->numOutputs)
+       prog->vp.psiz = prog->out[prog->vp.psiz].hw;
 -- 
 1.8.3.2
