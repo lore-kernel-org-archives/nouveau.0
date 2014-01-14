@@ -1,12 +1,11 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: Re: [PATCH] nouveau: add framebuffer validation callback
-Date: Tue, 14 Jan 2014 11:42:39 +0100
-Message-ID: <87ha96n8tc.fsf@riseup.net>
-References: <1389381107-13955-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 73607] New: [v3.13-rc8][regression] NULL pointer
+ dereference in nouveau_gpuobj_create_
+Date: Tue, 14 Jan 2014 14:16:33 +0000
+Message-ID: <bug-73607-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0348209717=="
+Content-Type: multipart/mixed; boundary="===============0590649914=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1389381107-13955-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,260 +15,163 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0348209717==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
 
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
+--===============0590649914==
+Content-Type: multipart/alternative; boundary="1389708993.04aE51.3053"; charset="us-ascii"
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> writes:
+--1389708993.04aE51.3053
+Date: Tue, 14 Jan 2014 14:16:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-> Fixes assertions when trying to attach textures to fbs with formats not
-> supported by the render engines.
->
-> See https://bugs.freedesktop.org/show_bug.cgi?id=3D73459
->
-> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-> ---
+https://bugs.freedesktop.org/show_bug.cgi?id=73607
 
-Hi Ilia,
+          Priority: medium
+            Bug ID: 73607
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [v3.13-rc8][regression] NULL pointer dereference in
+                    nouveau_gpuobj_create_
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
 
->
-> In a perfect world I'd have separate callbacks for depth and color, but g=
-iven
-> the list of supported values, I don't think this matters. Also I used
-> st_validate_framebuffer as a template, but I don't know if there can actu=
-ally
-> be many attachments. Should MaxColorAttachments be set to 1? I think it's=
- set
-> to 8 right now.
->
-Yes, we should probably set that to one, and that will make the loop in
-your nouveau_framebuffer_validate() code unnecessary.
+Created attachment 92042
+  --> https://bugs.freedesktop.org/attachment.cgi?id=92042&action=edit
+OOPS @ the bottom
 
-> And there's also an odd nouveau_validate_framebuffer thing in
-> nouveau_context.c, but I think that's related to actually
-> rendering/invalidating the fb displayed to the screen.
->
-That's called before any rendering happens to check if we need to renew
-any of the render buffers, e.g. in case the window was resized or
-SwapBuffers() was called.  It's rather unfortunate that the name of your
-new function is just a permutation of the old one, how about
-'nouveau_check_framebuffer_completeness'?
+Current HEAD gives a NULL pointer. Attaching full dmesg...
 
->  src/mesa/drivers/dri/nouveau/nouveau_driver.h |  1 +
->  src/mesa/drivers/dri/nouveau/nouveau_fbo.c    | 38 +++++++++++++++++++++=
-++++++
->  src/mesa/drivers/dri/nouveau/nv04_context.c   | 14 ++++++++++
->  src/mesa/drivers/dri/nouveau/nv10_context.c   | 16 +++++++++++
->  src/mesa/drivers/dri/nouveau/nv20_context.c   | 16 +++++++++++
->  5 files changed, 85 insertions(+)
->
-> diff --git a/src/mesa/drivers/dri/nouveau/nouveau_driver.h b/src/mesa/dri=
-vers/dri/nouveau/nouveau_driver.h
-> index e03b2c1..84953da 100644
-> --- a/src/mesa/drivers/dri/nouveau/nouveau_driver.h
-> +++ b/src/mesa/drivers/dri/nouveau/nouveau_driver.h
-> @@ -60,6 +60,7 @@ struct nouveau_driver {
->  			     struct nouveau_surface *dst,
->  			     unsigned mask, unsigned value,
->  			     int dx, int dy, int w, int h);
-> +	bool (*is_rt_format_supported)(gl_format format);
->=20=20
->  	nouveau_state_func *emit;
->  	int num_emit;
-> diff --git a/src/mesa/drivers/dri/nouveau/nouveau_fbo.c b/src/mesa/driver=
-s/dri/nouveau/nouveau_fbo.c
-> index 25543e4..fba0d52 100644
-> --- a/src/mesa/drivers/dri/nouveau/nouveau_fbo.c
-> +++ b/src/mesa/drivers/dri/nouveau/nouveau_fbo.c
-> @@ -268,6 +268,43 @@ nouveau_finish_render_texture(struct gl_context *ctx,
->  	texture_dirty(rb->TexImage->TexObject);
->  }
->=20=20
-> +static void
-> +nouveau_framebuffer_validate(struct gl_context *ctx,
-> +			     struct gl_framebuffer *fb)
-> +{
-> +	const struct nouveau_driver *drv =3D context_drv(ctx);
-> +	int i, count =3D 0;
-> +
-> +	for (i =3D 0; i < ctx->Const.MaxColorAttachments; i++) {
-> +		struct gl_renderbuffer_attachment *rba =3D
-> +			&fb->Attachment[BUFFER_COLOR0 + i];
-> +		if (rba->Type =3D=3D GL_NONE)
-> +			continue;
-> +
-> +		count++;
-> +		if (rba->Type !=3D GL_TEXTURE)
-> +			continue;
-> +
-> +		if (!drv->is_rt_format_supported(
-> +				    rba->Renderbuffer->TexImage->TexFormat))
-> +			goto err;
-> +	}
-> +	if (count > 1)
-> +		goto err;
-> +
-> +	if (fb->Attachment[BUFFER_DEPTH].Type =3D=3D GL_TEXTURE) {
-> +		struct gl_texture_image *ti =3D
-> +			fb->Attachment[BUFFER_DEPTH].Renderbuffer->TexImage;
-> +		if (!drv->is_rt_format_supported(ti->TexFormat))
-> +			goto err;
-> +	}
-> +
-> +	return;
-> +err:
-> +	fb->_Status =3D GL_FRAMEBUFFER_UNSUPPORTED_EXT;
-> +	return;
-> +}
-> +
->  void
->  nouveau_fbo_functions_init(struct dd_function_table *functions)
->  {
-> @@ -279,4 +316,5 @@ nouveau_fbo_functions_init(struct dd_function_table *=
-functions)
->  	functions->FramebufferRenderbuffer =3D nouveau_framebuffer_renderbuffer;
->  	functions->RenderTexture =3D nouveau_render_texture;
->  	functions->FinishRenderTexture =3D nouveau_finish_render_texture;
-> +	functions->ValidateFramebuffer =3D nouveau_framebuffer_validate;
->  }
-> diff --git a/src/mesa/drivers/dri/nouveau/nv04_context.c b/src/mesa/drive=
-rs/dri/nouveau/nv04_context.c
-> index c198c03..665cadd 100644
-> --- a/src/mesa/drivers/dri/nouveau/nv04_context.c
-> +++ b/src/mesa/drivers/dri/nouveau/nv04_context.c
-> @@ -199,11 +199,25 @@ fail:
->  	return NULL;
->  }
->=20=20
-> +static bool
-> +nv04_is_rt_format_supported(gl_format format)
-> +{
-> +	switch (format) {
-> +	case MESA_FORMAT_XRGB8888:
-> +	case MESA_FORMAT_ARGB8888:
-> +	case MESA_FORMAT_RGB565:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-You're missing the depth/stencil formats here.  nv04 is kind of annoying
-because the depth and color buffers have to be of the same bpp, so if
-the color buffer is 32bpp we should only accept MESA_FORMAT_Z24_S8, if
-it's 16bpp MESA_FORMAT_Z16.  You probably want to implement that logic
-in the top-level ValidateFramebuffer() hook instead of using a driver
-call-back mechanism, because (aside from the bpp limitation) we're going
-to expose the same set of formats on all generations.
+--1389708993.04aE51.3053
+Date: Tue, 14 Jan 2014 14:16:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
-Thanks.
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
 
->  const struct nouveau_driver nv04_driver =3D {
->  	.context_create =3D nv04_context_create,
->  	.context_destroy =3D nv04_context_destroy,
->  	.surface_copy =3D nv04_surface_copy,
->  	.surface_fill =3D nv04_surface_fill,
-> +	.is_rt_format_supported =3D nv04_is_rt_format_supported,
->  	.emit =3D (nouveau_state_func[]) {
->  		nv04_defer_control,
->  		nouveau_emit_nothing,
-> diff --git a/src/mesa/drivers/dri/nouveau/nv10_context.c b/src/mesa/drive=
-rs/dri/nouveau/nv10_context.c
-> index 1918f12..9c5cfcb 100644
-> --- a/src/mesa/drivers/dri/nouveau/nv10_context.c
-> +++ b/src/mesa/drivers/dri/nouveau/nv10_context.c
-> @@ -492,11 +492,27 @@ fail:
->  	return NULL;
->  }
->=20=20
-> +static bool
-> +nv10_is_rt_format_supported(gl_format format)
-> +{
-> +	switch (format) {
-> +	case MESA_FORMAT_XRGB8888:
-> +	case MESA_FORMAT_ARGB8888:
-> +	case MESA_FORMAT_RGB565:
-> +	case MESA_FORMAT_Z16:
-> +	case MESA_FORMAT_Z24_S8:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
->  const struct nouveau_driver nv10_driver =3D {
->  	.context_create =3D nv10_context_create,
->  	.context_destroy =3D nv10_context_destroy,
->  	.surface_copy =3D nv04_surface_copy,
->  	.surface_fill =3D nv04_surface_fill,
-> +       .is_rt_format_supported =3D nv10_is_rt_format_supported,
->  	.emit =3D (nouveau_state_func[]) {
->  		nv10_emit_alpha_func,
->  		nv10_emit_blend_color,
-> diff --git a/src/mesa/drivers/dri/nouveau/nv20_context.c b/src/mesa/drive=
-rs/dri/nouveau/nv20_context.c
-> index 1d77132..e233025 100644
-> --- a/src/mesa/drivers/dri/nouveau/nv20_context.c
-> +++ b/src/mesa/drivers/dri/nouveau/nv20_context.c
-> @@ -500,11 +500,27 @@ fail:
->  	return NULL;
->  }
->=20=20
-> +static bool
-> +nv20_is_rt_format_supported(gl_format format)
-> +{
-> +	switch (format) {
-> +	case MESA_FORMAT_XRGB8888:
-> +	case MESA_FORMAT_ARGB8888:
-> +	case MESA_FORMAT_RGB565:
-> +	case MESA_FORMAT_Z16:
-> +	case MESA_FORMAT_Z24_S8:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
->  const struct nouveau_driver nv20_driver =3D {
->  	.context_create =3D nv20_context_create,
->  	.context_destroy =3D nv20_context_destroy,
->  	.surface_copy =3D nv04_surface_copy,
->  	.surface_fill =3D nv04_surface_fill,
-> +	.is_rt_format_supported =3D nv20_is_rt_format_supported,
->  	.emit =3D (nouveau_state_func[]) {
->  		nv10_emit_alpha_func,
->  		nv10_emit_blend_color,
-> --=20
-> 1.8.3.2
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [v3.13-rc8][regression] NULL pointer dereference in nouveau_gpuobj_create_"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73607">73607</a>
+          </td>
+        </tr>
 
---=-=-=--
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
 
---==-=-=
-Content-Type: application/pgp-signature
+        <tr>
+          <th>Summary</th>
+          <td>[v3.13-rc8][regression] NULL pointer dereference in nouveau_gpuobj_create_
+          </td>
+        </tr>
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
 
-iF4EAREIAAYFAlLVFJ8ACgkQg5k4nX1Sv1sYWAD9G+PEFmof6fG6Ws0BDQ/2iUJj
-Qphu/j1l+h21m60znYgA/291g0IS7oGPbBrVm+dNS3UFRLxZE8VAeWJ+dH2MPnMb
-=ElPR
------END PGP SIGNATURE-----
---==-=-=--
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
 
---===============0348209717==
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>ronald645&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=92042" name="attach_92042" title="OOPS &#64; the bottom">attachment 92042</a> <a href="attachment.cgi?id=92042&amp;action=edit" title="OOPS &#64; the bottom">[details]</a></span>
+OOPS &#64; the bottom
+
+Current HEAD gives a NULL pointer. Attaching full dmesg...</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1389708993.04aE51.3053--
+
+--===============0590649914==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -280,4 +182,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0348209717==--
+--===============0590649914==--
