@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 73607] [v3.13-rc8][regression] NULL pointer
  dereference in nouveau_gpuobj_create_
-Date: Tue, 14 Jan 2014 14:41:18 +0000
-Message-ID: <bug-73607-8800-7lfC6xGXVj@http.bugs.freedesktop.org/>
+Date: Tue, 14 Jan 2014 14:47:09 +0000
+Message-ID: <bug-73607-8800-w68PDRYFzk@http.bugs.freedesktop.org/>
 References: <bug-73607-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0663305256=="
+Content-Type: multipart/mixed; boundary="===============0202760769=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73607-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0663305256==
-Content-Type: multipart/alternative; boundary="1389710478.beA01.9481"; charset="us-ascii"
+--===============0202760769==
+Content-Type: multipart/alternative; boundary="1389710829.AfBcBFe1.11007"; charset="us-ascii"
 
 
---1389710478.beA01.9481
-Date: Tue, 14 Jan 2014 14:41:18 +0000
+--1389710829.AfBcBFe1.11007
+Date: Tue, 14 Jan 2014 14:47:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73607
 
---- Comment #2 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 92044
-  --> https://bugs.freedesktop.org/attachment.cgi?id=92044&action=edit
-Kernel patch
-
-I recreated the patch for the mere mortals using the regular kernel driver. I
-hope I'm doing this correctly.
+--- Comment #3 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+The kernel patch provided here fixes the issue.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389710478.beA01.9481
-Date: Tue, 14 Jan 2014 14:41:18 +0000
+--1389710829.AfBcBFe1.11007
+Date: Tue, 14 Jan 2014 14:47:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,18 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [v3.13-rc8][regression] NULL pointer dereference in nouveau_gpuobj_create_"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73607#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73607#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [v3.13-rc8][regression] NULL pointer dereference in nouveau_gpuobj_create_"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=73607">bug 73607</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=92044" name="attach_92044" title="Kernel patch">attachment 92044</a> <a href="attachment.cgi?id=92044&amp;action=edit" title="Kernel patch">[details]</a></span>
-Kernel patch
-
-I recreated the patch for the mere mortals using the regular kernel driver. I
-hope I'm doing this correctly.</pre>
+        <pre>The kernel patch provided here fixes the issue.</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +73,9 @@ hope I'm doing this correctly.</pre>
     </body>
 </html>
 
---1389710478.beA01.9481--
+--1389710829.AfBcBFe1.11007--
 
---===============0663305256==
+--===============0202760769==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0663305256==--
+--===============0202760769==--
