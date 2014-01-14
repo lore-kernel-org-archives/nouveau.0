@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71659] [NVD9] Hangs under load with ![
- PFIFO][0000:01:00.0] unhandled status 0x00800000
-Date: Mon, 13 Jan 2014 23:08:54 +0000
-Message-ID: <bug-71659-8800-rtYh3dKwMV@http.bugs.freedesktop.org/>
-References: <bug-71659-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73459] nv10 get_rt_format: Assertion `0' failed.
+Date: Tue, 14 Jan 2014 00:26:27 +0000
+Message-ID: <bug-73459-8800-e7R6S6exlB@http.bugs.freedesktop.org/>
+References: <bug-73459-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0886750237=="
+Content-Type: multipart/mixed; boundary="===============0404256554=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71659-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73459-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0886750237==
-Content-Type: multipart/alternative; boundary="1389654534.6b1BC61.16976"; charset="us-ascii"
+--===============0404256554==
+Content-Type: multipart/alternative; boundary="1389659186.FcADFb0.5212"; charset="us-ascii"
 
 
---1389654534.6b1BC61.16976
-Date: Mon, 13 Jan 2014 23:08:54 +0000
+--1389659186.FcADFb0.5212
+Date: Tue, 14 Jan 2014 00:26:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71659
+https://bugs.freedesktop.org/show_bug.cgi?id=73459
 
---- Comment #14 from Rebecca Palmer <R.Palmer-mHdZ94l+r7K1Qrn1Bg8BZw@public.gmane.org> ---
-Your script, and kernel 3.13-rc7 with either the "nvd9" or "nvd7" firmware also
-gives a blank screen.
+--- Comment #7 from Diego Nieto Cid <dnietoc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Nice, I don't get the error anymore. Thanks Ilia!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389654534.6b1BC61.16976
-Date: Mon, 13 Jan 2014 23:08:54 +0000
+--1389659186.FcADFb0.5212
+Date: Tue, 14 Jan 2014 00:26:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +52,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659#c14">Comment # 14</a>
+   title="NEW --- - nv10 get_rt_format: Assertion `0' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73459#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659">bug 71659</a>
-              from <span class="vcard"><a class="email" href="mailto:R.Palmer&#64;bham.ac.uk" title="Rebecca Palmer &lt;R.Palmer&#64;bham.ac.uk&gt;"> <span class="fn">Rebecca Palmer</span></a>
+   title="NEW --- - nv10 get_rt_format: Assertion `0' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73459">bug 73459</a>
+              from <span class="vcard"><a class="email" href="mailto:dnietoc&#64;gmail.com" title="Diego Nieto Cid &lt;dnietoc&#64;gmail.com&gt;"> <span class="fn">Diego Nieto Cid</span></a>
 </span></b>
-        <pre>Your script, and kernel 3.13-rc7 with either the &quot;nvd9&quot; or &quot;nvd7&quot; firmware also
-gives a blank screen.</pre>
+        <pre>Nice, I don't get the error anymore. Thanks Ilia!</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +72,9 @@ gives a blank screen.</pre>
     </body>
 </html>
 
---1389654534.6b1BC61.16976--
+--1389659186.FcADFb0.5212--
 
---===============0886750237==
+--===============0404256554==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0886750237==--
+--===============0404256554==--
