@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69488] GF108 (NVC1) GPU lockup
-Date: Wed, 15 Jan 2014 20:43:13 +0000
-Message-ID: <bug-69488-8800-v2FNK6VqSu@http.bugs.freedesktop.org/>
+Date: Wed, 15 Jan 2014 20:49:25 +0000
+Message-ID: <bug-69488-8800-Yw6qwxM9jj@http.bugs.freedesktop.org/>
 References: <bug-69488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2099584223=="
+Content-Type: multipart/mixed; boundary="===============1880214602=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2099584223==
-Content-Type: multipart/alternative; boundary="1389818593.54fa42.26096"; charset="us-ascii"
+--===============1880214602==
+Content-Type: multipart/alternative; boundary="1389818964.Ec1c2.27831"; charset="us-ascii"
 
 
---1389818593.54fa42.26096
-Date: Wed, 15 Jan 2014 20:43:13 +0000
+--1389818964.Ec1c2.27831
+Date: Wed, 15 Jan 2014 20:49:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69488
 
---- Comment #31 from nforrester-/d+BM93fTQY@public.gmane.org <nforrester-/d+BM93fTQY@public.gmane.org> ---
-I can also report that booting with kernel parameter:
-
-nouveau.runpm=0
-
-does allow my system to run with kernel 3.12.7
+--- Comment #32 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The runtime pm thing is a separate issue. Talking about multiple unrelated
+issues in the same bug is very confusing. Integers are cheap -- just open a new
+bug if you have a new issue, no need to save up the bug id's.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389818593.54fa42.26096
-Date: Wed, 15 Jan 2014 20:43:13 +0000
+--1389818964.Ec1c2.27831
+Date: Wed, 15 Jan 2014 20:49:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,18 +55,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c31">Comment # 31</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c32">Comment # 32</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - GF108 (NVC1) GPU lockup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69488">bug 69488</a>
-              from <span class="vcard"><a class="email" href="mailto:nforrester&#64;whoi.edu" title="nforrester&#64;whoi.edu &lt;nforrester&#64;whoi.edu&gt;"> <span class="fn">nforrester&#64;whoi.edu</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I can also report that booting with kernel parameter:
-
-nouveau.runpm=0
-
-does allow my system to run with kernel 3.12.7</pre>
+        <pre>The runtime pm thing is a separate issue. Talking about multiple unrelated
+issues in the same bug is very confusing. Integers are cheap -- just open a new
+bug if you have a new issue, no need to save up the bug id's.</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +76,9 @@ does allow my system to run with kernel 3.12.7</pre>
     </body>
 </html>
 
---1389818593.54fa42.26096--
+--1389818964.Ec1c2.27831--
 
---===============2099584223==
+--===============1880214602==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2099584223==--
+--===============1880214602==--
