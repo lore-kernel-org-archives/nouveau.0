@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71659] [NVD9] Hangs under load with ![
  PFIFO][0000:01:00.0] unhandled status 0x00800000
-Date: Wed, 15 Jan 2014 03:40:30 +0000
-Message-ID: <bug-71659-8800-VWOzu5exGw@http.bugs.freedesktop.org/>
+Date: Wed, 15 Jan 2014 09:28:56 +0000
+Message-ID: <bug-71659-8800-Psswe2k61H@http.bugs.freedesktop.org/>
 References: <bug-71659-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0966802797=="
+Content-Type: multipart/mixed; boundary="===============0640181418=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71659-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0966802797==
-Content-Type: multipart/alternative; boundary="1389757230.BA7d741.10688"; charset="us-ascii"
+--===============0640181418==
+Content-Type: multipart/alternative; boundary="1389778136.11d1143c1.10342"; charset="us-ascii"
 
 
---1389757230.BA7d741.10688
-Date: Wed, 15 Jan 2014 03:40:30 +0000
+--1389778136.11d1143c1.10342
+Date: Wed, 15 Jan 2014 09:28:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71659
 
---- Comment #15 from Kelly Doran <kel.p.doran-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Jan 10 20:09:20 lap14 kernel: [    1.610566] nouveau  [  PGRAPH][0000:01:00.0]
-using external firmware
-Jan 10 20:09:20 lap14 kernel: [    1.611187] nouveau E[  PGRAPH][0000:01:00.0]
-failed to load fuc409c
-Jan 10 20:09:20 lap14 kernel: [    1.611190] nouveau E[  DEVICE][0000:01:00.0]
-failed to create 0x1800d915, -22
-Jan 10 20:09:20 lap14 kernel: [    1.611193] nouveau E[     DRM] failed to
-create 0x80000080, -22
+--- Comment #16 from Rebecca Palmer <R.Palmer-mHdZ94l+r7K1Qrn1Bg8BZw@public.gmane.org> ---
+Created attachment 92127
+  --> https://bugs.freedesktop.org/attachment.cgi?id=92127&action=edit
+kernel log 3.13rc+firmware
 
-You must have named the fuc files wrong or they were not in the initrd, if
-nouveau fails to load the firmware like this it simply bails out and the driver
-won't finish loading, hence the blank screen.
+What does "not in the initrd" mean?  The files were in /lib/firmware/nouveau
+with the names the script gave them (nvd9_fuc*).
+
+The errors with kernel 3.13-rc7 (attached) are similar:
+Jan 13 22:47:57 lap14 kernel: [    1.653189] nouveau  [  PGRAPH][0000:01:00.0]
+using external firmware
+Jan 13 22:47:57 lap14 kernel: [    1.653203] nouveau 0000:01:00.0: Direct
+firmware load failed with error -2
+Jan 13 22:47:57 lap14 kernel: [    1.653204] nouveau 0000:01:00.0: Falling back
+to user helper
+Jan 13 22:47:57 lap14 kernel: [    1.653447] nouveau 0000:01:00.0: Direct
+firmware load failed with error -2
+Jan 13 22:47:57 lap14 kernel: [    1.653452] nouveau 0000:01:00.0: Falling back
+to user helper
+Jan 13 22:47:57 lap14 kernel: [    1.653651] nouveau E[  PGRAPH][0000:01:00.0]
+failed to load fuc409c
+Jan 13 22:47:57 lap14 kernel: [    1.653658] nouveau E[  DEVICE][0000:01:00.0]
+failed to create 0x1800d916, -22
+Jan 13 22:47:57 lap14 kernel: [    1.653663] nouveau E[     DRM] failed to
+create 0x80000080, -22
+Jan 13 22:47:57 lap14 kernel: [    1.654258] nouveau: probe of 0000:01:00.0
+failed with error -22
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389757230.BA7d741.10688
-Date: Wed, 15 Jan 2014 03:40:30 +0000
+--1389778136.11d1143c1.10342
+Date: Wed, 15 Jan 2014 09:28:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,25 +79,38 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71659">bug 71659</a>
-              from <span class="vcard"><a class="email" href="mailto:kel.p.doran&#64;gmail.com" title="Kelly Doran &lt;kel.p.doran&#64;gmail.com&gt;"> <span class="fn">Kelly Doran</span></a>
+              from <span class="vcard"><a class="email" href="mailto:R.Palmer&#64;bham.ac.uk" title="Rebecca Palmer &lt;R.Palmer&#64;bham.ac.uk&gt;"> <span class="fn">Rebecca Palmer</span></a>
 </span></b>
-        <pre>Jan 10 20:09:20 lap14 kernel: [    1.610566] nouveau  [  PGRAPH][0000:01:00.0]
-using external firmware
-Jan 10 20:09:20 lap14 kernel: [    1.611187] nouveau E[  PGRAPH][0000:01:00.0]
-failed to load fuc409c
-Jan 10 20:09:20 lap14 kernel: [    1.611190] nouveau E[  DEVICE][0000:01:00.0]
-failed to create 0x1800d915, -22
-Jan 10 20:09:20 lap14 kernel: [    1.611193] nouveau E[     DRM] failed to
-create 0x80000080, -22
+        <pre>Created <span class=""><a href="attachment.cgi?id=92127" name="attach_92127" title="kernel log 3.13rc+firmware">attachment 92127</a> <a href="attachment.cgi?id=92127&amp;action=edit" title="kernel log 3.13rc+firmware">[details]</a></span>
+kernel log 3.13rc+firmware
 
-You must have named the fuc files wrong or they were not in the initrd, if
-nouveau fails to load the firmware like this it simply bails out and the driver
-won't finish loading, hence the blank screen.</pre>
+What does &quot;not in the initrd&quot; mean?  The files were in /lib/firmware/nouveau
+with the names the script gave them (nvd9_fuc*).
+
+The errors with kernel 3.13-rc7 (attached) are similar:
+Jan 13 22:47:57 lap14 kernel: [    1.653189] nouveau  [  PGRAPH][0000:01:00.0]
+using external firmware
+Jan 13 22:47:57 lap14 kernel: [    1.653203] nouveau 0000:01:00.0: Direct
+firmware load failed with error -2
+Jan 13 22:47:57 lap14 kernel: [    1.653204] nouveau 0000:01:00.0: Falling back
+to user helper
+Jan 13 22:47:57 lap14 kernel: [    1.653447] nouveau 0000:01:00.0: Direct
+firmware load failed with error -2
+Jan 13 22:47:57 lap14 kernel: [    1.653452] nouveau 0000:01:00.0: Falling back
+to user helper
+Jan 13 22:47:57 lap14 kernel: [    1.653651] nouveau E[  PGRAPH][0000:01:00.0]
+failed to load fuc409c
+Jan 13 22:47:57 lap14 kernel: [    1.653658] nouveau E[  DEVICE][0000:01:00.0]
+failed to create 0x1800d916, -22
+Jan 13 22:47:57 lap14 kernel: [    1.653663] nouveau E[     DRM] failed to
+create 0x80000080, -22
+Jan 13 22:47:57 lap14 kernel: [    1.654258] nouveau: probe of 0000:01:00.0
+failed with error -22</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +122,9 @@ won't finish loading, hence the blank screen.</pre>
     </body>
 </html>
 
---1389757230.BA7d741.10688--
+--1389778136.11d1143c1.10342--
 
---===============0966802797==
+--===============0640181418==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +135,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0966802797==--
+--===============0640181418==--
