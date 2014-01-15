@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60680] [NV96] HDMI is connected and has mode,
- TV says "no signal"
-Date: Wed, 15 Jan 2014 22:10:31 +0000
-Message-ID: <bug-60680-8800-6vXRDly8ne@http.bugs.freedesktop.org/>
-References: <bug-60680-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73459] nv10 get_rt_format: Assertion `0' failed.
+Date: Wed, 15 Jan 2014 22:21:10 +0000
+Message-ID: <bug-73459-8800-lFRBKSiUw0@http.bugs.freedesktop.org/>
+References: <bug-73459-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2071914584=="
+Content-Type: multipart/mixed; boundary="===============1618799608=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60680-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73459-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2071914584==
-Content-Type: multipart/alternative; boundary="1389823831.87fb83.10003"; charset="us-ascii"
+--===============1618799608==
+Content-Type: multipart/alternative; boundary="1389824469.EB334C81.11867"; charset="us-ascii"
 
 
---1389823831.87fb83.10003
-Date: Wed, 15 Jan 2014 22:10:31 +0000
+--1389824469.EB334C81.11867
+Date: Wed, 15 Jan 2014 22:21:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60680
+https://bugs.freedesktop.org/show_bug.cgi?id=73459
 
---- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 92185
-  --> https://bugs.freedesktop.org/attachment.cgi?id=92185&action=edit
-vbios-pq1.patch
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Pick any failing kernel that you like, and try applying this patch. Boot with
-nouveau.debug=VBIOS=trace,PDISP=debug which should just get the logs we care
-about.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-BTW, my observation is that IO condition 5 is met in the old kernels, but not
-met in the new ones. This changes the execution flow, of course.
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+A different version of the patch has been commited to mesa master. Please
+double-check that it also works for you (I tested against your test app, but
+not a real game). The GL_COLOR_SUM is also on its way to be checked in, and
+it's pretty minor for you, since it's only getting disabled (and it's off by
+default).
+
+Feel free to reopen if this is still an issue.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389823831.87fb83.10003
-Date: Wed, 15 Jan 2014 22:10:31 +0000
+--1389824469.EB334C81.11867
+Date: Wed, 15 Jan 2014 22:21:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,28 +60,54 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nv10 get_rt_format: Assertion `0' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73459">bug 73459</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60680#c18">Comment # 18</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nv10 get_rt_format: Assertion `0' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73459#c8">Comment # 8</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60680">bug 60680</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nv10 get_rt_format: Assertion `0' failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73459">bug 73459</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=92185" name="attach_92185" title="vbios-pq1.patch">attachment 92185</a> <a href="attachment.cgi?id=92185&amp;action=edit" title="vbios-pq1.patch">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=60680&amp;attachment=92185'>[review]</a>
-vbios-pq1.patch
+        <pre>A different version of the patch has been commited to mesa master. Please
+double-check that it also works for you (I tested against your test app, but
+not a real game). The GL_COLOR_SUM is also on its way to be checked in, and
+it's pretty minor for you, since it's only getting disabled (and it's off by
+default).
 
-Pick any failing kernel that you like, and try applying this patch. Boot with
-nouveau.debug=VBIOS=trace,PDISP=debug which should just get the logs we care
-about.
-
-BTW, my observation is that IO condition 5 is met in the old kernels, but not
-met in the new ones. This changes the execution flow, of course.</pre>
+Feel free to reopen if this is still an issue.</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +119,9 @@ met in the new ones. This changes the execution flow, of course.</pre>
     </body>
 </html>
 
---1389823831.87fb83.10003--
+--1389824469.EB334C81.11867--
 
---===============2071914584==
+--===============1618799608==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +132,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2071914584==--
+--===============1618799608==--
