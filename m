@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73459] nv10 get_rt_format: Assertion `0' failed.
-Date: Wed, 15 Jan 2014 22:21:10 +0000
-Message-ID: <bug-73459-8800-lFRBKSiUw0@http.bugs.freedesktop.org/>
-References: <bug-73459-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
+ 8400M G after upgrade the kernel to 3.7.0 version
+Date: Wed, 15 Jan 2014 23:21:26 +0000
+Message-ID: <bug-58378-8800-3jc6vlmVPc@http.bugs.freedesktop.org/>
+References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1618799608=="
+Content-Type: multipart/mixed; boundary="===============1497514338=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73459-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,39 +21,56 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1618799608==
-Content-Type: multipart/alternative; boundary="1389824469.EB334C81.11867"; charset="us-ascii"
+--===============1497514338==
+Content-Type: multipart/alternative; boundary="1389828086.ED473.19904"; charset="us-ascii"
 
 
---1389824469.EB334C81.11867
-Date: Wed, 15 Jan 2014 22:21:09 +0000
+--1389828086.ED473.19904
+Date: Wed, 15 Jan 2014 23:21:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=73459
+https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #80 from Thomas <tomshere-zqRNUXuvxA0b1SvskN2V4Q@public.gmane.org> ---
+Hello,
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+I have the same NVIDIA GeForce NVS 130M with the disabled functions.
+I checked with nvapeek:
+0000154c: 0000009c
+00001540: b1010001
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-A different version of the patch has been commited to mesa master. Please
-double-check that it also works for you (I tested against your test app, but
-not a real game). The GL_COLOR_SUM is also on its way to be checked in, and
-it's pretty minor for you, since it's only getting disabled (and it's off by
-default).
+uname -a delivers
+Linux mobuntu 3.11.0-15-generic #23-Ubuntu SMP Mon Dec 9 18:17:04 UTC 2013
+x86_64 x86_64 x86_64 GNU/Linux
 
-Feel free to reopen if this is still an issue.
+I do not have any issues with distorted graphics during normal usage but my
+problem is that resume from suspend mode makes X hang.
+
+I also have these errors in dmesg 
+
+[   18.985158] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000000 FAULT
+at 0x00fd94
+[   18.986213] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000000 FAULT
+at 0x103d94
+[   19.026027] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000010 FAULT
+at 0x10200c
+
+but also
+
+[   18.984164] nouveau E[  PTHERM][0000:01:00.0] unhandled intr 0x00000161
+
+When I use the kernel option nouveau.config=PCRYPT=0 it doesn't eliminate the
+errors and X still hangs when resuming.
+I was not sure if I have to set the parameter in quotes.
+As you can see I'm not a linux specialist ;)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389824469.EB334C81.11867
-Date: Wed, 15 Jan 2014 22:21:09 +0000
+--1389828086.ED473.19904
+Date: Wed, 15 Jan 2014 23:21:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,54 +78,50 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nv10 get_rt_format: Assertion `0' failed."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73459">bug 73459</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nv10 get_rt_format: Assertion `0' failed."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73459#c8">Comment # 8</a>
+          bz_status_NEW "
+   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c80">Comment # 80</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nv10 get_rt_format: Assertion `0' failed."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73459">bug 73459</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
+              from <span class="vcard"><a class="email" href="mailto:tomshere&#64;t-online.de" title="Thomas &lt;tomshere&#64;t-online.de&gt;"> <span class="fn">Thomas</span></a>
 </span></b>
-        <pre>A different version of the patch has been commited to mesa master. Please
-double-check that it also works for you (I tested against your test app, but
-not a real game). The GL_COLOR_SUM is also on its way to be checked in, and
-it's pretty minor for you, since it's only getting disabled (and it's off by
-default).
+        <pre>Hello,
 
-Feel free to reopen if this is still an issue.</pre>
+I have the same NVIDIA GeForce NVS 130M with the disabled functions.
+I checked with nvapeek:
+0000154c: 0000009c
+00001540: b1010001
+
+uname -a delivers
+Linux mobuntu 3.11.0-15-generic #23-Ubuntu SMP Mon Dec 9 18:17:04 UTC 2013
+x86_64 x86_64 x86_64 GNU/Linux
+
+I do not have any issues with distorted graphics during normal usage but my
+problem is that resume from suspend mode makes X hang.
+
+I also have these errors in dmesg 
+
+[   18.985158] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000000 FAULT
+at 0x00fd94
+[   18.986213] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000000 FAULT
+at 0x103d94
+[   19.026027] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000010 FAULT
+at 0x10200c
+
+but also
+
+[   18.984164] nouveau E[  PTHERM][0000:01:00.0] unhandled intr 0x00000161
+
+When I use the kernel option nouveau.config=PCRYPT=0 it doesn't eliminate the
+errors and X still hangs when resuming.
+I was not sure if I have to set the parameter in quotes.
+As you can see I'm not a linux specialist ;)</pre>
         </div>
       </p>
       <hr>
@@ -119,9 +133,9 @@ Feel free to reopen if this is still an issue.</pre>
     </body>
 </html>
 
---1389824469.EB334C81.11867--
+--1389828086.ED473.19904--
 
---===============1618799608==
+--===============1497514338==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +146,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1618799608==--
+--===============1497514338==--
