@@ -1,121 +1,88 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH v2] nouveau: add framebuffer validation callback
-Date: Tue, 14 Jan 2014 19:50:33 -0500
-Message-ID: <1389747033-1645-1-git-send-email-imirkin@alum.mit.edu>
-References: <87ha96n8tc.fsf@riseup.net>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nv50, nvc0: don't crash on a null cbuf
+Date: Wed, 15 Jan 2014 02:30:40 -0500
+Message-ID: <1389771040-29447-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <87ha96n8tc.fsf@riseup.net>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces@lists.freedesktop.org
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-To: Francisco Jerez <currojerez@riseup.net>
-Cc: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Fixes assertions when trying to attach textures to fbs with formats not
-supported by the render engines.
+This is needed since commit 9baa45f78b (st/mesa: bind NULL colorbuffers
+as specified by glDrawBuffers).
 
-See https://bugs.freedesktop.org/show_bug.cgi?id=73459
-
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 ---
 
-Francisco, thanks for the review. Is this more like what you had in mind?
-Interesting that nv10/nv20 support different-bitness color/depth -- that
-requirement came back for nv30/nv40.
+Not sure whether something needs to be done to clear out the old RT_* settings
+for that index buffer, or if things are cleared out implicitly. Perhaps
+instead of skipping indices, RT_CONTROL needs to be adjusted with the
+appropriate indices?
 
- src/mesa/drivers/dri/nouveau/nouveau_context.c |  1 +
- src/mesa/drivers/dri/nouveau/nouveau_fbo.c     | 52 ++++++++++++++++++++++++++
- 2 files changed, 53 insertions(+)
+ src/gallium/drivers/nouveau/nv50/nv50_state_validate.c | 14 +++++++++++---
+ src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c | 14 +++++++++++---
+ 2 files changed, 22 insertions(+), 6 deletions(-)
 
-diff --git a/src/mesa/drivers/dri/nouveau/nouveau_context.c b/src/mesa/drivers/dri/nouveau/nouveau_context.c
-index 181c9d0..ec474d4 100644
---- a/src/mesa/drivers/dri/nouveau/nouveau_context.c
-+++ b/src/mesa/drivers/dri/nouveau/nouveau_context.c
-@@ -187,6 +187,7 @@ nouveau_context_init(struct gl_context *ctx, struct nouveau_screen *screen,
- 	ctx->Extensions.EXT_framebuffer_blit = true;
- 	ctx->Extensions.EXT_texture_filter_anisotropic = true;
- 	ctx->Extensions.NV_texture_env_combine4 = true;
-+	ctx->Const.MaxColorAttachments = 1;
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c b/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
+index 86b9a23..7d330c9 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
+@@ -20,9 +20,17 @@ nv50_validate_fb(struct nv50_context *nv50)
+    PUSH_DATA (push, fb->height << 16);
  
- 	return GL_TRUE;
- }
-diff --git a/src/mesa/drivers/dri/nouveau/nouveau_fbo.c b/src/mesa/drivers/dri/nouveau/nouveau_fbo.c
-index 25543e4..427eb00 100644
---- a/src/mesa/drivers/dri/nouveau/nouveau_fbo.c
-+++ b/src/mesa/drivers/dri/nouveau/nouveau_fbo.c
-@@ -268,6 +268,57 @@ nouveau_finish_render_texture(struct gl_context *ctx,
- 	texture_dirty(rb->TexImage->TexObject);
- }
+    for (i = 0; i < fb->nr_cbufs; ++i) {
+-      struct nv50_miptree *mt = nv50_miptree(fb->cbufs[i]->texture);
+-      struct nv50_surface *sf = nv50_surface(fb->cbufs[i]);
+-      struct nouveau_bo *bo = mt->base.bo;
++      struct nv50_miptree *mt;
++      struct nv50_surface *sf;
++      struct nouveau_bo *bo;
++
++      /* Do we need to clear the old RT settings? */
++      if (!fb->cbufs[i])
++         continue;
++
++      mt = nv50_miptree(fb->cbufs[i]->texture);
++      sf = nv50_surface(fb->cbufs[i]);
++      bo = mt->base.bo;
  
-+static int
-+validate_format_bpp(gl_format format)
-+{
-+	switch (format) {
-+	case MESA_FORMAT_XRGB8888:
-+	case MESA_FORMAT_ARGB8888:
-+	case MESA_FORMAT_Z24_S8:
-+		return 32;
-+	case MESA_FORMAT_RGB565:
-+	case MESA_FORMAT_Z16:
-+		return 16;
-+	default:
-+		return 0;
-+	}
-+}
+       array_size = MIN2(array_size, sf->depth);
+       if (mt->layout_3d)
+diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c b/src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c
+index 0ba4bad..9059d76 100644
+--- a/src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c
++++ b/src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c
+@@ -72,9 +72,17 @@ nvc0_validate_fb(struct nvc0_context *nvc0)
+     PUSH_DATA (push, fb->height << 16);
+ 
+     for (i = 0; i < fb->nr_cbufs; ++i) {
+-        struct nv50_surface *sf = nv50_surface(fb->cbufs[i]);
+-        struct nv04_resource *res = nv04_resource(sf->base.texture);
+-        struct nouveau_bo *bo = res->bo;
++        struct nv50_surface *sf;
++        struct nv04_resource *res;
++        struct nouveau_bo *bo;
 +
-+static void
-+nouveau_check_framebuffer_complete(struct gl_context *ctx,
-+				   struct gl_framebuffer *fb)
-+{
-+	const struct nouveau_driver *drv = context_drv(ctx);
-+	struct gl_renderbuffer_attachment *color =
-+		&fb->Attachment[BUFFER_COLOR0];
-+	struct gl_renderbuffer_attachment *depth =
-+		&fb->Attachment[BUFFER_DEPTH];
-+	int color_bpp = 0, zeta_bpp;
++        /* Do we need to clear the old RT settings? */
++        if (!fb->cbufs[i])
++           continue;
 +
-+	if (color->Type == GL_TEXTURE) {
-+		color_bpp = validate_format_bpp(
-+				color->Renderbuffer->TexImage->TexFormat);
-+		if (!color_bpp)
-+			goto err;
-+	}
-+
-+	if (depth->Type == GL_TEXTURE) {
-+		zeta_bpp = validate_format_bpp(
-+				depth->Renderbuffer->TexImage->TexFormat);
-+		if (!zeta_bpp)
-+			goto err;
-+		/* NV04/NV05 requires same bpp-ness for color/zeta */
-+		if (context_chipset(ctx) < 0x10 &&
-+		    color_bpp && color_bpp != zeta_bpp)
-+			goto err;
-+	}
-+
-+	return;
-+err:
-+	fb->_Status = GL_FRAMEBUFFER_UNSUPPORTED_EXT;
-+	return;
-+}
-+
- void
- nouveau_fbo_functions_init(struct dd_function_table *functions)
- {
-@@ -279,4 +330,5 @@ nouveau_fbo_functions_init(struct dd_function_table *functions)
- 	functions->FramebufferRenderbuffer = nouveau_framebuffer_renderbuffer;
- 	functions->RenderTexture = nouveau_render_texture;
- 	functions->FinishRenderTexture = nouveau_finish_render_texture;
-+	functions->ValidateFramebuffer = nouveau_check_framebuffer_complete;
- }
++        sf = nv50_surface(fb->cbufs[i]);
++        res = nv04_resource(sf->base.texture);
++        bo = res->bo;
+ 
+         BEGIN_NVC0(push, NVC0_3D(RT_ADDRESS_HIGH(i)), 9);
+         PUSH_DATAh(push, res->address + sf->offset);
 -- 
 1.8.3.2
