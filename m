@@ -1,121 +1,121 @@
-From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: [PATCH 2/2] drm/nouveau: require cli->mutex in RING_SPACE
-Date: Tue, 14 Jan 2014 16:52:35 +0100
-Message-ID: <52D55D43.4070805@canonical.com>
-References: <52D55C6A.80804@canonical.com>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH v2] nouveau: add framebuffer validation callback
+Date: Tue, 14 Jan 2014 19:50:33 -0500
+Message-ID: <1389747033-1645-1-git-send-email-imirkin@alum.mit.edu>
+References: <87ha96n8tc.fsf@riseup.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <52D55C6A.80804@canonical.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <87ha96n8tc.fsf@riseup.net>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces@lists.freedesktop.org
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+To: Francisco Jerez <currojerez@riseup.net>
+Cc: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-There are some cases where it's fine to not hold the cli->mutex, but in those cases we
-are the only caller and we should really be able to acquire cli->mutex without blocking.
+Fixes assertions when trying to attach textures to fbs with formats not
+supported by the render engines.
 
-This patch will prevent future occurrences where commands are sent to a channel without
-proper locking.
+See https://bugs.freedesktop.org/show_bug.cgi?id=73459
 
-Signed-off-by: Maarten Lankhorst<maarten.lankhorst@canonical.com>
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
 ---
-diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-index 900fae01793e..20959e445d05 100644
---- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-@@ -153,10 +153,12 @@ nouveau_abi16_fini(struct nouveau_abi16 *abi16)
-  	struct nouveau_cli *cli = (void *)abi16->client;
-  	struct nouveau_abi16_chan *chan, *temp;
-  
-+	mutex_lock(&cli->mutex);
-  	/* cleanup channels */
-  	list_for_each_entry_safe(chan, temp, &abi16->channels, head) {
-  		nouveau_abi16_chan_fini(abi16, chan);
-  	}
-+	mutex_unlock(&cli->mutex);
-  
-  	/* destroy the device object */
-  	nouveau_object_del(abi16->client, NVDRM_CLIENT, NVDRM_DEVICE);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dma.h b/drivers/gpu/drm/nouveau/nouveau_dma.h
-index 984004d66a6d..82465bd0b59b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dma.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_dma.h
-@@ -107,6 +107,7 @@ RING_SPACE(struct nouveau_channel *chan, int size)
-  {
-  	int ret;
-  
-+	lockdep_assert_held(&chan->cli->mutex);
-  	ret = nouveau_dma_wait(chan, 1, size);
-  	if (ret)
-  		return ret;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index f7a6568cfa6a..a60c404d59e4 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -476,7 +476,9 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
-  
-  	nouveau_sysfs_init(dev);
-  	nouveau_hwmon_init(dev);
-+	mutex_lock(&drm->client.mutex);
-  	nouveau_accel_init(drm);
-+	mutex_unlock(&drm->client.mutex);
-  	nouveau_fbcon_init(dev);
-  
-  	if (nouveau_runtime_pm != 0) {
-@@ -562,17 +564,17 @@ nouveau_do_suspend(struct drm_device *dev)
-  	ttm_bo_evict_mm(&drm->ttm.bdev, TTM_PL_VRAM);
-  
-  	NV_INFO(drm, "waiting for kernel channels to go idle...\n");
--	if (drm->cechan) {
-+	ret = 0;
-+	mutex_lock(&drm->client.mutex);
-+	if (drm->cechan)
-  		ret = nouveau_channel_idle(drm->cechan);
--		if (ret)
--			return ret;
--	}
-  
--	if (drm->channel) {
-+	if (drm->channel && !ret)
-  		ret = nouveau_channel_idle(drm->channel);
--		if (ret)
--			return ret;
--	}
-+	mutex_unlock(&drm->client.mutex);
-+	if (ret)
-+		return ret;
+
+Francisco, thanks for the review. Is this more like what you had in mind?
+Interesting that nv10/nv20 support different-bitness color/depth -- that
+requirement came back for nv30/nv40.
+
+ src/mesa/drivers/dri/nouveau/nouveau_context.c |  1 +
+ src/mesa/drivers/dri/nouveau/nouveau_fbo.c     | 52 ++++++++++++++++++++++++++
+ 2 files changed, 53 insertions(+)
+
+diff --git a/src/mesa/drivers/dri/nouveau/nouveau_context.c b/src/mesa/drivers/dri/nouveau/nouveau_context.c
+index 181c9d0..ec474d4 100644
+--- a/src/mesa/drivers/dri/nouveau/nouveau_context.c
++++ b/src/mesa/drivers/dri/nouveau/nouveau_context.c
+@@ -187,6 +187,7 @@ nouveau_context_init(struct gl_context *ctx, struct nouveau_screen *screen,
+ 	ctx->Extensions.EXT_framebuffer_blit = true;
+ 	ctx->Extensions.EXT_texture_filter_anisotropic = true;
+ 	ctx->Extensions.NV_texture_env_combine4 = true;
++	ctx->Const.MaxColorAttachments = 1;
+ 
+ 	return GL_TRUE;
+ }
+diff --git a/src/mesa/drivers/dri/nouveau/nouveau_fbo.c b/src/mesa/drivers/dri/nouveau/nouveau_fbo.c
+index 25543e4..427eb00 100644
+--- a/src/mesa/drivers/dri/nouveau/nouveau_fbo.c
++++ b/src/mesa/drivers/dri/nouveau/nouveau_fbo.c
+@@ -268,6 +268,57 @@ nouveau_finish_render_texture(struct gl_context *ctx,
+ 	texture_dirty(rb->TexImage->TexObject);
+ }
+ 
++static int
++validate_format_bpp(gl_format format)
++{
++	switch (format) {
++	case MESA_FORMAT_XRGB8888:
++	case MESA_FORMAT_ARGB8888:
++	case MESA_FORMAT_Z24_S8:
++		return 32;
++	case MESA_FORMAT_RGB565:
++	case MESA_FORMAT_Z16:
++		return 16;
++	default:
++		return 0;
++	}
++}
 +
-  
-  	NV_INFO(drm, "suspending client object trees...\n");
-  	if (drm->fence && nouveau_fence(drm)->suspend) {
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-index 7903e0ed3c75..aec87e1d3855 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-@@ -357,7 +357,7 @@ nouveau_fbcon_create(struct drm_fb_helper *helper,
-  
-  	mutex_unlock(&dev->struct_mutex);
-  
--	if (chan) {
-+	if (chan && !WARN_ON(!mutex_trylock(&drm->client.mutex))) {
-  		ret = -ENODEV;
-  		if (device->card_type < NV_50)
-  			ret = nv04_fbcon_accel_init(info);
-@@ -366,6 +366,7 @@ nouveau_fbcon_create(struct drm_fb_helper *helper,
-  			ret = nv50_fbcon_accel_init(info);
-  		else
-  			ret = nvc0_fbcon_accel_init(info);
-+		mutex_unlock(&drm->client.mutex);
-  
-  		if (ret == 0)
-  			info->fbops = &nouveau_fbcon_ops;
++static void
++nouveau_check_framebuffer_complete(struct gl_context *ctx,
++				   struct gl_framebuffer *fb)
++{
++	const struct nouveau_driver *drv = context_drv(ctx);
++	struct gl_renderbuffer_attachment *color =
++		&fb->Attachment[BUFFER_COLOR0];
++	struct gl_renderbuffer_attachment *depth =
++		&fb->Attachment[BUFFER_DEPTH];
++	int color_bpp = 0, zeta_bpp;
++
++	if (color->Type == GL_TEXTURE) {
++		color_bpp = validate_format_bpp(
++				color->Renderbuffer->TexImage->TexFormat);
++		if (!color_bpp)
++			goto err;
++	}
++
++	if (depth->Type == GL_TEXTURE) {
++		zeta_bpp = validate_format_bpp(
++				depth->Renderbuffer->TexImage->TexFormat);
++		if (!zeta_bpp)
++			goto err;
++		/* NV04/NV05 requires same bpp-ness for color/zeta */
++		if (context_chipset(ctx) < 0x10 &&
++		    color_bpp && color_bpp != zeta_bpp)
++			goto err;
++	}
++
++	return;
++err:
++	fb->_Status = GL_FRAMEBUFFER_UNSUPPORTED_EXT;
++	return;
++}
++
+ void
+ nouveau_fbo_functions_init(struct dd_function_table *functions)
+ {
+@@ -279,4 +330,5 @@ nouveau_fbo_functions_init(struct dd_function_table *functions)
+ 	functions->FramebufferRenderbuffer = nouveau_framebuffer_renderbuffer;
+ 	functions->RenderTexture = nouveau_render_texture;
+ 	functions->FinishRenderTexture = nouveau_finish_render_texture;
++	functions->ValidateFramebuffer = nouveau_check_framebuffer_complete;
+ }
+-- 
+1.8.3.2
