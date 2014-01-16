@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH v2] drm/nv50/graph: add more trap names to print
-	on error
-Date: Thu, 16 Jan 2014 02:47:11 -0500
-Message-ID: <1389858431-30271-1-git-send-email-imirkin@alum.mit.edu>
-References: <CAKb7Uvi6w-CH8TAQnZEy9Hx+5DTMCNL9DrAMTvmBN4dPVm5hgQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
+ 8400M G after upgrade the kernel to 3.7.0 version
+Date: Thu, 16 Jan 2014 18:34:01 +0000
+Message-ID: <bug-58378-8800-hzZ0MQgwRm@http.bugs.freedesktop.org/>
+References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0818563190=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvi6w-CH8TAQnZEy9Hx+5DTMCNL9DrAMTvmBN4dPVm5hgQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,216 +17,165 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org, "Skeggs <bskeggs"@redhat.com
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Also avoids printing the errors bitfield if that information has already
-been shown.
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
----
+--===============0818563190==
+Content-Type: multipart/alternative; boundary="1389897241.F62e7D3.6419"; charset="us-ascii"
 
-Here's a sample output:
 
-[99995.048486] nouveau E[  PGRAPH][0000:02:00.0] TRAP_PROP - TP 0 - RT_FAULT - Address 0000000000
-[99995.048490] nouveau E[  PGRAPH][0000:02:00.0] TRAP_PROP - TP 0 - e0c: 00000000, e18: 00000000, e1c: 00000000, e20: 00001100, e24: 00030000
-[99995.048494] nouveau E[  PGRAPH][0000:02:00.0] ch 4 [0x000f94c000 gl-3.2-layered-[26795]] subc 3 class 0x8297 mthd 0x15e0 data 0x00000000
-[99995.048506] nouveau E[     PFB][0000:02:00.0] trapped write at 0x0000000000 on channel 0x0000f94c [gl-3.2-layered-[26795]] PGRAPH/PROP/RT0 reason: PT_NOT_PRESENT
+--1389897241.F62e7D3.6419
+Date: Thu, 16 Jan 2014 18:34:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-and
+https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
-[100391.766915] nouveau E[  PGRAPH][0000:02:00.0] DATA_ERROR XY_OUT_OF_BOUNDS
-[100391.766926] nouveau E[  PGRAPH][0000:02:00.0] ch 4 [0x000f94c000 fbo-depthstenci[30109]] subc 5 class 0x5039 mthd 0x0328 data 0x00000000
+--- Comment #85 from Thomas <tomshere-zqRNUXuvxA0b1SvskN2V4Q@public.gmane.org> ---
+(In reply to comment #82)
+> > I also have these errors in dmesg 
+> > 
+> > [   18.985158] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000000
+> > FAULT at 0x00fd94
+> > [   18.986213] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000000
+> > FAULT at 0x103d94
+> > [   19.026027] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000010
+> > FAULT at 0x10200c
+> 
+> Hmm - your kernel and your nvapeek results clearly suggest you should be
+> affected...
+> 
+> Have you enabled compiz(...)
 
-A downside of this approach is that it can get split up onto multiple lines if
-the timing is right, but I think it's worth it to avoid all the duplicate
-information in the errors.
+No I don't think so.
 
- drivers/gpu/drm/nouveau/core/engine/graph/nv50.c | 128 +++++++++++++----------
- 1 file changed, 70 insertions(+), 58 deletions(-)
+> > [   18.984164] nouveau E[  PTHERM][0000:01:00.0] unhandled intr 0x00000161
+> 
+> This last "PTHERM" error seems to be a different, unrelated issue.
+> 
+> > When I use the kernel option nouveau.config=PCRYPT=0 it doesn't eliminate
+> > the errors and X still hangs when resuming.
+> 
+> Hmm - interesting, as I clearly don't have any issues with suspend/resume.
+> Which laptop do you have? Did you already update your BIOS to the latest
+> available version?
+> 
+> > I was not sure if I have to set the parameter in quotes.
+> 
+> No, you don't (and AFAIK, you even must not). Ilia has already proposed the
+> correct workaround for the distortion issue (until your distro of choice has
+> integrated the new fix) - add this:
+> 
+> nouveau.config=PCRYPT=0,PVP=0,PBSP=0,PMPEG=0
+> 
+> to your grub kernel parameters. Having done so, all "MMIO write" errors in
+> dmesg must be gone (they are for me!), otherwise something else is still
+> wrong for you in addition.
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-index 03de517..a489ac2 100644
---- a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-@@ -396,6 +396,60 @@ static const struct nouveau_bitfield nv50_graph_intr_name[] = {
- 	{}
- };
- 
-+static const struct nouveau_bitfield nv50_graph_trap_prop[] = {
-+	{ 0x00000004, "SURF_WIDTH_OVERRUN" },
-+	{ 0x00000008, "SURF_HEIGHT_OVERRUN" },
-+	{ 0x00000010, "DST2D_FAULT" },
-+	{ 0x00000020, "ZETA_FAULT" },
-+	{ 0x00000040, "RT_FAULT" },
-+	{ 0x00000080, "CUDA_FAULT" },
-+	{ 0x00000100, "DST2D_STORAGE_TYPE_MISMATCH" },
-+	{ 0x00000200, "ZETA_STORAGE_TYPE_MISMATCH" },
-+	{ 0x00000400, "RT_STORAGE_TYPE_MISMATCH" },
-+	{ 0x00000800, "DST2D_LINEAR_MISMATCH" },
-+	{ 0x00001000, "RT_LINEAR_MISMATCH" },
-+	{}
-+};
-+
-+static void
-+nv50_priv_prop_trap(struct nv50_graph_priv *priv,
-+		    u32 ustatus_addr, u32 ustatus, u32 tp)
-+{
-+	u32 e0c = nv_rd32(priv, ustatus_addr + 0x04);
-+	u32 e10 = nv_rd32(priv, ustatus_addr + 0x08);
-+	u32 e14 = nv_rd32(priv, ustatus_addr + 0x0c);
-+	u32 e18 = nv_rd32(priv, ustatus_addr + 0x10);
-+	u32 e1c = nv_rd32(priv, ustatus_addr + 0x14);
-+	u32 e20 = nv_rd32(priv, ustatus_addr + 0x18);
-+	u32 e24 = nv_rd32(priv, ustatus_addr + 0x1c);
-+
-+	/* CUDA memory: l[], g[] or stack. */
-+	if (ustatus & 0x00000080) {
-+		if (e18 & 0x80000000) {
-+			/* g[] read fault? */
-+			nv_error(priv, "TRAP_PROP - TP %d - CUDA_FAULT - Global read fault at address %02x%08x\n",
-+					 tp, e14, e10 | ((e18 >> 24) & 0x1f));
-+			e18 &= ~0x1f000000;
-+		} else if (e18 & 0xc) {
-+			/* g[] write fault? */
-+			nv_error(priv, "TRAP_PROP - TP %d - CUDA_FAULT - Global write fault at address %02x%08x\n",
-+				 tp, e14, e10 | ((e18 >> 7) & 0x1f));
-+			e18 &= ~0x00000f80;
-+		} else {
-+			nv_error(priv, "TRAP_PROP - TP %d - Unknown CUDA fault at address %02x%08x\n",
-+				 tp, e14, e10);
-+		}
-+		ustatus &= ~0x00000080;
-+	}
-+	if (ustatus) {
-+		nv_error(priv, "TRAP_PROP - TP %d -", tp);
-+		nouveau_bitfield_print(nv50_graph_trap_prop, ustatus);
-+		pr_cont(" - Address %02x%08x\n", e14, e10);
-+	}
-+	nv_error(priv, "TRAP_PROP - TP %d - e0c: %08x, e18: %08x, e1c: %08x, e20: %08x, e24: %08x\n",
-+		 tp, e0c, e18, e1c, e20, e24);
-+}
-+
- static void
- nv50_priv_mp_trap(struct nv50_graph_priv *priv, int tpid, int display)
- {
-@@ -469,58 +523,11 @@ nv50_priv_tp_trap(struct nv50_graph_priv *priv, int type, u32 ustatus_old,
- 				ustatus &= ~0x04030000;
- 			}
- 			break;
--		case 8: /* TPDMA error */
--			{
--			u32 e0c = nv_rd32(priv, ustatus_addr + 4);
--			u32 e10 = nv_rd32(priv, ustatus_addr + 8);
--			u32 e14 = nv_rd32(priv, ustatus_addr + 0xc);
--			u32 e18 = nv_rd32(priv, ustatus_addr + 0x10);
--			u32 e1c = nv_rd32(priv, ustatus_addr + 0x14);
--			u32 e20 = nv_rd32(priv, ustatus_addr + 0x18);
--			u32 e24 = nv_rd32(priv, ustatus_addr + 0x1c);
--			/* 2d engine destination */
--			if (ustatus & 0x00000010) {
--				if (display) {
--					nv_error(priv, "TRAP_TPDMA_2D - TP %d - Unknown fault at address %02x%08x\n",
--							i, e14, e10);
--					nv_error(priv, "TRAP_TPDMA_2D - TP %d - e0c: %08x, e18: %08x, e1c: %08x, e20: %08x, e24: %08x\n",
--							i, e0c, e18, e1c, e20, e24);
--				}
--				ustatus &= ~0x00000010;
--			}
--			/* Render target */
--			if (ustatus & 0x00000040) {
--				if (display) {
--					nv_error(priv, "TRAP_TPDMA_RT - TP %d - Unknown fault at address %02x%08x\n",
--							i, e14, e10);
--					nv_error(priv, "TRAP_TPDMA_RT - TP %d - e0c: %08x, e18: %08x, e1c: %08x, e20: %08x, e24: %08x\n",
--							i, e0c, e18, e1c, e20, e24);
--				}
--				ustatus &= ~0x00000040;
--			}
--			/* CUDA memory: l[], g[] or stack. */
--			if (ustatus & 0x00000080) {
--				if (display) {
--					if (e18 & 0x80000000) {
--						/* g[] read fault? */
--						nv_error(priv, "TRAP_TPDMA - TP %d - Global read fault at address %02x%08x\n",
--								i, e14, e10 | ((e18 >> 24) & 0x1f));
--						e18 &= ~0x1f000000;
--					} else if (e18 & 0xc) {
--						/* g[] write fault? */
--						nv_error(priv, "TRAP_TPDMA - TP %d - Global write fault at address %02x%08x\n",
--								i, e14, e10 | ((e18 >> 7) & 0x1f));
--						e18 &= ~0x00000f80;
--					} else {
--						nv_error(priv, "TRAP_TPDMA - TP %d - Unknown CUDA fault at address %02x%08x\n",
--								i, e14, e10);
--					}
--					nv_error(priv, "TRAP_TPDMA - TP %d - e0c: %08x, e18: %08x, e1c: %08x, e20: %08x, e24: %08x\n",
--							i, e0c, e18, e1c, e20, e24);
--				}
--				ustatus &= ~0x00000080;
--			}
--			}
-+		case 8: /* PROP error */
-+			if (display)
-+				nv50_priv_prop_trap(
-+						priv, ustatus_addr, ustatus, i);
-+			ustatus = 0;
- 			break;
- 		}
- 		if (ustatus) {
-@@ -727,11 +734,11 @@ nv50_graph_trap_handler(struct nv50_graph_priv *priv, u32 display,
- 		status &= ~0x080;
- 	}
- 
--	/* TPDMA:  Handles TP-initiated uncached memory accesses:
-+	/* PROP:  Handles TP-initiated uncached memory accesses:
- 	 * l[], g[], stack, 2d surfaces, render targets. */
- 	if (status & 0x100) {
- 		nv50_priv_tp_trap(priv, 8, 0x408e08, 0x408708, display,
--				    "TRAP_TPDMA");
-+				    "TRAP_PROP");
- 		nv_wr32(priv, 0x400108, 0x100);
- 		status &= ~0x100;
- 	}
-@@ -760,7 +767,7 @@ nv50_graph_intr(struct nouveau_subdev *subdev)
- 	u32 mthd = (addr & 0x00001ffc);
- 	u32 data = nv_rd32(priv, 0x400708);
- 	u32 class = nv_rd32(priv, 0x400814);
--	u32 show = stat;
-+	u32 show = stat, show_bitfield = stat;
- 	int chid;
- 
- 	engctx = nouveau_engctx_get(engine, inst);
-@@ -778,21 +785,26 @@ nv50_graph_intr(struct nouveau_subdev *subdev)
- 		nv_error(priv, "DATA_ERROR ");
- 		nouveau_enum_print(nv50_data_error_names, ecode);
- 		pr_cont("\n");
-+		show_bitfield &= ~0x00100000;
- 	}
- 
- 	if (stat & 0x00200000) {
- 		if (!nv50_graph_trap_handler(priv, show, chid, (u64)inst << 12,
- 				engctx))
- 			show &= ~0x00200000;
-+		show_bitfield &= ~0x00200000;
- 	}
- 
- 	nv_wr32(priv, 0x400100, stat);
- 	nv_wr32(priv, 0x400500, 0x00010001);
- 
- 	if (show) {
--		nv_error(priv, "%s", "");
--		nouveau_bitfield_print(nv50_graph_intr_name, show);
--		pr_cont("\n");
-+		show &= show_bitfield;
-+		if (show) {
-+			nv_error(priv, "%s", "");
-+			nouveau_bitfield_print(nv50_graph_intr_name, show);
-+			pr_cont("\n");
-+		}
- 		nv_error(priv,
- 			 "ch %d [0x%010llx %s] subc %d class 0x%04x mthd 0x%04x data 0x%08x\n",
- 			 chid, (u64)inst << 12, nouveau_client_name(engctx),
+Ok, now after adding the whole bunch to the kernel opts the three PBUS errors
+are gone. For the resume failure I open a new issue.
+
+How can I push the integration of such a fix into another distro?
+
+Many thanks!
+-Thomas
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1389897241.F62e7D3.6419
+Date: Thu, 16 Jan 2014 18:34:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c85">Comment # 85</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
+              from <span class="vcard"><a class="email" href="mailto:tomshere&#64;t-online.de" title="Thomas &lt;tomshere&#64;t-online.de&gt;"> <span class="fn">Thomas</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=58378#c82">comment #82</a>)
+<span class="quote">&gt; &gt; I also have these errors in dmesg 
+&gt; &gt; 
+&gt; &gt; [   18.985158] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000000
+&gt; &gt; FAULT at 0x00fd94
+&gt; &gt; [   18.986213] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000000
+&gt; &gt; FAULT at 0x103d94
+&gt; &gt; [   19.026027] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000010
+&gt; &gt; FAULT at 0x10200c
+&gt; 
+&gt; Hmm - your kernel and your nvapeek results clearly suggest you should be
+&gt; affected...
+&gt; 
+&gt; Have you enabled compiz(...)</span >
+
+No I don't think so.
+
+<span class="quote">&gt; &gt; [   18.984164] nouveau E[  PTHERM][0000:01:00.0] unhandled intr 0x00000161
+&gt; 
+&gt; This last &quot;PTHERM&quot; error seems to be a different, unrelated issue.
+&gt; 
+&gt; &gt; When I use the kernel option nouveau.config=PCRYPT=0 it doesn't eliminate
+&gt; &gt; the errors and X still hangs when resuming.
+&gt; 
+&gt; Hmm - interesting, as I clearly don't have any issues with suspend/resume.
+&gt; Which laptop do you have? Did you already update your BIOS to the latest
+&gt; available version?
+&gt; 
+&gt; &gt; I was not sure if I have to set the parameter in quotes.
+&gt; 
+&gt; No, you don't (and AFAIK, you even must not). Ilia has already proposed the
+&gt; correct workaround for the distortion issue (until your distro of choice has
+&gt; integrated the new fix) - add this:
+&gt; 
+&gt; nouveau.config=PCRYPT=0,PVP=0,PBSP=0,PMPEG=0
+&gt; 
+&gt; to your grub kernel parameters. Having done so, all &quot;MMIO write&quot; errors in
+&gt; dmesg must be gone (they are for me!), otherwise something else is still
+&gt; wrong for you in addition.</span >
+
+Ok, now after adding the whole bunch to the kernel opts the three PBUS errors
+are gone. For the resume failure I open a new issue.
+
+How can I push the integration of such a fix into another distro?
+
+Many thanks!
+-Thomas</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1389897241.F62e7D3.6419--
+
+--===============0818563190==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0818563190==--
