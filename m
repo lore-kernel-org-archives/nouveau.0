@@ -1,19 +1,12 @@
-From: Grant <emailgrant-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: launching Firefox causes system crash
-Date: Wed, 15 Jan 2014 16:26:50 -0800
-Message-ID: <CAN0CFw254UGHan-CW3m1rpLkKVuLjQeO8CtB1c+yXeUWGURCuQ@mail.gmail.com>
-References: <CAN0CFw2E4Om9r7FB+BFSTHHnxVsaMob-Zyq+qLNJuHZtq=OVkQ@mail.gmail.com>
-	<CAKb7UvhazyL4-u3th96k4zjpNa46Qr7JQWoEafkoz8J5DuWn+w@mail.gmail.com>
-	<CAN0CFw22=Qvrx_TCFbGZx_yMHeZ2-gEE4OMBMwnPF2cZjnnvvg@mail.gmail.com>
-	<CAN0CFw33un9r52v5iNNDMDOSL5RFYL4vNn+kBshaBt5ytOhuLA@mail.gmail.com>
-	<CAKb7UvjVnZVMKg=RPXdujXkK+WHWs6XLatLW9hqx4riXPZWAew@mail.gmail.com>
-	<CAN0CFw09ZBVq7DbFqjFn81JapboCKe-3UuqCNzU3X2eppfehDA@mail.gmail.com>
-	<CAN0CFw3WaX2TYdmTuEPW+j74aj9cat3dfc1KuzPkCkFVj7OYeg@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] drm/nv50/graph: add more trap names to print on
+	error
+Date: Thu, 16 Jan 2014 01:13:58 -0500
+Message-ID: <1389852838-7947-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAN0CFw3WaX2TYdmTuEPW+j74aj9cat3dfc1KuzPkCkFVj7OYeg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,67 +16,164 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
->>>>>>> Launching firefox is causing a system crash with a black or white
->>>>>>> screen and diagonal lines across it.  I've tried the latest nouveau
->>>>>>> from git and the latest kernel.  I can't find anything in the logs
->>>>>>> unfortunately.  Any ideas?
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
 
-I can prevent this crash with the following in xorg.conf:
+I made the assumption that showing the address is generally useful. Worst
+case, it won't make sense but still be displayed. Seems simpler than
+special-casing things.
 
-Option "NoAccel" "on"
+ drivers/gpu/drm/nouveau/core/engine/graph/nv50.c | 117 ++++++++++++-----------
+ 1 file changed, 63 insertions(+), 54 deletions(-)
 
-- Grant
-
-
->>>>>>> 00:0d.0 VGA compatible controller: NVIDIA Corporation C61 [GeForce
->>>>>>> 6150SE nForce 430] (rev a2) (prog-if 00 [VGA controller])
->>>>>>>     Subsystem: Micro-Star International Co., Ltd. Device 7309
->>>>>>>     Flags: bus master, 66MHz, fast devsel, latency 0, IRQ 40
->>>>>>>     Memory at de000000 (32-bit, non-prefetchable) [size=16M]
->>>>>>>     Memory at c0000000 (64-bit, prefetchable) [size=256M]
->>>>>>>     Memory at dd000000 (64-bit, non-prefetchable) [size=16M]
->>>>>>>     Expansion ROM at dfd40000 [disabled] [size=128K]
->>>>>>>     Capabilities: [48] Power Management version 2
->>>>>>>     Capabilities: [50] MSI: Enable+ Count=1/1 Maskable- 64bit+
->>>>>>>     Kernel driver in use: nouveau
->>>>>>
->>>>>> Someone just opened a bug about NV4E. You have NV4C, but one could
->>>>>> imagine that there would be similarities. See
->>>>>> https://bugs.freedesktop.org/show_bug.cgi?id=73445 and feel free to
->>>>>> add yourself to it if that matches your symptoms (esp if it's a 3.13
->>>>>> regression). Otherwise, more information would be nice. See
->>>>>> http://nouveau.freedesktop.org/wiki/Bugs/ for the sort of information
->>>>>> that's generally useful.
->>>>>
->>>>> I should also mention that rebooting allows firefox to open.  It seems
->>>>> to crash if it is opened after the system has been running for awhile.
->>>>>
->>>>> I tried nouveau.config=NvMSI=0 but it didn't help.
->>>>>
->>>>> - Grant
->>>>
->>>> Can anyone help me out here?  This has been really disruptive to my
->>>> organization.  Unchecking "Use hardware acceleration when available"
->>>> in firefox also doesn't seem to fix it.  Anything else I could try?
->>>
->>> Launch firefox with LIBGL_ALWAYS_SOFTWARE=1 -- that should avoid using
->>> nouveau for any sort of 3d.
->>>
->>> Is this a new thing, or has it always been the case? If it's new, any
->>> idea what changed?
->>
->> Thank you, I will try that ASAP.  I was trying to use the epiphany and
->> midori browsers for a long time but eventually had to give up and
->> switch to firefox and this problem popped up right away.
->>
->> - Grant
->
-> Is there anything I could put in xorg.conf for this?  The system
-> that's having trouble is being used in a remote office and I'm not
-> sure its users are up to the task of LIBGL_ALWAYS_SOFTWARE=1.
->
-> - Grant
+diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
+index 03de517..3bdb158 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
++++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
+@@ -396,6 +396,63 @@ static const struct nouveau_bitfield nv50_graph_intr_name[] = {
+ 	{}
+ };
+ 
++static const struct nouveau_bitfield nv50_graph_trap_prop[] = {
++	{ 0x00000004, "SURF_WIDTH_OVERRUN" },
++	{ 0x00000008, "SURF_HEIGHT_OVERRUN" },
++	{ 0x00000010, "DST2D_FAULT" },
++	{ 0x00000020, "ZETA_FAULT" },
++	{ 0x00000040, "RT_FAULT" },
++	{ 0x00000080, "CUDA_FAULT" },
++	{ 0x00000100, "DST2D_STORAGE_TYPE_MISMATCH" },
++	{ 0x00000200, "ZETA_STORAGE_TYPE_MISMATCH" },
++	{ 0x00000400, "RT_STORAGE_TYPE_MISMATCH" },
++	{ 0x00000800, "DST2D_LINEAR_MISMATCH" },
++	{ 0x00001000, "RT_LINEAR_MISMATCH" },
++	{}
++};
++
++static u32
++nv50_priv_prop_trap(struct nv50_graph_priv *priv,
++		    u32 ustatus_addr, u32 ustatus, u32 tp)
++{
++	u32 e0c = nv_rd32(priv, ustatus_addr + 0x04);
++	u32 e10 = nv_rd32(priv, ustatus_addr + 0x08);
++	u32 e14 = nv_rd32(priv, ustatus_addr + 0x0c);
++	u32 e18 = nv_rd32(priv, ustatus_addr + 0x10);
++	u32 e1c = nv_rd32(priv, ustatus_addr + 0x14);
++	u32 e20 = nv_rd32(priv, ustatus_addr + 0x18);
++	u32 e24 = nv_rd32(priv, ustatus_addr + 0x1c);
++	int i;
++
++	/* CUDA memory: l[], g[] or stack. */
++	if (ustatus & 0x00000080) {
++		if (e18 & 0x80000000) {
++			/* g[] read fault? */
++			nv_error(priv, "TRAP_PROP - TP %d - CUDA_FAULT - Global read fault at address %02x%08x\n",
++					 tp, e14, e10 | ((e18 >> 24) & 0x1f));
++			e18 &= ~0x1f000000;
++		} else if (e18 & 0xc) {
++			/* g[] write fault? */
++			nv_error(priv, "TRAP_PROP - TP %d - CUDA_FAULT - Global write fault at address %02x%08x\n",
++				 tp, e14, e10 | ((e18 >> 7) & 0x1f));
++			e18 &= ~0x00000f80;
++		} else {
++			nv_error(priv, "TRAP_PROP - TP %d - Unknown CUDA fault at address %02x%08x\n",
++				 tp, e14, e10);
++		}
++		ustatus &= ~0x00000080;
++	}
++	for (i = 0; nv50_graph_trap_prop[i].mask && ustatus; i++) {
++		if (ustatus & nv50_graph_trap_prop[i].mask)
++			nv_error(priv, "TRAP_PROP - TP %d - %s - Address %02x%08x\n",
++				 tp, nv50_graph_trap_prop[i].name, e14, e10);
++		ustatus &= ~nv50_graph_trap_prop[i].mask;
++	}
++	nv_error(priv, "TRAP_PROP - TP %d - e0c: %08x, e18: %08x, e1c: %08x, e20: %08x, e24: %08x\n",
++		 tp, e0c, e18, e1c, e20, e24);
++	return ustatus;
++}
++
+ static void
+ nv50_priv_mp_trap(struct nv50_graph_priv *priv, int tpid, int display)
+ {
+@@ -469,58 +526,10 @@ nv50_priv_tp_trap(struct nv50_graph_priv *priv, int type, u32 ustatus_old,
+ 				ustatus &= ~0x04030000;
+ 			}
+ 			break;
+-		case 8: /* TPDMA error */
+-			{
+-			u32 e0c = nv_rd32(priv, ustatus_addr + 4);
+-			u32 e10 = nv_rd32(priv, ustatus_addr + 8);
+-			u32 e14 = nv_rd32(priv, ustatus_addr + 0xc);
+-			u32 e18 = nv_rd32(priv, ustatus_addr + 0x10);
+-			u32 e1c = nv_rd32(priv, ustatus_addr + 0x14);
+-			u32 e20 = nv_rd32(priv, ustatus_addr + 0x18);
+-			u32 e24 = nv_rd32(priv, ustatus_addr + 0x1c);
+-			/* 2d engine destination */
+-			if (ustatus & 0x00000010) {
+-				if (display) {
+-					nv_error(priv, "TRAP_TPDMA_2D - TP %d - Unknown fault at address %02x%08x\n",
+-							i, e14, e10);
+-					nv_error(priv, "TRAP_TPDMA_2D - TP %d - e0c: %08x, e18: %08x, e1c: %08x, e20: %08x, e24: %08x\n",
+-							i, e0c, e18, e1c, e20, e24);
+-				}
+-				ustatus &= ~0x00000010;
+-			}
+-			/* Render target */
+-			if (ustatus & 0x00000040) {
+-				if (display) {
+-					nv_error(priv, "TRAP_TPDMA_RT - TP %d - Unknown fault at address %02x%08x\n",
+-							i, e14, e10);
+-					nv_error(priv, "TRAP_TPDMA_RT - TP %d - e0c: %08x, e18: %08x, e1c: %08x, e20: %08x, e24: %08x\n",
+-							i, e0c, e18, e1c, e20, e24);
+-				}
+-				ustatus &= ~0x00000040;
+-			}
+-			/* CUDA memory: l[], g[] or stack. */
+-			if (ustatus & 0x00000080) {
+-				if (display) {
+-					if (e18 & 0x80000000) {
+-						/* g[] read fault? */
+-						nv_error(priv, "TRAP_TPDMA - TP %d - Global read fault at address %02x%08x\n",
+-								i, e14, e10 | ((e18 >> 24) & 0x1f));
+-						e18 &= ~0x1f000000;
+-					} else if (e18 & 0xc) {
+-						/* g[] write fault? */
+-						nv_error(priv, "TRAP_TPDMA - TP %d - Global write fault at address %02x%08x\n",
+-								i, e14, e10 | ((e18 >> 7) & 0x1f));
+-						e18 &= ~0x00000f80;
+-					} else {
+-						nv_error(priv, "TRAP_TPDMA - TP %d - Unknown CUDA fault at address %02x%08x\n",
+-								i, e14, e10);
+-					}
+-					nv_error(priv, "TRAP_TPDMA - TP %d - e0c: %08x, e18: %08x, e1c: %08x, e20: %08x, e24: %08x\n",
+-							i, e0c, e18, e1c, e20, e24);
+-				}
+-				ustatus &= ~0x00000080;
+-			}
+-			}
++		case 8: /* PROP error */
++			if (display)
++				ustatus = nv50_priv_prop_trap(
++						priv, ustatus_addr, ustatus, i);
+ 			break;
+ 		}
+ 		if (ustatus) {
+@@ -727,11 +736,11 @@ nv50_graph_trap_handler(struct nv50_graph_priv *priv, u32 display,
+ 		status &= ~0x080;
+ 	}
+ 
+-	/* TPDMA:  Handles TP-initiated uncached memory accesses:
++	/* PROP:  Handles TP-initiated uncached memory accesses:
+ 	 * l[], g[], stack, 2d surfaces, render targets. */
+ 	if (status & 0x100) {
+ 		nv50_priv_tp_trap(priv, 8, 0x408e08, 0x408708, display,
+-				    "TRAP_TPDMA");
++				    "TRAP_PROP");
+ 		nv_wr32(priv, 0x400108, 0x100);
+ 		status &= ~0x100;
+ 	}
+-- 
+1.8.3.2
