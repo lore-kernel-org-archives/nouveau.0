@@ -1,12 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] drm/nv50/graph: print mpc trap name when it's not
-	an mp trap
-Date: Fri, 17 Jan 2014 00:13:05 -0500
-Message-ID: <1389935585-18465-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 60680] [NV96] HDMI is connected and has mode,
+ TV says "no signal"
+Date: Fri, 17 Jan 2014 06:54:25 +0000
+Message-ID: <bug-60680-8800-i5Uj4e5D01@http.bugs.freedesktop.org/>
+References: <bug-60680-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0162977553=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-60680-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,52 +17,111 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
----
- drivers/gpu/drm/nouveau/core/engine/graph/nv50.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-index 0f8d18a..30ed19c 100644
---- a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-@@ -315,6 +315,20 @@ static const struct nouveau_bitfield nv50_mp_exec_errors[] = {
- 	{}
- };
- 
-+static const struct nouveau_bitfield nv50_mpc_traps[] = {
-+	{ 0x0000001, "LOCAL_LIMIT_READ" },
-+	{ 0x0000010, "LOCAL_LIMIT_WRITE" },
-+	{ 0x0000040, "STACK_LIMIT" },
-+	{ 0x0000100, "GLOBAL_LIMIT_READ" },
-+	{ 0x0001000, "GLOBAL_LIMIT_WRITE" },
-+	{ 0x0010000, "MP0" },
-+	{ 0x0020000, "MP1" },
-+	{ 0x0040000, "GLOBAL_LIMIT_RED" },
-+	{ 0x0400000, "GLOBAL_LIMIT_ATOM" },
-+	{ 0x4000000, "MP2" },
-+	{}
-+};
-+
- static const struct nouveau_bitfield nv50_graph_trap_m2mf[] = {
- 	{ 0x00000001, "NOTIFY" },
- 	{ 0x00000002, "IN" },
-@@ -524,6 +538,12 @@ nv50_priv_tp_trap(struct nv50_graph_priv *priv, int type, u32 ustatus_old,
- 				nv50_priv_mp_trap(priv, i, display);
- 				ustatus &= ~0x04030000;
- 			}
-+			if (ustatus && display) {
-+				nv_error("%s - TP%d:", name, i);
-+				nouveau_bitfield_print(nv50_mpc_traps, ustatus);
-+				pr_cont("\n");
-+				ustatus = 0;
-+			}
- 			break;
- 		case 8: /* PROP error */
- 			if (display)
+--===============0162977553==
+Content-Type: multipart/alternative; boundary="1389941665.7eDB6d3.14150"; charset="us-ascii"
+
+
+--1389941665.7eDB6d3.14150
+Date: Fri, 17 Jan 2014 06:54:25 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=60680
+
+--- Comment #19 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+... and if that doesn't work, try making it a rd32 & 0xff instead of a rd08.
+[would also need more logic to handle non-aligned-to-4 reads, but you don't
+have those]
+
+Looking at the full mmiotrace (rather than just PDISPLAY as my earlier diff was
+doing), there are sections like
+
+[0] 35.111642 MMIO32 R 0x619494 0x000900e8 PDISPLAY.VGA.CR+0x94 => 0x900e8
+[0] 35.111688 MMIO32 W 0x619494 0x000900e0 PDISPLAY.VGA.CR+0x94 <= 0x900e0
+... ~30 more identical lines ...
+
+and then in the good trace:
+[0] 35.113651 MMIO32 R 0x619494 0x000900e0 PDISPLAY.VGA.CR+0x94 => 0x900e0
+
+but in the bad trace:
+[0] 39.098615 MMIO8 W 0x6013d4 0x00000094 PRMIO.CRX <= 0x94
+[0] 39.098655 CRTC0 R     0x94       0x00 0x94 => 0
+
+And that is the value used by the condition 0x05. So it seems really likely
+that this will help. I hope.
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1389941665.7eDB6d3.14150
+Date: Fri, 17 Jan 2014 06:54:25 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60680#c19">Comment # 19</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60680">bug 60680</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>... and if that doesn't work, try making it a rd32 &amp; 0xff instead of a rd08.
+[would also need more logic to handle non-aligned-to-4 reads, but you don't
+have those]
+
+Looking at the full mmiotrace (rather than just PDISPLAY as my earlier diff was
+doing), there are sections like
+
+[0] 35.111642 MMIO32 R 0x619494 0x000900e8 PDISPLAY.VGA.CR+0x94 =&gt; 0x900e8
+[0] 35.111688 MMIO32 W 0x619494 0x000900e0 PDISPLAY.VGA.CR+0x94 &lt;= 0x900e0
+... ~30 more identical lines ...
+
+and then in the good trace:
+[0] 35.113651 MMIO32 R 0x619494 0x000900e0 PDISPLAY.VGA.CR+0x94 =&gt; 0x900e0
+
+but in the bad trace:
+[0] 39.098615 MMIO8 W 0x6013d4 0x00000094 PRMIO.CRX &lt;= 0x94
+[0] 39.098655 CRTC0 R     0x94       0x00 0x94 =&gt; 0
+
+And that is the value used by the condition 0x05. So it seems really likely
+that this will help. I hope.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1389941665.7eDB6d3.14150--
+
+--===============0162977553==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0162977553==--
