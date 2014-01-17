@@ -1,109 +1,101 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] nv50,
-	nvc0: only clear out the buffers that we were asked to clear
-Date: Thu, 16 Jan 2014 21:23:15 -0500
-Message-ID: <1389925395-22379-2-git-send-email-imirkin@alum.mit.edu>
-References: <1389925395-22379-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 73358] [regression?][nv34] adobe flash + firefox ->
+	DATA_ERROR
+Date: Fri, 17 Jan 2014 03:49:11 +0000
+Message-ID: <bug-73358-8800-VWIVV9hu28@http.bugs.freedesktop.org/>
+References: <bug-73358-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1389925395-22379-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces@lists.freedesktop.org
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-To: mesa-dev@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1524171913=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-73358-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Fixes fbo-drawbuffers-none glClearBuffer piglit test.
 
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
----
+--===============1524171913==
+Content-Type: multipart/alternative; boundary="1389930551.CD84b2.4440"; charset="us-ascii"
 
-Only tested on nv50, but implementations seem similar enough.
 
- src/gallium/drivers/nouveau/nv50/nv50_surface.c | 17 +++++++++--------
- src/gallium/drivers/nouveau/nvc0/nvc0_surface.c | 17 +++++++++--------
- 2 files changed, 18 insertions(+), 16 deletions(-)
+--1389930551.CD84b2.4440
+Date: Fri, 17 Jan 2014 03:49:11 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_surface.c b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-index 358f57a..eb27429 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-@@ -408,9 +408,6 @@ nv50_clear(struct pipe_context *pipe, unsigned buffers,
-       PUSH_DATAf(push, color->f[1]);
-       PUSH_DATAf(push, color->f[2]);
-       PUSH_DATAf(push, color->f[3]);
--      mode =
--         NV50_3D_CLEAR_BUFFERS_R | NV50_3D_CLEAR_BUFFERS_G |
--         NV50_3D_CLEAR_BUFFERS_B | NV50_3D_CLEAR_BUFFERS_A;
-    }
- 
-    if (buffers & PIPE_CLEAR_DEPTH) {
-@@ -425,12 +422,16 @@ nv50_clear(struct pipe_context *pipe, unsigned buffers,
-       mode |= NV50_3D_CLEAR_BUFFERS_S;
-    }
- 
--   BEGIN_NV04(push, NV50_3D(CLEAR_BUFFERS), 1);
--   PUSH_DATA (push, mode);
--
--   for (i = 1; i < fb->nr_cbufs; i++) {
-+   if (mode) {
-       BEGIN_NV04(push, NV50_3D(CLEAR_BUFFERS), 1);
--      PUSH_DATA (push, (i << 6) | 0x3c);
-+      PUSH_DATA (push, mode);
-+   }
-+
-+   for (i = 0; i < fb->nr_cbufs; i++) {
-+      if (buffers & (PIPE_CLEAR_COLOR0 << i)) {
-+         BEGIN_NV04(push, NV50_3D(CLEAR_BUFFERS), 1);
-+         PUSH_DATA (push, (i << 6) | 0x3c);
-+      }
-    }
- }
- 
-diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c b/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-index 5375bd4..0c12bce 100644
---- a/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-+++ b/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-@@ -427,9 +427,6 @@ nvc0_clear(struct pipe_context *pipe, unsigned buffers,
-       PUSH_DATAf(push, color->f[1]);
-       PUSH_DATAf(push, color->f[2]);
-       PUSH_DATAf(push, color->f[3]);
--      mode =
--         NVC0_3D_CLEAR_BUFFERS_R | NVC0_3D_CLEAR_BUFFERS_G |
--         NVC0_3D_CLEAR_BUFFERS_B | NVC0_3D_CLEAR_BUFFERS_A;
-    }
- 
-    if (buffers & PIPE_CLEAR_DEPTH) {
-@@ -444,12 +441,16 @@ nvc0_clear(struct pipe_context *pipe, unsigned buffers,
-       mode |= NVC0_3D_CLEAR_BUFFERS_S;
-    }
- 
--   BEGIN_NVC0(push, NVC0_3D(CLEAR_BUFFERS), 1);
--   PUSH_DATA (push, mode);
--
--   for (i = 1; i < fb->nr_cbufs; i++) {
-+   if (mode) {
-       BEGIN_NVC0(push, NVC0_3D(CLEAR_BUFFERS), 1);
--      PUSH_DATA (push, (i << 6) | 0x3c);
-+      PUSH_DATA (push, mode);
-+   }
-+
-+   for (i = 0; i < fb->nr_cbufs; i++) {
-+      if (buffers & (PIPE_CLEAR_COLOR0 << i)) {
-+         BEGIN_NVC0(push, NVC0_3D(CLEAR_BUFFERS), 1);
-+         PUSH_DATA (push, (i << 6) | 0x3c);
-+      }
-    }
- }
- 
+https://bugs.freedesktop.org/show_bug.cgi?id=73358
+
+--- Comment #19 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Here's a patch I made: http://patchwork.freedesktop.org/patch/18063/
+
+Would be interesting to see if it helps your situation. Note that if you
+install mesa (and thus libvdpau_nouveau.so) into not-/usr/lib, then you will
+need to install libvdpau to that same location and use LD_LIBRARY_PATH.
+Otherwise it'll load the system libvdpau which will have hardcoded locations it
+searches for libvdpau_$driver.so.
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1389930551.CD84b2.4440
+Date: Fri, 17 Jan 2014 03:49:11 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [regression?][nv34] adobe flash + firefox -&gt; DATA_ERROR"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73358#c19">Comment # 19</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [regression?][nv34] adobe flash + firefox -&gt; DATA_ERROR"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73358">bug 73358</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Here's a patch I made: <a href="http://patchwork.freedesktop.org/patch/18063/">http://patchwork.freedesktop.org/patch/18063/</a>
+
+Would be interesting to see if it helps your situation. Note that if you
+install mesa (and thus libvdpau_nouveau.so) into not-/usr/lib, then you will
+need to install libvdpau to that same location and use LD_LIBRARY_PATH.
+Otherwise it'll load the system libvdpau which will have hardcoded locations it
+searches for libvdpau_$driver.so.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1389930551.CD84b2.4440--
+
+--===============1524171913==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1524171913==--
