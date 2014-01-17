@@ -1,11 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73744] New: Constant lock ups with NVIDIA GeForce
-	8400 GS
-Date: Fri, 17 Jan 2014 15:04:20 +0000
-Message-ID: <bug-73744-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73744] Constant lock ups with NVIDIA GeForce 8400 GS
+Date: Fri, 17 Jan 2014 16:04:32 +0000
+Message-ID: <bug-73744-8800-1LR0DUO72A@http.bugs.freedesktop.org/>
+References: <bug-73744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1052578411=="
+Content-Type: multipart/mixed; boundary="===============1156302347=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-73744-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,62 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1052578411==
-Content-Type: multipart/alternative; boundary="1389971060.06deA1.26127"; charset="us-ascii"
+--===============1156302347==
+Content-Type: multipart/alternative; boundary="1389974671.86DBa1.11266"; charset="us-ascii"
 
 
---1389971060.06deA1.26127
-Date: Fri, 17 Jan 2014 15:04:20 +0000
+--1389974671.86DBa1.11266
+Date: Fri, 17 Jan 2014 16:04:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73744
 
-          Priority: medium
-            Bug ID: 73744
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Constant lock ups with NVIDIA GeForce 8400 GS
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: blocker
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: grave_123-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
-
-Hello,
-
-I am currently using the non-free NVIDIA drivers with a GeForce 8400 GS. My
-screen locks up whenever I use Nouveau to the point where I have to
-hard-shutdown my machine. I can't afford hardware damage so I'm temporarily
-using the non-free drivers.
-
-Anyway ...
-
-I am not sure what specifically causes the lock ups. I can not get to an
-emergency terminal to determine the cause in the moment either. At first,
-everything but the mouse cursor and sound seizes up and then those two seize up
-and there's excessive HDD activity. My only choice is to press and hold the pwr
-button and wait for it to shutdown.
-
-I don't currently have a log file for the issue. I will switch back to Nouveau
-once I get a response of some kind. Haha.
-
-
-OS: Ubuntu GNU/Linux x86-64 13.10
-Linux: 3.11.0-15-generic
-Graphics Card: NVIDIA GeForce 8400 GS
-X.Org version: 1.14.5
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+It'd be great to see a dmesg from an affected boot. One issue that has recently
+been identified is that some cards are missing a PCRYPT unit -- you can test
+out this theory by booting with nouveau.config=PCRYPT=0
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389971060.06deA1.26127
-Date: Fri, 17 Jan 2014 15:04:20 +0000
+--1389974671.86DBa1.11266
+Date: Fri, 17 Jan 2014 16:04:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -82,118 +49,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Constant lock ups with NVIDIA GeForce 8400 GS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744">73744</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Constant lock ups with NVIDIA GeForce 8400 GS
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>blocker
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>grave_123&#64;riseup.net
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Hello,
-
-I am currently using the non-free NVIDIA drivers with a GeForce 8400 GS. My
-screen locks up whenever I use Nouveau to the point where I have to
-hard-shutdown my machine. I can't afford hardware damage so I'm temporarily
-using the non-free drivers.
-
-Anyway ...
-
-I am not sure what specifically causes the lock ups. I can not get to an
-emergency terminal to determine the cause in the moment either. At first,
-everything but the mouse cursor and sound seizes up and then those two seize up
-and there's excessive HDD activity. My only choice is to press and hold the pwr
-button and wait for it to shutdown.
-
-I don't currently have a log file for the issue. I will switch back to Nouveau
-once I get a response of some kind. Haha.
-
-
-OS: Ubuntu GNU/Linux x86-64 13.10
-Linux: 3.11.0-15-generic
-Graphics Card: NVIDIA GeForce 8400 GS
-X.Org version: 1.14.5</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Constant lock ups with NVIDIA GeForce 8400 GS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Constant lock ups with NVIDIA GeForce 8400 GS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744">bug 73744</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>It'd be great to see a dmesg from an affected boot. One issue that has recently
+been identified is that some cards are missing a PCRYPT unit -- you can test
+out this theory by booting with nouveau.config=PCRYPT=0</pre>
         </div>
       </p>
       <hr>
@@ -205,9 +76,9 @@ X.Org version: 1.14.5</pre>
     </body>
 </html>
 
---1389971060.06deA1.26127--
+--1389974671.86DBa1.11266--
 
---===============1052578411==
+--===============1156302347==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -218,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1052578411==--
+--===============1156302347==--
