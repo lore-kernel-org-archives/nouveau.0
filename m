@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 73744] [NVA8] Constant lock ups with NVIDIA GeForce
 	8400 GS
-Date: Sat, 18 Jan 2014 22:34:14 +0000
-Message-ID: <bug-73744-8800-sNU206fSBH@http.bugs.freedesktop.org/>
+Date: Sat, 18 Jan 2014 22:48:14 +0000
+Message-ID: <bug-73744-8800-IqX33P78yG@http.bugs.freedesktop.org/>
 References: <bug-73744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1524746117=="
+Content-Type: multipart/mixed; boundary="===============0924097872=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73744-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,47 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1524746117==
-Content-Type: multipart/alternative; boundary="1390084454.a5C31.17537"; charset="us-ascii"
+--===============0924097872==
+Content-Type: multipart/alternative; boundary="1390085294.3D3BBaa41.20071"; charset="us-ascii"
 
 
---1390084454.a5C31.17537
-Date: Sat, 18 Jan 2014 22:34:14 +0000
+--1390085294.3D3BBaa41.20071
+Date: Sat, 18 Jan 2014 22:48:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73744
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #5 from grave_123-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org ---
+Created attachment 92364
+  --> https://bugs.freedesktop.org/attachment.cgi?id=92364&action=edit
+nvapeek output with envytools
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Constant lock ups with      |[NVA8] Constant lock ups
-                   |NVIDIA GeForce 8400 GS      |with NVIDIA GeForce 8400 GS
-
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Ah, interesting. This is a different 8400 GS than I thought (marketing names
-are so misleading). That PCRYPT=0 thing will do nothing useful. But.... it
-might still be the same issue I thought it might be, just not as visible in
-kernel messages.
-
-Can you grab a copy of envytools (https://github.com/envytools/envytools) build
-it, and run
-
-nvapeek 1540
-nvapeek 154c
-
-and report back with the results of those commands? (You can do this while on
-blob drivers as well as nouveau, doesn't matter.) Additionally, try booting
-with nouveau.config=PCE0=0 in the kernel cmdline and see if that fixes your
-issues. (That should cause it to use M2MF instead of COPY for buffer copies.)
+This is the output for nvapeek with the commands ran in the exact order posted.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390084454.a5C31.17537
-Date: Sat, 18 Jan 2014 22:34:14 +0000
+--1390085294.3D3BBaa41.20071
+Date: Sat, 18 Jan 2014 22:48:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,54 +52,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744">bug 73744</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Constant lock ups with NVIDIA GeForce 8400 GS
-           </td>
-           <td>[NVA8] Constant lock ups with NVIDIA GeForce 8400 GS
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=73744">bug 73744</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:grave_123&#64;riseup.net" title="grave_123&#64;riseup.net">grave_123&#64;riseup.net</a>
 </span></b>
-        <pre>Ah, interesting. This is a different 8400 GS than I thought (marketing names
-are so misleading). That PCRYPT=0 thing will do nothing useful. But.... it
-might still be the same issue I thought it might be, just not as visible in
-kernel messages.
+        <pre>Created <span class=""><a href="attachment.cgi?id=92364" name="attach_92364" title="nvapeek output with envytools">attachment 92364</a> <a href="attachment.cgi?id=92364&amp;action=edit" title="nvapeek output with envytools">[details]</a></span>
+nvapeek output with envytools
 
-Can you grab a copy of envytools (<a href="https://github.com/envytools/envytools">https://github.com/envytools/envytools</a>) build
-it, and run
-
-nvapeek 1540
-nvapeek 154c
-
-and report back with the results of those commands? (You can do this while on
-blob drivers as well as nouveau, doesn't matter.) Additionally, try booting
-with nouveau.config=PCE0=0 in the kernel cmdline and see if that fixes your
-issues. (That should cause it to use M2MF instead of COPY for buffer copies.)</pre>
+This is the output for nvapeek with the commands ran in the exact order posted.</pre>
         </div>
       </p>
       <hr>
@@ -128,9 +80,9 @@ issues. (That should cause it to use M2MF instead of COPY for buffer copies.)</p
     </body>
 </html>
 
---1390084454.a5C31.17537--
+--1390085294.3D3BBaa41.20071--
 
---===============1524746117==
+--===============0924097872==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -141,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1524746117==--
+--===============0924097872==--
