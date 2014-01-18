@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73473] Potential crash bug in
- src/gallium/auxiliary/rtasm/rtasm_execmem.c
-Date: Fri, 17 Jan 2014 23:01:55 +0000
-Message-ID: <bug-73473-8800-TjrJtVgcKA@http.bugs.freedesktop.org/>
-References: <bug-73473-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69488] GF108 (NVC1) GPU lockup
+Date: Sat, 18 Jan 2014 03:19:36 +0000
+Message-ID: <bug-69488-8800-QuR6Zhry7D@http.bugs.freedesktop.org/>
+References: <bug-69488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0322199103=="
+Content-Type: multipart/mixed; boundary="===============0589646897=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73473-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0322199103==
-Content-Type: multipart/alternative; boundary="1389999714.657CAF0.31093"; charset="us-ascii"
+--===============0589646897==
+Content-Type: multipart/alternative; boundary="1390015176.2CC63E2.21992"; charset="us-ascii"
 
 
---1389999714.657CAF0.31093
-Date: Fri, 17 Jan 2014 23:01:54 +0000
+--1390015176.2CC63E2.21992
+Date: Sat, 18 Jan 2014 03:19:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=73473
+https://bugs.freedesktop.org/show_bug.cgi?id=69488
 
---- Comment #9 from Jaak Ristioja <jaak-89mTbI93R4uuvFJfX82//w@public.gmane.org> ---
-Personally, I'd keep both the selinux and PaX parts out of the patch.
+--- Comment #33 from Ned F. <nforrester-/d+BM93fTQY@public.gmane.org> ---
+(In reply to comment #32)
+> The runtime pm thing is a separate issue. Talking about multiple unrelated
+> issues in the same bug is very confusing. Integers are cheap -- just open a
+> new bug if you have a new issue, no need to save up the bug id's.
 
-I suggest simply checking the return value for the mmap call. I think this
-would suffice. Keep it simple. There are also other reasons why mmap can fail
-(e.g. due to ulimit) and this should be checked. Please fix this first, add
-PaX/selinux/whatever support later. :)
+I don't mean to offend by breaking any rules, but Comment 15 of this bug report
+suggested trying nouveau.runpm=0 as a test.  I am merely reporting that I got
+the same result as others.  
 
-PS: While in the selinux patch the selinux code can be conditionally #ifdef
-enabled, in the PaX patch the PaX code is not, meaning this results in a minor
-performance impact for all users.
+Perhaps you are concerned that I am reporting on a bug already marked as fixed.
+It is clear that I am experiencing the same bug reported above, and I thought
+it may be helpful to others looking for a solution to see additional systems
+and software versions that experience the bug, and additional confirmation of
+one work around.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1389999714.657CAF0.31093
-Date: Fri, 17 Jan 2014 23:01:54 +0000
+--1390015176.2CC63E2.21992
+Date: Sat, 18 Jan 2014 03:19:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,25 +64,29 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Potential crash bug in src/gallium/auxiliary/rtasm/rtasm_execmem.c"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73473#c9">Comment # 9</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - GF108 (NVC1) GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c33">Comment # 33</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Potential crash bug in src/gallium/auxiliary/rtasm/rtasm_execmem.c"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73473">bug 73473</a>
-              from <span class="vcard"><a class="email" href="mailto:jaak&#64;ristioja.ee" title="Jaak Ristioja &lt;jaak&#64;ristioja.ee&gt;"> <span class="fn">Jaak Ristioja</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - GF108 (NVC1) GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488">bug 69488</a>
+              from <span class="vcard"><a class="email" href="mailto:nforrester&#64;whoi.edu" title="Ned F. &lt;nforrester&#64;whoi.edu&gt;"> <span class="fn">Ned F.</span></a>
 </span></b>
-        <pre>Personally, I'd keep both the selinux and PaX parts out of the patch.
+        <pre>(In reply to <a href="show_bug.cgi?id=69488#c32">comment #32</a>)
+<span class="quote">&gt; The runtime pm thing is a separate issue. Talking about multiple unrelated
+&gt; issues in the same bug is very confusing. Integers are cheap -- just open a
+&gt; new bug if you have a new issue, no need to save up the bug id's.</span >
 
-I suggest simply checking the return value for the mmap call. I think this
-would suffice. Keep it simple. There are also other reasons why mmap can fail
-(e.g. due to ulimit) and this should be checked. Please fix this first, add
-PaX/selinux/whatever support later. :)
+I don't mean to offend by breaking any rules, but <a href="show_bug.cgi?id=69488#c15">Comment 15</a> of this bug report
+suggested trying nouveau.runpm=0 as a test.  I am merely reporting that I got
+the same result as others.  
 
-PS: While in the selinux patch the selinux code can be conditionally #ifdef
-enabled, in the PaX patch the PaX code is not, meaning this results in a minor
-performance impact for all users.</pre>
+Perhaps you are concerned that I am reporting on a bug already marked as fixed.
+It is clear that I am experiencing the same bug reported above, and I thought
+it may be helpful to others looking for a solution to see additional systems
+and software versions that experience the bug, and additional confirmation of
+one work around.</pre>
         </div>
       </p>
       <hr>
@@ -91,9 +98,9 @@ performance impact for all users.</pre>
     </body>
 </html>
 
---1389999714.657CAF0.31093--
+--1390015176.2CC63E2.21992--
 
---===============0322199103==
+--===============0589646897==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +111,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0322199103==--
+--===============0589646897==--
