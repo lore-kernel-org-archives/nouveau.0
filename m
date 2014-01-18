@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73770] nouveau doesn't setup 1920x1200 mode on HDMI
-	properly
-Date: Sat, 18 Jan 2014 20:51:16 +0000
-Message-ID: <bug-73770-8800-boGOYzJpR5@http.bugs.freedesktop.org/>
-References: <bug-73770-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72979] garbage / parts of previous session displayed
+ on login screen after logout or reboot
+Date: Sat, 18 Jan 2014 21:21:20 +0000
+Message-ID: <bug-72979-8800-hyhECm7wqb@http.bugs.freedesktop.org/>
+References: <bug-72979-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1806689560=="
+Content-Type: multipart/mixed; boundary="===============0351628646=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73770-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72979-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1806689560==
-Content-Type: multipart/alternative; boundary="1390078276.2cEf1.3635"; charset="us-ascii"
+--===============0351628646==
+Content-Type: multipart/alternative; boundary="1390080079.4C401.7536"; charset="us-ascii"
 
 
---1390078276.2cEf1.3635
-Date: Sat, 18 Jan 2014 20:51:16 +0000
+--1390080079.4C401.7536
+Date: Sat, 18 Jan 2014 21:21:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=73770
+https://bugs.freedesktop.org/show_bug.cgi?id=72979
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you try setting the "scaling mode" to None with xrandr?
+--- Comment #2 from Vincent Lefevre <vincent-fdt-buymaDBGzMOsTnJN9+BGXg@public.gmane.org> ---
+Corrupt background also occurs after a cold boot (i.e. from power off), but in
+this case, there is no security problem of course: I just get a blank
+background, possibly with random black points.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390078276.2cEf1.3635
-Date: Sat, 18 Jan 2014 20:51:16 +0000
+--1390080079.4C401.7536
+Date: Sat, 18 Jan 2014 21:21:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,15 +55,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau doesn't setup 1920x1200 mode on HDMI properly"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73770#c3">Comment # 3</a>
+   title="NEW --- - garbage / parts of previous session displayed on login screen after logout or reboot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72979#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau doesn't setup 1920x1200 mode on HDMI properly"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73770">bug 73770</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - garbage / parts of previous session displayed on login screen after logout or reboot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72979">bug 72979</a>
+              from <span class="vcard"><a class="email" href="mailto:vincent-fdt&#64;vinc17.net" title="Vincent Lefevre &lt;vincent-fdt&#64;vinc17.net&gt;"> <span class="fn">Vincent Lefevre</span></a>
 </span></b>
-        <pre>Can you try setting the &quot;scaling mode&quot; to None with xrandr?</pre>
+        <pre>Corrupt background also occurs after a cold boot (i.e. from power off), but in
+this case, there is no security problem of course: I just get a blank
+background, possibly with random black points.</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +77,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1390078276.2cEf1.3635--
+--1390080079.4C401.7536--
 
---===============1806689560==
+--===============0351628646==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1806689560==--
+--===============0351628646==--
