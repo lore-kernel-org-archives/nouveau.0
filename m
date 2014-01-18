@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69488] GF108 (NVC1) GPU lockup
-Date: Sat, 18 Jan 2014 03:19:36 +0000
-Message-ID: <bug-69488-8800-QuR6Zhry7D@http.bugs.freedesktop.org/>
-References: <bug-69488-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73358] [regression?][nv34] adobe flash + firefox ->
+	DATA_ERROR
+Date: Sat, 18 Jan 2014 03:47:51 +0000
+Message-ID: <bug-73358-8800-gbdylQMTCu@http.bugs.freedesktop.org/>
+References: <bug-73358-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0589646897=="
+Content-Type: multipart/mixed; boundary="===============0471201822=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73358-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,39 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0589646897==
-Content-Type: multipart/alternative; boundary="1390015176.2CC63E2.21992"; charset="us-ascii"
+--===============0471201822==
+Content-Type: multipart/alternative; boundary="1390016871.7C1A02.28070"; charset="us-ascii"
 
 
---1390015176.2CC63E2.21992
-Date: Sat, 18 Jan 2014 03:19:36 +0000
+--1390016871.7C1A02.28070
+Date: Sat, 18 Jan 2014 03:47:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69488
+https://bugs.freedesktop.org/show_bug.cgi?id=73358
 
---- Comment #33 from Ned F. <nforrester-/d+BM93fTQY@public.gmane.org> ---
-(In reply to comment #32)
-> The runtime pm thing is a separate issue. Talking about multiple unrelated
-> issues in the same bug is very confusing. Integers are cheap -- just open a
-> new bug if you have a new issue, no need to save up the bug id's.
+--- Comment #32 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 92316
+  --> https://bugs.freedesktop.org/attachment.cgi?id=92316&action=edit
+vdpau patch
 
-I don't mean to offend by breaking any rules, but Comment 15 of this bug report
-suggested trying nouveau.runpm=0 as a test.  I am merely reporting that I got
-the same result as others.  
+OK, here's a patch that
 
-Perhaps you are concerned that I am reporting on a bug already marked as fixed.
-It is clear that I am experiencing the same bug reported above, and I thought
-it may be helpful to others looking for a solution to see additional systems
-and software versions that experience the bug, and additional confirmation of
-one work around.
+(a) disables vdpau for devices that don't support NPOT textures
+(b) error handling cleanups when creating surfaces
+(c) the thing i did before which checking surface params before making them
+
+Now, I believe that part (a) should essentially disable VDPAU for you. When you
+build it, run vdpauinfo -- it should say something like "no devices" or "error
+creating device" or something. Hopefully flash can also deal with that error.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390015176.2CC63E2.21992
-Date: Sat, 18 Jan 2014 03:19:36 +0000
+--1390016871.7C1A02.28070
+Date: Sat, 18 Jan 2014 03:47:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,29 +64,27 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488#c33">Comment # 33</a>
+          bz_status_NEW "
+   title="NEW --- - [regression?][nv34] adobe flash + firefox -&gt; DATA_ERROR"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73358#c32">Comment # 32</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - GF108 (NVC1) GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69488">bug 69488</a>
-              from <span class="vcard"><a class="email" href="mailto:nforrester&#64;whoi.edu" title="Ned F. &lt;nforrester&#64;whoi.edu&gt;"> <span class="fn">Ned F.</span></a>
+          bz_status_NEW "
+   title="NEW --- - [regression?][nv34] adobe flash + firefox -&gt; DATA_ERROR"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73358">bug 73358</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=69488#c32">comment #32</a>)
-<span class="quote">&gt; The runtime pm thing is a separate issue. Talking about multiple unrelated
-&gt; issues in the same bug is very confusing. Integers are cheap -- just open a
-&gt; new bug if you have a new issue, no need to save up the bug id's.</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=92316" name="attach_92316" title="vdpau patch">attachment 92316</a> <a href="attachment.cgi?id=92316&amp;action=edit" title="vdpau patch">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=73358&amp;attachment=92316'>[review]</a>
+vdpau patch
 
-I don't mean to offend by breaking any rules, but <a href="show_bug.cgi?id=69488#c15">Comment 15</a> of this bug report
-suggested trying nouveau.runpm=0 as a test.  I am merely reporting that I got
-the same result as others.  
+OK, here's a patch that
 
-Perhaps you are concerned that I am reporting on a bug already marked as fixed.
-It is clear that I am experiencing the same bug reported above, and I thought
-it may be helpful to others looking for a solution to see additional systems
-and software versions that experience the bug, and additional confirmation of
-one work around.</pre>
+(a) disables vdpau for devices that don't support NPOT textures
+(b) error handling cleanups when creating surfaces
+(c) the thing i did before which checking surface params before making them
+
+Now, I believe that part (a) should essentially disable VDPAU for you. When you
+build it, run vdpauinfo -- it should say something like &quot;no devices&quot; or &quot;error
+creating device&quot; or something. Hopefully flash can also deal with that error.</pre>
         </div>
       </p>
       <hr>
@@ -98,9 +96,9 @@ one work around.</pre>
     </body>
 </html>
 
---1390015176.2CC63E2.21992--
+--1390016871.7C1A02.28070--
 
---===============0589646897==
+--===============0471201822==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +109,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0589646897==--
+--===============0471201822==--
