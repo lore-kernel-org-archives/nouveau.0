@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72952] [NV94] no HDMI output,
- xrands claims DVI-D-1 disconnected
-Date: Sun, 19 Jan 2014 11:55:32 +0000
-Message-ID: <bug-72952-8800-N5BycO4fhY@http.bugs.freedesktop.org/>
-References: <bug-72952-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72939] [nv96] Freespace 2 open crashes
+Date: Sun, 19 Jan 2014 12:14:37 +0000
+Message-ID: <bug-72939-8800-v1hciB3JEp@http.bugs.freedesktop.org/>
+References: <bug-72939-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0574310384=="
+Content-Type: multipart/mixed; boundary="===============0324790342=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72952-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72939-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0574310384==
-Content-Type: multipart/alternative; boundary="1390132532.e4cA2.13955"; charset="us-ascii"
+--===============0324790342==
+Content-Type: multipart/alternative; boundary="1390133677.2f2D1.17710"; charset="us-ascii"
 
 
---1390132532.e4cA2.13955
-Date: Sun, 19 Jan 2014 11:55:32 +0000
+--1390133677.2f2D1.17710
+Date: Sun, 19 Jan 2014 12:14:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72952
+https://bugs.freedesktop.org/show_bug.cgi?id=72939
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I think this issue might be the same one as bug #60680. Can you try the patch
-at https://bugs.freedesktop.org/attachment.cgi?id=92319 and see if it helps? If
-it doesn't, can you upload your vbios (/sys/kernel/debug/dri/0/vbios.rom) as
-well as a dmesg booting with nouveau.debug=VBIOS=trace,PDISP=debug -- that
-might show some clues.
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+This error is telling you that an invalid opcode was attempted to get executed.
+On the bright side, envydis agrees that it's an invalid opcode. So either we
+have a bug in generating shaders, or it's something more sinister.
+
+If you run a debug mesa build with NV50_PROG_DEBUG=1, it should dump all the
+shaders being compiled -- that should at least let us know if we're generating
+the wrong opcodes or not. Basically look for the 80070279 00060780 sequence in
+the generated program binaries that are printed out. If you do find it, grab
+the whole shader binary as well as the lines that precede it, including the
+TGSI that caused it to be generated, and upload that here.
+
+If it's not there, then... that's very unfortunate -- it means some sort of
+memory corruption issue. Let's hope it's the more straightforward problem.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390132532.e4cA2.13955
-Date: Sun, 19 Jan 2014 11:55:32 +0000
+--1390133677.2f2D1.17710
+Date: Sun, 19 Jan 2014 12:14:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,22 +64,27 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV94] no HDMI output, xrands claims DVI-D-1 disconnected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72952#c5">Comment # 5</a>
+   title="NEW --- - [nv96] Freespace 2 open crashes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72939#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV94] no HDMI output, xrands claims DVI-D-1 disconnected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72952">bug 72952</a>
+   title="NEW --- - [nv96] Freespace 2 open crashes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72939">bug 72939</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I think this issue might be the same one as <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
-   href="show_bug.cgi?id=60680">bug #60680</a>. Can you try the patch
-at <a href="https://bugs.freedesktop.org/attachment.cgi?id=92319">https://bugs.freedesktop.org/attachment.cgi?id=92319</a> and see if it helps? If
-it doesn't, can you upload your vbios (/sys/kernel/debug/dri/0/vbios.rom) as
-well as a dmesg booting with nouveau.debug=VBIOS=trace,PDISP=debug -- that
-might show some clues.</pre>
+        <pre>This error is telling you that an invalid opcode was attempted to get executed.
+On the bright side, envydis agrees that it's an invalid opcode. So either we
+have a bug in generating shaders, or it's something more sinister.
+
+If you run a debug mesa build with NV50_PROG_DEBUG=1, it should dump all the
+shaders being compiled -- that should at least let us know if we're generating
+the wrong opcodes or not. Basically look for the 80070279 00060780 sequence in
+the generated program binaries that are printed out. If you do find it, grab
+the whole shader binary as well as the lines that precede it, including the
+TGSI that caused it to be generated, and upload that here.
+
+If it's not there, then... that's very unfortunate -- it means some sort of
+memory corruption issue. Let's hope it's the more straightforward problem.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +96,9 @@ might show some clues.</pre>
     </body>
 </html>
 
---1390132532.e4cA2.13955--
+--1390133677.2f2D1.17710--
 
---===============0574310384==
+--===============0324790342==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +109,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0574310384==--
+--===============0324790342==--
