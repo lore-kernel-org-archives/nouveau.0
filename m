@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73791] [NV96] [BISECTED] Regression: 9600M GT fails
- to boot with 3.13-rc8
-Date: Sun, 19 Jan 2014 15:18:57 +0000
-Message-ID: <bug-73791-8800-mt1W0n2IPL@http.bugs.freedesktop.org/>
-References: <bug-73791-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60680] [NV96] HDMI is connected and has mode,
+ TV says "no signal"
+Date: Sun, 19 Jan 2014 15:23:21 +0000
+Message-ID: <bug-60680-8800-X9MmPkR2TE@http.bugs.freedesktop.org/>
+References: <bug-60680-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0175410777=="
+Content-Type: multipart/mixed; boundary="===============0928760842=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73791-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-60680-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0175410777==
-Content-Type: multipart/alternative; boundary="1390144737.8D0fe61.31238"; charset="us-ascii"
+--===============0928760842==
+Content-Type: multipart/alternative; boundary="1390145001.fdd63.31976"; charset="us-ascii"
 
 
---1390144737.8D0fe61.31238
-Date: Sun, 19 Jan 2014 15:18:57 +0000
+--1390145001.fdd63.31976
+Date: Sun, 19 Jan 2014 15:23:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=73791
+https://bugs.freedesktop.org/show_bug.cgi?id=60680
 
---- Comment #7 from Andreas Reis <andreas.reis-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Both fixes work properly, thanks!
-
-(The two "unmatched output device" lines are the same as before, though.)
+--- Comment #21 from Andreas Reis <andreas.reis-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I applied the vbios-pq1.patch to 3.13-rc8+ to check if it fixes the same NV96
+HDMI issue (mentioned incidentally in bug #73791), and it indeed works for me
+as well.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390144737.8D0fe61.31238
-Date: Sun, 19 Jan 2014 15:18:57 +0000
+--1390145001.fdd63.31976
+Date: Sun, 19 Jan 2014 15:23:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,17 +55,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV96] [BISECTED] Regression: 9600M GT fails to boot with 3.13-rc8"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73791#c7">Comment # 7</a>
+   title="NEW --- - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60680#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV96] [BISECTED] Regression: 9600M GT fails to boot with 3.13-rc8"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73791">bug 73791</a>
+   title="NEW --- - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=60680">bug 60680</a>
               from <span class="vcard"><a class="email" href="mailto:andreas.reis&#64;gmail.com" title="Andreas Reis &lt;andreas.reis&#64;gmail.com&gt;"> <span class="fn">Andreas Reis</span></a>
 </span></b>
-        <pre>Both fixes work properly, thanks!
-
-(The two &quot;unmatched output device&quot; lines are the same as before, though.)</pre>
+        <pre>I applied the vbios-pq1.patch to 3.13-rc8+ to check if it fixes the same NV96
+HDMI issue (mentioned incidentally in <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV96] [BISECTED] Regression: 9600M GT fails to boot with 3.13-rc8"
+   href="show_bug.cgi?id=73791">bug #73791</a>), and it indeed works for me
+as well.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +80,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1390144737.8D0fe61.31238--
+--1390145001.fdd63.31976--
 
---===============0175410777==
+--===============0928760842==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0175410777==--
+--===============0928760842==--
