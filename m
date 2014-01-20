@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73791] [NV96] [BISECTED] Regression: 9600M GT fails
- to boot with 3.13-rc8
-Date: Mon, 20 Jan 2014 03:34:11 +0000
-Message-ID: <bug-73791-8800-SqIga5tREB@http.bugs.freedesktop.org/>
-References: <bug-73791-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73847] New: Shutdown fails almost every time since,
+ upgrade to kernel 3.12
+Date: Mon, 20 Jan 2014 20:49:59 +0000
+Message-ID: <bug-73847-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1191975357=="
+Content-Type: multipart/mixed; boundary="===============2138897060=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73791-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +19,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1191975357==
-Content-Type: multipart/alternative; boundary="1390188851.5cd7aa2.27171"; charset="us-ascii"
+--===============2138897060==
+Content-Type: multipart/alternative; boundary="1390250999.4fB41.9893"; charset="us-ascii"
 
 
---1390188851.5cd7aa2.27171
-Date: Mon, 20 Jan 2014 03:34:11 +0000
+--1390250999.4fB41.9893
+Date: Mon, 20 Jan 2014 20:49:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=73791
+https://bugs.freedesktop.org/show_bug.cgi?id=73847
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+          Priority: medium
+            Bug ID: 73847
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Shutdown fails almost every time since, upgrade to
+                    kernel 3.12
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: serval2412-Qt13gs6zZMY@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+Created attachment 92486
+  --> https://bugs.freedesktop.org/attachment.cgi?id=92486&action=edit
+Information retrieved from Debian tools
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Looks like my patch made it into 3.13 (commit 72de182362... last one!). Thanks
-for the report.
+Hello,
+
+On pc Debian x86-64 testing, shutdown fails almost every time since the upgrade
+to kernel 3.12.
+I attached all the information I could retrieve with Debian tools.
+
+Julien
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390188851.5cd7aa2.27171
-Date: Mon, 20 Jan 2014 03:34:11 +0000
+--1390250999.4fB41.9893
+Date: Mon, 20 Jan 2014 20:49:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,49 +71,105 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV96] [BISECTED] Regression: 9600M GT fails to boot with 3.13-rc8"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73791">bug 73791</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Shutdown fails almost every time since, upgrade to kernel 3.12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73847">73847</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Shutdown fails almost every time since, upgrade to kernel 3.12
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>serval2412&#64;yahoo.fr
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV96] [BISECTED] Regression: 9600M GT fails to boot with 3.13-rc8"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73791#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV96] [BISECTED] Regression: 9600M GT fails to boot with 3.13-rc8"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73791">bug 73791</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Looks like my patch made it into 3.13 (commit 72de182362... last one!). Thanks
-for the report.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=92486" name="attach_92486" title="Information retrieved from Debian tools">attachment 92486</a> <a href="attachment.cgi?id=92486&amp;action=edit" title="Information retrieved from Debian tools">[details]</a></span>
+Information retrieved from Debian tools
+
+Hello,
+
+On pc Debian x86-64 testing, shutdown fails almost every time since the upgrade
+to kernel 3.12.
+I attached all the information I could retrieve with Debian tools.
+
+Julien</pre>
         </div>
       </p>
       <hr>
@@ -110,9 +181,9 @@ for the report.</pre>
     </body>
 </html>
 
---1390188851.5cd7aa2.27171--
+--1390250999.4fB41.9893--
 
---===============1191975357==
+--===============2138897060==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +194,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1191975357==--
+--===============2138897060==--
