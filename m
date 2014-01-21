@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60680] [NV96] HDMI is connected and has mode,
- TV says "no signal"
-Date: Tue, 21 Jan 2014 18:51:20 +0000
-Message-ID: <bug-60680-8800-qX9qaRPHfV@http.bugs.freedesktop.org/>
-References: <bug-60680-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73770] [NVD9] nouveau doesn't setup 1920x1200 mode
+ on HDMI properly
+Date: Tue, 21 Jan 2014 21:50:34 +0000
+Message-ID: <bug-73770-8800-QHbM3eSL3T@http.bugs.freedesktop.org/>
+References: <bug-73770-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1117261208=="
+Content-Type: multipart/mixed; boundary="===============1088943081=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60680-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73770-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1117261208==
-Content-Type: multipart/alternative; boundary="1390330280.6fBa2.5176"; charset="us-ascii"
+--===============1088943081==
+Content-Type: multipart/alternative; boundary="1390341034.51E8A341.16302"; charset="us-ascii"
 
 
---1390330280.6fBa2.5176
-Date: Tue, 21 Jan 2014 18:51:20 +0000
+--1390341034.51E8A341.16302
+Date: Tue, 21 Jan 2014 21:50:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60680
+https://bugs.freedesktop.org/show_bug.cgi?id=73770
 
---- Comment #22 from fd_mitch-3KzNJp4Rz8A@public.gmane.org ---
-I applied the patch on the Ubuntu 13.10 kernel (3.11.0-15-generic) and it
-solved the issue (second monitor blank).
+--- Comment #4 from Martin Holec <martix.cz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I run: xrandr --output DP-1 --set "scaling mode" "None"
+
+This workarounds the problem, thanks.
+
+It's still scaled wrongly in VT and I have to run it every time I boot.
+
+1) Can I add this workaround in kernel cmd line?
+
+2) Could you fix it properly in nouveau driver to make it scaling right by
+default?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390330280.6fBa2.5176
-Date: Tue, 21 Jan 2014 18:51:20 +0000
+--1390341034.51E8A341.16302
+Date: Tue, 21 Jan 2014 21:50:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +62,24 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60680#c22">Comment # 22</a>
+   title="NEW --- - [NVD9] nouveau doesn't setup 1920x1200 mode on HDMI properly"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73770#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60680">bug 60680</a>
-              from <span class="vcard"><a class="email" href="mailto:fd_mitch&#64;ptaff.ca" title="fd_mitch&#64;ptaff.ca">fd_mitch&#64;ptaff.ca</a>
+   title="NEW --- - [NVD9] nouveau doesn't setup 1920x1200 mode on HDMI properly"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73770">bug 73770</a>
+              from <span class="vcard"><a class="email" href="mailto:martix.cz&#64;gmail.com" title="Martin Holec &lt;martix.cz&#64;gmail.com&gt;"> <span class="fn">Martin Holec</span></a>
 </span></b>
-        <pre>I applied the patch on the Ubuntu 13.10 kernel (3.11.0-15-generic) and it
-solved the issue (second monitor blank).</pre>
+        <pre>I run: xrandr --output DP-1 --set &quot;scaling mode&quot; &quot;None&quot;
+
+This workarounds the problem, thanks.
+
+It's still scaled wrongly in VT and I have to run it every time I boot.
+
+1) Can I add this workaround in kernel cmd line?
+
+2) Could you fix it properly in nouveau driver to make it scaling right by
+default?</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +91,9 @@ solved the issue (second monitor blank).</pre>
     </body>
 </html>
 
---1390330280.6fBa2.5176--
+--1390341034.51E8A341.16302--
 
---===============1117261208==
+--===============1088943081==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1117261208==--
+--===============1088943081==--
