@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73924] E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080
- data 0x00000000 0x00055080
-Date: Wed, 22 Jan 2014 18:08:26 +0000
-Message-ID: <bug-73924-8800-JTknKmOBMf@http.bugs.freedesktop.org/>
+Subject: [Bug 73924] [NVA8] E[ PDISP][0000:01:00.0] chid 0 mthd
+ 0x0080 data 0x00000000 0x00055080
+Date: Wed, 22 Jan 2014 18:19:06 +0000
+Message-ID: <bug-73924-8800-kFuGSAZ8rF@http.bugs.freedesktop.org/>
 References: <bug-73924-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2110641627=="
+Content-Type: multipart/mixed; boundary="===============0385925780=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73924-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2110641627==
-Content-Type: multipart/alternative; boundary="1390414105.bFD471.13995"; charset="us-ascii"
+--===============0385925780==
+Content-Type: multipart/alternative; boundary="1390414746.Ab432.17091"; charset="us-ascii"
 
 
---1390414105.bFD471.13995
-Date: Wed, 22 Jan 2014 18:08:25 +0000
+--1390414746.Ab432.17091
+Date: Wed, 22 Jan 2014 18:19:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73924
 
---- Comment #3 from mikhail.v.gavrilov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I don't know that is describe. I found this message in dmesg output and think
-it's not good.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|E[   PDISP][0000:01:00.0]   |[NVA8] E[
+                   |chid 0 mthd 0x0080 data     |PDISP][0000:01:00.0] chid 0
+                   |0x00000000 0x00055080       |mthd 0x0080 data 0x00000000
+                   |                            |0x00055080
+
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+So there's no problem then -- just an error message in dmesg?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390414105.bFD471.13995
-Date: Wed, 22 Jan 2014 18:08:25 +0000
+--1390414746.Ab432.17091
+Date: Wed, 22 Jan 2014 18:19:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,21 +57,40 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA8] E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73924">bug 73924</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>E[   PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080
+           </td>
+           <td>[NVA8] E[   PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73924#c3">Comment # 3</a>
+   title="NEW --- - [NVA8] E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73924#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080"
+   title="NEW --- - [NVA8] E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=73924">bug 73924</a>
-              from <span class="vcard"><a class="email" href="mailto:mikhail.v.gavrilov&#64;gmail.com" title="mikhail.v.gavrilov&#64;gmail.com">mikhail.v.gavrilov&#64;gmail.com</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I don't know that is describe. I found this message in dmesg output and think
-it's not good.</pre>
+        <pre>So there's no problem then -- just an error message in dmesg?</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +102,9 @@ it's not good.</pre>
     </body>
 </html>
 
---1390414105.bFD471.13995--
+--1390414746.Ab432.17091--
 
---===============2110641627==
+--===============0385925780==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +115,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2110641627==--
+--===============0385925780==--
