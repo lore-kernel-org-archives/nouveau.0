@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73924] New: E[ PDISP][0000:01:00.0] chid 0 mthd
- 0x0080 data 0x00000000 0x00055080
-Date: Wed, 22 Jan 2014 10:28:47 +0000
-Message-ID: <bug-73924-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73924] E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080
+ data 0x00000000 0x00055080
+Date: Wed, 22 Jan 2014 10:29:37 +0000
+Message-ID: <bug-73924-8800-AO3dV0sOSM@http.bugs.freedesktop.org/>
+References: <bug-73924-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0689626257=="
+Content-Type: multipart/mixed; boundary="===============0593420590=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-73924-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,43 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0689626257==
-Content-Type: multipart/alternative; boundary="1390386528.F08F11.21551"; charset="us-ascii"
+--===============0593420590==
+Content-Type: multipart/alternative; boundary="1390386577.a16ef1.21806"; charset="us-ascii"
 
 
---1390386528.F08F11.21551
-Date: Wed, 22 Jan 2014 10:28:47 +0000
+--1390386577.a16ef1.21806
+Date: Wed, 22 Jan 2014 10:29:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73924
 
-          Priority: medium
-            Bug ID: 73924
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: E[   PDISP][0000:01:00.0] chid 0 mthd 0x0080 data
-                    0x00000000 0x00055080
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: mikhail.v.gavrilov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
-
-Created attachment 92575
-  --> https://bugs.freedesktop.org/attachment.cgi?id=92575&action=edit
-kernel log
+--- Comment #1 from mikhail.v.gavrilov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 92576
+  --> https://bugs.freedesktop.org/attachment.cgi?id=92576&action=edit
+Xorg log
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390386528.F08F11.21551
-Date: Wed, 22 Jan 2014 10:28:48 +0000
+--1390386577.a16ef1.21806
+Date: Wed, 22 Jan 2014 10:29:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,97 +50,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73924">73924</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>E[   PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>mikhail.v.gavrilov&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=92575" name="attach_92575" title="kernel log">attachment 92575</a> <a href="attachment.cgi?id=92575&amp;action=edit" title="kernel log">[details]</a></span>
-kernel log</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73924#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73924">bug 73924</a>
+              from <span class="vcard"><a class="email" href="mailto:mikhail.v.gavrilov&#64;gmail.com" title="mikhail.v.gavrilov&#64;gmail.com">mikhail.v.gavrilov&#64;gmail.com</a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=92576" name="attach_92576" title="Xorg log">attachment 92576</a> <a href="attachment.cgi?id=92576&amp;action=edit" title="Xorg log">[details]</a></span>
+Xorg log</pre>
         </div>
       </p>
       <hr>
@@ -165,9 +76,9 @@ kernel log</pre>
     </body>
 </html>
 
---1390386528.F08F11.21551--
+--1390386577.a16ef1.21806--
 
---===============0689626257==
+--===============0593420590==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -178,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0689626257==--
+--===============0593420590==--
