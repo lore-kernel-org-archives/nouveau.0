@@ -1,12 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] drm/nouveau: resume display if any later suspend
-	bits fail
-Date: Thu, 23 Jan 2014 02:45:02 -0500
-Message-ID: <1390463102-1054-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70213] [git-v3.12-rc3 + nouveau HEAD] Vmalloc
+ failure -> pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12
+Date: Thu, 23 Jan 2014 07:49:05 +0000
+Message-ID: <bug-70213-8800-KNtIHZKyb6@http.bugs.freedesktop.org/>
+References: <bug-70213-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1932723664=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-70213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,65 +17,77 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-If either idling channels or suspending the fence were to fail, the
-display would never be resumed. Also if a client fails, resume the fence
-(not functionally important, but it would potentially leak memory).
 
-See https://bugs.freedesktop.org/show_bug.cgi?id=70213
+--===============1932723664==
+Content-Type: multipart/alternative; boundary="1390463345.5Befd4F2.23394"; charset="us-ascii"
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
----
 
-Untested, but makes sense given that the bug report has cursor setting
-failures, and suspending the display kills the cursor.
+--1390463345.5Befd4F2.23394
+Date: Thu, 23 Jan 2014 07:49:05 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
- drivers/gpu/drm/nouveau/nouveau_drm.c | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+https://bugs.freedesktop.org/show_bug.cgi?id=70213
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 466037c..bfd02410 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -503,19 +503,21 @@ nouveau_do_suspend(struct drm_device *dev)
- 	if (drm->cechan) {
- 		ret = nouveau_channel_idle(drm->cechan);
- 		if (ret)
--			return ret;
-+			goto fail_display;
- 	}
- 
- 	if (drm->channel) {
- 		ret = nouveau_channel_idle(drm->channel);
- 		if (ret)
--			return ret;
-+			goto fail_display;
- 	}
- 
- 	NV_INFO(drm, "suspending client object trees...\n");
- 	if (drm->fence && nouveau_fence(drm)->suspend) {
--		if (!nouveau_fence(drm)->suspend(drm))
--			return -ENOMEM;
-+		if (!nouveau_fence(drm)->suspend(drm)) {
-+			ret = -ENOMEM;
-+			goto fail_display;
-+		}
- 	}
- 
- 	list_for_each_entry(cli, &drm->clients, head) {
-@@ -537,6 +539,10 @@ fail_client:
- 		nouveau_client_init(&cli->base);
- 	}
- 
-+	if (drm->fence && nouveau_fence(drm)->resume)
-+		nouveau_fence(drm)->resume(drm);
-+
-+fail_display:
- 	if (dev->mode_config.num_crtc) {
- 		NV_INFO(drm, "resuming display...\n");
- 		nouveau_display_resume(dev);
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I believe that this patch should prevent the negaive side-effects  of the
+suspend failing:
+http://lists.freedesktop.org/archives/nouveau/2014-January/015812.html
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1390463345.5Befd4F2.23394
+Date: Thu, 23 Jan 2014 07:49:05 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [git-v3.12-rc3 + nouveau HEAD] Vmalloc failure -&gt; pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70213#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [git-v3.12-rc3 + nouveau HEAD] Vmalloc failure -&gt; pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70213">bug 70213</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>I believe that this patch should prevent the negaive side-effects  of the
+suspend failing:
+<a href="http://lists.freedesktop.org/archives/nouveau/2014-January/015812.html">http://lists.freedesktop.org/archives/nouveau/2014-January/015812.html</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1390463345.5Befd4F2.23394--
+
+--===============1932723664==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1932723664==--
