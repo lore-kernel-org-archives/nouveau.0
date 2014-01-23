@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72952] [NV94] no HDMI output,
- xrands claims DVI-D-1 disconnected
-Date: Thu, 23 Jan 2014 06:59:20 +0000
-Message-ID: <bug-72952-8800-13g8gfawa2@http.bugs.freedesktop.org/>
-References: <bug-72952-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 43939] [NV96] monitor connected via HDMI->DVI
+ adapter is blank / standby (9500GS)
+Date: Thu, 23 Jan 2014 07:02:10 +0000
+Message-ID: <bug-43939-8800-afPWEAcZja@http.bugs.freedesktop.org/>
+References: <bug-43939-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0728435244=="
+Content-Type: multipart/mixed; boundary="===============2043420523=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72952-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-43939-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0728435244==
-Content-Type: multipart/alternative; boundary="1390460359.C1cB02.12504"; charset="us-ascii"
+--===============2043420523==
+Content-Type: multipart/alternative; boundary="1390460530.3d6181B3.12844"; charset="us-ascii"
 
 
---1390460359.C1cB02.12504
-Date: Thu, 23 Jan 2014 06:59:19 +0000
+--1390460530.3d6181B3.12844
+Date: Thu, 23 Jan 2014 07:02:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72952
+https://bugs.freedesktop.org/show_bug.cgi?id=43939
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Erm, sorry, that patch link was wrong. Can you give drm-next a shot? (Or try
-3.14-rc1 when that comes out?)
+--- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you try drm-next? A patch fixing bug #60680 should be there
+(http://cgit.freedesktop.org/~airlied/linux/commit/?h=drm-next&id=f87cd8b695d372087685976460fac1ec6ba2fca9)
+and may resolve your issues as well.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390460359.C1cB02.12504
-Date: Thu, 23 Jan 2014 06:59:19 +0000
+--1390460530.3d6181B3.12844
+Date: Thu, 23 Jan 2014 07:02:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +55,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV94] no HDMI output, xrands claims DVI-D-1 disconnected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72952#c6">Comment # 6</a>
+   title="NEW --- - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV94] no HDMI output, xrands claims DVI-D-1 disconnected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72952">bug 72952</a>
+   title="NEW --- - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939">bug 43939</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Erm, sorry, that patch link was wrong. Can you give drm-next a shot? (Or try
-3.14-rc1 when that comes out?)</pre>
+        <pre>Can you try drm-next? A patch fixing <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
+   href="show_bug.cgi?id=60680">bug #60680</a> should be there
+(<a href="http://cgit.freedesktop.org/~airlied/linux/commit/?h=drm-next&amp;id=f87cd8b695d372087685976460fac1ec6ba2fca9">http://cgit.freedesktop.org/~airlied/linux/commit/?h=drm-next&amp;id=f87cd8b695d372087685976460fac1ec6ba2fca9</a>)
+and may resolve your issues as well.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +80,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1390460359.C1cB02.12504--
+--1390460530.3d6181B3.12844--
 
---===============0728435244==
+--===============2043420523==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0728435244==--
+--===============2043420523==--
