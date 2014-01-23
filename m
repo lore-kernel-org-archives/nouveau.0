@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74002] [un]docking Lenovo W530 results in interrupt
 	storm
-Date: Thu, 23 Jan 2014 23:39:31 +0000
-Message-ID: <bug-74002-8800-h61NMxPwbT@http.bugs.freedesktop.org/>
+Date: Thu, 23 Jan 2014 23:41:17 +0000
+Message-ID: <bug-74002-8800-UJhLMLiarA@http.bugs.freedesktop.org/>
 References: <bug-74002-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1946236169=="
+Content-Type: multipart/mixed; boundary="===============1158099325=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74002-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1946236169==
-Content-Type: multipart/alternative; boundary="1390520370.E1d00881.27521"; charset="us-ascii"
+--===============1158099325==
+Content-Type: multipart/alternative; boundary="1390520477.ECdfD8Be1.27914"; charset="us-ascii"
 
 
---1390520370.E1d00881.27521
-Date: Thu, 23 Jan 2014 23:39:30 +0000
+--1390520477.ECdfD8Be1.27914
+Date: Thu, 23 Jan 2014 23:41:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74002
 
---- Comment #1 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
-Created attachment 92700
-  --> https://bugs.freedesktop.org/attachment.cgi?id=92700&action=edit
-Generated interrupts
+--- Comment #2 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
+Created attachment 92701
+  --> https://bugs.freedesktop.org/attachment.cgi?id=92701&action=edit
+real vbios
+
+vbios of the card captured via:
+sudo cat /sys/kernel/debug/dri/0/vbios.rom > vbios.rom
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390520370.E1d00881.27521
-Date: Thu, 23 Jan 2014 23:39:30 +0000
+--1390520477.ECdfD8Be1.27914
+Date: Thu, 23 Jan 2014 23:41:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +59,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [un]docking Lenovo W530 results in interrupt storm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [un]docking Lenovo W530 results in interrupt storm"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74002">bug 74002</a>
               from <span class="vcard"><a class="email" href="mailto:jcollins&#64;asgardsrealm.net" title="Jamin Collins &lt;jcollins&#64;asgardsrealm.net&gt;"> <span class="fn">Jamin Collins</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=92700" name="attach_92700" title="Generated interrupts">attachment 92700</a> <a href="attachment.cgi?id=92700&amp;action=edit" title="Generated interrupts">[details]</a></span>
-Generated interrupts</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=92701" name="attach_92701" title="real vbios">attachment 92701</a> <a href="attachment.cgi?id=92701&amp;action=edit" title="real vbios">[details]</a></span>
+real vbios
+
+vbios of the card captured via:
+sudo cat /sys/kernel/debug/dri/0/vbios.rom &gt; vbios.rom</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +82,9 @@ Generated interrupts</pre>
     </body>
 </html>
 
---1390520370.E1d00881.27521--
+--1390520477.ECdfD8Be1.27914--
 
---===============1946236169==
+--===============1158099325==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1946236169==--
+--===============1158099325==--
