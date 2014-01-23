@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74002] [un]docking Lenovo W530 results in interrupt
 	storm
-Date: Thu, 23 Jan 2014 23:42:47 +0000
-Message-ID: <bug-74002-8800-JJ8oArj74L@http.bugs.freedesktop.org/>
+Date: Thu, 23 Jan 2014 23:44:19 +0000
+Message-ID: <bug-74002-8800-MzFrTjZIWr@http.bugs.freedesktop.org/>
 References: <bug-74002-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1437410328=="
+Content-Type: multipart/mixed; boundary="===============1168148429=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74002-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1437410328==
-Content-Type: multipart/alternative; boundary="1390520567.5AeFBAA41.28231"; charset="us-ascii"
+--===============1168148429==
+Content-Type: multipart/alternative; boundary="1390520659.3e17AEEd1.28534"; charset="us-ascii"
 
 
---1390520567.5AeFBAA41.28231
-Date: Thu, 23 Jan 2014 23:42:47 +0000
+--1390520659.3e17AEEd1.28534
+Date: Thu, 23 Jan 2014 23:44:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74002
 
---- Comment #3 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
-Created attachment 92702
-  --> https://bugs.freedesktop.org/attachment.cgi?id=92702&action=edit
-perf report
+--- Comment #4 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
+Created attachment 92703
+  --> https://bugs.freedesktop.org/attachment.cgi?id=92703&action=edit
+dmesg output
 
-Linux perf tool report captured during the interrupt storm
+Requested kernel log
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390520567.5AeFBAA41.28231
-Date: Thu, 23 Jan 2014 23:42:47 +0000
+--1390520659.3e17AEEd1.28534
+Date: Thu, 23 Jan 2014 23:44:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,17 +58,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [un]docking Lenovo W530 results in interrupt storm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [un]docking Lenovo W530 results in interrupt storm"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74002">bug 74002</a>
               from <span class="vcard"><a class="email" href="mailto:jcollins&#64;asgardsrealm.net" title="Jamin Collins &lt;jcollins&#64;asgardsrealm.net&gt;"> <span class="fn">Jamin Collins</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=92702" name="attach_92702" title="perf report">attachment 92702</a> <a href="attachment.cgi?id=92702&amp;action=edit" title="perf report">[details]</a></span>
-perf report
+        <pre>Created <span class=""><a href="attachment.cgi?id=92703" name="attach_92703" title="dmesg output">attachment 92703</a> <a href="attachment.cgi?id=92703&amp;action=edit" title="dmesg output">[details]</a></span>
+dmesg output
 
-Linux perf tool report captured during the interrupt storm</pre>
+Requested kernel log</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +80,9 @@ Linux perf tool report captured during the interrupt storm</pre>
     </body>
 </html>
 
---1390520567.5AeFBAA41.28231--
+--1390520659.3e17AEEd1.28534--
 
---===============1437410328==
+--===============1168148429==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1437410328==--
+--===============1168148429==--
