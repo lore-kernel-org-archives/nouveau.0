@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60704] [nouveau,
- git regression] - I2C PWM fan control broken on nv50 adt7475 on
- kernels 3.3.x+
-Date: Thu, 23 Jan 2014 07:06:48 +0000
-Message-ID: <bug-60704-8800-LXRygsv3GA@http.bugs.freedesktop.org/>
-References: <bug-60704-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] drm/nouveau: resume display if any later suspend
+	bits fail
+Date: Thu, 23 Jan 2014 02:45:02 -0500
+Message-ID: <1390463102-1054-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2029283163=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60704-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,110 +16,65 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+If either idling channels or suspending the fence were to fail, the
+display would never be resumed. Also if a client fails, resume the fence
+(not functionally important, but it would potentially leak memory).
 
---===============2029283163==
-Content-Type: multipart/alternative; boundary="1390460808.FAAA2.14055"; charset="us-ascii"
+See https://bugs.freedesktop.org/show_bug.cgi?id=70213
 
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
 
---1390460808.FAAA2.14055
-Date: Thu, 23 Jan 2014 07:06:48 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Untested, but makes sense given that the bug report has cursor setting
+failures, and suspending the display kills the cursor.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60704
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #20 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Martin's patch should be in 3.13. Marking this as fixed, since there hasn't
-been any response from the reporter for several months.
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 466037c..bfd02410 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -503,19 +503,21 @@ nouveau_do_suspend(struct drm_device *dev)
+ 	if (drm->cechan) {
+ 		ret = nouveau_channel_idle(drm->cechan);
+ 		if (ret)
+-			return ret;
++			goto fail_display;
+ 	}
+ 
+ 	if (drm->channel) {
+ 		ret = nouveau_channel_idle(drm->channel);
+ 		if (ret)
+-			return ret;
++			goto fail_display;
+ 	}
+ 
+ 	NV_INFO(drm, "suspending client object trees...\n");
+ 	if (drm->fence && nouveau_fence(drm)->suspend) {
+-		if (!nouveau_fence(drm)->suspend(drm))
+-			return -ENOMEM;
++		if (!nouveau_fence(drm)->suspend(drm)) {
++			ret = -ENOMEM;
++			goto fail_display;
++		}
+ 	}
+ 
+ 	list_for_each_entry(cli, &drm->clients, head) {
+@@ -537,6 +539,10 @@ fail_client:
+ 		nouveau_client_init(&cli->base);
+ 	}
+ 
++	if (drm->fence && nouveau_fence(drm)->resume)
++		nouveau_fence(drm)->resume(drm);
++
++fail_display:
+ 	if (dev->mode_config.num_crtc) {
+ 		NV_INFO(drm, "resuming display...\n");
+ 		nouveau_display_resume(dev);
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1390460808.FAAA2.14055
-Date: Thu, 23 Jan 2014 07:06:48 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60704">bug 60704</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60704#c20">Comment # 20</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [nouveau, git regression] - I2C PWM fan control broken on nv50 adt7475 on kernels 3.3.x+"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60704">bug 60704</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Martin's patch should be in 3.13. Marking this as fixed, since there hasn't
-been any response from the reporter for several months.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1390460808.FAAA2.14055--
-
---===============2029283163==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============2029283163==--
+1.8.3.2
