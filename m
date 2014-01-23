@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74002] [un]docking Lenovo W530 results in interrupt
 	storm
-Date: Thu, 23 Jan 2014 23:41:17 +0000
-Message-ID: <bug-74002-8800-UJhLMLiarA@http.bugs.freedesktop.org/>
+Date: Thu, 23 Jan 2014 23:42:47 +0000
+Message-ID: <bug-74002-8800-JJ8oArj74L@http.bugs.freedesktop.org/>
 References: <bug-74002-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1158099325=="
+Content-Type: multipart/mixed; boundary="===============1437410328=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74002-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1158099325==
-Content-Type: multipart/alternative; boundary="1390520477.ECdfD8Be1.27914"; charset="us-ascii"
+--===============1437410328==
+Content-Type: multipart/alternative; boundary="1390520567.5AeFBAA41.28231"; charset="us-ascii"
 
 
---1390520477.ECdfD8Be1.27914
-Date: Thu, 23 Jan 2014 23:41:17 +0000
+--1390520567.5AeFBAA41.28231
+Date: Thu, 23 Jan 2014 23:42:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74002
 
---- Comment #2 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
-Created attachment 92701
-  --> https://bugs.freedesktop.org/attachment.cgi?id=92701&action=edit
-real vbios
+--- Comment #3 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
+Created attachment 92702
+  --> https://bugs.freedesktop.org/attachment.cgi?id=92702&action=edit
+perf report
 
-vbios of the card captured via:
-sudo cat /sys/kernel/debug/dri/0/vbios.rom > vbios.rom
+Linux perf tool report captured during the interrupt storm
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390520477.ECdfD8Be1.27914
-Date: Thu, 23 Jan 2014 23:41:17 +0000
+--1390520567.5AeFBAA41.28231
+Date: Thu, 23 Jan 2014 23:42:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,18 +58,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [un]docking Lenovo W530 results in interrupt storm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [un]docking Lenovo W530 results in interrupt storm"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74002">bug 74002</a>
               from <span class="vcard"><a class="email" href="mailto:jcollins&#64;asgardsrealm.net" title="Jamin Collins &lt;jcollins&#64;asgardsrealm.net&gt;"> <span class="fn">Jamin Collins</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=92701" name="attach_92701" title="real vbios">attachment 92701</a> <a href="attachment.cgi?id=92701&amp;action=edit" title="real vbios">[details]</a></span>
-real vbios
+        <pre>Created <span class=""><a href="attachment.cgi?id=92702" name="attach_92702" title="perf report">attachment 92702</a> <a href="attachment.cgi?id=92702&amp;action=edit" title="perf report">[details]</a></span>
+perf report
 
-vbios of the card captured via:
-sudo cat /sys/kernel/debug/dri/0/vbios.rom &gt; vbios.rom</pre>
+Linux perf tool report captured during the interrupt storm</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +80,9 @@ sudo cat /sys/kernel/debug/dri/0/vbios.rom &gt; vbios.rom</pre>
     </body>
 </html>
 
---1390520477.ECdfD8Be1.27914--
+--1390520567.5AeFBAA41.28231--
 
---===============1158099325==
+--===============1437410328==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1158099325==--
+--===============1437410328==--
