@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21273] [NV17] PowerMac3,
- 6 Driver can't detect video output and xserver doesn't start
-Date: Thu, 23 Jan 2014 05:39:17 +0000
-Message-ID: <bug-21273-8800-9zwQDUEmuu@http.bugs.freedesktop.org/>
-References: <bug-21273-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68854] [NV04] PROTECTION_ERROR / PROTECTION_FAULT
+Date: Thu, 23 Jan 2014 06:37:37 +0000
+Message-ID: <bug-68854-8800-cxxs6WEz0q@http.bugs.freedesktop.org/>
+References: <bug-68854-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0054757705=="
+Content-Type: multipart/mixed; boundary="===============0972794061=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68854-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,49 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0054757705==
-Content-Type: multipart/alternative; boundary="1390455557.15530DDd1.23652"; charset="us-ascii"
+--===============0972794061==
+Content-Type: multipart/alternative; boundary="1390459057.834af6.6624"; charset="us-ascii"
 
 
---1390455557.15530DDd1.23652
-Date: Thu, 23 Jan 2014 05:39:17 +0000
+--1390459057.834af6.6624
+Date: Thu, 23 Jan 2014 06:37:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=21273
+https://bugs.freedesktop.org/show_bug.cgi?id=68854
 
---- Comment #98 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Sorry to keep making you try stuff, but can you put up a log of a kernel with
+Bug 68854 depends on bug 68835, which changed state.
 
-if (of_machine_is_compatible("PowerMac3,6")) {
-  fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 1, all_heads, 2);
-  return;
-}
+Bug 68835 Summary: [NV04] Script offset calculated incorrectly for some BMP 1.x VBIOSes
+https://bugs.freedesktop.org/show_bug.cgi?id=68835
 
-[Also, looking at Stuart's patch that worked for you all that while ago...
-perhaps instead of all_heads (3 in your case) it should be "2"? Worth trying
-too, but unless it produces substantially diff/better results, I don't need a
-log from it.]
-
-(You can use 3.13 now -- the bug with instmem you ran into should be fixed
-now.)
-
-And boot with
-
-nouveau.debug=trace drm.debug=0xe
-
-This should produce a bunch of debug info, which may be helpful. Thanks for
-that nvidiafb log too.
-
-Also, to be clear -- that fabricate_dcb_output line changes behaviour from
-"screen suspends due to no output" to "screen on with garbage on it", right?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390455557.15530DDd1.23652
-Date: Thu, 23 Jan 2014 05:39:17 +0000
+--1390459057.834af6.6624
+Date: Thu, 23 Jan 2014 06:37:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,44 +54,40 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV04] PROTECTION_ERROR / PROTECTION_FAULT"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68854">Bug 68854</a>
+              depends on
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV04] Script offset calculated incorrectly for some BMP 1.x VBIOSes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835">bug 68835</a>,
+              which changed state.
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c98">Comment # 98</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Sorry to keep making you try stuff, but can you put up a log of a kernel with
-
-if (of_machine_is_compatible(&quot;PowerMac3,6&quot;)) {
-  fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 1, all_heads, 2);
-  return;
-}
-
-[Also, looking at Stuart's patch that worked for you all that while ago...
-perhaps instead of all_heads (3 in your case) it should be &quot;2&quot;? Worth trying
-too, but unless it produces substantially diff/better results, I don't need a
-log from it.]
-
-(You can use 3.13 now -- the bug with instmem you ran into should be fixed
-now.)
-
-And boot with
-
-nouveau.debug=trace drm.debug=0xe
-
-This should produce a bunch of debug info, which may be helpful. Thanks for
-that nvidiafb log too.
-
-Also, to be clear -- that fabricate_dcb_output line changes behaviour from
-&quot;screen suspends due to no output&quot; to &quot;screen on with garbage on it&quot;, right?</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -119,9 +98,9 @@ Also, to be clear -- that fabricate_dcb_output line changes behaviour from
     </body>
 </html>
 
---1390455557.15530DDd1.23652--
+--1390459057.834af6.6624--
 
---===============0054757705==
+--===============0972794061==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +111,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0054757705==--
+--===============0972794061==--
