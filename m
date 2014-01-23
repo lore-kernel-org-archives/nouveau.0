@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70213] [git-v3.12-rc3 + nouveau HEAD] Vmalloc
  failure -> pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12
-Date: Thu, 23 Jan 2014 07:49:05 +0000
-Message-ID: <bug-70213-8800-KNtIHZKyb6@http.bugs.freedesktop.org/>
+Date: Thu, 23 Jan 2014 11:11:53 +0000
+Message-ID: <bug-70213-8800-RptohnoaVA@http.bugs.freedesktop.org/>
 References: <bug-70213-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1932723664=="
+Content-Type: multipart/mixed; boundary="===============0068042738=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1932723664==
-Content-Type: multipart/alternative; boundary="1390463345.5Befd4F2.23394"; charset="us-ascii"
+--===============0068042738==
+Content-Type: multipart/alternative; boundary="1390475512.8ABaF48b1.4837"; charset="us-ascii"
 
 
---1390463345.5Befd4F2.23394
-Date: Thu, 23 Jan 2014 07:49:05 +0000
+--1390475512.8ABaF48b1.4837
+Date: Thu, 23 Jan 2014 11:11:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70213
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I believe that this patch should prevent the negaive side-effects  of the
-suspend failing:
-http://lists.freedesktop.org/archives/nouveau/2014-January/015812.html
+--- Comment #3 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This bug is tough and cumbersome to reproduce. Is the patch going upstream
+anyway?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390463345.5Befd4F2.23394
-Date: Thu, 23 Jan 2014 07:49:05 +0000
+--1390475512.8ABaF48b1.4837
+Date: Thu, 23 Jan 2014 11:11:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,16 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [git-v3.12-rc3 + nouveau HEAD] Vmalloc failure -&gt; pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70213#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70213#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [git-v3.12-rc3 + nouveau HEAD] Vmalloc failure -&gt; pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70213">bug 70213</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>I believe that this patch should prevent the negaive side-effects  of the
-suspend failing:
-<a href="http://lists.freedesktop.org/archives/nouveau/2014-January/015812.html">http://lists.freedesktop.org/archives/nouveau/2014-January/015812.html</a></pre>
+        <pre>This bug is tough and cumbersome to reproduce. Is the patch going upstream
+anyway?</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +75,9 @@ suspend failing:
     </body>
 </html>
 
---1390463345.5Befd4F2.23394--
+--1390475512.8ABaF48b1.4837--
 
---===============1932723664==
+--===============0068042738==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1932723664==--
+--===============0068042738==--
