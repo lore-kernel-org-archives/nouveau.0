@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71362] [NVC1] X hang with drop to console after some
- time / GPU lockup - PFIFO error and TTM error @dmesg
-Date: Thu, 23 Jan 2014 18:37:33 +0000
-Message-ID: <bug-71362-8800-aNCfQsIj4B@http.bugs.freedesktop.org/>
-References: <bug-71362-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70213] [git-v3.12-rc3 + nouveau HEAD] Vmalloc
+ failure -> pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12
+Date: Thu, 23 Jan 2014 18:44:01 +0000
+Message-ID: <bug-70213-8800-PhUu04GrIh@http.bugs.freedesktop.org/>
+References: <bug-70213-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2101470001=="
+Content-Type: multipart/mixed; boundary="===============0875079032=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71362-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2101470001==
-Content-Type: multipart/alternative; boundary="1390502253.db22B1B60.22561"; charset="us-ascii"
+--===============0875079032==
+Content-Type: multipart/alternative; boundary="1390502641.bb1de4A2.23733"; charset="us-ascii"
 
 
---1390502253.db22B1B60.22561
-Date: Thu, 23 Jan 2014 18:37:33 +0000
+--1390502641.bb1de4A2.23733
+Date: Thu, 23 Jan 2014 18:44:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71362
+https://bugs.freedesktop.org/show_bug.cgi?id=70213
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #3)
+> This bug is tough and cumbersome to reproduce.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
+No kidding. However you could just add a "return false;" in nv84_fence_suspend,
+which should have an identical effect.
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-No response from reporter in over a month. Closing as invalid.
+> Is the patch going upstream anyway?
+
+Not up to me, but I would assume so.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390502253.db22B1B60.22561
-Date: Thu, 23 Jan 2014 18:37:33 +0000
+--1390502641.bb1de4A2.23733
+Date: Thu, 23 Jan 2014 18:44:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,48 +56,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NVC1] X hang with drop to console after some time / GPU lockup - PFIFO error and TTM error &#64;dmesg"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71362">bug 71362</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NVC1] X hang with drop to console after some time / GPU lockup - PFIFO error and TTM error &#64;dmesg"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71362#c6">Comment # 6</a>
+          bz_status_NEW "
+   title="NEW --- - [git-v3.12-rc3 + nouveau HEAD] Vmalloc failure -&gt; pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70213#c4">Comment # 4</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NVC1] X hang with drop to console after some time / GPU lockup - PFIFO error and TTM error &#64;dmesg"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71362">bug 71362</a>
+          bz_status_NEW "
+   title="NEW --- - [git-v3.12-rc3 + nouveau HEAD] Vmalloc failure -&gt; pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70213">bug 70213</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>No response from reporter in over a month. Closing as invalid.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=70213#c3">comment #3</a>)
+<span class="quote">&gt; This bug is tough and cumbersome to reproduce.</span >
+
+No kidding. However you could just add a &quot;return false;&quot; in nv84_fence_suspend,
+which should have an identical effect.
+
+<span class="quote">&gt; Is the patch going upstream anyway?</span >
+
+Not up to me, but I would assume so.</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +89,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1390502253.db22B1B60.22561--
+--1390502641.bb1de4A2.23733--
 
---===============2101470001==
+--===============0875079032==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +102,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2101470001==--
+--===============0875079032==--
