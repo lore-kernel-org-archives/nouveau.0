@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
- Chromium web browser
-Date: Sat, 25 Jan 2014 20:13:41 +0000
-Message-ID: <bug-73373-8800-3UcPlZeiRg@http.bugs.freedesktop.org/>
-References: <bug-73373-8800@http.bugs.freedesktop.org/>
+From: =?ISO-8859-2?Q?Grzegorz_S=F3jka?= <grzes-hAO+45erXPd4rM3dGMyr8Q@public.gmane.org>
+Subject: Quad monitor graphics card.
+Date: Thu, 23 Jan 2014 22:50:28 +0100
+Message-ID: <52E18EA4.6070708@mini.pw.edu.pl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0811258898=="
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,75 +18,18 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Hi there,
 
---===============0811258898==
-Content-Type: multipart/alternative; boundary="1390680820.2baB80.23693"; charset="us-ascii"
+I have 4 identical monitors. So I decided to buy (not to expensive, 
+around 100USD) quad head graphics card. I do not need anything 
+particular. Only office applications, no gaming. The crucial thing is 
+that I would like to be able to span a single window across all 4 
+monitors. I found following cards:
+Nvidia Quadro NVS440
+Nvidia Quadro NVS420
+Both are actually dual GPU. Could you please confirm which one of these 
+cards may be configured as a single quad monitors DISPLAY using nouveau 
+driver? What about the binary nvidia driver?
 
-
---1390680820.2baB80.23693
-Date: Sat, 25 Jan 2014 20:13:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=73373
-
---- Comment #14 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
-Created attachment 92783
-  --> https://bugs.freedesktop.org/attachment.cgi?id=92783&action=edit
-Reproducing the issue with chromium browser now with the correct firmware
-loaded.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1390680820.2baB80.23693
-Date: Sat, 25 Jan 2014 20:13:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373">bug 73373</a>
-              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=92783" name="attach_92783" title="Reproducing the issue with chromium browser now with the correct firmware loaded.">attachment 92783</a> <a href="attachment.cgi?id=92783&amp;action=edit" title="Reproducing the issue with chromium browser now with the correct firmware loaded.">[details]</a></span>
-Reproducing the issue with chromium browser now with the correct firmware
-loaded.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1390680820.2baB80.23693--
-
---===============0811258898==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0811258898==--
+Thanks in advance for any help.
+Greg
