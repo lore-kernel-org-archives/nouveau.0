@@ -1,14 +1,11 @@
-From: =?ISO-8859-2?Q?Grzegorz_S=F3jka?= <gs-Ms+j0e0whA8@public.gmane.org>
-Subject: Re: Quad head graphics card.
-Date: Fri, 24 Jan 2014 00:24:42 +0100
-Message-ID: <52E1A4BA.3040707@sojka.co>
-References: <52E18EA4.6070708@mini.pw.edu.pl>	<52E19001.1020607@sojka.co>
-	<CAKb7UvgT71qJaJNeHReL6YD12msC6KG9smTXU8tQYRPV4An=fw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74002] New: [un]docking Lenovo W530 results in
+	interrupt storm
+Date: Thu, 23 Jan 2014 23:38:42 +0000
+Message-ID: <bug-74002-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-2"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgT71qJaJNeHReL6YD12msC6KG9smTXU8tQYRPV4An=fw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0776719391=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,54 +13,194 @@ List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
 List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 01/23/14 23:12, Ilia Mirkin wrote:
-> On Thu, Jan 23, 2014 at 4:56 PM, Grzegorz S=F3jka <gs-Ms+j0e0whA8@public.gmane.org> wrote:
->> Hi there,
->>
->> I have 4 identical monitors. So I decided to buy (not to expensive,
->> around 100USD) quad head graphics card. I do not need anything
->> particular. Only office applications, no gaming. The crucial thing is
->> that I would like to be able to span a single window across all 4
->> monitors. I found following cards:
->> Nvidia Quadro NVS440
->> Nvidia Quadro NVS420
->> Both are actually dual GPU. Could you please confirm which one of these
->> cards may be configured as a single quad monitor DISPLAY using nouveau
->> driver? What about the binary nvidia driver?
->
-> I would avoid those if possible. Both nouveau and the nvidia driver
-> wil support them in a 4-monitor configuration, but there will be
-> issues, esp with nouveau. Not sure about nvidia.
-So, it would be possible to configure all 4 monitors as parts of one =
 
-logical DISPLAY??
-Just clarify: At the moment I use two dual head ATI FirePro 2270 =
+--===============0776719391==
+Content-Type: multipart/alternative; boundary="1390520322.BFaabB1.27299"; charset="us-ascii"
 
-graphics cards. As a consequence I have two logical (dual-monitors) =
 
-DISPLAYS and the problem is that I'm not able to span a single window =
+--1390520322.BFaabB1.27299
+Date: Thu, 23 Jan 2014 23:38:42 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-across more than 2 monitors.
+https://bugs.freedesktop.org/show_bug.cgi?id=74002
 
-> If possible, get a Kepler-based card, which can drive 4 CRTC's from 1
-> GPU. That way you get none of the trouble.
-What about: Gigabyte Radeon HD7770 OC?? I know, it's OT but maybe =
+          Priority: medium
+            Bug ID: 74002
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [un]docking Lenovo W530 results in interrupt storm
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: major
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-someone has experience.
+Created attachment 92699
+  --> https://bugs.freedesktop.org/attachment.cgi?id=92699&action=edit
+vbios
 
--- =
+Running a 3.13 kernel, built from upstream git repository (commit
+d8ec26d7f8287f5788a494f56e8814210f0e64be).
 
-Serdecznie pozdrawiam / Sincerely yours
+I'm able to consistently generate an ongoing interrupt storm by [un]docking my
+Lenovo W530 when using the nouveau driver.  This problem was first noticed
+under a 3.10 kernel and associated nouveau driver.  I then switched to the
+above 3.13 kernel for the MSI interrupt support and to see if the problem
+persisted.
 
-Grzegorz S=F3jka
-Faculty of Mathematics and Information Science
-Warsaw University of Technology
-ul. Koszykowa 75
-00-662 Warsaw, POLAND
-mob. +48 722 22 67 17
+The attached nouveau.interrupts is the output of read_interrupts, the source
+for which is here: http://www.darnok.org/xen/read_interrupts.c.  This file
+shows the interrupts generated during 5 second intervals.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1390520322.BFaabB1.27299
+Date: Thu, 23 Jan 2014 23:38:42 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [un]docking Lenovo W530 results in interrupt storm"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002">74002</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[un]docking Lenovo W530 results in interrupt storm
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jcollins&#64;asgardsrealm.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=92699" name="attach_92699" title="vbios">attachment 92699</a> <a href="attachment.cgi?id=92699&amp;action=edit" title="vbios">[details]</a></span>
+vbios
+
+Running a 3.13 kernel, built from upstream git repository (commit
+d8ec26d7f8287f5788a494f56e8814210f0e64be).
+
+I'm able to consistently generate an ongoing interrupt storm by [un]docking my
+Lenovo W530 when using the nouveau driver.  This problem was first noticed
+under a 3.10 kernel and associated nouveau driver.  I then switched to the
+above 3.13 kernel for the MSI interrupt support and to see if the problem
+persisted.
+
+The attached nouveau.interrupts is the output of read_interrupts, the source
+for which is here: <a href="http://www.darnok.org/xen/read_interrupts.c">http://www.darnok.org/xen/read_interrupts.c</a>.  This file
+shows the interrupts generated during 5 second intervals.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1390520322.BFaabB1.27299--
+
+--===============0776719391==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0776719391==--
