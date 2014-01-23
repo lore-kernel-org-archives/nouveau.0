@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74002] [un]docking Lenovo W530 results in interrupt
 	storm
-Date: Thu, 23 Jan 2014 23:44:19 +0000
-Message-ID: <bug-74002-8800-MzFrTjZIWr@http.bugs.freedesktop.org/>
+Date: Thu, 23 Jan 2014 23:45:13 +0000
+Message-ID: <bug-74002-8800-KN3IgKr2oU@http.bugs.freedesktop.org/>
 References: <bug-74002-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1168148429=="
+Content-Type: multipart/mixed; boundary="===============0891461949=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74002-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1168148429==
-Content-Type: multipart/alternative; boundary="1390520659.3e17AEEd1.28534"; charset="us-ascii"
+--===============0891461949==
+Content-Type: multipart/alternative; boundary="1390520713.507C7ef31.28581"; charset="us-ascii"
 
 
---1390520659.3e17AEEd1.28534
-Date: Thu, 23 Jan 2014 23:44:19 +0000
+--1390520713.507C7ef31.28581
+Date: Thu, 23 Jan 2014 23:45:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74002
 
---- Comment #4 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
-Created attachment 92703
-  --> https://bugs.freedesktop.org/attachment.cgi?id=92703&action=edit
-dmesg output
+Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> changed:
 
-Requested kernel log
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #92699|0                           |1
+        is obsolete|                            |
+
+--- Comment #5 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
+Comment on attachment 92699
+  --> https://bugs.freedesktop.org/attachment.cgi?id=92699
+vbios
+
+Incorrectly labeled upload, sorry.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390520659.3e17AEEd1.28534
-Date: Thu, 23 Jan 2014 23:44:19 +0000
+--1390520713.507C7ef31.28581
+Date: Thu, 23 Jan 2014 23:45:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,23 +59,44 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:jcollins&#64;asgardsrealm.net" title="Jamin Collins &lt;jcollins&#64;asgardsrealm.net&gt;"> <span class="fn">Jamin Collins</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [un]docking Lenovo W530 results in interrupt storm"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002">bug 74002</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #92699 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [un]docking Lenovo W530 results in interrupt storm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [un]docking Lenovo W530 results in interrupt storm"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74002">bug 74002</a>
               from <span class="vcard"><a class="email" href="mailto:jcollins&#64;asgardsrealm.net" title="Jamin Collins &lt;jcollins&#64;asgardsrealm.net&gt;"> <span class="fn">Jamin Collins</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=92703" name="attach_92703" title="dmesg output">attachment 92703</a> <a href="attachment.cgi?id=92703&amp;action=edit" title="dmesg output">[details]</a></span>
-dmesg output
+        <pre>Comment on <span class="bz_obsolete"><a href="attachment.cgi?id=92699" name="attach_92699" title="vbios">attachment 92699</a> <a href="attachment.cgi?id=92699&amp;action=edit" title="vbios">[details]</a></span>
+vbios
 
-Requested kernel log</pre>
+Incorrectly labeled upload, sorry.</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +108,9 @@ Requested kernel log</pre>
     </body>
 </html>
 
---1390520659.3e17AEEd1.28534--
+--1390520713.507C7ef31.28581--
 
---===============1168148429==
+--===============0891461949==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1168148429==--
+--===============0891461949==--
