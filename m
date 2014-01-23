@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73924] [NVA8] E[ PDISP][0000:01:00.0] chid 0 mthd
- 0x0080 data 0x00000000 0x00055080
-Date: Wed, 22 Jan 2014 18:19:06 +0000
-Message-ID: <bug-73924-8800-kFuGSAZ8rF@http.bugs.freedesktop.org/>
-References: <bug-73924-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 21273] [NV17] PowerMac3,
+ 6 Driver can't detect video output and xserver doesn't start
+Date: Thu, 23 Jan 2014 05:39:17 +0000
+Message-ID: <bug-21273-8800-9zwQDUEmuu@http.bugs.freedesktop.org/>
+References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0385925780=="
+Content-Type: multipart/mixed; boundary="===============0054757705=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73924-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0385925780==
-Content-Type: multipart/alternative; boundary="1390414746.Ab432.17091"; charset="us-ascii"
+--===============0054757705==
+Content-Type: multipart/alternative; boundary="1390455557.15530DDd1.23652"; charset="us-ascii"
 
 
---1390414746.Ab432.17091
-Date: Wed, 22 Jan 2014 18:19:06 +0000
+--1390455557.15530DDd1.23652
+Date: Thu, 23 Jan 2014 05:39:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=73924
+https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #98 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Sorry to keep making you try stuff, but can you put up a log of a kernel with
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|E[   PDISP][0000:01:00.0]   |[NVA8] E[
-                   |chid 0 mthd 0x0080 data     |PDISP][0000:01:00.0] chid 0
-                   |0x00000000 0x00055080       |mthd 0x0080 data 0x00000000
-                   |                            |0x00055080
+if (of_machine_is_compatible("PowerMac3,6")) {
+  fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 1, all_heads, 2);
+  return;
+}
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-So there's no problem then -- just an error message in dmesg?
+[Also, looking at Stuart's patch that worked for you all that while ago...
+perhaps instead of all_heads (3 in your case) it should be "2"? Worth trying
+too, but unless it produces substantially diff/better results, I don't need a
+log from it.]
+
+(You can use 3.13 now -- the bug with instmem you ran into should be fixed
+now.)
+
+And boot with
+
+nouveau.debug=trace drm.debug=0xe
+
+This should produce a bunch of debug info, which may be helpful. Thanks for
+that nvidiafb log too.
+
+Also, to be clear -- that fabricate_dcb_output line changes behaviour from
+"screen suspends due to no output" to "screen on with garbage on it", right?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390414746.Ab432.17091
-Date: Wed, 22 Jan 2014 18:19:06 +0000
+--1390455557.15530DDd1.23652
+Date: Thu, 23 Jan 2014 05:39:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,40 +71,43 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA8] E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73924">bug 73924</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>E[   PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080
-           </td>
-           <td>[NVA8] E[   PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA8] E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73924#c4">Comment # 4</a>
+   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c98">Comment # 98</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA8] E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73924">bug 73924</a>
+   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>So there's no problem then -- just an error message in dmesg?</pre>
+        <pre>Sorry to keep making you try stuff, but can you put up a log of a kernel with
+
+if (of_machine_is_compatible(&quot;PowerMac3,6&quot;)) {
+  fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 1, all_heads, 2);
+  return;
+}
+
+[Also, looking at Stuart's patch that worked for you all that while ago...
+perhaps instead of all_heads (3 in your case) it should be &quot;2&quot;? Worth trying
+too, but unless it produces substantially diff/better results, I don't need a
+log from it.]
+
+(You can use 3.13 now -- the bug with instmem you ran into should be fixed
+now.)
+
+And boot with
+
+nouveau.debug=trace drm.debug=0xe
+
+This should produce a bunch of debug info, which may be helpful. Thanks for
+that nvidiafb log too.
+
+Also, to be clear -- that fabricate_dcb_output line changes behaviour from
+&quot;screen suspends due to no output&quot; to &quot;screen on with garbage on it&quot;, right?</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +119,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1390414746.Ab432.17091--
+--1390455557.15530DDd1.23652--
 
---===============0385925780==
+--===============0054757705==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +132,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0385925780==--
+--===============0054757705==--
