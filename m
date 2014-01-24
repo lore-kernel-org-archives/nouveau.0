@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74002] [NVE7] [un]docking Lenovo W530 results in
- interrupt storm
-Date: Fri, 24 Jan 2014 06:25:07 +0000
-Message-ID: <bug-74002-8800-nh4Ddjaj5X@http.bugs.freedesktop.org/>
-References: <bug-74002-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71362] [NVC1] X hang with drop to console after some
+ time / GPU lockup - PFIFO error and TTM error @dmesg
+Date: Fri, 24 Jan 2014 09:19:54 +0000
+Message-ID: <bug-71362-8800-10wcLnRoiy@http.bugs.freedesktop.org/>
+References: <bug-71362-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1643631116=="
+Content-Type: multipart/mixed; boundary="===============1189864936=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74002-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71362-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,43 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1643631116==
-Content-Type: multipart/alternative; boundary="1390544708.d31fB2.13814"; charset="us-ascii"
+--===============1189864936==
+Content-Type: multipart/alternative; boundary="1390555194.AD65c2Da0.16849"; charset="us-ascii"
 
 
---1390544708.d31fB2.13814
-Date: Fri, 24 Jan 2014 06:25:08 +0000
+--1390555194.AD65c2Da0.16849
+Date: Fri, 24 Jan 2014 09:19:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74002
+https://bugs.freedesktop.org/show_bug.cgi?id=71362
 
---- Comment #10 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
-Created attachment 92716
-  --> https://bugs.freedesktop.org/attachment.cgi?id=92716&action=edit
-Xorg log for normal connections
-
-To further complicate matters, it appears to matter which monitor it is that is
-connected to DP-3.  If I change the order of the monitors and and place the
-monitor that is normally connected to DP-2 on DP-3 and the one that is normally
-connected to DP-3 on DP-2, this problem goes away at least here at home.
-
-Monitor that is normally connected to DP-2:
-Manufacturer: DEL  Model: a05c  Serial#: 843992405
-
-Monitor that is normally connected to DP-3:
-Manufacturer: GWY  Model: 777  Serial#: 16843009
-
-However, at work the unit is normally connected to three 24" monitors which
-require the use of DP-3 and trigger this issue as well.  So, simply changing
-the connection order will only work around the issue at one location.
+--- Comment #7 from Torsten Krah <krah.tm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I can't trigger this with usecase XY - so i don't know if its fixed - i did
+only report it that it did happening, maybe you can tell me from the traces how
+this can be forced to happen.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390544708.d31fB2.13814
-Date: Fri, 24 Jan 2014 06:25:08 +0000
+--1390555194.AD65c2Da0.16849
+Date: Fri, 24 Jan 2014 09:19:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,32 +54,18 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] [un]docking Lenovo W530 results in interrupt storm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002#c10">Comment # 10</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - [NVC1] X hang with drop to console after some time / GPU lockup - PFIFO error and TTM error &#64;dmesg"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71362#c7">Comment # 7</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] [un]docking Lenovo W530 results in interrupt storm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002">bug 74002</a>
-              from <span class="vcard"><a class="email" href="mailto:jcollins&#64;asgardsrealm.net" title="Jamin Collins &lt;jcollins&#64;asgardsrealm.net&gt;"> <span class="fn">Jamin Collins</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - [NVC1] X hang with drop to console after some time / GPU lockup - PFIFO error and TTM error &#64;dmesg"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71362">bug 71362</a>
+              from <span class="vcard"><a class="email" href="mailto:krah.tm&#64;gmail.com" title="Torsten Krah &lt;krah.tm&#64;gmail.com&gt;"> <span class="fn">Torsten Krah</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=92716" name="attach_92716" title="Xorg log for normal connections">attachment 92716</a> <a href="attachment.cgi?id=92716&amp;action=edit" title="Xorg log for normal connections">[details]</a></span>
-Xorg log for normal connections
-
-To further complicate matters, it appears to matter which monitor it is that is
-connected to DP-3.  If I change the order of the monitors and and place the
-monitor that is normally connected to DP-2 on DP-3 and the one that is normally
-connected to DP-3 on DP-2, this problem goes away at least here at home.
-
-Monitor that is normally connected to DP-2:
-Manufacturer: DEL  Model: a05c  Serial#: 843992405
-
-Monitor that is normally connected to DP-3:
-Manufacturer: GWY  Model: 777  Serial#: 16843009
-
-However, at work the unit is normally connected to three 24&quot; monitors which
-require the use of DP-3 and trigger this issue as well.  So, simply changing
-the connection order will only work around the issue at one location.</pre>
+        <pre>I can't trigger this with usecase XY - so i don't know if its fixed - i did
+only report it that it did happening, maybe you can tell me from the traces how
+this can be forced to happen.</pre>
         </div>
       </p>
       <hr>
@@ -106,9 +77,9 @@ the connection order will only work around the issue at one location.</pre>
     </body>
 </html>
 
---1390544708.d31fB2.13814--
+--1390555194.AD65c2Da0.16849--
 
---===============1643631116==
+--===============1189864936==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -119,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1643631116==--
+--===============1189864936==--
