@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74002] [NVE7] [un]docking Lenovo W530 results in
- interrupt storm
-Date: Fri, 24 Jan 2014 04:49:33 +0000
-Message-ID: <bug-74002-8800-3MCk9Dbk2H@http.bugs.freedesktop.org/>
-References: <bug-74002-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73924] [NVA8] E[ PDISP][0000:01:00.0] chid 0 mthd
+ 0x0080 data 0x00000000 0x00055080
+Date: Fri, 24 Jan 2014 05:59:07 +0000
+Message-ID: <bug-73924-8800-Wdhaafurlw@http.bugs.freedesktop.org/>
+References: <bug-73924-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0447427806=="
+Content-Type: multipart/mixed; boundary="===============1436161552=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74002-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73924-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0447427806==
-Content-Type: multipart/alternative; boundary="1390538973.E3d03a2.26460"; charset="us-ascii"
+--===============1436161552==
+Content-Type: multipart/alternative; boundary="1390543147.c01c7C1.8098"; charset="us-ascii"
 
 
---1390538973.E3d03a2.26460
-Date: Fri, 24 Jan 2014 04:49:33 +0000
+--1390543147.c01c7C1.8098
+Date: Fri, 24 Jan 2014 05:59:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74002
+https://bugs.freedesktop.org/show_bug.cgi?id=73924
 
---- Comment #9 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
-It seems that undocking the laptop is not required to trigger the interrupt
-storm.  All that is necessary is disconnecting the display connected to DP-3. 
-As long as DP-3 is never connected, I can dock and undock the laptop repeatedly
-without triggering the storm.  Simply attaching a monitor to that port and
-disconnecting it triggers the storm.  Going to try a few other scenarios and
-report back.
+--- Comment #5 from mikhail.v.gavrilov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+(In reply to comment #4)
+> So there's no problem then -- just an error message in dmesg?
+
+yes, I really don't like any error messages in kernel log
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390538973.E3d03a2.26460
-Date: Fri, 24 Jan 2014 04:49:33 +0000
+--1390543147.c01c7C1.8098
+Date: Fri, 24 Jan 2014 05:59:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,20 +56,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] [un]docking Lenovo W530 results in interrupt storm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002#c9">Comment # 9</a>
+   title="NEW --- - [NVA8] E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73924#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] [un]docking Lenovo W530 results in interrupt storm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002">bug 74002</a>
-              from <span class="vcard"><a class="email" href="mailto:jcollins&#64;asgardsrealm.net" title="Jamin Collins &lt;jcollins&#64;asgardsrealm.net&gt;"> <span class="fn">Jamin Collins</span></a>
+   title="NEW --- - [NVA8] E[ PDISP][0000:01:00.0] chid 0 mthd 0x0080 data 0x00000000 0x00055080"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73924">bug 73924</a>
+              from <span class="vcard"><a class="email" href="mailto:mikhail.v.gavrilov&#64;gmail.com" title="mikhail.v.gavrilov&#64;gmail.com">mikhail.v.gavrilov&#64;gmail.com</a>
 </span></b>
-        <pre>It seems that undocking the laptop is not required to trigger the interrupt
-storm.  All that is necessary is disconnecting the display connected to DP-3. 
-As long as DP-3 is never connected, I can dock and undock the laptop repeatedly
-without triggering the storm.  Simply attaching a monitor to that port and
-disconnecting it triggers the storm.  Going to try a few other scenarios and
-report back.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=73924#c4">comment #4</a>)
+<span class="quote">&gt; So there's no problem then -- just an error message in dmesg?</span >
+
+yes, I really don't like any error messages in kernel log</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +79,9 @@ report back.</pre>
     </body>
 </html>
 
---1390538973.E3d03a2.26460--
+--1390543147.c01c7C1.8098--
 
---===============0447427806==
+--===============1436161552==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0447427806==--
+--===============1436161552==--
