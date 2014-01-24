@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74002] [un]docking Lenovo W530 results in interrupt
-	storm
-Date: Fri, 24 Jan 2014 00:06:36 +0000
-Message-ID: <bug-74002-8800-uu7xHbZtpR@http.bugs.freedesktop.org/>
-References: <bug-74002-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Quad head graphics card.
+Date: Thu, 23 Jan 2014 22:10:27 -0500
+Message-ID: <CAKb7UviH_RStoYaNJVuvmo1gMZdjMd9eLGTL7-o1teW56HBxEA@mail.gmail.com>
+References: <52E18EA4.6070708@mini.pw.edu.pl> <52E19001.1020607@sojka.co>
+	<CAKb7UvgT71qJaJNeHReL6YD12msC6KG9smTXU8tQYRPV4An=fw@mail.gmail.com>
+	<52E1A4BA.3040707@sojka.co>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1109250631=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74002-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <52E1A4BA.3040707-Ms+j0e0whA8@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,81 +19,50 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?ISO-8859-1?Q?Grzegorz_S=F3jka?= <gs-Ms+j0e0whA8@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Thu, Jan 23, 2014 at 6:24 PM, Grzegorz S=F3jka <gs-Ms+j0e0whA8@public.gmane.org> wrote:
+> On 01/23/14 23:12, Ilia Mirkin wrote:
+>>
+>> On Thu, Jan 23, 2014 at 4:56 PM, Grzegorz S=F3jka <gs-Ms+j0e0whA8@public.gmane.org> wrote:
+>>>
+>>> Hi there,
+>>>
+>>> I have 4 identical monitors. So I decided to buy (not to expensive,
+>>> around 100USD) quad head graphics card. I do not need anything
+>>> particular. Only office applications, no gaming. The crucial thing is
+>>> that I would like to be able to span a single window across all 4
+>>> monitors. I found following cards:
+>>> Nvidia Quadro NVS440
+>>> Nvidia Quadro NVS420
+>>> Both are actually dual GPU. Could you please confirm which one of these
+>>> cards may be configured as a single quad monitor DISPLAY using nouveau
+>>> driver? What about the binary nvidia driver?
+>>
+>>
+>> I would avoid those if possible. Both nouveau and the nvidia driver
+>> wil support them in a 4-monitor configuration, but there will be
+>> issues, esp with nouveau. Not sure about nvidia.
+>
+> So, it would be possible to configure all 4 monitors as parts of one logi=
+cal
+> DISPLAY??
+> Just clarify: At the moment I use two dual head ATI FirePro 2270 graphics
+> cards. As a consequence I have two logical (dual-monitors) DISPLAYS and t=
+he
+> problem is that I'm not able to span a single window across more than 2
+> monitors.
 
---===============1109250631==
-Content-Type: multipart/alternative; boundary="1390521996.A06e2.2023"; charset="us-ascii"
+There are 2 ways of dealing with that (neither is nouveau-specific):
 
+(a) You can use PRIME to render on one GPU and use the outputs on the
+other gpu to display said rendering. This is possible using xrandr 1.4
+and Xorg 1.14.3 or later.
+(b) You can use Xinerama to create a virtual screen on these. This
+loses you xrandr and direct rendering.
 
---1390521996.A06e2.2023
-Date: Fri, 24 Jan 2014 00:06:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Neither of these yields a particularly fast experience.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74002
-
---- Comment #6 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
-Should also note that I attempted booting with the nouveau.config=NvI2C=1
-kernel parameter.  However, with this parameter present, both the VT text and
-splash screen were corrupted (appeared interleaved), there was no display from
-X (though I could hear the startup sound indicating it had started), and the
-system was not reliably connected to the network (couldn't ping or ssh to it).
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1390521996.A06e2.2023
-Date: Fri, 24 Jan 2014 00:06:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [un]docking Lenovo W530 results in interrupt storm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [un]docking Lenovo W530 results in interrupt storm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002">bug 74002</a>
-              from <span class="vcard"><a class="email" href="mailto:jcollins&#64;asgardsrealm.net" title="Jamin Collins &lt;jcollins&#64;asgardsrealm.net&gt;"> <span class="fn">Jamin Collins</span></a>
-</span></b>
-        <pre>Should also note that I attempted booting with the nouveau.config=NvI2C=1
-kernel parameter.  However, with this parameter present, both the VT text and
-splash screen were corrupted (appeared interleaved), there was no display from
-X (though I could hear the startup sound indicating it had started), and the
-system was not reliably connected to the network (couldn't ping or ssh to it).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1390521996.A06e2.2023--
-
---===============1109250631==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1109250631==--
+  -ilia
