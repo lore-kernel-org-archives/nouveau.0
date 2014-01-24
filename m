@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74002] [NVE7] [un]plugging DP-3 on Lenovo W530
  results in interrupt storm
-Date: Fri, 24 Jan 2014 18:17:15 +0000
-Message-ID: <bug-74002-8800-snAph4NxTQ@http.bugs.freedesktop.org/>
+Date: Fri, 24 Jan 2014 20:42:00 +0000
+Message-ID: <bug-74002-8800-G474cKmnYB@http.bugs.freedesktop.org/>
 References: <bug-74002-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1230178438=="
+Content-Type: multipart/mixed; boundary="===============1353437128=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74002-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1230178438==
-Content-Type: multipart/alternative; boundary="1390587435.553B3.14229"; charset="us-ascii"
+--===============1353437128==
+Content-Type: multipart/alternative; boundary="1390596120.D8bFC62.9608"; charset="us-ascii"
 
 
---1390587435.553B3.14229
-Date: Fri, 24 Jan 2014 18:17:15 +0000
+--1390596120.D8bFC62.9608
+Date: Fri, 24 Jan 2014 20:42:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74002
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #11 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
+Created attachment 92739
+  --> https://bugs.freedesktop.org/attachment.cgi?id=92739&action=edit
+both sets of displays
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NVE7] [un]docking Lenovo   |[NVE7] [un]plugging DP-3 on
-                   |W530 results in interrupt   |Lenovo W530 results in
-                   |storm                       |interrupt storm
+I've confirmed I can replicate this problem with the displays at work as well. 
+Attaching an Xorg log containing information for both sets of displays.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390587435.553B3.14229
-Date: Fri, 24 Jan 2014 18:17:15 +0000
+--1390596120.D8bFC62.9608
+Date: Fri, 24 Jan 2014 20:42:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,28 +53,25 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE7] [un]plugging DP-3 on Lenovo W530 results in interrupt storm"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] [un]plugging DP-3 on Lenovo W530 results in interrupt storm"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74002">bug 74002</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:jcollins&#64;asgardsrealm.net" title="Jamin Collins &lt;jcollins&#64;asgardsrealm.net&gt;"> <span class="fn">Jamin Collins</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=92739" name="attach_92739" title="both sets of displays">attachment 92739</a> <a href="attachment.cgi?id=92739&amp;action=edit" title="both sets of displays">[details]</a></span>
+both sets of displays
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NVE7] [un]docking Lenovo W530 results in interrupt storm
-           </td>
-           <td>[NVE7] [un]plugging DP-3 on Lenovo W530 results in interrupt storm
-           </td>
-         </tr></table>
-      <p>
+I've confirmed I can replicate this problem with the displays at work as well. 
+Attaching an Xorg log containing information for both sets of displays.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +82,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1390587435.553B3.14229--
+--1390596120.D8bFC62.9608--
 
---===============1230178438==
+--===============1353437128==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1230178438==--
+--===============1353437128==--
