@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74002] [NVE7] [un]plugging DP-3 on Lenovo W530
- results in interrupt storm
-Date: Fri, 24 Jan 2014 20:42:00 +0000
-Message-ID: <bug-74002-8800-G474cKmnYB@http.bugs.freedesktop.org/>
-References: <bug-74002-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73200] vdpau-GL interop fails due to different
+	screen objects
+Date: Sat, 25 Jan 2014 03:35:52 +0000
+Message-ID: <bug-73200-8800-xV7CkX8d2F@http.bugs.freedesktop.org/>
+References: <bug-73200-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1353437128=="
+Content-Type: multipart/mixed; boundary="===============1940132345=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74002-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73200-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1353437128==
-Content-Type: multipart/alternative; boundary="1390596120.D8bFC62.9608"; charset="us-ascii"
+--===============1940132345==
+Content-Type: multipart/alternative; boundary="1390620952.Cb46d31.10413"; charset="us-ascii"
 
 
---1390596120.D8bFC62.9608
-Date: Fri, 24 Jan 2014 20:42:00 +0000
+--1390620952.Cb46d31.10413
+Date: Sat, 25 Jan 2014 03:35:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74002
+https://bugs.freedesktop.org/show_bug.cgi?id=73200
 
---- Comment #11 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
-Created attachment 92739
-  --> https://bugs.freedesktop.org/attachment.cgi?id=92739&action=edit
-both sets of displays
+--- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+AFAIK the whole issue is that nouveau does have 1:1 relation between screen and
+a context.
 
-I've confirmed I can replicate this problem with the displays at work as well. 
-Attaching an Xorg log containing information for both sets of displays.
+For a number of reasons we would like support for multiple contexts per screen,
+which afaics will allow us (or is a decent starting point) to allow a context
+to be shared between the vdpau and the gl state trackers.
+
+I may be a bit off with the above assumptions, so don't quote me on that :)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390596120.D8bFC62.9608
-Date: Fri, 24 Jan 2014 20:42:00 +0000
+--1390620952.Cb46d31.10413
+Date: Sat, 25 Jan 2014 03:35:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,19 +60,22 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] [un]plugging DP-3 on Lenovo W530 results in interrupt storm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002#c11">Comment # 11</a>
+   title="NEW --- - vdpau-GL interop fails due to different screen objects"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] [un]plugging DP-3 on Lenovo W530 results in interrupt storm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002">bug 74002</a>
-              from <span class="vcard"><a class="email" href="mailto:jcollins&#64;asgardsrealm.net" title="Jamin Collins &lt;jcollins&#64;asgardsrealm.net&gt;"> <span class="fn">Jamin Collins</span></a>
+   title="NEW --- - vdpau-GL interop fails due to different screen objects"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200">bug 73200</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=92739" name="attach_92739" title="both sets of displays">attachment 92739</a> <a href="attachment.cgi?id=92739&amp;action=edit" title="both sets of displays">[details]</a></span>
-both sets of displays
+        <pre>AFAIK the whole issue is that nouveau does have 1:1 relation between screen and
+a context.
 
-I've confirmed I can replicate this problem with the displays at work as well. 
-Attaching an Xorg log containing information for both sets of displays.</pre>
+For a number of reasons we would like support for multiple contexts per screen,
+which afaics will allow us (or is a decent starting point) to allow a context
+to be shared between the vdpau and the gl state trackers.
+
+I may be a bit off with the above assumptions, so don't quote me on that :)</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +87,9 @@ Attaching an Xorg log containing information for both sets of displays.</pre>
     </body>
 </html>
 
---1390596120.D8bFC62.9608--
+--1390620952.Cb46d31.10413--
 
---===============1353437128==
+--===============1940132345==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1353437128==--
+--===============1940132345==--
