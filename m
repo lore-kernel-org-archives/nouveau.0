@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
  Chromium web browser
-Date: Sat, 25 Jan 2014 19:02:20 +0000
-Message-ID: <bug-73373-8800-RWgGYc6tLD@http.bugs.freedesktop.org/>
+Date: Sat, 25 Jan 2014 20:12:12 +0000
+Message-ID: <bug-73373-8800-H1txIbU6a7@http.bugs.freedesktop.org/>
 References: <bug-73373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0533990979=="
+Content-Type: multipart/mixed; boundary="===============0650623952=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0533990979==
-Content-Type: multipart/alternative; boundary="1390676540.cfabc0.12051"; charset="us-ascii"
+--===============0650623952==
+Content-Type: multipart/alternative; boundary="1390680732.Ae4A342B0.23530"; charset="us-ascii"
 
 
---1390676540.cfabc0.12051
-Date: Sat, 25 Jan 2014 19:02:20 +0000
+--1390680732.Ae4A342B0.23530
+Date: Sat, 25 Jan 2014 20:12:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73373
 
---- Comment #12 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
-Created attachment 92779
-  --> https://bugs.freedesktop.org/attachment.cgi?id=92779&action=edit
-System logs after setting nouveau.config=NvGrUseFW=1 kernel option
+--- Comment #13 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
+I managed to get the right fw files with help provided on
+#nouveau-Jw3jd4WmN4t24HhQbmzfbeG/Ez6ZCGd0@public.gmane.org
+I attach now the kernel logs after reproducing the issue with chrome, which
+still happens.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390676540.cfabc0.12051
-Date: Sat, 25 Jan 2014 19:02:20 +0000
+--1390680732.Ae4A342B0.23530
+Date: Sat, 25 Jan 2014 20:12:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +57,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373#c12">Comment # 12</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=73373">bug 73373</a>
               from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=92779" name="attach_92779" title="System logs after setting nouveau.config=NvGrUseFW=1 kernel option">attachment 92779</a> <a href="attachment.cgi?id=92779&amp;action=edit" title="System logs after setting nouveau.config=NvGrUseFW=1 kernel option">[details]</a></span>
-System logs after setting nouveau.config=NvGrUseFW=1 kernel option</pre>
+        <pre>I managed to get the right fw files with help provided on
+#<a href="mailto:nouveau&#64;irc.freenode.net">nouveau&#64;irc.freenode.net</a>.
+I attach now the kernel logs after reproducing the issue with chrome, which
+still happens.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +79,9 @@ System logs after setting nouveau.config=NvGrUseFW=1 kernel option</pre>
     </body>
 </html>
 
---1390676540.cfabc0.12051--
+--1390680732.Ae4A342B0.23530--
 
---===============0533990979==
+--===============0650623952==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0533990979==--
+--===============0650623952==--
