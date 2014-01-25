@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40747] The new nouveau kernel module fails to use my
- monitor's native resolution
-Date: Sat, 25 Jan 2014 10:20:23 +0000
-Message-ID: <bug-40747-8800-lGKePdaXOT@http.bugs.freedesktop.org/>
-References: <bug-40747-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
+ Chromium web browser
+Date: Sat, 25 Jan 2014 19:01:24 +0000
+Message-ID: <bug-73373-8800-ZG6guJFdlW@http.bugs.freedesktop.org/>
+References: <bug-73373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1812250165=="
+Content-Type: multipart/mixed; boundary="===============0662913928=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40747-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1812250165==
-Content-Type: multipart/alternative; boundary="1390645223.D17E0b353.2822"; charset="us-ascii"
+--===============0662913928==
+Content-Type: multipart/alternative; boundary="1390676483.a7da0.11869"; charset="us-ascii"
 
 
---1390645223.D17E0b353.2822
-Date: Sat, 25 Jan 2014 10:20:23 +0000
+--1390676483.a7da0.11869
+Date: Sat, 25 Jan 2014 19:01:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40747
+https://bugs.freedesktop.org/show_bug.cgi?id=73373
 
---- Comment #17 from Oswald Buddenhagen <ossi-RoXCvvDuEio@public.gmane.org> ---
-Created attachment 92765
-  --> https://bugs.freedesktop.org/attachment.cgi?id=92765&action=edit
-another Xorg.0.log with bogus resolution
+--- Comment #11 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
+(In reply to comment #10)
+> (In reply to comment #9)
+> > Now I changed the option to nouveau.config=NvGrUseFW=1 and the graphics
+> > freeze when the nouveau module loads apparently.
+> 
+> Any chance you can get logs when that happens? (e.g. by ssh'ing in, or
+> perhaps they make it to some system log)
+> 
+> I assume that this is with the relevant nve4_* firmware files available in
+> /lib/firmware/nouveau at nouveau module load time...
 
-note that after the VT switch, there is suddely a "Printing DDC gathered
-Modelines" section, which indicates that some 1600x1200 mode was at leaast
-found.
+Indeed it seems there is a missing file. I attached the system logs.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390645223.D17E0b353.2822
-Date: Sat, 25 Jan 2014 10:20:23 +0000
+--1390676483.a7da0.11869
+Date: Sat, 25 Jan 2014 19:01:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,21 +63,27 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - The new nouveau kernel module fails to use my monitor's native resolution"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40747#c17">Comment # 17</a>
+          bz_status_NEW "
+   title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373#c11">Comment # 11</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - The new nouveau kernel module fails to use my monitor's native resolution"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40747">bug 40747</a>
-              from <span class="vcard"><a class="email" href="mailto:ossi&#64;kde.org" title="Oswald Buddenhagen &lt;ossi&#64;kde.org&gt;"> <span class="fn">Oswald Buddenhagen</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373">bug 73373</a>
+              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=92765" name="attach_92765" title="another Xorg.0.log with bogus resolution">attachment 92765</a> <a href="attachment.cgi?id=92765&amp;action=edit" title="another Xorg.0.log with bogus resolution">[details]</a></span>
-another Xorg.0.log with bogus resolution
+        <pre>(In reply to <a href="show_bug.cgi?id=73373#c10">comment #10</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=73373#c9">comment #9</a>)
+&gt; &gt; Now I changed the option to nouveau.config=NvGrUseFW=1 and the graphics
+&gt; &gt; freeze when the nouveau module loads apparently.
+&gt; 
+&gt; Any chance you can get logs when that happens? (e.g. by ssh'ing in, or
+&gt; perhaps they make it to some system log)
+&gt; 
+&gt; I assume that this is with the relevant nve4_* firmware files available in
+&gt; /lib/firmware/nouveau at nouveau module load time...</span >
 
-note that after the VT switch, there is suddely a &quot;Printing DDC gathered
-Modelines&quot; section, which indicates that some 1600x1200 mode was at leaast
-found.</pre>
+Indeed it seems there is a missing file. I attached the system logs.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +95,9 @@ found.</pre>
     </body>
 </html>
 
---1390645223.D17E0b353.2822--
+--1390676483.a7da0.11869--
 
---===============1812250165==
+--===============0662913928==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +108,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1812250165==--
+--===============0662913928==--
