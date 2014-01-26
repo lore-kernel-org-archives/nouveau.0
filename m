@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 60680] [NV96] HDMI is connected and has mode,
- TV says "no signal"
-Date: Sun, 26 Jan 2014 11:27:04 +0000
-Message-ID: <bug-60680-8800-4qrCM5TrQL@http.bugs.freedesktop.org/>
-References: <bug-60680-8800@http.bugs.freedesktop.org/>
+From: "Terje J. Hanssen" <terje-2yIPwdmwSce/d7phXA6hpxdYX54VHubl@public.gmane.org>
+Subject: xrandr HDMI-1 and DVI-D-1 disconnected - External monitor
+	not detected
+Date: Sun, 26 Jan 2014 15:47:29 +0100
+Message-ID: <52E52001.1080903@nordland-teknikk.no>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0552845971=="
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-60680-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,117 +19,90 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Hi List,
 
---===============0552845971==
-Content-Type: multipart/alternative; boundary="1390735624.f268D31c2.14906"; charset="us-ascii"
+I'm stuck how to get a dual head monitor solution to work with Nouveau, 
+running openSUSE 13.1 on my hp8710w mobile workstation equipped with a 
+Nvidia graphical card. Beyond the built-in WUXGA display, an external 
+WQHD monitor is connected to the HDMI port on the graphical card and/or 
+to the dual link DVI-D on a hp docking station.
+
+To compare with SLED11/Nvidia driver running in dualboot with openSUSE 
+13.1/Nouveau on the same workstation, the external monitor works up to 
+1920x1080 over HDMI and at 2560x1440 resolution over the docking dual 
+link DVI-D.
 
 
---1390735624.f268D31c2.14906
-Date: Sun, 26 Jan 2014 11:27:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Here follows the query output using openSUSE 13.1/Nouveau/xrandr:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=60680
 
---- Comment #24 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Tried the complete kernel from nouveau/drm-nouveau-next
-(v3.13-rc8-665-g1139ffb) which contains the commit
+# lspci -nnk | grep VGA -A2
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation G92GLM 
+[Quadro FX 3600M] [10de:061c] (rev a2)
+     Subsystem: NVIDIA Corporation Device [10de:0518]
+     Kernel driver in use: nouveau
 
-commit f87cd8b695d372087685976460fac1ec6ba2fca9
-Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Date:   Sun Jan 19 04:18:15 2014 -0500
 
-    drm/nouveau/devinit: lock/unlock crtc regs for all devices, not just
-pre-nv50
+Software versions installed:
 
-    Also make nv_lockvgac work for nv50+ devices. This should fix
-    IO_CONDITION and related VBIOS opcodes that read/write the crtc regs.
+# zypper se -is nouveau
+Loading repository data...
+Reading installed packages...
 
-    See https://bugs.freedesktop.org/show_bug.cgi?id=60680
+S | Name                          | Type    | Version      | Arch   | 
+Repository
+--+-------------------------------+---------+--------------+--------+------------------
+i | libdrm_nouveau2               | package | 2.4.46-3.2.2 | x86_64 | 
+openSUSE-13.1-Oss
+i | xorg-x11-driver-video-nouveau | package | 1.0.9-3.1.2  | x86_64 | 
+openSUSE-13.1-Oss
 
-    Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
-which apparently is supposed to fix the issue.
+# zypper se -is xrandr
+Loading repository data...
+Reading installed packages...
 
-This kernel works, and the issue is fixed.
+S | Name       | Type    | Version     | Arch   | Repository
+--+------------+---------+-------------+--------+------------------
+i | libXrandr2 | package | 1.4.2-2.1.2 | x86_64 | openSUSE-13.1-Oss
+i | xrandr     | package | 1.4.1-2.2.1 | x86_64 | openSUSE-13.1-Oss
 
-Thank you!
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+Beyond LVDS for the builtin display, all other graphical ports are 
+reported as disconnected by xrandr:
 
---1390735624.f268D31c2.14906
-Date: Sun, 26 Jan 2014 11:27:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+# xrandr -q
+Screen 0: minimum 320 x 200, current 1920 x 1200, maximum 8192 x 8192
+LVDS-1 connected primary 1920x1200+0+0 (normal left inverted right x 
+axis y axis) 367mm x 229mm
+    1920x1200      60.0*+   59.9
+    1920x1080      60.0
+    1600x1200      59.9
+    1680x1050      60.0
+    1400x1050      60.0
+    1280x1024      59.9
+    1280x960       59.9
+    1152x864       60.0
+    1024x768       59.9
+    800x600        59.9
+    640x480        59.4
+    720x400        59.6
+    640x400        60.0
+    640x350        59.8
+VGA-1 disconnected (normal left inverted right x axis y axis)
+DVI-D-1 disconnected (normal left inverted right x axis y axis)
+HDMI-1 disconnected (normal left inverted right x axis y axis)
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60680#c24">Comment # 24</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=60680">bug 60680</a>
-              from <span class="vcard"><a class="email" href="mailto:ppaalanen&#64;gmail.com" title="Pekka Paalanen &lt;ppaalanen&#64;gmail.com&gt;"> <span class="fn">Pekka Paalanen</span></a>
-</span></b>
-        <pre>Tried the complete kernel from nouveau/drm-nouveau-next
-(v3.13-rc8-665-g1139ffb) which contains the commit
 
-commit f87cd8b695d372087685976460fac1ec6ba2fca9
-Author: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
-Date:   Sun Jan 19 04:18:15 2014 -0500
+I've tried a solution that has been suggested to add output to an 
+external monitor, but it failed as shown:
 
-    drm/nouveau/devinit: lock/unlock crtc regs for all devices, not just
-pre-nv50
+# xrandr --addmode HDMI-1 1920x1080
+# xrandr --output HDMI-1 --mode 1920x1080 --left-of LVDS-1
+xrandr: Configure crtc 1 failed
 
-    Also make nv_lockvgac work for nv50+ devices. This should fix
-    IO_CONDITION and related VBIOS opcodes that read/write the crtc regs.
 
-    See <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV96] HDMI is connected and has mode, TV says &quot;no signal&quot;"
-   href="show_bug.cgi?id=60680">https://bugs.freedesktop.org/show_bug.cgi?id=60680</a>
+I would be very thankful to get help here that can solve this confusing 
+problem.
 
-    Signed-off-by: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
-    Signed-off-by: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
-
-which apparently is supposed to fix the issue.
-
-This kernel works, and the issue is fixed.
-
-Thank you!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1390735624.f268D31c2.14906--
-
---===============0552845971==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0552845971==--
+Terje
