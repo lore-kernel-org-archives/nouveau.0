@@ -1,10 +1,9 @@
-From: =?ISO-8859-2?Q?Grzegorz_S=F3jka?= <grzes-hAO+45erXPd4rM3dGMyr8Q@public.gmane.org>
-Subject: Quad monitor graphics card.
-Date: Thu, 23 Jan 2014 22:50:28 +0100
-Message-ID: <52E18EA4.6070708@mini.pw.edu.pl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74062] New: Artifacts in 3D games.
+Date: Sun, 26 Jan 2014 01:06:14 +0000
+Message-ID: <bug-74062-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0481172624=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,18 +17,165 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi there,
 
-I have 4 identical monitors. So I decided to buy (not to expensive, 
-around 100USD) quad head graphics card. I do not need anything 
-particular. Only office applications, no gaming. The crucial thing is 
-that I would like to be able to span a single window across all 4 
-monitors. I found following cards:
-Nvidia Quadro NVS440
-Nvidia Quadro NVS420
-Both are actually dual GPU. Could you please confirm which one of these 
-cards may be configured as a single quad monitors DISPLAY using nouveau 
-driver? What about the binary nvidia driver?
+--===============0481172624==
+Content-Type: multipart/alternative; boundary="1390698374.b38C10.27595"; charset="us-ascii"
 
-Thanks in advance for any help.
-Greg
+
+--1390698374.b38C10.27595
+Date: Sun, 26 Jan 2014 01:06:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D74062
+
+          Priority: medium
+            Bug ID: 74062
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Artifacts in 3D games.
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: mbarrera-KK0ffGbhmjU@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: 10.0
+         Component: Drivers/DRI/nouveau
+           Product: Mesa
+
+Moving artifacts are present in the rendering of 3D games such as OpenArena=
+ or
+Minetest/Freeminer, happens in glxgears too. However, there is no issue whe=
+n I
+use compiz. In blender, the artifacts are visible only =E2=80=9Cinside=E2=
+=80=9D 3d elements.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1390698374.b38C10.27595
+Date: Sun, 26 Jan 2014 01:06:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - Artifacts in 3D games."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D74062">74062</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Artifacts in 3D games.
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mbarrera&#64;gmx.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>10.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Moving artifacts are present in the rendering of 3D games such=
+ as OpenArena or
+Minetest/Freeminer, happens in glxgears too. However, there is no issue whe=
+n I
+use compiz. In blender, the artifacts are visible only =E2=80=9Cinside=E2=
+=80=9D 3d elements.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1390698374.b38C10.27595--
+
+--===============0481172624==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0481172624==--
