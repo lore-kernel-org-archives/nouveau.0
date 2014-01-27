@@ -1,100 +1,47 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74123] [NVE7] windows maximize behind xfce4-panel
- until settings viewed
-Date: Mon, 27 Jan 2014 18:56:02 +0000
-Message-ID: <bug-74123-8800-r9vGaHBk7B@http.bugs.freedesktop.org/>
-References: <bug-74123-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nv30: don't overwrite blend color setting for
+	r32/r16 float formats
+Date: Mon, 27 Jan 2014 15:51:07 -0500
+Message-ID: <1390855867-18361-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1715377293=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74123-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces@lists.freedesktop.org
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, mesa-dev@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+---
 
---===============1715377293==
-Content-Type: multipart/alternative; boundary="1390848961.0EA85.13288"; charset="us-ascii"
+Untested. Happened to see this when I was reading this file (don't ask). I
+can't imagine the current situation to be the intended one, based on this
+code...
 
+ src/gallium/drivers/nouveau/nv30/nv30_state_validate.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---1390848961.0EA85.13288
-Date: Mon, 27 Jan 2014 18:56:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=74123
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-  Attachment #92875|application/octet-stream    |video/x-m4v
-          mime type|                            |
-
+diff --git a/src/gallium/drivers/nouveau/nv30/nv30_state_validate.c b/src/gallium/drivers/nouveau/nv30/nv30_state_validate.c
+index f227559..b5584c8 100644
+--- a/src/gallium/drivers/nouveau/nv30/nv30_state_validate.c
++++ b/src/gallium/drivers/nouveau/nv30/nv30_state_validate.c
+@@ -190,7 +190,7 @@ nv30_validate_blend_colour(struct nv30_context *nv30)
+          BEGIN_NV04(push, SUBC_3D(0x037c), 1);
+          PUSH_DATA (push, (util_float_to_half(rgba[2]) <<  0) |
+                           (util_float_to_half(rgba[3]) << 16));
+-         break;
++         return;
+       default:
+          break;
+       }
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1390848961.0EA85.13288
-Date: Mon, 27 Jan 2014 18:56:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] windows maximize behind xfce4-panel until settings viewed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74123">bug 74123</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #92875 mime type</td>
-           <td>application/octet-stream
-           </td>
-           <td>video/x-m4v
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1390848961.0EA85.13288--
-
---===============1715377293==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1715377293==--
+1.8.3.2
