@@ -1,15 +1,13 @@
-From: "Terje J. Hanssen" <terje-2yIPwdmwSce/d7phXA6hpxdYX54VHubl@public.gmane.org>
-Subject: Re: xrandr HDMI-1 and DVI-D-1 disconnected - External
- monitor not detected
-Date: Mon, 27 Jan 2014 11:06:55 +0100
-Message-ID: <52E62FBF.8040207@nordland-teknikk.no>
-References: <52E52001.1080903@nordland-teknikk.no>
-	<CAKb7UvhdB8yomhrbeafaK-sjiKNNZSQit+QD6wqWEiJx3J0w7Q@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 73473] Potential crash bug in
+ src/gallium/auxiliary/rtasm/rtasm_execmem.c
+Date: Mon, 27 Jan 2014 13:24:49 +0000
+Message-ID: <bug-73473-8800-UXYgo4JrbO@http.bugs.freedesktop.org/>
+References: <bug-73473-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1072741146=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvhdB8yomhrbeafaK-sjiKNNZSQit+QD6wqWEiJx3J0w7Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-73473-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,145 +17,108 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-The latest openSUSE 13.1 uses kernel version 3.11.6-4-desktop (x86_64  
-here).
 
-(What I can add is that Nouveau did not work either for external, dual 
-display on this mobile hardware using previous 3.x kernels on openSUSE 
-12.x. The propriarity Nvidia driver which currently works again using 
-SLED11 SP3 now, has on the other hand had some freeze lock problems)
+--===============1072741146==
+Content-Type: multipart/alternative; boundary="1390829088.80c2Eb61.8825"; charset="us-ascii"
 
 
-Well, I'm not sure I'm skilled to try the suggested airlied's drm-next
-branch as this is new for me. Is there available a detailed procedure 
-guide how to do it?
+--1390829088.80c2Eb61.8825
+Date: Mon, 27 Jan 2014 13:24:48 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
+https://bugs.freedesktop.org/show_bug.cgi?id=73473
 
-Thanks,
-Terje
+--- Comment #10 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Yay the crash should happen no more
 
+commit 4dd445f1cf80292f10eda53665cefc2a674d838d
+Author: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Date:   Fri Jan 10 18:00:17 2014 +0000
 
+    gallium/rtasm: handle mmap failures appropriately
 
-Den 27. jan. 2014 02:53, skrev Ilia Mirkin:
-> The important thing for display detection/setting proper modes/etc is
-> the kernel -- what kernel version are you using?
->
-> Separately, there has been a fix that affected VBIOSes found in NV96
-> cards, and it would not be a stretch to believe that a similar VBIOS
-> script could be found in a NV92 card. However the NV96 error condition
-> was different (everything detected fine, but no actual image
-> displayed, whereas for you it's not even showing anything as
-> connected, which could indicate a i2c/hpd problem).
->
-> I would say that the steps for you are to first try airlied's drm-next
-> branch, which should have all the latest nouveau fixes:
-> http://cgit.freedesktop.org/~airlied/linux/log/?h=drm-next . If that
-> is of no help, open a new bug (see
-> http://nouveau.freedesktop.org/wiki/Bugs/) -- we really want to see
-> your vbios, so upload a copy of that
-> (/sys/kernel/debug/dri/0/vbios.rom), and also throw in a full dmesg
-> booted with nouveau.debug=PDISP=debug,VBIOS=trace
->
-> Lastly, did this ever work with nouveau? If so, please indicate that
-> in the bug; you will likely be asked to do a kernel bisect.
->
->    -ilia
->
-> On Sun, Jan 26, 2014 at 9:47 AM, Terje J. Hanssen
-> <terje-2yIPwdmwSce/d7phXA6hpxdYX54VHubl@public.gmane.org> wrote:
->> Hi List,
->>
->> I'm stuck how to get a dual head monitor solution to work with Nouveau,
->> running openSUSE 13.1 on my hp8710w mobile workstation equipped with a
->> Nvidia graphical card. Beyond the built-in WUXGA display, an external WQHD
->> monitor is connected to the HDMI port on the graphical card and/or to the
->> dual link DVI-D on a hp docking station.
->>
->> To compare with SLED11/Nvidia driver running in dualboot with openSUSE
->> 13.1/Nouveau on the same workstation, the external monitor works up to
->> 1920x1080 over HDMI and at 2560x1440 resolution over the docking dual link
->> DVI-D.
->>
->>
->> Here follows the query output using openSUSE 13.1/Nouveau/xrandr:
->>
->>
->> # lspci -nnk | grep VGA -A2
->> 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation G92GLM [Quadro
->> FX 3600M] [10de:061c] (rev a2)
->>      Subsystem: NVIDIA Corporation Device [10de:0518]
->>      Kernel driver in use: nouveau
->>
->>
->> Software versions installed:
->>
->> # zypper se -is nouveau
->> Loading repository data...
->> Reading installed packages...
->>
->> S | Name                          | Type    | Version      | Arch   |
->> Repository
->> --+-------------------------------+---------+--------------+--------+------------------
->> i | libdrm_nouveau2               | package | 2.4.46-3.2.2 | x86_64 |
->> openSUSE-13.1-Oss
->> i | xorg-x11-driver-video-nouveau | package | 1.0.9-3.1.2  | x86_64 |
->> openSUSE-13.1-Oss
->>
->>
->> # zypper se -is xrandr
->> Loading repository data...
->> Reading installed packages...
->>
->> S | Name       | Type    | Version     | Arch   | Repository
->> --+------------+---------+-------------+--------+------------------
->> i | libXrandr2 | package | 1.4.2-2.1.2 | x86_64 | openSUSE-13.1-Oss
->> i | xrandr     | package | 1.4.1-2.2.1 | x86_64 | openSUSE-13.1-Oss
->>
->>
->> Beyond LVDS for the builtin display, all other graphical ports are reported
->> as disconnected by xrandr:
->>
->> # xrandr -q
->> Screen 0: minimum 320 x 200, current 1920 x 1200, maximum 8192 x 8192
->> LVDS-1 connected primary 1920x1200+0+0 (normal left inverted right x axis y
->> axis) 367mm x 229mm
->>     1920x1200      60.0*+   59.9
->>     1920x1080      60.0
->>     1600x1200      59.9
->>     1680x1050      60.0
->>     1400x1050      60.0
->>     1280x1024      59.9
->>     1280x960       59.9
->>     1152x864       60.0
->>     1024x768       59.9
->>     800x600        59.9
->>     640x480        59.4
->>     720x400        59.6
->>     640x400        60.0
->>     640x350        59.8
->> VGA-1 disconnected (normal left inverted right x axis y axis)
->> DVI-D-1 disconnected (normal left inverted right x axis y axis)
->> HDMI-1 disconnected (normal left inverted right x axis y axis)
->>
->>
->> I've tried a solution that has been suggested to add output to an external
->> monitor, but it failed as shown:
->>
->> # xrandr --addmode HDMI-1 1920x1080
->> # xrandr --output HDMI-1 --mode 1920x1080 --left-of LVDS-1
->> xrandr: Configure crtc 1 failed
->>
->>
->> I would be very thankful to get help here that can solve this confusing
->> problem.
->>
->> Terje
->>
->> _______________________________________________
->> Nouveau mailing list
->> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> http://lists.freedesktop.org/mailman/listinfo/nouveau
+    For a variety of reasons mmap (selinux and pax to name
+    a few) and can fail and with current code. This will
+    result in a crash in the driver, if not worse.
+
+    This has been the case since the inception of the
+    gallium copy of rtasm.
+
+    Cc: 9.1 9.2 10.0 <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+    Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=73473
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1390829088.80c2Eb61.8825
+Date: Mon, 27 Jan 2014 13:24:48 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Potential crash bug in src/gallium/auxiliary/rtasm/rtasm_execmem.c"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73473#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Potential crash bug in src/gallium/auxiliary/rtasm/rtasm_execmem.c"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73473">bug 73473</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span></b>
+        <pre>Yay the crash should happen no more
+
+commit 4dd445f1cf80292f10eda53665cefc2a674d838d
+Author: Emil Velikov &lt;<a href="mailto:emil.l.velikov&#64;gmail.com">emil.l.velikov&#64;gmail.com</a>&gt;
+Date:   Fri Jan 10 18:00:17 2014 +0000
+
+    gallium/rtasm: handle mmap failures appropriately
+
+    For a variety of reasons mmap (selinux and pax to name
+    a few) and can fail and with current code. This will
+    result in a crash in the driver, if not worse.
+
+    This has been the case since the inception of the
+    gallium copy of rtasm.
+
+    Cc: 9.1 9.2 10.0 &lt;<a href="mailto:mesa-stable&#64;lists.freedesktop.org">mesa-stable&#64;lists.freedesktop.org</a>&gt;
+    Bugzilla: <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Potential crash bug in src/gallium/auxiliary/rtasm/rtasm_execmem.c"
+   href="show_bug.cgi?id=73473">https://bugs.freedesktop.org/show_bug.cgi?id=73473</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1390829088.80c2Eb61.8825--
+
+--===============1072741146==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1072741146==--
