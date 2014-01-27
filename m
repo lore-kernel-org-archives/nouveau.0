@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68835] [NV04] Script offset calculated incorrectly
- for some BMP 1.x VBIOSes
-Date: Mon, 27 Jan 2014 07:52:11 +0000
-Message-ID: <bug-68835-8800-GygPW0nRiS@http.bugs.freedesktop.org/>
-References: <bug-68835-8800@http.bugs.freedesktop.org/>
+From: "Terje J. Hanssen" <terje-2yIPwdmwSce/d7phXA6hpxdYX54VHubl@public.gmane.org>
+Subject: Re: xrandr HDMI-1 and DVI-D-1 disconnected - External
+ monitor not detected
+Date: Mon, 27 Jan 2014 11:06:55 +0100
+Message-ID: <52E62FBF.8040207@nordland-teknikk.no>
+References: <52E52001.1080903@nordland-teknikk.no>
+	<CAKb7UvhdB8yomhrbeafaK-sjiKNNZSQit+QD6wqWEiJx3J0w7Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0931378352=="
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvhdB8yomhrbeafaK-sjiKNNZSQit+QD6wqWEiJx3J0w7Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,106 +19,145 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+The latest openSUSE 13.1 uses kernel version 3.11.6-4-desktop (x86_64  
+here).
 
---===============0931378352==
-Content-Type: multipart/alternative; boundary="1390809131.7D4BE1.3105"; charset="us-ascii"
+(What I can add is that Nouveau did not work either for external, dual 
+display on this mobile hardware using previous 3.x kernels on openSUSE 
+12.x. The propriarity Nvidia driver which currently works again using 
+SLED11 SP3 now, has on the other hand had some freeze lock problems)
 
 
---1390809131.7D4BE1.3105
-Date: Mon, 27 Jan 2014 07:52:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Well, I'm not sure I'm skilled to try the suggested airlied's drm-next
+branch as this is new for me. Is there available a detailed procedure 
+guide how to do it?
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68835
 
---- Comment #14 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
-(In reply to comment #13)
-> Great! You could also have grabbed a pre-compiled 3.13 kernel off of
-> rawhide, if that's availble. I'm really not sure what the Fedora situation
-> is though, so I can't give specific advice.
+Thanks,
+Terje
 
-Hmmm... I will seek for further information, however applying the patch to 3.12
-was easy, it's just so slow to compile. I left the PC running over night and
-this morning it's still there... It's building all the flavors of the kernel,
-so I should better try to just make one flavor next time, but I'm not sure
-about what to choose (the above page talks about xen, smp, up, pae, kdump,
-debug and debuginfo... and I'm not sure what would be the best in my case).
 
-> I believe you have a different bug already open about this, yes?
 
-Not yet. I already talked about it in a comment in bug #68854, but you didn't
-give me an ok to open a new bug! :-) Should I?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1390809131.7D4BE1.3105
-Date: Mon, 27 Jan 2014 07:52:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV04] Script offset calculated incorrectly for some BMP 1.x VBIOSes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV04] Script offset calculated incorrectly for some BMP 1.x VBIOSes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835">bug 68835</a>
-              from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=68835#c13">comment #13</a>)
-<span class="quote">&gt; Great! You could also have grabbed a pre-compiled 3.13 kernel off of
-&gt; rawhide, if that's availble. I'm really not sure what the Fedora situation
-&gt; is though, so I can't give specific advice.</span >
-
-Hmmm... I will seek for further information, however applying the patch to 3.12
-was easy, it's just so slow to compile. I left the PC running over night and
-this morning it's still there... It's building all the flavors of the kernel,
-so I should better try to just make one flavor next time, but I'm not sure
-about what to choose (the above page talks about xen, smp, up, pae, kdump,
-debug and debuginfo... and I'm not sure what would be the best in my case).
-
-<span class="quote">&gt; I believe you have a different bug already open about this, yes?</span >
-
-Not yet. I already talked about it in a comment in <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV04] PROTECTION_ERROR / PROTECTION_FAULT"
-   href="show_bug.cgi?id=68854">bug #68854</a>, but you didn't
-give me an ok to open a new bug! :-) Should I?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1390809131.7D4BE1.3105--
-
---===============0931378352==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0931378352==--
+Den 27. jan. 2014 02:53, skrev Ilia Mirkin:
+> The important thing for display detection/setting proper modes/etc is
+> the kernel -- what kernel version are you using?
+>
+> Separately, there has been a fix that affected VBIOSes found in NV96
+> cards, and it would not be a stretch to believe that a similar VBIOS
+> script could be found in a NV92 card. However the NV96 error condition
+> was different (everything detected fine, but no actual image
+> displayed, whereas for you it's not even showing anything as
+> connected, which could indicate a i2c/hpd problem).
+>
+> I would say that the steps for you are to first try airlied's drm-next
+> branch, which should have all the latest nouveau fixes:
+> http://cgit.freedesktop.org/~airlied/linux/log/?h=drm-next . If that
+> is of no help, open a new bug (see
+> http://nouveau.freedesktop.org/wiki/Bugs/) -- we really want to see
+> your vbios, so upload a copy of that
+> (/sys/kernel/debug/dri/0/vbios.rom), and also throw in a full dmesg
+> booted with nouveau.debug=PDISP=debug,VBIOS=trace
+>
+> Lastly, did this ever work with nouveau? If so, please indicate that
+> in the bug; you will likely be asked to do a kernel bisect.
+>
+>    -ilia
+>
+> On Sun, Jan 26, 2014 at 9:47 AM, Terje J. Hanssen
+> <terje-2yIPwdmwSce/d7phXA6hpxdYX54VHubl@public.gmane.org> wrote:
+>> Hi List,
+>>
+>> I'm stuck how to get a dual head monitor solution to work with Nouveau,
+>> running openSUSE 13.1 on my hp8710w mobile workstation equipped with a
+>> Nvidia graphical card. Beyond the built-in WUXGA display, an external WQHD
+>> monitor is connected to the HDMI port on the graphical card and/or to the
+>> dual link DVI-D on a hp docking station.
+>>
+>> To compare with SLED11/Nvidia driver running in dualboot with openSUSE
+>> 13.1/Nouveau on the same workstation, the external monitor works up to
+>> 1920x1080 over HDMI and at 2560x1440 resolution over the docking dual link
+>> DVI-D.
+>>
+>>
+>> Here follows the query output using openSUSE 13.1/Nouveau/xrandr:
+>>
+>>
+>> # lspci -nnk | grep VGA -A2
+>> 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation G92GLM [Quadro
+>> FX 3600M] [10de:061c] (rev a2)
+>>      Subsystem: NVIDIA Corporation Device [10de:0518]
+>>      Kernel driver in use: nouveau
+>>
+>>
+>> Software versions installed:
+>>
+>> # zypper se -is nouveau
+>> Loading repository data...
+>> Reading installed packages...
+>>
+>> S | Name                          | Type    | Version      | Arch   |
+>> Repository
+>> --+-------------------------------+---------+--------------+--------+------------------
+>> i | libdrm_nouveau2               | package | 2.4.46-3.2.2 | x86_64 |
+>> openSUSE-13.1-Oss
+>> i | xorg-x11-driver-video-nouveau | package | 1.0.9-3.1.2  | x86_64 |
+>> openSUSE-13.1-Oss
+>>
+>>
+>> # zypper se -is xrandr
+>> Loading repository data...
+>> Reading installed packages...
+>>
+>> S | Name       | Type    | Version     | Arch   | Repository
+>> --+------------+---------+-------------+--------+------------------
+>> i | libXrandr2 | package | 1.4.2-2.1.2 | x86_64 | openSUSE-13.1-Oss
+>> i | xrandr     | package | 1.4.1-2.2.1 | x86_64 | openSUSE-13.1-Oss
+>>
+>>
+>> Beyond LVDS for the builtin display, all other graphical ports are reported
+>> as disconnected by xrandr:
+>>
+>> # xrandr -q
+>> Screen 0: minimum 320 x 200, current 1920 x 1200, maximum 8192 x 8192
+>> LVDS-1 connected primary 1920x1200+0+0 (normal left inverted right x axis y
+>> axis) 367mm x 229mm
+>>     1920x1200      60.0*+   59.9
+>>     1920x1080      60.0
+>>     1600x1200      59.9
+>>     1680x1050      60.0
+>>     1400x1050      60.0
+>>     1280x1024      59.9
+>>     1280x960       59.9
+>>     1152x864       60.0
+>>     1024x768       59.9
+>>     800x600        59.9
+>>     640x480        59.4
+>>     720x400        59.6
+>>     640x400        60.0
+>>     640x350        59.8
+>> VGA-1 disconnected (normal left inverted right x axis y axis)
+>> DVI-D-1 disconnected (normal left inverted right x axis y axis)
+>> HDMI-1 disconnected (normal left inverted right x axis y axis)
+>>
+>>
+>> I've tried a solution that has been suggested to add output to an external
+>> monitor, but it failed as shown:
+>>
+>> # xrandr --addmode HDMI-1 1920x1080
+>> # xrandr --output HDMI-1 --mode 1920x1080 --left-of LVDS-1
+>> xrandr: Configure crtc 1 failed
+>>
+>>
+>> I would be very thankful to get help here that can solve this confusing
+>> problem.
+>>
+>> Terje
+>>
+>> _______________________________________________
+>> Nouveau mailing list
+>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>> http://lists.freedesktop.org/mailman/listinfo/nouveau
