@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74123] [NVE7] windows maximize behind xfce4-panel
  until settings viewed
-Date: Mon, 27 Jan 2014 18:50:25 +0000
-Message-ID: <bug-74123-8800-q13aHq7esX@http.bugs.freedesktop.org/>
+Date: Mon, 27 Jan 2014 18:51:13 +0000
+Message-ID: <bug-74123-8800-yZm11GFfS9@http.bugs.freedesktop.org/>
 References: <bug-74123-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1067292898=="
+Content-Type: multipart/mixed; boundary="===============0422613369=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74123-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1067292898==
-Content-Type: multipart/alternative; boundary="1390848625.c3DF81.12446"; charset="us-ascii"
+--===============0422613369==
+Content-Type: multipart/alternative; boundary="1390848673.Faa41bBE2.12572"; charset="us-ascii"
 
 
---1390848625.c3DF81.12446
-Date: Mon, 27 Jan 2014 18:50:25 +0000
+--1390848673.Faa41bBE2.12572
+Date: Mon, 27 Jan 2014 18:51:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74123
 
-Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-  Attachment #92873|0                           |1
-        is obsolete|                            |
-
---- Comment #1 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
-Created attachment 92874
-  --> https://bugs.freedesktop.org/attachment.cgi?id=92874&action=edit
-window maximizing behind panel
-
-Attaching with correct file type.
+  Attachment #92874|application/octet-stream    |video/x-m4v
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390848625.c3DF81.12446
-Date: Mon, 27 Jan 2014 18:50:25 +0000
+--1390848673.Faa41bBE2.12572
+Date: Mon, 27 Jan 2014 18:51:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,7 +52,7 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:jcollins&#64;asgardsrealm.net" title="Jamin Collins &lt;jcollins&#64;asgardsrealm.net&gt;"> <span class="fn">Jamin Collins</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
@@ -74,30 +67,13 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #92873 is obsolete</td>
-           <td>
-               &nbsp;
+           <td style="text-align:right;">Attachment #92874 mime type</td>
+           <td>application/octet-stream
            </td>
-           <td>1
+           <td>video/x-m4v
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] windows maximize behind xfce4-panel until settings viewed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74123#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] windows maximize behind xfce4-panel until settings viewed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74123">bug 74123</a>
-              from <span class="vcard"><a class="email" href="mailto:jcollins&#64;asgardsrealm.net" title="Jamin Collins &lt;jcollins&#64;asgardsrealm.net&gt;"> <span class="fn">Jamin Collins</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=92874" name="attach_92874" title="window maximizing behind panel">attachment 92874</a> <a href="attachment.cgi?id=92874&amp;action=edit" title="window maximizing behind panel">[details]</a></span>
-window maximizing behind panel
-
-Attaching with correct file type.</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -108,9 +84,9 @@ Attaching with correct file type.</pre>
     </body>
 </html>
 
---1390848625.c3DF81.12446--
+--1390848673.Faa41bBE2.12572--
 
---===============1067292898==
+--===============0422613369==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1067292898==--
+--===============0422613369==--
