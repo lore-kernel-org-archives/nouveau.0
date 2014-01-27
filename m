@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68835] [NV04] Script offset calculated incorrectly
- for some BMP 1.x VBIOSes
-Date: Mon, 27 Jan 2014 01:42:49 +0000
-Message-ID: <bug-68835-8800-vzgLGXdn6A@http.bugs.freedesktop.org/>
-References: <bug-68835-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: xrandr HDMI-1 and DVI-D-1 disconnected - External
+ monitor not detected
+Date: Sun, 26 Jan 2014 20:53:37 -0500
+Message-ID: <CAKb7UvhdB8yomhrbeafaK-sjiKNNZSQit+QD6wqWEiJx3J0w7Q@mail.gmail.com>
+References: <52E52001.1080903@nordland-teknikk.no>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1619076661=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <52E52001.1080903-2yIPwdmwSce/d7phXA6hpxdYX54VHubl@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,125 +18,125 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "Terje J. Hanssen" <terje-2yIPwdmwSce/d7phXA6hpxdYX54VHubl@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+The important thing for display detection/setting proper modes/etc is
+the kernel -- what kernel version are you using?
 
---===============1619076661==
-Content-Type: multipart/alternative; boundary="1390786969.acEF2.9348"; charset="us-ascii"
+Separately, there has been a fix that affected VBIOSes found in NV96
+cards, and it would not be a stretch to believe that a similar VBIOS
+script could be found in a NV92 card. However the NV96 error condition
+was different (everything detected fine, but no actual image
+displayed, whereas for you it's not even showing anything as
+connected, which could indicate a i2c/hpd problem).
 
+I would say that the steps for you are to first try airlied's drm-next
+branch, which should have all the latest nouveau fixes:
+http://cgit.freedesktop.org/~airlied/linux/log/?h=drm-next . If that
+is of no help, open a new bug (see
+http://nouveau.freedesktop.org/wiki/Bugs/) -- we really want to see
+your vbios, so upload a copy of that
+(/sys/kernel/debug/dri/0/vbios.rom), and also throw in a full dmesg
+booted with nouveau.debug=PDISP=debug,VBIOS=trace
 
---1390786969.acEF2.9348
-Date: Mon, 27 Jan 2014 01:42:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Lastly, did this ever work with nouveau? If so, please indicate that
+in the bug; you will likely be asked to do a kernel bisect.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68835
+  -ilia
 
---- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #12)
-> (In reply to comment #11)
-> > The fix should be in 3.13.0 and later. I'm going to mark this bug as fixed,
-> > but do test it out when you get a chance and let us know whether it fixes
-> > your issue (and/or breaks anything, like suspend, since vbios scripts are
-> > found now).
-> 
-> Hi Ilia,
-> just to let you know that I got to install Fedora 19 on a new hard disk and
-> that I'm following the procedure you pointed me to build a patched custom
-> 3.12 kernel with your patch applied. It's currently compiling (it takes a
-> lot of time on this old Pentium 3...). When I've completed my testings, I'll
-> let you know.
-
-Great! You could also have grabbed a pre-compiled 3.13 kernel off of rawhide,
-if that's availble. I'm really not sure what the Fedora situation is though, so
-I can't give specific advice.
-
-> 
-> On the other hand, I have another small glitch: the maximum resolution
-> proposed by the monitor configuration utility of Fedora is 1024x768@60Hz,
-> while my monitor preferred resolution is 1280x1024 and it can support up to
-> 75Hz resolution. I see that the xrandr output is not consistent with what I
-> get using monitor-get-edid+monitor-parse-edid, which returns the correct
-> data. Is this something related to the nouveau driver?
-
-I believe you have a different bug already open about this, yes?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1390786969.acEF2.9348
-Date: Mon, 27 Jan 2014 01:42:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV04] Script offset calculated incorrectly for some BMP 1.x VBIOSes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835#c13">Comment # 13</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV04] Script offset calculated incorrectly for some BMP 1.x VBIOSes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835">bug 68835</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=68835#c12">comment #12</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=68835#c11">comment #11</a>)
-&gt; &gt; The fix should be in 3.13.0 and later. I'm going to mark this bug as fixed,
-&gt; &gt; but do test it out when you get a chance and let us know whether it fixes
-&gt; &gt; your issue (and/or breaks anything, like suspend, since vbios scripts are
-&gt; &gt; found now).
-&gt; 
-&gt; Hi Ilia,
-&gt; just to let you know that I got to install Fedora 19 on a new hard disk and
-&gt; that I'm following the procedure you pointed me to build a patched custom
-&gt; 3.12 kernel with your patch applied. It's currently compiling (it takes a
-&gt; lot of time on this old Pentium 3...). When I've completed my testings, I'll
-&gt; let you know.</span >
-
-Great! You could also have grabbed a pre-compiled 3.13 kernel off of rawhide,
-if that's availble. I'm really not sure what the Fedora situation is though, so
-I can't give specific advice.
-
-<span class="quote">&gt; 
-&gt; On the other hand, I have another small glitch: the maximum resolution
-&gt; proposed by the monitor configuration utility of Fedora is 1024x768&#64;60Hz,
-&gt; while my monitor preferred resolution is 1280x1024 and it can support up to
-&gt; 75Hz resolution. I see that the xrandr output is not consistent with what I
-&gt; get using monitor-get-edid+monitor-parse-edid, which returns the correct
-&gt; data. Is this something related to the nouveau driver?</span >
-
-I believe you have a different bug already open about this, yes?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1390786969.acEF2.9348--
-
---===============1619076661==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1619076661==--
+On Sun, Jan 26, 2014 at 9:47 AM, Terje J. Hanssen
+<terje-2yIPwdmwSce/d7phXA6hpxdYX54VHubl@public.gmane.org> wrote:
+> Hi List,
+>
+> I'm stuck how to get a dual head monitor solution to work with Nouveau,
+> running openSUSE 13.1 on my hp8710w mobile workstation equipped with a
+> Nvidia graphical card. Beyond the built-in WUXGA display, an external WQHD
+> monitor is connected to the HDMI port on the graphical card and/or to the
+> dual link DVI-D on a hp docking station.
+>
+> To compare with SLED11/Nvidia driver running in dualboot with openSUSE
+> 13.1/Nouveau on the same workstation, the external monitor works up to
+> 1920x1080 over HDMI and at 2560x1440 resolution over the docking dual link
+> DVI-D.
+>
+>
+> Here follows the query output using openSUSE 13.1/Nouveau/xrandr:
+>
+>
+> # lspci -nnk | grep VGA -A2
+> 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation G92GLM [Quadro
+> FX 3600M] [10de:061c] (rev a2)
+>     Subsystem: NVIDIA Corporation Device [10de:0518]
+>     Kernel driver in use: nouveau
+>
+>
+> Software versions installed:
+>
+> # zypper se -is nouveau
+> Loading repository data...
+> Reading installed packages...
+>
+> S | Name                          | Type    | Version      | Arch   |
+> Repository
+> --+-------------------------------+---------+--------------+--------+------------------
+> i | libdrm_nouveau2               | package | 2.4.46-3.2.2 | x86_64 |
+> openSUSE-13.1-Oss
+> i | xorg-x11-driver-video-nouveau | package | 1.0.9-3.1.2  | x86_64 |
+> openSUSE-13.1-Oss
+>
+>
+> # zypper se -is xrandr
+> Loading repository data...
+> Reading installed packages...
+>
+> S | Name       | Type    | Version     | Arch   | Repository
+> --+------------+---------+-------------+--------+------------------
+> i | libXrandr2 | package | 1.4.2-2.1.2 | x86_64 | openSUSE-13.1-Oss
+> i | xrandr     | package | 1.4.1-2.2.1 | x86_64 | openSUSE-13.1-Oss
+>
+>
+> Beyond LVDS for the builtin display, all other graphical ports are reported
+> as disconnected by xrandr:
+>
+> # xrandr -q
+> Screen 0: minimum 320 x 200, current 1920 x 1200, maximum 8192 x 8192
+> LVDS-1 connected primary 1920x1200+0+0 (normal left inverted right x axis y
+> axis) 367mm x 229mm
+>    1920x1200      60.0*+   59.9
+>    1920x1080      60.0
+>    1600x1200      59.9
+>    1680x1050      60.0
+>    1400x1050      60.0
+>    1280x1024      59.9
+>    1280x960       59.9
+>    1152x864       60.0
+>    1024x768       59.9
+>    800x600        59.9
+>    640x480        59.4
+>    720x400        59.6
+>    640x400        60.0
+>    640x350        59.8
+> VGA-1 disconnected (normal left inverted right x axis y axis)
+> DVI-D-1 disconnected (normal left inverted right x axis y axis)
+> HDMI-1 disconnected (normal left inverted right x axis y axis)
+>
+>
+> I've tried a solution that has been suggested to add output to an external
+> monitor, but it failed as shown:
+>
+> # xrandr --addmode HDMI-1 1920x1080
+> # xrandr --output HDMI-1 --mode 1920x1080 --left-of LVDS-1
+> xrandr: Configure crtc 1 failed
+>
+>
+> I would be very thankful to get help here that can solve this confusing
+> problem.
+>
+> Terje
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
