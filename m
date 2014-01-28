@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74062] [NVE4] Artifacts in 3D games.
-Date: Mon, 27 Jan 2014 23:21:33 +0000
-Message-ID: <bug-74062-8800-t57HS6dKPV@http.bugs.freedesktop.org/>
-References: <bug-74062-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73744] [NVA8] Constant lock ups with NVIDIA GeForce
+	8400 GS
+Date: Tue, 28 Jan 2014 02:09:02 +0000
+Message-ID: <bug-73744-8800-64ud3vBG0d@http.bugs.freedesktop.org/>
+References: <bug-73744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1460582543=="
+Content-Type: multipart/mixed; boundary="===============0644164024=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74062-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73744-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1460582543==
-Content-Type: multipart/alternative; boundary="1390864893.2B7E0.2794"; charset="us-ascii"
+--===============0644164024==
+Content-Type: multipart/alternative; boundary="1390874942.1cEC1.26212"; charset="us-ascii"
 
 
---1390864893.2B7E0.2794
-Date: Mon, 27 Jan 2014 23:21:33 +0000
+--1390874942.1cEC1.26212
+Date: Tue, 28 Jan 2014 02:09:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74062
+https://bugs.freedesktop.org/show_bug.cgi?id=73744
 
---- Comment #7 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
-(In reply to comment #6)
-> I was going to recommend that you try to use blob graph fw, but I see you're
-> already doing that. I suppose going back to the nouveau one causes even
-> worse issues...
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+There was an issue that suggested that 3.10.x worked well for someone but they
+started seeing issues with nva8 on 3.11. Perhaps you can try a 3.10.x kernel.
+See bug #69029. If this turns out to help, then do a bisect to figure out the
+offending commit.
 
-Actually, the nouveau one has exactly the same issues.
+Also it'd be interesting to see a log after the hang happens -- see if you can
+ssh into the machine after the screen hangs.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390864893.2B7E0.2794
-Date: Mon, 27 Jan 2014 23:21:33 +0000
+--1390874942.1cEC1.26212
+Date: Tue, 28 Jan 2014 02:09:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,20 +59,24 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE4] Artifacts in 3D games."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062#c7">Comment # 7</a>
+   title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE4] Artifacts in 3D games."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062">bug 74062</a>
-              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
+   title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744">bug 73744</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=74062#c6">comment #6</a>)
-<span class="quote">&gt; I was going to recommend that you try to use blob graph fw, but I see you're
-&gt; already doing that. I suppose going back to the nouveau one causes even
-&gt; worse issues...</span >
+        <pre>There was an issue that suggested that 3.10.x worked well for someone but they
+started seeing issues with nva8 on 3.11. Perhaps you can try a 3.10.x kernel.
+See <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA8] GPU lockup since kernel 3.11 upgrade"
+   href="show_bug.cgi?id=69029">bug #69029</a>. If this turns out to help, then do a bisect to figure out the
+offending commit.
 
-Actually, the nouveau one has exactly the same issues.</pre>
+Also it'd be interesting to see a log after the hang happens -- see if you can
+ssh into the machine after the screen hangs.</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +88,9 @@ Actually, the nouveau one has exactly the same issues.</pre>
     </body>
 </html>
 
---1390864893.2B7E0.2794--
+--1390874942.1cEC1.26212--
 
---===============1460582543==
+--===============0644164024==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1460582543==--
+--===============0644164024==--
