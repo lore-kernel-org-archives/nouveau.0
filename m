@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 68854] [NV04] PROTECTION_ERROR / PROTECTION_FAULT
-Date: Tue, 28 Jan 2014 22:47:05 +0000
-Message-ID: <bug-68854-8800-MWPGnVkDfV@http.bugs.freedesktop.org/>
+Date: Tue, 28 Jan 2014 22:50:55 +0000
+Message-ID: <bug-68854-8800-8KkOkVp43m@http.bugs.freedesktop.org/>
 References: <bug-68854-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0067379317=="
+Content-Type: multipart/mixed; boundary="===============1102399428=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-68854-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,26 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0067379317==
-Content-Type: multipart/alternative; boundary="1390949225.B3f421.24121"; charset="us-ascii"
+--===============1102399428==
+Content-Type: multipart/alternative; boundary="1390949455.5C4A2.24567"; charset="us-ascii"
 
 
---1390949225.B3f421.24121
-Date: Tue, 28 Jan 2014 22:47:05 +0000
+--1390949455.5C4A2.24567
+Date: Tue, 28 Jan 2014 22:50:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=68854
 
---- Comment #5 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
-I created bug #74164 for the resolution issue cited in comment 4.
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I looked into this issue earlier, it looks like the NvNull object being
+attached to the various DMA_NOTIFY methods of the relevant other objects.
+Haven't had a chance to check if I also see this on my NV05 yet. That code is
+shared by all pre-nv50 cards though.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390949225.B3f421.24121
-Date: Tue, 28 Jan 2014 22:47:05 +0000
+--1390949455.5C4A2.24567
+Date: Tue, 28 Jan 2014 22:50:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,17 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV04] PROTECTION_ERROR / PROTECTION_FAULT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68854#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68854#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV04] PROTECTION_ERROR / PROTECTION_FAULT"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=68854">bug 68854</a>
-              from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I created <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV04] Native monitor resolution missing"
-   href="show_bug.cgi?id=74164">bug #74164</a> for the resolution issue cited in <a href="show_bug.cgi?id=68854#c4">comment 4</a>.</pre>
+        <pre>I looked into this issue earlier, it looks like the NvNull object being
+attached to the various DMA_NOTIFY methods of the relevant other objects.
+Haven't had a chance to check if I also see this on my NV05 yet. That code is
+shared by all pre-nv50 cards though.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +78,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1390949225.B3f421.24121--
+--1390949455.5C4A2.24567--
 
---===============0067379317==
+--===============1102399428==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0067379317==--
+--===============1102399428==--
