@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21273] [NV17] PowerMac3,
- 6 Driver can't detect video output and xserver doesn't start
-Date: Tue, 28 Jan 2014 22:17:11 +0000
-Message-ID: <bug-21273-8800-4Mq8T9myH2@http.bugs.freedesktop.org/>
-References: <bug-21273-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68835] [NV04] Script offset calculated incorrectly
+ for some BMP 1.x VBIOSes
+Date: Tue, 28 Jan 2014 22:23:13 +0000
+Message-ID: <bug-68835-8800-aXZaok0cJc@http.bugs.freedesktop.org/>
+References: <bug-68835-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0663042247=="
+Content-Type: multipart/mixed; boundary="===============1355870500=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0663042247==
-Content-Type: multipart/alternative; boundary="1390947431.d83Eb51.19783"; charset="us-ascii"
+--===============1355870500==
+Content-Type: multipart/alternative; boundary="1390947792.7e7AADC11.20634"; charset="us-ascii"
 
 
---1390947431.d83Eb51.19783
-Date: Tue, 28 Jan 2014 22:17:11 +0000
+--1390947792.7e7AADC11.20634
+Date: Tue, 28 Jan 2014 22:23:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=21273
+https://bugs.freedesktop.org/show_bug.cgi?id=68835
 
---- Comment #102 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> ---
-I rechecked behavior without patch. I see a console in the left top angle.
-There is another righter it. Second is the clone of the first. I see same
-output. I see a log of loading in this console, can log in, switch virtual
-terminal. There is  a trash on the bottom side of the screen.
-I guess the size of console is 1024x768. The size of the second is
-(1600-1024)x768.
+Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |VERIFIED
+
+--- Comment #15 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
+Hi Ilia,
+good news! After almost two days of hard work, the kernel compilation ended
+with success! With the new patched kernel, I don't find "unknown opcode 0x43"
+anymore in dmesg output (I'm going to attach it). Suspend and resume work ok!
+
+So, I think this is definitely fixed! Thank you!
+
+Unfortunately, the PROTECTION_ERRORs are still there (bug #68854). I'm also
+going to open a new bug for the resolution issue.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390947431.d83Eb51.19783
-Date: Tue, 28 Jan 2014 22:17:11 +0000
+--1390947792.7e7AADC11.20634
+Date: Tue, 28 Jan 2014 22:23:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,25 +62,51 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - [NV04] Script offset calculated incorrectly for some BMP 1.x VBIOSes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835">bug 68835</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>VERIFIED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c102">Comment # 102</a>
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - [NV04] Script offset calculated incorrectly for some BMP 1.x VBIOSes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835#c15">Comment # 15</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
-              from <span class="vcard"><a class="email" href="mailto:ronne&#64;list.ru" title="Andrey Gusev &lt;ronne&#64;list.ru&gt;"> <span class="fn">Andrey Gusev</span></a>
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - [NV04] Script offset calculated incorrectly for some BMP 1.x VBIOSes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68835">bug 68835</a>
+              from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
 </span></b>
-        <pre>I rechecked behavior without patch. I see a console in the left top angle.
-There is another righter it. Second is the clone of the first. I see same
-output. I see a log of loading in this console, can log in, switch virtual
-terminal. There is  a trash on the bottom side of the screen.
-I guess the size of console is 1024x768. The size of the second is
-(1600-1024)x768.</pre>
+        <pre>Hi Ilia,
+good news! After almost two days of hard work, the kernel compilation ended
+with success! With the new patched kernel, I don't find &quot;unknown opcode 0x43&quot;
+anymore in dmesg output (I'm going to attach it). Suspend and resume work ok!
+
+So, I think this is definitely fixed! Thank you!
+
+Unfortunately, the PROTECTION_ERRORs are still there (<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV04] PROTECTION_ERROR / PROTECTION_FAULT"
+   href="show_bug.cgi?id=68854">bug #68854</a>). I'm also
+going to open a new bug for the resolution issue.</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +118,9 @@ I guess the size of console is 1024x768. The size of the second is
     </body>
 </html>
 
---1390947431.d83Eb51.19783--
+--1390947792.7e7AADC11.20634--
 
---===============0663042247==
+--===============1355870500==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +131,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0663042247==--
+--===============1355870500==--
