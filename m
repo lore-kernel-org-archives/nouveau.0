@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73744] [NVA8] Constant lock ups with NVIDIA GeForce
-	8400 GS
-Date: Tue, 28 Jan 2014 02:09:02 +0000
-Message-ID: <bug-73744-8800-64ud3vBG0d@http.bugs.freedesktop.org/>
-References: <bug-73744-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69029] [NVA8] GPU lockup since kernel 3.11 upgrade
+Date: Tue, 28 Jan 2014 03:10:23 +0000
+Message-ID: <bug-69029-8800-CHjPqCVnfK@http.bugs.freedesktop.org/>
+References: <bug-69029-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0644164024=="
+Content-Type: multipart/mixed; boundary="===============0541045824=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73744-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69029-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0644164024==
-Content-Type: multipart/alternative; boundary="1390874942.1cEC1.26212"; charset="us-ascii"
+--===============0541045824==
+Content-Type: multipart/alternative; boundary="1390878623.F1703.1788"; charset="us-ascii"
 
 
---1390874942.1cEC1.26212
-Date: Tue, 28 Jan 2014 02:09:02 +0000
+--1390878623.F1703.1788
+Date: Tue, 28 Jan 2014 03:10:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=73744
+https://bugs.freedesktop.org/show_bug.cgi?id=69029
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There was an issue that suggested that 3.10.x worked well for someone but they
-started seeing issues with nva8 on 3.11. Perhaps you can try a 3.10.x kernel.
-See bug #69029. If this turns out to help, then do a bisect to figure out the
-offending commit.
+--- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Allan: You have a NV92 card, and what appears to be a very different issue.
 
-Also it'd be interesting to see a log after the hang happens -- see if you can
-ssh into the machine after the screen hangs.
+Frederic: Do I understand correctly that everything is consistently fine in
+3.10.x and consistently broken in 3.11.x? If so, could you try doing a bisect
+to identify the offending commit? (First might be worth checking if the issue
+still occurs in 3.13 btw.) BTW, your third "lockup" log doesn't indicate that
+anything really went wrong -- just a kmalloc() failure which should be handled
+by the surrounding code. Although the later xfs corruption errors are a bit
+ominous... 
+
+In any case, this is highly unlikely to see any progress without a git bisect
+on the kernel (drivers/gpu/drm should be enough).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390874942.1cEC1.26212
-Date: Tue, 28 Jan 2014 02:09:02 +0000
+--1390878623.F1703.1788
+Date: Tue, 28 Jan 2014 03:10:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,24 +63,26 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744#c8">Comment # 8</a>
+   title="NEW --- - [NVA8] GPU lockup since kernel 3.11 upgrade"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69029#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744">bug 73744</a>
+   title="NEW --- - [NVA8] GPU lockup since kernel 3.11 upgrade"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69029">bug 69029</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>There was an issue that suggested that 3.10.x worked well for someone but they
-started seeing issues with nva8 on 3.11. Perhaps you can try a 3.10.x kernel.
-See <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA8] GPU lockup since kernel 3.11 upgrade"
-   href="show_bug.cgi?id=69029">bug #69029</a>. If this turns out to help, then do a bisect to figure out the
-offending commit.
+        <pre>Allan: You have a NV92 card, and what appears to be a very different issue.
 
-Also it'd be interesting to see a log after the hang happens -- see if you can
-ssh into the machine after the screen hangs.</pre>
+Frederic: Do I understand correctly that everything is consistently fine in
+3.10.x and consistently broken in 3.11.x? If so, could you try doing a bisect
+to identify the offending commit? (First might be worth checking if the issue
+still occurs in 3.13 btw.) BTW, your third &quot;lockup&quot; log doesn't indicate that
+anything really went wrong -- just a kmalloc() failure which should be handled
+by the surrounding code. Although the later xfs corruption errors are a bit
+ominous... 
+
+In any case, this is highly unlikely to see any progress without a git bisect
+on the kernel (drivers/gpu/drm should be enough).</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +94,9 @@ ssh into the machine after the screen hangs.</pre>
     </body>
 </html>
 
---1390874942.1cEC1.26212--
+--1390878623.F1703.1788--
 
---===============0644164024==
+--===============0541045824==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +107,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0644164024==--
+--===============0541045824==--
