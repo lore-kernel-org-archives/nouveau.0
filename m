@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 21273] [NV17] PowerMac3,
- 6 Driver can't detect video output and xserver doesn't start
-Date: Wed, 29 Jan 2014 18:26:21 +0000
-Message-ID: <bug-21273-8800-pebb7P2Iwz@http.bugs.freedesktop.org/>
-References: <bug-21273-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74195] New: Responsivity to input with vsync on is
+ slower after update
+Date: Wed, 29 Jan 2014 20:23:28 +0000
+Message-ID: <bug-74195-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0822122846=="
+Content-Type: multipart/mixed; boundary="===============1245086895=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +19,59 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0822122846==
-Content-Type: multipart/alternative; boundary="1391019981.C80fee31.9678"; charset="us-ascii"
+--===============1245086895==
+Content-Type: multipart/alternative; boundary="1391027008.0C0ADC31.28511"; charset="us-ascii"
 
 
---1391019981.C80fee31.9678
-Date: Wed, 29 Jan 2014 18:26:21 +0000
+--1391027008.0C0ADC31.28511
+Date: Wed, 29 Jan 2014 20:23:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=21273
+https://bugs.freedesktop.org/show_bug.cgi?id=74195
 
---- Comment #103 from Andrey Gusev <ronne-cmBhpYW9OiY@public.gmane.org> ---
-Created attachment 93009
-  --> https://bugs.freedesktop.org/attachment.cgi?id=93009&action=edit
-kernel log for patch: fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 1, all_heads,
-2);
+          Priority: medium
+            Bug ID: 74195
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Responsivity to input with vsync on is slower after
+                    update
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: janjanjanx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
+
+I use compton compositing manager wich uses DRM_IOCTL_WAIT_VBLANK for vsync.
+Recently I updated from kernel 3.9 to 3.13 and responsivness (or "input lag" or
+however it's called) got much worse, mostly noticable when moving windows or
+scrolling. With kernel 3.13 the windows are 3-5 frames behind mouse when
+moving, on 3.9 kernel they were only 0-1 frames behind. I also tried kwin, wich
+had less noticable slowdown (from 1-2 frames behind to 3-5 frames behind).
+
+I tried different kernel versions from nouveau git and found out, that the
+slowdown was caused by this commit:
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=0fa9061ae8c10a9178d696cf48d94c3bf2848f9f
+
+I guess the commit is important and can't be undone, but the bad responsiveness
+really annoys me, so I would be glad if there is a solution.
+
+GPU is GTX 560 Ti
+xserver 1.14.5
+xorg-video-nouveau 1.0.10
+libdrm 2.4.52
+(Debian sid)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391019981.C80fee31.9678
-Date: Wed, 29 Jan 2014 18:26:21 +0000
+--1391027008.0C0ADC31.28511
+Date: Wed, 29 Jan 2014 20:23:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,22 +79,114 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Responsivity to input with vsync on is slower after update"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74195">74195</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Responsivity to input with vsync on is slower after update
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>janjanjanx&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c103">Comment # 103</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
-              from <span class="vcard"><a class="email" href="mailto:ronne&#64;list.ru" title="Andrey Gusev &lt;ronne&#64;list.ru&gt;"> <span class="fn">Andrey Gusev</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=93009" name="attach_93009" title="kernel log for patch: fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 1, all_heads, 2);">attachment 93009</a> <a href="attachment.cgi?id=93009&amp;action=edit" title="kernel log for patch: fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 1, all_heads, 2);">[details]</a></span>
-kernel log for patch: fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 1, all_heads,
-2);</pre>
+        <pre>I use compton compositing manager wich uses DRM_IOCTL_WAIT_VBLANK for vsync.
+Recently I updated from kernel 3.9 to 3.13 and responsivness (or &quot;input lag&quot; or
+however it's called) got much worse, mostly noticable when moving windows or
+scrolling. With kernel 3.13 the windows are 3-5 frames behind mouse when
+moving, on 3.9 kernel they were only 0-1 frames behind. I also tried kwin, wich
+had less noticable slowdown (from 1-2 frames behind to 3-5 frames behind).
+
+I tried different kernel versions from nouveau git and found out, that the
+slowdown was caused by this commit:
+<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=0fa9061ae8c10a9178d696cf48d94c3bf2848f9f">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?id=0fa9061ae8c10a9178d696cf48d94c3bf2848f9f</a>
+
+I guess the commit is important and can't be undone, but the bad responsiveness
+really annoys me, so I would be glad if there is a solution.
+
+GPU is GTX 560 Ti
+xserver 1.14.5
+xorg-video-nouveau 1.0.10
+libdrm 2.4.52
+(Debian sid)</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +198,9 @@ kernel log for patch: fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 1, all_heads,
     </body>
 </html>
 
---1391019981.C80fee31.9678--
+--1391027008.0C0ADC31.28511--
 
---===============0822122846==
+--===============1245086895==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +211,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0822122846==--
+--===============1245086895==--
