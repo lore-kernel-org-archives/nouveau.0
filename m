@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74164] [NV04] Native monitor resolution missing
-Date: Wed, 29 Jan 2014 00:04:43 +0000
-Message-ID: <bug-74164-8800-Ml3BM2G2uk@http.bugs.freedesktop.org/>
+Date: Wed, 29 Jan 2014 07:43:34 +0000
+Message-ID: <bug-74164-8800-PXvbgPPtiz@http.bugs.freedesktop.org/>
 References: <bug-74164-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1105086450=="
+Content-Type: multipart/mixed; boundary="===============1238744757=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,36 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1105086450==
-Content-Type: multipart/alternative; boundary="1390953883.63DDD2.2080"; charset="us-ascii"
+--===============1238744757==
+Content-Type: multipart/alternative; boundary="1390981414.Bf3E0EC1.25803"; charset="us-ascii"
 
 
---1390953883.63DDD2.2080
-Date: Wed, 29 Jan 2014 00:04:43 +0000
+--1390981414.Bf3E0EC1.25803
+Date: Wed, 29 Jan 2014 07:43:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74164
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you provide the output of
-
-grep . /sys/class/drm/card*-*/*
-
-As well as separately attach /sys/class/drm/card0-VGA-1/edid (or whatever the
-name of the output the monitor is actually hooked up to) -- this should be a
-binary file containing your edid as seen by nouveau.
-
-Lastly, please supply the output of "monitor-get-edid -v" (I have no idea where
-this program comes from or exactly what it does, but it'd be interesting to see
-that result).
+--- Comment #6 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
+Created attachment 92970
+  --> https://bugs.freedesktop.org/attachment.cgi?id=92970&action=edit
+Output of "grep . /sys/class/drm/card*-*/*"
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390953883.63DDD2.2080
-Date: Wed, 29 Jan 2014 00:04:43 +0000
+--1390981414.Bf3E0EC1.25803
+Date: Wed, 29 Jan 2014 07:43:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,24 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV04] Native monitor resolution missing"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV04] Native monitor resolution missing"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74164">bug 74164</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
 </span></b>
-        <pre>Can you provide the output of
-
-grep . /sys/class/drm/card*-*/*
-
-As well as separately attach /sys/class/drm/card0-VGA-1/edid (or whatever the
-name of the output the monitor is actually hooked up to) -- this should be a
-binary file containing your edid as seen by nouveau.
-
-Lastly, please supply the output of &quot;monitor-get-edid -v&quot; (I have no idea where
-this program comes from or exactly what it does, but it'd be interesting to see
-that result).</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=92970" name="attach_92970" title="Output of &quot;grep . /sys/class/drm/card*-*/*&quot;">attachment 92970</a> <a href="attachment.cgi?id=92970&amp;action=edit" title="Output of &quot;grep . /sys/class/drm/card*-*/*&quot;">[details]</a></span>
+Output of &quot;grep . /sys/class/drm/card*-*/*&quot;</pre>
         </div>
       </p>
       <hr>
@@ -92,9 +75,9 @@ that result).</pre>
     </body>
 </html>
 
---1390953883.63DDD2.2080--
+--1390981414.Bf3E0EC1.25803--
 
---===============1105086450==
+--===============1238744757==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1105086450==--
+--===============1238744757==--
