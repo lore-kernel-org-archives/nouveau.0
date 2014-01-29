@@ -1,46 +1,96 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] nv30: report the correct max varying limit
-Date: Wed, 29 Jan 2014 12:41:27 -0500
-Message-ID: <1391017287-22678-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74164] [NV04] Native monitor resolution missing
+Date: Wed, 29 Jan 2014 18:22:01 +0000
+Message-ID: <bug-74164-8800-8CpK4vlxAz@http.bugs.freedesktop.org/>
+References: <bug-74164-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces@lists.freedesktop.org
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-To: Ben Skeggs <bskeggs@redhat.com>, mesa-dev@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org, "9.1 9.2 10.0" <mesa-stable@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0881923276=="
+Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-74164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-nvfx_fragprog_assign_generic only allows for up to 10/8 texcoords for
-nv40/nv30. This fixes compilation of the varying-packing tests (although
-they still fail).
 
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: 9.1 9.2 10.0 <mesa-stable@lists.freedesktop.org>
----
- src/gallium/drivers/nouveau/nv30/nv30_screen.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--===============0881923276==
+Content-Type: multipart/alternative; boundary="1391019721.bC7EadCA2.8907"; charset="us-ascii"
 
-diff --git a/src/gallium/drivers/nouveau/nv30/nv30_screen.c b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
-index 26ad33d..9ce10a4 100644
---- a/src/gallium/drivers/nouveau/nv30/nv30_screen.c
-+++ b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
-@@ -219,7 +219,7 @@ nv30_screen_get_shader_param(struct pipe_screen *pscreen, unsigned shader,
-       case PIPE_SHADER_CAP_MAX_CONTROL_FLOW_DEPTH:
-          return 0;
-       case PIPE_SHADER_CAP_MAX_INPUTS:
--         return (eng3d->oclass >= NV40_3D_CLASS) ? 12 : 10;
-+         return (eng3d->oclass >= NV40_3D_CLASS) ? 10 : 8;
-       case PIPE_SHADER_CAP_MAX_CONSTS:
-          return (eng3d->oclass >= NV40_3D_CLASS) ? 224 : 32;
-       case PIPE_SHADER_CAP_MAX_CONST_BUFFERS:
+
+--1391019721.bC7EadCA2.8907
+Date: Wed, 29 Jan 2014 18:22:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=74164
+
+--- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Well, if that EDID file is empty, that explains everything else. So now the
+question is -- why is the EDID file empty? (As for the dpms thing -- I suspect
+it's related -- sounds like DDC isn't working.)
+
+The KVM thing _might_ explain the situation, would be worth trying without it.
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1391019721.bC7EadCA2.8907
+Date: Wed, 29 Jan 2014 18:22:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV04] Native monitor resolution missing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV04] Native monitor resolution missing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164">bug 74164</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Well, if that EDID file is empty, that explains everything else. So now the
+question is -- why is the EDID file empty? (As for the dpms thing -- I suspect
+it's related -- sounds like DDC isn't working.)
+
+The KVM thing _might_ explain the situation, would be worth trying without it.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1391019721.bC7EadCA2.8907--
+
+--===============0881923276==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0881923276==--
