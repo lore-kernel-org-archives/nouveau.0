@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68854] [NV04] PROTECTION_ERROR / PROTECTION_FAULT
-Date: Tue, 28 Jan 2014 22:50:55 +0000
-Message-ID: <bug-68854-8800-8KkOkVp43m@http.bugs.freedesktop.org/>
-References: <bug-68854-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74164] [NV04] Native monitor resolution missing
+Date: Wed, 29 Jan 2014 00:04:43 +0000
+Message-ID: <bug-74164-8800-Ml3BM2G2uk@http.bugs.freedesktop.org/>
+References: <bug-74164-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1102399428=="
+Content-Type: multipart/mixed; boundary="===============1105086450=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68854-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-74164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1102399428==
-Content-Type: multipart/alternative; boundary="1390949455.5C4A2.24567"; charset="us-ascii"
+--===============1105086450==
+Content-Type: multipart/alternative; boundary="1390953883.63DDD2.2080"; charset="us-ascii"
 
 
---1390949455.5C4A2.24567
-Date: Tue, 28 Jan 2014 22:50:55 +0000
+--1390953883.63DDD2.2080
+Date: Wed, 29 Jan 2014 00:04:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68854
+https://bugs.freedesktop.org/show_bug.cgi?id=74164
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I looked into this issue earlier, it looks like the NvNull object being
-attached to the various DMA_NOTIFY methods of the relevant other objects.
-Haven't had a chance to check if I also see this on my NV05 yet. That code is
-shared by all pre-nv50 cards though.
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you provide the output of
+
+grep . /sys/class/drm/card*-*/*
+
+As well as separately attach /sys/class/drm/card0-VGA-1/edid (or whatever the
+name of the output the monitor is actually hooked up to) -- this should be a
+binary file containing your edid as seen by nouveau.
+
+Lastly, please supply the output of "monitor-get-edid -v" (I have no idea where
+this program comes from or exactly what it does, but it'd be interesting to see
+that result).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1390949455.5C4A2.24567
-Date: Tue, 28 Jan 2014 22:50:55 +0000
+--1390953883.63DDD2.2080
+Date: Wed, 29 Jan 2014 00:04:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,18 +62,25 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV04] PROTECTION_ERROR / PROTECTION_FAULT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68854#c6">Comment # 6</a>
+   title="NEW --- - [NV04] Native monitor resolution missing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV04] PROTECTION_ERROR / PROTECTION_FAULT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68854">bug 68854</a>
+   title="NEW --- - [NV04] Native monitor resolution missing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164">bug 74164</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I looked into this issue earlier, it looks like the NvNull object being
-attached to the various DMA_NOTIFY methods of the relevant other objects.
-Haven't had a chance to check if I also see this on my NV05 yet. That code is
-shared by all pre-nv50 cards though.</pre>
+        <pre>Can you provide the output of
+
+grep . /sys/class/drm/card*-*/*
+
+As well as separately attach /sys/class/drm/card0-VGA-1/edid (or whatever the
+name of the output the monitor is actually hooked up to) -- this should be a
+binary file containing your edid as seen by nouveau.
+
+Lastly, please supply the output of &quot;monitor-get-edid -v&quot; (I have no idea where
+this program comes from or exactly what it does, but it'd be interesting to see
+that result).</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +92,9 @@ shared by all pre-nv50 cards though.</pre>
     </body>
 </html>
 
---1390949455.5C4A2.24567--
+--1390953883.63DDD2.2080--
 
---===============1102399428==
+--===============1105086450==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1102399428==--
+--===============1105086450==--
