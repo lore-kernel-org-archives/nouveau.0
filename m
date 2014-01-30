@@ -1,113 +1,66 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74195] [NVCE] Responsivity to input with vsync on is
- slower after update
-Date: Wed, 29 Jan 2014 23:21:24 +0000
-Message-ID: <bug-74195-8800-0nDX9JYxjW@http.bugs.freedesktop.org/>
-References: <bug-74195-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] drm/nouveau: set irq_enabled manually
+Date: Wed, 29 Jan 2014 19:53:00 -0500
+Message-ID: <1391043180-27875-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0318949771=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74195-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces@lists.freedesktop.org
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+To: Ben Skeggs <bskeggs@redhat.com>, Jan Janecek <janjanjanx@gmail.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+Since commit 0fa9061ae8c ("drm/nouveau/mc: handle irq-related setup
+ourselves"), drm_device->irq_enabled remained unset. This is needed in
+order to properly wait for a vblank event in the generic drm code.
 
---===============0318949771==
-Content-Type: multipart/alternative; boundary="1391037684.ca4a2.23751"; charset="us-ascii"
+See https://bugs.freedesktop.org/show_bug.cgi?id=74195
 
+Reported-by: Jan Janecek <janjanjanx@gmail.com>
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: stable@vger.kernel.org # 3.10+
+---
 
---1391037684.ca4a2.23751
-Date: Wed, 29 Jan 2014 23:21:24 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+TBH, not sure why this fixes things, as irq_enabled == false should have
+caused the vblank wait to not wait, since the condition would be
+immediately true.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74195
+Jan, mind double-checking that this version of the patch fixes things
+for you? Not 100% sure where you stuck the irq_enabled=true line when you
+tried it out.
 
---- Comment #6 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Great catch Ilia,
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-from the DocBook [1]
-
-Manual IRQ Registration
-  ... They must set the
-  <structname>drm_device</structname> <structfield>irq_enabled</structfield>
-  field to 1 upon registration of the IRQs, and clear it to 0 after
-  unregistering the IRQs.
-
-
-[1]
-https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/DocBook/drm.tmpl#n374
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index bfd02410..3ba7b62 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -376,6 +376,8 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+ 	if (ret)
+ 		goto fail_device;
+ 
++	dev->irq_enabled = true;
++
+ 	/* workaround an odd issue on nvc1 by disabling the device's
+ 	 * nosnoop capability.  hopefully won't cause issues until a
+ 	 * better fix is found - assuming there is one...
+@@ -475,6 +477,7 @@ nouveau_drm_remove(struct pci_dev *pdev)
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nouveau_object *device;
+ 
++	dev->irq_enabled = false;
+ 	device = drm->client.base.device;
+ 	drm_put_dev(dev);
+ 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1391037684.ca4a2.23751
-Date: Wed, 29 Jan 2014 23:21:24 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVCE] Responsivity to input with vsync on is slower after update"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74195#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVCE] Responsivity to input with vsync on is slower after update"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74195">bug 74195</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>Great catch Ilia,
-
-from the DocBook [1]
-
-Manual IRQ Registration
-  ... They must set the
-  &lt;structname&gt;drm_device&lt;/structname&gt; &lt;structfield&gt;irq_enabled&lt;/structfield&gt;
-  field to 1 upon registration of the IRQs, and clear it to 0 after
-  unregistering the IRQs.
-
-
-[1]
-<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/DocBook/drm.tmpl#n374">https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/DocBook/drm.tmpl#n374</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1391037684.ca4a2.23751--
-
---===============0318949771==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0318949771==--
+1.8.3.2
