@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74164] [NV04] Native monitor resolution missing
-Date: Thu, 30 Jan 2014 21:17:48 +0000
-Message-ID: <bug-74164-8800-8dMMBgYPL1@http.bugs.freedesktop.org/>
-References: <bug-74164-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: videowall
+Date: Thu, 30 Jan 2014 16:24:42 -0500
+Message-ID: <CAKb7Uvi1OGma3-vVzyh8DxuLgh5kiVR_Uwt-==NzAwJ6=6a6Bg@mail.gmail.com>
+References: <CAAstKWBDuS39wcEaFBey_keocpK5ATdRw6sA7E3xm6MTY6a74g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1981299617=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAAstKWBDuS39wcEaFBey_keocpK5ATdRw6sA7E3xm6MTY6a74g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,85 +17,53 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?ISO-8859-1?Q?Christian_St=F6veken?= <christian.stoeveken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Wed, Jan 29, 2014 at 8:18 PM, Christian St=F6veken
+<christian.stoeveken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> So I had this crazy idea to put together a cheap video wall in my local
+> hackerspace using
+> a lot of screens suffering from planned obsolescence or at least a poor
+> choice in their used caps
+> and cheap - used Nvidia NVS 440 cards.
+>
+> During evaluation of Win 7/8 I noticed there was an 8 gpu OS limit that I
+> didn't know of before.
+> I also ran into that limt using the proprietary nvidia driver on Linux.
+>
+> So now I'm trying to see how far nouveau is in regards to "multiple" gpu's
+> and
+> after 3 evenigs of fiddling with mostly xorg.conf I just got the first 4
+> gpu's / 8 displays working.
+>
+> I'm stuck on the 3rd card / gpu 5+6 / monitors 9-12.
+>
+> Without spending another few evenings I thought I might check in with you
+> guys first whether
+> you think it's possible driving a 6400x4096 video wall with nouveau
+> and 5 Nvidia NVS 440 cards (NV43) (10 gpus with dual head) - if not I mig=
+ht
+> be willing to donate
+> the cards for development if someone is interested.
 
---===============1981299617==
-Content-Type: multipart/alternative; boundary="1391116668.23eA816f2.7575"; charset="us-ascii"
+Admittedly I've never tried this, but I can't think of anything that
+would prevent you from doing this using the ZaphodHeads/Xinerama
+approach. Take a look at
+http://nouveau.freedesktop.org/wiki/MultiMonitorDesktop/ -- pay
+special attention to the highly-unintuitive Screen setting inside of
+the Device section -- it appears to be the index of the crtc to be
+used on that device, not the overall screen number (so it just repeats
+0/1/0/1/etc). Note that ZaphodHeads was broken for some number of
+revisions of xf86-video-nouveau, but it should be all better now - if
+you're getting crashes, try upgrading to the latest.
 
+Perhaps you can share your non-working configuration and Xorg log?
 
---1391116668.23eA816f2.7575
-Date: Thu, 30 Jan 2014 21:17:48 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Further, there should _definitely_ not be any issues running each
+GPU's in a separate X screen and then using some sort of fanciness to
+link it all together (e.g. dmx at which point it can all be on
+separate machines).
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74164
-
---- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #11)
-> Who is responsible for the generation of that file? (I
-> guess it's a special file...)
-
-nouveau is responsible for reading out the EDID and providing it to the drm
-core, which in turn exposes it in that file. See nouveau_connector_detect.
-(Unfortuantely it's all a bit obtuse... the DDC stuff goes through i2c, etc.)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1391116668.23eA816f2.7575
-Date: Thu, 30 Jan 2014 21:17:48 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV04] Native monitor resolution missing"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164#c12">Comment # 12</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV04] Native monitor resolution missing"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164">bug 74164</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=74164#c11">comment #11</a>)
-<span class="quote">&gt; Who is responsible for the generation of that file? (I
-&gt; guess it's a special file...)</span >
-
-nouveau is responsible for reading out the EDID and providing it to the drm
-core, which in turn exposes it in that file. See nouveau_connector_detect.
-(Unfortuantely it's all a bit obtuse... the DDC stuff goes through i2c, etc.)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1391116668.23eA816f2.7575--
-
---===============1981299617==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1981299617==--
+  -ilia
