@@ -1,76 +1,98 @@
-From: Jan <janjanjanx@gmail.com>
-Subject: Re: [PATCH] drm/nouveau: set irq_enabled manually
-Date: Thu, 30 Jan 2014 02:50:15 +0100
-Message-ID: <CAM1qvvhZhCAx5dPVppmgTJ4a0cjkgPZpc1+v25gebht5-zkyLw@mail.gmail.com>
-References: <1391043180-27875-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74164] [NV04] Native monitor resolution missing
+Date: Thu, 30 Jan 2014 07:58:09 +0000
+Message-ID: <bug-74164-8800-L0MGkv9X9n@http.bugs.freedesktop.org/>
+References: <bug-74164-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1391043180-27875-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1843483924=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-74164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I can confirm that this patch fixes the problem. (had to change spaces
-to tabs, but that was probably just screwed up by mail)
 
-2014-01-30, Ilia Mirkin <imirkin@alum.mit.edu>:
-> Since commit 0fa9061ae8c ("drm/nouveau/mc: handle irq-related setup
-> ourselves"), drm_device->irq_enabled remained unset. This is needed in
-> order to properly wait for a vblank event in the generic drm code.
->
-> See https://bugs.freedesktop.org/show_bug.cgi?id=74195
->
-> Reported-by: Jan Janecek <janjanjanx@gmail.com>
-> Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
-> Cc: stable@vger.kernel.org # 3.10+
-> ---
->
-> TBH, not sure why this fixes things, as irq_enabled == false should have
-> caused the vblank wait to not wait, since the condition would be
-> immediately true.
->
-> Jan, mind double-checking that this version of the patch fixes things
-> for you? Not 100% sure where you stuck the irq_enabled=true line when you
-> tried it out.
->
->  drivers/gpu/drm/nouveau/nouveau_drm.c | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> index bfd02410..3ba7b62 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> @@ -376,6 +376,8 @@ nouveau_drm_load(struct drm_device *dev, unsigned long
-> flags)
->  	if (ret)
->  		goto fail_device;
->
-> +	dev->irq_enabled = true;
-> +
->  	/* workaround an odd issue on nvc1 by disabling the device's
->  	 * nosnoop capability.  hopefully won't cause issues until a
->  	 * better fix is found - assuming there is one...
-> @@ -475,6 +477,7 @@ nouveau_drm_remove(struct pci_dev *pdev)
->  	struct nouveau_drm *drm = nouveau_drm(dev);
->  	struct nouveau_object *device;
->
-> +	dev->irq_enabled = false;
->  	device = drm->client.base.device;
->  	drm_put_dev(dev);
->
-> --
-> 1.8.3.2
->
->
+--===============1843483924==
+Content-Type: multipart/alternative; boundary="1391068689.BeDDF1.21138"; charset="us-ascii"
+
+
+--1391068689.BeDDF1.21138
+Date: Thu, 30 Jan 2014 07:58:09 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=74164
+
+--- Comment #11 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
+Hi Ilia,
+I just tried without the KVM switch, by connecting the monitor, mouse and
+keyboard directly to the PC. Unfortunately, nothing changes, that edid file is
+still empty.
+What else can we try? Who is responsible for the generation of that file? (I
+guess it's a special file...)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1391068689.BeDDF1.21138
+Date: Thu, 30 Jan 2014 07:58:09 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV04] Native monitor resolution missing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV04] Native monitor resolution missing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164">bug 74164</a>
+              from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
+</span></b>
+        <pre>Hi Ilia,
+I just tried without the KVM switch, by connecting the monitor, mouse and
+keyboard directly to the PC. Unfortunately, nothing changes, that edid file is
+still empty.
+What else can we try? Who is responsible for the generation of that file? (I
+guess it's a special file...)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1391068689.BeDDF1.21138--
+
+--===============1843483924==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1843483924==--
