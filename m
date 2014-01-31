@@ -1,12 +1,12 @@
-From: pierre.morrow-GANU6spQydw@public.gmane.org
-Subject: Help needed for bug 58556
-Date: Fri, 31 Jan 2014 14:09:45 +0100 (CET)
-Message-ID: <1930859494.395453948.1391173785548.JavaMail.root@spooler8-g27.priv.proxad.net>
-References: <954328835.395384526.1391172165854.JavaMail.root@spooler8-g27.priv.proxad.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74164] [NV04] Native monitor resolution missing
+Date: Fri, 31 Jan 2014 16:53:30 +0000
+Message-ID: <bug-74164-8800-w67uZraLVF@http.bugs.freedesktop.org/>
+References: <bug-74164-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0749276068=="
+Content-Type: multipart/mixed; boundary="===============0756365394=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <954328835.395384526.1391172165854.JavaMail.root-x5ewXQG5twBsFmKuirFwRhh1pbbyJDp15NbjCUgZEJk@public.gmane.org>
+In-Reply-To: <bug-74164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,60 +19,90 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0749276068==
-Content-Type: multipart/alternative;
-	boundary="----=_Part_395453947_1043382807.1391173785547"
 
-------=_Part_395453947_1043382807.1391173785547
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-Hello List, 
-
-I am trying to solve bug 58556 [1], but I will need some help as I don't understand all that is going on. 
-
-The system is composed of an NV96 (9600 GT) and an NVAC (9400 M) card; acceleration is disabled, otherwise the system hangs at boot after initialising the NV96 card. 
-The problem consist of a complete garbage screen in console mode, and a one-third gabage screen in GUI. 
-
-It appeared in commit 20abd1634a6e2eedb84ca977adea56b8aa06cc3e, as it was initialising some structures only when acceleration was on, even if it was later used in both cases. These structures changed in commit ebb945a94bba2ce8dff7b0942ff2b3f2a52a0a69, solving the initial issue but the problem still remains. 
-
-After a few tests, it seems nouveau_channel_new is key to get a correct screen, though it is only called when acceleration is on; I didn't find which structures initialised by nouveau_channel_new are needed to get a clean screen, nor did I find any clues in debug messages. 
-
-Does anyone have some clues about how it (should) works, or could give me some pointers? 
-
-Thanks in advance for your help, 
-
-Pierre Moreau 
+--===============0756365394==
+Content-Type: multipart/alternative; boundary="1391187210.74771.5446"; charset="us-ascii"
 
 
-[1]: https://bugs.freedesktop.org/show_bug.cgi?id=58556 
+--1391187210.74771.5446
+Date: Fri, 31 Jan 2014 16:53:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-------=_Part_395453947_1043382807.1391173785547
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+https://bugs.freedesktop.org/show_bug.cgi?id=74164
 
-<html><head><style type=3D'text/css'>p { margin: 0; }</style></head><body><=
-div style=3D'font-family: arial,helvetica,sans-serif; font-size: 12pt; colo=
-r: #000000'>Hello List,<br><br>I am trying to solve bug 58556 [1], but I wi=
-ll need some help as I don't understand all that is going on.<br><br>The sy=
-stem is composed of an NV96 (9600 GT) and an NVAC (9400 M) card; accelerati=
-on is disabled, otherwise the system hangs at boot after initialising the N=
-V96 card.<br>The problem consist of a complete garbage screen in console mo=
-de, and a one-third gabage screen in GUI.<br><br>It appeared in commit 20ab=
-d1634a6e2eedb84ca977adea56b8aa06cc3e, as it was initialising some structure=
-s only when acceleration was on, even if it was later used in both cases. T=
-hese structures changed in commit ebb945a94bba2ce8dff7b0942ff2b3f2a52a0a69,=
- solving the initial issue but the problem still remains.<br><br>After a fe=
-w tests, it seems nouveau_channel_new is key to get a correct screen, thoug=
-h it is only called when acceleration is on; I didn't find which structures=
- initialised by nouveau_channel_new are needed to get a clean screen, nor d=
-id I find any clues in debug messages.<br><br>Does anyone have some clues a=
-bout how it (should) works, or could give me some pointers?<br><br>Thanks i=
-n advance for your help,<br><br>Pierre Moreau<br><br><br>[1]: https://bugs.=
-freedesktop.org/show_bug.cgi?id=3D58556<br></div></body></html>
-------=_Part_395453947_1043382807.1391173785547--
+--- Comment #18 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
+(In reply to comment #17)
+> These are the relevant bits:
+> 
+> [    3.230395] nouveau  [     DRM] Setting dpms mode 3 on vga encoder
+> (output 0)
+> [    3.230410] [drm:drm_helper_probe_single_connector_modes],
+> [CONNECTOR:10:VGA-1]
+> [    3.249836] nouveau  [     DRM] Load detected on head A
+> [    3.249861] nouveau  [     DRM] native mode from largest: 0x0@0
+> 
+> You'll have to throw in a bunch of extra prints to figure out what's going
+> on, I'm afraid.
 
---===============0749276068==
+Ok. Could you please provide a patch with the relevant prints you think are
+needed, so that I can then apply it, recompile the kernel and test?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1391187210.74771.5446
+Date: Fri, 31 Jan 2014 16:53:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV04] Native monitor resolution missing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164#c18">Comment # 18</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV04] Native monitor resolution missing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164">bug 74164</a>
+              from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=74164#c17">comment #17</a>)
+<span class="quote">&gt; These are the relevant bits:
+&gt; 
+&gt; [    3.230395] nouveau  [     DRM] Setting dpms mode 3 on vga encoder
+&gt; (output 0)
+&gt; [    3.230410] [drm:drm_helper_probe_single_connector_modes],
+&gt; [CONNECTOR:10:VGA-1]
+&gt; [    3.249836] nouveau  [     DRM] Load detected on head A
+&gt; [    3.249861] nouveau  [     DRM] native mode from largest: 0x0&#64;0
+&gt; 
+&gt; You'll have to throw in a bunch of extra prints to figure out what's going
+&gt; on, I'm afraid.</span >
+
+Ok. Could you please provide a patch with the relevant prints you think are
+needed, so that I can then apply it, recompile the kernel and test?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1391187210.74771.5446--
+
+--===============0756365394==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -83,4 +113,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0749276068==--
+--===============0756365394==--
