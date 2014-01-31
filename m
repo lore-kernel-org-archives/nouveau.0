@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74164] [NV04] Native monitor resolution missing
-Date: Fri, 31 Jan 2014 08:20:59 +0000
-Message-ID: <bug-74164-8800-7uifH3XO3o@http.bugs.freedesktop.org/>
+Date: Fri, 31 Jan 2014 09:21:36 +0000
+Message-ID: <bug-74164-8800-gt0pbGouZw@http.bugs.freedesktop.org/>
 References: <bug-74164-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1207450456=="
+Content-Type: multipart/mixed; boundary="===============0575293494=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,52 +20,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1207450456==
-Content-Type: multipart/alternative; boundary="1391156459.C4F3cC821.4581"; charset="us-ascii"
+--===============0575293494==
+Content-Type: multipart/alternative; boundary="1391160096.BA52bfAB1.15147"; charset="us-ascii"
 
 
---1391156459.C4F3cC821.4581
-Date: Fri, 31 Jan 2014 08:20:59 +0000
+--1391160096.BA52bfAB1.15147
+Date: Fri, 31 Jan 2014 09:21:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74164
 
---- Comment #15 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
-(In reply to comment #14)
-> Try to follow the code and see where things go wrong. Boot with
-> nouveau.debug=trace perhaps someone left some interesting nv_debug/nv_trace
-> statements somewhere. Also throw in drm.debug=0xe for good measure -- a lot
-> of the pre-nv50 code still relies on that being set to emit debug statements.
+--- Comment #16 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
+Created attachment 93111
+  --> https://bugs.freedesktop.org/attachment.cgi?id=93111&action=edit
+dmesg output with debug options enabled
 
-So, tell me if I understood it correctly. I must add two boot parameters
-(nouveau.debug=trace and drm.debug=0xe) by changing my GRUB configuration.
-Then, I reboot and look at the logs (dmesg, I suppose? Or maybe also
-Xorg.0.log?). Then I give a look to the nouveau source code to see if I find
-some suspect. Am I right?
-Please note, however, that I'm a Java developer and I know nothing about Linux
-programming. So I don't think I will be able to understand too much from the
-nouveau source code :-P
+Here is the dmesg output after I applied the debug options. Unfortunately I
+can't see any clue of what is going on, maybe you understand something more. No
+interesting info in Xorg.0.log, instead.
 
-> Unfortunately this is getting well outside of my knowledge area. But I think
-> that VBE is something emulated by the card, and perhaps part of VESA. (int
-> 10h is unlikely to be involved directly though, as the system has by then
-> gone into 32-bit protected mode, and overwritten the IDT. int 10h and all
-> the BIOS service interrupts can really only work in 16-bit real mode.)
-> nouveau tries to use the "real" interfaces to access the data, and probably
-> gets it a little wrong in your case. I do know for sure that my TNT2 was
-> able to work with my 1920x1200 monitor without issue (at least not relating
-> to detection).
+This dmesg output does not show any info related to either EDID or DDC. The
+first lines about connectors and modelines are those that print the usual
+standard modelines (being 1024x768 the higher one).
 
-So, put in other words: could it be useful to look at the monitor-get-edid
-source code to try to understand why it is working while nouveau is not?
+I had a look to nouveau_connector.c, but, sorry, I can't follow it too much.
+What I have seen is that I don't see any debug output there, unfortunately, but
+also that I don't see in my logs some error messages like the one that is
+produced at this line:
+
+NV_ERROR(drm, "DDC responded, but no EDID for %s\n",
+                                 drm_get_connector_name(connector));
+
+which seems to be releted to a problem acquiring the EDID. So, the code flow
+must follow another path...
+
+Any idea?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391156459.C4F3cC821.4581
-Date: Fri, 31 Jan 2014 08:20:59 +0000
+--1391160096.BA52bfAB1.15147
+Date: Fri, 31 Jan 2014 09:21:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -79,40 +76,36 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV04] Native monitor resolution missing"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV04] Native monitor resolution missing"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74164">bug 74164</a>
               from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=74164#c14">comment #14</a>)
-<span class="quote">&gt; Try to follow the code and see where things go wrong. Boot with
-&gt; nouveau.debug=trace perhaps someone left some interesting nv_debug/nv_trace
-&gt; statements somewhere. Also throw in drm.debug=0xe for good measure -- a lot
-&gt; of the pre-nv50 code still relies on that being set to emit debug statements.</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=93111" name="attach_93111" title="dmesg output with debug options enabled">attachment 93111</a> <a href="attachment.cgi?id=93111&amp;action=edit" title="dmesg output with debug options enabled">[details]</a></span>
+dmesg output with debug options enabled
 
-So, tell me if I understood it correctly. I must add two boot parameters
-(nouveau.debug=trace and drm.debug=0xe) by changing my GRUB configuration.
-Then, I reboot and look at the logs (dmesg, I suppose? Or maybe also
-Xorg.0.log?). Then I give a look to the nouveau source code to see if I find
-some suspect. Am I right?
-Please note, however, that I'm a Java developer and I know nothing about Linux
-programming. So I don't think I will be able to understand too much from the
-nouveau source code :-P
+Here is the dmesg output after I applied the debug options. Unfortunately I
+can't see any clue of what is going on, maybe you understand something more. No
+interesting info in Xorg.0.log, instead.
 
-<span class="quote">&gt; Unfortunately this is getting well outside of my knowledge area. But I think
-&gt; that VBE is something emulated by the card, and perhaps part of VESA. (int
-&gt; 10h is unlikely to be involved directly though, as the system has by then
-&gt; gone into 32-bit protected mode, and overwritten the IDT. int 10h and all
-&gt; the BIOS service interrupts can really only work in 16-bit real mode.)
-&gt; nouveau tries to use the &quot;real&quot; interfaces to access the data, and probably
-&gt; gets it a little wrong in your case. I do know for sure that my TNT2 was
-&gt; able to work with my 1920x1200 monitor without issue (at least not relating
-&gt; to detection).</span >
+This dmesg output does not show any info related to either EDID or DDC. The
+first lines about connectors and modelines are those that print the usual
+standard modelines (being 1024x768 the higher one).
 
-So, put in other words: could it be useful to look at the monitor-get-edid
-source code to try to understand why it is working while nouveau is not?</pre>
+I had a look to nouveau_connector.c, but, sorry, I can't follow it too much.
+What I have seen is that I don't see any debug output there, unfortunately, but
+also that I don't see in my logs some error messages like the one that is
+produced at this line:
+
+NV_ERROR(drm, &quot;DDC responded, but no EDID for %s\n&quot;,
+                                 drm_get_connector_name(connector));
+
+which seems to be releted to a problem acquiring the EDID. So, the code flow
+must follow another path...
+
+Any idea?</pre>
         </div>
       </p>
       <hr>
@@ -124,9 +117,9 @@ source code to try to understand why it is working while nouveau is not?</pre>
     </body>
 </html>
 
---1391156459.C4F3cC821.4581--
+--1391160096.BA52bfAB1.15147--
 
---===============1207450456==
+--===============0575293494==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -137,4 +130,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1207450456==--
+--===============0575293494==--
