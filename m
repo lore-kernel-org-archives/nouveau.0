@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74164] [NV04] Native monitor resolution missing
-Date: Fri, 31 Jan 2014 09:21:36 +0000
-Message-ID: <bug-74164-8800-gt0pbGouZw@http.bugs.freedesktop.org/>
-References: <bug-74164-8800@http.bugs.freedesktop.org/>
+From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: videowall
+Date: Fri, 31 Jan 2014 20:25:17 +1000
+Message-ID: <CAPM=9tzYKN245Y0ucEXLn=ZukboLi+VVV52YM2oEyeqf9WScJg@mail.gmail.com>
+References: <CAAstKWBDuS39wcEaFBey_keocpK5ATdRw6sA7E3xm6MTY6a74g@mail.gmail.com>
+	<CAKb7Uvi1OGma3-vVzyh8DxuLgh5kiVR_Uwt-==NzAwJ6=6a6Bg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0575293494=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvi1OGma3-vVzyh8DxuLgh5kiVR_Uwt-==NzAwJ6=6a6Bg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,118 +18,50 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Fri, Jan 31, 2014 at 7:24 AM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+> On Wed, Jan 29, 2014 at 8:18 PM, Christian St=F6veken
+> <christian.stoeveken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> So I had this crazy idea to put together a cheap video wall in my local
+>> hackerspace using
+>> a lot of screens suffering from planned obsolescence or at least a poor
+>> choice in their used caps
+>> and cheap - used Nvidia NVS 440 cards.
+>>
+>> During evaluation of Win 7/8 I noticed there was an 8 gpu OS limit that I
+>> didn't know of before.
+>> I also ran into that limt using the proprietary nvidia driver on Linux.
+>>
+>> So now I'm trying to see how far nouveau is in regards to "multiple" gpu=
+'s
+>> and
+>> after 3 evenigs of fiddling with mostly xorg.conf I just got the first 4
+>> gpu's / 8 displays working.
+>>
+>> I'm stuck on the 3rd card / gpu 5+6 / monitors 9-12.
+>>
+>> Without spending another few evenings I thought I might check in with you
+>> guys first whether
+>> you think it's possible driving a 6400x4096 video wall with nouveau
+>> and 5 Nvidia NVS 440 cards (NV43) (10 gpus with dual head) - if not I mi=
+ght
+>> be willing to donate
+>> the cards for development if someone is interested.
+>
+> Admittedly I've never tried this, but I can't think of anything that
+> would prevent you from doing this using the ZaphodHeads/Xinerama
+> approach. Take a look at
+> http://nouveau.freedesktop.org/wiki/MultiMonitorDesktop/ -- pay
+> special attention to the highly-unintuitive Screen setting inside of
+> the Device section -- it appears to be the index of the crtc to be
+> used on that device, not the overall screen number (so it just repeats
+> 0/1/0/1/etc). Note that ZaphodHeads was broken for some number of
+> revisions of xf86-video-nouveau, but it should be all better now - if
+> you're getting crashes, try upgrading to the latest.
 
---===============0575293494==
-Content-Type: multipart/alternative; boundary="1391160096.BA52bfAB1.15147"; charset="us-ascii"
+You'll probably run out of PCI address space with too many cards,
 
-
---1391160096.BA52bfAB1.15147
-Date: Fri, 31 Jan 2014 09:21:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=74164
-
---- Comment #16 from Mauro Molinari <mauromol-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
-Created attachment 93111
-  --> https://bugs.freedesktop.org/attachment.cgi?id=93111&action=edit
-dmesg output with debug options enabled
-
-Here is the dmesg output after I applied the debug options. Unfortunately I
-can't see any clue of what is going on, maybe you understand something more. No
-interesting info in Xorg.0.log, instead.
-
-This dmesg output does not show any info related to either EDID or DDC. The
-first lines about connectors and modelines are those that print the usual
-standard modelines (being 1024x768 the higher one).
-
-I had a look to nouveau_connector.c, but, sorry, I can't follow it too much.
-What I have seen is that I don't see any debug output there, unfortunately, but
-also that I don't see in my logs some error messages like the one that is
-produced at this line:
-
-NV_ERROR(drm, "DDC responded, but no EDID for %s\n",
-                                 drm_get_connector_name(connector));
-
-which seems to be releted to a problem acquiring the EDID. So, the code flow
-must follow another path...
-
-Any idea?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1391160096.BA52bfAB1.15147
-Date: Fri, 31 Jan 2014 09:21:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV04] Native monitor resolution missing"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164#c16">Comment # 16</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV04] Native monitor resolution missing"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74164">bug 74164</a>
-              from <span class="vcard"><a class="email" href="mailto:mauromol&#64;tiscali.it" title="Mauro Molinari &lt;mauromol&#64;tiscali.it&gt;"> <span class="fn">Mauro Molinari</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=93111" name="attach_93111" title="dmesg output with debug options enabled">attachment 93111</a> <a href="attachment.cgi?id=93111&amp;action=edit" title="dmesg output with debug options enabled">[details]</a></span>
-dmesg output with debug options enabled
-
-Here is the dmesg output after I applied the debug options. Unfortunately I
-can't see any clue of what is going on, maybe you understand something more. No
-interesting info in Xorg.0.log, instead.
-
-This dmesg output does not show any info related to either EDID or DDC. The
-first lines about connectors and modelines are those that print the usual
-standard modelines (being 1024x768 the higher one).
-
-I had a look to nouveau_connector.c, but, sorry, I can't follow it too much.
-What I have seen is that I don't see any debug output there, unfortunately, but
-also that I don't see in my logs some error messages like the one that is
-produced at this line:
-
-NV_ERROR(drm, &quot;DDC responded, but no EDID for %s\n&quot;,
-                                 drm_get_connector_name(connector));
-
-which seems to be releted to a problem acquiring the EDID. So, the code flow
-must follow another path...
-
-Any idea?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1391160096.BA52bfAB1.15147--
-
---===============0575293494==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0575293494==--
+Dave.
