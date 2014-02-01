@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74316] [NV92] Graphical corruption on KDE
  shutdown/restart/log out screen
-Date: Sat, 01 Feb 2014 12:45:30 +0000
-Message-ID: <bug-74316-8800-LulPyoujBE@http.bugs.freedesktop.org/>
+Date: Sat, 01 Feb 2014 12:47:10 +0000
+Message-ID: <bug-74316-8800-oOyDnhmMcM@http.bugs.freedesktop.org/>
 References: <bug-74316-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0414766243=="
+Content-Type: multipart/mixed; boundary="===============0719013199=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74316-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0414766243==
-Content-Type: multipart/alternative; boundary="1391258730.3DcF161.27309"; charset="us-ascii"
+--===============0719013199==
+Content-Type: multipart/alternative; boundary="1391258830.cCFfF1.27542"; charset="us-ascii"
 
 
---1391258730.3DcF161.27309
-Date: Sat, 1 Feb 2014 12:45:30 +0000
+--1391258830.cCFfF1.27542
+Date: Sat, 1 Feb 2014 12:47:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74316
 
---- Comment #1 from AnAkkk <anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Same issue with ArchLinux mesa package:
-mesa 10.0.2-1
-
-I forgot to say that I have xorg server 1.15.
+--- Comment #2 from AnAkkk <anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Sorry for multiple posting.
+I am not sure why I mentionned mesa though, I guess it doesn't matter if it's a
+2D bug.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391258730.3DcF161.27309
-Date: Sat, 1 Feb 2014 12:45:30 +0000
+--1391258830.cCFfF1.27542
+Date: Sat, 1 Feb 2014 12:47:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74316#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74316#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74316">bug 74316</a>
               from <span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="AnAkkk &lt;anakin.cs&#64;gmail.com&gt;"> <span class="fn">AnAkkk</span></a>
 </span></b>
-        <pre>Same issue with ArchLinux mesa package:
-mesa 10.0.2-1
-
-I forgot to say that I have xorg server 1.15.</pre>
+        <pre>Sorry for multiple posting.
+I am not sure why I mentionned mesa though, I guess it doesn't matter if it's a
+2D bug.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +77,9 @@ I forgot to say that I have xorg server 1.15.</pre>
     </body>
 </html>
 
---1391258730.3DcF161.27309--
+--1391258830.cCFfF1.27542--
 
---===============0414766243==
+--===============0719013199==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0414766243==--
+--===============0719013199==--
