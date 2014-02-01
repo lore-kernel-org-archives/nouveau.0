@@ -1,209 +1,207 @@
-From: Alexandre Courbot <acourbot@nvidia.com>
-Subject: [RFC 07/16] drm/nouveau/bar/nvc0: support chips without BAR3
-Date: Sat,  1 Feb 2014 12:16:49 +0900
-Message-ID: <1391224618-3794-8-git-send-email-acourbot@nvidia.com>
-References: <1391224618-3794-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74316] New: [NV92] Graphical corruption on KDE
+ shutdown/restart/log out screen
+Date: Sat, 01 Feb 2014 12:39:22 +0000
+Message-ID: <bug-74316-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org>
-In-Reply-To: <1391224618-3794-1-git-send-email-acourbot@nvidia.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-Errors-To: dri-devel-bounces+sf-dri-devel=m.gmane.org@lists.freedesktop.org
-To: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: gnurou@gmail.com, Eric Brower <ebrower@nvidia.com>, Stephen Warren <swarren@wwwdotorg.org>, linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, Terje Bergstrom <tbergstrom@nvidia.com>, Ken Adams <KAdams@nvidia.com>
+Content-Type: multipart/mixed; boundary="===============1838190761=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Adapt the NVC0 BAR driver to make it able to support chips that do not
-expose a BAR3. When this happens, BAR1 is then used for USERD mapping
-and the BAR alloc() functions is disabled, making GPU objects unable
-to rely on BAR for data access and falling back to PRAMIN.
 
-Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
----
- drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c | 115 +++++++++++++------------
- 1 file changed, 61 insertions(+), 54 deletions(-)
+--===============1838190761==
+Content-Type: multipart/alternative; boundary="1391258362.cff10AB1.25918"; charset="us-ascii"
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c b/drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c
-index 3f30db6..c2bb0e5 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c
-@@ -79,87 +79,88 @@ nvc0_bar_unmap(struct nouveau_bar *bar, struct nouveau_vma *vma)
- }
- 
- static int
--nvc0_bar_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
--	      struct nouveau_oclass *oclass, void *data, u32 size,
--	      struct nouveau_object **pobject)
-+nvc0_bar_init_vm(struct nvc0_bar_priv *priv, int nr, int bar)
- {
--	struct nouveau_device *device = nv_device(parent);
--	struct nvc0_bar_priv *priv;
-+	struct nouveau_device *device = nv_device(&priv->base);
- 	struct nouveau_gpuobj *mem;
- 	struct nouveau_vm *vm;
-+	resource_size_t bar_len;
- 	int ret;
- 
--	ret = nouveau_bar_create(parent, engine, oclass, &priv);
--	*pobject = nv_object(priv);
--	if (ret)
--		return ret;
--
--	/* BAR3 */
- 	ret = nouveau_gpuobj_new(nv_object(priv), NULL, 0x1000, 0, 0,
--				&priv->bar[0].mem);
--	mem = priv->bar[0].mem;
-+				&priv->bar[nr].mem);
-+	mem = priv->bar[nr].mem;
- 	if (ret)
- 		return ret;
- 
- 	ret = nouveau_gpuobj_new(nv_object(priv), NULL, 0x8000, 0, 0,
--				&priv->bar[0].pgd);
-+				&priv->bar[nr].pgd);
- 	if (ret)
- 		return ret;
- 
--	ret = nouveau_vm_new(device, 0, nv_device_resource_len(device, 3), 0, &vm);
-+	bar_len = nv_device_resource_len(device, bar);
-+
-+	ret = nouveau_vm_new(device, 0, bar_len, 0, &vm);
- 	if (ret)
- 		return ret;
- 
- 	atomic_inc(&vm->engref[NVDEV_SUBDEV_BAR]);
- 
--	ret = nouveau_gpuobj_new(nv_object(priv), NULL,
--				 (nv_device_resource_len(device, 3) >> 12) * 8,
--				 0x1000, NVOBJ_FLAG_ZERO_ALLOC,
--				 &vm->pgt[0].obj[0]);
--	vm->pgt[0].refcount[0] = 1;
--	if (ret)
--		return ret;
-+	/*
-+	 * Bootstrap page table lookup.
-+	 */
-+	if (bar == 3) {
-+		ret = nouveau_gpuobj_new(nv_object(priv), NULL,
-+					 (bar_len >> 12) * 8, 0x1000,
-+					 NVOBJ_FLAG_ZERO_ALLOC,
-+					&vm->pgt[0].obj[0]);
-+		vm->pgt[0].refcount[0] = 1;
-+		if (ret)
-+			return ret;
-+	}
- 
--	ret = nouveau_vm_ref(vm, &priv->bar[0].vm, priv->bar[0].pgd);
-+	ret = nouveau_vm_ref(vm, &priv->bar[nr].vm, priv->bar[nr].pgd);
- 	nouveau_vm_ref(NULL, &vm, NULL);
- 	if (ret)
- 		return ret;
- 
--	nv_wo32(mem, 0x0200, lower_32_bits(priv->bar[0].pgd->addr));
--	nv_wo32(mem, 0x0204, upper_32_bits(priv->bar[0].pgd->addr));
--	nv_wo32(mem, 0x0208, lower_32_bits(nv_device_resource_len(device, 3) - 1));
--	nv_wo32(mem, 0x020c, upper_32_bits(nv_device_resource_len(device, 3) - 1));
-+	nv_wo32(mem, 0x0200, lower_32_bits(priv->bar[nr].pgd->addr));
-+	nv_wo32(mem, 0x0204, upper_32_bits(priv->bar[nr].pgd->addr));
-+	nv_wo32(mem, 0x0208, lower_32_bits(bar_len - 1));
-+	nv_wo32(mem, 0x020c, upper_32_bits(bar_len - 1));
- 
--	/* BAR1 */
--	ret = nouveau_gpuobj_new(nv_object(priv), NULL, 0x1000, 0, 0,
--				&priv->bar[1].mem);
--	mem = priv->bar[1].mem;
--	if (ret)
--		return ret;
-+	return 0;
-+}
- 
--	ret = nouveau_gpuobj_new(nv_object(priv), NULL, 0x8000, 0, 0,
--				&priv->bar[1].pgd);
--	if (ret)
--		return ret;
-+static int
-+nvc0_bar_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
-+	      struct nouveau_oclass *oclass, void *data, u32 size,
-+	      struct nouveau_object **pobject)
-+{
-+	struct nouveau_device *device = nv_device(parent);
-+	struct nvc0_bar_priv *priv;
-+	bool has_bar3 = nv_device_resource_len(device, 3) != 0;
-+	int ret;
- 
--	ret = nouveau_vm_new(device, 0, nv_device_resource_len(device, 1), 0, &vm);
-+	ret = nouveau_bar_create(parent, engine, oclass, &priv);
-+	*pobject = nv_object(priv);
- 	if (ret)
- 		return ret;
- 
--	atomic_inc(&vm->engref[NVDEV_SUBDEV_BAR]);
-+	/* BAR3 */
-+	if (has_bar3) {
-+		ret = nvc0_bar_init_vm(priv, 0, 3);
-+		if (ret)
-+			return ret;
-+		priv->base.alloc = nouveau_bar_alloc;
-+		priv->base.kmap = nvc0_bar_kmap;
-+	}
- 
--	ret = nouveau_vm_ref(vm, &priv->bar[1].vm, priv->bar[1].pgd);
--	nouveau_vm_ref(NULL, &vm, NULL);
-+	/* BAR1 */
-+	ret = nvc0_bar_init_vm(priv, 1, 1);
- 	if (ret)
- 		return ret;
- 
--	nv_wo32(mem, 0x0200, lower_32_bits(priv->bar[1].pgd->addr));
--	nv_wo32(mem, 0x0204, upper_32_bits(priv->bar[1].pgd->addr));
--	nv_wo32(mem, 0x0208, lower_32_bits(nv_device_resource_len(device, 1) - 1));
--	nv_wo32(mem, 0x020c, upper_32_bits(nv_device_resource_len(device, 1) - 1));
--
--	priv->base.alloc = nouveau_bar_alloc;
--	priv->base.kmap = nvc0_bar_kmap;
- 	priv->base.umap = nvc0_bar_umap;
- 	priv->base.unmap = nvc0_bar_unmap;
- 	priv->base.flush = nv84_bar_flush;
-@@ -176,12 +177,16 @@ nvc0_bar_dtor(struct nouveau_object *object)
- 	nouveau_gpuobj_ref(NULL, &priv->bar[1].pgd);
- 	nouveau_gpuobj_ref(NULL, &priv->bar[1].mem);
- 
--	if (priv->bar[0].vm) {
--		nouveau_gpuobj_ref(NULL, &priv->bar[0].vm->pgt[0].obj[0]);
--		nouveau_vm_ref(NULL, &priv->bar[0].vm, priv->bar[0].pgd);
-+	if (priv->bar[0].mem) {
-+		if (priv->bar[0].vm) {
-+			nouveau_gpuobj_ref(NULL,
-+					   &priv->bar[0].vm->pgt[0].obj[0]);
-+			nouveau_vm_ref(NULL, &priv->bar[0].vm,
-+				       priv->bar[0].pgd);
-+		}
-+		nouveau_gpuobj_ref(NULL, &priv->bar[0].pgd);
-+		nouveau_gpuobj_ref(NULL, &priv->bar[0].mem);
- 	}
--	nouveau_gpuobj_ref(NULL, &priv->bar[0].pgd);
--	nouveau_gpuobj_ref(NULL, &priv->bar[0].mem);
- 
- 	nouveau_bar_destroy(&priv->base);
- }
-@@ -201,7 +206,9 @@ nvc0_bar_init(struct nouveau_object *object)
- 	nv_mask(priv, 0x100c80, 0x00000001, 0x00000000);
- 
- 	nv_wr32(priv, 0x001704, 0x80000000 | priv->bar[1].mem->addr >> 12);
--	nv_wr32(priv, 0x001714, 0xc0000000 | priv->bar[0].mem->addr >> 12);
-+	if (priv->bar[0].mem)
-+		nv_wr32(priv, 0x001714,
-+			0xc0000000 | priv->bar[0].mem->addr >> 12);
- 	return 0;
- }
- 
+
+--1391258362.cff10AB1.25918
+Date: Sat, 1 Feb 2014 12:39:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=74316
+
+          Priority: medium
+            Bug ID: 74316
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [NV92] Graphical corruption on KDE
+                    shutdown/restart/log out screen
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
+
+Created attachment 93166
+  --> https://bugs.freedesktop.org/attachment.cgi?id=93166&action=edit
+kernel log
+
+When I try to shutdown/restart/log out of KDE, the window with the countdown
+opens and show up correctly, but the background is corrupted with random stuff
+such as windows/menus that were opened before, or even currently opened windows
+but totally reversed and/or at different places. 
+Unfortunately, it doesn't look like I can take a screenshot while that screen
+is open.
+It works fine with the proprietary driver.
+
+Card: Nvidia 8800 GT
+I am using mesa-git (as of commit 80bf1fbaf6bb3d9b7a8543ea764c6d19887ac0b8).
+xf86-video-nouveau 1.0.10-2
+Arch Linux
+
 -- 
-1.8.5.3
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1391258362.cff10AB1.25918
+Date: Sat, 1 Feb 2014 12:39:22 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74316">74316</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NV92] Graphical corruption on KDE shutdown/restart/log out screen
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>anakin.cs&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=93166" name="attach_93166" title="kernel log">attachment 93166</a> <a href="attachment.cgi?id=93166&amp;action=edit" title="kernel log">[details]</a></span>
+kernel log
+
+When I try to shutdown/restart/log out of KDE, the window with the countdown
+opens and show up correctly, but the background is corrupted with random stuff
+such as windows/menus that were opened before, or even currently opened windows
+but totally reversed and/or at different places. 
+Unfortunately, it doesn't look like I can take a screenshot while that screen
+is open.
+It works fine with the proprietary driver.
+
+Card: Nvidia 8800 GT
+I am using mesa-git (as of commit 80bf1fbaf6bb3d9b7a8543ea764c6d19887ac0b8).
+xf86-video-nouveau 1.0.10-2
+Arch Linux</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1391258362.cff10AB1.25918--
+
+--===============1838190761==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1838190761==--
