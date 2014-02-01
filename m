@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74320] [NV4B] Screen freeze with flashplugin-nonfree
-Date: Sat, 01 Feb 2014 14:14:23 +0000
-Message-ID: <bug-74320-8800-kSq4bi5nIe@http.bugs.freedesktop.org/>
-References: <bug-74320-8800@http.bugs.freedesktop.org/>
+From: pierre.morrow-GANU6spQydw@public.gmane.org
+Subject: Re: Help needed for bug 58556
+Date: Sat, 1 Feb 2014 16:25:49 +0100 (CET)
+Message-ID: <1898763704.398274625.1391268349313.JavaMail.root@spooler8-g27.priv.proxad.net>
+References: <CAKb7UviKuN35KDW73kqOGWzd9GYTzrfodA+TPHa460vUy0iANA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0326509181=="
+Content-Type: multipart/mixed; boundary="===============0379882611=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74320-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UviKuN35KDW73kqOGWzd9GYTzrfodA+TPHa460vUy0iANA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,100 +16,90 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============0379882611==
+Content-Type: multipart/alternative;
+	boundary="----=_Part_398274624_274533302.1391268349312"
 
---===============0326509181==
-Content-Type: multipart/alternative; boundary="1391264062.aB4bC1.16338"; charset="us-ascii"
+------=_Part_398274624_274533302.1391268349312
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+----- Mail original -----
 
---1391264062.aB4bC1.16338
-Date: Sat, 1 Feb 2014 14:14:22 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+> De: "Ilia Mirkin" <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+> =C3=80: "pierre morrow" <pierre.morrow-GANU6spQydw@public.gmane.org>
+> Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> Envoy=C3=A9: Vendredi 31 Janvier 2014 23:58:58
+> Objet: Re: [Nouveau] Help needed for bug 58556
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74320
+> I meant disable it much harder -- like tell nouveau to just ignore it
+> as though modeset=3D0 was passed in for it. Also I seem to recall you
+> can do an outb (even from grub) that will just turn off the nv96 card
+> entirely.
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+So I denied pci to enable the card, but nothing changed: with noaccel, scre=
+en is still corrupted and without it, I still don't boot, getting lots of e=
+rrors.=20
+Oh, I forgot to precise: the screen gets scrambled just after the handover =
+from efifb to nouveaufb.=20
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Screen freeze with          |[NV4B] Screen freeze with
-                   |flashplugin-nonfree         |flashplugin-nonfree
+> pstore if you have efi, netconsole, blockconsole. And phone isn't so
+> bad either :)
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-If you were to ssh in and kill the offending plugin-container, I bet that'd
-work too. A quick fix -- get rid of your libvdpau_nouveau.so. Ugh. I thought
-this would only be a problem for nv3x due to lack of NPOT support, so I killed
-it off there. But I guess there's some sort of problem with the nv30 driver
-handling of vdpau in general. Sigh.
+> Yeah, so all these things should only be necessary if you have
+> acceleration enabled. I wonder if the card comes up in a funny "I'm
+> still executing stuff" state and nouveau fails to "shut it down" when
+> noaccel is passed in.
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+Well, from what I saw in nouveau_accel_init, it just enables things if noac=
+cel=3D0, and does nothing otherwise; noaccel isn't used apart from accel_in=
+it.=20
 
---1391264062.aB4bC1.16338
-Date: Sat, 1 Feb 2014 14:14:22 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+> -ilia
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV4B] Screen freeze with flashplugin-nonfree"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74320">bug 74320</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+Pierre=20
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Screen freeze with flashplugin-nonfree
-           </td>
-           <td>[NV4B] Screen freeze with flashplugin-nonfree
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV4B] Screen freeze with flashplugin-nonfree"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74320#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV4B] Screen freeze with flashplugin-nonfree"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74320">bug 74320</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>If you were to ssh in and kill the offending plugin-container, I bet that'd
-work too. A quick fix -- get rid of your libvdpau_nouveau.so. Ugh. I thought
-this would only be a problem for nv3x due to lack of NPOT support, so I killed
-it off there. But I guess there's some sort of problem with the nv30 driver
-handling of vdpau in general. Sigh.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+------=_Part_398274624_274533302.1391268349312
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
---1391264062.aB4bC1.16338--
+<html><head><style type=3D'text/css'>p { margin: 0; }</style></head><body><=
+div style=3D'font-family: arial,helvetica,sans-serif; font-size: 12pt; colo=
+r: #000000'><br><br><hr id=3D"zwchr"><blockquote id=3D"DWT246" style=3D"bor=
+der-left:2px solid rgb(16, 16, 255);margin-left:5px;padding-left:5px;color:=
+#000;font-weight:normal;font-style:normal;text-decoration:none;font-family:=
+Helvetica,Arial,sans-serif;font-size:12pt;"><b>De: </b>"Ilia Mirkin" &lt;im=
+irkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org&gt;<br><b>=C3=80: </b>"pierre morrow" &lt;pierre.morrow@=
+free.fr&gt;<br><b>Cc: </b>nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org<br><b>Envoy=C3=A9: =
+</b>Vendredi 31 Janvier 2014 23:58:58<br><b>Objet: </b>Re: [Nouveau] Help n=
+eeded for bug 58556<br><br>I meant disable it much harder -- like tell nouv=
+eau to just ignore it<br>as though modeset=3D0 was passed in for it. Also I=
+ seem to recall you<br>can do an outb (even from grub) that will just turn =
+off the nv96 card<br>entirely.<br><br></blockquote>So I denied pci to enabl=
+e the card, but nothing changed: with noaccel, screen is still corrupted an=
+d without it, I still don't boot, getting lots of errors.<br>Oh, I forgot t=
+o precise: the screen gets scrambled just after the handover from efifb to =
+nouveaufb.<br><blockquote id=3D"DWT247" style=3D"border-left:2px solid rgb(=
+16, 16, 255);margin-left:5px;padding-left:5px;color:#000;font-weight:normal=
+;font-style:normal;text-decoration:none;font-family:Helvetica,Arial,sans-se=
+rif;font-size:12pt;"><br>pstore if you have efi, netconsole, blockconsole. =
+And phone isn't so<br>bad either :)<br><br><br>Yeah, so all these things sh=
+ould only be necessary if you have<br>acceleration enabled. I wonder if the=
+ card comes up in a funny "I'm<br>still executing stuff" state and nouveau =
+fails to "shut it down" when<br>noaccel is passed in.<br></blockquote>Well,=
+ from what I saw in nouveau_accel_init, it just enables things if noaccel=
+=3D0, and does nothing otherwise; noaccel isn't used apart from accel_init.=
+<br><blockquote style=3D"border-left:2px solid rgb(16, 16, 255);margin-left=
+:5px;padding-left:5px;color:#000;font-weight:normal;font-style:normal;text-=
+decoration:none;font-family:Helvetica,Arial,sans-serif;font-size:12pt;"><br=
+>&nbsp;&nbsp;-ilia<br></blockquote>Pierre<br></div></body></html>
+------=_Part_398274624_274533302.1391268349312--
 
---===============0326509181==
+--===============0379882611==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +110,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0326509181==--
+--===============0379882611==--
