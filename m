@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74320] New: Screen freeze with flashplugin-nonfree
-Date: Sat, 01 Feb 2014 14:03:26 +0000
-Message-ID: <bug-74320-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74320] [NV4B] Screen freeze with flashplugin-nonfree
+Date: Sat, 01 Feb 2014 14:14:23 +0000
+Message-ID: <bug-74320-8800-kSq4bi5nIe@http.bugs.freedesktop.org/>
+References: <bug-74320-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0855430220=="
+Content-Type: multipart/mixed; boundary="===============0326509181=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-74320-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,84 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0855430220==
-Content-Type: multipart/alternative; boundary="1391263406.5e7EbAE31.12875"; charset="us-ascii"
+--===============0326509181==
+Content-Type: multipart/alternative; boundary="1391264062.aB4bC1.16338"; charset="us-ascii"
 
 
---1391263406.5e7EbAE31.12875
-Date: Sat, 1 Feb 2014 14:03:26 +0000
+--1391264062.aB4bC1.16338
+Date: Sat, 1 Feb 2014 14:14:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74320
 
-          Priority: medium
-            Bug ID: 74320
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Screen freeze with flashplugin-nonfree
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: shuihuzhuan-GANU6spQydw@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Created attachment 93167
-  --> https://bugs.freedesktop.org/attachment.cgi?id=93167&action=edit
-System journal
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Screen freeze with          |[NV4B] Screen freeze with
+                   |flashplugin-nonfree         |flashplugin-nonfree
 
-Hello,
-
-Here is the config :
-
-cpu : AMD64
-Video card : 7600GT (NV40 family)
-kernel : 3.12.9
-nouveau-dri : 10.0.2
-xf86-video-nouveau : 1.0.10
-mesa : 10.0.2
-flashplugin : 11.2.202.332
-gnome-shell : 3.10.3
-firefox : 26.0
-
-When I want to see the video at this link
-(https://www.youtube.com/watch?v=jT92qfriNCA) the screen freezes. I can only
-use the magic-sys-key to reboot.
-
-Here is the complete journalctl --system from boot to freeze (at 19:26:06).
-There are a lot of :
-
-nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR - ch 16 [plugin-containe[5002]]
-subc 7 mthd 0x0000 data 0xbeef3097
-
-and near the end :
-
-nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR nstatus:
-BAD_ARGUMENT
-janv. 28 19:32:45 maisondubonheur kernel: nouveau E[  PGRAPH][0000:01:00.0] ch
-7 [0x001e0000 plugin-containe[5037]] subc 7 class 0x4097 mthd 0x0208 data
-0x00000120
-janv. 28 19:32:45 maisondubonheur kernel: nouveau E[  PGRAPH][0000:01:00.0] 
-ERROR nsource: LIMIT_ZETA nstatus: BAD_ARGUMENT PROTECTION_FAULT
-janv. 28 19:32:45 maisondubonheur kernel: nouveau E[  PGRAPH][0000:01:00.0] ch
-7 [0x001e0000 plugin-containe[5037]] subc 7 class 0x4097 mthd 0x0204 data
-0x00c00000
-
-I can't do a lot of testing on that computer (my wife needs it for her work),
-but if I can help...
-
-Thanks
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+If you were to ssh in and kill the offending plugin-container, I bet that'd
+work too. A quick fix -- get rid of your libvdpau_nouveau.so. Ugh. I thought
+this would only be a problem for nv3x due to lack of NPOT support, so I killed
+it off there. But I guess there's some sort of problem with the nv30 driver
+handling of vdpau in general. Sigh.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391263406.5e7EbAE31.12875
-Date: Sat, 1 Feb 2014 14:03:26 +0000
+--1391264062.aB4bC1.16338
+Date: Sat, 1 Feb 2014 14:14:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -103,139 +58,44 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Screen freeze with flashplugin-nonfree"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74320">74320</a>
-          </td>
-        </tr>
+   title="NEW --- - [NV4B] Screen freeze with flashplugin-nonfree"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74320">bug 74320</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Screen freeze with flashplugin-nonfree
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>shuihuzhuan&#64;free.fr
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Screen freeze with flashplugin-nonfree
+           </td>
+           <td>[NV4B] Screen freeze with flashplugin-nonfree
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=93167" name="attach_93167" title="System journal">attachment 93167</a> <a href="attachment.cgi?id=93167&amp;action=edit" title="System journal">[details]</a></span>
-System journal
-
-Hello,
-
-Here is the config :
-
-cpu : AMD64
-Video card : 7600GT (NV40 family)
-kernel : 3.12.9
-nouveau-dri : 10.0.2
-xf86-video-nouveau : 1.0.10
-mesa : 10.0.2
-flashplugin : 11.2.202.332
-gnome-shell : 3.10.3
-firefox : 26.0
-
-When I want to see the video at this link
-(<a href="https://www.youtube.com/watch?v=jT92qfriNCA">https://www.youtube.com/watch?v=jT92qfriNCA</a>) the screen freezes. I can only
-use the magic-sys-key to reboot.
-
-Here is the complete journalctl --system from boot to freeze (at 19:26:06).
-There are a lot of :
-
-nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR - ch 16 [plugin-containe[5002]]
-subc 7 mthd 0x0000 data 0xbeef3097
-
-and near the end :
-
-nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR nstatus:
-BAD_ARGUMENT
-janv. 28 19:32:45 maisondubonheur kernel: nouveau E[  PGRAPH][0000:01:00.0] ch
-7 [0x001e0000 plugin-containe[5037]] subc 7 class 0x4097 mthd 0x0208 data
-0x00000120
-janv. 28 19:32:45 maisondubonheur kernel: nouveau E[  PGRAPH][0000:01:00.0] 
-ERROR nsource: LIMIT_ZETA nstatus: BAD_ARGUMENT PROTECTION_FAULT
-janv. 28 19:32:45 maisondubonheur kernel: nouveau E[  PGRAPH][0000:01:00.0] ch
-7 [0x001e0000 plugin-containe[5037]] subc 7 class 0x4097 mthd 0x0204 data
-0x00c00000
-
-I can't do a lot of testing on that computer (my wife needs it for her work),
-but if I can help...
-
-Thanks</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV4B] Screen freeze with flashplugin-nonfree"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74320#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV4B] Screen freeze with flashplugin-nonfree"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74320">bug 74320</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>If you were to ssh in and kill the offending plugin-container, I bet that'd
+work too. A quick fix -- get rid of your libvdpau_nouveau.so. Ugh. I thought
+this would only be a problem for nv3x due to lack of NPOT support, so I killed
+it off there. But I guess there's some sort of problem with the nv30 driver
+handling of vdpau in general. Sigh.</pre>
         </div>
       </p>
       <hr>
@@ -247,9 +107,9 @@ Thanks</pre>
     </body>
 </html>
 
---1391263406.5e7EbAE31.12875--
+--1391264062.aB4bC1.16338--
 
---===============0855430220==
+--===============0326509181==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -260,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0855430220==--
+--===============0326509181==--
