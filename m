@@ -1,149 +1,123 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
- Chromium web browser
-Date: Sat, 01 Feb 2014 01:45:44 +0000
-Message-ID: <bug-73373-8800-8oHaedt0wz@http.bugs.freedesktop.org/>
-References: <bug-73373-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1496165771=="
-Return-path: <nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces+gcfxn-nouveau=m.gmane.org-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [RFC 03/16] drm/nouveau: add platform device probing function
+Date: Sat,  1 Feb 2014 12:16:45 +0900
+Message-ID: <1391224618-3794-4-git-send-email-acourbot@nvidia.com>
+References: <1391224618-3794-1-git-send-email-acourbot@nvidia.com>
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <1391224618-3794-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ken Adams <KAdams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, Eric Brower <ebrower-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Add a nouveau_drm_platform_probe() function that probes a Nouveau
+platform device and registers it using drm_platform_init().
 
---===============1496165771==
-Content-Type: multipart/alternative; boundary="1391219144.E80fF0.25844"; charset="us-ascii"
+Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/engine/device/base.c  | 34 ++++++++++++++++++++++
+ .../gpu/drm/nouveau/core/include/engine/device.h   | 10 +++++++
+ drivers/gpu/drm/nouveau/nouveau_drm.c              | 19 ++++++++++++
+ 3 files changed, 63 insertions(+)
 
-
---1391219144.E80fF0.25844
-Date: Sat, 1 Feb 2014 01:45:44 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=73373
-
---- Comment #15 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
-Maybe useful, opening about 10 tabs with embedded flash elements in Firefox
-seems to cause the running Chromium browser to trigger the GPU lockup.
-
-[47622.380883] nouveau E[   PFIFO][0000:01:00.0] PFIFO: read fault at
-0x0000038000 [PAGE_NOT_PRESENT] from (unknown enum 0x00000007)/(unknown enum
-0x00000006) on channel 0x00becd6000 [unknown]
-[47652.758653] nouveau E[     DRM] GPU lockup - switching to software fbcon
-[47667.778774] nouveau E[  X[586]] failed to idle channel 0xcccc0001 [X[586]]
-[47682.791547] nouveau E[  X[586]] failed to idle channel 0xcccc0001 [X[586]]
-[47697.804319] nouveau E[  X[586]] failed to idle channel 0xcccc0000 [X[586]]
-[47712.817091] nouveau E[  X[586]] failed to idle channel 0xcccc0000 [X[586]]
-[47728.123445] nouveau E[chromium[17985]] failed to idle channel 0xcccc0000
-[chromium[17985]]
-[47743.136216] nouveau E[chromium[17985]] failed to idle channel 0xcccc0000
-[chromium[17985]]
-[47758.152323] nouveau E[chromium[1104]] failed to idle channel 0xcccc0000
-[chromium[1104]]
-[47773.165095] nouveau E[chromium[1104]] failed to idle channel 0xcccc0000
-[chromium[1104]]
-[47788.184539] nouveau E[plugin-containe[23749]] failed to idle channel
-0xcccc0000 [plugin-containe[23749]]
-[47803.197309] nouveau E[plugin-containe[23749]] failed to idle channel
-0xcccc0000 [plugin-containe[23749]]
-[47818.213419] nouveau E[plugin-containe[23749]] failed to idle channel
-0xcccc0000 [plugin-containe[23749]]
-[47833.226191] nouveau E[plugin-containe[23749]] failed to idle channel
-0xcccc0000 [plugin-containe[23749]]
-[47848.242298] nouveau E[plugin-containe[23749]] failed to idle channel
-0xcccc0000 [plugin-containe[23749]]
-[47863.255070] nouveau E[plugin-containe[23749]] failed to idle channel
-0xcccc0000 [plugin-containe[23749]]
-
+diff --git a/drivers/gpu/drm/nouveau/core/engine/device/base.c b/drivers/gpu/drm/nouveau/core/engine/device/base.c
+index a6abb51..ba6c2f2 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/device/base.c
++++ b/drivers/gpu/drm/nouveau/core/engine/device/base.c
+@@ -543,3 +543,37 @@ done:
+ 	mutex_unlock(&nv_devices_mutex);
+ 	return ret;
+ }
++
++int
++nouveau_device_platform_create_(struct platform_device *pdev, u64 name,
++				const char *sname, const char *cfg,
++				const char *dbg, int length, void **pobject)
++{
++	struct nouveau_device *device;
++	int ret = -EEXIST;
++
++	mutex_lock(&nv_devices_mutex);
++	list_for_each_entry(device, &nv_devices, head) {
++		if (device->handle == name)
++			goto done;
++	}
++
++	ret = nouveau_engine_create_(NULL, NULL, &nouveau_device_oclass, true,
++				     "DEVICE", "device", length, pobject);
++	device = *pobject;
++	if (ret)
++		goto done;
++
++	device->platformdev = pdev;
++	device->handle = name;
++	device->cfgopt = cfg;
++	device->dbgopt = dbg;
++	device->name = sname;
++
++	nv_subdev(device)->debug = nouveau_dbgopt(device->dbgopt, "DEVICE");
++	nv_engine(device)->sclass = nouveau_device_sclass;
++	list_add(&device->head, &nv_devices);
++done:
++	mutex_unlock(&nv_devices_mutex);
++	return ret;
++}
+diff --git a/drivers/gpu/drm/nouveau/core/include/engine/device.h b/drivers/gpu/drm/nouveau/core/include/engine/device.h
+index b3dd2c4..90056190 100644
+--- a/drivers/gpu/drm/nouveau/core/include/engine/device.h
++++ b/drivers/gpu/drm/nouveau/core/include/engine/device.h
+@@ -3,12 +3,22 @@
+ 
+ #include <core/device.h>
+ 
++struct platform_device;
++
+ #define nouveau_device_create(p,n,s,c,d,u)                                     \
+ 	nouveau_device_create_((p), (n), (s), (c), (d), sizeof(**u), (void **)u)
+ 
+ int  nouveau_device_create_(struct pci_dev *, u64 name, const char *sname,
+ 			    const char *cfg, const char *dbg, int, void **);
+ 
++#define nouveau_device_platform_create(p,n,s,c,d,u)                            \
++	nouveau_device_platform_create_((p), (n), (s), (c), (d), sizeof(**u),  \
++					(void **)u)
++
++int nouveau_device_platform_create_(struct platform_device *pdev, u64 name,
++			       const char *sname, const char *cfg,
++			       const char *dbg, int, void **);
++
+ int nv04_identify(struct nouveau_device *);
+ int nv10_identify(struct nouveau_device *);
+ int nv20_identify(struct nouveau_device *);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 4cba4d8..8d55a50 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -986,6 +986,25 @@ nouveau_drm_pci_driver = {
+ 	.driver.pm = &nouveau_pm_ops,
+ };
+ 
++
++int nouveau_drm_platform_probe(struct platform_device *pdev)
++{
++	struct nouveau_device *device;
++	int ret;
++
++	ret = nouveau_device_platform_create(pdev, nouveau_platform_name(pdev),
++					   dev_name(&pdev->dev), nouveau_config,
++					   nouveau_debug, &device);
++
++	ret = drm_platform_init(&driver, pdev);
++	if (ret) {
++		nouveau_object_ref(NULL, (struct nouveau_object **)&device);
++		return ret;
++	}
++
++	return ret;
++}
++
+ static int __init
+ nouveau_drm_init(void)
+ {
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1391219144.E80fF0.25844
-Date: Sat, 1 Feb 2014 01:45:44 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373#c15">Comment # 15</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373">bug 73373</a>
-              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
-</span></b>
-        <pre>Maybe useful, opening about 10 tabs with embedded flash elements in Firefox
-seems to cause the running Chromium browser to trigger the GPU lockup.
-
-[47622.380883] nouveau E[   PFIFO][0000:01:00.0] PFIFO: read fault at
-0x0000038000 [PAGE_NOT_PRESENT] from (unknown enum 0x00000007)/(unknown enum
-0x00000006) on channel 0x00becd6000 [unknown]
-[47652.758653] nouveau E[     DRM] GPU lockup - switching to software fbcon
-[47667.778774] nouveau E[  X[586]] failed to idle channel 0xcccc0001 [X[586]]
-[47682.791547] nouveau E[  X[586]] failed to idle channel 0xcccc0001 [X[586]]
-[47697.804319] nouveau E[  X[586]] failed to idle channel 0xcccc0000 [X[586]]
-[47712.817091] nouveau E[  X[586]] failed to idle channel 0xcccc0000 [X[586]]
-[47728.123445] nouveau E[chromium[17985]] failed to idle channel 0xcccc0000
-[chromium[17985]]
-[47743.136216] nouveau E[chromium[17985]] failed to idle channel 0xcccc0000
-[chromium[17985]]
-[47758.152323] nouveau E[chromium[1104]] failed to idle channel 0xcccc0000
-[chromium[1104]]
-[47773.165095] nouveau E[chromium[1104]] failed to idle channel 0xcccc0000
-[chromium[1104]]
-[47788.184539] nouveau E[plugin-containe[23749]] failed to idle channel
-0xcccc0000 [plugin-containe[23749]]
-[47803.197309] nouveau E[plugin-containe[23749]] failed to idle channel
-0xcccc0000 [plugin-containe[23749]]
-[47818.213419] nouveau E[plugin-containe[23749]] failed to idle channel
-0xcccc0000 [plugin-containe[23749]]
-[47833.226191] nouveau E[plugin-containe[23749]] failed to idle channel
-0xcccc0000 [plugin-containe[23749]]
-[47848.242298] nouveau E[plugin-containe[23749]] failed to idle channel
-0xcccc0000 [plugin-containe[23749]]
-[47863.255070] nouveau E[plugin-containe[23749]] failed to idle channel
-0xcccc0000 [plugin-containe[23749]]</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1391219144.E80fF0.25844--
-
---===============1496165771==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1496165771==--
+1.8.5.3
