@@ -1,38 +1,129 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [RFC 00/16] drm/nouveau: initial support for GK20A (Tegra K1)
-Date: Mon, 3 Feb 2014 18:33:51 +0100
-Message-ID: <CAKMK7uHr7D_VqnkbLPpRpvq9-BimBaEoUtmdxQg5ePZg12ZC3g@mail.gmail.com>
-References: <1391224618-3794-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 72180] [NVE6] Random GPU Lockups,
+	works with blob PGRAPH fw
+Date: Mon, 03 Feb 2014 10:14:36 +0000
+Message-ID: <bug-72180-8800-jSKRs4RErV@http.bugs.freedesktop.org/>
+References: <bug-72180-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=ISO-8859-1
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <1391224618-3794-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Eric Brower <ebrower-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ken Adams <KAdams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============2033868555=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Feb 1, 2014 at 4:16 AM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
-> Finally, support for probing GK20A is added in the last 2 patches. It should be
-> noted that contrary to what Nouveau currently expects, GK20A does not embed any
-> display hardware (that part being handled by tegradrm). So this driver should
-> really be only used through DRM render-nodes and collaborate with the display
-> driver using PRIME. I have not yet figured out how to turn GK20A's instantiation
-> of Nouveau into a render-node only driver without breaking support for existing
-> desktop GPUs, and consequently the driver spawns a /dev/dri/cardX node which we
-> should try to get rid of.
 
-tbh I wouldn't care about the lagecy dev nodes - we have hw platforms
-on intel with similar setup (i.e. just rendering and no outputs) and
-we don't bother to hide the legacy node. kms ioctl will still be
-there, but as long as no encoder/connector/crtc/... gets set up by the
-driver the only thing userspace can do is create framebuffers. Which
-is rather harmless ;-)
+--===============2033868555==
+Content-Type: multipart/alternative; boundary="1391422475.3fCba1FD4.12524"; charset="us-ascii"
 
-And having legacy dev nodes around helps on older userspace (e.g.
-X/Prime with dri2 which uses flink).
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+
+--1391422475.3fCba1FD4.12524
+Date: Mon, 3 Feb 2014 10:14:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D72180
+
+--- Comment #27 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+For me, using the firmware attached is a bit hit-and-miss. Sometimes it wor=
+ks
+fine, but most of the time I get a lockup just as soon as KDE starts, while=
+ the
+KDE boot animation is playing. The logs have nothing unusual in them, the o=
+nly
+line that shows something is this in dmesg:
+
+  nouveau E[     DRM] GPU lockup - switching to software fbcon
+
+The Xorg log shows that everything is fine, and there are no further messag=
+es.
+I can switch to another console or kill the X server when that happens (but
+logging in again results in a lockup). Pretty odd.
+
+I'll try extracting the firmware myself (although I do use a GTX 660 as wel=
+l)
+and see if that helps.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1391422475.3fCba1FD4.12524
+Date: Mon, 3 Feb 2014 10:14:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72180#c27">Commen=
+t # 27</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72180">bug 72180<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pastas4&#64;gmail.com" title=3D"Dainius Masili=C5=ABnas &lt;pastas4&#64;gma=
+il.com&gt;"> <span class=3D"fn">Dainius Masili=C5=ABnas</span></a>
+</span></b>
+        <pre>For me, using the firmware attached is a bit hit-and-miss. Som=
+etimes it works
+fine, but most of the time I get a lockup just as soon as KDE starts, while=
+ the
+KDE boot animation is playing. The logs have nothing unusual in them, the o=
+nly
+line that shows something is this in dmesg:
+
+  nouveau E[     DRM] GPU lockup - switching to software fbcon
+
+The Xorg log shows that everything is fine, and there are no further messag=
+es.
+I can switch to another console or kill the X server when that happens (but
+logging in again results in a lockup). Pretty odd.
+
+I'll try extracting the firmware myself (although I do use a GTX 660 as wel=
+l)
+and see if that helps.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1391422475.3fCba1FD4.12524--
+
+--===============2033868555==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2033868555==--
