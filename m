@@ -1,20 +1,18 @@
-From: David Herrmann <dh.herrmann@gmail.com>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
 Subject: Re: [RFC 00/16] drm/nouveau: initial support for GK20A (Tegra K1)
-Date: Mon, 3 Feb 2014 12:25:00 +0100
-Message-ID: <CANq1E4R=DWp2WBWWBbLHE2FG9HWWP=bM4wvE8etoEr1PAp0+JA@mail.gmail.com>
+Date: Mon, 3 Feb 2014 18:33:51 +0100
+Message-ID: <CAKMK7uHr7D_VqnkbLPpRpvq9-BimBaEoUtmdxQg5ePZg12ZC3g@mail.gmail.com>
 References: <1391224618-3794-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=ISO-8859-1
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1391224618-3794-1-git-send-email-acourbot@nvidia.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Alexandre Courbot <gnurou@gmail.com>, Eric Brower <ebrower@nvidia.com>, Stephen Warren <swarren@wwwdotorg.org>, linux-kernel <linux-kernel@vger.kernel.org>, linux-tegra@vger.kernel.org, Terje Bergstrom <tbergstrom@nvidia.com>, Ken Adams <KAdams@nvidia.com>
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <1391224618-3794-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Eric Brower <ebrower-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ken Adams <KAdams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi
-
-[..snip..]
+On Sat, Feb 1, 2014 at 4:16 AM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
 > Finally, support for probing GK20A is added in the last 2 patches. It should be
 > noted that contrary to what Nouveau currently expects, GK20A does not embed any
 > display hardware (that part being handled by tegradrm). So this driver should
@@ -24,22 +22,17 @@ Hi
 > desktop GPUs, and consequently the driver spawns a /dev/dri/cardX node which we
 > should try to get rid of.
 
-You cannot get rid of cardX currently. It is implied by DRIVER_MODESET
-and that flag should actually be called NOT_A_LEGACY_DRIVER. So you
-cannot remove it. I did try to replace DRIVER_MODESET by an inverted
-DRIVER_LEGACY flag some time ago, but I thought it's not worth it.
+tbh I wouldn't care about the lagecy dev nodes - we have hw platforms
+on intel with similar setup (i.e. just rendering and no outputs) and
+we don't bother to hide the legacy node. kms ioctl will still be
+there, but as long as no encoder/connector/crtc/... gets set up by the
+driver the only thing userspace can do is create framebuffers. Which
+is rather harmless ;-)
 
-Anyhow, you can easily add a new flag to make
-drm_dev_register()/drm_dev_alloc() not create the drm_minor for
-DRM_MINOR_LEGACY, which would prevent the card0 node from showing up.
-But people started using the cardX interface as base interface so mesa
-might not be able to open render-nodes if the related card-node is not
-available (which is a bug in their code, so no reason to support that
-by not adding stand-alone render-nodes).
-
-Long story short: If you want to do it properly, just add a flag to
-DRM core that prevents DRM_MINOR_LEGACY from showing up. If you just
-want it to work, simply keep a dummy card0.
-
-Thanks
-David
+And having legacy dev nodes around helps on older userspace (e.g.
+X/Prime with dri2 which uses flink).
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
