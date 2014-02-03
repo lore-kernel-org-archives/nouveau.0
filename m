@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 72180] [NVE6] Random GPU Lockups,
 	works with blob PGRAPH fw
-Date: Mon, 03 Feb 2014 10:14:36 +0000
-Message-ID: <bug-72180-8800-jSKRs4RErV@http.bugs.freedesktop.org/>
+Date: Mon, 03 Feb 2014 17:00:51 +0000
+Message-ID: <bug-72180-8800-cP8BLMSG9N@http.bugs.freedesktop.org/>
 References: <bug-72180-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2033868555=="
+Content-Type: multipart/mixed; boundary="===============1421232840=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,44 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2033868555==
-Content-Type: multipart/alternative; boundary="1391422475.3fCba1FD4.12524"; charset="us-ascii"
+--===============1421232840==
+Content-Type: multipart/alternative; boundary="1391446851.0e2C6bbC4.29130"; charset="us-ascii"
 
 
---1391422475.3fCba1FD4.12524
-Date: Mon, 3 Feb 2014 10:14:35 +0000
+--1391446851.0e2C6bbC4.29130
+Date: Mon, 3 Feb 2014 17:00:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D72180
 
---- Comment #27 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-For me, using the firmware attached is a bit hit-and-miss. Sometimes it wor=
-ks
-fine, but most of the time I get a lockup just as soon as KDE starts, while=
- the
-KDE boot animation is playing. The logs have nothing unusual in them, the o=
-nly
-line that shows something is this in dmesg:
-
-  nouveau E[     DRM] GPU lockup - switching to software fbcon
-
-The Xorg log shows that everything is fine, and there are no further messag=
-es.
-I can switch to another console or kill the X server when that happens (but
-logging in again results in a lockup). Pretty odd.
-
-I'll try extracting the firmware myself (although I do use a GTX 660 as wel=
-l)
-and see if that helps.
+--- Comment #28 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Now I tried extracting the firmware myself, but the dump doesn't contain the
+register addresses that the firmware page states it should. But I think I
+followed all the steps correctly (start mmiotrace, cat into dump file, modp=
+robe
+nvidia, Xorg, DISPLAY=3D":0" xterm, kill everything and stop mmiotrace), so=
+ this
+is rather puzzling. The dump itself is 23 MB in size, and through that xter=
+m I
+also checked glxinfo to confirm that the NVIDIA drivers were running (they
+were, including direct rendering).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391422475.3fCba1FD4.12524
-Date: Mon, 3 Feb 2014 10:14:35 +0000
+--1391446851.0e2C6bbC4.29130
+Date: Mon, 3 Feb 2014 17:00:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,8 +65,8 @@ Content-Transfer-Encoding: quoted-printable
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW --- - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72180#c27">Commen=
-t # 27</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72180#c28">Commen=
+t # 28</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW --- - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
@@ -84,24 +76,17 @@ t # 27</a>
 pastas4&#64;gmail.com" title=3D"Dainius Masili=C5=ABnas &lt;pastas4&#64;gma=
 il.com&gt;"> <span class=3D"fn">Dainius Masili=C5=ABnas</span></a>
 </span></b>
-        <pre>For me, using the firmware attached is a bit hit-and-miss. Som=
-etimes it works
-fine, but most of the time I get a lockup just as soon as KDE starts, while=
- the
-KDE boot animation is playing. The logs have nothing unusual in them, the o=
-nly
-line that shows something is this in dmesg:
-
-  nouveau E[     DRM] GPU lockup - switching to software fbcon
-
-The Xorg log shows that everything is fine, and there are no further messag=
-es.
-I can switch to another console or kill the X server when that happens (but
-logging in again results in a lockup). Pretty odd.
-
-I'll try extracting the firmware myself (although I do use a GTX 660 as wel=
-l)
-and see if that helps.</pre>
+        <pre>Now I tried extracting the firmware myself, but the dump doesn=
+'t contain the
+register addresses that the firmware page states it should. But I think I
+followed all the steps correctly (start mmiotrace, cat into dump file, modp=
+robe
+nvidia, Xorg, DISPLAY=3D&quot;:0&quot; xterm, kill everything and stop mmio=
+trace), so this
+is rather puzzling. The dump itself is 23 MB in size, and through that xter=
+m I
+also checked glxinfo to confirm that the NVIDIA drivers were running (they
+were, including direct rendering).</pre>
         </div>
       </p>
       <hr>
@@ -113,9 +98,9 @@ and see if that helps.</pre>
     </body>
 </html>
 
---1391422475.3fCba1FD4.12524--
+--1391446851.0e2C6bbC4.29130--
 
---===============2033868555==
+--===============1421232840==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -126,4 +111,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2033868555==--
+--===============1421232840==--
