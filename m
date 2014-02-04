@@ -1,79 +1,104 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [RFC 10/16] drm/nouveau/timer: skip calibration on GK20A
-Date: Tue, 4 Feb 2014 13:55:57 +1000
-Message-ID: <CACAvsv4T=TRb05OtkxG=t1+Ou9=Of9c-ALWkHJjKYpNi2aGs5Q@mail.gmail.com>
-References: <1391224618-3794-1-git-send-email-acourbot@nvidia.com>
-	<1391224618-3794-11-git-send-email-acourbot@nvidia.com>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH 2/3] nv50: fix layerid to be the fp input number
+	rather than vp output number
+Date: Tue,  4 Feb 2014 02:06:57 -0500
+Message-ID: <1391497618-4275-2-git-send-email-imirkin@alum.mit.edu>
+References: <1391497618-4275-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=ISO-8859-1
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1391224618-3794-11-git-send-email-acourbot@nvidia.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Alexandre Courbot <gnurou@gmail.com>, Eric Brower <ebrower@nvidia.com>, Stephen Warren <swarren@wwwdotorg.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>, Terje Bergstrom <tbergstrom@nvidia.com>, Ken Adams <KAdams@nvidia.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <1391497618-4275-1-git-send-email-imirkin@alum.mit.edu>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces@lists.freedesktop.org
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+To: Christoph Bumiller <e0425955@student.tuwien.ac.at>, mesa-dev@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, "10.1" <mesa-stable@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Feb 1, 2014 at 1:16 PM, Alexandre Courbot <acourbot@nvidia.com> wrote:
-> GK20A's timer is directly attached to the system timer and cannot be
-> calibrated. Skip the calibration phase on that chip since the
-> corresponding registers do not exist.
-Just a curiosity:  What timer resolution does the HW initialise at?
+In the tests they were the same so it didn't matter, but indications are
+that this is the correct behaviour. Also take this opportunity to
+(trivially) support using gl_Layer in fp.
 
->
-> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
-> ---
->  drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c | 19 +++++++++++++------
->  1 file changed, 13 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c b/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
-> index c0bdd10..822fe0d 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
-> @@ -185,6 +185,10 @@ nv04_timer_init(struct nouveau_object *object)
->         if (ret)
->                 return ret;
->
-> +       /* gk20a does not have the calibration registers */
-> +       if (device->chipset == 0xea)
-> +               goto skip_clk_init;
-> +
->         /* aim for 31.25MHz, which gives us nanosecond timestamps */
->         d = 1000000 / 32;
->
-> @@ -235,20 +239,23 @@ nv04_timer_init(struct nouveau_object *object)
->                 d >>= 1;
->         }
->
-> -       /* restore the time before suspend */
-> -       lo = priv->suspend_time;
-> -       hi = (priv->suspend_time >> 32);
-> -
->         nv_debug(priv, "input frequency : %dHz\n", f);
->         nv_debug(priv, "input multiplier: %d\n", m);
->         nv_debug(priv, "numerator       : 0x%08x\n", n);
->         nv_debug(priv, "denominator     : 0x%08x\n", d);
->         nv_debug(priv, "timer frequency : %dHz\n", (f * m) * d / n);
-> -       nv_debug(priv, "time low        : 0x%08x\n", lo);
-> -       nv_debug(priv, "time high       : 0x%08x\n", hi);
->
->         nv_wr32(priv, NV04_PTIMER_NUMERATOR, n);
->         nv_wr32(priv, NV04_PTIMER_DENOMINATOR, d);
-> +
-> +skip_clk_init:
-> +       /* restore the time before suspend */
-> +       lo = priv->suspend_time;
-> +       hi = (priv->suspend_time >> 32);
-> +
-> +       nv_debug(priv, "time low        : 0x%08x\n", lo);
-> +       nv_debug(priv, "time high       : 0x%08x\n", hi);
-> +
->         nv_wr32(priv, NV04_PTIMER_INTR_0, 0xffffffff);
->         nv_wr32(priv, NV04_PTIMER_INTR_EN_0, 0x00000000);
->         nv_wr32(priv, NV04_PTIMER_TIME_1, hi);
-> --
-> 1.8.5.3
->
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/dri-devel
+Cc: 10.1 <mesa-stable@lists.freedesktop.org>
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+---
+
+No regressions in piglit. Pretty sure that rewriting some of the
+gl_Layer-using tests to have gp out's would have caused failures. Also this
+gets rid of C99 stuff.
+
+ src/gallium/drivers/nouveau/nv50/nv50_program.c      |  2 +-
+ src/gallium/drivers/nouveau/nv50/nv50_program.h      |  2 +-
+ src/gallium/drivers/nouveau/nv50/nv50_shader_state.c | 12 +++++++-----
+ 3 files changed, 9 insertions(+), 7 deletions(-)
+
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_program.c b/src/gallium/drivers/nouveau/nv50/nv50_program.c
+index f14d3ef..e506438 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_program.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_program.c
+@@ -104,7 +104,7 @@ nv50_vertprog_assign_slots(struct nv50_ir_prog_info *info)
+          prog->vp.bfc[info->out[i].si] = i;
+          break;
+       case TGSI_SEMANTIC_LAYER:
+-         prog->gp.has_layer = true;
++         prog->gp.has_layer = TRUE;
+          prog->gp.layerid = n;
+          break;
+       default:
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_program.h b/src/gallium/drivers/nouveau/nv50/nv50_program.h
+index 75de007..8c1b327 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_program.h
++++ b/src/gallium/drivers/nouveau/nv50/nv50_program.h
+@@ -89,7 +89,7 @@ struct nv50_program {
+    struct {
+       uint32_t vert_count;
+       uint8_t prim_type; /* point, line strip or tri strip */
+-      bool has_layer;
++      uint8_t has_layer;
+       ubyte layerid; /* hw value of layer output */
+    } gp;
+ 
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_shader_state.c b/src/gallium/drivers/nouveau/nv50/nv50_shader_state.c
+index f8b1c1b..129ed2a 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_shader_state.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_shader_state.c
+@@ -346,7 +346,7 @@ nv50_fp_linkage_validate(struct nv50_context *nv50)
+    struct nv50_varying dummy;
+    int i, n, c, m;
+    uint32_t primid = 0;
+-   uint32_t layerid = vp->gp.layerid;
++   uint32_t layerid = 0;
+    uint32_t psiz = 0x000;
+    uint32_t interp = fp->fp.interp;
+    uint32_t colors = fp->fp.colors;
+@@ -405,15 +405,17 @@ nv50_fp_linkage_validate(struct nv50_context *nv50)
+       case TGSI_SEMANTIC_PRIMID:
+          primid = m;
+          break;
++      case TGSI_SEMANTIC_LAYER:
++         layerid = m;
++         break;
+       }
+       m = nv50_vec4_map(map, m, lin,
+                         &fp->in[i], (n < vp->out_nr) ? &vp->out[n] : &dummy);
+    }
+ 
+-   if (vp->gp.has_layer) {
+-      // In GL4.x, layer can be an fp input, but not in 3.x. Make sure to add
+-      // it to the output map.
+-      map[m++] = layerid;
++   if (vp->gp.has_layer && !layerid) {
++      layerid = m;
++      map[m++] = vp->gp.layerid;
+    }
+ 
+    if (nv50->rast->pipe.point_size_per_vertex) {
+-- 
+1.8.3.2
