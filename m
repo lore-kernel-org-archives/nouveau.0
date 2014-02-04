@@ -1,12 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nouveau/codegen: allow tex offsets on non-TXF
-	instructions (e.g. TXL)
-Date: Tue,  4 Feb 2014 02:58:28 -0500
-Message-ID: <1391500708-13881-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74492] v3.13-rc8 nv4e + msi = random lockups
+Date: Tue, 04 Feb 2014 07:57:54 +0000
+Message-ID: <bug-74492-8800-SVyAdvzJ60@http.bugs.freedesktop.org/>
+References: <bug-74492-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0969798295=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-74492-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,37 +16,76 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
----
 
-This fixes the bin/fs-textureOffset-2D piglit test on nv50. Have yet to re-run
-the full piglit suite with this change in place, but it seems pretty obvious.
+--===============0969798295==
+Content-Type: multipart/alternative; boundary="1391500674.225BFBa1.11329"; charset="us-ascii"
 
- src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp | 8 ++++++++
- 1 file changed, 8 insertions(+)
 
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-index 51d3d08..b078f2e 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-@@ -1729,6 +1729,14 @@ Converter::handleTEX(Value *dst[4], int R, int S, int L, int C, int Dx, int Dy)
-    if (tgsi.getOpcode() == TGSI_OPCODE_SAMPLE_C_LZ)
-       texi->tex.levelZero = true;
- 
-+   for (s = 0; s < tgsi.getNumTexOffsets(); ++s) {
-+      for (c = 0; c < 3; ++c) {
-+         texi->tex.offset[s][c] = tgsi.getTexOffset(s).getValueU32(c, info);
-+         if (texi->tex.offset[s][c])
-+            texi->tex.useOffsets = s + 1;
-+      }
-+   }
-+
-    bb->insertTail(texi);
- }
- 
+--1391500674.225BFBa1.11329
+Date: Tue, 4 Feb 2014 07:57:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=74492
+
+--- Comment #1 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 93342
+  --> https://bugs.freedesktop.org/attachment.cgi?id=93342&action=edit
+Screenshot of garbled OOPS
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1391500674.225BFBa1.11329
+Date: Tue, 4 Feb 2014 07:57:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - v3.13-rc8 nv4e + msi = random lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - v3.13-rc8 nv4e + msi = random lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492">bug 74492</a>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=93342" name="attach_93342" title="Screenshot of garbled OOPS">attachment 93342</a> <a href="attachment.cgi?id=93342&amp;action=edit" title="Screenshot of garbled OOPS">[details]</a></span>
+Screenshot of garbled OOPS</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1391500674.225BFBa1.11329--
+
+--===============0969798295==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0969798295==--
