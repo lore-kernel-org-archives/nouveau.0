@@ -1,95 +1,154 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74485] [NVE6] system hangs with 3D applications
-Date: Tue, 04 Feb 2014 03:27:28 +0000
-Message-ID: <bug-74485-8800-O3t6La1dH4@http.bugs.freedesktop.org/>
-References: <bug-74485-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [RFC 00/16] drm/nouveau: initial support for GK20A (Tegra K1)
+Date: Tue, 4 Feb 2014 13:53:21 +1000
+Message-ID: <CACAvsv4QFSL8u8hQFr-T_28n3icN_CwDsvLtrcPXx5nErD89wQ@mail.gmail.com>
+References: <1391224618-3794-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0942990595=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74485-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=ISO-8859-1
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <1391224618-3794-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Eric Brower <ebrower-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ken Adams <KAdams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Sat, Feb 1, 2014 at 1:16 PM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+> Hello everyone,
+Hey Alex,
 
---===============0942990595==
-Content-Type: multipart/alternative; boundary="1391484448.57DBfCb60.6129"; charset="us-ascii"
+The series looks pretty good to me.  I'll reply to the relevant
+patches with any minor nit-picks on top of what's already been said by
+others.
 
+Thank you, and welcome to Nouveau :)
 
---1391484448.57DBfCb60.6129
-Date: Tue, 4 Feb 2014 03:27:28 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Ben.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74485
-
---- Comment #1 from prg-uDMUqRiVvSc@public.gmane.org ---
-Created attachment 93331
-  --> https://bugs.freedesktop.org/attachment.cgi?id=93331&action=edit
-dmesg of CPU stall
-
-"INFO: rcu_sched self-detected stall on CPU { 0}" also happens sometimes
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1391484448.57DBfCb60.6129
-Date: Tue, 4 Feb 2014 03:27:28 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] system hangs with 3D applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74485#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] system hangs with 3D applications"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74485">bug 74485</a>
-              from <span class="vcard"><a class="email" href="mailto:prg&#64;cooco.de" title="prg&#64;cooco.de">prg&#64;cooco.de</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=93331" name="attach_93331" title="dmesg of CPU stall">attachment 93331</a> <a href="attachment.cgi?id=93331&amp;action=edit" title="dmesg of CPU stall">[details]</a></span>
-dmesg of CPU stall
-
-&quot;INFO: rcu_sched self-detected stall on CPU { 0}&quot; also happens sometimes</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1391484448.57DBfCb60.6129--
-
---===============0942990595==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0942990595==--
+>
+> GK20A is the Kepler-based GPU used in the upcoming Tegra K1 chips. The following
+> patches perform architectural changes to Nouveau that are necessary to support
+> non-PCI GPUs and add initial support for GK20A. Although the support is still
+> very basic and more user-space changes will be needed to make the full graphics
+> stack run on top of it, we were able to successfully open channels and run
+> simple pushbuffers with libdrm (more testing including rendering is in progress
+> as we get more familiar with Nouveau's user-space interface).
+>
+> This work should be considered as a RFC and a proof-of-concept for driving
+> future Tegra GPUs with Nouveau. Some design choices need to be discussed and
+> quite a few inelegant shortcuts were purposely taken to minimize the size of
+> this first set. Or said otherwise, apart from the changes that add support for
+> non-PCI GPUs, remarkably little code needs to be added to get GK20A to a point
+> where it is actually running. This is very encouraging, and it will be
+> interesting to keep improving this support and see where this gets us.
+>
+> The first part of this series (patches 01/09) adds support for platform devices
+> to Nouveau. Nouveau currently only supports PCI devices, and GK20A uses the
+> platform bus and Device Tree. So the first step towards GK20A support is to
+> abstract the PCI functions used by Nouveau (mainly resources range querying and
+> page mapping functions) and add platform device probing functions. For most of
+> the existing chips, platform device support does not make any sense, so only the
+> subdev and engine drivers actually used by GK20A were updated to use these
+> abstractions. If, for consistency reasons, it is deemed preferable to use them
+> everywhere in the driver, we will do it in the next revision of this series.
+>
+> This part can be considered independently from the actual GK20A support, and I
+> believe it would make sense to discuss what needs to be improved and drive it to
+> merge separately, as the remainder of the series will likely require more work.
+>
+> The second part (10/14) updates existing subdev/engine drivers to support GK20A,
+> and adds a very simple memory driver that simulates dedicated video memory by
+> allocating a large system memory chunk at boot time. This is clearly sub-optimal
+> and should not be merged, but allowed us to quickly bring GK20A up with Nouveau.
+> Other drivers changes are fairly small, and are here to handle the difference in
+> number of engines and units compared to desktop Kepler as well as to perform a
+> few things usually done by the video BIOS (which Tegra does not feature).
+>
+> Finally, support for probing GK20A is added in the last 2 patches. It should be
+> noted that contrary to what Nouveau currently expects, GK20A does not embed any
+> display hardware (that part being handled by tegradrm). So this driver should
+> really be only used through DRM render-nodes and collaborate with the display
+> driver using PRIME. I have not yet figured out how to turn GK20A's instantiation
+> of Nouveau into a render-node only driver without breaking support for existing
+> desktop GPUs, and consequently the driver spawns a /dev/dri/cardX node which we
+> should try to get rid of.
+>
+> I guess my email address might surprise some of you, so let me anticipate some
+> questions you might have. :P Yes, this work is endorsed by NVIDIA. Several other
+> NVIDIAns (CC'd), including core GPU experts, have provided significant technical
+> guidance and will continue their involvement. Special thanks go to Terje
+> Bergstrom and Ken Adams for their invaluable GPU expertise, and Thierry Reding
+> (at FOSDEM this weekend) for help with debugging and user-space testing.
+>
+> Let me also stress that although very exciting, this effort is still
+> experimental, so I would like to make sure that nobody makes excessive
+> expectations based on these few patches. The scope of this work is strictly
+> limited to Tegra (although given the similarities desktop GPU support will
+> certainly benefit from it indirectly), and we do not have any plan to work on
+> user-space support. So do not uninstall that proprietary driver just yet. ;)
+>
+> With this being clarified, we are looking forward to getting your feedback and
+> working with you guys to bring and improve Tegra K1 support into Nouveau! :)
+>
+> Alexandre Courbot (16):
+>   drm/nouveau: handle -EACCES runtime PM return code
+>   drm/nouveau: basic support for platform devices
+>   drm/nouveau: add platform device probing function
+>   drm/nouveau/fifo: support platform devices
+>   drm/nouveau/bar: support platform devices
+>   drm/nouveau/bar: only ioremap BAR3 if it exists
+>   drm/nouveau/bar/nvc0: support chips without BAR3
+>   drm/nouveau/mc: support platform devices
+>   drm/nouveau/fb: support platform devices
+>   drm/nouveau/timer: skip calibration on GK20A
+>   drm/nouveau/fifo: allocate usermem as needed
+>   drm/nouveau/fifo: add GK20A support
+>   drm/nouveau/ibus: add GK20A support
+>   drm/nouveau/fb: add GK20A support
+>   drm/nouveau: support GK20A in nouveau_accel_init()
+>   drm/nouveau: support for probing GK20A
+>
+>  drivers/gpu/drm/nouveau/Makefile                   |   4 +
+>  drivers/gpu/drm/nouveau/core/engine/device/base.c  |  92 +++++++++++++++-
+>  drivers/gpu/drm/nouveau/core/engine/device/nve0.c  |  20 ++++
+>  drivers/gpu/drm/nouveau/core/engine/fifo/base.c    |   2 +-
+>  drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c    |   4 +-
+>  drivers/gpu/drm/nouveau/core/engine/fifo/nve0.h    |   1 +
+>  drivers/gpu/drm/nouveau/core/engine/fifo/nvea.c    |  27 +++++
+>  drivers/gpu/drm/nouveau/core/include/core/device.h |  27 +++++
+>  .../gpu/drm/nouveau/core/include/engine/device.h   |  10 ++
+>  drivers/gpu/drm/nouveau/core/include/engine/fifo.h |   1 +
+>  drivers/gpu/drm/nouveau/core/include/subdev/fb.h   |   1 +
+>  drivers/gpu/drm/nouveau/core/include/subdev/ibus.h |   1 +
+>  drivers/gpu/drm/nouveau/core/include/subdev/mc.h   |   1 +
+>  drivers/gpu/drm/nouveau/core/os.h                  |   1 +
+>  drivers/gpu/drm/nouveau/core/subdev/bar/base.c     |   7 +-
+>  drivers/gpu/drm/nouveau/core/subdev/bar/nv50.c     |   4 +-
+>  drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c     | 116 +++++++++++----------
+>  drivers/gpu/drm/nouveau/core/subdev/fb/nvc0.c      |   9 +-
+>  drivers/gpu/drm/nouveau/core/subdev/fb/nvea.c      |  28 +++++
+>  drivers/gpu/drm/nouveau/core/subdev/fb/priv.h      |   1 +
+>  drivers/gpu/drm/nouveau/core/subdev/fb/ramnvea.c   |  67 ++++++++++++
+>  drivers/gpu/drm/nouveau/core/subdev/ibus/nvea.c    | 108 +++++++++++++++++++
+>  drivers/gpu/drm/nouveau/core/subdev/mc/base.c      |  43 +++++---
+>  drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c   |  19 ++--
+>  drivers/gpu/drm/nouveau/dispnv04/crtc.c            |   2 +-
+>  drivers/gpu/drm/nouveau/nouveau_abi16.c            |  13 ++-
+>  drivers/gpu/drm/nouveau/nouveau_bo.c               |  22 ++--
+>  drivers/gpu/drm/nouveau/nouveau_connector.c        |   2 +-
+>  drivers/gpu/drm/nouveau/nouveau_display.c          |   3 +-
+>  drivers/gpu/drm/nouveau/nouveau_drm.c              |  86 ++++++++++++---
+>  drivers/gpu/drm/nouveau/nouveau_sysfs.c            |   8 +-
+>  drivers/gpu/drm/nouveau/nouveau_ttm.c              |  31 +++---
+>  32 files changed, 622 insertions(+), 139 deletions(-)
+>  create mode 100644 drivers/gpu/drm/nouveau/core/engine/fifo/nvea.c
+>  create mode 100644 drivers/gpu/drm/nouveau/core/subdev/fb/nvea.c
+>  create mode 100644 drivers/gpu/drm/nouveau/core/subdev/fb/ramnvea.c
+>  create mode 100644 drivers/gpu/drm/nouveau/core/subdev/ibus/nvea.c
+>
+> --
+> 1.8.5.3
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
