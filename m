@@ -1,58 +1,83 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH] drm/nouveau: set irq_enabled manually
-Date: Tue, 4 Feb 2014 10:00:59 +0100
-Message-ID: <20140204090059.GY17001@phenom.ffwll.local>
-References: <1391043180-27875-1-git-send-email-imirkin@alum.mit.edu>
-	<CAKMK7uFjrAHQq+Aj0Mdg_3URW=iXuDa0g=r7d1C-c_MpRfctnQ@mail.gmail.com>
-	<CAKb7UvhW1fp0QtWgpz_hhfyCcfLNzyicr-YRCzvOXH3h_+wdew@mail.gmail.com>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [RFC 12/16] drm/nouveau/fifo: add GK20A support
+Date: Tue, 4 Feb 2014 10:15:18 +0100
+Message-ID: <20140204091518.GZ17001@phenom.ffwll.local>
+References: <1391224618-3794-1-git-send-email-acourbot@nvidia.com>
+	<1391224618-3794-13-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <CAKb7UvhW1fp0QtWgpz_hhfyCcfLNzyicr-YRCzvOXH3h_+wdew@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>, Jan Janecek <janjanjanx@gmail.com>, Ben Skeggs <bskeggs@redhat.com>
+In-Reply-To: <1391224618-3794-13-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ken Adams <KAdams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jan 30, 2014 at 12:11:30PM -0500, Ilia Mirkin wrote:
-> On Thu, Jan 30, 2014 at 3:33 AM, Daniel Vetter <daniel@ffwll.ch> wrote:
-> > On Thu, Jan 30, 2014 at 1:53 AM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
-> >> Since commit 0fa9061ae8c ("drm/nouveau/mc: handle irq-related setup
-> >> ourselves"), drm_device->irq_enabled remained unset. This is needed in
-> >> order to properly wait for a vblank event in the generic drm code.
-> >>
-> >> See https://bugs.freedesktop.org/show_bug.cgi?id=74195
-> >>
-> >> Reported-by: Jan Janecek <janjanjanx@gmail.com>
-> >> Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
-> >> Cc: stable@vger.kernel.org # 3.10+
-> >> ---
-> >>
-> >> TBH, not sure why this fixes things, as irq_enabled == false should have
-> >> caused the vblank wait to not wait, since the condition would be
-> >> immediately true.
-> >>
-> >> Jan, mind double-checking that this version of the patch fixes things
-> >> for you? Not 100% sure where you stuck the irq_enabled=true line when you
-> >> tried it out.
-> >
-> > The core drm vblank code bails out if dev->irq_enabled isn't set. So
+On Sat, Feb 01, 2014 at 12:16:54PM +0900, Alexandre Courbot wrote:
+> GK20A's FIFO is compatible with NVE0, but only features 128 channels and
+> 1 runlist.
 > 
-> Right. And what I'm unclear on is how does bailing out on vblank wait
-> cause the originally reported issue -- sluggishness. That seems to
-> imply that one is waiting too long rather than not waiting enough.
+> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/Makefile                   |  1 +
+>  drivers/gpu/drm/nouveau/core/engine/fifo/nve0.h    |  1 +
+>  drivers/gpu/drm/nouveau/core/engine/fifo/nvea.c    | 27 ++++++++++++++++++++++
+>  drivers/gpu/drm/nouveau/core/include/engine/fifo.h |  1 +
+>  4 files changed, 30 insertions(+)
+>  create mode 100644 drivers/gpu/drm/nouveau/core/engine/fifo/nvea.c
+> 
+> diff --git a/drivers/gpu/drm/nouveau/Makefile b/drivers/gpu/drm/nouveau/Makefile
+> index e88145b..6c4b76d 100644
+> --- a/drivers/gpu/drm/nouveau/Makefile
+> +++ b/drivers/gpu/drm/nouveau/Makefile
+> @@ -236,6 +236,7 @@ nouveau-y += core/engine/fifo/nv50.o
+>  nouveau-y += core/engine/fifo/nv84.o
+>  nouveau-y += core/engine/fifo/nvc0.o
+>  nouveau-y += core/engine/fifo/nve0.o
+> +nouveau-y += core/engine/fifo/nvea.o
+>  nouveau-y += core/engine/fifo/nv108.o
+>  nouveau-y += core/engine/graph/ctxnv40.o
+>  nouveau-y += core/engine/graph/ctxnv50.o
+> diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.h b/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.h
+> index 014344e..e96b32b 100644
+> --- a/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.h
+> +++ b/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.h
+> @@ -8,6 +8,7 @@ int  nve0_fifo_ctor(struct nouveau_object *, struct nouveau_object *,
+>  		    struct nouveau_object **);
+>  void nve0_fifo_dtor(struct nouveau_object *);
+>  int  nve0_fifo_init(struct nouveau_object *);
+> +int  nve0_fifo_fini(struct nouveau_object *, bool);
+>  
+>  struct nve0_fifo_impl {
+>  	struct nouveau_oclass base;
+> diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/nvea.c b/drivers/gpu/drm/nouveau/core/engine/fifo/nvea.c
+> new file mode 100644
+> index 0000000..16f8905
+> --- /dev/null
+> +++ b/drivers/gpu/drm/nouveau/core/engine/fifo/nvea.c
+> @@ -0,0 +1,27 @@
+> +/*
+> + * Copyright (c) 2014, NVIDIA Corporation. All rights reserved.
+> + *
+> + * This program is free software; you can redistribute it and/or modify it
+> + * under the terms and conditions of the GNU General Public License,
+> + * version 2, as published by the Free Software Foundation.
 
-Hm, that's indeed fairly strange. No idea how this can come about tbh.
+Just stumbled over this lincense header: Generally drm is mit/gpl dual
+lincensed. The important part for me is the drm core, but due to all the
+refactoring we tend to do and code extraction from drivers those are
+rather relevant imo, too. Was this just an oversight or are you still
+working with your legap people on this?
 -Daniel
 -- 
 Daniel Vetter
