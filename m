@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40747] [NV44] dual-link tmds no longer allowed
-Date: Wed, 05 Feb 2014 19:04:26 +0000
-Message-ID: <bug-40747-8800-A0uQGiWYSj@http.bugs.freedesktop.org/>
-References: <bug-40747-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 1/3] drm/nv4c/mc: nv4x igp's have a different msi
+	rearm register
+Date: Wed,  5 Feb 2014 14:33:02 -0500
+Message-ID: <1391628784-18834-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0235658471=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40747-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,117 +16,147 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0235658471==
-Content-Type: multipart/alternative; boundary="1391627066.BbdD3D7b5.23889"; charset="us-ascii"
-
-
---1391627066.BbdD3D7b5.23889
-Date: Wed, 5 Feb 2014 19:04:26 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=40747
-
---- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #20)
-> huh?
-> i said that it is *easy* to convince the kernel to pick the right mode. it's
-> picking a wrong one only automatically.
-
-Really? It sounds to me like you managed to fool the drm mode-verification
-logic (or nouveau's is implemented incorrectly). If it was merely picking the
-wrong one, the 1600x1200 one would be in the mode list, and it is not.
-
-> there is no hardware limitation at all here.
-
-Maybe, maybe not. Should be fairly easy to check. One way to do that would be
-to try the thing I said. Or to change the 165mhz check to be >= 0x44 instead of
-0x46.
-
-> X appears more tenacious, apparently because it filters out the good mode
-> earlier in the process. it's beyond me why it does that - it makes no sense
-
-It just gets the list from the kernel. What's in
-/sys/class/drm/card0-DVI-I-1/modes (or whatever the connector is)? The thing
-you (or someone else) saw with X seeing the 1600x1200 mode was it reading it
-from DDC. But I'm pretty sure it doesn't care about that -- X doesn't handle
-modesetting, the kernel does, and it uses its mode list.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1391627066.BbdD3D7b5.23889
-Date: Wed, 5 Feb 2014 19:04:26 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV44] dual-link tmds no longer allowed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40747#c21">Comment # 21</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV44] dual-link tmds no longer allowed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40747">bug 40747</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=40747#c20">comment #20</a>)
-<span class="quote">&gt; huh?
-&gt; i said that it is *easy* to convince the kernel to pick the right mode. it's
-&gt; picking a wrong one only automatically.</span >
-
-Really? It sounds to me like you managed to fool the drm mode-verification
-logic (or nouveau's is implemented incorrectly). If it was merely picking the
-wrong one, the 1600x1200 one would be in the mode list, and it is not.
-
-<span class="quote">&gt; there is no hardware limitation at all here.</span >
-
-Maybe, maybe not. Should be fairly easy to check. One way to do that would be
-to try the thing I said. Or to change the 165mhz check to be &gt;= 0x44 instead of
-0x46.
-
-<span class="quote">&gt; X appears more tenacious, apparently because it filters out the good mode
-&gt; earlier in the process. it's beyond me why it does that - it makes no sense</span >
-
-It just gets the list from the kernel. What's in
-/sys/class/drm/card0-DVI-I-1/modes (or whatever the connector is)? The thing
-you (or someone else) saw with X seeing the 1600x1200 mode was it reading it
-from DDC. But I'm pretty sure it doesn't care about that -- X doesn't handle
-modesetting, the kernel does, and it uses its mode list.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1391627066.BbdD3D7b5.23889--
-
---===============0235658471==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0235658471==--
+U2VlIGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTc0NDkyCgpS
+ZXBvcnRlZC1ieTogUm9uYWxkIDxyb25hbGQ2NDVAZ21haWwuY29tPgpTdWdnZXN0ZWQtYnk6IE1h
+cmNpbiBLb8WbY2llbG5pY2tpIDxrb3JpYWtpbkAweDA0Lm5ldD4KU2lnbmVkLW9mZi1ieTogSWxp
+YSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L01ha2VmaWxlICAgICAgICAgICAgICAgICAgfCAgMSArCiBkcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9jb3JlL2VuZ2luZS9kZXZpY2UvbnY0MC5jIHwgMTAgKystLS0KIGRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L2NvcmUvaW5jbHVkZS9zdWJkZXYvbWMuaCAgfCAgMSArCiBkcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9jb3JlL3N1YmRldi9tYy9udjA0LmggICAgIHwgIDEgKwogZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvbWMvbnY0NC5jICAgICB8ICAyICstCiBkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9jb3JlL3N1YmRldi9tYy9udjRjLmMgICAgIHwgNDUgKysrKysrKysrKysr
+KysrKysrKysrKysKIDYgZmlsZXMgY2hhbmdlZCwgNTQgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlv
+bnMoLSkKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1
+YmRldi9tYy9udjRjLmMKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9NYWtl
+ZmlsZSBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L01ha2VmaWxlCmluZGV4IGU4ODE0NWIuLmQz
+MTBjMTkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L01ha2VmaWxlCisrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L01ha2VmaWxlCkBAIC0xNDEsNiArMTQxLDcgQEAgbm91
+dmVhdS15ICs9IGNvcmUvc3ViZGV2L21jL2Jhc2Uubwogbm91dmVhdS15ICs9IGNvcmUvc3ViZGV2
+L21jL252MDQubwogbm91dmVhdS15ICs9IGNvcmUvc3ViZGV2L21jL252NDAubwogbm91dmVhdS15
+ICs9IGNvcmUvc3ViZGV2L21jL252NDQubworbm91dmVhdS15ICs9IGNvcmUvc3ViZGV2L21jL252
+NGMubwogbm91dmVhdS15ICs9IGNvcmUvc3ViZGV2L21jL252NTAubwogbm91dmVhdS15ICs9IGNv
+cmUvc3ViZGV2L21jL252OTQubwogbm91dmVhdS15ICs9IGNvcmUvc3ViZGV2L21jL252OTgubwpk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9lbmdpbmUvZGV2aWNlL252
+NDAuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvZW5naW5lL2RldmljZS9udjQwLmMK
+aW5kZXggMWI2NTNkZC4uMDhiODg1OSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvY29yZS9lbmdpbmUvZGV2aWNlL252NDAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9jb3JlL2VuZ2luZS9kZXZpY2UvbnY0MC5jCkBAIC0zMTEsNyArMzExLDcgQEAgbnY0MF9pZGVu
+dGlmeShzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRldmljZSkKIAkJZGV2aWNlLT5vY2xhc3NbTlZE
+RVZfU1VCREVWX0NMT0NLICBdID0gJm52NDBfY2xvY2tfb2NsYXNzOwogCQlkZXZpY2UtPm9jbGFz
+c1tOVkRFVl9TVUJERVZfVEhFUk0gIF0gPSAmbnY0MF90aGVybV9vY2xhc3M7CiAJCWRldmljZS0+
+b2NsYXNzW05WREVWX1NVQkRFVl9ERVZJTklUXSA9ICBudjFhX2RldmluaXRfb2NsYXNzOwotCQlk
+ZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfTUMgICAgIF0gPSAgbnY0NF9tY19vY2xhc3M7CisJ
+CWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9NQyAgICAgXSA9ICBudjRjX21jX29jbGFzczsK
+IAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX0JVUyAgICBdID0gIG52MzFfYnVzX29jbGFz
+czsKIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX1RJTUVSICBdID0gJm52MDRfdGltZXJf
+b2NsYXNzOwogCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfRkIgICAgIF0gPSAgbnY0Nl9m
+Yl9vY2xhc3M7CkBAIC0zMzQsNyArMzM0LDcgQEAgbnY0MF9pZGVudGlmeShzdHJ1Y3Qgbm91dmVh
+dV9kZXZpY2UgKmRldmljZSkKIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX0NMT0NLICBd
+ID0gJm52NDBfY2xvY2tfb2NsYXNzOwogCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfVEhF
+Uk0gIF0gPSAmbnY0MF90aGVybV9vY2xhc3M7CiAJCWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRF
+Vl9ERVZJTklUXSA9ICBudjFhX2RldmluaXRfb2NsYXNzOwotCQlkZXZpY2UtPm9jbGFzc1tOVkRF
+Vl9TVUJERVZfTUMgICAgIF0gPSAgbnY0NF9tY19vY2xhc3M7CisJCWRldmljZS0+b2NsYXNzW05W
+REVWX1NVQkRFVl9NQyAgICAgXSA9ICBudjRjX21jX29jbGFzczsKIAkJZGV2aWNlLT5vY2xhc3Nb
+TlZERVZfU1VCREVWX0JVUyAgICBdID0gIG52MzFfYnVzX29jbGFzczsKIAkJZGV2aWNlLT5vY2xh
+c3NbTlZERVZfU1VCREVWX1RJTUVSICBdID0gJm52MDRfdGltZXJfb2NsYXNzOwogCQlkZXZpY2Ut
+Pm9jbGFzc1tOVkRFVl9TVUJERVZfRkIgICAgIF0gPSAgbnY0ZV9mYl9vY2xhc3M7CkBAIC0zNTcs
+NyArMzU3LDcgQEAgbnY0MF9pZGVudGlmeShzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRldmljZSkK
+IAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX0NMT0NLICBdID0gJm52NDBfY2xvY2tfb2Ns
+YXNzOwogCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfVEhFUk0gIF0gPSAmbnY0MF90aGVy
+bV9vY2xhc3M7CiAJCWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9ERVZJTklUXSA9ICBudjFh
+X2RldmluaXRfb2NsYXNzOwotCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfTUMgICAgIF0g
+PSAgbnY0NF9tY19vY2xhc3M7CisJCWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9NQyAgICAg
+XSA9ICBudjRjX21jX29jbGFzczsKIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX0JVUyAg
+ICBdID0gIG52MzFfYnVzX29jbGFzczsKIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX1RJ
+TUVSICBdID0gJm52MDRfdGltZXJfb2NsYXNzOwogCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJE
+RVZfRkIgICAgIF0gPSAgbnY0Nl9mYl9vY2xhc3M7CkBAIC0zODAsNyArMzgwLDcgQEAgbnY0MF9p
+ZGVudGlmeShzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRldmljZSkKIAkJZGV2aWNlLT5vY2xhc3Nb
+TlZERVZfU1VCREVWX0NMT0NLICBdID0gJm52NDBfY2xvY2tfb2NsYXNzOwogCQlkZXZpY2UtPm9j
+bGFzc1tOVkRFVl9TVUJERVZfVEhFUk0gIF0gPSAmbnY0MF90aGVybV9vY2xhc3M7CiAJCWRldmlj
+ZS0+b2NsYXNzW05WREVWX1NVQkRFVl9ERVZJTklUXSA9ICBudjFhX2RldmluaXRfb2NsYXNzOwot
+CQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfTUMgICAgIF0gPSAgbnY0NF9tY19vY2xhc3M7
+CisJCWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9NQyAgICAgXSA9ICBudjRjX21jX29jbGFz
+czsKIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX0JVUyAgICBdID0gIG52MzFfYnVzX29j
+bGFzczsKIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX1RJTUVSICBdID0gJm52MDRfdGlt
+ZXJfb2NsYXNzOwogCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfRkIgICAgIF0gPSAgbnY0
+Nl9mYl9vY2xhc3M7CkBAIC00MDMsNyArNDAzLDcgQEAgbnY0MF9pZGVudGlmeShzdHJ1Y3Qgbm91
+dmVhdV9kZXZpY2UgKmRldmljZSkKIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX0NMT0NL
+ICBdID0gJm52NDBfY2xvY2tfb2NsYXNzOwogCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZf
+VEhFUk0gIF0gPSAmbnY0MF90aGVybV9vY2xhc3M7CiAJCWRldmljZS0+b2NsYXNzW05WREVWX1NV
+QkRFVl9ERVZJTklUXSA9ICBudjFhX2RldmluaXRfb2NsYXNzOwotCQlkZXZpY2UtPm9jbGFzc1tO
+VkRFVl9TVUJERVZfTUMgICAgIF0gPSAgbnY0NF9tY19vY2xhc3M7CisJCWRldmljZS0+b2NsYXNz
+W05WREVWX1NVQkRFVl9NQyAgICAgXSA9ICBudjRjX21jX29jbGFzczsKIAkJZGV2aWNlLT5vY2xh
+c3NbTlZERVZfU1VCREVWX0JVUyAgICBdID0gIG52MzFfYnVzX29jbGFzczsKIAkJZGV2aWNlLT5v
+Y2xhc3NbTlZERVZfU1VCREVWX1RJTUVSICBdID0gJm52MDRfdGltZXJfb2NsYXNzOwogCQlkZXZp
+Y2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfRkIgICAgIF0gPSAgbnY0Nl9mYl9vY2xhc3M7CmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL2luY2x1ZGUvc3ViZGV2L21jLmgg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL2luY2x1ZGUvc3ViZGV2L21jLmgKaW5kZXgg
+YWRjODhiNy4uM2M2NzM4ZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29y
+ZS9pbmNsdWRlL3N1YmRldi9tYy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUv
+aW5jbHVkZS9zdWJkZXYvbWMuaApAQCAtNDcsNiArNDcsNyBAQCBzdHJ1Y3Qgbm91dmVhdV9tY19v
+Y2xhc3MgewogZXh0ZXJuIHN0cnVjdCBub3V2ZWF1X29jbGFzcyAqbnYwNF9tY19vY2xhc3M7CiBl
+eHRlcm4gc3RydWN0IG5vdXZlYXVfb2NsYXNzICpudjQwX21jX29jbGFzczsKIGV4dGVybiBzdHJ1
+Y3Qgbm91dmVhdV9vY2xhc3MgKm52NDRfbWNfb2NsYXNzOworZXh0ZXJuIHN0cnVjdCBub3V2ZWF1
+X29jbGFzcyAqbnY0Y19tY19vY2xhc3M7CiBleHRlcm4gc3RydWN0IG5vdXZlYXVfb2NsYXNzICpu
+djUwX21jX29jbGFzczsKIGV4dGVybiBzdHJ1Y3Qgbm91dmVhdV9vY2xhc3MgKm52OTRfbWNfb2Ns
+YXNzOwogZXh0ZXJuIHN0cnVjdCBub3V2ZWF1X29jbGFzcyAqbnY5OF9tY19vY2xhc3M7CmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1YmRldi9tYy9udjA0LmggYi9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1YmRldi9tYy9udjA0LmgKaW5kZXggYjBkNWMz
+MS4uODFhNDA4ZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJk
+ZXYvbWMvbnYwNC5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvc3ViZGV2L21j
+L252MDQuaApAQCAtMTQsNiArMTQsNyBAQCBpbnQgIG52MDRfbWNfY3RvcihzdHJ1Y3Qgbm91dmVh
+dV9vYmplY3QgKiwgc3RydWN0IG5vdXZlYXVfb2JqZWN0ICosCiBleHRlcm4gY29uc3Qgc3RydWN0
+IG5vdXZlYXVfbWNfaW50ciBudjA0X21jX2ludHJbXTsKIGludCAgbnYwNF9tY19pbml0KHN0cnVj
+dCBub3V2ZWF1X29iamVjdCAqKTsKIHZvaWQgbnY0MF9tY19tc2lfcmVhcm0oc3RydWN0IG5vdXZl
+YXVfbWMgKik7CitpbnQgIG52NDRfbWNfaW5pdChzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKm9iamVj
+dCk7CiBpbnQgIG52NTBfbWNfaW5pdChzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKik7CiBleHRlcm4g
+Y29uc3Qgc3RydWN0IG5vdXZlYXVfbWNfaW50ciBudjUwX21jX2ludHJbXTsKIGV4dGVybiBjb25z
+dCBzdHJ1Y3Qgbm91dmVhdV9tY19pbnRyIG52YzBfbWNfaW50cltdOwpkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvbWMvbnY0NC5jIGIvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvbWMvbnY0NC5jCmluZGV4IDNiZmVlNWMuLmNjNGQwZDIg
+MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvc3ViZGV2L21jL252NDQu
+YworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1YmRldi9tYy9udjQ0LmMKQEAg
+LTI0LDcgKzI0LDcgQEAKIAogI2luY2x1ZGUgIm52MDQuaCIKIAotc3RhdGljIGludAoraW50CiBu
+djQ0X21jX2luaXQoc3RydWN0IG5vdXZlYXVfb2JqZWN0ICpvYmplY3QpCiB7CiAJc3RydWN0IG52
+MDRfbWNfcHJpdiAqcHJpdiA9ICh2b2lkICopb2JqZWN0OwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvbWMvbnY0Yy5jIGIvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvY29yZS9zdWJkZXYvbWMvbnY0Yy5jCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAw
+MDAwMDAuLmE3NWMzNWMKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9jb3JlL3N1YmRldi9tYy9udjRjLmMKQEAgLTAsMCArMSw0NSBAQAorLyoKKyAqIENvcHlyaWdo
+dCAyMDE0IElsaWEgTWlya2luCisgKgorICogUGVybWlzc2lvbiBpcyBoZXJlYnkgZ3JhbnRlZCwg
+ZnJlZSBvZiBjaGFyZ2UsIHRvIGFueSBwZXJzb24gb2J0YWluaW5nIGEKKyAqIGNvcHkgb2YgdGhp
+cyBzb2Z0d2FyZSBhbmQgYXNzb2NpYXRlZCBkb2N1bWVudGF0aW9uIGZpbGVzICh0aGUgIlNvZnR3
+YXJlIiksCisgKiB0byBkZWFsIGluIHRoZSBTb2Z0d2FyZSB3aXRob3V0IHJlc3RyaWN0aW9uLCBp
+bmNsdWRpbmcgd2l0aG91dCBsaW1pdGF0aW9uCisgKiB0aGUgcmlnaHRzIHRvIHVzZSwgY29weSwg
+bW9kaWZ5LCBtZXJnZSwgcHVibGlzaCwgZGlzdHJpYnV0ZSwgc3VibGljZW5zZSwKKyAqIGFuZC9v
+ciBzZWxsIGNvcGllcyBvZiB0aGUgU29mdHdhcmUsIGFuZCB0byBwZXJtaXQgcGVyc29ucyB0byB3
+aG9tIHRoZQorICogU29mdHdhcmUgaXMgZnVybmlzaGVkIHRvIGRvIHNvLCBzdWJqZWN0IHRvIHRo
+ZSBmb2xsb3dpbmcgY29uZGl0aW9uczoKKyAqCisgKiBUaGUgYWJvdmUgY29weXJpZ2h0IG5vdGlj
+ZSBhbmQgdGhpcyBwZXJtaXNzaW9uIG5vdGljZSBzaGFsbCBiZSBpbmNsdWRlZCBpbgorICogYWxs
+IGNvcGllcyBvciBzdWJzdGFudGlhbCBwb3J0aW9ucyBvZiB0aGUgU29mdHdhcmUuCisgKgorICog
+VEhFIFNPRlRXQVJFIElTIFBST1ZJREVEICJBUyBJUyIsIFdJVEhPVVQgV0FSUkFOVFkgT0YgQU5Z
+IEtJTkQsIEVYUFJFU1MgT1IKKyAqIElNUExJRUQsIElOQ0xVRElORyBCVVQgTk9UIExJTUlURUQg
+VE8gVEhFIFdBUlJBTlRJRVMgT0YgTUVSQ0hBTlRBQklMSVRZLAorICogRklUTkVTUyBGT1IgQSBQ
+QVJUSUNVTEFSIFBVUlBPU0UgQU5EIE5PTklORlJJTkdFTUVOVC4gIElOIE5PIEVWRU5UIFNIQUxM
+CisgKiBUSEUgQ09QWVJJR0hUIEhPTERFUihTKSBPUiBBVVRIT1IoUykgQkUgTElBQkxFIEZPUiBB
+TlkgQ0xBSU0sIERBTUFHRVMgT1IKKyAqIE9USEVSIExJQUJJTElUWSwgV0hFVEhFUiBJTiBBTiBB
+Q1RJT04gT0YgQ09OVFJBQ1QsIFRPUlQgT1IgT1RIRVJXSVNFLAorICogQVJJU0lORyBGUk9NLCBP
+VVQgT0YgT1IgSU4gQ09OTkVDVElPTiBXSVRIIFRIRSBTT0ZUV0FSRSBPUiBUSEUgVVNFIE9SCisg
+KiBPVEhFUiBERUFMSU5HUyBJTiBUSEUgU09GVFdBUkUuCisgKgorICogQXV0aG9yczogSWxpYSBN
+aXJraW4KKyAqLworCisjaW5jbHVkZSAibnYwNC5oIgorCitzdGF0aWMgdm9pZAorbnY0Y19tY19t
+c2lfcmVhcm0oc3RydWN0IG5vdXZlYXVfbWMgKnBtYykKK3sKKwlzdHJ1Y3QgbnYwNF9tY19wcml2
+ICpwcml2ID0gKHZvaWQgKilwbWM7CisJbnZfd3IwOChwcml2LCAweDA4ODA1MCwgMHhmZik7Cit9
+CisKK3N0cnVjdCBub3V2ZWF1X29jbGFzcyAqCitudjRjX21jX29jbGFzcyA9ICYoc3RydWN0IG5v
+dXZlYXVfbWNfb2NsYXNzKSB7CisJLmJhc2UuaGFuZGxlID0gTlZfU1VCREVWKE1DLCAweDRjKSwK
+KwkuYmFzZS5vZnVuY3MgPSAmKHN0cnVjdCBub3V2ZWF1X29mdW5jcykgeworCQkuY3RvciA9IG52
+MDRfbWNfY3RvciwKKwkJLmR0b3IgPSBfbm91dmVhdV9tY19kdG9yLAorCQkuaW5pdCA9IG52NDRf
+bWNfaW5pdCwKKwkJLmZpbmkgPSBfbm91dmVhdV9tY19maW5pLAorCX0sCisJLmludHIgPSBudjA0
+X21jX2ludHIsCisJLm1zaV9yZWFybSA9IG52NGNfbWNfbXNpX3JlYXJtLAorfS5iYXNlOwotLSAK
+MS44LjMuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
