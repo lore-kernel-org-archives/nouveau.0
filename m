@@ -1,100 +1,40 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
-Date: Wed, 05 Feb 2014 20:24:05 +0000
-Message-ID: <bug-70972-8800-VONw05NYAf@http.bugs.freedesktop.org/>
-References: <bug-70972-8800@http.bugs.freedesktop.org/>
+From: Stephen Warren <swarren@wwwdotorg.org>
+Subject: Re: [RFC 10/16] drm/nouveau/timer: skip calibration on GK20A
+Date: Wed, 05 Feb 2014 13:27:36 -0700
+Message-ID: <52F29EB8.5040906@wwwdotorg.org>
+References: <1391224618-3794-1-git-send-email-acourbot@nvidia.com>	<1391224618-3794-11-git-send-email-acourbot@nvidia.com>
+	<CACAvsv4T=TRb05OtkxG=t1+Ou9=Of9c-ALWkHJjKYpNi2aGs5Q@mail.gmail.com>
+	<52F0A72B.8030900@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0103654604=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <52F0A72B.8030900@nvidia.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces@lists.freedesktop.org
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+To: Alexandre Courbot <acourbot@nvidia.com>, Ben Skeggs <skeggsb@gmail.com>
+Cc: Alexandre Courbot <gnurou@gmail.com>, Eric Brower <ebrower@nvidia.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>, Terje Bergstrom <tbergstrom@nvidia.com>, Ken Adams <KAdams@nvidia.com>
 List-Id: nouveau.vger.kernel.org
 
+On 02/04/2014 01:39 AM, Alexandre Courbot wrote:
+> On 02/04/2014 12:55 PM, Ben Skeggs wrote:
+>> On Sat, Feb 1, 2014 at 1:16 PM, Alexandre Courbot
+>> <acourbot@nvidia.com> wrote:
+>>> GK20A's timer is directly attached to the system timer and cannot be
+>>> calibrated. Skip the calibration phase on that chip since the
+>>> corresponding registers do not exist.
+>> Just a curiosity:  What timer resolution does the HW initialise at?
+> 
+> On T124 the timer input is the oscillator clock, which depending on the
+> device can run between 12 and 48Mhz (IIUC).
 
---===============0103654604==
-Content-Type: multipart/alternative; boundary="1391631846.f87D2.7560"; charset="us-ascii"
-
-
---1391631846.f87D2.7560
-Date: Wed, 5 Feb 2014 20:24:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=70972
-
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-No clue if this will help, but we recently noticed that the NV4x IGP's have
-some differences in register placement. Perhaps this patch:
-
-http://lists.freedesktop.org/archives/nouveau/2014-February/016033.html
-
-will help something. (See nouveau list for another patch that possibly fixes
-MSI that comes with 3.13.)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1391631846.f87D2.7560
-Date: Wed, 5 Feb 2014 20:24:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV67] Modesetting failure at 1280x800"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV67] Modesetting failure at 1280x800"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972">bug 70972</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>No clue if this will help, but we recently noticed that the NV4x IGP's have
-some differences in register placement. Perhaps this patch:
-
-<a href="http://lists.freedesktop.org/archives/nouveau/2014-February/016033.html">http://lists.freedesktop.org/archives/nouveau/2014-February/016033.html</a>
-
-will help something. (See nouveau list for another patch that possibly fixes
-MSI that comes with 3.13.)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1391631846.f87D2.7560--
-
---===============0103654604==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0103654604==--
+On the one Tegra124 board we support upstream, the crystal is 12MHz. I
+believe this is a typical/common value; almost all the Tegra boards we
+support upstream run at this rate.
