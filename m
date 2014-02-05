@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
-Date: Wed, 05 Feb 2014 21:26:51 +0000
-Message-ID: <bug-70972-8800-nglSYcZEry@http.bugs.freedesktop.org/>
+Date: Wed, 05 Feb 2014 22:02:22 +0000
+Message-ID: <bug-70972-8800-BEHY2Cvr1W@http.bugs.freedesktop.org/>
 References: <bug-70972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1923585303=="
+Content-Type: multipart/mixed; boundary="===============0117329346=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,35 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1923585303==
-Content-Type: multipart/alternative; boundary="1391635611.65d14A332.18982"; charset="us-ascii"
+--===============0117329346==
+Content-Type: multipart/alternative; boundary="1391637741.ABE14401.24869"; charset="us-ascii"
 
 
---1391635611.65d14A332.18982
-Date: Wed, 5 Feb 2014 21:26:51 +0000
+--1391637741.ABE14401.24869
+Date: Wed, 5 Feb 2014 22:02:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70972
 
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Well, unrelated to this issue, you probably need
+--- Comment #10 from Larry Finger <larry.finger-tQ5ms3gMjBLk1uMJSBkQmQ@public.gmane.org> ---
+Unfortunately, neither the patch nor the patch and the nouveau.config boot
+change made any difference.
 
-http://lists.freedesktop.org/archives/nouveau/2014-February/016032.html
-
-For MSI to work properly. We've had reports of issues for people on NV4E, and
-it's also been confirmed that the registers are in a different place for NV63.
-It's very likely to also be different on NV67. You can also disable MSI by
-using nouveau.config=NvMSI=0 . (However if you can confirm that this patch
-either helps or breaks things, that would be nice -- not a lot of people with
-this HW.)
+I certainly understand that not many people have this hardware.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391635611.65d14A332.18982
-Date: Wed, 5 Feb 2014 21:26:51 +0000
+--1391637741.ABE14401.24869
+Date: Wed, 5 Feb 2014 22:02:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,23 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV67] Modesetting failure at 1280x800"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV67] Modesetting failure at 1280x800"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70972">bug 70972</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:larry.finger&#64;lwfinger.net" title="Larry Finger &lt;larry.finger&#64;lwfinger.net&gt;"> <span class="fn">Larry Finger</span></a>
 </span></b>
-        <pre>Well, unrelated to this issue, you probably need
+        <pre>Unfortunately, neither the patch nor the patch and the nouveau.config boot
+change made any difference.
 
-<a href="http://lists.freedesktop.org/archives/nouveau/2014-February/016032.html">http://lists.freedesktop.org/archives/nouveau/2014-February/016032.html</a>
-
-For MSI to work properly. We've had reports of issues for people on NV4E, and
-it's also been confirmed that the registers are in a different place for NV63.
-It's very likely to also be different on NV67. You can also disable MSI by
-using nouveau.config=NvMSI=0 . (However if you can confirm that this patch
-either helps or breaks things, that would be nice -- not a lot of people with
-this HW.)</pre>
+I certainly understand that not many people have this hardware.</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +78,9 @@ this HW.)</pre>
     </body>
 </html>
 
---1391635611.65d14A332.18982--
+--1391637741.ABE14401.24869--
 
---===============1923585303==
+--===============0117329346==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1923585303==--
+--===============0117329346==--
