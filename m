@@ -1,11 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] drm/nv50/graph: update status enum names
-Date: Tue,  4 Feb 2014 20:38:17 -0500
-Message-ID: <1391564297-20748-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 63135] [NV96] [bisected] DisplayPort dual-head fails
+ to switch to KMS
+Date: Wed, 05 Feb 2014 02:41:48 +0000
+Message-ID: <bug-63135-8800-G8JmduqO9b@http.bugs.freedesktop.org/>
+References: <bug-63135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1473014047=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-63135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,71 +17,107 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
----
 
-This syncs it up with what's in envytools. Some of the names are a bit
-different, but I'm inclined to trust envytools as the correct thing.
+--===============1473014047==
+Content-Type: multipart/alternative; boundary="1391568108.c70eB7C1.24174"; charset="us-ascii"
 
- drivers/gpu/drm/nouveau/core/engine/graph/nv50.c | 29 ++++++++++++------------
- 1 file changed, 15 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-index 30ed19c..6da473c 100644
---- a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-@@ -197,34 +197,35 @@ static const struct nouveau_bitfield nv50_pgraph_status[] = {
- 	{ 0x00000080, "UNK7" },
- 	{ 0x00000100, "CTXPROG" },
- 	{ 0x00000200, "VFETCH" },
--	{ 0x00000400, "CCACHE_UNK4" },
--	{ 0x00000800, "STRMOUT_GSCHED_UNK5" },
--	{ 0x00001000, "UNK14XX" },
--	{ 0x00002000, "UNK24XX_CSCHED" },
--	{ 0x00004000, "UNK1CXX" },
-+	{ 0x00000400, "CCACHE_PREGEOM" },
-+	{ 0x00000800, "STRMOUT_VATTR_POSTGEOM" },
-+	{ 0x00001000, "VCLIP" },
-+	{ 0x00002000, "RATTR_APLANE" },
-+	{ 0x00004000, "TRAST" },
- 	{ 0x00008000, "CLIPID" },
- 	{ 0x00010000, "ZCULL" },
- 	{ 0x00020000, "ENG2D" },
--	{ 0x00040000, "UNK34XX" },
--	{ 0x00080000, "TPRAST" },
--	{ 0x00100000, "TPROP" },
--	{ 0x00200000, "TEX" },
--	{ 0x00400000, "TPVP" },
--	{ 0x00800000, "MP" },
-+	{ 0x00040000, "RMASK" },
-+	{ 0x00080000, "TPC_RAST" },
-+	{ 0x00100000, "TPC_PROP" },
-+	{ 0x00200000, "TPC_TEX" },
-+	{ 0x00400000, "TPC_GEOM" },
-+	{ 0x00800000, "TPC_MP" },
- 	{ 0x01000000, "ROP" },
- 	{}
- };
- 
- static const char *const nv50_pgraph_vstatus_0[] = {
--	"VFETCH", "CCACHE", "UNK4", "UNK5", "GSCHED", "STRMOUT", "UNK14XX", NULL
-+	"VFETCH", "CCACHE", "PREGEOM", "POSTGEOM", "VATTR", "STRMOUT", "VCLIP",
-+	NULL
- };
- 
- static const char *const nv50_pgraph_vstatus_1[] = {
--	"TPRAST", "TPROP", "TEXTURE", "TPVP", "MP", NULL
-+	"TPC_RAST", "TPC_PROP", "TPC_TEX", "TPC_GEOM", "TPC_MP", NULL
- };
- 
- static const char *const nv50_pgraph_vstatus_2[] = {
--	"UNK24XX", "CSCHED", "UNK1CXX", "CLIPID", "ZCULL", "ENG2D", "UNK34XX",
-+	"RATTR", "APLANE", "TRAST", "CLIPID", "ZCULL", "ENG2D", "RMASK",
- 	"ROP", NULL
- };
- 
+--1391568108.c70eB7C1.24174
+Date: Wed, 5 Feb 2014 02:41:48 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=63135
+
+--- Comment #24 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Would you mind testing this again with 3.13.x? A few fixes went in, especially
+one that fixes errors setting up displays in NV96 VBIOSes (for HDMI, but your
+case could be similar).
+
+Assuming it still doesn't work help, could you attach a boot (from 3.13.x) with
+nouveau.debug=PDISP=debug,VBIOS=trace ?
+
+Also, could attach a boot from a good kernel (not necessarily the last good
+rev) with nouveau.debug=debug drm.debug=0xe (this should cause a VBIOS trace
+from that kernel as well... if it doesn't, I'll have to go back and re-check
+the kernel parameters for the older version).
+
+(This is banking on something being different wrt the vbios, either execution
+path or perhaps when/how often it is invoked.)
+
+Curiously I don't see any opcode 0x44 in your VBIOS. But I think there are some
+tables I'm actually missing, so perhaps it's there. That's definitely an
+unknown opcode though -- old or new kernels.
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1391568108.c70eB7C1.24174
+Date: Wed, 5 Feb 2014 02:41:48 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV96] [bisected] DisplayPort dual-head fails to switch to KMS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135#c24">Comment # 24</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV96] [bisected] DisplayPort dual-head fails to switch to KMS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63135">bug 63135</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Would you mind testing this again with 3.13.x? A few fixes went in, especially
+one that fixes errors setting up displays in NV96 VBIOSes (for HDMI, but your
+case could be similar).
+
+Assuming it still doesn't work help, could you attach a boot (from 3.13.x) with
+nouveau.debug=PDISP=debug,VBIOS=trace ?
+
+Also, could attach a boot from a good kernel (not necessarily the last good
+rev) with nouveau.debug=debug drm.debug=0xe (this should cause a VBIOS trace
+from that kernel as well... if it doesn't, I'll have to go back and re-check
+the kernel parameters for the older version).
+
+(This is banking on something being different wrt the vbios, either execution
+path or perhaps when/how often it is invoked.)
+
+Curiously I don't see any opcode 0x44 in your VBIOS. But I think there are some
+tables I'm actually missing, so perhaps it's there. That's definitely an
+unknown opcode though -- old or new kernels.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1391568108.c70eB7C1.24174--
+
+--===============1473014047==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1473014047==--
