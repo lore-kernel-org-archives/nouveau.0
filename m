@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 40747] [NV44] dual-link tmds no longer allowed
-Date: Wed, 05 Feb 2014 04:18:15 +0000
-Message-ID: <bug-40747-8800-Us8M1lrb4C@http.bugs.freedesktop.org/>
+Date: Wed, 05 Feb 2014 04:38:29 +0000
+Message-ID: <bug-40747-8800-eM2gOC8Gl1@http.bugs.freedesktop.org/>
 References: <bug-40747-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2083201747=="
+Content-Type: multipart/mixed; boundary="===============1014082452=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-40747-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,54 +20,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2083201747==
-Content-Type: multipart/alternative; boundary="1391573895.41ef24E5.3377"; charset="us-ascii"
+--===============1014082452==
+Content-Type: multipart/alternative; boundary="1391575109.eDeBA5.6315"; charset="us-ascii"
 
 
---1391573895.41ef24E5.3377
-Date: Wed, 5 Feb 2014 04:18:15 +0000
+--1391575109.eDeBA5.6315
+Date: Wed, 5 Feb 2014 04:38:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=40747
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #19 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I might be misremembering about 1600x1200 working on my NV34 actually... maybe
+it was 1680x1050 that worked. I just flipped it to VGA, which could handle
+1920x1200 just fine. Here are my modes:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|The new nouveau kernel      |[NV44] dual-link tmds no
-                   |module fails to use my      |longer allowed
-                   |monitor's native resolution |
+  1920x1200 (0x64)  154.0MHz +HSync -VSync *current +preferred
+        h: width  1920 start 1968 end 2000 total 2080 skew    0 clock   74.0KHz
+        v: height 1200 start 1203 end 1209 total 1235           clock   60.0Hz
+  1600x1200 (0x65)  162.0MHz +HSync +VSync
+        h: width  1600 start 1664 end 1856 total 2160 skew    0 clock   75.0KHz
+        v: height 1200 start 1201 end 1204 total 1250           clock   60.0Hz
+  1680x1050 (0x66)  119.0MHz +HSync -VSync
+        h: width  1680 start 1728 end 1760 total 1840 skew    0 clock   64.7KHz
+        v: height 1050 start 1053 end 1059 total 1080           clock   59.9Hz
 
---- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I don't think there's any issue detecting the 1600x1200 mode. All your earlier
-logs appear to indicate it's detected correctly. The issue is that your card is
-not being detected as dual-link-capable, and the 1600x1200 mode without reduced
-blanking won't work on it.
+Note how 1920x1200 is under the 155MHz limit of NV4x single-link TMDS chips.
+(And the nv34 has a 135MHz limit, so it can't do 1920x1200 either.)
 
-I have a NV44 and NV42 card, and neither have had trouble getting 1920x1200
-going. However an NV34 card can't go beyond 1600x1200 on digital (TMDS).
-
-Could you upload a copy of your vbios (/sys/kernel/debug/dri/0/vbios.rom)? Also
-can you try hacking up your kernel, see
-nouveau_connector.c:nouveau_connector_mode_valid
-
-if (nouveau_duallink && nv_encoder->dcb->duallink_possible)
-    max_clock *= 2;
-
-Just get rid of the if statement so that the max_clock *= 2 is always done.
-Perhaps the nv_device(drm->device)->chipset > 0x46 is wrong in
-get_tmds_link_bandwidth and it should actually be >= 0x44... although that
-feels more like a difference between geforce 6- and 7-series. (But then it
-picks up the igp's as well as the nv4a which is supposed to be just like the
-nv44...)
+If this worked on the blob, I wonder if it was really using TMDS for outputting
+the 1600x1200 resolution, and not using the VGA (which should be able to handle
+it just fine). Still would be interesting to see what happens if you just make
+it claim that you have dual-link -- could well be that the nouveau detection of
+it is incorrect, or perhaps the TMDS on your card can do 165MHz and not 155MHz.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391573895.41ef24E5.3377
-Date: Wed, 5 Feb 2014 04:18:15 +0000
+--1391575109.eDeBA5.6315
+Date: Wed, 5 Feb 2014 04:38:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -75,60 +68,41 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV44] dual-link tmds no longer allowed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40747">bug 40747</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>The new nouveau kernel module fails to use my monitor's native resolution
-           </td>
-           <td>[NV44] dual-link tmds no longer allowed
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [NV44] dual-link tmds no longer allowed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40747#c18">Comment # 18</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40747#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [NV44] dual-link tmds no longer allowed"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=40747">bug 40747</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I don't think there's any issue detecting the 1600x1200 mode. All your earlier
-logs appear to indicate it's detected correctly. The issue is that your card is
-not being detected as dual-link-capable, and the 1600x1200 mode without reduced
-blanking won't work on it.
+        <pre>I might be misremembering about 1600x1200 working on my NV34 actually... maybe
+it was 1680x1050 that worked. I just flipped it to VGA, which could handle
+1920x1200 just fine. Here are my modes:
 
-I have a NV44 and NV42 card, and neither have had trouble getting 1920x1200
-going. However an NV34 card can't go beyond 1600x1200 on digital (TMDS).
+  1920x1200 (0x64)  154.0MHz +HSync -VSync *current +preferred
+        h: width  1920 start 1968 end 2000 total 2080 skew    0 clock   74.0KHz
+        v: height 1200 start 1203 end 1209 total 1235           clock   60.0Hz
+  1600x1200 (0x65)  162.0MHz +HSync +VSync
+        h: width  1600 start 1664 end 1856 total 2160 skew    0 clock   75.0KHz
+        v: height 1200 start 1201 end 1204 total 1250           clock   60.0Hz
+  1680x1050 (0x66)  119.0MHz +HSync -VSync
+        h: width  1680 start 1728 end 1760 total 1840 skew    0 clock   64.7KHz
+        v: height 1050 start 1053 end 1059 total 1080           clock   59.9Hz
 
-Could you upload a copy of your vbios (/sys/kernel/debug/dri/0/vbios.rom)? Also
-can you try hacking up your kernel, see
-nouveau_connector.c:nouveau_connector_mode_valid
+Note how 1920x1200 is under the 155MHz limit of NV4x single-link TMDS chips.
+(And the nv34 has a 135MHz limit, so it can't do 1920x1200 either.)
 
-if (nouveau_duallink &amp;&amp; nv_encoder-&gt;dcb-&gt;duallink_possible)
-    max_clock *= 2;
-
-Just get rid of the if statement so that the max_clock *= 2 is always done.
-Perhaps the nv_device(drm-&gt;device)-&gt;chipset &gt; 0x46 is wrong in
-get_tmds_link_bandwidth and it should actually be &gt;= 0x44... although that
-feels more like a difference between geforce 6- and 7-series. (But then it
-picks up the igp's as well as the nv4a which is supposed to be just like the
-nv44...)</pre>
+If this worked on the blob, I wonder if it was really using TMDS for outputting
+the 1600x1200 resolution, and not using the VGA (which should be able to handle
+it just fine). Still would be interesting to see what happens if you just make
+it claim that you have dual-link -- could well be that the nouveau detection of
+it is incorrect, or perhaps the TMDS on your card can do 165MHz and not 155MHz.</pre>
         </div>
       </p>
       <hr>
@@ -140,9 +114,9 @@ nv44...)</pre>
     </body>
 </html>
 
---1391573895.41ef24E5.3377--
+--1391575109.eDeBA5.6315--
 
---===============2083201747==
+--===============1014082452==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -153,4 +127,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2083201747==--
+--===============1014082452==--
