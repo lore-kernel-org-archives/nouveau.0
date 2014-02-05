@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72207] [NV67] Error retrieving EDID from VGA
-Date: Wed, 05 Feb 2014 16:59:18 +0000
-Message-ID: <bug-72207-8800-5wVdnK8zdU@http.bugs.freedesktop.org/>
-References: <bug-72207-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 40747] [NV44] dual-link tmds no longer allowed
+Date: Wed, 05 Feb 2014 19:04:26 +0000
+Message-ID: <bug-40747-8800-A0uQGiWYSj@http.bugs.freedesktop.org/>
+References: <bug-40747-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1998193578=="
+Content-Type: multipart/mixed; boundary="===============0235658471=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72207-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-40747-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +20,48 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1998193578==
-Content-Type: multipart/alternative; boundary="1391619558.f18031.32322"; charset="us-ascii"
+--===============0235658471==
+Content-Type: multipart/alternative; boundary="1391627066.BbdD3D7b5.23889"; charset="us-ascii"
 
 
---1391619558.f18031.32322
-Date: Wed, 5 Feb 2014 16:59:18 +0000
+--1391627066.BbdD3D7b5.23889
+Date: Wed, 5 Feb 2014 19:04:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72207
+https://bugs.freedesktop.org/show_bug.cgi?id=40747
 
---- Comment #3 from Priit Laes (irc: plaes) <plaes-q/aMd4JkU83YtjvyW6yDsg@public.gmane.org> ---
-Created attachment 93461
-  --> https://bugs.freedesktop.org/attachment.cgi?id=93461&action=edit
-GeForce-7050-vbios.rom
+--- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #20)
+> huh?
+> i said that it is *easy* to convince the kernel to pick the right mode. it's
+> picking a wrong one only automatically.
 
-Supplying the rom for completeness :)
+Really? It sounds to me like you managed to fool the drm mode-verification
+logic (or nouveau's is implemented incorrectly). If it was merely picking the
+wrong one, the 1600x1200 one would be in the mode list, and it is not.
+
+> there is no hardware limitation at all here.
+
+Maybe, maybe not. Should be fairly easy to check. One way to do that would be
+to try the thing I said. Or to change the 165mhz check to be >= 0x44 instead of
+0x46.
+
+> X appears more tenacious, apparently because it filters out the good mode
+> earlier in the process. it's beyond me why it does that - it makes no sense
+
+It just gets the list from the kernel. What's in
+/sys/class/drm/card0-DVI-I-1/modes (or whatever the connector is)? The thing
+you (or someone else) saw with X seeing the 1600x1200 mode was it reading it
+from DDC. But I'm pretty sure it doesn't care about that -- X doesn't handle
+modesetting, the kernel does, and it uses its mode list.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391619558.f18031.32322
-Date: Wed, 5 Feb 2014 16:59:18 +0000
+--1391627066.BbdD3D7b5.23889
+Date: Wed, 5 Feb 2014 19:04:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,19 +73,38 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV67] Error retrieving EDID from VGA"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72207#c3">Comment # 3</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV44] dual-link tmds no longer allowed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40747#c21">Comment # 21</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV67] Error retrieving EDID from VGA"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72207">bug 72207</a>
-              from <span class="vcard"><a class="email" href="mailto:plaes&#64;plaes.org" title="Priit Laes (irc: plaes) &lt;plaes&#64;plaes.org&gt;"> <span class="fn">Priit Laes (irc: plaes)</span></a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV44] dual-link tmds no longer allowed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=40747">bug 40747</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=93461" name="attach_93461" title="GeForce-7050-vbios.rom">attachment 93461</a> <a href="attachment.cgi?id=93461&amp;action=edit" title="GeForce-7050-vbios.rom">[details]</a></span>
-GeForce-7050-vbios.rom
+        <pre>(In reply to <a href="show_bug.cgi?id=40747#c20">comment #20</a>)
+<span class="quote">&gt; huh?
+&gt; i said that it is *easy* to convince the kernel to pick the right mode. it's
+&gt; picking a wrong one only automatically.</span >
 
-Supplying the rom for completeness :)</pre>
+Really? It sounds to me like you managed to fool the drm mode-verification
+logic (or nouveau's is implemented incorrectly). If it was merely picking the
+wrong one, the 1600x1200 one would be in the mode list, and it is not.
+
+<span class="quote">&gt; there is no hardware limitation at all here.</span >
+
+Maybe, maybe not. Should be fairly easy to check. One way to do that would be
+to try the thing I said. Or to change the 165mhz check to be &gt;= 0x44 instead of
+0x46.
+
+<span class="quote">&gt; X appears more tenacious, apparently because it filters out the good mode
+&gt; earlier in the process. it's beyond me why it does that - it makes no sense</span >
+
+It just gets the list from the kernel. What's in
+/sys/class/drm/card0-DVI-I-1/modes (or whatever the connector is)? The thing
+you (or someone else) saw with X seeing the 1600x1200 mode was it reading it
+from DDC. But I'm pretty sure it doesn't care about that -- X doesn't handle
+modesetting, the kernel does, and it uses its mode list.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +116,9 @@ Supplying the rom for completeness :)</pre>
     </body>
 </html>
 
---1391619558.f18031.32322--
+--1391627066.BbdD3D7b5.23889--
 
---===============1998193578==
+--===============0235658471==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +129,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1998193578==--
+--===============0235658471==--
