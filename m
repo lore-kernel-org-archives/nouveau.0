@@ -1,40 +1,98 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 3/3] drm/nv4c/bios: disallow retrieving from prom on nv4x igp's
-Date: Wed,  5 Feb 2014 14:33:04 -0500
-Message-ID: <1391628784-18834-3-git-send-email-imirkin@alum.mit.edu>
-References: <1391628784-18834-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74492] v3.13-rc8 nv4e + msi = random lockups
+Date: Wed, 05 Feb 2014 19:35:10 +0000
+Message-ID: <bug-74492-8800-6xgAzgQ3by@http.bugs.freedesktop.org/>
+References: <bug-74492-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1391628784-18834-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: Ronald <ronald645@gmail.com>, =?UTF-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin@0x04.net>
+Content-Type: multipart/mixed; boundary="===============1543375339=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-74492-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U3VnZ2VzdGVkLWJ5OiBNYXJjaW4gS2/Fm2NpZWxuaWNraSA8a29yaWFraW5AMHgwNC5uZXQ+ClNp
-Z25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KLS0tCiBkcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1YmRldi9iaW9zL2Jhc2UuYyB8IDQgKysrKwogMSBm
-aWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L2NvcmUvc3ViZGV2L2Jpb3MvYmFzZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvY29yZS9zdWJkZXYvYmlvcy9iYXNlLmMKaW5kZXggYWEwZmJiZS4uZWYwYzljNCAxMDA2NDQK
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvYmlvcy9iYXNlLmMKKysr
-IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvYmlvcy9iYXNlLmMKQEAgLTEz
-MCw2ICsxMzAsMTAgQEAgbm91dmVhdV9iaW9zX3NoYWRvd19wcm9tKHN0cnVjdCBub3V2ZWF1X2Jp
-b3MgKmJpb3MpCiAJdTE2IHBjaXI7CiAJaW50IGk7CiAKKwkvKiB0aGVyZSBpcyBubyBwcm9tIG9u
-IG52NHggSUdQJ3MgKi8KKwlpZiAoZGV2aWNlLT5jYXJkX3R5cGUgPT0gTlZfNDAgJiYgZGV2aWNl
-LT5jaGlwc2V0ID49IDB4NGMpCisJCXJldHVybjsKKwogCS8qIGVuYWJsZSBhY2Nlc3MgdG8gcm9t
-ICovCiAJaWYgKGRldmljZS0+Y2FyZF90eXBlID49IE5WXzUwKQogCQlwY2lyZWcgPSAweDA4ODA1
-MDsKLS0gCjEuOC4zLjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRl
-dmVsCg==
+
+--===============1543375339==
+Content-Type: multipart/alternative; boundary="1391628910.87aDA0a82.30335"; charset="us-ascii"
+
+
+--1391628910.87aDA0a82.30335
+Date: Wed, 5 Feb 2014 19:35:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=74492
+
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Looks like the nv4x igp's have some registers placed differently... I just cc'd
+you on a few patches, you can also get them at:
+
+http://lists.freedesktop.org/archives/nouveau/2014-February/016032.html
+http://lists.freedesktop.org/archives/nouveau/2014-February/016033.html
+http://lists.freedesktop.org/archives/nouveau/2014-February/016034.html
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1391628910.87aDA0a82.30335
+Date: Wed, 5 Feb 2014 19:35:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - v3.13-rc8 nv4e + msi = random lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - v3.13-rc8 nv4e + msi = random lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492">bug 74492</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Looks like the nv4x igp's have some registers placed differently... I just cc'd
+you on a few patches, you can also get them at:
+
+<a href="http://lists.freedesktop.org/archives/nouveau/2014-February/016032.html">http://lists.freedesktop.org/archives/nouveau/2014-February/016032.html</a>
+<a href="http://lists.freedesktop.org/archives/nouveau/2014-February/016033.html">http://lists.freedesktop.org/archives/nouveau/2014-February/016033.html</a>
+<a href="http://lists.freedesktop.org/archives/nouveau/2014-February/016034.html">http://lists.freedesktop.org/archives/nouveau/2014-February/016034.html</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1391628910.87aDA0a82.30335--
+
+--===============1543375339==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1543375339==--
