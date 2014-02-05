@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 40747] [NV44] dual-link tmds no longer allowed
-Date: Wed, 05 Feb 2014 04:38:29 +0000
-Message-ID: <bug-40747-8800-eM2gOC8Gl1@http.bugs.freedesktop.org/>
-References: <bug-40747-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72207] [NV67] Error retrieving EDID from VGA
+Date: Wed, 05 Feb 2014 04:49:52 +0000
+Message-ID: <bug-72207-8800-dArdYCAGDI@http.bugs.freedesktop.org/>
+References: <bug-72207-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1014082452=="
+Content-Type: multipart/mixed; boundary="===============1407960770=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-40747-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72207-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,47 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1014082452==
-Content-Type: multipart/alternative; boundary="1391575109.eDeBA5.6315"; charset="us-ascii"
+--===============1407960770==
+Content-Type: multipart/alternative; boundary="1391575792.8AF57c2.7551"; charset="us-ascii"
 
 
---1391575109.eDeBA5.6315
-Date: Wed, 5 Feb 2014 04:38:29 +0000
+--1391575792.8AF57c2.7551
+Date: Wed, 5 Feb 2014 04:49:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=40747
+https://bugs.freedesktop.org/show_bug.cgi?id=72207
 
---- Comment #19 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I might be misremembering about 1600x1200 working on my NV34 actually... maybe
-it was 1680x1050 that worked. I just flipped it to VGA, which could handle
-1920x1200 just fine. Here are my modes:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-  1920x1200 (0x64)  154.0MHz +HSync -VSync *current +preferred
-        h: width  1920 start 1968 end 2000 total 2080 skew    0 clock   74.0KHz
-        v: height 1200 start 1203 end 1209 total 1235           clock   60.0Hz
-  1600x1200 (0x65)  162.0MHz +HSync +VSync
-        h: width  1600 start 1664 end 1856 total 2160 skew    0 clock   75.0KHz
-        v: height 1200 start 1201 end 1204 total 1250           clock   60.0Hz
-  1680x1050 (0x66)  119.0MHz +HSync -VSync
-        h: width  1680 start 1728 end 1760 total 1840 skew    0 clock   64.7KHz
-        v: height 1050 start 1053 end 1059 total 1080           clock   59.9Hz
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|NV40 / C67 - Pointer to     |[NV67] Error retrieving
+                   |flat panel table invalid    |EDID from VGA
 
-Note how 1920x1200 is under the 155MHz limit of NV4x single-link TMDS chips.
-(And the nv34 has a 135MHz limit, so it can't do 1920x1200 either.)
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I assume there's a monitor actually connected (that supports EDID)? Did this
+work with older kernels (if so which)?
 
-If this worked on the blob, I wonder if it was really using TMDS for outputting
-the 1600x1200 resolution, and not using the VGA (which should be able to handle
-it just fine). Still would be interesting to see what happens if you just make
-it claim that you have dual-link -- could well be that the nouveau detection of
-it is incorrect, or perhaps the TMDS on your card can do 165MHz and not 155MHz.
+Please upload a copy of your VBIOS (/sys/kernel/debug/dri/0/vbios.rom)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391575109.eDeBA5.6315
-Date: Wed, 5 Feb 2014 04:38:29 +0000
+--1391575792.8AF57c2.7551
+Date: Wed, 5 Feb 2014 04:49:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,41 +57,43 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV67] Error retrieving EDID from VGA"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72207">bug 72207</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>NV40 / C67 - Pointer to flat panel table invalid
+           </td>
+           <td>[NV67] Error retrieving EDID from VGA
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV44] dual-link tmds no longer allowed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40747#c19">Comment # 19</a>
+          bz_status_NEW "
+   title="NEW --- - [NV67] Error retrieving EDID from VGA"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72207#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV44] dual-link tmds no longer allowed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=40747">bug 40747</a>
+          bz_status_NEW "
+   title="NEW --- - [NV67] Error retrieving EDID from VGA"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72207">bug 72207</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I might be misremembering about 1600x1200 working on my NV34 actually... maybe
-it was 1680x1050 that worked. I just flipped it to VGA, which could handle
-1920x1200 just fine. Here are my modes:
+        <pre>I assume there's a monitor actually connected (that supports EDID)? Did this
+work with older kernels (if so which)?
 
-  1920x1200 (0x64)  154.0MHz +HSync -VSync *current +preferred
-        h: width  1920 start 1968 end 2000 total 2080 skew    0 clock   74.0KHz
-        v: height 1200 start 1203 end 1209 total 1235           clock   60.0Hz
-  1600x1200 (0x65)  162.0MHz +HSync +VSync
-        h: width  1600 start 1664 end 1856 total 2160 skew    0 clock   75.0KHz
-        v: height 1200 start 1201 end 1204 total 1250           clock   60.0Hz
-  1680x1050 (0x66)  119.0MHz +HSync -VSync
-        h: width  1680 start 1728 end 1760 total 1840 skew    0 clock   64.7KHz
-        v: height 1050 start 1053 end 1059 total 1080           clock   59.9Hz
-
-Note how 1920x1200 is under the 155MHz limit of NV4x single-link TMDS chips.
-(And the nv34 has a 135MHz limit, so it can't do 1920x1200 either.)
-
-If this worked on the blob, I wonder if it was really using TMDS for outputting
-the 1600x1200 resolution, and not using the VGA (which should be able to handle
-it just fine). Still would be interesting to see what happens if you just make
-it claim that you have dual-link -- could well be that the nouveau detection of
-it is incorrect, or perhaps the TMDS on your card can do 165MHz and not 155MHz.</pre>
+Please upload a copy of your VBIOS (/sys/kernel/debug/dri/0/vbios.rom)</pre>
         </div>
       </p>
       <hr>
@@ -114,9 +105,9 @@ it is incorrect, or perhaps the TMDS on your card can do 165MHz and not 155MHz.<
     </body>
 </html>
 
---1391575109.eDeBA5.6315--
+--1391575792.8AF57c2.7551--
 
---===============1014082452==
+--===============1407960770==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,4 +118,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1014082452==--
+--===============1407960770==--
