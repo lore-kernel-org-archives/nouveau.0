@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 73200] vdpau-GL interop fails due to different
 	screen objects
-Date: Thu, 06 Feb 2014 10:56:11 +0000
-Message-ID: <bug-73200-8800-IC49p9IAba@http.bugs.freedesktop.org/>
+Date: Thu, 06 Feb 2014 11:30:57 +0000
+Message-ID: <bug-73200-8800-nQfl2uRv02@http.bugs.freedesktop.org/>
 References: <bug-73200-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1986392487=="
+Content-Type: multipart/mixed; boundary="===============1480227163=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73200-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1986392487==
-Content-Type: multipart/alternative; boundary="1391684171.c14B0F1.15907"; charset="us-ascii"
+--===============1480227163==
+Content-Type: multipart/alternative; boundary="1391686257.450b5d1.21795"; charset="us-ascii"
 
 
---1391684171.c14B0F1.15907
-Date: Thu, 6 Feb 2014 10:56:11 +0000
+--1391686257.450b5d1.21795
+Date: Thu, 6 Feb 2014 11:30:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73200
 
---- Comment #5 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
-The screen is hashed based on inode major/minor, if we copy that logic we
-should be able to do the same.
+--- Comment #6 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
+Created attachment 93520
+  --> https://bugs.freedesktop.org/attachment.cgi?id=93520&action=edit
+cache dri fd
+
+Based on the radeon version, cache inode major/minor to only create a single
+screen.
+
+Does this fix things?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391684171.c14B0F1.15907
-Date: Thu, 6 Feb 2014 10:56:11 +0000
+--1391686257.450b5d1.21795
+Date: Thu, 6 Feb 2014 11:30:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +61,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - vdpau-GL interop fails due to different screen objects"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - vdpau-GL interop fails due to different screen objects"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=73200">bug 73200</a>
               from <span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
 </span></b>
-        <pre>The screen is hashed based on inode major/minor, if we copy that logic we
-should be able to do the same.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=93520" name="attach_93520" title="cache dri fd">attachment 93520</a> <a href="attachment.cgi?id=93520&amp;action=edit" title="cache dri fd">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=73200&amp;attachment=93520'>[review]</a>
+cache dri fd
+
+Based on the radeon version, cache inode major/minor to only create a single
+screen.
+
+Does this fix things?</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +86,9 @@ should be able to do the same.</pre>
     </body>
 </html>
 
---1391684171.c14B0F1.15907--
+--1391686257.450b5d1.21795--
 
---===============1986392487==
+--===============1480227163==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1986392487==--
+--===============1480227163==--
