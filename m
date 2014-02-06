@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
-Date: Wed, 05 Feb 2014 22:02:22 +0000
-Message-ID: <bug-70972-8800-BEHY2Cvr1W@http.bugs.freedesktop.org/>
-References: <bug-70972-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: [GSoC2014] Call for projects ideas and mentors
+Date: Thu, 06 Feb 2014 01:03:05 +0100
+Message-ID: <52F2D139.20701@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0117329346=="
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,79 +15,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org, xorg-go0+a7rfsptAfugRpC6u6w@public.gmane.org, nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Hi, fellow graphics stack developers,
 
---===============0117329346==
-Content-Type: multipart/alternative; boundary="1391637741.ABE14401.24869"; charset="us-ascii"
+Now that FOSDEM is over, it is time to think about the
+Google Summer of Code 2014!
 
+If you would like to propose a project for the GSoC 2014, please
+write your proposals at [1], before the 14th of February, in order
+to increase our chances of being an accepted organization.
 
---1391637741.ABE14401.24869
-Date: Wed, 5 Feb 2014 22:02:21 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+If you simply would potentially be interested in being a mentor,
+please also contact me as Google wants to have an estimate of
+the number of potential mentors we would have.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70972
+If you have any questions regarding the GSoC or need any additional
+information, please answer in this thread.
 
---- Comment #10 from Larry Finger <larry.finger-tQ5ms3gMjBLk1uMJSBkQmQ@public.gmane.org> ---
-Unfortunately, neither the patch nor the patch and the nouveau.config boot
-change made any difference.
+Cheers,
+Martin
 
-I certainly understand that not many people have this hardware.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1391637741.ABE14401.24869
-Date: Wed, 5 Feb 2014 22:02:21 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV67] Modesetting failure at 1280x800"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV67] Modesetting failure at 1280x800"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972">bug 70972</a>
-              from <span class="vcard"><a class="email" href="mailto:larry.finger&#64;lwfinger.net" title="Larry Finger &lt;larry.finger&#64;lwfinger.net&gt;"> <span class="fn">Larry Finger</span></a>
-</span></b>
-        <pre>Unfortunately, neither the patch nor the patch and the nouveau.config boot
-change made any difference.
-
-I certainly understand that not many people have this hardware.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1391637741.ABE14401.24869--
-
---===============0117329346==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0117329346==--
+[1] http://xorg.freedesktop.org/wiki/SummerOfCodeIdeas/
