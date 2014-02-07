@@ -1,142 +1,51 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74648] [NV86] Ultima IX (wine) movie playback
-	crashes game
-Date: Fri, 07 Feb 2014 06:34:59 +0000
-Message-ID: <bug-74648-8800-Hya4C71W2b@http.bugs.freedesktop.org/>
-References: <bug-74648-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot@nvidia.com>
+Subject: [PATCH] nouveau/drm/fifo: fix ENG_RUNLIST register address
+Date: Fri,  7 Feb 2014 22:22:57 +0900
+Message-ID: <1391779377-10176-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0559404633=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74648-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces@lists.freedesktop.org
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+To: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org
+Cc: gnurou@gmail.com, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+Address of the ENG_RUNLIST register should be 0x002284 + (engine * 8),
+not 0x002284 + (engine * 4).
 
---===============0559404633==
-Content-Type: multipart/alternative; boundary="1391754898.b4bDceFB2.11428"; charset="us-ascii"
+Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+---
+Stumbled upon this one and I'm quite certain the offset was not correct.
+This is inconsequential for GK20A which only features one runlist, but
+other GPUs might run into troubles because of this. Not tested, just
+reported for your consideration.
 
+FWIW, the Android GK20A driver uses the same offset calculation.
 
---1391754898.b4bDceFB2.11428
-Date: Fri, 7 Feb 2014 06:34:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+ drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74648
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Ultima IX (wine) movie      |[NV86] Ultima IX (wine)
-                   |playback crashes game       |movie playback crashes game
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-What version of mesa are you using? Could you compile a (32-bit) mesa with
-debug symbols so that we can better see what's going on? Alternatively, could
-you capture an apitrace that crashes the driver? That would make debugging (and
-verifying solutions) easier.
-
-Or perhaps fedora includes the debuginfo for that nouveau_dri.so in some
-location wine wasn't aware of, and one could use addr2line with it? Not sure
-exactly how you'd do that though -- been a while since I've done it manually.
-
-Please do verify your chipset (dmesg | grep -i chipset).
-
-[As for the resolution not being restored, not sure what you want nouveau to do
-about it... it just responds to requests to change resolutions/etc. I think the
-whole "restore" concept is just lacking in the API's in general.]
-
+diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c b/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c
+index 99c9dee..dbc3ff6 100644
+--- a/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c
++++ b/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c
+@@ -112,7 +112,7 @@ nve0_fifo_runlist_update(struct nve0_fifo_priv *priv, u32 engine)
+ 
+ 	nv_wr32(priv, 0x002270, cur->addr >> 12);
+ 	nv_wr32(priv, 0x002274, (engine << 20) | (p >> 3));
+-	if (!nv_wait(priv, 0x002284 + (engine * 4), 0x00100000, 0x00000000))
++	if (!nv_wait(priv, 0x002284 + (engine * 8), 0x00100000, 0x00000000))
+ 		nv_error(priv, "runlist %d update timeout\n", engine);
+ 	mutex_unlock(&nv_subdev(priv)->mutex);
+ }
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1391754898.b4bDceFB2.11428
-Date: Fri, 7 Feb 2014 06:34:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] Ultima IX (wine) movie playback crashes game"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74648">bug 74648</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Ultima IX (wine) movie playback crashes game
-           </td>
-           <td>[NV86] Ultima IX (wine) movie playback crashes game
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] Ultima IX (wine) movie playback crashes game"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74648#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] Ultima IX (wine) movie playback crashes game"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74648">bug 74648</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>What version of mesa are you using? Could you compile a (32-bit) mesa with
-debug symbols so that we can better see what's going on? Alternatively, could
-you capture an apitrace that crashes the driver? That would make debugging (and
-verifying solutions) easier.
-
-Or perhaps fedora includes the debuginfo for that nouveau_dri.so in some
-location wine wasn't aware of, and one could use addr2line with it? Not sure
-exactly how you'd do that though -- been a while since I've done it manually.
-
-Please do verify your chipset (dmesg | grep -i chipset).
-
-[As for the resolution not being restored, not sure what you want nouveau to do
-about it... it just responds to requests to change resolutions/etc. I think the
-whole &quot;restore&quot; concept is just lacking in the API's in general.]</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1391754898.b4bDceFB2.11428--
-
---===============0559404633==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0559404633==--
+1.8.5.3
