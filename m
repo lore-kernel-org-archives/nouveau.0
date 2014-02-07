@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74695] [NV86] GPU hangs on resume, causing X to crash
-Date: Fri, 07 Feb 2014 20:58:41 +0000
-Message-ID: <bug-74695-8800-bgm5wK85op@http.bugs.freedesktop.org/>
+Date: Fri, 07 Feb 2014 21:22:40 +0000
+Message-ID: <bug-74695-8800-uuot1urkNp@http.bugs.freedesktop.org/>
 References: <bug-74695-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0445580713=="
+Content-Type: multipart/mixed; boundary="===============0231286918=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74695-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,40 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0445580713==
-Content-Type: multipart/alternative; boundary="1391806721.d71Ef7ae2.15661"; charset="us-ascii"
+--===============0231286918==
+Content-Type: multipart/alternative; boundary="1391808160.e5b6AE521.20392"; charset="us-ascii"
 
 
---1391806721.d71Ef7ae2.15661
-Date: Fri, 7 Feb 2014 20:58:41 +0000
+--1391808160.e5b6AE521.20392
+Date: Fri, 7 Feb 2014 21:22:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74695
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|nouveau_exa_download_from_s |[NV86] GPU hangs on resume,
-                   |creen:299 leads to NULL     |causing X to crash
-                   |pointer dereference         |
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This happens in response to the GPU hanging. X could perhaps handle this a
-little more gracefully (e.g. by reporting "GPU hung, committing suicide"), but
-the real issue is that the GPU is hanging on resume... Do you have a dmesg
-after resuming?
-
-It'd also be worthwhile testing this out with a fresh kernel, e.g. 3.13.2, as
-this issue may have gotten fixed in the meanwhile.
+--- Comment #3 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I am attaching dmesg after reboot.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391806721.d71Ef7ae2.15661
-Date: Fri, 7 Feb 2014 20:58:41 +0000
+--1391808160.e5b6AE521.20392
+Date: Fri, 7 Feb 2014 21:22:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,46 +47,20 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695">bug 74695</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>nouveau_exa_download_from_screen:299 leads to NULL pointer dereference
-           </td>
-           <td>[NV86] GPU hangs on resume, causing X to crash
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74695">bug 74695</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:carla.sella&#64;gmail.com" title="Carla sella &lt;carla.sella&#64;gmail.com&gt;"> <span class="fn">Carla sella</span></a>
 </span></b>
-        <pre>This happens in response to the GPU hanging. X could perhaps handle this a
-little more gracefully (e.g. by reporting &quot;GPU hung, committing suicide&quot;), but
-the real issue is that the GPU is hanging on resume... Do you have a dmesg
-after resuming?
-
-It'd also be worthwhile testing this out with a fresh kernel, e.g. 3.13.2, as
-this issue may have gotten fixed in the meanwhile.</pre>
+        <pre>I am attaching dmesg after reboot.</pre>
         </div>
       </p>
       <hr>
@@ -112,9 +72,9 @@ this issue may have gotten fixed in the meanwhile.</pre>
     </body>
 </html>
 
---1391806721.d71Ef7ae2.15661--
+--1391808160.e5b6AE521.20392--
 
---===============0445580713==
+--===============0231286918==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -125,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0445580713==--
+--===============0231286918==--
