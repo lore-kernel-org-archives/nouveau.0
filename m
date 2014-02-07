@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57660] [NVA3:NVC0] Turn on support for
-	PIPE_CAP_CUBE_MAP_ARRAY
-Date: Fri, 07 Feb 2014 21:52:41 +0000
-Message-ID: <bug-57660-8800-joUXiPmu4K@http.bugs.freedesktop.org/>
-References: <bug-57660-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74695] [NV86] GPU hangs on resume, causing X to crash
+Date: Fri, 07 Feb 2014 22:15:41 +0000
+Message-ID: <bug-74695-8800-cqALbetzEo@http.bugs.freedesktop.org/>
+References: <bug-74695-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0120152907=="
+Content-Type: multipart/mixed; boundary="===============1114484659=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-74695-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +20,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0120152907==
-Content-Type: multipart/alternative; boundary="1391809961.AC5DfFD11.25749"; charset="us-ascii"
+--===============1114484659==
+Content-Type: multipart/alternative; boundary="1391811341.Ae023bEE2.29363"; charset="us-ascii"
 
 
---1391809961.AC5DfFD11.25749
-Date: Fri, 7 Feb 2014 21:52:41 +0000
+--1391811341.Ae023bEE2.29363
+Date: Fri, 7 Feb 2014 22:15:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57660
+https://bugs.freedesktop.org/show_bug.cgi?id=74695
 
---- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I think there are a bunch of places in the nv50 driver where things check for
-PIPE_TEXTURE_{1D,2D}_ARRAY but also need to check for PIPE_TEXTURE_CUBE_ARRAY.
-One such place is nv50_create_texture_view but there are probably a bunch of
-others.
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Oh, I didn't notice you were already running 3.13 -- I highly doubt 3.13.x
+would help. 3.14-rc1 MIGHT but that's a low chance.
+
+An interesting observation is that your BSP engine refuses MMIO writes when
+coming back from sleep, but it was fine on original boot. We're probably not
+initializing something we should be... :( [The BSP engine in itself isn't that
+important -- it's for h264 decoding, but it's an unfortunate indicator.]
+
+And then you end up with a bunch of
+
+[ 5298.803245] nouveau E[     PFB][0000:02:00.0] trapped read at 0x0020ea1200
+on channel 0x0000fc33 [compiz[2007]] PGRAPH/DISPATCH/M2M_IN reason: NULL_DMAOBJ
+
+Which eventually kill X as well.
+
+It's not super-clear from your report, but did this work prior to Ubuntu 13.04?
+If so, can you figure out what kernel version you were using back when it did
+work?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391809961.AC5DfFD11.25749
-Date: Fri, 7 Feb 2014 21:52:41 +0000
+--1391811341.Ae023bEE2.29363
+Date: Fri, 7 Feb 2014 22:15:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,18 +69,32 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA3:NVC0] Turn on support for PIPE_CAP_CUBE_MAP_ARRAY"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57660#c10">Comment # 10</a>
+   title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA3:NVC0] Turn on support for PIPE_CAP_CUBE_MAP_ARRAY"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57660">bug 57660</a>
+   title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695">bug 74695</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I think there are a bunch of places in the nv50 driver where things check for
-PIPE_TEXTURE_{1D,2D}_ARRAY but also need to check for PIPE_TEXTURE_CUBE_ARRAY.
-One such place is nv50_create_texture_view but there are probably a bunch of
-others.</pre>
+        <pre>Oh, I didn't notice you were already running 3.13 -- I highly doubt 3.13.x
+would help. 3.14-rc1 MIGHT but that's a low chance.
+
+An interesting observation is that your BSP engine refuses MMIO writes when
+coming back from sleep, but it was fine on original boot. We're probably not
+initializing something we should be... :( [The BSP engine in itself isn't that
+important -- it's for h264 decoding, but it's an unfortunate indicator.]
+
+And then you end up with a bunch of
+
+[ 5298.803245] nouveau E[     PFB][0000:02:00.0] trapped read at 0x0020ea1200
+on channel 0x0000fc33 [compiz[2007]] PGRAPH/DISPATCH/M2M_IN reason: NULL_DMAOBJ
+
+Which eventually kill X as well.
+
+It's not super-clear from your report, but did this work prior to Ubuntu 13.04?
+If so, can you figure out what kernel version you were using back when it did
+work?</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +106,9 @@ others.</pre>
     </body>
 </html>
 
---1391809961.AC5DfFD11.25749--
+--1391811341.Ae023bEE2.29363--
 
---===============0120152907==
+--===============1114484659==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +119,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0120152907==--
+--===============1114484659==--
