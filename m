@@ -1,51 +1,96 @@
-From: Alexandre Courbot <acourbot@nvidia.com>
-Subject: [PATCH] nouveau/drm/fifo: fix ENG_RUNLIST register address
-Date: Fri,  7 Feb 2014 22:22:57 +0900
-Message-ID: <1391779377-10176-1-git-send-email-acourbot@nvidia.com>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [RFC 14/16] drm/nouveau/fb: add GK20A support
+Date: Fri, 7 Feb 2014 23:19:52 +0900
+Message-ID: <CAAVeFuL+yf8mu5LfSBdWXbcei3FpgKP4yg0GuJ6huTb8q_S5GA@mail.gmail.com>
+References: <1391224618-3794-1-git-send-email-acourbot@nvidia.com>
+ <1391224618-3794-15-git-send-email-acourbot@nvidia.com> <1391262057.2035.7.camel@antimon.intern.lynxeye.de>
+ <CAKb7UvhJWOtxzYMViuoV6fHU4UR_+j1QTKHw1PoQT_+ykenfYw@mail.gmail.com>
+ <1391299106.2985.3.camel@antimon.intern.lynxeye.de> <CAAVeFuLdwoKXsFtcMQ07ozFQXckki86zuB3xNMNk+QbEOtoG0A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org
-Cc: gnurou@gmail.com, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <CAAVeFuLdwoKXsFtcMQ07ozFQXckki86zuB3xNMNk+QbEOtoG0A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+Cc: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Eric Brower <ebrower-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ken Adams <KAdams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Address of the ENG_RUNLIST register should be 0x002284 + (engine * 8),
-not 0x002284 + (engine * 4).
+On Sun, Feb 2, 2014 at 10:43 PM, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On Sun, Feb 2, 2014 at 8:58 AM, Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> wrote:
+>> Am Samstag, den 01.02.2014, 18:28 -0500 schrieb Ilia Mirkin:
+>>> On Sat, Feb 1, 2014 at 8:40 AM, Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org> wrote:
+>>> > Am Samstag, den 01.02.2014, 12:16 +0900 schrieb Alexandre Courbot:
+>>> >> Add a clumsy-but-working FB support for GK20A. This chip only uses system
+>>> >> memory, so we allocate a big chunk using CMA and let the existing memory
+>>> >> managers work on it.
+>>> >>
+>>> >> A better future design would be to allocate objects directly from system
+>>> >> memory without having to suffer from the limitations of a large,
+>>> >> contiguous pool.
+>>> >>
+>>> > I don't know if Tegra124 is similar to 114 in this regard [hint: get the
+>>> > TRM out :)], but if you go for a dedicated VRAM allocator, wouldn't it
+>>> > make sense to take a chunk of the MMIO overlaid memory for this when
+>>> > possible, rather than carving this out of CPU accessible mem?
+>>>
+>>> This is probably a stupid question... what do you need VRAM for
+>>> anyways? In _theory_ it's an abstraction to talk about memory that's
+>>> not accessible by the CPU. This is obviously not the case here, and
+>>> presumably the GPU can access all the memory in the system, so it can
+>>> be all treated as "GART" memory... AFAIK all accesses are behind the
+>>> in-GPU MMU, so contiguous physical memory isn't an issue either. In
+>>> practice, I suspect nouveau automatically sticks certain things into
+>>> vram (gpuobj's), but it should be feasible to make them optionally use
+>>> GART memory when VRAM is not available. I haven't really looked at the
+>>> details though, perhaps that's a major undertaking.
+>>>
+>>>   -ilia
+>>>
+>> If it's similar to the Tegar114 there actually is memory that isn't
+>> accessible from the CPU. About 2GB of the address space is overlaid with
+>> MMIO for the devices, so in a 4GB system you potentially have 2GB of RAM
+>> that's only visible for the devices.
+>>
+>> But yes in general nouveau should just fall back to a GART placement if
+>> VRAM isn't available.
+>
+> With the limited time I spent studying it, it seems to me that Nouveau
+> has a strong dependency on VRAM. For gpuobjects indeed (that one could
+> be workarounded with a new instmem driver I suppose), and also for
+> TTM: objects placed in TTM_PL_VRAM are handled by the VRAM manager,
+> which requires a nouveau_ram instance in the FB. Actually the FB also
+> seems to assume the presence of a dedicated video RAM.
+>
+> So while I agree that getting rid of VRAM altogether would be the most
+> logical solution, I have not found a way to do so for the moment.
+>
+> T124's GPU actually sees the same physical address space as the CPU,
+> so memory management should be simplified thanks to that (you could
+> enable the SMMU and make things more interesting/complex, but for now
+> it seems untimely to even consider doing so). Actually even the
+> concept of a GART is not needed here: all your memory management needs
+> could be fulfilled by getting pages with alloc_page() and arranging
+> them using the GMMU. No GART, no BAR (at least for the purpose of
+> mapping objects for CPU access), no PRAMIN.
 
-Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
----
-Stumbled upon this one and I'm quite certain the offset was not correct.
-This is inconsequential for GK20A which only features one runlist, but
-other GPUs might run into troubles because of this. Not tested, just
-reported for your consideration.
+So, looking at the code more closely I noticed the nouveau_ram::get()
+operation was only used by instmem (to allocate GPU objects) and TTM
+(for BOs in VRAM).
 
-FWIW, the Android GK20A driver uses the same offset calculation.
+I quickly wrote a custom instmem that allocates objects individually
+with dma_alloc_coherent() (and manually builds a nouveau_mem instance
+so they can be mapped into the BAR) and disabled nouveau_vram_manager
+for TTM, making TTM_PL_VRAM BOs use the GART manager. And oooh, it
+seems to work! :) I can remove that horrible CMA allocation and only
+keep the nouveau_ram instance as a dummy object providing 0MB of
+memory.
 
- drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I think this should be a viable solution, BOs never need to be
+contiguous thanks to the gMMU, and dma_alloc_coherent() returns
+contiguous memory for instobjs (not sure if *all* instobjs need to be
+contiguous in physical memory - page tables sure do - , but AFAICT we
+never allocate crazy-big instobjs).
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c b/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c
-index 99c9dee..dbc3ff6 100644
---- a/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c
-@@ -112,7 +112,7 @@ nve0_fifo_runlist_update(struct nve0_fifo_priv *priv, u32 engine)
- 
- 	nv_wr32(priv, 0x002270, cur->addr >> 12);
- 	nv_wr32(priv, 0x002274, (engine << 20) | (p >> 3));
--	if (!nv_wait(priv, 0x002284 + (engine * 4), 0x00100000, 0x00000000))
-+	if (!nv_wait(priv, 0x002284 + (engine * 8), 0x00100000, 0x00000000))
- 		nv_error(priv, "runlist %d update timeout\n", engine);
- 	mutex_unlock(&nv_subdev(priv)->mutex);
- }
--- 
-1.8.5.3
+Any flaw/possible improvement with this design?
+
+Alex.
