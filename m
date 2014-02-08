@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73200] vdpau-GL interop fails due to different
-	screen objects
-Date: Sat, 08 Feb 2014 09:12:24 +0000
-Message-ID: <bug-73200-8800-c1dLoMZbgX@http.bugs.freedesktop.org/>
-References: <bug-73200-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74710] New: GT 730M: unknown chipset
+Date: Sat, 08 Feb 2014 13:14:43 +0000
+Message-ID: <bug-74710-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2122494787=="
+Content-Type: multipart/mixed; boundary="===============1273099574=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73200-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +18,62 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2122494787==
-Content-Type: multipart/alternative; boundary="1391850744.DEc84ea0.24820"; charset="us-ascii"
+--===============1273099574==
+Content-Type: multipart/alternative; boundary="1391865283.5fAB2C31.29129"; charset="us-ascii"
 
 
---1391850744.DEc84ea0.24820
-Date: Sat, 8 Feb 2014 09:12:24 +0000
+--1391865283.5fAB2C31.29129
+Date: Sat, 8 Feb 2014 13:14:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=73200
+https://bugs.freedesktop.org/show_bug.cgi?id=74710
 
---- Comment #10 from Matthew Waters <ystreet00-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #9)
-> Created attachment 93639 [details] [review]
-> [PATCH] winsys/nouveau: set nouveau_drm_screen_create as public
-> 
-> (In reply to comment #8)
-> [snip]
-> > Tracing through, both times that nouveau_drm_screen_create is called, fd_tab
-> > is NULL.
-> 
-> Is the nouveau_drm_screen_create func public ? If not give this patch at try
-> on top of Maarten's work.
+          Priority: medium
+            Bug ID: 74710
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: GT 730M: unknown chipset
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: blocker
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: mail-IUm52rQyP5wMgLIkOwrGR4dd74u8MsAO@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-Same result, fd_tab is NULL and has different locations the two times it is
-called.
+Hi,
+
+I'm using linux 3.12.9 on a Thinkpad T440s with Intel HD 4400 and Nvidia GT
+730M. The nvidia card is not working with nouveau:
+
+[    2.769730] nouveau 0000:04:00.0: enabling device (0004 -> 0007)
+[    2.769936] [drm] hdmi device  not found 4 0 1
+[    2.770067] nouveau E[  DEVICE][0000:04:00.0] unknown chipset, 0x108100a1
+[    2.770069] nouveau E[     DRM] failed to create 0x80000080, -22
+[    2.770697] nouveau: probe of 0000:04:00.0 failed with error -22
+
+[    0.000000] DMI: LENOVO 20ARS0XL00/20ARS0XL00, BIOS GJET67WW (2.17 )
+12/10/2013
+
+% xrandr --listproviders
+Providers: number : 1
+Provider 0: id: 0x49 cap: 0xb, Source Output, Sink Output, Sink Offload crtcs:
+4 outputs: 6 associated providers: 0 name:Intel
+
+The issue also seemed to appear at
+https://github.com/Bumblebee-Project/bbswitch/issues/78
+
+I attached the full dmesg and hope you can help!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391850744.DEc84ea0.24820
-Date: Sat, 8 Feb 2014 09:12:24 +0000
+--1391865283.5fAB2C31.29129
+Date: Sat, 8 Feb 2014 13:14:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,33 +81,118 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - GT 730M: unknown chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74710">74710</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>GT 730M: unknown chipset
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>blocker
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mail&#64;tobias-neumann.eu
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - vdpau-GL interop fails due to different screen objects"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - vdpau-GL interop fails due to different screen objects"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200">bug 73200</a>
-              from <span class="vcard"><a class="email" href="mailto:ystreet00&#64;gmail.com" title="Matthew Waters &lt;ystreet00&#64;gmail.com&gt;"> <span class="fn">Matthew Waters</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=73200#c9">comment #9</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=93639" name="attach_93639" title="[PATCH] winsys/nouveau: set nouveau_drm_screen_create as public">attachment 93639</a> <a href="attachment.cgi?id=93639&amp;action=edit" title="[PATCH] winsys/nouveau: set nouveau_drm_screen_create as public">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=73200&amp;attachment=93639'>[review]</a> [review]
-&gt; [PATCH] winsys/nouveau: set nouveau_drm_screen_create as public
-&gt; 
-&gt; (In reply to <a href="show_bug.cgi?id=73200#c8">comment #8</a>)
-&gt; [snip]
-&gt; &gt; Tracing through, both times that nouveau_drm_screen_create is called, fd_tab
-&gt; &gt; is NULL.
-&gt; 
-&gt; Is the nouveau_drm_screen_create func public ? If not give this patch at try
-&gt; on top of Maarten's work.</span >
+        <pre>Hi,
 
-Same result, fd_tab is NULL and has different locations the two times it is
-called.</pre>
+I'm using linux 3.12.9 on a Thinkpad T440s with Intel HD 4400 and Nvidia GT
+730M. The nvidia card is not working with nouveau:
+
+[    2.769730] nouveau 0000:04:00.0: enabling device (0004 -&gt; 0007)
+[    2.769936] [drm] hdmi device  not found 4 0 1
+[    2.770067] nouveau E[  DEVICE][0000:04:00.0] unknown chipset, 0x108100a1
+[    2.770069] nouveau E[     DRM] failed to create 0x80000080, -22
+[    2.770697] nouveau: probe of 0000:04:00.0 failed with error -22
+
+[    0.000000] DMI: LENOVO 20ARS0XL00/20ARS0XL00, BIOS GJET67WW (2.17 )
+12/10/2013
+
+% xrandr --listproviders
+Providers: number : 1
+Provider 0: id: 0x49 cap: 0xb, Source Output, Sink Output, Sink Offload crtcs:
+4 outputs: 6 associated providers: 0 name:Intel
+
+The issue also seemed to appear at
+<a href="https://github.com/Bumblebee-Project/bbswitch/issues/78">https://github.com/Bumblebee-Project/bbswitch/issues/78</a>
+
+I attached the full dmesg and hope you can help!</pre>
         </div>
       </p>
       <hr>
@@ -99,9 +204,9 @@ called.</pre>
     </body>
 </html>
 
---1391850744.DEc84ea0.24820--
+--1391865283.5fAB2C31.29129--
 
---===============2122494787==
+--===============1273099574==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -112,4 +217,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2122494787==--
+--===============1273099574==--
