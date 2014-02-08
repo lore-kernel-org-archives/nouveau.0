@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54587] [NV1F] Flickering screen on Geforece 4
-Date: Sat, 08 Feb 2014 09:05:05 +0000
-Message-ID: <bug-54587-8800-ALCwCdt4ch@http.bugs.freedesktop.org/>
-References: <bug-54587-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73200] vdpau-GL interop fails due to different
+	screen objects
+Date: Sat, 08 Feb 2014 09:12:24 +0000
+Message-ID: <bug-73200-8800-c1dLoMZbgX@http.bugs.freedesktop.org/>
+References: <bug-73200-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2116376012=="
+Content-Type: multipart/mixed; boundary="===============2122494787=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73200-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2116376012==
-Content-Type: multipart/alternative; boundary="1391850305.A4aFa3.23979"; charset="us-ascii"
+--===============2122494787==
+Content-Type: multipart/alternative; boundary="1391850744.DEc84ea0.24820"; charset="us-ascii"
 
 
---1391850305.A4aFa3.23979
-Date: Sat, 8 Feb 2014 09:05:05 +0000
+--1391850744.DEc84ea0.24820
+Date: Sat, 8 Feb 2014 09:12:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54587
+https://bugs.freedesktop.org/show_bug.cgi?id=73200
 
---- Comment #24 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #23)
-> I updated to Ubuntu 13.10. Very much flickering. See attached photo and log
-> files.
+--- Comment #10 from Matthew Waters <ystreet00-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #9)
+> Created attachment 93639 [details] [review]
+> [PATCH] winsys/nouveau: set nouveau_drm_screen_create as public
+> 
+> (In reply to comment #8)
+> [snip]
+> > Tracing through, both times that nouveau_drm_screen_create is called, fd_tab
+> > is NULL.
+> 
+> Is the nouveau_drm_screen_create func public ? If not give this patch at try
+> on top of Maarten's work.
 
-Is using a digital connector an option? I wouldn't be surprised if things got
-better if you did.
-
-Are you manually adding the 1920x1080 modeline? Do lower resolutions work OK?
-
-What happens if you use Marcin's old suggestion of booting with video=TV-1:d ?
+Same result, fd_tab is NULL and has different locations the two times it is
+called.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391850305.A4aFa3.23979
-Date: Sat, 8 Feb 2014 09:05:05 +0000
+--1391850744.DEc84ea0.24820
+Date: Sat, 8 Feb 2014 09:12:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,24 +66,28 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV1F] Flickering screen on Geforece 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587#c24">Comment # 24</a>
+   title="NEW --- - vdpau-GL interop fails due to different screen objects"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV1F] Flickering screen on Geforece 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587">bug 54587</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - vdpau-GL interop fails due to different screen objects"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200">bug 73200</a>
+              from <span class="vcard"><a class="email" href="mailto:ystreet00&#64;gmail.com" title="Matthew Waters &lt;ystreet00&#64;gmail.com&gt;"> <span class="fn">Matthew Waters</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=54587#c23">comment #23</a>)
-<span class="quote">&gt; I updated to Ubuntu 13.10. Very much flickering. See attached photo and log
-&gt; files.</span >
+        <pre>(In reply to <a href="show_bug.cgi?id=73200#c9">comment #9</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=93639" name="attach_93639" title="[PATCH] winsys/nouveau: set nouveau_drm_screen_create as public">attachment 93639</a> <a href="attachment.cgi?id=93639&amp;action=edit" title="[PATCH] winsys/nouveau: set nouveau_drm_screen_create as public">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=73200&amp;attachment=93639'>[review]</a> [review]
+&gt; [PATCH] winsys/nouveau: set nouveau_drm_screen_create as public
+&gt; 
+&gt; (In reply to <a href="show_bug.cgi?id=73200#c8">comment #8</a>)
+&gt; [snip]
+&gt; &gt; Tracing through, both times that nouveau_drm_screen_create is called, fd_tab
+&gt; &gt; is NULL.
+&gt; 
+&gt; Is the nouveau_drm_screen_create func public ? If not give this patch at try
+&gt; on top of Maarten's work.</span >
 
-Is using a digital connector an option? I wouldn't be surprised if things got
-better if you did.
-
-Are you manually adding the 1920x1080 modeline? Do lower resolutions work OK?
-
-What happens if you use Marcin's old suggestion of booting with video=TV-1:d ?</pre>
+Same result, fd_tab is NULL and has different locations the two times it is
+called.</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +99,9 @@ What happens if you use Marcin's old suggestion of booting with video=TV-1:d ?</
     </body>
 </html>
 
---1391850305.A4aFa3.23979--
+--1391850744.DEc84ea0.24820--
 
---===============2116376012==
+--===============2122494787==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +112,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2116376012==--
+--===============2122494787==--
