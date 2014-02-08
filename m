@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74710] [NV108] GT 730M: unknown chipset
-Date: Sat, 08 Feb 2014 18:08:11 +0000
-Message-ID: <bug-74710-8800-TyIw67NUjE@http.bugs.freedesktop.org/>
-References: <bug-74710-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: nouveau graphical corruption in 3.13.2
+Date: Sat, 8 Feb 2014 13:57:57 -0500
+Message-ID: <CAKb7Uvh=SQVhxOVEf5bFqhbiythcH4S+xP4OsXjF0xCsVjVk0Q@mail.gmail.com>
+References: <CAMVG2suzT1vphjHAUFCsbVBsd22U69jzQaKVwnEyGLBu6eGOSw@mail.gmail.com>
+	<CAKb7Uvh8jPNcXAfVYkdC3y0wQ7icc52Cid_fN5bpvdBf12KPag@mail.gmail.com>
+	<CAMVG2stJPQhdmhVDJY8a93xjAWUtNptBbTv=KhAswBNfE+ECYA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0999497350=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74710-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAMVG2stJPQhdmhVDJY8a93xjAWUtNptBbTv=KhAswBNfE+ECYA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,114 +19,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Daniel J Blueman <daniel-JCXMqzvhRcvYtjvyW6yDsg@public.gmane.org>
+Cc: Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Sat, Feb 8, 2014 at 10:38 AM, Daniel J Blueman <daniel-JCXMqzvhRcvYtjvyW6yDsg@public.gmane.org> wrote:
+> Interestingly, there was graphical failure booting 3.6.11, even
+> nvidia-current fails to initialise, but these two issues could be due
+> to running the Xorg stack in Ubuntu 14.04 pre-release. Using
+> nouveau.noaccel=1 works great for the first X session, but after
+> logging out, lightdm and the next session experiences this consistent
+> screen corruption:
+>
+> http://quora.org/nouveau-corruption.jpg
 
---===============0999497350==
-Content-Type: multipart/alternative; boundary="1391882891.A4EbaBdD2.11216"; charset="us-ascii"
+Does that just happen in 3.6.11 or even in 3.13? If the latter, that
+points to some key lack of understanding of... something. With
+noaccel, we're not using pgraph or anything fancy -- it's just a
+framebuffer, basically. So if we can't even render _that_ right...
 
+Hopefully someone else will pipe up re your other issues -- my
+knowledge base on this is exhausted :(
 
---1391882891.A4EbaBdD2.11216
-Date: Sat, 8 Feb 2014 18:08:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=74710
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|GT 730M: unknown chipset    |[NV108] GT 730M: unknown
-                   |                            |chipset
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-3.13+ should provide modesetting, 3.14-rc1+ should provide the pgraph fw
-required to do 2d and 3d acceleration. The mesa driver is known to be very
-buggy for it (and I've yet to hear someone actually confirm that it uses the
-gk110 shader isa... if it uses the 'regular' nvc0 isa, then after a couple of
-small fixes, mesa will be much less buggy).
-
-You probably don't need to use bbswitch if you have runtime pm enabled; the
-card should get automatically powered down by the driver.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1391882891.A4EbaBdD2.11216
-Date: Sat, 8 Feb 2014 18:08:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV108] GT 730M: unknown chipset"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74710">bug 74710</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>GT 730M: unknown chipset
-           </td>
-           <td>[NV108] GT 730M: unknown chipset
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV108] GT 730M: unknown chipset"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74710#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV108] GT 730M: unknown chipset"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74710">bug 74710</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>3.13+ should provide modesetting, 3.14-rc1+ should provide the pgraph fw
-required to do 2d and 3d acceleration. The mesa driver is known to be very
-buggy for it (and I've yet to hear someone actually confirm that it uses the
-gk110 shader isa... if it uses the 'regular' nvc0 isa, then after a couple of
-small fixes, mesa will be much less buggy).
-
-You probably don't need to use bbswitch if you have runtime pm enabled; the
-card should get automatically powered down by the driver.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1391882891.A4EbaBdD2.11216--
-
---===============0999497350==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0999497350==--
+  -ilia
