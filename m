@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73744] [NVA8] Constant lock ups with NVIDIA GeForce
-	8400 GS
-Date: Sat, 08 Feb 2014 17:26:02 +0000
-Message-ID: <bug-73744-8800-csRmjnww6E@http.bugs.freedesktop.org/>
-References: <bug-73744-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74710] [NV108] GT 730M: unknown chipset
+Date: Sat, 08 Feb 2014 18:08:11 +0000
+Message-ID: <bug-74710-8800-TyIw67NUjE@http.bugs.freedesktop.org/>
+References: <bug-74710-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0103962891=="
+Content-Type: multipart/mixed; boundary="===============0999497350=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73744-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-74710-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +20,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0103962891==
-Content-Type: multipart/alternative; boundary="1391880361.2581F70D1.4206"; charset="us-ascii"
+--===============0999497350==
+Content-Type: multipart/alternative; boundary="1391882891.A4EbaBdD2.11216"; charset="us-ascii"
 
 
---1391880361.2581F70D1.4206
-Date: Sat, 8 Feb 2014 17:26:01 +0000
+--1391882891.A4EbaBdD2.11216
+Date: Sat, 8 Feb 2014 18:08:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=73744
+https://bugs.freedesktop.org/show_bug.cgi?id=74710
 
---- Comment #13 from grave_123-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org ---
-Created attachment 93667
-  --> https://bugs.freedesktop.org/attachment.cgi?id=93667&action=edit
-Log file with segfault in it
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Not sure if this info for Xorg is helpful to the Nouveau folks but, shit, it's
-something.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|GT 730M: unknown chipset    |[NV108] GT 730M: unknown
+                   |                            |chipset
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+3.13+ should provide modesetting, 3.14-rc1+ should provide the pgraph fw
+required to do 2d and 3d acceleration. The mesa driver is known to be very
+buggy for it (and I've yet to hear someone actually confirm that it uses the
+gk110 shader isa... if it uses the 'regular' nvc0 isa, then after a couple of
+small fixes, mesa will be much less buggy).
+
+You probably don't need to use bbswitch if you have runtime pm enabled; the
+card should get automatically powered down by the driver.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391880361.2581F70D1.4206
-Date: Sat, 8 Feb 2014 17:26:01 +0000
+--1391882891.A4EbaBdD2.11216
+Date: Sat, 8 Feb 2014 18:08:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,24 +61,47 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV108] GT 730M: unknown chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74710">bug 74710</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>GT 730M: unknown chipset
+           </td>
+           <td>[NV108] GT 730M: unknown chipset
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744#c13">Comment # 13</a>
+   title="NEW --- - [NV108] GT 730M: unknown chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74710#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744">bug 73744</a>
-              from <span class="vcard"><a class="email" href="mailto:grave_123&#64;riseup.net" title="grave_123&#64;riseup.net">grave_123&#64;riseup.net</a>
+   title="NEW --- - [NV108] GT 730M: unknown chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74710">bug 74710</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=93667" name="attach_93667" title="Log file with segfault in it">attachment 93667</a> <a href="attachment.cgi?id=93667&amp;action=edit" title="Log file with segfault in it">[details]</a></span>
-Log file with segfault in it
+        <pre>3.13+ should provide modesetting, 3.14-rc1+ should provide the pgraph fw
+required to do 2d and 3d acceleration. The mesa driver is known to be very
+buggy for it (and I've yet to hear someone actually confirm that it uses the
+gk110 shader isa... if it uses the 'regular' nvc0 isa, then after a couple of
+small fixes, mesa will be much less buggy).
 
-Not sure if this info for Xorg is helpful to the Nouveau folks but, shit, it's
-something.</pre>
+You probably don't need to use bbswitch if you have runtime pm enabled; the
+card should get automatically powered down by the driver.</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +113,9 @@ something.</pre>
     </body>
 </html>
 
---1391880361.2581F70D1.4206--
+--1391882891.A4EbaBdD2.11216--
 
---===============0103962891==
+--===============0999497350==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +126,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0103962891==--
+--===============0999497350==--
