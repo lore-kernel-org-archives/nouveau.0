@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54587] [NV1F] Flickering screen on Geforece 4
-Date: Sat, 08 Feb 2014 20:57:44 +0000
-Message-ID: <bug-54587-8800-WTDPC3sGoM@http.bugs.freedesktop.org/>
-References: <bug-54587-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73200] vdpau-GL interop fails due to different
+	screen objects
+Date: Sat, 08 Feb 2014 22:19:28 +0000
+Message-ID: <bug-73200-8800-lKdgUeb2xl@http.bugs.freedesktop.org/>
+References: <bug-73200-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2122543940=="
+Content-Type: multipart/mixed; boundary="===============0771673742=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73200-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2122543940==
-Content-Type: multipart/alternative; boundary="1391893064.d2cdAb3.5522"; charset="us-ascii"
+--===============0771673742==
+Content-Type: multipart/alternative; boundary="1391897967.2bf00.19683"; charset="us-ascii"
 
 
---1391893064.d2cdAb3.5522
-Date: Sat, 8 Feb 2014 20:57:44 +0000
+--1391897967.2bf00.19683
+Date: Sat, 8 Feb 2014 22:19:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54587
+https://bugs.freedesktop.org/show_bug.cgi?id=73200
 
---- Comment #27 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #26)
-> I noticed that traffic with hard disk causes big interference! Even when
-> nothing changes in the screen.
+--- Comment #11 from Matthew Waters <ystreet00-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 93678
+  --> https://bugs.freedesktop.org/attachment.cgi?id=93678&action=edit
+ld_preload nouveau_drm_screen_create
 
-This makes it really sound like you're having analog isolation issues. Does
-your VGA cable have a ferrite core on it? (Here's an image of what I'm talking
-about:
-http://image.made-in-china.com/2f1j00cSjErnoMZtkg/VGA-Computer-Monitor-Cable-with-Ferrite-Cores-Hdb15m-Hdb15m.jpg
--- the things on the cable that aren't the connector itself.)
-
-Did you not see these issues with the nvidia binary driver? That'd be very
-surprising...
+Even LD_PRELOAD ing nouveau_drm_screen_create doesn't work so something else is
+missing.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391893064.d2cdAb3.5522
-Date: Sat, 8 Feb 2014 20:57:44 +0000
+--1391897967.2bf00.19683
+Date: Sat, 8 Feb 2014 22:19:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,26 +58,19 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV1F] Flickering screen on Geforece 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587#c27">Comment # 27</a>
+   title="NEW --- - vdpau-GL interop fails due to different screen objects"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV1F] Flickering screen on Geforece 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587">bug 54587</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - vdpau-GL interop fails due to different screen objects"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200">bug 73200</a>
+              from <span class="vcard"><a class="email" href="mailto:ystreet00&#64;gmail.com" title="Matthew Waters &lt;ystreet00&#64;gmail.com&gt;"> <span class="fn">Matthew Waters</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=54587#c26">comment #26</a>)
-<span class="quote">&gt; I noticed that traffic with hard disk causes big interference! Even when
-&gt; nothing changes in the screen.</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=93678" name="attach_93678" title="ld_preload nouveau_drm_screen_create">attachment 93678</a> <a href="attachment.cgi?id=93678&amp;action=edit" title="ld_preload nouveau_drm_screen_create">[details]</a></span>
+ld_preload nouveau_drm_screen_create
 
-This makes it really sound like you're having analog isolation issues. Does
-your VGA cable have a ferrite core on it? (Here's an image of what I'm talking
-about:
-<a href="http://image.made-in-china.com/2f1j00cSjErnoMZtkg/VGA-Computer-Monitor-Cable-with-Ferrite-Cores-Hdb15m-Hdb15m.jpg">http://image.made-in-china.com/2f1j00cSjErnoMZtkg/VGA-Computer-Monitor-Cable-with-Ferrite-Cores-Hdb15m-Hdb15m.jpg</a>
--- the things on the cable that aren't the connector itself.)
-
-Did you not see these issues with the nvidia binary driver? That'd be very
-surprising...</pre>
+Even LD_PRELOAD ing nouveau_drm_screen_create doesn't work so something else is
+missing.</pre>
         </div>
       </p>
       <hr>
@@ -94,9 +82,9 @@ surprising...</pre>
     </body>
 </html>
 
---1391893064.d2cdAb3.5522--
+--1391897967.2bf00.19683--
 
---===============2122543940==
+--===============0771673742==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -107,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2122543940==--
+--===============0771673742==--
