@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54587] [NV1F] Flickering screen on Geforece 4
-Date: Sat, 08 Feb 2014 13:57:22 +0000
-Message-ID: <bug-54587-8800-3dIG3MSzMp@http.bugs.freedesktop.org/>
-References: <bug-54587-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74710] GT 730M: unknown chipset
+Date: Sat, 08 Feb 2014 14:03:42 +0000
+Message-ID: <bug-74710-8800-k56pmE2tEc@http.bugs.freedesktop.org/>
+References: <bug-74710-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0925099713=="
+Content-Type: multipart/mixed; boundary="===============0224254380=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-74710-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,40 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0925099713==
-Content-Type: multipart/alternative; boundary="1391867842.231DbF7B2.3255"; charset="us-ascii"
+--===============0224254380==
+Content-Type: multipart/alternative; boundary="1391868222.1Cf0d2.4382"; charset="us-ascii"
 
 
---1391867842.231DbF7B2.3255
-Date: Sat, 8 Feb 2014 13:57:22 +0000
+--1391868222.1Cf0d2.4382
+Date: Sat, 8 Feb 2014 14:03:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54587
+https://bugs.freedesktop.org/show_bug.cgi?id=74710
 
---- Comment #25 from Vesa <piip-O5WfVfzUwx8@public.gmane.org> ---
-There is no digital connector available. This is ten years old mother board
-with integrated graphic adapter :)
+--- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi Tobias
 
-Adding video=TV-1:d removes most of the interference.
-
-At 1920x1080 (monitor native resolution) there are still some odd lines here
-and there, moving a mouse increases interference and moving a window makes the
-screen very wild. I am not sure where I got this resolution, maybe from
-nvidia's driver.
-
-At 1024x768 the screen is stable if mouse is not moved, moving a window causes
-interference, a few lines at the top of the screen are missing.
-
-At 800x600 the screen is stable even when moving a mouse, moving a window
-causes some odd lines to appear.
+Initial mode-setting support for nv108 has been added in 3.13, with pgraph
+(read opengl) landing in 3.14. Give those a try but note that gl support may
+not be a smooth experience as expected.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391867842.231DbF7B2.3255
-Date: Sat, 8 Feb 2014 13:57:22 +0000
+--1391868222.1Cf0d2.4382
+Date: Sat, 8 Feb 2014 14:03:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,29 +56,19 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV1F] Flickering screen on Geforece 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587#c25">Comment # 25</a>
+   title="NEW --- - GT 730M: unknown chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74710#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV1F] Flickering screen on Geforece 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587">bug 54587</a>
-              from <span class="vcard"><a class="email" href="mailto:piip&#64;mail.com" title="Vesa &lt;piip&#64;mail.com&gt;"> <span class="fn">Vesa</span></a>
+   title="NEW --- - GT 730M: unknown chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74710">bug 74710</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>There is no digital connector available. This is ten years old mother board
-with integrated graphic adapter :)
+        <pre>Hi Tobias
 
-Adding video=TV-1:d removes most of the interference.
-
-At 1920x1080 (monitor native resolution) there are still some odd lines here
-and there, moving a mouse increases interference and moving a window makes the
-screen very wild. I am not sure where I got this resolution, maybe from
-nvidia's driver.
-
-At 1024x768 the screen is stable if mouse is not moved, moving a window causes
-interference, a few lines at the top of the screen are missing.
-
-At 800x600 the screen is stable even when moving a mouse, moving a window
-causes some odd lines to appear.</pre>
+Initial mode-setting support for nv108 has been added in 3.13, with pgraph
+(read opengl) landing in 3.14. Give those a try but note that gl support may
+not be a smooth experience as expected.</pre>
         </div>
       </p>
       <hr>
@@ -100,9 +80,9 @@ causes some odd lines to appear.</pre>
     </body>
 </html>
 
---1391867842.231DbF7B2.3255--
+--1391868222.1Cf0d2.4382--
 
---===============0925099713==
+--===============0224254380==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -113,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0925099713==--
+--===============0224254380==--
