@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57660] [NVA3:NVC0] Turn on support for
-	PIPE_CAP_CUBE_MAP_ARRAY
-Date: Fri, 07 Feb 2014 22:48:43 +0000
-Message-ID: <bug-57660-8800-Ersbbmzcmx@http.bugs.freedesktop.org/>
-References: <bug-57660-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74648] [NV86] Ultima IX (wine) movie playback
+	crashes game
+Date: Sat, 08 Feb 2014 01:04:23 +0000
+Message-ID: <bug-74648-8800-QDzg0WdMpa@http.bugs.freedesktop.org/>
+References: <bug-74648-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0225695162=="
+Content-Type: multipart/mixed; boundary="===============1776579476=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-74648-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,62 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0225695162==
-Content-Type: multipart/alternative; boundary="1391813323.Db2fEff1.3308"; charset="us-ascii"
+--===============1776579476==
+Content-Type: multipart/alternative; boundary="1391821463.5FEe2.24554"; charset="us-ascii"
 
 
---1391813323.Db2fEff1.3308
-Date: Fri, 7 Feb 2014 22:48:43 +0000
+--1391821463.5FEe2.24554
+Date: Sat, 8 Feb 2014 01:04:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57660
+https://bugs.freedesktop.org/show_bug.cgi?id=74648
 
---- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 93636
-  --> https://bugs.freedesktop.org/attachment.cgi?id=93636&action=edit
-cubemap array patch
+--- Comment #2 from Christopher Thielen <christopher-XP3JB3hj9piIwRZHo2/mJg@public.gmane.org> ---
+Good point on the restoring to fullscreen, I suppose it would return if the
+program wasn't crashing.
 
-Well, this fixes the one place I found by copying what nvc0 did. But from
-Martin's test it seems like this probably won't be sufficient, since this just
-takes layer offsets into account.
+Mesa looks to be v9.2.5, here are the relevant RPMs installed:
+
+mesa-libgbm-9.2.5-1.20131220.fc20.i686
+mesa-libGL-devel-9.2.5-1.20131220.fc20.i686
+mesa-libglapi-9.2.5-1.20131220.fc20.i686
+mesa-libgbm-9.2.5-1.20131220.fc20.x86_64
+mesa-libglapi-9.2.5-1.20131220.fc20.x86_64
+mesa-libGLU-9.0.0-4.fc20.i686
+mesa-dri-drivers-9.2.5-1.20131220.fc20.x86_64
+mesa-libxatracker-9.2.5-1.20131220.fc20.x86_64
+mesa-filesystem-9.2.5-1.20131220.fc20.i686
+mesa-libGL-9.2.5-1.20131220.fc20.x86_64
+mesa-libGLES-devel-9.2.5-1.20131220.fc20.x86_64
+mesa-libOSMesa-9.2.5-1.20131220.fc20.x86_64
+mesa-libGL-9.2.5-1.20131220.fc20.i686
+mesa-libGLU-devel-9.0.0-4.fc20.i686
+mesa-libwayland-egl-9.2.5-1.20131220.fc20.x86_64
+mesa-libEGL-9.2.5-1.20131220.fc20.x86_64
+mesa-libGLU-9.0.0-4.fc20.x86_64
+mesa-libGLES-9.2.5-1.20131220.fc20.x86_64
+mesa-libEGL-9.2.5-1.20131220.fc20.i686
+mesa-libGLU-devel-9.0.0-4.fc20.x86_64
+mesa-libEGL-devel-9.2.5-1.20131220.fc20.x86_64
+mesa-libOSMesa-devel-9.2.5-1.20131220.fc20.i686
+mesa-filesystem-9.2.5-1.20131220.fc20.x86_64
+mesa-libGL-devel-9.2.5-1.20131220.fc20.x86_64
+mesa-libOSMesa-9.2.5-1.20131220.fc20.i686
+mesa-dri-drivers-9.2.5-1.20131220.fc20.i686
+
+'dmesg | grep -i chipset' returns:
+[    2.805539] nouveau  [  DEVICE][0000:01:00.0] Chipset: G86 (NV86)
+
+I'll post the traceback with debugging symbols once I figure out how to
+recompile Mesa - it's been a while. :)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391813323.Db2fEff1.3308
-Date: Fri, 7 Feb 2014 22:48:43 +0000
+--1391821463.5FEe2.24554
+Date: Sat, 8 Feb 2014 01:04:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,20 +89,51 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA3:NVC0] Turn on support for PIPE_CAP_CUBE_MAP_ARRAY"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57660#c11">Comment # 11</a>
+   title="NEW --- - [NV86] Ultima IX (wine) movie playback crashes game"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74648#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA3:NVC0] Turn on support for PIPE_CAP_CUBE_MAP_ARRAY"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57660">bug 57660</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NV86] Ultima IX (wine) movie playback crashes game"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74648">bug 74648</a>
+              from <span class="vcard"><a class="email" href="mailto:christopher&#64;thielen.co" title="Christopher Thielen &lt;christopher&#64;thielen.co&gt;"> <span class="fn">Christopher Thielen</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=93636" name="attach_93636" title="cubemap array patch">attachment 93636</a> <a href="attachment.cgi?id=93636&amp;action=edit" title="cubemap array patch">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=57660&amp;attachment=93636'>[review]</a>
-cubemap array patch
+        <pre>Good point on the restoring to fullscreen, I suppose it would return if the
+program wasn't crashing.
 
-Well, this fixes the one place I found by copying what nvc0 did. But from
-Martin's test it seems like this probably won't be sufficient, since this just
-takes layer offsets into account.</pre>
+Mesa looks to be v9.2.5, here are the relevant RPMs installed:
+
+mesa-libgbm-9.2.5-1.20131220.fc20.i686
+mesa-libGL-devel-9.2.5-1.20131220.fc20.i686
+mesa-libglapi-9.2.5-1.20131220.fc20.i686
+mesa-libgbm-9.2.5-1.20131220.fc20.x86_64
+mesa-libglapi-9.2.5-1.20131220.fc20.x86_64
+mesa-libGLU-9.0.0-4.fc20.i686
+mesa-dri-drivers-9.2.5-1.20131220.fc20.x86_64
+mesa-libxatracker-9.2.5-1.20131220.fc20.x86_64
+mesa-filesystem-9.2.5-1.20131220.fc20.i686
+mesa-libGL-9.2.5-1.20131220.fc20.x86_64
+mesa-libGLES-devel-9.2.5-1.20131220.fc20.x86_64
+mesa-libOSMesa-9.2.5-1.20131220.fc20.x86_64
+mesa-libGL-9.2.5-1.20131220.fc20.i686
+mesa-libGLU-devel-9.0.0-4.fc20.i686
+mesa-libwayland-egl-9.2.5-1.20131220.fc20.x86_64
+mesa-libEGL-9.2.5-1.20131220.fc20.x86_64
+mesa-libGLU-9.0.0-4.fc20.x86_64
+mesa-libGLES-9.2.5-1.20131220.fc20.x86_64
+mesa-libEGL-9.2.5-1.20131220.fc20.i686
+mesa-libGLU-devel-9.0.0-4.fc20.x86_64
+mesa-libEGL-devel-9.2.5-1.20131220.fc20.x86_64
+mesa-libOSMesa-devel-9.2.5-1.20131220.fc20.i686
+mesa-filesystem-9.2.5-1.20131220.fc20.x86_64
+mesa-libGL-devel-9.2.5-1.20131220.fc20.x86_64
+mesa-libOSMesa-9.2.5-1.20131220.fc20.i686
+mesa-dri-drivers-9.2.5-1.20131220.fc20.i686
+
+'dmesg | grep -i chipset' returns:
+[    2.805539] nouveau  [  DEVICE][0000:01:00.0] Chipset: G86 (NV86)
+
+I'll post the traceback with debugging symbols once I figure out how to
+recompile Mesa - it's been a while. :)</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +145,9 @@ takes layer offsets into account.</pre>
     </body>
 </html>
 
---1391813323.Db2fEff1.3308--
+--1391821463.5FEe2.24554--
 
---===============0225695162==
+--===============1776579476==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +158,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0225695162==--
+--===============1776579476==--
