@@ -1,90 +1,73 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54587] [NV1F] Flickering screen on Geforece 4
-Date: Sat, 08 Feb 2014 08:26:26 +0000
-Message-ID: <bug-54587-8800-aM8lZsgMtO@http.bugs.freedesktop.org/>
-References: <bug-54587-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: Re: nouveau graphical corruption in 3.13.2
+Date: Sat, 8 Feb 2014 03:33:31 -0500
+Message-ID: <CAKb7Uvh8jPNcXAfVYkdC3y0wQ7icc52Cid_fN5bpvdBf12KPag@mail.gmail.com>
+References: <CAMVG2suzT1vphjHAUFCsbVBsd22U69jzQaKVwnEyGLBu6eGOSw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1110896640=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=ISO-8859-1
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAMVG2suzT1vphjHAUFCsbVBsd22U69jzQaKVwnEyGLBu6eGOSw@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Daniel J Blueman <daniel@quora.org>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Linux Kernel <linux-kernel@vger.kernel.org>, Dave Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
+On Sat, Feb 8, 2014 at 2:58 AM, Daniel J Blueman <daniel@quora.org> wrote:
+> Hi guys,
+>
+> With a GeForce 320M GPU running linux 3.13.2 and Xorg 1.15.0, I'm
+> seeing significant graphical corruption and later unrecoverable GPU
+> lockup, accompanied by thousands of ILLEGAL_MTHD or related kernel
+> messages [1]. I see similar issues on 3.12 also.
+>
+> Is there any debugging or testing I can do to help diagnose this?
 
---===============1110896640==
-Content-Type: multipart/alternative; boundary="1391847986.be0C8D2.18860"; charset="us-ascii"
+Is this new? i.e. was there a kernel where it all worked well?
 
+You get caught by the new disable logic in 3.13 that looks at a
+register to figure out what engines have been disabled:
 
---1391847986.be0C8D2.18860
-Date: Sat, 8 Feb 2014 08:26:26 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+[    6.306005] nouveau W[    PCE0][0000:04:00.0] disabled, PCE0=1 to enable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54587
+Perhaps it's actually there and we have incorrect information about
+the feature disable register -- you can force-enable it with
+nouveau.config=PCE0=1 if you like. Although this logic is new in 3.13,
+so if you also saw the issue in 3.12, that's probably not the cause.
+(Also, the in-kernel logic falls back to M2MF, and so does the DDX,
+and I don't see any usage in mesa, so even _if_ it's incorrectly
+disabled, I doubt this would be your issue.)
 
---- Comment #23 from Vesa <piip-O5WfVfzUwx8@public.gmane.org> ---
-I updated to Ubuntu 13.10. Very much flickering. See attached photo and log
-files.
+Another thing that's new in 3.13 is MSI -- you can disable it with
+nouveau.config=NvMSI=0.
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+There's only one currently-open bug about NVAF:
+https://bugs.freedesktop.org/show_bug.cgi?id=60150 -- unfortunately
+the bug filer wasn't very specific about the issues. But it might be
+worth trying an ancient kernel (e.g. pre-3.7 -- there was a big
+rewrite in 3.7, or even one of those 3.2-based franken-kernels that
+distros maintained.) I suppose if you were to boot with
+nouveau.noaccel=1 your problems would go away, but so would any 2d/3d
+accel.
 
---1391847986.be0C8D2.18860
-Date: Sat, 8 Feb 2014 08:26:26 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+[   85.751375] nouveau E[   PFIFO][0000:04:00.0] DMA_PUSHER - ch 3
+[Xorg[919]] get 0x0020022a4c put 0x0020023140 ib_get 0x00000391 ib_put
+0x000003c2 state 0x8000e6a8 (err: INVALID_CMD) push 0x00400040
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV1F] Flickering screen on Geforece 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587#c23">Comment # 23</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV1F] Flickering screen on Geforece 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587">bug 54587</a>
-              from <span class="vcard"><a class="email" href="mailto:piip&#64;mail.com" title="Vesa &lt;piip&#64;mail.com&gt;"> <span class="fn">Vesa</span></a>
-</span></b>
-        <pre>I updated to Ubuntu 13.10. Very much flickering. See attached photo and log
-files.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+I've seen this kind of error before, on many different card types, and
+have _no clue_ how it happens -- at no point is that command actually
+written to the ring (I think). After that happens, it looks like
+things get a little upset, and basically nothing works again. When
+I've seen it before things tend to recover, but I guess they don't
+have to.
 
---1391847986.be0C8D2.18860--
+I wouldn't be surprised if this was some sort of issue in the fifo
+context switch code (which I'm most unfamiliar with, but others know
+more). It has all sorts of chipset-specific stuff, and chances are
+nvaf wasn't well-represented when all those were made. Assuming there
+isn't an earlier working version of nouveau, one avenue is to do a
+mmiotrace (https://wiki.ubuntu.com/X/MMIOTracing) of the blob starting
+X and running e.g. glxgears. Then one would have to look at what
+ctxprog it uploads and reconcile that with nouveau's somehow. (But
+perhaps this is entirely wrong and nouveau's ctxprogs are fine.)
 
---===============1110896640==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1110896640==--
+ -ilia
