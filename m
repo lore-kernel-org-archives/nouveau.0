@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74695] [NV86] GPU hangs on resume, causing X to crash
-Date: Sun, 09 Feb 2014 20:47:00 +0000
-Message-ID: <bug-74695-8800-9QdcLFiUJ9@http.bugs.freedesktop.org/>
-References: <bug-74695-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 2/2] drm/nouveau/abi16: fix handles past the 32nd
+	one
+Date: Sun,  9 Feb 2014 15:51:25 -0500
+Message-ID: <1391979085-8012-2-git-send-email-imirkin@alum.mit.edu>
+References: <1391979085-8012-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0178415529=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74695-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1391979085-8012-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,84 +18,42 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+abi16->handles is a u64, so make sure to use 1ULL << val when modifying.
 
---===============0178415529==
-Content-Type: multipart/alternative; boundary="1391978820.634FB2.9545"; charset="us-ascii"
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
 
+Noticed this when doing the previous patch. I'm not sure whether this affects
+64-bit builds or not, didn't care to look at the assembly or check the
+standard.
 
---1391978820.634FB2.9545
-Date: Sun, 9 Feb 2014 20:47:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+ drivers/gpu/drm/nouveau/nouveau_abi16.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74695
-
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Would you be able to do a bisect between 3.7 and 3.8?
-
-Another user identified commit 4f6029da58ba (in bug #67878) which came in
-between 3.7 and 3.8 -- perhaps you have the same issue? It's a different card,
-so might be different... a bunch of stuff changed between 3.7 and 3.8.
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+index b701117..66abf4d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
++++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+@@ -139,7 +139,7 @@ nouveau_abi16_chan_fini(struct nouveau_abi16 *abi16,
+ 
+ 	/* destroy channel object, all children will be killed too */
+ 	if (chan->chan) {
+-		abi16->handles &= ~(1 << (chan->chan->handle & 0xffff));
++		abi16->handles &= ~(1ULL << (chan->chan->handle & 0xffff));
+ 		nouveau_channel_del(&chan->chan);
+ 	}
+ 
+@@ -280,7 +280,7 @@ nouveau_abi16_ioctl_channel_alloc(ABI16_IOCTL_ARGS)
+ 
+ 	INIT_LIST_HEAD(&chan->notifiers);
+ 	list_add(&chan->head, &abi16->channels);
+-	abi16->handles |= (1 << init->channel);
++	abi16->handles |= (1ULL << init->channel);
+ 
+ 	/* create channel object and initialise dma and fence management */
+ 	ret = nouveau_channel_new(drm, cli, NVDRM_DEVICE, NVDRM_CHAN |
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1391978820.634FB2.9545
-Date: Sun, 9 Feb 2014 20:47:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695">bug 74695</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Would you be able to do a bisect between 3.7 and 3.8?
-
-Another user identified commit 4f6029da58ba (in <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV98] [BISECTED] Hardware freeze after resume from suspend"
-   href="show_bug.cgi?id=67878">bug #67878</a>) which came in
-between 3.7 and 3.8 -- perhaps you have the same issue? It's a different card,
-so might be different... a bunch of stuff changed between 3.7 and 3.8.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1391978820.634FB2.9545--
-
---===============0178415529==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0178415529==--
+1.8.3.2
