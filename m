@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74695] [NV86] GPU hangs on resume, causing X to crash
-Date: Sun, 09 Feb 2014 20:37:41 +0000
-Message-ID: <bug-74695-8800-BlZOXYaV9h@http.bugs.freedesktop.org/>
+Date: Sun, 09 Feb 2014 20:47:00 +0000
+Message-ID: <bug-74695-8800-9QdcLFiUJ9@http.bugs.freedesktop.org/>
 References: <bug-74695-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1709939682=="
+Content-Type: multipart/mixed; boundary="===============0178415529=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74695-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1709939682==
-Content-Type: multipart/alternative; boundary="1391978261.fA4aE5f1.7925"; charset="us-ascii"
+--===============0178415529==
+Content-Type: multipart/alternative; boundary="1391978820.634FB2.9545"; charset="us-ascii"
 
 
---1391978261.fA4aE5f1.7925
-Date: Sun, 9 Feb 2014 20:37:41 +0000
+--1391978820.634FB2.9545
+Date: Sun, 9 Feb 2014 20:47:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74695
 
---- Comment #8 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This is the link with Ubuntu mainline kernels:
-http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D.
-I starded having crashes from v3.8-raring.
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Would you be able to do a bisect between 3.7 and 3.8?
+
+Another user identified commit 4f6029da58ba (in bug #67878) which came in
+between 3.7 and 3.8 -- perhaps you have the same issue? It's a different card,
+so might be different... a bunch of stuff changed between 3.7 and 3.8.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1391978261.fA4aE5f1.7925
-Date: Sun, 9 Feb 2014 20:37:41 +0000
+--1391978820.634FB2.9545
+Date: Sun, 9 Feb 2014 20:47:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +57,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74695">bug 74695</a>
-              from <span class="vcard"><a class="email" href="mailto:carla.sella&#64;gmail.com" title="Carla sella &lt;carla.sella&#64;gmail.com&gt;"> <span class="fn">Carla sella</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>This is the link with Ubuntu mainline kernels:
-<a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D">http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D</a>.
-I starded having crashes from v3.8-raring.</pre>
+        <pre>Would you be able to do a bisect between 3.7 and 3.8?
+
+Another user identified commit 4f6029da58ba (in <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV98] [BISECTED] Hardware freeze after resume from suspend"
+   href="show_bug.cgi?id=67878">bug #67878</a>) which came in
+between 3.7 and 3.8 -- perhaps you have the same issue? It's a different card,
+so might be different... a bunch of stuff changed between 3.7 and 3.8.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +83,9 @@ I starded having crashes from v3.8-raring.</pre>
     </body>
 </html>
 
---1391978261.fA4aE5f1.7925--
+--1391978820.634FB2.9545--
 
---===============1709939682==
+--===============0178415529==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1709939682==--
+--===============0178415529==--
