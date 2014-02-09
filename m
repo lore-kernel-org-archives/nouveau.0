@@ -1,12 +1,13 @@
-From: =?ISO-8859-1?Q?St=E9phane_Marchesin?= <stephane.marchesin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: noveau - feedbaks to vp2 on nvidia quadro fx 700m
-Date: Sun, 9 Feb 2014 02:57:59 -0800
-Message-ID: <CACP_E+KpCSgDamD5K3=fWiNjKZNW8bE=VWf3MZuki=FGC0JqoA@mail.gmail.com>
-References: <52F72D0F.2000508@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
+ 8400M G after upgrade the kernel to 3.7.0 version
+Date: Sun, 09 Feb 2014 16:06:33 +0000
+Message-ID: <bug-58378-8800-bbELOeA19L@http.bugs.freedesktop.org/>
+References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1897392103=="
+Content-Type: multipart/mixed; boundary="===============2075877335=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <52F72D0F.2000508-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,96 +17,85 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: =?ISO-8859-1?Q?Attila_T=F3th?= <tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1897392103==
-Content-Type: multipart/alternative; boundary=001a1139569e0791f104f1f71b9a
 
---001a1139569e0791f104f1f71b9a
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hey Attila,
-
-I CC'd the nouveau mailing list. Although if you want help, you should
-probably provide more details (what version of mesa, etc.).
-
-St=E9phane
+--===============2075877335==
+Content-Type: multipart/alternative; boundary="1391961993.18c33.24101"; charset="us-ascii"
 
 
+--1391961993.18c33.24101
+Date: Sun, 9 Feb 2014 16:06:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-On Sat, Feb 8, 2014 at 11:23 PM, Attila T=F3th <tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
-> Hi,
->  sorry, i have not better email adress of noveau team. Please send email =
--
-> mail feedback, that by moving on time in the movie, vdpau acceleration is
-> stopped (freezing of player: smplayer)
->
-> Thank you
->
-> --
-> S pozdravom / mit freundlichen Gr=FC=DFen / best regards
->
-> Ing. Attila T=F3th
-> PhD student, researcher
->
-> email adress : tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-> web : http://at-atelier.webnode.sk/
-> tel : +421 910 299 189  (O2 - Slovak Republic)
-> jabber ID : atelier-i1OhQt8rBBdaa/9Udqfwiw@public.gmane.org
-> Please consider your environmental responsibility before printing this
-> e-mail
->
->
+--- Comment #86 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
+Hello Ilia,
 
---001a1139569e0791f104f1f71b9a
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+has there been any progress so far in getting this into the mainstream Linux
+kernel (or mainstream git) for the next official kernel release?
 
-<div dir=3D"ltr">Hey=A0Attila,<div><br></div><div>I CC&#39;d the nouveau ma=
-iling list. Although if you want help, you should probably provide more det=
-ails (what version of mesa, etc.).</div><div><br></div><div>St=E9phane</div=
-><div>
+I'd like to make an attempt to get this patch (or rather, a backport of it)
+into official RHEL 6.x kernels, but I'd like to point to an official kernel
+patch in order to do so.
 
-<br><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Sat, F=
-eb 8, 2014 at 11:23 PM, Attila T=F3th <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank">tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt;</span> =
-wrote:<br>
+Many thanks & best regards,
+Andreas
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">Hi,<br>
-=A0sorry, i have not better email adress of noveau team. Please send email =
-- mail feedback, that by moving on time in the movie, vdpau acceleration is=
- stopped (freezing of player: smplayer)<br>
-<br>
-Thank you<span class=3D""><font color=3D"#888888"><br>
-<br>
--- <br>
-S pozdravom / mit freundlichen Gr=FC=DFen / best regards<br>
-<br>
-Ing. Attila T=F3th<br>
-PhD student, researcher<br>
-<br>
-email adress : <a href=3D"mailto:tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank">toth=
-soft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a><br>
-web : <a href=3D"http://at-atelier.webnode.sk/" target=3D"_blank">http://at=
--atelier.webnode.sk/</a><br>
-tel : <a href=3D"tel:%2B421%20910%20299%20189" value=3D"+421910299189" targ=
-et=3D"_blank">+421 910 299 189</a> =A0(O2 - Slovak Republic)<br>
-jabber ID : <a href=3D"mailto:atelier-i1OhQt8rBBdaa/9Udqfwiw@public.gmane.org" target=3D"_blank">atelier@=
-jabbim.sk</a><br>
-Please consider your environmental responsibility before printing this e-ma=
-il<br>
-<br>
-</font></span></blockquote></div><br></div></div></div>
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
---001a1139569e0791f104f1f71b9a--
+--1391961993.18c33.24101
+Date: Sun, 9 Feb 2014 16:06:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
---===============1897392103==
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c86">Comment # 86</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
+              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
+</span></b>
+        <pre>Hello Ilia,
+
+has there been any progress so far in getting this into the mainstream Linux
+kernel (or mainstream git) for the next official kernel release?
+
+I'd like to make an attempt to get this patch (or rather, a backport of it)
+into official RHEL 6.x kernels, but I'd like to point to an official kernel
+patch in order to do so.
+
+Many thanks &amp; best regards,
+Andreas</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1391961993.18c33.24101--
+
+--===============2075877335==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -116,4 +106,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1897392103==--
+--===============2075877335==--
