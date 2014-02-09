@@ -1,48 +1,91 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] drm/nv50/gr: add missing nv_error parameter priv
-Date: Sat,  8 Feb 2014 22:35:13 -0500
-Message-ID: <1391916913-3985-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 54587] [NV1F] Flickering screen on Geforece 4
+Date: Sun, 09 Feb 2014 08:08:11 +0000
+Message-ID: <bug-54587-8800-4yvG6GTXQk@http.bugs.freedesktop.org/>
+References: <bug-54587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0398729095=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Commit ea7dce901 ("drm/nv50/gr: print mpc trap name when it's not an mp
-trap") added an nv_error call that was missing the priv parameter. This
-causes GPFs if the error is ever hit.
 
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
----
+--===============0398729095==
+Content-Type: multipart/alternative; boundary="1391933291.5e5125D2.7443"; charset="us-ascii"
 
-Sorry, my bad! But... I hit it and it killed my computer. So things are
-probably even.
 
- drivers/gpu/drm/nouveau/core/engine/graph/nv50.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--1391933291.5e5125D2.7443
+Date: Sun, 9 Feb 2014 08:08:11 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-index 6da473c..ef38320 100644
---- a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-@@ -540,7 +540,7 @@ nv50_priv_tp_trap(struct nv50_graph_priv *priv, int type, u32 ustatus_old,
- 				ustatus &= ~0x04030000;
- 			}
- 			if (ustatus && display) {
--				nv_error("%s - TP%d:", name, i);
-+				nv_error(priv, "%s - TP%d:", name, i);
- 				nouveau_bitfield_print(nv50_mpc_traps, ustatus);
- 				pr_cont("\n");
- 				ustatus = 0;
+https://bugs.freedesktop.org/show_bug.cgi?id=54587
+
+--- Comment #28 from Vesa <piip-O5WfVfzUwx8@public.gmane.org> ---
+Created attachment 93694
+  --> https://bugs.freedesktop.org/attachment.cgi?id=93694&action=edit
+Photo of lines
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1391933291.5e5125D2.7443
+Date: Sun, 9 Feb 2014 08:08:11 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV1F] Flickering screen on Geforece 4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587#c28">Comment # 28</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV1F] Flickering screen on Geforece 4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587">bug 54587</a>
+              from <span class="vcard"><a class="email" href="mailto:piip&#64;mail.com" title="Vesa &lt;piip&#64;mail.com&gt;"> <span class="fn">Vesa</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=93694" name="attach_93694" title="Photo of lines">attachment 93694</a> <a href="attachment.cgi?id=93694&amp;action=edit" title="Photo of lines">[details]</a></span>
+Photo of lines</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1391933291.5e5125D2.7443--
+
+--===============0398729095==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0398729095==--
