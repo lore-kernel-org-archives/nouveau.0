@@ -1,83 +1,105 @@
-From: Alexandre Courbot <acourbot@nvidia.com>
-Subject: [PATCH] drm/nouveau: handle -EACCES runtime PM return code
-Date: Mon, 10 Feb 2014 14:58:12 +0900
-Message-ID: <1392011892-4339-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 73744] [NVA8] Constant lock ups with NVIDIA GeForce
+	8400 GS
+Date: Mon, 10 Feb 2014 06:55:33 +0000
+Message-ID: <bug-73744-8800-HwfGIwdsne@http.bugs.freedesktop.org/>
+References: <bug-73744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, gnurou@gmail.com
+Content-Type: multipart/mixed; boundary="===============2058377103=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-73744-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-pm_runtime_get*() may return -EACCESS to indicate a device does not have
-runtime PM enabled. This is the case when the nouveau.runpm parameter is
-set to 0, and is not an error in that context. Handle this case without
-failure.
 
-Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
----
- drivers/gpu/drm/nouveau/dispnv04/crtc.c     | 2 +-
- drivers/gpu/drm/nouveau/nouveau_connector.c | 2 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c       | 4 ++--
- 3 files changed, 4 insertions(+), 4 deletions(-)
+--===============2058377103==
+Content-Type: multipart/alternative; boundary="1392015333.742EAd81.10919"; charset="us-ascii"
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-index 0e3270c3ffd2..1caef1fd139e 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-@@ -1048,7 +1048,7 @@ nouveau_crtc_set_config(struct drm_mode_set *set)
- 
- 	/* get a pm reference here */
- 	ret = pm_runtime_get_sync(dev->dev);
--	if (ret < 0)
-+	if (ret < 0 && ret != -EACCES)
- 		return ret;
- 
- 	ret = drm_crtc_helper_set_config(set);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 1674882d60d5..cddef546d9b0 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -255,7 +255,7 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
- 	}
- 
- 	ret = pm_runtime_get_sync(connector->dev->dev);
--	if (ret < 0)
-+	if (ret < 0 && ret != -EACCES)
- 		return conn_status;
- 
- 	i2c = nouveau_connector_ddc_detect(connector, &nv_encoder);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 8a4630a1fc45..2617168af244 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -696,7 +696,7 @@ nouveau_drm_open(struct drm_device *dev, struct drm_file *fpriv)
- 
- 	/* need to bring up power immediately if opening device */
- 	ret = pm_runtime_get_sync(dev->dev);
--	if (ret < 0)
-+	if (ret < 0 && ret != -EACCES)
- 		return ret;
- 
- 	get_task_comm(tmpname, current);
-@@ -781,7 +781,7 @@ long nouveau_drm_ioctl(struct file *filp,
- 	dev = file_priv->minor->dev;
- 
- 	ret = pm_runtime_get_sync(dev->dev);
--	if (ret < 0)
-+	if (ret < 0 && ret != -EACCES)
- 		return ret;
- 
- 	ret = drm_ioctl(filp, cmd, arg);
+
+--1392015333.742EAd81.10919
+Date: Mon, 10 Feb 2014 06:55:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=73744
+
+--- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #13)
+> Created attachment 93667 [details]
+> Log file with segfault in it
+> 
+> Not sure if this info for Xorg is helpful to the Nouveau folks but, shit,
+> it's something.
+
+Nope, that's just a crash that happens when the GPU locks up. The DDX isn't
+very good at handling that.
+
 -- 
-1.8.5.4
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1392015333.742EAd81.10919
+Date: Mon, 10 Feb 2014 06:55:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744">bug 73744</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=73744#c13">comment #13</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=93667" name="attach_93667" title="Log file with segfault in it">attachment 93667</a> <a href="attachment.cgi?id=93667&amp;action=edit" title="Log file with segfault in it">[details]</a></span>
+&gt; Log file with segfault in it
+&gt; 
+&gt; Not sure if this info for Xorg is helpful to the Nouveau folks but, shit,
+&gt; it's something.</span >
+
+Nope, that's just a crash that happens when the GPU locks up. The DDX isn't
+very good at handling that.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1392015333.742EAd81.10919--
+
+--===============2058377103==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2058377103==--
