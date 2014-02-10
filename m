@@ -1,16 +1,12 @@
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: GeForce 6100 (NV4E) & nouveau regression in 3.12
-Date: Mon, 10 Feb 2014 21:05:00 +0100
-Message-ID: <CACna6ryE2wM=+SNkHkgPkP9nGqLFfQbuCs-6VJci+DL-xSrMWw@mail.gmail.com>
-References: <CACna6rz=cp9Sce46C0P-cQbow-Os95_6XB+fhNjSwvnCJabJfA@mail.gmail.com>
-	<CAKb7Uvjz74GWDEwynOud2wmzoABc1HMrP4VC+J-oKi9Y3G0h8w@mail.gmail.com>
-	<CACna6ryidTQDGVq=N6Wg9xycXqAaPsuvjoktQiZ00p5sLLkzdQ@mail.gmail.com>
-	<CAKb7Uvh5o4hd6G1R07qu3hRCfweb+0qEoRJWF+hZKMCm+xX0zA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74695] [NV86] GPU hangs on resume, causing X to crash
+Date: Mon, 10 Feb 2014 20:38:25 +0000
+Message-ID: <bug-74695-8800-Zq9wNtJQjT@http.bugs.freedesktop.org/>
+References: <bug-74695-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2109081893=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvh5o4hd6G1R07qu3hRCfweb+0qEoRJWF+hZKMCm+xX0zA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-74695-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,70 +16,81 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-MjAxNC0wMi0xMCAyMDowNiBHTVQrMDE6MDAgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
-ZWR1PjoKPiBPbiBNb24sIEZlYiAxMCwgMjAxNCBhdCAxMDoxMiBBTSwgUmFmYcWCIE1pxYJlY2tp
-IDx6YWplYzVAZ21haWwuY29tPiB3cm90ZToKPj4gMjAxNC0wMi0wOSAyMzoxMiBHTVQrMDE6MDAg
-SWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PjoKPj4+IE9uIFN1biwgRmViIDksIDIw
-MTQgYXQgNTowOCBQTSwgUmFmYcWCIE1pxYJlY2tpIDx6YWplYzVAZ21haWwuY29tPiB3cm90ZToK
-Pj4+PiBMYXN0IHdlZWsgSSd2ZSBzd2l0Y2hlZCBmcm9tIG15IG9sZCAmIGdvb2QgMy40LjYzIHRv
-IDMuMTQtcmMxIGFuZAo+Pj4+IG5vdGljZWQgbmFzdHkgZGlzcGxheSBjb3JydXB0aW9ucyB3aGVu
-IHVzaW5nIG5vdXZlYXUuIEl0IHNlZW1zIHRoYXQKPj4+PiBjaGFuZ2luZyBwYXJ0cyBvZiB0aGUg
-c2NyZWVuIGFyZSBhcHBlYXJpbmcgZm9yIGEgZnJhY3Rpb24gb2Ygc2Vjb25kIGluCj4+Pj4gcmFu
-ZG9tIHBsYWNlcy4gSSd2ZSByZWNvcmRlZCB0aGlzIGJlaGF2aW9yOgo+Pj4+IGh0dHA6Ly93d3cu
-eW91dHViZS5jb20vd2F0Y2g/dj1JRXE3SnpHVnpqMAo+Pj4+Cj4+Pj4gTXkgaGFyZHdhcmUgaXMg
-c29tZSBvbGQgbW90aGVyYm9hcmQgd2l0aAo+Pj4+IDAwOjA1LjAgVkdBIGNvbXBhdGlibGUgY29u
-dHJvbGxlciBbMDMwMF06IE5WSURJQSBDb3Jwb3JhdGlvbiBDNTFHCj4+Pj4gW0dlRm9yY2UgNjEw
-MF0gWzEwZGU6MDI0Ml0gKHJldiBhMikKPj4+PiBpbnRlZ3JhdGVkLiBTaW5jZSBteSBDUFUgaXMg
-YW5jaWVudCBBTUQgU2VtcHJvbih0bSkgUHJvY2Vzc29yIDI4MDArIGl0Cj4+Pj4gdG9vayBtZSBm
-ZXcgZGF5cyB0byB0cmFjayB0aGlzIGlzc3VlLgo+Pj4+Cj4+Pj4gVGhlcmUgZ29lcyBzb21lIHN1
-bW1hcnkgb2YgdmFyaW91cyBrZXJuZWxzOgo+Pj4+Cj4+Pj4gMSkgMy40LjYzCj4+Pj4gTm8gZGlz
-cGxheSBwcm9ibGVtcy4gV29ya3MgZ3JlYXQuCj4+Pj4KPj4+PiAyKSBjb21taXQgOTI4YzJmMGMw
-MDZiZjdmMzgxZjU4YWYyYjI3ODZkMmE4NThhZTMxMQo+Pj4+IGRybS9mYi1oZWxwZXI6IGRvbid0
-IHNsZWVwIGZvciBzY3JlZW4gdW5ibGFuayB3aGVuIGFuIG9vcHMgaXMgaW4gcHJvZ3Jlc3MKPj4+
-PiBTY3JvbGxiYXJzIGhhdmUgYSBwaW5rIGxpbmUuIEkgZGlkbid0IHRyYWNrIHdoaWNoIGNvbW1p
-dCBpbnRyb2R1Y2VkCj4+Pj4gdGhpcyBwaW5rIGNvcnJ1cHRpb24uIE5vIG90aGVyIHByb2JsZW1z
-Lgo+Pj4+Cj4+Pj4gMykgY29tbWl0IGMyMWViMjFjYjUwZDU4ZTdjYmRjYjhiOWU3ZmY2OGI4NWNm
-YTUwOTUKPj4+PiBSZXZlcnQgImRybTogbWFyayBjb250ZXh0IHN1cHBvcnQgYXMgYSBsZWdhY3kg
-c3Vic3lzdGVtIgo+Pj4+IFRoaXMgZml4ZXMgcGluayBsaW5lcyBvbiBzY3JvbGxiYXJzIGFuZCBp
-bnRyb2R1Y2VzIHRoaXMgbmFzdHkgZGlzcGxheQo+Pj4+IGNvcnJ1cHRpb24uIEl0J3Mgb25lIGNv
-bW1pdCBhZnRlciBwcmV2aW91cyBvbmUuCj4+Pj4gSXQgbWVhbnMgaXQncyB0aGUgZmlyc3QgYmFk
-IGNvbW1pdCBmb3IgdGhlc2UgbmFzdHkgY29ycnVwdGlvbnMgcmVjb2RlZAo+Pj4+IGFuZCB1cGxv
-YWRlZCB0byBZb3VUdWJlLgo+Pj4+Cj4+Pj4gNCkgMy4xNC1yYzEKPj4+PiBObyBjaGFuZ2VzIHNp
-bmNlIGMyMWViMjFjYjUwZDU4ZTdjYmRjYjhiOWU3ZmY2OGI4NWNmYTUwOTUuIE5vIHBpbmsKPj4+
-PiBsaW5lcywgYnV0IGRpc3BsYXkgY29ycnVwdGlvbnMgaGFwcGVuaW5nLgo+Pj4KPj4+IENhbiB5
-b3UgYm9vdCB3aXRoIG5vdXZlYXUuY29uZmlnPU52TVNJPTAgPyBJZiB0aGF0IGhlbHBzLCB0aGVy
-ZSBhcmUKPj4+IHNvbWUgcGF0Y2hlcyBvbiB0aGUgbm91dmVhdS9kcmktZGV2ZWwgbGlzdHMgKHNl
-YXJjaCBmb3IgIm52NGMiKSB0aGF0Cj4+PiBtYXkgaGVscCB5b3UuCj4+Cj4+IFVuZm9ydHVuYXRl
-bHkgdGhpcyBjb25maWcgcGFyYW1ldGVyIGRvZXNuJ3QgaGVscCA6KAo+Cj4gVG9vIGJhZC4gSXQg
-bWF5IHN0aWxsIGJlIHdvcnRod2hpbGUgYXBwbHlpbmcgdGhlIHBhdGNoZXMgYW5kIHNlZWluZwo+
-IHdoYXQgaGFwcGVucy4uLiBpdCBzZWVtcyBsaWtlIHNvbWUgcmVnaXN0ZXJzIGdvdCBzd2l0Y2hl
-ZCBhcm91bmQgb24KPiB0aGUgbnY0eCBJR1AnczoKPgo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvYXJjaGl2ZXMvbm91dmVhdS8yMDE0LUZlYnJ1YXJ5LzAxNjAzMi5odG1sCj4gaHR0cDov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9ub3V2ZWF1LzIwMTQtRmVicnVhcnkvMDE2
-MDMzLmh0bWwKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL25vdXZlYXUv
-MjAxNC1GZWJydWFyeS8wMTYwMzQuaHRtbAoKSSd2ZSBhcHBsaWVkIGFsbCAzIHBhdGNoZXMsIGNv
-bXBpbGVkLCB0cmllZC4uLiBkaWRuJ3QgaGVscC4gSSd2ZSBhbHNvCnRyaWVkIG5vdXZlYXUuY29u
-ZmlnPU52TVNJPTAgb24gdG9wIG9uIHlvdXIgcGF0Y2hlcywgZGlkbid0IGhlbHAuCgoKPiBCVFcs
-IHlvdXR1YmUgc2F5cyAidGhpcyB2aWRlbyBpcyB1bmF2YWlsYWJsZSIuCgpPaGgsIEdvb2dsZS9Z
-b3VUdWJlIHJlYWxseSBkb2Vzbid0IGxpa2UgcHBsIHJlbW92aW5nIEcrIGFjY291bnQuLi4KaHR0
-cDovL2ZpbGVzLnphamVjLm5ldC8yMDE0MDIwOC1ub3V2ZWF1Lm1wNAoKCj4gSXMgdGhlcmUgYW55
-dGhpbmcgaW4gZG1lc2cgd2hlbiB0aGUgZGlzcGxheSBjb3JydXB0aW9ucyBoYXBwZW4/CgpOby4K
-Cgo+IFRoZXJlIHdhcyBhbHNvIGFuIGlzc3VlIHdpdGggbGliZHJtX25vdXZlYXUgZm9yIHByZS1u
-djUwIGNoaXBzLCB3aGVuCj4gY29tcGlsZWQgd2l0aCBnY2MtNC44IHNvbWUgdGltZSBiYWNrLi4u
-IGZpeGVkIGluLi4uIDIuNC40OCBvciBzbz8KCkkgdXNlIG9wZW5TVVNFIDEyLjIgKHg4Nl82NCkg
-d2hpY2ggcHJvdmlkZXMgZ2NjIDQuNy4xIGFuZApsaWJkcm1fbm91dmVhdTEtMi40LjMzLTIuMy4y
-Lng4Nl82NC4gSSBhc3N1bWUgbGliZHJtX25vdXZlYXUgd2FzCmNvbXBpbGVkIHVzaW5nIHRoYXQg
-NC43LjEuCgoKPiBMYXN0bHksIGl0IG1heSBiZSB3b3J0aCB0cnlpbmcgMy4xMS54IGFuZCAzLjEy
-LnggdG8gZ2V0IGEgYmV0dGVyCj4gaGFuZGxlIG9uIHdoZW4gcHJvYmxlbXMgaGFwcGVuZWQuIFRo
-ZSBjb21taXRzIHlvdSBjaXRlIGFyZSBpbiB0aGUKPiBtaWRkbGUgb2YgcmVsZWFzZXMsIGFuZCBt
-YXkgaGF2ZSB2YXJpb3VzIGJhZG5lc3MgYXNzb2NpYXRlZCB3aXRoIHRoZW0KPiAoZS5nLiAzLjEy
-LXJjIGhhZCBhIGxhdGVyLWRpc2FibGVkIE1TSSBpbXBsZW1lbnRhdGlvbiwgYmFjayBpbiAzLjEz
-Li4uCj4gcHJvYmFibHkgc29tZSBvdGhlciBzdHVmZikuCgpJJ2xsIHByb3ZpZGUgcmVzdWx0cyB0
-b21vcnJvdy4KCi0tIApSYWZhxYIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+
+--===============2109081893==
+Content-Type: multipart/alternative; boundary="1392064704.24Cf6EcC1.16316"; charset="us-ascii"
+
+
+--1392064704.24Cf6EcC1.16316
+Date: Mon, 10 Feb 2014 20:38:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=74695
+
+--- Comment #10 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #9)
+> Would you be able to do a bisect between 3.7 and 3.8?
+
+To be honest I never did a kernel bisect, but I can try. I will try and let you
+know.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1392064704.24Cf6EcC1.16316
+Date: Mon, 10 Feb 2014 20:38:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695">bug 74695</a>
+              from <span class="vcard"><a class="email" href="mailto:carla.sella&#64;gmail.com" title="Carla sella &lt;carla.sella&#64;gmail.com&gt;"> <span class="fn">Carla sella</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=74695#c9">comment #9</a>)
+<span class="quote">&gt; Would you be able to do a bisect between 3.7 and 3.8?</span >
+
+To be honest I never did a kernel bisect, but I can try. I will try and let you
+know.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1392064704.24Cf6EcC1.16316--
+
+--===============2109081893==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2109081893==--
