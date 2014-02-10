@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
- 8400M G after upgrade the kernel to 3.5.x (and RHEL 6.5) or later
-Date: Mon, 10 Feb 2014 18:59:11 +0000
-Message-ID: <bug-58378-8800-NNEnK1PiOy@http.bugs.freedesktop.org/>
-References: <bug-58378-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: GeForce 6100 (NV4E) & nouveau regression in 3.12
+Date: Mon, 10 Feb 2014 14:06:01 -0500
+Message-ID: <CAKb7Uvh5o4hd6G1R07qu3hRCfweb+0qEoRJWF+hZKMCm+xX0zA@mail.gmail.com>
+References: <CACna6rz=cp9Sce46C0P-cQbow-Os95_6XB+fhNjSwvnCJabJfA@mail.gmail.com>
+	<CAKb7Uvjz74GWDEwynOud2wmzoABc1HMrP4VC+J-oKi9Y3G0h8w@mail.gmail.com>
+	<CACna6ryidTQDGVq=N6Wg9xycXqAaPsuvjoktQiZ00p5sLLkzdQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1949353052=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CACna6ryidTQDGVq=N6Wg9xycXqAaPsuvjoktQiZ00p5sLLkzdQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,87 +19,59 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?ISO-8859-2?Q?Rafa=B3_Mi=B3ecki?= <zajec5-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1949353052==
-Content-Type: multipart/alternative; boundary="1392058751.4eDF4dd3.21280"; charset="us-ascii"
-
-
---1392058751.4eDF4dd3.21280
-Date: Mon, 10 Feb 2014 18:59:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=58378
-
-Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NV86] Distorted graphics   |[NV86] Distorted graphics
-                   |on NVIDIA GeForce 8400M G   |on NVIDIA GeForce 8400M G
-                   |after upgrade the kernel to |after upgrade the kernel to
-                   |3.7.0 version               |3.5.x (and RHEL 6.5) or
-                   |                            |later
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1392058751.4eDF4dd3.21280
-Date: Mon, 10 Feb 2014 18:59:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.5.x (and RHEL 6.5) or later"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version
-           </td>
-           <td>[NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.5.x (and RHEL 6.5) or later
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1392058751.4eDF4dd3.21280--
-
---===============1949353052==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1949353052==--
+T24gTW9uLCBGZWIgMTAsIDIwMTQgYXQgMTA6MTIgQU0sIFJhZmHFgiBNacWCZWNraSA8emFqZWM1
+QGdtYWlsLmNvbT4gd3JvdGU6Cj4gMjAxNC0wMi0wOSAyMzoxMiBHTVQrMDE6MDAgSWxpYSBNaXJr
+aW4gPGltaXJraW5AYWx1bS5taXQuZWR1PjoKPj4gT24gU3VuLCBGZWIgOSwgMjAxNCBhdCA1OjA4
+IFBNLCBSYWZhxYIgTWnFgmVja2kgPHphamVjNUBnbWFpbC5jb20+IHdyb3RlOgo+Pj4gTGFzdCB3
+ZWVrIEkndmUgc3dpdGNoZWQgZnJvbSBteSBvbGQgJiBnb29kIDMuNC42MyB0byAzLjE0LXJjMSBh
+bmQKPj4+IG5vdGljZWQgbmFzdHkgZGlzcGxheSBjb3JydXB0aW9ucyB3aGVuIHVzaW5nIG5vdXZl
+YXUuIEl0IHNlZW1zIHRoYXQKPj4+IGNoYW5naW5nIHBhcnRzIG9mIHRoZSBzY3JlZW4gYXJlIGFw
+cGVhcmluZyBmb3IgYSBmcmFjdGlvbiBvZiBzZWNvbmQgaW4KPj4+IHJhbmRvbSBwbGFjZXMuIEkn
+dmUgcmVjb3JkZWQgdGhpcyBiZWhhdmlvcjoKPj4+IGh0dHA6Ly93d3cueW91dHViZS5jb20vd2F0
+Y2g/dj1JRXE3SnpHVnpqMAo+Pj4KPj4+IE15IGhhcmR3YXJlIGlzIHNvbWUgb2xkIG1vdGhlcmJv
+YXJkIHdpdGgKPj4+IDAwOjA1LjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxlciBbMDMwMF06IE5W
+SURJQSBDb3Jwb3JhdGlvbiBDNTFHCj4+PiBbR2VGb3JjZSA2MTAwXSBbMTBkZTowMjQyXSAocmV2
+IGEyKQo+Pj4gaW50ZWdyYXRlZC4gU2luY2UgbXkgQ1BVIGlzIGFuY2llbnQgQU1EIFNlbXByb24o
+dG0pIFByb2Nlc3NvciAyODAwKyBpdAo+Pj4gdG9vayBtZSBmZXcgZGF5cyB0byB0cmFjayB0aGlz
+IGlzc3VlLgo+Pj4KPj4+IFRoZXJlIGdvZXMgc29tZSBzdW1tYXJ5IG9mIHZhcmlvdXMga2VybmVs
+czoKPj4+Cj4+PiAxKSAzLjQuNjMKPj4+IE5vIGRpc3BsYXkgcHJvYmxlbXMuIFdvcmtzIGdyZWF0
+Lgo+Pj4KPj4+IDIpIGNvbW1pdCA5MjhjMmYwYzAwNmJmN2YzODFmNThhZjJiMjc4NmQyYTg1OGFl
+MzExCj4+PiBkcm0vZmItaGVscGVyOiBkb24ndCBzbGVlcCBmb3Igc2NyZWVuIHVuYmxhbmsgd2hl
+biBhbiBvb3BzIGlzIGluIHByb2dyZXNzCj4+PiBTY3JvbGxiYXJzIGhhdmUgYSBwaW5rIGxpbmUu
+IEkgZGlkbid0IHRyYWNrIHdoaWNoIGNvbW1pdCBpbnRyb2R1Y2VkCj4+PiB0aGlzIHBpbmsgY29y
+cnVwdGlvbi4gTm8gb3RoZXIgcHJvYmxlbXMuCj4+Pgo+Pj4gMykgY29tbWl0IGMyMWViMjFjYjUw
+ZDU4ZTdjYmRjYjhiOWU3ZmY2OGI4NWNmYTUwOTUKPj4+IFJldmVydCAiZHJtOiBtYXJrIGNvbnRl
+eHQgc3VwcG9ydCBhcyBhIGxlZ2FjeSBzdWJzeXN0ZW0iCj4+PiBUaGlzIGZpeGVzIHBpbmsgbGlu
+ZXMgb24gc2Nyb2xsYmFycyBhbmQgaW50cm9kdWNlcyB0aGlzIG5hc3R5IGRpc3BsYXkKPj4+IGNv
+cnJ1cHRpb24uIEl0J3Mgb25lIGNvbW1pdCBhZnRlciBwcmV2aW91cyBvbmUuCj4+PiBJdCBtZWFu
+cyBpdCdzIHRoZSBmaXJzdCBiYWQgY29tbWl0IGZvciB0aGVzZSBuYXN0eSBjb3JydXB0aW9ucyBy
+ZWNvZGVkCj4+PiBhbmQgdXBsb2FkZWQgdG8gWW91VHViZS4KPj4+Cj4+PiA0KSAzLjE0LXJjMQo+
+Pj4gTm8gY2hhbmdlcyBzaW5jZSBjMjFlYjIxY2I1MGQ1OGU3Y2JkY2I4YjllN2ZmNjhiODVjZmE1
+MDk1LiBObyBwaW5rCj4+PiBsaW5lcywgYnV0IGRpc3BsYXkgY29ycnVwdGlvbnMgaGFwcGVuaW5n
+Lgo+Pgo+PiBDYW4geW91IGJvb3Qgd2l0aCBub3V2ZWF1LmNvbmZpZz1Odk1TST0wID8gSWYgdGhh
+dCBoZWxwcywgdGhlcmUgYXJlCj4+IHNvbWUgcGF0Y2hlcyBvbiB0aGUgbm91dmVhdS9kcmktZGV2
+ZWwgbGlzdHMgKHNlYXJjaCBmb3IgIm52NGMiKSB0aGF0Cj4+IG1heSBoZWxwIHlvdS4KPgo+IFVu
+Zm9ydHVuYXRlbHkgdGhpcyBjb25maWcgcGFyYW1ldGVyIGRvZXNuJ3QgaGVscCA6KAoKVG9vIGJh
+ZC4gSXQgbWF5IHN0aWxsIGJlIHdvcnRod2hpbGUgYXBwbHlpbmcgdGhlIHBhdGNoZXMgYW5kIHNl
+ZWluZwp3aGF0IGhhcHBlbnMuLi4gaXQgc2VlbXMgbGlrZSBzb21lIHJlZ2lzdGVycyBnb3Qgc3dp
+dGNoZWQgYXJvdW5kIG9uCnRoZSBudjR4IElHUCdzOgoKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9hcmNoaXZlcy9ub3V2ZWF1LzIwMTQtRmVicnVhcnkvMDE2MDMyLmh0bWwKaHR0cDovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9ub3V2ZWF1LzIwMTQtRmVicnVhcnkvMDE2MDMz
+Lmh0bWwKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9ub3V2ZWF1LzIwMTQt
+RmVicnVhcnkvMDE2MDM0Lmh0bWwKCkJUVywgeW91dHViZSBzYXlzICJ0aGlzIHZpZGVvIGlzIHVu
+YXZhaWxhYmxlIi4KCklzIHRoZXJlIGFueXRoaW5nIGluIGRtZXNnIHdoZW4gdGhlIGRpc3BsYXkg
+Y29ycnVwdGlvbnMgaGFwcGVuPwoKVGhlcmUgd2FzIGFsc28gYW4gaXNzdWUgd2l0aCBsaWJkcm1f
+bm91dmVhdSBmb3IgcHJlLW52NTAgY2hpcHMsIHdoZW4KY29tcGlsZWQgd2l0aCBnY2MtNC44IHNv
+bWUgdGltZSBiYWNrLi4uIGZpeGVkIGluLi4uIDIuNC40OCBvciBzbz8KCkxhc3RseSwgaXQgbWF5
+IGJlIHdvcnRoIHRyeWluZyAzLjExLnggYW5kIDMuMTIueCB0byBnZXQgYSBiZXR0ZXIKaGFuZGxl
+IG9uIHdoZW4gcHJvYmxlbXMgaGFwcGVuZWQuIFRoZSBjb21taXRzIHlvdSBjaXRlIGFyZSBpbiB0
+aGUKbWlkZGxlIG9mIHJlbGVhc2VzLCBhbmQgbWF5IGhhdmUgdmFyaW91cyBiYWRuZXNzIGFzc29j
+aWF0ZWQgd2l0aCB0aGVtCihlLmcuIDMuMTItcmMgaGFkIGEgbGF0ZXItZGlzYWJsZWQgTVNJIGlt
+cGxlbWVudGF0aW9uLCBiYWNrIGluIDMuMTMuLi4KcHJvYmFibHkgc29tZSBvdGhlciBzdHVmZiku
+CgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
