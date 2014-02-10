@@ -1,14 +1,13 @@
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: GeForce 6100 (NV4E) & nouveau regression in 3.12
-Date: Mon, 10 Feb 2014 16:12:27 +0100
-Message-ID: <CACna6ryidTQDGVq=N6Wg9xycXqAaPsuvjoktQiZ00p5sLLkzdQ@mail.gmail.com>
-References: <CACna6rz=cp9Sce46C0P-cQbow-Os95_6XB+fhNjSwvnCJabJfA@mail.gmail.com>
-	<CAKb7Uvjz74GWDEwynOud2wmzoABc1HMrP4VC+J-oKi9Y3G0h8w@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
+ 8400M G after upgrade the kernel to 3.7.0 version
+Date: Mon, 10 Feb 2014 18:39:55 +0000
+Message-ID: <bug-58378-8800-LCJgyqZKY9@http.bugs.freedesktop.org/>
+References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0361435891=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvjz74GWDEwynOud2wmzoABc1HMrP4VC+J-oKi9Y3G0h8w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,41 +17,95 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-MjAxNC0wMi0wOSAyMzoxMiBHTVQrMDE6MDAgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
-ZWR1PjoKPiBPbiBTdW4sIEZlYiA5LCAyMDE0IGF0IDU6MDggUE0sIFJhZmHFgiBNacWCZWNraSA8
-emFqZWM1QGdtYWlsLmNvbT4gd3JvdGU6Cj4+IExhc3Qgd2VlayBJJ3ZlIHN3aXRjaGVkIGZyb20g
-bXkgb2xkICYgZ29vZCAzLjQuNjMgdG8gMy4xNC1yYzEgYW5kCj4+IG5vdGljZWQgbmFzdHkgZGlz
-cGxheSBjb3JydXB0aW9ucyB3aGVuIHVzaW5nIG5vdXZlYXUuIEl0IHNlZW1zIHRoYXQKPj4gY2hh
-bmdpbmcgcGFydHMgb2YgdGhlIHNjcmVlbiBhcmUgYXBwZWFyaW5nIGZvciBhIGZyYWN0aW9uIG9m
-IHNlY29uZCBpbgo+PiByYW5kb20gcGxhY2VzLiBJJ3ZlIHJlY29yZGVkIHRoaXMgYmVoYXZpb3I6
-Cj4+IGh0dHA6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1JRXE3SnpHVnpqMAo+Pgo+PiBNeSBo
-YXJkd2FyZSBpcyBzb21lIG9sZCBtb3RoZXJib2FyZCB3aXRoCj4+IDAwOjA1LjAgVkdBIGNvbXBh
-dGlibGUgY29udHJvbGxlciBbMDMwMF06IE5WSURJQSBDb3Jwb3JhdGlvbiBDNTFHCj4+IFtHZUZv
-cmNlIDYxMDBdIFsxMGRlOjAyNDJdIChyZXYgYTIpCj4+IGludGVncmF0ZWQuIFNpbmNlIG15IENQ
-VSBpcyBhbmNpZW50IEFNRCBTZW1wcm9uKHRtKSBQcm9jZXNzb3IgMjgwMCsgaXQKPj4gdG9vayBt
-ZSBmZXcgZGF5cyB0byB0cmFjayB0aGlzIGlzc3VlLgo+Pgo+PiBUaGVyZSBnb2VzIHNvbWUgc3Vt
-bWFyeSBvZiB2YXJpb3VzIGtlcm5lbHM6Cj4+Cj4+IDEpIDMuNC42Mwo+PiBObyBkaXNwbGF5IHBy
-b2JsZW1zLiBXb3JrcyBncmVhdC4KPj4KPj4gMikgY29tbWl0IDkyOGMyZjBjMDA2YmY3ZjM4MWY1
-OGFmMmIyNzg2ZDJhODU4YWUzMTEKPj4gZHJtL2ZiLWhlbHBlcjogZG9uJ3Qgc2xlZXAgZm9yIHNj
-cmVlbiB1bmJsYW5rIHdoZW4gYW4gb29wcyBpcyBpbiBwcm9ncmVzcwo+PiBTY3JvbGxiYXJzIGhh
-dmUgYSBwaW5rIGxpbmUuIEkgZGlkbid0IHRyYWNrIHdoaWNoIGNvbW1pdCBpbnRyb2R1Y2VkCj4+
-IHRoaXMgcGluayBjb3JydXB0aW9uLiBObyBvdGhlciBwcm9ibGVtcy4KPj4KPj4gMykgY29tbWl0
-IGMyMWViMjFjYjUwZDU4ZTdjYmRjYjhiOWU3ZmY2OGI4NWNmYTUwOTUKPj4gUmV2ZXJ0ICJkcm06
-IG1hcmsgY29udGV4dCBzdXBwb3J0IGFzIGEgbGVnYWN5IHN1YnN5c3RlbSIKPj4gVGhpcyBmaXhl
-cyBwaW5rIGxpbmVzIG9uIHNjcm9sbGJhcnMgYW5kIGludHJvZHVjZXMgdGhpcyBuYXN0eSBkaXNw
-bGF5Cj4+IGNvcnJ1cHRpb24uIEl0J3Mgb25lIGNvbW1pdCBhZnRlciBwcmV2aW91cyBvbmUuCj4+
-IEl0IG1lYW5zIGl0J3MgdGhlIGZpcnN0IGJhZCBjb21taXQgZm9yIHRoZXNlIG5hc3R5IGNvcnJ1
-cHRpb25zIHJlY29kZWQKPj4gYW5kIHVwbG9hZGVkIHRvIFlvdVR1YmUuCj4+Cj4+IDQpIDMuMTQt
-cmMxCj4+IE5vIGNoYW5nZXMgc2luY2UgYzIxZWIyMWNiNTBkNThlN2NiZGNiOGI5ZTdmZjY4Yjg1
-Y2ZhNTA5NS4gTm8gcGluawo+PiBsaW5lcywgYnV0IGRpc3BsYXkgY29ycnVwdGlvbnMgaGFwcGVu
-aW5nLgo+Cj4gQ2FuIHlvdSBib290IHdpdGggbm91dmVhdS5jb25maWc9TnZNU0k9MCA/IElmIHRo
-YXQgaGVscHMsIHRoZXJlIGFyZQo+IHNvbWUgcGF0Y2hlcyBvbiB0aGUgbm91dmVhdS9kcmktZGV2
-ZWwgbGlzdHMgKHNlYXJjaCBmb3IgIm52NGMiKSB0aGF0Cj4gbWF5IGhlbHAgeW91LgoKVW5mb3J0
-dW5hdGVseSB0aGlzIGNvbmZpZyBwYXJhbWV0ZXIgZG9lc24ndCBoZWxwIDooCgotLSAKUmFmYcWC
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0361435891==
+Content-Type: multipart/alternative; boundary="1392057595.e74De3.16093"; charset="us-ascii"
+
+
+--1392057595.e74De3.16093
+Date: Mon, 10 Feb 2014 18:39:55 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=58378
+
+--- Comment #88 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
+(In reply to comment #87)
+
+> > has there been any progress so far in getting this into the mainstream Linux
+> > kernel (or mainstream git) for the next official kernel release?
+
+> This should be upstream as of commit
+> 4019aaa2b314a5be9886ae1db64ff8c6d3c060ed, available in 3.14-rc1.
+
+Many thanks, Ilia! :-)
+
+BR,
+Andreas
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1392057595.e74De3.16093
+Date: Mon, 10 Feb 2014 18:39:55 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c88">Comment # 88</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
+              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=58378#c87">comment #87</a>)
+
+<span class="quote">&gt; &gt; has there been any progress so far in getting this into the mainstream Linux
+&gt; &gt; kernel (or mainstream git) for the next official kernel release?</span >
+
+<span class="quote">&gt; This should be upstream as of commit
+&gt; 4019aaa2b314a5be9886ae1db64ff8c6d3c060ed, available in 3.14-rc1.</span >
+
+Many thanks, Ilia! :-)
+
+BR,
+Andreas</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1392057595.e74De3.16093--
+
+--===============0361435891==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0361435891==--
