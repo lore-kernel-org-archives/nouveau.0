@@ -1,12 +1,12 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/fifo: allocate usermem as needed
-Date: Mon, 10 Feb 2014 13:14:33 +0100
-Message-ID: <20140210121431.GD20143@ulmo.nvidia.com>
-References: <1392011821-2406-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 54587] [NV1F] Flickering screen on Geforece 4
+Date: Mon, 10 Feb 2014 12:20:21 +0000
+Message-ID: <bug-54587-8800-EDLwP44Urz@http.bugs.freedesktop.org/>
+References: <bug-54587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1869531728=="
+Content-Type: multipart/mixed; boundary="===============0402911338=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1392011821-2406-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,59 +16,73 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1869531728==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="lc9FT7cWel8HagAv"
-Content-Disposition: inline
+--===============0402911338==
+Content-Type: multipart/alternative; boundary="1392034821.eCBEa82.8156"; charset="us-ascii"
 
 
---lc9FT7cWel8HagAv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+--1392034821.eCBEa82.8156
+Date: Mon, 10 Feb 2014 12:20:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Feb 10, 2014 at 02:57:01PM +0900, Alexandre Courbot wrote:
-> Memory was always allocated for 4096 channels. Change this to allocate
-> what we actually need according to the number of channels we use.
->=20
-> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+https://bugs.freedesktop.org/show_bug.cgi?id=54587
 
-Looks good to me:
+--- Comment #32 from Vesa <piip-O5WfVfzUwx8@public.gmane.org> ---
+I tried to get mmiotrace log file. I had to manually stop generating it after
+it was 400 megs long. It seems to be almost full of consecutive memory writes.
+I copied some lines from it to an attachment. Hopefully these lines are useful.
 
-Reviewed-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Maybe nvidia people are now willing to help...
 
---lc9FT7cWel8HagAv
-Content-Type: application/pgp-signature
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
+--1392034821.eCBEa82.8156
+Date: Mon, 10 Feb 2014 12:20:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
-iQIcBAEBAgAGBQJS+MKnAAoJEN0jrNd/PrOh7fEP/1Z7mQnIaUIK9Z40DcxFTgAk
-J/+CGg3z4gLbDiBG9Cqw0cXKv9GRGMAy34AJiec2RubQZk3So87n8uTKcUT/nWSR
-vpRBovyd70Byzs+bEkOOkUtGWXXgkbI0CPsxL1inL6sCGfEU+e76QkA/bbe3T4pP
-N29LV+uFJQU4FG2rcOkFhqKe4hQe/edc4/b9RC7U9WP2paVI/Ex5Fu6MuGoKssri
-1//6SyC72Afv5Pkk2weV2jB+ikUJEkodZovvIE39+aFEWA7LDTlmVOaYrZWuKLIH
-t7hLVGNaWsRAIC6ntAyqoAgyd0ONFV0hams071CM7Ey/xtilG3N7gKoBSVKBx0+A
-YCPRbr4IgPtdeoxbaYNTzYHkoa4L4QI64FsNxCbY5fSseZznBwellbgJmRVW6CYU
-fzjGo3Mh+AIg1hfizYgm6r6wTOGZetpfsaupfei8PN7mNyfOxBZ6JOw2B1o7g4bS
-Q9yw0wjq9cJ8tyou/SaSRxM1dJzSoumfeDb3sBcBuiV0C2v29eBz45td7sEDnvJu
-kTb+z3EM98t0nmfzsH02Lnt/D/Dyr0JgSGEHr7SdL2sJRy4+DsaCs3JCo4ZiT+nn
-D1vVNXpjxeJs2N/DcJt5DCE7W3dUKbkvRKgrqAEadsWjkR/QPSgRzStSwEi9+NB7
-FNtV732ZNcOtv4dARF2m
-=vm+j
------END PGP SIGNATURE-----
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV1F] Flickering screen on Geforece 4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587#c32">Comment # 32</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV1F] Flickering screen on Geforece 4"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587">bug 54587</a>
+              from <span class="vcard"><a class="email" href="mailto:piip&#64;mail.com" title="Vesa &lt;piip&#64;mail.com&gt;"> <span class="fn">Vesa</span></a>
+</span></b>
+        <pre>I tried to get mmiotrace log file. I had to manually stop generating it after
+it was 400 megs long. It seems to be almost full of consecutive memory writes.
+I copied some lines from it to an attachment. Hopefully these lines are useful.
 
---lc9FT7cWel8HagAv--
+Maybe nvidia people are now willing to help...</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
 
---===============1869531728==
+--1392034821.eCBEa82.8156--
+
+--===============0402911338==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -79,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1869531728==--
+--===============0402911338==--
