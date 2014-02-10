@@ -1,99 +1,58 @@
-From: Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH] drm/nouveau: handle -EACCES runtime PM return code
-Date: Mon, 10 Feb 2014 13:34:25 +0100
-Message-ID: <20140210123424.GE20143@ulmo.nvidia.com>
-References: <1392011892-4339-1-git-send-email-acourbot@nvidia.com>
+From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: GeForce 6100 (NV4E) & nouveau regression in 3.12
+Date: Mon, 10 Feb 2014 16:12:27 +0100
+Message-ID: <CACna6ryidTQDGVq=N6Wg9xycXqAaPsuvjoktQiZ00p5sLLkzdQ@mail.gmail.com>
+References: <CACna6rz=cp9Sce46C0P-cQbow-Os95_6XB+fhNjSwvnCJabJfA@mail.gmail.com>
+	<CAKb7Uvjz74GWDEwynOud2wmzoABc1HMrP4VC+J-oKi9Y3G0h8w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1387779561=="
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1392011892-4339-1-git-send-email-acourbot@nvidia.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: gnurou@gmail.com, nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7Uvjz74GWDEwynOud2wmzoABc1HMrP4VC+J-oKi9Y3G0h8w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1387779561==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="0H629O+sVkh21xTi"
-Content-Disposition: inline
-
-
---0H629O+sVkh21xTi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Feb 10, 2014 at 02:58:12PM +0900, Alexandre Courbot wrote:
-> pm_runtime_get*() may return -EACCESS to indicate a device does not have
-
-s/-EACCESS/-EACCES/
-
-> runtime PM enabled. This is the case when the nouveau.runpm parameter is
-> set to 0, and is not an error in that context. Handle this case without
-> failure.
->=20
-> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
-> ---
->  drivers/gpu/drm/nouveau/dispnv04/crtc.c     | 2 +-
->  drivers/gpu/drm/nouveau/nouveau_connector.c | 2 +-
->  drivers/gpu/drm/nouveau/nouveau_drm.c       | 4 ++--
->  3 files changed, 4 insertions(+), 4 deletions(-)
-
-I'm not sure if the commit message is entirely accurate. Looking at the
-various runtime power-management functions in nouveau_drm.c (such as
-nouveau_pmops_runtime_suspend() for example), they seem to return
--EINVAL if the nouveau.runpm parameter is set to 0.
-
-However it seems like -EACCES is indeed returned when runtime power-
-management hasn't been enabled for a device. This is done automatically
-for PCI devices, but not for platform devices. We don't support runtime
-power-management on gk20a yet, therefore pm_runtime_enable() is never
-called, causing disable_depth to remain at -1 and therefore runtime PM
-helpers return -EACCES.
-
-Thierry
-
---0H629O+sVkh21xTi
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
-
-iQIcBAEBAgAGBQJS+MdQAAoJEN0jrNd/PrOhkkQP/jJqMml32+cKwH4jBvnRhFrr
-FkmWJpLR9SyDK38304W7gccVfdiRfHZ83t0xxk1pJ4TIDqQgB8FpwDYRpVHaS/bL
-ZL2y+5iXxt7lqjHUWz4Gp98iDe7WGPR8ISi07i2L/XH7mcZGrK6CxIoQIk0EYpOV
-RDHt2zc4gDakP5bFc8SNpuStZTHIbUpOSwTr08ypEeWjid84FfNIvNGkl/NRhjsW
-i8FL7zTplfjZCIfN587rROjFKRBtX1azEQBZD8onDW+rFrdGul/MEpGg/ItxLr8w
-r4rNuOyLLHTJFbfh0hw6CsZp0DbRSz82giOnt3naIVqX7E8qT3yLf9PAVh3n94fk
-epEzDssgjM4HarFXFE1xMhl2B1hnF73cBJ1jP5Ke1OWAhOv3FXMQmbB5QxB4g08Y
-oqlwj7j/FpA6BDV8YGmesFvKZ+Qjvql1XL4BIful4EzLeTTMCEEyg9whM6JYA2Df
-6VS2p6Bp0c3ewRWKA2cOs1LruC+WF3GGtyBm9fIB69Z9so2uz6JQd1kpRsL0m+d6
-yooZEH6SLk2LawHdwGPoxWULZ6PVLonTq9CXHt9u4eQE2lCLsNMT2x9WWG19vWXa
-py/0x8uDT8vb8GXhhEvwtChfuCq9IHRqTeFQ66+tuS+MV/cOUSfecZMj6uMbIjt9
-yu2nkjb6hUAvgQZzRA80
-=PAR3
------END PGP SIGNATURE-----
-
---0H629O+sVkh21xTi--
-
---===============1387779561==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-dri-devel mailing list
-dri-devel@lists.freedesktop.org
-http://lists.freedesktop.org/mailman/listinfo/dri-devel
-
---===============1387779561==--
+MjAxNC0wMi0wOSAyMzoxMiBHTVQrMDE6MDAgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
+ZWR1PjoKPiBPbiBTdW4sIEZlYiA5LCAyMDE0IGF0IDU6MDggUE0sIFJhZmHFgiBNacWCZWNraSA8
+emFqZWM1QGdtYWlsLmNvbT4gd3JvdGU6Cj4+IExhc3Qgd2VlayBJJ3ZlIHN3aXRjaGVkIGZyb20g
+bXkgb2xkICYgZ29vZCAzLjQuNjMgdG8gMy4xNC1yYzEgYW5kCj4+IG5vdGljZWQgbmFzdHkgZGlz
+cGxheSBjb3JydXB0aW9ucyB3aGVuIHVzaW5nIG5vdXZlYXUuIEl0IHNlZW1zIHRoYXQKPj4gY2hh
+bmdpbmcgcGFydHMgb2YgdGhlIHNjcmVlbiBhcmUgYXBwZWFyaW5nIGZvciBhIGZyYWN0aW9uIG9m
+IHNlY29uZCBpbgo+PiByYW5kb20gcGxhY2VzLiBJJ3ZlIHJlY29yZGVkIHRoaXMgYmVoYXZpb3I6
+Cj4+IGh0dHA6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1JRXE3SnpHVnpqMAo+Pgo+PiBNeSBo
+YXJkd2FyZSBpcyBzb21lIG9sZCBtb3RoZXJib2FyZCB3aXRoCj4+IDAwOjA1LjAgVkdBIGNvbXBh
+dGlibGUgY29udHJvbGxlciBbMDMwMF06IE5WSURJQSBDb3Jwb3JhdGlvbiBDNTFHCj4+IFtHZUZv
+cmNlIDYxMDBdIFsxMGRlOjAyNDJdIChyZXYgYTIpCj4+IGludGVncmF0ZWQuIFNpbmNlIG15IENQ
+VSBpcyBhbmNpZW50IEFNRCBTZW1wcm9uKHRtKSBQcm9jZXNzb3IgMjgwMCsgaXQKPj4gdG9vayBt
+ZSBmZXcgZGF5cyB0byB0cmFjayB0aGlzIGlzc3VlLgo+Pgo+PiBUaGVyZSBnb2VzIHNvbWUgc3Vt
+bWFyeSBvZiB2YXJpb3VzIGtlcm5lbHM6Cj4+Cj4+IDEpIDMuNC42Mwo+PiBObyBkaXNwbGF5IHBy
+b2JsZW1zLiBXb3JrcyBncmVhdC4KPj4KPj4gMikgY29tbWl0IDkyOGMyZjBjMDA2YmY3ZjM4MWY1
+OGFmMmIyNzg2ZDJhODU4YWUzMTEKPj4gZHJtL2ZiLWhlbHBlcjogZG9uJ3Qgc2xlZXAgZm9yIHNj
+cmVlbiB1bmJsYW5rIHdoZW4gYW4gb29wcyBpcyBpbiBwcm9ncmVzcwo+PiBTY3JvbGxiYXJzIGhh
+dmUgYSBwaW5rIGxpbmUuIEkgZGlkbid0IHRyYWNrIHdoaWNoIGNvbW1pdCBpbnRyb2R1Y2VkCj4+
+IHRoaXMgcGluayBjb3JydXB0aW9uLiBObyBvdGhlciBwcm9ibGVtcy4KPj4KPj4gMykgY29tbWl0
+IGMyMWViMjFjYjUwZDU4ZTdjYmRjYjhiOWU3ZmY2OGI4NWNmYTUwOTUKPj4gUmV2ZXJ0ICJkcm06
+IG1hcmsgY29udGV4dCBzdXBwb3J0IGFzIGEgbGVnYWN5IHN1YnN5c3RlbSIKPj4gVGhpcyBmaXhl
+cyBwaW5rIGxpbmVzIG9uIHNjcm9sbGJhcnMgYW5kIGludHJvZHVjZXMgdGhpcyBuYXN0eSBkaXNw
+bGF5Cj4+IGNvcnJ1cHRpb24uIEl0J3Mgb25lIGNvbW1pdCBhZnRlciBwcmV2aW91cyBvbmUuCj4+
+IEl0IG1lYW5zIGl0J3MgdGhlIGZpcnN0IGJhZCBjb21taXQgZm9yIHRoZXNlIG5hc3R5IGNvcnJ1
+cHRpb25zIHJlY29kZWQKPj4gYW5kIHVwbG9hZGVkIHRvIFlvdVR1YmUuCj4+Cj4+IDQpIDMuMTQt
+cmMxCj4+IE5vIGNoYW5nZXMgc2luY2UgYzIxZWIyMWNiNTBkNThlN2NiZGNiOGI5ZTdmZjY4Yjg1
+Y2ZhNTA5NS4gTm8gcGluawo+PiBsaW5lcywgYnV0IGRpc3BsYXkgY29ycnVwdGlvbnMgaGFwcGVu
+aW5nLgo+Cj4gQ2FuIHlvdSBib290IHdpdGggbm91dmVhdS5jb25maWc9TnZNU0k9MCA/IElmIHRo
+YXQgaGVscHMsIHRoZXJlIGFyZQo+IHNvbWUgcGF0Y2hlcyBvbiB0aGUgbm91dmVhdS9kcmktZGV2
+ZWwgbGlzdHMgKHNlYXJjaCBmb3IgIm52NGMiKSB0aGF0Cj4gbWF5IGhlbHAgeW91LgoKVW5mb3J0
+dW5hdGVseSB0aGlzIGNvbmZpZyBwYXJhbWV0ZXIgZG9lc24ndCBoZWxwIDooCgotLSAKUmFmYcWC
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
+bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
