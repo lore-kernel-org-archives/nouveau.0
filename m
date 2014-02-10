@@ -1,96 +1,99 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54587] [NV1F] Flickering screen on Geforece 4
-Date: Mon, 10 Feb 2014 12:20:21 +0000
-Message-ID: <bug-54587-8800-EDLwP44Urz@http.bugs.freedesktop.org/>
-References: <bug-54587-8800@http.bugs.freedesktop.org/>
+From: Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH] drm/nouveau: handle -EACCES runtime PM return code
+Date: Mon, 10 Feb 2014 13:34:25 +0100
+Message-ID: <20140210123424.GE20143@ulmo.nvidia.com>
+References: <1392011892-4339-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0402911338=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============1387779561=="
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1392011892-4339-1-git-send-email-acourbot@nvidia.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces@lists.freedesktop.org
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: gnurou@gmail.com, nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0402911338==
-Content-Type: multipart/alternative; boundary="1392034821.eCBEa82.8156"; charset="us-ascii"
+--===============1387779561==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="0H629O+sVkh21xTi"
+Content-Disposition: inline
 
 
---1392034821.eCBEa82.8156
-Date: Mon, 10 Feb 2014 12:20:21 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+--0H629O+sVkh21xTi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54587
+On Mon, Feb 10, 2014 at 02:58:12PM +0900, Alexandre Courbot wrote:
+> pm_runtime_get*() may return -EACCESS to indicate a device does not have
 
---- Comment #32 from Vesa <piip-O5WfVfzUwx8@public.gmane.org> ---
-I tried to get mmiotrace log file. I had to manually stop generating it after
-it was 400 megs long. It seems to be almost full of consecutive memory writes.
-I copied some lines from it to an attachment. Hopefully these lines are useful.
+s/-EACCESS/-EACCES/
 
-Maybe nvidia people are now willing to help...
+> runtime PM enabled. This is the case when the nouveau.runpm parameter is
+> set to 0, and is not an error in that context. Handle this case without
+> failure.
+>=20
+> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+> ---
+>  drivers/gpu/drm/nouveau/dispnv04/crtc.c     | 2 +-
+>  drivers/gpu/drm/nouveau/nouveau_connector.c | 2 +-
+>  drivers/gpu/drm/nouveau/nouveau_drm.c       | 4 ++--
+>  3 files changed, 4 insertions(+), 4 deletions(-)
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+I'm not sure if the commit message is entirely accurate. Looking at the
+various runtime power-management functions in nouveau_drm.c (such as
+nouveau_pmops_runtime_suspend() for example), they seem to return
+-EINVAL if the nouveau.runpm parameter is set to 0.
 
---1392034821.eCBEa82.8156
-Date: Mon, 10 Feb 2014 12:20:21 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+However it seems like -EACCES is indeed returned when runtime power-
+management hasn't been enabled for a device. This is done automatically
+for PCI devices, but not for platform devices. We don't support runtime
+power-management on gk20a yet, therefore pm_runtime_enable() is never
+called, causing disable_depth to remain at -1 and therefore runtime PM
+helpers return -EACCES.
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV1F] Flickering screen on Geforece 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587#c32">Comment # 32</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV1F] Flickering screen on Geforece 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587">bug 54587</a>
-              from <span class="vcard"><a class="email" href="mailto:piip&#64;mail.com" title="Vesa &lt;piip&#64;mail.com&gt;"> <span class="fn">Vesa</span></a>
-</span></b>
-        <pre>I tried to get mmiotrace log file. I had to manually stop generating it after
-it was 400 megs long. It seems to be almost full of consecutive memory writes.
-I copied some lines from it to an attachment. Hopefully these lines are useful.
+Thierry
 
-Maybe nvidia people are now willing to help...</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+--0H629O+sVkh21xTi
+Content-Type: application/pgp-signature
 
---1392034821.eCBEa82.8156--
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.22 (GNU/Linux)
 
---===============0402911338==
+iQIcBAEBAgAGBQJS+MdQAAoJEN0jrNd/PrOhkkQP/jJqMml32+cKwH4jBvnRhFrr
+FkmWJpLR9SyDK38304W7gccVfdiRfHZ83t0xxk1pJ4TIDqQgB8FpwDYRpVHaS/bL
+ZL2y+5iXxt7lqjHUWz4Gp98iDe7WGPR8ISi07i2L/XH7mcZGrK6CxIoQIk0EYpOV
+RDHt2zc4gDakP5bFc8SNpuStZTHIbUpOSwTr08ypEeWjid84FfNIvNGkl/NRhjsW
+i8FL7zTplfjZCIfN587rROjFKRBtX1azEQBZD8onDW+rFrdGul/MEpGg/ItxLr8w
+r4rNuOyLLHTJFbfh0hw6CsZp0DbRSz82giOnt3naIVqX7E8qT3yLf9PAVh3n94fk
+epEzDssgjM4HarFXFE1xMhl2B1hnF73cBJ1jP5Ke1OWAhOv3FXMQmbB5QxB4g08Y
+oqlwj7j/FpA6BDV8YGmesFvKZ+Qjvql1XL4BIful4EzLeTTMCEEyg9whM6JYA2Df
+6VS2p6Bp0c3ewRWKA2cOs1LruC+WF3GGtyBm9fIB69Z9so2uz6JQd1kpRsL0m+d6
+yooZEH6SLk2LawHdwGPoxWULZ6PVLonTq9CXHt9u4eQE2lCLsNMT2x9WWG19vWXa
+py/0x8uDT8vb8GXhhEvwtChfuCq9IHRqTeFQ66+tuS+MV/cOUSfecZMj6uMbIjt9
+yu2nkjb6hUAvgQZzRA80
+=PAR3
+-----END PGP SIGNATURE-----
+
+--0H629O+sVkh21xTi--
+
+--===============1387779561==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Content-Disposition: inline
 
 _______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+dri-devel mailing list
+dri-devel@lists.freedesktop.org
+http://lists.freedesktop.org/mailman/listinfo/dri-devel
 
---===============0402911338==--
+--===============1387779561==--
