@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58378] [NV86] Distorted graphics on NVIDIA GeForce
- 8400M G after upgrade the kernel to 3.7.0 version
-Date: Mon, 10 Feb 2014 18:39:55 +0000
-Message-ID: <bug-58378-8800-LCJgyqZKY9@http.bugs.freedesktop.org/>
+ 8400M G after upgrade the kernel to 3.5.x (and RHEL 6.5) or later
+Date: Mon, 10 Feb 2014 18:59:11 +0000
+Message-ID: <bug-58378-8800-NNEnK1PiOy@http.bugs.freedesktop.org/>
 References: <bug-58378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0361435891=="
+Content-Type: multipart/mixed; boundary="===============1949353052=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0361435891==
-Content-Type: multipart/alternative; boundary="1392057595.e74De3.16093"; charset="us-ascii"
+--===============1949353052==
+Content-Type: multipart/alternative; boundary="1392058751.4eDF4dd3.21280"; charset="us-ascii"
 
 
---1392057595.e74De3.16093
-Date: Mon, 10 Feb 2014 18:39:55 +0000
+--1392058751.4eDF4dd3.21280
+Date: Mon, 10 Feb 2014 18:59:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58378
 
---- Comment #88 from Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> ---
-(In reply to comment #87)
+Andreas Loew <awl1-hi6Y0CQ0nG0@public.gmane.org> changed:
 
-> > has there been any progress so far in getting this into the mainstream Linux
-> > kernel (or mainstream git) for the next official kernel release?
-
-> This should be upstream as of commit
-> 4019aaa2b314a5be9886ae1db64ff8c6d3c060ed, available in 3.14-rc1.
-
-Many thanks, Ilia! :-)
-
-BR,
-Andreas
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NV86] Distorted graphics   |[NV86] Distorted graphics
+                   |on NVIDIA GeForce 8400M G   |on NVIDIA GeForce 8400M G
+                   |after upgrade the kernel to |after upgrade the kernel to
+                   |3.7.0 version               |3.5.x (and RHEL 6.5) or
+                   |                            |later
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392057595.e74De3.16093
-Date: Mon, 10 Feb 2014 18:39:55 +0000
+--1392058751.4eDF4dd3.21280
+Date: Mon, 10 Feb 2014 18:59:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,32 +55,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58378#c88">Comment # 88</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version"
+   title="RESOLVED FIXED - [NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.5.x (and RHEL 6.5) or later"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58378">bug 58378</a>
-              from <span class="vcard"><a class="email" href="mailto:awl1&#64;gmx.net" title="Andreas Loew &lt;awl1&#64;gmx.net&gt;"> <span class="fn">Andreas Loew</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=58378#c87">comment #87</a>)
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-<span class="quote">&gt; &gt; has there been any progress so far in getting this into the mainstream Linux
-&gt; &gt; kernel (or mainstream git) for the next official kernel release?</span >
-
-<span class="quote">&gt; This should be upstream as of commit
-&gt; 4019aaa2b314a5be9886ae1db64ff8c6d3c060ed, available in 3.14-rc1.</span >
-
-Many thanks, Ilia! :-)
-
-BR,
-Andreas</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.7.0 version
+           </td>
+           <td>[NV86] Distorted graphics on NVIDIA GeForce 8400M G after upgrade the kernel to 3.5.x (and RHEL 6.5) or later
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -95,9 +87,9 @@ Andreas</pre>
     </body>
 </html>
 
---1392057595.e74De3.16093--
+--1392058751.4eDF4dd3.21280--
 
---===============0361435891==
+--===============1949353052==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0361435891==--
+--===============1949353052==--
