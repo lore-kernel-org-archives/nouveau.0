@@ -1,14 +1,13 @@
 From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nv50/gr: add missing nv_error parameter
-	priv
-Date: Mon, 10 Feb 2014 14:25:45 +1000
-Message-ID: <CACAvsv6T7Z4nmniuPtJ9_GkdD-j7Z-9dEfrB6+7SGf4O9gKc5Q@mail.gmail.com>
-References: <1391916913-3985-1-git-send-email-imirkin@alum.mit.edu>
+Subject: Re: [PATCH 1/2] drm/nouveau: replace ffsll with __ffs64
+Date: Mon, 10 Feb 2014 14:26:04 +1000
+Message-ID: <CACAvsv6NFR5v+cwwMiD4j2+VboYP2FYg=O3-LeACKhQy4UnJKQ@mail.gmail.com>
+References: <1391979085-8012-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1391916913-3985-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+In-Reply-To: <1391979085-8012-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,39 +21,82 @@ To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Feb 9, 2014 at 1:35 PM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
-> Commit ea7dce901 ("drm/nv50/gr: print mpc trap name when it's not an mp
-> trap") added an nv_error call that was missing the priv parameter. This
-> causes GPFs if the error is ever hit.
+On Mon, Feb 10, 2014 at 6:51 AM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+> The ffsll function is a lot slower than the __ffs64 built-in which
+> compiles to a single instruction on 64-bit. It's also nice to avoid
+> custom versions of standard functions. Note that __ffs == ffs - 1.
 >
 > Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Merged, thanks :)
+Merged both patches in the series.
 
+Thanks.
 > ---
 >
-> Sorry, my bad! But... I hit it and it killed my computer. So things are
-> probably even.
+> I wrote a user-space program to test these out and make sure that the
+> functions behaved as expected. The logic in abi16 had to be flipped around a
+> bit since __ffs doesn't distinguish between 0 and 1. There's a minor
+> difference in that init->channel is going to get returned as 0 for ENOSPC vs
+>  -1, but I can't imagine that'd matter.
 >
->  drivers/gpu/drm/nouveau/core/engine/graph/nv50.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/nouveau/core/core/parent.c |  2 +-
+>  drivers/gpu/drm/nouveau/core/os.h          | 11 -----------
+>  drivers/gpu/drm/nouveau/nouveau_abi16.c    |  4 ++--
+>  3 files changed, 3 insertions(+), 14 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-> index 6da473c..ef38320 100644
-> --- a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-> +++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-> @@ -540,7 +540,7 @@ nv50_priv_tp_trap(struct nv50_graph_priv *priv, int type, u32 ustatus_old,
->                                 ustatus &= ~0x04030000;
->                         }
->                         if (ustatus && display) {
-> -                               nv_error("%s - TP%d:", name, i);
-> +                               nv_error(priv, "%s - TP%d:", name, i);
->                                 nouveau_bitfield_print(nv50_mpc_traps, ustatus);
->                                 pr_cont("\n");
->                                 ustatus = 0;
+> diff --git a/drivers/gpu/drm/nouveau/core/core/parent.c b/drivers/gpu/drm/nouveau/core/core/parent.c
+> index 313380c..dee5d12 100644
+> --- a/drivers/gpu/drm/nouveau/core/core/parent.c
+> +++ b/drivers/gpu/drm/nouveau/core/core/parent.c
+> @@ -49,7 +49,7 @@ nouveau_parent_sclass(struct nouveau_object *parent, u16 handle,
+>
+>         mask = nv_parent(parent)->engine;
+>         while (mask) {
+> -               int i = ffsll(mask) - 1;
+> +               int i = __ffs64(mask);
+>
+>                 if (nv_iclass(parent, NV_CLIENT_CLASS))
+>                         engine = nv_engine(nv_client(parent)->device);
+> diff --git a/drivers/gpu/drm/nouveau/core/os.h b/drivers/gpu/drm/nouveau/core/os.h
+> index 191e739..3cd6120 100644
+> --- a/drivers/gpu/drm/nouveau/core/os.h
+> +++ b/drivers/gpu/drm/nouveau/core/os.h
+> @@ -23,17 +23,6 @@
+>
+>  #include <asm/unaligned.h>
+>
+> -static inline int
+> -ffsll(u64 mask)
+> -{
+> -       int i;
+> -       for (i = 0; i < 64; i++) {
+> -               if (mask & (1ULL << i))
+> -                       return i + 1;
+> -       }
+> -       return 0;
+> -}
+> -
+>  #ifndef ioread32_native
+>  #ifdef __BIG_ENDIAN
+>  #define ioread16_native ioread16be
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+> index 900fae0..b701117 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+> @@ -270,8 +270,8 @@ nouveau_abi16_ioctl_channel_alloc(ABI16_IOCTL_ARGS)
+>                 return nouveau_abi16_put(abi16, -EINVAL);
+>
+>         /* allocate "abi16 channel" data and make up a handle for it */
+> -       init->channel = ffsll(~abi16->handles);
+> -       if (!init->channel--)
+> +       init->channel = __ffs64(~abi16->handles);
+> +       if (~abi16->handles == 0)
+>                 return nouveau_abi16_put(abi16, -ENOSPC);
+>
+>         chan = kzalloc(sizeof(*chan), GFP_KERNEL);
 > --
 > 1.8.3.2
 >
 > _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+> dri-devel mailing list
+> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
