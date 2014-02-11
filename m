@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73200] vdpau-GL interop fails due to different
-	screen objects
-Date: Tue, 11 Feb 2014 12:43:01 +0000
-Message-ID: <bug-73200-8800-TOFbaydw08@http.bugs.freedesktop.org/>
-References: <bug-73200-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] nv30,nvc0: only claim a single viewport
+Date: Tue, 11 Feb 2014 17:19:48 +0000
+Message-ID: <52FA5BB4.5050704@gmail.com>
+References: <1392097346-7483-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0413627486=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73200-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1392097346-7483-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,151 +17,52 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On 11/02/14 05:42, Ilia Mirkin wrote:
+> It should be possible to make this be 16 on nvc0.
+> 
+> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 
---===============0413627486==
-Content-Type: multipart/alternative; boundary="1392122581.725A1.16745"; charset="us-ascii"
+Reviewed-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 
+I have some other patches in the queue and I'll push this shortly
 
---1392122581.725A1.16745
-Date: Tue, 11 Feb 2014 12:43:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=73200
-
-Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
-           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org
-                   |rg                          |
-  Attachment #93520|0                           |1
-        is obsolete|                            |
-  Attachment #93639|0                           |1
-        is obsolete|                            |
-  Attachment #93678|0                           |1
-        is obsolete|                            |
-
---- Comment #14 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
-Created attachment 93859
-  --> https://bugs.freedesktop.org/attachment.cgi?id=93859&action=edit
-cache screen, try 2
-
-This time with --dynamic-list= in nouveau_dri.so to fixup the bug. Can you
-verify that this  version works?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1392122581.725A1.16745
-Date: Tue, 11 Feb 2014 12:43:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - vdpau-GL interop fails due to different screen objects"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200">bug 73200</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>bugs&#64;mblankhorst.nl
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #93520 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #93639 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #93678 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - vdpau-GL interop fails due to different screen objects"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - vdpau-GL interop fails due to different screen objects"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200">bug 73200</a>
-              from <span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=93859" name="attach_93859" title="cache screen, try 2">attachment 93859</a> <a href="attachment.cgi?id=93859&amp;action=edit" title="cache screen, try 2">[details]</a></span>
-cache screen, try 2
-
-This time with --dynamic-list= in nouveau_dri.so to fixup the bug. Can you
-verify that this  version works?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1392122581.725A1.16745--
-
---===============0413627486==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0413627486==--
+-Emil
+> ---
+> 
+> Not touching nv50 since I have a patch that actually impelents support for
+> multiple viewports there.
+> 
+>  src/gallium/drivers/nouveau/nv30/nv30_screen.c | 2 ++
+>  src/gallium/drivers/nouveau/nvc0/nvc0_screen.c | 2 ++
+>  2 files changed, 4 insertions(+)
+> 
+> diff --git a/src/gallium/drivers/nouveau/nv30/nv30_screen.c b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
+> index 8eee06b..c027a5f 100644
+> --- a/src/gallium/drivers/nouveau/nv30/nv30_screen.c
+> +++ b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
+> @@ -84,6 +84,8 @@ nv30_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+>        return 0;
+>     case PIPE_CAP_CONSTANT_BUFFER_OFFSET_ALIGNMENT:
+>        return 16;
+> +   case PIPE_CAP_MAX_VIEWPORTS:
+> +      return 1;
+>     /* nv4x capabilities */
+>     case PIPE_CAP_BLEND_EQUATION_SEPARATE:
+>     case PIPE_CAP_NPOT_TEXTURES:
+> diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+> index f84c41b..28d9be2 100644
+> --- a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+> +++ b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+> @@ -175,6 +175,8 @@ nvc0_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+>        return PIPE_ENDIAN_LITTLE;
+>     case PIPE_CAP_TGSI_VS_LAYER:
+>        return 0;
+> +   case PIPE_CAP_MAX_VIEWPORTS:
+> +      return 1;
+>     default:
+>        NOUVEAU_ERR("unknown PIPE_CAP %d\n", param);
+>        return 0;
+> 
