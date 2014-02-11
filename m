@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 73744] [NVA8] Constant lock ups with NVIDIA GeForce
 	8400 GS
-Date: Tue, 11 Feb 2014 02:33:34 +0000
-Message-ID: <bug-73744-8800-ZnsYINbFHh@http.bugs.freedesktop.org/>
+Date: Tue, 11 Feb 2014 02:39:18 +0000
+Message-ID: <bug-73744-8800-Lm2j3RoUpr@http.bugs.freedesktop.org/>
 References: <bug-73744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0858256523=="
+Content-Type: multipart/mixed; boundary="===============2006021047=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-73744-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,57 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0858256523==
-Content-Type: multipart/alternative; boundary="1392086014.aCbCd1.7350"; charset="us-ascii"
+--===============2006021047==
+Content-Type: multipart/alternative; boundary="1392086358.65DF1.8801"; charset="us-ascii"
 
 
---1392086014.aCbCd1.7350
-Date: Tue, 11 Feb 2014 02:33:34 +0000
+--1392086358.65DF1.8801
+Date: Tue, 11 Feb 2014 02:39:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=73744
 
---- Comment #15 from grave_123-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org ---
-Created attachment 93820
-  --> https://bugs.freedesktop.org/attachment.cgi?id=93820&action=edit
-dmesg from latest lock up
+--- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The relevant bits:
 
-I think I got something good here! Here's the dmesg from the latest lock up.
+TRAP_MP_EXEC - TP 0 MP 1: INVALID_OPCODE at 07fcc0 warp 0, opcode 0d0d0d0d
+0d0d0d0d
+ TRAP
+ch 5 [0x003fc34000 compiz[2897]] subc 3 class 0x8597 mthd 0x0f04 data
+0x3f800000
+PGRAPH TLB flush idle timeout fail
+PGRAPH_STATUS  : 0x00c00c03 BUSY DISPATCH CCACHE_UNK4 STRMOUT_GSCHED_UNK5 TPVP
+MP
+PGRAPH_VSTATUS0: 0x00000208 CCACHE UNK5
+PGRAPH_VSTATUS1: 0x00005600
+PGRAPH_VSTATUS2: 0x00000000
+TRAP_MP_EXEC - TP 0 MP 1: TIMEOUT at 07fcc0 warp 0, opcode 0d0d0d0d 0d0d0d0d
+ TRAP
+ch 5 [0x003fc34000 compiz[2897]] subc 3 class 0x8597 mthd 0x0f04 data
+0x3f800000
+TRAP_MP_EXEC - TP 0 MP 1: TIMEOUT at 07fcc0 warp 0, opcode 0d0d0d0d 0d0d0d0d
+ TRAP
+ch 5 [0x003fc34000 compiz[2897]] subc 3 class 0x8597 mthd 0x0f04 data
+0x3f800000
+PGRAPH TLB flush idle timeout fail
+PGRAPH_STATUS  : 0x00c00c03 BUSY DISPATCH CCACHE_UNK4 STRMOUT_GSCHED_UNK5 TPVP
+MP
+PGRAPH_VSTATUS0: 0x00000208 CCACHE UNK5
+PGRAPH_VSTATUS1: 0x00005600
+PGRAPH_VSTATUS2: 0x00000000
+TRAP_MP_EXEC - TP 0 MP 1: TIMEOUT at 07fcc0 warp 0, opcode 0d0d0d0d 0d0d0d0d
+ TRAP
+
+So it looks like the code got overwritten with 0x0d (13) bytes. Never seen a
+TIMEOUT error before -- neat. Not sure what to make of it though.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392086014.aCbCd1.7350
-Date: Tue, 11 Feb 2014 02:33:34 +0000
+--1392086358.65DF1.8801
+Date: Tue, 11 Feb 2014 02:39:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,17 +85,45 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=73744">bug 73744</a>
-              from <span class="vcard"><a class="email" href="mailto:grave_123&#64;riseup.net" title="grave_123&#64;riseup.net">grave_123&#64;riseup.net</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=93820" name="attach_93820" title="dmesg from latest lock up">attachment 93820</a> <a href="attachment.cgi?id=93820&amp;action=edit" title="dmesg from latest lock up">[details]</a></span>
-dmesg from latest lock up
+        <pre>The relevant bits:
 
-I think I got something good here! Here's the dmesg from the latest lock up.</pre>
+TRAP_MP_EXEC - TP 0 MP 1: INVALID_OPCODE at 07fcc0 warp 0, opcode 0d0d0d0d
+0d0d0d0d
+ TRAP
+ch 5 [0x003fc34000 compiz[2897]] subc 3 class 0x8597 mthd 0x0f04 data
+0x3f800000
+PGRAPH TLB flush idle timeout fail
+PGRAPH_STATUS  : 0x00c00c03 BUSY DISPATCH CCACHE_UNK4 STRMOUT_GSCHED_UNK5 TPVP
+MP
+PGRAPH_VSTATUS0: 0x00000208 CCACHE UNK5
+PGRAPH_VSTATUS1: 0x00005600
+PGRAPH_VSTATUS2: 0x00000000
+TRAP_MP_EXEC - TP 0 MP 1: TIMEOUT at 07fcc0 warp 0, opcode 0d0d0d0d 0d0d0d0d
+ TRAP
+ch 5 [0x003fc34000 compiz[2897]] subc 3 class 0x8597 mthd 0x0f04 data
+0x3f800000
+TRAP_MP_EXEC - TP 0 MP 1: TIMEOUT at 07fcc0 warp 0, opcode 0d0d0d0d 0d0d0d0d
+ TRAP
+ch 5 [0x003fc34000 compiz[2897]] subc 3 class 0x8597 mthd 0x0f04 data
+0x3f800000
+PGRAPH TLB flush idle timeout fail
+PGRAPH_STATUS  : 0x00c00c03 BUSY DISPATCH CCACHE_UNK4 STRMOUT_GSCHED_UNK5 TPVP
+MP
+PGRAPH_VSTATUS0: 0x00000208 CCACHE UNK5
+PGRAPH_VSTATUS1: 0x00005600
+PGRAPH_VSTATUS2: 0x00000000
+TRAP_MP_EXEC - TP 0 MP 1: TIMEOUT at 07fcc0 warp 0, opcode 0d0d0d0d 0d0d0d0d
+ TRAP
+
+So it looks like the code got overwritten with 0x0d (13) bytes. Never seen a
+TIMEOUT error before -- neat. Not sure what to make of it though.</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +135,9 @@ I think I got something good here! Here's the dmesg from the latest lock up.</pr
     </body>
 </html>
 
---1392086014.aCbCd1.7350--
+--1392086358.65DF1.8801--
 
---===============0858256523==
+--===============2006021047==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +148,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0858256523==--
+--===============2006021047==--
