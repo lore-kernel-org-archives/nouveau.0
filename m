@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74815] [NVA8,
- NVC1] no displayport output on quadro 400/600 cards
-Date: Tue, 11 Feb 2014 03:02:01 +0000
-Message-ID: <bug-74815-8800-og2GshHA4c@http.bugs.freedesktop.org/>
-References: <bug-74815-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: handle -EACCES runtime PM return
+	code
+Date: Tue, 11 Feb 2014 13:14:53 +0900
+Message-ID: <CAAVeFuLgopbCSE2u_paxUJC-dsZU=XwJxHen-jWMADQKZuuucQ@mail.gmail.com>
+References: <1392011892-4339-1-git-send-email-acourbot@nvidia.com>
+	<20140210123424.GE20143@ulmo.nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1569819285=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74815-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20140210123424.GE20143-AwZRO8vwLAwmlAP/+Wk3EA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,114 +19,48 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Mon, Feb 10, 2014 at 9:34 PM, Thierry Reding
+<thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On Mon, Feb 10, 2014 at 02:58:12PM +0900, Alexandre Courbot wrote:
+>> pm_runtime_get*() may return -EACCESS to indicate a device does not have
+>
+> s/-EACCESS/-EACCES/
 
---===============1569819285==
-Content-Type: multipart/alternative; boundary="1392087720.36f1272.14509"; charset="us-ascii"
+Oops.
 
+>> runtime PM enabled. This is the case when the nouveau.runpm parameter is
+>> set to 0, and is not an error in that context. Handle this case without
+>> failure.
+>>
+>> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>> ---
+>>  drivers/gpu/drm/nouveau/dispnv04/crtc.c     | 2 +-
+>>  drivers/gpu/drm/nouveau/nouveau_connector.c | 2 +-
+>>  drivers/gpu/drm/nouveau/nouveau_drm.c       | 4 ++--
+>>  3 files changed, 4 insertions(+), 4 deletions(-)
+>
+> I'm not sure if the commit message is entirely accurate. Looking at the
+> various runtime power-management functions in nouveau_drm.c (such as
+> nouveau_pmops_runtime_suspend() for example), they seem to return
+> -EINVAL if the nouveau.runpm parameter is set to 0.
+>
+> However it seems like -EACCES is indeed returned when runtime power-
+> management hasn't been enabled for a device. This is done automatically
+> for PCI devices, but not for platform devices. We don't support runtime
+> power-management on gk20a yet, therefore pm_runtime_enable() is never
+> called, causing disable_depth to remain at -1 and therefore runtime PM
+> helpers return -EACCES.
 
---1392087720.36f1272.14509
-Date: Tue, 11 Feb 2014 03:02:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+I will fix the commit message, as indeed the -EACCES code is not
+directly related to the runpm parameter, but rather to the fact
+pm_runtime_enable() is not called for platform devices yet.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74815
+Do we however agree on the issue that this patch addresses, and the
+way it addresses it?
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|nouveau: no displayport     |[NVA8,NVC1] no displayport
-                   |output on quadro 400/600    |output on quadro 400/600
-                   |cards                       |cards
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There's another bug about a DP regression... bug #67628, which bisected down to
-5cc027f6b1e ("drm/nv50-/disp: handle supervisor tasks from workqueue"), first
-appearing in 3.9-rc1. Could you verify that you're having trouble with the same
-commit? If so, we can mark as a duplicate.
-
-Otherwise, which log is that log from? Could you upload your VBIOS?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1392087720.36f1272.14509
-Date: Tue, 11 Feb 2014 03:02:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA8,NVC1] no displayport output on quadro 400/600 cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74815">bug 74815</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>nouveau: no displayport output on quadro 400/600 cards
-           </td>
-           <td>[NVA8,NVC1] no displayport output on quadro 400/600 cards
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA8,NVC1] no displayport output on quadro 400/600 cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74815#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA8,NVC1] no displayport output on quadro 400/600 cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74815">bug 74815</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>There's another bug about a DP regression... <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] [BISECTED] Monitor on Display port shows distortions"
-   href="show_bug.cgi?id=67628">bug #67628</a>, which bisected down to
-5cc027f6b1e (&quot;drm/nv50-/disp: handle supervisor tasks from workqueue&quot;), first
-appearing in 3.9-rc1. Could you verify that you're having trouble with the same
-commit? If so, we can mark as a duplicate.
-
-Otherwise, which log is that log from? Could you upload your VBIOS?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1392087720.36f1272.14509--
-
---===============1569819285==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1569819285==--
+Thanks,
+Alex.
