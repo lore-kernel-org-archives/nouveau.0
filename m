@@ -1,15 +1,11 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: handle -EACCES runtime PM return
-	code
-Date: Tue, 11 Feb 2014 13:14:53 +0900
-Message-ID: <CAAVeFuLgopbCSE2u_paxUJC-dsZU=XwJxHen-jWMADQKZuuucQ@mail.gmail.com>
-References: <1392011892-4339-1-git-send-email-acourbot@nvidia.com>
-	<20140210123424.GE20143@ulmo.nvidia.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nv30,nvc0: only claim a single viewport
+Date: Tue, 11 Feb 2014 00:42:26 -0500
+Message-ID: <1392097346-7483-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20140210123424.GE20143-AwZRO8vwLAwmlAP/+Wk3EA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,48 +15,46 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Feb 10, 2014 at 9:34 PM, Thierry Reding
-<thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On Mon, Feb 10, 2014 at 02:58:12PM +0900, Alexandre Courbot wrote:
->> pm_runtime_get*() may return -EACCESS to indicate a device does not have
->
-> s/-EACCESS/-EACCES/
+It should be possible to make this be 16 on nvc0.
 
-Oops.
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
 
->> runtime PM enabled. This is the case when the nouveau.runpm parameter is
->> set to 0, and is not an error in that context. Handle this case without
->> failure.
->>
->> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
->> ---
->>  drivers/gpu/drm/nouveau/dispnv04/crtc.c     | 2 +-
->>  drivers/gpu/drm/nouveau/nouveau_connector.c | 2 +-
->>  drivers/gpu/drm/nouveau/nouveau_drm.c       | 4 ++--
->>  3 files changed, 4 insertions(+), 4 deletions(-)
->
-> I'm not sure if the commit message is entirely accurate. Looking at the
-> various runtime power-management functions in nouveau_drm.c (such as
-> nouveau_pmops_runtime_suspend() for example), they seem to return
-> -EINVAL if the nouveau.runpm parameter is set to 0.
->
-> However it seems like -EACCES is indeed returned when runtime power-
-> management hasn't been enabled for a device. This is done automatically
-> for PCI devices, but not for platform devices. We don't support runtime
-> power-management on gk20a yet, therefore pm_runtime_enable() is never
-> called, causing disable_depth to remain at -1 and therefore runtime PM
-> helpers return -EACCES.
+Not touching nv50 since I have a patch that actually impelents support for
+multiple viewports there.
 
-I will fix the commit message, as indeed the -EACCES code is not
-directly related to the runpm parameter, but rather to the fact
-pm_runtime_enable() is not called for platform devices yet.
+ src/gallium/drivers/nouveau/nv30/nv30_screen.c | 2 ++
+ src/gallium/drivers/nouveau/nvc0/nvc0_screen.c | 2 ++
+ 2 files changed, 4 insertions(+)
 
-Do we however agree on the issue that this patch addresses, and the
-way it addresses it?
-
-Thanks,
-Alex.
+diff --git a/src/gallium/drivers/nouveau/nv30/nv30_screen.c b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
+index 8eee06b..c027a5f 100644
+--- a/src/gallium/drivers/nouveau/nv30/nv30_screen.c
++++ b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
+@@ -84,6 +84,8 @@ nv30_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+       return 0;
+    case PIPE_CAP_CONSTANT_BUFFER_OFFSET_ALIGNMENT:
+       return 16;
++   case PIPE_CAP_MAX_VIEWPORTS:
++      return 1;
+    /* nv4x capabilities */
+    case PIPE_CAP_BLEND_EQUATION_SEPARATE:
+    case PIPE_CAP_NPOT_TEXTURES:
+diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+index f84c41b..28d9be2 100644
+--- a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
++++ b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+@@ -175,6 +175,8 @@ nvc0_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+       return PIPE_ENDIAN_LITTLE;
+    case PIPE_CAP_TGSI_VS_LAYER:
+       return 0;
++   case PIPE_CAP_MAX_VIEWPORTS:
++      return 1;
+    default:
+       NOUVEAU_ERR("unknown PIPE_CAP %d\n", param);
+       return 0;
+-- 
+1.8.3.2
