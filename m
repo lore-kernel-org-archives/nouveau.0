@@ -1,38 +1,56 @@
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Subject: Re: GeForce 6100 (NV4E) & nouveau regression in 3.12
-Date: Tue, 11 Feb 2014 11:28:36 +0100
-Message-ID: <CACna6rxfJkSPAcNy39tNe6KvATf6Eq_Q5_QUXtZCaPR501WYZQ@mail.gmail.com>
+Date: Tue, 11 Feb 2014 05:41:53 -0500
+Message-ID: <CAKb7UviTjc5wN9TUAxTypXpsgvwZnuvR+Ea6RwA-ir9-Rq5TRg@mail.gmail.com>
 References: <CACna6rz=cp9Sce46C0P-cQbow-Os95_6XB+fhNjSwvnCJabJfA@mail.gmail.com>
 	<CAKb7Uvjz74GWDEwynOud2wmzoABc1HMrP4VC+J-oKi9Y3G0h8w@mail.gmail.com>
 	<CACna6ryidTQDGVq=N6Wg9xycXqAaPsuvjoktQiZ00p5sLLkzdQ@mail.gmail.com>
 	<CAKb7Uvh5o4hd6G1R07qu3hRCfweb+0qEoRJWF+hZKMCm+xX0zA@mail.gmail.com>
+	<CACna6ryE2wM=+SNkHkgPkP9nGqLFfQbuCs-6VJci+DL-xSrMWw@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7Uvh5o4hd6G1R07qu3hRCfweb+0qEoRJWF+hZKMCm+xX0zA@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: Dave Airlie <airlied@redhat.com>, dri-devel <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CACna6ryE2wM=+SNkHkgPkP9nGqLFfQbuCs-6VJci+DL-xSrMWw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?ISO-8859-2?Q?Rafa=B3_Mi=B3ecki?= <zajec5-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-MjAxNC0wMi0xMCAyMDowNiBHTVQrMDE6MDAgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
-ZWR1PjoKPiBMYXN0bHksIGl0IG1heSBiZSB3b3J0aCB0cnlpbmcgMy4xMS54IGFuZCAzLjEyLngg
-dG8gZ2V0IGEgYmV0dGVyCj4gaGFuZGxlIG9uIHdoZW4gcHJvYmxlbXMgaGFwcGVuZWQuIFRoZSBj
-b21taXRzIHlvdSBjaXRlIGFyZSBpbiB0aGUKPiBtaWRkbGUgb2YgcmVsZWFzZXMsIGFuZCBtYXkg
-aGF2ZSB2YXJpb3VzIGJhZG5lc3MgYXNzb2NpYXRlZCB3aXRoIHRoZW0KPiAoZS5nLiAzLjEyLXJj
-IGhhZCBhIGxhdGVyLWRpc2FibGVkIE1TSSBpbXBsZW1lbnRhdGlvbiwgYmFjayBpbiAzLjEzLi4u
-Cj4gcHJvYmFibHkgc29tZSBvdGhlciBzdHVmZikuCgpJJ3ZlIHRyaWVkIExpbnV4IDMuMTEuMCwg
-My4xMS4xMCBhbmQgMy4xMi4wLiBBbGwgb2YgdGhlbSBzdWZmZXIgZnJvbQp0aGlzIGNvcnJ1cHRp
-b24uCgotLSAKUmFmYcWCCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRl
-dmVsCg==
+T24gTW9uLCBGZWIgMTAsIDIwMTQgYXQgMzowNSBQTSwgUmFmYcWCIE1pxYJlY2tpIDx6YWplYzVA
+Z21haWwuY29tPiB3cm90ZToKPiAyMDE0LTAyLTEwIDIwOjA2IEdNVCswMTowMCBJbGlhIE1pcmtp
+biA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ogo+PiBUaGVyZSB3YXMgYWxzbyBhbiBpc3N1ZSB3aXRo
+IGxpYmRybV9ub3V2ZWF1IGZvciBwcmUtbnY1MCBjaGlwcywgd2hlbgo+PiBjb21waWxlZCB3aXRo
+IGdjYy00Ljggc29tZSB0aW1lIGJhY2suLi4gZml4ZWQgaW4uLi4gMi40LjQ4IG9yIHNvPwo+Cj4g
+SSB1c2Ugb3BlblNVU0UgMTIuMiAoeDg2XzY0KSB3aGljaCBwcm92aWRlcyBnY2MgNC43LjEgYW5k
+Cj4gbGliZHJtX25vdXZlYXUxLTIuNC4zMy0yLjMuMi54ODZfNjQuIEkgYXNzdW1lIGxpYmRybV9u
+b3V2ZWF1IHdhcwo+IGNvbXBpbGVkIHVzaW5nIHRoYXQgNC43LjEuCgpIbW1tLi4uIHRoZSBub3V2
+ZWF1IGRybSByZXdyaXRlIHdlbnQgaW50byAyLjQuMzQuLi4gSSBndWVzcyB5b3UncmUKdXNpbmcg
+cHJldHR5IG9sZCB1c2Vyc3BhY2UgaW4gZ2VuZXJhbCwgc2luY2UgZXZlcnl0aGluZyBkZXBlbmRz
+IG9uIHRoZQpwb3N0LXJld3JpdGUgbGliZHJtX25vdXZlYXUuIE9mIGNvdXJzZSBpdCBkZWZpbml0
+ZWx5IHNvdW5kcyBsaWtlIGEKa2VybmVsIGlzc3VlLCBidXQgSSBjYW4ndCBoZWxwIGJ1dCB3b25k
+ZXIgaWYgdGhpcyBpcyBhIG5vbi1pc3N1ZSB3aXRoCmxhdGVyIHVzZXJzcGFjZS4KClNvIHRoZXJl
+IGFyZSBiYXNpY2FsbHkgMiB0aGluZ3MgbGVmdCB0byBkbywgaW4gb3JkZXIgb2YgdGltZS1jb25z
+dW1pbmctbmVzczoKCihhKSB0cnkgYSBsaXZle2NkLHVzYn0gKGUuZy4gYXJjaCwgb3Igc29tZXRo
+aW5nIGVsc2UgdGhhdCBoYXMgcmVjZW50CnNvZnR3YXJlKSwgYW5kIHNlZSBpZiB0aGUgaXNzdWUg
+aXMgc3RpbGwgcHJlc2VudCB0aGVyZS4KKGIpIGJpc2VjdC4geW91IGNhbiAoYWxtb3N0KSBkZWZp
+bml0ZWx5IHJlc3RyaWN0IHRoZSBiaXNlY3QgdG8KZHJpdmVycy9ncHUvZHJtL25vdXZlYXUuIGlm
+IHlvdSBoYXZlIGFkZGl0aW9uYWwgY29tcHV0YXRpb25hbCBwb3dlciwgaQp3b3VsZCByZWNvbW1l
+bmQgbG9va2luZyBpbnRvIGRpc3RjYyBmb3Igc3BlZWRpbmcgdXAgdGhlIGNvbXBpbGVzLiBpdApt
+YXkgYmUgaW50ZXJlc3RpbmcgdG8gYWxzbyB0cnkgMy42Lnggc2luY2UgMy43IHJlY2VpdmVkIGEg
+cHJldHR5IGJpZwpyZXdyaXRlLiBidXQgYSBnaXQgYmlzZWN0IGlzIGEgbG90IG1vcmUgZGlyZWN0
+IGluIGZpZ3VyaW5nIHRoZXNlCnRoaW5ncyBvdXQgOikKCkFmdGVyIEkgd2F0Y2hlZCB5b3VyIHZp
+ZGVvLCBpdCBkZWZpbml0ZWx5IGJyb3VnaHQgYmFjayBtZW1vcmllcyBvZgphbm90aGVyIGJ1ZyBv
+ciBwZXJoYXBzIGVtYWlsIG9uIHRoaXMgbGlzdCBhIHdoaWxlIGJhY2sgKGRlZmluaXRlbHkKd2l0
+aGluIHRoZSBwYXN0IHllYXIpLCBidXQgdW5mb3J0dW5hdGVseSBJIGNhbid0IHF1aXRlIHBsYWNl
+IGl0IDooCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
