@@ -1,11 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nv30,nvc0: only claim a single viewport
-Date: Tue, 11 Feb 2014 00:42:26 -0500
-Message-ID: <1392097346-7483-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74815] [NVA5,
+ NVC1] no displayport output on quadro 400/600 cards
+Date: Tue, 11 Feb 2014 06:18:28 +0000
+Message-ID: <bug-74815-8800-ijQJFjeeP6@http.bugs.freedesktop.org/>
+References: <bug-74815-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1672158459=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-74815-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,46 +17,85 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-It should be possible to make this be 16 on nvc0.
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
----
+--===============1672158459==
+Content-Type: multipart/alternative; boundary="1392099508.5A4d82.22795"; charset="us-ascii"
 
-Not touching nv50 since I have a patch that actually impelents support for
-multiple viewports there.
 
- src/gallium/drivers/nouveau/nv30/nv30_screen.c | 2 ++
- src/gallium/drivers/nouveau/nvc0/nvc0_screen.c | 2 ++
- 2 files changed, 4 insertions(+)
+--1392099508.5A4d82.22795
+Date: Tue, 11 Feb 2014 06:18:28 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/src/gallium/drivers/nouveau/nv30/nv30_screen.c b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
-index 8eee06b..c027a5f 100644
---- a/src/gallium/drivers/nouveau/nv30/nv30_screen.c
-+++ b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
-@@ -84,6 +84,8 @@ nv30_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
-       return 0;
-    case PIPE_CAP_CONSTANT_BUFFER_OFFSET_ALIGNMENT:
-       return 16;
-+   case PIPE_CAP_MAX_VIEWPORTS:
-+      return 1;
-    /* nv4x capabilities */
-    case PIPE_CAP_BLEND_EQUATION_SEPARATE:
-    case PIPE_CAP_NPOT_TEXTURES:
-diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
-index f84c41b..28d9be2 100644
---- a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
-+++ b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
-@@ -175,6 +175,8 @@ nvc0_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
-       return PIPE_ENDIAN_LITTLE;
-    case PIPE_CAP_TGSI_VS_LAYER:
-       return 0;
-+   case PIPE_CAP_MAX_VIEWPORTS:
-+      return 1;
-    default:
-       NOUVEAU_ERR("unknown PIPE_CAP %d\n", param);
-       return 0;
+https://bugs.freedesktop.org/show_bug.cgi?id=74815
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NVA8,NVC1] no displayport  |[NVA5,NVC1] no displayport
+                   |output on quadro 400/600    |output on quadro 400/600
+                   |cards                       |cards
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1392099508.5A4d82.22795
+Date: Tue, 11 Feb 2014 06:18:28 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA5,NVC1] no displayport output on quadro 400/600 cards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74815">bug 74815</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NVA8,NVC1] no displayport output on quadro 400/600 cards
+           </td>
+           <td>[NVA5,NVC1] no displayport output on quadro 400/600 cards
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1392099508.5A4d82.22795--
+
+--===============1672158459==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1672158459==--
