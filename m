@@ -1,58 +1,167 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: GeForce 6100 (NV4E) & nouveau regression in 3.12
-Date: Tue, 11 Feb 2014 06:16:08 -0500
-Message-ID: <CAKb7UvjFaSr3R3ik-D76TaMV93ypFfygK5CWSyKC-RfWiarQxQ@mail.gmail.com>
-References: <CACna6rz=cp9Sce46C0P-cQbow-Os95_6XB+fhNjSwvnCJabJfA@mail.gmail.com>
-	<CAKb7Uvjz74GWDEwynOud2wmzoABc1HMrP4VC+J-oKi9Y3G0h8w@mail.gmail.com>
-	<CACna6ryidTQDGVq=N6Wg9xycXqAaPsuvjoktQiZ00p5sLLkzdQ@mail.gmail.com>
-	<CAKb7Uvh5o4hd6G1R07qu3hRCfweb+0qEoRJWF+hZKMCm+xX0zA@mail.gmail.com>
-	<CACna6ryE2wM=+SNkHkgPkP9nGqLFfQbuCs-6VJci+DL-xSrMWw@mail.gmail.com>
-	<CAKb7UviTjc5wN9TUAxTypXpsgvwZnuvR+Ea6RwA-ir9-Rq5TRg@mail.gmail.com>
-	<CACna6rw3bM5G3Cyc1rXks8j3A=KWU_tcxreLE3=SRoK2fDPSMA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 73200] vdpau-GL interop fails due to different
+	screen objects
+Date: Tue, 11 Feb 2014 12:43:01 +0000
+Message-ID: <bug-73200-8800-TOFbaydw08@http.bugs.freedesktop.org/>
+References: <bug-73200-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CACna6rw3bM5G3Cyc1rXks8j3A=KWU_tcxreLE3=SRoK2fDPSMA@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: =?ISO-8859-2?Q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
-Cc: Dave Airlie <airlied@redhat.com>, dri-devel <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0413627486=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-73200-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBGZWIgMTEsIDIwMTQgYXQgNjowOSBBTSwgUmFmYcWCIE1pxYJlY2tpIDx6YWplYzVA
-Z21haWwuY29tPiB3cm90ZToKPiAyMDE0LTAyLTExIDExOjQxIEdNVCswMTowMCBJbGlhIE1pcmtp
-biA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ogo+PiAoYikgYmlzZWN0LiB5b3UgY2FuIChhbG1vc3Qp
-IGRlZmluaXRlbHkgcmVzdHJpY3QgdGhlIGJpc2VjdCB0bwo+PiBkcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS4gaWYgeW91IGhhdmUgYWRkaXRpb25hbCBjb21wdXRhdGlvbmFsIHBvd2VyLCBpCj4+IHdv
-dWxkIHJlY29tbWVuZCBsb29raW5nIGludG8gZGlzdGNjIGZvciBzcGVlZGluZyB1cCB0aGUgY29t
-cGlsZXMuIGl0Cj4+IG1heSBiZSBpbnRlcmVzdGluZyB0byBhbHNvIHRyeSAzLjYueCBzaW5jZSAz
-LjcgcmVjZWl2ZWQgYSBwcmV0dHkgYmlnCj4+IHJld3JpdGUuIGJ1dCBhIGdpdCBiaXNlY3QgaXMg
-YSBsb3QgbW9yZSBkaXJlY3QgaW4gZmlndXJpbmcgdGhlc2UKPj4gdGhpbmdzIG91dCA6KQo+Cj4g
-SSd2ZSBhbHJlYWR5IGJpc2VjdGVkIGNvbW1pdCB0aGF0IGNoYW5nZWQgdGhpcyBwaW5rIGxpbmUg
-aXNzdWUgaW50byBhCj4gZ2VuZXJhbCBzY3JlZW4gY29ycnVwdGlvbi4gSnVzdCB0byByZW1pbmQg
-aXQgd2FzOgo+Cj4gY29tbWl0IGMyMWViMjFjYjUwZDU4ZTdjYmRjYjhiOWU3ZmY2OGI4NWNmYTUw
-OTUKPiBBdXRob3I6IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+Cj4gRGF0ZTogRnJp
-IFNlcCAyMCAwODozMjo1OSAyMDEzICsxMDAwCj4KPiAgICAgUmV2ZXJ0ICJkcm06IG1hcmsgY29u
-dGV4dCBzdXBwb3J0IGFzIGEgbGVnYWN5IHN1YnN5c3RlbSIKClJpZ2h0LCBhbmQgdGhpcyBjb21t
-aXQgd2FzIHJldmVydGluZyBhbm90aGVyIGNvbW1pdCAtLQo3YzUxMDEzM2Q5M2RkNmYxNWNhMDQw
-NzMzYmE3YjI4OTFlZDYxZmQxLiBJIGJldCB0aGF0IGlmIHlvdSBjaGVjayBvdXQKdG8gcmlnaHQg
-YmVmb3JlIHRoaXMgY29tbWl0LCB5b3UnbGwgZ2V0IHRoZSAiZ2VuZXJhbCIgY29ycnVwdGlvbiBh
-Z2FpbgooaXQgd2VudCBpbnRvIDMuMTItcmMxLCB0aGUgcmV2ZXJ0IHdlbnQgaW50byAzLjEyLXJj
-MiAtLSBJIGFzc3VtZSB0aGF0CndoZW4geW91IHRlc3RlZCAzLjExLngsIHRoZSBjb3JydXB0aW9u
-IHdhcyB0aGUgc2FtZSBhcyBpbiAzLjEyLngsCndoaWNoIGNvbnRhaW5zIGJvdGggdGhpcyBjb21t
-aXQgYW5kIGl0cyByZXZlcnQpLgoKPgo+IFdvdWxkIHlvdSBsaWtlIG1lIHRvIGJpc2VjdCBjb21t
-aXQgdGhhdCBpbnRyb2R1Y2VkIHRoaXMgcGluayBsaW5lIGlzc3VlPwoKSSB3b3VsZCBsaWtlIHlv
-dSB0byBiaXNlY3Qgd2hhdGV2ZXIgY29ycnVwdGlvbiB5b3Ugc2VlIHdoZW4geW91IHRlc3RlZAoz
-LjExLnggLS0gaXMgdGhhdCB0aGUgcGluayBsaW5lcywgb3IgdGhlIGZsaWNrZXJpbmcgdGV4dHVy
-ZXM/CgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
-Cg==
+
+--===============0413627486==
+Content-Type: multipart/alternative; boundary="1392122581.725A1.16745"; charset="us-ascii"
+
+
+--1392122581.725A1.16745
+Date: Tue, 11 Feb 2014 12:43:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=73200
+
+Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org
+                   |rg                          |
+  Attachment #93520|0                           |1
+        is obsolete|                            |
+  Attachment #93639|0                           |1
+        is obsolete|                            |
+  Attachment #93678|0                           |1
+        is obsolete|                            |
+
+--- Comment #14 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
+Created attachment 93859
+  --> https://bugs.freedesktop.org/attachment.cgi?id=93859&action=edit
+cache screen, try 2
+
+This time with --dynamic-list= in nouveau_dri.so to fixup the bug. Can you
+verify that this  version works?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1392122581.725A1.16745
+Date: Tue, 11 Feb 2014 12:43:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - vdpau-GL interop fails due to different screen objects"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200">bug 73200</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>bugs&#64;mblankhorst.nl
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #93520 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #93639 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #93678 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - vdpau-GL interop fails due to different screen objects"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - vdpau-GL interop fails due to different screen objects"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73200">bug 73200</a>
+              from <span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=93859" name="attach_93859" title="cache screen, try 2">attachment 93859</a> <a href="attachment.cgi?id=93859&amp;action=edit" title="cache screen, try 2">[details]</a></span>
+cache screen, try 2
+
+This time with --dynamic-list= in nouveau_dri.so to fixup the bug. Can you
+verify that this  version works?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1392122581.725A1.16745--
+
+--===============0413627486==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0413627486==--
