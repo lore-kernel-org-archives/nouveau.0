@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74695] [NV86] GPU hangs on resume, causing X to crash
-Date: Wed, 12 Feb 2014 18:08:37 +0000
-Message-ID: <bug-74695-8800-I7wmRD8GDq@http.bugs.freedesktop.org/>
+Date: Wed, 12 Feb 2014 18:09:20 +0000
+Message-ID: <bug-74695-8800-5DmVEjo6qw@http.bugs.freedesktop.org/>
 References: <bug-74695-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1054752322=="
+Content-Type: multipart/mixed; boundary="===============1002868926=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74695-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1054752322==
-Content-Type: multipart/alternative; boundary="1392228517.fE0661.13646"; charset="us-ascii"
+--===============1002868926==
+Content-Type: multipart/alternative; boundary="1392228559.0C20e11.13918"; charset="us-ascii"
 
 
---1392228517.fE0661.13646
-Date: Wed, 12 Feb 2014 18:08:37 +0000
+--1392228559.0C20e11.13918
+Date: Wed, 12 Feb 2014 18:09:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74695
 
---- Comment #12 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 93952
-  --> https://bugs.freedesktop.org/attachment.cgi?id=93952&action=edit
-dmesg from kernel 3.8
-
-dmesg output after booting my PC with kernel v.3.8.
+--- Comment #13 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I will continue testing previous kernels to v. 3.8.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392228517.fE0661.13646
-Date: Wed, 12 Feb 2014 18:08:37 +0000
+--1392228559.0C20e11.13918
+Date: Wed, 12 Feb 2014 18:09:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +53,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695#c12">Comment # 12</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74695">bug 74695</a>
               from <span class="vcard"><a class="email" href="mailto:carla.sella&#64;gmail.com" title="Carla sella &lt;carla.sella&#64;gmail.com&gt;"> <span class="fn">Carla sella</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=93952" name="attach_93952" title="dmesg from kernel 3.8">attachment 93952</a> <a href="attachment.cgi?id=93952&amp;action=edit" title="dmesg from kernel 3.8">[details]</a></span>
-dmesg from kernel 3.8
-
-dmesg output after booting my PC with kernel v.3.8.</pre>
+        <pre>I will continue testing previous kernels to v. 3.8.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +72,9 @@ dmesg output after booting my PC with kernel v.3.8.</pre>
     </body>
 </html>
 
---1392228517.fE0661.13646--
+--1392228559.0C20e11.13918--
 
---===============1054752322==
+--===============1002868926==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1054752322==--
+--===============1002868926==--
