@@ -1,13 +1,13 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nv30,nvc0: only claim a single viewport
-Date: Tue, 11 Feb 2014 17:19:48 +0000
-Message-ID: <52FA5BB4.5050704@gmail.com>
-References: <1392097346-7483-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74815] [NVA5,
+ NVC1] no displayport output on quadro 400/600 cards
+Date: Wed, 12 Feb 2014 00:47:19 +0000
+Message-ID: <bug-74815-8800-yLQv61Zd3t@http.bugs.freedesktop.org/>
+References: <bug-74815-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0827739371=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1392097346-7483-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+In-Reply-To: <bug-74815-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,52 +17,100 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 11/02/14 05:42, Ilia Mirkin wrote:
-> It should be possible to make this be 16 on nvc0.
-> 
-> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 
-Reviewed-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+--===============0827739371==
+Content-Type: multipart/alternative; boundary="1392166039.3bDF1.4483"; charset="us-ascii"
 
-I have some other patches in the queue and I'll push this shortly
 
--Emil
-> ---
+--1392166039.3bDF1.4483
+Date: Wed, 12 Feb 2014 00:47:19 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=74815
+
+--- Comment #2 from Michael Gulick <mgulick-I5WecO5yM8GakBO8gow8eQ@public.gmane.org> ---
+(In reply to comment #1)
+> There's another bug about a DP regression... bug #67628, which bisected down
+> to 5cc027f6b1e ("drm/nv50-/disp: handle supervisor tasks from workqueue"),
+> first appearing in 3.9-rc1. Could you verify that you're having trouble with
+> the same commit? If so, we can mark as a duplicate.
 > 
-> Not touching nv50 since I have a patch that actually impelents support for
-> multiple viewports there.
-> 
->  src/gallium/drivers/nouveau/nv30/nv30_screen.c | 2 ++
->  src/gallium/drivers/nouveau/nvc0/nvc0_screen.c | 2 ++
->  2 files changed, 4 insertions(+)
-> 
-> diff --git a/src/gallium/drivers/nouveau/nv30/nv30_screen.c b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
-> index 8eee06b..c027a5f 100644
-> --- a/src/gallium/drivers/nouveau/nv30/nv30_screen.c
-> +++ b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
-> @@ -84,6 +84,8 @@ nv30_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
->        return 0;
->     case PIPE_CAP_CONSTANT_BUFFER_OFFSET_ALIGNMENT:
->        return 16;
-> +   case PIPE_CAP_MAX_VIEWPORTS:
-> +      return 1;
->     /* nv4x capabilities */
->     case PIPE_CAP_BLEND_EQUATION_SEPARATE:
->     case PIPE_CAP_NPOT_TEXTURES:
-> diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
-> index f84c41b..28d9be2 100644
-> --- a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
-> +++ b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
-> @@ -175,6 +175,8 @@ nvc0_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
->        return PIPE_ENDIAN_LITTLE;
->     case PIPE_CAP_TGSI_VS_LAYER:
->        return 0;
-> +   case PIPE_CAP_MAX_VIEWPORTS:
-> +      return 1;
->     default:
->        NOUVEAU_ERR("unknown PIPE_CAP %d\n", param);
->        return 0;
-> 
+> Otherwise, which log is that log from? Could you upload your VBIOS?
+
+Unfortunately that doesn't seem to be the commit that caused the problem
+(unless I did something wrong in testing).  It does appear to be between tags
+'v3.8' and 'v3.9-rc1'.  I'm trying to do a git bisect but it looks like it will
+take a while (13 steps estimated, but the first kernel wouldn't boot...).  Any
+tips for speeding up that process?  Any other info I can provide?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1392166039.3bDF1.4483
+Date: Wed, 12 Feb 2014 00:47:19 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA5,NVC1] no displayport output on quadro 400/600 cards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74815#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA5,NVC1] no displayport output on quadro 400/600 cards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74815">bug 74815</a>
+              from <span class="vcard"><a class="email" href="mailto:mgulick&#64;mathworks.com" title="Michael Gulick &lt;mgulick&#64;mathworks.com&gt;"> <span class="fn">Michael Gulick</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=74815#c1">comment #1</a>)
+<span class="quote">&gt; There's another bug about a DP regression... <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC1] [BISECTED] Monitor on Display port shows distortions"
+   href="show_bug.cgi?id=67628">bug #67628</a>, which bisected down
+&gt; to 5cc027f6b1e (&quot;drm/nv50-/disp: handle supervisor tasks from workqueue&quot;),
+&gt; first appearing in 3.9-rc1. Could you verify that you're having trouble with
+&gt; the same commit? If so, we can mark as a duplicate.
+&gt; 
+&gt; Otherwise, which log is that log from? Could you upload your VBIOS?</span >
+
+Unfortunately that doesn't seem to be the commit that caused the problem
+(unless I did something wrong in testing).  It does appear to be between tags
+'v3.8' and 'v3.9-rc1'.  I'm trying to do a git bisect but it looks like it will
+take a while (13 steps estimated, but the first kernel wouldn't boot...).  Any
+tips for speeding up that process?  Any other info I can provide?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1392166039.3bDF1.4483--
+
+--===============0827739371==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0827739371==--
