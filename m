@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74866] This info is from a git bisect I did 20140211
-Date: Wed, 12 Feb 2014 01:34:25 +0000
-Message-ID: <bug-74866-8800-UNSVh10ANr@http.bugs.freedesktop.org/>
-References: <bug-74866-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau/fb: use correct ram oclass for nv1a
+	hardware
+Date: Wed, 12 Feb 2014 01:41:42 +0000
+Message-ID: <1392169302-8155-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1338123566=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74866-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,80 +16,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org#3.13+
 List-Id: nouveau.vger.kernel.org
 
+commit 8613e7314ac254fdd67ed46192f021d76141e4c9
+Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Date:   Mon Oct 21 08:50:25 2013 +1000
 
---===============1338123566==
-Content-Type: multipart/alternative; boundary="1392168865.Ad20Bf2.14736"; charset="us-ascii"
+    drm/nouveau/fb: remove ram oclass argument from base fb constructor
 
+Introduced a unfortunate regression by using nv10 ram oclass for nv1a
+hardware, causing corruption and eventually system lockup.
 
---1392168865.Ad20Bf2.14736
-Date: Wed, 12 Feb 2014 01:34:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=74866
+Reported-by: John F. Godfrey <jfgodfrey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org # 3.13+
+---
+ drivers/gpu/drm/nouveau/core/subdev/fb/nv1a.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74866
-
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 93891
-  --> https://bugs.freedesktop.org/attachment.cgi?id=93891&action=edit
-drm/nouveau/fb: use correct ram oclass for nv1a hardware
-
-This should resolve the problem. Thanks for the bisecting this.
-
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/nv1a.c b/drivers/gpu/drm/nouveau/core/subdev/fb/nv1a.c
+index 9159a5c..265d125 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/fb/nv1a.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/fb/nv1a.c
+@@ -36,7 +36,7 @@ nv1a_fb_oclass = &(struct nv04_fb_impl) {
+ 		.fini = _nouveau_fb_fini,
+ 	},
+ 	.base.memtype = nv04_fb_memtype_valid,
+-	.base.ram = &nv10_ram_oclass,
++	.base.ram = &nv1a_ram_oclass,
+ 	.tile.regions = 8,
+ 	.tile.init = nv10_fb_tile_init,
+ 	.tile.fini = nv10_fb_tile_fini,
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1392168865.Ad20Bf2.14736
-Date: Wed, 12 Feb 2014 01:34:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - This info is from a git bisect I did 20140211"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74866#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - This info is from a git bisect I did 20140211"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74866">bug 74866</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=93891" name="attach_93891" title="drm/nouveau/fb: use correct ram oclass for nv1a hardware">attachment 93891</a> <a href="attachment.cgi?id=93891&amp;action=edit" title="drm/nouveau/fb: use correct ram oclass for nv1a hardware">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=74866&amp;attachment=93891'>[review]</a>
-drm/nouveau/fb: use correct ram oclass for nv1a hardware
-
-This should resolve the problem. Thanks for the bisecting this.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1392168865.Ad20Bf2.14736--
-
---===============1338123566==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1338123566==--
+1.8.5.4
