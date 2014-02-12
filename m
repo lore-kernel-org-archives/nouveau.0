@@ -1,54 +1,88 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau/fb: use correct ram oclass for nv1a
-	hardware
-Date: Wed, 12 Feb 2014 01:41:42 +0000
-Message-ID: <1392169302-8155-1-git-send-email-emil.l.velikov@gmail.com>
+From: Alexandre Courbot <acourbot@nvidia.com>
+Subject: [PATCH v2] drm/nouveau: handle -EACCES runtime PM return code
+Date: Wed, 12 Feb 2014 14:00:59 +0900
+Message-ID: <1392181259-26949-1-git-send-email-acourbot@nvidia.com>
+References: <CAAVeFuLgopbCSE2u_paxUJC-dsZU=XwJxHen-jWMADQKZuuucQ@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org#3.13+
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CAAVeFuLgopbCSE2u_paxUJC-dsZU=XwJxHen-jWMADQKZuuucQ@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces@lists.freedesktop.org
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+To: Thierry Reding <thierry.reding@gmail.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, gnurou@gmail.com
 List-Id: nouveau.vger.kernel.org
 
-commit 8613e7314ac254fdd67ed46192f021d76141e4c9
-Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Date:   Mon Oct 21 08:50:25 2013 +1000
+pm_runtime_get*() may return -EACCES to indicate a device does not have
+runtime PM enabled. This is currently the case with platform devices
+on Nouveau, and is not an error in that context. Handle this case
+without failure.
 
-    drm/nouveau/fb: remove ram oclass argument from base fb constructor
-
-Introduced a unfortunate regression by using nv10 ram oclass for nv1a
-hardware, causing corruption and eventually system lockup.
-
-Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=74866
-Reported-by: John F. Godfrey <jfgodfrey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Signed-off-by: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org # 3.13+
+Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
 ---
- drivers/gpu/drm/nouveau/core/subdev/fb/nv1a.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes since v1:
+- Fixed typo and inaccuracy in commit message
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/nv1a.c b/drivers/gpu/drm/nouveau/core/subdev/fb/nv1a.c
-index 9159a5c..265d125 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/fb/nv1a.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/fb/nv1a.c
-@@ -36,7 +36,7 @@ nv1a_fb_oclass = &(struct nv04_fb_impl) {
- 		.fini = _nouveau_fb_fini,
- 	},
- 	.base.memtype = nv04_fb_memtype_valid,
--	.base.ram = &nv10_ram_oclass,
-+	.base.ram = &nv1a_ram_oclass,
- 	.tile.regions = 8,
- 	.tile.init = nv10_fb_tile_init,
- 	.tile.fini = nv10_fb_tile_fini,
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c     | 2 +-
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 2 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c       | 4 ++--
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+index 0e3270c3ffd2..1caef1fd139e 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+@@ -1048,7 +1048,7 @@ nouveau_crtc_set_config(struct drm_mode_set *set)
+ 
+ 	/* get a pm reference here */
+ 	ret = pm_runtime_get_sync(dev->dev);
+-	if (ret < 0)
++	if (ret < 0 && ret != -EACCES)
+ 		return ret;
+ 
+ 	ret = drm_crtc_helper_set_config(set);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 1674882d60d5..cddef546d9b0 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -255,7 +255,7 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
+ 	}
+ 
+ 	ret = pm_runtime_get_sync(connector->dev->dev);
+-	if (ret < 0)
++	if (ret < 0 && ret != -EACCES)
+ 		return conn_status;
+ 
+ 	i2c = nouveau_connector_ddc_detect(connector, &nv_encoder);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index b45fd1a0ab28..c677a09aac3f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -696,7 +696,7 @@ nouveau_drm_open(struct drm_device *dev, struct drm_file *fpriv)
+ 
+ 	/* need to bring up power immediately if opening device */
+ 	ret = pm_runtime_get_sync(dev->dev);
+-	if (ret < 0)
++	if (ret < 0 && ret != -EACCES)
+ 		return ret;
+ 
+ 	get_task_comm(tmpname, current);
+@@ -781,7 +781,7 @@ long nouveau_drm_ioctl(struct file *filp,
+ 	dev = file_priv->minor->dev;
+ 
+ 	ret = pm_runtime_get_sync(dev->dev);
+-	if (ret < 0)
++	if (ret < 0 && ret != -EACCES)
+ 		return ret;
+ 
+ 	ret = drm_ioctl(filp, cmd, arg);
 -- 
 1.8.5.4
