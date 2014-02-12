@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74903] [NV34] TV Load not detected in X
-Date: Wed, 12 Feb 2014 20:26:37 +0000
-Message-ID: <bug-74903-8800-vTXILM4c61@http.bugs.freedesktop.org/>
+Date: Wed, 12 Feb 2014 22:20:18 +0000
+Message-ID: <bug-74903-8800-P8qzVPD49D@http.bugs.freedesktop.org/>
 References: <bug-74903-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1288863041=="
+Content-Type: multipart/mixed; boundary="===============0686329465=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74903-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,45 +20,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1288863041==
-Content-Type: multipart/alternative; boundary="1392236797.46A7c2.18485"; charset="us-ascii"
+--===============0686329465==
+Content-Type: multipart/alternative; boundary="1392243617.72dB3DcE1.16452"; charset="us-ascii"
 
 
---1392236797.46A7c2.18485
-Date: Wed, 12 Feb 2014 20:26:37 +0000
+--1392243617.72dB3DcE1.16452
+Date: Wed, 12 Feb 2014 22:20:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74903
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #3 from Alexandre <alexandre.nunes-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #2)
+> What happens if you're in X (with the image off) and then try to switch back
+> to the console? Does it come on, or is it off forever?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|TV Load not detected in X   |[NV34] TV Load not detected
-                   |                            |in X
+It's off forever. But I can't even reproduce this anymore, please keep reading.
+> 
+> I don't see any relevant changes between 3.11.2 and 3.11.6... would be very
+> interesitng to know what causes the additional regression -- it should be a
+> pretty fast bisect, if you're up for it.
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-What happens if you're in X (with the image off) and then try to switch back to
-the console? Does it come on, or is it off forever?
+In fact, it's worse: It seems intermitent. I can only get there about 1 in 3
+attempts if I cold boot (w kernel 3.11.2, I suspect newer kernels could be the
+same thing) (i.e. turn the power off and on again), but never if I just reboot
+after getting the "blue screen" from tv.
 
-I don't see any relevant changes between 3.11.2 and 3.11.6... would be very
-interesitng to know what causes the additional regression -- it should be a
-pretty fast bisect, if you're up for it.
+But here is the strange thing: I tested on another tv and it's ok. Since this
+problematic tv only hits this bug on KMS (intermitent)/xserver w/
+nouveau(always happens as far as I've observed), but not on console or vesa fb,
+I suspect it could be related to load detection. 
 
-What kernel were you using before the upgrade? I'm guessing "ancient" (like
-pre-3.7)?
+I tried booting with param video=TV1:e as (poorly) documented way to force tv
+on. dmesg log and X log now plays nice as if the tv was indeed connected,
+however, I can't see anything past kms trigger.
 
-It would also be interesting to see a dmesg from semi-working boot (i.e.
-3.11.2) and X loading, with "nouveau.debug=debug drm.debug=0xe" options added
-to the kernel cmdline.
+Is there a way to truly override load detection? As I said, the other tv is
+just fine, the dmesg shows tv connected.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392236797.46A7c2.18485
-Date: Wed, 12 Feb 2014 20:26:37 +0000
+--1392243617.72dB3DcE1.16452
+Date: Wed, 12 Feb 2014 22:20:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,52 +72,45 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV34] TV Load not detected in X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74903">bug 74903</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>TV Load not detected in X
-           </td>
-           <td>[NV34] TV Load not detected in X
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV34] TV Load not detected in X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74903#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74903#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV34] TV Load not detected in X"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74903">bug 74903</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:alexandre.nunes&#64;gmail.com" title="Alexandre &lt;alexandre.nunes&#64;gmail.com&gt;"> <span class="fn">Alexandre</span></a>
 </span></b>
-        <pre>What happens if you're in X (with the image off) and then try to switch back to
-the console? Does it come on, or is it off forever?
+        <pre>(In reply to <a href="show_bug.cgi?id=74903#c2">comment #2</a>)
+<span class="quote">&gt; What happens if you're in X (with the image off) and then try to switch back
+&gt; to the console? Does it come on, or is it off forever?</span >
 
-I don't see any relevant changes between 3.11.2 and 3.11.6... would be very
-interesitng to know what causes the additional regression -- it should be a
-pretty fast bisect, if you're up for it.
+It's off forever. But I can't even reproduce this anymore, please keep reading.
+<span class="quote">&gt; 
+&gt; I don't see any relevant changes between 3.11.2 and 3.11.6... would be very
+&gt; interesitng to know what causes the additional regression -- it should be a
+&gt; pretty fast bisect, if you're up for it.</span >
 
-What kernel were you using before the upgrade? I'm guessing &quot;ancient&quot; (like
-pre-3.7)?
+In fact, it's worse: It seems intermitent. I can only get there about 1 in 3
+attempts if I cold boot (w kernel 3.11.2, I suspect newer kernels could be the
+same thing) (i.e. turn the power off and on again), but never if I just reboot
+after getting the &quot;blue screen&quot; from tv.
 
-It would also be interesting to see a dmesg from semi-working boot (i.e.
-3.11.2) and X loading, with &quot;nouveau.debug=debug drm.debug=0xe&quot; options added
-to the kernel cmdline.</pre>
+But here is the strange thing: I tested on another tv and it's ok. Since this
+problematic tv only hits this bug on KMS (intermitent)/xserver w/
+nouveau(always happens as far as I've observed), but not on console or vesa fb,
+I suspect it could be related to load detection. 
+
+I tried booting with param video=TV1:e as (poorly) documented way to force tv
+on. dmesg log and X log now plays nice as if the tv was indeed connected,
+however, I can't see anything past kms trigger.
+
+Is there a way to truly override load detection? As I said, the other tv is
+just fine, the dmesg shows tv connected.</pre>
         </div>
       </p>
       <hr>
@@ -123,9 +122,9 @@ to the kernel cmdline.</pre>
     </body>
 </html>
 
---1392236797.46A7c2.18485--
+--1392243617.72dB3DcE1.16452--
 
---===============1288863041==
+--===============0686329465==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -136,4 +135,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1288863041==--
+--===============0686329465==--
