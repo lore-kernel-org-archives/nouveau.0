@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74815] [NVA5,
- NVC1] no displayport output on quadro 400/600 cards
-Date: Wed, 12 Feb 2014 00:47:19 +0000
-Message-ID: <bug-74815-8800-yLQv61Zd3t@http.bugs.freedesktop.org/>
-References: <bug-74815-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74866] New: This info is from a git bisect I did
+	20140211
+Date: Wed, 12 Feb 2014 01:21:21 +0000
+Message-ID: <bug-74866-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0827739371=="
+Content-Type: multipart/mixed; boundary="===============1693502445=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74815-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +19,55 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0827739371==
-Content-Type: multipart/alternative; boundary="1392166039.3bDF1.4483"; charset="us-ascii"
+--===============1693502445==
+Content-Type: multipart/alternative; boundary="1392168081.72601db1.11839"; charset="us-ascii"
 
 
---1392166039.3bDF1.4483
-Date: Wed, 12 Feb 2014 00:47:19 +0000
+--1392168081.72601db1.11839
+Date: Wed, 12 Feb 2014 01:21:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74815
+https://bugs.freedesktop.org/show_bug.cgi?id=74866
 
---- Comment #2 from Michael Gulick <mgulick-I5WecO5yM8GakBO8gow8eQ@public.gmane.org> ---
-(In reply to comment #1)
-> There's another bug about a DP regression... bug #67628, which bisected down
-> to 5cc027f6b1e ("drm/nv50-/disp: handle supervisor tasks from workqueue"),
-> first appearing in 3.9-rc1. Could you verify that you're having trouble with
-> the same commit? If so, we can mark as a duplicate.
-> 
-> Otherwise, which log is that log from? Could you upload your VBIOS?
+          Priority: medium
+            Bug ID: 74866
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: This info is from a git bisect I did 20140211
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: jfgodfrey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-Unfortunately that doesn't seem to be the commit that caused the problem
-(unless I did something wrong in testing).  It does appear to be between tags
-'v3.8' and 'v3.9-rc1'.  I'm trying to do a git bisect but it looks like it will
-take a while (13 steps estimated, but the first kernel wouldn't boot...).  Any
-tips for speeding up that process?  Any other info I can provide?
+8613e7314ac254fdd67ed46192f021d76141e4c9 is the first bad commit
+commit 8613e7314ac254fdd67ed46192f021d76141e4c9
+Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Date:   Mon Oct 21 08:50:25 2013 +1000
+
+    drm/nouveau/fb: remove ram oclass argument from base fb constructor
+
+    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+
+:040000 040000 422f2f92191621d8e9fc0d017d4365aa70d14677
+8e117ac73a9bbde335087b92a76987434afc0915 M      drivers
+
+I don't have anything much to add because nothing got written to
+/var/log/messages or /var/log/Xorg.0.log.  But not all of the icons on the
+console were right, they'd blank off when hilighted, and eventually, the system
+froze up.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392166039.3bDF1.4483
-Date: Wed, 12 Feb 2014 00:47:19 +0000
+--1392168081.72601db1.11839
+Date: Wed, 12 Feb 2014 01:21:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,35 +75,111 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - This info is from a git bisect I did 20140211"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74866">74866</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>This info is from a git bisect I did 20140211
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jfgodfrey&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA5,NVC1] no displayport output on quadro 400/600 cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74815#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA5,NVC1] no displayport output on quadro 400/600 cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74815">bug 74815</a>
-              from <span class="vcard"><a class="email" href="mailto:mgulick&#64;mathworks.com" title="Michael Gulick &lt;mgulick&#64;mathworks.com&gt;"> <span class="fn">Michael Gulick</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=74815#c1">comment #1</a>)
-<span class="quote">&gt; There's another bug about a DP regression... <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] [BISECTED] Monitor on Display port shows distortions"
-   href="show_bug.cgi?id=67628">bug #67628</a>, which bisected down
-&gt; to 5cc027f6b1e (&quot;drm/nv50-/disp: handle supervisor tasks from workqueue&quot;),
-&gt; first appearing in 3.9-rc1. Could you verify that you're having trouble with
-&gt; the same commit? If so, we can mark as a duplicate.
-&gt; 
-&gt; Otherwise, which log is that log from? Could you upload your VBIOS?</span >
+        <pre>8613e7314ac254fdd67ed46192f021d76141e4c9 is the first bad commit
+commit 8613e7314ac254fdd67ed46192f021d76141e4c9
+Author: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
+Date:   Mon Oct 21 08:50:25 2013 +1000
 
-Unfortunately that doesn't seem to be the commit that caused the problem
-(unless I did something wrong in testing).  It does appear to be between tags
-'v3.8' and 'v3.9-rc1'.  I'm trying to do a git bisect but it looks like it will
-take a while (13 steps estimated, but the first kernel wouldn't boot...).  Any
-tips for speeding up that process?  Any other info I can provide?</pre>
+    drm/nouveau/fb: remove ram oclass argument from base fb constructor
+
+    Signed-off-by: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
+
+:040000 040000 422f2f92191621d8e9fc0d017d4365aa70d14677
+8e117ac73a9bbde335087b92a76987434afc0915 M      drivers
+
+I don't have anything much to add because nothing got written to
+/var/log/messages or /var/log/Xorg.0.log.  But not all of the icons on the
+console were right, they'd blank off when hilighted, and eventually, the system
+froze up.</pre>
         </div>
       </p>
       <hr>
@@ -100,9 +191,9 @@ tips for speeding up that process?  Any other info I can provide?</pre>
     </body>
 </html>
 
---1392166039.3bDF1.4483--
+--1392168081.72601db1.11839--
 
---===============0827739371==
+--===============1693502445==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -113,4 +204,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0827739371==--
+--===============1693502445==--
