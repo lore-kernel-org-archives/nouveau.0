@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67628] [NVC1] [BISECTED] Monitor on Display port
- shows distortions
-Date: Wed, 12 Feb 2014 17:26:17 +0000
-Message-ID: <bug-67628-8800-dzRkHr81YS@http.bugs.freedesktop.org/>
-References: <bug-67628-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74695] [NV86] GPU hangs on resume, causing X to crash
+Date: Wed, 12 Feb 2014 18:07:44 +0000
+Message-ID: <bug-74695-8800-ItSfCsfKu2@http.bugs.freedesktop.org/>
+References: <bug-74695-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1985300288=="
+Content-Type: multipart/mixed; boundary="===============0609048699=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67628-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-74695-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1985300288==
-Content-Type: multipart/alternative; boundary="1392225977.A3F6Da2.31529"; charset="us-ascii"
+--===============0609048699==
+Content-Type: multipart/alternative; boundary="1392228464.067a11.13455"; charset="us-ascii"
 
 
---1392225977.A3F6Da2.31529
-Date: Wed, 12 Feb 2014 17:26:17 +0000
+--1392228464.067a11.13455
+Date: Wed, 12 Feb 2014 18:07:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67628
+https://bugs.freedesktop.org/show_bug.cgi?id=74695
 
---- Comment #17 from Michael Gulick <mgulick-I5WecO5yM8GakBO8gow8eQ@public.gmane.org> ---
-Created attachment 93950
-  --> https://bugs.freedesktop.org/attachment.cgi?id=93950&action=edit
-Quadro 600 (GF108GL) vbios.rom
+--- Comment #11 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I started with compiling kernel v.3.8 19f949f from
+git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git.
+When I boot my PC with kernel 3.8 lightdm doesn't even start and I get a black
+screen, I am attaching dmesg from booting on kernel 3.8.
+After re-booting on Ubuntu kernel again I get a crash report from Xorg, so I
+suppose Xorg crashed.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392225977.A3F6Da2.31529
-Date: Wed, 12 Feb 2014 17:26:17 +0000
+--1392228464.067a11.13455
+Date: Wed, 12 Feb 2014 18:07:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +57,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] [BISECTED] Monitor on Display port shows distortions"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67628#c17">Comment # 17</a>
+   title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] [BISECTED] Monitor on Display port shows distortions"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67628">bug 67628</a>
-              from <span class="vcard"><a class="email" href="mailto:mgulick&#64;mathworks.com" title="Michael Gulick &lt;mgulick&#64;mathworks.com&gt;"> <span class="fn">Michael Gulick</span></a>
+   title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695">bug 74695</a>
+              from <span class="vcard"><a class="email" href="mailto:carla.sella&#64;gmail.com" title="Carla sella &lt;carla.sella&#64;gmail.com&gt;"> <span class="fn">Carla sella</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=93950" name="attach_93950" title="Quadro 600 (GF108GL) vbios.rom">attachment 93950</a> <a href="attachment.cgi?id=93950&amp;action=edit" title="Quadro 600 (GF108GL) vbios.rom">[details]</a></span>
-Quadro 600 (GF108GL) vbios.rom</pre>
+        <pre>I started with compiling kernel v.3.8 19f949f from
+git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git.
+When I boot my PC with kernel 3.8 lightdm doesn't even start and I get a black
+screen, I am attaching dmesg from booting on kernel 3.8.
+After re-booting on Ubuntu kernel again I get a crash report from Xorg, so I
+suppose Xorg crashed.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +82,9 @@ Quadro 600 (GF108GL) vbios.rom</pre>
     </body>
 </html>
 
---1392225977.A3F6Da2.31529--
+--1392228464.067a11.13455--
 
---===============1985300288==
+--===============0609048699==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1985300288==--
+--===============0609048699==--
