@@ -1,148 +1,103 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH v2] drm/nouveau: support for platform devices
-Date: Wed, 12 Feb 2014 14:18:20 +0000
-Message-ID: <52FB82AC.1010405@gmail.com>
-References: <CAAVeFuJaD1C7yPRGm3+hByLDuSiBhftehcbwFfrbLaYsAwRcZQ@mail.gmail.com> <1392183495-11481-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74815] [NVA5,
+ NVC1] no displayport output on quadro 400/600 cards
+Date: Wed, 12 Feb 2014 15:17:35 +0000
+Message-ID: <bug-74815-8800-OnCDrIsbt2@http.bugs.freedesktop.org/>
+References: <bug-74815-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <1392183495-11481-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============0394915939=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-74815-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 12/02/14 05:38, Alexandre Courbot wrote:
-> Upcoming mobile Kepler GPUs (such as GK20A) use the platform bus instead
-> of PCI to which Nouveau is tightly dependent. This patch allows Nouveau
-> to handle platform devices by:
-> 
-> - abstracting PCI-dependent functions that were typically used for
->   resource querying and page mapping,
-> - introducing a nv_device_is_pci() function that allows to make
->   PCI-dependent code conditional,
-> - providing a nouveau_drm_platform_probe() function that takes a GPU
->   platform device to be probed.
-> 
-> Core code as well as engine/subdev drivers are updated wherever possible
-> to make use of these functions. Some older drivers are too dependent on
-> PCI to be properly updated, but all newer code on which future chips may
-> depend should at least be runnable with platform devices.
-> 
-Hi Alexandre
 
-I've tried really hard to find something wrong with this patch but it
-seems that you have it polished very nicely.
-
-There is one quite minor nit in-line, but I'm not fussed either way.
-
-> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> ---
-> Changes since v1:
-> - Refactored nouveau_device_create_() to take an additional bus type
->   argument instead of having two versions of it that duplicate code.
-> - Fixed a typo when substituting pci_resource_* with nv_device_resource_*
-> - Check whether devices are PCI in relevant functions instead of
->   nouveau_drm_load().
-> 
->  drivers/gpu/drm/nouveau/core/engine/device/base.c  | 83 ++++++++++++++++++++--
->  drivers/gpu/drm/nouveau/core/engine/falcon.c       |  6 +-
->  drivers/gpu/drm/nouveau/core/engine/fifo/base.c    |  2 +-
->  drivers/gpu/drm/nouveau/core/engine/graph/nv20.c   |  2 +-
->  drivers/gpu/drm/nouveau/core/engine/graph/nv40.c   |  2 +-
->  drivers/gpu/drm/nouveau/core/engine/graph/nvc0.c   |  4 +-
->  drivers/gpu/drm/nouveau/core/engine/xtensa.c       |  2 +-
->  drivers/gpu/drm/nouveau/core/include/core/device.h | 30 ++++++++
->  .../gpu/drm/nouveau/core/include/engine/device.h   | 17 +++--
->  drivers/gpu/drm/nouveau/core/include/subdev/mc.h   |  1 +
->  drivers/gpu/drm/nouveau/core/os.h                  |  1 +
->  drivers/gpu/drm/nouveau/core/subdev/bar/base.c     |  4 +-
->  drivers/gpu/drm/nouveau/core/subdev/bar/nv50.c     |  4 +-
->  drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c     | 15 ++--
->  .../gpu/drm/nouveau/core/subdev/devinit/fbmem.h    |  8 ++-
->  drivers/gpu/drm/nouveau/core/subdev/devinit/nv04.c |  2 +-
->  drivers/gpu/drm/nouveau/core/subdev/devinit/nv05.c |  2 +-
->  drivers/gpu/drm/nouveau/core/subdev/devinit/nv10.c |  2 +-
->  drivers/gpu/drm/nouveau/core/subdev/devinit/nv20.c |  2 +-
->  drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c      |  9 +--
->  drivers/gpu/drm/nouveau/core/subdev/fb/nvc0.c      |  9 +--
->  drivers/gpu/drm/nouveau/core/subdev/i2c/base.c     |  2 +-
->  drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c |  7 +-
->  drivers/gpu/drm/nouveau/core/subdev/mc/base.c      | 39 ++++++----
->  drivers/gpu/drm/nouveau/core/subdev/mxm/base.c     |  2 +-
->  drivers/gpu/drm/nouveau/nouveau_abi16.c            | 13 +++-
->  drivers/gpu/drm/nouveau/nouveau_agp.c              |  2 +-
->  drivers/gpu/drm/nouveau/nouveau_bios.c             |  4 ++
->  drivers/gpu/drm/nouveau/nouveau_bo.c               | 22 +++---
->  drivers/gpu/drm/nouveau/nouveau_chan.c             |  2 +-
->  drivers/gpu/drm/nouveau/nouveau_display.c          |  3 +-
->  drivers/gpu/drm/nouveau/nouveau_drm.c              | 59 ++++++++++++---
->  drivers/gpu/drm/nouveau/nouveau_sysfs.c            |  8 ++-
->  drivers/gpu/drm/nouveau/nouveau_ttm.c              | 31 ++++----
->  drivers/gpu/drm/nouveau/nouveau_vga.c              |  5 ++
->  35 files changed, 297 insertions(+), 109 deletions(-)
-> 
-[snip]
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/mc/base.c b/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
-> index b4b9943773bc..572190c8363b 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
-> @@ -93,8 +93,8 @@ _nouveau_mc_dtor(struct nouveau_object *object)
->  {
->  	struct nouveau_device *device = nv_device(object);
->  	struct nouveau_mc *pmc = (void *)object;
-> -	free_irq(device->pdev->irq, pmc);
-> -	if (pmc->use_msi)
-> +	free_irq(pmc->irq, pmc);
-> +	if (nv_device_is_pci(device) && pmc->use_msi)
-You should be able to keep the conditional as is.
-
->  		pci_disable_msi(device->pdev);
->  	nouveau_subdev_destroy(&pmc->base);
->  }
-> @@ -114,22 +114,25 @@ nouveau_mc_create_(struct nouveau_object *parent, struct nouveau_object *engine,
->  	if (ret)
->  		return ret;
->  
-> -	switch (device->pdev->device & 0x0ff0) {
-> -	case 0x00f0:
-> -	case 0x02e0:
-> -		/* BR02? NFI how these would be handled yet exactly */
-> -		break;
-> -	default:
-> -		switch (device->chipset) {
-> -		case 0xaa: break; /* reported broken, nv also disable it */
-> -		default:
-> -			pmc->use_msi = true;
-> +	if (nv_device_is_pci(device))
-> +		switch (device->pdev->device & 0x0ff0) {
-> +		case 0x00f0:
-> +		case 0x02e0:
-> +			/* BR02? NFI how these would be handled yet exactly */
->  			break;
-> +		default:
-> +			switch (device->chipset) {
-> +			case 0xaa:
-> +				/* reported broken, nv also disable it */
-> +				break;
-> +			default:
-> +				pmc->use_msi = true;
-> +				break;
->  		}
->  	}
->  
->  	pmc->use_msi = nouveau_boolopt(device->cfgopt, "NvMSI", pmc->use_msi);
-As you explicitly disable msi on platform devices you can move the
-option parsing within the if (nv_device_is_pci()) block.
-
-This way you can drop the change in the following conditional and the
-similar one in _nouveau_mc_dtor.
-
-> -	if (pmc->use_msi && oclass->msi_rearm) {
-> +	if (nv_device_is_pci(device) && pmc->use_msi && oclass->msi_rearm) {
+--===============0394915939==
+Content-Type: multipart/alternative; boundary="1392218254.FF0f611.20299"; charset="us-ascii"
 
 
-Many thanks, and again, welcome to nouveau :-)
+--1392218254.FF0f611.20299
+Date: Wed, 12 Feb 2014 15:17:34 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
--Emil
+https://bugs.freedesktop.org/show_bug.cgi?id=74815
+
+--- Comment #3 from Michael Gulick <mgulick-I5WecO5yM8GakBO8gow8eQ@public.gmane.org> ---
+After seeing that commit 5cc027f6b1e was still good, I bisected the rest of the
+commits in that merge, and came to the very next commit, 0a0afd282f
+("drm/nv50-/disp: move DP link training to core and train from supervisor")
+that breaks the displayport output (which is not surprising given the commit
+message).
+
+What additional information can I provide to help find a resolution to this
+bug?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1392218254.FF0f611.20299
+Date: Wed, 12 Feb 2014 15:17:34 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA5,NVC1] no displayport output on quadro 400/600 cards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74815#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA5,NVC1] no displayport output on quadro 400/600 cards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74815">bug 74815</a>
+              from <span class="vcard"><a class="email" href="mailto:mgulick&#64;mathworks.com" title="Michael Gulick &lt;mgulick&#64;mathworks.com&gt;"> <span class="fn">Michael Gulick</span></a>
+</span></b>
+        <pre>After seeing that commit 5cc027f6b1e was still good, I bisected the rest of the
+commits in that merge, and came to the very next commit, 0a0afd282f
+(&quot;drm/nv50-/disp: move DP link training to core and train from supervisor&quot;)
+that breaks the displayport output (which is not surprising given the commit
+message).
+
+What additional information can I provide to help find a resolution to this
+bug?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1392218254.FF0f611.20299--
+
+--===============0394915939==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0394915939==--
