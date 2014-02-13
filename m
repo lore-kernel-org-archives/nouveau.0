@@ -1,13 +1,12 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: Re: [PATCH] nouveau: fix chipset checks for nv1a by using
-	the oclass instead
-Date: Thu, 13 Feb 2014 13:00:49 +0100
-Message-ID: <87zjlvcjda.fsf@riseup.net>
-References: <1392256976-24050-1-git-send-email-imirkin@alum.mit.edu>
+From: pierre.morrow-GANU6spQydw@public.gmane.org
+Subject: Re: Help needed for bug 58556
+Date: Thu, 13 Feb 2014 14:00:20 +0100 (CET)
+Message-ID: <1597202039.431575888.1392296420109.JavaMail.root@spooler8-g27.priv.proxad.net>
+References: <3D3EC88C-612F-485B-A8F0-3C197D9FD2A4@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0274720588=="
+Content-Type: multipart/mixed; boundary="===============0960357796=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1392256976-24050-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+In-Reply-To: <3D3EC88C-612F-485B-A8F0-3C197D9FD2A4-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,154 +16,69 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: "John F. Godfrey" <jfgodfrey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0274720588==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
+--===============0960357796==
+Content-Type: multipart/alternative;
+	boundary="----=_Part_431575887_927728237.1392296420109"
 
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
-
---=-=-=
+------=_Part_431575887_927728237.1392296420109
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> writes:
+Hello,=20
 
-> Commit f4ebcd133b9 ("dri/nouveau: NV17_3D class is not available for
-> NV1a chipset") fixed this partially by using the correct 3d class.
-> However there were a lot of checks left over comparing against the
-> chipset.
->
-> Reported-and-tested-by: John F. Godfrey <jfgodfrey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-> ---
->
-> I guess I didn't have to change the >=3D 0x11 checks, but seemed nicer for
-> consistency.
+One thing that differs between the NV96 and the NVAC, is the efifb handling=
+:=20
+for the NVAC, efifb is conflicting with nouveaufb, therefore it is removed,=
+=20
+whereas the NV96 has no problem and keeps efifb along.=20
 
-Looks good to me,
+To sum up what happens with the different framebuffers on the two cards:=20
 
-Reviewed-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+NVAC: with efifb+nouveaufb: corruption, with nouveaufb: still corrupted=20
+NV96: with efifb+nouveaufb: ok, with nouveaufb: screen freezes=20
 
->
->  src/mesa/drivers/dri/nouveau/nv10_context.c      | 8 ++++----
->  src/mesa/drivers/dri/nouveau/nv10_state_fb.c     | 4 ++--
->  src/mesa/drivers/dri/nouveau/nv10_state_raster.c | 3 ++-
->  3 files changed, 8 insertions(+), 7 deletions(-)
->
-> diff --git a/src/mesa/drivers/dri/nouveau/nv10_context.c b/src/mesa/drive=
-rs/dri/nouveau/nv10_context.c
-> index 8582cb2..4773014 100644
-> --- a/src/mesa/drivers/dri/nouveau/nv10_context.c
-> +++ b/src/mesa/drivers/dri/nouveau/nv10_context.c
-> @@ -63,7 +63,7 @@ nv10_use_viewport_zclear(struct gl_context *ctx)
->  	struct gl_framebuffer *fb =3D ctx->DrawBuffer;
->  	struct gl_renderbuffer *depthRb =3D fb->Attachment[BUFFER_DEPTH].Render=
-buffer;
->=20=20
-> -	return context_chipset(ctx) < 0x17 &&
-> +	return context_eng3d(ctx)->oclass < NV17_3D_CLASS &&
->  		!nctx->hierz.clear_blocked && depthRb &&
->  		(_mesa_get_format_bits(depthRb->Format,
->  				       GL_DEPTH_BITS) >=3D 24);
-> @@ -184,7 +184,7 @@ nv10_clear(struct gl_context *ctx, GLbitfield buffers)
->  	}
->=20=20
->  	if ((buffers & BUFFER_BIT_DEPTH) && ctx->Depth.Mask) {
-> -		if (context_chipset(ctx) >=3D 0x17)
-> +		if (context_eng3d(ctx)->oclass >=3D NV17_3D_CLASS)
->  			nv17_zclear(ctx, &buffers);
->  		else
->  			nv10_zclear(ctx, &buffers);
-> @@ -245,7 +245,7 @@ nv10_hwctx_init(struct gl_context *ctx)
->  	BEGIN_NV04(push, NV04_GRAPH(3D, NOP), 1);
->  	PUSH_DATA (push, 0);
->=20=20
-> -	if (context_chipset(ctx) >=3D 0x17) {
-> +	if (context_eng3d(ctx)->oclass >=3D NV17_3D_CLASS) {
->  		BEGIN_NV04(push, NV17_3D(UNK01AC), 2);
->  		PUSH_DATA (push, fifo->vram);
->  		PUSH_DATA (push, fifo->vram);
-> @@ -257,7 +257,7 @@ nv10_hwctx_init(struct gl_context *ctx)
->  		PUSH_DATA (push, 1);
->  	}
->=20=20
-> -	if (context_chipset(ctx) >=3D 0x11) {
-> +	if (context_eng3d(ctx)->oclass >=3D NV15_3D_CLASS) {
->  		BEGIN_NV04(push, SUBC_3D(0x120), 3);
->  		PUSH_DATA (push, 0);
->  		PUSH_DATA (push, 1);
-> diff --git a/src/mesa/drivers/dri/nouveau/nv10_state_fb.c b/src/mesa/driv=
-ers/dri/nouveau/nv10_state_fb.c
-> index 19769e5..fb66b2d 100644
-> --- a/src/mesa/drivers/dri/nouveau/nv10_state_fb.c
-> +++ b/src/mesa/drivers/dri/nouveau/nv10_state_fb.c
-> @@ -106,7 +106,7 @@ nv10_emit_framebuffer(struct gl_context *ctx, int emi=
-t)
->=20=20
->  	/* At least nv11 seems to get sad if we don't do this before
->  	 * swapping RTs.*/
-> -	if (context_chipset(ctx) < 0x17) {
-> +	if (context_eng3d(ctx)->oclass < NV17_3D_CLASS) {
->  		int i;
->=20=20
->  		for (i =3D 0; i < 6; i++) {
-> @@ -140,7 +140,7 @@ nv10_emit_framebuffer(struct gl_context *ctx, int emi=
-t)
->  		PUSH_MTHDl(push, NV10_3D(ZETA_OFFSET), BUFCTX_FB,
->  				 s->bo, 0, bo_flags);
->=20=20
-> -		if (context_chipset(ctx) >=3D 0x17) {
-> +		if (context_eng3d(ctx)->oclass >=3D NV17_3D_CLASS) {
->  			setup_hierz_buffer(ctx);
->  			context_dirty(ctx, ZCLEAR);
->  		}
-> diff --git a/src/mesa/drivers/dri/nouveau/nv10_state_raster.c b/src/mesa/=
-drivers/dri/nouveau/nv10_state_raster.c
-> index bd4a78e..da414a0 100644
-> --- a/src/mesa/drivers/dri/nouveau/nv10_state_raster.c
-> +++ b/src/mesa/drivers/dri/nouveau/nv10_state_raster.c
-> @@ -28,6 +28,7 @@
->  #include "nouveau_context.h"
->  #include "nouveau_gldefs.h"
->  #include "nouveau_util.h"
-> +#include "nv_object.xml.h"
->  #include "nv10_3d.xml.h"
->  #include "nv10_driver.h"
->=20=20
-> @@ -120,7 +121,7 @@ nv10_emit_logic_opcode(struct gl_context *ctx, int em=
-it)
->  	struct nouveau_pushbuf *push =3D context_push(ctx);
->=20=20
->  	assert(!ctx->Color.ColorLogicOpEnabled
-> -	       || context_chipset(ctx) >=3D 0x11);
-> +	       || context_eng3d(ctx)->oclass >=3D NV15_3D_CLASS);
->=20=20
->  	BEGIN_NV04(push, NV11_3D(COLOR_LOGIC_OP_ENABLE), 2);
->  	PUSH_DATAb(push, ctx->Color.ColorLogicOpEnabled);
-> --=20
-> 1.8.3.2
+So NV96 does not seem to use nouveaufb for outputing, as removing efifb=20
+freezes the screen (ie. the machine continues to run, just the screen isn=
+=E2=80=99t=20
+updated anymore) and removing nouveau_fbcon_init has no effect. Not sure wh=
+y=20
+NV96 does not use nouveaufb...=20
+And NVAC uses nouveaufb (removing efifb has no effect and removing=20
+nouveau_fbcon_init causes a screen freeze). I need to do some further tests=
+=20
+as removing nouveau_fbcon_init and nouveau_accel_init does not seem to brin=
+g=20
+garbage screen before freezing.=20
 
---=-=-=--
+Pierre
+------=_Part_431575887_927728237.1392296420109
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
---==-=-=
-Content-Type: application/pgp-signature
+<html><head><style type=3D'text/css'>p { margin: 0; }</style></head><body><=
+div style=3D'font-family: arial,helvetica,sans-serif; font-size: 12pt; colo=
+r: #000000'>Hello,<br><br>One thing that differs between the NV96 and the N=
+VAC, is the efifb handling:<br>for the NVAC, efifb is conflicting with nouv=
+eaufb, therefore it is removed,<br>whereas the NV96 has no problem and keep=
+s efifb along.<br><br>To sum up what happens with the different framebuffer=
+s on the two cards:<br><br>NVAC: with efifb+nouveaufb: corruption, with nou=
+veaufb: still corrupted<br>NV96: with efifb+nouveaufb: ok,&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with nouveaufb: screen freezes<br><br>So NV=
+96 does not seem to use nouveaufb for outputing, as removing efifb<br>freez=
+es the screen (ie. the machine continues to run, just the screen isn=E2=80=
+=99t<br>updated anymore) and removing nouveau_fbcon_init has no effect. Not=
+ sure why<br>NV96 does not use nouveaufb...<br>And NVAC uses nouveaufb (rem=
+oving efifb has no effect and removing<br>nouveau_fbcon_init causes a scree=
+n freeze). I need to do some further tests<br>as removing nouveau_fbcon_ini=
+t and nouveau_accel_init does not seem to bring<br>garbage screen before fr=
+eezing.<br><br>Pierre</div></body></html>
+------=_Part_431575887_927728237.1392296420109--
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
-
-iF4EAREIAAYFAlL8s/EACgkQg5k4nX1Sv1skVwD9GXF338qZbPqf3C1aRiPNxLYK
-1l+dtz4Ahz57ETletvMA/jEfhYOuGCHU9SzKHHR5yrU2breKy3ldKlPNadSbxtgw
-=Ji+z
------END PGP SIGNATURE-----
---==-=-=--
-
---===============0274720588==
+--===============0960357796==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -175,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0274720588==--
+--===============0960357796==--
