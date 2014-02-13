@@ -1,124 +1,178 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] nv50: make sure to clear _all_ layers of all
-	attachments
-Date: Thu, 13 Feb 2014 05:13:36 -0500
-Message-ID: <1392286416-16569-1-git-send-email-imirkin@alum.mit.edu>
+From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Subject: Re: [PATCH] nouveau: fix chipset checks for nv1a by using
+	the oclass instead
+Date: Thu, 13 Feb 2014 13:00:49 +0100
+Message-ID: <87zjlvcjda.fsf@riseup.net>
+References: <1392256976-24050-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces@lists.freedesktop.org
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-To: Christoph Bumiller <e0425955@student.tuwien.ac.at>, mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0274720588=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1392256976-24050-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "John F. Godfrey" <jfgodfrey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Unfortunately there's only one RT_ARRAY_MODE setting for all
-attachments, so clears were previously truncated to the minimum number
-of layers any attachment had. Instead set the RT_ARRAY_MODE to 512 (the
-max number of layers) before doing the clear. This fixes
-gl-3.2-layered-rendering-clear-color-mismatched-layer-count.
+--===============0274720588==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
 
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
----
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
 
-Haven't had a chance to do a full piglit run on this yet, but it does fix the
-failing test. Have a look. I'm not sure if zeta can have layers, it seems like
-a couple of things assumed it couldn't. I've changed that assumption around.
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- src/gallium/drivers/nouveau/nv50/nv50_context.h       |  2 ++
- .../drivers/nouveau/nv50/nv50_state_validate.c        |  1 +
- src/gallium/drivers/nouveau/nv50/nv50_surface.c       | 19 +++++++++++++++++--
- 3 files changed, 20 insertions(+), 2 deletions(-)
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> writes:
 
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_context.h b/src/gallium/drivers/nouveau/nv50/nv50_context.h
-index 57a3090..84ff46e 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_context.h
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_context.h
-@@ -173,6 +173,8 @@ struct nv50_context {
- 
-    boolean vbo_push_hint;
- 
-+   uint32_t rt_array_mode;
-+
-    struct pipe_query *cond_query;
-    boolean cond_cond;
-    uint cond_mode;
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c b/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
-index f953422..100d02d 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
-@@ -65,6 +65,7 @@ nv50_validate_fb(struct nv50_context *nv50)
-          PUSH_DATA (push, sf->height);
-          BEGIN_NV04(push, NV50_3D(RT_ARRAY_MODE), 1);
-          PUSH_DATA (push, array_mode | array_size);
-+         nv50->rt_array_mode = array_mode | array_size;
-       } else {
-          PUSH_DATA (push, 0);
-          PUSH_DATA (push, 0);
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_surface.c b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-index a22436b..68924c9 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-@@ -303,7 +303,7 @@ nv50_clear_render_target(struct pipe_context *pipe,
-       PUSH_DATA(push, NV50_3D_RT_HORIZ_LINEAR | mt->level[0].pitch);
-    PUSH_DATA (push, sf->height);
-    BEGIN_NV04(push, NV50_3D(RT_ARRAY_MODE), 1);
--   PUSH_DATA (push, 1);
-+   PUSH_DATA (push, 512);
- 
-    if (!nouveau_bo_memtype(bo)) {
-       BEGIN_NV04(push, NV50_3D(ZETA_ENABLE), 1);
-@@ -366,7 +366,7 @@ nv50_clear_depth_stencil(struct pipe_context *pipe,
-    PUSH_DATA (push, bo->offset + sf->offset);
-    PUSH_DATA (push, nv50_format_table[dst->format].rt);
-    PUSH_DATA (push, mt->level[sf->base.u.tex.level].tile_mode);
--   PUSH_DATA (push, 0);
-+   PUSH_DATA (push, mt->layer_stride >> 2);
-    BEGIN_NV04(push, NV50_3D(ZETA_ENABLE), 1);
-    PUSH_DATA (push, 1);
-    BEGIN_NV04(push, NV50_3D(ZETA_HORIZ), 3);
-@@ -374,6 +374,9 @@ nv50_clear_depth_stencil(struct pipe_context *pipe,
-    PUSH_DATA (push, sf->height);
-    PUSH_DATA (push, (1 << 16) | 1);
- 
-+   BEGIN_NV04(push, NV50_3D(RT_ARRAY_MODE), 1);
-+   PUSH_DATA (push, 512);
-+
-    BEGIN_NV04(push, NV50_3D(VIEWPORT_HORIZ(0)), 2);
-    PUSH_DATA (push, (width << 16) | dstx);
-    PUSH_DATA (push, (height << 16) | dsty);
-@@ -402,6 +405,14 @@ nv50_clear(struct pipe_context *pipe, unsigned buffers,
-    if (!nv50_state_validate(nv50, NV50_NEW_FRAMEBUFFER, 9 + (fb->nr_cbufs * 2)))
-       return;
- 
-+   /* We have to clear ALL of the layers, not up to the min number of layers
-+    * of any attachment. Don't touch 3d textures, they can't be arrays. The
-+    * above nv50_state_validate call will have written to rt_array_mode. */
-+   if (!(nv50->rt_array_mode & NV50_3D_RT_ARRAY_MODE_MODE_3D)) {
-+      BEGIN_NV04(push, NV50_3D(RT_ARRAY_MODE), 1);
-+      PUSH_DATA (push, 512);
-+   }
-+
-    if (buffers & PIPE_CLEAR_COLOR && fb->nr_cbufs) {
-       BEGIN_NV04(push, NV50_3D(CLEAR_COLOR(0)), 4);
-       PUSH_DATAf(push, color->f[0]);
-@@ -459,6 +470,10 @@ nv50_clear(struct pipe_context *pipe, unsigned buffers,
-                     (j << NV50_3D_CLEAR_BUFFERS_LAYER__SHIFT));
-       }
-    }
-+
-+   /* restore the array mode */
-+   BEGIN_NV04(push, NV50_3D(RT_ARRAY_MODE), 1);
-+   PUSH_DATA (push, nv50->rt_array_mode);
- }
- 
- 
--- 
-1.8.3.2
+> Commit f4ebcd133b9 ("dri/nouveau: NV17_3D class is not available for
+> NV1a chipset") fixed this partially by using the correct 3d class.
+> However there were a lot of checks left over comparing against the
+> chipset.
+>
+> Reported-and-tested-by: John F. Godfrey <jfgodfrey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+> ---
+>
+> I guess I didn't have to change the >=3D 0x11 checks, but seemed nicer for
+> consistency.
+
+Looks good to me,
+
+Reviewed-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+
+>
+>  src/mesa/drivers/dri/nouveau/nv10_context.c      | 8 ++++----
+>  src/mesa/drivers/dri/nouveau/nv10_state_fb.c     | 4 ++--
+>  src/mesa/drivers/dri/nouveau/nv10_state_raster.c | 3 ++-
+>  3 files changed, 8 insertions(+), 7 deletions(-)
+>
+> diff --git a/src/mesa/drivers/dri/nouveau/nv10_context.c b/src/mesa/drive=
+rs/dri/nouveau/nv10_context.c
+> index 8582cb2..4773014 100644
+> --- a/src/mesa/drivers/dri/nouveau/nv10_context.c
+> +++ b/src/mesa/drivers/dri/nouveau/nv10_context.c
+> @@ -63,7 +63,7 @@ nv10_use_viewport_zclear(struct gl_context *ctx)
+>  	struct gl_framebuffer *fb =3D ctx->DrawBuffer;
+>  	struct gl_renderbuffer *depthRb =3D fb->Attachment[BUFFER_DEPTH].Render=
+buffer;
+>=20=20
+> -	return context_chipset(ctx) < 0x17 &&
+> +	return context_eng3d(ctx)->oclass < NV17_3D_CLASS &&
+>  		!nctx->hierz.clear_blocked && depthRb &&
+>  		(_mesa_get_format_bits(depthRb->Format,
+>  				       GL_DEPTH_BITS) >=3D 24);
+> @@ -184,7 +184,7 @@ nv10_clear(struct gl_context *ctx, GLbitfield buffers)
+>  	}
+>=20=20
+>  	if ((buffers & BUFFER_BIT_DEPTH) && ctx->Depth.Mask) {
+> -		if (context_chipset(ctx) >=3D 0x17)
+> +		if (context_eng3d(ctx)->oclass >=3D NV17_3D_CLASS)
+>  			nv17_zclear(ctx, &buffers);
+>  		else
+>  			nv10_zclear(ctx, &buffers);
+> @@ -245,7 +245,7 @@ nv10_hwctx_init(struct gl_context *ctx)
+>  	BEGIN_NV04(push, NV04_GRAPH(3D, NOP), 1);
+>  	PUSH_DATA (push, 0);
+>=20=20
+> -	if (context_chipset(ctx) >=3D 0x17) {
+> +	if (context_eng3d(ctx)->oclass >=3D NV17_3D_CLASS) {
+>  		BEGIN_NV04(push, NV17_3D(UNK01AC), 2);
+>  		PUSH_DATA (push, fifo->vram);
+>  		PUSH_DATA (push, fifo->vram);
+> @@ -257,7 +257,7 @@ nv10_hwctx_init(struct gl_context *ctx)
+>  		PUSH_DATA (push, 1);
+>  	}
+>=20=20
+> -	if (context_chipset(ctx) >=3D 0x11) {
+> +	if (context_eng3d(ctx)->oclass >=3D NV15_3D_CLASS) {
+>  		BEGIN_NV04(push, SUBC_3D(0x120), 3);
+>  		PUSH_DATA (push, 0);
+>  		PUSH_DATA (push, 1);
+> diff --git a/src/mesa/drivers/dri/nouveau/nv10_state_fb.c b/src/mesa/driv=
+ers/dri/nouveau/nv10_state_fb.c
+> index 19769e5..fb66b2d 100644
+> --- a/src/mesa/drivers/dri/nouveau/nv10_state_fb.c
+> +++ b/src/mesa/drivers/dri/nouveau/nv10_state_fb.c
+> @@ -106,7 +106,7 @@ nv10_emit_framebuffer(struct gl_context *ctx, int emi=
+t)
+>=20=20
+>  	/* At least nv11 seems to get sad if we don't do this before
+>  	 * swapping RTs.*/
+> -	if (context_chipset(ctx) < 0x17) {
+> +	if (context_eng3d(ctx)->oclass < NV17_3D_CLASS) {
+>  		int i;
+>=20=20
+>  		for (i =3D 0; i < 6; i++) {
+> @@ -140,7 +140,7 @@ nv10_emit_framebuffer(struct gl_context *ctx, int emi=
+t)
+>  		PUSH_MTHDl(push, NV10_3D(ZETA_OFFSET), BUFCTX_FB,
+>  				 s->bo, 0, bo_flags);
+>=20=20
+> -		if (context_chipset(ctx) >=3D 0x17) {
+> +		if (context_eng3d(ctx)->oclass >=3D NV17_3D_CLASS) {
+>  			setup_hierz_buffer(ctx);
+>  			context_dirty(ctx, ZCLEAR);
+>  		}
+> diff --git a/src/mesa/drivers/dri/nouveau/nv10_state_raster.c b/src/mesa/=
+drivers/dri/nouveau/nv10_state_raster.c
+> index bd4a78e..da414a0 100644
+> --- a/src/mesa/drivers/dri/nouveau/nv10_state_raster.c
+> +++ b/src/mesa/drivers/dri/nouveau/nv10_state_raster.c
+> @@ -28,6 +28,7 @@
+>  #include "nouveau_context.h"
+>  #include "nouveau_gldefs.h"
+>  #include "nouveau_util.h"
+> +#include "nv_object.xml.h"
+>  #include "nv10_3d.xml.h"
+>  #include "nv10_driver.h"
+>=20=20
+> @@ -120,7 +121,7 @@ nv10_emit_logic_opcode(struct gl_context *ctx, int em=
+it)
+>  	struct nouveau_pushbuf *push =3D context_push(ctx);
+>=20=20
+>  	assert(!ctx->Color.ColorLogicOpEnabled
+> -	       || context_chipset(ctx) >=3D 0x11);
+> +	       || context_eng3d(ctx)->oclass >=3D NV15_3D_CLASS);
+>=20=20
+>  	BEGIN_NV04(push, NV11_3D(COLOR_LOGIC_OP_ENABLE), 2);
+>  	PUSH_DATAb(push, ctx->Color.ColorLogicOpEnabled);
+> --=20
+> 1.8.3.2
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.22 (GNU/Linux)
+
+iF4EAREIAAYFAlL8s/EACgkQg5k4nX1Sv1skVwD9GXF338qZbPqf3C1aRiPNxLYK
+1l+dtz4Ahz57ETletvMA/jEfhYOuGCHU9SzKHHR5yrU2breKy3ldKlPNadSbxtgw
+=Ji+z
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+--===============0274720588==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0274720588==--
