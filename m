@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67628] [NVC1] [BISECTED] Monitor on Display port
  shows distortions
-Date: Thu, 13 Feb 2014 04:47:10 +0000
-Message-ID: <bug-67628-8800-EoZHR4fZ5m@http.bugs.freedesktop.org/>
+Date: Thu, 13 Feb 2014 05:07:19 +0000
+Message-ID: <bug-67628-8800-9XqX7vx9oT@http.bugs.freedesktop.org/>
 References: <bug-67628-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0585390134=="
+Content-Type: multipart/mixed; boundary="===============0768161287=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67628-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,39 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0585390134==
-Content-Type: multipart/alternative; boundary="1392266830.D8aB357c3.13720"; charset="us-ascii"
+--===============0768161287==
+Content-Type: multipart/alternative; boundary="1392268039.0E1D3.18529"; charset="us-ascii"
 
 
---1392266830.D8aB357c3.13720
-Date: Thu, 13 Feb 2014 04:47:10 +0000
+--1392268039.0E1D3.18529
+Date: Thu, 13 Feb 2014 05:07:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67628
 
---- Comment #19 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Hmm... nothing _obvious_ in the code...
+--- Comment #20 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Hmmm... the additional vbios seems to be coming from a
 
-Torsten, could you upload your vbios? It seems like your Quadro 600 doesn't
-quite line up with Michael's vbios (why would it, not like they're identical
-cards... ugh).
+exec_clkcmp(priv, head, 0, pclk, &outp);
 
-Alternatively, Michael, mind giving me a dmesg from before & after with
-
-nouveau.debug=PDISP=debug,VBIOS=trace drm.debug=0xe
-
-(and make sure to mention which machine it's on)
-
-If it's not _too_ difficult, the before & after should be from 0a0afd282f^ and
-0a0afd282f, to minimize differences due to other changes that were made.
+which the bad commit moved around in core/engine/disp/nv50.c, but it isn't
+actually new... just moved a tad. Which begs the question... how did the old
+code get out of executing exec_clkcmp (looks like no one was claiming
+responsibility for generating the interrupt?), and whether it actually matters.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392266830.D8aB357c3.13720
-Date: Thu, 13 Feb 2014 04:47:10 +0000
+--1392268039.0E1D3.18529
+Date: Thu, 13 Feb 2014 05:07:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,27 +61,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] [BISECTED] Monitor on Display port shows distortions"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67628#c19">Comment # 19</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67628#c20">Comment # 20</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] [BISECTED] Monitor on Display port shows distortions"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67628">bug 67628</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hmm... nothing _obvious_ in the code...
+        <pre>Hmmm... the additional vbios seems to be coming from a
 
-Torsten, could you upload your vbios? It seems like your Quadro 600 doesn't
-quite line up with Michael's vbios (why would it, not like they're identical
-cards... ugh).
+exec_clkcmp(priv, head, 0, pclk, &amp;outp);
 
-Alternatively, Michael, mind giving me a dmesg from before &amp; after with
-
-nouveau.debug=PDISP=debug,VBIOS=trace drm.debug=0xe
-
-(and make sure to mention which machine it's on)
-
-If it's not _too_ difficult, the before &amp; after should be from 0a0afd282f^ and
-0a0afd282f, to minimize differences due to other changes that were made.</pre>
+which the bad commit moved around in core/engine/disp/nv50.c, but it isn't
+actually new... just moved a tad. Which begs the question... how did the old
+code get out of executing exec_clkcmp (looks like no one was claiming
+responsibility for generating the interrupt?), and whether it actually matters.</pre>
         </div>
       </p>
       <hr>
@@ -99,9 +87,9 @@ If it's not _too_ difficult, the before &amp; after should be from 0a0afd282f^ a
     </body>
 </html>
 
---1392266830.D8aB357c3.13720--
+--1392268039.0E1D3.18529--
 
---===============0585390134==
+--===============0768161287==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -112,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0585390134==--
+--===============0768161287==--
