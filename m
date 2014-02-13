@@ -1,91 +1,53 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 65576] [NV11] no EGL with nouveau_vieux_dri - no
-	DRI_IMAGE
-Date: Thu, 13 Feb 2014 05:53:36 +0000
-Message-ID: <bug-65576-8800-WycJ7gMIfu@http.bugs.freedesktop.org/>
-References: <bug-65576-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nv50: mark scissors/viewports dirty on context
+	switch
+Date: Thu, 13 Feb 2014 02:33:37 -0500
+Message-ID: <1392276817-19449-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1720573066=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-65576-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces@lists.freedesktop.org
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+To: Christoph Bumiller <e0425955@student.tuwien.ac.at>, mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+Commit 246ca4b001 ("nv50: implement multiple viewports/scissors, enable
+ARB_viewport_array") added dirty tracking to scissors/viewports. However
+it neglected to mark them all as dirty on a context switch. This fixes
+an apparent regression in webgl in chrome, but probably in any
+application that switches contexts.
 
---===============1720573066==
-Content-Type: multipart/alternative; boundary="1392270816.d72D1.29382"; charset="us-ascii"
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+---
 
+I'm probably going to push this out very shortly, as it is unlikely to be
+reviewed quickly and this is an annoying regression, but sending out to list
+so that I can make any necessary follow-up fixes, should review comments
+arrive.
 
---1392270816.d72D1.29382
-Date: Thu, 13 Feb 2014 05:53:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+ src/gallium/drivers/nouveau/nv50/nv50_state_validate.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=65576
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Er nm. The nouveau_screen_extensions also need to have it, and I don't think
-there's a generic implementation...
-
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c b/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
+index dfce193..f953422 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
+@@ -366,6 +366,8 @@ nv50_switch_pipe_context(struct nv50_context *ctx_to)
+       ctx_to->state = ctx_from->state;
+ 
+    ctx_to->dirty = ~0;
++   ctx_to->viewports_dirty = ~0;
++   ctx_to->scissors_dirty = ~0;
+ 
+    if (!ctx_to->vertex)
+       ctx_to->dirty &= ~(NV50_NEW_VERTEX | NV50_NEW_ARRAYS);
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1392270816.d72D1.29382
-Date: Thu, 13 Feb 2014 05:53:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV11] no EGL with nouveau_vieux_dri - no DRI_IMAGE"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65576#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV11] no EGL with nouveau_vieux_dri - no DRI_IMAGE"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65576">bug 65576</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Er nm. The nouveau_screen_extensions also need to have it, and I don't think
-there's a generic implementation...</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1392270816.d72D1.29382--
-
---===============1720573066==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1720573066==--
+1.8.3.2
