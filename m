@@ -1,163 +1,124 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH v2] drm/nouveau: support for platform devices
-Date: Thu, 13 Feb 2014 11:02:00 +0900
-Message-ID: <52FC2798.8030901@nvidia.com>
-References: <CAAVeFuJaD1C7yPRGm3+hByLDuSiBhftehcbwFfrbLaYsAwRcZQ@mail.gmail.com> <1392183495-11481-1-git-send-email-acourbot@nvidia.com> <52FB82AC.1010405@gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nouveau: fix chipset checks for nv1a by using the
+	oclass instead
+Date: Wed, 12 Feb 2014 21:02:56 -0500
+Message-ID: <1392256976-24050-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <52FB82AC.1010405-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "John F. Godfrey" <jfgodfrey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi Emil,
+Commit f4ebcd133b9 ("dri/nouveau: NV17_3D class is not available for
+NV1a chipset") fixed this partially by using the correct 3d class.
+However there were a lot of checks left over comparing against the
+chipset.
 
-On 02/12/2014 11:18 PM, Emil Velikov wrote:
-> On 12/02/14 05:38, Alexandre Courbot wrote:
->> Upcoming mobile Kepler GPUs (such as GK20A) use the platform bus instead
->> of PCI to which Nouveau is tightly dependent. This patch allows Nouveau
->> to handle platform devices by:
->>
->> - abstracting PCI-dependent functions that were typically used for
->>    resource querying and page mapping,
->> - introducing a nv_device_is_pci() function that allows to make
->>    PCI-dependent code conditional,
->> - providing a nouveau_drm_platform_probe() function that takes a GPU
->>    platform device to be probed.
->>
->> Core code as well as engine/subdev drivers are updated wherever possible
->> to make use of these functions. Some older drivers are too dependent on
->> PCI to be properly updated, but all newer code on which future chips may
->> depend should at least be runnable with platform devices.
->>
-> Hi Alexandre
->
-> I've tried really hard to find something wrong with this patch but it
-> seems that you have it polished very nicely.
+Reported-and-tested-by: John F. Godfrey <jfgodfrey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
 
-Great!
+I guess I didn't have to change the >= 0x11 checks, but seemed nicer for
+consistency.
 
-> There is one quite minor nit in-line, but I'm not fussed either way.
->
->> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
->> ---
->> Changes since v1:
->> - Refactored nouveau_device_create_() to take an additional bus type
->>    argument instead of having two versions of it that duplicate code.
->> - Fixed a typo when substituting pci_resource_* with nv_device_resource_*
->> - Check whether devices are PCI in relevant functions instead of
->>    nouveau_drm_load().
->>
->>   drivers/gpu/drm/nouveau/core/engine/device/base.c  | 83 ++++++++++++++++++++--
->>   drivers/gpu/drm/nouveau/core/engine/falcon.c       |  6 +-
->>   drivers/gpu/drm/nouveau/core/engine/fifo/base.c    |  2 +-
->>   drivers/gpu/drm/nouveau/core/engine/graph/nv20.c   |  2 +-
->>   drivers/gpu/drm/nouveau/core/engine/graph/nv40.c   |  2 +-
->>   drivers/gpu/drm/nouveau/core/engine/graph/nvc0.c   |  4 +-
->>   drivers/gpu/drm/nouveau/core/engine/xtensa.c       |  2 +-
->>   drivers/gpu/drm/nouveau/core/include/core/device.h | 30 ++++++++
->>   .../gpu/drm/nouveau/core/include/engine/device.h   | 17 +++--
->>   drivers/gpu/drm/nouveau/core/include/subdev/mc.h   |  1 +
->>   drivers/gpu/drm/nouveau/core/os.h                  |  1 +
->>   drivers/gpu/drm/nouveau/core/subdev/bar/base.c     |  4 +-
->>   drivers/gpu/drm/nouveau/core/subdev/bar/nv50.c     |  4 +-
->>   drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c     | 15 ++--
->>   .../gpu/drm/nouveau/core/subdev/devinit/fbmem.h    |  8 ++-
->>   drivers/gpu/drm/nouveau/core/subdev/devinit/nv04.c |  2 +-
->>   drivers/gpu/drm/nouveau/core/subdev/devinit/nv05.c |  2 +-
->>   drivers/gpu/drm/nouveau/core/subdev/devinit/nv10.c |  2 +-
->>   drivers/gpu/drm/nouveau/core/subdev/devinit/nv20.c |  2 +-
->>   drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c      |  9 +--
->>   drivers/gpu/drm/nouveau/core/subdev/fb/nvc0.c      |  9 +--
->>   drivers/gpu/drm/nouveau/core/subdev/i2c/base.c     |  2 +-
->>   drivers/gpu/drm/nouveau/core/subdev/instmem/nv40.c |  7 +-
->>   drivers/gpu/drm/nouveau/core/subdev/mc/base.c      | 39 ++++++----
->>   drivers/gpu/drm/nouveau/core/subdev/mxm/base.c     |  2 +-
->>   drivers/gpu/drm/nouveau/nouveau_abi16.c            | 13 +++-
->>   drivers/gpu/drm/nouveau/nouveau_agp.c              |  2 +-
->>   drivers/gpu/drm/nouveau/nouveau_bios.c             |  4 ++
->>   drivers/gpu/drm/nouveau/nouveau_bo.c               | 22 +++---
->>   drivers/gpu/drm/nouveau/nouveau_chan.c             |  2 +-
->>   drivers/gpu/drm/nouveau/nouveau_display.c          |  3 +-
->>   drivers/gpu/drm/nouveau/nouveau_drm.c              | 59 ++++++++++++---
->>   drivers/gpu/drm/nouveau/nouveau_sysfs.c            |  8 ++-
->>   drivers/gpu/drm/nouveau/nouveau_ttm.c              | 31 ++++----
->>   drivers/gpu/drm/nouveau/nouveau_vga.c              |  5 ++
->>   35 files changed, 297 insertions(+), 109 deletions(-)
->>
-> [snip]
->> diff --git a/drivers/gpu/drm/nouveau/core/subdev/mc/base.c b/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
->> index b4b9943773bc..572190c8363b 100644
->> --- a/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
->> +++ b/drivers/gpu/drm/nouveau/core/subdev/mc/base.c
->> @@ -93,8 +93,8 @@ _nouveau_mc_dtor(struct nouveau_object *object)
->>   {
->>   	struct nouveau_device *device = nv_device(object);
->>   	struct nouveau_mc *pmc = (void *)object;
->> -	free_irq(device->pdev->irq, pmc);
->> -	if (pmc->use_msi)
->> +	free_irq(pmc->irq, pmc);
->> +	if (nv_device_is_pci(device) && pmc->use_msi)
-> You should be able to keep the conditional as is.
->
->>   		pci_disable_msi(device->pdev);
->>   	nouveau_subdev_destroy(&pmc->base);
->>   }
->> @@ -114,22 +114,25 @@ nouveau_mc_create_(struct nouveau_object *parent, struct nouveau_object *engine,
->>   	if (ret)
->>   		return ret;
->>
->> -	switch (device->pdev->device & 0x0ff0) {
->> -	case 0x00f0:
->> -	case 0x02e0:
->> -		/* BR02? NFI how these would be handled yet exactly */
->> -		break;
->> -	default:
->> -		switch (device->chipset) {
->> -		case 0xaa: break; /* reported broken, nv also disable it */
->> -		default:
->> -			pmc->use_msi = true;
->> +	if (nv_device_is_pci(device))
->> +		switch (device->pdev->device & 0x0ff0) {
->> +		case 0x00f0:
->> +		case 0x02e0:
->> +			/* BR02? NFI how these would be handled yet exactly */
->>   			break;
->> +		default:
->> +			switch (device->chipset) {
->> +			case 0xaa:
->> +				/* reported broken, nv also disable it */
->> +				break;
->> +			default:
->> +				pmc->use_msi = true;
->> +				break;
->>   		}
->>   	}
->>
->>   	pmc->use_msi = nouveau_boolopt(device->cfgopt, "NvMSI", pmc->use_msi);
-> As you explicitly disable msi on platform devices you can move the
-> option parsing within the if (nv_device_is_pci()) block.
+ src/mesa/drivers/dri/nouveau/nv10_context.c      | 8 ++++----
+ src/mesa/drivers/dri/nouveau/nv10_state_fb.c     | 4 ++--
+ src/mesa/drivers/dri/nouveau/nv10_state_raster.c | 3 ++-
+ 3 files changed, 8 insertions(+), 7 deletions(-)
 
-Yes, that's correct. Actually I think it would also make sense to move 
-the next paragraph under the "if (nv_device_is_pci())" block as well, 
-since it also deals with MSI.
-
->
-> This way you can drop the change in the following conditional and the
-> similar one in _nouveau_mc_dtor.
->
->> -	if (pmc->use_msi && oclass->msi_rearm) {
->> +	if (nv_device_is_pci(device) && pmc->use_msi && oclass->msi_rearm) {
-
-Will do that, rebase and post a v3.
-
->
->
-> Many thanks, and again, welcome to nouveau :-)
-
-Thanks for the review and the welcome! :)
-
-Alex.
+diff --git a/src/mesa/drivers/dri/nouveau/nv10_context.c b/src/mesa/drivers/dri/nouveau/nv10_context.c
+index 8582cb2..4773014 100644
+--- a/src/mesa/drivers/dri/nouveau/nv10_context.c
++++ b/src/mesa/drivers/dri/nouveau/nv10_context.c
+@@ -63,7 +63,7 @@ nv10_use_viewport_zclear(struct gl_context *ctx)
+ 	struct gl_framebuffer *fb = ctx->DrawBuffer;
+ 	struct gl_renderbuffer *depthRb = fb->Attachment[BUFFER_DEPTH].Renderbuffer;
+ 
+-	return context_chipset(ctx) < 0x17 &&
++	return context_eng3d(ctx)->oclass < NV17_3D_CLASS &&
+ 		!nctx->hierz.clear_blocked && depthRb &&
+ 		(_mesa_get_format_bits(depthRb->Format,
+ 				       GL_DEPTH_BITS) >= 24);
+@@ -184,7 +184,7 @@ nv10_clear(struct gl_context *ctx, GLbitfield buffers)
+ 	}
+ 
+ 	if ((buffers & BUFFER_BIT_DEPTH) && ctx->Depth.Mask) {
+-		if (context_chipset(ctx) >= 0x17)
++		if (context_eng3d(ctx)->oclass >= NV17_3D_CLASS)
+ 			nv17_zclear(ctx, &buffers);
+ 		else
+ 			nv10_zclear(ctx, &buffers);
+@@ -245,7 +245,7 @@ nv10_hwctx_init(struct gl_context *ctx)
+ 	BEGIN_NV04(push, NV04_GRAPH(3D, NOP), 1);
+ 	PUSH_DATA (push, 0);
+ 
+-	if (context_chipset(ctx) >= 0x17) {
++	if (context_eng3d(ctx)->oclass >= NV17_3D_CLASS) {
+ 		BEGIN_NV04(push, NV17_3D(UNK01AC), 2);
+ 		PUSH_DATA (push, fifo->vram);
+ 		PUSH_DATA (push, fifo->vram);
+@@ -257,7 +257,7 @@ nv10_hwctx_init(struct gl_context *ctx)
+ 		PUSH_DATA (push, 1);
+ 	}
+ 
+-	if (context_chipset(ctx) >= 0x11) {
++	if (context_eng3d(ctx)->oclass >= NV15_3D_CLASS) {
+ 		BEGIN_NV04(push, SUBC_3D(0x120), 3);
+ 		PUSH_DATA (push, 0);
+ 		PUSH_DATA (push, 1);
+diff --git a/src/mesa/drivers/dri/nouveau/nv10_state_fb.c b/src/mesa/drivers/dri/nouveau/nv10_state_fb.c
+index 19769e5..fb66b2d 100644
+--- a/src/mesa/drivers/dri/nouveau/nv10_state_fb.c
++++ b/src/mesa/drivers/dri/nouveau/nv10_state_fb.c
+@@ -106,7 +106,7 @@ nv10_emit_framebuffer(struct gl_context *ctx, int emit)
+ 
+ 	/* At least nv11 seems to get sad if we don't do this before
+ 	 * swapping RTs.*/
+-	if (context_chipset(ctx) < 0x17) {
++	if (context_eng3d(ctx)->oclass < NV17_3D_CLASS) {
+ 		int i;
+ 
+ 		for (i = 0; i < 6; i++) {
+@@ -140,7 +140,7 @@ nv10_emit_framebuffer(struct gl_context *ctx, int emit)
+ 		PUSH_MTHDl(push, NV10_3D(ZETA_OFFSET), BUFCTX_FB,
+ 				 s->bo, 0, bo_flags);
+ 
+-		if (context_chipset(ctx) >= 0x17) {
++		if (context_eng3d(ctx)->oclass >= NV17_3D_CLASS) {
+ 			setup_hierz_buffer(ctx);
+ 			context_dirty(ctx, ZCLEAR);
+ 		}
+diff --git a/src/mesa/drivers/dri/nouveau/nv10_state_raster.c b/src/mesa/drivers/dri/nouveau/nv10_state_raster.c
+index bd4a78e..da414a0 100644
+--- a/src/mesa/drivers/dri/nouveau/nv10_state_raster.c
++++ b/src/mesa/drivers/dri/nouveau/nv10_state_raster.c
+@@ -28,6 +28,7 @@
+ #include "nouveau_context.h"
+ #include "nouveau_gldefs.h"
+ #include "nouveau_util.h"
++#include "nv_object.xml.h"
+ #include "nv10_3d.xml.h"
+ #include "nv10_driver.h"
+ 
+@@ -120,7 +121,7 @@ nv10_emit_logic_opcode(struct gl_context *ctx, int emit)
+ 	struct nouveau_pushbuf *push = context_push(ctx);
+ 
+ 	assert(!ctx->Color.ColorLogicOpEnabled
+-	       || context_chipset(ctx) >= 0x11);
++	       || context_eng3d(ctx)->oclass >= NV15_3D_CLASS);
+ 
+ 	BEGIN_NV04(push, NV11_3D(COLOR_LOGIC_OP_ENABLE), 2);
+ 	PUSH_DATAb(push, ctx->Color.ColorLogicOpEnabled);
+-- 
+1.8.3.2
