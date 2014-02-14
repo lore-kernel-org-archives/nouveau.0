@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74992] New: display freeze
-Date: Fri, 14 Feb 2014 16:59:48 +0000
-Message-ID: <bug-74992-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74992] display freeze
+Date: Fri, 14 Feb 2014 17:01:00 +0000
+Message-ID: <bug-74992-8800-uIvz2C93Zh@http.bugs.freedesktop.org/>
+References: <bug-74992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2121603512=="
+Content-Type: multipart/mixed; boundary="===============0753096007=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-74992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,188 +20,73 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2121603512==
-Content-Type: multipart/alternative; boundary="1392397188.DBfCCC71.5531"; charset="us-ascii"
+--===============0753096007==
+Content-Type: multipart/alternative; boundary="1392397260.bBde1.5796"; charset="us-ascii"
 
 
---1392397188.DBfCCC71.5531
-Date: Fri, 14 Feb 2014 16:59:48 +0000
+--1392397260.bBde1.5796
+Date: Fri, 14 Feb 2014 17:01:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74992
+https://bugs.freedesktop.org/show_bug.cgi?id=3D74992
 
-          Priority: medium
-            Bug ID: 74992
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: display freeze
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: martin.meridius-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #1 from Martin Luke=C5=A1 <martin.meridius-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 94081
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D94081&action=3Dedit
+journalctl_error
 
-Created attachment 94080
-  --> https://bugs.freedesktop.org/attachment.cgi?id=94080&action=edit
-dmesg
-
-Description:
-After some time of normal use of Gnome Shell with nouveau driver the screen
-gets frozen and I have to restart the GS from another TTY.
-
-
-Additional info:
-xf86-video-nouveau 1.0.10-2
-xorg-server 1.15.0-5
-linux 3.12.9-2
-I use nVidia GeForce 8200
-I'm including Xorg.0.log and outputs from dmesg, `journalctl -b` and
-`journalctl --since=${time_of_freeze}`
-
-
-Steps to reproduce:
-This behavior seems to happen randomly.
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392397188.DBfCCC71.5531
-Date: Fri, 14 Feb 2014 16:59:48 +0000
+--1392397260.bBde1.5796
+Date: Fri, 14 Feb 2014 17:01:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - display freeze"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74992">74992</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>display freeze
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>martin.meridius&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=94080" name="attach_94080" title="dmesg">attachment 94080</a> <a href="attachment.cgi?id=94080&amp;action=edit" title="dmesg">[details]</a></span>
-dmesg
-
-Description:
-After some time of normal use of Gnome Shell with nouveau driver the screen
-gets frozen and I have to restart the GS from another TTY.
-
-
-Additional info:
-xf86-video-nouveau 1.0.10-2
-xorg-server 1.15.0-5
-linux 3.12.9-2
-I use nVidia GeForce 8200
-I'm including Xorg.0.log and outputs from dmesg, `journalctl -b` and
-`journalctl --since=${time_of_freeze}`
-
-
-Steps to reproduce:
-This behavior seems to happen randomly.</pre>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - display freeze"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D74992#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - display freeze"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D74992">bug 74992<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+martin.meridius&#64;gmail.com" title=3D"Martin Luke=C5=A1 &lt;martin.meridi=
+us&#64;gmail.com&gt;"> <span class=3D"fn">Martin Luke=C5=A1</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D94081"=
+ name=3D"attach_94081" title=3D"journalctl_error">attachment 94081</a> <a h=
+ref=3D"attachment.cgi?id=3D94081&amp;action=3Dedit" title=3D"journalctl_err=
+or">[details]</a></span>
+journalctl_error</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1392397188.DBfCCC71.5531--
+--1392397260.bBde1.5796--
 
---===============2121603512==
+--===============0753096007==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -210,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2121603512==--
+--===============0753096007==--
