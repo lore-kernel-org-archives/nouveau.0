@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74992] display freeze
-Date: Fri, 14 Feb 2014 17:01:35 +0000
-Message-ID: <bug-74992-8800-OHXjYijJO6@http.bugs.freedesktop.org/>
+Date: Fri, 14 Feb 2014 17:02:07 +0000
+Message-ID: <bug-74992-8800-oegbGSZtJ4@http.bugs.freedesktop.org/>
 References: <bug-74992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0747293706=="
+Content-Type: multipart/mixed; boundary="===============0211328743=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0747293706==
-Content-Type: multipart/alternative; boundary="1392397295.dD7d681.5863"; charset="us-ascii"
+--===============0211328743==
+Content-Type: multipart/alternative; boundary="1392397327.a8AeB4B71.5961"; charset="us-ascii"
 
 
---1392397295.dD7d681.5863
-Date: Fri, 14 Feb 2014 17:01:35 +0000
+--1392397327.a8AeB4B71.5961
+Date: Fri, 14 Feb 2014 17:02:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D74992
 
---- Comment #2 from Martin Luke=C5=A1 <martin.meridius-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 94082
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D94082&action=3Dedit
-journalctl_boot
+--- Comment #3 from Martin Luke=C5=A1 <martin.meridius-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 94083
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D94083&action=3Dedit
+Xorg_0_log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392397295.dD7d681.5863
-Date: Fri, 14 Feb 2014 17:01:35 +0000
+--1392397327.a8AeB4B71.5961
+Date: Fri, 14 Feb 2014 17:02:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -57,8 +57,8 @@ Content-Transfer-Encoding: quoted-printable
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW --- - display freeze"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D74992#c2">Comment=
- # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D74992#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW --- - display freeze"
@@ -68,11 +68,11 @@ Content-Transfer-Encoding: quoted-printable
 martin.meridius&#64;gmail.com" title=3D"Martin Luke=C5=A1 &lt;martin.meridi=
 us&#64;gmail.com&gt;"> <span class=3D"fn">Martin Luke=C5=A1</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D94082"=
- name=3D"attach_94082" title=3D"journalctl_boot">attachment 94082</a> <a hr=
-ef=3D"attachment.cgi?id=3D94082&amp;action=3Dedit" title=3D"journalctl_boot=
-">[details]</a></span>
-journalctl_boot</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D94083"=
+ name=3D"attach_94083" title=3D"Xorg_0_log">attachment 94083</a> <a href=3D=
+"attachment.cgi?id=3D94083&amp;action=3Dedit" title=3D"Xorg_0_log">[details=
+]</a></span>
+Xorg_0_log</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +84,9 @@ journalctl_boot</pre>
     </body>
 </html>
 
---1392397295.dD7d681.5863--
+--1392397327.a8AeB4B71.5961--
 
---===============0747293706==
+--===============0211328743==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0747293706==--
+--===============0211328743==--
