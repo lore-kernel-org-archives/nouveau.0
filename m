@@ -1,46 +1,74 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/fifo: allocate usermem as needed
-Date: Fri, 14 Feb 2014 12:02:20 +1000
-Message-ID: <CACAvsv6LoNinrLviqFDqsngSokuq2eJj7-8Hq-vapO5rSkCCpw@mail.gmail.com>
-References: <1392011821-2406-1-git-send-email-acourbot@nvidia.com>
-	<20140210121431.GD20143@ulmo.nvidia.com>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH v2] drm/nouveau: use nv_debug for NV_DEBUG,
+	make DRM a separate subflag
+Date: Thu, 13 Feb 2014 21:35:14 -0500
+Message-ID: <1392345314-29394-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20140210121431.GD20143-AwZRO8vwLAwmlAP/+Wk3EA@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces@lists.freedesktop.org
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+To: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Feb 10, 2014 at 10:14 PM, Thierry Reding
-<thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On Mon, Feb 10, 2014 at 02:57:01PM +0900, Alexandre Courbot wrote:
->> Memory was always allocated for 4096 channels. Change this to allocate
->> what we actually need according to the number of channels we use.
->>
->> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
->> ---
->>  drivers/gpu/drm/nouveau/core/engine/fifo/nve0.c | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> Looks good to me:
->
-> Reviewed-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Thanks guys!
+It's really confusing for NV_DEBUG's printing to be controlled via
+drm.debug while everything else is controlled via nouveau.debug. These
+messages can be turned on with nouveau.debug=DRM=debug.
 
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+---
+
+Updated version that makes the top-level DRM client have a separate debug flag
+from everything else, since it presents debug info that's interesting for a
+very different set of use-cases.
+
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 2 ++
+ drivers/gpu/drm/nouveau/nouveau_drm.h | 5 +----
+ 2 files changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 1c7c8a7..9c9ce4d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -33,6 +33,7 @@
+ #include <core/client.h>
+ #include <core/gpuobj.h>
+ #include <core/class.h>
++#include <core/option.h>
+ 
+ #include <engine/device.h>
+ #include <engine/disp.h>
+@@ -335,6 +336,7 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+ 
+ 	dev->dev_private = drm;
+ 	drm->dev = dev;
++	nouveau_client(drm)->debug = nouveau_dbgopt(nouveau_debug, "DRM");
+ 
+ 	INIT_LIST_HEAD(&drm->clients);
+ 	spin_lock_init(&drm->tile.lock);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.h b/drivers/gpu/drm/nouveau/nouveau_drm.h
+index 23ca7a5..7efbafa 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.h
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.h
+@@ -161,10 +161,7 @@ int nouveau_pmops_resume(struct device *);
+ #define NV_ERROR(cli, fmt, args...) nv_error((cli), fmt, ##args)
+ #define NV_WARN(cli, fmt, args...) nv_warn((cli), fmt, ##args)
+ #define NV_INFO(cli, fmt, args...) nv_info((cli), fmt, ##args)
+-#define NV_DEBUG(cli, fmt, args...) do {                                       \
+-	if (drm_debug & DRM_UT_DRIVER)                                         \
+-		nv_info((cli), fmt, ##args);                                   \
+-} while (0)
++#define NV_DEBUG(cli, fmt, args...) nv_debug((cli), fmt, ##args)
+ 
+ extern int nouveau_modeset;
+ 
+-- 
+1.8.3.2
