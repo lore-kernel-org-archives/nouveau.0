@@ -1,65 +1,105 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] drm/nv50/gr: decode texture trap status code
-Date: Fri, 14 Feb 2014 14:28:36 -0500
-Message-ID: <1392406116-1093-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 67628] [NVC1] [BISECTED] Monitor on Display port
+ shows distortions
+Date: Fri, 14 Feb 2014 19:35:54 +0000
+Message-ID: <bug-67628-8800-mA5GOShtd7@http.bugs.freedesktop.org/>
+References: <bug-67628-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1796288441=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-67628-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
----
 
-Statuses derived from envytools, as usual. Not 100% sure about the "any"
-thing, but it makes sense...
+--===============1796288441==
+Content-Type: multipart/alternative; boundary="1392406554.bde8B83.2977"; charset="us-ascii"
 
- drivers/gpu/drm/nouveau/core/engine/graph/nv50.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-index ef38320..2c7809e 100644
---- a/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/graph/nv50.c
-@@ -330,6 +330,15 @@ static const struct nouveau_bitfield nv50_mpc_traps[] = {
- 	{}
- };
- 
-+static const struct nouveau_bitfield nv50_tex_traps[] = {
-+	{ 0x00000001, "" }, /* any bit set? */
-+	{ 0x00000002, "FAULT" },
-+	{ 0x00000004, "STORAGE_TYPE_MISMATCH" },
-+	{ 0x00000008, "LINEAR_MISMATCH" },
-+	{ 0x00000020, "WRONG_MEMTYPE" },
-+	{}
-+};
-+
- static const struct nouveau_bitfield nv50_graph_trap_m2mf[] = {
- 	{ 0x00000001, "NOTIFY" },
- 	{ 0x00000002, "IN" },
-@@ -532,6 +541,13 @@ nv50_priv_tp_trap(struct nv50_graph_priv *priv, int type, u32 ustatus_old,
- 				for (r = ustatus_addr + 4; r <= ustatus_addr + 0x10; r += 4)
- 					nv_error(priv, "\t0x%08x: 0x%08x\n", r,
- 						nv_rd32(priv, r));
-+				if (ustatus) {
-+					nv_error(priv, "%s - TP%d:", name, i);
-+					nouveau_bitfield_print(nv50_tex_traps,
-+							       ustatus);
-+					pr_cont("\n");
-+					ustatus = 0;
-+				}
- 			}
- 			break;
- 		case 7: /* MP error */
+--1392406554.bde8B83.2977
+Date: Fri, 14 Feb 2014 19:35:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=67628
+
+--- Comment #31 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+As per the response to the patch I sent, sounds like things are working for
+both Michael and Torsten now:
+
+http://lists.freedesktop.org/archives/nouveau/2014-February/016205.html
+
+[hm, the responses aren't there yet now, but I'm sure someone will push them
+through the moderation queue eventually.]
+
+I'll mark the bug as fixed once this hits upstream.
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1392406554.bde8B83.2977
+Date: Fri, 14 Feb 2014 19:35:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC1] [BISECTED] Monitor on Display port shows distortions"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67628#c31">Comment # 31</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC1] [BISECTED] Monitor on Display port shows distortions"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67628">bug 67628</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>As per the response to the patch I sent, sounds like things are working for
+both Michael and Torsten now:
+
+<a href="http://lists.freedesktop.org/archives/nouveau/2014-February/016205.html">http://lists.freedesktop.org/archives/nouveau/2014-February/016205.html</a>
+
+[hm, the responses aren't there yet now, but I'm sure someone will push them
+through the moderation queue eventually.]
+
+I'll mark the bug as fixed once this hits upstream.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1392406554.bde8B83.2977--
+
+--===============1796288441==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1796288441==--
