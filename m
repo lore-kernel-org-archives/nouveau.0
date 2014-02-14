@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74316] [NV92] Graphical corruption on KDE
- shutdown/restart/log out screen
-Date: Fri, 14 Feb 2014 18:28:55 +0000
-Message-ID: <bug-74316-8800-lKzjAp1uzv@http.bugs.freedesktop.org/>
-References: <bug-74316-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74992] [NVAA] gnome-shell freezes with vram_list
+ validate fail, texture traps
+Date: Fri, 14 Feb 2014 19:16:41 +0000
+Message-ID: <bug-74992-8800-svWWUf1otV@http.bugs.freedesktop.org/>
+References: <bug-74992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0574248970=="
+Content-Type: multipart/mixed; boundary="===============1058568500=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74316-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-74992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,43 +21,81 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0574248970==
-Content-Type: multipart/alternative; boundary="1392402535.157c21.23098"; charset="us-ascii"
+--===============1058568500==
+Content-Type: multipart/alternative; boundary="1392405401.ee3acD612.32464"; charset="us-ascii"
 
 
---1392402535.157c21.23098
-Date: Fri, 14 Feb 2014 18:28:55 +0000
+--1392405401.ee3acD612.32464
+Date: Fri, 14 Feb 2014 19:16:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74316
+https://bugs.freedesktop.org/show_bug.cgi?id=74992
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |NOTOURBUG
+            Summary|display freeze              |[NVAA] gnome-shell freezes
+                   |                            |with vram_list validate
+                   |                            |fail, texture traps
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #4)
-> Here's the error I get with MESA_DEBUG=1:
-> Mesa: User error: GL_INVALID_OPERATION in glBlitFramebufferEXT(bad src/dst
-> multisample pixel formats)
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+[30028.608886] nouveau E[gnome-shell[1661]] fail ttm_validate
+[30028.608894] nouveau E[gnome-shell[1661]] validate vram_list
+[30028.608938] nouveau E[gnome-shell[1661]] validate: -12
+[30029.187282] nouveau E[gnome-shell[1661]] fail ttm_validate
+[30029.187290] nouveau E[gnome-shell[1661]] validate vram_list
+[30029.187306] nouveau E[gnome-shell[1661]] validate: -12
+[30029.706353] nouveau E[  PGRAPH][0000:02:00.0] magic set 0:
+[30029.706364] nouveau E[  PGRAPH][0000:02:00.0]     0x00408604: 0x20081401
+[30029.706368] nouveau E[  PGRAPH][0000:02:00.0]     0x00408608: 0x00000000
+[30029.706372] nouveau E[  PGRAPH][0000:02:00.0]     0x0040860c: 0x40000432
+[30029.706376] nouveau E[  PGRAPH][0000:02:00.0]     0x00408610: 0x00000000
+[30029.706380] nouveau E[  PGRAPH][0000:02:00.0] TRAP_TEXTURE - TP0: Unhandled
+ustatus 0x00000003
+[30029.706383] nouveau E[  PGRAPH][0000:02:00.0]  TRAP
+[30029.706390] nouveau E[  PGRAPH][0000:02:00.0] ch 4 [0x000797f000
+gnome-shell[1661]] subc 3 class 0x8397 mthd 0x15e0 data 0x00000000
+[30029.706400] nouveau E[     PFB][0000:02:00.0] trapped read at 0x0000000000
+on channel 0x0000797f [gnome-shell[1661]] PGRAPH/TEXTURE/00 reason:
+PT_NOT_PRESENT
+[30029.706563] nouveau E[  PGRAPH][0000:02:00.0] magic set 0:
+[30029.706566] nouveau E[  PGRAPH][0000:02:00.0]     0x00408604: 0x20086701
+[30029.706570] nouveau E[  PGRAPH][0000:02:00.0]     0x00408608: 0x00000000
+[30029.706573] nouveau E[  PGRAPH][0000:02:00.0]     0x0040860c: 0x40000432
+[30029.706577] nouveau E[  PGRAPH][0000:02:00.0]     0x00408610: 0x00000000
+[30029.706580] nouveau E[  PGRAPH][0000:02:00.0] TRAP_TEXTURE - TP0: Unhandled
+ustatus 0x00000003
+[30029.706583] nouveau E[  PGRAPH][0000:02:00.0]  TRAP
+[30029.706588] nouveau E[  PGRAPH][0000:02:00.0] ch 4 [0x000797f000
+gnome-shell[1661]] subc 3 class 0x8397 mthd 0x15e0 data 0x00000000
 
-The application is performing some invalid operation, and mesa is complaining
-about it. Not a driver bug. Could be a core mesa bug if it's incorrectly
-determining that the operation is invalid :)
 
-Feel free to reopen if the KDE people determine that this really is a nouveau
-bug somehow.
+To me, this reads like "you ran out of vram and the driver did not handle this
+at all gracefully". "Unhandled ustatus 3" means "FAULT" as best I can tell. And
+of course since gnome-shell also acts as a compositor, that means your display
+is shot.
+
+The question is how can this happen though... I guess something was requested
+to be migrated to vram and that request failed, but the driver didn't notice?
+Not sure. Your second log shows a pushbuf submission failure that caused a
+validate fail. I don't remember if that means that something was claimed to be
+in VRAM and wasn't or if it means that something was requested to be moved to
+vram and the move failed.
+
+The fact that you can even go to another TTY and restart GS indicates that the
+card is in no way hung, which is nice.
+
+You don't mention what version of mesa you're using... but I'm assuming
+something pretty recent, like 10.0.3 or maybe even 10.1-rc1?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392402535.157c21.23098
-Date: Fri, 14 Feb 2014 18:28:55 +0000
+--1392405401.ee3acD612.32464
+Date: Fri, 14 Feb 2014 19:16:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,9 +106,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74316">bug 74316</a>
+          bz_status_NEW "
+   title="NEW --- - [NVAA] gnome-shell freezes with vram_list validate fail, texture traps"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74992">bug 74992</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -80,43 +118,72 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">Summary</td>
+           <td>display freeze
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTOURBUG
+           <td>[NVAA] gnome-shell freezes with vram_list validate fail, texture traps
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74316#c5">Comment # 5</a>
+          bz_status_NEW "
+   title="NEW --- - [NVAA] gnome-shell freezes with vram_list validate fail, texture traps"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74992#c4">Comment # 4</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74316">bug 74316</a>
+          bz_status_NEW "
+   title="NEW --- - [NVAA] gnome-shell freezes with vram_list validate fail, texture traps"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74992">bug 74992</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=74316#c4">comment #4</a>)
-<span class="quote">&gt; Here's the error I get with MESA_DEBUG=1:
-&gt; Mesa: User error: GL_INVALID_OPERATION in glBlitFramebufferEXT(bad src/dst
-&gt; multisample pixel formats)</span >
+        <pre>[30028.608886] nouveau E[gnome-shell[1661]] fail ttm_validate
+[30028.608894] nouveau E[gnome-shell[1661]] validate vram_list
+[30028.608938] nouveau E[gnome-shell[1661]] validate: -12
+[30029.187282] nouveau E[gnome-shell[1661]] fail ttm_validate
+[30029.187290] nouveau E[gnome-shell[1661]] validate vram_list
+[30029.187306] nouveau E[gnome-shell[1661]] validate: -12
+[30029.706353] nouveau E[  PGRAPH][0000:02:00.0] magic set 0:
+[30029.706364] nouveau E[  PGRAPH][0000:02:00.0]     0x00408604: 0x20081401
+[30029.706368] nouveau E[  PGRAPH][0000:02:00.0]     0x00408608: 0x00000000
+[30029.706372] nouveau E[  PGRAPH][0000:02:00.0]     0x0040860c: 0x40000432
+[30029.706376] nouveau E[  PGRAPH][0000:02:00.0]     0x00408610: 0x00000000
+[30029.706380] nouveau E[  PGRAPH][0000:02:00.0] TRAP_TEXTURE - TP0: Unhandled
+ustatus 0x00000003
+[30029.706383] nouveau E[  PGRAPH][0000:02:00.0]  TRAP
+[30029.706390] nouveau E[  PGRAPH][0000:02:00.0] ch 4 [0x000797f000
+gnome-shell[1661]] subc 3 class 0x8397 mthd 0x15e0 data 0x00000000
+[30029.706400] nouveau E[     PFB][0000:02:00.0] trapped read at 0x0000000000
+on channel 0x0000797f [gnome-shell[1661]] PGRAPH/TEXTURE/00 reason:
+PT_NOT_PRESENT
+[30029.706563] nouveau E[  PGRAPH][0000:02:00.0] magic set 0:
+[30029.706566] nouveau E[  PGRAPH][0000:02:00.0]     0x00408604: 0x20086701
+[30029.706570] nouveau E[  PGRAPH][0000:02:00.0]     0x00408608: 0x00000000
+[30029.706573] nouveau E[  PGRAPH][0000:02:00.0]     0x0040860c: 0x40000432
+[30029.706577] nouveau E[  PGRAPH][0000:02:00.0]     0x00408610: 0x00000000
+[30029.706580] nouveau E[  PGRAPH][0000:02:00.0] TRAP_TEXTURE - TP0: Unhandled
+ustatus 0x00000003
+[30029.706583] nouveau E[  PGRAPH][0000:02:00.0]  TRAP
+[30029.706588] nouveau E[  PGRAPH][0000:02:00.0] ch 4 [0x000797f000
+gnome-shell[1661]] subc 3 class 0x8397 mthd 0x15e0 data 0x00000000
 
-The application is performing some invalid operation, and mesa is complaining
-about it. Not a driver bug. Could be a core mesa bug if it's incorrectly
-determining that the operation is invalid :)
 
-Feel free to reopen if the KDE people determine that this really is a nouveau
-bug somehow.</pre>
+To me, this reads like &quot;you ran out of vram and the driver did not handle this
+at all gracefully&quot;. &quot;Unhandled ustatus 3&quot; means &quot;FAULT&quot; as best I can tell. And
+of course since gnome-shell also acts as a compositor, that means your display
+is shot.
+
+The question is how can this happen though... I guess something was requested
+to be migrated to vram and that request failed, but the driver didn't notice?
+Not sure. Your second log shows a pushbuf submission failure that caused a
+validate fail. I don't remember if that means that something was claimed to be
+in VRAM and wasn't or if it means that something was requested to be moved to
+vram and the move failed.
+
+The fact that you can even go to another TTY and restart GS indicates that the
+card is in no way hung, which is nice.
+
+You don't mention what version of mesa you're using... but I'm assuming
+something pretty recent, like 10.0.3 or maybe even 10.1-rc1?</pre>
         </div>
       </p>
       <hr>
@@ -128,9 +195,9 @@ bug somehow.</pre>
     </body>
 </html>
 
---1392402535.157c21.23098--
+--1392405401.ee3acD612.32464--
 
---===============0574248970==
+--===============1058568500==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -141,4 +208,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0574248970==--
+--===============1058568500==--
