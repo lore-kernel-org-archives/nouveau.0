@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67628] [NVC1] [BISECTED] Monitor on Display port
  shows distortions
-Date: Thu, 13 Feb 2014 23:23:37 +0000
-Message-ID: <bug-67628-8800-vjrCRlqj8T@http.bugs.freedesktop.org/>
+Date: Fri, 14 Feb 2014 00:30:27 +0000
+Message-ID: <bug-67628-8800-icpEciuHSZ@http.bugs.freedesktop.org/>
 References: <bug-67628-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0114774334=="
+Content-Type: multipart/mixed; boundary="===============2020809715=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67628-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0114774334==
-Content-Type: multipart/alternative; boundary="1392333817.D02bD143.14444"; charset="us-ascii"
+--===============2020809715==
+Content-Type: multipart/alternative; boundary="1392337827.621c63.8045"; charset="us-ascii"
 
 
---1392333817.D02bD143.14444
-Date: Thu, 13 Feb 2014 23:23:37 +0000
+--1392337827.621c63.8045
+Date: Fri, 14 Feb 2014 00:30:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67628
 
---- Comment #29 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-FWIW in Torsten's logs, he also went from 4x 270000 to 2x 270000. It sounds
-like the value of 'bandwidth' is different now, since when forcing 4 lanes,
-Michael's logs indicate 4x 162000 (and it otherwise did 2x 270000... so the
-'new' bandwidth value is between 540000 and 324000, while before it must have
-been above 648000 [4x 162000]).
+--- Comment #30 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Here's a crazy idea --
+
+in drivers/gpu/drm/nouveau/core/engine/disp/nv50.c:nv50_disp_intr_unk20_2,
+change
+
+u32 ctrl = nv_rd32(priv, 0x610798 + soff);
+
+to
+
+u32 ctrl = nv_rd32(priv, 0x610794 + soff);
+
+And obviously get rid of the link_nr = 4 hack.
+
+(I'm basing this on the fact that nv50_disp_intr_unk20_2_dp reads the ctrl
+value from there for figuring out the bpp.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392333817.D02bD143.14444
-Date: Thu, 13 Feb 2014 23:23:37 +0000
+--1392337827.621c63.8045
+Date: Fri, 14 Feb 2014 00:30:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +68,28 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] [BISECTED] Monitor on Display port shows distortions"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67628#c29">Comment # 29</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67628#c30">Comment # 30</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] [BISECTED] Monitor on Display port shows distortions"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67628">bug 67628</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>FWIW in Torsten's logs, he also went from 4x 270000 to 2x 270000. It sounds
-like the value of 'bandwidth' is different now, since when forcing 4 lanes,
-Michael's logs indicate 4x 162000 (and it otherwise did 2x 270000... so the
-'new' bandwidth value is between 540000 and 324000, while before it must have
-been above 648000 [4x 162000]).</pre>
+        <pre>Here's a crazy idea --
+
+in drivers/gpu/drm/nouveau/core/engine/disp/nv50.c:nv50_disp_intr_unk20_2,
+change
+
+u32 ctrl = nv_rd32(priv, 0x610798 + soff);
+
+to
+
+u32 ctrl = nv_rd32(priv, 0x610794 + soff);
+
+And obviously get rid of the link_nr = 4 hack.
+
+(I'm basing this on the fact that nv50_disp_intr_unk20_2_dp reads the ctrl
+value from there for figuring out the bpp.)</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +101,9 @@ been above 648000 [4x 162000]).</pre>
     </body>
 </html>
 
---1392333817.D02bD143.14444--
+--1392337827.621c63.8045--
 
---===============0114774334==
+--===============2020809715==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +114,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0114774334==--
+--===============2020809715==--
