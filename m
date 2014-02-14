@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74316] [NV92] Graphical corruption on KDE
  shutdown/restart/log out screen
-Date: Fri, 14 Feb 2014 18:09:36 +0000
-Message-ID: <bug-74316-8800-ijqwhSWIII@http.bugs.freedesktop.org/>
+Date: Fri, 14 Feb 2014 18:28:55 +0000
+Message-ID: <bug-74316-8800-lKzjAp1uzv@http.bugs.freedesktop.org/>
 References: <bug-74316-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1033451870=="
+Content-Type: multipart/mixed; boundary="===============0574248970=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74316-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,36 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1033451870==
-Content-Type: multipart/alternative; boundary="1392401375.cD3d61.19689"; charset="us-ascii"
+--===============0574248970==
+Content-Type: multipart/alternative; boundary="1392402535.157c21.23098"; charset="us-ascii"
 
 
---1392401375.cD3d61.19689
-Date: Fri, 14 Feb 2014 18:09:35 +0000
+--1392402535.157c21.23098
+Date: Fri, 14 Feb 2014 18:28:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74316
 
-AnAkkk <anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         QA Contact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |
-            Product|xorg                        |Mesa
-          Component|Driver/nouveau              |Drivers/DRI/nouveau
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |NOTOURBUG
 
---- Comment #4 from AnAkkk <anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Here's the error I get with MESA_DEBUG=1:
-Mesa: User error: GL_INVALID_OPERATION in glBlitFramebufferEXT(bad src/dst
-multisample pixel formats)
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #4)
+> Here's the error I get with MESA_DEBUG=1:
+> Mesa: User error: GL_INVALID_OPERATION in glBlitFramebufferEXT(bad src/dst
+> multisample pixel formats)
+
+The application is performing some invalid operation, and mesa is complaining
+about it. Not a driver bug. Could be a core mesa bug if it's incorrectly
+determining that the operation is invalid :)
+
+Feel free to reopen if the KDE people determine that this really is a nouveau
+bug somehow.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392401375.cD3d61.19689
-Date: Fri, 14 Feb 2014 18:09:35 +0000
+--1392402535.157c21.23098
+Date: Fri, 14 Feb 2014 18:28:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,11 +65,11 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="AnAkkk &lt;anakin.cs&#64;gmail.com&gt;"> <span class="fn">AnAkkk</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74316">bug 74316</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -73,44 +80,43 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">QA Contact</td>
-           <td>xorg-team&#64;lists.x.org
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>
-               &nbsp;
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Product</td>
-           <td>xorg
-           </td>
-           <td>Mesa
+           <td>RESOLVED
            </td>
          </tr>
 
          <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Driver/nouveau
+           <td style="text-align:right;">Resolution</td>
+           <td>---
            </td>
-           <td>Drivers/DRI/nouveau
+           <td>NOTOURBUG
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74316#c4">Comment # 4</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74316#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74316">bug 74316</a>
-              from <span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="AnAkkk &lt;anakin.cs&#64;gmail.com&gt;"> <span class="fn">AnAkkk</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Here's the error I get with MESA_DEBUG=1:
-Mesa: User error: GL_INVALID_OPERATION in glBlitFramebufferEXT(bad src/dst
-multisample pixel formats)</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=74316#c4">comment #4</a>)
+<span class="quote">&gt; Here's the error I get with MESA_DEBUG=1:
+&gt; Mesa: User error: GL_INVALID_OPERATION in glBlitFramebufferEXT(bad src/dst
+&gt; multisample pixel formats)</span >
+
+The application is performing some invalid operation, and mesa is complaining
+about it. Not a driver bug. Could be a core mesa bug if it's incorrectly
+determining that the operation is invalid :)
+
+Feel free to reopen if the KDE people determine that this really is a nouveau
+bug somehow.</pre>
         </div>
       </p>
       <hr>
@@ -122,9 +128,9 @@ multisample pixel formats)</pre>
     </body>
 </html>
 
---1392401375.cD3d61.19689--
+--1392402535.157c21.23098--
 
---===============1033451870==
+--===============0574248970==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -135,4 +141,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1033451870==--
+--===============0574248970==--
