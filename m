@@ -1,130 +1,55 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74695] [NV86] GPU hangs on resume, causing X to crash
-Date: Sat, 15 Feb 2014 16:02:06 +0000
-Message-ID: <bug-74695-8800-zke0Dke6Sd@http.bugs.freedesktop.org/>
-References: <bug-74695-8800@http.bugs.freedesktop.org/>
+From: Mike Gulick <Mike.Gulick@mathworks.com>
+Subject: RE: [PATCH] drm/nv50/disp: use correct register to determine DP
+	display bpp
+Date: Fri, 14 Feb 2014 17:30:48 +0000
+Message-ID: <75858e84f1004b208c2ecc04269a00b9@ex13amer-00-ah.ad.mathworks.com>
+References: <1392346635-29566-1-git-send-email-imirkin@alum.mit.edu>,
+	<CAPaq-gOpD8fJOP+UaetaBNtPr0g730XsNL0bmtrY8r2FjE=fNQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1783226474=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74695-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CAPaq-gOpD8fJOP+UaetaBNtPr0g730XsNL0bmtrY8r2FjE=fNQ@mail.gmail.com>
+Content-Language: en-US
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces@lists.freedesktop.org
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+To: Torsten Wagner <torsten.wagner@gmail.com>, Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "# 3.9+" <stable@vger.kernel.org>, Ben Skeggs <bskeggs@redhat.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
+Yes, this works for me as well.  I tested against 3.14-rc2 as well as the latest 3.10 stable series (3.10.30).  I tested on the both the quadro 400 (gt216gl), and the quadro 600 (gf108gl), and displayport works as expected.  Also tested on quadro k600 (gk107), which was working without this patch, just the make sure it was unaffected.
 
---===============1783226474==
-Content-Type: multipart/alternative; boundary="1392480126.77FFAb21.31642"; charset="us-ascii"
+Thanks for the quick turnaround with this patch.  Hopefully this will get applied to both 3.14 and the 3.10 stable series.
 
+-Mike
+________________________________________
+From: Torsten Wagner <torsten.wagner@gmail.com>
+Sent: Friday, February 14, 2014 5:25 AM
+To: Ilia Mirkin
+Cc: Ben Skeggs; nouveau@lists.freedesktop.org; dri-devel@lists.freedesktop.org; Mike Gulick; # 3.9+
+Subject: Re: [PATCH] drm/nv50/disp: use correct register to determine DP display bpp
 
---1392480126.77FFAb21.31642
-Date: Sat, 15 Feb 2014 16:02:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Works !!!
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74695
+I applied this patch against the current linux kernel of the Arch
+Linux distro (3.12.9-2) including all there magic during package
+build, just to see it works downstream. (had to recreate the patch but
+the actual changes were not changed).
 
---- Comment #14 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I started bisecting kernel from 3.7 to 3.8 this is the bisect log output:
+After applying this patch the bug was gone.
 
-letozaf@letozaf-PC:~/Documents/linux$ git bisect log
-git bisect start
-# good: [29594404d7fe73cd80eaa4ee8c43dcc53970c60e] Linux 3.7
-git bisect good 29594404d7fe73cd80eaa4ee8c43dcc53970c60e
-# bad: [19f949f52599ba7c3f67a5897ac6be14bfcb1200] Linux 3.8
-git bisect bad 19f949f52599ba7c3f67a5897ac6be14bfcb1200
-# good: [dadfab4873256d2145640c0ce468fcbfb48977fe] Merge tag 'firewire-updates'
-of git://git.kernel.org/pub/scm/linux/kernel/git/ieee1394/linux1394
-git bisect good dadfab4873256d2145640c0ce468fcbfb48977fe
-# bad: [992956189de58cae9f2be40585bc25105cd7c5ad] efi: Fix the build with user
-namespaces enabled.
-git bisect bad 992956189de58cae9f2be40585bc25105cd7c5ad
+One want to make sure that the address was the culprit and not the
+variable soff, which could just be wrong leading to the same problem.
 
+If that is worked out to be ok. I would be happy to see this patch
+upstream soon.
 
-I stopped as the second kernel test, the
-992956189de58cae9f2be40585bc25105cd7c5ad one, after suspension gave me a black
-screen and I could not resume, had to switch of my PC by pushing power button.
-After reboot apport reported an Xorg crash.
-So I think the problem is on this kernel commit
-(992956189de58cae9f2be40585bc25105cd7c5ad).
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1392480126.77FFAb21.31642
-Date: Sat, 15 Feb 2014 16:02:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV86] GPU hangs on resume, causing X to crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74695">bug 74695</a>
-              from <span class="vcard"><a class="email" href="mailto:carla.sella&#64;gmail.com" title="Carla sella &lt;carla.sella&#64;gmail.com&gt;"> <span class="fn">Carla sella</span></a>
-</span></b>
-        <pre>I started bisecting kernel from 3.7 to 3.8 this is the bisect log output:
-
-letozaf&#64;letozaf-PC:~/Documents/linux$ git bisect log
-git bisect start
-# good: [29594404d7fe73cd80eaa4ee8c43dcc53970c60e] Linux 3.7
-git bisect good 29594404d7fe73cd80eaa4ee8c43dcc53970c60e
-# bad: [19f949f52599ba7c3f67a5897ac6be14bfcb1200] Linux 3.8
-git bisect bad 19f949f52599ba7c3f67a5897ac6be14bfcb1200
-# good: [dadfab4873256d2145640c0ce468fcbfb48977fe] Merge tag 'firewire-updates'
-of git://git.kernel.org/pub/scm/linux/kernel/git/ieee1394/linux1394
-git bisect good dadfab4873256d2145640c0ce468fcbfb48977fe
-# bad: [992956189de58cae9f2be40585bc25105cd7c5ad] efi: Fix the build with user
-namespaces enabled.
-git bisect bad 992956189de58cae9f2be40585bc25105cd7c5ad
-
-
-I stopped as the second kernel test, the
-992956189de58cae9f2be40585bc25105cd7c5ad one, after suspension gave me a black
-screen and I could not resume, had to switch of my PC by pushing power button.
-After reboot apport reported an Xorg crash.
-So I think the problem is on this kernel commit
-(992956189de58cae9f2be40585bc25105cd7c5ad).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1392480126.77FFAb21.31642--
-
---===============1783226474==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1783226474==--
+Thanks a lot for all the hard work and searching. And sorry for the
+hash, have no idea what went wrong during the bug report.
