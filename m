@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75013] New: [Quadro 600] [Ubuntu 13.10] Display
- update issues, stale rendered content
-Date: Sat, 15 Feb 2014 09:50:29 +0000
-Message-ID: <bug-75013-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75013] [NVC1] [Quadro 600] Display update issues,
+ stale rendered content
+Date: Sat, 15 Feb 2014 09:55:53 +0000
+Message-ID: <bug-75013-8800-L3lkB8E6ll@http.bugs.freedesktop.org/>
+References: <bug-75013-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1857479706=="
+Content-Type: multipart/mixed; boundary="===============0416213059=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75013-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,59 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1857479706==
-Content-Type: multipart/alternative; boundary="1392457829.2E7b1.32362"; charset="us-ascii"
+--===============0416213059==
+Content-Type: multipart/alternative; boundary="1392458152.FaF52.1240"; charset="us-ascii"
 
 
---1392457829.2E7b1.32362
-Date: Sat, 15 Feb 2014 09:50:29 +0000
+--1392458152.FaF52.1240
+Date: Sat, 15 Feb 2014 09:55:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75013
 
-          Priority: medium
-            Bug ID: 75013
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [Quadro 600] [Ubuntu 13.10] Display update issues,
-                    stale rendered content
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: major
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: spartha80-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Occurance
-The content onscreen is not updated frequntly, leading to stale content.
-Manifestation  of the issue are mouse pointer trail, invalid text cursor
-position while typing.The detailed logs are attached. The issue is not specific
-to any application.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[Quadro 600] [Ubuntu 13.10] |[NVC1] [Quadro 600] Display
+                   |Display update issues,      |update issues, stale
+                   |stale rendered content      |rendered content
 
-OS
-Observed in 12.04, 12.10, 13.10 versions of Ubuntu.
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I see that you're using displayport. Is it an actual DP monitor, or are you
+using a DP->xyz adapter?
 
+I recently posted a patch that should fix computing number of lanes/lane speeds
+for DP on pre-nvd0 cards:
+http://lists.freedesktop.org/archives/nouveau/2014-February/016205.html
 
-
-//Kernel Logs
-http://pastebin.ubuntu.com/6936221/
-
-//glxinfo
-http://pastebin.ubuntu.com/6936226/
-
-//X logs
-http://pastebin.ubuntu.com/6936239/
+Can you see if that helps you? Should apply to any 3.9+ kernel.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392457829.2E7b1.32362
-Date: Sat, 15 Feb 2014 09:50:29 +0000
+--1392458152.FaF52.1240
+Date: Sat, 15 Feb 2014 09:55:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -79,114 +63,47 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [Quadro 600] [Ubuntu 13.10] Display update issues, stale rendered content"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75013">75013</a>
-          </td>
-        </tr>
+   title="NEW --- - [NVC1] [Quadro 600] Display update issues, stale rendered content"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75013">bug 75013</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[Quadro 600] [Ubuntu 13.10] Display update issues, stale rendered content
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>spartha80&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[Quadro 600] [Ubuntu 13.10] Display update issues, stale rendered content
+           </td>
+           <td>[NVC1] [Quadro 600] Display update issues, stale rendered content
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Occurance
-The content onscreen is not updated frequntly, leading to stale content.
-Manifestation  of the issue are mouse pointer trail, invalid text cursor
-position while typing.The detailed logs are attached. The issue is not specific
-to any application.
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC1] [Quadro 600] Display update issues, stale rendered content"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75013#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC1] [Quadro 600] Display update issues, stale rendered content"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75013">bug 75013</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>I see that you're using displayport. Is it an actual DP monitor, or are you
+using a DP-&gt;xyz adapter?
 
-OS
-Observed in 12.04, 12.10, 13.10 versions of Ubuntu.
+I recently posted a patch that should fix computing number of lanes/lane speeds
+for DP on pre-nvd0 cards:
+<a href="http://lists.freedesktop.org/archives/nouveau/2014-February/016205.html">http://lists.freedesktop.org/archives/nouveau/2014-February/016205.html</a>
 
-
-
-//Kernel Logs
-<a href="http://pastebin.ubuntu.com/6936221/">http://pastebin.ubuntu.com/6936221/</a>
-
-//glxinfo
-<a href="http://pastebin.ubuntu.com/6936226/">http://pastebin.ubuntu.com/6936226/</a>
-
-//X logs
-<a href="http://pastebin.ubuntu.com/6936239/">http://pastebin.ubuntu.com/6936239/</a></pre>
+Can you see if that helps you? Should apply to any 3.9+ kernel.</pre>
         </div>
       </p>
       <hr>
@@ -198,9 +115,9 @@ Observed in 12.04, 12.10, 13.10 versions of Ubuntu.
     </body>
 </html>
 
---1392457829.2E7b1.32362--
+--1392458152.FaF52.1240--
 
---===============1857479706==
+--===============0416213059==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -211,4 +128,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1857479706==--
+--===============0416213059==--
