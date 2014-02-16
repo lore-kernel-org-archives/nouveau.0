@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74648] [NV86] Ultima IX (wine) movie playback
 	crashes game
-Date: Sun, 16 Feb 2014 04:43:10 +0000
-Message-ID: <bug-74648-8800-zFugu75qwr@http.bugs.freedesktop.org/>
+Date: Sun, 16 Feb 2014 04:45:48 +0000
+Message-ID: <bug-74648-8800-hTCQmlx5cU@http.bugs.freedesktop.org/>
 References: <bug-74648-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1013126588=="
+Content-Type: multipart/mixed; boundary="===============1019531085=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74648-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,64 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1013126588==
-Content-Type: multipart/alternative; boundary="1392525790.78bA03D2.4643"; charset="us-ascii"
+--===============1019531085==
+Content-Type: multipart/alternative; boundary="1392525948.Cb3FccB2.5187"; charset="us-ascii"
 
 
---1392525790.78bA03D2.4643
-Date: Sun, 16 Feb 2014 04:43:10 +0000
+--1392525948.Cb3FccB2.5187
+Date: Sun, 16 Feb 2014 04:45:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74648
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #5)
-> Getting closer ...
-> 
-> With "./configure --enable-32-bit --enable-debug CFLAGS="-m32"
-> CXXFLAGS="-m32" LDFLAGS="-m32"" I now get as far as:
-> 
->   CC       eglscreen.lo
->   CC       eglstring.lo
->   CC       eglsurface.lo
->   CC       eglsync.lo
->   CCLD     libEGL.la
-> /bin/ld: skipping incompatible /usr/lib64/libudev.so when searching for
-> -ludev
-> /bin/ld: cannot find -ludev
-> collect2: error: ld returned 1 exit status
-> gmake[3]: *** [libEGL.la] Error 1
-> gmake[3]: Leaving directory `/usr/local/src/Mesa-9.2.5/src/egl/main'
-> gmake[2]: *** [all-recursive] Error 1
-> gmake[2]: Leaving directory `/usr/local/src/Mesa-9.2.5/src/egl'
-> gmake[1]: *** [all-recursive] Error 1
-> gmake[1]: Leaving directory `/usr/local/src/Mesa-9.2.5/src'
-> gmake: *** [all-recursive] Error 1
-> 
-> I'm not sure why it can't find udev:
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Try building with these additional flags:
 
-Dunno... sorry. Is there a /usr/lib32/libudev.so.2?
+--with-gallium-drivers=nouveau --with-dri-drivers="" --enable-texture-float
+--disable-egl
 
-> 
-> $ rpm -qa | grep -i udev
-> system-config-printer-udev-1.4.3-2.fc20.x86_64
-> libgudev1-208-9.fc20.x86_64
-> libgudev1-208-9.fc20.i686
-> libgudev1-devel-208-9.fc20.x86_64
-> libgudev1-devel-208-9.fc20.i686
-
-You could also see if there are debug symbols available for your current rpm's
--- they are often supplied by the distro in a separate package. Hopefully the
-thing generating the backtrace would know to look in the alternate locations
-for them.
+That should limit what's being built and also disable EGL which is the thing
+giving you trouble currently.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392525790.78bA03D2.4643
-Date: Sun, 16 Feb 2014 04:43:10 +0000
+--1392525948.Cb3FccB2.5187
+Date: Sun, 16 Feb 2014 04:45:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -92,52 +60,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Ultima IX (wine) movie playback crashes game"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74648#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74648#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV86] Ultima IX (wine) movie playback crashes game"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74648">bug 74648</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=74648#c5">comment #5</a>)
-<span class="quote">&gt; Getting closer ...
-&gt; 
-&gt; With &quot;./configure --enable-32-bit --enable-debug CFLAGS=&quot;-m32&quot;
-&gt; CXXFLAGS=&quot;-m32&quot; LDFLAGS=&quot;-m32&quot;&quot; I now get as far as:
-&gt; 
-&gt;   CC       eglscreen.lo
-&gt;   CC       eglstring.lo
-&gt;   CC       eglsurface.lo
-&gt;   CC       eglsync.lo
-&gt;   CCLD     libEGL.la
-&gt; /bin/ld: skipping incompatible /usr/lib64/libudev.so when searching for
-&gt; -ludev
-&gt; /bin/ld: cannot find -ludev
-&gt; collect2: error: ld returned 1 exit status
-&gt; gmake[3]: *** [libEGL.la] Error 1
-&gt; gmake[3]: Leaving directory `/usr/local/src/Mesa-9.2.5/src/egl/main'
-&gt; gmake[2]: *** [all-recursive] Error 1
-&gt; gmake[2]: Leaving directory `/usr/local/src/Mesa-9.2.5/src/egl'
-&gt; gmake[1]: *** [all-recursive] Error 1
-&gt; gmake[1]: Leaving directory `/usr/local/src/Mesa-9.2.5/src'
-&gt; gmake: *** [all-recursive] Error 1
-&gt; 
-&gt; I'm not sure why it can't find udev:</span >
+        <pre>Try building with these additional flags:
 
-Dunno... sorry. Is there a /usr/lib32/libudev.so.2?
+--with-gallium-drivers=nouveau --with-dri-drivers=&quot;&quot; --enable-texture-float
+--disable-egl
 
-<span class="quote">&gt; 
-&gt; $ rpm -qa | grep -i udev
-&gt; system-config-printer-udev-1.4.3-2.fc20.x86_64
-&gt; libgudev1-208-9.fc20.x86_64
-&gt; libgudev1-208-9.fc20.i686
-&gt; libgudev1-devel-208-9.fc20.x86_64
-&gt; libgudev1-devel-208-9.fc20.i686</span >
-
-You could also see if there are debug symbols available for your current rpm's
--- they are often supplied by the distro in a separate package. Hopefully the
-thing generating the backtrace would know to look in the alternate locations
-for them.</pre>
+That should limit what's being built and also disable EGL which is the thing
+giving you trouble currently.</pre>
         </div>
       </p>
       <hr>
@@ -149,9 +85,9 @@ for them.</pre>
     </body>
 </html>
 
---1392525790.78bA03D2.4643--
+--1392525948.Cb3FccB2.5187--
 
---===============1013126588==
+--===============1019531085==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -162,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1013126588==--
+--===============1019531085==--
