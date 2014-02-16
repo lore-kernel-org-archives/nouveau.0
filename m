@@ -1,13 +1,13 @@
-From: Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: fix TTM_PL_TT memtype on pre-nv50
-Date: Sun, 16 Feb 2014 10:29:40 +0100
-Message-ID: <CAF1_xX3ut-eqERupeS6faq_ADOBszgB0THcK+iG2tetApqvGYg@mail.gmail.com>
-References: <1392524821-10358-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74613] [NV34] [v3.14-rc1] nouveau: get 0x10000000
+ put 0x0000ed30 state 0xc0000000 (err: MEM_FAULT) push 0x00000000
+Date: Sun, 16 Feb 2014 09:31:29 +0000
+Message-ID: <bug-74613-8800-WOsCp9XAYa@http.bugs.freedesktop.org/>
+References: <bug-74613-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1265949165=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1392524821-10358-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+In-Reply-To: <bug-74613-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,46 +17,75 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-2014-02-16 5:27 GMT+01:00 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>:
-> Commit a55409066 ("drm/nv50-: map TTM_PL_SYSTEM through a BAR for CPU
-> access") made it possible to work with tiled memory. However
-> mem->mm_node is not a nouveau_mem for AGP-using pre-NV50 cards, but a
-> drm_mm_node, as created by the ttm_bo_manager_func. As such, extend the
-> untiled check to explicitly include all pre-nv50 cards.
->
-> Reported-by: Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=74613
-> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-> ---
 
-Tested-by: Ronald Uitermark <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+--===============1265949165==
+Content-Type: multipart/alternative; boundary="1392543088.814161.28651"; charset="us-ascii"
 
-> Hmmm... this seems like a really fragile semantic, I wonder if more
-> mem->mm_node usages have to be audited. But this one's quick and easy. I'd
-> rather see something a little more solid around dealing with these
-> differences, but not sure how without reading all the ttm gunk. Perhaps just
-> make sure it's always a nouveau_mem by wrapping the ttm_bo_manager logic?
->
->  drivers/gpu/drm/nouveau/nouveau_bo.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> index 488686d..4aed171 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> @@ -1249,7 +1249,7 @@ nouveau_ttm_io_mem_reserve(struct ttm_bo_device *bdev, struct ttm_mem_reg *mem)
->                         mem->bus.is_iomem = !dev->agp->cant_use_aperture;
->                 }
->  #endif
-> -               if (!node->memtype)
-> +               if (nv_device(drm->device)->card_type < NV_50 || !node->memtype)
->                         /* untiled */
->                         break;
->                 /* fallthrough, tiled memory */
-> --
-> 1.8.3.2
->
+
+--1392543088.814161.28651
+Date: Sun, 16 Feb 2014 09:31:28 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=74613
+
+--- Comment #11 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+No need to apologize. I'm learning a lot *and* get to contribute. I'll get back
+to you about the other 2 bugs.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1392543088.814161.28651
+Date: Sun, 16 Feb 2014 09:31:28 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV34] [v3.14-rc1] nouveau: get 0x10000000 put 0x0000ed30 state 0xc0000000 (err: MEM_FAULT) push 0x00000000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74613#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV34] [v3.14-rc1] nouveau: get 0x10000000 put 0x0000ed30 state 0xc0000000 (err: MEM_FAULT) push 0x00000000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74613">bug 74613</a>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+</span></b>
+        <pre>No need to apologize. I'm learning a lot *and* get to contribute. I'll get back
+to you about the other 2 bugs.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1392543088.814161.28651--
+
+--===============1265949165==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1265949165==--
