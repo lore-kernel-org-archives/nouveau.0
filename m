@@ -1,60 +1,104 @@
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Subject: Re: GeForce 6100 (NV4E) & nouveau regression in 3.12
-Date: Sun, 16 Feb 2014 20:15:01 +0100
-Message-ID: <CACna6rw=p=jpQQjJFpAZaGqr1pBateGpTxAY3BEeLbXmGKXSXA@mail.gmail.com>
-References: <CACna6rz=cp9Sce46C0P-cQbow-Os95_6XB+fhNjSwvnCJabJfA@mail.gmail.com>
-	<CAKb7Uvjz74GWDEwynOud2wmzoABc1HMrP4VC+J-oKi9Y3G0h8w@mail.gmail.com>
-	<CACna6ryidTQDGVq=N6Wg9xycXqAaPsuvjoktQiZ00p5sLLkzdQ@mail.gmail.com>
-	<CAKb7Uvh5o4hd6G1R07qu3hRCfweb+0qEoRJWF+hZKMCm+xX0zA@mail.gmail.com>
-	<CACna6ryE2wM=+SNkHkgPkP9nGqLFfQbuCs-6VJci+DL-xSrMWw@mail.gmail.com>
-	<CAKb7UviTjc5wN9TUAxTypXpsgvwZnuvR+Ea6RwA-ir9-Rq5TRg@mail.gmail.com>
-	<CACna6rx=paq9uc5rqGKmNgk4+BG_pwD_4Q+jRsnQHCGFUqgb+g@mail.gmail.com>
-	<CAKb7UviTxo6hvam=6LPwYMm=SsZSkzv-EyFVt_YaBVKW6rzYyA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74492] [NV4E] v3.13-rc8 nv4e + msi = random lockups
+Date: Sun, 16 Feb 2014 19:41:34 +0000
+Message-ID: <bug-74492-8800-k1r7BtP0Qj@http.bugs.freedesktop.org/>
+References: <bug-74492-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7UviTxo6hvam=6LPwYMm=SsZSkzv-EyFVt_YaBVKW6rzYyA@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: Dave Airlie <airlied@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, dri-devel <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1713737296=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-74492-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-MjAxNC0wMi0xNiAxOTo1NSBHTVQrMDE6MDAgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
-ZWR1PjoKPiBPbiBTdW4sIEZlYiAxNiwgMjAxNCBhdCAxMDoxNyBBTSwgUmFmYcWCIE1pxYJlY2tp
-IDx6YWplYzVAZ21haWwuY29tPiB3cm90ZToKPj4gMjAxNC0wMi0xMSAxMTo0MSBHTVQrMDE6MDAg
-SWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PjoKPj4+IChiKSBiaXNlY3QuIHlvdSBj
-YW4gKGFsbW9zdCkgZGVmaW5pdGVseSByZXN0cmljdCB0aGUgYmlzZWN0IHRvCj4+PiBkcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS4gaWYgeW91IGhhdmUgYWRkaXRpb25hbCBjb21wdXRhdGlvbmFsIHBv
-d2VyLCBpCj4+PiB3b3VsZCByZWNvbW1lbmQgbG9va2luZyBpbnRvIGRpc3RjYyBmb3Igc3BlZWRp
-bmcgdXAgdGhlIGNvbXBpbGVzLiBpdAo+Pj4gbWF5IGJlIGludGVyZXN0aW5nIHRvIGFsc28gdHJ5
-IDMuNi54IHNpbmNlIDMuNyByZWNlaXZlZCBhIHByZXR0eSBiaWcKPj4+IHJld3JpdGUuIGJ1dCBh
-IGdpdCBiaXNlY3QgaXMgYSBsb3QgbW9yZSBkaXJlY3QgaW4gZmlndXJpbmcgdGhlc2UKPj4+IHRo
-aW5ncyBvdXQgOikKPj4+Cj4+PiBBZnRlciBJIHdhdGNoZWQgeW91ciB2aWRlbywgaXQgZGVmaW5p
-dGVseSBicm91Z2h0IGJhY2sgbWVtb3JpZXMgb2YKPj4+IGFub3RoZXIgYnVnIG9yIHBlcmhhcHMg
-ZW1haWwgb24gdGhpcyBsaXN0IGEgd2hpbGUgYmFjayAoZGVmaW5pdGVseQo+Pj4gd2l0aGluIHRo
-ZSBwYXN0IHllYXIpLCBidXQgdW5mb3J0dW5hdGVseSBJIGNhbid0IHF1aXRlIHBsYWNlIGl0IDoo
-Cj4+Cj4+IEkndmUgZmluYWxseSBiaXNlY3RlZCBiZXR3ZWVuIDMuMTAgYW5kIDMuMTE6Cj4+Cj4+
-IDc4YWUwYWQ0MDNkYWYxMWNmNjNkYTg2OTIzZDJiNWRiZWRhM2FmOGYgaXMgdGhlIGZpcnN0IGJh
-ZCBjb21taXQKPj4gY29tbWl0IDc4YWUwYWQ0MDNkYWYxMWNmNjNkYTg2OTIzZDJiNWRiZWRhM2Fm
-OGYKPj4gQXV0aG9yOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Cj4+IERhdGU6IFdl
-ZCBBdWcgMjEgMTE6MzA6MzYgMjAxMyArMTAwMAo+Pgo+PiAgICAgZHJtL252MDQvZGlzcDogZml4
-IGZyYW1lYnVmZmVyIHBpbiByZWZjb3VudGluZwo+Pgo+PiBJJ3ZlIGJvb3RlZCB0aGF0IGNvbW1p
-dCBhbmQgb25lIGNvbW1pdCBvbGRlciBmZXcgdGltZXMuIEV2ZXJ5IHRpbWUgSQo+PiBib290ZWQg
-NzhhZTBhZCBJIGdvdCBjb3JydXB0aW9uLiBFdmVyeSB0aW1lIEkgYm9vdGVkIDZmZjhjNzYgKGl0
-J3MgdGhlCj4+IGVhcmxpZXIgY29tbWl0KSwgaXQgd2FzIE9LLgo+Cj4gQnV0IEkgYmV0IGlmIHlv
-dSByZXN0YXJ0IFgsIHlvdSBnZXQgYSBiYWNrdHJhY2UsIHJpZ2h0PwoKVGhhdCdzIHJpZ2h0LgoK
-NzhhZTBhZDoKQ29ycnVwdGlvbnMKCjZmZjhjNzY6CldBUk5JTkc6IGF0IGRyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L25vdXZlYXVfYm8uYzoxNTEKbm91dmVhdV9ib19kZWxfdHRtKzB4ODAvMHg5MCBb
-bm91dmVhdV0oKQooYWZ0ZXIgcXVpdGluZyBYIGJ5ICJpbml0IDMiKQoKLS0gClJhZmHFggpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFp
-bGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============1713737296==
+Content-Type: multipart/alternative; boundary="1392579694.aEDdd8C1.8383"; charset="us-ascii"
+
+
+--1392579694.aEDdd8C1.8383
+Date: Sun, 16 Feb 2014 19:41:34 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=74492
+
+--- Comment #13 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+It went berserk shortly after the last post. I have the laptop hooked up to
+another machine with netconsole.
+
+Last time it gave so much OOPSES BUGS and WARNS, well that should keep you all
+busy for the next week :) .
+
+Bug is hard to reproduce, this might take a while. It happens mostly while
+scrolling. Starts with parts of the screen not updating keeping stale contents
+of before the scroll.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1392579694.aEDdd8C1.8383
+Date: Sun, 16 Feb 2014 19:41:34 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV4E] v3.13-rc8 nv4e + msi = random lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492#c13">Comment # 13</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV4E] v3.13-rc8 nv4e + msi = random lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492">bug 74492</a>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+</span></b>
+        <pre>It went berserk shortly after the last post. I have the laptop hooked up to
+another machine with netconsole.
+
+Last time it gave so much OOPSES BUGS and WARNS, well that should keep you all
+busy for the next week :) .
+
+Bug is hard to reproduce, this might take a while. It happens mostly while
+scrolling. Starts with parts of the screen not updating keeping stale contents
+of before the scroll.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1392579694.aEDdd8C1.8383--
+
+--===============1713737296==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1713737296==--
