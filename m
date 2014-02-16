@@ -1,56 +1,165 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] drm/nouveau: fix TTM_PL_TT memtype on pre-nv50
-Date: Sat, 15 Feb 2014 23:27:01 -0500
-Message-ID: <1392524821-10358-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74648] [NV86] Ultima IX (wine) movie playback
+	crashes game
+Date: Sun, 16 Feb 2014 04:43:10 +0000
+Message-ID: <bug-74648-8800-zFugu75qwr@http.bugs.freedesktop.org/>
+References: <bug-74648-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@ubuntu.com>, Ronald <ronald645@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1013126588=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-74648-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Commit a55409066 ("drm/nv50-: map TTM_PL_SYSTEM through a BAR for CPU
-access") made it possible to work with tiled memory. However
-mem->mm_node is not a nouveau_mem for AGP-using pre-NV50 cards, but a
-drm_mm_node, as created by the ttm_bo_manager_func. As such, extend the
-untiled check to explicitly include all pre-nv50 cards.
 
-Reported-by: Ronald <ronald645@gmail.com>
-Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=74613
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
----
+--===============1013126588==
+Content-Type: multipart/alternative; boundary="1392525790.78bA03D2.4643"; charset="us-ascii"
 
-Hmmm... this seems like a really fragile semantic, I wonder if more
-mem->mm_node usages have to be audited. But this one's quick and easy. I'd
-rather see something a little more solid around dealing with these
-differences, but not sure how without reading all the ttm gunk. Perhaps just
-make sure it's always a nouveau_mem by wrapping the ttm_bo_manager logic?
 
- drivers/gpu/drm/nouveau/nouveau_bo.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--1392525790.78bA03D2.4643
+Date: Sun, 16 Feb 2014 04:43:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 488686d..4aed171 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -1249,7 +1249,7 @@ nouveau_ttm_io_mem_reserve(struct ttm_bo_device *bdev, struct ttm_mem_reg *mem)
- 			mem->bus.is_iomem = !dev->agp->cant_use_aperture;
- 		}
- #endif
--		if (!node->memtype)
-+		if (nv_device(drm->device)->card_type < NV_50 || !node->memtype)
- 			/* untiled */
- 			break;
- 		/* fallthrough, tiled memory */
+https://bugs.freedesktop.org/show_bug.cgi?id=74648
+
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #5)
+> Getting closer ...
+> 
+> With "./configure --enable-32-bit --enable-debug CFLAGS="-m32"
+> CXXFLAGS="-m32" LDFLAGS="-m32"" I now get as far as:
+> 
+>   CC       eglscreen.lo
+>   CC       eglstring.lo
+>   CC       eglsurface.lo
+>   CC       eglsync.lo
+>   CCLD     libEGL.la
+> /bin/ld: skipping incompatible /usr/lib64/libudev.so when searching for
+> -ludev
+> /bin/ld: cannot find -ludev
+> collect2: error: ld returned 1 exit status
+> gmake[3]: *** [libEGL.la] Error 1
+> gmake[3]: Leaving directory `/usr/local/src/Mesa-9.2.5/src/egl/main'
+> gmake[2]: *** [all-recursive] Error 1
+> gmake[2]: Leaving directory `/usr/local/src/Mesa-9.2.5/src/egl'
+> gmake[1]: *** [all-recursive] Error 1
+> gmake[1]: Leaving directory `/usr/local/src/Mesa-9.2.5/src'
+> gmake: *** [all-recursive] Error 1
+> 
+> I'm not sure why it can't find udev:
+
+Dunno... sorry. Is there a /usr/lib32/libudev.so.2?
+
+> 
+> $ rpm -qa | grep -i udev
+> system-config-printer-udev-1.4.3-2.fc20.x86_64
+> libgudev1-208-9.fc20.x86_64
+> libgudev1-208-9.fc20.i686
+> libgudev1-devel-208-9.fc20.x86_64
+> libgudev1-devel-208-9.fc20.i686
+
+You could also see if there are debug symbols available for your current rpm's
+-- they are often supplied by the distro in a separate package. Hopefully the
+thing generating the backtrace would know to look in the alternate locations
+for them.
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1392525790.78bA03D2.4643
+Date: Sun, 16 Feb 2014 04:43:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] Ultima IX (wine) movie playback crashes game"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74648#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV86] Ultima IX (wine) movie playback crashes game"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74648">bug 74648</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=74648#c5">comment #5</a>)
+<span class="quote">&gt; Getting closer ...
+&gt; 
+&gt; With &quot;./configure --enable-32-bit --enable-debug CFLAGS=&quot;-m32&quot;
+&gt; CXXFLAGS=&quot;-m32&quot; LDFLAGS=&quot;-m32&quot;&quot; I now get as far as:
+&gt; 
+&gt;   CC       eglscreen.lo
+&gt;   CC       eglstring.lo
+&gt;   CC       eglsurface.lo
+&gt;   CC       eglsync.lo
+&gt;   CCLD     libEGL.la
+&gt; /bin/ld: skipping incompatible /usr/lib64/libudev.so when searching for
+&gt; -ludev
+&gt; /bin/ld: cannot find -ludev
+&gt; collect2: error: ld returned 1 exit status
+&gt; gmake[3]: *** [libEGL.la] Error 1
+&gt; gmake[3]: Leaving directory `/usr/local/src/Mesa-9.2.5/src/egl/main'
+&gt; gmake[2]: *** [all-recursive] Error 1
+&gt; gmake[2]: Leaving directory `/usr/local/src/Mesa-9.2.5/src/egl'
+&gt; gmake[1]: *** [all-recursive] Error 1
+&gt; gmake[1]: Leaving directory `/usr/local/src/Mesa-9.2.5/src'
+&gt; gmake: *** [all-recursive] Error 1
+&gt; 
+&gt; I'm not sure why it can't find udev:</span >
+
+Dunno... sorry. Is there a /usr/lib32/libudev.so.2?
+
+<span class="quote">&gt; 
+&gt; $ rpm -qa | grep -i udev
+&gt; system-config-printer-udev-1.4.3-2.fc20.x86_64
+&gt; libgudev1-208-9.fc20.x86_64
+&gt; libgudev1-208-9.fc20.i686
+&gt; libgudev1-devel-208-9.fc20.x86_64
+&gt; libgudev1-devel-208-9.fc20.i686</span >
+
+You could also see if there are debug symbols available for your current rpm's
+-- they are often supplied by the distro in a separate package. Hopefully the
+thing generating the backtrace would know to look in the alternate locations
+for them.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1392525790.78bA03D2.4643--
+
+--===============1013126588==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1013126588==--
