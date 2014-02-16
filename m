@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74613] [NV34] [v3.14-rc1] nouveau: get 0x10000000
- put 0x0000ed30 state 0xc0000000 (err: MEM_FAULT) push 0x00000000
-Date: Sun, 16 Feb 2014 08:24:34 +0000
-Message-ID: <bug-74613-8800-l0BE37J7Y6@http.bugs.freedesktop.org/>
-References: <bug-74613-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] drm/nouveau/bios: fix INDEX_ADDRESS_LATCHED trace
+	printout
+Date: Sun, 16 Feb 2014 03:53:55 -0500
+Message-ID: <1392540835-11012-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1227865055=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74613-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,87 +16,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Having a \n in the middle of a format string means that the next line
+doesn't get the prefixes unlike every other line printed by the trace.
 
---===============1227865055==
-Content-Type: multipart/alternative; boundary="1392539074.1CA5FeB2.14298"; charset="us-ascii"
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/subdev/bios/init.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-
---1392539074.1CA5FeB2.14298
-Date: Sun, 16 Feb 2014 08:24:34 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=74613
-
---- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #9)
-> Yes, that fixes it.
-
-Awesome! I sent a patch to the ML + cc'd you (I assume you got it) a few hours
-ago. Feel free to respond with a Tested-by. I'll close this bug when the patch
-hits mainline.
-
-Thanks for bisecting, and sorry that you're running into so many problems!
-
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/bios/init.c b/drivers/gpu/drm/nouveau/core/subdev/bios/init.c
+index de201ba..126651b 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/bios/init.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/bios/init.c
+@@ -845,9 +845,8 @@ init_idx_addr_latched(struct nvbios_init *init)
+ 	u32 data = nv_ro32(bios, init->offset + 13);
+ 	u8 count = nv_ro08(bios, init->offset + 17);
+ 
+-	trace("INDEX_ADDRESS_LATCHED\t"
+-	      "R[0x%06x] : R[0x%06x]\n\tCTRL &= 0x%08x |= 0x%08x\n",
+-	      creg, dreg, mask, data);
++	trace("INDEX_ADDRESS_LATCHED\tR[0x%06x] : R[0x%06x]\n", creg, dreg);
++	trace("\tCTRL &= 0x%08x |= 0x%08x\n", mask, data);
+ 	init->offset += 18;
+ 
+ 	while (count--) {
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1392539074.1CA5FeB2.14298
-Date: Sun, 16 Feb 2014 08:24:34 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV34] [v3.14-rc1] nouveau: get 0x10000000 put 0x0000ed30 state 0xc0000000 (err: MEM_FAULT) push 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74613#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV34] [v3.14-rc1] nouveau: get 0x10000000 put 0x0000ed30 state 0xc0000000 (err: MEM_FAULT) push 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74613">bug 74613</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=74613#c9">comment #9</a>)
-<span class="quote">&gt; Yes, that fixes it.</span >
-
-Awesome! I sent a patch to the ML + cc'd you (I assume you got it) a few hours
-ago. Feel free to respond with a Tested-by. I'll close this bug when the patch
-hits mainline.
-
-Thanks for bisecting, and sorry that you're running into so many problems!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1392539074.1CA5FeB2.14298--
-
---===============1227865055==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1227865055==--
+1.8.3.2
