@@ -1,137 +1,56 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75013] [NVC1] [Quadro 600] Display update issues,
- stale rendered content
-Date: Sun, 16 Feb 2014 04:16:49 +0000
-Message-ID: <bug-75013-8800-rWNEZkw2yw@http.bugs.freedesktop.org/>
-References: <bug-75013-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] drm/nouveau: fix TTM_PL_TT memtype on pre-nv50
+Date: Sat, 15 Feb 2014 23:27:01 -0500
+Message-ID: <1392524821-10358-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1333240122=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75013-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Sender: dri-devel-bounces@lists.freedesktop.org
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+To: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@ubuntu.com>, Ronald <ronald645@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
+Commit a55409066 ("drm/nv50-: map TTM_PL_SYSTEM through a BAR for CPU
+access") made it possible to work with tiled memory. However
+mem->mm_node is not a nouveau_mem for AGP-using pre-NV50 cards, but a
+drm_mm_node, as created by the ttm_bo_manager_func. As such, extend the
+untiled check to explicitly include all pre-nv50 cards.
 
---===============1333240122==
-Content-Type: multipart/alternative; boundary="1392524209.4eaD2C2.32424"; charset="us-ascii"
+Reported-by: Ronald <ronald645@gmail.com>
+Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=74613
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+---
 
+Hmmm... this seems like a really fragile semantic, I wonder if more
+mem->mm_node usages have to be audited. But this one's quick and easy. I'd
+rather see something a little more solid around dealing with these
+differences, but not sure how without reading all the ttm gunk. Perhaps just
+make sure it's always a nouveau_mem by wrapping the ttm_bo_manager logic?
 
---1392524209.4eaD2C2.32424
-Date: Sun, 16 Feb 2014 04:16:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+ drivers/gpu/drm/nouveau/nouveau_bo.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75013
-
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #4)
-> (In reply to comment #1)
-> > I see that you're using displayport. Is it an actual DP monitor, or are you
-> > using a DP->xyz adapter?
-> > 
-> > I recently posted a patch that should fix computing number of lanes/lane
-> > speeds for DP on pre-nvd0 cards:
-> > http://lists.freedesktop.org/archives/nouveau/2014-February/016205.html
-> > 
-> > Can you see if that helps you? Should apply to any 3.9+ kernel.
-> 
-> I tried the patch but no luck :(
-
-Yeah, if you're not using the DP port, I wouldn't expect it to. In hindsight, I
-realized that I misread your log -- you're using the DVI-I-1 connector, not
-DP-1.
-
-Unfortunately I don't have any great ideas atm... could you try to upgrade to
-the latest kernel and see if things have magically resolved themselves?
-
-Assuming that they haven't, can you attach a boot log with
-
-nouveau.config=PDISP=debug,VBIOS=trace drm.debug=0xe
-
-from the latest kernel? Perhaps it'll yield some interesting info.
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 488686d..4aed171 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -1249,7 +1249,7 @@ nouveau_ttm_io_mem_reserve(struct ttm_bo_device *bdev, struct ttm_mem_reg *mem)
+ 			mem->bus.is_iomem = !dev->agp->cant_use_aperture;
+ 		}
+ #endif
+-		if (!node->memtype)
++		if (nv_device(drm->device)->card_type < NV_50 || !node->memtype)
+ 			/* untiled */
+ 			break;
+ 		/* fallthrough, tiled memory */
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1392524209.4eaD2C2.32424
-Date: Sun, 16 Feb 2014 04:16:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] [Quadro 600] Display update issues, stale rendered content"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75013#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] [Quadro 600] Display update issues, stale rendered content"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75013">bug 75013</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=75013#c4">comment #4</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=75013#c1">comment #1</a>)
-&gt; &gt; I see that you're using displayport. Is it an actual DP monitor, or are you
-&gt; &gt; using a DP-&gt;xyz adapter?
-&gt; &gt; 
-&gt; &gt; I recently posted a patch that should fix computing number of lanes/lane
-&gt; &gt; speeds for DP on pre-nvd0 cards:
-&gt; &gt; <a href="http://lists.freedesktop.org/archives/nouveau/2014-February/016205.html">http://lists.freedesktop.org/archives/nouveau/2014-February/016205.html</a>
-&gt; &gt; 
-&gt; &gt; Can you see if that helps you? Should apply to any 3.9+ kernel.
-&gt; 
-&gt; I tried the patch but no luck :(</span >
-
-Yeah, if you're not using the DP port, I wouldn't expect it to. In hindsight, I
-realized that I misread your log -- you're using the DVI-I-1 connector, not
-DP-1.
-
-Unfortunately I don't have any great ideas atm... could you try to upgrade to
-the latest kernel and see if things have magically resolved themselves?
-
-Assuming that they haven't, can you attach a boot log with
-
-nouveau.config=PDISP=debug,VBIOS=trace drm.debug=0xe
-
-from the latest kernel? Perhaps it'll yield some interesting info.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1392524209.4eaD2C2.32424--
-
---===============1333240122==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1333240122==--
+1.8.3.2
