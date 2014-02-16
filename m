@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74492] [NV4E] v3.13-rc8 nv4e + msi = random lockups
-Date: Sun, 16 Feb 2014 19:41:34 +0000
-Message-ID: <bug-74492-8800-k1r7BtP0Qj@http.bugs.freedesktop.org/>
-References: <bug-74492-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74316] [NV92] Graphical corruption on KDE
+ shutdown/restart/log out screen
+Date: Sun, 16 Feb 2014 20:32:11 +0000
+Message-ID: <bug-74316-8800-vI5dDNq6Vq@http.bugs.freedesktop.org/>
+References: <bug-74316-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1713737296=="
+Content-Type: multipart/mixed; boundary="===============1785000326=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74492-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-74316-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1713737296==
-Content-Type: multipart/alternative; boundary="1392579694.aEDdd8C1.8383"; charset="us-ascii"
+--===============1785000326==
+Content-Type: multipart/alternative; boundary="1392582731.10fC0.20638"; charset="us-ascii"
 
 
---1392579694.aEDdd8C1.8383
-Date: Sun, 16 Feb 2014 19:41:34 +0000
+--1392582731.10fC0.20638
+Date: Sun, 16 Feb 2014 20:32:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74492
+https://bugs.freedesktop.org/show_bug.cgi?id=74316
 
---- Comment #13 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It went berserk shortly after the last post. I have the laptop hooked up to
-another machine with netconsole.
+AnAkkk <anakin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Last time it gave so much OOPSES BUGS and WARNS, well that should keep you all
-busy for the next week :) .
-
-Bug is hard to reproduce, this might take a while. It happens mostly while
-scrolling. Starts with parts of the screen not updating keeping stale contents
-of before the scroll.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Version|unspecified                 |10.0
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392579694.aEDdd8C1.8383
-Date: Sun, 16 Feb 2014 19:41:34 +0000
+--1392582731.10fC0.20638
+Date: Sun, 16 Feb 2014 20:32:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,29 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:anakin.cs&#64;gmail.com" title="AnAkkk &lt;anakin.cs&#64;gmail.com&gt;"> <span class="fn">AnAkkk</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74316">bug 74316</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Version</td>
+           <td>unspecified
+           </td>
+           <td>10.0
+           </td>
+         </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV4E] v3.13-rc8 nv4e + msi = random lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492#c13">Comment # 13</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV4E] v3.13-rc8 nv4e + msi = random lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492">bug 74492</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span></b>
-        <pre>It went berserk shortly after the last post. I have the laptop hooked up to
-another machine with netconsole.
-
-Last time it gave so much OOPSES BUGS and WARNS, well that should keep you all
-busy for the next week :) .
-
-Bug is hard to reproduce, this might take a while. It happens mostly while
-scrolling. Starts with parts of the screen not updating keeping stale contents
-of before the scroll.</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -88,9 +83,9 @@ of before the scroll.</pre>
     </body>
 </html>
 
---1392579694.aEDdd8C1.8383--
+--1392582731.10fC0.20638--
 
---===============1713737296==
+--===============1785000326==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1713737296==--
+--===============1785000326==--
