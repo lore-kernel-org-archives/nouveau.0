@@ -1,54 +1,96 @@
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Subject: Re: GeForce 6100 (NV4E) & nouveau regression in 3.12
-Date: Sun, 16 Feb 2014 16:17:26 +0100
-Message-ID: <CACna6rx=paq9uc5rqGKmNgk4+BG_pwD_4Q+jRsnQHCGFUqgb+g@mail.gmail.com>
-References: <CACna6rz=cp9Sce46C0P-cQbow-Os95_6XB+fhNjSwvnCJabJfA@mail.gmail.com>
-	<CAKb7Uvjz74GWDEwynOud2wmzoABc1HMrP4VC+J-oKi9Y3G0h8w@mail.gmail.com>
-	<CACna6ryidTQDGVq=N6Wg9xycXqAaPsuvjoktQiZ00p5sLLkzdQ@mail.gmail.com>
-	<CAKb7Uvh5o4hd6G1R07qu3hRCfweb+0qEoRJWF+hZKMCm+xX0zA@mail.gmail.com>
-	<CACna6ryE2wM=+SNkHkgPkP9nGqLFfQbuCs-6VJci+DL-xSrMWw@mail.gmail.com>
-	<CAKb7UviTjc5wN9TUAxTypXpsgvwZnuvR+Ea6RwA-ir9-Rq5TRg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74492] [NV4E] v3.13-rc8 nv4e + msi = random lockups
+Date: Sun, 16 Feb 2014 17:14:53 +0000
+Message-ID: <bug-74492-8800-nhs85Ldkbf@http.bugs.freedesktop.org/>
+References: <bug-74492-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7UviTjc5wN9TUAxTypXpsgvwZnuvR+Ea6RwA-ir9-Rq5TRg@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
-	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Sender: dri-devel-bounces@lists.freedesktop.org
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>, Ben Skeggs <bskeggs@redhat.com>
-Cc: Dave Airlie <airlied@redhat.com>, dri-devel <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1079596589=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-74492-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-MjAxNC0wMi0xMSAxMTo0MSBHTVQrMDE6MDAgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
-ZWR1PjoKPiAoYikgYmlzZWN0LiB5b3UgY2FuIChhbG1vc3QpIGRlZmluaXRlbHkgcmVzdHJpY3Qg
-dGhlIGJpc2VjdCB0bwo+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1LiBpZiB5b3UgaGF2ZSBhZGRp
-dGlvbmFsIGNvbXB1dGF0aW9uYWwgcG93ZXIsIGkKPiB3b3VsZCByZWNvbW1lbmQgbG9va2luZyBp
-bnRvIGRpc3RjYyBmb3Igc3BlZWRpbmcgdXAgdGhlIGNvbXBpbGVzLiBpdAo+IG1heSBiZSBpbnRl
-cmVzdGluZyB0byBhbHNvIHRyeSAzLjYueCBzaW5jZSAzLjcgcmVjZWl2ZWQgYSBwcmV0dHkgYmln
-Cj4gcmV3cml0ZS4gYnV0IGEgZ2l0IGJpc2VjdCBpcyBhIGxvdCBtb3JlIGRpcmVjdCBpbiBmaWd1
-cmluZyB0aGVzZQo+IHRoaW5ncyBvdXQgOikKPgo+IEFmdGVyIEkgd2F0Y2hlZCB5b3VyIHZpZGVv
-LCBpdCBkZWZpbml0ZWx5IGJyb3VnaHQgYmFjayBtZW1vcmllcyBvZgo+IGFub3RoZXIgYnVnIG9y
-IHBlcmhhcHMgZW1haWwgb24gdGhpcyBsaXN0IGEgd2hpbGUgYmFjayAoZGVmaW5pdGVseQo+IHdp
-dGhpbiB0aGUgcGFzdCB5ZWFyKSwgYnV0IHVuZm9ydHVuYXRlbHkgSSBjYW4ndCBxdWl0ZSBwbGFj
-ZSBpdCA6KAoKSSd2ZSBmaW5hbGx5IGJpc2VjdGVkIGJldHdlZW4gMy4xMCBhbmQgMy4xMToKCjc4
-YWUwYWQ0MDNkYWYxMWNmNjNkYTg2OTIzZDJiNWRiZWRhM2FmOGYgaXMgdGhlIGZpcnN0IGJhZCBj
-b21taXQKY29tbWl0IDc4YWUwYWQ0MDNkYWYxMWNmNjNkYTg2OTIzZDJiNWRiZWRhM2FmOGYKQXV0
-aG9yOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+CkRhdGU6IFdlZCBBdWcgMjEgMTE6
-MzA6MzYgMjAxMyArMTAwMAoKICAgIGRybS9udjA0L2Rpc3A6IGZpeCBmcmFtZWJ1ZmZlciBwaW4g
-cmVmY291bnRpbmcKCkkndmUgYm9vdGVkIHRoYXQgY29tbWl0IGFuZCBvbmUgY29tbWl0IG9sZGVy
-IGZldyB0aW1lcy4gRXZlcnkgdGltZSBJCmJvb3RlZCA3OGFlMGFkIEkgZ290IGNvcnJ1cHRpb24u
-IEV2ZXJ5IHRpbWUgSSBib290ZWQgNmZmOGM3NiAoaXQncyB0aGUKZWFybGllciBjb21taXQpLCBp
-dCB3YXMgT0suCgpCZW46IGFueSBpZGVhIHdoeSB0aGlzIGNvbW1pdCBjYXVzZWQgcmVncmVzc2lv
-biBmb3IgbXkgaGFyZHdhcmU/IEZyb20KdGhlIGNvbW1pdCBtZXNzYWdlIEkgYXNzdW1lIGl0IHdh
-cyBzdXBwb3NlZCB0byBhZmZlY3Qgc29tZSBhbmNpZW50Cm52MDQgaGFyZHdhcmUgb25seS4gRGlk
-IGl0IGFjY2lkZW50YWxseSB0b3VjaCBteSBudjRlIHBhdGggY29kZSBtYXliZT8KCi0tIApSYWZh
-xYIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRl
-dmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============1079596589==
+Content-Type: multipart/alternative; boundary="1392570892.f4B21.7179"; charset="us-ascii"
+
+
+--1392570892.f4B21.7179
+Date: Sun, 16 Feb 2014 17:14:52 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=74492
+
+--- Comment #12 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Patches applied, let's hope for the best.
+
+Furthermore, hibernate seems to work with this laptop! After the enablement of
+the kernel DRM for the nouveau driver this was not the case anymore. Up until
+now... progress!
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1392570892.f4B21.7179
+Date: Sun, 16 Feb 2014 17:14:52 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV4E] v3.13-rc8 nv4e + msi = random lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492#c12">Comment # 12</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV4E] v3.13-rc8 nv4e + msi = random lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492">bug 74492</a>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+</span></b>
+        <pre>Patches applied, let's hope for the best.
+
+Furthermore, hibernate seems to work with this laptop! After the enablement of
+the kernel DRM for the nouveau driver this was not the case anymore. Up until
+now... progress!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1392570892.f4B21.7179--
+
+--===============1079596589==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1079596589==--
