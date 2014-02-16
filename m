@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74648] [NV86] Ultima IX (wine) movie playback
-	crashes game
-Date: Sun, 16 Feb 2014 04:45:48 +0000
-Message-ID: <bug-74648-8800-hTCQmlx5cU@http.bugs.freedesktop.org/>
-References: <bug-74648-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74492] [NV4E] v3.13-rc8 nv4e + msi = random lockups
+Date: Sun, 16 Feb 2014 06:07:22 +0000
+Message-ID: <bug-74492-8800-asZ3Yew47D@http.bugs.freedesktop.org/>
+References: <bug-74492-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1019531085=="
+Content-Type: multipart/mixed; boundary="===============0870582286=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74648-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-74492-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1019531085==
-Content-Type: multipart/alternative; boundary="1392525948.Cb3FccB2.5187"; charset="us-ascii"
+--===============0870582286==
+Content-Type: multipart/alternative; boundary="1392530842.Ec1F3f412.20600"; charset="us-ascii"
 
 
---1392525948.Cb3FccB2.5187
-Date: Sun, 16 Feb 2014 04:45:48 +0000
+--1392530842.Ec1F3f412.20600
+Date: Sun, 16 Feb 2014 06:07:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74648
+https://bugs.freedesktop.org/show_bug.cgi?id=74492
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Try building with these additional flags:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
---with-gallium-drivers=nouveau --with-dri-drivers="" --enable-texture-float
---disable-egl
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|v3.13-rc8 nv4e + msi =      |[NV4E] v3.13-rc8 nv4e + msi
+                   |random lockups              |= random lockups
 
-That should limit what's being built and also disable EGL which is the thing
-giving you trouble currently.
+--- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #9)
+> I noticed, thanks!
+
+Were you able to test them out? Would be nice to confirm if they actually work
+as advertised. Although I do tend to trust mwk on such things :)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392525948.Cb3FccB2.5187
-Date: Sun, 16 Feb 2014 04:45:48 +0000
+--1392530842.Ec1F3f412.20600
+Date: Sun, 16 Feb 2014 06:07:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,26 +58,44 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV4E] v3.13-rc8 nv4e + msi = random lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492">bug 74492</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>v3.13-rc8 nv4e + msi = random lockups
+           </td>
+           <td>[NV4E] v3.13-rc8 nv4e + msi = random lockups
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV86] Ultima IX (wine) movie playback crashes game"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74648#c7">Comment # 7</a>
+   title="NEW --- - [NV4E] v3.13-rc8 nv4e + msi = random lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV86] Ultima IX (wine) movie playback crashes game"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74648">bug 74648</a>
+   title="NEW --- - [NV4E] v3.13-rc8 nv4e + msi = random lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492">bug 74492</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Try building with these additional flags:
+        <pre>(In reply to <a href="show_bug.cgi?id=74492#c9">comment #9</a>)
+<span class="quote">&gt; I noticed, thanks!</span >
 
---with-gallium-drivers=nouveau --with-dri-drivers=&quot;&quot; --enable-texture-float
---disable-egl
-
-That should limit what's being built and also disable EGL which is the thing
-giving you trouble currently.</pre>
+Were you able to test them out? Would be nice to confirm if they actually work
+as advertised. Although I do tend to trust mwk on such things :)</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +107,9 @@ giving you trouble currently.</pre>
     </body>
 </html>
 
---1392525948.Cb3FccB2.5187--
+--1392530842.Ec1F3f412.20600--
 
---===============1019531085==
+--===============0870582286==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1019531085==--
+--===============0870582286==--
