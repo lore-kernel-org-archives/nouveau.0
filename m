@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74903] [NV34] TV Load not detected in X
-Date: Sun, 16 Feb 2014 06:21:12 +0000
-Message-ID: <bug-74903-8800-iMnSU6LjNs@http.bugs.freedesktop.org/>
-References: <bug-74903-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75013] [NVC1] [Quadro 600] Display update issues,
+ stale rendered content
+Date: Sun, 16 Feb 2014 06:25:55 +0000
+Message-ID: <bug-75013-8800-dLlbcnSwKy@http.bugs.freedesktop.org/>
+References: <bug-75013-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0273884506=="
+Content-Type: multipart/mixed; boundary="===============1531463431=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74903-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75013-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,42 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0273884506==
-Content-Type: multipart/alternative; boundary="1392531672.FB7ccC62.23147"; charset="us-ascii"
+--===============1531463431==
+Content-Type: multipart/alternative; boundary="1392531955.37Ca1ED2.24062"; charset="us-ascii"
 
 
---1392531672.FB7ccC62.23147
-Date: Sun, 16 Feb 2014 06:21:12 +0000
+--1392531955.37Ca1ED2.24062
+Date: Sun, 16 Feb 2014 06:25:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74903
+https://bugs.freedesktop.org/show_bug.cgi?id=75013
 
 --- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #5)
-> (In reply to comment #4)
-> > But it's a little odd that it worked fine before -- what was the "before"
-> > kernel?
-> 
-> I'm not sure anymore, but it wasn't so ancient. 3.8.x perhaps. I'll leave
-> the (dirty, bad mannered) patch attached just in case someone else as lazy
-> as me happens to find this report. 
+(In reply to comment #6)
+> One observatino is that the issue is not seen with Live CD.
+> Is there a difference between the installed OS and the live CD? This
+> surprised me, as I was expecting a smooth sail...
 
-Would you be willing to
+Depends on the Live CD, doesn't it :) In the Ubuntu case, I haven't the
+slightest clue. I'm guessing it has different versions of something -- would be
+good to figure out what versions it's running and what versions you're running
+on the installed system of:
 
-(a) Verify whether 3.8.x was indeed good? There aren't a whole lot of changes
-to the nv17 tv file since 3.8...
-(b) Do a bisect between the good version and 3.13 (restricted to
-drivers/gpu/drm/nouveau, so shouldn't be _too_ bad, but maybe like 10 steps).
+(a) kernel
+(b) xf86-video-nouveau (potentially called xorg-server-video-nouveau or
+something else along those lines)
+(c) libdrm
+(d) mesa (specifically the dri drivers)
 
-Happy to provide help with the bisect if you're not sure how to do it.
+Those 4 pieces of software basically make up nouveau. I doubt the last 2 really
+matter for your case, but... no harm done grabbing versions.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392531672.FB7ccC62.23147
-Date: Sun, 16 Feb 2014 06:21:12 +0000
+--1392531955.37Ca1ED2.24062
+Date: Sun, 16 Feb 2014 06:25:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,31 +70,32 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV34] TV Load not detected in X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74903#c7">Comment # 7</a>
+   title="NEW --- - [NVC1] [Quadro 600] Display update issues, stale rendered content"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75013#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV34] TV Load not detected in X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74903">bug 74903</a>
+   title="NEW --- - [NVC1] [Quadro 600] Display update issues, stale rendered content"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75013">bug 75013</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=74903#c5">comment #5</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=74903#c4">comment #4</a>)
-&gt; &gt; But it's a little odd that it worked fine before -- what was the &quot;before&quot;
-&gt; &gt; kernel?
-&gt; 
-&gt; I'm not sure anymore, but it wasn't so ancient. 3.8.x perhaps. I'll leave
-&gt; the (dirty, bad mannered) patch attached just in case someone else as lazy
-&gt; as me happens to find this report. </span >
+        <pre>(In reply to <a href="show_bug.cgi?id=75013#c6">comment #6</a>)
+<span class="quote">&gt; One observatino is that the issue is not seen with Live CD.
+&gt; Is there a difference between the installed OS and the live CD? This
+&gt; surprised me, as I was expecting a smooth sail...</span >
 
-Would you be willing to
+Depends on the Live CD, doesn't it :) In the Ubuntu case, I haven't the
+slightest clue. I'm guessing it has different versions of something -- would be
+good to figure out what versions it's running and what versions you're running
+on the installed system of:
 
-(a) Verify whether 3.8.x was indeed good? There aren't a whole lot of changes
-to the nv17 tv file since 3.8...
-(b) Do a bisect between the good version and 3.13 (restricted to
-drivers/gpu/drm/nouveau, so shouldn't be _too_ bad, but maybe like 10 steps).
+(a) kernel
+(b) xf86-video-nouveau (potentially called xorg-server-video-nouveau or
+something else along those lines)
+(c) libdrm
+(d) mesa (specifically the dri drivers)
 
-Happy to provide help with the bisect if you're not sure how to do it.</pre>
+Those 4 pieces of software basically make up nouveau. I doubt the last 2 really
+matter for your case, but... no harm done grabbing versions.</pre>
         </div>
       </p>
       <hr>
@@ -104,9 +107,9 @@ Happy to provide help with the bisect if you're not sure how to do it.</pre>
     </body>
 </html>
 
---1392531672.FB7ccC62.23147--
+--1392531955.37Ca1ED2.24062--
 
---===============0273884506==
+--===============1531463431==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -117,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0273884506==--
+--===============1531463431==--
