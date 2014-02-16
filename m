@@ -1,13 +1,18 @@
-From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: Re: [PATCH] drm/nouveau: fix TTM_PL_TT memtype on pre-nv50
-Date: Sun, 16 Feb 2014 11:43:51 +0100
-Message-ID: <53009667.1050904@canonical.com>
-References: <1392524821-10358-1-git-send-email-imirkin@alum.mit.edu>
+From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Subject: Re: GeForce 6100 (NV4E) & nouveau regression in 3.12
+Date: Sun, 16 Feb 2014 16:11:54 +0100
+Message-ID: <CACna6rwdi3j+q4Y1aFS08oUqezM5eWTk1TwRU2qcutx6F+GwWQ@mail.gmail.com>
+References: <CACna6rz=cp9Sce46C0P-cQbow-Os95_6XB+fhNjSwvnCJabJfA@mail.gmail.com>
+	<CAKb7Uvjz74GWDEwynOud2wmzoABc1HMrP4VC+J-oKi9Y3G0h8w@mail.gmail.com>
+	<CACna6ryidTQDGVq=N6Wg9xycXqAaPsuvjoktQiZ00p5sLLkzdQ@mail.gmail.com>
+	<CAKb7Uvh5o4hd6G1R07qu3hRCfweb+0qEoRJWF+hZKMCm+xX0zA@mail.gmail.com>
+	<CACna6ryE2wM=+SNkHkgPkP9nGqLFfQbuCs-6VJci+DL-xSrMWw@mail.gmail.com>
+	<CAKb7UviTjc5wN9TUAxTypXpsgvwZnuvR+Ea6RwA-ir9-Rq5TRg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1392524821-10358-1-git-send-email-imirkin@alum.mit.edu>
+In-Reply-To: <CAKb7UviTjc5wN9TUAxTypXpsgvwZnuvR+Ea6RwA-ir9-Rq5TRg@mail.gmail.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
 	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
@@ -17,42 +22,58 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
 	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Sender: dri-devel-bounces@lists.freedesktop.org
 Errors-To: dri-devel-bounces@lists.freedesktop.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@ubuntu.com>, Ronald <ronald645@gmail.com>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: Dave Airlie <airlied@redhat.com>, dri-devel <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-op 16-02-14 05:27, Ilia Mirkin schreef:
-> Commit a55409066 ("drm/nv50-: map TTM_PL_SYSTEM through a BAR for CPU
-> access") made it possible to work with tiled memory. However
-> mem->mm_node is not a nouveau_mem for AGP-using pre-NV50 cards, but a
-> drm_mm_node, as created by the ttm_bo_manager_func. As such, extend the
-> untiled check to explicitly include all pre-nv50 cards.
->
-> Reported-by: Ronald <ronald645@gmail.com>
-> Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=74613
-> Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
-> ---
->
-> Hmmm... this seems like a really fragile semantic, I wonder if more
-> mem->mm_node usages have to be audited. But this one's quick and easy. I'd
-> rather see something a little more solid around dealing with these
-> differences, but not sure how without reading all the ttm gunk. Perhaps just
-> make sure it's always a nouveau_mem by wrapping the ttm_bo_manager logic?
->
->   drivers/gpu/drm/nouveau/nouveau_bo.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> index 488686d..4aed171 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> @@ -1249,7 +1249,7 @@ nouveau_ttm_io_mem_reserve(struct ttm_bo_device *bdev, struct ttm_mem_reg *mem)
->   			mem->bus.is_iomem = !dev->agp->cant_use_aperture;
->   		}
->   #endif
-> -		if (!node->memtype)
-> +		if (nv_device(drm->device)->card_type < NV_50 || !node->memtype)
->   			/* untiled */
->   			break;
->   		/* fallthrough, tiled memory */
-Acked-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+MjAxNC0wMi0xMSAxMTo0MSBHTVQrMDE6MDAgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
+ZWR1PjoKPiBPbiBNb24sIEZlYiAxMCwgMjAxNCBhdCAzOjA1IFBNLCBSYWZhxYIgTWnFgmVja2kg
+PHphamVjNUBnbWFpbC5jb20+IHdyb3RlOgo+PiAyMDE0LTAyLTEwIDIwOjA2IEdNVCswMTowMCBJ
+bGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ogo+Pj4gVGhlcmUgd2FzIGFsc28gYW4g
+aXNzdWUgd2l0aCBsaWJkcm1fbm91dmVhdSBmb3IgcHJlLW52NTAgY2hpcHMsIHdoZW4KPj4+IGNv
+bXBpbGVkIHdpdGggZ2NjLTQuOCBzb21lIHRpbWUgYmFjay4uLiBmaXhlZCBpbi4uLiAyLjQuNDgg
+b3Igc28/Cj4+Cj4+IEkgdXNlIG9wZW5TVVNFIDEyLjIgKHg4Nl82NCkgd2hpY2ggcHJvdmlkZXMg
+Z2NjIDQuNy4xIGFuZAo+PiBsaWJkcm1fbm91dmVhdTEtMi40LjMzLTIuMy4yLng4Nl82NC4gSSBh
+c3N1bWUgbGliZHJtX25vdXZlYXUgd2FzCj4+IGNvbXBpbGVkIHVzaW5nIHRoYXQgNC43LjEuCj4K
+PiBIbW1tLi4uIHRoZSBub3V2ZWF1IGRybSByZXdyaXRlIHdlbnQgaW50byAyLjQuMzQuLi4gSSBn
+dWVzcyB5b3UncmUKPiB1c2luZyBwcmV0dHkgb2xkIHVzZXJzcGFjZSBpbiBnZW5lcmFsLCBzaW5j
+ZSBldmVyeXRoaW5nIGRlcGVuZHMgb24gdGhlCj4gcG9zdC1yZXdyaXRlIGxpYmRybV9ub3V2ZWF1
+LiBPZiBjb3Vyc2UgaXQgZGVmaW5pdGVseSBzb3VuZHMgbGlrZSBhCj4ga2VybmVsIGlzc3VlLCBi
+dXQgSSBjYW4ndCBoZWxwIGJ1dCB3b25kZXIgaWYgdGhpcyBpcyBhIG5vbi1pc3N1ZSB3aXRoCj4g
+bGF0ZXIgdXNlcnNwYWNlLgo+Cj4gU28gdGhlcmUgYXJlIGJhc2ljYWxseSAyIHRoaW5ncyBsZWZ0
+IHRvIGRvLCBpbiBvcmRlciBvZiB0aW1lLWNvbnN1bWluZy1uZXNzOgo+Cj4gKGEpIHRyeSBhIGxp
+dmV7Y2QsdXNifSAoZS5nLiBhcmNoLCBvciBzb21ldGhpbmcgZWxzZSB0aGF0IGhhcyByZWNlbnQK
+PiBzb2Z0d2FyZSksIGFuZCBzZWUgaWYgdGhlIGlzc3VlIGlzIHN0aWxsIHByZXNlbnQgdGhlcmUu
+CgpJJ3ZlIHRyaWVkIEZlZG9yYSAyMCBib290ZWQgZnJvbSBVU0IuIEl0IHN1ZmZlcnMgZnJvbSB0
+aGUgc2FtZSBpc3N1ZS4KSXQncyBiYXNlZCBvbiBrZXJuZWwgMy4xMS4xMCwgYnV0IEknbSBzdXJl
+IGl0IGhhcyBtb3JlIHVwIHRvIGRhdGUKdXNlcnNwYWNlLgoKCj4gKGIpIGJpc2VjdC4geW91IGNh
+biAoYWxtb3N0KSBkZWZpbml0ZWx5IHJlc3RyaWN0IHRoZSBiaXNlY3QgdG8KPiBkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS4gaWYgeW91IGhhdmUgYWRkaXRpb25hbCBjb21wdXRhdGlvbmFsIHBvd2Vy
+LCBpCj4gd291bGQgcmVjb21tZW5kIGxvb2tpbmcgaW50byBkaXN0Y2MgZm9yIHNwZWVkaW5nIHVw
+IHRoZSBjb21waWxlcy4gaXQKPiBtYXkgYmUgaW50ZXJlc3RpbmcgdG8gYWxzbyB0cnkgMy42Lngg
+c2luY2UgMy43IHJlY2VpdmVkIGEgcHJldHR5IGJpZwo+IHJld3JpdGUuIGJ1dCBhIGdpdCBiaXNl
+Y3QgaXMgYSBsb3QgbW9yZSBkaXJlY3QgaW4gZmlndXJpbmcgdGhlc2UKPiB0aGluZ3Mgb3V0IDop
+CgpCaXNlY3Rpbmcgbm91dmVhdSBiZXR3ZWVuIDMuMTAgYW5kIDMuMTEgaXMgYSByZWFsIHBhaW4u
+CgoKQmVuIGludHJvZHVjZWQgYm9vdGluZyByZWdyZXNzaW9uIHdpdGggY29tbWl0Ogpjb21taXQg
+ZGNlZWY1ZDg3Y2MwMTM1OGNjMTQzNDQxNmYzMjcyZTJkZGMzZDk3YQpBdXRob3I6IEJlbiBTa2Vn
+Z3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KRGF0ZTogTW9uIE1hciA0IDEzOjAxOjIxIDIwMTMgKzEw
+MDAKCiAgICBkcm0vbm91dmVhdS9mYjogaW5pdGlhbGlzZSB2cmFtIGNvbnRyb2xsZXIgYXMgcGZi
+IHN1Yi1vYmplY3QKCkkgaGFkIHRvIGZpcnN0IGJpc2VjdCBmaXggZm9yIHRoYXQgcmVncmVzc2lv
+biB3aGljaCBhcHBlYXJlZCB0byBiZToKY29tbWl0IDYyODRiZjQxYjk3ZmIzNmVkOTZiNjY0YTNj
+MjNiNmRjMzY2MWY1ZjkKQXV0aG9yOiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+
+CkRhdGU6IEZyaSBBdWcgOSAxNzoyNTo1NCAyMDEzIC0wNDAwCgogICAgZHJtL25vdXZlYXUvZmI6
+IGZpeCBudWxsIGRlcmVmcyBpbiBudjQ5IGFuZCBudjRlIGluaXQKCgpVbmZvcnR1bmF0ZWx5IG1l
+YW53aGlsZSBhbm90aGVyIGluaXQgcmVncmVzc2lvbiB3YXMgaW50cm9kdWNlZCB3aXRoOgpjb21t
+aXQgMDEwOGJjODA4MTA3Yjk3ZTEwMWIxNWFmOTcwNTcyOTYyNmJlNjQ0NwpBdXRob3I6IE1hYXJ0
+ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBjYW5vbmljYWwuY29tPgpEYXRlOiBTdW4g
+SnVsIDcgMTA6NDA6MTkgMjAxMyArMDIwMAoKICAgIGRybS9ub3V2ZWF1OiBkbyBub3QgYWxsb3cg
+bmVnYXRpdmUgc2l6ZXMgZm9yIG5vdwoKQW5kIEkgaGFkIHRvIGZpbmQgZml4IGZvciB0aGF0IHdo
+aWNoIHdhczoKY29tbWl0IDM1MDk1Zjc1MjliYjZhYmRmYzk1NmU3YTQxY2E2OTU3NTIwYjcwYTcK
+QXV0aG9yOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAY2Fub25pY2FsLmNv
+bT4KRGF0ZTogU2F0IEp1bCAyNyAxMDoxNzoxMiAyMDEzICswMjAwCgogICAgZHJtL25vdXZlYXU6
+IGZpeCBzaXplIGNoZWNrIGZvciBjYXJkcyB3aXRob3V0IHZtCgpUaGVuIEkgZmluYWxseSB3YXMg
+YWJsZSB0byB0ZXN0IGV2ZXJ5IGNvbW1pdCBiZXR3ZWVuIDMuMTAgYW5kIDMuMTEKd2l0aG91dCBz
+a2lwcGluZyA5MCUgb2YgdGhlbS4KCi0tIApSYWZhxYIKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9kcmktZGV2ZWwK
