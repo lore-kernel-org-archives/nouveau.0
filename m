@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75094] New: NV92 is faster and runs games fine than
-	NVE6, why?
-Date: Mon, 17 Feb 2014 13:50:55 +0000
-Message-ID: <bug-75094-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75094] NV92 is faster and runs games fine than NVE6,
+	why?
+Date: Mon, 17 Feb 2014 13:52:23 +0000
+Message-ID: <bug-75094-8800-qwqWaNeZBt@http.bugs.freedesktop.org/>
+References: <bug-75094-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1579953157=="
+Content-Type: multipart/mixed; boundary="===============0423880176=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75094-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,44 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1579953157==
-Content-Type: multipart/alternative; boundary="1392645055.ee83F0.2052"; charset="us-ascii"
+--===============0423880176==
+Content-Type: multipart/alternative; boundary="1392645143.cBac30.2587"; charset="us-ascii"
 
 
---1392645055.ee83F0.2052
-Date: Mon, 17 Feb 2014 13:50:55 +0000
+--1392645143.cBac30.2587
+Date: Mon, 17 Feb 2014 13:52:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75094
 
-          Priority: medium
-            Bug ID: 75094
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: NV92 is faster and runs games fine than NVE6, why?
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: fast.rizwaan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: git
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
+--- Comment #1 from Asif Ali Rizvan <fast.rizwaan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 94205
+  --> https://bugs.freedesktop.org/attachment.cgi?id=94205&action=edit
+650ti glxinfo - graphics are misisng and performance is somewhat poor
 
-Created attachment 94204
-  --> https://bugs.freedesktop.org/attachment.cgi?id=94204&action=edit
-9800 glxinfo - games and 3d performance is great
-
-9800GT (nv92) looks more compatible, wine and other games performs better with
-9800GT than nvidia 650ti (nve6)
+I'm just wondering, when it is using nouveau and has all the GL_ features, why
+9800 works better than 650ti?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392645055.ee83F0.2052
-Date: Mon, 17 Feb 2014 13:50:55 +0000
+--1392645143.cBac30.2587
+Date: Mon, 17 Feb 2014 13:52:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,94 +53,24 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - NV92 is faster and runs games fine than NVE6, why?"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75094">75094</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>NV92 is faster and runs games fine than NVE6, why?
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>fast.rizwaan&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=94204" name="attach_94204" title="9800 glxinfo - games and 3d performance is great">attachment 94204</a> <a href="attachment.cgi?id=94204&amp;action=edit" title="9800 glxinfo - games and 3d performance is great">[details]</a></span>
-9800 glxinfo - games and 3d performance is great
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - NV92 is faster and runs games fine than NVE6, why?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75094#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - NV92 is faster and runs games fine than NVE6, why?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75094">bug 75094</a>
+              from <span class="vcard"><a class="email" href="mailto:fast.rizwaan&#64;gmail.com" title="Asif Ali Rizvan &lt;fast.rizwaan&#64;gmail.com&gt;"> <span class="fn">Asif Ali Rizvan</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=94205" name="attach_94205" title="650ti glxinfo - graphics are misisng and performance is somewhat poor">attachment 94205</a> <a href="attachment.cgi?id=94205&amp;action=edit" title="650ti glxinfo - graphics are misisng and performance is somewhat poor">[details]</a></span>
+650ti glxinfo - graphics are misisng and performance is somewhat poor
 
-9800GT (nv92) looks more compatible, wine and other games performs better with
-9800GT than nvidia 650ti (nve6)</pre>
+I'm just wondering, when it is using nouveau and has all the GL_ features, why
+9800 works better than 650ti?</pre>
         </div>
       </p>
       <hr>
@@ -163,9 +82,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1392645055.ee83F0.2052--
+--1392645143.cBac30.2587--
 
---===============1579953157==
+--===============0423880176==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -176,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1579953157==--
+--===============0423880176==--
