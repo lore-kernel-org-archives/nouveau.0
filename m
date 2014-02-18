@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75013] [NVC1] [Quadro 600] Display update issues,
- stale rendered content
-Date: Tue, 18 Feb 2014 18:31:20 +0000
-Message-ID: <bug-75013-8800-3DoADwbT4V@http.bugs.freedesktop.org/>
-References: <bug-75013-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75094] NV92 is faster and runs games fine than NVE6,
+	why?
+Date: Tue, 18 Feb 2014 18:59:47 +0000
+Message-ID: <bug-75094-8800-esnvAUwvwg@http.bugs.freedesktop.org/>
+References: <bug-75094-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0051625833=="
+Content-Type: multipart/mixed; boundary="===============0162292453=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75013-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75094-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,49 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0051625833==
-Content-Type: multipart/alternative; boundary="1392748280.8C2451.7348"; charset="us-ascii"
+--===============0162292453==
+Content-Type: multipart/alternative; boundary="1392749987.77601781.14256"; charset="us-ascii"
 
 
---1392748280.8C2451.7348
-Date: Tue, 18 Feb 2014 18:31:20 +0000
+--1392749987.77601781.14256
+Date: Tue, 18 Feb 2014 18:59:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75013
+https://bugs.freedesktop.org/show_bug.cgi?id=75094
 
---- Comment #8 from Sudarshan <spartha80-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #7)
-> (In reply to comment #6)
-> > One observatino is that the issue is not seen with Live CD.
-> > Is there a difference between the installed OS and the live CD? This
-> > surprised me, as I was expecting a smooth sail...
-> 
-> Depends on the Live CD, doesn't it :) In the Ubuntu case, I haven't the
-> slightest clue. I'm guessing it has different versions of something -- would
-> be good to figure out what versions it's running and what versions you're
-> running on the installed system of:
-> 
-> (a) kernel
-> (b) xf86-video-nouveau (potentially called xorg-server-video-nouveau or
-> something else along those lines)
-> (c) libdrm
-> (d) mesa (specifically the dri drivers)
-> 
-> Those 4 pieces of software basically make up nouveau. I doubt the last 2
-> really matter for your case, but... no harm done grabbing versions.
+--- Comment #3 from Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+A pose this question only to make things more clear to me, because I own a
+650TI, too. I have the following dmesg output during boot:
 
-I am for the time being giving up. I was unable to build a TOT kernel that
-would boot. For now, falling back to the onboard graphics card. Will try to
-post the findings when I get some time. Hope there is resolution for this
-issue, otherwise I will be left with a 100$ card that I cannot use :)
+nouveau  [     DRM] 4 available performance level(s)
+nouveau  [     DRM] 0: core 162MHz shader 324MHz memory 648MHz voltage 100mV
+nouveau  [     DRM] 1: core 405MHz shader 810MHz memory 1080MHz voltage 80mV
+nouveau  [     DRM] 2: core 1502MHz shader 3004MHz memory 1080MHz voltage 60mV
+nouveau  [     DRM] 3: core 1502MHz shader 3004MHz memory 1080MHz voltage 40mV
+
+Do I understand you correctly: Nouveau always uses level 0, this is to say
+162MHz (for core), 324MHz (for shader) and 648MHz (for memory) regardless how
+much work the card is faced with?
+
+Thanks
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392748280.8C2451.7348
-Date: Tue, 18 Feb 2014 18:31:20 +0000
+--1392749987.77601781.14256
+Date: Tue, 18 Feb 2014 18:59:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -75,39 +65,29 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] [Quadro 600] Display update issues, stale rendered content"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75013#c8">Comment # 8</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - NV92 is faster and runs games fine than NVE6, why?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75094#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] [Quadro 600] Display update issues, stale rendered content"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75013">bug 75013</a>
-              from <span class="vcard"><a class="email" href="mailto:spartha80&#64;gmail.com" title="Sudarshan &lt;spartha80&#64;gmail.com&gt;"> <span class="fn">Sudarshan</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - NV92 is faster and runs games fine than NVE6, why?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75094">bug 75094</a>
+              from <span class="vcard"><a class="email" href="mailto:matthias.h.nagel&#64;gmail.com" title="Matthias Nagel &lt;matthias.h.nagel&#64;gmail.com&gt;"> <span class="fn">Matthias Nagel</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=75013#c7">comment #7</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=75013#c6">comment #6</a>)
-&gt; &gt; One observatino is that the issue is not seen with Live CD.
-&gt; &gt; Is there a difference between the installed OS and the live CD? This
-&gt; &gt; surprised me, as I was expecting a smooth sail...
-&gt; 
-&gt; Depends on the Live CD, doesn't it :) In the Ubuntu case, I haven't the
-&gt; slightest clue. I'm guessing it has different versions of something -- would
-&gt; be good to figure out what versions it's running and what versions you're
-&gt; running on the installed system of:
-&gt; 
-&gt; (a) kernel
-&gt; (b) xf86-video-nouveau (potentially called xorg-server-video-nouveau or
-&gt; something else along those lines)
-&gt; (c) libdrm
-&gt; (d) mesa (specifically the dri drivers)
-&gt; 
-&gt; Those 4 pieces of software basically make up nouveau. I doubt the last 2
-&gt; really matter for your case, but... no harm done grabbing versions.</span >
+        <pre>A pose this question only to make things more clear to me, because I own a
+650TI, too. I have the following dmesg output during boot:
 
-I am for the time being giving up. I was unable to build a TOT kernel that
-would boot. For now, falling back to the onboard graphics card. Will try to
-post the findings when I get some time. Hope there is resolution for this
-issue, otherwise I will be left with a 100$ card that I cannot use :)</pre>
+nouveau  [     DRM] 4 available performance level(s)
+nouveau  [     DRM] 0: core 162MHz shader 324MHz memory 648MHz voltage 100mV
+nouveau  [     DRM] 1: core 405MHz shader 810MHz memory 1080MHz voltage 80mV
+nouveau  [     DRM] 2: core 1502MHz shader 3004MHz memory 1080MHz voltage 60mV
+nouveau  [     DRM] 3: core 1502MHz shader 3004MHz memory 1080MHz voltage 40mV
+
+Do I understand you correctly: Nouveau always uses level 0, this is to say
+162MHz (for core), 324MHz (for shader) and 648MHz (for memory) regardless how
+much work the card is faced with?
+
+Thanks</pre>
         </div>
       </p>
       <hr>
@@ -119,9 +99,9 @@ issue, otherwise I will be left with a 100$ card that I cannot use :)</pre>
     </body>
 </html>
 
---1392748280.8C2451.7348--
+--1392749987.77601781.14256--
 
---===============0051625833==
+--===============0162292453==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +112,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0051625833==--
+--===============0162292453==--
