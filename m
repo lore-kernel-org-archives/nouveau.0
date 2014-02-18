@@ -1,13 +1,21 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74316] [NV92] Graphical corruption on KDE
- shutdown/restart/log out screen
-Date: Mon, 17 Feb 2014 23:49:17 +0000
-Message-ID: <bug-74316-8800-AS2W2cDYFF@http.bugs.freedesktop.org/>
-References: <bug-74316-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: GeForce 6100 (NV4E) & nouveau regression in 3.12
+Date: Mon, 17 Feb 2014 23:38:13 -0500
+Message-ID: <CAKb7UvhcumpgfZ83BifPXk9afhaD_780X6Fix5HpEsS3VyMVDA@mail.gmail.com>
+References: <CACna6rz=cp9Sce46C0P-cQbow-Os95_6XB+fhNjSwvnCJabJfA@mail.gmail.com>
+	<CAKb7Uvjz74GWDEwynOud2wmzoABc1HMrP4VC+J-oKi9Y3G0h8w@mail.gmail.com>
+	<CACna6ryidTQDGVq=N6Wg9xycXqAaPsuvjoktQiZ00p5sLLkzdQ@mail.gmail.com>
+	<CAKb7Uvh5o4hd6G1R07qu3hRCfweb+0qEoRJWF+hZKMCm+xX0zA@mail.gmail.com>
+	<CACna6ryE2wM=+SNkHkgPkP9nGqLFfQbuCs-6VJci+DL-xSrMWw@mail.gmail.com>
+	<CAKb7UviTjc5wN9TUAxTypXpsgvwZnuvR+Ea6RwA-ir9-Rq5TRg@mail.gmail.com>
+	<CACna6rx=paq9uc5rqGKmNgk4+BG_pwD_4Q+jRsnQHCGFUqgb+g@mail.gmail.com>
+	<CAKb7UviTxo6hvam=6LPwYMm=SsZSkzv-EyFVt_YaBVKW6rzYyA@mail.gmail.com>
+	<CACna6rw=p=jpQQjJFpAZaGqr1pBateGpTxAY3BEeLbXmGKXSXA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0868661640=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74316-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CACna6rw=p=jpQQjJFpAZaGqr1pBateGpTxAY3BEeLbXmGKXSXA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,81 +25,48 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?ISO-8859-2?Q?Rafa=B3_Mi=B3ecki?= <zajec5-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0868661640==
-Content-Type: multipart/alternative; boundary="1392680956.86F7a11.11965"; charset="us-ascii"
-
-
---1392680956.86F7a11.11965
-Date: Mon, 17 Feb 2014 23:49:16 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=74316
-
---- Comment #8 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Fredrik just posted a couple of patches [1] [2]. The first of which should
-resolve the problem.
-
-[1] http://patchwork.freedesktop.org/patch/20458/
-[2] http://patchwork.freedesktop.org/patch/20464/
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1392680956.86F7a11.11965
-Date: Mon, 17 Feb 2014 23:49:16 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74316#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV92] Graphical corruption on KDE shutdown/restart/log out screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74316">bug 74316</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>Fredrik just posted a couple of patches [1] [2]. The first of which should
-resolve the problem.
-
-[1] <a href="http://patchwork.freedesktop.org/patch/20458/">http://patchwork.freedesktop.org/patch/20458/</a>
-[2] <a href="http://patchwork.freedesktop.org/patch/20464/">http://patchwork.freedesktop.org/patch/20464/</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1392680956.86F7a11.11965--
-
---===============0868661640==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0868661640==--
+T24gU3VuLCBGZWIgMTYsIDIwMTQgYXQgMjoxNSBQTSwgUmFmYcWCIE1pxYJlY2tpIDx6YWplYzVA
+Z21haWwuY29tPiB3cm90ZToKPiAyMDE0LTAyLTE2IDE5OjU1IEdNVCswMTowMCBJbGlhIE1pcmtp
+biA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ogo+PiBPbiBTdW4sIEZlYiAxNiwgMjAxNCBhdCAxMDox
+NyBBTSwgUmFmYcWCIE1pxYJlY2tpIDx6YWplYzVAZ21haWwuY29tPiB3cm90ZToKPj4+IDIwMTQt
+MDItMTEgMTE6NDEgR01UKzAxOjAwIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT46
+Cj4+Pj4gKGIpIGJpc2VjdC4geW91IGNhbiAoYWxtb3N0KSBkZWZpbml0ZWx5IHJlc3RyaWN0IHRo
+ZSBiaXNlY3QgdG8KPj4+PiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS4gaWYgeW91IGhhdmUgYWRk
+aXRpb25hbCBjb21wdXRhdGlvbmFsIHBvd2VyLCBpCj4+Pj4gd291bGQgcmVjb21tZW5kIGxvb2tp
+bmcgaW50byBkaXN0Y2MgZm9yIHNwZWVkaW5nIHVwIHRoZSBjb21waWxlcy4gaXQKPj4+PiBtYXkg
+YmUgaW50ZXJlc3RpbmcgdG8gYWxzbyB0cnkgMy42Lnggc2luY2UgMy43IHJlY2VpdmVkIGEgcHJl
+dHR5IGJpZwo+Pj4+IHJld3JpdGUuIGJ1dCBhIGdpdCBiaXNlY3QgaXMgYSBsb3QgbW9yZSBkaXJl
+Y3QgaW4gZmlndXJpbmcgdGhlc2UKPj4+PiB0aGluZ3Mgb3V0IDopCj4+Pj4KPj4+PiBBZnRlciBJ
+IHdhdGNoZWQgeW91ciB2aWRlbywgaXQgZGVmaW5pdGVseSBicm91Z2h0IGJhY2sgbWVtb3JpZXMg
+b2YKPj4+PiBhbm90aGVyIGJ1ZyBvciBwZXJoYXBzIGVtYWlsIG9uIHRoaXMgbGlzdCBhIHdoaWxl
+IGJhY2sgKGRlZmluaXRlbHkKPj4+PiB3aXRoaW4gdGhlIHBhc3QgeWVhciksIGJ1dCB1bmZvcnR1
+bmF0ZWx5IEkgY2FuJ3QgcXVpdGUgcGxhY2UgaXQgOigKPj4+Cj4+PiBJJ3ZlIGZpbmFsbHkgYmlz
+ZWN0ZWQgYmV0d2VlbiAzLjEwIGFuZCAzLjExOgo+Pj4KPj4+IDc4YWUwYWQ0MDNkYWYxMWNmNjNk
+YTg2OTIzZDJiNWRiZWRhM2FmOGYgaXMgdGhlIGZpcnN0IGJhZCBjb21taXQKPj4+IGNvbW1pdCA3
+OGFlMGFkNDAzZGFmMTFjZjYzZGE4NjkyM2QyYjVkYmVkYTNhZjhmCj4+PiBBdXRob3I6IEJlbiBT
+a2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KPj4+IERhdGU6IFdlZCBBdWcgMjEgMTE6MzA6MzYg
+MjAxMyArMTAwMAo+Pj4KPj4+ICAgICBkcm0vbnYwNC9kaXNwOiBmaXggZnJhbWVidWZmZXIgcGlu
+IHJlZmNvdW50aW5nCj4+Pgo+Pj4gSSd2ZSBib290ZWQgdGhhdCBjb21taXQgYW5kIG9uZSBjb21t
+aXQgb2xkZXIgZmV3IHRpbWVzLiBFdmVyeSB0aW1lIEkKPj4+IGJvb3RlZCA3OGFlMGFkIEkgZ290
+IGNvcnJ1cHRpb24uIEV2ZXJ5IHRpbWUgSSBib290ZWQgNmZmOGM3NiAoaXQncyB0aGUKPj4+IGVh
+cmxpZXIgY29tbWl0KSwgaXQgd2FzIE9LLgo+Pgo+PiBCdXQgSSBiZXQgaWYgeW91IHJlc3RhcnQg
+WCwgeW91IGdldCBhIGJhY2t0cmFjZSwgcmlnaHQ/Cj4KPiBUaGF0J3MgcmlnaHQuCj4KPiA3OGFl
+MGFkOgo+IENvcnJ1cHRpb25zCj4KPiA2ZmY4Yzc2Ogo+IFdBUk5JTkc6IGF0IGRyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYzoxNTEKPiBub3V2ZWF1X2JvX2RlbF90dG0rMHg4MC8w
+eDkwIFtub3V2ZWF1XSgpCj4gKGFmdGVyIHF1aXRpbmcgWCBieSAiaW5pdCAzIikKCk9LLCBhcyBl
+eHBlY3RlZC4gQW5kIHRob3NlIGJhY2t0cmFjZXMgYXJlIHRoZSBmYWxsb3V0IGZyb20gYSBib2F0
+bG9hZApvZiB0dG0gY2hhbmdlcyB0aGF0IHdlbnQgaW50byAzLjEwLiBTbyAzLjkgc2hvdWxkIGJl
+IHNhZmUgZm9yIHlvdSA6KQoKU28gdGhhdCB0aGVzZSBmaW5kaW5ncyBkb24ndCBnZXQgbG9zdC9m
+b3Jnb3R0ZW4sIG1pbmQgZmlsaW5nIGEgYnVnCndpdGggeW91ciB2YXJpb3VzIGZpbmRpbmdzIGFz
+IHBlcgpodHRwOi8vbm91dmVhdS5mcmVlZGVza3RvcC5vcmcvd2lraS9CdWdzLyA/IFVuZm9ydHVu
+YXRlbHkgSSBoYXZlIG5ldmVyCm9ic2VydmVkIHlvdXIgcGFydGljdWxhciBpc3N1ZSBvbiBhbnkg
+b2YgbXkgcHJlLW52NTAgY2FyZHMKKG52MDUvMTgvMzQvNDIvNDQpLCBzbyB0aGVyZSBtdXN0IGJl
+IHNvbWUgc3BlY2lhbCBjb21wb25lbnQuIFBlcmhhcHMKaXQncyB0aGUgSUdQLW5lc3MuIEFsdGhv
+dWdoIG90aGVycyB3aXRoIElHUCdzIGhhdmVuJ3QgY29tcGxhaW5lZCBhYm91dAp0aGlzLgoKICAt
+aWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
