@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74866] [NV1A] [BISECTED] Corruption in 3.13,
- bisected to 8613e7314ac
-Date: Wed, 19 Feb 2014 03:28:31 +0000
-Message-ID: <bug-74866-8800-2ziXsO2p9v@http.bugs.freedesktop.org/>
-References: <bug-74866-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74710] [NV108] GT 730M: unknown chipset
+Date: Wed, 19 Feb 2014 03:29:52 +0000
+Message-ID: <bug-74710-8800-CH6LV0hsFd@http.bugs.freedesktop.org/>
+References: <bug-74710-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0105313189=="
+Content-Type: multipart/mixed; boundary="===============1978124155=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74866-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-74710-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0105313189==
-Content-Type: multipart/alternative; boundary="1392780510.7B0D2.26338"; charset="us-ascii"
+--===============1978124155==
+Content-Type: multipart/alternative; boundary="1392780592.61DF32.26761"; charset="us-ascii"
 
 
---1392780510.7B0D2.26338
-Date: Wed, 19 Feb 2014 03:28:30 +0000
+--1392780592.61DF32.26761
+Date: Wed, 19 Feb 2014 03:29:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74866
+https://bugs.freedesktop.org/show_bug.cgi?id=74710
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -39,18 +38,16 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |FIXED
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The fix should now be upstream, and should be included in the next 3.14-rc as
-well as future 3.13.x stable trees.
-
-https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=95ca5b550ac255bf3cee108c123407785c47e3cc
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+This particular issue should not happen on recent kernels (3.13+). Feel free to
+reopen if it does, or open a new issue if there are other problems.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392780510.7B0D2.26338
-Date: Wed, 19 Feb 2014 03:28:30 +0000
+--1392780592.61DF32.26761
+Date: Wed, 19 Feb 2014 03:29:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,8 +59,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV1A] [BISECTED] Corruption in 3.13, bisected to 8613e7314ac"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74866">bug 74866</a>
+   title="RESOLVED FIXED - [NV108] GT 730M: unknown chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74710">bug 74710</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -91,18 +88,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV1A] [BISECTED] Corruption in 3.13, bisected to 8613e7314ac"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74866#c3">Comment # 3</a>
+   title="RESOLVED FIXED - [NV108] GT 730M: unknown chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74710#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV1A] [BISECTED] Corruption in 3.13, bisected to 8613e7314ac"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74866">bug 74866</a>
+   title="RESOLVED FIXED - [NV108] GT 730M: unknown chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74710">bug 74710</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>The fix should now be upstream, and should be included in the next 3.14-rc as
-well as future 3.13.x stable trees.
-
-<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=95ca5b550ac255bf3cee108c123407785c47e3cc">https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=95ca5b550ac255bf3cee108c123407785c47e3cc</a></pre>
+        <pre>This particular issue should not happen on recent kernels (3.13+). Feel free to
+reopen if it does, or open a new issue if there are other problems.</pre>
         </div>
       </p>
       <hr>
@@ -114,9 +109,9 @@ well as future 3.13.x stable trees.
     </body>
 </html>
 
---1392780510.7B0D2.26338--
+--1392780592.61DF32.26761--
 
---===============0105313189==
+--===============1978124155==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,4 +122,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0105313189==--
+--===============1978124155==--
