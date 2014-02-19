@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75203] Asus Maximus IV GENE-Z - Nvidia GTX660 -
- Strange pink line on left screen side
-Date: Wed, 19 Feb 2014 14:46:15 +0000
-Message-ID: <bug-75203-8800-46ZRNwdksU@http.bugs.freedesktop.org/>
-References: <bug-75203-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75199] [NVD7] unsupported GT620M in Samsung
+ All-in-One PC DP500A2D
+Date: Wed, 19 Feb 2014 15:01:05 +0000
+Message-ID: <bug-75199-8800-NkHDTrrppM@http.bugs.freedesktop.org/>
+References: <bug-75199-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0409415609=="
+Content-Type: multipart/mixed; boundary="===============1307463211=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75199-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0409415609==
-Content-Type: multipart/alternative; boundary="1392821175.02D87c2.1966"; charset="us-ascii"
+--===============1307463211==
+Content-Type: multipart/alternative; boundary="1392822065.54DF2CB2.5552"; charset="us-ascii"
 
 
---1392821175.02D87c2.1966
-Date: Wed, 19 Feb 2014 14:46:15 +0000
+--1392822065.54DF2CB2.5552
+Date: Wed, 19 Feb 2014 15:01:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75203
+https://bugs.freedesktop.org/show_bug.cgi?id=75199
 
---- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi Vincent
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Looking at your launchpad bug it seems that you're using old version of
-xserver-xorg-video-nouveau(1.0.7), amongst others.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|unsupported GT620M in       |[NVD7] unsupported GT620M
+                   |Samsung All-in-One PC       |in Samsung All-in-One PC
+                   |DP500A2D                    |DP500A2D
 
-Can you update to:
-* libdrm            2.4.52
-* Mesa                10.0.3
-* xserver-xorg-video-nouveau    1.0.10
+--- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Seems like bbswitch is not powering the card properly.
 
-Additionally does the pink line appear in VT or is it present only within X ?
+I would recommend removing bbswitch and using the kernel's dynamic power
+management (iirc it landed in 3.12). The latter should power off the nvidia
+card when not in use and bring it back up if you run DRI_PRIME=1 glxgears
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392821175.02D87c2.1966
-Date: Wed, 19 Feb 2014 14:46:15 +0000
+--1392822065.54DF2CB2.5552
+Date: Wed, 19 Feb 2014 15:01:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,30 +60,44 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVD7] unsupported GT620M in Samsung All-in-One PC DP500A2D"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75199">bug 75199</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>unsupported GT620M in Samsung All-in-One PC DP500A2D
+           </td>
+           <td>[NVD7] unsupported GT620M in Samsung All-in-One PC DP500A2D
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c5">Comment # 5</a>
+   title="NEW --- - [NVD7] unsupported GT620M in Samsung All-in-One PC DP500A2D"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75199#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">bug 75203</a>
+   title="NEW --- - [NVD7] unsupported GT620M in Samsung All-in-One PC DP500A2D"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75199">bug 75199</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Hi Vincent
+        <pre>Seems like bbswitch is not powering the card properly.
 
-Looking at your launchpad bug it seems that you're using old version of
-xserver-xorg-video-nouveau(1.0.7), amongst others.
-
-Can you update to:
-* libdrm            2.4.52
-* Mesa                10.0.3
-* xserver-xorg-video-nouveau    1.0.10
-
-Additionally does the pink line appear in VT or is it present only within X ?</pre>
+I would recommend removing bbswitch and using the kernel's dynamic power
+management (iirc it landed in 3.12). The latter should power off the nvidia
+card when not in use and bring it back up if you run DRI_PRIME=1 glxgears</pre>
         </div>
       </p>
       <hr>
@@ -93,9 +109,9 @@ Additionally does the pink line appear in VT or is it present only within X ?</p
     </body>
 </html>
 
---1392821175.02D87c2.1966--
+--1392822065.54DF2CB2.5552--
 
---===============0409415609==
+--===============1307463211==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +122,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0409415609==--
+--===============1307463211==--
