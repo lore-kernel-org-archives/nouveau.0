@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75202] New: Asus Maximus IV GENE-Z - Nvidia GTX660 -
+Subject: [Bug 75203] New: Asus Maximus IV GENE-Z - Nvidia GTX660 -
  Strange pink line on left screen side
-Date: Wed, 19 Feb 2014 12:43:54 +0000
-Message-ID: <bug-75202-8800@http.bugs.freedesktop.org/>
+Date: Wed, 19 Feb 2014 12:46:47 +0000
+Message-ID: <bug-75203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0008326197=="
+Content-Type: multipart/mixed; boundary="===============1997820028=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,19 +19,19 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0008326197==
-Content-Type: multipart/alternative; boundary="1392813834.a487aF1.30967"; charset="us-ascii"
+--===============1997820028==
+Content-Type: multipart/alternative; boundary="1392814007.3fCAFE1.32143"; charset="us-ascii"
 
 
---1392813834.a487aF1.30967
-Date: Wed, 19 Feb 2014 12:43:54 +0000
+--1392814007.3fCAFE1.32143
+Date: Wed, 19 Feb 2014 12:46:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75202
+https://bugs.freedesktop.org/show_bug.cgi?id=75203
 
           Priority: medium
-            Bug ID: 75202
+            Bug ID: 75203
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
            Summary: Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink
                     line on left screen side
@@ -46,22 +46,19 @@ https://bugs.freedesktop.org/show_bug.cgi?id=75202
          Component: Driver/nouveau
            Product: xorg
 
-Created attachment 94352
-  --> https://bugs.freedesktop.org/attachment.cgi?id=94352&action=edit
-Picture shows the Bug
-
 This Line is displayed all the time while using nouveau.
 WORKAROUND: Use the nvidia proprietary drivers.
 
 Tested on DistroRelease: Ubuntu 12.10, 13.04, 13.10, 14.04
-Screenshot
+Bugreport on Launchpad:
+https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/1203731
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392813834.a487aF1.30967
-Date: Wed, 19 Feb 2014 12:43:54 +0000
+--1392814007.3fCAFE1.32143
+Date: Wed, 19 Feb 2014 12:46:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -81,7 +78,7 @@ Content-Type: text/html; charset="UTF-8"
           <td><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75202">75202</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">75203</a>
           </td>
         </tr>
 
@@ -158,14 +155,12 @@ Content-Type: text/html; charset="UTF-8"
         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=94352" name="attach_94352" title="Picture shows the Bug">attachment 94352</a> <a href="attachment.cgi?id=94352&amp;action=edit" title="Picture shows the Bug">[details]</a></span>
-Picture shows the Bug
-
-This Line is displayed all the time while using nouveau.
+        <pre>This Line is displayed all the time while using nouveau.
 WORKAROUND: Use the nvidia proprietary drivers.
 
 Tested on DistroRelease: Ubuntu 12.10, 13.04, 13.10, 14.04
-Screenshot</pre>
+Bugreport on Launchpad:
+<a href="https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/1203731">https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/1203731</a></pre>
         </div>
       </p>
       <hr>
@@ -177,9 +172,9 @@ Screenshot</pre>
     </body>
 </html>
 
---1392813834.a487aF1.30967--
+--1392814007.3fCAFE1.32143--
 
---===============0008326197==
+--===============1997820028==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -190,4 +185,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0008326197==--
+--===============1997820028==--
