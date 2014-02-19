@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75203] Asus Maximus IV GENE-Z - Nvidia GTX660 -
  Strange pink line on left screen side
-Date: Wed, 19 Feb 2014 14:42:52 +0000
-Message-ID: <bug-75203-8800-IvusPR1am3@http.bugs.freedesktop.org/>
+Date: Wed, 19 Feb 2014 14:46:15 +0000
+Message-ID: <bug-75203-8800-46ZRNwdksU@http.bugs.freedesktop.org/>
 References: <bug-75203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0538228752=="
+Content-Type: multipart/mixed; boundary="===============0409415609=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0538228752==
-Content-Type: multipart/alternative; boundary="1392820972.ECAfBE1.1288"; charset="us-ascii"
+--===============0409415609==
+Content-Type: multipart/alternative; boundary="1392821175.02D87c2.1966"; charset="us-ascii"
 
 
---1392820972.ECAfBE1.1288
-Date: Wed, 19 Feb 2014 14:42:52 +0000
+--1392821175.02D87c2.1966
+Date: Wed, 19 Feb 2014 14:46:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75203
 
---- Comment #4 from Vincent Thiele <vincentthiele-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-I'm sorry for posting this bug two times (I messed something up with my
-browser).
+--- Comment #5 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi Vincent
+
+Looking at your launchpad bug it seems that you're using old version of
+xserver-xorg-video-nouveau(1.0.7), amongst others.
+
+Can you update to:
+* libdrm            2.4.52
+* Mesa                10.0.3
+* xserver-xorg-video-nouveau    1.0.10
+
+Additionally does the pink line appear in VT or is it present only within X ?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392820972.ECAfBE1.1288
-Date: Wed, 19 Feb 2014 14:42:52 +0000
+--1392821175.02D87c2.1966
+Date: Wed, 19 Feb 2014 14:46:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +64,24 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">bug 75203</a>
-              from <span class="vcard"><a class="email" href="mailto:vincentthiele&#64;googlemail.com" title="Vincent Thiele &lt;vincentthiele&#64;googlemail.com&gt;"> <span class="fn">Vincent Thiele</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>I'm sorry for posting this bug two times (I messed something up with my
-browser).</pre>
+        <pre>Hi Vincent
+
+Looking at your launchpad bug it seems that you're using old version of
+xserver-xorg-video-nouveau(1.0.7), amongst others.
+
+Can you update to:
+* libdrm            2.4.52
+* Mesa                10.0.3
+* xserver-xorg-video-nouveau    1.0.10
+
+Additionally does the pink line appear in VT or is it present only within X ?</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +93,9 @@ browser).</pre>
     </body>
 </html>
 
---1392820972.ECAfBE1.1288--
+--1392821175.02D87c2.1966--
 
---===============0538228752==
+--===============0409415609==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +106,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0538228752==--
+--===============0409415609==--
