@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74613] [NV34] [v3.14-rc1] nouveau: get 0x10000000
- put 0x0000ed30 state 0xc0000000 (err: MEM_FAULT) push 0x00000000
-Date: Wed, 19 Feb 2014 06:51:03 +0000
-Message-ID: <bug-74613-8800-tuRqWVOEwO@http.bugs.freedesktop.org/>
-References: <bug-74613-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75189] New: [v3.14-rc2] [nv34] Fails to hibernate
+Date: Wed, 19 Feb 2014 08:43:52 +0000
+Message-ID: <bug-75189-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2125891562=="
+Content-Type: multipart/mixed; boundary="===============1483017806=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74613-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +18,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2125891562==
-Content-Type: multipart/alternative; boundary="1392792663.F1678f8C1.7993"; charset="us-ascii"
+--===============1483017806==
+Content-Type: multipart/alternative; boundary="1392799432.eF8d1.2802"; charset="us-ascii"
 
 
---1392792663.F1678f8C1.7993
-Date: Wed, 19 Feb 2014 06:51:03 +0000
+--1392799432.eF8d1.2802
+Date: Wed, 19 Feb 2014 08:43:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74613
+https://bugs.freedesktop.org/show_bug.cgi?id=75189
 
---- Comment #13 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thanks, I changed my gitconfig and I'm already pulling from drm-nouveau-next :)
-.
+          Priority: medium
+            Bug ID: 75189
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [v3.14-rc2] [nv34] Fails to hibernate
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
+
+Created attachment 94332
+  --> https://bugs.freedesktop.org/attachment.cgi?id=94332&action=edit
+Full dmesg
+
+Tried to hibernate, got the following. It's a full dmesg containing OOPS'es.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392792663.F1678f8C1.7993
-Date: Wed, 19 Feb 2014 06:51:03 +0000
+--1392799432.eF8d1.2802
+Date: Wed, 19 Feb 2014 08:43:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,21 +63,99 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [v3.14-rc2] [nv34] Fails to hibernate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75189">75189</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[v3.14-rc2] [nv34] Fails to hibernate
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>ronald645&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV34] [v3.14-rc1] nouveau: get 0x10000000 put 0x0000ed30 state 0xc0000000 (err: MEM_FAULT) push 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74613#c13">Comment # 13</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV34] [v3.14-rc1] nouveau: get 0x10000000 put 0x0000ed30 state 0xc0000000 (err: MEM_FAULT) push 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74613">bug 74613</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
-</span></b>
-        <pre>Thanks, I changed my gitconfig and I'm already pulling from drm-nouveau-next :)
-.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=94332" name="attach_94332" title="Full dmesg">attachment 94332</a> <a href="attachment.cgi?id=94332&amp;action=edit" title="Full dmesg">[details]</a></span>
+Full dmesg
+
+Tried to hibernate, got the following. It's a full dmesg containing OOPS'es.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +167,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1392792663.F1678f8C1.7993--
+--1392799432.eF8d1.2802--
 
---===============2125891562==
+--===============1483017806==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +180,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2125891562==--
+--===============1483017806==--
