@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75203] Asus Maximus IV GENE-Z - Nvidia GTX660 -
  Strange pink line on left screen side
-Date: Wed, 19 Feb 2014 12:48:44 +0000
-Message-ID: <bug-75203-8800-H8fBdkGErc@http.bugs.freedesktop.org/>
+Date: Wed, 19 Feb 2014 14:29:46 +0000
+Message-ID: <bug-75203-8800-fJydHB7dpz@http.bugs.freedesktop.org/>
 References: <bug-75203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0784317160=="
+Content-Type: multipart/mixed; boundary="===============1577156300=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0784317160==
-Content-Type: multipart/alternative; boundary="1392814124.3c121.450"; charset="us-ascii"
+--===============1577156300==
+Content-Type: multipart/alternative; boundary="1392820186.DF3CE5.30561"; charset="us-ascii"
 
 
---1392814124.3c121.450
-Date: Wed, 19 Feb 2014 12:48:44 +0000
+--1392820186.DF3CE5.30561
+Date: Wed, 19 Feb 2014 14:29:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75203
 
---- Comment #2 from Vincent Thiele <vincentthiele-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-Created attachment 94355
-  --> https://bugs.freedesktop.org/attachment.cgi?id=94355&action=edit
-screenshot shows the bug
+--- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+*** Bug 75202 has been marked as a duplicate of this bug. ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392814124.3c121.450
-Date: Wed, 19 Feb 2014 12:48:44 +0000
+--1392820186.DF3CE5.30561
+Date: Wed, 19 Feb 2014 14:29:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +54,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">bug 75203</a>
-              from <span class="vcard"><a class="email" href="mailto:vincentthiele&#64;googlemail.com" title="Vincent Thiele &lt;vincentthiele&#64;googlemail.com&gt;"> <span class="fn">Vincent Thiele</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=94355" name="attach_94355" title="screenshot shows the bug">attachment 94355</a> <a href="attachment.cgi?id=94355&amp;action=edit" title="screenshot shows the bug">[details]</a></span>
-screenshot shows the bug</pre>
+        <pre>*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
+   href="show_bug.cgi?id=75202">Bug 75202</a> has been marked as a duplicate of this bug. ***</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ screenshot shows the bug</pre>
     </body>
 </html>
 
---1392814124.3c121.450--
+--1392820186.DF3CE5.30561--
 
---===============0784317160==
+--===============1577156300==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0784317160==--
+--===============1577156300==--
