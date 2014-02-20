@@ -1,11 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nv50: enable txg where supported
-Date: Thu, 20 Feb 2014 01:33:30 -0500
-Message-ID: <1392878010-4909-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74492] [NV4E] v3.13-rc8 nv4e + msi = random lockups
+Date: Thu, 20 Feb 2014 07:22:03 +0000
+Message-ID: <bug-74492-8800-0f51FToaSK@http.bugs.freedesktop.org/>
+References: <bug-74492-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0653246305=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-74492-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,82 +16,75 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
----
 
-This applies on top of Dave Airlie's r600g-texture-gather branch. Ran piglit
-with -t gather, passed all 1057 tests. Can't say I fully understand what all
-the arguments to handleTEX in the Coverter are but... seems to work. Will
-probably require some care for nvc0 support which should have SM5 caps.
+--===============0653246305==
+Content-Type: multipart/alternative; boundary="1392880922.6Bc27761.9199"; charset="us-ascii"
 
- src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp | 3 ++-
- src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp | 4 ++++
- src/gallium/drivers/nouveau/nv50/nv50_screen.c            | 3 ++-
- 3 files changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
-index bef103f..e2f93bb 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
-@@ -1447,7 +1447,7 @@ CodeEmitterNV50::emitTEX(const TexInstruction *i)
-       code[0] |= 0x01000000;
-       break;
-    case OP_TXG:
--      code[0] = 0x01000000;
-+      code[0] |= 0x01000000;
-       code[1] = 0x80000000;
-       break;
-    default:
-@@ -1790,6 +1790,7 @@ CodeEmitterNV50::emitInstruction(Instruction *insn)
-    case OP_TXB:
-    case OP_TXL:
-    case OP_TXF:
-+   case OP_TXG:
-       emitTEX(insn->asTex());
-       break;
-    case OP_TXQ:
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-index d226d0c..ccddb9a 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-@@ -558,6 +558,7 @@ static nv50_ir::operation translateOpcode(uint opcode)
-    NV50_IR_OPCODE_CASE(SAD, SAD);
-    NV50_IR_OPCODE_CASE(TXF, TXF);
-    NV50_IR_OPCODE_CASE(TXQ, TXQ);
-+   NV50_IR_OPCODE_CASE(TG4, TXG);
- 
-    NV50_IR_OPCODE_CASE(EMIT, EMIT);
-    NV50_IR_OPCODE_CASE(ENDPRIM, RESTART);
-@@ -2434,6 +2435,9 @@ Converter::handleInstruction(const struct tgsi_full_instruction *insn)
-    case TGSI_OPCODE_TXD:
-       handleTEX(dst0, 3, 3, 0x03, 0x0f, 0x10, 0x20);
-       break;
-+   case TGSI_OPCODE_TG4:
-+      handleTEX(dst0, 2, 2, 0x03, 0x0f, 0x00, 0x00);
-+      break;
-    case TGSI_OPCODE_TEX2:
-       handleTEX(dst0, 2, 2, 0x03, 0x10, 0x00, 0x00);
-       break;
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_screen.c b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
-index 488642a..9aafe94 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_screen.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
-@@ -193,11 +193,12 @@ nv50_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
-    case PIPE_CAP_ENDIANNESS:
-       return PIPE_ENDIAN_LITTLE;
-    case PIPE_CAP_TGSI_VS_LAYER:
--   case PIPE_CAP_MAX_TEXTURE_GATHER_COMPONENTS:
-    case PIPE_CAP_TEXTURE_GATHER_SM5:
-       return 0;
-    case PIPE_CAP_MAX_VIEWPORTS:
-       return NV50_MAX_VIEWPORTS;
-+   case PIPE_CAP_MAX_TEXTURE_GATHER_COMPONENTS:
-+      return (class_3d >= NVA3_3D_CLASS) ? 4 : 0;
-    default:
-       NOUVEAU_ERR("unknown PIPE_CAP %d\n", param);
-       return 0;
+--1392880922.6Bc27761.9199
+Date: Thu, 20 Feb 2014 07:22:02 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=74492
+
+--- Comment #16 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Yes, it never crashed with MSI disabled. I have the laptop hooked up anyway so
+I will still try hoping it will be able to send out what is going wrong.
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1392880922.6Bc27761.9199
+Date: Thu, 20 Feb 2014 07:22:02 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV4E] v3.13-rc8 nv4e + msi = random lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492#c16">Comment # 16</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV4E] v3.13-rc8 nv4e + msi = random lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492">bug 74492</a>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+</span></b>
+        <pre>Yes, it never crashed with MSI disabled. I have the laptop hooked up anyway so
+I will still try hoping it will be able to send out what is going wrong.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1392880922.6Bc27761.9199--
+
+--===============0653246305==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0653246305==--
