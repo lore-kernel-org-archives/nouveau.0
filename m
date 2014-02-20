@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75199] [NVD7] unsupported GT620M in Samsung
- All-in-One PC DP500A2D
-Date: Wed, 19 Feb 2014 18:41:12 +0000
-Message-ID: <bug-75199-8800-C9N8qptiI8@http.bugs.freedesktop.org/>
-References: <bug-75199-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nv50: enable txg where supported
+Date: Thu, 20 Feb 2014 01:33:30 -0500
+Message-ID: <1392878010-4909-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1102760886=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75199-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,114 +15,82 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
 
---===============1102760886==
-Content-Type: multipart/alternative; boundary="1392835271.2C182.27536"; charset="us-ascii"
+This applies on top of Dave Airlie's r600g-texture-gather branch. Ran piglit
+with -t gather, passed all 1057 tests. Can't say I fully understand what all
+the arguments to handleTEX in the Coverter are but... seems to work. Will
+probably require some care for nvc0 support which should have SM5 caps.
 
+ src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp | 3 ++-
+ src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp | 4 ++++
+ src/gallium/drivers/nouveau/nv50/nv50_screen.c            | 3 ++-
+ 3 files changed, 8 insertions(+), 2 deletions(-)
 
---1392835271.2C182.27536
-Date: Wed, 19 Feb 2014 18:41:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=75199
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |NOTABUG
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Running stuff with DRI_PRIME=1 should cause it to use the nvidia card (e.g.
-DRI_PRIME=1 glxinfo). However that will only work once you've set up
-offloading. Take a look at http://nouveau.freedesktop.org/wiki/Optimus/. (Not
-sure what glxheads is... glxinfo is pretty authoritative though.)
-
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
+index bef103f..e2f93bb 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
+@@ -1447,7 +1447,7 @@ CodeEmitterNV50::emitTEX(const TexInstruction *i)
+       code[0] |= 0x01000000;
+       break;
+    case OP_TXG:
+-      code[0] = 0x01000000;
++      code[0] |= 0x01000000;
+       code[1] = 0x80000000;
+       break;
+    default:
+@@ -1790,6 +1790,7 @@ CodeEmitterNV50::emitInstruction(Instruction *insn)
+    case OP_TXB:
+    case OP_TXL:
+    case OP_TXF:
++   case OP_TXG:
+       emitTEX(insn->asTex());
+       break;
+    case OP_TXQ:
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+index d226d0c..ccddb9a 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+@@ -558,6 +558,7 @@ static nv50_ir::operation translateOpcode(uint opcode)
+    NV50_IR_OPCODE_CASE(SAD, SAD);
+    NV50_IR_OPCODE_CASE(TXF, TXF);
+    NV50_IR_OPCODE_CASE(TXQ, TXQ);
++   NV50_IR_OPCODE_CASE(TG4, TXG);
+ 
+    NV50_IR_OPCODE_CASE(EMIT, EMIT);
+    NV50_IR_OPCODE_CASE(ENDPRIM, RESTART);
+@@ -2434,6 +2435,9 @@ Converter::handleInstruction(const struct tgsi_full_instruction *insn)
+    case TGSI_OPCODE_TXD:
+       handleTEX(dst0, 3, 3, 0x03, 0x0f, 0x10, 0x20);
+       break;
++   case TGSI_OPCODE_TG4:
++      handleTEX(dst0, 2, 2, 0x03, 0x0f, 0x00, 0x00);
++      break;
+    case TGSI_OPCODE_TEX2:
+       handleTEX(dst0, 2, 2, 0x03, 0x10, 0x00, 0x00);
+       break;
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_screen.c b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
+index 488642a..9aafe94 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_screen.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
+@@ -193,11 +193,12 @@ nv50_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+    case PIPE_CAP_ENDIANNESS:
+       return PIPE_ENDIAN_LITTLE;
+    case PIPE_CAP_TGSI_VS_LAYER:
+-   case PIPE_CAP_MAX_TEXTURE_GATHER_COMPONENTS:
+    case PIPE_CAP_TEXTURE_GATHER_SM5:
+       return 0;
+    case PIPE_CAP_MAX_VIEWPORTS:
+       return NV50_MAX_VIEWPORTS;
++   case PIPE_CAP_MAX_TEXTURE_GATHER_COMPONENTS:
++      return (class_3d >= NVA3_3D_CLASS) ? 4 : 0;
+    default:
+       NOUVEAU_ERR("unknown PIPE_CAP %d\n", param);
+       return 0;
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1392835271.2C182.27536
-Date: Wed, 19 Feb 2014 18:41:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - [NVD7] unsupported GT620M in Samsung All-in-One PC DP500A2D"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75199">bug 75199</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTABUG
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - [NVD7] unsupported GT620M in Samsung All-in-One PC DP500A2D"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75199#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - [NVD7] unsupported GT620M in Samsung All-in-One PC DP500A2D"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75199">bug 75199</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Running stuff with DRI_PRIME=1 should cause it to use the nvidia card (e.g.
-DRI_PRIME=1 glxinfo). However that will only work once you've set up
-offloading. Take a look at <a href="http://nouveau.freedesktop.org/wiki/Optimus/">http://nouveau.freedesktop.org/wiki/Optimus/</a>. (Not
-sure what glxheads is... glxinfo is pretty authoritative though.)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1392835271.2C182.27536--
-
---===============1102760886==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1102760886==--
+1.8.3.2
