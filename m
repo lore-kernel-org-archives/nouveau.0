@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74492] [NV4E] v3.13-rc8 nv4e + msi = random lockups
-Date: Thu, 20 Feb 2014 07:22:03 +0000
-Message-ID: <bug-74492-8800-0f51FToaSK@http.bugs.freedesktop.org/>
-References: <bug-74492-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75189] [NV34] Fails to hibernate
+Date: Thu, 20 Feb 2014 07:38:22 +0000
+Message-ID: <bug-75189-8800-ieXqIsnd3g@http.bugs.freedesktop.org/>
+References: <bug-75189-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0653246305=="
+Content-Type: multipart/mixed; boundary="===============0853039211=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74492-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75189-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0653246305==
-Content-Type: multipart/alternative; boundary="1392880922.6Bc27761.9199"; charset="us-ascii"
+--===============0853039211==
+Content-Type: multipart/alternative; boundary="1392881902.08ebBFF71.17281"; charset="us-ascii"
 
 
---1392880922.6Bc27761.9199
-Date: Thu, 20 Feb 2014 07:22:02 +0000
+--1392881902.08ebBFF71.17281
+Date: Thu, 20 Feb 2014 07:38:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74492
+https://bugs.freedesktop.org/show_bug.cgi?id=75189
 
---- Comment #16 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Yes, it never crashed with MSI disabled. I have the laptop hooked up anyway so
-I will still try hoping it will be able to send out what is going wrong.
+--- Comment #2 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Just a onetime thing. I just tried again twice.
+
+I would now know why it failed it has more than enough memory.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392880922.6Bc27761.9199
-Date: Thu, 20 Feb 2014 07:22:02 +0000
+--1392881902.08ebBFF71.17281
+Date: Thu, 20 Feb 2014 07:38:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,16 +54,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV4E] v3.13-rc8 nv4e + msi = random lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492#c16">Comment # 16</a>
+   title="NEW --- - [NV34] Fails to hibernate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75189#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV4E] v3.13-rc8 nv4e + msi = random lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74492">bug 74492</a>
+   title="NEW --- - [NV34] Fails to hibernate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75189">bug 75189</a>
               from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Yes, it never crashed with MSI disabled. I have the laptop hooked up anyway so
-I will still try hoping it will be able to send out what is going wrong.</pre>
+        <pre>Just a onetime thing. I just tried again twice.
+
+I would now know why it failed it has more than enough memory.</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +76,9 @@ I will still try hoping it will be able to send out what is going wrong.</pre>
     </body>
 </html>
 
---1392880922.6Bc27761.9199--
+--1392881902.08ebBFF71.17281--
 
---===============0653246305==
+--===============0853039211==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0653246305==--
+--===============0853039211==--
