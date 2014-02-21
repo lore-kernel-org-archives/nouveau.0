@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75279] XCloseDisplay() takes one minute around
  nouveau_dri.so, freezing Firefox startup
-Date: Fri, 21 Feb 2014 09:58:19 +0000
-Message-ID: <bug-75279-8800-16wOTyhWRV@http.bugs.freedesktop.org/>
+Date: Fri, 21 Feb 2014 13:44:10 +0000
+Message-ID: <bug-75279-8800-hOk1wByXDa@http.bugs.freedesktop.org/>
 References: <bug-75279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1001633462=="
+Content-Type: multipart/mixed; boundary="===============1166613815=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1001633462==
-Content-Type: multipart/alternative; boundary="1392976699.fEd5bA32.27856"; charset="us-ascii"
+--===============1166613815==
+Content-Type: multipart/alternative; boundary="1392990250.bBFe624e2.19704"; charset="us-ascii"
 
 
---1392976699.fEd5bA32.27856
-Date: Fri, 21 Feb 2014 09:58:19 +0000
+--1392990250.bBFe624e2.19704
+Date: Fri, 21 Feb 2014 13:44:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75279
 
---- Comment #11 from Frederic Bezies <fredbezies-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #10)
-> Emil tried the glxtest program earlier and didn't get a hang either. So at
-> least that's consistent. (I'm adding you to the CC list, hope that's OK, if
-> not, feel free to remove yourself.)
-
-I don't mind. I wanted to do so :)
+--- Comment #12 from Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> ---
+Yeah, sorry about that. The code is exactly the same as in Firefox, and it runs
+very close to startup, so I'm surprised that this doesn't reproduce.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392976699.fEd5bA32.27856
-Date: Fri, 21 Feb 2014 09:58:19 +0000
+--1392990250.bBFe624e2.19704
+Date: Fri, 21 Feb 2014 13:44:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,19 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
-              from <span class="vcard"><a class="email" href="mailto:fredbezies&#64;gmail.com" title="Frederic Bezies &lt;fredbezies&#64;gmail.com&gt;"> <span class="fn">Frederic Bezies</span></a>
+              from <span class="vcard"><a class="email" href="mailto:bjacob&#64;mozilla.com" title="Benoit Jacob &lt;bjacob&#64;mozilla.com&gt;"> <span class="fn">Benoit Jacob</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=75279#c10">comment #10</a>)
-<span class="quote">&gt; Emil tried the glxtest program earlier and didn't get a hang either. So at
-&gt; least that's consistent. (I'm adding you to the CC list, hope that's OK, if
-&gt; not, feel free to remove yourself.)</span >
-
-I don't mind. I wanted to do so :)</pre>
+        <pre>Yeah, sorry about that. The code is exactly the same as in Firefox, and it runs
+very close to startup, so I'm surprised that this doesn't reproduce.</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +75,9 @@ I don't mind. I wanted to do so :)</pre>
     </body>
 </html>
 
---1392976699.fEd5bA32.27856--
+--1392990250.bBFe624e2.19704--
 
---===============1001633462==
+--===============1166613815==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1001633462==--
+--===============1166613815==--
