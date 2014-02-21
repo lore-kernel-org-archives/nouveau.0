@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75279] XCloseDisplay() takes one minute around
  nouveau_dri.so, freezing Firefox startup
-Date: Fri, 21 Feb 2014 00:20:19 +0000
-Message-ID: <bug-75279-8800-kCmUP90F7t@http.bugs.freedesktop.org/>
+Date: Fri, 21 Feb 2014 00:26:47 +0000
+Message-ID: <bug-75279-8800-UuZRy8XZzo@http.bugs.freedesktop.org/>
 References: <bug-75279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1466902276=="
+Content-Type: multipart/mixed; boundary="===============1096824559=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1466902276==
-Content-Type: multipart/alternative; boundary="1392942018.2Fdd65c12.10583"; charset="us-ascii"
+--===============1096824559==
+Content-Type: multipart/alternative; boundary="1392942407.86eAA2dC1.11457"; charset="us-ascii"
 
 
---1392942018.2Fdd65c12.10583
-Date: Fri, 21 Feb 2014 00:20:18 +0000
+--1392942407.86eAA2dC1.11457
+Date: Fri, 21 Feb 2014 00:26:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75279
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #4)
-> I have also asked the original reporter to share his glxinfo output and
-> details about his setup. You might want to CC yourself on the mozilla bug.
-
-Might be easier to get the original reporter onto this one...
-
-Can you confirm that the standalone glxtest causes the reported 1-minute stall
-as well?
+--- Comment #6 from Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> ---
+Good point, and good question, which I've forwarded on the mozilla bug.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392942018.2Fdd65c12.10583
-Date: Fri, 21 Feb 2014 00:20:18 +0000
+--1392942407.86eAA2dC1.11457
+Date: Fri, 21 Feb 2014 00:26:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,21 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:bjacob&#64;mozilla.com" title="Benoit Jacob &lt;bjacob&#64;mozilla.com&gt;"> <span class="fn">Benoit Jacob</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=75279#c4">comment #4</a>)
-<span class="quote">&gt; I have also asked the original reporter to share his glxinfo output and
-&gt; details about his setup. You might want to CC yourself on the mozilla bug.</span >
-
-Might be easier to get the original reporter onto this one...
-
-Can you confirm that the standalone glxtest causes the reported 1-minute stall
-as well?</pre>
+        <pre>Good point, and good question, which I've forwarded on the mozilla bug.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +73,9 @@ as well?</pre>
     </body>
 </html>
 
---1392942018.2Fdd65c12.10583--
+--1392942407.86eAA2dC1.11457--
 
---===============1466902276==
+--===============1096824559==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1466902276==--
+--===============1096824559==--
