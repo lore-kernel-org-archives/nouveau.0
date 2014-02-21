@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75279] XCloseDisplay() takes one minute around
  nouveau_dri.so, freezing Firefox startup
-Date: Fri, 21 Feb 2014 00:14:50 +0000
-Message-ID: <bug-75279-8800-9SWNWOoB5t@http.bugs.freedesktop.org/>
+Date: Fri, 21 Feb 2014 00:15:54 +0000
+Message-ID: <bug-75279-8800-O59twIrlt9@http.bugs.freedesktop.org/>
 References: <bug-75279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0418829387=="
+Content-Type: multipart/mixed; boundary="===============0651014490=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,44 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0418829387==
-Content-Type: multipart/alternative; boundary="1392941690.b8dB1.9232"; charset="us-ascii"
+--===============0651014490==
+Content-Type: multipart/alternative; boundary="1392941754.8fb21.9475"; charset="us-ascii"
 
 
---1392941690.b8dB1.9232
-Date: Fri, 21 Feb 2014 00:14:50 +0000
+--1392941754.8fb21.9475
+Date: Fri, 21 Feb 2014 00:15:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75279
 
---- Comment #3 from Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> ---
-Created attachment 94465
-  --> https://bugs.freedesktop.org/attachment.cgi?id=94465&action=edit
-Stand-alone version of the glxtest program
-
-Here you go.
-
-build like this:
-   c++ glxtest.cpp -o glxtest -ldl -lX11
-run like this:
-   ./glxtest
-Example output:
-  VENDOR
-  Tungsten Graphics, Inc
-  RENDERER
-  Mesa DRI Intel(R) Sandybridge Mobile
-  VERSION
-  3.0 Mesa 8.0.4
-  TFP
-  TRUE
+--- Comment #4 from Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> ---
+I have also asked the original reporter to share his glxinfo output and details
+about his setup. You might want to CC yourself on the mozilla bug.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1392941690.b8dB1.9232
-Date: Fri, 21 Feb 2014 00:14:50 +0000
+--1392941754.8fb21.9475
+Date: Fri, 21 Feb 2014 00:15:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,31 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
               from <span class="vcard"><a class="email" href="mailto:bjacob&#64;mozilla.com" title="Benoit Jacob &lt;bjacob&#64;mozilla.com&gt;"> <span class="fn">Benoit Jacob</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=94465" name="attach_94465" title="Stand-alone version of the glxtest program">attachment 94465</a> <a href="attachment.cgi?id=94465&amp;action=edit" title="Stand-alone version of the glxtest program">[details]</a></span>
-Stand-alone version of the glxtest program
-
-Here you go.
-
-build like this:
-   c++ glxtest.cpp -o glxtest -ldl -lX11
-run like this:
-   ./glxtest
-Example output:
-  VENDOR
-  Tungsten Graphics, Inc
-  RENDERER
-  Mesa DRI Intel(R) Sandybridge Mobile
-  VERSION
-  3.0 Mesa 8.0.4
-  TFP
-  TRUE</pre>
+        <pre>I have also asked the original reporter to share his glxinfo output and details
+about his setup. You might want to CC yourself on the mozilla bug.</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +75,9 @@ Example output:
     </body>
 </html>
 
---1392941690.b8dB1.9232--
+--1392941754.8fb21.9475--
 
---===============0418829387==
+--===============0651014490==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0418829387==--
+--===============0651014490==--
