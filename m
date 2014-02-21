@@ -1,8 +1,7 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 2/4] nv30: remove unused render_mode and
-	hw_pointsprite_control
-Date: Fri, 21 Feb 2014 02:37:11 -0500
-Message-ID: <1392968233-26889-2-git-send-email-imirkin@alum.mit.edu>
+Subject: [PATCH 3/4] nv30: remove unused sprite flipping parameter
+Date: Fri, 21 Feb 2014 02:37:12 -0500
+Message-ID: <1392968233-26889-3-git-send-email-imirkin@alum.mit.edu>
 References: <1392968233-26889-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,49 +23,54 @@ List-Id: nouveau.vger.kernel.org
 Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 ---
 
-Were these things that didn't get quite ported over from the old nvfx? If so,
-does it matter? Are they things we need? Even if they are, they can be
-implemented in a way that doesn't put that state into nv30_context.
+I assume this is some left-over from nvfx -> nv30? That flag certainly doesn't
+do anything now...
 
- src/gallium/drivers/nouveau/nv30/nv30_context.c |  1 -
- src/gallium/drivers/nouveau/nv30/nv30_context.h | 10 +++-------
- 2 files changed, 3 insertions(+), 8 deletions(-)
+ src/gallium/drivers/nouveau/nv30/nv30_context.h  | 3 +--
+ src/gallium/drivers/nouveau/nv30/nv30_fragprog.c | 2 +-
+ src/gallium/drivers/nouveau/nv30/nvfx_fragprog.c | 3 +--
+ 3 files changed, 3 insertions(+), 5 deletions(-)
 
-diff --git a/src/gallium/drivers/nouveau/nv30/nv30_context.c b/src/gallium/drivers/nouveau/nv30/nv30_context.c
-index 4f68eee..4a4538c 100644
---- a/src/gallium/drivers/nouveau/nv30/nv30_context.c
-+++ b/src/gallium/drivers/nouveau/nv30/nv30_context.c
-@@ -235,7 +235,6 @@ nv30_context_create(struct pipe_screen *pscreen, void *priv)
- 
-    /*XXX: nvfx... */
-    nv30->is_nv4x = (screen->eng3d->oclass >= NV40_3D_CLASS) ? ~0 : 0;
--   nv30->render_mode = HW;
- 
-    nv30->sample_mask = 0xffff;
-    nv30_vbo_init(pipe);
 diff --git a/src/gallium/drivers/nouveau/nv30/nv30_context.h b/src/gallium/drivers/nouveau/nv30/nv30_context.h
-index d0cb5f5..864d97a 100644
+index 864d97a..6dfab38 100644
 --- a/src/gallium/drivers/nouveau/nv30/nv30_context.h
 +++ b/src/gallium/drivers/nouveau/nv30/nv30_context.h
-@@ -119,16 +119,12 @@ struct nv30_context {
-    struct nouveau_heap  *blit_vp;
-    struct pipe_resource *blit_fp;
+@@ -214,8 +214,7 @@ nv30_state_release(struct nv30_context *nv30);
  
--   /*XXX: nvfx state, DO NOT USE EVER OUTSIDE "STOLEN" NVFX code */
--   unsigned is_nv4x;
--   bool hw_pointsprite_control;
--   enum {
--      HW,
--   } render_mode;
--
-    struct pipe_query *render_cond_query;
-    unsigned render_cond_mode;
-    boolean render_cond_cond;
-+
-+   /*XXX: nvfx state, DO NOT USE EVER OUTSIDE "STOLEN" NVFX code */
-+   unsigned is_nv4x;
- };
+ //XXX: needed to make it build, clean this up!
+ void
+-_nvfx_fragprog_translate(struct nv30_context *nvfx, struct nv30_fragprog *fp,
+-         boolean emulate_sprite_flipping);
++_nvfx_fragprog_translate(struct nv30_context *nvfx, struct nv30_fragprog *fp);
  
- static INLINE struct nv30_context *
+ boolean
+ _nvfx_vertprog_translate(struct nv30_context *nv30, struct nv30_vertprog *vp);
+diff --git a/src/gallium/drivers/nouveau/nv30/nv30_fragprog.c b/src/gallium/drivers/nouveau/nv30/nv30_fragprog.c
+index e8acdfe..3551645 100644
+--- a/src/gallium/drivers/nouveau/nv30/nv30_fragprog.c
++++ b/src/gallium/drivers/nouveau/nv30/nv30_fragprog.c
+@@ -67,7 +67,7 @@ nv30_fragprog_validate(struct nv30_context *nv30)
+    int i;
+ 
+    if (!fp->translated) {
+-      _nvfx_fragprog_translate(nv30, fp, FALSE);
++      _nvfx_fragprog_translate(nv30, fp);
+       if (!fp->translated)
+          return;
+ 
+diff --git a/src/gallium/drivers/nouveau/nv30/nvfx_fragprog.c b/src/gallium/drivers/nouveau/nv30/nvfx_fragprog.c
+index ae4f789..bee23eb 100644
+--- a/src/gallium/drivers/nouveau/nv30/nvfx_fragprog.c
++++ b/src/gallium/drivers/nouveau/nv30/nvfx_fragprog.c
+@@ -1114,8 +1114,7 @@ out_err:
+ DEBUG_GET_ONCE_BOOL_OPTION(nvfx_dump_fp, "NVFX_DUMP_FP", FALSE)
+ 
+ void
+-_nvfx_fragprog_translate(struct nv30_context *nvfx, struct nv30_fragprog *fp,
+-         boolean emulate_sprite_flipping)
++_nvfx_fragprog_translate(struct nv30_context *nvfx, struct nv30_fragprog *fp)
+ {
+    struct tgsi_parse_context parse;
+    struct nvfx_fpc *fpc = NULL;
 -- 
 1.8.3.2
