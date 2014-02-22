@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75279] XCloseDisplay() takes one minute around
- nouveau_dri.so, freezing Firefox startup
-Date: Sat, 22 Feb 2014 20:34:51 +0000
-Message-ID: <bug-75279-8800-mHVd1H6DtB@http.bugs.freedesktop.org/>
-References: <bug-75279-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
+Date: Sat, 22 Feb 2014 22:29:07 +0000
+Message-ID: <bug-15758-8800-oJ3pcekJ15@http.bugs.freedesktop.org/>
+References: <bug-15758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0329683027=="
+Content-Type: multipart/mixed; boundary="===============1310472076=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0329683027==
-Content-Type: multipart/alternative; boundary="1393101291.01e0ABfC2.17448"; charset="us-ascii"
+--===============1310472076==
+Content-Type: multipart/alternative; boundary="1393108147.cFCb7.8103"; charset="us-ascii"
 
 
---1393101291.01e0ABfC2.17448
-Date: Sat, 22 Feb 2014 20:34:51 +0000
+--1393108147.cFCb7.8103
+Date: Sat, 22 Feb 2014 22:29:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75279
+https://bugs.freedesktop.org/show_bug.cgi?id=15758
 
---- Comment #13 from Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> ---
-The work-around that works for us, and that we're considering landing, is to
-avoid calling XCloseDisplay and, in this case, just calling XSync to handle any
-pending errors in glxtest. Digging in the Gecko codebase, I found at least
-another instance where we avoid calling XCloseDisplay because it is "scary":
+--- Comment #35 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 94589
+  --> https://bugs.freedesktop.org/attachment.cgi?id=94589&action=edit
+sleep for a second after hiding cursor
 
-http://hg.mozilla.org/mozilla-central/file/2d5d5fd03050/dom/plugins/ipc/PluginModuleChild.cpp#l569
+This patch is the equivalent of
+http://cgit.freedesktop.org/xorg/driver/xf86-video-nv/commit/?id=7f281be7e53ac274016a6af6b2b5dc6f8bddb810
+(but restricted to nv4e). Hopefully the cursor isn't disabled from inside
+interrupts, or this will go splat.
 
-At the moment I am wondering if we should stop calling XCloseDisplay
-altogether...
+I'm not suggesting something like this for inclusion into the kernel, but it'd
+be good to verify that the same workaround works in the kernel.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393101291.01e0ABfC2.17448
-Date: Sat, 22 Feb 2014 20:34:51 +0000
+--1393108147.cFCb7.8103
+Date: Sat, 22 Feb 2014 22:29:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,24 +61,25 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c13">Comment # 13</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - Invisible mouse pointer on NV4E (C51)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=15758#c35">Comment # 35</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
-              from <span class="vcard"><a class="email" href="mailto:bjacob&#64;mozilla.com" title="Benoit Jacob &lt;bjacob&#64;mozilla.com&gt;"> <span class="fn">Benoit Jacob</span></a>
+          bz_status_REOPENED "
+   title="REOPENED --- - Invisible mouse pointer on NV4E (C51)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=15758">bug 15758</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>The work-around that works for us, and that we're considering landing, is to
-avoid calling XCloseDisplay and, in this case, just calling XSync to handle any
-pending errors in glxtest. Digging in the Gecko codebase, I found at least
-another instance where we avoid calling XCloseDisplay because it is &quot;scary&quot;:
+        <pre>Created <span class=""><a href="attachment.cgi?id=94589" name="attach_94589" title="sleep for a second after hiding cursor">attachment 94589</a> <a href="attachment.cgi?id=94589&amp;action=edit" title="sleep for a second after hiding cursor">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=15758&amp;attachment=94589'>[review]</a>
+sleep for a second after hiding cursor
 
-<a href="http://hg.mozilla.org/mozilla-central/file/2d5d5fd03050/dom/plugins/ipc/PluginModuleChild.cpp#l569">http://hg.mozilla.org/mozilla-central/file/2d5d5fd03050/dom/plugins/ipc/PluginModuleChild.cpp#l569</a>
+This patch is the equivalent of
+<a href="http://cgit.freedesktop.org/xorg/driver/xf86-video-nv/commit/?id=7f281be7e53ac274016a6af6b2b5dc6f8bddb810">http://cgit.freedesktop.org/xorg/driver/xf86-video-nv/commit/?id=7f281be7e53ac274016a6af6b2b5dc6f8bddb810</a>
+(but restricted to nv4e). Hopefully the cursor isn't disabled from inside
+interrupts, or this will go splat.
 
-At the moment I am wondering if we should stop calling XCloseDisplay
-altogether...</pre>
+I'm not suggesting something like this for inclusion into the kernel, but it'd
+be good to verify that the same workaround works in the kernel.</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +91,9 @@ altogether...</pre>
     </body>
 </html>
 
---1393101291.01e0ABfC2.17448--
+--1393108147.cFCb7.8103--
 
---===============0329683027==
+--===============1310472076==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0329683027==--
+--===============1310472076==--
