@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75203] [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660
- - Strange pink line on left screen side
-Date: Sun, 23 Feb 2014 14:36:24 +0000
-Message-ID: <bug-75203-8800-2cJGiKjnGK@http.bugs.freedesktop.org/>
-References: <bug-75203-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75279] XCloseDisplay() takes one minute around
+ nouveau_dri.so, freezing Firefox startup
+Date: Sun, 23 Feb 2014 22:12:38 +0000
+Message-ID: <bug-75279-8800-LwkqMA5SF7@http.bugs.freedesktop.org/>
+References: <bug-75279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0837862612=="
+Content-Type: multipart/mixed; boundary="===============1590296744=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0837862612==
-Content-Type: multipart/alternative; boundary="1393166184.3e701.1467"; charset="us-ascii"
+--===============1590296744==
+Content-Type: multipart/alternative; boundary="1393193558.5c0B68Aa3.31822"; charset="us-ascii"
 
 
---1393166184.3e701.1467
-Date: Sun, 23 Feb 2014 14:36:24 +0000
+--1393193558.5c0B68Aa3.31822
+Date: Sun, 23 Feb 2014 22:12:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75203
+https://bugs.freedesktop.org/show_bug.cgi?id=75279
 
---- Comment #8 from Vincent Thiele <vincentthiele-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-(In reply to comment #7)
-> Line is visible in VT. No changes with xrandr.
+Karl Tomlinson <bugs.freedesktop-685W5sqp211eoWH0uzbU5w@public.gmane.org> changed:
 
-Ubuntu 14.04 versions:
-mesa = 10.1.0~rc1-1ubuntu3
-xserver-xorg-video-nouveau = 1:1.0.10-1ubuntu2
-libdrm = 2.4.52-1
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |bugs.freedesktop-685W5sqp211eoWH0uzbU5w@public.gmane.org
+
+--- Comment #14 from Karl Tomlinson <bugs.freedesktop-685W5sqp211eoWH0uzbU5w@public.gmane.org> ---
+Frederic, would you be able to use top to identify the program using 100% cpu,
+attach a debugger (gdb attach <pid>) while hanging, and get a stack trace,
+please?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393166184.3e701.1467
-Date: Sun, 23 Feb 2014 14:36:24 +0000
+--1393193558.5c0B68Aa3.31822
+Date: Sun, 23 Feb 2014 22:12:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,26 +56,43 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:bugs.freedesktop&#64;karlt.net" title="Karl Tomlinson &lt;bugs.freedesktop&#64;karlt.net&gt;"> <span class="fn">Karl Tomlinson</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>bugs.freedesktop&#64;karlt.net
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c8">Comment # 8</a>
+   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">bug 75203</a>
-              from <span class="vcard"><a class="email" href="mailto:vincentthiele&#64;googlemail.com" title="Vincent Thiele &lt;vincentthiele&#64;googlemail.com&gt;"> <span class="fn">Vincent Thiele</span></a>
+   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
+              from <span class="vcard"><a class="email" href="mailto:bugs.freedesktop&#64;karlt.net" title="Karl Tomlinson &lt;bugs.freedesktop&#64;karlt.net&gt;"> <span class="fn">Karl Tomlinson</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=75203#c7">comment #7</a>)
-<span class="quote">&gt; Line is visible in VT. No changes with xrandr.</span >
-
-Ubuntu 14.04 versions:
-mesa = 10.1.0~rc1-1ubuntu3
-xserver-xorg-video-nouveau = 1:1.0.10-1ubuntu2
-libdrm = 2.4.52-1</pre>
+        <pre>Frederic, would you be able to use top to identify the program using 100% cpu,
+attach a debugger (gdb attach &lt;pid&gt;) while hanging, and get a stack trace,
+please?</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +104,9 @@ libdrm = 2.4.52-1</pre>
     </body>
 </html>
 
---1393166184.3e701.1467--
+--1393193558.5c0B68Aa3.31822--
 
---===============0837862612==
+--===============1590296744==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +117,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0837862612==--
+--===============1590296744==--
