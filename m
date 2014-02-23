@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75279] XCloseDisplay() takes one minute around
  nouveau_dri.so, freezing Firefox startup
-Date: Sun, 23 Feb 2014 22:15:21 +0000
-Message-ID: <bug-75279-8800-0XB53jUEnh@http.bugs.freedesktop.org/>
+Date: Sun, 23 Feb 2014 22:16:18 +0000
+Message-ID: <bug-75279-8800-GFgLYHSBGG@http.bugs.freedesktop.org/>
 References: <bug-75279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0068439727=="
+Content-Type: multipart/mixed; boundary="===============0778464172=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0068439727==
-Content-Type: multipart/alternative; boundary="1393193721.Cc742.32234"; charset="us-ascii"
+--===============0778464172==
+Content-Type: multipart/alternative; boundary="1393193778.eAeDa312.32481"; charset="us-ascii"
 
 
---1393193721.Cc742.32234
-Date: Sun, 23 Feb 2014 22:15:21 +0000
+--1393193778.eAeDa312.32481
+Date: Sun, 23 Feb 2014 22:16:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75279
 
---- Comment #15 from Frederic Bezies <fredbezies-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #14)
-> Frederic, would you be able to use top to identify the program using 100%
-> cpu, attach a debugger (gdb attach <pid>) while hanging, and get a stack
-> trace, please?
+--- Comment #16 from Frederic Bezies <fredbezies-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 94625
+  --> https://bugs.freedesktop.org/attachment.cgi?id=94625&action=edit
+log asked for in comment #14.
 
-Already done in mozilla bugzilla bug report.
-
-Adding this log here.
+It is a copy of the log I produced on mozilla bugzilla report.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393193721.Cc742.32234
-Date: Sun, 23 Feb 2014 22:15:21 +0000
+--1393193778.eAeDa312.32481
+Date: Sun, 23 Feb 2014 22:16:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,21 +58,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
               from <span class="vcard"><a class="email" href="mailto:fredbezies&#64;gmail.com" title="Frederic Bezies &lt;fredbezies&#64;gmail.com&gt;"> <span class="fn">Frederic Bezies</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=75279#c14">comment #14</a>)
-<span class="quote">&gt; Frederic, would you be able to use top to identify the program using 100%
-&gt; cpu, attach a debugger (gdb attach &lt;pid&gt;) while hanging, and get a stack
-&gt; trace, please?</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=94625" name="attach_94625" title="log asked for in comment #14.">attachment 94625</a> <a href="attachment.cgi?id=94625&amp;action=edit" title="log asked for in comment #14.">[details]</a></span>
+log asked for in <a href="show_bug.cgi?id=75279#c14">comment #14</a>.
 
-Already done in mozilla bugzilla bug report.
-
-Adding this log here.</pre>
+It is a copy of the log I produced on mozilla bugzilla report.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +80,9 @@ Adding this log here.</pre>
     </body>
 </html>
 
---1393193721.Cc742.32234--
+--1393193778.eAeDa312.32481--
 
---===============0068439727==
+--===============0778464172==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0068439727==--
+--===============0778464172==--
