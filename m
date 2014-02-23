@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75203] [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660
  - Strange pink line on left screen side
-Date: Sun, 23 Feb 2014 14:31:16 +0000
-Message-ID: <bug-75203-8800-xzp5b2i4GZ@http.bugs.freedesktop.org/>
+Date: Sun, 23 Feb 2014 14:36:24 +0000
+Message-ID: <bug-75203-8800-2cJGiKjnGK@http.bugs.freedesktop.org/>
 References: <bug-75203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1211662895=="
+Content-Type: multipart/mixed; boundary="===============0837862612=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1211662895==
-Content-Type: multipart/alternative; boundary="1393165875.E17258D1.477"; charset="us-ascii"
+--===============0837862612==
+Content-Type: multipart/alternative; boundary="1393166184.3e701.1467"; charset="us-ascii"
 
 
---1393165875.E17258D1.477
-Date: Sun, 23 Feb 2014 14:31:15 +0000
+--1393166184.3e701.1467
+Date: Sun, 23 Feb 2014 14:36:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75203
 
---- Comment #7 from Vincent Thiele <vincentthiele-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-Line is visible in VT. No changes with xrandr.
+--- Comment #8 from Vincent Thiele <vincentthiele-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
+(In reply to comment #7)
+> Line is visible in VT. No changes with xrandr.
+
+Ubuntu 14.04 versions:
+mesa = 10.1.0~rc1-1ubuntu3
+xserver-xorg-video-nouveau = 1:1.0.10-1ubuntu2
+libdrm = 2.4.52-1
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393165875.E17258D1.477
-Date: Sun, 23 Feb 2014 14:31:15 +0000
+--1393166184.3e701.1467
+Date: Sun, 23 Feb 2014 14:36:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +60,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">bug 75203</a>
               from <span class="vcard"><a class="email" href="mailto:vincentthiele&#64;googlemail.com" title="Vincent Thiele &lt;vincentthiele&#64;googlemail.com&gt;"> <span class="fn">Vincent Thiele</span></a>
 </span></b>
-        <pre>Line is visible in VT. No changes with xrandr.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=75203#c7">comment #7</a>)
+<span class="quote">&gt; Line is visible in VT. No changes with xrandr.</span >
+
+Ubuntu 14.04 versions:
+mesa = 10.1.0~rc1-1ubuntu3
+xserver-xorg-video-nouveau = 1:1.0.10-1ubuntu2
+libdrm = 2.4.52-1</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1393165875.E17258D1.477--
+--1393166184.3e701.1467--
 
---===============1211662895==
+--===============0837862612==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1211662895==--
+--===============0837862612==--
