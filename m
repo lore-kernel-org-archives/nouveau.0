@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
-Date: Mon, 24 Feb 2014 16:33:50 +0000
-Message-ID: <bug-15758-8800-niqLQu78it@http.bugs.freedesktop.org/>
-References: <bug-15758-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75447] [NVA0] Secondary gpu is not enabled if
+ nouveau is loaded from initrd/initramfs
+Date: Mon, 24 Feb 2014 16:41:44 +0000
+Message-ID: <bug-75447-8800-6N66ljWeDJ@http.bugs.freedesktop.org/>
+References: <bug-75447-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2117870346=="
+Content-Type: multipart/mixed; boundary="===============0054258890=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-15758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75447-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2117870346==
-Content-Type: multipart/alternative; boundary="1393259630.7D7A8A6.11666"; charset="us-ascii"
+--===============0054258890==
+Content-Type: multipart/alternative; boundary="1393260104.bCcafaE41.12949"; charset="us-ascii"
 
 
---1393259630.7D7A8A6.11666
-Date: Mon, 24 Feb 2014 16:33:50 +0000
+--1393260104.bCcafaE41.12949
+Date: Mon, 24 Feb 2014 16:41:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=15758
+https://bugs.freedesktop.org/show_bug.cgi?id=75447
 
---- Comment #40 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-What hapenned before it occurred? VT switch?
+--- Comment #9 from Alberto <support.intranet-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org> ---
+Thanks! I can confirm that booting with nouveau.runpm=0 makes it work even if
+nouveau is embedded in the initramfs
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393259630.7D7A8A6.11666
-Date: Mon, 24 Feb 2014 16:33:50 +0000
+--1393260104.bCcafaE41.12949
+Date: Mon, 24 Feb 2014 16:41:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,16 +53,17 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - Invisible mouse pointer on NV4E (C51)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=15758#c40">Comment # 40</a>
+          bz_status_NEW "
+   title="NEW --- - [NVA0] Secondary gpu is not enabled if nouveau is loaded from initrd/initramfs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75447#c9">Comment # 9</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - Invisible mouse pointer on NV4E (C51)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=15758">bug 15758</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NVA0] Secondary gpu is not enabled if nouveau is loaded from initrd/initramfs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75447">bug 75447</a>
+              from <span class="vcard"><a class="email" href="mailto:support.intranet&#64;libero.it" title="Alberto &lt;support.intranet&#64;libero.it&gt;"> <span class="fn">Alberto</span></a>
 </span></b>
-        <pre>What hapenned before it occurred? VT switch?</pre>
+        <pre>Thanks! I can confirm that booting with nouveau.runpm=0 makes it work even if
+nouveau is embedded in the initramfs</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +75,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1393259630.7D7A8A6.11666--
+--1393260104.bCcafaE41.12949--
 
---===============2117870346==
+--===============0054258890==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -85,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2117870346==--
+--===============0054258890==--
