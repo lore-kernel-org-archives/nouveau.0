@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
-Date: Mon, 24 Feb 2014 00:53:48 +0000
-Message-ID: <bug-15758-8800-z6aD0sYDGl@http.bugs.freedesktop.org/>
+Date: Mon, 24 Feb 2014 06:56:25 +0000
+Message-ID: <bug-15758-8800-QIWD8zpgLt@http.bugs.freedesktop.org/>
 References: <bug-15758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0778392938=="
+Content-Type: multipart/mixed; boundary="===============0559369348=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-15758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,32 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0778392938==
-Content-Type: multipart/alternative; boundary="1393203228.Bd8b7.20199"; charset="us-ascii"
+--===============0559369348==
+Content-Type: multipart/alternative; boundary="1393224985.65eC38a6.32126"; charset="us-ascii"
 
 
---1393203228.Bd8b7.20199
-Date: Mon, 24 Feb 2014 00:53:48 +0000
+--1393224985.65eC38a6.32126
+Date: Mon, 24 Feb 2014 06:56:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=15758
 
---- Comment #37 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #36)
-> This has not hapenned for me in ages. Verifying that will be very difficult.
-> 
-> It happens highly occassionally.
+--- Comment #38 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+If I happen to find a good scenario that reproduces this I will report back and
+try the patch.
 
-Ah, I thought there was a consistent repro, e.g. on every modeset. Well, don't
-worry about it.
+It varies from kernel to kernel. It was a little worse for a while (v3.8), but
+it has not happenned since v3.12.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393203228.Bd8b7.20199
-Date: Mon, 24 Feb 2014 00:53:48 +0000
+--1393224985.65eC38a6.32126
+Date: Mon, 24 Feb 2014 06:56:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,20 +57,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - Invisible mouse pointer on NV4E (C51)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=15758#c37">Comment # 37</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=15758#c38">Comment # 38</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - Invisible mouse pointer on NV4E (C51)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=15758">bug 15758</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=15758#c36">comment #36</a>)
-<span class="quote">&gt; This has not hapenned for me in ages. Verifying that will be very difficult.
-&gt; 
-&gt; It happens highly occassionally.</span >
+        <pre>If I happen to find a good scenario that reproduces this I will report back and
+try the patch.
 
-Ah, I thought there was a consistent repro, e.g. on every modeset. Well, don't
-worry about it.</pre>
+It varies from kernel to kernel. It was a little worse for a while (v3.8), but
+it has not happenned since v3.12.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +80,9 @@ worry about it.</pre>
     </body>
 </html>
 
---1393203228.Bd8b7.20199--
+--1393224985.65eC38a6.32126--
 
---===============0778392938==
+--===============0559369348==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0778392938==--
+--===============0559369348==--
