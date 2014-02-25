@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75464] [nv4e] [vdpau] causes hangs
-Date: Mon, 24 Feb 2014 20:03:38 +0000
-Message-ID: <bug-75464-8800-kBArC4egNy@http.bugs.freedesktop.org/>
-References: <bug-75464-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75279] XCloseDisplay() takes one minute around
+ nouveau_dri.so, freezing Firefox startup
+Date: Tue, 25 Feb 2014 14:22:25 +0000
+Message-ID: <bug-75279-8800-sGDN8xyetR@http.bugs.freedesktop.org/>
+References: <bug-75279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0454841082=="
+Content-Type: multipart/mixed; boundary="===============1581180053=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75464-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +21,56 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0454841082==
-Content-Type: multipart/alternative; boundary="1393272218.Ad2e02.25666"; charset="us-ascii"
+--===============1581180053==
+Content-Type: multipart/alternative; boundary="1393338145.aeC3edb02.20605"; charset="us-ascii"
 
 
---1393272218.Ad2e02.25666
-Date: Mon, 24 Feb 2014 20:03:38 +0000
+--1393338145.aeC3edb02.20605
+Date: Tue, 25 Feb 2014 14:22:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75464
+https://bugs.freedesktop.org/show_bug.cgi?id=75279
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I think the right move here is to just disable nv4x in vdpau entirely until
-somehow has time to take a look at what's going on. VDPAU doesn't provide hw
-decoding for nv4x anyways at this point, and the presentation stuff isn't
-_that_ useful when you don't have the video decoding bits.
+--- Comment #19 from Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> ---
+A duplicate Mozilla bug has a stack with symbols:
 
-Unfortunately I'm not quite sure how to do that... should
-vdpau-nouveau/target.c look at the returned screen, cast it to a nouveau_screen
-and check the chipset? Not sure if that'd be considered an abstraction
-violation. Also unsure what one could add to st/vdpau for this, as nv4x
-_should_ be able to support the presentation bits of vdpau, it just... doesn't.
+https://bugzilla.mozilla.org/show_bug.cgi?id=975512#c1
+
+#0  0x0000003f3a2da007 in sched_yield () from /lib64/libc.so.6
+#1  0x00007f1e003bb1d1 in nouveau_fence_wait ()
+   from /usr/lib64/dri/nouveau_dri.so
+#2  0x00007f1e0039d635 in nvc0_screen_destroy ()
+   from /usr/lib64/dri/nouveau_dri.so
+#3  0x00007f1e002c6d9f in dri_destroy_screen_helper ()
+   from /usr/lib64/dri/nouveau_dri.so
+#4  0x00007f1e002c6e25 in dri_destroy_screen ()
+   from /usr/lib64/dri/nouveau_dri.so
+#5  0x00007f1e000087eb in driDestroyScreen ()
+   from /usr/lib64/dri/nouveau_dri.so
+#6  0x000000321f646932 in dri2DestroyScreen () from /lib64/libGL.so.1
+#7  0x000000321f61c526 in FreeScreenConfigs.isra.3 () from /lib64/libGL.so.1
+#8  0x000000321f61c5a5 in glx_display_free () from /lib64/libGL.so.1
+#9  0x000000321f61c6a5 in __glXCloseDisplay () from /lib64/libGL.so.1
+#10 0x0000003f3e21fd22 in XCloseDisplay () from /lib64/libX11.so.6
+#11 0x00007f1e09933dcf in glxtest() () from /home/sstangl/bin/nightly/libxul.so
+#12 0x00007f1e09934b36 in fire_glxtest_process() ()
+   from /home/sstangl/bin/nightly/libxul.so
+#13 0x00007f1e0992e655 in XREMain::XRE_mainInit(bool*) ()
+   from /home/sstangl/bin/nightly/libxul.so
+#14 0x00007f1e09932886 in XREMain::XRE_main(int, char**, nsXREAppData const*)
+    () from /home/sstangl/bin/nightly/libxul.so
+---Type <return> to continue, or q <return> to quit---
+#15 0x00007f1e09932b94 in XRE_main () from /home/sstangl/bin/nightly/libxul.so
+#16 0x0000000000406b66 in do_main(int, char**, nsIFile*) ()
+#17 0x000000000040383b in main ()
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393272218.Ad2e02.25666
-Date: Mon, 24 Feb 2014 20:03:38 +0000
+--1393338145.aeC3edb02.20605
+Date: Tue, 25 Feb 2014 14:22:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,24 +83,45 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nv4e] [vdpau] causes hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75464#c1">Comment # 1</a>
+   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nv4e] [vdpau] causes hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75464">bug 75464</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
+              from <span class="vcard"><a class="email" href="mailto:bjacob&#64;mozilla.com" title="Benoit Jacob &lt;bjacob&#64;mozilla.com&gt;"> <span class="fn">Benoit Jacob</span></a>
 </span></b>
-        <pre>I think the right move here is to just disable nv4x in vdpau entirely until
-somehow has time to take a look at what's going on. VDPAU doesn't provide hw
-decoding for nv4x anyways at this point, and the presentation stuff isn't
-_that_ useful when you don't have the video decoding bits.
+        <pre>A duplicate Mozilla bug has a stack with symbols:
 
-Unfortunately I'm not quite sure how to do that... should
-vdpau-nouveau/target.c look at the returned screen, cast it to a nouveau_screen
-and check the chipset? Not sure if that'd be considered an abstraction
-violation. Also unsure what one could add to st/vdpau for this, as nv4x
-_should_ be able to support the presentation bits of vdpau, it just... doesn't.</pre>
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=975512#c1">https://bugzilla.mozilla.org/show_bug.cgi?id=975512#c1</a>
+
+#0  0x0000003f3a2da007 in sched_yield () from /lib64/libc.so.6
+#1  0x00007f1e003bb1d1 in nouveau_fence_wait ()
+   from /usr/lib64/dri/nouveau_dri.so
+#2  0x00007f1e0039d635 in nvc0_screen_destroy ()
+   from /usr/lib64/dri/nouveau_dri.so
+#3  0x00007f1e002c6d9f in dri_destroy_screen_helper ()
+   from /usr/lib64/dri/nouveau_dri.so
+#4  0x00007f1e002c6e25 in dri_destroy_screen ()
+   from /usr/lib64/dri/nouveau_dri.so
+#5  0x00007f1e000087eb in driDestroyScreen ()
+   from /usr/lib64/dri/nouveau_dri.so
+#6  0x000000321f646932 in dri2DestroyScreen () from /lib64/libGL.so.1
+#7  0x000000321f61c526 in FreeScreenConfigs.isra.3 () from /lib64/libGL.so.1
+#8  0x000000321f61c5a5 in glx_display_free () from /lib64/libGL.so.1
+#9  0x000000321f61c6a5 in __glXCloseDisplay () from /lib64/libGL.so.1
+#10 0x0000003f3e21fd22 in XCloseDisplay () from /lib64/libX11.so.6
+#11 0x00007f1e09933dcf in glxtest() () from /home/sstangl/bin/nightly/libxul.so
+#12 0x00007f1e09934b36 in fire_glxtest_process() ()
+   from /home/sstangl/bin/nightly/libxul.so
+#13 0x00007f1e0992e655 in XREMain::XRE_mainInit(bool*) ()
+   from /home/sstangl/bin/nightly/libxul.so
+#14 0x00007f1e09932886 in XREMain::XRE_main(int, char**, nsXREAppData const*)
+    () from /home/sstangl/bin/nightly/libxul.so
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#15 0x00007f1e09932b94 in XRE_main () from /home/sstangl/bin/nightly/libxul.so
+#16 0x0000000000406b66 in do_main(int, char**, nsIFile*) ()
+#17 0x000000000040383b in main ()</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +133,9 @@ _should_ be able to support the presentation bits of vdpau, it just... doesn't.<
     </body>
 </html>
 
---1393272218.Ad2e02.25666--
+--1393338145.aeC3edb02.20605--
 
---===============0454841082==
+--===============1581180053==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +146,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0454841082==--
+--===============1581180053==--
