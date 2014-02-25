@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
-Date: Tue, 25 Feb 2014 17:34:05 +0000
-Message-ID: <bug-15758-8800-jTiZWKW6no@http.bugs.freedesktop.org/>
+Date: Tue, 25 Feb 2014 17:50:55 +0000
+Message-ID: <bug-15758-8800-iEdyd7E2Nd@http.bugs.freedesktop.org/>
 References: <bug-15758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0845512897=="
+Content-Type: multipart/mixed; boundary="===============0144569757=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-15758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,35 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0845512897==
-Content-Type: multipart/alternative; boundary="1393349646.AaFbEe2B6.32590"; charset="us-ascii"
+--===============0144569757==
+Content-Type: multipart/alternative; boundary="1393350656.3bbf6.3400"; charset="us-ascii"
 
 
---1393349646.AaFbEe2B6.32590
-Date: Tue, 25 Feb 2014 17:34:06 +0000
+--1393350656.3bbf6.3400
+Date: Tue, 25 Feb 2014 17:50:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=15758
 
---- Comment #41 from v_2e-qsvJrrU2NvU@public.gmane.org ---
-(In reply to comment #40)
-> What hapenned before it occurred? VT switch?
-I just turned my latop on, logged-in with SLIM and saw no mouse pointer on the
-screen. I rebooted the machine and it happened again.
-However, everything went fine after one more reboot.
+--- Comment #42 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I suggest you try the patch =D . Who knows it helps.
 
-Usually the pointer disappears after the screen goes blank when I do not touch
-the laptop for a while.
-
-I'm not sure about what 'VT switch' is, by the way.
+VT switch means switching VT with ctrl+alt+fx .
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393349646.AaFbEe2B6.32590
-Date: Tue, 25 Feb 2014 17:34:06 +0000
+--1393350656.3bbf6.3400
+Date: Tue, 25 Feb 2014 17:50:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,23 +55,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - Invisible mouse pointer on NV4E (C51)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=15758#c41">Comment # 41</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=15758#c42">Comment # 42</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - Invisible mouse pointer on NV4E (C51)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=15758">bug 15758</a>
-              from <span class="vcard"><a class="email" href="mailto:v_2e&#64;ukr.net" title="v_2e&#64;ukr.net">v_2e&#64;ukr.net</a>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=15758#c40">comment #40</a>)
-<span class="quote">&gt; What hapenned before it occurred? VT switch?</span >
-I just turned my latop on, logged-in with SLIM and saw no mouse pointer on the
-screen. I rebooted the machine and it happened again.
-However, everything went fine after one more reboot.
+        <pre>I suggest you try the patch =D . Who knows it helps.
 
-Usually the pointer disappears after the screen goes blank when I do not touch
-the laptop for a while.
-
-I'm not sure about what 'VT switch' is, by the way.</pre>
+VT switch means switching VT with ctrl+alt+fx .</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +76,9 @@ I'm not sure about what 'VT switch' is, by the way.</pre>
     </body>
 </html>
 
---1393349646.AaFbEe2B6.32590--
+--1393350656.3bbf6.3400--
 
---===============0845512897==
+--===============0144569757==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0845512897==--
+--===============0144569757==--
