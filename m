@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75279] XCloseDisplay() takes one minute around
- nouveau_dri.so, freezing Firefox startup
-Date: Tue, 25 Feb 2014 17:17:07 +0000
-Message-ID: <bug-75279-8800-Mcley0s2Gg@http.bugs.freedesktop.org/>
-References: <bug-75279-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 15758] Invisible mouse pointer on NV4E (C51)
+Date: Tue, 25 Feb 2014 17:34:05 +0000
+Message-ID: <bug-15758-8800-jTiZWKW6no@http.bugs.freedesktop.org/>
+References: <bug-15758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0061707934=="
+Content-Type: multipart/mixed; boundary="===============0845512897=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-15758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,45 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0061707934==
-Content-Type: multipart/alternative; boundary="1393348627.AaE606482.28494"; charset="us-ascii"
+--===============0845512897==
+Content-Type: multipart/alternative; boundary="1393349646.AaFbEe2B6.32590"; charset="us-ascii"
 
 
---1393348627.AaE606482.28494
-Date: Tue, 25 Feb 2014 17:17:07 +0000
+--1393349646.AaFbEe2B6.32590
+Date: Tue, 25 Feb 2014 17:34:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75279
+https://bugs.freedesktop.org/show_bug.cgi?id=15758
 
---- Comment #21 from Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> ---
- - Are you guys using multi-threaded gl ?
+--- Comment #41 from v_2e-qsvJrrU2NvU@public.gmane.org ---
+(In reply to comment #40)
+> What hapenned before it occurred? VT switch?
+I just turned my latop on, logged-in with SLIM and saw no mouse pointer on the
+screen. I rebooted the machine and it happened again.
+However, everything went fine after one more reboot.
 
-Not here. We could be if Frederic was 1) using non-default preferences such as
-layers.acceleration.force-enabled and 2) viewing specific Web pages (e.g. using
-WebGL). But here we are talking about a startup hang occurring before this
-could kick into play.
+Usually the pointer disappears after the screen goes blank when I do not touch
+the laptop for a while.
 
-Frederic, can you say if you have any force-enabled prefs set in about:config?
-
- - Considering that the problem is not available with a standalone glxtest app,
-do you have a link to a FF build that one can test against ?
-
-Sure. You need a Nightly build, but not a current one since we have landed a
-work-around (avoiding to call XCloseDisplay here). This one, from Feb. 20,
-should reproduce:
-
-http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/2014-02-20-03-02-02-mozilla-central/
-
-E.g.
-http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/2014-02-20-03-02-02-mozilla-central/firefox-30.0a1.en-US.linux-x86_64.tar.bz2
+I'm not sure about what 'VT switch' is, by the way.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393348627.AaE606482.28494
-Date: Tue, 25 Feb 2014 17:17:07 +0000
+--1393349646.AaFbEe2B6.32590
+Date: Tue, 25 Feb 2014 17:34:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,35 +60,25 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c21">Comment # 21</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - Invisible mouse pointer on NV4E (C51)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=15758#c41">Comment # 41</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
-              from <span class="vcard"><a class="email" href="mailto:bjacob&#64;mozilla.com" title="Benoit Jacob &lt;bjacob&#64;mozilla.com&gt;"> <span class="fn">Benoit Jacob</span></a>
+          bz_status_REOPENED "
+   title="REOPENED --- - Invisible mouse pointer on NV4E (C51)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=15758">bug 15758</a>
+              from <span class="vcard"><a class="email" href="mailto:v_2e&#64;ukr.net" title="v_2e&#64;ukr.net">v_2e&#64;ukr.net</a>
 </span></b>
-        <pre> - Are you guys using multi-threaded gl ?
+        <pre>(In reply to <a href="show_bug.cgi?id=15758#c40">comment #40</a>)
+<span class="quote">&gt; What hapenned before it occurred? VT switch?</span >
+I just turned my latop on, logged-in with SLIM and saw no mouse pointer on the
+screen. I rebooted the machine and it happened again.
+However, everything went fine after one more reboot.
 
-Not here. We could be if Frederic was 1) using non-default preferences such as
-layers.acceleration.force-enabled and 2) viewing specific Web pages (e.g. using
-WebGL). But here we are talking about a startup hang occurring before this
-could kick into play.
+Usually the pointer disappears after the screen goes blank when I do not touch
+the laptop for a while.
 
-Frederic, can you say if you have any force-enabled prefs set in about:config?
-
- - Considering that the problem is not available with a standalone glxtest app,
-do you have a link to a FF build that one can test against ?
-
-Sure. You need a Nightly build, but not a current one since we have landed a
-work-around (avoiding to call XCloseDisplay here). This one, from Feb. 20,
-should reproduce:
-
-<a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/2014-02-20-03-02-02-mozilla-central/">http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/2014-02-20-03-02-02-mozilla-central/</a>
-
-E.g.
-<a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/2014-02-20-03-02-02-mozilla-central/firefox-30.0a1.en-US.linux-x86_64.tar.bz2">http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/2014-02-20-03-02-02-mozilla-central/firefox-30.0a1.en-US.linux-x86_64.tar.bz2</a></pre>
+I'm not sure about what 'VT switch' is, by the way.</pre>
         </div>
       </p>
       <hr>
@@ -111,9 +90,9 @@ E.g.
     </body>
 </html>
 
---1393348627.AaE606482.28494--
+--1393349646.AaFbEe2B6.32590--
 
---===============0061707934==
+--===============0845512897==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0061707934==--
+--===============0845512897==--
