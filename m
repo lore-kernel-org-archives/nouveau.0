@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75511] [NVE7] Unknown opcode in VBIOS on one of 2
  cards, fails boot on 3.13+
-Date: Tue, 25 Feb 2014 23:14:25 +0000
-Message-ID: <bug-75511-8800-CkodUomw1V@http.bugs.freedesktop.org/>
+Date: Tue, 25 Feb 2014 23:15:34 +0000
+Message-ID: <bug-75511-8800-NPbwFr2G7J@http.bugs.freedesktop.org/>
 References: <bug-75511-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1487661879=="
+Content-Type: multipart/mixed; boundary="===============0206038919=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75511-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1487661879==
-Content-Type: multipart/alternative; boundary="1393370065.CFfe76b1.9462"; charset="us-ascii"
+--===============0206038919==
+Content-Type: multipart/alternative; boundary="1393370134.Fbe61.9879"; charset="us-ascii"
 
 
---1393370065.CFfe76b1.9462
-Date: Tue, 25 Feb 2014 23:14:25 +0000
+--1393370134.Fbe61.9879
+Date: Tue, 25 Feb 2014 23:15:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75511
 
---- Comment #4 from Claas Lorenz <cllorenz-KiJTPfjSHVUubQSw3dWLiw@public.gmane.org> ---
-Created attachment 94738
-  --> https://bugs.freedesktop.org/attachment.cgi?id=94738&action=edit
-output of "nvagetbios -c 0 -s PRAMIN > vbios-0.ramin"
+--- Comment #5 from Claas Lorenz <cllorenz-KiJTPfjSHVUubQSw3dWLiw@public.gmane.org> ---
+Created attachment 94739
+  --> https://bugs.freedesktop.org/attachment.cgi?id=94739&action=edit
+output of "nvagetbios -c 1 -s PRAMIN > vbios-1.ramin"
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393370065.CFfe76b1.9462
-Date: Tue, 25 Feb 2014 23:14:25 +0000
+--1393370134.Fbe61.9879
+Date: Tue, 25 Feb 2014 23:15:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] Unknown opcode in VBIOS on one of 2 cards, fails boot on 3.13+"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75511#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75511#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] Unknown opcode in VBIOS on one of 2 cards, fails boot on 3.13+"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75511">bug 75511</a>
               from <span class="vcard"><a class="email" href="mailto:cllorenz&#64;uni-potsdam.de" title="Claas Lorenz &lt;cllorenz&#64;uni-potsdam.de&gt;"> <span class="fn">Claas Lorenz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=94738" name="attach_94738" title="output of &quot;nvagetbios -c 0 -s PRAMIN &gt; vbios-0.ramin&quot;">attachment 94738</a> <a href="attachment.cgi?id=94738&amp;action=edit" title="output of &quot;nvagetbios -c 0 -s PRAMIN &gt; vbios-0.ramin&quot;">[details]</a></span>
-output of &quot;nvagetbios -c 0 -s PRAMIN &gt; vbios-0.ramin&quot;</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=94739" name="attach_94739" title="output of &quot;nvagetbios -c 1 -s PRAMIN &gt; vbios-1.ramin&quot;">attachment 94739</a> <a href="attachment.cgi?id=94739&amp;action=edit" title="output of &quot;nvagetbios -c 1 -s PRAMIN &gt; vbios-1.ramin&quot;">[details]</a></span>
+output of &quot;nvagetbios -c 1 -s PRAMIN &gt; vbios-1.ramin&quot;</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ output of &quot;nvagetbios -c 0 -s PRAMIN &gt; vbios-0.ramin&quot;</pre>
     </body>
 </html>
 
---1393370065.CFfe76b1.9462--
+--1393370134.Fbe61.9879--
 
---===============1487661879==
+--===============0206038919==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1487661879==--
+--===============0206038919==--
