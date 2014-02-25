@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75511] New: Screen freezes during boot with an 3.13
+Subject: [Bug 75511] Screen freezes during boot with an 3.13
  kernel (Arch Linux)
-Date: Tue, 25 Feb 2014 22:15:15 +0000
-Message-ID: <bug-75511-8800@http.bugs.freedesktop.org/>
+Date: Tue, 25 Feb 2014 22:29:44 +0000
+Message-ID: <bug-75511-8800-zKuSFHkn72@http.bugs.freedesktop.org/>
+References: <bug-75511-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0576213829=="
+Content-Type: multipart/mixed; boundary="===============1084623943=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75511-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,62 +21,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0576213829==
-Content-Type: multipart/alternative; boundary="1393366515.BACd8FD21.29573"; charset="us-ascii"
+--===============1084623943==
+Content-Type: multipart/alternative; boundary="1393367384.051DE142.511"; charset="us-ascii"
 
 
---1393366515.BACd8FD21.29573
-Date: Tue, 25 Feb 2014 22:15:15 +0000
+--1393367384.051DE142.511
+Date: Tue, 25 Feb 2014 22:29:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75511
 
-          Priority: medium
-            Bug ID: 75511
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Screen freezes during boot with an 3.13 kernel (Arch
-                    Linux)
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: cllorenz-KiJTPfjSHVUubQSw3dWLiw@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: git
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Am I correct that you have 2 ~identical GK107 cards in there? Unfortunately it
+appears that the VBIOS for the first one is corrupt. It's being retrieved from
+PCIROM, which more often than not actually doesn't have what we want (despite
+it passing the checksum). Note that your 2nd card appears to init correctly,
+and it gets its VBIOS from the PROM. Not sure where the VBIOS for your first
+card lives...
 
-Created attachment 94735
-  --> https://bugs.freedesktop.org/attachment.cgi?id=94735&action=edit
-dmesg output
+I assume that the VBIOS error about the unknown opcode exists in 3.12 as well?
+Except that 3.13 made that an error. Who knows, maybe it's a legitimately
+unknown opcode... could you grab a copy of envytools and retrieve the VBIOSes
+for both of your cards with nvagetbios? i.e.
 
-During boot (with late module load of nouveau) the screen freezes at about the
-time where normally a glitch occurs and the resolution is set much higher. It
-will not recover from this state and the machine must be restarted/powered off
-via ctrl+alt+del or the power button. The journald log shows that systemd
-booted normally. I circumvented the problem by downgrading to kernel 3.12 where
-everything works fine. Here are the Arch Linux package versions of the
-configuration when the error occurs:
+nvagetbios -c 0 -s PROM > vbios-0.rom
+nvagetbios -c 1 -s PROM > vbios-1.rom
 
-kernel - 3.13.5-1
-xf86-video-nouveau - 1.0.10-2
-nouveau-dri - 10.0.3-1
-mesa - 10.0.3-1
-xorg-server - 1.15.0-5
-libdrm - 2.4.52-1
+If the first one fails, also try PRAMIN instead of PROM (I assume -c 1 will
+work just fine since nouveau is able to find it without problem). If that still
+fails, try to get it from the pci rom directly:
 
+echo 1 > /sys/bus/pci/devices/0000:01:00.0/rom
+cat /sys/bus/pci/devices/0000:01:00.0/rom > vbios-0.rom
+echo 0 > /sys/bus/pci/devices/0000:01:00.0/rom
 
-The dmesg output in the attachment was taken during a boot (as last systemd
-target before gnome) with the problem described above.
+(all of this as root, obviously.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393366515.BACd8FD21.29573
-Date: Tue, 25 Feb 2014 22:15:15 +0000
+--1393367384.051DE142.511
+Date: Tue, 25 Feb 2014 22:29:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -82,116 +71,43 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Screen freezes during boot with an 3.13 kernel (Arch Linux)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75511">75511</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Screen freezes during boot with an 3.13 kernel (Arch Linux)
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>cllorenz&#64;uni-potsdam.de
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=94735" name="attach_94735" title="dmesg output">attachment 94735</a> <a href="attachment.cgi?id=94735&amp;action=edit" title="dmesg output">[details]</a></span>
-dmesg output
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Screen freezes during boot with an 3.13 kernel (Arch Linux)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75511#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Screen freezes during boot with an 3.13 kernel (Arch Linux)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75511">bug 75511</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Am I correct that you have 2 ~identical GK107 cards in there? Unfortunately it
+appears that the VBIOS for the first one is corrupt. It's being retrieved from
+PCIROM, which more often than not actually doesn't have what we want (despite
+it passing the checksum). Note that your 2nd card appears to init correctly,
+and it gets its VBIOS from the PROM. Not sure where the VBIOS for your first
+card lives...
 
-During boot (with late module load of nouveau) the screen freezes at about the
-time where normally a glitch occurs and the resolution is set much higher. It
-will not recover from this state and the machine must be restarted/powered off
-via ctrl+alt+del or the power button. The journald log shows that systemd
-booted normally. I circumvented the problem by downgrading to kernel 3.12 where
-everything works fine. Here are the Arch Linux package versions of the
-configuration when the error occurs:
+I assume that the VBIOS error about the unknown opcode exists in 3.12 as well?
+Except that 3.13 made that an error. Who knows, maybe it's a legitimately
+unknown opcode... could you grab a copy of envytools and retrieve the VBIOSes
+for both of your cards with nvagetbios? i.e.
 
-kernel - 3.13.5-1
-xf86-video-nouveau - 1.0.10-2
-nouveau-dri - 10.0.3-1
-mesa - 10.0.3-1
-xorg-server - 1.15.0-5
-libdrm - 2.4.52-1
+nvagetbios -c 0 -s PROM &gt; vbios-0.rom
+nvagetbios -c 1 -s PROM &gt; vbios-1.rom
 
+If the first one fails, also try PRAMIN instead of PROM (I assume -c 1 will
+work just fine since nouveau is able to find it without problem). If that still
+fails, try to get it from the pci rom directly:
 
-The dmesg output in the attachment was taken during a boot (as last systemd
-target before gnome) with the problem described above.</pre>
+echo 1 &gt; /sys/bus/pci/devices/0000:01:00.0/rom
+cat /sys/bus/pci/devices/0000:01:00.0/rom &gt; vbios-0.rom
+echo 0 &gt; /sys/bus/pci/devices/0000:01:00.0/rom
+
+(all of this as root, obviously.)</pre>
         </div>
       </p>
       <hr>
@@ -203,9 +119,9 @@ target before gnome) with the problem described above.</pre>
     </body>
 </html>
 
---1393366515.BACd8FD21.29573--
+--1393367384.051DE142.511--
 
---===============0576213829==
+--===============1084623943==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -216,4 +132,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0576213829==--
+--===============1084623943==--
