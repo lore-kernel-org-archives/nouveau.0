@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57660] [NVA3:NVC0] Turn on support for
-	PIPE_CAP_CUBE_MAP_ARRAY
-Date: Wed, 26 Feb 2014 17:17:19 +0000
-Message-ID: <bug-57660-8800-S1mmH7RGJ5@http.bugs.freedesktop.org/>
-References: <bug-57660-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75511] [NVE7] Unknown opcode in VBIOS on one of 2
+ cards, fails boot on 3.13+
+Date: Wed, 26 Feb 2014 18:43:00 +0000
+Message-ID: <bug-75511-8800-btWhwWKQbG@http.bugs.freedesktop.org/>
+References: <bug-75511-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1314083892=="
+Content-Type: multipart/mixed; boundary="===============1895883468=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75511-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1314083892==
-Content-Type: multipart/alternative; boundary="1393435039.Be84EC1.7772"; charset="us-ascii"
+--===============1895883468==
+Content-Type: multipart/alternative; boundary="1393440180.5EBeA0e1.25321"; charset="us-ascii"
 
 
---1393435039.Be84EC1.7772
-Date: Wed, 26 Feb 2014 17:17:19 +0000
+--1393440180.5EBeA0e1.25321
+Date: Wed, 26 Feb 2014 18:43:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57660
+https://bugs.freedesktop.org/show_bug.cgi?id=75511
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #8 from Claas Lorenz <cllorenz-KiJTPfjSHVUubQSw3dWLiw@public.gmane.org> ---
+I have a Lenovo Y500 with two GeForce GT 650M cards. I think this laptop was
+intended as medium class gaming machine where two graphic cards make sense
+somehow. Here is the lspci:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+01:00.0 VGA compatible controller: NVIDIA Corporation GK107M [GeForce GT 650M]
+(rev a1)
+02:00.0 VGA compatible controller: NVIDIA Corporation GK107M [GeForce GT 650M]
+(rev a1)
 
---- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-A working impl is in mesa-git now.
-http://cgit.freedesktop.org/mesa/mesa/commit/?id=0e71c65db0df86401f2caf26209ff73e3715443a
+Since I do not use it for gaming, I never cared about having a second card. I
+put the working vbios to /lib/firmware and added the config to the kernel line,
+as you suggested, and it works fine now (also with 3.13). Thank you very much
+for your help!
 
-The sampler-cube-array-shadow test fails, but so does sampler-cube-shadow (on
-nva0+), so I'm guessing those two failures are highly related.
+I also attached my acpidump, I hope that helps.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393435039.Be84EC1.7772
-Date: Wed, 26 Feb 2014 17:17:19 +0000
+--1393440180.5EBeA0e1.25321
+Date: Wed, 26 Feb 2014 18:43:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,52 +62,34 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVA3:NVC0] Turn on support for PIPE_CAP_CUBE_MAP_ARRAY"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57660">bug 57660</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVA3:NVC0] Turn on support for PIPE_CAP_CUBE_MAP_ARRAY"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57660#c13">Comment # 13</a>
+          bz_status_NEW "
+   title="NEW --- - [NVE7] Unknown opcode in VBIOS on one of 2 cards, fails boot on 3.13+"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75511#c8">Comment # 8</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVA3:NVC0] Turn on support for PIPE_CAP_CUBE_MAP_ARRAY"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57660">bug 57660</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NVE7] Unknown opcode in VBIOS on one of 2 cards, fails boot on 3.13+"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75511">bug 75511</a>
+              from <span class="vcard"><a class="email" href="mailto:cllorenz&#64;uni-potsdam.de" title="Claas Lorenz &lt;cllorenz&#64;uni-potsdam.de&gt;"> <span class="fn">Claas Lorenz</span></a>
 </span></b>
-        <pre>A working impl is in mesa-git now.
-<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=0e71c65db0df86401f2caf26209ff73e3715443a">http://cgit.freedesktop.org/mesa/mesa/commit/?id=0e71c65db0df86401f2caf26209ff73e3715443a</a>
+        <pre>I have a Lenovo Y500 with two GeForce GT 650M cards. I think this laptop was
+intended as medium class gaming machine where two graphic cards make sense
+somehow. Here is the lspci:
 
-The sampler-cube-array-shadow test fails, but so does sampler-cube-shadow (on
-nva0+), so I'm guessing those two failures are highly related.</pre>
+01:00.0 VGA compatible controller: NVIDIA Corporation GK107M [GeForce GT 650M]
+(rev a1)
+02:00.0 VGA compatible controller: NVIDIA Corporation GK107M [GeForce GT 650M]
+(rev a1)
+
+Since I do not use it for gaming, I never cared about having a second card. I
+put the working vbios to /lib/firmware and added the config to the kernel line,
+as you suggested, and it works fine now (also with 3.13). Thank you very much
+for your help!
+
+I also attached my acpidump, I hope that helps.</pre>
         </div>
       </p>
       <hr>
@@ -116,9 +101,9 @@ nva0+), so I'm guessing those two failures are highly related.</pre>
     </body>
 </html>
 
---1393435039.Be84EC1.7772--
+--1393440180.5EBeA0e1.25321--
 
---===============1314083892==
+--===============1895883468==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -129,4 +114,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1314083892==--
+--===============1895883468==--
