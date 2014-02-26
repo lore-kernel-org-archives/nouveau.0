@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75511] [NVE7] Unknown opcode in VBIOS on one of 2
- cards, fails boot on 3.13+
-Date: Wed, 26 Feb 2014 18:44:14 +0000
-Message-ID: <bug-75511-8800-7bAvkA0ofF@http.bugs.freedesktop.org/>
+Subject: [Bug 75511] [NVE7] Lenovo Y500 with 2x GT650M,
+ first card gets wrong vbios, fails boot on 3.13+
+Date: Wed, 26 Feb 2014 19:29:40 +0000
+Message-ID: <bug-75511-8800-wsYw1tgMzm@http.bugs.freedesktop.org/>
 References: <bug-75511-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1257122389=="
+Content-Type: multipart/mixed; boundary="===============0957505569=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75511-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1257122389==
-Content-Type: multipart/alternative; boundary="1393440254.8Bea547f1.25633"; charset="us-ascii"
+--===============0957505569==
+Content-Type: multipart/alternative; boundary="1393442980.Abee843E2.4599"; charset="us-ascii"
 
 
---1393440254.8Bea547f1.25633
-Date: Wed, 26 Feb 2014 18:44:14 +0000
+--1393442980.Abee843E2.4599
+Date: Wed, 26 Feb 2014 19:29:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75511
 
---- Comment #9 from Claas Lorenz <cllorenz-KiJTPfjSHVUubQSw3dWLiw@public.gmane.org> ---
-Created attachment 94782
-  --> https://bugs.freedesktop.org/attachment.cgi?id=94782&action=edit
-output of acpidump
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NVE7] Unknown opcode in    |[NVE7] Lenovo Y500 with 2x
+                   |VBIOS on one of 2 cards,    |GT650M, first card gets
+                   |fails boot on 3.13+         |wrong vbios, fails boot on
+                   |                            |3.13+
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393440254.8Bea547f1.25633
-Date: Wed, 26 Feb 2014 18:44:14 +0000
+--1393442980.Abee843E2.4599
+Date: Wed, 26 Feb 2014 19:29:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +54,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] Unknown opcode in VBIOS on one of 2 cards, fails boot on 3.13+"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75511#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] Unknown opcode in VBIOS on one of 2 cards, fails boot on 3.13+"
+   title="NEW --- - [NVE7] Lenovo Y500 with 2x GT650M, first card gets wrong vbios, fails boot on 3.13+"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75511">bug 75511</a>
-              from <span class="vcard"><a class="email" href="mailto:cllorenz&#64;uni-potsdam.de" title="Claas Lorenz &lt;cllorenz&#64;uni-potsdam.de&gt;"> <span class="fn">Claas Lorenz</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=94782" name="attach_94782" title="output of acpidump">attachment 94782</a> <a href="attachment.cgi?id=94782&amp;action=edit" title="output of acpidump">[details]</a></span>
-output of acpidump</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NVE7] Unknown opcode in VBIOS on one of 2 cards, fails boot on 3.13+
+           </td>
+           <td>[NVE7] Lenovo Y500 with 2x GT650M, first card gets wrong vbios, fails boot on 3.13+
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +86,9 @@ output of acpidump</pre>
     </body>
 </html>
 
---1393440254.8Bea547f1.25633--
+--1393442980.Abee843E2.4599--
 
---===============1257122389==
+--===============0957505569==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1257122389==--
+--===============0957505569==--
