@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75569] [nv34] [v3.14-rc3] DMA_PUSHER get 0x00029044
  put 0x000184d0 state 0x80000040 (err: INVALID_CMD) push 0x00000000
-Date: Thu, 27 Feb 2014 14:34:24 +0000
-Message-ID: <bug-75569-8800-cBkbYu0uVd@http.bugs.freedesktop.org/>
+Date: Thu, 27 Feb 2014 15:29:13 +0000
+Message-ID: <bug-75569-8800-Z4UHzNdQaj@http.bugs.freedesktop.org/>
 References: <bug-75569-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0655417344=="
+Content-Type: multipart/mixed; boundary="===============0229117564=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75569-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,36 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0655417344==
-Content-Type: multipart/alternative; boundary="1393511664.4d4f2.16337"; charset="us-ascii"
+--===============0229117564==
+Content-Type: multipart/alternative; boundary="1393514952.74df62B1.29568"; charset="us-ascii"
 
 
---1393511664.4d4f2.16337
-Date: Thu, 27 Feb 2014 14:34:24 +0000
+--1393514952.74df62B1.29568
+Date: Thu, 27 Feb 2014 15:29:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75569
 
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi Ronald,
+--- Comment #2 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I added the config and now it's running in 4x mode.
 
-Apart from using the latest version of libdrm, mesa and xf86-video-nouveau
-(which you probably are) I can think of one more thing. Some old chipsets are
-having problems with running the agp at 8x mode including yours (according to
-the radeon agp quirk table)
+I will report back if there are no more issue's. But this might take a week or
+two to confirm.
 
-Experiment with the agp mode by appending "nouveau.agpmode=N" where N is the
-number 0, 1, 2 or 4. This will be reflected in your log if done correctly
-
-"putting AGP V3 device into Nx mode"
+Thank you.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393511664.4d4f2.16337
-Date: Thu, 27 Feb 2014 14:34:24 +0000
+--1393514952.74df62B1.29568
+Date: Thu, 27 Feb 2014 15:29:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,24 +59,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nv34] [v3.14-rc3] DMA_PUSHER get 0x00029044 put 0x000184d0 state 0x80000040 (err: INVALID_CMD) push 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75569#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75569#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nv34] [v3.14-rc3] DMA_PUSHER get 0x00029044 put 0x000184d0 state 0x80000040 (err: INVALID_CMD) push 0x00000000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75569">bug 75569</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
 </span></b>
-        <pre>Hi Ronald,
+        <pre>I added the config and now it's running in 4x mode.
 
-Apart from using the latest version of libdrm, mesa and xf86-video-nouveau
-(which you probably are) I can think of one more thing. Some old chipsets are
-having problems with running the agp at 8x mode including yours (according to
-the radeon agp quirk table)
+I will report back if there are no more issue's. But this might take a week or
+two to confirm.
 
-Experiment with the agp mode by appending &quot;nouveau.agpmode=N&quot; where N is the
-number 0, 1, 2 or 4. This will be reflected in your log if done correctly
-
-&quot;putting AGP V3 device into Nx mode&quot;</pre>
+Thank you.</pre>
         </div>
       </p>
       <hr>
@@ -93,9 +83,9 @@ number 0, 1, 2 or 4. This will be reflected in your log if done correctly
     </body>
 </html>
 
---1393511664.4d4f2.16337--
+--1393514952.74df62B1.29568--
 
---===============0655417344==
+--===============0229117564==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0655417344==--
+--===============0229117564==--
