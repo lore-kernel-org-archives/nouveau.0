@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74123] [NVE7] windows maximize behind xfce4-panel
- until settings viewed
-Date: Thu, 27 Feb 2014 17:20:46 +0000
-Message-ID: <bug-74123-8800-N37dip6xXP@http.bugs.freedesktop.org/>
-References: <bug-74123-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nv50: enable texture query lod
+Date: Fri, 28 Feb 2014 01:01:02 -0500
+Message-ID: <1393567262-12168-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0441224914=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74123-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,114 +15,167 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
 
---===============0441224914==
-Content-Type: multipart/alternative; boundary="1393521646.4fF51.24802"; charset="us-ascii"
+Note: this applies on top of airlied's r600g-texture-gather branch.
 
+Appears to pass all 4 piglit tests. The conversion from what the instruction
+outputs is the same as what the blob does.
 
---1393521646.4fF51.24802
-Date: Thu, 27 Feb 2014 17:20:46 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+ src/gallium/drivers/nouveau/codegen/nv50_ir.h      |  1 +
+ .../drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp  |  4 ++++
+ .../drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp  |  3 +++
+ .../nouveau/codegen/nv50_ir_lowering_nv50.cpp      | 23 ++++++++++++++++++++++
+ .../drivers/nouveau/codegen/nv50_ir_print.cpp      |  1 +
+ src/gallium/drivers/nouveau/nv50/nv50_screen.c     |  2 +-
+ 6 files changed, 33 insertions(+), 1 deletion(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74123
-
-Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #5 from Jamin Collins <jcollins-u0TlgVUp4POoiH3BShWgcg@public.gmane.org> ---
-I'm not able to replicate this behavior when using the 3.13 kernel releases
-from kernel.org and their associated nouveau driver.  I can reliably reproduce
-this when using the 3.11 kernel from Ubuntu's 13.10 release and their
-associated nouveau driver.  Going to close this as resolved/fixed.
-
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir.h b/src/gallium/drivers/nouveau/codegen/nv50_ir.h
+index 857980d..286ac83 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir.h
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir.h
+@@ -117,6 +117,7 @@ enum operation
+    OP_TXQ, // texture size query
+    OP_TXD, // texture derivatives
+    OP_TXG, // texture gather
++   OP_TXLQ, // texture query lod
+    OP_TEXCSAA, // texture op for coverage sampling
+    OP_TEXPREP, // turn cube map array into 2d array coordinates
+    OP_SULDB, // surface load (raw)
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
+index bef103f..0b0d480 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nv50.cpp
+@@ -1450,6 +1450,9 @@ CodeEmitterNV50::emitTEX(const TexInstruction *i)
+       code[0] = 0x01000000;
+       code[1] = 0x80000000;
+       break;
++   case OP_TXLQ:
++      code[1] = 0x60020000;
++      break;
+    default:
+       assert(i->op == OP_TEX);
+       break;
+@@ -1790,6 +1793,7 @@ CodeEmitterNV50::emitInstruction(Instruction *insn)
+    case OP_TXB:
+    case OP_TXL:
+    case OP_TXF:
++   case OP_TXLQ:
+       emitTEX(insn->asTex());
+       break;
+    case OP_TXQ:
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+index d226d0c..10ec8c6 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+@@ -255,6 +255,7 @@ unsigned int Instruction::srcMask(unsigned int s) const
+    case TGSI_OPCODE_TXD:
+    case TGSI_OPCODE_TXL:
+    case TGSI_OPCODE_TXP:
++   case TGSI_OPCODE_LODQ:
+    {
+       const struct tgsi_instruction_texture *tex = &insn->Texture;
+ 
+@@ -558,6 +559,7 @@ static nv50_ir::operation translateOpcode(uint opcode)
+    NV50_IR_OPCODE_CASE(SAD, SAD);
+    NV50_IR_OPCODE_CASE(TXF, TXF);
+    NV50_IR_OPCODE_CASE(TXQ, TXQ);
++   NV50_IR_OPCODE_CASE(LODQ, TXLQ);
+ 
+    NV50_IR_OPCODE_CASE(EMIT, EMIT);
+    NV50_IR_OPCODE_CASE(ENDPRIM, RESTART);
+@@ -2428,6 +2430,7 @@ Converter::handleInstruction(const struct tgsi_full_instruction *insn)
+    case TGSI_OPCODE_TXB:
+    case TGSI_OPCODE_TXL:
+    case TGSI_OPCODE_TXP:
++   case TGSI_OPCODE_LODQ:
+       //              R  S     L     C    Dx    Dy
+       handleTEX(dst0, 1, 1, 0x03, 0x0f, 0x00, 0x00);
+       break;
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp
+index 984a8ca..91cae53 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp
+@@ -543,6 +543,7 @@ private:
+    bool handleTXB(TexInstruction *); // I really
+    bool handleTXL(TexInstruction *); // hate
+    bool handleTXD(TexInstruction *); // these 3
++   bool handleTXLQ(TexInstruction *);
+ 
+    bool handleCALL(Instruction *);
+    bool handlePRECONT(Instruction *);
+@@ -856,6 +857,26 @@ NV50LoweringPreSSA::handleTXD(TexInstruction *i)
+ }
+ 
+ bool
++NV50LoweringPreSSA::handleTXLQ(TexInstruction *i)
++{
++   handleTEX(i);
++   bld.setPosition(i, true);
++
++   /* The returned values are not quite what we want:
++    * (a) convert from s32 to f32
++    * (b) multiply by 1/256
++    */
++   for (int def = 0; def < 2; ++def) {
++      if (!i->defExists(def))
++         continue;
++      bld.mkCvt(OP_CVT, TYPE_F32, i->getDef(def), TYPE_S32, i->getDef(def));
++      bld.mkOp2(OP_MUL, TYPE_F32, i->getDef(def),
++                i->getDef(def), bld.loadImm(NULL, 1.0f / 256));
++   }
++   return true;
++}
++
++bool
+ NV50LoweringPreSSA::handleSET(Instruction *i)
+ {
+    if (i->dType == TYPE_F32) {
+@@ -1196,6 +1217,8 @@ NV50LoweringPreSSA::visit(Instruction *i)
+       return handleTXL(i->asTex());
+    case OP_TXD:
+       return handleTXD(i->asTex());
++   case OP_TXLQ:
++      return handleTXLQ(i->asTex());
+    case OP_EX2:
+       bld.mkOp1(OP_PREEX2, TYPE_F32, i->getDef(0), i->getSrc(0));
+       i->setSrc(0, i->getDef(0));
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_print.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_print.cpp
+index ae42d03..4093bc0 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_print.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_print.cpp
+@@ -147,6 +147,7 @@ const char *operationStr[OP_LAST + 1] =
+    "texquery",
+    "texgrad",
+    "texgather",
++   "texquerylod",
+    "texcsaa",
+    "texprep",
+    "suldb",
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_screen.c b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
+index 6e02a24..ca9ce74 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_screen.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
+@@ -167,6 +167,7 @@ nv50_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+    case PIPE_CAP_TEXTURE_BARRIER:
+    case PIPE_CAP_QUADS_FOLLOW_PROVOKING_VERTEX_CONVENTION:
+    case PIPE_CAP_START_INSTANCE:
++   case PIPE_CAP_TEXTURE_QUERY_LOD:
+       return 1;
+    case PIPE_CAP_TGSI_CAN_COMPACT_CONSTANTS:
+       return 0; /* state trackers will know better */
+@@ -198,7 +199,6 @@ nv50_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+    case PIPE_CAP_TGSI_VS_LAYER:
+    case PIPE_CAP_MAX_TEXTURE_GATHER_COMPONENTS:
+    case PIPE_CAP_TEXTURE_GATHER_SM5:
+-   case PIPE_CAP_TEXTURE_QUERY_LOD:
+       return 0;
+    case PIPE_CAP_MAX_VIEWPORTS:
+       return NV50_MAX_VIEWPORTS;
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1393521646.4fF51.24802
-Date: Thu, 27 Feb 2014 17:20:46 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:jcollins&#64;asgardsrealm.net" title="Jamin Collins &lt;jcollins&#64;asgardsrealm.net&gt;"> <span class="fn">Jamin Collins</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE7] windows maximize behind xfce4-panel until settings viewed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74123">bug 74123</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE7] windows maximize behind xfce4-panel until settings viewed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74123#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE7] windows maximize behind xfce4-panel until settings viewed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74123">bug 74123</a>
-              from <span class="vcard"><a class="email" href="mailto:jcollins&#64;asgardsrealm.net" title="Jamin Collins &lt;jcollins&#64;asgardsrealm.net&gt;"> <span class="fn">Jamin Collins</span></a>
-</span></b>
-        <pre>I'm not able to replicate this behavior when using the 3.13 kernel releases
-from kernel.org and their associated nouveau driver.  I can reliably reproduce
-this when using the 3.11 kernel from Ubuntu's 13.10 release and their
-associated nouveau driver.  Going to close this as resolved/fixed.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1393521646.4fF51.24802--
-
---===============0441224914==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0441224914==--
+1.8.3.2
