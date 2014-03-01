@@ -1,12 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nouveau: add valid range tracking to
-	nouveau_buffer
-Date: Sat,  1 Mar 2014 03:47:10 -0500
-Message-ID: <1393663630-13733-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75279] XCloseDisplay() takes one minute around
+ nouveau_dri.so, freezing Firefox startup
+Date: Sat, 01 Mar 2014 10:18:59 +0000
+Message-ID: <bug-75279-8800-DvAnEgW9jE@http.bugs.freedesktop.org/>
+References: <bug-75279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1454751737=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,212 +17,115 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This logic is borrowed from the radeon code. The transfer logic will
-only get called for PIPE_BUFFER resources, so it shouldn't be necessary
-to worry about them becoming render targets.
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
----
+--===============1454751737==
+Content-Type: multipart/alternative; boundary="1393669139.86B0A822.19123"; charset="us-ascii"
 
-A user reported a ~30% FPS improvement with an earlier version of this patch
-in TF2, and no visual regressions in CS, all on a nv50 card. (Source seems to
-like to do write/read/write/read to sequential portions of an index buffer,
-and later writes became staged, which in turn meant that we had to wait for
-them to complete before being able to stick the index buffer into the
-pushbuf. The lack of the wait had earlier caused visual glitches in Source
-games.)  Untested on nvc0/nv30 cards. However the logic is roughly identical
-to radeon's use, so perhaps this is OK to check in without extensive testing
-and we can revert later if it should cause problems? It's unlikely to have a
-drastic effect there though, due to implementation differences.
 
-Testing would be very much appreciated.
+--1393669139.86B0A822.19123
+Date: Sat, 1 Mar 2014 10:18:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
- src/gallium/drivers/nouveau/nouveau_buffer.c     | 29 ++++++++++++++++++++++++
- src/gallium/drivers/nouveau/nouveau_buffer.h     |  4 ++++
- src/gallium/drivers/nouveau/nv50/nv50_resource.c |  2 ++
- src/gallium/drivers/nouveau/nv50/nv50_state.c    |  4 ++++
- src/gallium/drivers/nouveau/nvc0/nvc0_resource.c |  2 ++
- src/gallium/drivers/nouveau/nvc0/nvc0_state.c    |  4 ++++
- 6 files changed, 45 insertions(+)
+https://bugs.freedesktop.org/show_bug.cgi?id=75279
 
-diff --git a/src/gallium/drivers/nouveau/nouveau_buffer.c b/src/gallium/drivers/nouveau/nouveau_buffer.c
-index 5b0b93b..46ab1a1 100644
---- a/src/gallium/drivers/nouveau/nouveau_buffer.c
-+++ b/src/gallium/drivers/nouveau/nouveau_buffer.c
-@@ -69,6 +69,8 @@ nouveau_buffer_allocate(struct nouveau_screen *screen,
-    if (buf->bo)
-       buf->address = buf->bo->offset + buf->offset;
- 
-+   util_range_set_empty(&buf->valid_buffer_range);
-+
-    return TRUE;
- }
- 
-@@ -124,6 +126,8 @@ nouveau_buffer_destroy(struct pipe_screen *pscreen,
-    nouveau_fence_ref(NULL, &res->fence);
-    nouveau_fence_ref(NULL, &res->fence_wr);
- 
-+   util_range_destroy(&res->valid_buffer_range);
-+
-    FREE(res);
- 
-    NOUVEAU_DRV_STAT(nouveau_screen(pscreen), buf_obj_current_count, -1);
-@@ -387,6 +391,17 @@ nouveau_buffer_transfer_map(struct pipe_context *pipe,
-    if (usage & PIPE_TRANSFER_WRITE)
-       NOUVEAU_DRV_STAT(nv->screen, buf_transfers_wr, 1);
- 
-+   /* If we are trying to write to an uninitialized range, the user shouldn't
-+    * care what was there before. So we can treat the write as if the target
-+    * range were being discarded. Furthermore, since we know that even if this
-+    * buffer is busy due to GPU activity, because the contents were
-+    * uninitialized, the GPU can't care what was there, and so we can treat
-+    * the write as being unsynchronized.
-+    */
-+   if ((usage & PIPE_TRANSFER_WRITE) &&
-+       !util_ranges_intersect(&buf->valid_buffer_range, box->x, box->x + box->width))
-+      usage |= PIPE_TRANSFER_DISCARD_RANGE | PIPE_TRANSFER_UNSYNCHRONIZED;
-+
-    if (buf->domain == NOUVEAU_BO_VRAM) {
-       if (usage & NOUVEAU_TRANSFER_DISCARD) {
-          /* Set up a staging area for the user to write to. It will be copied
-@@ -492,8 +507,14 @@ nouveau_buffer_transfer_flush_region(struct pipe_context *pipe,
-                                      const struct pipe_box *box)
- {
-    struct nouveau_transfer *tx = nouveau_transfer(transfer);
-+   struct nv04_resource *buf = nv04_resource(transfer->resource);
-+
-    if (tx->map)
-       nouveau_transfer_write(nouveau_context(pipe), tx, box->x, box->width);
-+
-+   util_range_add(&buf->valid_buffer_range,
-+                  tx->base.box.x + box->x,
-+                  tx->base.box.x + box->x + box->width);
- }
- 
- /* Unmap stage of the transfer. If it was a WRITE transfer and the map that
-@@ -522,6 +543,9 @@ nouveau_buffer_transfer_unmap(struct pipe_context *pipe,
-          if (bind & (PIPE_BIND_CONSTANT_BUFFER))
-             nv->cb_dirty = TRUE;
-       }
-+
-+      util_range_add(&buf->valid_buffer_range,
-+                     tx->base.box.x, tx->base.box.x + tx->base.box.width);
-    }
- 
-    if (!tx->bo && (tx->base.usage & PIPE_TRANSFER_WRITE))
-@@ -659,6 +683,8 @@ nouveau_buffer_create(struct pipe_screen *pscreen,
- 
-    NOUVEAU_DRV_STAT(screen, buf_obj_current_count, 1);
- 
-+   util_range_init(&buffer->valid_buffer_range);
-+
-    return &buffer->base;
- 
- fail:
-@@ -690,6 +716,9 @@ nouveau_user_buffer_create(struct pipe_screen *pscreen, void *ptr,
-    buffer->data = ptr;
-    buffer->status = NOUVEAU_BUFFER_STATUS_USER_MEMORY;
- 
-+   util_range_init(&buffer->valid_buffer_range);
-+   util_range_add(&buffer->valid_buffer_range, 0, bytes);
-+
-    return &buffer->base;
- }
- 
-diff --git a/src/gallium/drivers/nouveau/nouveau_buffer.h b/src/gallium/drivers/nouveau/nouveau_buffer.h
-index aeb9b17..f881adc 100644
---- a/src/gallium/drivers/nouveau/nouveau_buffer.h
-+++ b/src/gallium/drivers/nouveau/nouveau_buffer.h
-@@ -1,6 +1,7 @@
- #ifndef __NOUVEAU_BUFFER_H__
- #define __NOUVEAU_BUFFER_H__
- 
-+#include "util/u_range.h"
- #include "util/u_transfer.h"
- #include "util/u_double_list.h"
- 
-@@ -44,6 +45,9 @@ struct nv04_resource {
-    struct nouveau_fence *fence_wr;
- 
-    struct nouveau_mm_allocation *mm;
-+
-+   /* buffer range that has been initialized */
-+   struct util_range valid_buffer_range;
- };
- 
- void
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_resource.c b/src/gallium/drivers/nouveau/nv50/nv50_resource.c
-index 7fbb0a9..d289b4a 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_resource.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_resource.c
-@@ -68,6 +68,8 @@ nv50_surface_create(struct pipe_context *pipe,
- 		    struct pipe_resource *pres,
- 		    const struct pipe_surface *templ)
- {
-+   /* surfaces are assumed to be miptrees all over the place. */
-+   assert(pres->target != PIPE_BUFFER);
-    if (unlikely(pres->target == PIPE_BUFFER))
-       return nv50_surface_from_buffer(pipe, pres, templ);
-    return nv50_miptree_surface_new(pipe, pres, templ);
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_state.c b/src/gallium/drivers/nouveau/nv50/nv50_state.c
-index 288ba46..c03d729 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_state.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_state.c
-@@ -1010,6 +1010,7 @@ nv50_so_target_create(struct pipe_context *pipe,
-                       struct pipe_resource *res,
-                       unsigned offset, unsigned size)
- {
-+   struct nv04_resource *buf = (struct nv04_resource *)res;
-    struct nv50_so_target *targ = MALLOC_STRUCT(nv50_so_target);
-    if (!targ)
-       return NULL;
-@@ -1033,6 +1034,9 @@ nv50_so_target_create(struct pipe_context *pipe,
-    pipe_resource_reference(&targ->pipe.buffer, res);
-    pipe_reference_init(&targ->pipe.reference, 1);
- 
-+   assert(buf->base.target == PIPE_BUFFER);
-+   util_range_add(&buf->valid_buffer_range, offset, offset + size);
-+
-    return &targ->pipe;
- }
- 
-diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_resource.c b/src/gallium/drivers/nouveau/nvc0/nvc0_resource.c
-index 4e70903..12b5a02 100644
---- a/src/gallium/drivers/nouveau/nvc0/nvc0_resource.c
-+++ b/src/gallium/drivers/nouveau/nvc0/nvc0_resource.c
-@@ -36,6 +36,8 @@ nvc0_surface_create(struct pipe_context *pipe,
-                     struct pipe_resource *pres,
-                     const struct pipe_surface *templ)
- {
-+   /* surfaces are assumed to be miptrees all over the place. */
-+   assert(pres->target != PIPE_BUFFER);
-    if (unlikely(pres->target == PIPE_BUFFER))
-       return nv50_surface_from_buffer(pipe, pres, templ);
-    return nvc0_miptree_surface_new(pipe, pres, templ);
-diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_state.c b/src/gallium/drivers/nouveau/nvc0/nvc0_state.c
-index 0213a8e..dec5355 100644
---- a/src/gallium/drivers/nouveau/nvc0/nvc0_state.c
-+++ b/src/gallium/drivers/nouveau/nvc0/nvc0_state.c
-@@ -992,6 +992,7 @@ nvc0_so_target_create(struct pipe_context *pipe,
-                       struct pipe_resource *res,
-                       unsigned offset, unsigned size)
- {
-+   struct nv04_resource *buf = (struct nv04_resource *)res;
-    struct nvc0_so_target *targ = MALLOC_STRUCT(nvc0_so_target);
-    if (!targ)
-       return NULL;
-@@ -1010,6 +1011,9 @@ nvc0_so_target_create(struct pipe_context *pipe,
-    pipe_resource_reference(&targ->pipe.buffer, res);
-    pipe_reference_init(&targ->pipe.reference, 1);
- 
-+   assert(buf->base.target == PIPE_BUFFER);
-+   util_range_add(&buf->valid_buffer_range, offset, offset + size);
-+
-    return &targ->pipe;
- }
- 
+--- Comment #23 from Frederic Bezies <fredbezies-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Don't know if it is related, but I'm facing a plugin container hang and nouveau
+seems to be guilty in some way.
+
+Got this thread with gdb :
+
+Thread 1 (Thread 0x7f4dd7b37940 (LWP 2961)):
+#0  0x00007f4dd2294337 in sched_yield () from /usr/lib/libc.so.6
+#1  0x00007f4dbff0ee41 in ?? () from /usr/lib/vdpau/libvdpau_nouveau.so.1
+#2  0x00007f4dbff9eca5 in ?? () from /usr/lib/vdpau/libvdpau_nouveau.so.1
+#3  0x00007f4dbfe019c1 in vl_screen_destroy ()
+   from /usr/lib/vdpau/libvdpau_nouveau.so.1
+#4  0x00007f4dbff073a1 in vlVdpDeviceDestroy ()
+   from /usr/lib/vdpau/libvdpau_nouveau.so.1
+#5  0x00007f4dc4c252a8 in ?? () from /usr/lib/mozilla/plugins/libflashplayer.so
+#6  0x00007f4dc48871b5 in ?? () from /usr/lib/mozilla/plugins/libflashplayer.so
+#7  0x00007f4dc4888000 in ?? () from /usr/lib/mozilla/plugins/libflashplayer.so
+#8  0x00007f4dc4e167c8 in ?? () from /usr/lib/mozilla/plugins/libflashplayer.so
+#9  0x00007f4dc4e1cf7d in ?? () from /usr/lib/mozilla/plugins/libflashplayer.so
+#10 0x00007f4dc4e1ea6b in ?? () from /usr/lib/mozilla/plugins/libflashplayer.so
+Cannot access memory at address 0x7ffff106a948
+
+Or is it a flash plugin bug ?
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1393669139.86B0A822.19123
+Date: Sat, 1 Mar 2014 10:18:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c23">Comment # 23</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
+              from <span class="vcard"><a class="email" href="mailto:fredbezies&#64;gmail.com" title="Frederic Bezies &lt;fredbezies&#64;gmail.com&gt;"> <span class="fn">Frederic Bezies</span></a>
+</span></b>
+        <pre>Don't know if it is related, but I'm facing a plugin container hang and nouveau
+seems to be guilty in some way.
+
+Got this thread with gdb :
+
+Thread 1 (Thread 0x7f4dd7b37940 (LWP 2961)):
+#0  0x00007f4dd2294337 in sched_yield () from /usr/lib/libc.so.6
+#1  0x00007f4dbff0ee41 in ?? () from /usr/lib/vdpau/libvdpau_nouveau.so.1
+#2  0x00007f4dbff9eca5 in ?? () from /usr/lib/vdpau/libvdpau_nouveau.so.1
+#3  0x00007f4dbfe019c1 in vl_screen_destroy ()
+   from /usr/lib/vdpau/libvdpau_nouveau.so.1
+#4  0x00007f4dbff073a1 in vlVdpDeviceDestroy ()
+   from /usr/lib/vdpau/libvdpau_nouveau.so.1
+#5  0x00007f4dc4c252a8 in ?? () from /usr/lib/mozilla/plugins/libflashplayer.so
+#6  0x00007f4dc48871b5 in ?? () from /usr/lib/mozilla/plugins/libflashplayer.so
+#7  0x00007f4dc4888000 in ?? () from /usr/lib/mozilla/plugins/libflashplayer.so
+#8  0x00007f4dc4e167c8 in ?? () from /usr/lib/mozilla/plugins/libflashplayer.so
+#9  0x00007f4dc4e1cf7d in ?? () from /usr/lib/mozilla/plugins/libflashplayer.so
+#10 0x00007f4dc4e1ea6b in ?? () from /usr/lib/mozilla/plugins/libflashplayer.so
+Cannot access memory at address 0x7ffff106a948
+
+Or is it a flash plugin bug ?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1393669139.86B0A822.19123--
+
+--===============1454751737==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1454751737==--
