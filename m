@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
  garbage/corruption/noise on resume
-Date: Mon, 03 Mar 2014 03:38:13 +0000
-Message-ID: <bug-59168-8800-jt7gUn2XMB@http.bugs.freedesktop.org/>
+Date: Mon, 03 Mar 2014 03:48:05 +0000
+Message-ID: <bug-59168-8800-dLTh559tJF@http.bugs.freedesktop.org/>
 References: <bug-59168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1775954650=="
+Content-Type: multipart/mixed; boundary="===============1977266079=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,41 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1775954650==
-Content-Type: multipart/alternative; boundary="1393817893.F2Da1d61.19568"; charset="us-ascii"
+--===============1977266079==
+Content-Type: multipart/alternative; boundary="1393818485.Fe1B1.20900"; charset="us-ascii"
 
 
---1393817893.F2Da1d61.19568
-Date: Mon, 3 Mar 2014 03:38:12 +0000
+--1393818485.Fe1B1.20900
+Date: Mon, 3 Mar 2014 03:48:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=59168
 
---- Comment #44 from Laurence Lee <rubyjedi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Configured and compiled linux-3.14-rc4.tar.xz as found on kernel.org, and the
-suspend/resume issue still exists.
+--- Comment #45 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #44)
+> Configured and compiled linux-3.14-rc4.tar.xz as found on kernel.org, and
+> the suspend/resume issue still exists.
+> 
+> 
+> "nvapeek 22500" and "nvapeek 22580" just yielded "...", so I'm posting the
 
-
-"nvapeek 22500" and "nvapeek 22580" just yielded "...", so I'm posting the
-contents of "nvapeek 22400 400" for a wider view of that area:
-
-00022400: 00000000 00000000 00000000 00000002
-00022410: 00000000 00000000 30000000 00000000
-00022420: 00000000 00000000 00000800 00000000
-00022430: 00000001 00000004 00000003 00000000
-...
-00022600: 0000001c 00000000 00000000 00000000
-...
-00022680: 8000001c 00000000 00000000 00000000
-...
+OK, well "..." means "0" -- a little confusing, but oh well. So none of the
+DISABLE bits are set, which means that 3.14-rcX will not help you. If you want,
+you can achieve the same effect with nouveau.config=PCE1=0 . Not sure why
+enabling it causes a resume issue.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393817893.F2Da1d61.19568
-Date: Mon, 3 Mar 2014 03:38:13 +0000
+--1393818485.Fe1B1.20900
+Date: Mon, 3 Mar 2014 03:48:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,29 +64,24 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c44">Comment # 44</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c45">Comment # 45</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
-              from <span class="vcard"><a class="email" href="mailto:rubyjedi&#64;gmail.com" title="Laurence Lee &lt;rubyjedi&#64;gmail.com&gt;"> <span class="fn">Laurence Lee</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Configured and compiled linux-3.14-rc4.tar.xz as found on kernel.org, and the
-suspend/resume issue still exists.
+        <pre>(In reply to <a href="show_bug.cgi?id=59168#c44">comment #44</a>)
+<span class="quote">&gt; Configured and compiled linux-3.14-rc4.tar.xz as found on kernel.org, and
+&gt; the suspend/resume issue still exists.
+&gt; 
+&gt; 
+&gt; &quot;nvapeek 22500&quot; and &quot;nvapeek 22580&quot; just yielded &quot;...&quot;, so I'm posting the</span >
 
-
-&quot;nvapeek 22500&quot; and &quot;nvapeek 22580&quot; just yielded &quot;...&quot;, so I'm posting the
-contents of &quot;nvapeek 22400 400&quot; for a wider view of that area:
-
-00022400: 00000000 00000000 00000000 00000002
-00022410: 00000000 00000000 30000000 00000000
-00022420: 00000000 00000000 00000800 00000000
-00022430: 00000001 00000004 00000003 00000000
-...
-00022600: 0000001c 00000000 00000000 00000000
-...
-00022680: 8000001c 00000000 00000000 00000000
-...</pre>
+OK, well &quot;...&quot; means &quot;0&quot; -- a little confusing, but oh well. So none of the
+DISABLE bits are set, which means that 3.14-rcX will not help you. If you want,
+you can achieve the same effect with nouveau.config=PCE1=0 . Not sure why
+enabling it causes a resume issue.</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +93,9 @@ contents of &quot;nvapeek 22400 400&quot; for a wider view of that area:
     </body>
 </html>
 
---1393817893.F2Da1d61.19568--
+--1393818485.Fe1B1.20900--
 
---===============1775954650==
+--===============1977266079==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -116,4 +106,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1775954650==--
+--===============1977266079==--
