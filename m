@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75569] [nv34] [v3.14-rc3] DMA_PUSHER get 0x00029044
- put 0x000184d0 state 0x80000040 (err: INVALID_CMD) push 0x00000000
-Date: Sat, 01 Mar 2014 16:44:21 +0000
-Message-ID: <bug-75569-8800-N7386OdPCl@http.bugs.freedesktop.org/>
-References: <bug-75569-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
+ garbage/corruption/noise on resume
+Date: Mon, 03 Mar 2014 02:08:08 +0000
+Message-ID: <bug-59168-8800-TDFXQB42OU@http.bugs.freedesktop.org/>
+References: <bug-59168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1967806734=="
+Content-Type: multipart/mixed; boundary="===============0394523829=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75569-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,47 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1967806734==
-Content-Type: multipart/alternative; boundary="1393692261.72Af1.652"; charset="us-ascii"
+--===============0394523829==
+Content-Type: multipart/alternative; boundary="1393812488.dAAbB1.7329"; charset="us-ascii"
 
 
---1393692261.72Af1.652
-Date: Sat, 1 Mar 2014 16:44:21 +0000
+--1393812488.dAAbB1.7329
+Date: Mon, 3 Mar 2014 02:08:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75569
+https://bugs.freedesktop.org/show_bug.cgi?id=59168
 
---- Comment #7 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-With nouveau.vram_pushbuf it seems to hang but also to recover. It did this
-twice in a row:
+--- Comment #42 from Laurence Lee <rubyjedi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 94996
+  --> https://bugs.freedesktop.org/attachment.cgi?id=94996&action=edit
+Remove NVDEV_ENGINE_COPY1 from GF116 to mirror GF106
 
-[  989.334399] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 1 [X[730]] get
-0x00519000 put 0x00519090 state 0x80000054 (err: INVALID_CMD) push 0x00000000
-[ 1017.880696] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 1 [X[730]] get
-0x00519000 put 0x00519088 state 0x80000000 (err: INVALID_CMD) push 0x00000000
-[ 1080.599917] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 1 [X[730]] get
-0x00519000 put 0x00519080 state 0x80000054 (err: INVALID_CMD) push 0x00000000
-[ 1182.233193] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 1 [X[730]] get
-0x00519000 put 0x00519088 state 0x80000000 (err: INVALID_CMD) push 0x00000000
-[ 1210.013989] bpkt raw broadcast: IN=enp0s18 OUT=
-MAC=ff:ff:ff:ff:ff:ff:b4:b6:76:5d:7c:b2:08:00 SRC=0.0.0.0 DST=255.255.255.255
-LEN=328 TOS=0x00 PREC=0x00 TTL=128 ID=27791 PROTO=UDP SPT=68 DPT=67 LEN=308 
-[ 1227.086996] BTRFS: device fsid 6cc7990a-8185-441a-b90d-c73a25f7d4cc devid 1
-transid 271 /dev/mapper/main-boot
-[ 1227.088925] BTRFS info (device dm-6): disk space caching is enabled
-[ 1234.066610] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 1 [X[730]] get
-0x00519000 put 0x00519090 state 0x80000054 (err: INVALID_CMD) push 0x00000000
+Since Michael Weirauch reports this issue has been resolved for his card (0xc3,
+according to his dmesg uploads), and the issue remains on Doug Brunner and my
+card (0xcf), and that both cards once used the same code-base and functioned
+correctly in the Linux 3.4 Kernels, I went on a hunch.
 
+By changing the 0xc3 definition to 0xcf (forcing my card to be recognized as a
+GF106), I was able to reproduce Michael's suspend/resume success with my own
+card.
 
-... continues here
+Having discovered that THAT works, it became a mission to figure out what was
+different between the 0xc3 (GF106, working) and 0xcf (GF116, non-working).
+
+By removing the declaration of NVDEV_ENGINE_COPY1 from the 0xcf case, as this
+patch does, the suspend/resume issue no longer affects my card.
+
+I have submitted this patch for your review, and sincerely hope it is accepted.
+Thanks!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393692261.72Af1.652
-Date: Sat, 1 Mar 2014 16:44:21 +0000
+--1393812488.dAAbB1.7329
+Date: Mon, 3 Mar 2014 02:08:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,37 +72,35 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nv34] [v3.14-rc3] DMA_PUSHER get 0x00029044 put 0x000184d0 state 0x80000040 (err: INVALID_CMD) push 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75569#c7">Comment # 7</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c42">Comment # 42</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nv34] [v3.14-rc3] DMA_PUSHER get 0x00029044 put 0x000184d0 state 0x80000040 (err: INVALID_CMD) push 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75569">bug 75569</a>
-              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
+              from <span class="vcard"><a class="email" href="mailto:rubyjedi&#64;gmail.com" title="Laurence Lee &lt;rubyjedi&#64;gmail.com&gt;"> <span class="fn">Laurence Lee</span></a>
 </span></b>
-        <pre>With nouveau.vram_pushbuf it seems to hang but also to recover. It did this
-twice in a row:
+        <pre>Created <span class=""><a href="attachment.cgi?id=94996" name="attach_94996" title="Remove NVDEV_ENGINE_COPY1 from GF116 to mirror GF106">attachment 94996</a> <a href="attachment.cgi?id=94996&amp;action=edit" title="Remove NVDEV_ENGINE_COPY1 from GF116 to mirror GF106">[details]</a></span>
+Remove NVDEV_ENGINE_COPY1 from GF116 to mirror GF106
 
-[  989.334399] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 1 [X[730]] get
-0x00519000 put 0x00519090 state 0x80000054 (err: INVALID_CMD) push 0x00000000
-[ 1017.880696] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 1 [X[730]] get
-0x00519000 put 0x00519088 state 0x80000000 (err: INVALID_CMD) push 0x00000000
-[ 1080.599917] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 1 [X[730]] get
-0x00519000 put 0x00519080 state 0x80000054 (err: INVALID_CMD) push 0x00000000
-[ 1182.233193] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 1 [X[730]] get
-0x00519000 put 0x00519088 state 0x80000000 (err: INVALID_CMD) push 0x00000000
-[ 1210.013989] bpkt raw broadcast: IN=enp0s18 OUT=
-MAC=ff:ff:ff:ff:ff:ff:b4:b6:76:5d:7c:b2:08:00 SRC=0.0.0.0 DST=255.255.255.255
-LEN=328 TOS=0x00 PREC=0x00 TTL=128 ID=27791 PROTO=UDP SPT=68 DPT=67 LEN=308 
-[ 1227.086996] BTRFS: device fsid 6cc7990a-8185-441a-b90d-c73a25f7d4cc devid 1
-transid 271 /dev/mapper/main-boot
-[ 1227.088925] BTRFS info (device dm-6): disk space caching is enabled
-[ 1234.066610] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 1 [X[730]] get
-0x00519000 put 0x00519090 state 0x80000054 (err: INVALID_CMD) push 0x00000000
+Since Michael Weirauch reports this issue has been resolved for his card (0xc3,
+according to his dmesg uploads), and the issue remains on Doug Brunner and my
+card (0xcf), and that both cards once used the same code-base and functioned
+correctly in the Linux 3.4 Kernels, I went on a hunch.
 
+By changing the 0xc3 definition to 0xcf (forcing my card to be recognized as a
+GF106), I was able to reproduce Michael's suspend/resume success with my own
+card.
 
-... continues here</pre>
+Having discovered that THAT works, it became a mission to figure out what was
+different between the 0xc3 (GF106, working) and 0xcf (GF116, non-working).
+
+By removing the declaration of NVDEV_ENGINE_COPY1 from the 0xcf case, as this
+patch does, the suspend/resume issue no longer affects my card.
+
+I have submitted this patch for your review, and sincerely hope it is accepted.
+Thanks!</pre>
         </div>
       </p>
       <hr>
@@ -115,9 +112,9 @@ transid 271 /dev/mapper/main-boot
     </body>
 </html>
 
---1393692261.72Af1.652--
+--1393812488.dAAbB1.7329--
 
---===============1967806734==
+--===============0394523829==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,4 +125,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1967806734==--
+--===============0394523829==--
