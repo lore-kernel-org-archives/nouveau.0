@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
  garbage/corruption/noise on resume
-Date: Mon, 03 Mar 2014 03:48:05 +0000
-Message-ID: <bug-59168-8800-dLTh559tJF@http.bugs.freedesktop.org/>
+Date: Mon, 03 Mar 2014 05:27:24 +0000
+Message-ID: <bug-59168-8800-QElu6ks2lv@http.bugs.freedesktop.org/>
 References: <bug-59168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1977266079=="
+Content-Type: multipart/mixed; boundary="===============0783248728=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,36 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1977266079==
-Content-Type: multipart/alternative; boundary="1393818485.Fe1B1.20900"; charset="us-ascii"
+--===============0783248728==
+Content-Type: multipart/alternative; boundary="1393824444.80Fa1.31453"; charset="us-ascii"
 
 
---1393818485.Fe1B1.20900
-Date: Mon, 3 Mar 2014 03:48:05 +0000
+--1393824444.80Fa1.31453
+Date: Mon, 3 Mar 2014 05:27:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=59168
 
---- Comment #45 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #44)
-> Configured and compiled linux-3.14-rc4.tar.xz as found on kernel.org, and
-> the suspend/resume issue still exists.
-> 
-> 
-> "nvapeek 22500" and "nvapeek 22580" just yielded "...", so I'm posting the
+--- Comment #46 from Laurence Lee <rubyjedi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks for the command-line tip, that does indeed have the desired effect on
+standard-built Fedora kernels, and is much better than setting
+nouveau.noaccel=1 (which, when activated, is now leading to some font-rendering
+glitches).
 
-OK, well "..." means "0" -- a little confusing, but oh well. So none of the
-DISABLE bits are set, which means that 3.14-rcX will not help you. If you want,
-you can achieve the same effect with nouveau.config=PCE1=0 . Not sure why
-enabling it causes a resume issue.
+Actually, it does kind of make sense that an invalid copy engine would cause
+screen garbage to be displayed, and that this would be triggered by the rapid
+screen repainting that happens on Resume.
+
+I'll leave it up to more knowledgeable minds whether to act upon this patch or
+not; but it's worth noting that only 4 other devices out of the 9 declared in
+nvc0.c have an entry for a secondary, "COPY1" engine -- the GF100, GF104,
+GF110, and GF114.
+
+I'm just thankful to have a usable solution on my rig in the meantime. Thanks!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393818485.Fe1B1.20900
-Date: Mon, 3 Mar 2014 03:48:05 +0000
+--1393824444.80Fa1.31453
+Date: Mon, 3 Mar 2014 05:27:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,24 +68,28 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c45">Comment # 45</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c46">Comment # 46</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:rubyjedi&#64;gmail.com" title="Laurence Lee &lt;rubyjedi&#64;gmail.com&gt;"> <span class="fn">Laurence Lee</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=59168#c44">comment #44</a>)
-<span class="quote">&gt; Configured and compiled linux-3.14-rc4.tar.xz as found on kernel.org, and
-&gt; the suspend/resume issue still exists.
-&gt; 
-&gt; 
-&gt; &quot;nvapeek 22500&quot; and &quot;nvapeek 22580&quot; just yielded &quot;...&quot;, so I'm posting the</span >
+        <pre>Thanks for the command-line tip, that does indeed have the desired effect on
+standard-built Fedora kernels, and is much better than setting
+nouveau.noaccel=1 (which, when activated, is now leading to some font-rendering
+glitches).
 
-OK, well &quot;...&quot; means &quot;0&quot; -- a little confusing, but oh well. So none of the
-DISABLE bits are set, which means that 3.14-rcX will not help you. If you want,
-you can achieve the same effect with nouveau.config=PCE1=0 . Not sure why
-enabling it causes a resume issue.</pre>
+Actually, it does kind of make sense that an invalid copy engine would cause
+screen garbage to be displayed, and that this would be triggered by the rapid
+screen repainting that happens on Resume.
+
+I'll leave it up to more knowledgeable minds whether to act upon this patch or
+not; but it's worth noting that only 4 other devices out of the 9 declared in
+nvc0.c have an entry for a secondary, &quot;COPY1&quot; engine -- the GF100, GF104,
+GF110, and GF114.
+
+I'm just thankful to have a usable solution on my rig in the meantime. Thanks!</pre>
         </div>
       </p>
       <hr>
@@ -93,9 +101,9 @@ enabling it causes a resume issue.</pre>
     </body>
 </html>
 
---1393818485.Fe1B1.20900--
+--1393824444.80Fa1.31453--
 
---===============1977266079==
+--===============0783248728==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +114,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1977266079==--
+--===============0783248728==--
