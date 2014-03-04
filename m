@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75776] [NVA5] Hearthstone displays corrupted buffers
-Date: Tue, 04 Mar 2014 22:25:32 +0000
-Message-ID: <bug-75776-8800-D4DvEu2Agh@http.bugs.freedesktop.org/>
+Date: Tue, 04 Mar 2014 22:26:36 +0000
+Message-ID: <bug-75776-8800-KDZS3BkeaZ@http.bugs.freedesktop.org/>
 References: <bug-75776-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1877632415=="
+Content-Type: multipart/mixed; boundary="===============1864010938=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1877632415==
-Content-Type: multipart/alternative; boundary="1393971932.1B66b0.13566"; charset="us-ascii"
+--===============1864010938==
+Content-Type: multipart/alternative; boundary="1393971996.53C8cb0.13805"; charset="us-ascii"
 
 
---1393971932.1B66b0.13566
-Date: Tue, 4 Mar 2014 22:25:32 +0000
+--1393971996.53C8cb0.13805
+Date: Tue, 4 Mar 2014 22:26:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75776
 
---- Comment #2 from Lubosz Sarnecki <lubosz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This apitrace produces the corrupted buffers and displays incorrectly on NVA5
-nouveau. It works on NVC8 nouveau and nvidia.
-
-https://drive.google.com/file/d/0B0bLtNyAhxgoN1FNWUVvLTVjbmM
+--- Comment #3 from Lubosz Sarnecki <lubosz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+It worked before, but the mesa version did not change. I suppose it was an
+early 10.0. The bug was introduced in a Hearthstone patch.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393971932.1B66b0.13566
-Date: Tue, 4 Mar 2014 22:25:32 +0000
+--1393971996.53C8cb0.13805
+Date: Tue, 4 Mar 2014 22:26:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,17 +54,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA5] Hearthstone displays corrupted buffers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA5] Hearthstone displays corrupted buffers"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75776">bug 75776</a>
               from <span class="vcard"><a class="email" href="mailto:lubosz&#64;gmail.com" title="Lubosz Sarnecki &lt;lubosz&#64;gmail.com&gt;"> <span class="fn">Lubosz Sarnecki</span></a>
 </span></b>
-        <pre>This apitrace produces the corrupted buffers and displays incorrectly on NVA5
-nouveau. It works on NVC8 nouveau and nvidia.
-
-<a href="https://drive.google.com/file/d/0B0bLtNyAhxgoN1FNWUVvLTVjbmM">https://drive.google.com/file/d/0B0bLtNyAhxgoN1FNWUVvLTVjbmM</a></pre>
+        <pre>It worked before, but the mesa version did not change. I suppose it was an
+early 10.0. The bug was introduced in a Hearthstone patch.</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +74,9 @@ nouveau. It works on NVC8 nouveau and nvidia.
     </body>
 </html>
 
---1393971932.1B66b0.13566--
+--1393971996.53C8cb0.13805--
 
---===============1877632415==
+--===============1864010938==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1877632415==--
+--===============1864010938==--
