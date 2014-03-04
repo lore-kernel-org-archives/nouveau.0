@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51579] [NVA8] Xv shows black image on ION chipset
-Date: Tue, 04 Mar 2014 23:48:06 +0000
-Message-ID: <bug-51579-8800-aYes8U0IYp@http.bugs.freedesktop.org/>
+Date: Tue, 04 Mar 2014 23:49:50 +0000
+Message-ID: <bug-51579-8800-FSDzXjXtFH@http.bugs.freedesktop.org/>
 References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0720602813=="
+Content-Type: multipart/mixed; boundary="===============1996904503=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-51579-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,26 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0720602813==
-Content-Type: multipart/alternative; boundary="1393976886.6aC83.30250"; charset="us-ascii"
+--===============1996904503==
+Content-Type: multipart/alternative; boundary="1393976990.cC07F5b2.30598"; charset="us-ascii"
 
 
---1393976886.6aC83.30250
-Date: Tue, 4 Mar 2014 23:48:06 +0000
+--1393976990.cC07F5b2.30598
+Date: Tue, 4 Mar 2014 23:49:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51579
 
---- Comment #23 from Duane Robertson <hnxcyllh-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I no longer have the hardware to confirm this.
+--- Comment #24 from Boris Reisig <boris-Ky47UMpZSVQ@public.gmane.org> ---
+It's working fine now running linux kernel 3.14.0-rc4+ (from git), latest
+nouveau from git and the latest Mesa 10.1rc3. You can close this bug.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393976886.6aC83.30250
-Date: Tue, 4 Mar 2014 23:48:06 +0000
+--1393976990.cC07F5b2.30598
+Date: Tue, 4 Mar 2014 23:49:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,14 +54,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA8] Xv shows black image on ION chipset"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579#c23">Comment # 23</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579#c24">Comment # 24</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA8] Xv shows black image on ION chipset"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=51579">bug 51579</a>
-              from <span class="vcard"><a class="email" href="mailto:hnxcyllh&#64;gmail.com" title="Duane Robertson &lt;hnxcyllh&#64;gmail.com&gt;"> <span class="fn">Duane Robertson</span></a>
+              from <span class="vcard"><a class="email" href="mailto:boris&#64;boris.ca" title="Boris Reisig &lt;boris&#64;boris.ca&gt;"> <span class="fn">Boris Reisig</span></a>
 </span></b>
-        <pre>I no longer have the hardware to confirm this.</pre>
+        <pre>It's working fine now running linux kernel 3.14.0-rc4+ (from git), latest
+nouveau from git and the latest Mesa 10.1rc3. You can close this bug.</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +74,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1393976886.6aC83.30250--
+--1393976990.cC07F5b2.30598--
 
---===============0720602813==
+--===============1996904503==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -85,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0720602813==--
+--===============1996904503==--
