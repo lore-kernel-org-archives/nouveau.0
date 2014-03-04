@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75776] [NVA5] Hearthstone displays corrupted buffers
-Date: Tue, 04 Mar 2014 22:23:16 +0000
-Message-ID: <bug-75776-8800-WOWyn7kYKu@http.bugs.freedesktop.org/>
+Date: Tue, 04 Mar 2014 22:25:32 +0000
+Message-ID: <bug-75776-8800-D4DvEu2Agh@http.bugs.freedesktop.org/>
 References: <bug-75776-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0149984712=="
+Content-Type: multipart/mixed; boundary="===============1877632415=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,37 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0149984712==
-Content-Type: multipart/alternative; boundary="1393971796.F5f280.13325"; charset="us-ascii"
+--===============1877632415==
+Content-Type: multipart/alternative; boundary="1393971932.1B66b0.13566"; charset="us-ascii"
 
 
---1393971796.F5f280.13325
-Date: Tue, 4 Mar 2014 22:23:16 +0000
+--1393971932.1B66b0.13566
+Date: Tue, 4 Mar 2014 22:25:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75776
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #2 from Lubosz Sarnecki <lubosz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This apitrace produces the corrupted buffers and displays incorrectly on NVA5
+nouveau. It works on NVC8 nouveau and nvidia.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Hearthstone displays        |[NVA5] Hearthstone displays
-                   |corrupted buffers on NVA5   |corrupted buffers
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could you provide the apitrace (via e.g. google drive, dropbox, or some other
-hosting option)?
-
-When you say that it worked before, do you know what mesa version it worked
-with on this hardware?
+https://drive.google.com/file/d/0B0bLtNyAhxgoN1FNWUVvLTVjbmM
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393971796.F5f280.13325
-Date: Tue, 4 Mar 2014 22:23:16 +0000
+--1393971932.1B66b0.13566
+Date: Tue, 4 Mar 2014 22:25:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,44 +50,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA5] Hearthstone displays corrupted buffers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776">bug 75776</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Hearthstone displays corrupted buffers on NVA5
-           </td>
-           <td>[NVA5] Hearthstone displays corrupted buffers
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA5] Hearthstone displays corrupted buffers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA5] Hearthstone displays corrupted buffers"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75776">bug 75776</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:lubosz&#64;gmail.com" title="Lubosz Sarnecki &lt;lubosz&#64;gmail.com&gt;"> <span class="fn">Lubosz Sarnecki</span></a>
 </span></b>
-        <pre>Could you provide the apitrace (via e.g. google drive, dropbox, or some other
-hosting option)?
+        <pre>This apitrace produces the corrupted buffers and displays incorrectly on NVA5
+nouveau. It works on NVC8 nouveau and nvidia.
 
-When you say that it worked before, do you know what mesa version it worked
-with on this hardware?</pre>
+<a href="https://drive.google.com/file/d/0B0bLtNyAhxgoN1FNWUVvLTVjbmM">https://drive.google.com/file/d/0B0bLtNyAhxgoN1FNWUVvLTVjbmM</a></pre>
         </div>
       </p>
       <hr>
@@ -107,9 +78,9 @@ with on this hardware?</pre>
     </body>
 </html>
 
---1393971796.F5f280.13325--
+--1393971932.1B66b0.13566--
 
---===============0149984712==
+--===============1877632415==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0149984712==--
+--===============1877632415==--
