@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75776] [NVA5] Hearthstone displays corrupted buffers
-Date: Tue, 04 Mar 2014 22:26:36 +0000
-Message-ID: <bug-75776-8800-KDZS3BkeaZ@http.bugs.freedesktop.org/>
-References: <bug-75776-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51579] [NVA8] Xv shows black image on ION chipset
+Date: Tue, 04 Mar 2014 23:48:06 +0000
+Message-ID: <bug-51579-8800-aYes8U0IYp@http.bugs.freedesktop.org/>
+References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1864010938=="
+Content-Type: multipart/mixed; boundary="===============0720602813=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51579-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1864010938==
-Content-Type: multipart/alternative; boundary="1393971996.53C8cb0.13805"; charset="us-ascii"
+--===============0720602813==
+Content-Type: multipart/alternative; boundary="1393976886.6aC83.30250"; charset="us-ascii"
 
 
---1393971996.53C8cb0.13805
-Date: Tue, 4 Mar 2014 22:26:36 +0000
+--1393976886.6aC83.30250
+Date: Tue, 4 Mar 2014 23:48:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75776
+https://bugs.freedesktop.org/show_bug.cgi?id=51579
 
---- Comment #3 from Lubosz Sarnecki <lubosz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It worked before, but the mesa version did not change. I suppose it was an
-early 10.0. The bug was introduced in a Hearthstone patch.
+--- Comment #23 from Duane Robertson <hnxcyllh-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I no longer have the hardware to confirm this.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393971996.53C8cb0.13805
-Date: Tue, 4 Mar 2014 22:26:36 +0000
+--1393976886.6aC83.30250
+Date: Tue, 4 Mar 2014 23:48:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,16 +52,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA5] Hearthstone displays corrupted buffers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c3">Comment # 3</a>
+   title="NEW --- - [NVA8] Xv shows black image on ION chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579#c23">Comment # 23</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA5] Hearthstone displays corrupted buffers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776">bug 75776</a>
-              from <span class="vcard"><a class="email" href="mailto:lubosz&#64;gmail.com" title="Lubosz Sarnecki &lt;lubosz&#64;gmail.com&gt;"> <span class="fn">Lubosz Sarnecki</span></a>
+   title="NEW --- - [NVA8] Xv shows black image on ION chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579">bug 51579</a>
+              from <span class="vcard"><a class="email" href="mailto:hnxcyllh&#64;gmail.com" title="Duane Robertson &lt;hnxcyllh&#64;gmail.com&gt;"> <span class="fn">Duane Robertson</span></a>
 </span></b>
-        <pre>It worked before, but the mesa version did not change. I suppose it was an
-early 10.0. The bug was introduced in a Hearthstone patch.</pre>
+        <pre>I no longer have the hardware to confirm this.</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +72,9 @@ early 10.0. The bug was introduced in a Hearthstone patch.</pre>
     </body>
 </html>
 
---1393971996.53C8cb0.13805--
+--1393976886.6aC83.30250--
 
---===============1864010938==
+--===============0720602813==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1864010938==--
+--===============0720602813==--
