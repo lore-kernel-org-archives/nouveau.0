@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Tue, 04 Mar 2014 20:51:18 +0000
-Message-ID: <bug-70354-8800-YkthMWDiA3@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nv04/disp: restore console accel after the
+	modeset
+Date: Tue,  4 Mar 2014 21:35:37 +0000
+Message-ID: <1393968937-21069-1-git-send-email-emil.l.velikov@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0531523499=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,84 +17,30 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0531523499==
-Content-Type: multipart/alternative; boundary="1393966278.CF0DC0bc2.23873"; charset="us-ascii"
-
-
---1393966278.CF0DC0bc2.23873
-Date: Tue, 4 Mar 2014 20:51:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NVE7] Failed to initialise |[NVE6,NVE7] HUB_INIT
-                   |context object: 2D_NVC0 (0) |timeout on graph init, blob
-                   |(for my GeForce GT 750M)    |fw doesn't help
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1393966278.CF0DC0bc2.23873
-Date: Tue, 4 Mar 2014 20:51:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NVE7] Failed to initialise context object: 2D_NVC0 (0) (for my GeForce GT 750M)
-           </td>
-           <td>[NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1393966278.CF0DC0bc2.23873--
-
---===============0531523499==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0531523499==--
+U2lnbmVkLW9mZi1ieTogRW1pbCBWZWxpa292IDxlbWlsLmwudmVsaWtvdkBnbWFpbC5jb20+Ci0t
+LQoKTm90aWNlZCB3aGlsZSBsb29raW5nIGF0IGFuIGlzc3VlIHJlcG9ydGVkIGJ5IFJhZmHFgiBN
+acWCZWNraS4KClNlZW1zIGxpa2UgdGhlIHJpZ2h0IHRoaW5nIHRvIGRvLCBidXQgSSBkb24ndCBr
+bm93IHRoZSBzcGVjaWZpY3MKYmVoaW5kIHRoZSBtb2RlX3NldF9iYXNlX2F0b21pYygpIHNvIGNh
+bm5vdCBjb21tZW50IGlmCm5vdXZlYXVfZmJjb25fc2F2ZS9yZXN0b3JlIGlzIGV2ZW4gbmVlZGVk
+IG9yIG5vdC4KCkNoZWVycwpFbWlsCgogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQv
+Y3J0Yy5jIHwgNyArKysrLS0tCiAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAzIGRl
+bGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0
+L2NydGMuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0L2NydGMuYwppbmRleCBk
+NGZiZjExLi42YTg5NDA5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNw
+bnYwNC9jcnRjLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvY3J0Yy5j
+CkBAIC05MTUsMTMgKzkxNSwxNCBAQCBudjA0X2NydGNfbW9kZV9zZXRfYmFzZV9hdG9taWMoc3Ry
+dWN0IGRybV9jcnRjICpjcnRjLAogewogCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVh
+dV9kcm0oY3J0Yy0+ZGV2KTsKIAlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2ID0gZHJtLT5kZXY7CisJ
+aW50IHJldDsKIAogCWlmIChzdGF0ZSA9PSBFTlRFUl9BVE9NSUNfTU9ERV9TRVQpCiAJCW5vdXZl
+YXVfZmJjb25fc2F2ZV9kaXNhYmxlX2FjY2VsKGRldik7Ci0JZWxzZQorCXJldCA9IG52MDRfY3J0
+Y19kb19tb2RlX3NldF9iYXNlKGNydGMsIGZiLCB4LCB5LCB0cnVlKTsKKwlpZiAoc3RhdGUgPT0g
+TEVBVkVfQVRPTUlDX01PREVfU0VUKQogCQlub3V2ZWF1X2ZiY29uX3Jlc3RvcmVfYWNjZWwoZGV2
+KTsKLQotCXJldHVybiBudjA0X2NydGNfZG9fbW9kZV9zZXRfYmFzZShjcnRjLCBmYiwgeCwgeSwg
+dHJ1ZSk7CisJcmV0dXJuIHJldDsKIH0KIAogc3RhdGljIHZvaWQgbnYwNF9jdXJzb3JfdXBsb2Fk
+KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBub3V2ZWF1X2JvICpzcmMsCi0tIAoxLjku
+MAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
+dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
