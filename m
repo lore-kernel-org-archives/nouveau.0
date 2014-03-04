@@ -1,11 +1,10 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nv04/disp: restore console accel after the
-	modeset
-Date: Tue,  4 Mar 2014 21:35:37 +0000
-Message-ID: <1393968937-21069-1-git-send-email-emil.l.velikov@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75776] New: Hearthstone displays corrupted buffers
+	on NVA5
+Date: Tue, 04 Mar 2014 22:18:49 +0000
+Message-ID: <bug-75776-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0981345381=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -17,30 +16,186 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogRW1pbCBWZWxpa292IDxlbWlsLmwudmVsaWtvdkBnbWFpbC5jb20+Ci0t
-LQoKTm90aWNlZCB3aGlsZSBsb29raW5nIGF0IGFuIGlzc3VlIHJlcG9ydGVkIGJ5IFJhZmHFgiBN
-acWCZWNraS4KClNlZW1zIGxpa2UgdGhlIHJpZ2h0IHRoaW5nIHRvIGRvLCBidXQgSSBkb24ndCBr
-bm93IHRoZSBzcGVjaWZpY3MKYmVoaW5kIHRoZSBtb2RlX3NldF9iYXNlX2F0b21pYygpIHNvIGNh
-bm5vdCBjb21tZW50IGlmCm5vdXZlYXVfZmJjb25fc2F2ZS9yZXN0b3JlIGlzIGV2ZW4gbmVlZGVk
-IG9yIG5vdC4KCkNoZWVycwpFbWlsCgogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQv
-Y3J0Yy5jIHwgNyArKysrLS0tCiAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAzIGRl
-bGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0
-L2NydGMuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0L2NydGMuYwppbmRleCBk
-NGZiZjExLi42YTg5NDA5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNw
-bnYwNC9jcnRjLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvY3J0Yy5j
-CkBAIC05MTUsMTMgKzkxNSwxNCBAQCBudjA0X2NydGNfbW9kZV9zZXRfYmFzZV9hdG9taWMoc3Ry
-dWN0IGRybV9jcnRjICpjcnRjLAogewogCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVh
-dV9kcm0oY3J0Yy0+ZGV2KTsKIAlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2ID0gZHJtLT5kZXY7CisJ
-aW50IHJldDsKIAogCWlmIChzdGF0ZSA9PSBFTlRFUl9BVE9NSUNfTU9ERV9TRVQpCiAJCW5vdXZl
-YXVfZmJjb25fc2F2ZV9kaXNhYmxlX2FjY2VsKGRldik7Ci0JZWxzZQorCXJldCA9IG52MDRfY3J0
-Y19kb19tb2RlX3NldF9iYXNlKGNydGMsIGZiLCB4LCB5LCB0cnVlKTsKKwlpZiAoc3RhdGUgPT0g
-TEVBVkVfQVRPTUlDX01PREVfU0VUKQogCQlub3V2ZWF1X2ZiY29uX3Jlc3RvcmVfYWNjZWwoZGV2
-KTsKLQotCXJldHVybiBudjA0X2NydGNfZG9fbW9kZV9zZXRfYmFzZShjcnRjLCBmYiwgeCwgeSwg
-dHJ1ZSk7CisJcmV0dXJuIHJldDsKIH0KIAogc3RhdGljIHZvaWQgbnYwNF9jdXJzb3JfdXBsb2Fk
-KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBub3V2ZWF1X2JvICpzcmMsCi0tIAoxLjku
-MAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
-dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0981345381==
+Content-Type: multipart/alternative; boundary="1393971529.Ea6cca40.12610"; charset="us-ascii"
+
+
+--1393971529.Ea6cca40.12610
+Date: Tue, 4 Mar 2014 22:18:49 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=75776
+
+          Priority: medium
+            Bug ID: 75776
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Hearthstone displays corrupted buffers on NVA5
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: lubosz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: 10.0
+         Component: Drivers/DRI/nouveau
+           Product: Mesa
+
+Created attachment 95122
+  --> https://bugs.freedesktop.org/attachment.cgi?id=95122&action=edit
+Screenshot
+
+Since a patch, Blizzard's Free-To-Play game Hearthstone produces corrupted
+output on my NVA5. It works on my NVC8.
+
+The bug occurs as soon as the main menu opens. The bug is reproducable with the
+output of apitrace.
+
+Since it worked before and works on NVIDIA and other nouveau drivers, so I
+suppose it is not a WINE bug.
+
+I created a apitrace (Version 5 from git). The trace plays fine on NVIDIA and
+NVC8. Other games, also other WINE games do not produce similar bugs.
+
+Using linux 3.13.5, mesa 10.0.3
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1393971529.Ea6cca40.12610
+Date: Tue, 4 Mar 2014 22:18:49 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Hearthstone displays corrupted buffers on NVA5"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776">75776</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Hearthstone displays corrupted buffers on NVA5
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>lubosz&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>10.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=95122" name="attach_95122" title="Screenshot">attachment 95122</a> <a href="attachment.cgi?id=95122&amp;action=edit" title="Screenshot">[details]</a></span>
+Screenshot
+
+Since a patch, Blizzard's Free-To-Play game Hearthstone produces corrupted
+output on my NVA5. It works on my NVC8.
+
+The bug occurs as soon as the main menu opens. The bug is reproducable with the
+output of apitrace.
+
+Since it worked before and works on NVIDIA and other nouveau drivers, so I
+suppose it is not a WINE bug.
+
+I created a apitrace (Version 5 from git). The trace plays fine on NVIDIA and
+NVC8. Other games, also other WINE games do not produce similar bugs.
+
+Using linux 3.13.5, mesa 10.0.3</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1393971529.Ea6cca40.12610--
+
+--===============0981345381==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0981345381==--
