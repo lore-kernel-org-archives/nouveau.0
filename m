@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: TV-Out on a GeForce 2MX supported?
-Date: Wed, 5 Mar 2014 00:40:34 -0500
-Message-ID: <CAKb7Uvj2FKoRt2O6YqiamgL=svZqmxjxoqdxySN3Lidu+bWxsQ@mail.gmail.com>
-References: <20140303224123.GA5720@reliance.ac-net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75776] [NV50 gallium] Hearthstone displays corrupted
+	buffers
+Date: Wed, 05 Mar 2014 05:47:24 +0000
+Message-ID: <bug-75776-8800-UbTKHWq3uZ@http.bugs.freedesktop.org/>
+References: <bug-75776-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1146393667=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20140303224123.GA5720-0i3IwDS6Bd4yxn3+5HPDWA@public.gmane.org>
+In-Reply-To: <bug-75776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,34 +17,87 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: fehmarn-rund-6WyM7rXn5Gg@public.gmane.org
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Mar 3, 2014 at 5:41 PM, Nils Krafft <fehmarn-rund-6WyM7rXn5Gg@public.gmane.org> wrote:
-> Hello,
->
-> I have here a GeForce 2MX (NV10) with a Brooktree BT869 chip for the
-> TV-Out.
 
-http://nouveau.freedesktop.org/wiki/FeatureMatrix/
+--===============1146393667==
+Content-Type: multipart/alternative; boundary="1393998444.bAf0dF0.329"; charset="us-ascii"
 
-See note #4 -- nv0x-nv2x (nv17-nv19 excluded) need an external,
-third-party manufactured TV encoder. Only some Chrontel branded chips
-are currently supported.
 
-> shows me only the DVI connection (in fact it's VGA, not DVI), but not
-> the S-Video connection. If not supported, is this planned for future
-> versions?
+--1393998444.bAf0dF0.329
+Date: Wed, 5 Mar 2014 05:47:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-The relevant hardware is not easily available, nor is hardware to
-consume s-video/composite connections. This sort of thing is probably
-only going to be supported if you make it happen. If you're
-interested, the relevant source file is
-drivers/gpu/drm/nouveau/dispnv04/tvnv04.c, and you'd have to add
-something in drivers/gpu/drm/i2c. BT* chips are usually easy to find
-docs for, and some of the additional details can probably be worked
-out from mmiotraces, assuming you can find a kernel that the blob
-driver will load on.
+https://bugs.freedesktop.org/show_bug.cgi?id=75776
 
-  -ilia
+--- Comment #7 from Lubosz Sarnecki <lubosz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Updated trace without compression.
+
+MESA_EXTENSION_OVERRIDE=-GL_EXT_texture_compression_s3tc
+
+https://drive.google.com/file/d/0B0bLtNyAhxgoYjVqYW1HWElhcjA
+
+The trace is also smaller, since the game is in maintenance mode and does not
+show the menu animation. The bug still occurs though.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1393998444.bAf0dF0.329
+Date: Wed, 5 Mar 2014 05:47:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776">bug 75776</a>
+              from <span class="vcard"><a class="email" href="mailto:lubosz&#64;gmail.com" title="Lubosz Sarnecki &lt;lubosz&#64;gmail.com&gt;"> <span class="fn">Lubosz Sarnecki</span></a>
+</span></b>
+        <pre>Updated trace without compression.
+
+MESA_EXTENSION_OVERRIDE=-GL_EXT_texture_compression_s3tc
+
+<a href="https://drive.google.com/file/d/0B0bLtNyAhxgoYjVqYW1HWElhcjA">https://drive.google.com/file/d/0B0bLtNyAhxgoYjVqYW1HWElhcjA</a>
+
+The trace is also smaller, since the game is in maintenance mode and does not
+show the menu animation. The bug still occurs though.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1393998444.bAf0dF0.329--
+
+--===============1146393667==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1146393667==--
