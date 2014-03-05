@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75279] XCloseDisplay() takes one minute around
  nouveau_dri.so, freezing Firefox startup
-Date: Wed, 05 Mar 2014 20:51:18 +0000
-Message-ID: <bug-75279-8800-nipPmUioeL@http.bugs.freedesktop.org/>
+Date: Wed, 05 Mar 2014 20:53:27 +0000
+Message-ID: <bug-75279-8800-fSJaR9sBl0@http.bugs.freedesktop.org/>
 References: <bug-75279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1397037053=="
+Content-Type: multipart/mixed; boundary="===============1163005267=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1397037053==
-Content-Type: multipart/alternative; boundary="1394052678.6D2aeaB72.29224"; charset="us-ascii"
+--===============1163005267==
+Content-Type: multipart/alternative; boundary="1394052807.71FA1dc3.29793"; charset="us-ascii"
 
 
---1394052678.6D2aeaB72.29224
-Date: Wed, 5 Mar 2014 20:51:18 +0000
+--1394052807.71FA1dc3.29793
+Date: Wed, 5 Mar 2014 20:53:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75279
 
---- Comment #36 from Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> ---
-Can you reproduce yourself by running the attached glxtest program in valgrind?
+--- Comment #37 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #36)
+> Can you reproduce yourself by running the attached glxtest program in
+> valgrind?
+
+Oh, I'm sure (can't right now, will try tonight). But I doubt it's the source
+of the bug. The glxtest program doesn't appear to hang. Memory is unlikely to
+be reallocated _so_ quickly, that ->state would change. (Although more likely
+in a multithreaded program... hm.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394052678.6D2aeaB72.29224
-Date: Wed, 5 Mar 2014 20:51:18 +0000
+--1394052807.71FA1dc3.29793
+Date: Wed, 5 Mar 2014 20:53:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +61,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c36">Comment # 36</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c37">Comment # 37</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
-              from <span class="vcard"><a class="email" href="mailto:bjacob&#64;mozilla.com" title="Benoit Jacob &lt;bjacob&#64;mozilla.com&gt;"> <span class="fn">Benoit Jacob</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Can you reproduce yourself by running the attached glxtest program in valgrind?</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=75279#c36">comment #36</a>)
+<span class="quote">&gt; Can you reproduce yourself by running the attached glxtest program in
+&gt; valgrind?</span >
+
+Oh, I'm sure (can't right now, will try tonight). But I doubt it's the source
+of the bug. The glxtest program doesn't appear to hang. Memory is unlikely to
+be reallocated _so_ quickly, that -&gt;state would change. (Although more likely
+in a multithreaded program... hm.)</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +87,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1394052678.6D2aeaB72.29224--
+--1394052807.71FA1dc3.29793--
 
---===============1397037053==
+--===============1163005267==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1397037053==--
+--===============1163005267==--
