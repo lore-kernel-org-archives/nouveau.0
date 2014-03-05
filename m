@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Wed, 05 Mar 2014 21:24:51 +0000
-Message-ID: <bug-70354-8800-Iy3ovPF0vg@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+From: Dirk Thierbach <dthierbach-Mmb7MZpHnFY@public.gmane.org>
+Subject: Re: TV-Out on a GeForce 2MX supported?
+Date: Wed, 5 Mar 2014 23:08:50 +0100
+Message-ID: <20140305220849.GA17470@feanor>
+References: <CAKb7Uvi97Yn8MOfhMiXLs+=VAd0LWEnmnF7iHyR58eKA_Pk_jg@mail.gmail.com>
+	<20140305195756.GA3045@reliance.ac-net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1486568843=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20140305195756.GA3045-0i3IwDS6Bd4yxn3+5HPDWA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,100 +22,22 @@ Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+> Meanwhile I fiddled about with nvtv and found out that it still works
+> fine. The trick is that I have to switch the X-server to the desired
+> TV-Out resolution before activating the TV-Out, otherwise the X-server
+> freezes.
 
---===============1486568843==
-Content-Type: multipart/alternative; boundary="1394054690.5c0d2.4922"; charset="us-ascii"
+Hm, the freeze is new. :-) You can switch X modes from the command
+line with -X, though, and from the GUI, too (if it still works).
 
+> Doing the TV-Out via xrandr and Xinerama would be much more
+> comfortable, 
 
---1394054690.5c0d2.4922
-Date: Wed, 5 Mar 2014 21:24:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+You can use the second head, too, which is "sort of" Xinerama. Though nvtv
+needs to do more initialization to do that, so it might clash with KMS.
+You can also attach the video overlay hardware to the second head, if
+you mainly want to watch videos on the TV.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
+And switching from the commandline isn't that much different from xrandr.
 
---- Comment #22 from Joey 4712 <4712.joey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thanks soooo much.
-
-It's working now with you patch applied against Linux 3.13 Kernel source on
-Manjaro Linux.
-
-  $ xrandr --setprovideroffloadsink nouveau Intel
-  $ DRI_PRIME=1 glxgears -info
-  Running synchronized to the vertical refresh.  The framerate should be
-  approximately the same as the monitor refresh rate.
-  GL_RENDERER   = Gallium 0.4 on NVE7
-  GL_VERSION    = 3.0 Mesa 10.0.3
-  GL_VENDOR     = nouveau
-
-Do you need any more info? Like dmesg of the now working nouveau setup?
-
-Once again, thanks to all of you!
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1394054690.5c0d2.4922
-Date: Wed, 5 Mar 2014 21:24:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c22">Comment # 22</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-              from <span class="vcard"><a class="email" href="mailto:4712.joey&#64;gmail.com" title="Joey 4712 &lt;4712.joey&#64;gmail.com&gt;"> <span class="fn">Joey 4712</span></a>
-</span></b>
-        <pre>Thanks soooo much.
-
-It's working now with you patch applied against Linux 3.13 Kernel source on
-Manjaro Linux.
-
-  $ xrandr --setprovideroffloadsink nouveau Intel
-  $ DRI_PRIME=1 glxgears -info
-  Running synchronized to the vertical refresh.  The framerate should be
-  approximately the same as the monitor refresh rate.
-  GL_RENDERER   = Gallium 0.4 on NVE7
-  GL_VERSION    = 3.0 Mesa 10.0.3
-  GL_VENDOR     = nouveau
-
-Do you need any more info? Like dmesg of the now working nouveau setup?
-
-Once again, thanks to all of you!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1394054690.5c0d2.4922--
-
---===============1486568843==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1486568843==--
+- Dirk
