@@ -1,7 +1,8 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: ARB_depth_texture regression on nouveau since 9.1
-Date: Wed, 5 Mar 2014 04:57:02 -0500
-Message-ID: <CAKb7UvjJTcP38QALXtwCM9B2J+oh0OzABFmmMqTvvmm_hFv5RQ@mail.gmail.com>
+Subject: [PATCH] nv50,
+	nvc0: choose storage type after ms has been initialized
+Date: Wed,  5 Mar 2014 05:37:48 -0500
+Message-ID: <1394015868-7508-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -15,53 +16,58 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hello,
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
 
-I've been tracking down a regression in fbo-generatemipmap-formats
-with ARB_depth_texture on nouveau (nv50 and nvc0 are affected) since
-http://cgit.freedesktop.org/mesa/mesa/commit/?id=0a1479c829ed34a65e60c6619a8164e1b079aaee
+Noticed by inspection, untested. Would be interesting to see if this fixes
+anything.
 
-FTR, the test I'm running is:
+ src/gallium/drivers/nouveau/nv50/nv50_miptree.c | 4 ++--
+ src/gallium/drivers/nouveau/nvc0/nvc0_miptree.c | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-bin/fbo-generatemipmap-formats GL_ARB_depth_texture -fbo -auto
-
-Looking at the displayed output (without -fbo -auto), it looks like
-level 0 is fine, but all the subsequent levels are variously mangled.
-(For anyone trying to repro this, there's a _really_ annoying effect
-that allocations are relatively constant across runs, so running a
-working version can cause a broken version to appear to work. Running
-max-texture-size clears it up nicely.)
-
-As you might expect, making format == GL_DEPTH_COMPONENT go to the
-fallback in st_TexSubImage at HEAD fixes it too, but I don't think
-that's desired. This ends up taking the blit_3d path in
-nv50_surface.c.
-
-Of note is that on nva0+, GL_DEPTH_COMPONENT16 seems to work fine,
-which is also where the Z16_MSX_LSR storage type appeared, so probably
-not a coincidence. But a bit surprising is that on nva0+ it does work
-for Z16, but still not for the other ones. Makes me think this is a
-storage type/tiling-related situation. The blit code has this:
-
-/* Since shaders cannot export stencil, we cannot copy stencil values when
- * rendering to ZETA, so we attach the ZS surface to a colour render target.
- */
-static INLINE enum pipe_format
-nv50_blit_zeta_to_colour_format(enum pipe_format format)
-
-Getting rid of that conversion naturally breaks stuff... by also
-hacking up nv50_blit_select_mode, I can restore it to a very similar
-broken mode as without the hackery (adding further hackery to force it
-to use zsbuf instead of cbuf breaks everything, but I suspect even
-more hackery could be performed to make it work). Unfortunately I
-don't know enough about this storage type business, and what effect it
-has on things like render targets, esp if you're lying about the type
-(i.e. it's trying to render to a Z24X8 texture/memtype as if it were
-RGBA8).
-
-Any ideas/suggestions appreciated.
-
-  -ilia
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_miptree.c b/src/gallium/drivers/nouveau/nv50/nv50_miptree.c
+index 513d8f9..6c6ef4e 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_miptree.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_miptree.c
+@@ -329,13 +329,13 @@ nv50_miptree_create(struct pipe_screen *pscreen,
+    if (pt->bind & PIPE_BIND_LINEAR)
+       pt->flags |= NOUVEAU_RESOURCE_FLAG_LINEAR;
+ 
+-   bo_config.nv50.memtype = nv50_mt_choose_storage_type(mt, TRUE);
+-
+    if (!nv50_miptree_init_ms_mode(mt)) {
+       FREE(mt);
+       return NULL;
+    }
+ 
++   bo_config.nv50.memtype = nv50_mt_choose_storage_type(mt, TRUE);
++
+    if (unlikely(pt->flags & NV50_RESOURCE_FLAG_VIDEO)) {
+       nv50_miptree_init_layout_video(mt);
+       if (pt->flags & NV50_RESOURCE_FLAG_NOALLOC) {
+diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_miptree.c b/src/gallium/drivers/nouveau/nvc0/nvc0_miptree.c
+index 79c9390..59b9028 100644
+--- a/src/gallium/drivers/nouveau/nvc0/nvc0_miptree.c
++++ b/src/gallium/drivers/nouveau/nvc0/nvc0_miptree.c
+@@ -277,13 +277,13 @@ nvc0_miptree_create(struct pipe_screen *pscreen,
+    if (pt->bind & PIPE_BIND_LINEAR)
+       pt->flags |= NOUVEAU_RESOURCE_FLAG_LINEAR;
+ 
+-   bo_config.nvc0.memtype = nvc0_mt_choose_storage_type(mt, compressed);
+-
+    if (!nvc0_miptree_init_ms_mode(mt)) {
+       FREE(mt);
+       return NULL;
+    }
+ 
++   bo_config.nvc0.memtype = nvc0_mt_choose_storage_type(mt, compressed);
++
+    if (unlikely(pt->flags & NVC0_RESOURCE_FLAG_VIDEO)) {
+       nvc0_miptree_init_layout_video(mt);
+    } else
+-- 
+1.8.3.2
