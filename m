@@ -1,10 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75813] New: [NV40] X hangs, system unresponsive
-Date: Wed, 05 Mar 2014 20:10:42 +0000
-Message-ID: <bug-75813-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75279] XCloseDisplay() takes one minute around
+ nouveau_dri.so, freezing Firefox startup
+Date: Wed, 05 Mar 2014 20:12:52 +0000
+Message-ID: <bug-75279-8800-SDCf5ihXaD@http.bugs.freedesktop.org/>
+References: <bug-75279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1045733989=="
+Content-Type: multipart/mixed; boundary="===============0245204322=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,57 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1045733989==
-Content-Type: multipart/alternative; boundary="1394050242.a3eDC401.17911"; charset="us-ascii"
+--===============0245204322==
+Content-Type: multipart/alternative; boundary="1394050372.DC2cF52.18473"; charset="us-ascii"
 
 
---1394050242.a3eDC401.17911
-Date: Wed, 5 Mar 2014 20:10:42 +0000
+--1394050372.DC2cF52.18473
+Date: Wed, 5 Mar 2014 20:12:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75813
+https://bugs.freedesktop.org/show_bug.cgi?id=75279
 
-          Priority: medium
-            Bug ID: 75813
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NV40] X hangs, system unresponsive
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: major
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: marco-OrqDK/dsKCwdnm+yROfE0A@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: 7.7 (2011)
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #31 from Frederic Bezies <fredbezies-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 95189
+  --> https://bugs.freedesktop.org/attachment.cgi?id=95189&action=edit
+Valgrind log with debug symbols for Mozilla Firefox trunk code.
 
-Once every day or so my system practically hangs (gets extremely unresponsive;
-X unusable; only SysRq magic working) while using Xorg with the nouveau driver
-(version 1.0.10).
+And log for mozilla Firefox trunk code.
 
-I am running Debian GNU/Linux testing (jessie) with
+Always the same beginning :
 
-$ uname -r
-3.13-1-amd64
-$ lspci | grep VGA
-05:00.0 VGA compatible controller: NVIDIA Corporation NV40 [GeForce 6800
-GT/GTO/Ultra] (rev a2)
+Invalid read of size 4
+   at 0x161590BE: nouveau_fence_wait (nouveau_fence.c:205)
+    by 0x161E9FF4: nv50_screen_destroy (nv50_screen.c:293)
+    by 0x16149CDE: dri_destroy_screen_helper (dri_screen.c:378)
+    by 0x16149D74: dri_destroy_screen (dri_screen.c:388)
+    by 0x15E503D6: driDestroyScreen (dri_util.c:234)
+    by 0x1256D6C1: dri2DestroyScreen (dri2_glx.c:712)
+    by 0x12549FE5: FreeScreenConfigs.isra.3 (glxext.c:208)
+    by 0x1254A064: glx_display_free (glxext.c:231)
+    by 0x1254A164: __glXCloseDisplay (glxext.c:272)
+    by 0xEF009F1: XCloseDisplay (in /usr/lib/libX11.so.6.3.0)
 
-This problem did not occur when I ran Debian stable (with nouveau).
-
-When the system (practically) hangs, I get messages like this:
-
-... GPU lockup - switching to software fbcon
-nouveau E [Xorg] failed to idle channel 0xcccc0000 [ ...
+Any idea ?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394050242.a3eDC401.17911
-Date: Wed, 5 Mar 2014 20:10:42 +0000
+--1394050372.DC2cF52.18473
+Date: Wed, 5 Mar 2014 20:12:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -76,113 +68,39 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV40] X hangs, system unresponsive"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75813">75813</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NV40] X hangs, system unresponsive
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>marco&#64;hulten.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>7.7 (2011)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Once every day or so my system practically hangs (gets extremely unresponsive;
-X unusable; only SysRq magic working) while using Xorg with the nouveau driver
-(version 1.0.10).
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c31">Comment # 31</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
+              from <span class="vcard"><a class="email" href="mailto:fredbezies&#64;gmail.com" title="Frederic Bezies &lt;fredbezies&#64;gmail.com&gt;"> <span class="fn">Frederic Bezies</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=95189" name="attach_95189" title="Valgrind log with debug symbols for Mozilla Firefox trunk code.">attachment 95189</a> <a href="attachment.cgi?id=95189&amp;action=edit" title="Valgrind log with debug symbols for Mozilla Firefox trunk code.">[details]</a></span>
+Valgrind log with debug symbols for Mozilla Firefox trunk code.
 
-I am running Debian GNU/Linux testing (jessie) with
+And log for mozilla Firefox trunk code.
 
-$ uname -r
-3.13-1-amd64
-$ lspci | grep VGA
-05:00.0 VGA compatible controller: NVIDIA Corporation NV40 [GeForce 6800
-GT/GTO/Ultra] (rev a2)
+Always the same beginning :
 
-This problem did not occur when I ran Debian stable (with nouveau).
+Invalid read of size 4
+   at 0x161590BE: nouveau_fence_wait (nouveau_fence.c:205)
+    by 0x161E9FF4: nv50_screen_destroy (nv50_screen.c:293)
+    by 0x16149CDE: dri_destroy_screen_helper (dri_screen.c:378)
+    by 0x16149D74: dri_destroy_screen (dri_screen.c:388)
+    by 0x15E503D6: driDestroyScreen (dri_util.c:234)
+    by 0x1256D6C1: dri2DestroyScreen (dri2_glx.c:712)
+    by 0x12549FE5: FreeScreenConfigs.isra.3 (glxext.c:208)
+    by 0x1254A064: glx_display_free (glxext.c:231)
+    by 0x1254A164: __glXCloseDisplay (glxext.c:272)
+    by 0xEF009F1: XCloseDisplay (in /usr/lib/libX11.so.6.3.0)
 
-When the system (practically) hangs, I get messages like this:
-
-... GPU lockup - switching to software fbcon
-nouveau E [Xorg] failed to idle channel 0xcccc0000 [ ...</pre>
+Any idea ?</pre>
         </div>
       </p>
       <hr>
@@ -194,9 +112,9 @@ nouveau E [Xorg] failed to idle channel 0xcccc0000 [ ...</pre>
     </body>
 </html>
 
---1394050242.a3eDC401.17911--
+--1394050372.DC2cF52.18473--
 
---===============1045733989==
+--===============0245204322==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -207,4 +125,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1045733989==--
+--===============0245204322==--
