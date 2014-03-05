@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51477] bad/missing graphics with NV11 / GeForce
-	2MX/MX400
-Date: Wed, 05 Mar 2014 07:23:32 +0000
-Message-ID: <bug-51477-8800-HwFbHu5PUx@http.bugs.freedesktop.org/>
-References: <bug-51477-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: ARB_depth_texture regression on nouveau since 9.1
+Date: Wed, 5 Mar 2014 04:57:02 -0500
+Message-ID: <CAKb7UvjJTcP38QALXtwCM9B2J+oh0OzABFmmMqTvvmm_hFv5RQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0772976577=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,79 +15,53 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Hello,
 
---===============0772976577==
-Content-Type: multipart/alternative; boundary="1394004212.BFCBA3D73.19336"; charset="us-ascii"
+I've been tracking down a regression in fbo-generatemipmap-formats
+with ARB_depth_texture on nouveau (nv50 and nvc0 are affected) since
+http://cgit.freedesktop.org/mesa/mesa/commit/?id=0a1479c829ed34a65e60c6619a8164e1b079aaee
 
+FTR, the test I'm running is:
 
---1394004212.BFCBA3D73.19336
-Date: Wed, 5 Mar 2014 07:23:31 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+bin/fbo-generatemipmap-formats GL_ARB_depth_texture -fbo -auto
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51477
+Looking at the displayed output (without -fbo -auto), it looks like
+level 0 is fine, but all the subsequent levels are variously mangled.
+(For anyone trying to repro this, there's a _really_ annoying effect
+that allocations are relatively constant across runs, so running a
+working version can cause a broken version to appear to work. Running
+max-texture-size clears it up nicely.)
 
---- Comment #20 from Orestis Gklavas <oglavas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The issue is present in the latest Lubuntu version 13.10 with NV11 and it
-manifests also in the form of disappearing text while scrolling through pdf and
-disappearing table borders in libreoffice. It seems to go away once font
-antialiasing is turned off.
+As you might expect, making format == GL_DEPTH_COMPONENT go to the
+fallback in st_TexSubImage at HEAD fixes it too, but I don't think
+that's desired. This ends up taking the blit_3d path in
+nv50_surface.c.
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+Of note is that on nva0+, GL_DEPTH_COMPONENT16 seems to work fine,
+which is also where the Z16_MSX_LSR storage type appeared, so probably
+not a coincidence. But a bit surprising is that on nva0+ it does work
+for Z16, but still not for the other ones. Makes me think this is a
+storage type/tiling-related situation. The blit code has this:
 
---1394004212.BFCBA3D73.19336
-Date: Wed, 5 Mar 2014 07:23:32 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+/* Since shaders cannot export stencil, we cannot copy stencil values when
+ * rendering to ZETA, so we attach the ZS surface to a colour render target.
+ */
+static INLINE enum pipe_format
+nv50_blit_zeta_to_colour_format(enum pipe_format format)
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c20">Comment # 20</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
-              from <span class="vcard"><a class="email" href="mailto:oglavas&#64;gmail.com" title="Orestis Gklavas &lt;oglavas&#64;gmail.com&gt;"> <span class="fn">Orestis Gklavas</span></a>
-</span></b>
-        <pre>The issue is present in the latest Lubuntu version 13.10 with NV11 and it
-manifests also in the form of disappearing text while scrolling through pdf and
-disappearing table borders in libreoffice. It seems to go away once font
-antialiasing is turned off.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+Getting rid of that conversion naturally breaks stuff... by also
+hacking up nv50_blit_select_mode, I can restore it to a very similar
+broken mode as without the hackery (adding further hackery to force it
+to use zsbuf instead of cbuf breaks everything, but I suspect even
+more hackery could be performed to make it work). Unfortunately I
+don't know enough about this storage type business, and what effect it
+has on things like render targets, esp if you're lying about the type
+(i.e. it's trying to render to a Z24X8 texture/memtype as if it were
+RGBA8).
 
---1394004212.BFCBA3D73.19336--
+Any ideas/suggestions appreciated.
 
---===============0772976577==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0772976577==--
+  -ilia
