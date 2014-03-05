@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75279] XCloseDisplay() takes one minute around
  nouveau_dri.so, freezing Firefox startup
-Date: Wed, 05 Mar 2014 20:12:52 +0000
-Message-ID: <bug-75279-8800-SDCf5ihXaD@http.bugs.freedesktop.org/>
+Date: Wed, 05 Mar 2014 20:16:09 +0000
+Message-ID: <bug-75279-8800-J2zPdYxB7V@http.bugs.freedesktop.org/>
 References: <bug-75279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0245204322=="
+Content-Type: multipart/mixed; boundary="===============0551355044=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,46 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0245204322==
-Content-Type: multipart/alternative; boundary="1394050372.DC2cF52.18473"; charset="us-ascii"
+--===============0551355044==
+Content-Type: multipart/alternative; boundary="1394050569.ce2837b2.19260"; charset="us-ascii"
 
 
---1394050372.DC2cF52.18473
-Date: Wed, 5 Mar 2014 20:12:52 +0000
+--1394050569.ce2837b2.19260
+Date: Wed, 5 Mar 2014 20:16:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75279
 
---- Comment #31 from Frederic Bezies <fredbezies-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 95189
-  --> https://bugs.freedesktop.org/attachment.cgi?id=95189&action=edit
-Valgrind log with debug symbols for Mozilla Firefox trunk code.
+--- Comment #32 from Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> ---
+...note that the log attached by Frederic in comment 30 also has a stack to
+where this pointer was free'd --- we have a use-after-free bug here!
 
-And log for mozilla Firefox trunk code.
+This was obtained by Frederic by running the glxtest program attached in
+comment 2 here, in valgrind:
 
-Always the same beginning :
+  valgrind --track-origins=yes ./glxtest
 
-Invalid read of size 4
-   at 0x161590BE: nouveau_fence_wait (nouveau_fence.c:205)
-    by 0x161E9FF4: nv50_screen_destroy (nv50_screen.c:293)
-    by 0x16149CDE: dri_destroy_screen_helper (dri_screen.c:378)
-    by 0x16149D74: dri_destroy_screen (dri_screen.c:388)
-    by 0x15E503D6: driDestroyScreen (dri_util.c:234)
-    by 0x1256D6C1: dri2DestroyScreen (dri2_glx.c:712)
-    by 0x12549FE5: FreeScreenConfigs.isra.3 (glxext.c:208)
-    by 0x1254A064: glx_display_free (glxext.c:231)
-    by 0x1254A164: __glXCloseDisplay (glxext.c:272)
-    by 0xEF009F1: XCloseDisplay (in /usr/lib/libX11.so.6.3.0)
-
-Any idea ?
+I hope that Nouveau developers here can reproduce this easily!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394050372.DC2cF52.18473
-Date: Wed, 5 Mar 2014 20:12:52 +0000
+--1394050569.ce2837b2.19260
+Date: Wed, 5 Mar 2014 20:16:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,33 +62,22 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c31">Comment # 31</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c32">Comment # 32</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
-              from <span class="vcard"><a class="email" href="mailto:fredbezies&#64;gmail.com" title="Frederic Bezies &lt;fredbezies&#64;gmail.com&gt;"> <span class="fn">Frederic Bezies</span></a>
+              from <span class="vcard"><a class="email" href="mailto:bjacob&#64;mozilla.com" title="Benoit Jacob &lt;bjacob&#64;mozilla.com&gt;"> <span class="fn">Benoit Jacob</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=95189" name="attach_95189" title="Valgrind log with debug symbols for Mozilla Firefox trunk code.">attachment 95189</a> <a href="attachment.cgi?id=95189&amp;action=edit" title="Valgrind log with debug symbols for Mozilla Firefox trunk code.">[details]</a></span>
-Valgrind log with debug symbols for Mozilla Firefox trunk code.
+        <pre>...note that the log attached by Frederic in <a href="show_bug.cgi?id=75279#c30">comment 30</a> also has a stack to
+where this pointer was free'd --- we have a use-after-free bug here!
 
-And log for mozilla Firefox trunk code.
+This was obtained by Frederic by running the glxtest program attached in
+<a href="show_bug.cgi?id=75279#c2">comment 2</a> here, in valgrind:
 
-Always the same beginning :
+  valgrind --track-origins=yes ./glxtest
 
-Invalid read of size 4
-   at 0x161590BE: nouveau_fence_wait (nouveau_fence.c:205)
-    by 0x161E9FF4: nv50_screen_destroy (nv50_screen.c:293)
-    by 0x16149CDE: dri_destroy_screen_helper (dri_screen.c:378)
-    by 0x16149D74: dri_destroy_screen (dri_screen.c:388)
-    by 0x15E503D6: driDestroyScreen (dri_util.c:234)
-    by 0x1256D6C1: dri2DestroyScreen (dri2_glx.c:712)
-    by 0x12549FE5: FreeScreenConfigs.isra.3 (glxext.c:208)
-    by 0x1254A064: glx_display_free (glxext.c:231)
-    by 0x1254A164: __glXCloseDisplay (glxext.c:272)
-    by 0xEF009F1: XCloseDisplay (in /usr/lib/libX11.so.6.3.0)
-
-Any idea ?</pre>
+I hope that Nouveau developers here can reproduce this easily!</pre>
         </div>
       </p>
       <hr>
@@ -112,9 +89,9 @@ Any idea ?</pre>
     </body>
 </html>
 
---1394050372.DC2cF52.18473--
+--1394050569.ce2837b2.19260--
 
---===============0245204322==
+--===============0551355044==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -125,4 +102,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0245204322==--
+--===============0551355044==--
