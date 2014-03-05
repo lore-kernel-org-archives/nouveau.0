@@ -1,15 +1,13 @@
-From: Dirk Thierbach <dthierbach-Mmb7MZpHnFY@public.gmane.org>
-Subject: Re: TV-Out on a GeForce 2MX supported?
-Date: Wed, 5 Mar 2014 12:06:46 +0100
-Message-ID: <20140305110645.GA1972@feanor>
-References: <20140303224123.GA5720@reliance.ac-net>
-	<CAKb7Uvj2FKoRt2O6YqiamgL=svZqmxjxoqdxySN3Lidu+bWxsQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 58556] MacBook Pro 5, 1 with nVidia 9400m and 9600m,
+ scrambled screen
+Date: Wed, 05 Mar 2014 13:31:49 +0000
+Message-ID: <bug-58556-8800-WG1IGoH1Hc@http.bugs.freedesktop.org/>
+References: <bug-58556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1738709781=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CAKb7Uvj2FKoRt2O6YqiamgL=svZqmxjxoqdxySN3Lidu+bWxsQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-58556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,57 +18,78 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: fehmarn-rund-6WyM7rXn5Gg@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Mar 05, 2014 at 12:40:34AM -0500, Ilia Mirkin wrote:
-> On Mon, Mar 3, 2014 at 5:41 PM, Nils Krafft <fehmarn-rund-6WyM7rXn5Gg@public.gmane.org> wrote:
-> > I have here a GeForce 2MX (NV10) with a Brooktree BT869 chip for the
-> > TV-Out.
 
-You can try nvtv (http://sourceforge.net/projects/nv-tv-out/). It bypasses
-X and modesetting and programs the Brooktree and CRTC directly. I've
-no idea if it still work with modern X and/or nouveau. :-)
+--===============1738709781==
+Content-Type: multipart/alternative; boundary="1394026309.86b7F5.9590"; charset="us-ascii"
 
-> > shows me only the DVI connection (in fact it's VGA, not DVI), but not
-> > the S-Video connection. If not supported, is this planned for future
-> > versions?
 
-> The relevant hardware is not easily available, nor is hardware to
-> consume s-video/composite connections. 
+--1394026309.86b7F5.9590
+Date: Wed, 5 Mar 2014 13:31:49 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-I still have some hardware for both, though I haven't used it for a long
-time.
+https://bugs.freedesktop.org/show_bug.cgi?id=58556
 
-> This sort of thing is probably
-> only going to be supported if you make it happen. If you're
-> interested, the relevant source file is
-> drivers/gpu/drm/nouveau/dispnv04/tvnv04.c, and you'd have to add
-> something in drivers/gpu/drm/i2c. BT* chips are usually easy to find
-> docs for, and some of the additional details can probably be worked
-> out from mmiotraces, assuming you can find a kernel that the blob
-> driver will load on.
+--- Comment #22 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Using commit e18833a518777e249b6badf54f65b37b741b6864
+(http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=e18833a518777e249b6badf54f65b37b741b6864)
+fixes the issue (tested on Git HEAD and on 3.13.5).
+Thanks for the pointer Ilia!
 
-It's much better to work from the datasheet instead of doing mmiotraces,
-the blob only has a few modes built-in.
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-The BT is actually a very flexible chip, and supports a very wide range
-of modes with different overscan amount, plus different filtering options.
+--1394026309.86b7F5.9590
+Date: Wed, 5 Mar 2014 13:31:49 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
-It probably wouldn't be hard to just take a few modes from nvtv and
-put them into nouveau, similar to the (very few) Chrontel modes. What's 
-missing is some sort of infrastructure in X to say "look, on this hardware
-there are these two functional blocks (CRTC + BT), I would like to program
-with the following values, and I've specified the values in the config
-file, or I'm a user space program and provide these values over some X
-extension".
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556#c22">Comment # 22</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>Using commit e18833a518777e249b6badf54f65b37b741b6864
+(<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=e18833a518777e249b6badf54f65b37b741b6864">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=e18833a518777e249b6badf54f65b37b741b6864</a>)
+fixes the issue (tested on Git HEAD and on 3.13.5).
+Thanks for the pointer Ilia!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
 
-This is even more effort now that modesetting is in the kernel (back
-when nvtv was written, it wasn't).
+--1394026309.86b7F5.9590--
 
-Without this, you are pretty much stuck with precalculated modes.
-Which isn't optimal, because with small overscan the timing gets a bit
-fickle, and with larger overscan you get the ugly border, and every
-analog TV is different in that respect.
+--===============1738709781==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-- Dirk
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1738709781==--
