@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75776] [NV50 gallium] Hearthstone displays corrupted
 	buffers
-Date: Wed, 05 Mar 2014 03:39:17 +0000
-Message-ID: <bug-75776-8800-9aR7FQrAfE@http.bugs.freedesktop.org/>
+Date: Wed, 05 Mar 2014 03:53:20 +0000
+Message-ID: <bug-75776-8800-tGdKEvy2TP@http.bugs.freedesktop.org/>
 References: <bug-75776-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2066473290=="
+Content-Type: multipart/mixed; boundary="===============0652208490=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,44 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2066473290==
-Content-Type: multipart/alternative; boundary="1393990757.Cd81A70.9167"; charset="us-ascii"
+--===============0652208490==
+Content-Type: multipart/alternative; boundary="1393991600.bCeFd8fD0.11567"; charset="us-ascii"
 
 
---1393990757.Cd81A70.9167
-Date: Wed, 5 Mar 2014 03:39:17 +0000
+--1393991600.bCeFd8fD0.11567
+Date: Wed, 5 Mar 2014 03:53:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75776
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Another thing I noticed is lots of compressed texture usage
+(GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT). What happens if you run it with
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NVA5] Hearthstone displays |[NV50 gallium] Hearthstone
-                   |corrupted buffers           |displays corrupted buffers
+MESA_EXTENSION_OVERRIDE=-GL_EXT_texture_compression_s3tc
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Confirmed with latest on nv96 as well as Mesa 9.1.6. No errors in dmesg, but
-this feels like an incorrect format somewhere, or an FBO attachment not being
-output to. I checked with NV50_PROG_OPTIMIZE=0, and it's not a shader
-optimization going wrong.
-
-There are a few surface formats that are not blendable on nv50 but are on nvc0
-(not 100% sure what "blendable" means... PIPE_BIND_BLENDABLE, whatever that
-is). Perhaps it's trying to use one as blendable without declaring so...
-
-There are some errors reported by glretrace, but I checked in the trace dump,
-and they match the errors that the application received when doing the the fb
-completeness checks.
+in the environment? Does that fix things? (I can't really test on the trace,
+since the trace only has the compressed content.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1393990757.Cd81A70.9167
-Date: Wed, 5 Mar 2014 03:39:17 +0000
+--1393991600.bCeFd8fD0.11567
+Date: Wed, 5 Mar 2014 03:53:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,51 +54,26 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776">bug 75776</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NVA5] Hearthstone displays corrupted buffers
-           </td>
-           <td>[NV50 gallium] Hearthstone displays corrupted buffers
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75776">bug 75776</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Confirmed with latest on nv96 as well as Mesa 9.1.6. No errors in dmesg, but
-this feels like an incorrect format somewhere, or an FBO attachment not being
-output to. I checked with NV50_PROG_OPTIMIZE=0, and it's not a shader
-optimization going wrong.
+        <pre>Another thing I noticed is lots of compressed texture usage
+(GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT). What happens if you run it with
 
-There are a few surface formats that are not blendable on nv50 but are on nvc0
-(not 100% sure what &quot;blendable&quot; means... PIPE_BIND_BLENDABLE, whatever that
-is). Perhaps it's trying to use one as blendable without declaring so...
+MESA_EXTENSION_OVERRIDE=-GL_EXT_texture_compression_s3tc
 
-There are some errors reported by glretrace, but I checked in the trace dump,
-and they match the errors that the application received when doing the the fb
-completeness checks.</pre>
+in the environment? Does that fix things? (I can't really test on the trace,
+since the trace only has the compressed content.)</pre>
         </div>
       </p>
       <hr>
@@ -122,9 +85,9 @@ completeness checks.</pre>
     </body>
 </html>
 
---1393990757.Cd81A70.9167--
+--1393991600.bCeFd8fD0.11567--
 
---===============2066473290==
+--===============0652208490==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -135,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2066473290==--
+--===============0652208490==--
