@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75279] XCloseDisplay() takes one minute around
  nouveau_dri.so, freezing Firefox startup
-Date: Wed, 05 Mar 2014 20:53:27 +0000
-Message-ID: <bug-75279-8800-fSJaR9sBl0@http.bugs.freedesktop.org/>
+Date: Wed, 05 Mar 2014 20:57:36 +0000
+Message-ID: <bug-75279-8800-tQGzjquQpw@http.bugs.freedesktop.org/>
 References: <bug-75279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1163005267=="
+Content-Type: multipart/mixed; boundary="===============0322137802=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1163005267==
-Content-Type: multipart/alternative; boundary="1394052807.71FA1dc3.29793"; charset="us-ascii"
+--===============0322137802==
+Content-Type: multipart/alternative; boundary="1394053056.2d25d12.30644"; charset="us-ascii"
 
 
---1394052807.71FA1dc3.29793
-Date: Wed, 5 Mar 2014 20:53:27 +0000
+--1394053056.2d25d12.30644
+Date: Wed, 5 Mar 2014 20:57:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75279
 
---- Comment #37 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #36)
-> Can you reproduce yourself by running the attached glxtest program in
-> valgrind?
+--- Comment #38 from Benoit Jacob <bjacob-4eJtQOnFJqFBDgjK7y7TUQ@public.gmane.org> ---
+I wasn't clear enough in comment 34, let me explain better :-)
 
-Oh, I'm sure (can't right now, will try tonight). But I doubt it's the source
-of the bug. The glxtest program doesn't appear to hang. Memory is unlikely to
-be reallocated _so_ quickly, that ->state would change. (Although more likely
-in a multithreaded program... hm.)
+The Mozilla change that exposed this,
+https://bugzilla.mozilla.org/show_bug.cgi?id=860254, is exactly about having
+memory overwritten immediately on free(). So this is _exactly_ what is
+happening here :-)
+
+The reason why the stand-alone glxtest program doesn't hang is that it doesn't
+use Mozilla's modified memory allocator that overwrites memory on free(). If
+you ran it with this memory allocator, no doubt that it would hang there, as
+this loop would keep reading a wrong fence->status.
+
+So what you can hope to reproduce yourself with this glxtest program is not the
+hang, it's the valgrind-detected use-after-free, and I really believe that that
+is the root cause for the hang when running with Mozilla's memory allocator.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394052807.71FA1dc3.29793
-Date: Wed, 5 Mar 2014 20:53:27 +0000
+--1394053056.2d25d12.30644
+Date: Wed, 5 Mar 2014 20:57:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,21 +68,28 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c37">Comment # 37</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c38">Comment # 38</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:bjacob&#64;mozilla.com" title="Benoit Jacob &lt;bjacob&#64;mozilla.com&gt;"> <span class="fn">Benoit Jacob</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=75279#c36">comment #36</a>)
-<span class="quote">&gt; Can you reproduce yourself by running the attached glxtest program in
-&gt; valgrind?</span >
+        <pre>I wasn't clear enough in <a href="show_bug.cgi?id=75279#c34">comment 34</a>, let me explain better :-)
 
-Oh, I'm sure (can't right now, will try tonight). But I doubt it's the source
-of the bug. The glxtest program doesn't appear to hang. Memory is unlikely to
-be reallocated _so_ quickly, that -&gt;state would change. (Although more likely
-in a multithreaded program... hm.)</pre>
+The Mozilla change that exposed this,
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=860254">https://bugzilla.mozilla.org/show_bug.cgi?id=860254</a>, is exactly about having
+memory overwritten immediately on free(). So this is _exactly_ what is
+happening here :-)
+
+The reason why the stand-alone glxtest program doesn't hang is that it doesn't
+use Mozilla's modified memory allocator that overwrites memory on free(). If
+you ran it with this memory allocator, no doubt that it would hang there, as
+this loop would keep reading a wrong fence-&gt;status.
+
+So what you can hope to reproduce yourself with this glxtest program is not the
+hang, it's the valgrind-detected use-after-free, and I really believe that that
+is the root cause for the hang when running with Mozilla's memory allocator.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +101,9 @@ in a multithreaded program... hm.)</pre>
     </body>
 </html>
 
---1394052807.71FA1dc3.29793--
+--1394053056.2d25d12.30644--
 
---===============1163005267==
+--===============0322137802==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +114,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1163005267==--
+--===============0322137802==--
