@@ -1,98 +1,111 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75279] XCloseDisplay() takes one minute around
- nouveau_dri.so, freezing Firefox startup
-Date: Thu, 06 Mar 2014 03:30:20 +0000
-Message-ID: <bug-75279-8800-vA7qiXGCE1@http.bugs.freedesktop.org/>
-References: <bug-75279-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nouveau: fix fence waiting logic in screen
+	destroy
+Date: Wed,  5 Mar 2014 23:01:25 -0500
+Message-ID: <1394078485-7768-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1165342538=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces@lists.freedesktop.org
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+nouveau_fence_wait has the expectation that an external entity is
+holding onto the fence being waited on, not that it is merely held onto
+by the current pointer. Fixes a use-after-free in nouveau_fence_wait
+when used on the screen's current fence.
 
---===============1165342538==
-Content-Type: multipart/alternative; boundary="1394076620.Aa8E723.2249"; charset="us-ascii"
+Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=75279
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+---
 
+Should the waiting be predicated on the current fence having been emitted? I
+removed that from nv30 (which would just go ahead and _leak_ that fence it it
+hadn't been emitted...). I figure it doesn't really matter enough to worry
+about that. The bigger reason to do it, I guess, is to make sure that all the
+fences on the list get processed. But perhaps it'd be OK to just nuke them
+without regard for such details?
 
---1394076620.Aa8E723.2249
-Date: Thu, 6 Mar 2014 03:30:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+ src/gallium/drivers/nouveau/nv30/nv30_screen.c | 14 ++++++++++----
+ src/gallium/drivers/nouveau/nv50/nv50_screen.c | 11 +++++++++--
+ src/gallium/drivers/nouveau/nvc0/nvc0_screen.c |  9 ++++++++-
+ 3 files changed, 27 insertions(+), 7 deletions(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75279
-
---- Comment #41 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 95205
-  --> https://bugs.freedesktop.org/attachment.cgi?id=95205&action=edit
-patch to fix fence wait on screen destroy
-
-This fixes the valgrind warning for me, and makes logical sense (always a
-plus).
-
+diff --git a/src/gallium/drivers/nouveau/nv30/nv30_screen.c b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
+index 82f2c06..5378913 100644
+--- a/src/gallium/drivers/nouveau/nv30/nv30_screen.c
++++ b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
+@@ -308,10 +308,16 @@ nv30_screen_destroy(struct pipe_screen *pscreen)
+    if (!nouveau_drm_screen_unref(&screen->base))
+       return;
+ 
+-   if (screen->base.fence.current &&
+-       screen->base.fence.current->state >= NOUVEAU_FENCE_STATE_EMITTED) {
+-      nouveau_fence_wait(screen->base.fence.current);
+-      nouveau_fence_ref (NULL, &screen->base.fence.current);
++   if (screen->base.fence.current) {
++      struct nouveau_fence *current = NULL;
++
++      /* nouveau_fence_wait will create a new current fence, so wait on the
++       * _current_ one, and remove both.
++       */
++      nouveau_fence_ref(screen->base.fence.current, &current);
++      nouveau_fence_wait(current);
++      nouveau_fence_ref(NULL, &current);
++      nouveau_fence_ref(NULL, &screen->base.fence.current);
+    }
+ 
+    nouveau_object_del(&screen->query);
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_screen.c b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
+index ab0d63e..e8c7fe3 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_screen.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
+@@ -294,8 +294,15 @@ nv50_screen_destroy(struct pipe_screen *pscreen)
+       return;
+ 
+    if (screen->base.fence.current) {
+-      nouveau_fence_wait(screen->base.fence.current);
+-      nouveau_fence_ref (NULL, &screen->base.fence.current);
++      struct nouveau_fence *current = NULL;
++
++      /* nouveau_fence_wait will create a new current fence, so wait on the
++       * _current_ one, and remove both.
++       */
++      nouveau_fence_ref(screen->base.fence.current, &current);
++      nouveau_fence_wait(current);
++      nouveau_fence_ref(NULL, &current);
++      nouveau_fence_ref(NULL, &screen->base.fence.current);
+    }
+    if (screen->base.pushbuf)
+       screen->base.pushbuf->user_priv = NULL;
+diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+index 044847d..04f3088 100644
+--- a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
++++ b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+@@ -340,7 +340,14 @@ nvc0_screen_destroy(struct pipe_screen *pscreen)
+       return;
+ 
+    if (screen->base.fence.current) {
+-      nouveau_fence_wait(screen->base.fence.current);
++      struct nouveau_fence *current = NULL;
++
++      /* nouveau_fence_wait will create a new current fence, so wait on the
++       * _current_ one, and remove both.
++       */
++      nouveau_fence_ref(screen->base.fence.current, &current);
++      nouveau_fence_wait(current);
++      nouveau_fence_ref(NULL, &current);
+       nouveau_fence_ref(NULL, &screen->base.fence.current);
+    }
+    if (screen->base.pushbuf)
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1394076620.Aa8E723.2249
-Date: Thu, 6 Mar 2014 03:30:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c41">Comment # 41</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=95205" name="attach_95205" title="patch to fix fence wait on screen destroy">attachment 95205</a> <a href="attachment.cgi?id=95205&amp;action=edit" title="patch to fix fence wait on screen destroy">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=75279&amp;attachment=95205'>[review]</a>
-patch to fix fence wait on screen destroy
-
-This fixes the valgrind warning for me, and makes logical sense (always a
-plus).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1394076620.Aa8E723.2249--
-
---===============1165342538==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1165342538==--
+1.8.3.2
