@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75279] XCloseDisplay() takes one minute around
  nouveau_dri.so, freezing Firefox startup
-Date: Thu, 06 Mar 2014 03:14:18 +0000
-Message-ID: <bug-75279-8800-rvBUCchRa3@http.bugs.freedesktop.org/>
+Date: Thu, 06 Mar 2014 03:30:20 +0000
+Message-ID: <bug-75279-8800-vA7qiXGCE1@http.bugs.freedesktop.org/>
 References: <bug-75279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0418964745=="
+Content-Type: multipart/mixed; boundary="===============1165342538=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0418964745==
-Content-Type: multipart/alternative; boundary="1394075657.343F2a2A3.32000"; charset="us-ascii"
+--===============1165342538==
+Content-Type: multipart/alternative; boundary="1394076620.Aa8E723.2249"; charset="us-ascii"
 
 
---1394075657.343F2a2A3.32000
-Date: Thu, 6 Mar 2014 03:14:17 +0000
+--1394076620.Aa8E723.2249
+Date: Thu, 6 Mar 2014 03:30:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75279
 
---- Comment #40 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, so I'm obviously able to reproduce the use-after-free. Like I said, this
-logic is fairly subtle. I think the problem is that there's an implicit
-assumption that the fence has an external ref before someone waits on it. In
-the case of the current screen fence, that's not necessarily the case. I think
-the proper fix is to add a fence ref in the destructor around the wait. I'm
-going to think a bit more on this.
+--- Comment #41 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 95205
+  --> https://bugs.freedesktop.org/attachment.cgi?id=95205&action=edit
+patch to fix fence wait on screen destroy
+
+This fixes the valgrind warning for me, and makes logical sense (always a
+plus).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394075657.343F2a2A3.32000
-Date: Thu, 6 Mar 2014 03:14:17 +0000
+--1394076620.Aa8E723.2249
+Date: Thu, 6 Mar 2014 03:30:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,19 +59,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c40">Comment # 40</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c41">Comment # 41</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>OK, so I'm obviously able to reproduce the use-after-free. Like I said, this
-logic is fairly subtle. I think the problem is that there's an implicit
-assumption that the fence has an external ref before someone waits on it. In
-the case of the current screen fence, that's not necessarily the case. I think
-the proper fix is to add a fence ref in the destructor around the wait. I'm
-going to think a bit more on this.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=95205" name="attach_95205" title="patch to fix fence wait on screen destroy">attachment 95205</a> <a href="attachment.cgi?id=95205&amp;action=edit" title="patch to fix fence wait on screen destroy">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=75279&amp;attachment=95205'>[review]</a>
+patch to fix fence wait on screen destroy
+
+This fixes the valgrind warning for me, and makes logical sense (always a
+plus).</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +82,9 @@ going to think a bit more on this.</pre>
     </body>
 </html>
 
---1394075657.343F2a2A3.32000--
+--1394076620.Aa8E723.2249--
 
---===============0418964745==
+--===============1165342538==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0418964745==--
+--===============1165342538==--
