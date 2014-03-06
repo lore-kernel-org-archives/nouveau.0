@@ -1,76 +1,131 @@
-From: Dirk Thierbach <dthierbach-Mmb7MZpHnFY@public.gmane.org>
-Subject: Re: TV-Out on a GeForce 2MX supported?
-Date: Thu, 6 Mar 2014 10:19:14 +0100
-Message-ID: <20140306091913.GA29147@feanor>
-References: <20140303224123.GA5720@reliance.ac-net>
-	<CAKb7Uvj2FKoRt2O6YqiamgL=svZqmxjxoqdxySN3Lidu+bWxsQ@mail.gmail.com>
-	<20140305110645.GA1972@feanor>
-	<CAKb7Uvi97Yn8MOfhMiXLs+=VAd0LWEnmnF7iHyR58eKA_Pk_jg@mail.gmail.com>
-	<20140305193410.GA13365@feanor> <871tyg6yk3.fsf@riseup.net>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nv50,
+	nvc0: adjust blit_3d handling of ms output textures
+Date: Thu,  6 Mar 2014 15:08:32 -0500
+Message-ID: <1394136512-30008-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Resent-Message-ID: <20140306092603.GB29147@feanor>
-Resent-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <871tyg6yk3.fsf-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
-	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Sender: mesa-dev-bounces@lists.freedesktop.org
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+To: nouveau@lists.freedesktop.org, mesa-dev@lists.freedesktop.org, Christoph Bumiller <e0425955@student.tuwien.ac.at>
+Cc: "10.0 10.1" <mesa-stable@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Mar 06, 2014 at 12:00:28AM +0100, Francisco Jerez wrote:
-> The current model doesn't require the encoder driver to have a
-> predefined list of modes -- it's just highly recommended if you don't
-> want to force the user to input mode lines manually.  
+This fixes some unwanted scaling when the output is multisampled. Also
+increases nvc0 maximum supported texture size to be able to work with a
+32k texture.
 
-If there was a way to have the user input the equivalent of mode
-lines for the BT chip, full support would be easy (and I would have
-probably done it at some stage in the past). But the X infrastructure
-just concerns itself with CRTC modelines (and later on added
-xrandr properties), which are not enough.
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: "10.0 10.1" <mesa-stable@lists.freedesktop.org>
+---
 
-> You just need some means to compute the optimal timings
-> algorithmically given the connector properties and a rough
-> description of the mode.
+Ran the EXT_framebuffer_multisample tests, they improve a lot. The remaining
+failures are probably due to incorrect sampling rather than the image being
+totally wrong.
 
-Which is the difficult part for the BT chip. While some of the timing
-constraints are known, others are not. Also, there's no "optimal" solution,
-what the calculation routine in nvtv does is to compute several
-"close" solutions and let the user pick one. And sometimes they are
-not even particularly close. Also, as I said, the solutions with very
-little overscan sometimes don't give a stable image or no image at
-all.
+ src/gallium/drivers/nouveau/nv50/nv50_surface.c | 12 ++++++++----
+ src/gallium/drivers/nouveau/nvc0/nvc0_surface.c | 12 ++++++++----
+ 2 files changed, 16 insertions(+), 8 deletions(-)
 
-So calculating optimal timings in the kernel without user interaction
-is not feasible. Unless you somehow discover the missing timing
-constraints. Even the size of the internal FIFO is not known.
-
-> Sure, using a fixed list of modes from which you pick the "closest"
-> to the user's settings might be the easiest way to achieve that on
-> some chips [ch7006 does precisely that IIRC],
-
-The Chrontel chips only have a very limited number of modes in the
-first place. But even then it makes sense to have more flexibiliy. For
-example, you can take one of the 800x600 modes with almost no overscan
-border, chop off the bottom and right and recenter shifting the sync
-procesessing, and that gives you a nice 768x576 mode for watching
-DVDs.
-
-> and that might be a slight underuse of the
-> flexibility of some hardware, but the API doesn't force you to do that.
-
-Give me a way to pass a block of two dozen or so values to the chip in
-addition to a CRTC modeline that is not checked for the usual constraints,
-and give the user a way to specify these values in the config file or
-let them choose one from a predefined list, and full support is easy.
-
-- Dirk
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_surface.c b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
+index dc6d628..6073deb 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_surface.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
+@@ -977,6 +977,7 @@ nv50_blit_3d(struct nv50_context *nv50, const struct pipe_blit_info *info)
+    float x0, x1, y0, y1, z;
+    float dz;
+    float x_range, y_range;
++   float x_output, y_output;
+ 
+    blit->mode = nv50_blit_select_mode(info);
+    blit->color_mask = nv50_blit_derive_color_mask(info);
+@@ -996,11 +997,14 @@ nv50_blit_3d(struct nv50_context *nv50, const struct pipe_blit_info *info)
+    x_range = (float)info->src.box.width / (float)info->dst.box.width;
+    y_range = (float)info->src.box.height / (float)info->dst.box.height;
+ 
++   x_output = 16384 << nv50_miptree(dst)->ms_x;
++   y_output = 16384 << nv50_miptree(dst)->ms_y;
++
+    x0 = (float)info->src.box.x - x_range * (float)info->dst.box.x;
+    y0 = (float)info->src.box.y - y_range * (float)info->dst.box.y;
+ 
+-   x1 = x0 + 16384.0f * x_range;
+-   y1 = y0 + 16384.0f * y_range;
++   x1 = x0 + x_output * x_range;
++   y1 = y0 + y_output * y_range;
+ 
+    x0 *= (float)(1 << nv50_miptree(src)->ms_x);
+    x1 *= (float)(1 << nv50_miptree(src)->ms_x);
+@@ -1069,7 +1073,7 @@ nv50_blit_3d(struct nv50_context *nv50, const struct pipe_blit_info *info)
+       PUSH_DATAf(push, y0);
+       PUSH_DATAf(push, z);
+       BEGIN_NV04(push, NV50_3D(VTX_ATTR_2F_X(0)), 2);
+-      PUSH_DATAf(push, 16384 << nv50_miptree(dst)->ms_x);
++      PUSH_DATAf(push, x_output);
+       PUSH_DATAf(push, 0.0f);
+       BEGIN_NV04(push, NV50_3D(VTX_ATTR_3F_X(1)), 3);
+       PUSH_DATAf(push, x0);
+@@ -1077,7 +1081,7 @@ nv50_blit_3d(struct nv50_context *nv50, const struct pipe_blit_info *info)
+       PUSH_DATAf(push, z);
+       BEGIN_NV04(push, NV50_3D(VTX_ATTR_2F_X(0)), 2);
+       PUSH_DATAf(push, 0.0f);
+-      PUSH_DATAf(push, 16384 << nv50_miptree(dst)->ms_y);
++      PUSH_DATAf(push, y_output);
+       BEGIN_NV04(push, NV50_3D(VERTEX_END_GL), 1);
+       PUSH_DATA (push, 0);
+    }
+diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c b/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
+index 32d234e..0df5b69 100644
+--- a/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
++++ b/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
+@@ -855,6 +855,7 @@ nvc0_blit_3d(struct nvc0_context *nvc0, const struct pipe_blit_info *info)
+    float x0, x1, y0, y1, z;
+    float dz;
+    float x_range, y_range;
++   float x_output, y_output;
+ 
+    blit->mode = nv50_blit_select_mode(info);
+    blit->color_mask = nv50_blit_derive_color_mask(info);
+@@ -877,8 +878,11 @@ nvc0_blit_3d(struct nvc0_context *nvc0, const struct pipe_blit_info *info)
+    x0 = (float)info->src.box.x - x_range * (float)info->dst.box.x;
+    y0 = (float)info->src.box.y - y_range * (float)info->dst.box.y;
+ 
+-   x1 = x0 + 16384.0f * x_range;
+-   y1 = y0 + 16384.0f * y_range;
++   x_output = 65536 << nv50_miptree(dst)->ms_x;
++   y_output = 65536 << nv50_miptree(dst)->ms_y;
++
++   x1 = x0 + x_output * x_range;
++   y1 = y0 + y_output * y_range;
+ 
+    x0 *= (float)(1 << nv50_miptree(src)->ms_x);
+    x1 *= (float)(1 << nv50_miptree(src)->ms_x);
+@@ -953,7 +957,7 @@ nvc0_blit_3d(struct nvc0_context *nvc0, const struct pipe_blit_info *info)
+       PUSH_DATAf(push, z);
+       BEGIN_NVC0(push, NVC0_3D(VTX_ATTR_DEFINE), 3);
+       PUSH_DATA (push, 0x74200);
+-      PUSH_DATAf(push, 16384 << nv50_miptree(dst)->ms_x);
++      PUSH_DATAf(push, x_output);
+       PUSH_DATAf(push, 0.0f);
+       BEGIN_NVC0(push, NVC0_3D(VTX_ATTR_DEFINE), 4);
+       PUSH_DATA (push, 0x74301);
+@@ -963,7 +967,7 @@ nvc0_blit_3d(struct nvc0_context *nvc0, const struct pipe_blit_info *info)
+       BEGIN_NVC0(push, NVC0_3D(VTX_ATTR_DEFINE), 3);
+       PUSH_DATA (push, 0x74200);
+       PUSH_DATAf(push, 0.0f);
+-      PUSH_DATAf(push, 16384 << nv50_miptree(dst)->ms_y);
++      PUSH_DATAf(push, y_output);
+ 
+       IMMED_NVC0(push, NVC0_3D(VERTEX_END_GL), 0);
+    }
+-- 
+1.8.3.2
