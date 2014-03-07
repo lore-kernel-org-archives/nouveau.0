@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Fri, 07 Mar 2014 21:17:54 +0000
-Message-ID: <bug-70354-8800-hYRSzYxnEN@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70390] [NV84] Repeated system crashes under graphics
+ load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]
+Date: Fri, 07 Mar 2014 21:21:05 +0000
+Message-ID: <bug-70390-8800-wC5FjXbDVQ@http.bugs.freedesktop.org/>
+References: <bug-70390-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2117788048=="
+Content-Type: multipart/mixed; boundary="===============0139818302=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70390-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,97 +21,92 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2117788048==
-Content-Type: multipart/alternative; boundary="1394227074.2b3a1D4a2.11956"; charset="us-ascii"
+--===============0139818302==
+Content-Type: multipart/alternative; boundary="1394227266.f3DA3D6c3.12766"; charset="us-ascii"
 
 
---1394227074.2b3a1D4a2.11956
-Date: Fri, 7 Mar 2014 21:17:54 +0000
+--1394227266.f3DA3D6c3.12766
+Date: Fri, 7 Mar 2014 21:21:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D70354
+https://bugs.freedesktop.org/show_bug.cgi?id=70390
 
---- Comment #23 from Richard <rich-2ZpFXoJyzMtkMtayTlHv3w@public.gmane.org> ---
-Same issue on a Lenovo Y510P. Tried compiling the module from Ben's git sou=
-rces
-in comment 17 on a 3.13.5 kernel, but it complains:
+--- Comment #16 from Martin von Gagern <Martin.vGagern-hi6Y0CQ0nG0@public.gmane.org> ---
+Created attachment 95315
+  --> https://bugs.freedesktop.org/attachment.cgi?id=95315&action=edit
+Mar 05 incident
 
-/hidden_tmp/nouveau/drm/core/subdev/mxm/base.c:109:2: error: implicit
-declaration of function =E2=80=98acpi_evaluate_dsm=E2=80=99
-[-Werror=3Dimplicit-function-declaration]
+My system keeps crashing on me, and quite often this DMA_PUSHER INVALID_CMD is
+the last line in ther kernel log. I also had one X lockup, where I could ssh
+into the machine and see a message in the log as well. Trying to reboot the
+system I got a number of "failed to idle channel" messages I'm attaching the
+log for that.
 
-grep -R acpi_evaluate_dsm /usr/src/linux/* comes up with nothing, so I'm
-guessing this function disappeared?
+Today I got a crash without log message, but perhaps the machine was simply
+unable to flush the log. I triggered that by launching flightgear. Since that's
+the first time I launched flightgear, I guess this bug here makes that package
+unusable for me, which is very sad.
 
-Also tried simply applying the patch (link in comment 17) to a copy of my
-source tree, and I seem to be missing (at least) the
-"engine/graph/fuc/hubnv108.fuc5.h" file in my source tree.
+I'm still willing to help fix this, but I'll need instructions as I wrote in
+comment #14. If there is any other way to help, let me know.
 
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394227074.2b3a1D4a2.11956
-Date: Fri, 7 Mar 2014 21:17:54 +0000
+--1394227266.f3DA3D6c3.12766
+Date: Fri, 7 Mar 2014 21:21:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw d=
-oesn't help"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70354#c23">Commen=
-t # 23</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - [NV84] Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70390#c16">Comment # 16</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw d=
-oesn't help"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70354">bug 70354<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rich&#64;warfaresdl.com" title=3D"Richard &lt;rich&#64;warfaresdl.com&gt;">=
- <span class=3D"fn">Richard</span></a>
+   title="NEW --- - [NV84] Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70390">bug 70390</a>
+              from <span class="vcard"><a class="email" href="mailto:Martin.vGagern&#64;gmx.net" title="Martin von Gagern &lt;Martin.vGagern&#64;gmx.net&gt;"> <span class="fn">Martin von Gagern</span></a>
 </span></b>
-        <pre>Same issue on a Lenovo Y510P. Tried compiling the module from =
-Ben's git sources
-in <a href=3D"show_bug.cgi?id=3D70354#c17">comment 17</a> on a 3.13.5 kerne=
-l, but it complains:
+        <pre>Created <span class=""><a href="attachment.cgi?id=95315" name="attach_95315" title="Mar 05 incident">attachment 95315</a> <a href="attachment.cgi?id=95315&amp;action=edit" title="Mar 05 incident">[details]</a></span>
+Mar 05 incident
 
-/hidden_tmp/nouveau/drm/core/subdev/mxm/base.c:109:2: error: implicit
-declaration of function =E2=80=98acpi_evaluate_dsm=E2=80=99
-[-Werror=3Dimplicit-function-declaration]
+My system keeps crashing on me, and quite often this DMA_PUSHER INVALID_CMD is
+the last line in ther kernel log. I also had one X lockup, where I could ssh
+into the machine and see a message in the log as well. Trying to reboot the
+system I got a number of &quot;failed to idle channel&quot; messages I'm attaching the
+log for that.
 
-grep -R acpi_evaluate_dsm /usr/src/linux/* comes up with nothing, so I'm
-guessing this function disappeared?
+Today I got a crash without log message, but perhaps the machine was simply
+unable to flush the log. I triggered that by launching flightgear. Since that's
+the first time I launched flightgear, I guess this bug here makes that package
+unusable for me, which is very sad.
 
-Also tried simply applying the patch (link in <a href=3D"show_bug.cgi?id=3D=
-70354#c17">comment 17</a>) to a copy of my
-source tree, and I seem to be missing (at least) the
-&quot;engine/graph/fuc/hubnv108.fuc5.h&quot; file in my source tree.</pre>
+I'm still willing to help fix this, but I'll need instructions as I wrote in
+<a href="show_bug.cgi?id=70390#c14">comment #14</a>. If there is any other way to help, let me know.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1394227074.2b3a1D4a2.11956--
+--1394227266.f3DA3D6c3.12766--
 
---===============2117788048==
+--===============0139818302==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,4 +117,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2117788048==--
+--===============0139818302==--
