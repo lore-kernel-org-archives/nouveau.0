@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Fri, 07 Mar 2014 21:24:30 +0000
-Message-ID: <bug-70354-8800-LIVE568lZR@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58556] MacBook Pro 5, 1 with nVidia 9400m and 9600m,
+ scrambled screen
+Date: Fri, 07 Mar 2014 23:21:06 +0000
+Message-ID: <bug-58556-8800-GcXyzVgbe3@http.bugs.freedesktop.org/>
+References: <bug-58556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0130158043=="
+Content-Type: multipart/mixed; boundary="===============1298394166=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,123 +21,100 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0130158043==
-Content-Type: multipart/alternative; boundary="1394227470.E1D6C3.13563"; charset="us-ascii"
+--===============1298394166==
+Content-Type: multipart/alternative; boundary="1394234466.B0D1fAE5.2910"; charset="us-ascii"
 
 
---1394227470.E1D6C3.13563
-Date: Fri, 7 Mar 2014 21:24:30 +0000
+--1394234466.B0D1fAE5.2910
+Date: Fri, 7 Mar 2014 23:21:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D70354
+https://bugs.freedesktop.org/show_bug.cgi?id=58556
 
---- Comment #24 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #23)
-> Same issue on a Lenovo Y510P. Tried compiling the module from Ben's git
-> sources in comment 17 on a 3.13.5 kernel, but it complains:
->=20
-> /hidden_tmp/nouveau/drm/core/subdev/mxm/base.c:109:2: error: implicit
-> declaration of function =E2=80=98acpi_evaluate_dsm=E2=80=99
-> [-Werror=3Dimplicit-function-declaration]
->=20
-> grep -R acpi_evaluate_dsm /usr/src/linux/* comes up with nothing, so I'm
-> guessing this function disappeared?
+--- Comment #24 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Hi Joanand,
 
-More like 'appeared'. That tree is against the ~latest kernel (3.14-rcX rig=
-ht
-now).
+My HEAD before applying the patch was commit 34d5950
+(http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=drm-nouveau-next&id=34d595081812da62b5357579267c4ab5eae64ac1).
+The HEAD after the patch is just: 34d5950 + e18833a, nothing more. So I'm
+running with both cards enabled.
 
->=20
-> Also tried simply applying the patch (link in comment 17) to a copy of my
-> source tree, and I seem to be missing (at least) the
-> "engine/graph/fuc/hubnv108.fuc5.h" file in my source tree.
+I tried Ilias' patch (https://bugs.freedesktop.org/show_bug.cgi?id=27501#c27)
+to test each card alone, and I got:
 
-Check the patch in comment 21 (attachment 95131). It's not in Ben's git rep=
-o,
-since he's not sure what effect it'll have on other cards.
+*   NVAC only: corrupted screen (without e18833a) + acceleration not working;
+*   NV96 only: no corrupted screen (even without e18833a) + acceleration
+working.
 
---=20
+I wonder why we do have quite different results for the NV96...
+
+Cheers,
+
+Pierre
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394227470.E1D6C3.13563
-Date: Fri, 7 Mar 2014 21:24:30 +0000
+--1394234466.B0D1fAE5.2910
+Date: Fri, 7 Mar 2014 23:21:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw d=
-oesn't help"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70354#c24">Commen=
-t # 24</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw d=
-oesn't help"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70354">bug 70354<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556#c24">Comment # 24</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>(In reply to <a href=3D"show_bug.cgi?id=3D70354#c23">comment #=
-23</a>)
-<span class=3D"quote">&gt; Same issue on a Lenovo Y510P. Tried compiling th=
-e module from Ben's git
-&gt; sources in <a href=3D"show_bug.cgi?id=3D70354#c17">comment 17</a> on a=
- 3.13.5 kernel, but it complains:
-&gt;=20
-&gt; /hidden_tmp/nouveau/drm/core/subdev/mxm/base.c:109:2: error: implicit
-&gt; declaration of function =E2=80=98acpi_evaluate_dsm=E2=80=99
-&gt; [-Werror=3Dimplicit-function-declaration]
-&gt;=20
-&gt; grep -R acpi_evaluate_dsm /usr/src/linux/* comes up with nothing, so I=
-'m
-&gt; guessing this function disappeared?</span >
+        <pre>Hi Joanand,
 
-More like 'appeared'. That tree is against the ~latest kernel (3.14-rcX rig=
-ht
-now).
+My HEAD before applying the patch was commit 34d5950
+(<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=drm-nouveau-next&amp;id=34d595081812da62b5357579267c4ab5eae64ac1">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=drm-nouveau-next&amp;id=34d595081812da62b5357579267c4ab5eae64ac1</a>).
+The HEAD after the patch is just: 34d5950 + e18833a, nothing more. So I'm
+running with both cards enabled.
 
-<span class=3D"quote">&gt;=20
-&gt; Also tried simply applying the patch (link in <a href=3D"show_bug.cgi?=
-id=3D70354#c17">comment 17</a>) to a copy of my
-&gt; source tree, and I seem to be missing (at least) the
-&gt; &quot;engine/graph/fuc/hubnv108.fuc5.h&quot; file in my source tree.</=
-span >
+I tried Ilias' patch (<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="show_bug.cgi?id=27501#c27">https://bugs.freedesktop.org/show_bug.cgi?id=27501#c27</a>)
+to test each card alone, and I got:
 
-Check the patch in <a href=3D"show_bug.cgi?id=3D70354#c21">comment 21</a> (=
-<span class=3D""><a href=3D"attachment.cgi?id=3D95131" name=3D"attach_95131=
-" title=3D"probably &quot;fix&quot;">attachment 95131</a> <a href=3D"attach=
-ment.cgi?id=3D95131&amp;action=3Dedit" title=3D"probably &quot;fix&quot;">[=
-details]</a></span> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D70354&=
-amp;attachment=3D95131'>[review]</a>). It's not in Ben's git repo,
-since he's not sure what effect it'll have on other cards.</pre>
+*   NVAC only: corrupted screen (without e18833a) + acceleration not working;
+*   NV96 only: no corrupted screen (even without e18833a) + acceleration
+working.
+
+I wonder why we do have quite different results for the NV96...
+
+Cheers,
+
+Pierre</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1394227470.E1D6C3.13563--
+--1394234466.B0D1fAE5.2910--
 
---===============0130158043==
+--===============1298394166==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +125,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0130158043==--
+--===============1298394166==--
