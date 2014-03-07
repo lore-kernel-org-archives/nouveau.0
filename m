@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58556] MacBook Pro 5, 1 with nVidia 9400m and 9600m,
- scrambled screen
-Date: Fri, 07 Mar 2014 08:53:04 +0000
-Message-ID: <bug-58556-8800-NALiCwbNJU@http.bugs.freedesktop.org/>
-References: <bug-58556-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75888] New: A graphics controller nouveau foul.
+Date: Fri, 07 Mar 2014 14:08:05 +0000
+Message-ID: <bug-75888-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1252652632=="
+Content-Type: multipart/mixed; boundary="===============0143322846=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,47 +18,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1252652632==
-Content-Type: multipart/alternative; boundary="1394182383.3AcecBBD4.14628"; charset="us-ascii"
+--===============0143322846==
+Content-Type: multipart/alternative; boundary="1394201285.eC23481.20739"; charset="us-ascii"
 
 
---1394182383.3AcecBBD4.14628
-Date: Fri, 7 Mar 2014 08:53:03 +0000
+--1394201285.eC23481.20739
+Date: Fri, 7 Mar 2014 14:08:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58556
+https://bugs.freedesktop.org/show_bug.cgi?id=75888
 
---- Comment #23 from Joanand <MacGyver031-S0/GAf8tV78@public.gmane.org> ---
-(In reply to comment #22)
-> Using commit e18833a518777e249b6badf54f65b37b741b6864
-> (http://cgit.freedesktop.org/~darktama/nouveau/commit/
-> ?id=e18833a518777e249b6badf54f65b37b741b6864) fixes the issue (tested on Git
-> HEAD and on 3.13.5).
-> Thanks for the pointer Ilia!
+          Priority: medium
+            Bug ID: 75888
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: A graphics controller nouveau foul.
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: thauansoares2009-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-Hi Pierre,
-I have tried the diff patch (3 changed lines) on  Kernel 3.13.5-gentoo, and did
-a quick test on nVidia 9600m GT: The screen gets scrambled as soon as nouveau
-is loaded. At the startup, EFIFB is used and works with full screen resolution,
-but the colors are "incorrect". EFI is setup to use 9600m as default.
+Nouveau does not have a controller, so having many terrible, difficult bug to
+fix, and how to spend much energy and almost do nothing.
 
-I am still using nouveau without acceleration. I will be testing the patched
-Kernel on nVidia 9400m, by modifying EFI to use 9400m as default.
-
-Could you do a diff on your patched kernel and unpatched, so that we could find
-other differences?
-
-Thanks.
-
-BR
+GTX 550 ti
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394182383.3AcecBBD4.14628
-Date: Fri, 7 Mar 2014 08:53:03 +0000
+--1394201285.eC23481.20739
+Date: Fri, 7 Mar 2014 14:08:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,41 +62,99 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - A graphics controller nouveau foul."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75888">75888</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>A graphics controller nouveau foul.
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>thauansoares2009&#64;hotmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556#c23">Comment # 23</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
-              from <span class="vcard"><a class="email" href="mailto:MacGyver031&#64;web.de" title="Joanand &lt;MacGyver031&#64;web.de&gt;"> <span class="fn">Joanand</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=58556#c22">comment #22</a>)
-<span class="quote">&gt; Using commit e18833a518777e249b6badf54f65b37b741b6864
-&gt; (<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/">http://cgit.freedesktop.org/~darktama/nouveau/commit/</a>
-&gt; ?id=e18833a518777e249b6badf54f65b37b741b6864) fixes the issue (tested on Git
-&gt; HEAD and on 3.13.5).
-&gt; Thanks for the pointer Ilia!</span >
+        <pre>Nouveau does not have a controller, so having many terrible, difficult bug to
+fix, and how to spend much energy and almost do nothing.
 
-Hi Pierre,
-I have tried the diff patch (3 changed lines) on  Kernel 3.13.5-gentoo, and did
-a quick test on nVidia 9600m GT: The screen gets scrambled as soon as nouveau
-is loaded. At the startup, EFIFB is used and works with full screen resolution,
-but the colors are &quot;incorrect&quot;. EFI is setup to use 9600m as default.
-
-I am still using nouveau without acceleration. I will be testing the patched
-Kernel on nVidia 9400m, by modifying EFI to use 9400m as default.
-
-Could you do a diff on your patched kernel and unpatched, so that we could find
-other differences?
-
-Thanks.
-
-BR</pre>
+GTX 550 ti</pre>
         </div>
       </p>
       <hr>
@@ -115,9 +166,9 @@ BR</pre>
     </body>
 </html>
 
---1394182383.3AcecBBD4.14628--
+--1394201285.eC23481.20739--
 
---===============1252652632==
+--===============0143322846==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,4 +179,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1252652632==--
+--===============0143322846==--
