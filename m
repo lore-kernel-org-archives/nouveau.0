@@ -1,134 +1,137 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [Nouveau] [PATCH] nouveau: fix fence waiting logic
-	in screen destroy
-Date: Fri, 7 Mar 2014 12:31:00 -0500
-Message-ID: <CAKb7UvgqJ-pOH5yKSkmbOhb5WQwwkphvKm+_Ah4RRkGX0GV8BQ@mail.gmail.com>
-References: <1394078485-7768-1-git-send-email-imirkin@alum.mit.edu>
-	<5319D375.4010308@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75888] A graphics controller nouveau foul.
+Date: Fri, 07 Mar 2014 17:34:16 +0000
+Message-ID: <bug-75888-8800-KSrZC8Eyey@http.bugs.freedesktop.org/>
+References: <bug-75888-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <5319D375.4010308@gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
-	<mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Sender: mesa-dev-bounces@lists.freedesktop.org
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-To: Emil Velikov <emil.l.velikov@gmail.com>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0390201973=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75888-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Mar 7, 2014 at 9:11 AM, Emil Velikov <emil.l.velikov@gmail.com> wrote:
-> On 06/03/14 04:01, Ilia Mirkin wrote:
->> nouveau_fence_wait has the expectation that an external entity is
->> holding onto the fence being waited on, not that it is merely held onto
->> by the current pointer. Fixes a use-after-free in nouveau_fence_wait
->> when used on the screen's current fence.
->>
-> IMHO one should flatten all the fence handling a bit to greatly improve
-> readability and minimise chances of similar problems.
->
-> Also there is yet another reason why this might be a good idea -
-> nouveau_fence_signalled, and all it's callers.
->
-> I'll send a few patches of what I have in mind wrt "flattening", later
-> on today.
 
-I'm not sure what you're planning, but if it's an intrusive change,
-could you base it on top of this one (assuming you think that it's
-correct)? That way this one can still be cherry-picked to stable mesa
-versions.
+--===============0390201973==
+Content-Type: multipart/alternative; boundary="1394213656.f7A22.32096"; charset="us-ascii"
 
->
-> -Emil
->
->> Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=75279
->> Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
->> ---
->>
->> Should the waiting be predicated on the current fence having been emitted? I
->> removed that from nv30 (which would just go ahead and _leak_ that fence it it
->> hadn't been emitted...). I figure it doesn't really matter enough to worry
->> about that. The bigger reason to do it, I guess, is to make sure that all the
->> fences on the list get processed. But perhaps it'd be OK to just nuke them
->> without regard for such details?
->>
->>  src/gallium/drivers/nouveau/nv30/nv30_screen.c | 14 ++++++++++----
->>  src/gallium/drivers/nouveau/nv50/nv50_screen.c | 11 +++++++++--
->>  src/gallium/drivers/nouveau/nvc0/nvc0_screen.c |  9 ++++++++-
->>  3 files changed, 27 insertions(+), 7 deletions(-)
->>
->> diff --git a/src/gallium/drivers/nouveau/nv30/nv30_screen.c b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
->> index 82f2c06..5378913 100644
->> --- a/src/gallium/drivers/nouveau/nv30/nv30_screen.c
->> +++ b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
->> @@ -308,10 +308,16 @@ nv30_screen_destroy(struct pipe_screen *pscreen)
->>     if (!nouveau_drm_screen_unref(&screen->base))
->>        return;
->>
->> -   if (screen->base.fence.current &&
->> -       screen->base.fence.current->state >= NOUVEAU_FENCE_STATE_EMITTED) {
->> -      nouveau_fence_wait(screen->base.fence.current);
->> -      nouveau_fence_ref (NULL, &screen->base.fence.current);
->> +   if (screen->base.fence.current) {
->> +      struct nouveau_fence *current = NULL;
->> +
->> +      /* nouveau_fence_wait will create a new current fence, so wait on the
->> +       * _current_ one, and remove both.
->> +       */
->> +      nouveau_fence_ref(screen->base.fence.current, &current);
->> +      nouveau_fence_wait(current);
->> +      nouveau_fence_ref(NULL, &current);
->> +      nouveau_fence_ref(NULL, &screen->base.fence.current);
->>     }
->>
->>     nouveau_object_del(&screen->query);
->> diff --git a/src/gallium/drivers/nouveau/nv50/nv50_screen.c b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
->> index ab0d63e..e8c7fe3 100644
->> --- a/src/gallium/drivers/nouveau/nv50/nv50_screen.c
->> +++ b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
->> @@ -294,8 +294,15 @@ nv50_screen_destroy(struct pipe_screen *pscreen)
->>        return;
->>
->>     if (screen->base.fence.current) {
->> -      nouveau_fence_wait(screen->base.fence.current);
->> -      nouveau_fence_ref (NULL, &screen->base.fence.current);
->> +      struct nouveau_fence *current = NULL;
->> +
->> +      /* nouveau_fence_wait will create a new current fence, so wait on the
->> +       * _current_ one, and remove both.
->> +       */
->> +      nouveau_fence_ref(screen->base.fence.current, &current);
->> +      nouveau_fence_wait(current);
->> +      nouveau_fence_ref(NULL, &current);
->> +      nouveau_fence_ref(NULL, &screen->base.fence.current);
->>     }
->>     if (screen->base.pushbuf)
->>        screen->base.pushbuf->user_priv = NULL;
->> diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
->> index 044847d..04f3088 100644
->> --- a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
->> +++ b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
->> @@ -340,7 +340,14 @@ nvc0_screen_destroy(struct pipe_screen *pscreen)
->>        return;
->>
->>     if (screen->base.fence.current) {
->> -      nouveau_fence_wait(screen->base.fence.current);
->> +      struct nouveau_fence *current = NULL;
->> +
->> +      /* nouveau_fence_wait will create a new current fence, so wait on the
->> +       * _current_ one, and remove both.
->> +       */
->> +      nouveau_fence_ref(screen->base.fence.current, &current);
->> +      nouveau_fence_wait(current);
->> +      nouveau_fence_ref(NULL, &current);
->>        nouveau_fence_ref(NULL, &screen->base.fence.current);
->>     }
->>     if (screen->base.pushbuf)
->>
->
+
+--1394213656.f7A22.32096
+Date: Fri, 7 Mar 2014 17:34:16 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=75888
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+You forgot to describe your issue. Closing as invalid. FWIW, NVCF (which is
+what the 550 Ti _probably_ is) should be well-supported. Feel free to peruse
+the current open bugs though (I seem to recall a suspend/resume issue some
+people have).
+
+Take a look at http://nouveau.freedesktop.org/wiki/Bugs/ for what sort of
+information we need (in _addition_ to a detailed description of the issue
+you're having).
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1394213656.f7A22.32096
+Date: Fri, 7 Mar 2014 17:34:16 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - A graphics controller nouveau foul."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75888">bug 75888</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - A graphics controller nouveau foul."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75888#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - A graphics controller nouveau foul."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75888">bug 75888</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>You forgot to describe your issue. Closing as invalid. FWIW, NVCF (which is
+what the 550 Ti _probably_ is) should be well-supported. Feel free to peruse
+the current open bugs though (I seem to recall a suspend/resume issue some
+people have).
+
+Take a look at <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a> for what sort of
+information we need (in _addition_ to a detailed description of the issue
+you're having).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1394213656.f7A22.32096--
+
+--===============0390201973==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0390201973==--
