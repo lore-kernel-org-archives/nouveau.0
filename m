@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75888] A graphics controller nouveau foul.
-Date: Fri, 07 Mar 2014 17:34:16 +0000
-Message-ID: <bug-75888-8800-KSrZC8Eyey@http.bugs.freedesktop.org/>
-References: <bug-75888-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
+ blob fw doesn't help
+Date: Fri, 07 Mar 2014 21:17:54 +0000
+Message-ID: <bug-70354-8800-hYRSzYxnEN@http.bugs.freedesktop.org/>
+References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0390201973=="
+Content-Type: multipart/mixed; boundary="===============2117788048=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75888-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,110 +21,97 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0390201973==
-Content-Type: multipart/alternative; boundary="1394213656.f7A22.32096"; charset="us-ascii"
+--===============2117788048==
+Content-Type: multipart/alternative; boundary="1394227074.2b3a1D4a2.11956"; charset="us-ascii"
 
 
---1394213656.f7A22.32096
-Date: Fri, 7 Mar 2014 17:34:16 +0000
+--1394227074.2b3a1D4a2.11956
+Date: Fri, 7 Mar 2014 21:17:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75888
+https://bugs.freedesktop.org/show_bug.cgi?id=3D70354
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #23 from Richard <rich-2ZpFXoJyzMtkMtayTlHv3w@public.gmane.org> ---
+Same issue on a Lenovo Y510P. Tried compiling the module from Ben's git sou=
+rces
+in comment 17 on a 3.13.5 kernel, but it complains:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
+/hidden_tmp/nouveau/drm/core/subdev/mxm/base.c:109:2: error: implicit
+declaration of function =E2=80=98acpi_evaluate_dsm=E2=80=99
+[-Werror=3Dimplicit-function-declaration]
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-You forgot to describe your issue. Closing as invalid. FWIW, NVCF (which is
-what the 550 Ti _probably_ is) should be well-supported. Feel free to peruse
-the current open bugs though (I seem to recall a suspend/resume issue some
-people have).
+grep -R acpi_evaluate_dsm /usr/src/linux/* comes up with nothing, so I'm
+guessing this function disappeared?
 
-Take a look at http://nouveau.freedesktop.org/wiki/Bugs/ for what sort of
-information we need (in _addition_ to a detailed description of the issue
-you're having).
+Also tried simply applying the patch (link in comment 17) to a copy of my
+source tree, and I seem to be missing (at least) the
+"engine/graph/fuc/hubnv108.fuc5.h" file in my source tree.
 
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394213656.f7A22.32096
-Date: Fri, 7 Mar 2014 17:34:16 +0000
+--1394227074.2b3a1D4a2.11956
+Date: Fri, 7 Mar 2014 21:17:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - A graphics controller nouveau foul."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75888">bug 75888</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - A graphics controller nouveau foul."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75888#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - A graphics controller nouveau foul."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75888">bug 75888</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw d=
+oesn't help"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70354#c23">Commen=
+t # 23</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw d=
+oesn't help"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70354">bug 70354<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+rich&#64;warfaresdl.com" title=3D"Richard &lt;rich&#64;warfaresdl.com&gt;">=
+ <span class=3D"fn">Richard</span></a>
 </span></b>
-        <pre>You forgot to describe your issue. Closing as invalid. FWIW, NVCF (which is
-what the 550 Ti _probably_ is) should be well-supported. Feel free to peruse
-the current open bugs though (I seem to recall a suspend/resume issue some
-people have).
+        <pre>Same issue on a Lenovo Y510P. Tried compiling the module from =
+Ben's git sources
+in <a href=3D"show_bug.cgi?id=3D70354#c17">comment 17</a> on a 3.13.5 kerne=
+l, but it complains:
 
-Take a look at <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a> for what sort of
-information we need (in _addition_ to a detailed description of the issue
-you're having).</pre>
+/hidden_tmp/nouveau/drm/core/subdev/mxm/base.c:109:2: error: implicit
+declaration of function =E2=80=98acpi_evaluate_dsm=E2=80=99
+[-Werror=3Dimplicit-function-declaration]
+
+grep -R acpi_evaluate_dsm /usr/src/linux/* comes up with nothing, so I'm
+guessing this function disappeared?
+
+Also tried simply applying the patch (link in <a href=3D"show_bug.cgi?id=3D=
+70354#c17">comment 17</a>) to a copy of my
+source tree, and I seem to be missing (at least) the
+&quot;engine/graph/fuc/hubnv108.fuc5.h&quot; file in my source tree.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1394213656.f7A22.32096--
+--1394227074.2b3a1D4a2.11956--
 
---===============0390201973==
+--===============2117788048==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -134,4 +122,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0390201973==--
+--===============2117788048==--
