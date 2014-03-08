@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69465] [NVA3] Kernel freeze with kernel 3.11.1 /
- PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail
-Date: Sat, 08 Mar 2014 17:34:35 +0000
-Message-ID: <bug-69465-8800-g3pRfGTio4@http.bugs.freedesktop.org/>
-References: <bug-69465-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75813] [NV40] X hangs, system unresponsive
+Date: Sat, 08 Mar 2014 19:13:26 +0000
+Message-ID: <bug-75813-8800-Yqv68n4UgE@http.bugs.freedesktop.org/>
+References: <bug-75813-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0690330714=="
+Content-Type: multipart/mixed; boundary="===============0157178130=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69465-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75813-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0690330714==
-Content-Type: multipart/alternative; boundary="1394300075.aF4c1.15185"; charset="us-ascii"
+--===============0157178130==
+Content-Type: multipart/alternative; boundary="1394306006.2d8F1f1.30712"; charset="us-ascii"
 
 
---1394300075.aF4c1.15185
-Date: Sat, 8 Mar 2014 17:34:35 +0000
+--1394306006.2d8F1f1.30712
+Date: Sat, 8 Mar 2014 19:13:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69465
+https://bugs.freedesktop.org/show_bug.cgi?id=75813
 
---- Comment #6 from gorilla.maguila-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 95364
-  --> https://bugs.freedesktop.org/attachment.cgi?id=95364&action=edit
-dmesg hang kernel 3.13.5
+--- Comment #2 from Marco van Hulten <marco-OrqDK/dsKCwdnm+yROfE0A@public.gmane.org> ---
+I am afraid that I have not saved the Xorg log with these messages (of the
+crash).  Moreover, I have not experienced crashes since my bug report.
 
-I attach another netconsole.log before hang.
+I had not installed libvdpau_nouveau.so, but I did have libvdpau.so as a
+dependency of the mplayer2 package.  Is this the same thing?  I removed it and
+after that reinstalled it.  Possibly the library is different from before,
+since before I used the debian-multimedia repository which may have contained
+this library, but not anymore since that repo has become obsolete for Debian.
 
-I have stripped most of the [drm:drm_mode_addfb], [FB:43] messages inbetween.
-
-
-Kernel 3.13.5
-Mesa 10.1.0
+I will report again when the problem returns.  If I will not report within two
+weeks or so, we should close this bug report.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394300075.aF4c1.15185
-Date: Sat, 8 Mar 2014 17:34:35 +0000
+--1394306006.2d8F1f1.30712
+Date: Sat, 8 Mar 2014 19:13:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,24 +62,25 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA3] Kernel freeze with kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69465#c6">Comment # 6</a>
+   title="NEW --- - [NV40] X hangs, system unresponsive"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75813#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA3] Kernel freeze with kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69465">bug 69465</a>
-              from <span class="vcard"><a class="email" href="mailto:gorilla.maguila&#64;gmail.com" title="gorilla.maguila&#64;gmail.com">gorilla.maguila&#64;gmail.com</a>
+   title="NEW --- - [NV40] X hangs, system unresponsive"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75813">bug 75813</a>
+              from <span class="vcard"><a class="email" href="mailto:marco&#64;hulten.org" title="Marco van Hulten &lt;marco&#64;hulten.org&gt;"> <span class="fn">Marco van Hulten</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=95364" name="attach_95364" title="dmesg hang kernel 3.13.5">attachment 95364</a> <a href="attachment.cgi?id=95364&amp;action=edit" title="dmesg hang kernel 3.13.5">[details]</a></span>
-dmesg hang kernel 3.13.5
+        <pre>I am afraid that I have not saved the Xorg log with these messages (of the
+crash).  Moreover, I have not experienced crashes since my bug report.
 
-I attach another netconsole.log before hang.
+I had not installed libvdpau_nouveau.so, but I did have libvdpau.so as a
+dependency of the mplayer2 package.  Is this the same thing?  I removed it and
+after that reinstalled it.  Possibly the library is different from before,
+since before I used the debian-multimedia repository which may have contained
+this library, but not anymore since that repo has become obsolete for Debian.
 
-I have stripped most of the [drm:drm_mode_addfb], [FB:43] messages inbetween.
-
-
-Kernel 3.13.5
-Mesa 10.1.0</pre>
+I will report again when the problem returns.  If I will not report within two
+weeks or so, we should close this bug report.</pre>
         </div>
       </p>
       <hr>
@@ -92,9 +92,9 @@ Mesa 10.1.0</pre>
     </body>
 </html>
 
---1394300075.aF4c1.15185--
+--1394306006.2d8F1f1.30712--
 
---===============0690330714==
+--===============0157178130==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0690330714==--
+--===============0157178130==--
