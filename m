@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75813] [NV40] X hangs, system unresponsive
-Date: Sat, 08 Mar 2014 19:13:26 +0000
-Message-ID: <bug-75813-8800-Yqv68n4UgE@http.bugs.freedesktop.org/>
+Date: Sat, 08 Mar 2014 19:36:43 +0000
+Message-ID: <bug-75813-8800-YY1PTLQtWt@http.bugs.freedesktop.org/>
 References: <bug-75813-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0157178130=="
+Content-Type: multipart/mixed; boundary="===============0490512391=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75813-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,36 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0157178130==
-Content-Type: multipart/alternative; boundary="1394306006.2d8F1f1.30712"; charset="us-ascii"
+--===============0490512391==
+Content-Type: multipart/alternative; boundary="1394307403.6afb51.1237"; charset="us-ascii"
 
 
---1394306006.2d8F1f1.30712
-Date: Sat, 8 Mar 2014 19:13:26 +0000
+--1394307403.6afb51.1237
+Date: Sat, 8 Mar 2014 19:36:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75813
 
---- Comment #2 from Marco van Hulten <marco-OrqDK/dsKCwdnm+yROfE0A@public.gmane.org> ---
-I am afraid that I have not saved the Xorg log with these messages (of the
-crash).  Moreover, I have not experienced crashes since my bug report.
+--- Comment #3 from Marco van Hulten <marco-OrqDK/dsKCwdnm+yROfE0A@public.gmane.org> ---
+Forget most of my previous message.  It now appears to be the case that I have
+crashes in combination with certain kernel:
 
-I had not installed libvdpau_nouveau.so, but I did have libvdpau.so as a
-dependency of the mplayer2 package.  Is this the same thing?  I removed it and
-after that reinstalled it.  Possibly the library is different from before,
-since before I used the debian-multimedia repository which may have contained
-this library, but not anymore since that repo has become obsolete for Debian.
+3.2.0-3-amd64    CRASH
+3.7-trunk-amd64  no problem
+3.12-1-amd64     CRASH
+3.13-1-amd64     CRASH
 
-I will report again when the problem returns.  If I will not report within two
-weeks or so, we should close this bug report.
+As soon as I have an Xorg log with the error, I will post it here.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394306006.2d8F1f1.30712
-Date: Sat, 8 Mar 2014 19:13:26 +0000
+--1394307403.6afb51.1237
+Date: Sat, 8 Mar 2014 19:36:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,24 +61,22 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV40] X hangs, system unresponsive"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75813#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75813#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV40] X hangs, system unresponsive"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75813">bug 75813</a>
               from <span class="vcard"><a class="email" href="mailto:marco&#64;hulten.org" title="Marco van Hulten &lt;marco&#64;hulten.org&gt;"> <span class="fn">Marco van Hulten</span></a>
 </span></b>
-        <pre>I am afraid that I have not saved the Xorg log with these messages (of the
-crash).  Moreover, I have not experienced crashes since my bug report.
+        <pre>Forget most of my previous message.  It now appears to be the case that I have
+crashes in combination with certain kernel:
 
-I had not installed libvdpau_nouveau.so, but I did have libvdpau.so as a
-dependency of the mplayer2 package.  Is this the same thing?  I removed it and
-after that reinstalled it.  Possibly the library is different from before,
-since before I used the debian-multimedia repository which may have contained
-this library, but not anymore since that repo has become obsolete for Debian.
+3.2.0-3-amd64    CRASH
+3.7-trunk-amd64  no problem
+3.12-1-amd64     CRASH
+3.13-1-amd64     CRASH
 
-I will report again when the problem returns.  If I will not report within two
-weeks or so, we should close this bug report.</pre>
+As soon as I have an Xorg log with the error, I will post it here.</pre>
         </div>
       </p>
       <hr>
@@ -92,9 +88,9 @@ weeks or so, we should close this bug report.</pre>
     </body>
 </html>
 
---1394306006.2d8F1f1.30712--
+--1394307403.6afb51.1237--
 
---===============0157178130==
+--===============0490512391==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0157178130==--
+--===============0490512391==--
