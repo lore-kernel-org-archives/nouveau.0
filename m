@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70390] [NV84] Repeated system crashes under graphics
- load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]
-Date: Sat, 08 Mar 2014 00:38:54 +0000
-Message-ID: <bug-70390-8800-rNu2kLXCCG@http.bugs.freedesktop.org/>
-References: <bug-70390-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69465] [NVA3] Kernel freeze with kernel 3.11.1 /
+ PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail
+Date: Sat, 08 Mar 2014 17:34:35 +0000
+Message-ID: <bug-69465-8800-g3pRfGTio4@http.bugs.freedesktop.org/>
+References: <bug-69465-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1887895880=="
+Content-Type: multipart/mixed; boundary="===============0690330714=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70390-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69465-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1887895880==
-Content-Type: multipart/alternative; boundary="1394239134.AD7EEbc4.17075"; charset="us-ascii"
+--===============0690330714==
+Content-Type: multipart/alternative; boundary="1394300075.aF4c1.15185"; charset="us-ascii"
 
 
---1394239134.AD7EEbc4.17075
-Date: Sat, 8 Mar 2014 00:38:54 +0000
+--1394300075.aF4c1.15185
+Date: Sat, 8 Mar 2014 17:34:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70390
+https://bugs.freedesktop.org/show_bug.cgi?id=69465
 
---- Comment #17 from Peter Hurley <peter-WaGBZJeGNqdsbIuE7sb01tBPR1lH4CV8@public.gmane.org> ---
-3.13 and 3.14 are _much better_ wrt NV84.
+--- Comment #6 from gorilla.maguila-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 95364
+  --> https://bugs.freedesktop.org/attachment.cgi?id=95364&action=edit
+dmesg hang kernel 3.13.5
+
+I attach another netconsole.log before hang.
+
+I have stripped most of the [drm:drm_mode_addfb], [FB:43] messages inbetween.
+
+
+Kernel 3.13.5
+Mesa 10.1.0
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394239134.AD7EEbc4.17075
-Date: Sat, 8 Mar 2014 00:38:54 +0000
+--1394300075.aF4c1.15185
+Date: Sat, 8 Mar 2014 17:34:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,15 +63,24 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV84] Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70390#c17">Comment # 17</a>
+   title="NEW --- - [NVA3] Kernel freeze with kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69465#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV84] Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70390">bug 70390</a>
-              from <span class="vcard"><a class="email" href="mailto:peter&#64;hurleysoftware.com" title="Peter Hurley &lt;peter&#64;hurleysoftware.com&gt;"> <span class="fn">Peter Hurley</span></a>
+   title="NEW --- - [NVA3] Kernel freeze with kernel 3.11.1 / PGRAPH][0000:01:00.0] PGRAPH TLB flush idle timeout fail"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69465">bug 69465</a>
+              from <span class="vcard"><a class="email" href="mailto:gorilla.maguila&#64;gmail.com" title="gorilla.maguila&#64;gmail.com">gorilla.maguila&#64;gmail.com</a>
 </span></b>
-        <pre>3.13 and 3.14 are _much better_ wrt NV84.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=95364" name="attach_95364" title="dmesg hang kernel 3.13.5">attachment 95364</a> <a href="attachment.cgi?id=95364&amp;action=edit" title="dmesg hang kernel 3.13.5">[details]</a></span>
+dmesg hang kernel 3.13.5
+
+I attach another netconsole.log before hang.
+
+I have stripped most of the [drm:drm_mode_addfb], [FB:43] messages inbetween.
+
+
+Kernel 3.13.5
+Mesa 10.1.0</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +92,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1394239134.AD7EEbc4.17075--
+--1394300075.aF4c1.15185--
 
---===============1887895880==
+--===============0690330714==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1887895880==--
+--===============0690330714==--
