@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75813] [NV40] X hangs, system unresponsive
-Date: Sun, 09 Mar 2014 17:19:53 +0000
-Message-ID: <bug-75813-8800-35BxhiU5Lj@http.bugs.freedesktop.org/>
-References: <bug-75813-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75776] [NV50 gallium] Hearthstone displays corrupted
+	buffers
+Date: Sun, 09 Mar 2014 21:45:02 +0000
+Message-ID: <bug-75776-8800-tH68WKMGFZ@http.bugs.freedesktop.org/>
+References: <bug-75776-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1964394352=="
+Content-Type: multipart/mixed; boundary="===============1067950828=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75813-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1964394352==
-Content-Type: multipart/alternative; boundary="1394385593.eff2BcDb1.8022"; charset="us-ascii"
+--===============1067950828==
+Content-Type: multipart/alternative; boundary="1394401502.3BCe0.715"; charset="us-ascii"
 
 
---1394385593.eff2BcDb1.8022
-Date: Sun, 9 Mar 2014 17:19:53 +0000
+--1394401502.3BCe0.715
+Date: Sun, 9 Mar 2014 21:45:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75813
+https://bugs.freedesktop.org/show_bug.cgi?id=75776
 
---- Comment #4 from Marco van Hulten <marco-OrqDK/dsKCwdnm+yROfE0A@public.gmane.org> ---
-Created attachment 95420
-  --> https://bugs.freedesktop.org/attachment.cgi?id=95420&action=edit
-xorg log (does not contain errors, but X became unusable)
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Hmmm... I just tried Hearthstone with the latest mesa-git and wine-1.7.14, and
+it all worked fine. Can you double-check with the latest wine? Perhaps they
+fixed something.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394385593.eff2BcDb1.8022
-Date: Sun, 9 Mar 2014 17:19:53 +0000
+--1394401502.3BCe0.715
+Date: Sun, 9 Mar 2014 21:45:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +55,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV40] X hangs, system unresponsive"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75813#c4">Comment # 4</a>
+   title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV40] X hangs, system unresponsive"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75813">bug 75813</a>
-              from <span class="vcard"><a class="email" href="mailto:marco&#64;hulten.org" title="Marco van Hulten &lt;marco&#64;hulten.org&gt;"> <span class="fn">Marco van Hulten</span></a>
+   title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776">bug 75776</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=95420" name="attach_95420" title="xorg log (does not contain errors, but X became unusable)">attachment 95420</a> <a href="attachment.cgi?id=95420&amp;action=edit" title="xorg log (does not contain errors, but X became unusable)">[details]</a></span>
-xorg log (does not contain errors, but X became unusable)</pre>
+        <pre>Hmmm... I just tried Hearthstone with the latest mesa-git and wine-1.7.14, and
+it all worked fine. Can you double-check with the latest wine? Perhaps they
+fixed something.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +77,9 @@ xorg log (does not contain errors, but X became unusable)</pre>
     </body>
 </html>
 
---1394385593.eff2BcDb1.8022--
+--1394401502.3BCe0.715--
 
---===============1964394352==
+--===============1067950828==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1964394352==--
+--===============1067950828==--
