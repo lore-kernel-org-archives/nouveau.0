@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 33165] [NVA3, NVA8] gpu lockup during driver probe
-Date: Sun, 09 Mar 2014 13:19:39 +0000
-Message-ID: <bug-33165-8800-Tkwy8Lt1gJ@http.bugs.freedesktop.org/>
+Date: Sun, 09 Mar 2014 16:27:28 +0000
+Message-ID: <bug-33165-8800-x7Dro3hM6l@http.bugs.freedesktop.org/>
 References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1257078051=="
+Content-Type: multipart/mixed; boundary="===============0767291967=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,27 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1257078051==
-Content-Type: multipart/alternative; boundary="1394371179.0A5A6f6.17935"; charset="us-ascii"
+--===============0767291967==
+Content-Type: multipart/alternative; boundary="1394382449.c4DCD6.27693"; charset="us-ascii"
 
 
---1394371179.0A5A6f6.17935
-Date: Sun, 9 Mar 2014 13:19:39 +0000
+--1394382449.c4DCD6.27693
+Date: Sun, 9 Mar 2014 16:27:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=33165
 
---- Comment #28 from Oleg Bulatov <oleg-BA2faJl1U0oSAix4rjypdw@public.gmane.org> ---
-For me, with this patch the problem is still present. I sent my mmiotrace
-(NVIDIA Corporation GT215 [GeForce GT 240]).
+--- Comment #29 from Oleg Bulatov <oleg-BA2faJl1U0oSAix4rjypdw@public.gmane.org> ---
+Created attachment 95418
+  --> https://bugs.freedesktop.org/attachment.cgi?id=95418&action=edit
+another patch for gddr5 ram
+
+I made this patch using my mmiotrace, but it doesn't help either.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394371179.0A5A6f6.17935
-Date: Sun, 9 Mar 2014 13:19:39 +0000
+--1394382449.c4DCD6.27693
+Date: Sun, 9 Mar 2014 16:27:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,15 +57,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA3, NVA8] gpu lockup during driver probe"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c28">Comment # 28</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c29">Comment # 29</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA3, NVA8] gpu lockup during driver probe"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
               from <span class="vcard"><a class="email" href="mailto:oleg&#64;bulatov.mobi" title="Oleg Bulatov &lt;oleg&#64;bulatov.mobi&gt;"> <span class="fn">Oleg Bulatov</span></a>
 </span></b>
-        <pre>For me, with this patch the problem is still present. I sent my mmiotrace
-(NVIDIA Corporation GT215 [GeForce GT 240]).</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=95418" name="attach_95418" title="another patch for gddr5 ram">attachment 95418</a> <a href="attachment.cgi?id=95418&amp;action=edit" title="another patch for gddr5 ram">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=33165&amp;attachment=95418'>[review]</a>
+another patch for gddr5 ram
+
+I made this patch using my mmiotrace, but it doesn't help either.</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +79,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1394371179.0A5A6f6.17935--
+--1394382449.c4DCD6.27693--
 
---===============1257078051==
+--===============0767291967==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1257078051==--
+--===============0767291967==--
