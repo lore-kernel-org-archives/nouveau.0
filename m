@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75776] [NV50 gallium] Hearthstone displays corrupted
-	buffers
-Date: Sun, 09 Mar 2014 21:45:02 +0000
-Message-ID: <bug-75776-8800-tH68WKMGFZ@http.bugs.freedesktop.org/>
-References: <bug-75776-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33165] [NVA3, NVA8] gpu lockup during driver probe
+Date: Sun, 09 Mar 2014 22:53:42 +0000
+Message-ID: <bug-33165-8800-TpwCyLQKOK@http.bugs.freedesktop.org/>
+References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1067950828=="
+Content-Type: multipart/mixed; boundary="===============0192444982=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1067950828==
-Content-Type: multipart/alternative; boundary="1394401502.3BCe0.715"; charset="us-ascii"
+--===============0192444982==
+Content-Type: multipart/alternative; boundary="1394405622.4A8c7.15084"; charset="us-ascii"
 
 
---1394401502.3BCe0.715
-Date: Sun, 9 Mar 2014 21:45:02 +0000
+--1394405622.4A8c7.15084
+Date: Sun, 9 Mar 2014 22:53:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75776
+https://bugs.freedesktop.org/show_bug.cgi?id=33165
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Hmmm... I just tried Hearthstone with the latest mesa-git and wine-1.7.14, and
-it all worked fine. Can you double-check with the latest wine? Perhaps they
-fixed something.
+--- Comment #31 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #29)
+> Created attachment 95418 [details] [review]
+> another patch for gddr5 ram
+> 
+> I made this patch using my mmiotrace, but it doesn't help either.
+
+Oh well. Indeed the values in your mmiotrace are different, but your and
+Andrew's mmiotrace are the only traces I've seen that actually have the writes
+to those 0x10fxyz registers. (A few other traces have writes to the
+similar-but-different DDR3 registers.)
+
+And yes, I definitely did want to use offsets[o] in my patch.
+
+Well, perhaps this 0x10f stuff has nothing to do with the issue. My observation
+was that it seemed like for all the people it was broken for had GDDR5 ram,
+which is why I went in this direction.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394401502.3BCe0.715
-Date: Sun, 9 Mar 2014 21:45:02 +0000
+--1394405622.4A8c7.15084
+Date: Sun, 9 Mar 2014 22:53:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,17 +67,30 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c8">Comment # 8</a>
+   title="NEW --- - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c31">Comment # 31</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776">bug 75776</a>
+   title="NEW --- - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hmmm... I just tried Hearthstone with the latest mesa-git and wine-1.7.14, and
-it all worked fine. Can you double-check with the latest wine? Perhaps they
-fixed something.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=33165#c29">comment #29</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=95418" name="attach_95418" title="another patch for gddr5 ram">attachment 95418</a> <a href="attachment.cgi?id=95418&amp;action=edit" title="another patch for gddr5 ram">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=33165&amp;attachment=95418'>[review]</a> [review]
+&gt; another patch for gddr5 ram
+&gt; 
+&gt; I made this patch using my mmiotrace, but it doesn't help either.</span >
+
+Oh well. Indeed the values in your mmiotrace are different, but your and
+Andrew's mmiotrace are the only traces I've seen that actually have the writes
+to those 0x10fxyz registers. (A few other traces have writes to the
+similar-but-different DDR3 registers.)
+
+And yes, I definitely did want to use offsets[o] in my patch.
+
+Well, perhaps this 0x10f stuff has nothing to do with the issue. My observation
+was that it seemed like for all the people it was broken for had GDDR5 ram,
+which is why I went in this direction.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +102,9 @@ fixed something.</pre>
     </body>
 </html>
 
---1394401502.3BCe0.715--
+--1394405622.4A8c7.15084--
 
---===============1067950828==
+--===============0192444982==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +115,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1067950828==--
+--===============0192444982==--
