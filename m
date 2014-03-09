@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58556] MacBook Pro 5, 1 with nVidia 9400m and 9600m,
- scrambled screen
-Date: Sun, 09 Mar 2014 10:36:30 +0000
-Message-ID: <bug-58556-8800-nv9UHdRJhN@http.bugs.freedesktop.org/>
-References: <bug-58556-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33165] [NVA3, NVA8] gpu lockup during driver probe
+Date: Sun, 09 Mar 2014 11:22:05 +0000
+Message-ID: <bug-33165-8800-9Wx8GeTCBj@http.bugs.freedesktop.org/>
+References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1394689842=="
+Content-Type: multipart/mixed; boundary="===============1261933069=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,51 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1394689842==
-Content-Type: multipart/alternative; boundary="1394361390.6b4B37A4.14878"; charset="us-ascii"
+--===============1261933069==
+Content-Type: multipart/alternative; boundary="1394364125.365bd07.25711"; charset="us-ascii"
 
 
---1394361390.6b4B37A4.14878
-Date: Sun, 9 Mar 2014 10:36:30 +0000
+--1394364125.365bd07.25711
+Date: Sun, 9 Mar 2014 11:22:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58556
+https://bugs.freedesktop.org/show_bug.cgi?id=33165
 
---- Comment #27 from krestfallen-KvP5wT2u2U0@public.gmane.org ---
-(In reply to comment #25)
+--- Comment #26 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 95408
+  --> https://bugs.freedesktop.org/attachment.cgi?id=95408&action=edit
+initialize stuff for gddr5 ram
 
-> Booting with both adapters enabled (9600 is the boot adapter), EFI-stub and
-> EFIFB, loading nouveau without acceleration:leads to scrambled screen. The
-> resolution is native 1440x900.
-> 
-> Booting with both adapters enabled (9600 is the boot adapter) EFI-stub and
-> EFIFB, loading nouveau with acceleration, screen/adapter is frozen. System
-> seems to "hang"/lag.
+This patch is based on Andrew's mmiotrace. I saw a sequence of init that I
+didn't see in other traces for working cards. Andrew -- would be interesting if
+you could check it out and see if it helps. The algorithm I came up with is
+insane -- there has to be some sort of data-driven thing going on there, but I
+couldn't work it out.
 
-doesn't efifb wants to pick the 9400M?
-
-efifb pics the framebuffer base at 0xC0010000
-from efifb.c:
-  [M_MBP_5_1] = { "mbp5,1", 0xc0010000, 2048 * 4, 1440, 900 }
-
-these are the values for each gpu:
-9400M:    0xC0010000
-9600M GT: 0xB0030000
-
-i tried nouveau yesterday and couldn't even load the kernel. with the nvidia
-driver it's even possible to switch to the desired gpu on boot. but with the
-9400m screening and logging out afterwards and back in (no reboot) the screen
-also gets scrambled, slow and unstable.
-
-perhaps it's something with the gmux values or memory allocation!?
+For people having issues, please do a mmiotrace of the blob loading on your
+card (see https://wiki.ubuntu.com/X/MMIOTracing for instructions), and send it
+(xz -9'd) to mmio.dumps-Re5JQEeQqe9fmgfxC/sS/w@public.gmane.org
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394361390.6b4B37A4.14878
-Date: Sun, 9 Mar 2014 10:36:30 +0000
+--1394364125.365bd07.25711
+Date: Sun, 9 Mar 2014 11:22:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -77,41 +63,27 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556#c27">Comment # 27</a>
+          bz_status_NEW "
+   title="NEW --- - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c26">Comment # 26</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - MacBook Pro 5,1 with nVidia 9400m and 9600m, scrambled screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58556">bug 58556</a>
-              from <span class="vcard"><a class="email" href="mailto:krestfallen&#64;arcor.de" title="krestfallen&#64;arcor.de">krestfallen&#64;arcor.de</a>
+          bz_status_NEW "
+   title="NEW --- - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=58556#c25">comment #25</a>)
+        <pre>Created <span class=""><a href="attachment.cgi?id=95408" name="attach_95408" title="initialize stuff for gddr5 ram">attachment 95408</a> <a href="attachment.cgi?id=95408&amp;action=edit" title="initialize stuff for gddr5 ram">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=33165&amp;attachment=95408'>[review]</a>
+initialize stuff for gddr5 ram
 
-<span class="quote">&gt; Booting with both adapters enabled (9600 is the boot adapter), EFI-stub and
-&gt; EFIFB, loading nouveau without acceleration:leads to scrambled screen. The
-&gt; resolution is native 1440x900.
-&gt; 
-&gt; Booting with both adapters enabled (9600 is the boot adapter) EFI-stub and
-&gt; EFIFB, loading nouveau with acceleration, screen/adapter is frozen. System
-&gt; seems to &quot;hang&quot;/lag.</span >
+This patch is based on Andrew's mmiotrace. I saw a sequence of init that I
+didn't see in other traces for working cards. Andrew -- would be interesting if
+you could check it out and see if it helps. The algorithm I came up with is
+insane -- there has to be some sort of data-driven thing going on there, but I
+couldn't work it out.
 
-doesn't efifb wants to pick the 9400M?
-
-efifb pics the framebuffer base at 0xC0010000
-from efifb.c:
-  [M_MBP_5_1] = { &quot;mbp5,1&quot;, 0xc0010000, 2048 * 4, 1440, 900 }
-
-these are the values for each gpu:
-9400M:    0xC0010000
-9600M GT: 0xB0030000
-
-i tried nouveau yesterday and couldn't even load the kernel. with the nvidia
-driver it's even possible to switch to the desired gpu on boot. but with the
-9400m screening and logging out afterwards and back in (no reboot) the screen
-also gets scrambled, slow and unstable.
-
-perhaps it's something with the gmux values or memory allocation!?</pre>
+For people having issues, please do a mmiotrace of the blob loading on your
+card (see <a href="https://wiki.ubuntu.com/X/MMIOTracing">https://wiki.ubuntu.com/X/MMIOTracing</a> for instructions), and send it
+(xz -9'd) to <a href="mailto:mmio.dumps&#64;gmail.com">mmio.dumps&#64;gmail.com</a>.</pre>
         </div>
       </p>
       <hr>
@@ -123,9 +95,9 @@ perhaps it's something with the gmux values or memory allocation!?</pre>
     </body>
 </html>
 
---1394361390.6b4B37A4.14878--
+--1394364125.365bd07.25711--
 
---===============1394689842==
+--===============1261933069==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -136,4 +108,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1394689842==--
+--===============1261933069==--
