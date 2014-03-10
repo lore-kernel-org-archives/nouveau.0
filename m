@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75776] [NV50 gallium] Hearthstone displays corrupted
 	buffers
-Date: Mon, 10 Mar 2014 07:43:46 +0000
-Message-ID: <bug-75776-8800-hvQOPpTZ67@http.bugs.freedesktop.org/>
+Date: Mon, 10 Mar 2014 07:48:07 +0000
+Message-ID: <bug-75776-8800-LUYznIer79@http.bugs.freedesktop.org/>
 References: <bug-75776-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1954746498=="
+Content-Type: multipart/mixed; boundary="===============1634809056=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1954746498==
-Content-Type: multipart/alternative; boundary="1394437426.31170.24833"; charset="us-ascii"
+--===============1634809056==
+Content-Type: multipart/alternative; boundary="1394437687.7D520.25749"; charset="us-ascii"
 
 
---1394437426.31170.24833
-Date: Mon, 10 Mar 2014 07:43:46 +0000
+--1394437687.7D520.25749
+Date: Mon, 10 Mar 2014 07:48:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75776
 
---- Comment #9 from Lubosz Sarnecki <lubosz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Same behavior with
+--- Comment #10 from Lubosz Sarnecki <lubosz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Should I try Linux from git, in case it was fixed in nouveau?
+I am on Linux 3.13.6 (Arch).
 
-mesa master 10.2.0 678cf961
+Also I noticed some Uniforms in the dump, which were near negative zero, e.g.
+-0.00001337. I don't know if this could be an issue.
 
-wine release 1.7.14
-wine master 1.7.14 gecd24b5
-old wine master 1.7.13 g9c5c3a8
+Is there a way to bisect the dump or remove certain calls?
+Is there a way to convert the dump to a C program?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394437426.31170.24833
-Date: Mon, 10 Mar 2014 07:43:46 +0000
+--1394437687.7D520.25749
+Date: Mon, 10 Mar 2014 07:48:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,20 +61,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75776">bug 75776</a>
               from <span class="vcard"><a class="email" href="mailto:lubosz&#64;gmail.com" title="Lubosz Sarnecki &lt;lubosz&#64;gmail.com&gt;"> <span class="fn">Lubosz Sarnecki</span></a>
 </span></b>
-        <pre>Same behavior with
+        <pre>Should I try Linux from git, in case it was fixed in nouveau?
+I am on Linux 3.13.6 (Arch).
 
-mesa master 10.2.0 678cf961
+Also I noticed some Uniforms in the dump, which were near negative zero, e.g.
+-0.00001337. I don't know if this could be an issue.
 
-wine release 1.7.14
-wine master 1.7.14 gecd24b5
-old wine master 1.7.13 g9c5c3a8</pre>
+Is there a way to bisect the dump or remove certain calls?
+Is there a way to convert the dump to a C program?</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +87,9 @@ old wine master 1.7.13 g9c5c3a8</pre>
     </body>
 </html>
 
---1394437426.31170.24833--
+--1394437687.7D520.25749--
 
---===============1954746498==
+--===============1634809056==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1954746498==--
+--===============1634809056==--
