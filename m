@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
 	rescan
-Date: Mon, 10 Mar 2014 16:00:06 +0000
-Message-ID: <bug-75985-8800-6qfMYjXCAb@http.bugs.freedesktop.org/>
+Date: Mon, 10 Mar 2014 16:15:40 +0000
+Message-ID: <bug-75985-8800-sx9ohS2Tl0@http.bugs.freedesktop.org/>
 References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0526625192=="
+Content-Type: multipart/mixed; boundary="===============1528410323=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0526625192==
-Content-Type: multipart/alternative; boundary="1394467205.aDA131.13649"; charset="us-ascii"
+--===============1528410323==
+Content-Type: multipart/alternative; boundary="1394468139.305f45e61.17756"; charset="us-ascii"
 
 
---1394467205.aDA131.13649
-Date: Mon, 10 Mar 2014 16:00:05 +0000
+--1394468139.305f45e61.17756
+Date: Mon, 10 Mar 2014 16:15:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75985
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #2 from Jean-Louis Dupond <jean-louis-h84OYfGOAs2zQB+pC5nmwQ@public.gmane.org> ---
+Tested this out.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|HDMI audio device only      |[NVC1] HDMI audio device
-                   |visible after rescan        |only visible after rescan
+On Windows:
+Both devices not visible in lspci. When you then start a game for example, the
+NVIDIA VGA device becomes visible. The audio device not.
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I assume that somewhere in that list of steps you had to plug the HDMI cable
-in? Is it the case, at least on windows, that the PCI device appears and
-disappears at the same time that the HDMI cable is plugged/unplugged?
+Now if you plugin a HDMI cable, both devices (VGA & Audio) becomes visible.
 
-What happens if you boot with the HDMI cable plugged in?
+If we now remove the HDMI cable, both devices stay there for a while, and then
+get deactivated together.
+
+On Linux:
+If we boot with HDMI cable in, same issue.
+
+Now if I do the pci remove/rescan without HDMI cable, same result.
+The Audio device becomes visible, even without having a HDMI cable in!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394467205.aDA131.13649
-Date: Mon, 10 Mar 2014 16:00:05 +0000
+--1394468139.305f45e61.17756
+Date: Mon, 10 Mar 2014 16:15:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,44 +63,35 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] HDMI audio device only visible after rescan"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75985">bug 75985</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>HDMI audio device only visible after rescan
-           </td>
-           <td>[NVC1] HDMI audio device only visible after rescan
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] HDMI audio device only visible after rescan"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75985#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75985#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] HDMI audio device only visible after rescan"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75985">bug 75985</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:jean-louis&#64;dupond.be" title="Jean-Louis Dupond &lt;jean-louis&#64;dupond.be&gt;"> <span class="fn">Jean-Louis Dupond</span></a>
 </span></b>
-        <pre>I assume that somewhere in that list of steps you had to plug the HDMI cable
-in? Is it the case, at least on windows, that the PCI device appears and
-disappears at the same time that the HDMI cable is plugged/unplugged?
+        <pre>Tested this out.
 
-What happens if you boot with the HDMI cable plugged in?</pre>
+On Windows:
+Both devices not visible in lspci. When you then start a game for example, the
+NVIDIA VGA device becomes visible. The audio device not.
+
+Now if you plugin a HDMI cable, both devices (VGA &amp; Audio) becomes visible.
+
+If we now remove the HDMI cable, both devices stay there for a while, and then
+get deactivated together.
+
+On Linux:
+If we boot with HDMI cable in, same issue.
+
+Now if I do the pci remove/rescan without HDMI cable, same result.
+The Audio device becomes visible, even without having a HDMI cable in!</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +103,9 @@ What happens if you boot with the HDMI cable plugged in?</pre>
     </body>
 </html>
 
---1394467205.aDA131.13649--
+--1394468139.305f45e61.17756--
 
---===============0526625192==
+--===============1528410323==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0526625192==--
+--===============1528410323==--
