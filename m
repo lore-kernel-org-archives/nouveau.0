@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
-	rescan
-Date: Mon, 10 Mar 2014 23:14:31 +0000
-Message-ID: <bug-75985-8800-ByA89hmKha@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nv50/ir/gk110: fix some instruction emission
+Date: Tue, 11 Mar 2014 05:47:01 -0400
+Message-ID: <1394531221-7090-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0726775948=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,107 +15,80 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 	<mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Sender: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Information for this was gathered from nvdisasm.
 
---===============0726775948==
-Content-Type: multipart/alternative; boundary="1394493271.8DAEC281.9787"; charset="us-ascii"
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
 
+Entirely untested. Ben, do you think you'll be able to give this a shot?
 
---1394493271.8DAEC281.9787
-Date: Mon, 10 Mar 2014 23:14:31 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+ .../drivers/nouveau/codegen/nv50_ir_emit_gk110.cpp | 33 +++++++++++-----------
+ 1 file changed, 16 insertions(+), 17 deletions(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75985
-
---- Comment #4 from Jean-Louis Dupond <jean-louis-h84OYfGOAs2zQB+pC5nmwQ@public.gmane.org> ---
-All hotplug options enabled in kernel:
-CONFIG_MEMORY_HOTPLUG=y
-CONFIG_MEMORY_HOTPLUG_SPARSE=y
-CONFIG_HOTPLUG_CPU=y
-# CONFIG_BOOTPARAM_HOTPLUG_CPU0 is not set
-# CONFIG_DEBUG_HOTPLUG_CPU0 is not set
-CONFIG_ARCH_ENABLE_MEMORY_HOTPLUG=y
-CONFIG_ACPI_HOTPLUG_CPU=y
-CONFIG_ACPI_HOTPLUG_MEMORY=y
-CONFIG_HOTPLUG_PCI_PCIE=y
-CONFIG_HOTPLUG_PCI=y
-CONFIG_HOTPLUG_PCI_ACPI=y
-CONFIG_HOTPLUG_PCI_ACPI_IBM=m
-CONFIG_HOTPLUG_PCI_CPCI=y
-CONFIG_HOTPLUG_PCI_CPCI_ZT5550=m
-CONFIG_HOTPLUG_PCI_CPCI_GENERIC=m
-CONFIG_HOTPLUG_PCI_SHPC=m
-CONFIG_XEN_BALLOON_MEMORY_HOTPLUG=y
-
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_gk110.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_gk110.cpp
+index fe428ca..84f4413 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_gk110.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_gk110.cpp
+@@ -738,8 +738,7 @@ CodeEmitterGK110::emitSFnOp(const Instruction *i, uint8_t subOp)
+ 
+    NEG_(33, 0);
+    ABS_(31, 0);
+-
+-   // XXX: find saturate
++   SAT_(35, 0);
+ }
+ 
+ void
+@@ -1073,32 +1072,32 @@ CodeEmitterGK110::emitFlow(const Instruction *i)
+ 
+    switch (i->op) {
+    case OP_BRA:
+-      code[1] = f->absolute ? 0x00000 : 0x12000000; // XXX
+-      // if (i->srcExists(0) && i->src(0).getFile() == FILE_MEMORY_CONST)
+-      //   code[0] |= 0x4000;
++      code[1] = f->absolute ? 0x11000000 : 0x12000000;
++      if (i->srcExists(0) && i->src(0).getFile() == FILE_MEMORY_CONST)
++         code[0] |= 0x80;
+       mask = 3;
+       break;
+    case OP_CALL:
+-      code[1] = f->absolute ? 0x00000 : 0x13000000; // XXX
+-      // if (i->srcExists(0) && i->src(0).getFile() == FILE_MEMORY_CONST)
+-      //   code[0] |= 0x4000;
++      code[1] = f->absolute ? 0x11000000 : 0x13000000;
++      if (i->srcExists(0) && i->src(0).getFile() == FILE_MEMORY_CONST)
++         code[0] |= 0x80;
+       mask = 2;
+       break;
+ 
+    case OP_EXIT:    code[1] = 0x18000000; mask = 1; break;
+    case OP_RET:     code[1] = 0x19000000; mask = 1; break;
+-   case OP_DISCARD: code[1] = 0x19800000; mask = 1; break; // XXX: guess
+-   case OP_BREAK:   code[1] = 0x1a800000; mask = 1; break; // XXX: guess
+-   case OP_CONT:    code[1] = 0x1b000000; mask = 1; break; // XXX: guess
++   case OP_DISCARD: code[1] = 0x19800000; mask = 1; break;
++   case OP_BREAK:   code[1] = 0x1a000000; mask = 1; break;
++   case OP_CONT:    code[1] = 0x1a800000; mask = 1; break;
+ 
+    case OP_JOINAT:   code[1] = 0x14800000; mask = 2; break;
+-   case OP_PREBREAK: code[1] = 0x15000000; mask = 2; break; // XXX: guess
+-   case OP_PRECONT:  code[1] = 0x15800000; mask = 2; break; // XXX: guess
+-   case OP_PRERET:   code[1] = 0x16000000; mask = 2; break; // XXX: guess
++   case OP_PREBREAK: code[1] = 0x15000000; mask = 2; break;
++   case OP_PRECONT:  code[1] = 0x15800000; mask = 2; break;
++   case OP_PRERET:   code[1] = 0x13800000; mask = 2; break;
+ 
+-   case OP_QUADON:  code[1] = 0x1c000000; mask = 0; break; // XXX: guess
+-   case OP_QUADPOP: code[1] = 0x1c800000; mask = 0; break; // XXX: guess
+-   case OP_BRKPT:   code[1] = 0x1d000000; mask = 0; break; // XXX: guess
++   case OP_QUADON:  code[1] = 0x1b000000; mask = 0; break;
++   case OP_QUADPOP: code[1] = 0x1c000000; mask = 0; break;
++   case OP_BRKPT:   code[1] = 0x00000000; mask = 0; break;
+    default:
+       assert(!"invalid flow operation");
+       return;
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1394493271.8DAEC281.9787
-Date: Mon, 10 Mar 2014 23:14:31 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] HDMI audio device only visible after rescan"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75985#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] HDMI audio device only visible after rescan"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75985">bug 75985</a>
-              from <span class="vcard"><a class="email" href="mailto:jean-louis&#64;dupond.be" title="Jean-Louis Dupond &lt;jean-louis&#64;dupond.be&gt;"> <span class="fn">Jean-Louis Dupond</span></a>
-</span></b>
-        <pre>All hotplug options enabled in kernel:
-CONFIG_MEMORY_HOTPLUG=y
-CONFIG_MEMORY_HOTPLUG_SPARSE=y
-CONFIG_HOTPLUG_CPU=y
-# CONFIG_BOOTPARAM_HOTPLUG_CPU0 is not set
-# CONFIG_DEBUG_HOTPLUG_CPU0 is not set
-CONFIG_ARCH_ENABLE_MEMORY_HOTPLUG=y
-CONFIG_ACPI_HOTPLUG_CPU=y
-CONFIG_ACPI_HOTPLUG_MEMORY=y
-CONFIG_HOTPLUG_PCI_PCIE=y
-CONFIG_HOTPLUG_PCI=y
-CONFIG_HOTPLUG_PCI_ACPI=y
-CONFIG_HOTPLUG_PCI_ACPI_IBM=m
-CONFIG_HOTPLUG_PCI_CPCI=y
-CONFIG_HOTPLUG_PCI_CPCI_ZT5550=m
-CONFIG_HOTPLUG_PCI_CPCI_GENERIC=m
-CONFIG_HOTPLUG_PCI_SHPC=m
-CONFIG_XEN_BALLOON_MEMORY_HOTPLUG=y</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1394493271.8DAEC281.9787--
-
---===============0726775948==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0726775948==--
+1.8.3.2
