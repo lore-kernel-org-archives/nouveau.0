@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74062] [NVE4] Artifacts in 3D games.
-Date: Sat, 15 Mar 2014 15:16:44 +0000
-Message-ID: <bug-74062-8800-gl9YJrOJHO@http.bugs.freedesktop.org/>
-References: <bug-74062-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57034] [NVA0] second dp monitor stays powered off
+Date: Mon, 17 Mar 2014 15:18:09 +0000
+Message-ID: <bug-57034-8800-9KqRftF1pd@http.bugs.freedesktop.org/>
+References: <bug-57034-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0108160478=="
+Content-Type: multipart/mixed; boundary="===============2105935043=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74062-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57034-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0108160478==
-Content-Type: multipart/alternative; boundary="1394896604.6eeaE1.27319"; charset="us-ascii"
+--===============2105935043==
+Content-Type: multipart/alternative; boundary="1395069488.ED671.19016"; charset="us-ascii"
 
 
---1394896604.6eeaE1.27319
-Date: Sat, 15 Mar 2014 15:16:44 +0000
+--1395069488.ED671.19016
+Date: Mon, 17 Mar 2014 15:18:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74062
+https://bugs.freedesktop.org/show_bug.cgi?id=57034
 
---- Comment #9 from Elias Vanderstuyft <Elias.vds-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-On the following link, you can find my experiences of this issue on nouveau
-with a GTX760 card: 
-http://bugzilla.redhat.com/show_bug.cgi?id=1029224
+Orion Poplawski <orion-CVdf0l11yl+B+jHODAdFcQ@public.gmane.org> changed:
 
-Note that this bug only shows up when running high-end games on high graphics
-settings.
-Other games, like Xonotic don't exhibit this problem (even on high quality) and
-run very smooth (60-120fps). Nouveau seems to use the lowest clock speed: my
-GPU idle temp is 32 degrees Celcius and climbs to only maximum 35 degrees
-Celcius on full load. (so I am quite pleased with nouveau: good performance for
-nearly no power consumption)
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|FIXED                       |---
+
+--- Comment #11 from Orion Poplawski <orion-CVdf0l11yl+B+jHODAdFcQ@public.gmane.org> ---
+Well, it was working fine until I updated my BIOS, now this appears to have
+returned.  I am able to get the second monitor to turn on though by killing and
+restarting the X server.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1394896604.6eeaE1.27319
-Date: Sat, 15 Mar 2014 15:16:44 +0000
+--1395069488.ED671.19016
+Date: Mon, 17 Mar 2014 15:18:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,30 +56,50 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:orion&#64;cora.nwra.com" title="Orion Poplawski &lt;orion&#64;cora.nwra.com&gt;"> <span class="fn">Orion Poplawski</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NVA0] second dp monitor stays powered off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57034">bug 57034</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>FIXED
+           </td>
+           <td>---
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE4] Artifacts in 3D games."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062#c9">Comment # 9</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [NVA0] second dp monitor stays powered off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57034#c11">Comment # 11</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE4] Artifacts in 3D games."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062">bug 74062</a>
-              from <span class="vcard"><a class="email" href="mailto:Elias.vds&#64;gmail.com" title="Elias Vanderstuyft &lt;Elias.vds&#64;gmail.com&gt;"> <span class="fn">Elias Vanderstuyft</span></a>
+          bz_status_REOPENED "
+   title="REOPENED --- - [NVA0] second dp monitor stays powered off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57034">bug 57034</a>
+              from <span class="vcard"><a class="email" href="mailto:orion&#64;cora.nwra.com" title="Orion Poplawski &lt;orion&#64;cora.nwra.com&gt;"> <span class="fn">Orion Poplawski</span></a>
 </span></b>
-        <pre>On the following link, you can find my experiences of this issue on nouveau
-with a GTX760 card: 
-<a href="http://bugzilla.redhat.com/show_bug.cgi?id=1029224">http://bugzilla.redhat.com/show_bug.cgi?id=1029224</a>
-
-Note that this bug only shows up when running high-end games on high graphics
-settings.
-Other games, like Xonotic don't exhibit this problem (even on high quality) and
-run very smooth (60-120fps). Nouveau seems to use the lowest clock speed: my
-GPU idle temp is 32 degrees Celcius and climbs to only maximum 35 degrees
-Celcius on full load. (so I am quite pleased with nouveau: good performance for
-nearly no power consumption)</pre>
+        <pre>Well, it was working fine until I updated my BIOS, now this appears to have
+returned.  I am able to get the second monitor to turn on though by killing and
+restarting the X server.</pre>
         </div>
       </p>
       <hr>
@@ -92,9 +111,9 @@ nearly no power consumption)</pre>
     </body>
 </html>
 
---1394896604.6eeaE1.27319--
+--1395069488.ED671.19016--
 
---===============0108160478==
+--===============2105935043==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +124,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0108160478==--
+--===============2105935043==--
