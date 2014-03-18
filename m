@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76319] [NVE6] MMIO FAULT, black screen on QHD+ K2100M
-Date: Tue, 18 Mar 2014 14:40:57 +0000
-Message-ID: <bug-76319-8800-clMMCHeIHh@http.bugs.freedesktop.org/>
-References: <bug-76319-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75279] XCloseDisplay() takes one minute around
+ nouveau_dri.so, freezing Firefox startup
+Date: Tue, 18 Mar 2014 19:09:28 +0000
+Message-ID: <bug-75279-8800-mL4ww8PbTE@http.bugs.freedesktop.org/>
+References: <bug-75279-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0835213367=="
+Content-Type: multipart/mixed; boundary="===============0301237329=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75279-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,41 +21,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0835213367==
-Content-Type: multipart/alternative; boundary="1395153657.a2E5D4C2.17999"; charset="us-ascii"
+--===============0301237329==
+Content-Type: multipart/alternative; boundary="1395169768.460f3.31398"; charset="us-ascii"
 
 
---1395153657.a2E5D4C2.17999
-Date: Tue, 18 Mar 2014 14:40:57 +0000
+--1395169768.460f3.31398
+Date: Tue, 18 Mar 2014 19:09:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76319
+https://bugs.freedesktop.org/show_bug.cgi?id=75279
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I think you may be the proud owner of multiple issues, as evidenced by the gpu
-lockup you get down the line.
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-First off, there's no way that load had those nouveau.debug settings. You would
-have seen a LOT more messages. I'm guessing you looked at some log file, and
-that log file ignores debug-level messages. Try checking in dmesg directly.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-Secondly, I'm pretty sure there's no way to achieve those resolutions without
-the 540MHz clock frequency provided for by DP1.2 (at least not with 24bit
-color). In core/engine/disp/dport.c:nouveau_dp_train, prepend a 540000 value in
-the first position of the bw_list array.
+--- Comment #42 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Frederic, Benoit,
 
-Try to get a full debug log (which should include the various DP debug
-messages, as well as others), with that change, and the nouveau.debug settings
-you were already using (but apparently were either not being picked up, or
-something else).
+Thank you very much for the enormous help with triaging this bug.
+A few quick tests on my system indicate that the problem is resolved by the
+linked patch. AFAICS the patch is only in the master branch as it just missed
+the 10.0.4 and 10.1.0 release. The commit is annotated and will be included in
+the next mesa bug fix releases.
+
+Feel free to reopen the report if the bug is still around with the patch from
+commit 41.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1395153657.a2E5D4C2.17999
-Date: Tue, 18 Mar 2014 14:40:57 +0000
+--1395169768.460f3.31398
+Date: Tue, 18 Mar 2014 19:09:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,35 +64,57 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] MMIO FAULT, black screen on QHD+ K2100M"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76319#c1">Comment # 1</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279#c42">Comment # 42</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] MMIO FAULT, black screen on QHD+ K2100M"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76319">bug 76319</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - XCloseDisplay() takes one minute around nouveau_dri.so, freezing Firefox startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75279">bug 75279</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>I think you may be the proud owner of multiple issues, as evidenced by the gpu
-lockup you get down the line.
+        <pre>Frederic, Benoit,
 
-First off, there's no way that load had those nouveau.debug settings. You would
-have seen a LOT more messages. I'm guessing you looked at some log file, and
-that log file ignores debug-level messages. Try checking in dmesg directly.
+Thank you very much for the enormous help with triaging this bug.
+A few quick tests on my system indicate that the problem is resolved by the
+linked patch. AFAICS the patch is only in the master branch as it just missed
+the 10.0.4 and 10.1.0 release. The commit is annotated and will be included in
+the next mesa bug fix releases.
 
-Secondly, I'm pretty sure there's no way to achieve those resolutions without
-the 540MHz clock frequency provided for by DP1.2 (at least not with 24bit
-color). In core/engine/disp/dport.c:nouveau_dp_train, prepend a 540000 value in
-the first position of the bw_list array.
-
-Try to get a full debug log (which should include the various DP debug
-messages, as well as others), with that change, and the nouveau.debug settings
-you were already using (but apparently were either not being picked up, or
-something else).</pre>
+Feel free to reopen the report if the bug is still around with the patch from
+commit 41.</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +126,9 @@ something else).</pre>
     </body>
 </html>
 
---1395153657.a2E5D4C2.17999--
+--1395169768.460f3.31398--
 
---===============0835213367==
+--===============0301237329==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +139,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0835213367==--
+--===============0301237329==--
