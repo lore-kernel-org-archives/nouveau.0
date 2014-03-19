@@ -1,8 +1,8 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] disp/nvd0-: allow 540MHz data rate for nvd0+
+Subject: [PATCH v2] disp/nvd0-: allow 540MHz data rate for nvd0+
 	devices
-Date: Wed, 19 Mar 2014 10:43:09 -0400
-Message-ID: <1395240189-7719-1-git-send-email-imirkin@alum.mit.edu>
+Date: Wed, 19 Mar 2014 10:45:55 -0400
+Message-ID: <1395240355-30156-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -32,6 +32,8 @@ first place, so it may not be a huge issue.
 I don't have the hardware for testing this myself, but hopefully
 someone can verify that this doesn't break "regular" non-4K setups.
 
+v1 -> v2: nouveau_device -> nv_device
+
  nvkm/engine/disp/dport.c | 5 ++++-
  1 file changed, 4 insertions(+), 1 deletion(-)
 
@@ -50,7 +52,7 @@ index 1bd4c63..1ea3e65 100644
  	u32 data;
  	int ret;
  
-+	if (nouveau_device(disp)->card_type < NV_D0)
++	if (nv_device(disp)->card_type < NV_D0)
 +		link_bw++;
 +
  	/* find the bios displayport data relevant to this output */
