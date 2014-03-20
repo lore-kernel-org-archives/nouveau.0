@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 76414] [NVE4] Flash player triggers freeze with:
  PFIFO: read fault at ... [UNSUPPORTED_KIND] from PBDMA0/HOST ...
-Date: Thu, 20 Mar 2014 20:34:29 +0000
-Message-ID: <bug-76414-8800-ecMKkdvd4V@http.bugs.freedesktop.org/>
+Date: Thu, 20 Mar 2014 20:40:32 +0000
+Message-ID: <bug-76414-8800-Ob5hZ0i2e7@http.bugs.freedesktop.org/>
 References: <bug-76414-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1574794438=="
+Content-Type: multipart/mixed; boundary="===============0563899155=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-76414-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1574794438==
-Content-Type: multipart/alternative; boundary="1395347669.1d8D1.13242"; charset="us-ascii"
+--===============0563899155==
+Content-Type: multipart/alternative; boundary="1395348032.F80833f11.14181"; charset="us-ascii"
 
 
---1395347669.1d8D1.13242
-Date: Thu, 20 Mar 2014 20:34:29 +0000
+--1395348032.F80833f11.14181
+Date: Thu, 20 Mar 2014 20:40:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D76414
 
---- Comment #1 from Timoth=C3=A9e Ravier <tim-m/3gSgDDTkE@public.gmane.org> ---
-Created attachment 96123
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D96123&action=3Dedit
-dmesg log
+--- Comment #2 from Timoth=C3=A9e Ravier <tim-m/3gSgDDTkE@public.gmane.org> ---
+Flash on both Firefox and Chromium triggers the freeze. Other flash based
+websites (youtube for example) do not trigger the issue. Looks like the tri=
+gger
+is the heavy Flash usage on a single page.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1395347669.1d8D1.13242
-Date: Thu, 20 Mar 2014 20:34:29 +0000
+--1395348032.F80833f11.14181
+Date: Thu, 20 Mar 2014 20:40:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,8 +60,8 @@ Content-Transfer-Encoding: quoted-printable
           bz_status_NEW "
    title=3D"NEW --- - [NVE4] Flash player triggers freeze with: PFIFO: read=
  fault at ... [UNSUPPORTED_KIND] from PBDMA0/HOST ..."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D76414#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D76414#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW --- - [NVE4] Flash player triggers freeze with: PFIFO: read=
@@ -71,11 +72,11 @@ Content-Transfer-Encoding: quoted-printable
 tim&#64;siosm.fr" title=3D"Timoth=C3=A9e Ravier &lt;tim&#64;siosm.fr&gt;"> =
 <span class=3D"fn">Timoth=C3=A9e Ravier</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D96123"=
- name=3D"attach_96123" title=3D"dmesg log">attachment 96123</a> <a href=3D"=
-attachment.cgi?id=3D96123&amp;action=3Dedit" title=3D"dmesg log">[details]<=
-/a></span>
-dmesg log</pre>
+        <pre>Flash on both Firefox and Chromium triggers the freeze. Other =
+flash based
+websites (youtube for example) do not trigger the issue. Looks like the tri=
+gger
+is the heavy Flash usage on a single page.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +88,9 @@ dmesg log</pre>
     </body>
 </html>
 
---1395347669.1d8D1.13242--
+--1395348032.F80833f11.14181--
 
---===============1574794438==
+--===============0563899155==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1574794438==--
+--===============0563899155==--
