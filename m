@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76319] [NVE6] MMIO FAULT, black screen on QHD+ K2100M
-Date: Thu, 20 Mar 2014 11:31:28 +0000
-Message-ID: <bug-76319-8800-0DAacLLG7K@http.bugs.freedesktop.org/>
-References: <bug-76319-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 76376] mesa does not build after nouveau loader
+	changes
+Date: Thu, 20 Mar 2014 11:45:48 +0000
+Message-ID: <bug-76376-8800-gtXxxw2xgn@http.bugs.freedesktop.org/>
+References: <bug-76376-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0903042565=="
+Content-Type: multipart/mixed; boundary="===============1486405731=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-76376-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0903042565==
-Content-Type: multipart/alternative; boundary="1395315088.Fd271.4592"; charset="us-ascii"
+--===============1486405731==
+Content-Type: multipart/alternative; boundary="1395315948.033BfE0.7372"; charset="us-ascii"
 
 
---1395315088.Fd271.4592
-Date: Thu, 20 Mar 2014 11:31:28 +0000
+--1395315948.033BfE0.7372
+Date: Thu, 20 Mar 2014 11:45:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76319
+https://bugs.freedesktop.org/show_bug.cgi?id=76376
 
---- Comment #9 from D. Moens <d-bugzilla-vUpi/VKO0VA@public.gmane.org> ---
-Created attachment 96094
-  --> https://bugs.freedesktop.org/attachment.cgi?id=96094&action=edit
-errors2.out
+--- Comment #2 from Jonathan Gray <jsg-7YlrpqBBQ3VAfugRpC6u6w@public.gmane.org> ---
+In OpenBSD we have a single set of shared kernel/userland drm headers.  Only
+the headers for the supported drm drivers (i915 and radeon) are installed.  We
+also use a seperate set of Makefiles for libdrm instead of autoconf.
+
+I can propose adding the nouveau_drm.h to our kernel but I'd rather not do this
+for the rest of the drm drivers we don't support.  The exynos code in libdrm
+and exynos_drm.h for example is GPL licensed and we can't include any GPL
+licensed code in the kernel.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1395315088.Fd271.4592
-Date: Thu, 20 Mar 2014 11:31:28 +0000
+--1395315948.033BfE0.7372
+Date: Thu, 20 Mar 2014 11:45:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +60,22 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] MMIO FAULT, black screen on QHD+ K2100M"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76319#c9">Comment # 9</a>
+   title="NEW --- - mesa does not build after nouveau loader changes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76376#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] MMIO FAULT, black screen on QHD+ K2100M"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76319">bug 76319</a>
-              from <span class="vcard"><a class="email" href="mailto:d-bugzilla&#64;moens.cc" title="D. Moens &lt;d-bugzilla&#64;moens.cc&gt;"> <span class="fn">D. Moens</span></a>
+   title="NEW --- - mesa does not build after nouveau loader changes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76376">bug 76376</a>
+              from <span class="vcard"><a class="email" href="mailto:jsg&#64;openbsd.org" title="Jonathan Gray &lt;jsg&#64;openbsd.org&gt;"> <span class="fn">Jonathan Gray</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=96094" name="attach_96094" title="errors2.out">attachment 96094</a> <a href="attachment.cgi?id=96094&amp;action=edit" title="errors2.out">[details]</a></span>
-errors2.out</pre>
+        <pre>In OpenBSD we have a single set of shared kernel/userland drm headers.  Only
+the headers for the supported drm drivers (i915 and radeon) are installed.  We
+also use a seperate set of Makefiles for libdrm instead of autoconf.
+
+I can propose adding the nouveau_drm.h to our kernel but I'd rather not do this
+for the rest of the drm drivers we don't support.  The exynos code in libdrm
+and exynos_drm.h for example is GPL licensed and we can't include any GPL
+licensed code in the kernel.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +87,9 @@ errors2.out</pre>
     </body>
 </html>
 
---1395315088.Fd271.4592--
+--1395315948.033BfE0.7372--
 
---===============0903042565==
+--===============1486405731==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0903042565==--
+--===============1486405731==--
