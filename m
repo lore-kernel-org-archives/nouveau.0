@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 76376] mesa does not build after nouveau loader
 	changes
-Date: Fri, 21 Mar 2014 16:27:06 +0000
-Message-ID: <bug-76376-8800-hp9pImpT0a@http.bugs.freedesktop.org/>
+Date: Fri, 21 Mar 2014 17:04:55 +0000
+Message-ID: <bug-76376-8800-a0rSqyjbkO@http.bugs.freedesktop.org/>
 References: <bug-76376-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1982182725=="
+Content-Type: multipart/mixed; boundary="===============1968051703=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-76376-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,40 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1982182725==
-Content-Type: multipart/alternative; boundary="1395419225.Ab6B51.4454"; charset="us-ascii"
+--===============1968051703==
+Content-Type: multipart/alternative; boundary="1395421495.3Bfe0.13930"; charset="us-ascii"
 
 
---1395419225.Ab6B51.4454
-Date: Fri, 21 Mar 2014 16:27:05 +0000
+--1395421495.3Bfe0.13930
+Date: Fri, 21 Mar 2014 17:04:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=76376
 
---- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Pardon for cutting in:
+--- Comment #5 from Jonathan Gray <jsg-7YlrpqBBQ3VAfugRpC6u6w@public.gmane.org> ---
+It isn't 'old libdrm' or 'random files' it is a specific subset for the drivers
+the kernel supports.  The history here seems to be that five years ago Owain
+removed the autoconf portions for reasons I'm not entirely clear on.  Normally
+this is because of something like a requirement on gnu make and python in a
+build system.
 
-Jonathan, apart from exynos is there any compelling reason why *BSD uses such
-an "old libdrm", and syncs "random files" rather than the whole repo ?
+The diff we have to libdrm is quite minimal, and includes changes for our
+privilege separated server and a drmCheckModesettingSupported() case for
+OpenBSD.
 
-IMHO one could ping the exynos people to correct the license, similarly to what
-Rob did recently with freedreno[1], and then just use the upstream libdrm.
-
-
-Ilia, I have the same impression as well. AFAICS the headers *_drm.h (provided
-by libdrm) are meant to be independent from on the device specific libraries/
-packages libdrm_*.
-
-[1]
-http://cgit.freedesktop.org/mesa/drm/commit/?id=128e74cf6492025e63e035566bd6e2203e8da5e1
+If the answer here is all the _drm.h files must be installed fine, I'll work
+something out.  Maybe we'll go back to having multiple copies of the headers
+instead of sharing them between userland and the kernel.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1395419225.Ab6B51.4454
-Date: Fri, 21 Mar 2014 16:27:05 +0000
+--1395421495.3Bfe0.13930
+Date: Fri, 21 Mar 2014 17:04:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,28 +66,26 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - mesa does not build after nouveau loader changes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76376#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76376#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - mesa does not build after nouveau loader changes"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=76376">bug 76376</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:jsg&#64;openbsd.org" title="Jonathan Gray &lt;jsg&#64;openbsd.org&gt;"> <span class="fn">Jonathan Gray</span></a>
 </span></b>
-        <pre>Pardon for cutting in:
+        <pre>It isn't 'old libdrm' or 'random files' it is a specific subset for the drivers
+the kernel supports.  The history here seems to be that five years ago Owain
+removed the autoconf portions for reasons I'm not entirely clear on.  Normally
+this is because of something like a requirement on gnu make and python in a
+build system.
 
-Jonathan, apart from exynos is there any compelling reason why *BSD uses such
-an &quot;old libdrm&quot;, and syncs &quot;random files&quot; rather than the whole repo ?
+The diff we have to libdrm is quite minimal, and includes changes for our
+privilege separated server and a drmCheckModesettingSupported() case for
+OpenBSD.
 
-IMHO one could ping the exynos people to correct the license, similarly to what
-Rob did recently with freedreno[1], and then just use the upstream libdrm.
-
-
-Ilia, I have the same impression as well. AFAICS the headers *_drm.h (provided
-by libdrm) are meant to be independent from on the device specific libraries/
-packages libdrm_*.
-
-[1]
-<a href="http://cgit.freedesktop.org/mesa/drm/commit/?id=128e74cf6492025e63e035566bd6e2203e8da5e1">http://cgit.freedesktop.org/mesa/drm/commit/?id=128e74cf6492025e63e035566bd6e2203e8da5e1</a></pre>
+If the answer here is all the _drm.h files must be installed fine, I'll work
+something out.  Maybe we'll go back to having multiple copies of the headers
+instead of sharing them between userland and the kernel.</pre>
         </div>
       </p>
       <hr>
@@ -101,9 +97,9 @@ packages libdrm_*.
     </body>
 </html>
 
---1395419225.Ab6B51.4454--
+--1395421495.3Bfe0.13930--
 
---===============1982182725==
+--===============1968051703==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -114,4 +110,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1982182725==--
+--===============1968051703==--
