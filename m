@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76475] New: Nouveau fails to load due to unknown
-	opcode 0x80
-Date: Sat, 22 Mar 2014 09:19:47 +0000
-Message-ID: <bug-76475-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 76475] Nouveau fails to load due to unknown opcode
+	0x80
+Date: Sat, 22 Mar 2014 09:20:20 +0000
+Message-ID: <bug-76475-8800-djyKLM7YnS@http.bugs.freedesktop.org/>
+References: <bug-76475-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1064954309=="
+Content-Type: multipart/mixed; boundary="===============0840572948=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-76475-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,52 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1064954309==
-Content-Type: multipart/alternative; boundary="1395479987.60b4d5F1.26370"; charset="us-ascii"
+--===============0840572948==
+Content-Type: multipart/alternative; boundary="1395480020.FF3bFE1.26536"; charset="us-ascii"
 
 
---1395479987.60b4d5F1.26370
-Date: Sat, 22 Mar 2014 09:19:47 +0000
+--1395480020.FF3bFE1.26536
+Date: Sat, 22 Mar 2014 09:20:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=76475
 
-          Priority: medium
-            Bug ID: 76475
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Nouveau fails to load due to unknown opcode 0x80
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
-
-Created attachment 96195
-  --> https://bugs.freedesktop.org/attachment.cgi?id=96195&action=edit
-vbios from /sys/bus/pci/devices/<pciid>/rom
-
-Since kernel 3.13 nouveau fails to load with error -22.
-Olso it reports an unknown opcode 0x80.
-I suspect it fails to load becouse of the unknown opcode, since i have seen the
-return code of the function checking the opcodes have changed in 3.13.
-
-I have attached the vbios taken from /sys/bus/pci/devices/<pciid>/rom and the
-dmesg from both kernel 3.12 and 3.14 rc7.
-
-Could maybe a mmiotrace be helpful?
+--- Comment #1 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 96196
+  --> https://bugs.freedesktop.org/attachment.cgi?id=96196&action=edit
+dmesg from kernel 3.12
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1395479987.60b4d5F1.26370
-Date: Sat, 22 Mar 2014 09:19:47 +0000
+--1395480020.FF3bFE1.26536
+Date: Sat, 22 Mar 2014 09:20:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,107 +50,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau fails to load due to unknown opcode 0x80"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475">76475</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Nouveau fails to load due to unknown opcode 0x80
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>patrick.clara&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=96195" name="attach_96195" title="vbios from /sys/bus/pci/devices/&lt;pciid&gt;/rom">attachment 96195</a> <a href="attachment.cgi?id=96195&amp;action=edit" title="vbios from /sys/bus/pci/devices/&lt;pciid&gt;/rom">[details]</a></span>
-vbios from /sys/bus/pci/devices/&lt;pciid&gt;/rom
-
-Since kernel 3.13 nouveau fails to load with error -22.
-Olso it reports an unknown opcode 0x80.
-I suspect it fails to load becouse of the unknown opcode, since i have seen the
-return code of the function checking the opcodes have changed in 3.13.
-
-I have attached the vbios taken from /sys/bus/pci/devices/&lt;pciid&gt;/rom and the
-dmesg from both kernel 3.12 and 3.14 rc7.
-
-Could maybe a mmiotrace be helpful?</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Nouveau fails to load due to unknown opcode 0x80"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Nouveau fails to load due to unknown opcode 0x80"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475">bug 76475</a>
+              from <span class="vcard"><a class="email" href="mailto:patrick.clara&#64;gmail.com" title="patrick.clara&#64;gmail.com">patrick.clara&#64;gmail.com</a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=96196" name="attach_96196" title="dmesg from kernel 3.12">attachment 96196</a> <a href="attachment.cgi?id=96196&amp;action=edit" title="dmesg from kernel 3.12">[details]</a></span>
+dmesg from kernel 3.12</pre>
         </div>
       </p>
       <hr>
@@ -184,9 +76,9 @@ Could maybe a mmiotrace be helpful?</pre>
     </body>
 </html>
 
---1395479987.60b4d5F1.26370--
+--1395480020.FF3bFE1.26536--
 
---===============1064954309==
+--===============0840572948==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -197,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1064954309==--
+--===============0840572948==--
