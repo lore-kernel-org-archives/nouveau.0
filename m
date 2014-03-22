@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71382] [NV4C] Nouveau dmesg error, computer hangs
-Date: Sat, 22 Mar 2014 13:45:10 +0000
-Message-ID: <bug-71382-8800-k1bm1qllVC@http.bugs.freedesktop.org/>
+Date: Sat, 22 Mar 2014 13:51:30 +0000
+Message-ID: <bug-71382-8800-BfKxyjsxKE@http.bugs.freedesktop.org/>
 References: <bug-71382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1519422343=="
+Content-Type: multipart/mixed; boundary="===============0921893067=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,48 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1519422343==
-Content-Type: multipart/alternative; boundary="1395495910.bc58b62.19553"; charset="us-ascii"
+--===============0921893067==
+Content-Type: multipart/alternative; boundary="1395496290.Ec8A42.21452"; charset="us-ascii"
 
 
---1395495910.bc58b62.19553
-Date: Sat, 22 Mar 2014 13:45:10 +0000
+--1395496290.Ec8A42.21452
+Date: Sat, 22 Mar 2014 13:51:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71382
 
---- Comment #8 from Camilo Gonzalez <cagonto1980-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I have got the same problem with my NV4C chipset.
-
-I have been looking for the same bug in Fedora bugzilla, but have not found.
-
-I am using 32-bits KDE Fedora 19 with latest version of nouveau.
-
-There are 2 main ways to reproduce the hang, although it happens randomly:
-
-1.- Trying Firefox startup.
-2.- Launching KInfoCenter and clicking on Graphical Information -> OpenGL.
-
-Attempting these 2 actions repeteadly should cause the hang.
-
-There is an other trail: the hang began to happen when I enabled hardware
-acceleration (kernel parameter nouveau.noaccel=0).
-
-I provoked the hang while ran the command 'dmesg -T -w -x > ./CGTdmesg.log' on
-a Konsole terminal.
-I have attached the file CGTdmesg.log for more information.
-However, there is no significant logs in it.
-Everybody can see that a message was being written when the hang started.
-
-I hope this information to be useful.
+--- Comment #9 from Camilo Gonzalez <cagonto1980-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 96199
+  --> https://bugs.freedesktop.org/attachment.cgi?id=96199&action=edit
+dmesg output until hang started
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1395495910.bc58b62.19553
-Date: Sat, 22 Mar 2014 13:45:10 +0000
+--1395496290.Ec8A42.21452
+Date: Sat, 22 Mar 2014 13:51:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -75,36 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4C] Nouveau dmesg error, computer hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4C] Nouveau dmesg error, computer hangs"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71382">bug 71382</a>
               from <span class="vcard"><a class="email" href="mailto:cagonto1980&#64;gmail.com" title="Camilo Gonzalez &lt;cagonto1980&#64;gmail.com&gt;"> <span class="fn">Camilo Gonzalez</span></a>
 </span></b>
-        <pre>I have got the same problem with my NV4C chipset.
-
-I have been looking for the same bug in Fedora bugzilla, but have not found.
-
-I am using 32-bits KDE Fedora 19 with latest version of nouveau.
-
-There are 2 main ways to reproduce the hang, although it happens randomly:
-
-1.- Trying Firefox startup.
-2.- Launching KInfoCenter and clicking on Graphical Information -&gt; OpenGL.
-
-Attempting these 2 actions repeteadly should cause the hang.
-
-There is an other trail: the hang began to happen when I enabled hardware
-acceleration (kernel parameter nouveau.noaccel=0).
-
-I provoked the hang while ran the command 'dmesg -T -w -x &gt; ./CGTdmesg.log' on
-a Konsole terminal.
-I have attached the file CGTdmesg.log for more information.
-However, there is no significant logs in it.
-Everybody can see that a message was being written when the hang started.
-
-I hope this information to be useful.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=96199" name="attach_96199" title="dmesg output until hang started">attachment 96199</a> <a href="attachment.cgi?id=96199&amp;action=edit" title="dmesg output until hang started">[details]</a></span>
+dmesg output until hang started</pre>
         </div>
       </p>
       <hr>
@@ -116,9 +75,9 @@ I hope this information to be useful.</pre>
     </body>
 </html>
 
---1395495910.bc58b62.19553--
+--1395496290.Ec8A42.21452--
 
---===============1519422343==
+--===============0921893067==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -129,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1519422343==--
+--===============0921893067==--
