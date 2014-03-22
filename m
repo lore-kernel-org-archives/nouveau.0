@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 76475] Nouveau fails to load due to unknown opcode
 	0x80
-Date: Sat, 22 Mar 2014 09:20:39 +0000
-Message-ID: <bug-76475-8800-po43hxdNiN@http.bugs.freedesktop.org/>
+Date: Sat, 22 Mar 2014 13:23:18 +0000
+Message-ID: <bug-76475-8800-dIDL4uvxJz@http.bugs.freedesktop.org/>
 References: <bug-76475-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1639665799=="
+Content-Type: multipart/mixed; boundary="===============0726746273=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-76475-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1639665799==
-Content-Type: multipart/alternative; boundary="1395480039.a0BBAB743.26536"; charset="us-ascii"
+--===============0726746273==
+Content-Type: multipart/alternative; boundary="1395494598.beeAFa52.13719"; charset="us-ascii"
 
 
---1395480039.a0BBAB743.26536
-Date: Sat, 22 Mar 2014 09:20:39 +0000
+--1395494598.beeAFa52.13719
+Date: Sat, 22 Mar 2014 13:23:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=76475
 
---- Comment #2 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 96197
-  --> https://bugs.freedesktop.org/attachment.cgi?id=96197&action=edit
-dmesg from kernel 3.14 rc7
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #96195|text/plain                  |application/octet-stream
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1395480039.a0BBAB743.26536
-Date: Sat, 22 Mar 2014 09:20:39 +0000
+--1395494598.beeAFa52.13719
+Date: Sat, 22 Mar 2014 13:23:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +52,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau fails to load due to unknown opcode 0x80"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Nouveau fails to load due to unknown opcode 0x80"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=76475">bug 76475</a>
-              from <span class="vcard"><a class="email" href="mailto:patrick.clara&#64;gmail.com" title="patrick.clara&#64;gmail.com">patrick.clara&#64;gmail.com</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=96197" name="attach_96197" title="dmesg from kernel 3.14 rc7">attachment 96197</a> <a href="attachment.cgi?id=96197&amp;action=edit" title="dmesg from kernel 3.14 rc7">[details]</a></span>
-dmesg from kernel 3.14 rc7</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #96195 mime type</td>
+           <td>text/plain
+           </td>
+           <td>application/octet-stream
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +84,9 @@ dmesg from kernel 3.14 rc7</pre>
     </body>
 </html>
 
---1395480039.a0BBAB743.26536--
+--1395494598.beeAFa52.13719--
 
---===============1639665799==
+--===============0726746273==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1639665799==--
+--===============0726746273==--
