@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76475] [NVE7] fails to load due to unknown opcode
- 0x80 (incorrect vbios)
-Date: Sat, 22 Mar 2014 13:29:36 +0000
-Message-ID: <bug-76475-8800-3kHaWAmED5@http.bugs.freedesktop.org/>
-References: <bug-76475-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71382] [NV4C] Nouveau dmesg error, computer hangs
+Date: Sat, 22 Mar 2014 13:45:10 +0000
+Message-ID: <bug-71382-8800-k1bm1qllVC@http.bugs.freedesktop.org/>
+References: <bug-71382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1011530595=="
+Content-Type: multipart/mixed; boundary="===============1519422343=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76475-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,43 +20,48 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1011530595==
-Content-Type: multipart/alternative; boundary="1395494976.1E5e62.15388"; charset="us-ascii"
+--===============1519422343==
+Content-Type: multipart/alternative; boundary="1395495910.bc58b62.19553"; charset="us-ascii"
 
 
---1395494976.1E5e62.15388
-Date: Sat, 22 Mar 2014 13:29:36 +0000
+--1395495910.bc58b62.19553
+Date: Sat, 22 Mar 2014 13:45:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76475
+https://bugs.freedesktop.org/show_bug.cgi?id=71382
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #8 from Camilo Gonzalez <cagonto1980-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I have got the same problem with my NV4C chipset.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Nouveau fails to load due   |[NVE7] fails to load due to
-                   |to unknown opcode 0x80      |unknown opcode 0x80
-                   |                            |(incorrect vbios)
+I have been looking for the same bug in Fedora bugzilla, but have not found.
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Unfortunately the VBIOS from the PCIROM is often the wrong one. The data here
-is the x86 opcodes instead of the vbios opocdes. And as you observed, we now
-consider unknown opcodes an error. (The init tables need to be run on e.g.
-resume, and if it's a secondary card, on load as well.)
+I am using 32-bits KDE Fedora 19 with latest version of nouveau.
 
-An mmiotrace of the blob loading would potentially be helpful, you can send one
-(compressed... xz -9 works well) to mmio.dumps-Re5JQEeQqe9fmgfxC/sS/w@public.gmane.org
+There are 2 main ways to reproduce the hang, although it happens randomly:
 
-Can you provide a bit more info about this system? Is it an optimus setup?
-Could you provide an acpidump?
+1.- Trying Firefox startup.
+2.- Launching KInfoCenter and clicking on Graphical Information -> OpenGL.
+
+Attempting these 2 actions repeteadly should cause the hang.
+
+There is an other trail: the hang began to happen when I enabled hardware
+acceleration (kernel parameter nouveau.noaccel=0).
+
+I provoked the hang while ran the command 'dmesg -T -w -x > ./CGTdmesg.log' on
+a Konsole terminal.
+I have attached the file CGTdmesg.log for more information.
+However, there is no significant logs in it.
+Everybody can see that a message was being written when the hang started.
+
+I hope this information to be useful.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1395494976.1E5e62.15388
-Date: Sat, 22 Mar 2014 13:29:36 +0000
+--1395495910.bc58b62.19553
+Date: Sat, 22 Mar 2014 13:45:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,49 +69,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475">bug 76475</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Nouveau fails to load due to unknown opcode 0x80
-           </td>
-           <td>[NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475#c3">Comment # 3</a>
+   title="NEW --- - [NV4C] Nouveau dmesg error, computer hangs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475">bug 76475</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NV4C] Nouveau dmesg error, computer hangs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382">bug 71382</a>
+              from <span class="vcard"><a class="email" href="mailto:cagonto1980&#64;gmail.com" title="Camilo Gonzalez &lt;cagonto1980&#64;gmail.com&gt;"> <span class="fn">Camilo Gonzalez</span></a>
 </span></b>
-        <pre>Unfortunately the VBIOS from the PCIROM is often the wrong one. The data here
-is the x86 opcodes instead of the vbios opocdes. And as you observed, we now
-consider unknown opcodes an error. (The init tables need to be run on e.g.
-resume, and if it's a secondary card, on load as well.)
+        <pre>I have got the same problem with my NV4C chipset.
 
-An mmiotrace of the blob loading would potentially be helpful, you can send one
-(compressed... xz -9 works well) to <a href="mailto:mmio.dumps&#64;gmail.com">mmio.dumps&#64;gmail.com</a>.
+I have been looking for the same bug in Fedora bugzilla, but have not found.
 
-Can you provide a bit more info about this system? Is it an optimus setup?
-Could you provide an acpidump?</pre>
+I am using 32-bits KDE Fedora 19 with latest version of nouveau.
+
+There are 2 main ways to reproduce the hang, although it happens randomly:
+
+1.- Trying Firefox startup.
+2.- Launching KInfoCenter and clicking on Graphical Information -&gt; OpenGL.
+
+Attempting these 2 actions repeteadly should cause the hang.
+
+There is an other trail: the hang began to happen when I enabled hardware
+acceleration (kernel parameter nouveau.noaccel=0).
+
+I provoked the hang while ran the command 'dmesg -T -w -x &gt; ./CGTdmesg.log' on
+a Konsole terminal.
+I have attached the file CGTdmesg.log for more information.
+However, there is no significant logs in it.
+Everybody can see that a message was being written when the hang started.
+
+I hope this information to be useful.</pre>
         </div>
       </p>
       <hr>
@@ -119,9 +116,9 @@ Could you provide an acpidump?</pre>
     </body>
 </html>
 
---1395494976.1E5e62.15388--
+--1395495910.bc58b62.19553--
 
---===============1011530595==
+--===============1519422343==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +129,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1011530595==--
+--===============1519422343==--
