@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 76475] [NVE7] fails to load due to unknown opcode
  0x80 (incorrect vbios)
-Date: Sat, 22 Mar 2014 19:10:53 +0000
-Message-ID: <bug-76475-8800-NtF8kFXSbZ@http.bugs.freedesktop.org/>
+Date: Sat, 22 Mar 2014 19:12:07 +0000
+Message-ID: <bug-76475-8800-UcqxE1iE4e@http.bugs.freedesktop.org/>
 References: <bug-76475-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0359484736=="
+Content-Type: multipart/mixed; boundary="===============0830735581=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-76475-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0359484736==
-Content-Type: multipart/alternative; boundary="1395515453.8Ca51.25065"; charset="us-ascii"
+--===============0830735581==
+Content-Type: multipart/alternative; boundary="1395515526.15C51.25555"; charset="us-ascii"
 
 
---1395515453.8Ca51.25065
-Date: Sat, 22 Mar 2014 19:10:53 +0000
+--1395515526.15C51.25555
+Date: Sat, 22 Mar 2014 19:12:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=76475
 
---- Comment #5 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 96214
-  --> https://bugs.freedesktop.org/attachment.cgi?id=96214&action=edit
-dmidecode
+--- Comment #6 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 96215
+  --> https://bugs.freedesktop.org/attachment.cgi?id=96215&action=edit
+acpidump
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1395515453.8Ca51.25065
-Date: Sat, 22 Mar 2014 19:10:53 +0000
+--1395515526.15C51.25555
+Date: Sat, 22 Mar 2014 19:12:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=76475">bug 76475</a>
               from <span class="vcard"><a class="email" href="mailto:patrick.clara&#64;gmail.com" title="patrick.clara&#64;gmail.com">patrick.clara&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=96214" name="attach_96214" title="dmidecode">attachment 96214</a> <a href="attachment.cgi?id=96214&amp;action=edit" title="dmidecode">[details]</a></span>
-dmidecode</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=96215" name="attach_96215" title="acpidump">attachment 96215</a> <a href="attachment.cgi?id=96215&amp;action=edit" title="acpidump">[details]</a></span>
+acpidump</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ dmidecode</pre>
     </body>
 </html>
 
---1395515453.8Ca51.25065--
+--1395515526.15C51.25555--
 
---===============0359484736==
+--===============0830735581==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0359484736==--
+--===============0830735581==--
