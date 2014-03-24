@@ -1,14 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: [PATCH 4/4] bios/hack: try 16 times when reading the
-	vbios from PROM
-Date: Mon, 24 Mar 2014 02:03:03 +0100
-Message-ID: <1395622983-2807-4-git-send-email-martin.peres@free.fr>
-References: <1395622983-2807-1-git-send-email-martin.peres@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 76483] [NV50, bisected,
+ RFC patch] xset dpms force {on, off} does not work over DP
+Date: Mon, 24 Mar 2014 03:58:30 +0000
+Message-ID: <bug-76483-8800-CfBgCNQ9ue@http.bugs.freedesktop.org/>
+References: <bug-76483-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1542697096=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1395622983-2807-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-76483-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,58 +20,74 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-At boot time, on one of my desktop PC and one of my card, Nouveau fails to
-boot because the vbios is corrupted. If I blacklist the module and load it
-after, it works fine. Also, this card on another computer works fine and other
-cars on this desktop work directly (I would need to check more cards though).
 
-I tried several things to make it work at boot time:
-- use 32 bits reads instead of 8
-- disable IRQs while we fetch the bios
-- add a read to check the status of 88050 (but it doesn't change on its own)
-- increase the number of initial reads for the signature
+--===============1542697096==
+Content-Type: multipart/alternative; boundary="1395633510.A0b5F82.19688"; charset="us-ascii"
 
-None of them worked so I tried something more extreme, trying to read the
-vbios 16 times when reading it from PROM. It seems to work all the time now.
 
-I'm posting this patch to leave a written trace of what I tried. If someone
-needs this patch too, please let me know!
+--1395633510.A0b5F82.19688
+Date: Mon, 24 Mar 2014 03:58:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-No sign off for this, this is a hack.
----
- nvkm/subdev/bios/base.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+https://bugs.freedesktop.org/show_bug.cgi?id=76483
 
-diff --git a/nvkm/subdev/bios/base.c b/nvkm/subdev/bios/base.c
-index 5608530..96e2eaf 100644
---- a/nvkm/subdev/bios/base.c
-+++ b/nvkm/subdev/bios/base.c
-@@ -139,7 +139,7 @@ out:
- }
- 
- static void
--nouveau_bios_shadow_prom(struct nouveau_bios *bios)
-+nouveau_bios_shadow_prom_attempt(struct nouveau_bios *bios)
- {
- 	struct nouveau_device *device = nv_device(bios);
- 	u32 pcireg, access;
-@@ -196,6 +196,17 @@ out:
- 	nv_wr32(bios, pcireg, access);
- }
- 
-+static void
-+nouveau_bios_shadow_prom(struct nouveau_bios *bios)
-+{
-+	int i = 0;
-+	do {
-+		nouveau_bios_shadow_prom_attempt(bios);
-+		if(!nvbios_checksum(bios->data, bios->size))
-+			break;
-+	} while (i++ < 16);
-+}
-+
- #if defined(CONFIG_ACPI) && defined(CONFIG_X86)
- int nouveau_acpi_get_bios_chunk(uint8_t *bios, int offset, int len);
- bool nouveau_acpi_rom_supported(struct pci_dev *pdev);
+--- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Ah yes, I've been aware of this issue for a while, it just hasn't made it to
+the top of the list yet.  I'll try and address it for the 3.15 cycle, and
+backport the fixes to earlier kernels if possible.
+
 -- 
-1.9.1
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1395633510.A0b5F82.19688
+Date: Mon, 24 Mar 2014 03:58:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483">bug 76483</a>
+              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
+</span></b>
+        <pre>Ah yes, I've been aware of this issue for a while, it just hasn't made it to
+the top of the list yet.  I'll try and address it for the 3.15 cycle, and
+backport the fixes to earlier kernels if possible.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1395633510.A0b5F82.19688--
+
+--===============1542697096==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1542697096==--
