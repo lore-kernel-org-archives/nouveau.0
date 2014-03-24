@@ -1,12 +1,12 @@
 From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: [PATCH 3/4] drm/therm/fan: let the vbios decide on the
-	automatic fan management mode
-Date: Mon, 24 Mar 2014 02:03:02 +0100
-Message-ID: <1395622983-2807-3-git-send-email-martin.peres@free.fr>
+Subject: [PATCH 4/4] bios/hack: try 16 times when reading the
+	vbios from PROM
+Date: Mon, 24 Mar 2014 02:03:03 +0100
+Message-ID: <1395622983-2807-4-git-send-email-martin.peres@free.fr>
 References: <1395622983-2807-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <1395622983-2807-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -19,79 +19,60 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAbGFicmkuZnI+CgpUaGlzIHNob3VsZCBm
-aXggYXV0b21hdGljIGZhbiBtYW5hZ2VtZW50IG9uIGZlcm1pIGNhcmRzIHdobyBkbyBub3QgaGF2
-ZQoweDQ2IGVudHJpZXMgaW4gdGhlIHRoZXJtYWwgdGFibGUuCgpPbiBteSBudmU2LCB0aGUgYmxv
-YiBzZXRzIHRoZSBkZWZhdWx0IGxpbmVhciByYW5nZSBmcm9tIDQwwrBDIHRvIDEwMMKwQwpidXQg
-bXkgbnZjZidzIGRlZmF1bHQgdmFsdWVzIGFyZSA0MMKwQyB0byA4NcKwQy4gTGV0J3Mga2VlcCA4
-NSBhcyBhIGRlZmF1bHQKZm9yIGV2ZXJ5b25lLgoKU2lnbmVkLW9mZi1ieTogTWFydGluIFBlcmVz
-IDxtYXJ0aW4ucGVyZXNAbGFicmkuZnI+ClRlc3RlZC1ieTogVGltb3Row6llIFJhdmllciA8dGlt
-QHNpb3NtLmZyPgotLS0KIG52a20vaW5jbHVkZS9zdWJkZXYvYmlvcy90aGVybS5oIHwgIDcgKysr
-KysrKwogbnZrbS9zdWJkZXYvYmlvcy90aGVybS5jICAgICAgICAgfCAxMSArKysrKysrKysrKwog
-bnZrbS9zdWJkZXYvdGhlcm0vYmFzZS5jICAgICAgICAgfCAxMiArKysrKysrLS0tLS0KIG52a20v
-c3ViZGV2L3RoZXJtL2Zhbi5jICAgICAgICAgIHwgIDMgLS0tCiA0IGZpbGVzIGNoYW5nZWQsIDI1
-IGluc2VydGlvbnMoKyksIDggZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvbnZrbS9pbmNsdWRl
-L3N1YmRldi9iaW9zL3RoZXJtLmggYi9udmttL2luY2x1ZGUvc3ViZGV2L2Jpb3MvdGhlcm0uaApp
-bmRleCAwODM1NDFkLi44ZGM1MDUxIDEwMDY0NAotLS0gYS9udmttL2luY2x1ZGUvc3ViZGV2L2Jp
-b3MvdGhlcm0uaAorKysgYi9udmttL2luY2x1ZGUvc3ViZGV2L2Jpb3MvdGhlcm0uaApAQCAtMzEs
-NiArMzEsMTIgQEAgc3RydWN0IG5vdXZlYXVfdGhlcm1fdHJpcF9wb2ludCB7CiAJaW50IGh5c3Rl
-cmVzaXM7CiB9OwogCitlbnVtIG52Ymlvc190aGVybV9mYW5fbW9kZSB7CisJTlZCSU9TX1RIRVJN
-X0ZBTl9UUklQID0gMCwKKwlOVkJJT1NfVEhFUk1fRkFOX0xJTkVBUiA9IDEsCisJTlZCSU9TX1RI
-RVJNX0ZBTl9PVEhFUiA9IDIsCit9OworCiBzdHJ1Y3QgbnZiaW9zX3RoZXJtX2ZhbiB7CiAJdTE2
-IHB3bV9mcmVxOwogCkBAIC00MCw2ICs0Niw3IEBAIHN0cnVjdCBudmJpb3NfdGhlcm1fZmFuIHsK
-IAl1MTYgYnVtcF9wZXJpb2Q7CiAJdTE2IHNsb3dfZG93bl9wZXJpb2Q7CiAKKwllbnVtIG52Ymlv
-c190aGVybV9mYW5fbW9kZSBmYW5fbW9kZTsKIAlzdHJ1Y3Qgbm91dmVhdV90aGVybV90cmlwX3Bv
-aW50IHRyaXBbTk9VVkVBVV9URU1QX0ZBTl9UUklQX01BWF07CiAJdTggbnJfZmFuX3RyaXA7CiAJ
-dTggbGluZWFyX21pbl90ZW1wOwpkaWZmIC0tZ2l0IGEvbnZrbS9zdWJkZXYvYmlvcy90aGVybS5j
-IGIvbnZrbS9zdWJkZXYvYmlvcy90aGVybS5jCmluZGV4IDIyYWM2ZGIuLmQxNTg1NDAgMTAwNjQ0
-Ci0tLSBhL252a20vc3ViZGV2L2Jpb3MvdGhlcm0uYworKysgYi9udmttL3N1YmRldi9iaW9zL3Ro
-ZXJtLmMKQEAgLTE2NCw2ICsxNjQsNyBAQCBudmJpb3NfdGhlcm1fZmFuX3BhcnNlKHN0cnVjdCBu
-b3V2ZWF1X2Jpb3MgKmJpb3MsCiAKIAlpID0gMDsKIAlmYW4tPm5yX2Zhbl90cmlwID0gMDsKKwlm
-YW4tPmZhbl9tb2RlID0gTlZCSU9TX1RIRVJNX0ZBTl9PVEhFUjsKIAl3aGlsZSAoKGVudHJ5ID0g
-bnZiaW9zX3RoZXJtX2VudHJ5KGJpb3MsIGkrKywgJnZlciwgJmxlbikpKSB7CiAJCXMxNiB2YWx1
-ZSA9IG52X3JvMTYoYmlvcywgZW50cnkgKyAxKTsKIApAQCAtMTc0LDYgKzE3NSw4IEBAIG52Ymlv
-c190aGVybV9mYW5fcGFyc2Uoc3RydWN0IG5vdXZlYXVfYmlvcyAqYmlvcywKIAkJCWJyZWFrOwog
-CQljYXNlIDB4MjQ6CiAJCQlmYW4tPm5yX2Zhbl90cmlwKys7CisJCQlpZiAoZmFuLT5mYW5fbW9k
-ZSA+IE5WQklPU19USEVSTV9GQU5fVFJJUCkKKwkJCQlmYW4tPmZhbl9tb2RlID0gTlZCSU9TX1RI
-RVJNX0ZBTl9UUklQOwogCQkJY3VyX3RyaXAgPSAmZmFuLT50cmlwW2Zhbi0+bnJfZmFuX3RyaXAg
-LSAxXTsKIAkJCWN1cl90cmlwLT5oeXN0ZXJlc2lzID0gdmFsdWUgJiAweGY7CiAJCQljdXJfdHJp
-cC0+dGVtcCA9ICh2YWx1ZSAmIDB4ZmYwKSA+PiA0OwpAQCAtMTk0LDExICsxOTcsMTkgQEAgbnZi
-aW9zX3RoZXJtX2Zhbl9wYXJzZShzdHJ1Y3Qgbm91dmVhdV9iaW9zICpiaW9zLAogCQkJZmFuLT5z
-bG93X2Rvd25fcGVyaW9kID0gdmFsdWU7CiAJCQlicmVhazsKIAkJY2FzZSAweDQ2OgorCQkJaWYg
-KGZhbi0+ZmFuX21vZGUgPiBOVkJJT1NfVEhFUk1fRkFOX0xJTkVBUikKKwkJCQlmYW4tPmZhbl9t
-b2RlID0gTlZCSU9TX1RIRVJNX0ZBTl9MSU5FQVI7CiAJCQlmYW4tPmxpbmVhcl9taW5fdGVtcCA9
-IG52X3JvMDgoYmlvcywgZW50cnkgKyAxKTsKIAkJCWZhbi0+bGluZWFyX21heF90ZW1wID0gbnZf
-cm8wOChiaW9zLCBlbnRyeSArIDIpOwogCQkJYnJlYWs7CiAJCX0KIAl9CiAKKwkvKiBzdGFydGlu
-ZyBmcm9tIGZlcm1pLCBmYW4gbWFuYWdlbWVudCBpcyBhbHdheXMgbGluZWFyICovCisJaWYgKG52
-X2RldmljZShiaW9zKS0+Y2FyZF90eXBlID49IE5WX0MwICYmCisJCWZhbi0+ZmFuX21vZGUgPT0g
-TlZCSU9TX1RIRVJNX0ZBTl9PVEhFUikgeworCQlmYW4tPmZhbl9tb2RlID0gTlZCSU9TX1RIRVJN
-X0ZBTl9MSU5FQVI7CisJfQorCiAJcmV0dXJuIDA7CiB9CmRpZmYgLS1naXQgYS9udmttL3N1YmRl
-di90aGVybS9iYXNlLmMgYi9udmttL3N1YmRldi90aGVybS9iYXNlLmMKaW5kZXggODBlNTg0YS4u
-ZTcwOWIyMyAxMDA2NDQKLS0tIGEvbnZrbS9zdWJkZXYvdGhlcm0vYmFzZS5jCisrKyBiL252a20v
-c3ViZGV2L3RoZXJtL2Jhc2UuYwpAQCAtMTEwLDE2ICsxMTAsMTggQEAgbm91dmVhdV90aGVybV91
-cGRhdGUoc3RydWN0IG5vdXZlYXVfdGhlcm0gKnRoZXJtLCBpbnQgbW9kZSkKIAkJcG9sbCA9IGZh
-bHNlOwogCQlicmVhazsKIAljYXNlIE5PVVZFQVVfVEhFUk1fQ1RSTF9BVVRPOgotCQlpZiAocHJp
-di0+ZmFuLT5iaW9zLm5yX2Zhbl90cmlwKSB7CisJCXN3aXRjaChwcml2LT5mYW4tPmJpb3MuZmFu
-X21vZGUpIHsKKwkJY2FzZSBOVkJJT1NfVEhFUk1fRkFOX1RSSVA6CiAJCQlkdXR5ID0gbm91dmVh
-dV90aGVybV91cGRhdGVfdHJpcCh0aGVybSk7Ci0JCX0gZWxzZQotCQlpZiAocHJpdi0+ZmFuLT5i
-aW9zLmxpbmVhcl9taW5fdGVtcCB8fAotCQkgICAgcHJpdi0+ZmFuLT5iaW9zLmxpbmVhcl9tYXhf
-dGVtcCkgeworCQkJYnJlYWs7CisJCWNhc2UgTlZCSU9TX1RIRVJNX0ZBTl9MSU5FQVI6CiAJCQlk
-dXR5ID0gbm91dmVhdV90aGVybV91cGRhdGVfbGluZWFyKHRoZXJtKTsKLQkJfSBlbHNlIHsKKwkJ
-CWJyZWFrOworCQljYXNlIE5WQklPU19USEVSTV9GQU5fT1RIRVI6CiAJCQlpZiAocHJpdi0+Y3N0
-YXRlKQogCQkJCWR1dHkgPSBwcml2LT5jc3RhdGU7CiAJCQlwb2xsID0gZmFsc2U7CisJCQlicmVh
-azsKIAkJfQogCQlpbW1kID0gZmFsc2U7CiAJCWJyZWFrOwpkaWZmIC0tZ2l0IGEvbnZrbS9zdWJk
-ZXYvdGhlcm0vZmFuLmMgYi9udmttL3N1YmRldi90aGVybS9mYW4uYwppbmRleCBjZWI4NTI4Li4w
-MTY5OTBhIDEwMDY0NAotLS0gYS9udmttL3N1YmRldi90aGVybS9mYW4uYworKysgYi9udmttL3N1
-YmRldi90aGVybS9mYW4uYwpAQCAtMTkyLDExICsxOTIsOCBAQCBub3V2ZWF1X3RoZXJtX2Zhbl9z
-ZXRfZGVmYXVsdHMoc3RydWN0IG5vdXZlYXVfdGhlcm0gKnRoZXJtKQogCXByaXYtPmZhbi0+Ymlv
-cy5tYXhfZHV0eSA9IDEwMDsKIAlwcml2LT5mYW4tPmJpb3MuYnVtcF9wZXJpb2QgPSA1MDA7CiAJ
-cHJpdi0+ZmFuLT5iaW9zLnNsb3dfZG93bl9wZXJpb2QgPSAyMDAwOwotLypYWFg6IHRhbGsgdG8g
-bXVwdWYgKi8KLSNpZiAwCiAJcHJpdi0+ZmFuLT5iaW9zLmxpbmVhcl9taW5fdGVtcCA9IDQwOwog
-CXByaXYtPmZhbi0+Ymlvcy5saW5lYXJfbWF4X3RlbXAgPSA4NTsKLSNlbmRpZgogfQogCiBzdGF0
-aWMgdm9pZAotLSAKMS45LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-Cg==
+At boot time, on one of my desktop PC and one of my card, Nouveau fails to
+boot because the vbios is corrupted. If I blacklist the module and load it
+after, it works fine. Also, this card on another computer works fine and other
+cars on this desktop work directly (I would need to check more cards though).
+
+I tried several things to make it work at boot time:
+- use 32 bits reads instead of 8
+- disable IRQs while we fetch the bios
+- add a read to check the status of 88050 (but it doesn't change on its own)
+- increase the number of initial reads for the signature
+
+None of them worked so I tried something more extreme, trying to read the
+vbios 16 times when reading it from PROM. It seems to work all the time now.
+
+I'm posting this patch to leave a written trace of what I tried. If someone
+needs this patch too, please let me know!
+
+No sign off for this, this is a hack.
+---
+ nvkm/subdev/bios/base.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/nvkm/subdev/bios/base.c b/nvkm/subdev/bios/base.c
+index 5608530..96e2eaf 100644
+--- a/nvkm/subdev/bios/base.c
++++ b/nvkm/subdev/bios/base.c
+@@ -139,7 +139,7 @@ out:
+ }
+ 
+ static void
+-nouveau_bios_shadow_prom(struct nouveau_bios *bios)
++nouveau_bios_shadow_prom_attempt(struct nouveau_bios *bios)
+ {
+ 	struct nouveau_device *device = nv_device(bios);
+ 	u32 pcireg, access;
+@@ -196,6 +196,17 @@ out:
+ 	nv_wr32(bios, pcireg, access);
+ }
+ 
++static void
++nouveau_bios_shadow_prom(struct nouveau_bios *bios)
++{
++	int i = 0;
++	do {
++		nouveau_bios_shadow_prom_attempt(bios);
++		if(!nvbios_checksum(bios->data, bios->size))
++			break;
++	} while (i++ < 16);
++}
++
+ #if defined(CONFIG_ACPI) && defined(CONFIG_X86)
+ int nouveau_acpi_get_bios_chunk(uint8_t *bios, int offset, int len);
+ bool nouveau_acpi_rom_supported(struct pci_dev *pdev);
+-- 
+1.9.1
