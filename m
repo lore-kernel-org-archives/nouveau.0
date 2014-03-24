@@ -1,11 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: PROM vbios fetching issues
-Date: Mon, 24 Mar 2014 19:59:46 +0100
-Message-ID: <533080A2.6020501@free.fr>
+From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 01/12] drm/nouveau: fix missing newline
+Date: Mon, 24 Mar 2014 22:49:43 +0100
+Message-ID: <20140324214942.GA17218@mithrandir>
+References: <1395650554-31925-1-git-send-email-acourbot@nvidia.com>
+ <1395650554-31925-2-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0703813239=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1395650554-31925-2-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,43 +17,64 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello,
 
-One of my GPU (GK107/NVE7) fails to properly fetch its vbios from PROM 
-at boot time but, if I blacklist the module and load it myself later on, 
-it always succeeds. To make things weirder, the same card works great on 
-another computer.
+--===============0703813239==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="bg08WKrSYDhXBjb5"
+Content-Disposition: inline
 
-Here is the relevant code in Nouveau to fetch the vbios from PROM:
-http://code.woboq.org/linux/linux/drivers/gpu/drm/nouveau/core/subdev/bios/base.c.html#nouveau_bios_shadow_prom
 
-The only solution I found to this problem is to try up to 16 times in a 
-row to fetch the vbios using PROM. If the 16 tries yield a bad signature 
-or checksum, I just give up and let it try other techniques. Here is the 
-patch[1].
+--bg08WKrSYDhXBjb5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-With this hack in place, the number of retries needed to be able to 
-correctly fetch the vbios ranges from 0 to 13. I see no consistency in 
-this. I tried reading the vbios 32 bits by 32 bits (instead of 8 by 8), 
-disabling local IRQs and generating more activity on the PCIe port 
-before fetching (and making sure the value read is always the same), all 
-solutions yielded no improvement.
+On Mon, Mar 24, 2014 at 05:42:23PM +0900, Alexandre Courbot wrote:
+> Add a missing newline at the end of a DRM_INFO message.
+>=20
+> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_drm.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-It could be a brownout problem but this would be the only manifestation 
-of this problem. Moreover, some cards are known to have problems with
-PROM[2] so mine is definitely not the only one.
+Reviewed-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
-I'm at a loss here, should we wait on anything before reading from PROM? 
-The mmiotrace I have doesn't seem to suggest we should :s I wonder if 
-you have had this issue before and what the nvkm does here.
+--bg08WKrSYDhXBjb5
+Content-Type: application/pgp-signature
 
-Thanks,
-Martin
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.22 (GNU/Linux)
 
-[1] http://lists.freedesktop.org/archives/nouveau/2014-March/016590.html
-[2] 
-http://code.woboq.org/linux/linux/drivers/gpu/drm/nouveau/core/subdev/bios/base.c.html#144
+iQIcBAEBAgAGBQJTMKh2AAoJEN0jrNd/PrOhDXcP/3qHhqDUfIVhIf3wQoFbNBW3
+lbjv1aC54vthGFF9KP2ztk0xeVJ8n414TPxLYKXByErrT9rOmCbYzNrfdmXL8+h8
+TsT9XIt+wblbwo2cFX6R7GgqBI5UXLsu/fGyKpusTAYf0qvSogxnpegizJmiTZvP
+kQDzkrew84CT2BydTPcjoDk7m0LCKODlS2ghykg8PGbKk4hakim1RkFrU96oNJNd
+dVhdvatLBk3vUZPKARIdR5knjU7mqOw5TFr88e9hlZ7f8aWFDqVy75a2mULsFfPv
+2Tx3rdtcKWkku/AOXDZyeuQeX9KYJasyxyjWEnbtKZsihATf9vJ6i/RyrOHHaZwr
+wKtYu4ApKqqH+/SStLq87VI5jo+A4epUMzoWpehO2brc4e+6dyD/NGMzc33suF8k
+qoZb/zS0KqNucQD3ZoBz8vSWyvITl+PYAPcebgWIHBv9GK7+NnBrOXFn1Od48GRv
+7+o4G8B+rrvrpn0xEeRK+gwvYh8LhzQuVusjoVoiQwXVOcCHpRG3lxnPiywPCR+k
+QW2KUT757sAz5v6hcIvBMfJv4ZJWWD6fBj2QPA6iVxJJY1mr0VLjSNOq5ffHn+rW
+aeaNkaAkOpYxQHf42uTJzIkcUOSHqqPSb4SE8IKWLaGktUbV48l4EwZTnaAA9Ewj
+Su9ZIscyYnzXW4mIzawj
+=fBzn
+-----END PGP SIGNATURE-----
+
+--bg08WKrSYDhXBjb5--
+
+--===============0703813239==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0703813239==--
