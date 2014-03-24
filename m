@@ -1,44 +1,57 @@
-From: Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [PATCH 00/12] drm/nouveau: support for GK20A, cont'd
-Date: Mon, 24 Mar 2014 14:19:51 +0100
-Message-ID: <1395667191.5062.18.camel@weser.hi.pengutronix.de>
-References: <1395650554-31925-1-git-send-email-acourbot@nvidia.com>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: PROM vbios fetching issues
+Date: Mon, 24 Mar 2014 19:59:46 +0100
+Message-ID: <533080A2.6020501@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1395650554-31925-1-git-send-email-acourbot@nvidia.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>, gnurou@gmail.com, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi Alexandre,
+Hello,
 
-Am Montag, den 24.03.2014, 17:42 +0900 schrieb Alexandre Courbot:
-> Hi everyone,
-[...]
-> 
-> A few lines of hacks (not included here) are still needed to deal with cached
-> mappings triggering external aborts and CPU/GPU memory coherency issues, but I
-> hope to understand and address these issues next.
+One of my GPU (GK107/NVE7) fails to properly fetch its vbios from PROM 
+at boot time but, if I blacklist the module and load it myself later on, 
+it always succeeds. To make things weirder, the same card works great on 
+another computer.
 
-For the coherency issue part you may want to look at my Nouveau on ARM
-series. Most of it never made it upstream, as I lacked the time to work
-further on this, but it solves the coherency issue from the kernel.
+Here is the relevant code in Nouveau to fetch the vbios from PROM:
+http://code.woboq.org/linux/linux/drivers/gpu/drm/nouveau/core/subdev/bios/base.c.html#nouveau_bios_shadow_prom
 
-It does so by doing the necessary manual cache flushes/invalidates on
-buffer access, so costs some performance. To avoid this you really want
-to get writecombined mappings into the kernel<->userspace interface.
-Simply mapping the pushbuf as WC/US has brought a 7% performance
-increase in OpenArena when I last tested this. This test was done with
-only one PCIe lane, so the perf increase may be even better with a more
-adequate interconnect.
+The only solution I found to this problem is to try up to 16 times in a 
+row to fetch the vbios using PROM. If the 16 tries yield a bad signature 
+or checksum, I just give up and let it try other techniques. Here is the 
+patch[1].
 
-Regards,
-Lucas
--- 
-Pengutronix e.K.                           | Lucas Stach                 |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-5076 |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+With this hack in place, the number of retries needed to be able to 
+correctly fetch the vbios ranges from 0 to 13. I see no consistency in 
+this. I tried reading the vbios 32 bits by 32 bits (instead of 8 by 8), 
+disabling local IRQs and generating more activity on the PCIe port 
+before fetching (and making sure the value read is always the same), all 
+solutions yielded no improvement.
+
+It could be a brownout problem but this would be the only manifestation 
+of this problem. Moreover, some cards are known to have problems with
+PROM[2] so mine is definitely not the only one.
+
+I'm at a loss here, should we wait on anything before reading from PROM? 
+The mmiotrace I have doesn't seem to suggest we should :s I wonder if 
+you have had this issue before and what the nvkm does here.
+
+Thanks,
+Martin
+
+[1] http://lists.freedesktop.org/archives/nouveau/2014-March/016590.html
+[2] 
+http://code.woboq.org/linux/linux/drivers/gpu/drm/nouveau/core/subdev/bios/base.c.html#144
