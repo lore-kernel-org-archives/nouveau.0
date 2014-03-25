@@ -1,10 +1,10 @@
-From: Alexei Ustyuzhaninov <alust-Q1PPmwm10TxD9JxaSR3mpdBPR1lH4CV8@public.gmane.org>
-Subject: nouveau module not loading
-Date: Tue, 25 Mar 2014 11:57:28 +0600
-Message-ID: <53311AC8.9050504@alust.homeunix.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 76585] New: [NVE6] kernel oops and Xorg crash when
+ resuming after suspend
+Date: Tue, 25 Mar 2014 09:35:51 +0000
+Message-ID: <bug-76585-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1168423879=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,54 +18,194 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi!
 
-I have a rather decent notebook (Toshiba Satellite P105-S9722) with 
-Nvidia GeForce Go 7900 GS video card. I installed latest debian system 
-with kernel 3.13-1-amd64 on it, but unfortunately nouveau driver doesn't 
-work. When I load nouveau module following messages will appear in syslog:
+--===============1168423879==
+Content-Type: multipart/alternative; boundary="1395740151.75f74ab2.5991"; charset="us-ascii"
 
-Mar 25 11:50:53 ivnb kernel: [ 2703.329287] nouveau  [ 
-DEVICE][0000:01:00.0] BOOT0  : 0x049800a2
-Mar 25 11:50:53 ivnb kernel: [ 2703.329293] nouveau  [ 
-DEVICE][0000:01:00.0] Chipset: G71 (NV49)
-Mar 25 11:50:53 ivnb kernel: [ 2703.329298] nouveau  [ 
-DEVICE][0000:01:00.0] Family : NV40
-Mar 25 11:50:53 ivnb kernel: [ 2703.333377] nouveau  [ 
-VBIOS][0000:01:00.0] checking PRAMIN for image...
-Mar 25 11:50:53 ivnb kernel: [ 2703.433876] nouveau  [ 
-VBIOS][0000:01:00.0] ... checksum invalid
-Mar 25 11:50:53 ivnb kernel: [ 2703.433882] nouveau  [ 
-VBIOS][0000:01:00.0] checking PROM for image...
-Mar 25 11:50:53 ivnb kernel: [ 2703.433896] nouveau  [ 
-VBIOS][0000:01:00.0] ..
-. signature not found
-Mar 25 11:50:53 ivnb kernel: [ 2703.433901] nouveau  [ 
-VBIOS][0000:01:00.0] checking ACPI for image...
-Mar 25 11:50:53 ivnb kernel: [ 2703.433905] nouveau  [ 
-VBIOS][0000:01:00.0] ... signature not found
-Mar 25 11:50:53 ivnb kernel: [ 2703.433910] nouveau  [ 
-VBIOS][0000:01:00.0] checking PCIROM for image...
-Mar 25 11:50:53 ivnb kernel: [ 2703.434142] nouveau  [ 
-VBIOS][0000:01:00.0] ... appears to be valid
-Mar 25 11:50:53 ivnb kernel: [ 2703.434150] nouveau  [ 
-VBIOS][0000:01:00.0] using image from PCIROM
-Mar 25 11:50:53 ivnb kernel: [ 2703.434323] nouveau  [ 
-VBIOS][0000:01:00.0] BIT signature found
-Mar 25 11:50:53 ivnb kernel: [ 2703.434327] nouveau  [ 
-VBIOS][0000:01:00.0] version 05.71.22.08.a8
-Mar 25 11:50:53 ivnb kernel: [ 2703.434464] nouveau E[ 
-VBIOS][0000:01:00.0] 0xe08f[ ]: unknown opcode 0x00
-Mar 25 11:50:53 ivnb kernel: [ 2703.434469] nouveau E[ 
-DEVINIT][0000:01:00.0] init failed, -22
-Mar 25 11:50:53 ivnb kernel: [ 2703.434472] nouveau E[     DRM] failed 
-to create 0x80000080, -22
-Mar 25 11:50:53 ivnb kernel: [ 2703.435112] nouveau: probe of 
-0000:01:00.0 failed with error -22
 
-So Is there any way to fix this issue or is my notebook really too old 
-for nouveau?
+--1395740151.75f74ab2.5991
+Date: Tue, 25 Mar 2014 09:35:51 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=76585
+
+          Priority: medium
+            Bug ID: 76585
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [NVE6] kernel oops and Xorg crash when resuming after
+                    suspend
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: critical
+    Classification: Unclassified
+                OS: All
+          Reporter: d-bugzilla-vUpi/VKO0VA@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
+
+Created attachment 96350
+  --> https://bugs.freedesktop.org/attachment.cgi?id=96350&action=edit
+/var/log/{messages,Xorg.0.log} excerpt
+
+Running the setup (GK106GLM [Quadro K2100M] + QHD+) as described in
+https://bugs.freedesktop.org/show_bug.cgi?id=76319#c8 :
+
+- kernel 3.14rc7
+- darktama's git e7cdcda87d2c2158ef34d88c9632bf7541c07c3a
+- additional DP1.2 540MHz patch (bug 76319#c1).
+
+When resuming from suspend, the kernel oopses and Xorg crashes ;
+A full restart is required.
+
+Oops call trace and Xorg.0.log backtrace with timestamps in attachment.
 
 -- 
-Thanks,
-Alexei
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1395740151.75f74ab2.5991
+Date: Tue, 25 Mar 2014 09:35:51 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE6] kernel oops and Xorg crash when resuming after suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76585">76585</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVE6] kernel oops and Xorg crash when resuming after suspend
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>d-bugzilla&#64;moens.cc
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=96350" name="attach_96350" title="/var/log/{messages,Xorg.0.log} excerpt">attachment 96350</a> <a href="attachment.cgi?id=96350&amp;action=edit" title="/var/log/{messages,Xorg.0.log} excerpt">[details]</a></span>
+/var/log/{messages,Xorg.0.log} excerpt
+
+Running the setup (GK106GLM [Quadro K2100M] + QHD+) as described in
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE6] MMIO FAULT, black screen on QHD+ K2100M"
+   href="show_bug.cgi?id=76319#c8">https://bugs.freedesktop.org/show_bug.cgi?id=76319#c8</a> :
+
+- kernel 3.14rc7
+- darktama's git e7cdcda87d2c2158ef34d88c9632bf7541c07c3a
+- additional DP1.2 540MHz patch (<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE6] MMIO FAULT, black screen on QHD+ K2100M"
+   href="show_bug.cgi?id=76319">bug 76319</a>#c1).
+
+When resuming from suspend, the kernel oopses and Xorg crashes ;
+A full restart is required.
+
+Oops call trace and Xorg.0.log backtrace with timestamps in attachment.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1395740151.75f74ab2.5991--
+
+--===============1168423879==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1168423879==--
