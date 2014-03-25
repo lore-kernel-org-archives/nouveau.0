@@ -1,13 +1,13 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: nouveau module not loading
-Date: Tue, 25 Mar 2014 07:48:54 -0400
-Message-ID: <CAKb7UviyMkCLk3C5gwNBkbVAhTa5Fv-8b4tmvsdZRnewe_kuNA@mail.gmail.com>
-References: <53311AC8.9050504@alust.homeunix.com>
+Subject: Re: Help me, Nouveau list, you're my only hope...
+Date: Tue, 25 Mar 2014 07:59:34 -0400
+Message-ID: <CAKb7UviczBdDKZUmQ1PE1874SPnZQqS47VXYPj5jq2Le0u9ZCQ@mail.gmail.com>
+References: <COL129-W93B6D8C2CCB3DCDD4E895DC8650@phx.gbl>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <53311AC8.9050504-Q1PPmwm10TxD9JxaSR3mpdBPR1lH4CV8@public.gmane.org>
+In-Reply-To: <COL129-W93B6D8C2CCB3DCDD4E895DC8650-MsuGFMq8XAE@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,71 +17,41 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexei Ustyuzhaninov <alust-Q1PPmwm10TxD9JxaSR3mpdBPR1lH4CV8@public.gmane.org>
+To: William Lewis <minutemaidpark-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Mar 25, 2014 at 1:57 AM, Alexei Ustyuzhaninov
-<alust-Q1PPmwm10TxD9JxaSR3mpdBPR1lH4CV8@public.gmane.org> wrote:
-> Hi!
+On Mon, Mar 24, 2014 at 10:50 PM, William Lewis
+<minutemaidpark-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> wrote:
+> I hope I'm writing to people who can help me.  If not you, then I have a
+> serious inconvenience and am going to be at a complete loss for where to
+> turn.
 >
-> I have a rather decent notebook (Toshiba Satellite P105-S9722) with Nvidia
-> GeForce Go 7900 GS video card. I installed latest debian system with kernel
-> 3.13-1-amd64 on it, but unfortunately nouveau driver doesn't work. When I
-> load nouveau module following messages will appear in syslog:
+> Let me explain my setup.  I have an HTPC with a GeForce GT620.  It is
+> connected to a Denon AVR-1913 via HDMI, because that does all the switching
+> for my entertainment system then out to an LG flat-panel 55-inch TV via
+> HDMI.  Everything was working beautifully until it wasn't.  All of a sudden,
+> I simply cannot get the receiver to recognize the video signal from the
+> video card.  The display on the front does not switch to HDMI, and the audio
+> will not switch away from analog.  And all that the display says is DENON.
 >
-> Mar 25 11:50:53 ivnb kernel: [ 2703.329287] nouveau  [ DEVICE][0000:01:00.0]
-> BOOT0  : 0x049800a2
-> Mar 25 11:50:53 ivnb kernel: [ 2703.329293] nouveau  [ DEVICE][0000:01:00.0]
-> Chipset: G71 (NV49)
-> Mar 25 11:50:53 ivnb kernel: [ 2703.329298] nouveau  [ DEVICE][0000:01:00.0]
-> Family : NV40
-> Mar 25 11:50:53 ivnb kernel: [ 2703.333377] nouveau  [ VBIOS][0000:01:00.0]
-> checking PRAMIN for image...
-> Mar 25 11:50:53 ivnb kernel: [ 2703.433876] nouveau  [ VBIOS][0000:01:00.0]
-> ... checksum invalid
-> Mar 25 11:50:53 ivnb kernel: [ 2703.433882] nouveau  [ VBIOS][0000:01:00.0]
-> checking PROM for image...
-> Mar 25 11:50:53 ivnb kernel: [ 2703.433896] nouveau  [ VBIOS][0000:01:00.0]
-> ..
-> . signature not found
-> Mar 25 11:50:53 ivnb kernel: [ 2703.433901] nouveau  [ VBIOS][0000:01:00.0]
-> checking ACPI for image...
-> Mar 25 11:50:53 ivnb kernel: [ 2703.433905] nouveau  [ VBIOS][0000:01:00.0]
-> ... signature not found
-> Mar 25 11:50:53 ivnb kernel: [ 2703.433910] nouveau  [ VBIOS][0000:01:00.0]
-> checking PCIROM for image...
-> Mar 25 11:50:53 ivnb kernel: [ 2703.434142] nouveau  [ VBIOS][0000:01:00.0]
-> ... appears to be valid
-> Mar 25 11:50:53 ivnb kernel: [ 2703.434150] nouveau  [ VBIOS][0000:01:00.0]
-> using image from PCIROM
-> Mar 25 11:50:53 ivnb kernel: [ 2703.434323] nouveau  [ VBIOS][0000:01:00.0]
-> BIT signature found
-> Mar 25 11:50:53 ivnb kernel: [ 2703.434327] nouveau  [ VBIOS][0000:01:00.0]
-> version 05.71.22.08.a8
-> Mar 25 11:50:53 ivnb kernel: [ 2703.434464] nouveau E[ VBIOS][0000:01:00.0]
-> 0xe08f[ ]: unknown opcode 0x00
-> Mar 25 11:50:53 ivnb kernel: [ 2703.434469] nouveau E[
-> DEVINIT][0000:01:00.0] init failed, -22
-> Mar 25 11:50:53 ivnb kernel: [ 2703.434472] nouveau E[     DRM] failed to
-> create 0x80000080, -22
-> Mar 25 11:50:53 ivnb kernel: [ 2703.435112] nouveau: probe of 0000:01:00.0
-> failed with error -22
+> Now the video card works fine.  It is hooked up directly to the TV via
+> DVI->HDMI, and the TV has no problem with that signal.  Tonight I bypassed
+> the receiver altogether, and the video went out via HDMI to the TV fine as
+> well, even though the TV's input list had the HDMI input grayed.  When I
+> selected it, it worked fine.
 >
-> So Is there any way to fix this issue or is my notebook really too old for
-> nouveau?
+> So that got me thinking it was the input on the receiver or something else
+> on the receiver.  No such luck.  A Blu-Ray player works fine through the
+> same input, and my MacBook Pro works fine through the same input.
+>
+> If I am diagnosing things properly, the receiver is not accepting the mode
+> the HDMI out of the GeForce card is setting, even though xrandr shows the
+> same mode being set on both the DVI out and the HDMI out.
+>
+> Can you help me debug the problem?
 
-In general, nouveau should work just fine on all Riva TNT and newer
-NVIDIA cards (NV04+). Starting with 3.13, we abort loads when the
-VBIOS contains unknown opcodes (running the VBIOS is needed for
-posting the card if it's a secondary, and also on resume). By far and
-away the leading cause of this is reading in the "wrong" VBIOS (which
-in turn is almost always PCIROM). It seems like a vbios could be found
-in your PRAMIN although the signature doesn't check out -- this
-happens sometimes. You can force the PRAMIN vbios by booting with
-
-nouveau.config=NvBios=PRAMIN
-
-Try that, I bet it'll let nouveau load.
-
-  -ilia
+So... what changed? Kernel upgrade maybe? Have you tried the latest
+and greatest? (3.13.x should be late and great enough for your needs.)
+What _is_ a GT620? NVC1? NVD9? Something else? (Should be in your boot
+logs.)
