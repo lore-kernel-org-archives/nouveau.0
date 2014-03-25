@@ -1,14 +1,14 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH 1/4] pm/fan: drop the fan lock in fan_update()
- before rescheduling
-Date: Tue, 25 Mar 2014 14:08:44 +0100
-Message-ID: <53317FDC.9040502@free.fr>
-References: <1395622983-2807-1-git-send-email-martin.peres@free.fr>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH] nouveau: safen up nouveau_device list usage
+ against concurrent access
+Date: Tue, 25 Mar 2014 10:33:32 -0400
+Message-ID: <CAKb7UvgyaqHN2nONbs1DKXsTC7FQPx22wPf0j9oyHQ-UCkf3qA@mail.gmail.com>
+References: <1394676315-25595-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1395622983-2807-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
+In-Reply-To: <1394676315-25595-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,47 +18,298 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-TGUgMjQvMDMvMjAxNCAwMjowMywgTWFydGluIFBlcmVzIGEgw6ljcml0IDoKPiBGcm9tOiBNYXJ0
-aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0BsYWJyaS5mcj4KPgo+IFRoaXMgc2hvdWxkIGZpeCBhIGRl
-YWRsb2NrIHRoYXQgaGFzIGJlZW4gcmVwb3J0ZWQgdG8gdXMgd2hlcmUgZmFuX3VwZGF0ZSgpCj4g
-d291bGQgaG9sZCB0aGUgZmFuIGxvY2sgYW5kIHRyeSB0byBncmFiIHRoZSBhbGFybV9wcm9ncmFt
-X2xvY2sgdG8gcmVzY2hlZHVsZQo+IGFuIHVwZGF0ZS4gT24gYW4gb3RoZXIgQ1BVLCB0aGUgYWxh
-cm1fcHJvZ3JhbV9sb2NrIHdvdWxkIGhhdmUgYmVlbiB0YWtlbgo+IGJlZm9yZSBjYWxsaW5nIGZh
-bl91cGRhdGUoKSwgbGVhZGluZyB0byBhIGRlYWRsb2NrLgo+Cj4gV2Ugc2hvdWxkIENjOiA8c3Rh
-YmxlQHZnZXIua2VybmVsLm9yZz4gIyAzLjkrCj4KPiBSZXBvcnRlZC1ieTogTWFyY2luIFNsdXNh
-cnogPG1hcmNpbi5zbHVzYXJ6QGdtYWlsLmNvbT4KPiBUZXN0ZWQtYnk6IFRpbW90aMOpZSBSYXZp
-ZXIgPHRpbUBzaW9zbS5mcj4KClRlc3RlZC1ieTogQm9yaXMgRmVyc2luZyAoSVJDIG5pY2sgZmVy
-c2luZ2IsIGVtYWlsIGlzIHByaXZhdGUpCgo+IFNpZ25lZC1vZmYtYnk6IE1hcnRpbiBQZXJlcyA8
-bWFydGluLnBlcmVzQGZyZWUuZnI+Cj4gLS0tCj4gICBudmttL3N1YmRldi90aGVybS9mYW4uYyB8
-IDE5ICsrKysrKysrKysrKystLS0tLS0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAxMyBpbnNlcnRpb25z
-KCspLCA2IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL252a20vc3ViZGV2L3RoZXJtL2Zh
-bi5jIGIvbnZrbS9zdWJkZXYvdGhlcm0vZmFuLmMKPiBpbmRleCA5NWY2MTI5Li4yOWQ0YzQxIDEw
-MDY0NAo+IC0tLSBhL252a20vc3ViZGV2L3RoZXJtL2Zhbi5jCj4gKysrIGIvbnZrbS9zdWJkZXYv
-dGhlcm0vZmFuLmMKPiBAQCAtNTQsOCArNTQsMTAgQEAgbm91dmVhdV9mYW5fdXBkYXRlKHN0cnVj
-dCBub3V2ZWF1X2ZhbiAqZmFuLCBib29sIGltbWVkaWF0ZSwgaW50IHRhcmdldCkKPgo+ICAgCS8q
-IGNoZWNrIHRoYXQgd2UncmUgbm90IGFscmVhZHkgYXQgdGhlIHRhcmdldCBkdXR5IGN5Y2xlICov
-Cj4gICAJZHV0eSA9IGZhbi0+Z2V0KHRoZXJtKTsKPiAtCWlmIChkdXR5ID09IHRhcmdldCkKPiAt
-CQlnb3RvIGRvbmU7Cj4gKwlpZiAoZHV0eSA9PSB0YXJnZXQpIHsKPiArCQlzcGluX3VubG9ja19p
-cnFyZXN0b3JlKCZmYW4tPmxvY2ssIGZsYWdzKTsKPiArCQlyZXR1cm4gMDsKPiArCX0KPgo+ICAg
-CS8qIHNtb290aCBvdXQgdGhlIGZhbnNwZWVkIGluY3JlYXNlL2RlY3JlYXNlICovCj4gICAJaWYg
-KCFpbW1lZGlhdGUgJiYgZHV0eSA+PSAwKSB7Cj4gQEAgLTczLDggKzc1LDE1IEBAIG5vdXZlYXVf
-ZmFuX3VwZGF0ZShzdHJ1Y3Qgbm91dmVhdV9mYW4gKmZhbiwgYm9vbCBpbW1lZGlhdGUsIGludCB0
-YXJnZXQpCj4KPiAgIAludl9kZWJ1Zyh0aGVybSwgIkZBTiB1cGRhdGU6ICVkXG4iLCBkdXR5KTsK
-PiAgIAlyZXQgPSBmYW4tPnNldCh0aGVybSwgZHV0eSk7Cj4gLQlpZiAocmV0KQo+IC0JCWdvdG8g
-ZG9uZTsKPiArCWlmIChyZXQpIHsKPiArCQlzcGluX3VubG9ja19pcnFyZXN0b3JlKCZmYW4tPmxv
-Y2ssIGZsYWdzKTsKPiArCQlyZXR1cm4gcmV0Owo+ICsJfQo+ICsKPiArCS8qIGZhbiBzcGVlZCB1
-cGRhdGVkLCBkcm9wIHRoZSBmYW4gbG9jayBiZWZvcmUgZ3JhYmJpbmcgdGhlCj4gKwkgKiBhbGFy
-bS1zY2hlZHVsaW5nIGxvY2sgYW5kIHJpc2tpbmcgYSBkZWFkbG9jawo+ICsJICovCj4gKwlzcGlu
-X3VubG9ja19pcnFyZXN0b3JlKCZmYW4tPmxvY2ssIGZsYWdzKTsKPgo+ICAgCS8qIHNjaGVkdWxl
-IG5leHQgZmFuIHVwZGF0ZSwgaWYgbm90IGF0IHRhcmdldCBzcGVlZCBhbHJlYWR5ICovCj4gICAJ
-aWYgKGxpc3RfZW1wdHkoJmZhbi0+YWxhcm0uaGVhZCkgJiYgdGFyZ2V0ICE9IGR1dHkpIHsKPiBA
-QCAtOTIsOCArMTAxLDYgQEAgbm91dmVhdV9mYW5fdXBkYXRlKHN0cnVjdCBub3V2ZWF1X2ZhbiAq
-ZmFuLCBib29sIGltbWVkaWF0ZSwgaW50IHRhcmdldCkKPiAgIAkJcHRpbWVyLT5hbGFybShwdGlt
-ZXIsIGRlbGF5ICogMTAwMCAqIDEwMDAsICZmYW4tPmFsYXJtKTsKPiAgIAl9Cj4KPiAtZG9uZToK
-PiAtCXNwaW5fdW5sb2NrX2lycXJlc3RvcmUoJmZhbi0+bG9jaywgZmxhZ3MpOwo+ICAgCXJldHVy
-biByZXQ7Cj4gICB9Cj4KPgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+Here's a test program I just whipped up that demonstrates (some of)
+the issues in the old code. This segfaults in either nouveau_bo_wrap
+or nouveau_bo_new, or sometimes nouveau_bo_wrap fails to find the
+handle. With the patch, it hasn't failed yet. Ben -- review please?
+(Or someone else...) Admittedly it's a bit hard to trigger, but still.
+
+Compile with:
+
+gcc -ggdb -o test test.c -I /usr/include/libdrm -lxcb -lxcb-dri2 -ldrm
+-ldrm_nouveau -pthread
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <xf86drm.h>
+#include <xcb/dri2.h>
+#include <nouveau.h>
+
+#undef NDEBUG
+#include <assert.h>
+
+/* From pipe_loader_drm.c in mesa */
+static void
+pipe_loader_drm_x_auth(int fd)
+{
+   /* Try authenticate with the X server to give us access to devices that X
+    * is running on. */
+   xcb_connection_t *xcb_conn;
+   const xcb_setup_t *xcb_setup;
+   xcb_screen_iterator_t s;
+   xcb_dri2_connect_cookie_t connect_cookie;
+   xcb_dri2_connect_reply_t *connect;
+   drm_magic_t magic;
+   xcb_dri2_authenticate_cookie_t authenticate_cookie;
+   xcb_dri2_authenticate_reply_t *authenticate;
+
+   xcb_conn = xcb_connect(NULL,  NULL);
+
+   if(!xcb_conn)
+      return;
+
+   xcb_setup = xcb_get_setup(xcb_conn);
+
+  if (!xcb_setup)
+    goto disconnect;
+
+   s = xcb_setup_roots_iterator(xcb_setup);
+   connect_cookie = xcb_dri2_connect_unchecked(xcb_conn, s.data->root,
+                                               XCB_DRI2_DRIVER_TYPE_DRI);
+   connect = xcb_dri2_connect_reply(xcb_conn, connect_cookie, NULL);
+
+   if (!connect || connect->driver_name_length
+                   + connect->device_name_length == 0) {
+
+      goto disconnect;
+   }
+
+   if (drmGetMagic(fd, &magic))
+      goto disconnect;
+
+   authenticate_cookie = xcb_dri2_authenticate_unchecked(xcb_conn,
+                                                         s.data->root,
+                                                         magic);
+   authenticate = xcb_dri2_authenticate_reply(xcb_conn,
+                                              authenticate_cookie,
+                                              NULL);
+   free(authenticate);
+
+disconnect:
+   xcb_disconnect(xcb_conn);
+}
+
+static volatile int start = 0;
+
+void *func(void *arg) {
+  struct nouveau_device *dev = arg;
+  struct nouveau_bo *bo = NULL, *bo2 = NULL;
+  int i;
+
+  while (!start);
+
+  for (i = 0; i < 10000; i++) {
+    assert(!nouveau_bo_new(dev, NOUVEAU_BO_GART, 0, 0x1000, NULL, &bo));
+    assert(!nouveau_bo_wrap(dev, bo->handle, &bo2));
+    nouveau_bo_ref(NULL, &bo);
+    assert(!nouveau_bo_wrap(dev, bo2->handle, &bo));
+    nouveau_bo_ref(NULL, &bo);
+    nouveau_bo_ref(NULL, &bo2);
+  }
+}
+
+
+int main() {
+  struct nouveau_device *dev;
+  int fd, i;
+  pthread_t a, b, c, d;
+  struct nouveau_bo *bo[50];
+
+  fd = open("/dev/dri/card0", O_RDWR);
+  assert(fd);
+  pipe_loader_drm_x_auth(fd);
+
+  assert(!nouveau_device_wrap(fd, 0, &dev));
+
+  for (i = 0; i < 50; i++) {
+    assert(!nouveau_bo_new(dev, NOUVEAU_BO_GART, 0, 0x1000, NULL, &bo[i]));
+  }
+
+  pthread_create(&a, NULL, func, dev);
+  pthread_create(&b, NULL, func, dev);
+  pthread_create(&c, NULL, func, dev);
+  pthread_create(&d, NULL, func, dev);
+
+  start = 1;
+
+  pthread_join(a, NULL);
+  pthread_join(b, NULL);
+  pthread_join(c, NULL);
+  pthread_join(d, NULL);
+
+  for (i = 0; i < 50; i++) {
+    nouveau_bo_ref(NULL, &bo[i]);
+  }
+
+  nouveau_device_del(&dev);
+
+  return 0;
+}
+
+On Wed, Mar 12, 2014 at 10:05 PM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+> ---
+>  nouveau/nouveau.c | 29 ++++++++++++++++++++++++++++-
+>  nouveau/private.h |  3 ++-
+>  2 files changed, 30 insertions(+), 2 deletions(-)
+>
+> diff --git a/nouveau/nouveau.c b/nouveau/nouveau.c
+> index ee7893b..72c31cf 100644
+> --- a/nouveau/nouveau.c
+> +++ b/nouveau/nouveau.c
+> @@ -85,6 +85,12 @@ nouveau_device_wrap(int fd, int close, struct nouveau_device **pdev)
+>
+>         if (!nvdev)
+>                 return -ENOMEM;
+> +       ret = pthread_mutex_init(&nvdev->lock, NULL);
+> +       if (ret) {
+> +               free(nvdev);
+> +               return ret;
+> +       }
+> +
+>         nvdev->base.fd = fd;
+>
+>         ver = drmGetVersion(fd);
+> @@ -161,6 +167,7 @@ nouveau_device_del(struct nouveau_device **pdev)
+>                 if (nvdev->close)
+>                         drmClose(nvdev->base.fd);
+>                 free(nvdev->client);
+> +               pthread_mutex_destroy(&nvdev->lock);
+>                 free(nvdev);
+>                 *pdev = NULL;
+>         }
+> @@ -191,6 +198,8 @@ nouveau_client_new(struct nouveau_device *dev, struct nouveau_client **pclient)
+>         int id = 0, i, ret = -ENOMEM;
+>         uint32_t *clients;
+>
+> +       pthread_mutex_lock(&nvdev->lock);
+> +
+>         for (i = 0; i < nvdev->nr_client; i++) {
+>                 id = ffs(nvdev->client[i]) - 1;
+>                 if (id >= 0)
+> @@ -199,7 +208,7 @@ nouveau_client_new(struct nouveau_device *dev, struct nouveau_client **pclient)
+>
+>         clients = realloc(nvdev->client, sizeof(uint32_t) * (i + 1));
+>         if (!clients)
+> -               return ret;
+> +               goto unlock;
+>         nvdev->client = clients;
+>         nvdev->client[i] = 0;
+>         nvdev->nr_client++;
+> @@ -214,6 +223,9 @@ out:
+>         }
+>
+>         *pclient = &pcli->base;
+> +
+> +unlock:
+> +       pthread_mutex_unlock(&nvdev->lock);
+>         return ret;
+>  }
+>
+> @@ -225,7 +237,9 @@ nouveau_client_del(struct nouveau_client **pclient)
+>         if (pcli) {
+>                 int id = pcli->base.id;
+>                 nvdev = nouveau_device(pcli->base.device);
+> +               pthread_mutex_lock(&nvdev->lock);
+>                 nvdev->client[id / 32] &= ~(1 << (id % 32));
+> +               pthread_mutex_unlock(&nvdev->lock);
+>                 free(pcli->kref);
+>                 free(pcli);
+>         }
+> @@ -331,9 +345,12 @@ nouveau_object_find(struct nouveau_object *obj, uint32_t pclass)
+>  static void
+>  nouveau_bo_del(struct nouveau_bo *bo)
+>  {
+> +       struct nouveau_device_priv *nvdev = nouveau_device(bo->device);
+>         struct nouveau_bo_priv *nvbo = nouveau_bo(bo);
+>         struct drm_gem_close req = { bo->handle };
+> +       pthread_mutex_lock(&nvdev->lock);
+>         DRMLISTDEL(&nvbo->head);
+> +       pthread_mutex_unlock(&nvdev->lock);
+>         if (bo->map)
+>                 munmap(bo->map, bo->size);
+>         drmIoctl(bo->device->fd, DRM_IOCTL_GEM_CLOSE, &req);
+> @@ -363,7 +380,9 @@ nouveau_bo_new(struct nouveau_device *dev, uint32_t flags, uint32_t align,
+>                 return ret;
+>         }
+>
+> +       pthread_mutex_lock(&nvdev->lock);
+>         DRMLISTADD(&nvbo->head, &nvdev->bo_list);
+> +       pthread_mutex_unlock(&nvdev->lock);
+>
+>         *pbo = bo;
+>         return 0;
+> @@ -378,13 +397,16 @@ nouveau_bo_wrap(struct nouveau_device *dev, uint32_t handle,
+>         struct nouveau_bo_priv *nvbo;
+>         int ret;
+>
+> +       pthread_mutex_lock(&nvdev->lock);
+>         DRMLISTFOREACHENTRY(nvbo, &nvdev->bo_list, head) {
+>                 if (nvbo->base.handle == handle) {
+> +                       pthread_mutex_unlock(&nvdev->lock);
+>                         *pbo = NULL;
+>                         nouveau_bo_ref(&nvbo->base, pbo);
+>                         return 0;
+>                 }
+>         }
+> +       pthread_mutex_unlock(&nvdev->lock);
+>
+>         ret = drmCommandWriteRead(dev->fd, DRM_NOUVEAU_GEM_INFO,
+>                                   &req, sizeof(req));
+> @@ -396,7 +418,9 @@ nouveau_bo_wrap(struct nouveau_device *dev, uint32_t handle,
+>                 atomic_set(&nvbo->refcnt, 1);
+>                 nvbo->base.device = dev;
+>                 abi16_bo_info(&nvbo->base, &req);
+> +               pthread_mutex_lock(&nvdev->lock);
+>                 DRMLISTADD(&nvbo->head, &nvdev->bo_list);
+> +               pthread_mutex_unlock(&nvdev->lock);
+>                 *pbo = &nvbo->base;
+>                 return 0;
+>         }
+> @@ -413,13 +437,16 @@ nouveau_bo_name_ref(struct nouveau_device *dev, uint32_t name,
+>         struct drm_gem_open req = { .name = name };
+>         int ret;
+>
+> +       pthread_mutex_lock(&nvdev->lock);
+>         DRMLISTFOREACHENTRY(nvbo, &nvdev->bo_list, head) {
+>                 if (nvbo->name == name) {
+> +                       pthread_mutex_unlock(&nvdev->lock);
+>                         *pbo = NULL;
+>                         nouveau_bo_ref(&nvbo->base, pbo);
+>                         return 0;
+>                 }
+>         }
+> +       pthread_mutex_unlock(&nvdev->lock);
+>
+>         ret = drmIoctl(dev->fd, DRM_IOCTL_GEM_OPEN, &req);
+>         if (ret == 0) {
+> diff --git a/nouveau/private.h b/nouveau/private.h
+> index 60714b8..4f337ad 100644
+> --- a/nouveau/private.h
+> +++ b/nouveau/private.h
+> @@ -3,6 +3,7 @@
+>
+>  #include <xf86drm.h>
+>  #include <xf86atomic.h>
+> +#include <pthread.h>
+>  #include "nouveau_drm.h"
+>
+>  #include "nouveau.h"
+> @@ -94,7 +95,7 @@ nouveau_bo(struct nouveau_bo *bo)
+>  struct nouveau_device_priv {
+>         struct nouveau_device base;
+>         int close;
+> -       atomic_t lock;
+> +       pthread_mutex_t lock;
+>         struct nouveau_list bo_list;
+>         uint32_t *client;
+>         int nr_client;
+> --
+> 1.8.3.2
+>
