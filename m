@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76605] Screen corruption and crashes in bastion on
- NVS-140M (G86)
-Date: Tue, 25 Mar 2014 20:51:12 +0000
-Message-ID: <bug-76605-8800-BeJkhkHxRw@http.bugs.freedesktop.org/>
+Subject: [Bug 76605] [NV86] Screen corruption and crashes in
+ bastion on NVS-140M
+Date: Tue, 25 Mar 2014 20:51:40 +0000
+Message-ID: <bug-76605-8800-B5b4PzGnpb@http.bugs.freedesktop.org/>
 References: <bug-76605-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1865727993=="
+Content-Type: multipart/mixed; boundary="===============1738227162=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-76605-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1865727993==
-Content-Type: multipart/alternative; boundary="1395780672.AFdE01.1699"; charset="us-ascii"
+--===============1738227162==
+Content-Type: multipart/alternative; boundary="1395780700.7fD0a8eB1.1885"; charset="us-ascii"
 
 
---1395780672.AFdE01.1699
-Date: Tue, 25 Mar 2014 20:51:12 +0000
+--1395780700.7fD0a8eB1.1885
+Date: Tue, 25 Mar 2014 20:51:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=76605
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you check with 3.14-rc8? Alternatively try booting with
-nouveau.config=PCRYPT=0. (Although I'm not seeing the MMIO write error that I
-would expect to see if you had that particular issue, but it's easy enough to
-try.)
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-The final crash is due to running out of vram, which I guess is handled
-less-than-perfectly by mesa. I'd prefer to focus on the initial corruption.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Screen corruption and       |[NV86] Screen corruption
+                   |crashes in bastion on       |and crashes in bastion on
+                   |NVS-140M (G86)              |NVS-140M
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1395780672.AFdE01.1699
-Date: Tue, 25 Mar 2014 20:51:12 +0000
+--1395780700.7fD0a8eB1.1885
+Date: Tue, 25 Mar 2014 20:51:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,27 +53,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Screen corruption and crashes in bastion on NVS-140M (G86)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76605#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Screen corruption and crashes in bastion on NVS-140M (G86)"
+   title="NEW --- - [NV86] Screen corruption and crashes in bastion on NVS-140M"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=76605">bug 76605</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Can you check with 3.14-rc8? Alternatively try booting with
-nouveau.config=PCRYPT=0. (Although I'm not seeing the MMIO write error that I
-would expect to see if you had that particular issue, but it's easy enough to
-try.)
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-The final crash is due to running out of vram, which I guess is handled
-less-than-perfectly by mesa. I'd prefer to focus on the initial corruption.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Screen corruption and crashes in bastion on NVS-140M (G86)
+           </td>
+           <td>[NV86] Screen corruption and crashes in bastion on NVS-140M
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +85,9 @@ less-than-perfectly by mesa. I'd prefer to focus on the initial corruption.</pre
     </body>
 </html>
 
---1395780672.AFdE01.1699--
+--1395780700.7fD0a8eB1.1885--
 
---===============1865727993==
+--===============1738227162==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1865727993==--
+--===============1738227162==--
