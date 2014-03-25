@@ -1,9 +1,10 @@
-From: William Lewis <minutemaidpark-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
-Subject: Help me, Nouveau list, you're my only hope...
-Date: Mon, 24 Mar 2014 21:50:02 -0500
-Message-ID: <COL129-W93B6D8C2CCB3DCDD4E895DC8650@phx.gbl>
+From: Alexei Ustyuzhaninov <alust-Q1PPmwm10TxD9JxaSR3mpdBPR1lH4CV8@public.gmane.org>
+Subject: nouveau module not loading
+Date: Tue, 25 Mar 2014 11:57:28 +0600
+Message-ID: <53311AC8.9050504@alust.homeunix.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0151473550=="
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -14,97 +15,57 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0151473550==
-Content-Type: multipart/alternative;
-	boundary="_247a8319-a56b-44cc-bf62-8f6741274e13_"
+Hi!
 
---_247a8319-a56b-44cc-bf62-8f6741274e13_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+I have a rather decent notebook (Toshiba Satellite P105-S9722) with 
+Nvidia GeForce Go 7900 GS video card. I installed latest debian system 
+with kernel 3.13-1-amd64 on it, but unfortunately nouveau driver doesn't 
+work. When I load nouveau module following messages will appear in syslog:
 
-I hope I'm writing to people who can help me.  If not you=2C then I have a =
-serious inconvenience and am going to be at a complete loss for where to tu=
-rn.
-Let me explain my setup.  I have an HTPC with a GeForce GT620.  It is conne=
-cted to a Denon AVR-1913 via HDMI=2C because that does all the switching fo=
-r my entertainment system then out to an LG flat-panel 55-inch TV via HDMI.=
-  Everything was working beautifully until it wasn't.  All of a sudden=2C I=
- simply cannot get the receiver to recognize the video signal from the vide=
-o card.  The display on the front does not switch to HDMI=2C and the audio =
-will not switch away from analog.  And all that the display says is DENON.
-Now the video card works fine.  It is hooked up directly to the TV via DVI-=
->HDMI=2C and the TV has no problem with that signal.  Tonight I bypassed th=
-e receiver altogether=2C and the video went out via HDMI to the TV fine as =
-well=2C even though the TV's input list had the HDMI input grayed.  When I =
-selected it=2C it worked fine.
-So that got me thinking it was the input on the receiver or something else =
-on the receiver.  No such luck.  A Blu-Ray player works fine through the sa=
-me input=2C and my MacBook Pro works fine through the same input.
-If I am diagnosing things properly=2C the receiver is not accepting the mod=
-e the HDMI out of the GeForce card is setting=2C even though xrandr shows t=
-he same mode being set on both the DVI out and the HDMI out.
-Can you help me debug the problem?
-Thanks in advance=2CWill 		 	   		  =
+Mar 25 11:50:53 ivnb kernel: [ 2703.329287] nouveau  [ 
+DEVICE][0000:01:00.0] BOOT0  : 0x049800a2
+Mar 25 11:50:53 ivnb kernel: [ 2703.329293] nouveau  [ 
+DEVICE][0000:01:00.0] Chipset: G71 (NV49)
+Mar 25 11:50:53 ivnb kernel: [ 2703.329298] nouveau  [ 
+DEVICE][0000:01:00.0] Family : NV40
+Mar 25 11:50:53 ivnb kernel: [ 2703.333377] nouveau  [ 
+VBIOS][0000:01:00.0] checking PRAMIN for image...
+Mar 25 11:50:53 ivnb kernel: [ 2703.433876] nouveau  [ 
+VBIOS][0000:01:00.0] ... checksum invalid
+Mar 25 11:50:53 ivnb kernel: [ 2703.433882] nouveau  [ 
+VBIOS][0000:01:00.0] checking PROM for image...
+Mar 25 11:50:53 ivnb kernel: [ 2703.433896] nouveau  [ 
+VBIOS][0000:01:00.0] ..
+. signature not found
+Mar 25 11:50:53 ivnb kernel: [ 2703.433901] nouveau  [ 
+VBIOS][0000:01:00.0] checking ACPI for image...
+Mar 25 11:50:53 ivnb kernel: [ 2703.433905] nouveau  [ 
+VBIOS][0000:01:00.0] ... signature not found
+Mar 25 11:50:53 ivnb kernel: [ 2703.433910] nouveau  [ 
+VBIOS][0000:01:00.0] checking PCIROM for image...
+Mar 25 11:50:53 ivnb kernel: [ 2703.434142] nouveau  [ 
+VBIOS][0000:01:00.0] ... appears to be valid
+Mar 25 11:50:53 ivnb kernel: [ 2703.434150] nouveau  [ 
+VBIOS][0000:01:00.0] using image from PCIROM
+Mar 25 11:50:53 ivnb kernel: [ 2703.434323] nouveau  [ 
+VBIOS][0000:01:00.0] BIT signature found
+Mar 25 11:50:53 ivnb kernel: [ 2703.434327] nouveau  [ 
+VBIOS][0000:01:00.0] version 05.71.22.08.a8
+Mar 25 11:50:53 ivnb kernel: [ 2703.434464] nouveau E[ 
+VBIOS][0000:01:00.0] 0xe08f[ ]: unknown opcode 0x00
+Mar 25 11:50:53 ivnb kernel: [ 2703.434469] nouveau E[ 
+DEVINIT][0000:01:00.0] init failed, -22
+Mar 25 11:50:53 ivnb kernel: [ 2703.434472] nouveau E[     DRM] failed 
+to create 0x80000080, -22
+Mar 25 11:50:53 ivnb kernel: [ 2703.435112] nouveau: probe of 
+0000:01:00.0 failed with error -22
 
---_247a8319-a56b-44cc-bf62-8f6741274e13_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+So Is there any way to fix this issue or is my notebook really too old 
+for nouveau?
 
-<html>
-<head>
-<style><!--
-.hmmessage P
-{
-margin:0px=3B
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt=3B
-font-family:Calibri
-}
---></style></head>
-<body class=3D'hmmessage'><div dir=3D'ltr'>I hope I'm writing to people who=
- can help me. &nbsp=3BIf not you=2C then I have a serious inconvenience and=
- am going to be at a complete loss for where to turn.<div><br></div><div>Le=
-t me explain my setup. &nbsp=3BI have an HTPC with a GeForce GT620. &nbsp=
-=3BIt is connected to a Denon AVR-1913 via HDMI=2C because that does all th=
-e switching for my entertainment system then out to an LG flat-panel 55-inc=
-h TV via HDMI. &nbsp=3BEverything was working beautifully until it wasn't. =
-&nbsp=3BAll of a sudden=2C I simply cannot get the receiver to recognize th=
-e video signal from the video card. &nbsp=3BThe display on the front does n=
-ot switch to HDMI=2C and the audio will not switch away from analog. &nbsp=
-=3BAnd all that the display says is DENON.</div><div><br></div><div>Now the=
- video card works fine. &nbsp=3BIt is hooked up directly to the TV via DVI-=
-&gt=3BHDMI=2C and the TV has no problem with that signal. &nbsp=3BTonight I=
- bypassed the receiver altogether=2C and the video went out via HDMI to the=
- TV fine as well=2C even though the TV's input list had the HDMI input gray=
-ed. &nbsp=3BWhen I selected it=2C it worked fine.</div><div><br></div><div>=
-So that got me thinking it was the input on the receiver or something else =
-on the receiver. &nbsp=3BNo such luck. &nbsp=3BA Blu-Ray player works fine =
-through the same input=2C and my MacBook Pro works fine through the same in=
-put.</div><div><br></div><div>If I am diagnosing things properly=2C the rec=
-eiver is not accepting the mode the HDMI out of the GeForce card is setting=
-=2C even though xrandr shows the same mode being set on both the DVI out an=
-d the HDMI out.</div><div><br></div><div>Can you help me debug the problem?=
-</div><div><br></div><div>Thanks in advance=2C</div><div>Will</div> 		 	   =
-		  </div></body>
-</html>=
-
---_247a8319-a56b-44cc-bf62-8f6741274e13_--
-
---===============0151473550==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0151473550==--
+-- 
+Thanks,
+Alexei
