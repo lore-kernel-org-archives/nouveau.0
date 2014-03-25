@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71620] nouveau_fence_wait_uevent NULL pointer
-	dereference
-Date: Tue, 25 Mar 2014 12:24:56 +0000
-Message-ID: <bug-71620-8800-tmxDJioQmZ@http.bugs.freedesktop.org/>
-References: <bug-71620-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH 1/4] pm/fan: drop the fan lock in fan_update()
+ before rescheduling
+Date: Tue, 25 Mar 2014 14:08:44 +0100
+Message-ID: <53317FDC.9040502@free.fr>
+References: <1395622983-2807-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2080350197=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1395622983-2807-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,90 +21,44 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============2080350197==
-Content-Type: multipart/alternative; boundary="1395750296.e1aAD2.14450"; charset="us-ascii"
-
-
---1395750296.e1aAD2.14450
-Date: Tue, 25 Mar 2014 12:24:56 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D71620
-
---- Comment #4 from Rapha=C3=ABl Droz <gibboris-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 96365
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D96365&action=3Dedit
-.config diff
-
-seems that it never happened with my previous config (used during several
-weeks), but happened (once) with the new one (used only 2 days)
-[ anyway other software was updated too in the interval ... ]
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1395750296.e1aAD2.14450
-Date: Tue, 25 Mar 2014 12:24:56 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nouveau_fence_wait_uevent NULL pointer dereference"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71620#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - nouveau_fence_wait_uevent NULL pointer dereference"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71620">bug 71620<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gibboris&#64;gmail.com" title=3D"Rapha=C3=ABl Droz &lt;gibboris&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Rapha=C3=ABl Droz</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D96365"=
- name=3D"attach_96365" title=3D".config diff">attachment 96365</a> <a href=
-=3D"attachment.cgi?id=3D96365&amp;action=3Dedit" title=3D".config diff">[de=
-tails]</a></span>
-.config diff
-
-seems that it never happened with my previous config (used during several
-weeks), but happened (once) with the new one (used only 2 days)
-[ anyway other software was updated too in the interval ... ]</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1395750296.e1aAD2.14450--
-
---===============2080350197==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============2080350197==--
+TGUgMjQvMDMvMjAxNCAwMjowMywgTWFydGluIFBlcmVzIGEgw6ljcml0IDoKPiBGcm9tOiBNYXJ0
+aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0BsYWJyaS5mcj4KPgo+IFRoaXMgc2hvdWxkIGZpeCBhIGRl
+YWRsb2NrIHRoYXQgaGFzIGJlZW4gcmVwb3J0ZWQgdG8gdXMgd2hlcmUgZmFuX3VwZGF0ZSgpCj4g
+d291bGQgaG9sZCB0aGUgZmFuIGxvY2sgYW5kIHRyeSB0byBncmFiIHRoZSBhbGFybV9wcm9ncmFt
+X2xvY2sgdG8gcmVzY2hlZHVsZQo+IGFuIHVwZGF0ZS4gT24gYW4gb3RoZXIgQ1BVLCB0aGUgYWxh
+cm1fcHJvZ3JhbV9sb2NrIHdvdWxkIGhhdmUgYmVlbiB0YWtlbgo+IGJlZm9yZSBjYWxsaW5nIGZh
+bl91cGRhdGUoKSwgbGVhZGluZyB0byBhIGRlYWRsb2NrLgo+Cj4gV2Ugc2hvdWxkIENjOiA8c3Rh
+YmxlQHZnZXIua2VybmVsLm9yZz4gIyAzLjkrCj4KPiBSZXBvcnRlZC1ieTogTWFyY2luIFNsdXNh
+cnogPG1hcmNpbi5zbHVzYXJ6QGdtYWlsLmNvbT4KPiBUZXN0ZWQtYnk6IFRpbW90aMOpZSBSYXZp
+ZXIgPHRpbUBzaW9zbS5mcj4KClRlc3RlZC1ieTogQm9yaXMgRmVyc2luZyAoSVJDIG5pY2sgZmVy
+c2luZ2IsIGVtYWlsIGlzIHByaXZhdGUpCgo+IFNpZ25lZC1vZmYtYnk6IE1hcnRpbiBQZXJlcyA8
+bWFydGluLnBlcmVzQGZyZWUuZnI+Cj4gLS0tCj4gICBudmttL3N1YmRldi90aGVybS9mYW4uYyB8
+IDE5ICsrKysrKysrKysrKystLS0tLS0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAxMyBpbnNlcnRpb25z
+KCspLCA2IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL252a20vc3ViZGV2L3RoZXJtL2Zh
+bi5jIGIvbnZrbS9zdWJkZXYvdGhlcm0vZmFuLmMKPiBpbmRleCA5NWY2MTI5Li4yOWQ0YzQxIDEw
+MDY0NAo+IC0tLSBhL252a20vc3ViZGV2L3RoZXJtL2Zhbi5jCj4gKysrIGIvbnZrbS9zdWJkZXYv
+dGhlcm0vZmFuLmMKPiBAQCAtNTQsOCArNTQsMTAgQEAgbm91dmVhdV9mYW5fdXBkYXRlKHN0cnVj
+dCBub3V2ZWF1X2ZhbiAqZmFuLCBib29sIGltbWVkaWF0ZSwgaW50IHRhcmdldCkKPgo+ICAgCS8q
+IGNoZWNrIHRoYXQgd2UncmUgbm90IGFscmVhZHkgYXQgdGhlIHRhcmdldCBkdXR5IGN5Y2xlICov
+Cj4gICAJZHV0eSA9IGZhbi0+Z2V0KHRoZXJtKTsKPiAtCWlmIChkdXR5ID09IHRhcmdldCkKPiAt
+CQlnb3RvIGRvbmU7Cj4gKwlpZiAoZHV0eSA9PSB0YXJnZXQpIHsKPiArCQlzcGluX3VubG9ja19p
+cnFyZXN0b3JlKCZmYW4tPmxvY2ssIGZsYWdzKTsKPiArCQlyZXR1cm4gMDsKPiArCX0KPgo+ICAg
+CS8qIHNtb290aCBvdXQgdGhlIGZhbnNwZWVkIGluY3JlYXNlL2RlY3JlYXNlICovCj4gICAJaWYg
+KCFpbW1lZGlhdGUgJiYgZHV0eSA+PSAwKSB7Cj4gQEAgLTczLDggKzc1LDE1IEBAIG5vdXZlYXVf
+ZmFuX3VwZGF0ZShzdHJ1Y3Qgbm91dmVhdV9mYW4gKmZhbiwgYm9vbCBpbW1lZGlhdGUsIGludCB0
+YXJnZXQpCj4KPiAgIAludl9kZWJ1Zyh0aGVybSwgIkZBTiB1cGRhdGU6ICVkXG4iLCBkdXR5KTsK
+PiAgIAlyZXQgPSBmYW4tPnNldCh0aGVybSwgZHV0eSk7Cj4gLQlpZiAocmV0KQo+IC0JCWdvdG8g
+ZG9uZTsKPiArCWlmIChyZXQpIHsKPiArCQlzcGluX3VubG9ja19pcnFyZXN0b3JlKCZmYW4tPmxv
+Y2ssIGZsYWdzKTsKPiArCQlyZXR1cm4gcmV0Owo+ICsJfQo+ICsKPiArCS8qIGZhbiBzcGVlZCB1
+cGRhdGVkLCBkcm9wIHRoZSBmYW4gbG9jayBiZWZvcmUgZ3JhYmJpbmcgdGhlCj4gKwkgKiBhbGFy
+bS1zY2hlZHVsaW5nIGxvY2sgYW5kIHJpc2tpbmcgYSBkZWFkbG9jawo+ICsJICovCj4gKwlzcGlu
+X3VubG9ja19pcnFyZXN0b3JlKCZmYW4tPmxvY2ssIGZsYWdzKTsKPgo+ICAgCS8qIHNjaGVkdWxl
+IG5leHQgZmFuIHVwZGF0ZSwgaWYgbm90IGF0IHRhcmdldCBzcGVlZCBhbHJlYWR5ICovCj4gICAJ
+aWYgKGxpc3RfZW1wdHkoJmZhbi0+YWxhcm0uaGVhZCkgJiYgdGFyZ2V0ICE9IGR1dHkpIHsKPiBA
+QCAtOTIsOCArMTAxLDYgQEAgbm91dmVhdV9mYW5fdXBkYXRlKHN0cnVjdCBub3V2ZWF1X2ZhbiAq
+ZmFuLCBib29sIGltbWVkaWF0ZSwgaW50IHRhcmdldCkKPiAgIAkJcHRpbWVyLT5hbGFybShwdGlt
+ZXIsIGRlbGF5ICogMTAwMCAqIDEwMDAsICZmYW4tPmFsYXJtKTsKPiAgIAl9Cj4KPiAtZG9uZToK
+PiAtCXNwaW5fdW5sb2NrX2lycXJlc3RvcmUoJmZhbi0+bG9jaywgZmxhZ3MpOwo+ICAgCXJldHVy
+biByZXQ7Cj4gICB9Cj4KPgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
