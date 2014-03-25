@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Help me, Nouveau list, you're my only hope...
-Date: Tue, 25 Mar 2014 07:59:34 -0400
-Message-ID: <CAKb7UviczBdDKZUmQ1PE1874SPnZQqS47VXYPj5jq2Le0u9ZCQ@mail.gmail.com>
-References: <COL129-W93B6D8C2CCB3DCDD4E895DC8650@phx.gbl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 71620] nouveau_fence_wait_uevent NULL pointer
+	dereference
+Date: Tue, 25 Mar 2014 12:20:59 +0000
+Message-ID: <bug-71620-8800-mAK6VItkzG@http.bugs.freedesktop.org/>
+References: <bug-71620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0291451039=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <COL129-W93B6D8C2CCB3DCDD4E895DC8650-MsuGFMq8XAE@public.gmane.org>
+In-Reply-To: <bug-71620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,41 +17,103 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: William Lewis <minutemaidpark-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Mar 24, 2014 at 10:50 PM, William Lewis
-<minutemaidpark-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> wrote:
-> I hope I'm writing to people who can help me.  If not you, then I have a
-> serious inconvenience and am going to be at a complete loss for where to
-> turn.
->
-> Let me explain my setup.  I have an HTPC with a GeForce GT620.  It is
-> connected to a Denon AVR-1913 via HDMI, because that does all the switching
-> for my entertainment system then out to an LG flat-panel 55-inch TV via
-> HDMI.  Everything was working beautifully until it wasn't.  All of a sudden,
-> I simply cannot get the receiver to recognize the video signal from the
-> video card.  The display on the front does not switch to HDMI, and the audio
-> will not switch away from analog.  And all that the display says is DENON.
->
-> Now the video card works fine.  It is hooked up directly to the TV via
-> DVI->HDMI, and the TV has no problem with that signal.  Tonight I bypassed
-> the receiver altogether, and the video went out via HDMI to the TV fine as
-> well, even though the TV's input list had the HDMI input grayed.  When I
-> selected it, it worked fine.
->
-> So that got me thinking it was the input on the receiver or something else
-> on the receiver.  No such luck.  A Blu-Ray player works fine through the
-> same input, and my MacBook Pro works fine through the same input.
->
-> If I am diagnosing things properly, the receiver is not accepting the mode
-> the HDMI out of the GeForce card is setting, even though xrandr shows the
-> same mode being set on both the DVI out and the HDMI out.
->
-> Can you help me debug the problem?
 
-So... what changed? Kernel upgrade maybe? Have you tried the latest
-and greatest? (3.13.x should be late and great enough for your needs.)
-What _is_ a GT620? NVC1? NVD9? Something else? (Should be in your boot
-logs.)
+--===============0291451039==
+Content-Type: multipart/alternative; boundary="1395750059.AA5E62.13135"; charset="us-ascii"
+
+
+--1395750059.AA5E62.13135
+Date: Tue, 25 Mar 2014 12:20:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D71620
+
+--- Comment #3 from Rapha=C3=ABl Droz <gibboris-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 96364
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D96364&action=3Dedit
+stacktrace from kernel oops
+
+same here (with a slightly different stack trace), see attachment
+(using 10de:06e4 (GeForce 8400 GS Rev. 2)).
+
+Was simply using fluxbox/firefox after a resumed. It's the first time it
+happens, (but I changed a couple of kernel options only 2 days ago).
+I will attach the .config diff in case there's something related.
+
+Will try the patch later if I can get the oops frequently enough.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1395750059.AA5E62.13135
+Date: Tue, 25 Mar 2014 12:20:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - nouveau_fence_wait_uevent NULL pointer dereference"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71620#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - nouveau_fence_wait_uevent NULL pointer dereference"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71620">bug 71620<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+gibboris&#64;gmail.com" title=3D"Rapha=C3=ABl Droz &lt;gibboris&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Rapha=C3=ABl Droz</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D96364"=
+ name=3D"attach_96364" title=3D"stacktrace from kernel oops">attachment 963=
+64</a> <a href=3D"attachment.cgi?id=3D96364&amp;action=3Dedit" title=3D"sta=
+cktrace from kernel oops">[details]</a></span>
+stacktrace from kernel oops
+
+same here (with a slightly different stack trace), see attachment
+(using 10de:06e4 (GeForce 8400 GS Rev. 2)).
+
+Was simply using fluxbox/firefox after a resumed. It's the first time it
+happens, (but I changed a couple of kernel options only 2 days ago).
+I will attach the .config diff in case there's something related.
+
+Will try the patch later if I can get the oops frequently enough.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1395750059.AA5E62.13135--
+
+--===============0291451039==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0291451039==--
