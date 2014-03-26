@@ -1,14 +1,15 @@
-From: Alexei Ustyuzhaninov <alust-Q1PPmwm10TxD9JxaSR3mpdBPR1lH4CV8@public.gmane.org>
-Subject: Re: nouveau module not loading
-Date: Wed, 26 Mar 2014 13:05:16 +0600
-Message-ID: <53327C2C.6070701@alust.homeunix.com>
-References: <53311AC8.9050504@alust.homeunix.com>
- <CAKb7UviyMkCLk3C5gwNBkbVAhTa5Fv-8b4tmvsdZRnewe_kuNA@mail.gmail.com>
+From: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
+Subject: Re: [PATCH 00/12] drm/nouveau: support for GK20A, cont'd
+Date: Wed, 26 Mar 2014 11:33:51 +0100
+Message-ID: <1395830031.7930.8.camel@weser.hi.pengutronix.de>
+References: <1395650554-31925-1-git-send-email-acourbot@nvidia.com>
+ <1395667191.5062.18.camel@weser.hi.pengutronix.de>
+ <CAAVeFu+s+hrKdiHqxvxAOSnq-Jm_g3PY1wT3TgwpX1OGP-Niog@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UviyMkCLk3C5gwNBkbVAhTa5Fv-8b4tmvsdZRnewe_kuNA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAAVeFu+s+hrKdiHqxvxAOSnq-Jm_g3PY1wT3TgwpX1OGP-Niog-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,77 +19,106 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On 25.03.2014 17:48, Ilia Mirkin wrote:
-> On Tue, Mar 25, 2014 at 1:57 AM, Alexei Ustyuzhaninov
-> <alust-Q1PPmwm10TxD9JxaSR3mpdBPR1lH4CV8@public.gmane.org> wrote:
->> Hi!
->>
->> I have a rather decent notebook (Toshiba Satellite P105-S9722) with Nvidia
->> GeForce Go 7900 GS video card. I installed latest debian system with kernel
->> 3.13-1-amd64 on it, but unfortunately nouveau driver doesn't work. When I
->> load nouveau module following messages will appear in syslog:
->>
->> Mar 25 11:50:53 ivnb kernel: [ 2703.329287] nouveau  [ DEVICE][0000:01:00.0]
->> BOOT0  : 0x049800a2
->> Mar 25 11:50:53 ivnb kernel: [ 2703.329293] nouveau  [ DEVICE][0000:01:00.0]
->> Chipset: G71 (NV49)
->> Mar 25 11:50:53 ivnb kernel: [ 2703.329298] nouveau  [ DEVICE][0000:01:00.0]
->> Family : NV40
->> Mar 25 11:50:53 ivnb kernel: [ 2703.333377] nouveau  [ VBIOS][0000:01:00.0]
->> checking PRAMIN for image...
->> Mar 25 11:50:53 ivnb kernel: [ 2703.433876] nouveau  [ VBIOS][0000:01:00.0]
->> ... checksum invalid
->> Mar 25 11:50:53 ivnb kernel: [ 2703.433882] nouveau  [ VBIOS][0000:01:00.0]
->> checking PROM for image...
->> Mar 25 11:50:53 ivnb kernel: [ 2703.433896] nouveau  [ VBIOS][0000:01:00.0]
->> ..
->> . signature not found
->> Mar 25 11:50:53 ivnb kernel: [ 2703.433901] nouveau  [ VBIOS][0000:01:00.0]
->> checking ACPI for image...
->> Mar 25 11:50:53 ivnb kernel: [ 2703.433905] nouveau  [ VBIOS][0000:01:00.0]
->> ... signature not found
->> Mar 25 11:50:53 ivnb kernel: [ 2703.433910] nouveau  [ VBIOS][0000:01:00.0]
->> checking PCIROM for image...
->> Mar 25 11:50:53 ivnb kernel: [ 2703.434142] nouveau  [ VBIOS][0000:01:00.0]
->> ... appears to be valid
->> Mar 25 11:50:53 ivnb kernel: [ 2703.434150] nouveau  [ VBIOS][0000:01:00.0]
->> using image from PCIROM
->> Mar 25 11:50:53 ivnb kernel: [ 2703.434323] nouveau  [ VBIOS][0000:01:00.0]
->> BIT signature found
->> Mar 25 11:50:53 ivnb kernel: [ 2703.434327] nouveau  [ VBIOS][0000:01:00.0]
->> version 05.71.22.08.a8
->> Mar 25 11:50:53 ivnb kernel: [ 2703.434464] nouveau E[ VBIOS][0000:01:00.0]
->> 0xe08f[ ]: unknown opcode 0x00
->> Mar 25 11:50:53 ivnb kernel: [ 2703.434469] nouveau E[
->> DEVINIT][0000:01:00.0] init failed, -22
->> Mar 25 11:50:53 ivnb kernel: [ 2703.434472] nouveau E[     DRM] failed to
->> create 0x80000080, -22
->> Mar 25 11:50:53 ivnb kernel: [ 2703.435112] nouveau: probe of 0000:01:00.0
->> failed with error -22
->>
->> So Is there any way to fix this issue or is my notebook really too old for
->> nouveau?
->
-> In general, nouveau should work just fine on all Riva TNT and newer
-> NVIDIA cards (NV04+). Starting with 3.13, we abort loads when the
-> VBIOS contains unknown opcodes (running the VBIOS is needed for
-> posting the card if it's a secondary, and also on resume). By far and
-> away the leading cause of this is reading in the "wrong" VBIOS (which
-> in turn is almost always PCIROM). It seems like a vbios could be found
-> in your PRAMIN although the signature doesn't check out -- this
-> happens sometimes. You can force the PRAMIN vbios by booting with
->
-> nouveau.config=NvBios=PRAMIN
->
-> Try that, I bet it'll let nouveau load.
+Hi Alexandre,
 
-Hi Ilia,
+Am Mittwoch, den 26.03.2014, 15:33 +0900 schrieb Alexandre Courbot:
+> Hi Lucas,
+> 
+> On Mon, Mar 24, 2014 at 10:19 PM, Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org> wrote:
+> > Hi Alexandre,
+> >
+> > Am Montag, den 24.03.2014, 17:42 +0900 schrieb Alexandre Courbot:
+> >> Hi everyone,
+> > [...]
+> >>
+> >> A few lines of hacks (not included here) are still needed to deal with cached
+> >> mappings triggering external aborts and CPU/GPU memory coherency issues, but I
+> >> hope to understand and address these issues next.
+> >
+> > For the coherency issue part you may want to look at my Nouveau on ARM
+> > series. Most of it never made it upstream, as I lacked the time to work
+> > further on this, but it solves the coherency issue from the kernel.
+> 
+> Oh, thanks for pointing this out, it will probably be most useful.
+> Shall I assume the patches at
+> https://www.mail-archive.com/nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org/msg13557.html
+> are up-to-date? Would you mind if I include the relevant patches of
+> yours in the next iteration of this series?
+> 
+> >
+> > It does so by doing the necessary manual cache flushes/invalidates on
+> > buffer access, so costs some performance. To avoid this you really want
+> > to get writecombined mappings into the kernel<->userspace interface.
+> > Simply mapping the pushbuf as WC/US has brought a 7% performance
+> > increase in OpenArena when I last tested this. This test was done with
+> > only one PCIe lane, so the perf increase may be even better with a more
+> > adequate interconnect.
+> 
+> Interestingly if I allow writecombined mappings in the kernel I get
+> faults when attempting the read the mapped area:
+> 
+This is most likely because your handling of those buffers produces
+conflicting mappings (if my understanding of what you are doing is
+right).
 
-Yes, that helps, thank you very much!
+At first you allocate memory from CMA without changing the pgprot flags.
+This yields pages which are mapped uncached or cached (when moveable
+pages are purged from CMA to make space for your buffer) into the
+kernels linear space.
+
+Later you regard this memory as iomem (it isn't!) and let TTM remap
+those pages into the vmalloc area with pgprot set to writecombined.
+
+I don't know exactly why this is causing havoc, but having two
+conflicting virtual mappings of the same physical memory is documented
+to at least produce undefined behavior on ARMv7.
+
+Regards,
+Lucas
+
+> [   78.074854] Unhandled fault: external abort on non-linefetch
+> (0x1008) at 0xf003e010
+> ...
+> [   78.337862] [<c03491a8>] (nouveau_bo_rd32) from [<c0346374>]
+> (nouveau_fence_update+0x5c/0x80)
+> [   78.352536] [<c0346374>] (nouveau_fence_update) from [<c03463b0>]
+> (nouveau_fence_done+0x18/0x28)
+> [   78.367531] [<c03463b0>] (nouveau_fence_done) from [<c02b852c>]
+> (ttm_bo_wait+0x104/0x184)
+> [   78.381915] [<c02b852c>] (ttm_bo_wait) from [<c034c718>]
+> (nouveau_gem_ioctl_cpu_prep+0x40/0xe8)
+> [   78.396849] [<c034c718>] (nouveau_gem_ioctl_cpu_prep) from
+> [<c029fd5c>] (drm_ioctl+0x404/0x4b8)
+> [   78.411790] [<c029fd5c>] (drm_ioctl) from [<c0343960>]
+> (nouveau_drm_ioctl+0x54/0x80)
+> [   78.425805] [<c0343960>] (nouveau_drm_ioctl) from [<c00ea5ec>]
+> (do_vfs_ioctl+0x3f0/0x5bc)
+> [   78.440277] [<c00ea5ec>] (do_vfs_ioctl) from [<c00ea7ec>]
+> (SyS_ioctl+0x34/0x5c)
+> [   78.453918] [<c00ea7ec>] (SyS_ioctl) from [<c000e5a0>]
+> (ret_fast_syscall+0x0/0x30)
+> 
+> To avoid these I need to set the VRAM default_caching to
+> TTM_PL_FLAG_UNCACHED. It is not clear to me why this is needed. The BO
+> being accessed through the BAR, they are correctly considered as IO
+> memory and mapped using ttm_bo_ioremap(), so it really seems to be
+> unhappy with the WC mapping itself.
+> 
+> Note that if I go ahead and force the use of pgprot_writecombine() in
+> ttm_io_prot() to get writecombined user-space mappings, pure DRM
+> programs that map a buffer and try to read it fail similarly, while
+> Mesa's glReadPixels() seems to be happy. I'm not sure what it does
+> differently here.
+> 
+> Cheers,
+> Alex.
 
 -- 
-Alexei
+Pengutronix e.K.                           | Lucas Stach                 |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-5076 |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
