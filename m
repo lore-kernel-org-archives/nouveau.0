@@ -1,14 +1,14 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nouveau: safen up nouveau_device list usage
- against concurrent access
-Date: Wed, 26 Mar 2014 14:50:23 +1000
-Message-ID: <CACAvsv5mhxHdviWfcyJosPXoZrNYnYw1WWHORsChC+iZWdqffg@mail.gmail.com>
-References: <1394676315-25595-1-git-send-email-imirkin@alum.mit.edu>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 00/12] drm/nouveau: support for GK20A, cont'd
+Date: Wed, 26 Mar 2014 15:33:42 +0900
+Message-ID: <CAAVeFu+s+hrKdiHqxvxAOSnq-Jm_g3PY1wT3TgwpX1OGP-Niog@mail.gmail.com>
+References: <1395650554-31925-1-git-send-email-acourbot@nvidia.com>
+ <1395667191.5062.18.camel@weser.hi.pengutronix.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1394676315-25595-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+In-Reply-To: <1395667191.5062.18.camel-WzVe3FnzCwFR6QfukMTsflXZhhPuCNm+@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,176 +18,78 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Mar 13, 2014 at 12:05 PM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
-> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Already said on IRC, but for posterity:
+Hi Lucas,
 
-Reviewed-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+On Mon, Mar 24, 2014 at 10:19 PM, Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org> wrote:
+> Hi Alexandre,
+>
+> Am Montag, den 24.03.2014, 17:42 +0900 schrieb Alexandre Courbot:
+>> Hi everyone,
+> [...]
+>>
+>> A few lines of hacks (not included here) are still needed to deal with cached
+>> mappings triggering external aborts and CPU/GPU memory coherency issues, but I
+>> hope to understand and address these issues next.
+>
+> For the coherency issue part you may want to look at my Nouveau on ARM
+> series. Most of it never made it upstream, as I lacked the time to work
+> further on this, but it solves the coherency issue from the kernel.
 
-> ---
->  nouveau/nouveau.c | 29 ++++++++++++++++++++++++++++-
->  nouveau/private.h |  3 ++-
->  2 files changed, 30 insertions(+), 2 deletions(-)
+Oh, thanks for pointing this out, it will probably be most useful.
+Shall I assume the patches at
+https://www.mail-archive.com/nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org/msg13557.html
+are up-to-date? Would you mind if I include the relevant patches of
+yours in the next iteration of this series?
+
 >
-> diff --git a/nouveau/nouveau.c b/nouveau/nouveau.c
-> index ee7893b..72c31cf 100644
-> --- a/nouveau/nouveau.c
-> +++ b/nouveau/nouveau.c
-> @@ -85,6 +85,12 @@ nouveau_device_wrap(int fd, int close, struct nouveau_device **pdev)
->
->         if (!nvdev)
->                 return -ENOMEM;
-> +       ret = pthread_mutex_init(&nvdev->lock, NULL);
-> +       if (ret) {
-> +               free(nvdev);
-> +               return ret;
-> +       }
-> +
->         nvdev->base.fd = fd;
->
->         ver = drmGetVersion(fd);
-> @@ -161,6 +167,7 @@ nouveau_device_del(struct nouveau_device **pdev)
->                 if (nvdev->close)
->                         drmClose(nvdev->base.fd);
->                 free(nvdev->client);
-> +               pthread_mutex_destroy(&nvdev->lock);
->                 free(nvdev);
->                 *pdev = NULL;
->         }
-> @@ -191,6 +198,8 @@ nouveau_client_new(struct nouveau_device *dev, struct nouveau_client **pclient)
->         int id = 0, i, ret = -ENOMEM;
->         uint32_t *clients;
->
-> +       pthread_mutex_lock(&nvdev->lock);
-> +
->         for (i = 0; i < nvdev->nr_client; i++) {
->                 id = ffs(nvdev->client[i]) - 1;
->                 if (id >= 0)
-> @@ -199,7 +208,7 @@ nouveau_client_new(struct nouveau_device *dev, struct nouveau_client **pclient)
->
->         clients = realloc(nvdev->client, sizeof(uint32_t) * (i + 1));
->         if (!clients)
-> -               return ret;
-> +               goto unlock;
->         nvdev->client = clients;
->         nvdev->client[i] = 0;
->         nvdev->nr_client++;
-> @@ -214,6 +223,9 @@ out:
->         }
->
->         *pclient = &pcli->base;
-> +
-> +unlock:
-> +       pthread_mutex_unlock(&nvdev->lock);
->         return ret;
->  }
->
-> @@ -225,7 +237,9 @@ nouveau_client_del(struct nouveau_client **pclient)
->         if (pcli) {
->                 int id = pcli->base.id;
->                 nvdev = nouveau_device(pcli->base.device);
-> +               pthread_mutex_lock(&nvdev->lock);
->                 nvdev->client[id / 32] &= ~(1 << (id % 32));
-> +               pthread_mutex_unlock(&nvdev->lock);
->                 free(pcli->kref);
->                 free(pcli);
->         }
-> @@ -331,9 +345,12 @@ nouveau_object_find(struct nouveau_object *obj, uint32_t pclass)
->  static void
->  nouveau_bo_del(struct nouveau_bo *bo)
->  {
-> +       struct nouveau_device_priv *nvdev = nouveau_device(bo->device);
->         struct nouveau_bo_priv *nvbo = nouveau_bo(bo);
->         struct drm_gem_close req = { bo->handle };
-> +       pthread_mutex_lock(&nvdev->lock);
->         DRMLISTDEL(&nvbo->head);
-> +       pthread_mutex_unlock(&nvdev->lock);
->         if (bo->map)
->                 munmap(bo->map, bo->size);
->         drmIoctl(bo->device->fd, DRM_IOCTL_GEM_CLOSE, &req);
-> @@ -363,7 +380,9 @@ nouveau_bo_new(struct nouveau_device *dev, uint32_t flags, uint32_t align,
->                 return ret;
->         }
->
-> +       pthread_mutex_lock(&nvdev->lock);
->         DRMLISTADD(&nvbo->head, &nvdev->bo_list);
-> +       pthread_mutex_unlock(&nvdev->lock);
->
->         *pbo = bo;
->         return 0;
-> @@ -378,13 +397,16 @@ nouveau_bo_wrap(struct nouveau_device *dev, uint32_t handle,
->         struct nouveau_bo_priv *nvbo;
->         int ret;
->
-> +       pthread_mutex_lock(&nvdev->lock);
->         DRMLISTFOREACHENTRY(nvbo, &nvdev->bo_list, head) {
->                 if (nvbo->base.handle == handle) {
-> +                       pthread_mutex_unlock(&nvdev->lock);
->                         *pbo = NULL;
->                         nouveau_bo_ref(&nvbo->base, pbo);
->                         return 0;
->                 }
->         }
-> +       pthread_mutex_unlock(&nvdev->lock);
->
->         ret = drmCommandWriteRead(dev->fd, DRM_NOUVEAU_GEM_INFO,
->                                   &req, sizeof(req));
-> @@ -396,7 +418,9 @@ nouveau_bo_wrap(struct nouveau_device *dev, uint32_t handle,
->                 atomic_set(&nvbo->refcnt, 1);
->                 nvbo->base.device = dev;
->                 abi16_bo_info(&nvbo->base, &req);
-> +               pthread_mutex_lock(&nvdev->lock);
->                 DRMLISTADD(&nvbo->head, &nvdev->bo_list);
-> +               pthread_mutex_unlock(&nvdev->lock);
->                 *pbo = &nvbo->base;
->                 return 0;
->         }
-> @@ -413,13 +437,16 @@ nouveau_bo_name_ref(struct nouveau_device *dev, uint32_t name,
->         struct drm_gem_open req = { .name = name };
->         int ret;
->
-> +       pthread_mutex_lock(&nvdev->lock);
->         DRMLISTFOREACHENTRY(nvbo, &nvdev->bo_list, head) {
->                 if (nvbo->name == name) {
-> +                       pthread_mutex_unlock(&nvdev->lock);
->                         *pbo = NULL;
->                         nouveau_bo_ref(&nvbo->base, pbo);
->                         return 0;
->                 }
->         }
-> +       pthread_mutex_unlock(&nvdev->lock);
->
->         ret = drmIoctl(dev->fd, DRM_IOCTL_GEM_OPEN, &req);
->         if (ret == 0) {
-> diff --git a/nouveau/private.h b/nouveau/private.h
-> index 60714b8..4f337ad 100644
-> --- a/nouveau/private.h
-> +++ b/nouveau/private.h
-> @@ -3,6 +3,7 @@
->
->  #include <xf86drm.h>
->  #include <xf86atomic.h>
-> +#include <pthread.h>
->  #include "nouveau_drm.h"
->
->  #include "nouveau.h"
-> @@ -94,7 +95,7 @@ nouveau_bo(struct nouveau_bo *bo)
->  struct nouveau_device_priv {
->         struct nouveau_device base;
->         int close;
-> -       atomic_t lock;
-> +       pthread_mutex_t lock;
->         struct nouveau_list bo_list;
->         uint32_t *client;
->         int nr_client;
-> --
-> 1.8.3.2
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+> It does so by doing the necessary manual cache flushes/invalidates on
+> buffer access, so costs some performance. To avoid this you really want
+> to get writecombined mappings into the kernel<->userspace interface.
+> Simply mapping the pushbuf as WC/US has brought a 7% performance
+> increase in OpenArena when I last tested this. This test was done with
+> only one PCIe lane, so the perf increase may be even better with a more
+> adequate interconnect.
+
+Interestingly if I allow writecombined mappings in the kernel I get
+faults when attempting the read the mapped area:
+
+[   78.074854] Unhandled fault: external abort on non-linefetch
+(0x1008) at 0xf003e010
+...
+[   78.337862] [<c03491a8>] (nouveau_bo_rd32) from [<c0346374>]
+(nouveau_fence_update+0x5c/0x80)
+[   78.352536] [<c0346374>] (nouveau_fence_update) from [<c03463b0>]
+(nouveau_fence_done+0x18/0x28)
+[   78.367531] [<c03463b0>] (nouveau_fence_done) from [<c02b852c>]
+(ttm_bo_wait+0x104/0x184)
+[   78.381915] [<c02b852c>] (ttm_bo_wait) from [<c034c718>]
+(nouveau_gem_ioctl_cpu_prep+0x40/0xe8)
+[   78.396849] [<c034c718>] (nouveau_gem_ioctl_cpu_prep) from
+[<c029fd5c>] (drm_ioctl+0x404/0x4b8)
+[   78.411790] [<c029fd5c>] (drm_ioctl) from [<c0343960>]
+(nouveau_drm_ioctl+0x54/0x80)
+[   78.425805] [<c0343960>] (nouveau_drm_ioctl) from [<c00ea5ec>]
+(do_vfs_ioctl+0x3f0/0x5bc)
+[   78.440277] [<c00ea5ec>] (do_vfs_ioctl) from [<c00ea7ec>]
+(SyS_ioctl+0x34/0x5c)
+[   78.453918] [<c00ea7ec>] (SyS_ioctl) from [<c000e5a0>]
+(ret_fast_syscall+0x0/0x30)
+
+To avoid these I need to set the VRAM default_caching to
+TTM_PL_FLAG_UNCACHED. It is not clear to me why this is needed. The BO
+being accessed through the BAR, they are correctly considered as IO
+memory and mapped using ttm_bo_ioremap(), so it really seems to be
+unhappy with the WC mapping itself.
+
+Note that if I go ahead and force the use of pgprot_writecombine() in
+ttm_io_prot() to get writecombined user-space mappings, pure DRM
+programs that map a buffer and try to read it fail similarly, while
+Mesa's glReadPixels() seems to be happy. I'm not sure what it does
+differently here.
+
+Cheers,
+Alex.
