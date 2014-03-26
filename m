@@ -1,11 +1,16 @@
-From: Israel <israeldahl-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Issue with nouveau drivers
-Date: Sat, 22 Mar 2014 19:20:21 -0500
-Message-ID: <532E28C5.4050009@gmail.com>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 02/12] drm/nouveau/timer: skip calibration on
+	GK20A
+Date: Wed, 26 Mar 2014 14:19:49 +1000
+Message-ID: <CACAvsv54BF3cD6y59=kQ=1j-S9tGixTz_J3gx2mbOEkB2eQ4cA@mail.gmail.com>
+References: <1395650554-31925-1-git-send-email-acourbot@nvidia.com>
+ <1395650554-31925-3-git-send-email-acourbot@nvidia.com>
+ <20140324215408.GB17218@mithrandir>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20140324215408.GB17218@mithrandir>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,36 +20,57 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi,
-I am unable to suspend using nouveau, so I have to use the NVIDIA 
-drivers currently, which I do not like to do (they don't work as well 
-for everything else and are proprietary)
-So... to get to the basic info
+On Tue, Mar 25, 2014 at 7:54 AM, Thierry Reding
+<thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On Mon, Mar 24, 2014 at 05:42:24PM +0900, Alexandre Courbot wrote:
+>> GK20A's timer is directly attached to the system timer and cannot be
+>> calibrated. Skip the calibration phase on that chip since the
+>> corresponding registers do not exist.
+>>
+>> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>> ---
+>>  drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c | 19 +++++++++++++------
+>>  1 file changed, 13 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c b/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
+>> index c0bdd10358d7..822fe0d8a871 100644
+>> --- a/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
+>> +++ b/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
+>> @@ -185,6 +185,10 @@ nv04_timer_init(struct nouveau_object *object)
+>>       if (ret)
+>>               return ret;
+>>
+>> +     /* gk20a does not have the calibration registers */
+>> +     if (device->chipset == 0xea)
+>> +             goto skip_clk_init;
+>
+> I'm concerned that this won't scale in the future. Perhaps a better
+> solution would be to add a "flags" or "features" field to struct
+> nouveau_device along with feature bits such as HAS_CALIBRATION or
+> similar.
+>
+> That way we don't have to touch this code for every new future Tegra
+> chip. Unless perhaps if there's a reason to expect things to change in
+> newer generations.
+I've already handled this in a slightly different way in the tree I'd
+previously pointed Alex at (I think!), as I needed to do the same for
+GM107.
 
-01:00.0 VGA compatible controller: NVIDIA Corporation G84M [GeForce 
-8600M GT] (rev a1)
-3.13.0-16-generic Ubuntu x86_64 GNU/Linux
-nvidia drivers version 331.38
+Should just be able to use that implementation (so, just change the
+probe patch) here too.
 
-If there is any more specific output from commands that will help you, 
-let me know  I would be very willing to simply remove the proprietary 
-drivers and run nouveau and try some kernel paramters, or log the hang 
-up I would be glad to, as I REALLY want to use nouveau drivers.
+Thanks,
+Ben.
 
-What happens:
-I suspend the machine.
-When I open the lid to resume from suspend, the screen is black, or 
-frozen and will hang.  I can occasionally get to the lightdm login 
-screen, or to a tty, but the machine freezes within a few seconds of 
-resume, and I have to do a hard reboot (which is why I use the 
-proprietary drivers, as I need to use suspend)
-
-Since I have the proprietary drivers I can run tests for you so you can 
-find out what the drivers are doing on this particular card, or any 
-other things you would like.
-
--- 
-Regards
+>
+> Thierry
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
+>
