@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 76475] [NVE7] fails to load due to unknown opcode
  0x80 (incorrect vbios)
-Date: Thu, 27 Mar 2014 11:07:35 +0000
-Message-ID: <bug-76475-8800-ym8JFF6dRh@http.bugs.freedesktop.org/>
+Date: Thu, 27 Mar 2014 11:08:51 +0000
+Message-ID: <bug-76475-8800-8kkqZh0xA6@http.bugs.freedesktop.org/>
 References: <bug-76475-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0282007820=="
+Content-Type: multipart/mixed; boundary="===============2146015017=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-76475-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0282007820==
-Content-Type: multipart/alternative; boundary="1395918455.E6D31.30116"; charset="us-ascii"
+--===============2146015017==
+Content-Type: multipart/alternative; boundary="1395918531.7F61a1.30541"; charset="us-ascii"
 
 
---1395918455.E6D31.30116
-Date: Thu, 27 Mar 2014 11:07:35 +0000
+--1395918531.7F61a1.30541
+Date: Thu, 27 Mar 2014 11:08:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=76475
 
---- Comment #11 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 96452
-  --> https://bugs.freedesktop.org/attachment.cgi?id=96452&action=edit
-output of "echo w > /proc/sysrq-trigger"
+--- Comment #12 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I have attached the output of "echo w > /proc/sysrq-trigger".
+
+The kworker shows up in "top" as kworker/7:1
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1395918455.E6D31.30116
-Date: Thu, 27 Mar 2014 11:07:35 +0000
+--1395918531.7F61a1.30541
+Date: Thu, 27 Mar 2014 11:08:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=76475">bug 76475</a>
               from <span class="vcard"><a class="email" href="mailto:patrick.clara&#64;gmail.com" title="patrick.clara&#64;gmail.com">patrick.clara&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=96452" name="attach_96452" title="output of &quot;echo w &gt; /proc/sysrq-trigger&quot;">attachment 96452</a> <a href="attachment.cgi?id=96452&amp;action=edit" title="output of &quot;echo w &gt; /proc/sysrq-trigger&quot;">[details]</a></span>
-output of &quot;echo w &gt; /proc/sysrq-trigger&quot;</pre>
+        <pre>I have attached the output of &quot;echo w &gt; /proc/sysrq-trigger&quot;.
+
+The kworker shows up in &quot;top&quot; as kworker/7:1</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +77,9 @@ output of &quot;echo w &gt; /proc/sysrq-trigger&quot;</pre>
     </body>
 </html>
 
---1395918455.E6D31.30116--
+--1395918531.7F61a1.30541--
 
---===============0282007820==
+--===============2146015017==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0282007820==--
+--===============2146015017==--
