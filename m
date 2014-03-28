@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 76475] [NVE7] fails to load due to unknown opcode
  0x80 (incorrect vbios)
-Date: Fri, 28 Mar 2014 03:25:31 +0000
-Message-ID: <bug-76475-8800-glyLFW7sbD@http.bugs.freedesktop.org/>
+Date: Fri, 28 Mar 2014 11:25:10 +0000
+Message-ID: <bug-76475-8800-4ZVstoOSck@http.bugs.freedesktop.org/>
 References: <bug-76475-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1058833531=="
+Content-Type: multipart/mixed; boundary="===============0060513775=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-76475-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,46 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1058833531==
-Content-Type: multipart/alternative; boundary="1395977131.4c36EbBb2.6754"; charset="us-ascii"
+--===============0060513775==
+Content-Type: multipart/alternative; boundary="1396005910.0e51f2E41.4042"; charset="us-ascii"
 
 
---1395977131.4c36EbBb2.6754
-Date: Fri, 28 Mar 2014 03:25:31 +0000
+--1396005910.0e51f2E41.4042
+Date: Fri, 28 Mar 2014 11:25:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=76475
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Erm oops. I guess 'w' is not what I wanted (perhaps because the tasks aren't
-actually blocked). From powertop, seems like it's from
-nouveau_connector_hotplug_work which is probably triggering more work for
-itself :(
-
-That's a separate bug though. While I'm fairly sure I've seen this before, I
-don't see a bug open about it. Could you open a fresh one, and include a boot
-log with the following module settings (e.g. passed in via kernel cmdline)
-
-nouveau.debug=debug drm.debug=0xe
-
-I'm guessing this will keep generating oodles of output, I don't need the
-infinite log, but a good chunk that includes a bunch of the repeats would be
-great.
+--- Comment #15 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Ok thank you.
+I will immediately open a new one.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1395977131.4c36EbBb2.6754
-Date: Fri, 28 Mar 2014 03:25:31 +0000
+--1396005910.0e51f2E41.4042
+Date: Fri, 28 Mar 2014 11:25:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,61 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475">bug 76475</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475#c14">Comment # 14</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=76475">bug 76475</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:patrick.clara&#64;gmail.com" title="patrick.clara&#64;gmail.com">patrick.clara&#64;gmail.com</a>
 </span></b>
-        <pre>Erm oops. I guess 'w' is not what I wanted (perhaps because the tasks aren't
-actually blocked). From powertop, seems like it's from
-nouveau_connector_hotplug_work which is probably triggering more work for
-itself :(
-
-That's a separate bug though. While I'm fairly sure I've seen this before, I
-don't see a bug open about it. Could you open a fresh one, and include a boot
-log with the following module settings (e.g. passed in via kernel cmdline)
-
-nouveau.debug=debug drm.debug=0xe
-
-I'm guessing this will keep generating oodles of output, I don't need the
-infinite log, but a good chunk that includes a bunch of the repeats would be
-great.</pre>
+        <pre>Ok thank you.
+I will immediately open a new one.</pre>
         </div>
       </p>
       <hr>
@@ -134,9 +75,9 @@ great.</pre>
     </body>
 </html>
 
---1395977131.4c36EbBb2.6754--
+--1396005910.0e51f2E41.4042--
 
---===============1058833531==
+--===============0060513775==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -147,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1058833531==--
+--===============0060513775==--
