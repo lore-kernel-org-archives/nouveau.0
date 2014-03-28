@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 76732] Kworker using 100% CPU
-Date: Fri, 28 Mar 2014 21:58:32 +0000
-Message-ID: <bug-76732-8800-xBSRqHiRAT@http.bugs.freedesktop.org/>
+Date: Fri, 28 Mar 2014 22:24:02 +0000
+Message-ID: <bug-76732-8800-nSeUxMK21F@http.bugs.freedesktop.org/>
 References: <bug-76732-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1446569916=="
+Content-Type: multipart/mixed; boundary="===============1537830865=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-76732-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,33 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1446569916==
-Content-Type: multipart/alternative; boundary="1396043912.a643a2c82.16773"; charset="us-ascii"
+--===============1537830865==
+Content-Type: multipart/alternative; boundary="1396045442.0E7AcA2c1.23396"; charset="us-ascii"
 
 
---1396043912.a643a2c82.16773
-Date: Fri, 28 Mar 2014 21:58:32 +0000
+--1396045442.0E7AcA2c1.23396
+Date: Fri, 28 Mar 2014 22:24:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=76732
 
---- Comment #20 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #18)
-> Created attachment 96570 [details]
-> perf report
+--- Comment #21 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I tryed again with nouveau.debug=debug and drm.debug=0xe, but this time I added
+drm_kms_helper.poll=0.
 
-Hmmm... this is also what I saw as well with your kallsyms. I assumed that I
-did something wrong -- normally there are deep call stacks, but perhaps there's
-something else going on. Oh well. I'll think some more on this, sorry for the
-trouble.
+The dmesg output is the same as without drm_kms_helper.poll=0.
+Even these lines are still present:
+
+[   85.722596] [drm:drm_helper_hpd_irq_event], [CONNECTOR:17:eDP-1] status
+updated from connected to connected
+[   85.723677] [drm:drm_helper_hpd_irq_event], [CONNECTOR:21:HDMI-A-1] status
+updated from disconnected to disconnected
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1396043912.a643a2c82.16773
-Date: Fri, 28 Mar 2014 21:58:32 +0000
+--1396045442.0E7AcA2c1.23396
+Date: Fri, 28 Mar 2014 22:24:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,21 +62,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Kworker using 100% CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732#c20">Comment # 20</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Kworker using 100% CPU"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=76732">bug 76732</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:patrick.clara&#64;gmail.com" title="patrick.clara&#64;gmail.com">patrick.clara&#64;gmail.com</a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=76732#c18">comment #18</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=96570" name="attach_96570" title="perf report">attachment 96570</a> <a href="attachment.cgi?id=96570&amp;action=edit" title="perf report">[details]</a></span>
-&gt; perf report</span >
+        <pre>I tryed again with nouveau.debug=debug and drm.debug=0xe, but this time I added
+drm_kms_helper.poll=0.
 
-Hmmm... this is also what I saw as well with your kallsyms. I assumed that I
-did something wrong -- normally there are deep call stacks, but perhaps there's
-something else going on. Oh well. I'll think some more on this, sorry for the
-trouble.</pre>
+The dmesg output is the same as without drm_kms_helper.poll=0.
+Even these lines are still present:
+
+[   85.722596] [drm:drm_helper_hpd_irq_event], [CONNECTOR:17:eDP-1] status
+updated from connected to connected
+[   85.723677] [drm:drm_helper_hpd_irq_event], [CONNECTOR:21:HDMI-A-1] status
+updated from disconnected to disconnected</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +90,9 @@ trouble.</pre>
     </body>
 </html>
 
---1396043912.a643a2c82.16773--
+--1396045442.0E7AcA2c1.23396--
 
---===============1446569916==
+--===============1537830865==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1446569916==--
+--===============1537830865==--
