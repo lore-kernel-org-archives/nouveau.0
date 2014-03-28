@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 76475] [NVE7] fails to load due to unknown opcode
  0x80 (incorrect vbios)
-Date: Thu, 27 Mar 2014 11:19:51 +0000
-Message-ID: <bug-76475-8800-re4Tqf6OA7@http.bugs.freedesktop.org/>
+Date: Fri, 28 Mar 2014 03:25:31 +0000
+Message-ID: <bug-76475-8800-glyLFW7sbD@http.bugs.freedesktop.org/>
 References: <bug-76475-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1934991162=="
+Content-Type: multipart/mixed; boundary="===============1058833531=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-76475-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1934991162==
-Content-Type: multipart/alternative; boundary="1395919191.0efB21Bd1.894"; charset="us-ascii"
+--===============1058833531==
+Content-Type: multipart/alternative; boundary="1395977131.4c36EbBb2.6754"; charset="us-ascii"
 
 
---1395919191.0efB21Bd1.894
-Date: Thu, 27 Mar 2014 11:19:51 +0000
+--1395977131.4c36EbBb2.6754
+Date: Fri, 28 Mar 2014 03:25:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=76475
 
---- Comment #13 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 96453
-  --> https://bugs.freedesktop.org/attachment.cgi?id=96453&action=edit
-powertop html report
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Erm oops. I guess 'w' is not what I wanted (perhaps because the tasks aren't
+actually blocked). From powertop, seems like it's from
+nouveau_connector_hotplug_work which is probably triggering more work for
+itself :(
+
+That's a separate bug though. While I'm fairly sure I've seen this before, I
+don't see a bug open about it. Could you open a fresh one, and include a boot
+log with the following module settings (e.g. passed in via kernel cmdline)
+
+nouveau.debug=debug drm.debug=0xe
+
+I'm guessing this will keep generating oodles of output, I don't need the
+infinite log, but a good chunk that includes a bunch of the repeats would be
+great.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1395919191.0efB21Bd1.894
-Date: Thu, 27 Mar 2014 11:19:51 +0000
+--1395977131.4c36EbBb2.6754
+Date: Fri, 28 Mar 2014 03:25:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,21 +68,61 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475">bug 76475</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475#c13">Comment # 13</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76475#c14">Comment # 14</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE7] fails to load due to unknown opcode 0x80 (incorrect vbios)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=76475">bug 76475</a>
-              from <span class="vcard"><a class="email" href="mailto:patrick.clara&#64;gmail.com" title="patrick.clara&#64;gmail.com">patrick.clara&#64;gmail.com</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=96453" name="attach_96453" title="powertop html report">attachment 96453</a> <a href="attachment.cgi?id=96453&amp;action=edit" title="powertop html report">[details]</a></span>
-powertop html report</pre>
+        <pre>Erm oops. I guess 'w' is not what I wanted (perhaps because the tasks aren't
+actually blocked). From powertop, seems like it's from
+nouveau_connector_hotplug_work which is probably triggering more work for
+itself :(
+
+That's a separate bug though. While I'm fairly sure I've seen this before, I
+don't see a bug open about it. Could you open a fresh one, and include a boot
+log with the following module settings (e.g. passed in via kernel cmdline)
+
+nouveau.debug=debug drm.debug=0xe
+
+I'm guessing this will keep generating oodles of output, I don't need the
+infinite log, but a good chunk that includes a bunch of the repeats would be
+great.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +134,9 @@ powertop html report</pre>
     </body>
 </html>
 
---1395919191.0efB21Bd1.894--
+--1395977131.4c36EbBb2.6754--
 
---===============1934991162==
+--===============1058833531==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +147,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1934991162==--
+--===============1058833531==--
