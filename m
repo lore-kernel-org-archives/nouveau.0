@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71659] [NVD9] Hangs under load with ![
  PFIFO][0000:01:00.0] unhandled status 0x00800000
-Date: Sun, 30 Mar 2014 11:46:25 +0000
-Message-ID: <bug-71659-8800-AzJHoC2dC0@http.bugs.freedesktop.org/>
+Date: Sun, 30 Mar 2014 11:53:52 +0000
+Message-ID: <bug-71659-8800-urNgnRcacW@http.bugs.freedesktop.org/>
 References: <bug-71659-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1192998453=="
+Content-Type: multipart/mixed; boundary="===============0095962897=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71659-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1192998453==
-Content-Type: multipart/alternative; boundary="1396179985.E70B1.20007"; charset="us-ascii"
+--===============0095962897==
+Content-Type: multipart/alternative; boundary="1396180432.caA4D261.22245"; charset="us-ascii"
 
 
---1396179985.E70B1.20007
-Date: Sun, 30 Mar 2014 11:46:25 +0000
+--1396180432.caA4D261.22245
+Date: Sun, 30 Mar 2014 11:53:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71659
 
---- Comment #21 from Rebecca Palmer <R.Palmer-mHdZ94l+r7K1Qrn1Bg8BZw@public.gmane.org> ---
-Created attachment 96611
-  --> https://bugs.freedesktop.org/attachment.cgi?id=96611&action=edit
-Xorg log 3.14rc-Mar-26
+--- Comment #22 from Rebecca Palmer <R.Palmer-mHdZ94l+r7K1Qrn1Bg8BZw@public.gmane.org> ---
+This bug still exists in 3.14rc commit f217c44ebd41ce7369d2df07622b2839479183b0
+(26 Mar Linus' tree, Ubuntu userspace; as the nouveau/master branch hasn't been
+used for 5 months, should we stop suggesting that people test with it?).
+
+Is there anything else I can do to help?  I will probably only have this
+machine for a few more months.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1396179985.E70B1.20007
-Date: Sun, 30 Mar 2014 11:46:25 +0000
+--1396180432.caA4D261.22245
+Date: Sun, 30 Mar 2014 11:53:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +59,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659#c21">Comment # 21</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71659">bug 71659</a>
               from <span class="vcard"><a class="email" href="mailto:R.Palmer&#64;bham.ac.uk" title="Rebecca Palmer &lt;R.Palmer&#64;bham.ac.uk&gt;"> <span class="fn">Rebecca Palmer</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=96611" name="attach_96611" title="Xorg log 3.14rc-Mar-26">attachment 96611</a> <a href="attachment.cgi?id=96611&amp;action=edit" title="Xorg log 3.14rc-Mar-26">[details]</a></span>
-Xorg log 3.14rc-Mar-26</pre>
+        <pre>This bug still exists in 3.14rc commit f217c44ebd41ce7369d2df07622b2839479183b0
+(26 Mar Linus' tree, Ubuntu userspace; as the nouveau/master branch hasn't been
+used for 5 months, should we stop suggesting that people test with it?).
+
+Is there anything else I can do to help?  I will probably only have this
+machine for a few more months.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +83,9 @@ Xorg log 3.14rc-Mar-26</pre>
     </body>
 </html>
 
---1396179985.E70B1.20007--
+--1396180432.caA4D261.22245--
 
---===============1192998453==
+--===============0095962897==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1192998453==--
+--===============0095962897==--
