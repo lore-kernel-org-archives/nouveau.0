@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76732] Kworker using 100% CPU
-Date: Sun, 30 Mar 2014 11:17:01 +0000
-Message-ID: <bug-76732-8800-Iq2yZmOSoN@http.bugs.freedesktop.org/>
-References: <bug-76732-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71659] [NVD9] Hangs under load with ![
+ PFIFO][0000:01:00.0] unhandled status 0x00800000
+Date: Sun, 30 Mar 2014 11:45:48 +0000
+Message-ID: <bug-71659-8800-mvq8CYQlAY@http.bugs.freedesktop.org/>
+References: <bug-71659-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0266335948=="
+Content-Type: multipart/mixed; boundary="===============1415199835=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76732-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71659-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0266335948==
-Content-Type: multipart/alternative; boundary="1396178221.Fdee51.11269"; charset="us-ascii"
+--===============1415199835==
+Content-Type: multipart/alternative; boundary="1396179948.CA3AEdC1.19669"; charset="us-ascii"
 
 
---1396178221.Fdee51.11269
-Date: Sun, 30 Mar 2014 11:17:01 +0000
+--1396179948.CA3AEdC1.19669
+Date: Sun, 30 Mar 2014 11:45:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76732
+https://bugs.freedesktop.org/show_bug.cgi?id=71659
 
---- Comment #24 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 96609
-  --> https://bugs.freedesktop.org/attachment.cgi?id=96609&action=edit
-/proc/interrupts without nouveau_connector_hotplug_work running
+--- Comment #20 from Rebecca Palmer <R.Palmer-mHdZ94l+r7K1Qrn1Bg8BZw@public.gmane.org> ---
+Created attachment 96610
+  --> https://bugs.freedesktop.org/attachment.cgi?id=96610&action=edit
+kernel log 3.14rc-Mar-26
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1396178221.Fdee51.11269
-Date: Sun, 30 Mar 2014 11:17:01 +0000
+--1396179948.CA3AEdC1.19669
+Date: Sun, 30 Mar 2014 11:45:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +55,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Kworker using 100% CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732#c24">Comment # 24</a>
+   title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659#c20">Comment # 20</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Kworker using 100% CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732">bug 76732</a>
-              from <span class="vcard"><a class="email" href="mailto:patrick.clara&#64;gmail.com" title="patrick.clara&#64;gmail.com">patrick.clara&#64;gmail.com</a>
+   title="NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659">bug 71659</a>
+              from <span class="vcard"><a class="email" href="mailto:R.Palmer&#64;bham.ac.uk" title="Rebecca Palmer &lt;R.Palmer&#64;bham.ac.uk&gt;"> <span class="fn">Rebecca Palmer</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=96609" name="attach_96609" title="/proc/interrupts without nouveau_connector_hotplug_work running">attachment 96609</a> <a href="attachment.cgi?id=96609&amp;action=edit" title="/proc/interrupts without nouveau_connector_hotplug_work running">[details]</a></span>
-/proc/interrupts without nouveau_connector_hotplug_work running</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=96610" name="attach_96610" title="kernel log 3.14rc-Mar-26">attachment 96610</a> <a href="attachment.cgi?id=96610&amp;action=edit" title="kernel log 3.14rc-Mar-26">[details]</a></span>
+kernel log 3.14rc-Mar-26</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1396178221.Fdee51.11269--
+--1396179948.CA3AEdC1.19669--
 
---===============0266335948==
+--===============1415199835==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0266335948==--
+--===============1415199835==--
