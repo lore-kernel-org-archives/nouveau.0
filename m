@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76788] [NVA5] Linux version 3.13 freezes X under
- nouveau GT 220 card
-Date: Sun, 30 Mar 2014 06:28:20 +0000
-Message-ID: <bug-76788-8800-ieUiwZaBgw@http.bugs.freedesktop.org/>
-References: <bug-76788-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 76732] Kworker using 100% CPU
+Date: Sun, 30 Mar 2014 10:24:07 +0000
+Message-ID: <bug-76732-8800-zdDmr01rLf@http.bugs.freedesktop.org/>
+References: <bug-76732-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1083786890=="
+Content-Type: multipart/mixed; boundary="===============1974084540=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76788-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-76732-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1083786890==
-Content-Type: multipart/alternative; boundary="1396160900.CcA4Cc1.32130"; charset="us-ascii"
+--===============1974084540==
+Content-Type: multipart/alternative; boundary="1396175047.C8fDEd1.30024"; charset="us-ascii"
 
 
---1396160900.CcA4Cc1.32130
-Date: Sun, 30 Mar 2014 06:28:20 +0000
+--1396175047.C8fDEd1.30024
+Date: Sun, 30 Mar 2014 10:24:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76788
+https://bugs.freedesktop.org/show_bug.cgi?id=76732
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #22 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I think I have found something.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Linux version 3.13 freezes  |[NVA5] Linux version 3.13
-                   |X under nouveau GT 220 card |freezes X under nouveau GT
-                   |                            |220 card
+Commenting out the following line in
+nouveau/core/core/event.c:nouveau_event_init seems to resolve the problem. The
+screen output is working but I have no idea if it is going to break something
+else.
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This bug should already be fixed by
-http://cgit.freedesktop.org/~airlied/linux/commit/?h=drm-next&id=61679fe153b2b9ea5b5e2ab93305419e85e99a9d
-
-You can try airlied's drm-next branch and see if it fixes this issue for you.
+list_add_tail(&handler->head, &event->index[index].list);
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1396160900.CcA4Cc1.32130
-Date: Sun, 30 Mar 2014 06:28:20 +0000
+--1396175047.C8fDEd1.30024
+Date: Sun, 30 Mar 2014 10:24:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,43 +54,27 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA5] Linux version 3.13 freezes X under nouveau GT 220 card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76788">bug 76788</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Linux version 3.13 freezes X under nouveau GT 220 card
-           </td>
-           <td>[NVA5] Linux version 3.13 freezes X under nouveau GT 220 card
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA5] Linux version 3.13 freezes X under nouveau GT 220 card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76788#c1">Comment # 1</a>
+   title="NEW --- - Kworker using 100% CPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA5] Linux version 3.13 freezes X under nouveau GT 220 card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76788">bug 76788</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - Kworker using 100% CPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732">bug 76732</a>
+              from <span class="vcard"><a class="email" href="mailto:patrick.clara&#64;gmail.com" title="patrick.clara&#64;gmail.com">patrick.clara&#64;gmail.com</a>
 </span></b>
-        <pre>This bug should already be fixed by
-<a href="http://cgit.freedesktop.org/~airlied/linux/commit/?h=drm-next&amp;id=61679fe153b2b9ea5b5e2ab93305419e85e99a9d">http://cgit.freedesktop.org/~airlied/linux/commit/?h=drm-next&amp;id=61679fe153b2b9ea5b5e2ab93305419e85e99a9d</a>
+        <pre>I think I have found something.
 
-You can try airlied's drm-next branch and see if it fixes this issue for you.</pre>
+Commenting out the following line in
+nouveau/core/core/event.c:nouveau_event_init seems to resolve the problem. The
+screen output is working but I have no idea if it is going to break something
+else.
+
+list_add_tail(&amp;handler-&gt;head, &amp;event-&gt;index[index].list);</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +86,9 @@ You can try airlied's drm-next branch and see if it fixes this issue for you.</p
     </body>
 </html>
 
---1396160900.CcA4Cc1.32130--
+--1396175047.C8fDEd1.30024--
 
---===============1083786890==
+--===============1974084540==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1083786890==--
+--===============1974084540==--
