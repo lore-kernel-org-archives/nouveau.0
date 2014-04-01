@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76818] [NVE7] GPU lockup
-Date: Tue, 01 Apr 2014 02:51:25 +0000
-Message-ID: <bug-76818-8800-gBrygBOBET@http.bugs.freedesktop.org/>
-References: <bug-76818-8800@http.bugs.freedesktop.org/>
+From: Roger <rogerx.oss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: CH7007A (AKA CH7006) TV OUT Support for NV11 (NVidia
+ GeForce2 Go Dell I8K Laptop)
+Date: Mon, 31 Mar 2014 19:57:41 -0800
+Message-ID: <20140401035741.GA3535@localhost4.local>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1766137563=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76818-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,144 +20,38 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+I have a Dell Inspiron 8100 laptop (or I8K) with a NVidia Geforce2 Go (or NV11) 
+with an embedded CH7007A chip, and am seeing the following after getting ch7006 
+kernel driver/module loaded:
 
---===============1766137563==
-Content-Type: multipart/alternative; boundary="1396320685.58a8CA2.18898"; charset="us-ascii"
+# dmesg |grep ch7006 -i
 
+--- Snip ---
+[   21.191147] nouveau  [     I2C][0000:01:00.0] detected TV encoder: ch7006
+[   21.404731] ch7006 1-0075: ch7006_probe:
+[   21.411672] ch7006 1-0075: Detected version ID: 50
+[   21.421536] ch7006 1-0075: ch7006_encoder_init:
+[   21.443870] ch7006 1-0075: ch7006_encoder_save:
+[   21.998969] ch7006 1-0075: ch7006_encoder_restore:
+[   22.778013] ch7006 1-0075: ch7006_encoder_dpms:
+[   23.217163] ch7006 1-0075: ch7006_encoder_detect:
+[   23.283738] ch7006 1-0075: ch7006_encoder_dpms:
+[   23.283862] ch7006 1-0075: ch7006_encoder_dpms:
+[   23.536950] ch7006 1-0075: ch7006_encoder_dpms:
+[   24.515223] ch7006 1-0075: ch7006_encoder_detect:
+--- Snip ---
 
---1396320685.58a8CA2.18898
-Date: Tue, 1 Apr 2014 02:51:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+However, nouveau still only sees LVDS-1.  I assume this is likely not the 
+ch7006 omitting the required code for enabling TV-OUT?
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76818
+For kicks, I've also tried a ton of options via kernel boot commands:
+video=LVDS-1:1024x768@60 video=VGA-1:800x600@60 video=TV-1:e video=TV:e gfxpayload=1024x768x16 selinux=0 nouveau.tv_disable=0 nouveau.tv_norm=NTSC-M nouveau.debug=1 ch7006.debug=1 ch7006.tv_norm=NTSC-M ch7006.scale=2 i2c-algo-bit.bit_test=1 rd.modules-load=i2c-dev rd.modules-load=i2c-i801 rd.modules-load=i2c-smbus
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+Searching & reading the code of ch7006.h/.c, I find ch7006 driver should be setting the S-Video out port to full power usage when any chip ID version is >= 0x20.  Since this is 0x50 (?), and the chip specifications are extremely similar (if not identical after comparing the init section), this chip should be activated.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Xorg EQ overflowing lock up |[NVE7] GPU lockup
+(I also ensured i2c-dev was loaded per some other rumors on the net, but doubt 
+it's needed?)
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-It's more common to attach logs... otherwise the bug reports become very
-unwieldy to read.
-
-[ 1743.737807] nouveau ![   PFIFO][0000:01:00.0] unhandled status 0x00800000
-[ 8543.865800] nouveau E[     DRM] GPU lockup - switching to software fbcon
-[ 8558.870800] nouveau E[  X[808]] failed to idle channel 0xcccc0001 [X[808]]
-
-The unhandled PFIFO bit comes _way_ earlier than the gpu lockup... so probably
-unrelated.
-
-The fact that X segfaults when the GPU locks up is a little unfortunate, but
-right now this situation is completely unhandled by the userspace stack in any
-case. Ideally the GPU wouldn't lock up :)
-
-A quick and easy thing to try is blob pgraph firmware instead of nouveau's.
-Take a look at http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware
-for a quick and easy way to get it (yes, I know it says it's for hw video
-decoding accel, but the script extracts all fw). Follow those instructions and
-add
-
-nouveau.config=NvGrUseFw=1
-
-to the kernel command line (or when loading the nouveau module); make sure that
-the firmware files are available when the nouveau module loads (so if it loads
-from your initrd, they need to be in your initrd).
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1396320685.58a8CA2.18898
-Date: Tue, 1 Apr 2014 02:51:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76818">bug 76818</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Xorg EQ overflowing lock up
-           </td>
-           <td>[NVE7] GPU lockup
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76818#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76818">bug 76818</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>It's more common to attach logs... otherwise the bug reports become very
-unwieldy to read.
-
-[ 1743.737807] nouveau ![   PFIFO][0000:01:00.0] unhandled status 0x00800000
-[ 8543.865800] nouveau E[     DRM] GPU lockup - switching to software fbcon
-[ 8558.870800] nouveau E[  X[808]] failed to idle channel 0xcccc0001 [X[808]]
-
-The unhandled PFIFO bit comes _way_ earlier than the gpu lockup... so probably
-unrelated.
-
-The fact that X segfaults when the GPU locks up is a little unfortunate, but
-right now this situation is completely unhandled by the userspace stack in any
-case. Ideally the GPU wouldn't lock up :)
-
-A quick and easy thing to try is blob pgraph firmware instead of nouveau's.
-Take a look at <a href="http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware">http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware</a>
-for a quick and easy way to get it (yes, I know it says it's for hw video
-decoding accel, but the script extracts all fw). Follow those instructions and
-add
-
-nouveau.config=NvGrUseFw=1
-
-to the kernel command line (or when loading the nouveau module); make sure that
-the firmware files are available when the nouveau module loads (so if it loads
-from your initrd, they need to be in your initrd).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1396320685.58a8CA2.18898--
-
---===============1766137563==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1766137563==--
+--
+Roger
+http://rogerx.freeshell.org/
