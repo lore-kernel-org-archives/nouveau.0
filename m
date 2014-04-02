@@ -1,16 +1,12 @@
-From: Roger <rogerx.oss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: CH7007A (AKA CH7006) TV OUT Support for NV11 (NVidia
- GeForce2 Go Dell I8K Laptop)
-Date: Tue, 1 Apr 2014 14:30:30 -0800
-Message-ID: <20140401223030.GA22211@localhost4.local>
-References: <20140401035741.GA3535@localhost4.local>
- <CAKb7Uvj6EL60VY0wkvm_JGPh+VZYtU8J51gpvt8JsoQQq5qiDw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 76732] Kworker using 100% CPU
+Date: Wed, 02 Apr 2014 09:49:01 +0000
+Message-ID: <bug-76732-8800-zOnNBkYpbQ@http.bugs.freedesktop.org/>
+References: <bug-76732-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1152225842=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CAKb7Uvj6EL60VY0wkvm_JGPh+VZYtU8J51gpvt8JsoQQq5qiDw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-76732-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,53 +16,78 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-> On Tue, Apr 01, 2014 at 02:53:02PM -0400, Ilia Mirkin wrote:
->I believe that ch7006 is the only external encoder that's supposed to
->work, so you're in luck. It sounds like it passes the nv04_tv_identify
->stage of nv04_tv_create -- perhaps it fails later? Although based on
->the prints, it's even doing dpms stuff (but it hits _detect a second
->time... odd). Try booting with
->
->nouveau.debug=debug drm.debug=0xe
->
->That should provide a bunch more output as to what's going on. Are you
->sure that the output isn't there? Can you check in /sys/class/drm?
->What precisely doesn't work?
 
-Exactly what I needed to know, if Nouveau was performing a second detection 
-before & after ch7006 initialization, as the ch7006 debug output looked very 
-bleak on information.
+--===============1152225842==
+Content-Type: multipart/alternative; boundary="1396432141.67821.22834"; charset="us-ascii"
 
-Going from memory, the ch7006 is registered within /sys/class/drm, and roughly 
-guessing as i2c-1 and nouveau is i2c-0.
 
-I'll now go back and enable debugging including your additional advice on using 
-drm.debug=0xe and read through the logging, as well as scanning some of the 
-nouveau code.  If I find something interesting, I'll post back.
+--1396432141.67821.22834
+Date: Wed, 2 Apr 2014 09:49:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-I also have a VGA->SVIDEO/Composite on order; in the case the ch7006 is being 
-successfully turned on (which I see no reason why it shouldn't be on at this 
-point), but instead not the correct format.  (ie.  SVIDEO, Composite, ...)  I 
-only have composite input for displays around here now, and the output on this 
-Dell Laptop is a proprietary type of SVIDEO splitter to SVIDEO, Composite, 
-S/PDIF Audio.  (I've heard some hearsay on the web, the TV tuner chip will also 
-provide a modulated TV signal through VGA, but am not sure of this -- for the 
-cost of a $2 connector and including having a more stable connector as well, 
-might be worth it.)
+https://bugs.freedesktop.org/show_bug.cgi?id=76732
 
-Now that I think of it, I think I can still loop SVIDEO OUT into a SVIDEO port 
-on a Canopus ADV-100 capture device I still own!  From the ch7006 chip specs, 
-if the device is activated, but did not activate the correct format (ie.  
-SVIDEO, Composite,...), then nothing at all will show on output.  But I would 
-think there should be a format activated within the ch7006 /sys files. (ie.  
-S-Video, Composite, ...)  Or could be the Dell proprietary splitter performs 
-the SVIDEO/COMP conversion, as it does look big enough and I think it certainly 
-does.
+--- Comment #26 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 96773
+  --> https://bugs.freedesktop.org/attachment.cgi?id=96773&action=edit
+dmesg with working kernel 3.8.rc6-5cc027f6b1ec651c18a4322ed3e30c6e9cf01e96
+(pdisp-trace vbios-trace)
 
 -- 
-Roger
-http://rogerx.freeshell.org/
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1396432141.67821.22834
+Date: Wed, 2 Apr 2014 09:49:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Kworker using 100% CPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732#c26">Comment # 26</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Kworker using 100% CPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732">bug 76732</a>
+              from <span class="vcard"><a class="email" href="mailto:patrick.clara&#64;gmail.com" title="patrick.clara&#64;gmail.com">patrick.clara&#64;gmail.com</a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=96773" name="attach_96773" title="dmesg with working kernel 3.8.rc6-5cc027f6b1ec651c18a4322ed3e30c6e9cf01e96 (pdisp-trace vbios-trace)">attachment 96773</a> <a href="attachment.cgi?id=96773&amp;action=edit" title="dmesg with working kernel 3.8.rc6-5cc027f6b1ec651c18a4322ed3e30c6e9cf01e96 (pdisp-trace vbios-trace)">[details]</a></span>
+dmesg with working kernel 3.8.rc6-5cc027f6b1ec651c18a4322ed3e30c6e9cf01e96
+(pdisp-trace vbios-trace)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1396432141.67821.22834--
+
+--===============1152225842==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1152225842==--
