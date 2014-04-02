@@ -1,52 +1,94 @@
-From: Alexandre Courbot <gnurou@gmail.com>
-Subject: Re: [Nouveau] [PATCH 12/12] drm/nouveau: support for probing GK20A
-Date: Wed, 2 Apr 2014 23:19:10 +0900
-Message-ID: <CAAVeFuJAs4EY0Tu0Vygy4Oa0j3O=k4TV8NELnirJw+rwF1F7Xg@mail.gmail.com>
-References: <1395650554-31925-1-git-send-email-acourbot@nvidia.com>
- <1395650554-31925-13-git-send-email-acourbot@nvidia.com>
- <CACAvsv561r73CmL0rf_bvM9JVMV+E7J_VT3ZDuwyCxviJBa8Cw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 76818] [NVE7] GPU lockup
+Date: Wed, 02 Apr 2014 22:00:51 +0000
+Message-ID: <bug-76818-8800-ZbofwYKknP@http.bugs.freedesktop.org/>
+References: <bug-76818-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CACAvsv561r73CmL0rf_bvM9JVMV+E7J_VT3ZDuwyCxviJBa8Cw@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <skeggsb@gmail.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0366830427=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-76818-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Mar 26, 2014 at 1:28 PM, Ben Skeggs <skeggsb@gmail.com> wrote:
-> On Mon, Mar 24, 2014 at 6:42 PM, Alexandre Courbot <acourbot@nvidia.com> wrote:
->> Set the correct subdev/engine classes when GK20A (0xea) is probed.
->>
->> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
->> ---
->>  drivers/gpu/drm/nouveau/core/engine/device/nve0.c | 20 ++++++++++++++++++++
->>  1 file changed, 20 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/nouveau/core/engine/device/nve0.c b/drivers/gpu/drm/nouveau/core/engine/device/nve0.c
->> index 987edbc30a09..8509dd57de1f 100644
->> --- a/drivers/gpu/drm/nouveau/core/engine/device/nve0.c
->> +++ b/drivers/gpu/drm/nouveau/core/engine/device/nve0.c
->> @@ -156,6 +156,26 @@ nve0_identify(struct nouveau_device *device)
->>                 device->oclass[NVDEV_ENGINE_PPP    ] = &nvc0_ppp_oclass;
->>                 device->oclass[NVDEV_ENGINE_PERFMON] = &nve0_perfmon_oclass;
->>                 break;
->> +       case 0xea:
->> +               device->cname = "GK20A";
->> +               device->oclass[NVDEV_SUBDEV_MC     ] =  nvc3_mc_oclass;
->> +               device->oclass[NVDEV_SUBDEV_BUS    ] =  nvc0_bus_oclass;
->> +               device->oclass[NVDEV_SUBDEV_TIMER  ] = &nv04_timer_oclass;
-> As per note on the PTIMER patch, can just switch this to
-> "gk20a_timer_oclass" on the latest code.
 
-Just saw your patch and will try to use it for the next version (if I
-can figure out how to reapply it to a Linux tree).
+--===============0366830427==
+Content-Type: multipart/alternative; boundary="1396476050.606a7A61.2685"; charset="us-ascii"
+
+
+--1396476050.606a7A61.2685
+Date: Wed, 2 Apr 2014 22:00:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=76818
+
+--- Comment #4 from Max <max.snow-Po5arK1fDv3vnOemgxGiVw@public.gmane.org> ---
+The problem seems to have disappeared after I installed nvidia propriety
+drivers (from rpmfusion).
+
+Hmmmmm.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1396476050.606a7A61.2685
+Date: Wed, 2 Apr 2014 22:00:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE7] GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76818#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE7] GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76818">bug 76818</a>
+              from <span class="vcard"><a class="email" href="mailto:max.snow&#64;4mation.com.au" title="Max &lt;max.snow&#64;4mation.com.au&gt;"> <span class="fn">Max</span></a>
+</span></b>
+        <pre>The problem seems to have disappeared after I installed nvidia propriety
+drivers (from rpmfusion).
+
+Hmmmmm.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1396476050.606a7A61.2685--
+
+--===============0366830427==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0366830427==--
