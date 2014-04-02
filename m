@@ -1,108 +1,56 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76818] [NVE7] GPU lockup
-Date: Wed, 02 Apr 2014 22:04:27 +0000
-Message-ID: <bug-76818-8800-CLyX09MnN6@http.bugs.freedesktop.org/>
-References: <bug-76818-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [Nouveau] [PATCH 11/12] drm/nouveau: support GK20A in
+ nouveau_accel_init()
+Date: Thu, 3 Apr 2014 09:14:48 +1000
+Message-ID: <CACAvsv4uUoeb9KrVS-6PGjtruWXSOakgCMBspSn6EmAVUO=YrA@mail.gmail.com>
+References: <1395650554-31925-1-git-send-email-acourbot@nvidia.com>
+ <1395650554-31925-12-git-send-email-acourbot@nvidia.com>
+ <20140324231014.GI17218@mithrandir>
+ <CACAvsv4FHqwAF6FOaMF1sQLwAfBOd6uFgsZ+VdwCHoR4qsVbVw@mail.gmail.com>
+ <CAAVeFuL-v2dntm5kgXUaC1-0dw2PgPnmpffPpa_dpwYZqmhvpA@mail.gmail.com>
+ <CAKb7UvjAATgH3hqs4Vx4RkRsph9uAQdxyjCYmxZ8mq6ZgRh8gA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0544903858=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76818-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKb7UvjAATgH3hqs4Vx4RkRsph9uAQdxyjCYmxZ8mq6ZgRh8gA@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: Alexandre Courbot <gnurou@gmail.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
+On Thu, Apr 3, 2014 at 12:23 AM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
+> On Wed, Apr 2, 2014 at 10:14 AM, Alexandre Courbot <gnurou@gmail.com> wrote:
+>>>>> +     /* Need to figure out how to handle sw for gk20a */
+>>>>> +     if (device->chipset == 0xea)
+>>>>> +             goto skip_sw_init;
+>>>>
+>>>> The commit message makes it sound like SW isn't needed since gk20a
+>>>> "lacks any display hardware". In that case the comment here doesn't make
+>>>> much sense.
+>>
+>> Correct. As far as I have looked (that is, not very far), SW methods
+>> are used for display-related functions, but there might be other
+>> use-cases too. Maybe someone who knows better can confirm?
+>
+> http://cgit.freedesktop.org/~darktama/nouveau/tree/nvkm/engine/software/nvc0.c
+>
+> Take a look at nvc0_software_mthd_mp_control -- that's used in the
+> mesa driver to... well, control those things :) They're related to
+> PGRAPH, which should be available on the GK20A. [Not sure what they do
+> though. One of them is about turning off error reporting.]
+Hm, I don't know why I didn't notice that was there for now.. I
+wouldn't be entirely surprised if nvidia had reserved method ids in
+the 3d object class that were supposed to be used for this, rather
+than from a sw object class..
 
---===============0544903858==
-Content-Type: multipart/alternative; boundary="1396476267.B2Fc2.3919"; charset="us-ascii"
-
-
---1396476267.B2Fc2.3919
-Date: Wed, 2 Apr 2014 22:04:27 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=76818
-
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #4)
-> The problem seems to have disappeared after I installed nvidia propriety
-> drivers (from rpmfusion).
-> 
-> Hmmmmm.
-
-Yes, the proprietary drivers tend to work reasonably well. If you're no longer
-interested in debugging the nouveau issues, I can close this issue.
-
-If you do want to help identify/fix the issue in nouveau, please follow the
-steps I outlined, which should be a good start.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1396476267.B2Fc2.3919
-Date: Wed, 2 Apr 2014 22:04:27 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76818#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76818">bug 76818</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=76818#c4">comment #4</a>)
-<span class="quote">&gt; The problem seems to have disappeared after I installed nvidia propriety
-&gt; drivers (from rpmfusion).
-&gt; 
-&gt; Hmmmmm.</span >
-
-Yes, the proprietary drivers tend to work reasonably well. If you're no longer
-interested in debugging the nouveau issues, I can close this issue.
-
-If you do want to help identify/fix the issue in nouveau, please follow the
-steps I outlined, which should be a good start.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1396476267.B2Fc2.3919--
-
---===============0544903858==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0544903858==--
+>
+>   -ilia
