@@ -1,83 +1,69 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 04/12] drm/nouveau/bar/nvc0: support chips without BAR3
-Date: Wed, 2 Apr 2014 22:47:28 +0900
-Message-ID: <CAAVeFuKUu-oN-sMEcvcZVTuhcz9dZVauvca7T1_iN5=qkU7Zcg@mail.gmail.com>
+From: Alexandre Courbot <gnurou@gmail.com>
+Subject: Re: [PATCH 11/12] drm/nouveau: support GK20A in nouveau_accel_init()
+Date: Wed, 2 Apr 2014 23:14:10 +0900
+Message-ID: <CAAVeFuL-v2dntm5kgXUaC1-0dw2PgPnmpffPpa_dpwYZqmhvpA@mail.gmail.com>
 References: <1395650554-31925-1-git-send-email-acourbot@nvidia.com>
- <1395650554-31925-5-git-send-email-acourbot@nvidia.com> <20140324221051.GC17218@mithrandir>
+ <1395650554-31925-12-git-send-email-acourbot@nvidia.com> <20140324231014.GI17218@mithrandir>
+ <CACAvsv4FHqwAF6FOaMF1sQLwAfBOd6uFgsZ+VdwCHoR4qsVbVw@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <20140324221051.GC17218@mithrandir>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CACAvsv4FHqwAF6FOaMF1sQLwAfBOd6uFgsZ+VdwCHoR4qsVbVw@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <skeggsb@gmail.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Alexandre Courbot <acourbot@nvidia.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Mar 25, 2014 at 7:10 AM, Thierry Reding
-<thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On Mon, Mar 24, 2014 at 05:42:26PM +0900, Alexandre Courbot wrote:
-> [...]
->> diff --git a/drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c b/drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c
-> [...]
->>  static int
->> -nvc0_bar_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
->> -           struct nouveau_oclass *oclass, void *data, u32 size,
->> -           struct nouveau_object **pobject)
->> +nvc0_bar_init_vm(struct nvc0_bar_priv *priv, int nr, int bar)
->>  {
-> [...]
->> -     /* BAR3 */
->>       ret = nouveau_gpuobj_new(nv_object(priv), NULL, 0x1000, 0, 0,
->> -                             &priv->bar[0].mem);
->> -     mem = priv->bar[0].mem;
->> +                             &priv->bar[nr].mem);
->> +     mem = priv->bar[nr].mem;
->>       if (ret)
->>               return ret;
+On Wed, Mar 26, 2014 at 1:27 PM, Ben Skeggs <skeggsb@gmail.com> wrote:
+> On Tue, Mar 25, 2014 at 9:10 AM, Thierry Reding
+> <thierry.reding@gmail.com> wrote:
+>> On Mon, Mar 24, 2014 at 05:42:33PM +0900, Alexandre Courbot wrote:
+>>> GK20A does not embed a dedicated COPY engine and thus cannot allocate
+>>> the copy channel that nouveau_accel_init() attempts to create. It also
+>>> lacks any display hardware, so the creation of a software channel does
+>>> not apply neither.
 >>
->>       ret = nouveau_gpuobj_new(nv_object(priv), NULL, 0x8000, 0, 0,
->> -                             &priv->bar[0].pgd);
->> +                             &priv->bar[nr].pgd);
->>       if (ret)
->>               return ret;
-> [...]
->> +static int
->> +nvc0_bar_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
->> +           struct nouveau_oclass *oclass, void *data, u32 size,
->> +           struct nouveau_object **pobject)
->> +{
-> [...]
->> +     /* BAR3 */
->> +     if (has_bar3) {
->> +             ret = nvc0_bar_init_vm(priv, 0, 3);
-> [...]
->> +     /* BAR1 */
->> +     ret = nvc0_bar_init_vm(priv, 1, 1);
->>       if (ret)
->>               return ret;
->
-> The calls to nvc0_bar_init_vm() are somewhat confusing in my opinion. It
-> is hard to see from the invocation what these numbers mean and therefore
-> distinguish which parameter is which.
->
-> Perhaps a slightly more readable way would be to pass in a pointer to a
-> structure as second parameter instead of the index into an array. So
-> it'd look somewhat like this:
->
->         if (has_bar3) {
->                 ret = nvc0_bar_init_vm(priv, &priv->bar[0], 3);
->                 ...
->         }
->         ...
->         ret = nvc0_bar_init_vm(priv, &priv->bar[1], 1);
->         ...
->
-> Unfortunately that would require a new type to be created for the bar[]
-> structures, so it'd be slightly more intrusive.
+>> Perhaps this should be two separate patches?
+>>
+>>> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+>> [...]
+>>> +     if (device->chipset == 0xea) {
+>>> +             /* gk20a does not have CE0/CE1 */
+>>
+>> This would be another good candidate for a feature flag.
+> There are ways to query this in a chipset-independent way.  However,
+> despite reporting it as an error if no copy engines are available, the
+> code should continue on without the channel happily.  Perhaps we can
+> just punt the relevent error messages to a debug loglevel for now?
 
-These types are local to nvc0.c anyway, so I don't think it would
-hurt. And you are right that the code would become more readable as a
-result, passing array indexes as arguments is not a common practice
-(and should not be).
+Sure, that would be more future-proof as well.
 
-Alex.
+>
+>>
+>>> +             arg0 = NVE0_CHANNEL_IND_ENGINE_GR;
+>>> +             arg1 = 1;
+>>> +     } else
+>>>       if (device->card_type >= NV_E0) {
+>>
+>> The formatting here is somewhat weird. From a brief look I couldn't find
+>> any indication that nouveau deviates from the standard coding style, so
+>> this should be:
+>>
+>>         } else if (...) {
+> I use the former in a few places, despite it not entirely being
+> "correct".. It looks nicer though :)  I don't mind either way though.
+
+Yeah, I just followed the style of the file here. Whether it needs to
+change or not is not my call. :P
+
+>>> +     /* Need to figure out how to handle sw for gk20a */
+>>> +     if (device->chipset == 0xea)
+>>> +             goto skip_sw_init;
+>>
+>> The commit message makes it sound like SW isn't needed since gk20a
+>> "lacks any display hardware". In that case the comment here doesn't make
+>> much sense.
+
+Correct. As far as I have looked (that is, not very far), SW methods
+are used for display-related functions, but there might be other
+use-cases too. Maybe someone who knows better can confirm?
