@@ -1,11 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76990] New: [NVE6] Xorg crashes when switching back
- from VT to X
-Date: Thu, 03 Apr 2014 10:18:51 +0000
-Message-ID: <bug-76990-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 76732] Kworker using 100% CPU
+Date: Wed, 02 Apr 2014 13:57:27 +0000
+Message-ID: <bug-76732-8800-1v5EvjLjKR@http.bugs.freedesktop.org/>
+References: <bug-76732-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0436490590=="
+Content-Type: multipart/mixed; boundary="===============1796570907=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-76732-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,83 +20,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0436490590==
-Content-Type: multipart/alternative; boundary="1396520331.af4b2.30518"; charset="us-ascii"
+--===============1796570907==
+Content-Type: multipart/alternative; boundary="1396447046.51CD1.28170"; charset="us-ascii"
 
 
---1396520331.af4b2.30518
-Date: Thu, 3 Apr 2014 10:18:51 +0000
+--1396447046.51CD1.28170
+Date: Wed, 2 Apr 2014 13:57:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76990
+https://bugs.freedesktop.org/show_bug.cgi?id=76732
 
-          Priority: medium
-            Bug ID: 76990
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NVE6] Xorg crashes when switching back from VT to X
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: d-bugzilla-vUpi/VKO0VA@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: git
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #28 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I dont't know if it is relevant, but in the hope of providing you some useful
+information I saw that the interrupt storm starts when the last
+nvbios_exec(&init) in nouveau/core/engine/disp/dport.c:dp_link_train_init is
+called.
 
-Testing with GK106GLM [Quadro K2100M], QHD+ (3200x1800) screen.
+nvbios_exec(&init) is called with the initial offset of 0x5d7b and calls
+following opcodes with respective offsets:
 
-Environment : Fedora 20 with kernel 3.14 and darktama's git 
-633e16bb8571071b9da8ed03513a2266cbf21eb5.
-
-When switching to a VT, and afterwards switching back to the X session, X
-crashes.
-
-
-Abrt data available :
-
-Apr  3 11:55:34 cn0042 abrt-hook-ccpp: Saved core dump of pid 1237
-(/usr/bin/Xorg) to /var/tmp/abrt/ccpp-2014-04-03-11:55:34-1237 (198725632
-bytes)
-Apr  3 11:55:34 cn0042 abrt-server: Generating core_backtrace
-Apr  3 11:55:34 cn0042 abrt-server: Generating backtrace
-
-
-dmesg output :
-
-[  504.935039] nouveau E[Xorg[1237]] failed to idle channel 0xcccc0000
-[Xorg[1237]]
-[  519.921691] nouveau E[Xorg[1237]] failed to idle channel 0xcccc0000
-[Xorg[1237]]
-[  522.538824] nouveau E[  PGRAPH][0000:01:00.0] HUB_INIT timed out
-[  522.538828] nouveau E[  PGRAPH][0000:01:00.0] 409000 - done 0x00000220
-[  522.538832] nouveau E[  PGRAPH][0000:01:00.0] 409000 - stat 0x00000000
-0x00000000 0x00000000 0x00000000
-[  522.538836] nouveau E[  PGRAPH][0000:01:00.0] 409000 - stat 0x00000000
-0x00000000 0x00000006 0x00000001
-[  522.538838] nouveau E[  PGRAPH][0000:01:00.0] 502000 - done 0x00000300
-[  522.538842] nouveau E[  PGRAPH][0000:01:00.0] 502000 - stat 0x00000000
-0x00008c00 0x00000000 0x00000000
-[  522.538847] nouveau E[  PGRAPH][0000:01:00.0] 502000 - stat 0x00000000
-0x00000000 0x00000000 0x00000000
-[  522.538849] nouveau E[  PGRAPH][0000:01:00.0] 50a000 - done 0x00000300
-[  522.538853] nouveau E[  PGRAPH][0000:01:00.0] 50a000 - stat 0x00000000
-0x00000000 0x00000000 0x00000000
-[  522.538857] nouveau E[  PGRAPH][0000:01:00.0] 50a000 - stat 0x00000000
-0x00000000 0x00000000 0x00000000
-[  522.538858] nouveau E[  PGRAPH][0000:01:00.0] init failed, -16
-
-
-(not sure if this should be filed against component Driver/nouveau)
+0x6e 0x5d7b
+0x6e 0x5d88
+0x6e 0x5d95
+0x6e 0x5da2
+0x6e 0x5daf
+0x7a 0x5dbc
+0x7a 0x5dc5
+0x7a 0x5dce
+0x6e 0x5dd7
+0x74 0x5de4
+0x5b 0x5de7
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1396520331.af4b2.30518
-Date: Thu, 3 Apr 2014 10:18:51 +0000
+--1396447046.51CD1.28170
+Date: Wed, 2 Apr 2014 13:57:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -103,139 +65,38 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] Xorg crashes when switching back from VT to X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76990">76990</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVE6] Xorg crashes when switching back from VT to X
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>d-bugzilla&#64;moens.cc
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Testing with GK106GLM [Quadro K2100M], QHD+ (3200x1800) screen.
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Kworker using 100% CPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732#c28">Comment # 28</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Kworker using 100% CPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732">bug 76732</a>
+              from <span class="vcard"><a class="email" href="mailto:patrick.clara&#64;gmail.com" title="patrick.clara&#64;gmail.com">patrick.clara&#64;gmail.com</a>
+</span></b>
+        <pre>I dont't know if it is relevant, but in the hope of providing you some useful
+information I saw that the interrupt storm starts when the last
+nvbios_exec(&amp;init) in nouveau/core/engine/disp/dport.c:dp_link_train_init is
+called.
 
-Environment : Fedora 20 with kernel 3.14 and darktama's git 
-633e16bb8571071b9da8ed03513a2266cbf21eb5.
+nvbios_exec(&amp;init) is called with the initial offset of 0x5d7b and calls
+following opcodes with respective offsets:
 
-When switching to a VT, and afterwards switching back to the X session, X
-crashes.
-
-
-Abrt data available :
-
-Apr  3 11:55:34 cn0042 abrt-hook-ccpp: Saved core dump of pid 1237
-(/usr/bin/Xorg) to /var/tmp/abrt/ccpp-2014-04-03-11:55:34-1237 (198725632
-bytes)
-Apr  3 11:55:34 cn0042 abrt-server: Generating core_backtrace
-Apr  3 11:55:34 cn0042 abrt-server: Generating backtrace
-
-
-dmesg output :
-
-[  504.935039] nouveau E[Xorg[1237]] failed to idle channel 0xcccc0000
-[Xorg[1237]]
-[  519.921691] nouveau E[Xorg[1237]] failed to idle channel 0xcccc0000
-[Xorg[1237]]
-[  522.538824] nouveau E[  PGRAPH][0000:01:00.0] HUB_INIT timed out
-[  522.538828] nouveau E[  PGRAPH][0000:01:00.0] 409000 - done 0x00000220
-[  522.538832] nouveau E[  PGRAPH][0000:01:00.0] 409000 - stat 0x00000000
-0x00000000 0x00000000 0x00000000
-[  522.538836] nouveau E[  PGRAPH][0000:01:00.0] 409000 - stat 0x00000000
-0x00000000 0x00000006 0x00000001
-[  522.538838] nouveau E[  PGRAPH][0000:01:00.0] 502000 - done 0x00000300
-[  522.538842] nouveau E[  PGRAPH][0000:01:00.0] 502000 - stat 0x00000000
-0x00008c00 0x00000000 0x00000000
-[  522.538847] nouveau E[  PGRAPH][0000:01:00.0] 502000 - stat 0x00000000
-0x00000000 0x00000000 0x00000000
-[  522.538849] nouveau E[  PGRAPH][0000:01:00.0] 50a000 - done 0x00000300
-[  522.538853] nouveau E[  PGRAPH][0000:01:00.0] 50a000 - stat 0x00000000
-0x00000000 0x00000000 0x00000000
-[  522.538857] nouveau E[  PGRAPH][0000:01:00.0] 50a000 - stat 0x00000000
-0x00000000 0x00000000 0x00000000
-[  522.538858] nouveau E[  PGRAPH][0000:01:00.0] init failed, -16
-
-
-(not sure if this should be filed against component Driver/nouveau)</pre>
+0x6e 0x5d7b
+0x6e 0x5d88
+0x6e 0x5d95
+0x6e 0x5da2
+0x6e 0x5daf
+0x7a 0x5dbc
+0x7a 0x5dc5
+0x7a 0x5dce
+0x6e 0x5dd7
+0x74 0x5de4
+0x5b 0x5de7</pre>
         </div>
       </p>
       <hr>
@@ -247,9 +108,9 @@ dmesg output :
     </body>
 </html>
 
---1396520331.af4b2.30518--
+--1396447046.51CD1.28170--
 
---===============0436490590==
+--===============1796570907==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -260,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0436490590==--
+--===============1796570907==--
