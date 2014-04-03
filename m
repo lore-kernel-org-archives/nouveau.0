@@ -1,12 +1,19 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76732] Kworker using 100% CPU
-Date: Wed, 02 Apr 2014 13:57:27 +0000
-Message-ID: <bug-76732-8800-1v5EvjLjKR@http.bugs.freedesktop.org/>
-References: <bug-76732-8800@http.bugs.freedesktop.org/>
+From: Dirk Thierbach <dthierbach-Mmb7MZpHnFY@public.gmane.org>
+Subject: Re: CH7007A (AKA CH7006) TV OUT Support for NV11 (NVidia
+ GeForce2 Go Dell I8K Laptop)
+Date: Thu, 3 Apr 2014 12:53:01 +0200
+Message-ID: <20140403105301.GA30975@feanor>
+References: <20140401035741.GA3535@localhost4.local>
+ <CAKb7Uvj6EL60VY0wkvm_JGPh+VZYtU8J51gpvt8JsoQQq5qiDw@mail.gmail.com>
+ <20140401223030.GA22211@localhost4.local>
+ <20140402212448.GA3509@localhost4.local>
+ <CAKb7Uvg3ogHq3rNXDkP0eukvY0J-accaQ0YZ=x8cCEhJBYQ7rQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1796570907=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76732-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CAKb7Uvg3ogHq3rNXDkP0eukvY0J-accaQ0YZ=x8cCEhJBYQ7rQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,106 +26,54 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On Wed, Apr 02, 2014 at 06:12:40PM -0400, Ilia Mirkin wrote:
 
---===============1796570907==
-Content-Type: multipart/alternative; boundary="1396447046.51CD1.28170"; charset="us-ascii"
+> But at no point does it see the TV-1 connector. I'm guessing something
+> got busted in the nv04_tv stuff :( NV11 should have 2 CRTC's, 
 
+It has in all instances I have seen.
 
---1396447046.51CD1.28170
-Date: Wed, 2 Apr 2014 13:57:26 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+> but even if it had only 1, it should still be exposing the TV-1
+> connector...  I'll try to read the code more carefully, and compare
+> it to the nv17_tv logic, to maybe see where it goes wrong.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76732
+I had a quick look at the code, and I see that in ch7006_encoder_detect
+the routine returns "connector_status_disconnected" when it can't
+find any matching pattern in the load detection. With nvtv, I had plenty
+of experiences with a really weird connection status from Chrontel
+chips, for whatever reason. I've also seen there are no delays between
+the register writes to do the detections as recommended in the data
+sheet, so the values might not have settled.
 
---- Comment #28 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I dont't know if it is relevant, but in the hope of providing you some useful
-information I saw that the interrupt storm starts when the last
-nvbios_exec(&init) in nouveau/core/engine/disp/dport.c:dp_link_train_init is
-called.
+I didn't follow up on how the "connector_status_disconnected" value is used
+in the callers, but if it causes suppression of the TV-1 connector, this
+could be the problem. Maybe add a few debug statements to verify that?
 
-nvbios_exec(&init) is called with the initial offset of 0x5d7b and calls
-following opcodes with respective offsets:
+Roger <rogerx.oss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
 
-0x6e 0x5d7b
-0x6e 0x5d88
-0x6e 0x5d95
-0x6e 0x5da2
-0x6e 0x5daf
-0x7a 0x5dbc
-0x7a 0x5dc5
-0x7a 0x5dce
-0x6e 0x5dd7
-0x74 0x5de4
-0x5b 0x5de7
+> I only have composite input for displays around here now, and the output
+> on this Dell Laptop is a proprietary type of SVIDEO splitter to SVIDEO,
+> Composite, S/PDIF Audio.
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+Then you'll likely get all 3 DAC outputs, one in Composite, the other
+two in SVIDEO. 
 
---1396447046.51CD1.28170
-Date: Wed, 2 Apr 2014 13:57:26 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+> (I've heard some hearsay on the web, the TV tuner chip will also provide
+> a modulated TV signal through VGA, but am not sure of this -- for the
+> cost of a $2 connector and including having a more stable connector as
+> well, might be worth it.)
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Kworker using 100% CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732#c28">Comment # 28</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Kworker using 100% CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732">bug 76732</a>
-              from <span class="vcard"><a class="email" href="mailto:patrick.clara&#64;gmail.com" title="patrick.clara&#64;gmail.com">patrick.clara&#64;gmail.com</a>
-</span></b>
-        <pre>I dont't know if it is relevant, but in the hope of providing you some useful
-information I saw that the interrupt storm starts when the last
-nvbios_exec(&amp;init) in nouveau/core/engine/disp/dport.c:dp_link_train_init is
-called.
+You can program the DACs to output RGB instead of Y/C/CVBS, but you'll 
+still need to get at the CSYNC signal to make a SCART-RGB-connection to
+a TV with a SCART-input. 
+If you're lucky, it's in the proprietary Dell output somewhere.
 
-nvbios_exec(&amp;init) is called with the initial offset of 0x5d7b and calls
-following opcodes with respective offsets:
+Connecting it to a VGA-Monitor might be harder, the timing is still
+PAL/NTSC, not anything VGA is used to, and the sync signals are wrong IIRC.
 
-0x6e 0x5d7b
-0x6e 0x5d88
-0x6e 0x5d95
-0x6e 0x5da2
-0x6e 0x5daf
-0x7a 0x5dbc
-0x7a 0x5dc5
-0x7a 0x5dce
-0x6e 0x5dd7
-0x74 0x5de4
-0x5b 0x5de7</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+Or do you mean the VGA-connector on the Dell can also output the TV
+signal? In this case, the Dell may have some extra hardware to switch
+between signals, which will be difficult to find and program (and which also
+may explain any weird connection status).
 
---1396447046.51CD1.28170--
-
---===============1796570907==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1796570907==--
+- Dirk
