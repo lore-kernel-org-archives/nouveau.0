@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 77003] [NV50] Fan speed to high with Kernel versions
  3.13.x - Nvidia GeForce GTS 240 (NV92)
-Date: Thu, 03 Apr 2014 14:22:38 +0000
-Message-ID: <bug-77003-8800-f35wNoRPkU@http.bugs.freedesktop.org/>
+Date: Thu, 03 Apr 2014 15:43:17 +0000
+Message-ID: <bug-77003-8800-sFUIF838OZ@http.bugs.freedesktop.org/>
 References: <bug-77003-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0579846997=="
+Content-Type: multipart/mixed; boundary="===============1243121947=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-77003-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,85 +21,113 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0579846997==
-Content-Type: multipart/alternative; boundary="1396534957.f1c31Edf2.8639"; charset="us-ascii"
+--===============1243121947==
+Content-Type: multipart/alternative; boundary="1396539797.27883a671.4716"; charset="us-ascii"
 
 
---1396534957.f1c31Edf2.8639
-Date: Thu, 3 Apr 2014 14:22:37 +0000
+--1396539797.27883a671.4716
+Date: Thu, 3 Apr 2014 15:43:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77003
+https://bugs.freedesktop.org/show_bug.cgi?id=3D77003
 
---- Comment #2 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-Hi Roman,
+--- Comment #3 from Roman Spirgi <the.ant-hi6Y0CQ0nG0@public.gmane.org> ---
+Created attachment 96855
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D96855&action=3Dedit
+vbios.rom
 
-Thanks for your report. The commits you reference are, I think, un-related. 5k
-or 6.6k RPM is just insane! As everything looks fine from the kernel logs
-perspective, could you provide me with your vbios[1]?
+Vbtracetool didn't find file "pci/pci.h" during make. So I did create it wi=
+th
+the nouveau module, hope this is OK instead.
 
-I am taking this issue very seriously, so please help me out so as we can fix
-it!
+Temp is quite high with 84=C2=B0, isn't it? With Kernel versions < 3.13.x f=
+an speed
+doesn't get up to 6Ks. I'm using Gnome 3 with Liber8, Firefox, ... nothing
+spectacular.
 
-Cheers,
-Martin
+This is with Kernel 3.12.9:
+---
+nouveau-pci-0100
+Adapter: PCI adapter
+fan1:        4702 RPM
+temp1:        +84.0=C2=B0C  (high =3D +95.0=C2=B0C, hyst =3D  +3.0=C2=B0C)
+                       (crit =3D +105.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
+                       (emerg =3D +135.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
+---
 
-[1] http://nouveau.freedesktop.org/wiki/DumpingVideoBios/
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1396534957.f1c31Edf2.8639
-Date: Thu, 3 Apr 2014 14:22:37 +0000
+--1396539797.27883a671.4716
+Date: Thu, 3 Apr 2014 15:43:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV50] Fan speed to high with Kernel versions 3.13.x - Nvidia GeForce GTS 240 (NV92)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77003#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - [NV50] Fan speed to high with Kernel versions 3.13.x =
+- Nvidia GeForce GTS 240 (NV92)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77003#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV50] Fan speed to high with Kernel versions 3.13.x - Nvidia GeForce GTS 240 (NV92)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77003">bug 77003</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+   title=3D"NEW --- - [NV50] Fan speed to high with Kernel versions 3.13.x =
+- Nvidia GeForce GTS 240 (NV92)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77003">bug 77003<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+the.ant&#64;gmx.net" title=3D"Roman Spirgi &lt;the.ant&#64;gmx.net&gt;"> <s=
+pan class=3D"fn">Roman Spirgi</span></a>
 </span></b>
-        <pre>Hi Roman,
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D96855"=
+ name=3D"attach_96855" title=3D"vbios.rom">attachment 96855</a> <a href=3D"=
+attachment.cgi?id=3D96855&amp;action=3Dedit" title=3D"vbios.rom">[details]<=
+/a></span>
+vbios.rom
 
-Thanks for your report. The commits you reference are, I think, un-related. 5k
-or 6.6k RPM is just insane! As everything looks fine from the kernel logs
-perspective, could you provide me with your vbios[1]?
+Vbtracetool didn't find file &quot;pci/pci.h&quot; during make. So I did cr=
+eate it with
+the nouveau module, hope this is OK instead.
 
-I am taking this issue very seriously, so please help me out so as we can fix
-it!
+Temp is quite high with 84=C2=B0, isn't it? With Kernel versions &lt; 3.13.=
+x fan speed
+doesn't get up to 6Ks. I'm using Gnome 3 with Liber8, Firefox, ... nothing
+spectacular.
 
-Cheers,
-Martin
-
-[1] <a href="http://nouveau.freedesktop.org/wiki/DumpingVideoBios/">http://nouveau.freedesktop.org/wiki/DumpingVideoBios/</a></pre>
+This is with Kernel 3.12.9:
+---
+nouveau-pci-0100
+Adapter: PCI adapter
+fan1:        4702 RPM
+temp1:        +84.0=C2=B0C  (high =3D +95.0=C2=B0C, hyst =3D  +3.0=C2=B0C)
+                       (crit =3D +105.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
+                       (emerg =3D +135.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
+---</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1396534957.f1c31Edf2.8639--
+--1396539797.27883a671.4716--
 
---===============0579846997==
+--===============1243121947==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,4 +138,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0579846997==--
+--===============1243121947==--
