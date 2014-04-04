@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 77073] [nouveaun NVE0] Attaching displayport spawns
  kworker taking up 100% cpu
-Date: Fri, 04 Apr 2014 23:00:32 +0000
-Message-ID: <bug-77073-8800-W3s3uwojaZ@http.bugs.freedesktop.org/>
+Date: Fri, 04 Apr 2014 23:02:28 +0000
+Message-ID: <bug-77073-8800-ZFQW9nzIwF@http.bugs.freedesktop.org/>
 References: <bug-77073-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1014500169=="
+Content-Type: multipart/mixed; boundary="===============1273375128=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-77073-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1014500169==
-Content-Type: multipart/alternative; boundary="1396652432.bE522deb1.20233"; charset="us-ascii"
+--===============1273375128==
+Content-Type: multipart/alternative; boundary="1396652548.3360B51.20621"; charset="us-ascii"
 
 
---1396652432.bE522deb1.20233
-Date: Fri, 4 Apr 2014 23:00:32 +0000
+--1396652548.3360B51.20621
+Date: Fri, 4 Apr 2014 23:02:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=77073
 
---- Comment #1 from Dale Hamel <daleha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 96924
-  --> https://bugs.freedesktop.org/attachment.cgi?id=96924&action=edit
-vmbios on affected system
+--- Comment #2 from Dale Hamel <daleha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 96925
+  --> https://bugs.freedesktop.org/attachment.cgi?id=96925&action=edit
+kernel log
 
-vmbios after the error occurred (though it's rom so it doesn't matter)
+kernel log during boot and after error occurred.
+
+Note i've enabled kernel debugging. It's long.
+
+Sorry, had to gzip it
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1396652432.bE522deb1.20233
-Date: Fri, 4 Apr 2014 23:00:32 +0000
+--1396652548.3360B51.20621
+Date: Fri, 4 Apr 2014 23:02:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,17 +62,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveaun NVE0] Attaching displayport spawns kworker taking up 100% cpu"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77073#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77073#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nouveaun NVE0] Attaching displayport spawns kworker taking up 100% cpu"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=77073">bug 77073</a>
               from <span class="vcard"><a class="email" href="mailto:daleha&#64;gmail.com" title="Dale Hamel &lt;daleha&#64;gmail.com&gt;"> <span class="fn">Dale Hamel</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=96924" name="attach_96924" title="vmbios on affected system">attachment 96924</a> <a href="attachment.cgi?id=96924&amp;action=edit" title="vmbios on affected system">[details]</a></span>
-vmbios on affected system
+        <pre>Created <span class=""><a href="attachment.cgi?id=96925" name="attach_96925" title="kernel log">attachment 96925</a> <a href="attachment.cgi?id=96925&amp;action=edit" title="kernel log">[details]</a></span>
+kernel log
 
-vmbios after the error occurred (though it's rom so it doesn't matter)</pre>
+kernel log during boot and after error occurred.
+
+Note i've enabled kernel debugging. It's long.
+
+Sorry, had to gzip it</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +88,9 @@ vmbios after the error occurred (though it's rom so it doesn't matter)</pre>
     </body>
 </html>
 
---1396652432.bE522deb1.20233--
+--1396652548.3360B51.20621--
 
---===============1014500169==
+--===============1273375128==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1014500169==--
+--===============1273375128==--
