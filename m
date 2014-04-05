@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76732] Kworker using 100% CPU
-Date: Sat, 05 Apr 2014 00:22:48 +0000
-Message-ID: <bug-76732-8800-Rk8hhTsTau@http.bugs.freedesktop.org/>
-References: <bug-76732-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74002] [NVE7] [un]plugging DP-3 on Lenovo W530
+ results in interrupt storm
+Date: Sat, 05 Apr 2014 08:38:00 +0000
+Message-ID: <bug-74002-8800-vfBHCLxEIm@http.bugs.freedesktop.org/>
+References: <bug-74002-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0484870956=="
+Content-Type: multipart/mixed; boundary="===============0184475825=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76732-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-74002-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0484870956==
-Content-Type: multipart/alternative; boundary="1396657368.d0da2.3875"; charset="us-ascii"
+--===============0184475825==
+Content-Type: multipart/alternative; boundary="1396687080.CaBcEffE3.4224"; charset="us-ascii"
 
 
---1396657368.d0da2.3875
-Date: Sat, 5 Apr 2014 00:22:48 +0000
+--1396687080.CaBcEffE3.4224
+Date: Sat, 5 Apr 2014 08:38:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76732
+https://bugs.freedesktop.org/show_bug.cgi?id=74002
 
---- Comment #33 from Dale Hamel <daleha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-@Ilia Mirkin
+--- Comment #13 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Hello Jamin.
 
-Is there anything else I can supply that will be helpful for debugging?
+I have reported this bug https://bugs.freedesktop.org/show_bug.cgi?id=76732 a
+week ago. I though that it may be a small possibility that the two bugs are
+correlated.
+
+You wrote you noticed the bug first in 3.10. Did you ever tested 3.8 (in
+specific 3.8 rc6) and 3.9? 
+Just to understand if the bug appared in 3.10 of if you just noticed it in
+3.10.
+
+Thanks
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1396657368.d0da2.3875
-Date: Sat, 5 Apr 2014 00:22:48 +0000
+--1396687080.CaBcEffE3.4224
+Date: Sat, 5 Apr 2014 08:38:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,17 +64,29 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Kworker using 100% CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732#c33">Comment # 33</a>
+   title="NEW --- - [NVE7] [un]plugging DP-3 on Lenovo W530 results in interrupt storm"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Kworker using 100% CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732">bug 76732</a>
-              from <span class="vcard"><a class="email" href="mailto:daleha&#64;gmail.com" title="Dale Hamel &lt;daleha&#64;gmail.com&gt;"> <span class="fn">Dale Hamel</span></a>
+   title="NEW --- - [NVE7] [un]plugging DP-3 on Lenovo W530 results in interrupt storm"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74002">bug 74002</a>
+              from <span class="vcard"><a class="email" href="mailto:patrick.clara&#64;gmail.com" title="patrick.clara&#64;gmail.com">patrick.clara&#64;gmail.com</a>
 </span></b>
-        <pre>&#64;Ilia Mirkin
+        <pre>Hello Jamin.
 
-Is there anything else I can supply that will be helpful for debugging?</pre>
+I have reported this bug <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Kworker using 100% CPU"
+   href="show_bug.cgi?id=76732">https://bugs.freedesktop.org/show_bug.cgi?id=76732</a> a
+week ago. I though that it may be a small possibility that the two bugs are
+correlated.
+
+You wrote you noticed the bug first in 3.10. Did you ever tested 3.8 (in
+specific 3.8 rc6) and 3.9? 
+Just to understand if the bug appared in 3.10 of if you just noticed it in
+3.10.
+
+Thanks</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +98,9 @@ Is there anything else I can supply that will be helpful for debugging?</pre>
     </body>
 </html>
 
---1396657368.d0da2.3875--
+--1396687080.CaBcEffE3.4224--
 
---===============0484870956==
+--===============0184475825==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +111,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0484870956==--
+--===============0184475825==--
