@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76732] Kworker using 100% CPU
-Date: Sun, 06 Apr 2014 10:38:58 +0000
-Message-ID: <bug-76732-8800-7NMq43qGTa@http.bugs.freedesktop.org/>
-References: <bug-76732-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77106] New: Blank screen and errors on Thinkpad
+ T440p GeForce 730M/Intel optimus setup
+Date: Sun, 06 Apr 2014 14:18:51 +0000
+Message-ID: <bug-77106-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1431534060=="
+Content-Type: multipart/mixed; boundary="===============1193605561=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76732-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +19,53 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1431534060==
-Content-Type: multipart/alternative; boundary="1396780738.2E1eaa2.25474"; charset="us-ascii"
+--===============1193605561==
+Content-Type: multipart/alternative; boundary="1396793931.e5c71.2604"; charset="us-ascii"
 
 
---1396780738.2E1eaa2.25474
-Date: Sun, 6 Apr 2014 10:38:58 +0000
+--1396793931.e5c71.2604
+Date: Sun, 6 Apr 2014 14:18:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76732
+https://bugs.freedesktop.org/show_bug.cgi?id=77106
 
---- Comment #36 from patrick.clara-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 96972
-  --> https://bugs.freedesktop.org/attachment.cgi?id=96972&action=edit
-dmesg on 3.14+, second load
+          Priority: medium
+            Bug ID: 77106
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Blank screen and errors on Thinkpad T440p GeForce
+                    730M/Intel optimus setup
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: mkj-1kv+JzgSdXk@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
+
+My setup is Gentoo +:
+kernel 3.14, Mesa 10.4.0, xserver 1.15, libdrm 2.4.52, nouveau 1.0.10
+
+Normally my machine works using the Intel HD graphics only, but I wanted to
+experiment with nvidia/nouveau drivers.
+Using the proprietary Nvidia driver, and kernel 3.13, I managed to make a
+xorg.conf file that "disabled" the Intel card and only the Nvidia card
+primarily for 2D/3D. 
+Using the same xorg.conf, and the 3.14 kernel, I replaced the nvidia driver
+with nouveau, and I end up with a blank screen and some weird errors in my
+dmesg.
+
+Any ideas?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1396780738.2E1eaa2.25474
-Date: Sun, 6 Apr 2014 10:38:58 +0000
+--1396793931.e5c71.2604
+Date: Sun, 6 Apr 2014 14:18:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,21 +73,108 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Blank screen and errors on Thinkpad T440p GeForce 730M/Intel optimus setup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77106">77106</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Blank screen and errors on Thinkpad T440p GeForce 730M/Intel optimus setup
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mkj&#64;gotu.dk
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Kworker using 100% CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732#c36">Comment # 36</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Kworker using 100% CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732">bug 76732</a>
-              from <span class="vcard"><a class="email" href="mailto:patrick.clara&#64;gmail.com" title="patrick.clara&#64;gmail.com">patrick.clara&#64;gmail.com</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=96972" name="attach_96972" title="dmesg on 3.14+, second load">attachment 96972</a> <a href="attachment.cgi?id=96972&amp;action=edit" title="dmesg on 3.14+, second load">[details]</a></span>
-dmesg on 3.14+, second load</pre>
+        <pre>My setup is Gentoo +:
+kernel 3.14, Mesa 10.4.0, xserver 1.15, libdrm 2.4.52, nouveau 1.0.10
+
+Normally my machine works using the Intel HD graphics only, but I wanted to
+experiment with nvidia/nouveau drivers.
+Using the proprietary Nvidia driver, and kernel 3.13, I managed to make a
+xorg.conf file that &quot;disabled&quot; the Intel card and only the Nvidia card
+primarily for 2D/3D. 
+Using the same xorg.conf, and the 3.14 kernel, I replaced the nvidia driver
+with nouveau, and I end up with a blank screen and some weird errors in my
+dmesg.
+
+Any ideas?</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +186,9 @@ dmesg on 3.14+, second load</pre>
     </body>
 </html>
 
---1396780738.2E1eaa2.25474--
+--1396793931.e5c71.2604--
 
---===============1431534060==
+--===============1193605561==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +199,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1431534060==--
+--===============1193605561==--
