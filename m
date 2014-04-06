@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77102] gallium nouveau has no profile in vdpau and
-	libva
-Date: Sun, 06 Apr 2014 19:29:48 +0000
-Message-ID: <bug-77102-8800-8ZJ4NAZBkT@http.bugs.freedesktop.org/>
-References: <bug-77102-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77045] [NVC1] HDMI-Monitor toogles between on/off
+Date: Sun, 06 Apr 2014 22:16:51 +0000
+Message-ID: <bug-77045-8800-yxf7fW3N1G@http.bugs.freedesktop.org/>
+References: <bug-77045-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1712507544=="
+Content-Type: multipart/mixed; boundary="===============1076613377=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77102-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-77045-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1712507544==
-Content-Type: multipart/alternative; boundary="1396812587.40bba0.26587"; charset="us-ascii"
+--===============1076613377==
+Content-Type: multipart/alternative; boundary="1396822611.aFbC1D1.22703"; charset="us-ascii"
 
 
---1396812587.40bba0.26587
-Date: Sun, 6 Apr 2014 19:29:47 +0000
+--1396822611.aFbC1D1.22703
+Date: Sun, 6 Apr 2014 22:16:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77102
+https://bugs.freedesktop.org/show_bug.cgi?id=77045
 
---- Comment #12 from Stefan Ringel <mail-Omqj8X2OoDOCVLKmEEjRFg@public.gmane.org> ---
-Created attachment 97000
-  --> https://bugs.freedesktop.org/attachment.cgi?id=97000&action=edit
-dmesg
+--- Comment #2 from bugs.freedesktop.org-nXTNDpp/ZGaccsjhqMPsx7NAH6kLmebB@public.gmane.org ---
+Hi!
+
+I don't know, wether a recent update helped (or the new kernel lines ;-) ) -
+but atm the phenomenon doesn't occur anymore (after weeks of annoyance)...
+
+This report can be closed - I'll reopen one, if the problem strikes again!
+
+Thanks!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1396812587.40bba0.26587
-Date: Sun, 6 Apr 2014 19:29:47 +0000
+--1396822611.aFbC1D1.22703
+Date: Sun, 6 Apr 2014 22:16:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,17 +58,23 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - gallium nouveau has no profile in vdpau and libva"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77102#c12">Comment # 12</a>
+          bz_status_NEW "
+   title="NEW --- - [NVC1] HDMI-Monitor toogles between on/off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77045#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - gallium nouveau has no profile in vdpau and libva"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77102">bug 77102</a>
-              from <span class="vcard"><a class="email" href="mailto:mail&#64;stefanringel.de" title="Stefan Ringel &lt;mail&#64;stefanringel.de&gt;"> <span class="fn">Stefan Ringel</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NVC1] HDMI-Monitor toogles between on/off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77045">bug 77045</a>
+              from <span class="vcard"><a class="email" href="mailto:bugs.freedesktop.org&#64;guntramschmidt.de" title="bugs.freedesktop.org&#64;guntramschmidt.de">bugs.freedesktop.org&#64;guntramschmidt.de</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=97000" name="attach_97000" title="dmesg">attachment 97000</a> <a href="attachment.cgi?id=97000&amp;action=edit" title="dmesg">[details]</a></span>
-dmesg</pre>
+        <pre>Hi!
+
+I don't know, wether a recent update helped (or the new kernel lines ;-) ) -
+but atm the phenomenon doesn't occur anymore (after weeks of annoyance)...
+
+This report can be closed - I'll reopen one, if the problem strikes again!
+
+Thanks!</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +86,9 @@ dmesg</pre>
     </body>
 </html>
 
---1396812587.40bba0.26587--
+--1396822611.aFbC1D1.22703--
 
---===============1712507544==
+--===============1076613377==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1712507544==--
+--===============1076613377==--
