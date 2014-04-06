@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 77102] gallium nouveau has no profile in vdpau and
 	libva
-Date: Sun, 06 Apr 2014 18:25:47 +0000
-Message-ID: <bug-77102-8800-Jhn8yxGP8S@http.bugs.freedesktop.org/>
+Date: Sun, 06 Apr 2014 18:31:02 +0000
+Message-ID: <bug-77102-8800-9i57p33mHn@http.bugs.freedesktop.org/>
 References: <bug-77102-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0630077751=="
+Content-Type: multipart/mixed; boundary="===============0658821044=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-77102-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0630077751==
-Content-Type: multipart/alternative; boundary="1396808746.4EC8e282.13917"; charset="us-ascii"
+--===============0658821044==
+Content-Type: multipart/alternative; boundary="1396809061.2a257FFc0.14969"; charset="us-ascii"
 
 
---1396808746.4EC8e282.13917
-Date: Sun, 6 Apr 2014 18:25:46 +0000
+--1396809061.2a257FFc0.14969
+Date: Sun, 6 Apr 2014 18:31:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=77102
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Assignee|mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |org                         |rg
-          Component|Other                       |Drivers/DRI/nouveau
-
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please provide the output of
-
-ls -l /lib/firmware/nouveau
-dmesg (after you've run vdpauinfo)
+--- Comment #7 from Stefan Ringel <mail-Omqj8X2OoDOCVLKmEEjRFg@public.gmane.org> ---
+Created attachment 96999
+  --> https://bugs.freedesktop.org/attachment.cgi?id=96999&action=edit
+ls
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1396808746.4EC8e282.13917
-Date: Sun, 6 Apr 2014 18:25:46 +0000
+--1396809061.2a257FFc0.14969
+Date: Sun, 6 Apr 2014 18:31:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,51 +50,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - gallium nouveau has no profile in vdpau and libva"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77102">bug 77102</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>mesa-dev&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Other
-           </td>
-           <td>Drivers/DRI/nouveau
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - gallium nouveau has no profile in vdpau and libva"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77102#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77102#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - gallium nouveau has no profile in vdpau and libva"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=77102">bug 77102</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:mail&#64;stefanringel.de" title="Stefan Ringel &lt;mail&#64;stefanringel.de&gt;"> <span class="fn">Stefan Ringel</span></a>
 </span></b>
-        <pre>Please provide the output of
-
-ls -l /lib/firmware/nouveau
-dmesg (after you've run vdpauinfo)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=96999" name="attach_96999" title="ls">attachment 96999</a> <a href="attachment.cgi?id=96999&amp;action=edit" title="ls">[details]</a></span>
+ls</pre>
         </div>
       </p>
       <hr>
@@ -115,9 +76,9 @@ dmesg (after you've run vdpauinfo)</pre>
     </body>
 </html>
 
---1396808746.4EC8e282.13917--
+--1396809061.2a257FFc0.14969--
 
---===============0630077751==
+--===============0658821044==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0630077751==--
+--===============0658821044==--
