@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 77106] Blank screen and errors on Thinkpad T440p
  GeForce 730M/Intel optimus setup
-Date: Sun, 06 Apr 2014 14:19:09 +0000
-Message-ID: <bug-77106-8800-nJR67xRZxc@http.bugs.freedesktop.org/>
+Date: Sun, 06 Apr 2014 14:19:35 +0000
+Message-ID: <bug-77106-8800-KkAt36SRay@http.bugs.freedesktop.org/>
 References: <bug-77106-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2099225476=="
+Content-Type: multipart/mixed; boundary="===============0755567424=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-77106-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2099225476==
-Content-Type: multipart/alternative; boundary="1396793949.fAda33.2604"; charset="us-ascii"
+--===============0755567424==
+Content-Type: multipart/alternative; boundary="1396793975.d7DECaC51.2734"; charset="us-ascii"
 
 
---1396793949.fAda33.2604
-Date: Sun, 6 Apr 2014 14:19:09 +0000
+--1396793975.d7DECaC51.2734
+Date: Sun, 6 Apr 2014 14:19:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D77106
 
---- Comment #1 from Martin J=C3=B8rgensen <mkj-1kv+JzgSdXk@public.gmane.org> ---
-Created attachment 96984
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D96984&action=3Dedit
-dmesg
+--- Comment #2 from Martin J=C3=B8rgensen <mkj-1kv+JzgSdXk@public.gmane.org> ---
+Created attachment 96985
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D96985&action=3Dedit
+xorg log using nouveau
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1396793949.fAda33.2604
-Date: Sun, 6 Apr 2014 14:19:09 +0000
+--1396793975.d7DECaC51.2734
+Date: Sun, 6 Apr 2014 14:19:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,8 +59,8 @@ Content-Transfer-Encoding: quoted-printable
           bz_status_NEW "
    title=3D"NEW --- - Blank screen and errors on Thinkpad T440p GeForce 730=
 M/Intel optimus setup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77106#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77106#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW --- - Blank screen and errors on Thinkpad T440p GeForce 730=
@@ -71,11 +71,11 @@ M/Intel optimus setup"
 mkj&#64;gotu.dk" title=3D"Martin J=C3=B8rgensen &lt;mkj&#64;gotu.dk&gt;"> <=
 span class=3D"fn">Martin J=C3=B8rgensen</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D96984"=
- name=3D"attach_96984" title=3D"dmesg">attachment 96984</a> <a href=3D"atta=
-chment.cgi?id=3D96984&amp;action=3Dedit" title=3D"dmesg">[details]</a></spa=
-n>
-dmesg</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D96985"=
+ name=3D"attach_96985" title=3D"xorg log using nouveau">attachment 96985</a=
+> <a href=3D"attachment.cgi?id=3D96985&amp;action=3Dedit" title=3D"xorg log=
+ using nouveau">[details]</a></span>
+xorg log using nouveau</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +87,9 @@ dmesg</pre>
     </body>
 </html>
 
---1396793949.fAda33.2604--
+--1396793975.d7DECaC51.2734--
 
---===============2099225476==
+--===============0755567424==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2099225476==--
+--===============0755567424==--
