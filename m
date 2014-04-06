@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76818] [NVE7] GPU lockup
-Date: Sun, 06 Apr 2014 23:29:00 +0000
-Message-ID: <bug-76818-8800-kVkbFXcuFV@http.bugs.freedesktop.org/>
-References: <bug-76818-8800@http.bugs.freedesktop.org/>
+From: ~Stack~ <i.am.stack-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Assistance in tracking a kernel/nouveau error
+Date: Sun, 06 Apr 2014 18:16:12 -0500
+Message-ID: <5341E03C.7020109@gmail.com>
+References: <5339EB75.1080109@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1990873183=="
+Content-Type: multipart/mixed; boundary="===============0146195208=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76818-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <5339EB75.1080109-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,66 +19,100 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0146195208==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+ protocol="application/pgp-signature";
+ boundary="----enig2SEJSQRTPPQMJOATQQBQB"
 
---===============1990873183==
-Content-Type: multipart/alternative; boundary="1396826940.F8e8222.1503"; charset="us-ascii"
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+------enig2SEJSQRTPPQMJOATQQBQB
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Greetings,
+
+I am resending this as it doesn't appear in the archives and no one
+responded...maybe it got routed to /dev/null or something :-)
+
+I have asked this question the Scientific Linux mailing list (a few
+months ago) and got the suggestion I talk to the kernel guys. I pinged a
+kernel guy I know, and his suggestion was to ask the Nouveau list. So
+here I am. :-)
+
+I have had my work laptop for well over a year now running SL6 and
+everything has been fantastic. Never once have I had a kernel
+panic/problem. That is until the kernel 2.6.32-400+ series. Rolling back
+to the previous kernel 2.6.32-358 works perfectly, which is what I have
+been doing. The problem is that I am now getting the same issue on other
+laptops with the latest kernel 2.6.32-431.11.2.el6.x86_64. My laptop is
+Dell Precision M4600. 80% of the time it is plugged into my Dell PRO2X
+laptop dock which has my dual Display Port Dell U2410 monitors (betcha
+can't tell what vendor my employer frequently buys from...;-).
+
+My working kernel is: 2.6.32-358.23.2.el6.x86_64 (and anything before).
+
+The problem kernel is: 2.6.32-431.1.2.el6.x86_64 and every revision
+up-to the latest 2.6.32-431.11.2.el6.x86_64.
+
+I get horrible color distortions on the secondary display. This happens
+every time. At BIOS both monitors display perfect color in a duplicate
+view showing the same image on both screens. Grub only shows primary
+screen (normal for this setup). When Grub loads the nouveau display
+driver the second screen turns on and the display looks like a rainbow
+puked glitter. Not even exaggerating. Crazy jumbled colors in warped
+patterns that move across the screen. The primary monitor is just fine.
+At first I thought it was the monitor, but swapping the monitors shows
+they are fine. Other testing showed that the hardware is just fine too
+and the final proof was evident by being able to boot into the previous
+kernel and not having an issue.
+
+I never have run the NVidia drivers on this laptop. It has always been
+Nouveau. (I run NVidia drivers on other systems, but this laptop has
+previously always been rock solid with SL+Nouveau so I never bothered).
+
+Today I found that the new batch of Dell Latitudes with a fresh install
+do nearly the same thing. The image is viewable, but is horribly color
+distorted. The really weird thing with the Latitudes is that I can
+disable the screen (via software) and about 4 out of 5 times, when I
+re-enable it I get a proper screen again. It always goes bad on a fresh
+boot and this trick does not appear to work with my Precision. I dug out
+the 2.6.32-358 kernel RPM, installed it on one and bingo...no issues.
+Screen is great and works just fine.
+
+So now I am more than ever convinced there is an issue with nouveau in
+any of the kernels post 2.6.32-358.23.2.
+
+I have searched around and asked around but haven't found a solution. I
+can put the kernel into all kinds of debugging and capture GB's of data,
+but I would prefer to capture only what is useful. Any recommendations
+on what output I should capture? Any suggestions on narrowing the
+problem down to something other then "Its the kernel"?
+
+Thanks! I appreciate the help!
+
+~Stack~
 
 
---1396826940.F8e8222.1503
-Date: Sun, 6 Apr 2014 23:29:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76818
 
---- Comment #7 from Max <max.snow-Po5arK1fDv3vnOemgxGiVw@public.gmane.org> ---
-I will put this on hold for the time being, as this is a work computer,
-unfortunately I don't have the luxury of time to test things much, especially
-if it stuffs everything up and I can't do work :(
+------enig2SEJSQRTPPQMJOATQQBQB
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+Comment: Using GnuPG with Icedove - http://www.enigmail.net/
 
---1396826940.F8e8222.1503
-Date: Sun, 6 Apr 2014 23:29:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+iEYEARECAAYFAlNB4EUACgkQ4OKTk6qYr2T+UwCgxLVKZpdNcPfIycDpwuEe+br4
+d48AoO4uLEYjzmvXkJdqc3w/GxFx272+
+=v+qy
+-----END PGP SIGNATURE-----
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76818#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76818">bug 76818</a>
-              from <span class="vcard"><a class="email" href="mailto:max.snow&#64;4mation.com.au" title="Max &lt;max.snow&#64;4mation.com.au&gt;"> <span class="fn">Max</span></a>
-</span></b>
-        <pre>I will put this on hold for the time being, as this is a work computer,
-unfortunately I don't have the luxury of time to test things much, especially
-if it stuffs everything up and I can't do work :(</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+------enig2SEJSQRTPPQMJOATQQBQB--
 
---1396826940.F8e8222.1503--
-
---===============1990873183==
+--===============0146195208==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +123,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1990873183==--
+--===============0146195208==--
