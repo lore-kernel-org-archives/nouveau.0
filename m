@@ -1,12 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76732] Kworker using 100% CPU
-Date: Wed, 09 Apr 2014 23:54:32 +0000
-Message-ID: <bug-76732-8800-DOu9rS6aGK@http.bugs.freedesktop.org/>
-References: <bug-76732-8800@http.bugs.freedesktop.org/>
+From: "Thomas Schneider" <c.monty-S0/GAf8tV78@public.gmane.org>
+Subject: System fails to boot w/o boot option "nomodeset"
+Date: Tue, 8 Apr 2014 17:40:45 +0200
+Message-ID: <trinity-86077d40-e48f-4074-96c6-9f447a8fd650-1396971645493@3capp-webde-bs12>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1185362681=="
+Content-Type: multipart/mixed; boundary="===============1478815660=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76732-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,82 +17,124 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============1478815660==
+Content-Type: text/html; charset=UTF-8
 
---===============1185362681==
-Content-Type: multipart/alternative; boundary="1397087672.22dbA2.14157"; charset="us-ascii"
+<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>Hello!</div>
 
+<div>&nbsp;</div>
 
---1397087672.22dbA2.14157
-Date: Wed, 9 Apr 2014 23:54:32 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+<div>I&#39;m using rather old hardware:</div>
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76732
+<div>Mainboard (Asus A7N8X)</div>
 
---- Comment #38 from Dale Hamel <daleha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #37)
-> I think I should add that it happens only if I boot in pure EFI mode. If I
-> boot in EFI mode with CSM enabled, on the second load it behaves as usual.
-> 
-> I tried loading nouveau at boot with "config=NvForcePost=1". This seems to
-> workaround the problem for now. Also X starts corectly.
-> 
-> Will do some more testing...
+<div>AGP (Asus V7700)</div>
 
-Are you booting on a Macbook with something like rEFIt or rEFInd? How are you
-booting pure CSM if so? I'd like to try to duplicate this.
+<div>
+<pre class="notranslate">manfred@pc1:~&#36; lspci -v &#124; grep VGA
+03:00.0 VGA compatible controller: NVIDIA Corporation NV15 [GeForce2 GTS/Pro] (rev a3) (prog-if 00 [VGA controller])</pre>
+</div>
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+<div>My operating system is SolydX based on Debian Testing.</div>
 
---1397087672.22dbA2.14157
-Date: Wed, 9 Apr 2014 23:54:32 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+<div>&nbsp;</div>
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Kworker using 100% CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732#c38">Comment # 38</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Kworker using 100% CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732">bug 76732</a>
-              from <span class="vcard"><a class="email" href="mailto:daleha&#64;gmail.com" title="Dale Hamel &lt;daleha&#64;gmail.com&gt;"> <span class="fn">Dale Hamel</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=76732#c37">comment #37</a>)
-<span class="quote">&gt; I think I should add that it happens only if I boot in pure EFI mode. If I
-&gt; boot in EFI mode with CSM enabled, on the second load it behaves as usual.
-&gt; 
-&gt; I tried loading nouveau at boot with &quot;config=NvForcePost=1&quot;. This seems to
-&gt; workaround the problem for now. Also X starts corectly.
-&gt; 
-&gt; Will do some more testing...</span >
+<div>The issue is that I cannot start the system w/o boot option &quot;nomodeset&quot;.</div>
 
-Are you booting on a Macbook with something like rEFIt or rEFInd? How are you
-booting pure CSM if so? I'd like to try to duplicate this.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+<div>I get this information after displaying Grub menu:</div>
 
---1397087672.22dbA2.14157--
+<div>
+<pre class="notranslate">Linux 3.11-2-486 wird geladen ...
+Initiale Ramdisk wird geladen ...
 
---===============1185362681==
+Loading, please wait ...</pre>
+
+<div>&nbsp;</div>
+
+<div>Then the system is freezing and I need to hard reset.</div>
+</div>
+
+<div>&nbsp;</div>
+
+<div>There&#39;s also an error when creating xorg.conf:</div>
+
+<div>
+<pre class="notranslate">manfred@pc1:~&#36; sudo Xorg -configure
+
+X.Org X Server 1.14.5
+Release Date: 2013-12-12
+X Protocol Version 11, Revision 0
+Build Operating System: Linux 3.2.0-4-amd64 i686 Debian
+Current Operating System: Linux pc1-asus 3.11-2-486 #1 Debian 3.11.10-1 (2013-12-04) i686
+Kernel command line: BOOT_IMAGE=/vmlinuz-3.11-2-486 root=UUID=d0dbf37e-c16b-4633-8fc1-055616704568 ro splash quiet quiet nomodeset
+Build Date: 13 December 2013  10:45:09AM
+xorg-server 2:1.14.5-1 (Maarten Lankhorst &lt;maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org&gt;) 
+Current version of pixman: 0.32.4
+	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+Markers: (--) probed, (**) from config file, (==) default setting,
+	(++) from command line, (!!) notice, (II) informational,
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+(==) Log file: &quot;/var/log/Xorg.0.log&quot;, Time: Tue Mar 25 23:02:32 2014
+List of video drivers:
+	openchrome
+	mga
+	tdfx
+	trident
+	vmware
+	mach64
+	cirrus
+	siliconmotion
+	savage
+	modesetting
+	ati
+	intel
+	radeon
+	r128
+	sisusb
+	ztv
+	qxl
+	geode
+	neomagic
+	nouveau
+	spiceqxl
+	fbdev
+	vesa
+(++) Using config file: &quot;/root/xorg.conf.new&quot;
+(==) Using system config directory &quot;/usr/share/X11/xorg.conf.d&quot;
+Number of created screens does not match number of detected devices.
+  Configuration failed.
+(EE) Server terminated with error (2). Closing log file.</pre>
+
+<div>&nbsp;</div>
+
+<div>Nouveau driver is installed:</div>
+
+<div>
+<pre class="notranslate">manfred@pc1:~&#36; apt-cache policy xserver-xorg-video-nouveau
+xserver-xorg-video-nouveau:
+  Installiert:           1:1.0.10-1
+  Installationskandidat: 1:1.0.10-1</pre>
+
+<div>&nbsp;</div>
+
+<div>Question:</div>
+
+<div>What&#39;s causing this issue?</div>
+
+<div>And how can I fix it?</div>
+
+<div>&nbsp;</div>
+
+<div>THX</div>
+</div>
+</div>
+
+<div>
+<pre class="notranslate">&nbsp;</pre>
+</div></div></body></html>
+
+--===============1478815660==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +145,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1185362681==--
+--===============1478815660==--
