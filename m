@@ -1,14 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Tesla shader ISA question
-Date: Wed, 9 Apr 2014 15:41:30 -0400
-Message-ID: <CAKb7UvjJO7QRhqE4+W6xpx7VxzqLCgFOWE_AMFcHcA2m7KNwng@mail.gmail.com>
-References: <CAKb7UvgtRTaDp_L_D4kSsXHgJGT0o-27bPEN6ZMxUFyQj4PhbA@mail.gmail.com>
- <20140409193003.GF15850@parker.nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 76732] Kworker using 100% CPU
+Date: Wed, 09 Apr 2014 23:54:32 +0000
+Message-ID: <bug-76732-8800-DOu9rS6aGK@http.bugs.freedesktop.org/>
+References: <bug-76732-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1185362681=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20140409193003.GF15850-4K9zQNqW3/fFT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
+In-Reply-To: <bug-76732-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,69 +16,93 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Apr 9, 2014 at 3:30 PM, Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
-> Hi Ilia, sorry for the slow response.
->
-> This isn't my area of expertise, but as I understand it:
->
-> * You've correctly decoded both instructions:
->    * The first is a float32-to-float32 conversion, applying ceil()
->    * The second is a float32-to-signed-int32 conversion, rounding to
->      the nearest even integer
->
-> * For the {float,int}-to-{float,int} operations, bit 48 indicates
->  whether the input is signed (1==signed), but that bit is ignored when
->  the source format is float (always signed). That should apply across
->  the entire Tesla architecture.
->
-> Where did the Tesla shader come from that you were decoding? I assume
-> it was produced by the NVIDIA proprietary driver?
 
-Yes, it came from looking at how the ARB_texture_cube_map_array stuff
-was implemented for GT21x (it has that texprep instruction that munges
-the tex args). When comparing to the nouveau-generated code, I noticed
-that we limit the array index to 511 "manually", whereas the NVIDIA
-proprietary driver did not. But it was setting that unknown bit. I was
-hoping that the unknown bit was some "limit to 512" magic. Perhaps we
-can just get rid of the clamping, I'm sure that the spec would frown
-on trying to access out-of-bounds layers...
+--===============1185362681==
+Content-Type: multipart/alternative; boundary="1397087672.22dbA2.14157"; charset="us-ascii"
 
->
-> If I had to guess, I'd speculate that the shader compiler in the NVIDIA
-> proprietary driver used an uninitialized variable, and then overwrote the
-> bits that mattered for the opcode it was producing, leaving uninitialized
-> data in the unused bits.
 
-Makes sense, thanks so much for looking into it!
+--1397087672.22dbA2.14157
+Date: Wed, 9 Apr 2014 23:54:32 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
->
-> I hope that helps,
-> - Andy Ritger
->
->
-> On Thu, Feb 27, 2014 at 11:37:40PM -0800, Ilia Mirkin wrote:
->> Hello,
->>
->> I've recently run into an unknown bit in Tesla shaders, and was hoping
->> you could shed some light on it. I believe they're related to clamping
->> of some sort. Here are 2 examples (from diff shaders):
->>
->> a0000401 cc054780     cvt rpi f32 $r0 f32 $r2 [unknown: 00000000 00010000]
->> a000060d 8c014780     cvt rni s32 $r3 f32 $r3 [unknown: 00000000 00010000]
->>
->> [This is intel-style syntax, cvt = convert/move, rni/rpi = rounding
->> mode stuff, hope that clears up the syntax...]
->>
->> The destination register tends to go to a texture-related instruction
->> input, in some cases the layer (which is why I suspect clamping). Both
->> of these were seen on shaders compiled for GT215+ chips. What effect
->> does turning it on have exactly? Also, is this bit available on
->> earlier chips (if so, how early)?
->>
->> Thanks,
->>
->>   -ilia
+https://bugs.freedesktop.org/show_bug.cgi?id=76732
+
+--- Comment #38 from Dale Hamel <daleha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #37)
+> I think I should add that it happens only if I boot in pure EFI mode. If I
+> boot in EFI mode with CSM enabled, on the second load it behaves as usual.
+> 
+> I tried loading nouveau at boot with "config=NvForcePost=1". This seems to
+> workaround the problem for now. Also X starts corectly.
+> 
+> Will do some more testing...
+
+Are you booting on a Macbook with something like rEFIt or rEFInd? How are you
+booting pure CSM if so? I'd like to try to duplicate this.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1397087672.22dbA2.14157
+Date: Wed, 9 Apr 2014 23:54:32 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Kworker using 100% CPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732#c38">Comment # 38</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Kworker using 100% CPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732">bug 76732</a>
+              from <span class="vcard"><a class="email" href="mailto:daleha&#64;gmail.com" title="Dale Hamel &lt;daleha&#64;gmail.com&gt;"> <span class="fn">Dale Hamel</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=76732#c37">comment #37</a>)
+<span class="quote">&gt; I think I should add that it happens only if I boot in pure EFI mode. If I
+&gt; boot in EFI mode with CSM enabled, on the second load it behaves as usual.
+&gt; 
+&gt; I tried loading nouveau at boot with &quot;config=NvForcePost=1&quot;. This seems to
+&gt; workaround the problem for now. Also X starts corectly.
+&gt; 
+&gt; Will do some more testing...</span >
+
+Are you booting on a Macbook with something like rEFIt or rEFInd? How are you
+booting pure CSM if so? I'd like to try to duplicate this.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1397087672.22dbA2.14157--
+
+--===============1185362681==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1185362681==--
