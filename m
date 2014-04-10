@@ -1,15 +1,15 @@
-From: Thomas Glanzmann <thomas-U3NvvseaQwJn68oJJulU0Q@public.gmane.org>
-Subject: REGRESSION Re: [PATCH] drm/nouveau/bios: fix bug
- introduced in 457e77b2
-Date: Thu, 10 Apr 2014 11:41:18 +0200
-Message-ID: <20140410094118.GA21392@glanzmann.de>
-References: <1397072012-9475-1-git-send-email-andreas.noever@gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: System fails to boot w/o boot option "nomodeset"
+Date: Thu, 10 Apr 2014 09:55:25 -0400
+Message-ID: <CAKb7UvibJtG1O0XbBKLj9xzpT+O+_gBMvBwCg2isyKHO+afFRw@mail.gmail.com>
+References: <trinity-86077d40-e48f-4074-96c6-9f447a8fd650-1396971645493@3capp-webde-bs12>
+ <CAKb7Uvh3K1zYywK5Mg9PE-ZKveGHLSNPZ0ZdbH1jf=VJ-Gr73Q@mail.gmail.com>
+ <trinity-7792485b-1167-4796-91f6-6f190cde4f52-1397137845881@3capp-webde-bs22>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1397072012-9475-1-git-send-email-andreas.noever-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <trinity-7792485b-1167-4796-91f6-6f190cde4f52-1397137845881@3capp-webde-bs22>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,63 +19,99 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: andreas.noever-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Thomas Schneider <c.monty-S0/GAf8tV78@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hello Andreas,
-after pulling and rebooting my machine this morning, nouveau was no
-longer working:
+On Thu, Apr 10, 2014 at 9:50 AM, Thomas Schneider <c.monty-S0/GAf8tV78@public.gmane.org> wrote:
+> Well, with the setting/option "nomodeset" I don't use any xorg.conf at all.
+>
+> I'm just not sure if the system would boot w/o xorg.conf and w/o
+> "nomodeset".
+>
+> Anyway, I will give it a try and use the recommended options
+> "nouveau.noaccel=1" and "nouveau.agpmode=0" (also in combination).
+>
+> Question:
+> Could someone give a statement about the potential root cause?
 
-[    6.455247] nouveau  [  DEVICE][0000:02:00.0] BOOT0  : 0x0ac080b1
-[    6.455312] nouveau  [  DEVICE][0000:02:00.0] Chipset: MCP79/MCP7A (NVAC)
-[    6.455374] nouveau  [  DEVICE][0000:02:00.0] Family : NV50
-[    6.456730] nouveau  [   VBIOS][0000:02:00.0] checking PRAMIN for image...
-[    6.456796] nouveau  [   VBIOS][0000:02:00.0] ... signature not found
-[    6.456858] nouveau  [   VBIOS][0000:02:00.0] checking PROM for image...
-[    6.471198] nouveau  [   VBIOS][0000:02:00.0] ... signature not found
-[    6.471265] nouveau  [   VBIOS][0000:02:00.0] checking ACPI for image...
-[    6.471328] nouveau  [   VBIOS][0000:02:00.0] ... signature not found
-[    6.471390] nouveau  [   VBIOS][0000:02:00.0] checking PCIROM for image...
-[    6.477478] nouveau  [   VBIOS][0000:02:00.0] ... appears to be valid
-[    6.477549] nouveau  [   VBIOS][0000:02:00.0] using image from PCIROM
-[    6.477789] nouveau  [   VBIOS][0000:02:00.0] BIT signature found
-[    6.477852] nouveau  [   VBIOS][0000:02:00.0] version 62.79.4e.00.01
-[    6.486539] nouveau E[   VBIOS][0000:02:00.0] 0xd97c[ ]: unknown opcode 0x00
-[    6.486611] nouveau E[ DEVINIT][0000:02:00.0] init failed, -22
-[    6.486673] nouveau E[     DRM] failed to create 0x80000080, -22
-[    6.488470] nouveau: probe of 0000:02:00.0 failed with error -22
+Not without you providing some more info. You have "quiet" in your
+kernel command line (twice, it seems) -- I would assume that logs
+printed to the console would provide some indication of where things
+go wrong, so try removing quiet. You can also try setting up
+netconsole.
 
-I bisected the problem:
+> Could it be true that there's no working driver for this graphic card on
+> Linux?
 
-# bad: [39de65aa2c3eee901db020a4f1396998e09602a3] Merge branch 'i2c/for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux
-# good: [b003d7706abc5d75cb58de0c9de8f1fc77e57008] Merge branch 'kbuild' of git://git.kernel.org/pub/scm/linux/kernel/git/mmarek/kbuild
-git bisect start 'HEAD' 'v3.14-11011-gb003d77' 'drivers/gpu/drm/'
-# good: [e19b9137142988bec5a76c5f8bdf12a77ea802b0] Merge remote-tracking branch 'airlied/drm-next' into drm-intel-next
-git bisect good e19b9137142988bec5a76c5f8bdf12a77ea802b0
-# bad: [60f2b4af1258c05e6b037af866be81abc24438f7] drm/i915: fix build warning on 32-bit (v2)
-git bisect bad 60f2b4af1258c05e6b037af866be81abc24438f7
-# good: [f3381dfc9745bcd8b6be676ec4f68c52e71d24f1] drm/radeon/dp: use i2c_get_adapdata rather than casting
-git bisect good f3381dfc9745bcd8b6be676ec4f68c52e71d24f1
-# good: [420b94697722512a2c0732970dc1530197a49adb] support for platform devices
-git bisect good 420b94697722512a2c0732970dc1530197a49adb
-# bad: [fc243d7f92d95d961186126efaad36197f133ab1] drm/nouveau/disp: limit dp capabilities as per dcb
-git bisect bad fc243d7f92d95d961186126efaad36197f133ab1
-# bad: [88e98d49a1b3e0f8103cdd4fd80d576ec33133ab] drm/gf100-/gr: split ppc state into its subunits
-git bisect bad 88e98d49a1b3e0f8103cdd4fd80d576ec33133ab
-# bad: [e21bfd171a192dfba4a8907f2fcc41acac0f685f] drm/gf110/gr: fixup gpc/tpc initvals lists
-git bisect bad e21bfd171a192dfba4a8907f2fcc41acac0f685f
-# bad: [eeb0558e074215656ae11a170059a5f2ce29963f] drm/gf104/gr: rename gf104 (nvc4), it came before gf106 (nvc3)
-git bisect bad eeb0558e074215656ae11a170059a5f2ce29963f
-# bad: [6acc09b99d5d8f276a4f9bffc32f0bb0f939c7ca] drm/nvc0-/graph: fix gpccs fuc stack setup
-git bisect bad 6acc09b99d5d8f276a4f9bffc32f0bb0f939c7ca
-# bad: [457e77b26428ab4a24998eecfb99f27fa4195397] drm/nouveau/bios: add more checks to PRAMIN image fetching
-git bisect bad 457e77b26428ab4a24998eecfb99f27fa4195397
+NV15 should be supported by nouveau. Of course, it's an older card
+that's harder to come by nowadays, so it's quite believable that
+support for it would have regressed somehow. I do know that the PCI
+versions of NV05 and NV18 work fine.
 
-Than I saw your posting on LKML and tried your fix and your fix resolves
-my problem on top of Linus tip.
-
-Tested-by: Thomas Glanzmann <thomas-U3NvvseaQwJn68oJJulU0Q@public.gmane.org>
-
-Cheers, 
-        Thomas
+>
+> Regards,
+> Thomas
+>
+>
+> On Thu, Apr 10, 2014 at 4:08 AM, Thomas Schneider <c.monty-S0/GAf8tV78@public.gmane.org> wrote:
+>> Hi,
+>>
+>> I assume I could use "nouveau.noaccel=1" in the command line of grub menu?
+> Yes, that's the idea.
+>>
+>> If that is true, do I need a xorg.conf file?
+> You need one as much or as little as you needed one before.
+>>
+>> With regards to your question, if the system worked before...
+>> Yes, the system worked well with Win XP.
+> OK, good to know.
+> -ilia
+>
+> Gesendet: Donnerstag, 10. April 2014 um 06:24 Uhr
+> Von: "Ilia Mirkin" <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+> An: "Thomas Schneider" <c.monty-S0/GAf8tV78@public.gmane.org>
+> Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+> Betreff: Re: [Nouveau] System fails to boot w/o boot option "nomodeset"
+> On Tue, Apr 8, 2014 at 11:40 AM, Thomas Schneider <c.monty-S0/GAf8tV78@public.gmane.org> wrote:
+>> Hello!
+>>
+>> I'm using rather old hardware:
+>> Mainboard (Asus A7N8X)
+>> AGP (Asus V7700)
+>>
+>> manfred@pc1:~$ lspci -v | grep VGA
+>> 03:00.0 VGA compatible controller: NVIDIA Corporation NV15 [GeForce2
+>> GTS/Pro] (rev a3) (prog-if 00 [VGA controller])
+>>
+>> My operating system is SolydX based on Debian Testing.
+>>
+>> The issue is that I cannot start the system w/o boot option "nomodeset".
+>
+> Using nomodeset disables nouveau entirely, so you won't be able to use
+> the 'nouveau' ddx either. It'd probably work with vesa or something.
+>
+> Things to try:
+>
+> nouveau.noaccel=1
+> nouveau.agpmode=0
+>
+> (also in combination)
+>
+> Did this system ever work? Any indication that the hardware isn't
+> terminally busted?
+>
+>> I get this information after displaying Grub menu:
+>>
+>> Linux 3.11-2-486 wird geladen ...
+>> Initiale Ramdisk wird geladen ...
+>>
+>> Loading, please wait ...
+>>
+>>
+>> Then the system is freezing and I need to hard reset.
+>
+> If you boot without the quiet option it should make it much more
+> apparent where things are going wrong.
+>
+> -ilia
