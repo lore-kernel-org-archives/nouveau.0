@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77333] Unable to use nouveau GK208 as offloadsink
-	provider
-Date: Fri, 11 Apr 2014 16:33:40 +0000
-Message-ID: <bug-77333-8800-g6RciPnRUq@http.bugs.freedesktop.org/>
-References: <bug-77333-8800@http.bugs.freedesktop.org/>
+From: Clemens Koller <clemens.ml-hi6Y0CQ0nG0@public.gmane.org>
+Subject: Bug: noveau DATA_ERROR / CACHE_ERROR on Quadro NVS 290
+Date: Fri, 11 Apr 2014 18:36:51 +0200
+Message-ID: <53481A23.7030006@gmx.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0501184071=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77333-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,82 +18,208 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Hi, there!
 
---===============0501184071==
-Content-Type: multipart/alternative; boundary="1397234019.b45173.32484"; charset="us-ascii"
+Every once in a while / about once a day I have nouveau for a Quadro NVS
+290 failing in my
+system from about kernel 3.10...up to now 3.14, so I finally decided to
+report this bug as
+it gets really annoying. After the bug appears, there are some (one per
+DATA_ERROR line)
+small 20x20 to 40x40 pixel sized odd shaped white block artefacts stuck
+on my (dual monitor)
+desktop. After a restart of X, the artefacts disappear until the bug
+triggers again.
+
+I am on a current Arch Linux Distro. The motherboard is from an
+industrial system which is
+otherwise running fine and very stable.
+
+Here are some log outputs:
+
+% uname -a
+Linux octo 3.14.0-4-ARCH #1 SMP PREEMPT Wed Apr 9 21:11:25 CEST 2014
+x86_64 GNU/Linux
+
+$ dmesg
+...
+[22616.270000] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 2
+[X[632]] get 0x0020029b08 put 0x0020029e60 ib_get 0x000003bd ib_put
+0x000003d7 state 0x8000e6a8 (err: INVALID_CMD) push 0x00406040
+[22616.270226] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR BEGIN_END_ACTIVE
+[22616.270232] nouveau E[  PGRAPH][0000:01:00.0] ch 2 [0x000fb33000
+X[632]] subc 7 class 0x8297 mthd 0x1360 data 0x00000001
+[22616.270260] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR BEGIN_END_ACTIVE
+[22616.270265] nouveau E[  PGRAPH][0000:01:00.0] ch 2 [0x000fb33000
+X[632]] subc 7 class 0x8297 mthd 0x1340 data 0x00008006
+[22616.270280] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR BEGIN_END_ACTIVE
+[22616.270284] nouveau E[  PGRAPH][0000:01:00.0] ch 2 [0x000fb33000
+X[632]] subc 7 class 0x8297 mthd 0x1344 data 0x00004001
+[22616.270298] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR BEGIN_END_ACTIVE
+[22616.270302] nouveau E[  PGRAPH][0000:01:00.0] ch 2 [0x000fb33000
+X[632]] subc 7 class 0x8297 mthd 0x1348 data 0x00004303
+[22616.270316] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR BEGIN_END_ACTIVE
+[22616.270321] nouveau E[  PGRAPH][0000:01:00.0] ch 2 [0x000fb33000
+X[632]] subc 7 class 0x8297 mthd 0x134c data 0x00008006
+[22616.270335] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR BEGIN_END_ACTIVE
+[22616.270340] nouveau E[  PGRAPH][0000:01:00.0] ch 2 [0x000fb33000
+X[632]] subc 7 class 0x8297 mthd 0x1350 data 0x00004001
+[22616.270352] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR BEGIN_END_ACTIVE
+[22616.270356] nouveau E[  PGRAPH][0000:01:00.0] ch 2 [0x000fb33000
+X[632]] subc 7 class 0x8297 mthd 0x1358 data 0x00004303
+[22642.053387] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 2
+[X[632]] get 0x002003e70c put 0x002003eb98 ib_get 0x00000278 ib_put
+0x00000385 state 0xc000ef05 (err: MEM_FAULT) push 0x00406040
+[22642.053426] nouveau E[     PFB][0000:01:00.0] trapped read at
+0xfffffffffc on channel 0x0000fcb0 [unknown] PFIFO/PFIFO_READ/PUSHBUF
+reason: PT_NOT_PRESENT
+[22642.055251] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR (unknown
+enum 0x00000034)
+[22642.055258] nouveau E[  PGRAPH][0000:01:00.0] ch 2 [0x000fb33000
+X[632]] subc 2 class 0x502d mthd 0x08dc data 0x00000040
+[22652.695809] nouveau E[   PFIFO][0000:01:00.0] DMA_PUSHER - ch 2
+[X[632]] get 0x002000f840 put 0x002000f860 ib_get 0x0000039a ib_put
+0x000003ac state 0x80004610 (err: INVALID_CMD) push 0x00406040
+[22740.413503] nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR - ch 2
+[X[632]] subc 0 mthd 0x0060 data 0xbeef0201
+[22775.303885] nouveau E[   PFIFO][0000:01:00.0] CACHE_ERROR - ch 2
+[X[632]] subc 0 mthd 0x0060 data 0xbeef0201
 
 
---1397234019.b45173.32484
-Date: Fri, 11 Apr 2014 16:33:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77333
+$ lspci
+00:00.0 Host bridge: Intel Corporation Core Processor DMI (rev 11)
+00:03.0 PCI bridge: Intel Corporation Core Processor PCI Express Root
+Port 1 (rev 11)
+00:08.0 System peripheral: Intel Corporation Core Processor System
+Management Registers (rev 11)
+00:08.1 System peripheral: Intel Corporation Core Processor Semaphore
+and Scratchpad Registers (rev 11)
+00:08.2 System peripheral: Intel Corporation Core Processor System
+Control and Status Registers (rev 11)
+00:08.3 System peripheral: Intel Corporation Core Processor
+Miscellaneous Registers (rev 11)
+00:10.0 System peripheral: Intel Corporation Core Processor QPI Link
+(rev 11)
+00:10.1 System peripheral: Intel Corporation Core Processor QPI Routing
+and Protocol Registers (rev 11)
+00:16.0 Communication controller: Intel Corporation 5 Series/3400 Series
+Chipset HECI Controller (rev 06)
+00:16.2 IDE interface: Intel Corporation 5 Series/3400 Series Chipset PT
+IDER Controller (rev 06)
+00:16.3 Serial controller: Intel Corporation 5 Series/3400 Series
+Chipset KT Controller (rev 06)
+00:19.0 Ethernet controller: Intel Corporation 82578DM Gigabit Network
+Connection (rev 06)
+00:1a.0 USB controller: Intel Corporation 5 Series/3400 Series Chipset
+USB2 Enhanced Host Controller (rev 06)
+00:1b.0 Audio device: Intel Corporation 5 Series/3400 Series Chipset
+High Definition Audio (rev 06)
+00:1c.0 PCI bridge: Intel Corporation 5 Series/3400 Series Chipset PCI
+Express Root Port 1 (rev 06)
+00:1c.6 PCI bridge: Intel Corporation 5 Series/3400 Series Chipset PCI
+Express Root Port 7 (rev 06)
+00:1d.0 USB controller: Intel Corporation 5 Series/3400 Series Chipset
+USB2 Enhanced Host Controller (rev 06)
+00:1e.0 PCI bridge: Intel Corporation 82801 PCI Bridge (rev a6)
+00:1f.0 ISA bridge: Intel Corporation 5 Series Chipset LPC Interface
+Controller (rev 06)
+00:1f.2 SATA controller: Intel Corporation 5 Series/3400 Series Chipset
+6 port SATA AHCI Controller (rev 06)
+00:1f.3 SMBus: Intel Corporation 5 Series/3400 Series Chipset SMBus
+Controller (rev 06)
+01:00.0 VGA compatible controller: NVIDIA Corporation G86 [Quadro NVS
+290] (rev a1)
+03:00.0 Ethernet controller: Intel Corporation 82583V Gigabit Network
+Connection
+04:0c.0 USB controller: VIA Technologies, Inc. VT82xxxxx UHCI USB 1.1
+Controller (rev 61)
+04:0c.1 USB controller: VIA Technologies, Inc. VT82xxxxx UHCI USB 1.1
+Controller (rev 61)
+04:0c.2 USB controller: VIA Technologies, Inc. USB 2.0 (rev 63)
+04:0c.3 FireWire (IEEE 1394): VIA Technologies, Inc. VT6306/7/8 [Fire
+II(M)] IEEE 1394 OHCI Controller (rev 46)
+04:0e.0 Mass storage controller: Promise Technology, Inc. PDC40775 (SATA
+300 TX2plus) (rev 02)
+ff:00.0 Host bridge: Intel Corporation Core Processor QuickPath
+Architecture Generic Non-Core Registers (rev 04)
+ff:00.1 Host bridge: Intel Corporation Core Processor QuickPath
+Architecture System Address Decoder (rev 04)
+ff:02.0 Host bridge: Intel Corporation Core Processor QPI Link 0 (rev 04)
+ff:02.1 Host bridge: Intel Corporation Core Processor QPI Physical 0
+(rev 04)
+ff:03.0 Host bridge: Intel Corporation Core Processor Integrated Memory
+Controller (rev 04)
+ff:03.1 Host bridge: Intel Corporation Core Processor Integrated Memory
+Controller Target Address Decoder (rev 04)
+ff:03.4 Host bridge: Intel Corporation Core Processor Integrated Memory
+Controller Test Registers (rev 04)
+ff:04.0 Host bridge: Intel Corporation Core Processor Integrated Memory
+Controller Channel 0 Control Registers (rev 04)
+ff:04.1 Host bridge: Intel Corporation Core Processor Integrated Memory
+Controller Channel 0 Address Registers (rev 04)
+ff:04.2 Host bridge: Intel Corporation Core Processor Integrated Memory
+Controller Channel 0 Rank Registers (rev 04)
+ff:04.3 Host bridge: Intel Corporation Core Processor Integrated Memory
+Controller Channel 0 Thermal Control Registers (rev 04)
+ff:05.0 Host bridge: Intel Corporation Core Processor Integrated Memory
+Controller Channel 1 Control Registers (rev 04)
+ff:05.1 Host bridge: Intel Corporation Core Processor Integrated Memory
+Controller Channel 1 Address Registers (rev 04)
+ff:05.2 Host bridge: Intel Corporation Core Processor Integrated Memory
+Controller Channel 1 Rank Registers (rev 04)
+ff:05.3 Host bridge: Intel Corporation Core Processor Integrated Memory
+Controller Channel 1 Thermal Control Registers (rev 04)
 
-Nirbheek Chauhan <nirbheek.chauhan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+$ lspci -vvv (just the snippet from nvidia card:)
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Xorg segfaults trying to    |Unable to use nouveau GK208
-                   |use nouveau GK208 as        |as offloadsink provider
-                   |offloadsink provider        |
+01:00.0 VGA compatible controller: NVIDIA Corporation G86 [Quadro NVS
+290] (rev a1) (prog-if 00 [VGA controller])
+	Subsystem: NVIDIA Corporation Device 0492
+	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx+
+	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=3Dfast >TAbort- <TAbort-
+<MAbort- >SERR- <PERR- INTx-
+	Latency: 0, Cache Line Size: 32 bytes
+	Interrupt: pin A routed to IRQ 51
+	Region 0: Memory at fa000000 (32-bit, non-prefetchable) [size=3D16M]
+	Region 1: Memory at f0000000 (64-bit, prefetchable) [size=3D64M]
+	Region 3: Memory at f8000000 (64-bit, non-prefetchable) [size=3D32M]
+	Region 5: I/O ports at cc00 [size=3D128]
+	Expansion ROM at fbde0000 [disabled] [size=3D128K]
+	Capabilities: <access denied>
+	Kernel driver in use: nouveau
+	Kernel modules: nouveau
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+Cooling seems to be fine:
 
---1397234019.b45173.32484
-Date: Fri, 11 Apr 2014 16:33:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+$ sensors
+coretemp-isa-0000
+Adapter: ISA adapter
+Core 0:       +39.0=B0C  (high =3D +83.0=B0C, crit =3D +99.0=B0C)
+Core 1:       +38.0=B0C  (high =3D +83.0=B0C, crit =3D +99.0=B0C)
+Core 2:       +44.0=B0C  (high =3D +83.0=B0C, crit =3D +99.0=B0C)
+Core 3:       +38.0=B0C  (high =3D +83.0=B0C, crit =3D +99.0=B0C)
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:nirbheek.chauhan&#64;gmail.com" title="Nirbheek Chauhan &lt;nirbheek.chauhan&#64;gmail.com&gt;"> <span class="fn">Nirbheek Chauhan</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Unable to use nouveau GK208 as offloadsink provider"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77333">bug 77333</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+nouveau-pci-0100
+Adapter: PCI adapter
+temp1:        +65.0=B0C  (high =3D +95.0=B0C, hyst =3D  +3.0=B0C)
+                       (crit =3D +115.0=B0C, hyst =3D  +2.0=B0C)
+                       (emerg =3D +135.0=B0C, hyst =3D  +5.0=B0C)
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Xorg segfaults trying to use nouveau GK208 as offloadsink provider
-           </td>
-           <td>Unable to use nouveau GK208 as offloadsink provider
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
 
---1397234019.b45173.32484--
+Is this a hardware bug or some driver issue?
+Any hints are welcome.
 
---===============0501184071==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+I am able to patch, compile and test a custom kernel (latest git)
+if its of any use.
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+Regards,
 
---===============0501184071==--
+Clemens
+
+-- =
+
+Embeon Systemdesign und Elektronik
+http://www.embeon.de
+---
