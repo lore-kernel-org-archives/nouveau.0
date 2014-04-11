@@ -1,12 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75761] weston-launch no output - black screen
-Date: Thu, 10 Apr 2014 23:52:21 +0000
-Message-ID: <bug-75761-8800-eGL1UaHz6u@http.bugs.freedesktop.org/>
-References: <bug-75761-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 02/12] drm/nouveau/timer: skip calibration on
+	GK20A
+Date: Fri, 11 Apr 2014 11:46:10 +0900
+Message-ID: <CAAVeFuK-6RAfmZ8Zi3+bX_ibmPxPKEy7oT9YiLJWXpLMx3PsFw@mail.gmail.com>
+References: <1395650554-31925-1-git-send-email-acourbot@nvidia.com>
+ <1395650554-31925-3-git-send-email-acourbot@nvidia.com>
+ <20140324215408.GB17218@mithrandir>
+ <CACAvsv54BF3cD6y59=kQ=1j-S9tGixTz_J3gx2mbOEkB2eQ4cA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1229718304=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CACAvsv54BF3cD6y59=kQ=1j-S9tGixTz_J3gx2mbOEkB2eQ4cA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,81 +21,50 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Wed, Mar 26, 2014 at 1:19 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On Tue, Mar 25, 2014 at 7:54 AM, Thierry Reding
+> <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> On Mon, Mar 24, 2014 at 05:42:24PM +0900, Alexandre Courbot wrote:
+>>> GK20A's timer is directly attached to the system timer and cannot be
+>>> calibrated. Skip the calibration phase on that chip since the
+>>> corresponding registers do not exist.
+>>>
+>>> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>>> ---
+>>>  drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c | 19 +++++++++++++------
+>>>  1 file changed, 13 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c b/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
+>>> index c0bdd10358d7..822fe0d8a871 100644
+>>> --- a/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
+>>> +++ b/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
+>>> @@ -185,6 +185,10 @@ nv04_timer_init(struct nouveau_object *object)
+>>>       if (ret)
+>>>               return ret;
+>>>
+>>> +     /* gk20a does not have the calibration registers */
+>>> +     if (device->chipset == 0xea)
+>>> +             goto skip_clk_init;
+>>
+>> I'm concerned that this won't scale in the future. Perhaps a better
+>> solution would be to add a "flags" or "features" field to struct
+>> nouveau_device along with feature bits such as HAS_CALIBRATION or
+>> similar.
+>>
+>> That way we don't have to touch this code for every new future Tegra
+>> chip. Unless perhaps if there's a reason to expect things to change in
+>> newer generations.
+> I've already handled this in a slightly different way in the tree I'd
+> previously pointed Alex at (I think!), as I needed to do the same for
+> GM107.
+>
+> Should just be able to use that implementation (so, just change the
+> probe patch) here too.
 
---===============1229718304==
-Content-Type: multipart/alternative; boundary="1397173942.40cBaEDa4.29897"; charset="us-ascii"
-
-
---1397173942.40cBaEDa4.29897
-Date: Thu, 10 Apr 2014 23:52:22 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=75761
-
---- Comment #19 from Lubosz Sarnecki <lubosz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Reverting the patch on current Linux master
-(4a4389abdd9822fdf3cc2ac6ed87eb811fd43acc) fixes the issue for me.
-
-Apperently s->crtc needs to be hardcoded to -1 for the screen not to stay black
-when launching weston.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1397173942.40cBaEDa4.29897
-Date: Thu, 10 Apr 2014 23:52:22 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - weston-launch no output - black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c19">Comment # 19</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - weston-launch no output - black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
-              from <span class="vcard"><a class="email" href="mailto:lubosz&#64;gmail.com" title="Lubosz Sarnecki &lt;lubosz&#64;gmail.com&gt;"> <span class="fn">Lubosz Sarnecki</span></a>
-</span></b>
-        <pre>Reverting the patch on current Linux master
-(4a4389abdd9822fdf3cc2ac6ed87eb811fd43acc) fixes the issue for me.
-
-Apperently s-&gt;crtc needs to be hardcoded to -1 for the screen not to stay black
-when launching weston.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1397173942.40cBaEDa4.29897--
-
---===============1229718304==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1229718304==--
+I will skip this patch and use your implementation then. Btw,
+shouldn't the source file for the GK20A implementation be named nvea.c
+instead of gk20a.c?
