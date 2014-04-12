@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77371] [NVA3] gpu lockup on boot unless noaccel=1
-Date: Sat, 12 Apr 2014 21:49:57 +0000
-Message-ID: <bug-77371-8800-4zsoQBKc9h@http.bugs.freedesktop.org/>
-References: <bug-77371-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77361] [nve7] nouveau not working on 3.13 linux
+	kernel
+Date: Sat, 12 Apr 2014 22:28:51 +0000
+Message-ID: <bug-77361-8800-xvsUkHgTr2@http.bugs.freedesktop.org/>
+References: <bug-77361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0497246504=="
+Content-Type: multipart/mixed; boundary="===============1798973716=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-77361-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0497246504==
-Content-Type: multipart/alternative; boundary="1397339397.C3AA1.8293"; charset="us-ascii"
+--===============1798973716==
+Content-Type: multipart/alternative; boundary="1397341731.d50ebC1.15816"; charset="us-ascii"
 
 
---1397339397.C3AA1.8293
-Date: Sat, 12 Apr 2014 21:49:57 +0000
+--1397341731.d50ebC1.15816
+Date: Sat, 12 Apr 2014 22:28:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77371
+https://bugs.freedesktop.org/show_bug.cgi?id=77361
 
---- Comment #11 from jw.hendy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 97285
-  --> https://bugs.freedesktop.org/attachment.cgi?id=97285&action=edit
-mmiotrace using `xinit -e sh -c "glxgears & sleep 10"` with acceleration
-enabled
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Ran trace per procedure here (this one for 3D acceleration by running
-glxgears):
-- https://bugs.freedesktop.org/show_bug.cgi?id=77371#c9
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|nouveau not working on 3.13 |[nve7] nouveau not working
+                   |linux kernel                |on 3.13 linux kernel
+
+--- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+AFAICS this is a one of the MBP machines with dual gpu/optimus.
+
+Does booting with nouveau.runpm=0 help ?
+Please you attach the output of dmesg for both kernels.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1397339397.C3AA1.8293
-Date: Sat, 12 Apr 2014 21:49:57 +0000
+--1397341731.d50ebC1.15816
+Date: Sat, 12 Apr 2014 22:28:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,29 +58,43 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [nve7] nouveau not working on 3.13 linux kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361">bug 77361</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>nouveau not working on 3.13 linux kernel
+           </td>
+           <td>[nve7] nouveau not working on 3.13 linux kernel
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA3] gpu lockup on boot unless noaccel=1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77371#c11">Comment # 11</a>
+   title="NEW --- - [nve7] nouveau not working on 3.13 linux kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA3] gpu lockup on boot unless noaccel=1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77371">bug 77371</a>
-              from <span class="vcard"><a class="email" href="mailto:jw.hendy&#64;gmail.com" title="jw.hendy&#64;gmail.com">jw.hendy&#64;gmail.com</a>
+   title="NEW --- - [nve7] nouveau not working on 3.13 linux kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361">bug 77361</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=97285" name="attach_97285" title="mmiotrace using `xinit -e sh -c &quot;glxgears &amp; sleep 10&quot;` with acceleration enabled">attachment 97285</a> <a href="attachment.cgi?id=97285&amp;action=edit" title="mmiotrace using `xinit -e sh -c &quot;glxgears &amp; sleep 10&quot;` with acceleration enabled">[details]</a></span>
-mmiotrace using `xinit -e sh -c &quot;glxgears &amp; sleep 10&quot;` with acceleration
-enabled
+        <pre>AFAICS this is a one of the MBP machines with dual gpu/optimus.
 
-Ran trace per procedure here (this one for 3D acceleration by running
-glxgears):
-- <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA3] gpu lockup on boot unless noaccel=1"
-   href="show_bug.cgi?id=77371#c9">https://bugs.freedesktop.org/show_bug.cgi?id=77371#c9</a></pre>
+Does booting with nouveau.runpm=0 help ?
+Please you attach the output of dmesg for both kernels.</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +106,9 @@ glxgears):
     </body>
 </html>
 
---1397339397.C3AA1.8293--
+--1397341731.d50ebC1.15816--
 
---===============0497246504==
+--===============1798973716==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +119,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0497246504==--
+--===============1798973716==--
