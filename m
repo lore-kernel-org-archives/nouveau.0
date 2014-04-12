@@ -1,17 +1,12 @@
-From: ~Stack~ <i.am.stack-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Assistance in tracking a kernel/nouveau error
-Date: Fri, 11 Apr 2014 17:27:16 -0500
-Message-ID: <53486C44.8010501@gmail.com>
-References: <5339EB75.1080109@gmail.com> <5341E03C.7020109@gmail.com>
- <CAKb7UvjLr4z50Kvh2FowJ+0_va53r1n+wa5hOC=_LOU_5P7QOg@mail.gmail.com>
- <5345CAE9.1080908@gmail.com> <53471642.8010802@gmail.com>
- <CAKb7UvgG=u9TCCwMC+UJMMmsa3G6qL0KrCzE5n2rxASN14XKfA@mail.gmail.com>
- <53475AAB.9070507@gmail.com>
- <CAKb7UviftzBgQrkThJwbGMb0KqqN2CpZigBHV_KAFo2uF8ShNw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 76818] [NVE7] GPU lockup
+Date: Sat, 12 Apr 2014 01:06:26 +0000
+Message-ID: <bug-76818-8800-AHf4jWv3Qv@http.bugs.freedesktop.org/>
+References: <bug-76818-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0869541222=="
+Content-Type: multipart/mixed; boundary="===============0100953426=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UviftzBgQrkThJwbGMb0KqqN2CpZigBHV_KAFo2uF8ShNw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-76818-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,68 +16,129 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0869541222==
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature";
- boundary="----enig2HIGSHPGOWVPRBBRUVJJQ"
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
-------enig2HIGSHPGOWVPRBBRUVJJQ
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-On 04/10/2014 10:08 PM, Ilia Mirkin wrote:
-> On Thu, Apr 10, 2014 at 10:59 PM, ~Stack~ <i.am.stack-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:=
-
-[snip]
->> Here is the lspci info. I will try and grab the kernel versions from t=
-he
->> discs tomorrow (I left them at work).
-> GF108 (NVC1) had some issues for a kernel release or two (3.11 and
-> 3.12 iirc). The fix was backported to the -stable kernels, but who
-> knows whether the livecd you're trying has the relevant fixes or not
-> :(
-
-Instead of trying to figure out which old versions of the kernel I had
-that didn't work, I decided to pull the latest Fedora liveCD 20140407
-running kernel 3.11.10-301-fc20.
-
-It didn't work either. While earlier kernels made the screen completely
-useless with lots of jumbled colors, F20 would at least show the
-outlines of the desktops and menus with jumbled colors throughout the
-monitor.
-
-So whatever the bug, I think it is fairly safe to say it is also
-upstream in Fedora. Unless someone else has another idea, I might try
-pestering the Fedora guys.
-
-Thanks!
-~Stack~
+--===============0100953426==
+Content-Type: multipart/alternative; boundary="1397264786.def83.21097"; charset="us-ascii"
 
 
+--1397264786.def83.21097
+Date: Sat, 12 Apr 2014 01:06:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-------enig2HIGSHPGOWVPRBBRUVJJQ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+https://bugs.freedesktop.org/show_bug.cgi?id=76818
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-Comment: Using GnuPG with Icedove - http://www.enigmail.net/
+--- Comment #8 from jw.hendy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+@Max: can you confirm that this was only an issue due to two minotors? I'm
+trying to decide if my similar issue is a replicate or if not since I'm simply
+on a laptop here, no additional monitor issue.
 
-iEYEARECAAYFAlNIbE0ACgkQ4OKTk6qYr2RfFACfdtWR9JNMBFWZ24QWIIXdwpHm
-w7kAn3ZOisC4MXBchnPZZpRNlNx7kvjl
-=agBD
------END PGP SIGNATURE-----
+@Ilia: I was experiencing similar issues (GPU Lockup, switching to fbcon in
+dmesg) and system failure on `startx` back in Oct 2013. Here's an example log
+after issuing `startx`:
+- http://pastebin.com/qVY7WznX
 
-------enig2HIGSHPGOWVPRBBRUVJJQ--
+I'm on Arch Linux and tried nouveau + the AUR nouveau-fw package (basically a
+packaged version of nouveau's VideoAcceleration instructions), but was still
+getting issues. Here's two dmesg outputs:
+- http://pastebin.com/dV7gHS61
+- http://pastebin.com/ZsCQmEwQ
 
---===============0869541222==
+I have been getting overheating cores and failure to suspend on lid close
+lately, which prompted me to see about returning to nouveau and I found this
+post. Your suggestion of:
+
+nouveau.config=NvGrUseFw=1
+
+Seems to have worked! I need to reboot once more to verify, as I'm on linux-lts
+kernel (3.10.36) at the moment, but this was the first time I was able to
+`startx` with nouveau and did not see the GPU lockup message in dmesg.
+
+I'm trying to understand why this kernel line is necessary. I haven't seen it
+at all before, either on the Arch Wiki or in the nouveau firmware instructions.
+In fact, in googling it, I find primarily hits on bug reports regarding GPU
+lockups! I'd think this would be more widespread in setup/debugging
+instructions.
+
+Thanks for any feedback -- I'd like to get information from someone who knows
+and then update the Arch Wiki with this information in case it affects others.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1397264786.def83.21097
+Date: Sat, 12 Apr 2014 01:06:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE7] GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76818#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE7] GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76818">bug 76818</a>
+              from <span class="vcard"><a class="email" href="mailto:jw.hendy&#64;gmail.com" title="jw.hendy&#64;gmail.com">jw.hendy&#64;gmail.com</a>
+</span></b>
+        <pre>&#64;Max: can you confirm that this was only an issue due to two minotors? I'm
+trying to decide if my similar issue is a replicate or if not since I'm simply
+on a laptop here, no additional monitor issue.
+
+&#64;Ilia: I was experiencing similar issues (GPU Lockup, switching to fbcon in
+dmesg) and system failure on `startx` back in Oct 2013. Here's an example log
+after issuing `startx`:
+- <a href="http://pastebin.com/qVY7WznX">http://pastebin.com/qVY7WznX</a>
+
+I'm on Arch Linux and tried nouveau + the AUR nouveau-fw package (basically a
+packaged version of nouveau's VideoAcceleration instructions), but was still
+getting issues. Here's two dmesg outputs:
+- <a href="http://pastebin.com/dV7gHS61">http://pastebin.com/dV7gHS61</a>
+- <a href="http://pastebin.com/ZsCQmEwQ">http://pastebin.com/ZsCQmEwQ</a>
+
+I have been getting overheating cores and failure to suspend on lid close
+lately, which prompted me to see about returning to nouveau and I found this
+post. Your suggestion of:
+
+nouveau.config=NvGrUseFw=1
+
+Seems to have worked! I need to reboot once more to verify, as I'm on linux-lts
+kernel (3.10.36) at the moment, but this was the first time I was able to
+`startx` with nouveau and did not see the GPU lockup message in dmesg.
+
+I'm trying to understand why this kernel line is necessary. I haven't seen it
+at all before, either on the Arch Wiki or in the nouveau firmware instructions.
+In fact, in googling it, I find primarily hits on bug reports regarding GPU
+lockups! I'd think this would be more widespread in setup/debugging
+instructions.
+
+Thanks for any feedback -- I'd like to get information from someone who knows
+and then update the Arch Wiki with this information in case it affects others.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1397264786.def83.21097--
+
+--===============0100953426==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +149,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0869541222==--
+--===============0100953426==--
