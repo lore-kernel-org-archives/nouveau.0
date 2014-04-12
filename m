@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 77361] [nve7] nouveau not working on 3.13 linux
 	kernel
-Date: Sat, 12 Apr 2014 23:31:32 +0000
-Message-ID: <bug-77361-8800-QJDMlSnLDc@http.bugs.freedesktop.org/>
+Date: Sat, 12 Apr 2014 23:34:36 +0000
+Message-ID: <bug-77361-8800-DfNlArsSOk@http.bugs.freedesktop.org/>
 References: <bug-77361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1305837132=="
+Content-Type: multipart/mixed; boundary="===============0765910353=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-77361-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1305837132==
-Content-Type: multipart/alternative; boundary="1397345491.e1ACE6D01.27782"; charset="us-ascii"
+--===============0765910353==
+Content-Type: multipart/alternative; boundary="1397345676.DfB1db1.28242"; charset="us-ascii"
 
 
---1397345491.e1ACE6D01.27782
-Date: Sat, 12 Apr 2014 23:31:31 +0000
+--1397345676.DfB1db1.28242
+Date: Sat, 12 Apr 2014 23:34:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=77361
 
---- Comment #5 from sam.halliday-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Hi Emil, is there a command I can put in an /etc/modprobe.d config file to
-enable this? Passing boot parameters is going to be extremely difficult on this
-machine.
+--- Comment #6 from sam.halliday-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+(I should note that I tried the obvious "options nouveau runpm=0" in
+/etc/modprobe.d/nouveau.conf and rebooted, but I'm not sure it was picked up)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1397345491.e1ACE6D01.27782
-Date: Sat, 12 Apr 2014 23:31:31 +0000
+--1397345676.DfB1db1.28242
+Date: Sat, 12 Apr 2014 23:34:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,16 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nve7] nouveau not working on 3.13 linux kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nve7] nouveau not working on 3.13 linux kernel"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=77361">bug 77361</a>
               from <span class="vcard"><a class="email" href="mailto:sam.halliday&#64;gmail.com" title="sam.halliday&#64;gmail.com">sam.halliday&#64;gmail.com</a>
 </span></b>
-        <pre>Hi Emil, is there a command I can put in an /etc/modprobe.d config file to
-enable this? Passing boot parameters is going to be extremely difficult on this
-machine.</pre>
+        <pre>(I should note that I tried the obvious &quot;options nouveau runpm=0&quot; in
+/etc/modprobe.d/nouveau.conf and rebooted, but I'm not sure it was picked up)</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +75,9 @@ machine.</pre>
     </body>
 </html>
 
---1397345491.e1ACE6D01.27782--
+--1397345676.DfB1db1.28242--
 
---===============1305837132==
+--===============0765910353==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1305837132==--
+--===============0765910353==--
