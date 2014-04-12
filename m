@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 77371] [NVA3] gpu lockup on boot unless noaccel=1
-Date: Sat, 12 Apr 2014 19:37:25 +0000
-Message-ID: <bug-77371-8800-WVZybxmMA0@http.bugs.freedesktop.org/>
+Date: Sat, 12 Apr 2014 21:34:27 +0000
+Message-ID: <bug-77371-8800-NVHANY9ODj@http.bugs.freedesktop.org/>
 References: <bug-77371-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1819767946=="
+Content-Type: multipart/mixed; boundary="===============0698433863=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-77371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,31 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1819767946==
-Content-Type: multipart/alternative; boundary="1397331445.61B10F41.3932"; charset="us-ascii"
+--===============0698433863==
+Content-Type: multipart/alternative; boundary="1397338467.2A4a5Ada1.4998"; charset="us-ascii"
 
 
---1397331445.61B10F41.3932
-Date: Sat, 12 Apr 2014 19:37:25 +0000
+--1397338467.2A4a5Ada1.4998
+Date: Sat, 12 Apr 2014 21:34:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=77371
 
---- Comment #6 from jw.hendy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 97269
-  --> https://bugs.freedesktop.org/attachment.cgi?id=97269&action=edit
-screen after startx with acceleration
+--- Comment #7 from jw.hendy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 97282
+  --> https://bugs.freedesktop.org/attachment.cgi?id=97282&action=edit
+xorg.0.log on Arch x86_64, acceleration enabled
 
-Boot normally (default is acceleration on), run `startx`, wait a couple minutes
-for X, take a picture.
+Booted normally (acceleration enabled per default), ran `startx` waited for
+borked X session, switched to new TTY, piped /var/log/Xorg.0.log to file.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1397331445.61B10F41.3932
-Date: Sat, 12 Apr 2014 19:37:25 +0000
+--1397338467.2A4a5Ada1.4998
+Date: Sat, 12 Apr 2014 21:34:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA3] gpu lockup on boot unless noaccel=1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77371#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77371#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVA3] gpu lockup on boot unless noaccel=1"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=77371">bug 77371</a>
               from <span class="vcard"><a class="email" href="mailto:jw.hendy&#64;gmail.com" title="jw.hendy&#64;gmail.com">jw.hendy&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=97269" name="attach_97269" title="screen after startx with acceleration">attachment 97269</a> <a href="attachment.cgi?id=97269&amp;action=edit" title="screen after startx with acceleration">[details]</a></span>
-screen after startx with acceleration
+        <pre>Created <span class=""><a href="attachment.cgi?id=97282" name="attach_97282" title="xorg.0.log on Arch x86_64, acceleration enabled">attachment 97282</a> <a href="attachment.cgi?id=97282&amp;action=edit" title="xorg.0.log on Arch x86_64, acceleration enabled">[details]</a></span>
+xorg.0.log on Arch x86_64, acceleration enabled
 
-Boot normally (default is acceleration on), run `startx`, wait a couple minutes
-for X, take a picture.</pre>
+Booted normally (acceleration enabled per default), ran `startx` waited for
+borked X session, switched to new TTY, piped /var/log/Xorg.0.log to file.</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +81,9 @@ for X, take a picture.</pre>
     </body>
 </html>
 
---1397331445.61B10F41.3932--
+--1397338467.2A4a5Ada1.4998--
 
---===============1819767946==
+--===============0698433863==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1819767946==--
+--===============0698433863==--
