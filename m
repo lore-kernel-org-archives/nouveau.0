@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77361] [nve7] nouveau not working on 3.13 linux
-	kernel
-Date: Sun, 13 Apr 2014 00:00:53 +0000
-Message-ID: <bug-77361-8800-FbBDvgy9N4@http.bugs.freedesktop.org/>
-References: <bug-77361-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77378] Suspend resume failure with
+Date: Sun, 13 Apr 2014 00:01:08 +0000
+Message-ID: <bug-77378-8800-34ZfYztAqU@http.bugs.freedesktop.org/>
+References: <bug-77378-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1177733298=="
+Content-Type: multipart/mixed; boundary="===============1255040491=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77361-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-77378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1177733298==
-Content-Type: multipart/alternative; boundary="1397347253.AAaaC1.583"; charset="us-ascii"
+--===============1255040491==
+Content-Type: multipart/alternative; boundary="1397347267.cfCc0.682"; charset="us-ascii"
 
 
---1397347253.AAaaC1.583
-Date: Sun, 13 Apr 2014 00:00:53 +0000
+--1397347267.cfCc0.682
+Date: Sun, 13 Apr 2014 00:01:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77361
+https://bugs.freedesktop.org/show_bug.cgi?id=77378
 
---- Comment #10 from sam.halliday-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-cool, thanks. Turns out it was setting the flag correctly. dmesg files attached
-for both boots.
+--- Comment #2 from s.brisbane1-JAjqph6Yjy8XSZKaUYBEcQ@public.gmane.org ---
+ - Bug still exists with Ubuntu's spin of the 3.14 kernel on 31/03/14
+Linux usbuntu 3.14.0-031400-generic #201403310035 SMP Mon Mar 31 04:36:23 UTC
+2014 x86_64 x86_64 x86_64 GNU/Linux
+ - Bug does not exist when using proprietary nvidia drivers.
+
+Note that this report is based on Ubuntu bug 1299821.
+https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1299821
+
+Cheers,
+Sean
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1397347253.AAaaC1.583
-Date: Sun, 13 Apr 2014 00:00:53 +0000
+--1397347267.cfCc0.682
+Date: Sun, 13 Apr 2014 00:01:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +61,24 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nve7] nouveau not working on 3.13 linux kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361#c10">Comment # 10</a>
+   title="NEW --- - Suspend resume failure with"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77378#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nve7] nouveau not working on 3.13 linux kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361">bug 77361</a>
-              from <span class="vcard"><a class="email" href="mailto:sam.halliday&#64;gmail.com" title="sam.halliday&#64;gmail.com">sam.halliday&#64;gmail.com</a>
+   title="NEW --- - Suspend resume failure with"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77378">bug 77378</a>
+              from <span class="vcard"><a class="email" href="mailto:s.brisbane1&#64;physics.ox.ac.uk" title="s.brisbane1&#64;physics.ox.ac.uk">s.brisbane1&#64;physics.ox.ac.uk</a>
 </span></b>
-        <pre>cool, thanks. Turns out it was setting the flag correctly. dmesg files attached
-for both boots.</pre>
+        <pre> - Bug still exists with Ubuntu's spin of the 3.14 kernel on 31/03/14
+Linux usbuntu 3.14.0-031400-generic #201403310035 SMP Mon Mar 31 04:36:23 UTC
+2014 x86_64 x86_64 x86_64 GNU/Linux
+ - Bug does not exist when using proprietary nvidia drivers.
+
+Note that this report is based on Ubuntu bug 1299821.
+<a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1299821">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1299821</a>
+
+Cheers,
+Sean</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +90,9 @@ for both boots.</pre>
     </body>
 </html>
 
---1397347253.AAaaC1.583--
+--1397347267.cfCc0.682--
 
---===============1177733298==
+--===============1255040491==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1177733298==--
+--===============1255040491==--
