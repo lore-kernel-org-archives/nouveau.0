@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 77361] [nve7] nouveau not working on 3.13 linux
 	kernel
-Date: Sun, 13 Apr 2014 00:00:26 +0000
-Message-ID: <bug-77361-8800-f3A2oyloAR@http.bugs.freedesktop.org/>
+Date: Sun, 13 Apr 2014 00:00:53 +0000
+Message-ID: <bug-77361-8800-FbBDvgy9N4@http.bugs.freedesktop.org/>
 References: <bug-77361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0632877306=="
+Content-Type: multipart/mixed; boundary="===============1177733298=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-77361-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0632877306==
-Content-Type: multipart/alternative; boundary="1397347225.28463.324"; charset="us-ascii"
+--===============1177733298==
+Content-Type: multipart/alternative; boundary="1397347253.AAaaC1.583"; charset="us-ascii"
 
 
---1397347225.28463.324
-Date: Sun, 13 Apr 2014 00:00:25 +0000
+--1397347253.AAaaC1.583
+Date: Sun, 13 Apr 2014 00:00:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=77361
 
---- Comment #9 from sam.halliday-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 97289
-  --> https://bugs.freedesktop.org/attachment.cgi?id=97289&action=edit
-parameter=-1
+--- Comment #10 from sam.halliday-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+cool, thanks. Turns out it was setting the flag correctly. dmesg files attached
+for both boots.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1397347225.28463.324
-Date: Sun, 13 Apr 2014 00:00:25 +0000
+--1397347253.AAaaC1.583
+Date: Sun, 13 Apr 2014 00:00:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nve7] nouveau not working on 3.13 linux kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nve7] nouveau not working on 3.13 linux kernel"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=77361">bug 77361</a>
               from <span class="vcard"><a class="email" href="mailto:sam.halliday&#64;gmail.com" title="sam.halliday&#64;gmail.com">sam.halliday&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=97289" name="attach_97289" title="parameter=-1">attachment 97289</a> <a href="attachment.cgi?id=97289&amp;action=edit" title="parameter=-1">[details]</a></span>
-parameter=-1</pre>
+        <pre>cool, thanks. Turns out it was setting the flag correctly. dmesg files attached
+for both boots.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +75,9 @@ parameter=-1</pre>
     </body>
 </html>
 
---1397347225.28463.324--
+--1397347253.AAaaC1.583--
 
---===============0632877306==
+--===============1177733298==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0632877306==--
+--===============1177733298==--
