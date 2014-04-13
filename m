@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 77361] [nve7] nouveau not working on 3.13 linux
 	kernel
-Date: Sun, 13 Apr 2014 12:46:24 +0000
-Message-ID: <bug-77361-8800-81sJEKpYOn@http.bugs.freedesktop.org/>
+Date: Sun, 13 Apr 2014 13:10:43 +0000
+Message-ID: <bug-77361-8800-4nsiW61jS5@http.bugs.freedesktop.org/>
 References: <bug-77361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0328354303=="
+Content-Type: multipart/mixed; boundary="===============1040368089=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-77361-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,38 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0328354303==
-Content-Type: multipart/alternative; boundary="1397393184.EAeFB1.23885"; charset="us-ascii"
+--===============1040368089==
+Content-Type: multipart/alternative; boundary="1397394642.3e1Ed1.29515"; charset="us-ascii"
 
 
---1397393184.EAeFB1.23885
-Date: Sun, 13 Apr 2014 12:46:24 +0000
+--1397394642.3e1Ed1.29515
+Date: Sun, 13 Apr 2014 13:10:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=77361
 
-Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> changed:
+--- Comment #22 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #21)
+> The same problem has also been reported in the Debian BTS, one of the people
+> who saw it claimed that unsetting CONFIG_X86_SYSFB when building the kernel
+> helps: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=740953#40
+> 
+> Note that Debian enabled CONFIG_X86_SYSFB in 3.13, in their 3.12 kernel it
+> is not set.
+Nice one Sven,
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |http://bugs.debian.org/7409
-                   |                            |53
+I knew I've seen a similar issue but did not manage to find anything before.
+AFAIK some fb drivers have a quirk (pci_fixup_video) that sets up boot_vga=1,
+which is required by X. The sysfb is not aware about pci_fixup_video thus the
+issue.
 
---- Comment #21 from Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> ---
-The same problem has also been reported in the Debian BTS, one of the people
-who saw it claimed that unsetting CONFIG_X86_SYSFB when building the kernel
-helps: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=740953#40
+There is some more information in the patch [1] by Bruno. Feel free to give it
+a try.
 
-Note that Debian enabled CONFIG_X86_SYSFB in 3.13, in their 3.12 kernel it is
-not set.
+[1] http://lists.freedesktop.org/archives/dri-devel/2014-March/055798.html
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1397393184.EAeFB1.23885
-Date: Sun, 13 Apr 2014 12:46:24 +0000
+--1397394642.3e1Ed1.29515
+Date: Sun, 13 Apr 2014 13:10:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,46 +65,37 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:svenjoac&#64;gmx.de" title="Sven Joachim &lt;svenjoac&#64;gmx.de&gt;"> <span class="fn">Sven Joachim</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [nve7] nouveau not working on 3.13 linux kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361">bug 77361</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>http://bugs.debian.org/740953
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nve7] nouveau not working on 3.13 linux kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361#c21">Comment # 21</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nve7] nouveau not working on 3.13 linux kernel"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=77361">bug 77361</a>
-              from <span class="vcard"><a class="email" href="mailto:svenjoac&#64;gmx.de" title="Sven Joachim &lt;svenjoac&#64;gmx.de&gt;"> <span class="fn">Sven Joachim</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>The same problem has also been reported in the Debian BTS, one of the people
-who saw it claimed that unsetting CONFIG_X86_SYSFB when building the kernel
-helps: <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=740953#40">https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=740953#40</a>
+        <pre>(In reply to <a href="show_bug.cgi?id=77361#c21">comment #21</a>)
+<span class="quote">&gt; The same problem has also been reported in the Debian BTS, one of the people
+&gt; who saw it claimed that unsetting CONFIG_X86_SYSFB when building the kernel
+&gt; helps: <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=740953#40">https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=740953#40</a>
+&gt; 
+&gt; Note that Debian enabled CONFIG_X86_SYSFB in 3.13, in their 3.12 kernel it
+&gt; is not set.</span >
+Nice one Sven,
 
-Note that Debian enabled CONFIG_X86_SYSFB in 3.13, in their 3.12 kernel it is
-not set.</pre>
+I knew I've seen a similar issue but did not manage to find anything before.
+AFAIK some fb drivers have a quirk (pci_fixup_video) that sets up boot_vga=1,
+which is required by X. The sysfb is not aware about pci_fixup_video thus the
+issue.
+
+There is some more information in the patch [1] by Bruno. Feel free to give it
+a try.
+
+[1] <a href="http://lists.freedesktop.org/archives/dri-devel/2014-March/055798.html">http://lists.freedesktop.org/archives/dri-devel/2014-March/055798.html</a></pre>
         </div>
       </p>
       <hr>
@@ -111,9 +107,9 @@ not set.</pre>
     </body>
 </html>
 
---1397393184.EAeFB1.23885--
+--1397394642.3e1Ed1.29515--
 
---===============0328354303==
+--===============1040368089==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0328354303==--
+--===============1040368089==--
