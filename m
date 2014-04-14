@@ -1,119 +1,100 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77378] [NVD9] Suspend from resume fails when using
-	gnome+compiz
-Date: Sun, 13 Apr 2014 21:57:30 +0000
-Message-ID: <bug-77378-8800-tpXEwisB3L@http.bugs.freedesktop.org/>
-References: <bug-77378-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [PATCH 02/12] drm/nouveau/timer: skip calibration on GK20A
+Date: Mon, 14 Apr 2014 18:35:35 +1000
+Message-ID: <CACAvsv7gsRrXAk-=M08hjvhrRWvi80wrgRAp1M5T66zMa5ydtA@mail.gmail.com>
+References: <1395650554-31925-1-git-send-email-acourbot@nvidia.com>
+ <1395650554-31925-3-git-send-email-acourbot@nvidia.com>
+ <20140324215408.GB17218@mithrandir>
+ <CACAvsv54BF3cD6y59=kQ=1j-S9tGixTz_J3gx2mbOEkB2eQ4cA@mail.gmail.com>
+ <CAAVeFuK-6RAfmZ8Zi3+bX_ibmPxPKEy7oT9YiLJWXpLMx3PsFw@mail.gmail.com>
+ <CACAvsv7Z7OfEx89FYm1F_+Lpb2q33Ay3zph3nRdNCj3PO=vR8w@mail.gmail.com>
+ <53479B08.80104@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1889142454=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77378-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <53479B08.80104@nvidia.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Alexandre Courbot <gnurou@gmail.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
+On Fri, Apr 11, 2014 at 5:34 PM, Alexandre Courbot <acourbot@nvidia.com> wrote:
+> On 04/11/2014 04:31 PM, Ben Skeggs wrote:
+>>
+>> On Fri, Apr 11, 2014 at 12:46 PM, Alexandre Courbot <gnurou@gmail.com>
+>> wrote:
+>>>
+>>> On Wed, Mar 26, 2014 at 1:19 PM, Ben Skeggs <skeggsb@gmail.com> wrote:
+>>>>
+>>>> On Tue, Mar 25, 2014 at 7:54 AM, Thierry Reding
+>>>> <thierry.reding@gmail.com> wrote:
+>>>>>
+>>>>> On Mon, Mar 24, 2014 at 05:42:24PM +0900, Alexandre Courbot wrote:
+>>>>>>
+>>>>>> GK20A's timer is directly attached to the system timer and cannot be
+>>>>>> calibrated. Skip the calibration phase on that chip since the
+>>>>>> corresponding registers do not exist.
+>>>>>>
+>>>>>> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+>>>>>> ---
+>>>>>>   drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c | 19
+>>>>>> +++++++++++++------
+>>>>>>   1 file changed, 13 insertions(+), 6 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
+>>>>>> b/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
+>>>>>> index c0bdd10358d7..822fe0d8a871 100644
+>>>>>> --- a/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
+>>>>>> +++ b/drivers/gpu/drm/nouveau/core/subdev/timer/nv04.c
+>>>>>> @@ -185,6 +185,10 @@ nv04_timer_init(struct nouveau_object *object)
+>>>>>>        if (ret)
+>>>>>>                return ret;
+>>>>>>
+>>>>>> +     /* gk20a does not have the calibration registers */
+>>>>>> +     if (device->chipset == 0xea)
+>>>>>> +             goto skip_clk_init;
+>>>>>
+>>>>>
+>>>>> I'm concerned that this won't scale in the future. Perhaps a better
+>>>>> solution would be to add a "flags" or "features" field to struct
+>>>>> nouveau_device along with feature bits such as HAS_CALIBRATION or
+>>>>> similar.
+>>>>>
+>>>>> That way we don't have to touch this code for every new future Tegra
+>>>>> chip. Unless perhaps if there's a reason to expect things to change in
+>>>>> newer generations.
+>>>>
+>>>> I've already handled this in a slightly different way in the tree I'd
+>>>> previously pointed Alex at (I think!), as I needed to do the same for
+>>>> GM107.
+>>>>
+>>>> Should just be able to use that implementation (so, just change the
+>>>> probe patch) here too.
+>>>
+>>>
+>>> I will skip this patch and use your implementation then. Btw,
+>>> shouldn't the source file for the GK20A implementation be named nvea.c
+>>> instead of gk20a.c?
+>>
+>> For the Maxwell stuff I've been using "gm107" now too.  Since we're
+>> working with you guys these days it seems better to use the same names
+>> for things ;)
+>
+>
+> So would you like us to use the same naming scheme as well? So far all my
+> patches use "nvea.c" whenever I need to add code.
+If it's not too much of a problem at this point, then that'd be good.
+Right before I send -next for the next merge window I'll likely do a
+mass rename anyway, so if we can get your patches merged before then
+(which would be really good!), it doesn't matter much.
 
---===============1889142454==
-Content-Type: multipart/alternative; boundary="1397426250.BEf41.19961"; charset="us-ascii"
-
-
---1397426250.BEf41.19961
-Date: Sun, 13 Apr 2014 21:57:30 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=77378
-
---- Comment #6 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #4)
-> I think you meant 'oibaf'. Not sure what latest mesa would get though...
-Indeed, I'm kind of bad with names. Last time I've checked the packages were
-from mesa master.
-
-(In reply to comment #5)
-> Installed oibaf ppa and allowed the newer packages in that ppa to update my
-> installation.  Still get the same symptoms and the same "Failed to idle
-> channel" messages in dmesg and output to my vtty.
-Can you attach the output of dmesg and glxinfo ?
-
-You might want to try the blob's firmware - append nouveau.config=NvGrUseFW=1
-to your kernel command line and follow the instructions [1]. Do not forget to
-add the files to initrd (if you're using one).
-
-[1] http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1397426250.BEf41.19961
-Date: Sun, 13 Apr 2014 21:57:30 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] Suspend from resume fails when using gnome+compiz"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77378#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] Suspend from resume fails when using gnome+compiz"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77378">bug 77378</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=77378#c4">comment #4</a>)
-<span class="quote">&gt; I think you meant 'oibaf'. Not sure what latest mesa would get though...</span >
-Indeed, I'm kind of bad with names. Last time I've checked the packages were
-from mesa master.
-
-(In reply to <a href="show_bug.cgi?id=77378#c5">comment #5</a>)
-<span class="quote">&gt; Installed oibaf ppa and allowed the newer packages in that ppa to update my
-&gt; installation.  Still get the same symptoms and the same &quot;Failed to idle
-&gt; channel&quot; messages in dmesg and output to my vtty.</span >
-Can you attach the output of dmesg and glxinfo ?
-
-You might want to try the blob's firmware - append nouveau.config=NvGrUseFW=1
-to your kernel command line and follow the instructions [1]. Do not forget to
-add the files to initrd (if you're using one).
-
-[1] <a href="http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware">http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1397426250.BEf41.19961--
-
---===============1889142454==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1889142454==--
+Ben.
