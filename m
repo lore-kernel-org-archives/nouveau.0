@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 77494] [NVE7] fails to load with error -22
-Date: Tue, 15 Apr 2014 18:31:12 +0000
-Message-ID: <bug-77494-8800-2Bvrg4T2Kj@http.bugs.freedesktop.org/>
+Date: Tue, 15 Apr 2014 18:44:00 +0000
+Message-ID: <bug-77494-8800-aNeX1dzxVN@http.bugs.freedesktop.org/>
 References: <bug-77494-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0885428266=="
+Content-Type: multipart/mixed; boundary="===============0798539334=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-77494-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0885428266==
-Content-Type: multipart/alternative; boundary="1397586672.a4beEd3C1.29945"; charset="us-ascii"
+--===============0798539334==
+Content-Type: multipart/alternative; boundary="1397587440.873c21.312"; charset="us-ascii"
 
 
---1397586672.a4beEd3C1.29945
-Date: Tue, 15 Apr 2014 18:31:12 +0000
+--1397587440.873c21.312
+Date: Tue, 15 Apr 2014 18:44:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=77494
 
---- Comment #3 from Mirko Predosin <mpredosin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 97419
-  --> https://bugs.freedesktop.org/attachment.cgi?id=97419&action=edit
-dmesg log of kernel 3.12.6
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Try booting with
+
+nouveau.config=NvBios=PROM
+
+Or potentially try 3.15-rc1, that has a fix for PROM-loading for Kepler chips.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1397586672.a4beEd3C1.29945
-Date: Tue, 15 Apr 2014 18:31:12 +0000
+--1397587440.873c21.312
+Date: Tue, 15 Apr 2014 18:44:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +57,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] fails to load with error -22"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77494#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77494#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] fails to load with error -22"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=77494">bug 77494</a>
-              from <span class="vcard"><a class="email" href="mailto:mpredosin&#64;gmail.com" title="Mirko Predosin &lt;mpredosin&#64;gmail.com&gt;"> <span class="fn">Mirko Predosin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=97419" name="attach_97419" title="dmesg log of kernel 3.12.6">attachment 97419</a> <a href="attachment.cgi?id=97419&amp;action=edit" title="dmesg log of kernel 3.12.6">[details]</a></span>
-dmesg log of kernel 3.12.6</pre>
+        <pre>Try booting with
+
+nouveau.config=NvBios=PROM
+
+Or potentially try 3.15-rc1, that has a fix for PROM-loading for Kepler chips.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +80,9 @@ dmesg log of kernel 3.12.6</pre>
     </body>
 </html>
 
---1397586672.a4beEd3C1.29945--
+--1397587440.873c21.312--
 
---===============0885428266==
+--===============0798539334==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0885428266==--
+--===============0798539334==--
