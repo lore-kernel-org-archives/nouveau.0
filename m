@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77494] [NVE7] fails to load with error -22
-Date: Tue, 15 Apr 2014 19:00:22 +0000
-Message-ID: <bug-77494-8800-zLdCnMGYmP@http.bugs.freedesktop.org/>
-References: <bug-77494-8800@http.bugs.freedesktop.org/>
+From: Sergei Antonov <saproj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau/bios: fix a bit shift error
+	introduced by 457e77b
+Date: Tue, 15 Apr 2014 23:18:37 +0200
+Message-ID: <1397596717-6862-1-git-send-email-saproj@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0448547522=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77494-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,74 +17,44 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Commit 457e77b26428ab4a24998eecfb99f27fa4195397 added two checks applied to a
+value received from nv_rd32(bios, 0x619f04). But after this new piece of code
+is executed, the addr local variable does not hold the same value it used to
+hold before the commit. Here is what is was assigned in the original code:
+	(u64)(nv_rd32(bios, 0x619f04) & 0xffffff00) << 8
+in the committed code it ends up with this value:
+	(u64)(nv_rd32(bios, 0x619f04) >> 8) << 8
+These expressions are obviously not equivalent.
 
---===============0448547522==
-Content-Type: multipart/alternative; boundary="1397588421.5A7031.5414"; charset="us-ascii"
+My Nvidia video card does not show anything on the display when I boot a
+kernel containing this commit.
 
+The patch fixes the code so that the new checks are still done, but the
+side effect of an incorrect addr value is gone.
 
---1397588421.5A7031.5414
-Date: Tue, 15 Apr 2014 19:00:21 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+Signed-off-by: Sergei Antonov <saproj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/subdev/bios/base.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77494
-
---- Comment #5 from Mirko Predosin <mpredosin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Booting with "nouveau.config=NvBios=PROM" resolves the issue on kernel
-3.13.9-100.  Thanks!
-
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/bios/base.c b/drivers/gpu/drm/nouveau/core/subdev/bios/base.c
+index e9df94f..291adb6 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/bios/base.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/bios/base.c
+@@ -109,7 +109,7 @@ nouveau_bios_shadow_pramin(struct nouveau_bios *bios)
+ 			return;
+ 		}
+ 
+-		addr = (u64)(addr >> 8) << 8;
++		addr = (u64)(addr & 0xffffff00) << 8;
+ 		if (!addr) {
+ 			addr  = (u64)nv_rd32(bios, 0x001700) << 16;
+ 			addr += 0xf0000;
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1397588421.5A7031.5414
-Date: Tue, 15 Apr 2014 19:00:21 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] fails to load with error -22"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77494#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] fails to load with error -22"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77494">bug 77494</a>
-              from <span class="vcard"><a class="email" href="mailto:mpredosin&#64;gmail.com" title="Mirko Predosin &lt;mpredosin&#64;gmail.com&gt;"> <span class="fn">Mirko Predosin</span></a>
-</span></b>
-        <pre>Booting with &quot;nouveau.config=NvBios=PROM&quot; resolves the issue on kernel
-3.13.9-100.  Thanks!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1397588421.5A7031.5414--
-
---===============0448547522==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0448547522==--
+1.9.0
