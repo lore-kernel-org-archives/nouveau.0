@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 77494] [NVE7] fails to load with error -22
-Date: Tue, 15 Apr 2014 18:29:21 +0000
-Message-ID: <bug-77494-8800-VehxtidJNq@http.bugs.freedesktop.org/>
+Date: Tue, 15 Apr 2014 18:31:12 +0000
+Message-ID: <bug-77494-8800-2Bvrg4T2Kj@http.bugs.freedesktop.org/>
 References: <bug-77494-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0610977372=="
+Content-Type: multipart/mixed; boundary="===============0885428266=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-77494-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0610977372==
-Content-Type: multipart/alternative; boundary="1397586561.Cfb0Dc461.29494"; charset="us-ascii"
+--===============0885428266==
+Content-Type: multipart/alternative; boundary="1397586672.a4beEd3C1.29945"; charset="us-ascii"
 
 
---1397586561.Cfb0Dc461.29494
-Date: Tue, 15 Apr 2014 18:29:21 +0000
+--1397586672.a4beEd3C1.29945
+Date: Tue, 15 Apr 2014 18:31:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=77494
 
-Mirko Predosin <mpredosin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NVE7] fails to load due to |[NVE7] fails to load with
-                   |unknown opcode 0xc4         |error -22
+--- Comment #3 from Mirko Predosin <mpredosin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 97419
+  --> https://bugs.freedesktop.org/attachment.cgi?id=97419&action=edit
+dmesg log of kernel 3.12.6
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1397586561.Cfb0Dc461.29494
-Date: Tue, 15 Apr 2014 18:29:21 +0000
+--1397586672.a4beEd3C1.29945
+Date: Tue, 15 Apr 2014 18:31:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,28 +49,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:mpredosin&#64;gmail.com" title="Mirko Predosin &lt;mpredosin&#64;gmail.com&gt;"> <span class="fn">Mirko Predosin</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE7] fails to load with error -22"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77494#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] fails to load with error -22"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=77494">bug 77494</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NVE7] fails to load due to unknown opcode 0xc4
-           </td>
-           <td>[NVE7] fails to load with error -22
-           </td>
-         </tr></table>
-      <p>
+              from <span class="vcard"><a class="email" href="mailto:mpredosin&#64;gmail.com" title="Mirko Predosin &lt;mpredosin&#64;gmail.com&gt;"> <span class="fn">Mirko Predosin</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=97419" name="attach_97419" title="dmesg log of kernel 3.12.6">attachment 97419</a> <a href="attachment.cgi?id=97419&amp;action=edit" title="dmesg log of kernel 3.12.6">[details]</a></span>
+dmesg log of kernel 3.12.6</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +75,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1397586561.Cfb0Dc461.29494--
+--1397586672.a4beEd3C1.29945--
 
---===============0610977372==
+--===============0885428266==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0610977372==--
+--===============0885428266==--
