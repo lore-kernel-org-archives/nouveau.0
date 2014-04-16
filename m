@@ -1,14 +1,17 @@
-From: Sergei Antonov <saproj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/bios: fix a bit shift error
-	introduced by 457e77b
-Date: Tue, 15 Apr 2014 23:49:33 +0200
-Message-ID: <CABikg9yL9y49ws5yJq9R0LV7++ysgPD0wwAeoNd3g8Tm34ysHg@mail.gmail.com>
-References: <1397596717-6862-1-git-send-email-saproj@gmail.com>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 11/12] drm/nouveau: support GK20A in
+	nouveau_accel_init()
+Date: Wed, 16 Apr 2014 14:57:40 +0900
+Message-ID: <CAAVeFu+zySrMNUjzZ7qrB-MdqHvrGMg2WD5YmHzZ7yA5dFqyrA@mail.gmail.com>
+References: <1395650554-31925-1-git-send-email-acourbot@nvidia.com>
+ <1395650554-31925-12-git-send-email-acourbot@nvidia.com>
+ <20140324231014.GI17218@mithrandir>
+ <CACAvsv4FHqwAF6FOaMF1sQLwAfBOd6uFgsZ+VdwCHoR4qsVbVw@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1397596717-6862-1-git-send-email-saproj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <CACAvsv4FHqwAF6FOaMF1sQLwAfBOd6uFgsZ+VdwCHoR4qsVbVw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,51 +21,54 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On 15 April 2014 23:18, Sergei Antonov <saproj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> Commit 457e77b26428ab4a24998eecfb99f27fa4195397 added two checks applied to a
-> value received from nv_rd32(bios, 0x619f04). But after this new piece of code
-> is executed, the addr local variable does not hold the same value it used to
-> hold before the commit. Here is what is was assigned in the original code:
->         (u64)(nv_rd32(bios, 0x619f04) & 0xffffff00) << 8
-> in the committed code it ends up with this value:
->         (u64)(nv_rd32(bios, 0x619f04) >> 8) << 8
-> These expressions are obviously not equivalent.
->
-> My Nvidia video card does not show anything on the display when I boot a
-> kernel containing this commit.
->
-> The patch fixes the code so that the new checks are still done, but the
-> side effect of an incorrect addr value is gone.
->
-> Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> Cc: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
-> Signed-off-by: Sergei Antonov <saproj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/core/subdev/bios/base.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/bios/base.c b/drivers/gpu/drm/nouveau/core/subdev/bios/base.c
-> index e9df94f..291adb6 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/bios/base.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/bios/base.c
-> @@ -109,7 +109,7 @@ nouveau_bios_shadow_pramin(struct nouveau_bios *bios)
->                         return;
->                 }
->
-> -               addr = (u64)(addr >> 8) << 8;
-> +               addr = (u64)(addr & 0xffffff00) << 8;
+On Wed, Mar 26, 2014 at 1:27 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On Tue, Mar 25, 2014 at 9:10 AM, Thierry Reding
+> <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> On Mon, Mar 24, 2014 at 05:42:33PM +0900, Alexandre Courbot wrote:
+>>> GK20A does not embed a dedicated COPY engine and thus cannot allocate
+>>> the copy channel that nouveau_accel_init() attempts to create. It also
+>>> lacks any display hardware, so the creation of a software channel does
+>>> not apply neither.
+>>
+>> Perhaps this should be two separate patches?
+>>
+>>> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+>> [...]
+>>> +     if (device->chipset == 0xea) {
+>>> +             /* gk20a does not have CE0/CE1 */
+>>
+>> This would be another good candidate for a feature flag.
+> There are ways to query this in a chipset-independent way.  However,
+> despite reporting it as an error if no copy engines are available, the
+> code should continue on without the channel happily.  Perhaps we can
+> just punt the relevent error messages to a debug loglevel for now?
 
-I just noticed that "(u64)" is redundant here. Can it be removed in
-the patch without resubmitting, Andrew?
+Do you know how to query this in a chipset-independant way? I have
+failed to find any information for this.
 
->                 if (!addr) {
->                         addr  = (u64)nv_rd32(bios, 0x001700) << 16;
->                         addr += 0xf0000;
-> --
-> 1.9.0
->
+The code does continue without any issue after reporting the error, so
+indeed that check is not strictly necessary. But I was just mimicking
+what follows right after:
+
+    if (device->chipset >= 0xa3 &&
+        device->chipset != 0xaa &&
+        device->chipset != 0xac) {
+        ret = nouveau_channel_new(drm, &drm->client, NVDRM_DEVICE,
+                      NVDRM_CHAN + 1, NvDmaFB, NvDmaTT,
+                      &drm->cechan);
+        if (ret)
+            NV_ERROR(drm, "failed to create ce channel, %d\n", ret);
+
+        arg0 = NvDmaFB;
+        arg1 = NvDmaTT;
+    } else {
+        arg0 = NvDmaFB;
+        arg1 = NvDmaTT;
+    }
+
+So if we are trying to avoid showing this error for 0xa0 class
+devices, why not for NV_E0?
