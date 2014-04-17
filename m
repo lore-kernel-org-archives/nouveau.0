@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 77574] [NVAF] Minor screen corruption on NVAF card
-Date: Thu, 17 Apr 2014 14:35:56 +0000
-Message-ID: <bug-77574-8800-7Lmg0kX1ag@http.bugs.freedesktop.org/>
+Date: Thu, 17 Apr 2014 14:46:10 +0000
+Message-ID: <bug-77574-8800-Bz4S14wel9@http.bugs.freedesktop.org/>
 References: <bug-77574-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2027493972=="
+Content-Type: multipart/mixed; boundary="===============1174684114=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-77574-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2027493972==
-Content-Type: multipart/alternative; boundary="1397745356.Ee3bB2.12772"; charset="us-ascii"
+--===============1174684114==
+Content-Type: multipart/alternative; boundary="1397745970.F553b0E21.14837"; charset="us-ascii"
 
 
---1397745356.Ee3bB2.12772
-Date: Thu, 17 Apr 2014 14:35:56 +0000
+--1397745970.F553b0E21.14837
+Date: Thu, 17 Apr 2014 14:46:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=77574
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #5 from Chernovsky Oleg <adonai-jwK0Lxh6SN0@public.gmane.org> ---
+Don't worry about it. Just wanted to help you a little.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Minor screen corruption on  |[NVAF] Minor screen
-                   |NVAF card                   |corruption on NVAF card
+All the other video issues were fixed, so I finally can feel comfortable. I
+really appreciate your work.
+
+Thanks for answer!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1397745356.Ee3bB2.12772
-Date: Thu, 17 Apr 2014 14:35:56 +0000
+--1397745970.F553b0E21.14837
+Date: Thu, 17 Apr 2014 14:46:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,28 +52,26 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVAF] Minor screen corruption on NVAF card"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77574#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVAF] Minor screen corruption on NVAF card"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=77574">bug 77574</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:adonai&#64;xaker.ru" title="Chernovsky Oleg &lt;adonai&#64;xaker.ru&gt;"> <span class="fn">Chernovsky Oleg</span></a>
+</span></b>
+        <pre>Don't worry about it. Just wanted to help you a little.
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Minor screen corruption on NVAF card
-           </td>
-           <td>[NVAF] Minor screen corruption on NVAF card
-           </td>
-         </tr></table>
-      <p>
+All the other video issues were fixed, so I finally can feel comfortable. I
+really appreciate your work.
+
+Thanks for answer!</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +82,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1397745356.Ee3bB2.12772--
+--1397745970.F553b0E21.14837--
 
---===============2027493972==
+--===============1174684114==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2027493972==--
+--===============1174684114==--
