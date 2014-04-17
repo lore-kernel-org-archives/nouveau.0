@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77529] [NVE7] NVS 510 DP-3 output doesn't work
-Date: Wed, 16 Apr 2014 20:14:29 +0000
-Message-ID: <bug-77529-8800-LlZPJlC3eW@http.bugs.freedesktop.org/>
-References: <bug-77529-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75761] weston-launch no output - black screen
+Date: Thu, 17 Apr 2014 11:54:03 +0000
+Message-ID: <bug-75761-8800-jX2h2aTn0H@http.bugs.freedesktop.org/>
+References: <bug-75761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1515171199=="
+Content-Type: multipart/mixed; boundary="===============0008419572=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77529-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1515171199==
-Content-Type: multipart/alternative; boundary="1397679270.b5D25c2.13762"; charset="us-ascii"
+--===============0008419572==
+Content-Type: multipart/alternative; boundary="1397735643.73176D713.6999"; charset="us-ascii"
 
 
---1397679270.b5D25c2.13762
-Date: Wed, 16 Apr 2014 20:14:30 +0000
+--1397735643.73176D713.6999
+Date: Thu, 17 Apr 2014 11:54:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77529
+https://bugs.freedesktop.org/show_bug.cgi?id=75761
 
---- Comment #4 from sergio <mailbox-JH6wT3sV7C4r+unkJK6bvw@public.gmane.org> ---
-(In reply to comment #3)
+soundx94-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org changed:
 
-> Very interesting. So you have 4 identical DP->VGA adapters, each plugged
-> into similar (identical?) monitors, and DP-3 is always the one that fails?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |WORKSFORME
 
-Right. Four identical DP->VGA adapters, two pairs of identical monitors (2x LG
-L1710S 1280x1024, 2x DELL E156FP 1024x768)
-
-
-> Can you attach...
-
-Tomorrow.
+--- Comment #20 from soundx94-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
+Thanks for bisecting the kernel. Reverting that patch on the latest kernel also
+fixes the issue for me.
+(Using NVE6: GTX 660)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1397679270.b5D25c2.13762
-Date: Wed, 16 Apr 2014 20:14:30 +0000
+--1397735643.73176D713.6999
+Date: Thu, 17 Apr 2014 11:54:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,31 +56,50 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:soundx94&#64;hotmail.com" title="soundx94&#64;hotmail.com">soundx94&#64;hotmail.com</a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - weston-launch no output - black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>WORKSFORME
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] NVS 510 DP-3 output doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77529#c4">Comment # 4</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - weston-launch no output - black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c20">Comment # 20</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] NVS 510 DP-3 output doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77529">bug 77529</a>
-              from <span class="vcard"><a class="email" href="mailto:mailbox&#64;sergio.spb.ru" title="sergio &lt;mailbox&#64;sergio.spb.ru&gt;"> <span class="fn">sergio</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - weston-launch no output - black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
+              from <span class="vcard"><a class="email" href="mailto:soundx94&#64;hotmail.com" title="soundx94&#64;hotmail.com">soundx94&#64;hotmail.com</a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=77529#c3">comment #3</a>)
-
-<span class="quote">&gt; Very interesting. So you have 4 identical DP-&gt;VGA adapters, each plugged
-&gt; into similar (identical?) monitors, and DP-3 is always the one that fails?</span >
-
-Right. Four identical DP-&gt;VGA adapters, two pairs of identical monitors (2x LG
-L1710S 1280x1024, 2x DELL E156FP 1024x768)
-
-
-<span class="quote">&gt; Can you attach...</span >
-
-Tomorrow.</pre>
+        <pre>Thanks for bisecting the kernel. Reverting that patch on the latest kernel also
+fixes the issue for me.
+(Using NVE6: GTX 660)</pre>
         </div>
       </p>
       <hr>
@@ -94,9 +111,9 @@ Tomorrow.</pre>
     </body>
 </html>
 
---1397679270.b5D25c2.13762--
+--1397735643.73176D713.6999--
 
---===============1515171199==
+--===============0008419572==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -107,4 +124,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1515171199==--
+--===============0008419572==--
