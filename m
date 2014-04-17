@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75761] weston-launch no output - black screen
-Date: Thu, 17 Apr 2014 11:54:03 +0000
-Message-ID: <bug-75761-8800-jX2h2aTn0H@http.bugs.freedesktop.org/>
-References: <bug-75761-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77529] [NVE7] NVS 510 DP-3 output doesn't work
+Date: Thu, 17 Apr 2014 11:55:50 +0000
+Message-ID: <bug-77529-8800-bm1CkMHhuO@http.bugs.freedesktop.org/>
+References: <bug-77529-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0008419572=="
+Content-Type: multipart/mixed; boundary="===============1623158664=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-77529-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0008419572==
-Content-Type: multipart/alternative; boundary="1397735643.73176D713.6999"; charset="us-ascii"
+--===============1623158664==
+Content-Type: multipart/alternative; boundary="1397735750.Bfcb456B2.7384"; charset="us-ascii"
 
 
---1397735643.73176D713.6999
-Date: Thu, 17 Apr 2014 11:54:03 +0000
+--1397735750.Bfcb456B2.7384
+Date: Thu, 17 Apr 2014 11:55:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75761
+https://bugs.freedesktop.org/show_bug.cgi?id=77529
 
-soundx94-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |WORKSFORME
-
---- Comment #20 from soundx94-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
-Thanks for bisecting the kernel. Reverting that patch on the latest kernel also
-fixes the issue for me.
-(Using NVE6: GTX 660)
+--- Comment #5 from sergio <mailbox-JH6wT3sV7C4r+unkJK6bvw@public.gmane.org> ---
+Created attachment 97506
+  --> https://bugs.freedesktop.org/attachment.cgi?id=97506&action=edit
+dmesg (no monitors connected)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1397735643.73176D713.6999
-Date: Thu, 17 Apr 2014 11:54:03 +0000
+--1397735750.Bfcb456B2.7384
+Date: Thu, 17 Apr 2014 11:55:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,50 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:soundx94&#64;hotmail.com" title="soundx94&#64;hotmail.com">soundx94&#64;hotmail.com</a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - weston-launch no output - black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>WORKSFORME
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - weston-launch no output - black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c20">Comment # 20</a>
+          bz_status_NEW "
+   title="NEW --- - [NVE7] NVS 510 DP-3 output doesn't work"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77529#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - weston-launch no output - black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
-              from <span class="vcard"><a class="email" href="mailto:soundx94&#64;hotmail.com" title="soundx94&#64;hotmail.com">soundx94&#64;hotmail.com</a>
+          bz_status_NEW "
+   title="NEW --- - [NVE7] NVS 510 DP-3 output doesn't work"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77529">bug 77529</a>
+              from <span class="vcard"><a class="email" href="mailto:mailbox&#64;sergio.spb.ru" title="sergio &lt;mailbox&#64;sergio.spb.ru&gt;"> <span class="fn">sergio</span></a>
 </span></b>
-        <pre>Thanks for bisecting the kernel. Reverting that patch on the latest kernel also
-fixes the issue for me.
-(Using NVE6: GTX 660)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=97506" name="attach_97506" title="dmesg (no monitors connected)">attachment 97506</a> <a href="attachment.cgi?id=97506&amp;action=edit" title="dmesg (no monitors connected)">[details]</a></span>
+dmesg (no monitors connected)</pre>
         </div>
       </p>
       <hr>
@@ -111,9 +75,9 @@ fixes the issue for me.
     </body>
 </html>
 
---1397735643.73176D713.6999--
+--1397735750.Bfcb456B2.7384--
 
---===============0008419572==
+--===============1623158664==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0008419572==--
+--===============1623158664==--
