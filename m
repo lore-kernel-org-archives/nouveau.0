@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77586] [NV98] On recent Linux kernel (3.13 and 3.14),
- the GPU locks up around the time an X server starts
-Date: Thu, 17 Apr 2014 18:02:41 +0000
-Message-ID: <bug-77586-8800-haUIM1UwHy@http.bugs.freedesktop.org/>
-References: <bug-77586-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77599] New: Video failed on resume from suspend -
+ G94 / GeForce 9600 GT, 10de:0622
+Date: Fri, 18 Apr 2014 01:33:04 +0000
+Message-ID: <bug-77599-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1772703407=="
+Content-Type: multipart/mixed; boundary="===============0443928240=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77586-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +19,60 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1772703407==
-Content-Type: multipart/alternative; boundary="1397757760.ecFdF8B1.31945"; charset="us-ascii"
+--===============0443928240==
+Content-Type: multipart/alternative; boundary="1397784784.2c43D41.11793"; charset="us-ascii"
 
 
---1397757760.ecFdF8B1.31945
-Date: Thu, 17 Apr 2014 18:02:40 +0000
+--1397784784.2c43D41.11793
+Date: Fri, 18 Apr 2014 01:33:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77586
+https://bugs.freedesktop.org/show_bug.cgi?id=77599
 
---- Comment #1 from Johannes Kloos <jkloos-41PbBDiSz5tAfugRpC6u6w@public.gmane.org> ---
-Created attachment 97526
-  --> https://bugs.freedesktop.org/attachment.cgi?id=97526&action=edit
-ROM dump.
+          Priority: medium
+            Bug ID: 77599
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Video failed on resume from suspend - G94 / GeForce
+                    9600 GT, 10de:0622
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: awilliam-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-JFTR: Output of vbtracetool
-Using card 10de:06eb on 0100
-Nvidia card -- using PROM/PRAMIN BIOS
-Using card memory region at 0xf5000000
-Attempting to locate BIOS image in PROM... BIOS signature not found
-Attempting to locate BIOS image in PRAMIN... appears to be valid
+Created attachment 97551
+  --> https://bugs.freedesktop.org/attachment.cgi?id=97551&action=edit
+relevant journal output
+
+Running Fedora Rawhide, with kernel-3.15.0-0.rc1.git2.2.fc21.x86_64 ,
+xorg-x11-drv-nouveau-1.0.10-1.fc21.x86_64 ,
+xorg-x11-server-common-1.15.0-5.fc21.x86_64 . My hardware is:
+
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation G94 [GeForce 9600
+GT] [10de:0622] (rev a1)
+
+I just came home and resumed from suspend, and graphics didn't come back. Tried
+sshing in and restarting X, no go - seems like nouveau crapped the bed and
+wouldn't come back short of a reboot. I don't think this is reliably
+reproducible unless it's only just started with a new kernel (I haven't been
+seeing it on every suspend/resume cycle recently or anything), but I thought
+I'd log in.
+
+Attaching the relevant journalctl output (grepped for 'nouveau', isolated the
+important time).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1397757760.ecFdF8B1.31945
-Date: Thu, 17 Apr 2014 18:02:40 +0000
+--1397784784.2c43D41.11793
+Date: Fri, 18 Apr 2014 01:33:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,28 +80,114 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77599">77599</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>awilliam&#64;redhat.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV98] On recent Linux kernel (3.13 and 3.14), the GPU locks up around the time an X server starts"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77586#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV98] On recent Linux kernel (3.13 and 3.14), the GPU locks up around the time an X server starts"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77586">bug 77586</a>
-              from <span class="vcard"><a class="email" href="mailto:jkloos&#64;mpi-sws.org" title="Johannes Kloos &lt;jkloos&#64;mpi-sws.org&gt;"> <span class="fn">Johannes Kloos</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=97526" name="attach_97526" title="ROM dump.">attachment 97526</a> <a href="attachment.cgi?id=97526&amp;action=edit" title="ROM dump.">[details]</a></span>
-ROM dump.
+        <pre>Created <span class=""><a href="attachment.cgi?id=97551" name="attach_97551" title="relevant journal output">attachment 97551</a> <a href="attachment.cgi?id=97551&amp;action=edit" title="relevant journal output">[details]</a></span>
+relevant journal output
 
-JFTR: Output of vbtracetool
-Using card 10de:06eb on 0100
-Nvidia card -- using PROM/PRAMIN BIOS
-Using card memory region at 0xf5000000
-Attempting to locate BIOS image in PROM... BIOS signature not found
-Attempting to locate BIOS image in PRAMIN... appears to be valid</pre>
+Running Fedora Rawhide, with kernel-3.15.0-0.rc1.git2.2.fc21.x86_64 ,
+xorg-x11-drv-nouveau-1.0.10-1.fc21.x86_64 ,
+xorg-x11-server-common-1.15.0-5.fc21.x86_64 . My hardware is:
+
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation G94 [GeForce 9600
+GT] [10de:0622] (rev a1)
+
+I just came home and resumed from suspend, and graphics didn't come back. Tried
+sshing in and restarting X, no go - seems like nouveau crapped the bed and
+wouldn't come back short of a reboot. I don't think this is reliably
+reproducible unless it's only just started with a new kernel (I haven't been
+seeing it on every suspend/resume cycle recently or anything), but I thought
+I'd log in.
+
+Attaching the relevant journalctl output (grepped for 'nouveau', isolated the
+important time).</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +199,9 @@ Attempting to locate BIOS image in PRAMIN... appears to be valid</pre>
     </body>
 </html>
 
---1397757760.ecFdF8B1.31945--
+--1397784784.2c43D41.11793--
 
---===============1772703407==
+--===============0443928240==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +212,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1772703407==--
+--===============0443928240==--
