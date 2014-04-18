@@ -1,108 +1,61 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77599] Video failed on resume from suspend - G94 /
- GeForce 9600 GT, 10de:0622
-Date: Fri, 18 Apr 2014 01:33:54 +0000
-Message-ID: <bug-77599-8800-iFvDLsgYX1@http.bugs.freedesktop.org/>
-References: <bug-77599-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nv50: use 2d blit when src/dst have same number
+	of samples
+Date: Fri, 18 Apr 2014 00:07:29 -0400
+Message-ID: <1397794049-20255-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1439003638=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77599-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+The 2D engine should be usable in more cases, but this fixes MS blits
+between textures with the same MS settings. Otherwise a single sample is
+selected to be the target texel value.
 
---===============1439003638==
-Content-Type: multipart/alternative; boundary="1397784834.26F120E81.12012"; charset="us-ascii"
+This allows other tests to work that render to a RB and then blit that
+to a texture for input into a shader that uses sampler2DMS to verify it.
 
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+---
+ src/gallium/drivers/nouveau/nv50/nv50_surface.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
---1397784834.26F120E81.12012
-Date: Fri, 18 Apr 2014 01:33:54 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=77599
-
-Adam Williamson <awilliam-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Hardware|Other                       |x86-64 (AMD64)
-                 OS|All                         |Linux (All)
-
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_surface.c b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
+index c28abe0..9a3548a 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_surface.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
+@@ -1299,8 +1299,8 @@ nv50_blit_eng2d(struct nv50_context *nv50, const struct pipe_blit_info *info)
+ 
+    if (src->base.base.nr_samples > dst->base.base.nr_samples) {
+       /* center src coorinates for proper MS resolve filtering */
+-      srcx += (int64_t)src->ms_x << 32;
+-      srcy += (int64_t)src->ms_y << 32;
++      srcx += (int64_t)1 << (src->ms_x + 31);
++      srcy += (int64_t)1 << (src->ms_y + 31);
+    }
+ 
+    dstx = info->dst.box.x << dst->ms_x;
+@@ -1438,8 +1438,8 @@ nv50_blit(struct pipe_context *pipe, const struct pipe_blit_info *info)
+       eng3d = TRUE;
+ 
+    /* FIXME: can't make this work with eng2d anymore */
+-   if (info->src.resource->nr_samples > 1 ||
+-       info->dst.resource->nr_samples > 1)
++   if ((info->src.resource->nr_samples | 1) !=
++       (info->dst.resource->nr_samples | 1))
+       eng3d = TRUE;
+ 
+    /* FIXME: find correct src coordinate adjustments */
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1397784834.26F120E81.12012
-Date: Fri, 18 Apr 2014 01:33:54 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:awilliam&#64;redhat.com" title="Adam Williamson &lt;awilliam&#64;redhat.com&gt;"> <span class="fn">Adam Williamson</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77599">bug 77599</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">OS</td>
-           <td>All
-           </td>
-           <td>Linux (All)
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1397784834.26F120E81.12012--
-
---===============1439003638==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1439003638==--
+1.8.3.2
