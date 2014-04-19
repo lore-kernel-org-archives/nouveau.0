@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77674] [NVE7] "failed to read DPCD" on wake up with
- external monitor
-Date: Sat, 19 Apr 2014 17:39:18 +0000
-Message-ID: <bug-77674-8800-kIitSbdTFq@http.bugs.freedesktop.org/>
-References: <bug-77674-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/bios: fix a bit shift error
+ introduced by 457e77b
+Date: Sat, 19 Apr 2014 21:14:59 +0100
+Message-ID: <5352D943.407@gmail.com>
+References: <1397596717-6862-1-git-send-email-saproj@gmail.com>
+ <CABikg9yL9y49ws5yJq9R0LV7++ysgPD0wwAeoNd3g8Tm34ysHg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1661226606=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77674-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CABikg9yL9y49ws5yJq9R0LV7++ysgPD0wwAeoNd3g8Tm34ysHg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,85 +19,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Sergei Antonov <saproj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On 15/04/14 22:49, Sergei Antonov wrote:
+> On 15 April 2014 23:18, Sergei Antonov <saproj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> Commit 457e77b26428ab4a24998eecfb99f27fa4195397 added two checks applied to a
+>> value received from nv_rd32(bios, 0x619f04). But after this new piece of code
+>> is executed, the addr local variable does not hold the same value it used to
+>> hold before the commit. Here is what is was assigned in the original code:
+>>         (u64)(nv_rd32(bios, 0x619f04) & 0xffffff00) << 8
+>> in the committed code it ends up with this value:
+>>         (u64)(nv_rd32(bios, 0x619f04) >> 8) << 8
+>> These expressions are obviously not equivalent.
+>>
+>> My Nvidia video card does not show anything on the display when I boot a
+>> kernel containing this commit.
+>>
+>> The patch fixes the code so that the new checks are still done, but the
+>> side effect of an incorrect addr value is gone.
+>>
+Hi Sergei
 
---===============1661226606==
-Content-Type: multipart/alternative; boundary="1397929158.f5eAEBf2.6170"; charset="us-ascii"
+A similar patch [1] has been sent a few days prior to yours, and I'm assuming
+it will be queued/merged shortly. Just letting you know.
 
+Cheers
+-Emil
 
---1397929158.f5eAEBf2.6170
-Date: Sat, 19 Apr 2014 17:39:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=77674
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|"failed to read DPCD" on    |[NVE7] "failed to read
-                   |wake up with external       |DPCD" on wake up with
-                   |monitor                     |external monitor
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1397929158.f5eAEBf2.6170
-Date: Sat, 19 Apr 2014 17:39:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] &quot;failed to read DPCD&quot; on wake up with external monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77674">bug 77674</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>&quot;failed to read DPCD&quot; on wake up with external monitor
-           </td>
-           <td>[NVE7] &quot;failed to read DPCD&quot; on wake up with external monitor
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1397929158.f5eAEBf2.6170--
-
---===============1661226606==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1661226606==--
+[1] http://lists.freedesktop.org/archives/dri-devel/2014-April/057318.html
