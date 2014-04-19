@@ -1,12 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nouveau/codegen: add missing values for OP_TXLQ
-	into the target arrays
-Date: Fri, 18 Apr 2014 02:28:13 -0400
-Message-ID: <1397802493-3886-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75776] [NV50 gallium] Hearthstone displays corrupted
+	buffers
+Date: Sat, 19 Apr 2014 10:54:21 +0000
+Message-ID: <bug-75776-8800-2lzQACeaw6@http.bugs.freedesktop.org/>
+References: <bug-75776-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1394832540=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,88 +17,503 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Also rework things so that if someone were to add an opcode without
-adjusting the values in these arrays, there will be a compilation error.
 
-This fixes a few quadop-related piglit regressions since commit
-d5faf8e78603.
+--===============1394832540==
+Content-Type: multipart/alternative; boundary="1397904861.5ab8f4D0.24148"; charset="us-ascii"
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
----
- src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp | 12 +++++++-----
- src/gallium/drivers/nouveau/codegen/nv50_ir_target.h   |  4 ++--
- 2 files changed, 9 insertions(+), 7 deletions(-)
 
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp
-index 112fca7..53c3c3e 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp
-@@ -25,7 +25,7 @@
- 
- namespace nv50_ir {
- 
--const uint8_t Target::operationSrcNr[OP_LAST + 1] =
-+const uint8_t Target::operationSrcNr[] =
- {
-    0, 0,                   // NOP, PHI
-    0, 0, 0, 0,             // UNION, SPLIT, MERGE, CONSTRAINT
-@@ -44,7 +44,7 @@ const uint8_t Target::operationSrcNr[OP_LAST + 1] =
-    1, 1, 2, 1, 2,          // VFETCH, PFETCH, EXPORT, LINTERP, PINTERP
-    1, 1,                   // EMIT, RESTART
-    1, 1, 1,                // TEX, TXB, TXL,
--   1, 1, 1, 1, 1, 2,       // TXF, TXQ, TXD, TXG, TEXCSAA, TEXPREP
-+   1, 1, 1, 1, 1, 1, 2,    // TXF, TXQ, TXD, TXG, TXLQ, TEXCSAA, TEXPREP
-    1, 1, 2, 2, 2, 2, 2,    // SULDB, SULDP, SUSTB, SUSTP, SUREDB, SUREDP, SULEA
-    3, 3, 3, 3,             // SUBFM, SUCLAMP, SUEAU, MADSP
-    0,                      // TEXBAR
-@@ -57,7 +57,7 @@ const uint8_t Target::operationSrcNr[OP_LAST + 1] =
-    0
- };
- 
--const OpClass Target::operationClass[OP_LAST + 1] =
-+const OpClass Target::operationClass[] =
- {
-    // NOP; PHI; UNION, SPLIT, MERGE, CONSTRAINT
-    OPCLASS_OTHER,
-@@ -101,10 +101,10 @@ const OpClass Target::operationClass[OP_LAST + 1] =
-    OPCLASS_SFU, OPCLASS_SFU,
-    // EMIT, RESTART
-    OPCLASS_CONTROL, OPCLASS_CONTROL,
--   // TEX, TXB, TXL, TXF; TXQ, TXD, TXG, TEXCSAA; TEXPREP
-+   // TEX, TXB, TXL, TXF; TXQ, TXD, TXG, TXLQ; TEXCSAA, TEXPREP
-    OPCLASS_TEXTURE, OPCLASS_TEXTURE, OPCLASS_TEXTURE, OPCLASS_TEXTURE,
-    OPCLASS_TEXTURE, OPCLASS_TEXTURE, OPCLASS_TEXTURE, OPCLASS_TEXTURE,
--   OPCLASS_TEXTURE,
-+   OPCLASS_TEXTURE, OPCLASS_TEXTURE,
-    // SULDB, SULDP, SUSTB, SUSTP; SUREDB, SUREDP, SULEA
-    OPCLASS_SURFACE, OPCLASS_SURFACE, OPCLASS_ATOMIC, OPCLASS_SURFACE,
-    OPCLASS_SURFACE, OPCLASS_SURFACE, OPCLASS_SURFACE,
-@@ -134,6 +134,8 @@ extern Target *getTargetNV50(unsigned int chipset);
- 
- Target *Target::create(unsigned int chipset)
- {
-+   STATIC_ASSERT(Elements(operationSrcNr) == OP_LAST + 1);
-+   STATIC_ASSERT(Elements(operationClass) == OP_LAST + 1);
-    switch (chipset & ~0xf) {
-    case 0xc0:
-    case 0xd0:
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_target.h b/src/gallium/drivers/nouveau/codegen/nv50_ir_target.h
-index 9913ca1..9eb0a1f 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_target.h
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_target.h
-@@ -195,8 +195,8 @@ public:
-    const bool joinAnterior; // true if join is executed before the op
-    const bool hasSWSched;   // true if code should provide scheduling data
- 
--   static const uint8_t operationSrcNr[OP_LAST + 1];
--   static const OpClass operationClass[OP_LAST + 1];
-+   static const uint8_t operationSrcNr[];
-+   static const OpClass operationClass[];
- 
-    static inline uint8_t getOpSrcNr(operation op)
-    {
+--1397904861.5ab8f4D0.24148
+Date: Sat, 19 Apr 2014 10:54:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=75776
+
+--- Comment #13 from Vijay Kamuju <infyquest-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I also face this issue, I have NV4x card
+Also when I check dmesg I have the following messages
+$ dmesg |grep nou
+[    0.000000] Checking if this processor honours the WP bit even in supervisor
+mode...Ok.
+[    0.000000] RCU: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[   14.370212] fb: conflicting fb hw usage nouveaufb vs VESA VGA - removing
+generic driver
+[   14.374433] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x049800a2
+[   14.374440] nouveau  [  DEVICE][0000:01:00.0] Chipset: G71 (NV49)
+[   14.374456] nouveau  [  DEVICE][0000:01:00.0] Family : NV40
+[   14.376861] nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for image...
+[   14.529322] nouveau  [   VBIOS][0000:01:00.0] ... appears to be valid
+[   14.529334] nouveau  [   VBIOS][0000:01:00.0] using image from PRAMIN
+[   14.529785] nouveau  [   VBIOS][0000:01:00.0] BIT signature found
+[   14.529804] nouveau  [   VBIOS][0000:01:00.0] version 05.71.22.16.13
+[   14.530551] nouveau 0000:01:00.0: irq 46 for MSI/MSI-X
+[   14.530581] nouveau  [     PMC][0000:01:00.0] MSI interrupts enabled
+[   14.530665] nouveau  [     PFB][0000:01:00.0] RAM type: GDDR3
+[   14.530671] nouveau  [     PFB][0000:01:00.0] RAM size: 512 MiB
+[   14.530677] nouveau  [     PFB][0000:01:00.0]    ZCOMP: 294912 tags
+[   14.559166] nouveau  [    VOLT][0000:01:00.0] GPU voltage: 1240000uv
+[   14.594974] nouveau  [  PTHERM][0000:01:00.0] FAN control: none / external
+[   14.595009] nouveau  [  PTHERM][0000:01:00.0] fan management: automatic
+[   14.595027] nouveau  [  PTHERM][0000:01:00.0] internal sensor: yes
+[   14.616766] nouveau  [     CLK][0000:01:00.0] 20: core 100 MHz shader 100
+MHz memory 100 MHz
+[   14.616790] nouveau  [     CLK][0000:01:00.0] 21: core 200 MHz shader 200
+MHz memory 300 MHz
+[   14.616800] nouveau  [     CLK][0000:01:00.0] 22: core 375 MHz shader 375
+MHz memory 507 MHz
+[   14.616827] nouveau  [     CLK][0000:01:00.0] --: core 200 MHz shader 200
+MHz memory 351 MHz
+[   14.623060] nouveau  [     DRM] VRAM: 506 MiB
+[   14.623068] nouveau  [     DRM] GART: 512 MiB
+[   14.623089] nouveau  [     DRM] TMDS table version 1.1
+[   14.623094] nouveau W[     DRM] TMDS table script pointers not stubbed
+[   14.623100] nouveau  [     DRM] DCB version 3.0
+[   14.623107] nouveau  [     DRM] DCB outp 00: 03000323 00000004
+[   14.623126] nouveau  [     DRM] DCB outp 01: 01011300 00000028
+[   14.623132] nouveau  [     DRM] DCB outp 02: 020223f1 0040c080
+[   14.623138] nouveau  [     DRM] DCB outp 03: 08035312 00000000
+[   14.623154] nouveau  [     DRM] DCB outp 04: 04036312 00000000
+[   14.623159] nouveau  [     DRM] DCB conn 00: 0041
+[   14.623166] nouveau  [     DRM] DCB conn 01: 0100
+[   14.623171] nouveau  [     DRM] DCB conn 02: 0310
+[   14.623186] nouveau  [     DRM] DCB conn 03: 0311
+[   14.623191] nouveau  [     DRM] DCB conn 04: 0313
+[   14.623196] nouveau  [     DRM] DCB conn 05: 0254
+[   14.623201] nouveau  [     DRM] DCB conn 06: 0455
+[   14.625005] nouveau W[     DRM] unknown connector type 54
+[   14.625324] nouveau W[     DRM] unknown connector type 55
+[   14.627786] nouveau E[     DRM] Pixel clock comparison table not found
+[   14.627812] nouveau  [     DRM] 0xCA1F: Parsing digital output script table
+[   14.689456] nouveau  [     DRM] MM: using M2MF for buffer copies
+[   14.689472] nouveau  [     DRM] Calling LVDS script 6:
+[   14.689489] nouveau  [     DRM] 0xC81B: Parsing digital output script table
+[   14.975580] nouveau  [     DRM] Setting dpms mode 3 on TV encoder (output 2)
+[   15.074686] nouveau  [     DRM] allocated 1920x1200 fb: 0x9000, bo f5a4d000
+[   15.075032] fbcon: nouveaufb (fb0) is primary device
+[   15.096286] nouveau  [     DRM] Calling LVDS script 2:
+[   15.096291] nouveau  [     DRM] 0xC89F: Parsing digital output script table
+[   15.244611] nouveau  [     DRM] Calling LVDS script 5:
+[   15.244625] nouveau  [     DRM] 0xC80C: Parsing digital output script table
+[   15.248171] nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
+[   15.248187] nouveau 0000:01:00.0: registered panic notifier
+[   15.248200] [drm] Initialized nouveau 1.1.1 20120801 for 0000:01:00.0 on
+minor 0
+[  175.238926] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.238962] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  175.248385] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.248420] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[  175.283980] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.284015] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  175.421586] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.421622] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  175.431331] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.431362] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[  175.467132] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.467165] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  175.584243] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.584289] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  175.593366] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.593399] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[  175.629060] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.629093] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  233.248352] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.248388] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  233.261331] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.261378] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[  233.304548] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.304594] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  233.442718] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.442753] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  233.453935] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.453982] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[  233.514085] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.514134] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  233.702685] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.702720] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  233.714522] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.714572] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[  233.755169] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.755206] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1604.720371] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1604.720406] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1604.728627] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1604.728663] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[ 1604.763825] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1604.763871] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1605.125611] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1605.125658] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1605.139330] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1605.139377] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[ 1605.176399] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1605.176446] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1605.391303] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1605.391350] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1605.402239] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1605.402274] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[ 1605.437623] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1605.437658] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1684.834322] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1684.834357] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1684.844347] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1684.844381] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[ 1684.879929] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1684.879965] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1685.051287] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1685.051323] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1685.061754] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1685.061791] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[ 1685.101345] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1685.101391] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1685.268981] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1685.269028] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1685.279244] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1685.279278] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[ 1685.316905] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1685.316940] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+
+I am running it with wine 1.7.17, mesa 10.1.1, linux 3.14.1 (ArchLinux 32 bit)
+
+Let me know if you need more info
+
 -- 
-1.8.3.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1397904861.5ab8f4D0.24148
+Date: Sat, 19 Apr 2014 10:54:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c13">Comment # 13</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776">bug 75776</a>
+              from <span class="vcard"><a class="email" href="mailto:infyquest&#64;gmail.com" title="Vijay Kamuju &lt;infyquest&#64;gmail.com&gt;"> <span class="fn">Vijay Kamuju</span></a>
+</span></b>
+        <pre>I also face this issue, I have NV4x card
+Also when I check dmesg I have the following messages
+$ dmesg |grep nou
+[    0.000000] Checking if this processor honours the WP bit even in supervisor
+mode...Ok.
+[    0.000000] RCU: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[   14.370212] fb: conflicting fb hw usage nouveaufb vs VESA VGA - removing
+generic driver
+[   14.374433] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x049800a2
+[   14.374440] nouveau  [  DEVICE][0000:01:00.0] Chipset: G71 (NV49)
+[   14.374456] nouveau  [  DEVICE][0000:01:00.0] Family : NV40
+[   14.376861] nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for image...
+[   14.529322] nouveau  [   VBIOS][0000:01:00.0] ... appears to be valid
+[   14.529334] nouveau  [   VBIOS][0000:01:00.0] using image from PRAMIN
+[   14.529785] nouveau  [   VBIOS][0000:01:00.0] BIT signature found
+[   14.529804] nouveau  [   VBIOS][0000:01:00.0] version 05.71.22.16.13
+[   14.530551] nouveau 0000:01:00.0: irq 46 for MSI/MSI-X
+[   14.530581] nouveau  [     PMC][0000:01:00.0] MSI interrupts enabled
+[   14.530665] nouveau  [     PFB][0000:01:00.0] RAM type: GDDR3
+[   14.530671] nouveau  [     PFB][0000:01:00.0] RAM size: 512 MiB
+[   14.530677] nouveau  [     PFB][0000:01:00.0]    ZCOMP: 294912 tags
+[   14.559166] nouveau  [    VOLT][0000:01:00.0] GPU voltage: 1240000uv
+[   14.594974] nouveau  [  PTHERM][0000:01:00.0] FAN control: none / external
+[   14.595009] nouveau  [  PTHERM][0000:01:00.0] fan management: automatic
+[   14.595027] nouveau  [  PTHERM][0000:01:00.0] internal sensor: yes
+[   14.616766] nouveau  [     CLK][0000:01:00.0] 20: core 100 MHz shader 100
+MHz memory 100 MHz
+[   14.616790] nouveau  [     CLK][0000:01:00.0] 21: core 200 MHz shader 200
+MHz memory 300 MHz
+[   14.616800] nouveau  [     CLK][0000:01:00.0] 22: core 375 MHz shader 375
+MHz memory 507 MHz
+[   14.616827] nouveau  [     CLK][0000:01:00.0] --: core 200 MHz shader 200
+MHz memory 351 MHz
+[   14.623060] nouveau  [     DRM] VRAM: 506 MiB
+[   14.623068] nouveau  [     DRM] GART: 512 MiB
+[   14.623089] nouveau  [     DRM] TMDS table version 1.1
+[   14.623094] nouveau W[     DRM] TMDS table script pointers not stubbed
+[   14.623100] nouveau  [     DRM] DCB version 3.0
+[   14.623107] nouveau  [     DRM] DCB outp 00: 03000323 00000004
+[   14.623126] nouveau  [     DRM] DCB outp 01: 01011300 00000028
+[   14.623132] nouveau  [     DRM] DCB outp 02: 020223f1 0040c080
+[   14.623138] nouveau  [     DRM] DCB outp 03: 08035312 00000000
+[   14.623154] nouveau  [     DRM] DCB outp 04: 04036312 00000000
+[   14.623159] nouveau  [     DRM] DCB conn 00: 0041
+[   14.623166] nouveau  [     DRM] DCB conn 01: 0100
+[   14.623171] nouveau  [     DRM] DCB conn 02: 0310
+[   14.623186] nouveau  [     DRM] DCB conn 03: 0311
+[   14.623191] nouveau  [     DRM] DCB conn 04: 0313
+[   14.623196] nouveau  [     DRM] DCB conn 05: 0254
+[   14.623201] nouveau  [     DRM] DCB conn 06: 0455
+[   14.625005] nouveau W[     DRM] unknown connector type 54
+[   14.625324] nouveau W[     DRM] unknown connector type 55
+[   14.627786] nouveau E[     DRM] Pixel clock comparison table not found
+[   14.627812] nouveau  [     DRM] 0xCA1F: Parsing digital output script table
+[   14.689456] nouveau  [     DRM] MM: using M2MF for buffer copies
+[   14.689472] nouveau  [     DRM] Calling LVDS script 6:
+[   14.689489] nouveau  [     DRM] 0xC81B: Parsing digital output script table
+[   14.975580] nouveau  [     DRM] Setting dpms mode 3 on TV encoder (output 2)
+[   15.074686] nouveau  [     DRM] allocated 1920x1200 fb: 0x9000, bo f5a4d000
+[   15.075032] fbcon: nouveaufb (fb0) is primary device
+[   15.096286] nouveau  [     DRM] Calling LVDS script 2:
+[   15.096291] nouveau  [     DRM] 0xC89F: Parsing digital output script table
+[   15.244611] nouveau  [     DRM] Calling LVDS script 5:
+[   15.244625] nouveau  [     DRM] 0xC80C: Parsing digital output script table
+[   15.248171] nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
+[   15.248187] nouveau 0000:01:00.0: registered panic notifier
+[   15.248200] [drm] Initialized nouveau 1.1.1 20120801 for 0000:01:00.0 on
+minor 0
+[  175.238926] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.238962] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  175.248385] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.248420] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[  175.283980] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.284015] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  175.421586] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.421622] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  175.431331] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.431362] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[  175.467132] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.467165] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  175.584243] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.584289] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  175.593366] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.593399] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[  175.629060] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  175.629093] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  233.248352] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.248388] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  233.261331] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.261378] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[  233.304548] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.304594] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  233.442718] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.442753] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  233.453935] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.453982] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[  233.514085] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.514134] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  233.702685] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.702720] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[  233.714522] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.714572] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[  233.755169] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[  233.755206] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[943]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1604.720371] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1604.720406] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1604.728627] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1604.728663] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[ 1604.763825] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1604.763871] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1605.125611] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1605.125658] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1605.139330] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1605.139377] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[ 1605.176399] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1605.176446] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1605.391303] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1605.391350] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1605.402239] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1605.402274] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[ 1605.437623] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1605.437658] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
+Hearthstone.exe[5728]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1684.834322] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1684.834357] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1684.844347] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1684.844381] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[ 1684.879929] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1684.879965] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1685.051287] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1685.051323] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1685.061754] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1685.061791] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[ 1685.101345] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1685.101391] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1685.268981] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1685.269028] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+[ 1685.279244] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1685.279278] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
+[ 1685.316905] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
+nstatus: BAD_ARGUMENT
+[ 1685.316940] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x00165000
+Hearthstone.exe[6717]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+
+I am running it with wine 1.7.17, mesa 10.1.1, linux 3.14.1 (ArchLinux 32 bit)
+
+Let me know if you need more info</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1397904861.5ab8f4D0.24148--
+
+--===============1394832540==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1394832540==--
