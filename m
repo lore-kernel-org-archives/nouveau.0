@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75776] [NV50 gallium] Hearthstone displays corrupted
-	buffers
-Date: Sat, 19 Apr 2014 17:30:44 +0000
-Message-ID: <bug-75776-8800-7nkdj3TvRY@http.bugs.freedesktop.org/>
-References: <bug-75776-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77674] "failed to read DPCD" on wake up with
+	external monitor
+Date: Sat, 19 Apr 2014 17:38:54 +0000
+Message-ID: <bug-77674-8800-uBj2fiCRxL@http.bugs.freedesktop.org/>
+References: <bug-77674-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0088015249=="
+Content-Type: multipart/mixed; boundary="===============1926712760=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-77674-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,59 +21,76 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0088015249==
-Content-Type: multipart/alternative; boundary="1397928643.60E0B0.4234"; charset="us-ascii"
+--===============1926712760==
+Content-Type: multipart/alternative; boundary="1397929134.7a1B70e2.6055"; charset="us-ascii"
 
 
---1397928643.60E0B0.4234
-Date: Sat, 19 Apr 2014 17:30:43 +0000
+--1397929134.7a1B70e2.6055
+Date: Sat, 19 Apr 2014 17:38:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75776
+https://bugs.freedesktop.org/show_bug.cgi?id=77674
 
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #13)
-> I also face this issue, I have NV4x card
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #0)
+> Hi folks,
+> I have:
+> 
+> 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GK107GLM
+> [Quadro K1000M] [10de:0ffc] (rev a1)
+> (one year old thinkpad laptop)
+> 
+> and I'm unable to wake up. Well, not be, but my "Linux 3.11-2-amd64 #1 SMP
+> Debian 3.11.8-1 (2013-11-13) x86_64 GNU/Linux" (Mint, Debian Edition,
+> "testing").
+> Optimus is disabled in BIOS (only discrete is used). On waking up I see four
+> lines:
+> 
+> [ 8618.926501] mei_me 0000:00:16.0: suspend
+> [ 8623.309085] nouveau E[  PDISP][000:01:00.0] DP:0006:0f48: failed to read
+> DPCD
+> [ 8625.220708] dpm_run_callback(): usb_dev_resume+0x0/0x10 [usbcore] returns
+> -32
+> [ 8625.220712] PM: Device 4-1.8.1.1.1 failed to resume async: error -32
+> 
+> 
+> Reproducible only with external monitors (via dock station).
 
-No, you don't. You face an entirely different and unrelated issue. You can open
-a separate bug for it.
+Could you confirm that this still happens with the latest kernel (3.14.1)? If
+it does, can you grab dmesg when you boot with
 
-> [  175.238926] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-> nstatus: BAD_ARGUMENT
-> [  175.238962] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
-> Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242
+nouveau.debug=VBIOS=trace,PDISP=trace drm.debug=0xe
 
-Hmmmm....
+(including the suspend/resume bits).
 
-$ lookup -a 49 -d NV01_SUBCHAN -- -v obj-class NV40_3D 208 0x04040242
-RT_FORMAT => { COLOR = 0x2 | ZETA = Z24S8 | TYPE = SWIZZLED | LOG2_WIDTH = 4 |
-LOG2_HEIGHT = 4 }
+> 
+> 
+> Sorry, not sure how to get Nouveau version.
+> $ apt-cache showpkg xserver-xorg-video-nouveau
+> ...
+> Dependencies:
+> 1:1.0.10-1 - libc6 (2 2.15)
+> libdrm-nouveau2 (2 2.4.38)
+> libdrm2 (2 2.4.25)
+> libudev1 (2 183)
+> xorg-video-abi-14 (0 (null))
+> xserver-xorg-core (2 2:1.13.99.901)
+> libgl1-mesa-dri (2 9.0)
+> xserver-xorg-video-nouveau:i386 (0 (null))
+> if that helps.
 
-COLOR = 0x2? That's odd. Might need to investigate how this can happen... might
-just be something missing in rnndb.
-
-> [  175.248385] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-> nstatus: BAD_ARGUMENT
-> [  175.248420] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
-> Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243
-
-$ lookup -a 49 -d NV01_SUBCHAN -- -v obj-class NV40_3D 208 0x04040243
-RT_FORMAT => { COLOR = R5G6B5 | ZETA = Z24S8 | TYPE = SWIZZLED | LOG2_WIDTH = 4
-| LOG2_HEIGHT = 4 }
-
-Ah yes, I know this issue well. Mixing 16-bit color and 32-bit zeta
-(depth/stencil) attachments to an FBO. Not supported by the hardware, and the
-driver doesn't "fix" it up either.
-
-In any case, totally unrelated to the issue on the nva5 originally reported.
+Not related to your issues, but there have been a lot of 3d driver improvements
+since mesa 9.0... you might want to upgrade. 10.1 has been out for months now,
+and 10.1.1 just got released. And if you want optimus to work, get xorg 1.14.3
+or later... should give you much better battery life.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1397928643.60E0B0.4234
-Date: Sat, 19 Apr 2014 17:30:43 +0000
+--1397929134.7a1B70e2.6055
+Date: Sat, 19 Apr 2014 17:38:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -86,48 +103,65 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c14">Comment # 14</a>
+   title="NEW --- - &quot;failed to read DPCD&quot; on wake up with external monitor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77674#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50 gallium] Hearthstone displays corrupted buffers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776">bug 75776</a>
+   title="NEW --- - &quot;failed to read DPCD&quot; on wake up with external monitor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77674">bug 77674</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=75776#c13">comment #13</a>)
-<span class="quote">&gt; I also face this issue, I have NV4x card</span >
+        <pre>(In reply to <a href="show_bug.cgi?id=77674#c0">comment #0</a>)
+<span class="quote">&gt; Hi folks,
+&gt; I have:
+&gt; 
+&gt; 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GK107GLM
+&gt; [Quadro K1000M] [10de:0ffc] (rev a1)
+&gt; (one year old thinkpad laptop)
+&gt; 
+&gt; and I'm unable to wake up. Well, not be, but my &quot;Linux 3.11-2-amd64 #1 SMP
+&gt; Debian 3.11.8-1 (2013-11-13) x86_64 GNU/Linux&quot; (Mint, Debian Edition,
+&gt; &quot;testing&quot;).
+&gt; Optimus is disabled in BIOS (only discrete is used). On waking up I see four
+&gt; lines:
+&gt; 
+&gt; [ 8618.926501] mei_me 0000:00:16.0: suspend
+&gt; [ 8623.309085] nouveau E[  PDISP][000:01:00.0] DP:0006:0f48: failed to read
+&gt; DPCD
+&gt; [ 8625.220708] dpm_run_callback(): usb_dev_resume+0x0/0x10 [usbcore] returns
+&gt; -32
+&gt; [ 8625.220712] PM: Device 4-1.8.1.1.1 failed to resume async: error -32
+&gt; 
+&gt; 
+&gt; Reproducible only with external monitors (via dock station).</span >
 
-No, you don't. You face an entirely different and unrelated issue. You can open
-a separate bug for it.
+Could you confirm that this still happens with the latest kernel (3.14.1)? If
+it does, can you grab dmesg when you boot with
 
-<span class="quote">&gt; [  175.238926] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-&gt; nstatus: BAD_ARGUMENT
-&gt; [  175.238962] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
-&gt; Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040242</span >
+nouveau.debug=VBIOS=trace,PDISP=trace drm.debug=0xe
 
-Hmmmm....
+(including the suspend/resume bits).
 
-$ lookup -a 49 -d NV01_SUBCHAN -- -v obj-class NV40_3D 208 0x04040242
-RT_FORMAT =&gt; { COLOR = 0x2 | ZETA = Z24S8 | TYPE = SWIZZLED | LOG2_WIDTH = 4 |
-LOG2_HEIGHT = 4 }
+<span class="quote">&gt; 
+&gt; 
+&gt; Sorry, not sure how to get Nouveau version.
+&gt; $ apt-cache showpkg xserver-xorg-video-nouveau
+&gt; ...
+&gt; Dependencies:
+&gt; 1:1.0.10-1 - libc6 (2 2.15)
+&gt; libdrm-nouveau2 (2 2.4.38)
+&gt; libdrm2 (2 2.4.25)
+&gt; libudev1 (2 183)
+&gt; xorg-video-abi-14 (0 (null))
+&gt; xserver-xorg-core (2 2:1.13.99.901)
+&gt; libgl1-mesa-dri (2 9.0)
+&gt; xserver-xorg-video-nouveau:i386 (0 (null))
+&gt; if that helps.</span >
 
-COLOR = 0x2? That's odd. Might need to investigate how this can happen... might
-just be something missing in rnndb.
-
-<span class="quote">&gt; [  175.248385] nouveau E[  PGRAPH][0000:01:00.0]  ERROR nsource: DATA_ERROR
-&gt; nstatus: BAD_ARGUMENT
-&gt; [  175.248420] nouveau E[  PGRAPH][0000:01:00.0] ch 3 [0x0013c000
-&gt; Hearthstone.exe[734]] subc 7 class 0x4097 mthd 0x0208 data 0x04040243</span >
-
-$ lookup -a 49 -d NV01_SUBCHAN -- -v obj-class NV40_3D 208 0x04040243
-RT_FORMAT =&gt; { COLOR = R5G6B5 | ZETA = Z24S8 | TYPE = SWIZZLED | LOG2_WIDTH = 4
-| LOG2_HEIGHT = 4 }
-
-Ah yes, I know this issue well. Mixing 16-bit color and 32-bit zeta
-(depth/stencil) attachments to an FBO. Not supported by the hardware, and the
-driver doesn't &quot;fix&quot; it up either.
-
-In any case, totally unrelated to the issue on the nva5 originally reported.</pre>
+Not related to your issues, but there have been a lot of 3d driver improvements
+since mesa 9.0... you might want to upgrade. 10.1 has been out for months now,
+and 10.1.1 just got released. And if you want optimus to work, get xorg 1.14.3
+or later... should give you much better battery life.</pre>
         </div>
       </p>
       <hr>
@@ -139,9 +173,9 @@ In any case, totally unrelated to the issue on the nva5 originally reported.</pr
     </body>
 </html>
 
---1397928643.60E0B0.4234--
+--1397929134.7a1B70e2.6055--
 
---===============0088015249==
+--===============1926712760==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -152,4 +186,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0088015249==--
+--===============1926712760==--
