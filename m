@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77757] New: [v3.15-rc2] nouveau fails after 6 resumes
-Date: Tue, 22 Apr 2014 07:30:56 +0000
-Message-ID: <bug-77757-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77729] [NVE6] Screen freeze then X crash, GTX 660
+Date: Tue, 22 Apr 2014 08:23:22 +0000
+Message-ID: <bug-77729-8800-PQrN7L2R22@http.bugs.freedesktop.org/>
+References: <bug-77729-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0843316184=="
+Content-Type: multipart/mixed; boundary="===============1868393441=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-77729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,46 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0843316184==
-Content-Type: multipart/alternative; boundary="1398151856.dED38a1d1.9412"; charset="us-ascii"
+--===============1868393441==
+Content-Type: multipart/alternative; boundary="1398155002.BfeADb21.23468"; charset="us-ascii"
 
 
---1398151856.dED38a1d1.9412
-Date: Tue, 22 Apr 2014 07:30:56 +0000
+--1398155002.BfeADb21.23468
+Date: Tue, 22 Apr 2014 08:23:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77757
+https://bugs.freedesktop.org/show_bug.cgi?id=77729
 
-          Priority: medium
-            Bug ID: 77757
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [v3.15-rc2] nouveau fails after 6 resumes
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: git
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #3 from soundx94-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
+(In reply to comment #1)
+> Can you check if this is the same as bug #72180 ? i.e. do the problems go
+> away if using blob pgraph fw?
 
-Created attachment 97726
-  --> https://bugs.freedesktop.org/attachment.cgi?id=97726&action=edit
-Kernel output according to systemD
+I couldn't load Jorden's firmware files, output of dmesg | grep nouveau:
+http://bit.ly/1kVGpeY
 
-After 6 resumes, the screen was all garbled. I have uploaded a full dmesg
-excluding the noise from my firewall and netfilter packet checking. It's from
-systemd, so I think that makes it less reliable.
+No luck with the files from nouveau-fw either, output of dmesg | grep nouveua:
+http://bit.ly/1jAQkDW
+
+They are pretty similar. Do you think extracting the firmware files from
+scratch could help?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1398151856.dED38a1d1.9412
-Date: Tue, 22 Apr 2014 07:30:56 +0000
+--1398155002.BfeADb21.23468
+Date: Tue, 22 Apr 2014 08:23:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,101 +58,34 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [v3.15-rc2] nouveau fails after 6 resumes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77757">77757</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[v3.15-rc2] nouveau fails after 6 resumes
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>ronald645&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=97726" name="attach_97726" title="Kernel output according to systemD">attachment 97726</a> <a href="attachment.cgi?id=97726&amp;action=edit" title="Kernel output according to systemD">[details]</a></span>
-Kernel output according to systemD
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE6] Screen freeze then X crash, GTX 660"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77729#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE6] Screen freeze then X crash, GTX 660"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77729">bug 77729</a>
+              from <span class="vcard"><a class="email" href="mailto:soundx94&#64;hotmail.com" title="soundx94&#64;hotmail.com">soundx94&#64;hotmail.com</a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=77729#c1">comment #1</a>)
+<span class="quote">&gt; Can you check if this is the same as <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href="show_bug.cgi?id=72180">bug #72180</a> ? i.e. do the problems go
+&gt; away if using blob pgraph fw?</span >
 
-After 6 resumes, the screen was all garbled. I have uploaded a full dmesg
-excluding the noise from my firewall and netfilter packet checking. It's from
-systemd, so I think that makes it less reliable.</pre>
+I couldn't load Jorden's firmware files, output of dmesg | grep nouveau:
+<a href="http://bit.ly/1kVGpeY">http://bit.ly/1kVGpeY</a>
+
+No luck with the files from nouveau-fw either, output of dmesg | grep nouveua:
+<a href="http://bit.ly/1jAQkDW">http://bit.ly/1jAQkDW</a>
+
+They are pretty similar. Do you think extracting the firmware files from
+scratch could help?</pre>
         </div>
       </p>
       <hr>
@@ -171,9 +97,9 @@ systemd, so I think that makes it less reliable.</pre>
     </body>
 </html>
 
---1398151856.dED38a1d1.9412--
+--1398155002.BfeADb21.23468--
 
---===============0843316184==
+--===============1868393441==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -184,4 +110,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0843316184==--
+--===============1868393441==--
