@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77729] [NVE6] Screen freeze then X crash, GTX 660
-Date: Tue, 22 Apr 2014 10:01:47 +0000
-Message-ID: <bug-77729-8800-cXlVCORHGG@http.bugs.freedesktop.org/>
-References: <bug-77729-8800@http.bugs.freedesktop.org/>
+From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v2 04/10] drm/nouveau/fb: add GK20A support
+Date: Tue, 22 Apr 2014 12:40:53 +0200
+Message-ID: <20140422104052.GB22426@ulmo>
+References: <1398060142-7937-1-git-send-email-acourbot@nvidia.com>
+ <1398060142-7937-5-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0468014861=="
+Content-Type: multipart/mixed; boundary="===============1796363716=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1398060142-7937-5-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,69 +17,64 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0468014861==
-Content-Type: multipart/alternative; boundary="1398160907.f8A51.17547"; charset="us-ascii"
+--===============1796363716==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="qcHopEYAB45HaUaB"
+Content-Disposition: inline
 
 
---1398160907.f8A51.17547
-Date: Tue, 22 Apr 2014 10:01:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+--qcHopEYAB45HaUaB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77729
+On Mon, Apr 21, 2014 at 03:02:16PM +0900, Alexandre Courbot wrote:
+[...]
+> diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c b/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
+[...]
+> +		pages = dma_alloc_from_contiguous(dev, ncmin, order);
+> +		if (!pages) {
+> +			gk20a_ram_put(pfb, &mem);
+> +			return -ENOMEM;
+> +		}
+> +
+> +		dma_addr = pfn_to_dma(nv_device_base(nv_device(pfb)),
+> +				      page_to_pfn(pages));
 
---- Comment #4 from soundx94-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
-Appearently the loading failed because of my mkinitcpio config, after adding
-all the necesseary files to the image the external firmware loads succesfully.
-Testing it now.
+This breaks compilation on x86 because neither pfn_to_dma() nor
+dma_to_pfn() are available. Is there some other way this can be
+allocated so that these functions don't need to be called?
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+Thierry
 
---1398160907.f8A51.17547
-Date: Tue, 22 Apr 2014 10:01:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+--qcHopEYAB45HaUaB
+Content-Type: application/pgp-signature
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] Screen freeze then X crash, GTX 660"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77729#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] Screen freeze then X crash, GTX 660"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77729">bug 77729</a>
-              from <span class="vcard"><a class="email" href="mailto:soundx94&#64;hotmail.com" title="soundx94&#64;hotmail.com">soundx94&#64;hotmail.com</a>
-</span></b>
-        <pre>Appearently the loading failed because of my mkinitcpio config, after adding
-all the necesseary files to the image the external firmware loads succesfully.
-Testing it now.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.22 (GNU/Linux)
 
---1398160907.f8A51.17547--
+iQIcBAEBAgAGBQJTVkc0AAoJEN0jrNd/PrOh7HkP/iCMWEHuOBSMvawVbmp9nVLI
+CC1prTVr9Q6oT/eyCNGY47Hb23XuZO7AiDouF3hE3okswxsyRDqY1GBwI5xW6zsK
+sP7/b79Lwzr+kpZrnRpx2ZWazKA0/vdvlH0jY6VYAJUwVdyEpR9ndqLe7yw7Ff3G
+fHWGzSsWXA0obbqjp8j3T8ECY9YQg5GWH/PufNpGwMb5f/rKB0M01Ay/0gavoa3X
++5x5kQZZk3idOLt45LJ1HhnAw9sOEuBDmUn3mU/8GvwXkCTggl9dgDPHIMqIR4/4
+FZpeSJ8wgWGVKC2UjO/mbpDAB70+ntgOji/RsOdEGB3y7rY+xVDJ4JOnd8mRLKJb
+ooukR+8D0WgxZrrNlwOOUcID5h/2CUSrIJce+MdtidoTM7FnQPp7CvNTrBhq92VU
+VwYku2KCyCppd5N9N7x2gcDs1uE1KOWckHyhZsf8rOQ1exGPzZbciZJV+BLLg7xR
+cDFoY3bNMY/jUKUXfyNlpjaQ+/TA2HrcDSEjxgYfth90xhxoq7kpgUPYvh2lj+2X
+YJB+GeWdku+tuR+cHZIBbS5SX740Q1omR677q74j6l9dQsv7LL0CXVwSnge/fDVb
+lpkWuTP7nUVaOgqZ2RNCpXMA5CKwptr4a+FvkIqnTcKvqBT75H2KUuA1yzgZvaoh
+040PDibi26IjzlTOsRSG
+=Yvc9
+-----END PGP SIGNATURE-----
 
---===============0468014861==
+--qcHopEYAB45HaUaB--
+
+--===============1796363716==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0468014861==--
+--===============1796363716==--
