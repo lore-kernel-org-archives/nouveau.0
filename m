@@ -1,92 +1,40 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76732] Kworker using 100% CPU
-Date: Tue, 22 Apr 2014 15:27:12 +0000
-Message-ID: <bug-76732-8800-XjHEVnrUp6@http.bugs.freedesktop.org/>
-References: <bug-76732-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH v2 04/10] drm/nouveau/fb: add GK20A support
+Date: Wed, 23 Apr 2014 11:07:51 +0900
+Message-ID: <53572077.6090305@nvidia.com>
+References: <1398060142-7937-1-git-send-email-acourbot@nvidia.com> <1398060142-7937-5-git-send-email-acourbot@nvidia.com> <20140422104052.GB22426@ulmo>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0689769755=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76732-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <20140422104052.GB22426@ulmo>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On 04/22/2014 07:40 PM, Thierry Reding wrote:
+> * PGP Signed by an unknown key
+>
+> On Mon, Apr 21, 2014 at 03:02:16PM +0900, Alexandre Courbot wrote:
+> [...]
+>> diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c b/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
+> [...]
+>> +		pages = dma_alloc_from_contiguous(dev, ncmin, order);
+>> +		if (!pages) {
+>> +			gk20a_ram_put(pfb, &mem);
+>> +			return -ENOMEM;
+>> +		}
+>> +
+>> +		dma_addr = pfn_to_dma(nv_device_base(nv_device(pfb)),
+>> +				      page_to_pfn(pages));
+>
+> This breaks compilation on x86 because neither pfn_to_dma() nor
+> dma_to_pfn() are available. Is there some other way this can be
+> allocated so that these functions don't need to be called?
 
---===============0689769755==
-Content-Type: multipart/alternative; boundary="1398180432.AB5673f3.11054"; charset="us-ascii"
+Mmm, this is bad. There is probably another more portable way to do 
+this. Let me look for it.
 
-
---1398180432.AB5673f3.11054
-Date: Tue, 22 Apr 2014 15:27:12 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=76732
-
---- Comment #40 from reedlaw-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I get the same problem with a kworker pegging the CPU as soon as I plug in an
-external HDMI monitor. I'm using kernel 3.14.1-1. I'm on Arch Linux using the
-xf86-video-nouveau 1.0.10-2 package.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1398180432.AB5673f3.11054
-Date: Tue, 22 Apr 2014 15:27:12 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Kworker using 100% CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732#c40">Comment # 40</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Kworker using 100% CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732">bug 76732</a>
-              from <span class="vcard"><a class="email" href="mailto:reedlaw&#64;gmail.com" title="reedlaw&#64;gmail.com">reedlaw&#64;gmail.com</a>
-</span></b>
-        <pre>I get the same problem with a kworker pegging the CPU as soon as I plug in an
-external HDMI monitor. I'm using kernel 3.14.1-1. I'm on Arch Linux using the
-xf86-video-nouveau 1.0.10-2 package.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1398180432.AB5673f3.11054--
-
---===============0689769755==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0689769755==--
+Thanks,
+Alex.
