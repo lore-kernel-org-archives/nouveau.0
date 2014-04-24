@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77757] [NV4E] [v3.15-rc2] nouveau fails after 6
-	resumes
-Date: Thu, 24 Apr 2014 18:12:41 +0000
-Message-ID: <bug-77757-8800-fUxmt0rmWI@http.bugs.freedesktop.org/>
-References: <bug-77757-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Second Monitor left of internal monitor turns
+ internal monitor black
+Date: Thu, 24 Apr 2014 14:14:15 -0400
+Message-ID: <CAKb7UvgvNO0fokB7a-Dyp8n9Bt9mfBfwSApwEapj1MBjhOd9dA@mail.gmail.com>
+References: <535937B6.2040101@freakscorner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1762680206=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77757-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <535937B6.2040101-WO/VGsxbqFypxiQzEpw4SQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,84 +18,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?Q?Nicolas_G=C3=B6ddel?= <mailinglists-WO/VGsxbqFypxiQzEpw4SQ@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1762680206==
-Content-Type: multipart/alternative; boundary="1398363161.C20a48A22.6302"; charset="us-ascii"
-
-
---1398363161.C20a48A22.6302
-Date: Thu, 24 Apr 2014 18:12:41 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=77757
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[v3.15-rc2] nouveau fails   |[NV4E] [v3.15-rc2] nouveau
-                   |after 6 resumes             |fails after 6 resumes
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1398363161.C20a48A22.6302
-Date: Thu, 24 Apr 2014 18:12:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV4E] [v3.15-rc2] nouveau fails after 6 resumes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77757">bug 77757</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[v3.15-rc2] nouveau fails after 6 resumes
-           </td>
-           <td>[NV4E] [v3.15-rc2] nouveau fails after 6 resumes
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1398363161.C20a48A22.6302--
-
---===============1762680206==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1762680206==--
+T24gVGh1LCBBcHIgMjQsIDIwMTQgYXQgMTI6MTEgUE0sIE5pY29sYXMgR8O2ZGRlbAo8bWFpbGlu
+Z2xpc3RzQGZyZWFrc2Nvcm5lci5kZT4gd3JvdGU6Cj4gSGkgdGhlcmUsCj4KPiBhIGZldyBkYXlz
+IGFnbyBJIGluc3RhbGxlZCBVYnVudHUgR25vbWUgMTQuMDQgb24gbXkgVGhpbmtwYWQgVzUzMC4g
+SXQgaGFzCj4gdGhlCj4gZm9sbG93aW5nIHNwZWNpZmljYXRpb25zOgo+Cj4gSW50ZWwgQ29yZSBp
+Ny0zODIwUU0KPiBJbnRlbCBIRCA0MDAwIGFuZCBuVmlkaWEgUXVhZHJvIEsyMDAwTQo+IDE1LDYi
+IEZIRCBSR0IgMTkyMHgxMDgwCj4KPiBJIHNlbGVjdGVkICJPcHRpbXVzIiBpbiB0aGUgQklPUyBz
+ZXR0aW5ncyB0byBhY3RpdmF0ZSBib3RoIGdyYXBoaWMgY2FyZHMuCj4gQWZ0ZXIKPiBpbnN0YWxs
+aW5nIHRoZSBub3V2ZWF1IGRyaXZlciBvbiBVYnVudHUgdmlhICdhcHQtZ2V0IGluc3RhbGwKPiB4
+c2VydmVyLXhvcmctdmlkZW8tbm91dmVhdScgSSB3YXMgYWJsZSB0byB1c2UgbXkgZXh0ZXJuYWwg
+bW9uaXRvci4KPgo+IEJ1dCEgTXkgZXh0ZXJuYWwgbW9uaXRvciBzdGFuZHMgcGh5c2ljYWxseSBs
+ZWZ0IG9mIG15IGxhcHRvcCwgc28gSSBhbHNvIHNldAo+IGl0Cj4gdG8gdGhlIGxlZnQgaW4gdGhl
+IHNldHRpbmdzIGluIFVidW50dS4gQWZ0ZXIgY2xpY2tpbmcgIk9LIiBteSBpbnRlcm5hbAo+IHNj
+cmVlbgo+IHR1cm5zIGJsYWNrIGFuZCB0aGUgZXh0ZXJuYWwgbW9uaXRvciBzaG93cyB0aGUgY29y
+cmVjdCBpbWFnZS4gQnV0IEkgY291bGRuJ3QKPiBtb3ZlIHRoZSBtb3VzZSB0byB0aGUgaW50ZXJu
+YWwgc2NyZWVuLiBJdCBwZXJzaXN0cyBvbiB0aGUgZXh0ZXJuYWwgb25lLgo+IFdpdGhvdXQKPiBz
+ZWVpbmcgd2hhdCBJIGRvIEkgd2FzIGFibGUgdG8gb3BlbiB0aGUgc2V0dGluZ3Mgd2luZG93IG9u
+IHRoZSBleHRlcm5hbAo+IHNjcmVlbgo+IGFnYWluIHRvIGFjdGl2YXRlIGNsb25pbmcgb2YgdGhl
+IHNjcmVlbnMuIFRoaXMgd29ya3Mgd2l0aG91dCBhIHByb2JsZW0uIEFuZAo+IEkKPiBhbHNvIGhh
+dmUgbm8gcHJvYmxlbXMgaWYgSSBzZXQgdGhlIGV4dGVybmFsIHNjcmVlbiB2aXJ0dWFsbHkgdG8g
+dGhlIHJpZ2h0IG9mCj4gdGhlCj4gaW50ZXJuYWwgb25lLgo+Cj4gTXkgdmVyc2lvbiBvZiB4c2Vy
+dmVyLXhvcmctdmlkZW8tbm91dmVhdSBpcyAxOjEuMC4xMC0xdWJ1bnR1Mi4gSWYgeW91IG5lZWQK
+PiBzb21lCj4gbW9yZSBpbmZvcm1hdGlvbiBsZXQgbWUga25vdy4KCldoYXQgaGFwcGVucyBpZiB5
+b3UganVzdCB1c2UgeHJhbmRyIGluc3RlYWQgb2YgdGhlIHVidW50dSB0b29sPyBGcm9tCnlvdXIg
+ZGVzY3JpcHRpb24sIGl0IHNvdW5kcyBsaWtlIGl0IGp1c3QgdHVybnMgb2ZmIHRoZSBpbnRlcm5h
+bAptb25pdG9yIGluc3RlYWQgb2Ygc2V0dGluZyB0aGUgZXh0ZXJuYWwgb25lIHRvIGJlIGxlZnQg
+b2YgaXQuCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
