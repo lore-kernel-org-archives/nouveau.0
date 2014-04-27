@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Sun, 27 Apr 2014 07:34:36 +0000
-Message-ID: <bug-54700-8800-FRINS96rU2@http.bugs.freedesktop.org/>
+Date: Sun, 27 Apr 2014 08:48:57 +0000
+Message-ID: <bug-54700-8800-nOj66oaMHh@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1231455509=="
+Content-Type: multipart/mixed; boundary="===============0331536537=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,48 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1231455509==
-Content-Type: multipart/alternative; boundary="1398584076.eF4E6D24.30553"; charset="us-ascii"
+--===============0331536537==
+Content-Type: multipart/alternative; boundary="1398588537.d5bdeBDa4.14318"; charset="us-ascii"
 
 
---1398584076.eF4E6D24.30553
-Date: Sun, 27 Apr 2014 07:34:36 +0000
+--1398588537.d5bdeBDa4.14318
+Date: Sun, 27 Apr 2014 08:48:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
-nv28m <nv28m-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> changed:
+--- Comment #56 from nv28m <nv28m-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> ---
+Doing a suspend to RAM restores the original trashing behaviour. I'm not sure,
+but maybe the screen update is slower as well now.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Version|unspecified                 |6.7.0
+This is a Dell D800:
+01:00.0 VGA compatible controller: NVIDIA Corporation NV28M [GeForce4 Ti 4200
+Go AGP 8x] (rev a1)
 
---- Comment #55 from nv28m <nv28m-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> ---
-I also have this problem. Everything unaccelerated comes up as trash, even on
-the kernel framebuffer (if acceleration was switched off). Or for example I can
-see most of the graphics ok, but if I use ShadowFB then the whole screen is
-unusable. And the cursor is garbage too most of the time.
-
-This is nothing new, but I found a way to make it work.
-
-I have two systems installed (latest debian/testing). I boot the first one to X
-with the nvidia drivers. Then I use kexec to boot into the second system (also
-debian/testing), which is using nouveau. And at this time, all the graphics are
-fine!
-
-So something is initialized by the nvidia driver, which is not touched by
-nouveau but is required for correct operation.
-
-Is there a way I could help? Like dumping register states with/without the
-nvidia init?
+X.Org X Server 1.15.1
+Release Date: 2014-04-13
+[   263.867] X Protocol Version 11, Revision 0
+[   263.867] Build Operating System: Linux 3.2.0-4-amd64 i686 Debian
+[   263.867] Current Operating System: Linux dell 3.13-1-686-pae #1 SMP Debian
+3.13.7-1 (2014-03-25) i686
+[   263.867] Kernel command line: BOOT_IMAGE=/vmlinuz-3.13-1-686-pae-mine2
+root=/dev/mapper/root ro processor.ignore_ppc=1 quiet
+[   263.867] Build Date: 15 April 2014  07:46:36PM
+[   263.867] xorg-server 2:1.15.1-1 (http://www.debian.org/support)
+[   263.873] (II) NOUVEAU driver Date:   Thu Nov 7 14:56:48 2013 +1000
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1398584076.eF4E6D24.30553
-Date: Sun, 27 Apr 2014 07:34:36 +0000
+--1398588537.d5bdeBDa4.14318
+Date: Sun, 27 Apr 2014 08:48:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,56 +65,37 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:nv28m&#64;freemail.hu" title="nv28m &lt;nv28m&#64;freemail.hu&gt;"> <span class="fn">nv28m</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Version</td>
-           <td>unspecified
-           </td>
-           <td>6.7.0
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c55">Comment # 55</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c56">Comment # 56</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
               from <span class="vcard"><a class="email" href="mailto:nv28m&#64;freemail.hu" title="nv28m &lt;nv28m&#64;freemail.hu&gt;"> <span class="fn">nv28m</span></a>
 </span></b>
-        <pre>I also have this problem. Everything unaccelerated comes up as trash, even on
-the kernel framebuffer (if acceleration was switched off). Or for example I can
-see most of the graphics ok, but if I use ShadowFB then the whole screen is
-unusable. And the cursor is garbage too most of the time.
+        <pre>Doing a suspend to RAM restores the original trashing behaviour. I'm not sure,
+but maybe the screen update is slower as well now.
 
-This is nothing new, but I found a way to make it work.
+This is a Dell D800:
+01:00.0 VGA compatible controller: NVIDIA Corporation NV28M [GeForce4 Ti 4200
+Go AGP 8x] (rev a1)
 
-I have two systems installed (latest debian/testing). I boot the first one to X
-with the nvidia drivers. Then I use kexec to boot into the second system (also
-debian/testing), which is using nouveau. And at this time, all the graphics are
-fine!
-
-So something is initialized by the nvidia driver, which is not touched by
-nouveau but is required for correct operation.
-
-Is there a way I could help? Like dumping register states with/without the
-nvidia init?</pre>
+X.Org X Server 1.15.1
+Release Date: 2014-04-13
+[   263.867] X Protocol Version 11, Revision 0
+[   263.867] Build Operating System: Linux 3.2.0-4-amd64 i686 Debian
+[   263.867] Current Operating System: Linux dell 3.13-1-686-pae #1 SMP Debian
+3.13.7-1 (2014-03-25) i686
+[   263.867] Kernel command line: BOOT_IMAGE=/vmlinuz-3.13-1-686-pae-mine2
+root=/dev/mapper/root ro processor.ignore_ppc=1 quiet
+[   263.867] Build Date: 15 April 2014  07:46:36PM
+[   263.867] xorg-server 2:1.15.1-1 (<a href="http://www.debian.org/support">http://www.debian.org/support</a>)
+[   263.873] (II) NOUVEAU driver Date:   Thu Nov 7 14:56:48 2013 +1000</pre>
         </div>
       </p>
       <hr>
@@ -131,9 +107,9 @@ nvidia init?</pre>
     </body>
 </html>
 
---1398584076.eF4E6D24.30553--
+--1398588537.d5bdeBDa4.14318--
 
---===============1231455509==
+--===============0331536537==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -144,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1231455509==--
+--===============0331536537==--
