@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54700] Distorted graphics (double cursor) with
- GeForce 4200Go (NV28)
-Date: Mon, 28 Apr 2014 18:55:55 +0000
-Message-ID: <bug-54700-8800-UKVqAsJeCo@http.bugs.freedesktop.org/>
-References: <bug-54700-8800@http.bugs.freedesktop.org/>
+From: John Jason Jordan <johnxj-Wuw85uim5zDR7s880joybQ@public.gmane.org>
+Subject: Re: Missing menus in windows after update
+Date: Mon, 28 Apr 2014 12:14:20 -0700
+Message-ID: <20140428121420.31629d84@Devil-Bonobo>
+References: <20140427194139.5a9d3594@Devil-Bonobo>
+ <CAKb7UviNU=H=G2UarrW1FBZsHfcN2C4rePq290SEhkOKkwKWpg@mail.gmail.com>
+ <20140427223301.34aa58d1@Devil-Bonobo>
+ <CAKb7Uvi=x26wZfb+NneywzPCHsjjSPLwH-j2LL-SEunMR9pF3w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0137606874=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvi=x26wZfb+NneywzPCHsjjSPLwH-j2LL-SEunMR9pF3w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,85 +20,37 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.orgnouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On Mon, 28 Apr 2014 14:07:56 -0400
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> dijo:
 
---===============0137606874==
-Content-Type: multipart/alternative; boundary="1398711355.EE44f84.11108"; charset="us-ascii"
+>On Mon, Apr 28, 2014 at 1:33 AM, John Jason Jordan
+><johnxj-Wuw85uim5zDR7s880joybQ@public.gmane.org> wrote:
+>> On Sun, 27 Apr 2014 23:01:57 -0400 Ilia Mirkin
+>> <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> dijo:
+>>>On Sun, Apr 27, 2014 at 10:41 PM, John Jason Jordan
+>>><johnxj-Wuw85uim5zDR7s880joybQ@public.gmane.org> wrote:
+>> A couple of weeks ago the Update Manager announced that there were
+>> some updates. I do not recall exactly what packages were involved,
+>> but I remember that some of them involved nouveau. About a week ago
+>> I finally installed them, and that is when the problem began.
 
+>>>Are you using a compositor? If so, what happens if you turn it off
+>>>(or tell it not to use OpenGL, if that's an option).
 
---1398711355.EE44f84.11108
-Date: Mon, 28 Apr 2014 18:55:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+That was it! But not the way I think you expected. I was sure I wasn't
+using a compositor, but when I read this a second time I suddenly
+noticed that the feathered gray borders that I had around windows were
+missing. So I went into the Xfce Settings Manager and in the Window
+Manager Tweaks dialog window there is a tab for Compositor. I found
+that the checkbox there for "Show shadows under dock windows" was
+unchecked. I checked it and instantly the shadows came back. And when I
+tried LibreOffice and Claws mail all the missing lists and menu text
+was back.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54700
-
---- Comment #59 from nv28m <nv28m-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> ---
-I've e-mailed the dump file.
-
-I've put in 3 markers, one before starting xinit /usr/bin/urxvt, one in urxvt
-before quiting, and one after xinit returned.
-
-I hope it's useful. Thanks! I can try to repeat the same thing using the
-nouveau driver, if needed.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1398711355.EE44f84.11108
-Date: Mon, 28 Apr 2014 18:55:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c59">Comment # 59</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:nv28m&#64;freemail.hu" title="nv28m &lt;nv28m&#64;freemail.hu&gt;"> <span class="fn">nv28m</span></a>
-</span></b>
-        <pre>I've e-mailed the dump file.
-
-I've put in 3 markers, one before starting xinit /usr/bin/urxvt, one in urxvt
-before quiting, and one after xinit returned.
-
-I hope it's useful. Thanks! I can try to repeat the same thing using the
-nouveau driver, if needed.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1398711355.EE44f84.11108--
-
---===============0137606874==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0137606874==--
+So the problem is solved, although I have no idea why LO and CM need
+the compositor to display menus and lists. That makes no sense to me.
+But in any event, thanks for writing that because it made my brain look
+at something I should have seen from the beginning. :)
