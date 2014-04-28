@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54700] Distorted graphics (double cursor) with
- GeForce 4200Go (NV28)
-Date: Sun, 27 Apr 2014 21:46:35 +0000
-Message-ID: <bug-54700-8800-LltPTZTA9j@http.bugs.freedesktop.org/>
-References: <bug-54700-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v3 6/9] drm/nouveau/graph: enable when using
+ external firmware
+Date: Mon, 28 Apr 2014 12:10:27 +1000
+Message-ID: <CACAvsv51Ju_ZqJfNU5GzzEmDzf2Fr6Xr_5yGRtfqOQRVTgvDPg@mail.gmail.com>
+References: <1398410396-23338-1-git-send-email-acourbot@nvidia.com>
+ <1398410396-23338-7-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0734104035=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1398410396-23338-7-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,87 +19,70 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Fri, Apr 25, 2014 at 5:19 PM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+> nvc0_graph_ctor() would only let the graphics engine be enabled if its
+> oclass has a proper microcode linked to it. This prevents GR from being
+> enabled at all on chips that rely exclusively on external firmware, even
+> though such a use-case is valid.
+>
+> Relax the conditions enabling the GR engine to also include the case
+> where an external firmware has also been loaded.
+I'm happy to take this patch as-is.  I do wonder if we should do
+something like this though:
 
---===============0734104035==
-Content-Type: multipart/alternative; boundary="1398635195.17454.28040"; charset="us-ascii"
+if (nouveau_boolopt(device->cfgopt, "NvGrUseFW", oclass->fecs.ucode == NULL))
 
+Which will automatically switch to external firmware if there's no
+internal implementation available.
 
---1398635195.17454.28040
-Date: Sun, 27 Apr 2014 21:46:35 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Thoughts?  This could be a separate patch even, if preferred.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54700
+Thanks,
+Ben.
 
---- Comment #58 from nv28m <nv28m-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> ---
-
-The default Debian kernel is not very debug friendly, so I've dumped the ROMs
-with nvagetbios. There are two versions, as I made a firmware update later to
-see if it helps. (e-mailed)
-
-The MMIO dumps are comming soon, tomorrow or so. This is a slow machine and the
-kernel compile takes a while even after I've reduced the config file (and set
-CONFIG_MMIOTRACE).
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1398635195.17454.28040
-Date: Sun, 27 Apr 2014 21:46:35 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c58">Comment # 58</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:nv28m&#64;freemail.hu" title="nv28m &lt;nv28m&#64;freemail.hu&gt;"> <span class="fn">nv28m</span></a>
-</span></b>
-        <pre>
-The default Debian kernel is not very debug friendly, so I've dumped the ROMs
-with nvagetbios. There are two versions, as I made a firmware update later to
-see if it helps. (e-mailed)
-
-The MMIO dumps are comming soon, tomorrow or so. This is a slow machine and the
-kernel compile takes a while even after I've reduced the config file (and set
-CONFIG_MMIOTRACE).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1398635195.17454.28040--
-
---===============0734104035==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0734104035==--
+>
+> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/core/engine/graph/nvc0.c | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/nvc0.c b/drivers/gpu/drm/nouveau/core/engine/graph/nvc0.c
+> index f3c7329da0a0..e5b75f189988 100644
+> --- a/drivers/gpu/drm/nouveau/core/engine/graph/nvc0.c
+> +++ b/drivers/gpu/drm/nouveau/core/engine/graph/nvc0.c
+> @@ -1259,10 +1259,13 @@ nvc0_graph_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+>         struct nvc0_graph_oclass *oclass = (void *)bclass;
+>         struct nouveau_device *device = nv_device(parent);
+>         struct nvc0_graph_priv *priv;
+> +       bool use_ext_fw, enable;
+>         int ret, i;
+>
+> -       ret = nouveau_graph_create(parent, engine, bclass,
+> -                                  (oclass->fecs.ucode != NULL), &priv);
+> +       use_ext_fw = nouveau_boolopt(device->cfgopt, "NvGrUseFW", false);
+> +       enable = use_ext_fw || oclass->fecs.ucode != NULL;
+> +
+> +       ret = nouveau_graph_create(parent, engine, bclass, enable, &priv);
+>         *pobject = nv_object(priv);
+>         if (ret)
+>                 return ret;
+> @@ -1272,7 +1275,7 @@ nvc0_graph_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+>
+>         priv->base.units = nvc0_graph_units;
+>
+> -       if (nouveau_boolopt(device->cfgopt, "NvGrUseFW", false)) {
+> +       if (use_ext_fw) {
+>                 nv_info(priv, "using external firmware\n");
+>                 if (nvc0_graph_ctor_fw(priv, "fuc409c", &priv->fuc409c) ||
+>                     nvc0_graph_ctor_fw(priv, "fuc409d", &priv->fuc409d) ||
+> --
+> 1.9.2
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
