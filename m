@@ -1,125 +1,98 @@
-From: John Jason Jordan <johnxj-Wuw85uim5zDR7s880joybQ@public.gmane.org>
-Subject: Re: Missing menus in windows after update
-Date: Sun, 27 Apr 2014 22:33:01 -0700
-Message-ID: <20140427223301.34aa58d1@Devil-Bonobo>
-References: <20140427194139.5a9d3594@Devil-Bonobo>
- <CAKb7UviNU=H=G2UarrW1FBZsHfcN2C4rePq290SEhkOKkwKWpg@mail.gmail.com>
+From: Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [Nouveau] [PATCH v3 6/9] drm/nouveau/graph: enable when using
+ external firmware
+Date: Mon, 28 Apr 2014 08:57:02 +0200
+Message-ID: <20140428065700.GB19455@ulmo>
+References: <1398410396-23338-1-git-send-email-acourbot@nvidia.com>
+ <1398410396-23338-7-git-send-email-acourbot@nvidia.com>
+ <CACAvsv51Ju_ZqJfNU5GzzEmDzf2Fr6Xr_5yGRtfqOQRVTgvDPg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UviNU=H=G2UarrW1FBZsHfcN2C4rePq290SEhkOKkwKWpg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0723528416=="
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CACAvsv51Ju_ZqJfNU5GzzEmDzf2Fr6Xr_5yGRtfqOQRVTgvDPg@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <skeggsb@gmail.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-On Sun, 27 Apr 2014 23:01:57 -0400
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> dijo:
 
->On Sun, Apr 27, 2014 at 10:41 PM, John Jason Jordan
-><johnxj-Wuw85uim5zDR7s880joybQ@public.gmane.org> wrote:
->> Ubuntu 13.10 x86_64 up to date on laptop with nVidia GeForce GTX
->> 765M.
->>
->> There were some updates that I applied last week, and ever since I
->> have missing text in some menus and lists. It is especially bad in
->> Claws Mail and LibreOffice Writer. However, text appears correctly;
->> it's just the menus where the text has disappeared. For example,
->> when writing in LO Writer the part of the window where the typed
->> text appears is fine; but the menus along the top have just ---
->> instead of the word (File, Edit, etc.), and if I click on one of the
->> --- the drop-down shows only a -- to the left of the item. None of
->> the style names appear in the styles toolbar, nor does the name of
->> the font that is in use.
->>
->> After the update I have:
->>
->>         libdrm-nouveau2 2.4.46-1-ubuntu1
->>         xserver-xorg-video-nouveau 1:1.0.9-2ubuntu1
->>
->> This computer has never had the nVidia proprietary drivers installed.
->> Nor have I ever tried to use the extra features (bumblebee, etc.).
->> There are no error messages in Xorg.0.log.
->>
->> I could use some suggestions for where to look to fix this, or how to
->> file a bug report.
+--===============0723528416==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="EuxKj2iCbKjpUGkD"
+Content-Disposition: inline
 
->Did this work fine before? If so, when was before?
 
-This is a System76 (Linux computer seller) Bonobo Extreme that I bought
-early last December. It came with straight Ubuntu, but I wiped it and
-installed Xubuntu instead (can't stand Unity). I just did the defaults,
-which installed the nouveau driver. A long time ago on another
-computer I installed the nVidia proprietary driver and it created a
-mess, so I was delighted that everything worked perfectly with the
-nouveau driver.
+--EuxKj2iCbKjpUGkD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-A couple of weeks ago the Update Manager announced that there were some
-updates. I do not recall exactly what packages were involved, but I
-remember that some of them involved nouveau. About a week ago I finally
-installed them, and that is when the problem began.
+On Mon, Apr 28, 2014 at 12:10:27PM +1000, Ben Skeggs wrote:
+> On Fri, Apr 25, 2014 at 5:19 PM, Alexandre Courbot <acourbot@nvidia.com> =
+wrote:
+> > nvc0_graph_ctor() would only let the graphics engine be enabled if its
+> > oclass has a proper microcode linked to it. This prevents GR from being
+> > enabled at all on chips that rely exclusively on external firmware, even
+> > though such a use-case is valid.
+> >
+> > Relax the conditions enabling the GR engine to also include the case
+> > where an external firmware has also been loaded.
+> I'm happy to take this patch as-is.  I do wonder if we should do
+> something like this though:
+>=20
+> if (nouveau_boolopt(device->cfgopt, "NvGrUseFW", oclass->fecs.ucode =3D=
+=3D NULL))
+>=20
+> Which will automatically switch to external firmware if there's no
+> internal implementation available.
 
->What kernel version are you using? What mesa version do you have
->installed?
+I think that makes a lot of sense. Perhaps outputting a warning or so at
+runtime when this happens would be helpful in reminding people that the
+goal is to make the GPU run with nouveau firmware rather than external
+firmware, and hence that there's some work left to do.
 
-jjj@Devil-Bonobo:~$ uname -a
-Linux Devil-Bonobo 3.11.0-20-generic #34-Ubuntu SMP Tue Apr 1 20:40:25
-UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+Thierry
 
-Searching in Synaptic on 'mesa' yielded the following:
+--EuxKj2iCbKjpUGkD
+Content-Type: application/pgp-signature
 
-mesa-common-dev 9.2.1-1ubuntu3
-libgl1-mesa-dev 9.2.1-1ubuntu3
-linglu1-mesa-dev 9.0.0-1
-libglapi-mesa 9.2.1-iubuntu3
-libgl1-mesa-glx 9.2.1-1ubuntu3
-libglu1-mesa 9.0.0-1
-libgl1-mesa-dri 9.2.1-1ubuntu3
-libtxc-dxtn-s2tc0 0-git20121227-1
-libopeng1-mesa 9.2.1-1ubuntu3
-libegl1-mesa 9.2.1-1ubuntu3
-xscreensaver-gl 5.15-3ubuntu1
-libwxgtk2.8-0 2.8.12.1-14ubuntu1
-libgbm1 9.2.1-1ubuntu3
-libgles2-mesa 9.2.1-1ubuntu3
-libegl1-mesa-drivers 9.2.1-1ubuntu3
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.22 (GNU/Linux)
 
->Is this an optimus laptop? If so, do you have the intel card enabled
->in the BIOS, or is it set to nvidia-only? In that case, unless you've
->specifically set up GPU offloading, your issues would be with the
->intel driver.
+iQIcBAEBAgAGBQJTXfu8AAoJEN0jrNd/PrOhMH0QALxy7ms7OtX9b38FgUKMuWRm
+YiCiTLo/GiDc/+QW1tKA4hjnosV3EToj8FAr929QPHRhyXaWDVcjnfNo5+1ksP6u
+qp/siG0jkXUi6jU6Bgz/pHr8a3JzhaH0Fcp1imLADgVdjOXRp+z75Q9J8AX4joDa
+L2UP4iuqC3BtrLdI2IyIabNkcpzYajmjygHDkA03gTpcD4kPeJpFf04x7HV/m3RQ
+x3giIgf5ll1270qQny3Ghy4if/79hx6OVzEhqf2mpfmTxemtJX6DoOFIkNJqzuhZ
+j/7EgodWRXzaaTszibkpjJUST1ZQ4sBPKdbQcGy5G4jn/gZAgeCFbImqykmfxnqw
+bP3fBP/bPhVwHm9NQuO3/9hXPNVTob+mCa4zdvIGp4eGNJd9c6pdLYclpkOQvOU1
+CAsCxb2jMIKUVSUxIUpyha1+vn28NFrXAoN95c6r5cg7Fq9fhgMAosn9xfKYd0kz
+bZSOgVIoeRjcbZHsj6HL9qxls9QVCVW3AnS7l2v+femNTl05SCp19xdloo5F9Ejv
+bZyTFyxZILtl44hS6eRBY3rBtkVHKLRAs3+8LBDBIBALV8zgvPGeibRQg7tdFmpB
+3veefRPdBpc1M1aUG9Sku4IpfdVR7NfdITmPaKCIi1gr+CIrJyyguTHbJb+WsgPO
+FrhnCvSZbLtrI3jDrFiA
+=GsRW
+-----END PGP SIGNATURE-----
 
-I believe it is an optimus laptop, but I do not understand much about
-those things. I have never touched the BIOS, so it is at the default
-that System76 shipped it with. I do know that the nouveau driver is
-installed and loaded. I do not do gaming or anything that needs fancy
-high speed graphics.
+--EuxKj2iCbKjpUGkD--
 
->Can you provide your dmesg + Xorg log? That will answer some of the
->above questions.
+--===============0723528416==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Both are really long documents. I did read through the Xorg.0.log file
-and found no real error messages. It also noted that the nouveau driver
-was loaded, and that it tried to load the nvidia driver but failed
-because it is not installed. There is no xorg.conf file.
+_______________________________________________
+dri-devel mailing list
+dri-devel@lists.freedesktop.org
+http://lists.freedesktop.org/mailman/listinfo/dri-devel
 
->Are you using a compositor? If so, what happens if you turn it off (or
->tell it not to use OpenGL, if that's an option).
-
-I have never been interested in special effects, 3D, etc., so it is
-using only whatever is installed and set up by default.
-
-If you really need the Xorg.0.log file and the full results of dmesg,
-can I attach them to an e-mail to this list?
-
-Thanks for your response, and apologies for not including all the
-information the first time. 
+--===============0723528416==--
