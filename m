@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76483] [NV50, bisected,
- RFC patch] xset dpms force {on, off} does not work over DP
-Date: Mon, 28 Apr 2014 18:49:32 +0000
-Message-ID: <bug-76483-8800-C3dJS2xUnc@http.bugs.freedesktop.org/>
-References: <bug-76483-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54700] Distorted graphics (double cursor) with
+ GeForce 4200Go (NV28)
+Date: Mon, 28 Apr 2014 18:55:55 +0000
+Message-ID: <bug-54700-8800-UKVqAsJeCo@http.bugs.freedesktop.org/>
+References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0473349935=="
+Content-Type: multipart/mixed; boundary="===============0137606874=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76483-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0473349935==
-Content-Type: multipart/alternative; boundary="1398710972.F617F2.10197"; charset="us-ascii"
+--===============0137606874==
+Content-Type: multipart/alternative; boundary="1398711355.EE44f84.11108"; charset="us-ascii"
 
 
---1398710972.F617F2.10197
-Date: Mon, 28 Apr 2014 18:49:32 +0000
+--1398711355.EE44f84.11108
+Date: Mon, 28 Apr 2014 18:55:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76483
+https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #3 from Karl Schendel <schendel-zf86OBlHRo2+XT7JhA+gdA@public.gmane.org> ---
-I think I'm seeing this too.  Mac Pro (2009) with GT120 (G96/NV50) and 24 inch
-Apple Cinema display via MDP connection.  powersave blanking used to work in
-3.6.3 which was the last kernel I used (opensuse 12.3 otherwise).  Now it does
-nothing in opensuse 13.1 which has 3.11.10, also notwork with a 3.14.1 kernel. 
-X thinks that it's turned off the display (according to xset q) but nothing
-happened.
+--- Comment #59 from nv28m <nv28m-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> ---
+I've e-mailed the dump file.
 
-I would be happy to test a fix if and when a trial is ready.  I have all sorts
-of trouble with nouveau on this hardware so I suspect it's not a common setup. 
-:-)
-Fortunately, recent versions seem pretty good other than the lack of powersave.
+I've put in 3 markers, one before starting xinit /usr/bin/urxvt, one in urxvt
+before quiting, and one after xinit returned.
+
+I hope it's useful. Thanks! I can try to repeat the same thing using the
+nouveau driver, if needed.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1398710972.F617F2.10197
-Date: Mon, 28 Apr 2014 18:49:32 +0000
+--1398711355.EE44f84.11108
+Date: Mon, 28 Apr 2014 18:55:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,25 +59,21 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483#c3">Comment # 3</a>
+   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c59">Comment # 59</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483">bug 76483</a>
-              from <span class="vcard"><a class="email" href="mailto:schendel&#64;kbcomputer.com" title="Karl Schendel &lt;schendel&#64;kbcomputer.com&gt;"> <span class="fn">Karl Schendel</span></a>
+   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
+              from <span class="vcard"><a class="email" href="mailto:nv28m&#64;freemail.hu" title="nv28m &lt;nv28m&#64;freemail.hu&gt;"> <span class="fn">nv28m</span></a>
 </span></b>
-        <pre>I think I'm seeing this too.  Mac Pro (2009) with GT120 (G96/NV50) and 24 inch
-Apple Cinema display via MDP connection.  powersave blanking used to work in
-3.6.3 which was the last kernel I used (opensuse 12.3 otherwise).  Now it does
-nothing in opensuse 13.1 which has 3.11.10, also notwork with a 3.14.1 kernel. 
-X thinks that it's turned off the display (according to xset q) but nothing
-happened.
+        <pre>I've e-mailed the dump file.
 
-I would be happy to test a fix if and when a trial is ready.  I have all sorts
-of trouble with nouveau on this hardware so I suspect it's not a common setup. 
-:-)
-Fortunately, recent versions seem pretty good other than the lack of powersave.</pre>
+I've put in 3 markers, one before starting xinit /usr/bin/urxvt, one in urxvt
+before quiting, and one after xinit returned.
+
+I hope it's useful. Thanks! I can try to repeat the same thing using the
+nouveau driver, if needed.</pre>
         </div>
       </p>
       <hr>
@@ -93,9 +85,9 @@ Fortunately, recent versions seem pretty good other than the lack of powersave.<
     </body>
 </html>
 
---1398710972.F617F2.10197--
+--1398711355.EE44f84.11108--
 
---===============0473349935==
+--===============0137606874==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0473349935==--
+--===============0137606874==--
