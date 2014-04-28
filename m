@@ -1,98 +1,118 @@
-From: Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [Nouveau] [PATCH v3 6/9] drm/nouveau/graph: enable when using
- external firmware
-Date: Mon, 28 Apr 2014 08:57:02 +0200
-Message-ID: <20140428065700.GB19455@ulmo>
-References: <1398410396-23338-1-git-send-email-acourbot@nvidia.com>
- <1398410396-23338-7-git-send-email-acourbot@nvidia.com>
- <CACAvsv51Ju_ZqJfNU5GzzEmDzf2Fr6Xr_5yGRtfqOQRVTgvDPg@mail.gmail.com>
+From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v2 04/10] drm/nouveau/fb: add GK20A support
+Date: Mon, 28 Apr 2014 13:44:38 +0200
+Message-ID: <20140428114437.GK19455@ulmo>
+References: <1398060142-7937-1-git-send-email-acourbot@nvidia.com>
+ <1398060142-7937-5-git-send-email-acourbot@nvidia.com>
+ <20140422104052.GB22426@ulmo> <53572077.6090305@nvidia.com>
+ <CAAVeFuKscuN-=HJOarbzFkG1ARq6-Nfc2pf1ibam9b61Cjbs6Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0723528416=="
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CACAvsv51Ju_ZqJfNU5GzzEmDzf2Fr6Xr_5yGRtfqOQRVTgvDPg@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <skeggsb@gmail.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============1854744908=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAAVeFuKscuN-=HJOarbzFkG1ARq6-Nfc2pf1ibam9b61Cjbs6Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 
---===============0723528416==
+--===============1854744908==
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="EuxKj2iCbKjpUGkD"
+	protocol="application/pgp-signature"; boundary="FCF9ydJxlAJsfRTu"
 Content-Disposition: inline
 
 
---EuxKj2iCbKjpUGkD
+--FCF9ydJxlAJsfRTu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 28, 2014 at 12:10:27PM +1000, Ben Skeggs wrote:
-> On Fri, Apr 25, 2014 at 5:19 PM, Alexandre Courbot <acourbot@nvidia.com> =
-wrote:
-> > nvc0_graph_ctor() would only let the graphics engine be enabled if its
-> > oclass has a proper microcode linked to it. This prevents GR from being
-> > enabled at all on chips that rely exclusively on external firmware, even
-> > though such a use-case is valid.
+On Wed, Apr 23, 2014 at 03:11:01PM +0900, Alexandre Courbot wrote:
+> On Wed, Apr 23, 2014 at 11:07 AM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>=
+ wrote:
+> > On 04/22/2014 07:40 PM, Thierry Reding wrote:
+> >>
+> >> * PGP Signed by an unknown key
+> >>
+> >>
+> >> On Mon, Apr 21, 2014 at 03:02:16PM +0900, Alexandre Courbot wrote:
+> >> [...]
+> >>>
+> >>> diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
+> >>> b/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
+> >>
+> >> [...]
+> >>>
+> >>> +               pages =3D dma_alloc_from_contiguous(dev, ncmin, order=
+);
+> >>> +               if (!pages) {
+> >>> +                       gk20a_ram_put(pfb, &mem);
+> >>> +                       return -ENOMEM;
+> >>> +               }
+> >>> +
+> >>> +               dma_addr =3D pfn_to_dma(nv_device_base(nv_device(pfb)=
+),
+> >>> +                                     page_to_pfn(pages));
+> >>
+> >>
+> >> This breaks compilation on x86 because neither pfn_to_dma() nor
+> >> dma_to_pfn() are available. Is there some other way this can be
+> >> allocated so that these functions don't need to be called?
 > >
-> > Relax the conditions enabling the GR engine to also include the case
-> > where an external firmware has also been loaded.
-> I'm happy to take this patch as-is.  I do wonder if we should do
-> something like this though:
+> >
+> > Mmm, this is bad. There is probably another more portable way to do thi=
+s.
+> > Let me look for it.
 >=20
-> if (nouveau_boolopt(device->cfgopt, "NvGrUseFW", oclass->fecs.ucode =3D=
-=3D NULL))
->=20
-> Which will automatically switch to external firmware if there's no
-> internal implementation available.
+> page_to_phys()/phys_to_page() can be used by drivers and will work
+> just fine here since the CPU and GPU use the same physical addresses
+> to access memory.
 
-I think that makes a lot of sense. Perhaps outputting a warning or so at
-runtime when this happens would be helpful in reminding people that the
-goal is to make the GPU run with nouveau firmware rather than external
-firmware, and hence that there's some work left to do.
+I'm wondering how this is going to pan out when we try adding IOMMU
+support. But I guess we can cross that bridge when we come to it.
 
 Thierry
 
---EuxKj2iCbKjpUGkD
+--FCF9ydJxlAJsfRTu
 Content-Type: application/pgp-signature
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2.0.22 (GNU/Linux)
 
-iQIcBAEBAgAGBQJTXfu8AAoJEN0jrNd/PrOhMH0QALxy7ms7OtX9b38FgUKMuWRm
-YiCiTLo/GiDc/+QW1tKA4hjnosV3EToj8FAr929QPHRhyXaWDVcjnfNo5+1ksP6u
-qp/siG0jkXUi6jU6Bgz/pHr8a3JzhaH0Fcp1imLADgVdjOXRp+z75Q9J8AX4joDa
-L2UP4iuqC3BtrLdI2IyIabNkcpzYajmjygHDkA03gTpcD4kPeJpFf04x7HV/m3RQ
-x3giIgf5ll1270qQny3Ghy4if/79hx6OVzEhqf2mpfmTxemtJX6DoOFIkNJqzuhZ
-j/7EgodWRXzaaTszibkpjJUST1ZQ4sBPKdbQcGy5G4jn/gZAgeCFbImqykmfxnqw
-bP3fBP/bPhVwHm9NQuO3/9hXPNVTob+mCa4zdvIGp4eGNJd9c6pdLYclpkOQvOU1
-CAsCxb2jMIKUVSUxIUpyha1+vn28NFrXAoN95c6r5cg7Fq9fhgMAosn9xfKYd0kz
-bZSOgVIoeRjcbZHsj6HL9qxls9QVCVW3AnS7l2v+femNTl05SCp19xdloo5F9Ejv
-bZyTFyxZILtl44hS6eRBY3rBtkVHKLRAs3+8LBDBIBALV8zgvPGeibRQg7tdFmpB
-3veefRPdBpc1M1aUG9Sku4IpfdVR7NfdITmPaKCIi1gr+CIrJyyguTHbJb+WsgPO
-FrhnCvSZbLtrI3jDrFiA
-=GsRW
+iQIcBAEBAgAGBQJTXj8lAAoJEN0jrNd/PrOhvQkQAJDpYwiR9+o4Ee5VgXDSMPOn
+5YQJOiSu6X7msoUjxPo7ioExDlhD3x/Yuz2bXs2HwTaEbrs766vTQFJrpjh6JPCI
+LtTXKBS+EXHcvoVZlghUDDY6Q4MxJFGipxTTkpvcbQ6KsBNGHrSXur0hdwAqzcas
+c20BUPl18GtWQdp2Kv/c6TBQJKLsDLPC1odFCwEBpza0wosOOeMPF9UnbBxtg0oo
+Mp9RUmsm/NgmYZJHrG94QmNrECdO0NH7HSUB2QzsTGIsetJv528Zdp+dRSKEvK6T
+FRYhJ1UezqU7m0NeaKAuLWG9M7MIC3pMs4GFJCAcPoGOsbPKG/fT3R7Hj5/kYmd2
+7cgkTzxq/DIudCW9m4tPmwDRSzOhgG7EKAQyUwLkzPnWBKtfln8aDpGRBJC7od0n
+zBvlwiqqx3GZC1A69zwvVn2h1si2a4GdCL41L53lzrY5L68DC+bnBp9/2ua18Ir+
+ei6S7FiMLtN7eTE2lJ92TLV6R3ANRgN74ykbUka4HsHnlc7tZdKqslIDHGlibzyx
+DWZrzqShCWk/G5r8bUtJf5pKv9HO0YlBgf/2yMZYWR5nfXHjbYT9tJTV9x15T4zH
+3qDg8Xww/5yWnnD5jBzjKMqWnCy0ztnWQEdbRF6pVP0dZORk5huGR+fbW/99scCZ
+2bA1j4EjCfIFEcOW12gH
+=BD+k
 -----END PGP SIGNATURE-----
 
---EuxKj2iCbKjpUGkD--
+--FCF9ydJxlAJsfRTu--
 
---===============0723528416==
+--===============1854744908==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Content-Disposition: inline
 
 _______________________________________________
-dri-devel mailing list
-dri-devel@lists.freedesktop.org
-http://lists.freedesktop.org/mailman/listinfo/dri-devel
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0723528416==--
+--===============1854744908==--
