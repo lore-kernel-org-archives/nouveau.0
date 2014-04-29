@@ -1,14 +1,13 @@
-From: =?windows-1252?Q?Nicolas_G=F6ddel?= <mailinglists-WO/VGsxbqFypxiQzEpw4SQ@public.gmane.org>
-Subject: Re: Artifacts on external monitor with Optimus and GK107
- on Thinkpad W530
-Date: Tue, 29 Apr 2014 21:10:36 +0200
-Message-ID: <535FF92C.7090508@freakscorner.de>
-References: <535FBAFD.2010300@freakscorner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 78092] GK208M [GeForce GT 730M] (rev ff) (prog-if
+ ff) nouveau module load fail
+Date: Tue, 29 Apr 2014 19:13:40 +0000
+Message-ID: <bug-78092-8800-XdmvlQrkRi@http.bugs.freedesktop.org/>
+References: <bug-78092-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/mixed; boundary="===============2107843599=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <535FBAFD.2010300-WO/VGsxbqFypxiQzEpw4SQ@public.gmane.org>
+In-Reply-To: <bug-78092-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,70 +20,92 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
 
-as additional information here a youtube video showing the problem after cl=
-osing
-a vlc window:
-
-https://www.youtube.com/watch?v=3D-GWaEo-pEGs
-
-Am 29.04.2014 16:45, schrieb Nicolas G=F6ddel:
-> Hi there,
->
-> last week I installed Ubuntu Gnome 14.04 on my Thinkpad W530. It has the
-> following specifications:
->
-> Intel Core i7-3820QM
-> Intel HD 4000 and nVidia Quadro K2000M
-> 15,6" FHD RGB 1920x1080
->
-> With "Optimus" enabled in the BIOS, I am able to use the external monitor=
- via
-> VGA-1-2. But there are refresh problems only on the external monitor: Mou=
-se
-> traces, parts of a window remain on the screen after closing the window, =
-etc. My
-> idea was to enable VSync for the external monitor but I don't know how to=
- enable
-> this. If you say enabling VSync will not help, maybe you have an other id=
-ea to
-> avoid these refresh problems?
->
-> This is what 'glxgears' outputs (First 8 lines the glxgears window was on=
- the
-> external screen, last 3 lines the window was on the internal screen):
->
-> nicolas@tp-w530:~$ glxgears
-> Running synchronized to the vertical refresh. The framerate should be
-> approximately the same as the monitor refresh rate.
-> 14814 frames in 5.0 seconds =3D 2962.673 FPS
-> 16443 frames in 5.0 seconds =3D 3288.454 FPS
-> 15912 frames in 5.0 seconds =3D 3182.394 FPS
-> 14498 frames in 5.0 seconds =3D 2898.920 FPS
-> 13834 frames in 5.0 seconds =3D 2766.738 FPS
-> 14584 frames in 5.0 seconds =3D 2916.712 FPS
-> 14802 frames in 5.0 seconds =3D 2960.245 FPS
-> 11026 frames in 5.0 seconds =3D 2205.070 FPS
-> 299 frames in 5.0 seconds =3D 59.675 FPS
-> 299 frames in 5.0 seconds =3D 59.680 FPS
-> 299 frames in 5.0 seconds =3D 59.676 FPS
->
-> This is how I tested VSync.
->
-> Best Regards,
-> Nicolas
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
+--===============2107843599==
+Content-Type: multipart/alternative; boundary="1398798819.ABE8a81.1093"; charset="us-ascii"
 
 
--- =
+--1398798819.ABE8a81.1093
+Date: Tue, 29 Apr 2014 19:13:39 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=
-=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97=97
-Homepage: http://freakscorner.de
-Facebook: http://www.facebook.com/Bastelkeller
-Twitter: http://twitter.com/freaks_corner
+https://bugs.freedesktop.org/show_bug.cgi?id=78092
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+You should avoid bumblebee on recent kernels if you want to use nouveau.
+Nouveau  should now (as of 3.12 or 3.13, iirc) auto-suspend when not in use
+(assuming that it loads :) ). The first thing I'd do is get rid of bumblebee.
+
+I'm pretty sure this isn't your problem, since it should be getting detected as
+an optimus system, but perhaps something like
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=2677c8889a40d7404cc8fc9210cb59fdf95efa63
+would help. Or the vbios should be read from PROM but it's hitting the issue
+that keplers don't support 8-bit reads from PROM (which should be addressed in
+3.15-rc1+), see
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=6b6d97553de21cf3f7b3b7fe7e57a16ac41ee2ac
+.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1398798819.ABE8a81.1093
+Date: Tue, 29 Apr 2014 19:13:39 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - GK208M [GeForce GT 730M] (rev ff) (prog-if ff) nouveau module load fail"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78092#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - GK208M [GeForce GT 730M] (rev ff) (prog-if ff) nouveau module load fail"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78092">bug 78092</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>You should avoid bumblebee on recent kernels if you want to use nouveau.
+Nouveau  should now (as of 3.12 or 3.13, iirc) auto-suspend when not in use
+(assuming that it loads :) ). The first thing I'd do is get rid of bumblebee.
+
+I'm pretty sure this isn't your problem, since it should be getting detected as
+an optimus system, but perhaps something like
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=2677c8889a40d7404cc8fc9210cb59fdf95efa63">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=2677c8889a40d7404cc8fc9210cb59fdf95efa63</a>
+would help. Or the vbios should be read from PROM but it's hitting the issue
+that keplers don't support 8-bit reads from PROM (which should be addressed in
+3.15-rc1+), see
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=6b6d97553de21cf3f7b3b7fe7e57a16ac41ee2ac">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=6b6d97553de21cf3f7b3b7fe7e57a16ac41ee2ac</a>
+.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1398798819.ABE8a81.1093--
+
+--===============2107843599==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2107843599==--
