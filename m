@@ -1,54 +1,59 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [Nouveau] [PATCH v3 6/9] drm/nouveau/graph: enable when using
- external firmware
-Date: Tue, 29 Apr 2014 09:52:36 +1000
-Message-ID: <CACAvsv7gp=gWQTRezdSyt4qOBXZR71+dyt0qBKQknOsJ02f6ug@mail.gmail.com>
-References: <1398410396-23338-1-git-send-email-acourbot@nvidia.com>
- <1398410396-23338-7-git-send-email-acourbot@nvidia.com>
- <CACAvsv51Ju_ZqJfNU5GzzEmDzf2Fr6Xr_5yGRtfqOQRVTgvDPg@mail.gmail.com>
- <20140428065700.GB19455@ulmo>
+From: =?ISO-8859-15?Q?Nicolas_G=F6ddel?= <mailinglists-WO/VGsxbqFypxiQzEpw4SQ@public.gmane.org>
+Subject: Artifacts on external monitor with Optimus and GK107 on
+ Thinkpad W530
+Date: Tue, 29 Apr 2014 16:45:17 +0200
+Message-ID: <535FBAFD.2010300@freakscorner.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20140428065700.GB19455@ulmo>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Apr 28, 2014 at 4:57 PM, Thierry Reding
-<thierry.reding@gmail.com> wrote:
-> On Mon, Apr 28, 2014 at 12:10:27PM +1000, Ben Skeggs wrote:
->> On Fri, Apr 25, 2014 at 5:19 PM, Alexandre Courbot <acourbot@nvidia.com> wrote:
->> > nvc0_graph_ctor() would only let the graphics engine be enabled if its
->> > oclass has a proper microcode linked to it. This prevents GR from being
->> > enabled at all on chips that rely exclusively on external firmware, even
->> > though such a use-case is valid.
->> >
->> > Relax the conditions enabling the GR engine to also include the case
->> > where an external firmware has also been loaded.
->> I'm happy to take this patch as-is.  I do wonder if we should do
->> something like this though:
->>
->> if (nouveau_boolopt(device->cfgopt, "NvGrUseFW", oclass->fecs.ucode == NULL))
->>
->> Which will automatically switch to external firmware if there's no
->> internal implementation available.
->
-> I think that makes a lot of sense. Perhaps outputting a warning or so at
-> runtime when this happens would be helpful in reminding people that the
-> goal is to make the GPU run with nouveau firmware rather than external
-> firmware, and hence that there's some work left to do.
-That already happens with a "using external firmware" notice.
+Hi there,
 
->
-> Thierry
+last week I installed Ubuntu Gnome 14.04 on my Thinkpad W530. It has the
+following specifications:
+
+Intel Core i7-3820QM
+Intel HD 4000 and nVidia Quadro K2000M
+15,6" FHD RGB 1920x1080
+
+With "Optimus" enabled in the BIOS, I am able to use the external monitor via
+VGA-1-2. But there are refresh problems only on the external monitor: Mouse
+traces, parts of a window remain on the screen after closing the window, etc. My
+idea was to enable VSync for the external monitor but I don't know how to enable
+this. If you say enabling VSync will not help, maybe you have an other idea to
+avoid these refresh problems?
+
+This is what 'glxgears' outputs (First 8 lines the glxgears window was on the
+external screen, last 3 lines the window was on the internal screen):
+
+nicolas@tp-w530:~$ glxgears
+Running synchronized to the vertical refresh. The framerate should be
+approximately the same as the monitor refresh rate.
+14814 frames in 5.0 seconds = 2962.673 FPS
+16443 frames in 5.0 seconds = 3288.454 FPS
+15912 frames in 5.0 seconds = 3182.394 FPS
+14498 frames in 5.0 seconds = 2898.920 FPS
+13834 frames in 5.0 seconds = 2766.738 FPS
+14584 frames in 5.0 seconds = 2916.712 FPS
+14802 frames in 5.0 seconds = 2960.245 FPS
+11026 frames in 5.0 seconds = 2205.070 FPS
+299 frames in 5.0 seconds = 59.675 FPS
+299 frames in 5.0 seconds = 59.680 FPS
+299 frames in 5.0 seconds = 59.676 FPS
+
+This is how I tested VSync.
+
+Best Regards,
+Nicolas
