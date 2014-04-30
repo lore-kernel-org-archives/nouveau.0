@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78092] GK208M [GeForce GT 730M] (rev ff) (prog-if
  ff) nouveau module load fail
-Date: Wed, 30 Apr 2014 07:38:44 +0000
-Message-ID: <bug-78092-8800-TnwGJOyGLh@http.bugs.freedesktop.org/>
+Date: Wed, 30 Apr 2014 07:53:51 +0000
+Message-ID: <bug-78092-8800-uYstdLllZQ@http.bugs.freedesktop.org/>
 References: <bug-78092-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1798284344=="
+Content-Type: multipart/mixed; boundary="===============0744676416=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78092-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1798284344==
-Content-Type: multipart/alternative; boundary="1398843523.AaB4Ad80.13723"; charset="us-ascii"
+--===============0744676416==
+Content-Type: multipart/alternative; boundary="1398844431.D1bBE18E1.16531"; charset="us-ascii"
 
 
---1398843523.AaB4Ad80.13723
-Date: Wed, 30 Apr 2014 07:38:43 +0000
+--1398844431.D1bBE18E1.16531
+Date: Wed, 30 Apr 2014 07:53:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78092
 
---- Comment #11 from Anton Gubarkov <anton.gubarkov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I'm ok to add extra prints to the (kernel nouveau) code and provide you the
-output. just give me enough guidance.
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #11)
+> I'm ok to add extra prints to the (kernel nouveau) code and provide you the
+> output. just give me enough guidance.
+
+I need to know why nouveau_dsm_pci_probe is not returning NOUVEAU_DSM_HAS_OPT
+for the GK208 device.
+
+So check all the early exits from the function, as well as the functions it
+calls to obtain the final result. (Obviously no need to trace through the
+various acpi helpers, let's assume they're correct for now.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1398843523.AaB4Ad80.13723
-Date: Wed, 30 Apr 2014 07:38:43 +0000
+--1398844431.D1bBE18E1.16531
+Date: Wed, 30 Apr 2014 07:53:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +63,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - GK208M [GeForce GT 730M] (rev ff) (prog-if ff) nouveau module load fail"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78092#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78092#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - GK208M [GeForce GT 730M] (rev ff) (prog-if ff) nouveau module load fail"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78092">bug 78092</a>
-              from <span class="vcard"><a class="email" href="mailto:anton.gubarkov&#64;gmail.com" title="Anton Gubarkov &lt;anton.gubarkov&#64;gmail.com&gt;"> <span class="fn">Anton Gubarkov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I'm ok to add extra prints to the (kernel nouveau) code and provide you the
-output. just give me enough guidance.</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=78092#c11">comment #11</a>)
+<span class="quote">&gt; I'm ok to add extra prints to the (kernel nouveau) code and provide you the
+&gt; output. just give me enough guidance.</span >
+
+I need to know why nouveau_dsm_pci_probe is not returning NOUVEAU_DSM_HAS_OPT
+for the GK208 device.
+
+So check all the early exits from the function, as well as the functions it
+calls to obtain the final result. (Obviously no need to trace through the
+various acpi helpers, let's assume they're correct for now.)</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +91,9 @@ output. just give me enough guidance.</pre>
     </body>
 </html>
 
---1398843523.AaB4Ad80.13723--
+--1398844431.D1bBE18E1.16531--
 
---===============1798284344==
+--===============0744676416==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1798284344==--
+--===============0744676416==--
