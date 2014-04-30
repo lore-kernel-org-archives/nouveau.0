@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78106] Reported fan rpm is twice the actual value
-	(NVC0)
-Date: Wed, 30 Apr 2014 10:29:01 +0000
-Message-ID: <bug-78106-8800-TODVfLJRp7@http.bugs.freedesktop.org/>
-References: <bug-78106-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 78116] New: Auto fan speed management doesn't do
+ anything in non critical temperature range (NVC0)
+Date: Wed, 30 Apr 2014 14:45:19 +0000
+Message-ID: <bug-78116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1810224727=="
+Content-Type: multipart/mixed; boundary="===============0325330676=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78106-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,84 +19,196 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1810224727==
-Content-Type: multipart/alternative; boundary="1398853741.d42DFD1.16185"; charset="us-ascii"
+--===============0325330676==
+Content-Type: multipart/alternative; boundary="1398869119.DAcf1.9382"; charset="us-ascii"
 
 
---1398853741.d42DFD1.16185
-Date: Wed, 30 Apr 2014 10:29:01 +0000
+--1398869119.DAcf1.9382
+Date: Wed, 30 Apr 2014 14:45:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=78106
+https://bugs.freedesktop.org/show_bug.cgi?id=3D78116
 
---- Comment #3 from Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> ---
-Created attachment 98232
-  --> https://bugs.freedesktop.org/attachment.cgi?id=98232&action=edit
-Bioses
+          Priority: medium
+            Bug ID: 78116
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Auto fan speed management doesn't do anything in non
+                    critical temperature range (NVC0)
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: enhancement
+    Classification: Unclassified
+                OS: All
+          Reporter: mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-I'm attaching original bios for my card (1), bios which I modified and flashed
-under Windows (2) and the dumped one (3).
-All three seem to differ so I'm attaching them all. I hope that modifying of
-bios (lower min fan threshold from 40 to 30) is not causing this issue. Let me
-know if you need me to verify it with stock bios. You have all the bioses but I
-can verify it if it's too much trouble looking in the bios rom. I just hate
-noise ;)
+I have Gigabyte GTX 560 Ti Ultra Durable card. (Logs for this issue are sam=
+e as
+in Bug 78106)
 
-Thanks for looking into it.
+1a) When I finish booting, nouveau selects AUTO mode (pwm1_enable: 2) and s=
+et's
+the fan power to 55% (pwm1: 55).
 
--- 
+1b) Enable manual mode, set pwm1 to 100, enable auto mode.
+
+In both cases I would expect from the AUTO mode to lower PWM to go as low as
+pwm1_min if the temperature is low enough. My card temperature is 31-33 =C2=
+=B0C but
+pwm1 is never lowered in AUTO mode (neither from 55 or 100).
+
+2) On Windows pwm goes as low as pwm1_min (which is 40 by default for GTX 5=
+60
+Ti but it also works with my modded value of 30). I thought that Nvidia card
+can manage it by itself (is it really done by operating system/software?).
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1398853741.d42DFD1.16185
-Date: Wed, 30 Apr 2014 10:29:01 +0000
+--1398869119.DAcf1.9382
+Date: Wed, 30 Apr 2014 14:45:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - Auto fan speed management doesn't do anything in non =
+critical temperature range (NVC0)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78116">78116</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Auto fan speed management doesn't do anything in non critical=
+ temperature range (NVC0)
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>enhancement
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mdop&#64;seznam.cz
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+        <pre>I have Gigabyte GTX 560 Ti Ultra Durable card. (Logs for this =
+issue are same as
+in <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - Reported fan rpm is twice the actual value (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78106#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Reported fan rpm is twice the actual value (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78106">bug 78106</a>
-              from <span class="vcard"><a class="email" href="mailto:mdop&#64;seznam.cz" title="Marcel Dopita &lt;mdop&#64;seznam.cz&gt;"> <span class="fn">Marcel Dopita</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=98232" name="attach_98232" title="Bioses">attachment 98232</a> <a href="attachment.cgi?id=98232&amp;action=edit" title="Bioses">[details]</a></span>
-Bioses
+   title=3D"NEW --- - Reported fan rpm is twice the actual value (NVC0)"
+   href=3D"show_bug.cgi?id=3D78106">Bug 78106</a>)
 
-I'm attaching original bios for my card (1), bios which I modified and flashed
-under Windows (2) and the dumped one (3).
-All three seem to differ so I'm attaching them all. I hope that modifying of
-bios (lower min fan threshold from 40 to 30) is not causing this issue. Let me
-know if you need me to verify it with stock bios. You have all the bioses but I
-can verify it if it's too much trouble looking in the bios rom. I just hate
-noise ;)
+1a) When I finish booting, nouveau selects AUTO mode (pwm1_enable: 2) and s=
+et's
+the fan power to 55% (pwm1: 55).
 
-Thanks for looking into it.</pre>
+1b) Enable manual mode, set pwm1 to 100, enable auto mode.
+
+In both cases I would expect from the AUTO mode to lower PWM to go as low as
+pwm1_min if the temperature is low enough. My card temperature is 31-33 =C2=
+=B0C but
+pwm1 is never lowered in AUTO mode (neither from 55 or 100).
+
+2) On Windows pwm goes as low as pwm1_min (which is 40 by default for GTX 5=
+60
+Ti but it also works with my modded value of 30). I thought that Nvidia card
+can manage it by itself (is it really done by operating system/software?).<=
+/pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1398853741.d42DFD1.16185--
+--1398869119.DAcf1.9382--
 
---===============1810224727==
+--===============0325330676==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -109,4 +219,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1810224727==--
+--===============0325330676==--
