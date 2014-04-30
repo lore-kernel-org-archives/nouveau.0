@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78106] Reported fan rpm is twice the actual value
 	(NVC0)
-Date: Wed, 30 Apr 2014 09:03:21 +0000
-Message-ID: <bug-78106-8800-BPaPerybJC@http.bugs.freedesktop.org/>
+Date: Wed, 30 Apr 2014 09:31:09 +0000
+Message-ID: <bug-78106-8800-baqToH6tNH@http.bugs.freedesktop.org/>
 References: <bug-78106-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2014746845=="
+Content-Type: multipart/mixed; boundary="===============0312857351=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78106-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2014746845==
-Content-Type: multipart/alternative; boundary="1398848601.6EACa1.31228"; charset="us-ascii"
+--===============0312857351==
+Content-Type: multipart/alternative; boundary="1398850269.3E062.4203"; charset="us-ascii"
 
 
---1398848601.6EACa1.31228
-Date: Wed, 30 Apr 2014 09:03:21 +0000
+--1398850269.3E062.4203
+Date: Wed, 30 Apr 2014 09:31:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78106
 
---- Comment #1 from Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> ---
-Created attachment 98225
-  --> https://bugs.freedesktop.org/attachment.cgi?id=98225&action=edit
-Xorg log
+--- Comment #2 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+Hi Marcel,
+
+I was expecting to get a bug report on that much sooner. I will need to dive in
+the vbios tables again to fix this.
+
+The way fan speed is calculated is by reading the number of impulsions sent by
+the hw tachometer. The tachometer has 1/2/4 or 8 pulses per turn. I couldn't
+find information in the vbios as for how many pulses per turn I should expect.
+I made it to work for all my cards (the same value worked everywhere) and
+thought maybe NVIDIA forced manufacturers to use fans with the right number of
+pulses per rotation (although it was weird).
+
+Could you extract your vbios[0] and attach it to this bug report? It will help
+me in my quest to find the byte I'm looking for!
+
+Thanks!
+
+[0] http://nouveau.freedesktop.org/wiki/DumpingVideoBios/
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1398848601.6EACa1.31228
-Date: Wed, 30 Apr 2014 09:03:21 +0000
+--1398850269.3E062.4203
+Date: Wed, 30 Apr 2014 09:31:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +71,31 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Reported fan rpm is twice the actual value (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78106#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78106#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Reported fan rpm is twice the actual value (NVC0)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78106">bug 78106</a>
-              from <span class="vcard"><a class="email" href="mailto:mdop&#64;seznam.cz" title="Marcel Dopita &lt;mdop&#64;seznam.cz&gt;"> <span class="fn">Marcel Dopita</span></a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=98225" name="attach_98225" title="Xorg log">attachment 98225</a> <a href="attachment.cgi?id=98225&amp;action=edit" title="Xorg log">[details]</a></span>
-Xorg log</pre>
+        <pre>Hi Marcel,
+
+I was expecting to get a bug report on that much sooner. I will need to dive in
+the vbios tables again to fix this.
+
+The way fan speed is calculated is by reading the number of impulsions sent by
+the hw tachometer. The tachometer has 1/2/4 or 8 pulses per turn. I couldn't
+find information in the vbios as for how many pulses per turn I should expect.
+I made it to work for all my cards (the same value worked everywhere) and
+thought maybe NVIDIA forced manufacturers to use fans with the right number of
+pulses per rotation (although it was weird).
+
+Could you extract your vbios[0] and attach it to this bug report? It will help
+me in my quest to find the byte I'm looking for!
+
+Thanks!
+
+[0] <a href="http://nouveau.freedesktop.org/wiki/DumpingVideoBios/">http://nouveau.freedesktop.org/wiki/DumpingVideoBios/</a></pre>
         </div>
       </p>
       <hr>
@@ -76,9 +107,9 @@ Xorg log</pre>
     </body>
 </html>
 
---1398848601.6EACa1.31228--
+--1398850269.3E062.4203--
 
---===============2014746845==
+--===============0312857351==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2014746845==--
+--===============0312857351==--
