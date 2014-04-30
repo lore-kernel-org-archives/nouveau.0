@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78092] GK208M [GeForce GT 730M] (rev ff) (prog-if
- ff) nouveau module load fail
-Date: Wed, 30 Apr 2014 07:53:51 +0000
-Message-ID: <bug-78092-8800-uYstdLllZQ@http.bugs.freedesktop.org/>
-References: <bug-78092-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54700] Distorted graphics (double cursor) with
+ GeForce 4200Go (NV28)
+Date: Wed, 30 Apr 2014 08:24:52 +0000
+Message-ID: <bug-54700-8800-AzabNZTE9c@http.bugs.freedesktop.org/>
+References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0744676416=="
+Content-Type: multipart/mixed; boundary="===============1444552878=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78092-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0744676416==
-Content-Type: multipart/alternative; boundary="1398844431.D1bBE18E1.16531"; charset="us-ascii"
+--===============1444552878==
+Content-Type: multipart/alternative; boundary="1398846292.E3EE43.22650"; charset="us-ascii"
 
 
---1398844431.D1bBE18E1.16531
-Date: Wed, 30 Apr 2014 07:53:51 +0000
+--1398846292.E3EE43.22650
+Date: Wed, 30 Apr 2014 08:24:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=78092
+https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #11)
-> I'm ok to add extra prints to the (kernel nouveau) code and provide you the
-> output. just give me enough guidance.
-
-I need to know why nouveau_dsm_pci_probe is not returning NOUVEAU_DSM_HAS_OPT
-for the GK208 device.
-
-So check all the early exits from the function, as well as the functions it
-calls to obtain the final result. (Obviously no need to trace through the
-various acpi helpers, let's assume they're correct for now.)
+--- Comment #60 from FVerrac <f0rhum-GANU6spQydw@public.gmane.org> ---
+I ignore if it's related, but my Dell D800 with nv28 burts many-many-many beeps
+on boot until the grub menu displays. Feel free to ask any thing.
+Regards
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1398844431.D1bBE18E1.16531
-Date: Wed, 30 Apr 2014 07:53:51 +0000
+--1398846292.E3EE43.22650
+Date: Wed, 30 Apr 2014 08:24:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,24 +55,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - GK208M [GeForce GT 730M] (rev ff) (prog-if ff) nouveau module load fail"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78092#c12">Comment # 12</a>
+   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c60">Comment # 60</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - GK208M [GeForce GT 730M] (rev ff) (prog-if ff) nouveau module load fail"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78092">bug 78092</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
+              from <span class="vcard"><a class="email" href="mailto:f0rhum&#64;free.fr" title="FVerrac &lt;f0rhum&#64;free.fr&gt;"> <span class="fn">FVerrac</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=78092#c11">comment #11</a>)
-<span class="quote">&gt; I'm ok to add extra prints to the (kernel nouveau) code and provide you the
-&gt; output. just give me enough guidance.</span >
-
-I need to know why nouveau_dsm_pci_probe is not returning NOUVEAU_DSM_HAS_OPT
-for the GK208 device.
-
-So check all the early exits from the function, as well as the functions it
-calls to obtain the final result. (Obviously no need to trace through the
-various acpi helpers, let's assume they're correct for now.)</pre>
+        <pre>I ignore if it's related, but my Dell D800 with nv28 burts many-many-many beeps
+on boot until the grub menu displays. Feel free to ask any thing.
+Regards</pre>
         </div>
       </p>
       <hr>
@@ -91,9 +77,9 @@ various acpi helpers, let's assume they're correct for now.)</pre>
     </body>
 </html>
 
---1398844431.D1bBE18E1.16531--
+--1398846292.E3EE43.22650--
 
---===============0744676416==
+--===============1444552878==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0744676416==--
+--===============1444552878==--
