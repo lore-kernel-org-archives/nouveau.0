@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78106] Reported fan rpm is twice the actual value
-	(NVC0)
-Date: Wed, 30 Apr 2014 09:31:09 +0000
-Message-ID: <bug-78106-8800-baqToH6tNH@http.bugs.freedesktop.org/>
-References: <bug-78106-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 78092] GK208M [GeForce GT 730M] (rev ff) (prog-if
+ ff) nouveau module load fail
+Date: Wed, 30 Apr 2014 09:48:53 +0000
+Message-ID: <bug-78092-8800-RcncyqsKtC@http.bugs.freedesktop.org/>
+References: <bug-78092-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0312857351=="
+Content-Type: multipart/mixed; boundary="===============0142396823=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78106-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-78092-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,43 +21,50 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0312857351==
-Content-Type: multipart/alternative; boundary="1398850269.3E062.4203"; charset="us-ascii"
+--===============0142396823==
+Content-Type: multipart/alternative; boundary="1398851332.bd48ACB10.8454"; charset="us-ascii"
 
 
---1398850269.3E062.4203
-Date: Wed, 30 Apr 2014 09:31:09 +0000
+--1398851332.bd48ACB10.8454
+Date: Wed, 30 Apr 2014 09:48:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=78106
+https://bugs.freedesktop.org/show_bug.cgi?id=78092
 
---- Comment #2 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-Hi Marcel,
+--- Comment #13 from Anton Gubarkov <anton.gubarkov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 98227
+  --> https://bugs.freedesktop.org/attachment.cgi?id=98227&action=edit
+modified nouveau_acpi.c with printk
 
-I was expecting to get a bug report on that much sooner. I will need to dive in
-the vbios tables again to fix this.
+either I forgot my programming completely, or static int nouveau_dsm_pci_probe
+is never called. See my modified nouveau_acpi.c and module load output below.
 
-The way fan speed is calculated is by reading the number of impulsions sent by
-the hw tachometer. The tachometer has 1/2/4 or 8 pulses per turn. I couldn't
-find information in the vbios as for how many pulses per turn I should expect.
-I made it to work for all my cards (the same value worked everywhere) and
-thought maybe NVIDIA forced manufacturers to use fans with the right number of
-pulses per rotation (although it was weird).
-
-Could you extract your vbios[0] and attach it to this bug report? It will help
-me in my quest to find the byte I'm looking for!
-
-Thanks!
-
-[0] http://nouveau.freedesktop.org/wiki/DumpingVideoBios/
+[13425.965579] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x108100a1
+[13425.965581] nouveau  [  DEVICE][0000:01:00.0] Chipset: GK208 (NV108)
+[13425.965582] nouveau  [  DEVICE][0000:01:00.0] Family : NVE0
+[13425.966804] nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for image...
+[13425.966811] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+[13425.966812] nouveau  [   VBIOS][0000:01:00.0] checking PROM for image...
+[13425.966868] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+[13425.966869] nouveau  [   VBIOS][0000:01:00.0] checking ACPI for image...
+[13425.966870] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+[13425.966870] nouveau  [   VBIOS][0000:01:00.0] checking PCIROM for image...
+[13425.966871] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+[13425.966872] nouveau  [   VBIOS][0000:01:00.0] checking PLATFORM for image...
+[13425.966873] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+[13425.966874] nouveau E[   VBIOS][0000:01:00.0] unable to locate usable image
+[13425.966875] nouveau E[  DEVICE][0000:01:00.0] failed to create 0x10000001,
+-22
+[13425.966876] nouveau E[     DRM] failed to create 0x80000080, -22
+[13425.967122] nouveau: probe of 0000:01:00.0 failed with error -22
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1398850269.3E062.4203
-Date: Wed, 30 Apr 2014 09:31:09 +0000
+--1398851332.bd48ACB10.8454
+Date: Wed, 30 Apr 2014 09:48:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,32 +77,38 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Reported fan rpm is twice the actual value (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78106#c2">Comment # 2</a>
+   title="NEW --- - GK208M [GeForce GT 730M] (rev ff) (prog-if ff) nouveau module load fail"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78092#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Reported fan rpm is twice the actual value (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78106">bug 78106</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+   title="NEW --- - GK208M [GeForce GT 730M] (rev ff) (prog-if ff) nouveau module load fail"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78092">bug 78092</a>
+              from <span class="vcard"><a class="email" href="mailto:anton.gubarkov&#64;gmail.com" title="Anton Gubarkov &lt;anton.gubarkov&#64;gmail.com&gt;"> <span class="fn">Anton Gubarkov</span></a>
 </span></b>
-        <pre>Hi Marcel,
+        <pre>Created <span class=""><a href="attachment.cgi?id=98227" name="attach_98227" title="modified nouveau_acpi.c with printk">attachment 98227</a> <a href="attachment.cgi?id=98227&amp;action=edit" title="modified nouveau_acpi.c with printk">[details]</a></span>
+modified nouveau_acpi.c with printk
 
-I was expecting to get a bug report on that much sooner. I will need to dive in
-the vbios tables again to fix this.
+either I forgot my programming completely, or static int nouveau_dsm_pci_probe
+is never called. See my modified nouveau_acpi.c and module load output below.
 
-The way fan speed is calculated is by reading the number of impulsions sent by
-the hw tachometer. The tachometer has 1/2/4 or 8 pulses per turn. I couldn't
-find information in the vbios as for how many pulses per turn I should expect.
-I made it to work for all my cards (the same value worked everywhere) and
-thought maybe NVIDIA forced manufacturers to use fans with the right number of
-pulses per rotation (although it was weird).
-
-Could you extract your vbios[0] and attach it to this bug report? It will help
-me in my quest to find the byte I'm looking for!
-
-Thanks!
-
-[0] <a href="http://nouveau.freedesktop.org/wiki/DumpingVideoBios/">http://nouveau.freedesktop.org/wiki/DumpingVideoBios/</a></pre>
+[13425.965579] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x108100a1
+[13425.965581] nouveau  [  DEVICE][0000:01:00.0] Chipset: GK208 (NV108)
+[13425.965582] nouveau  [  DEVICE][0000:01:00.0] Family : NVE0
+[13425.966804] nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for image...
+[13425.966811] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+[13425.966812] nouveau  [   VBIOS][0000:01:00.0] checking PROM for image...
+[13425.966868] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+[13425.966869] nouveau  [   VBIOS][0000:01:00.0] checking ACPI for image...
+[13425.966870] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+[13425.966870] nouveau  [   VBIOS][0000:01:00.0] checking PCIROM for image...
+[13425.966871] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+[13425.966872] nouveau  [   VBIOS][0000:01:00.0] checking PLATFORM for image...
+[13425.966873] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
+[13425.966874] nouveau E[   VBIOS][0000:01:00.0] unable to locate usable image
+[13425.966875] nouveau E[  DEVICE][0000:01:00.0] failed to create 0x10000001,
+-22
+[13425.966876] nouveau E[     DRM] failed to create 0x80000080, -22
+[13425.967122] nouveau: probe of 0000:01:00.0 failed with error -22</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +120,9 @@ Thanks!
     </body>
 </html>
 
---1398850269.3E062.4203--
+--1398851332.bd48ACB10.8454--
 
---===============0312857351==
+--===============0142396823==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +133,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0312857351==--
+--===============0142396823==--
