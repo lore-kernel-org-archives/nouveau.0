@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78161] New: [NV96] Artifacts in output of fragment
+Subject: [Bug 78161] [NV96] Artifacts in output of fragment
  program containing not unrolled loops with conditional break
-Date: Thu, 01 May 2014 15:29:05 +0000
-Message-ID: <bug-78161-8800@http.bugs.freedesktop.org/>
+Date: Thu, 01 May 2014 15:29:57 +0000
+Message-ID: <bug-78161-8800-d8eyXXm48x@http.bugs.freedesktop.org/>
+References: <bug-78161-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1084794575=="
+Content-Type: multipart/mixed; boundary="===============0794382685=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-78161-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,164 +21,75 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1084794575==
-Content-Type: multipart/alternative; boundary="1398958145.eFF51a0.22614"; charset="us-ascii"
+--===============0794382685==
+Content-Type: multipart/alternative; boundary="1398958197.E6be57240.22944"; charset="us-ascii"
 
 
---1398958145.eFF51a0.22614
-Date: Thu, 1 May 2014 15:29:05 +0000
+--1398958197.E6be57240.22944
+Date: Thu, 1 May 2014 15:29:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=78161
+https://bugs.freedesktop.org/show_bug.cgi?id=3D78161
 
-          Priority: medium
-            Bug ID: 78161
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NV96] Artifacts in output of fragment program
-                    containing not unrolled loops with conditional break
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: gzregozrw-5tc4TXWwyLM@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: git
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
+--- Comment #1 from Grzegorz W=C3=B3jcik <gzregozrw-5tc4TXWwyLM@public.gmane.org> ---
+Created attachment 98302
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D98302&action=3Dedit
+dmesg
 
-Created attachment 98301
-  --> https://bugs.freedesktop.org/attachment.cgi?id=98301&action=edit
-apitrace of simple test program.
-
-Problem appear in shaders containing loops with conditional break when loop is
-not unrolled by nouveau. I checked emitted code with ST_DEBUG=tgsi
-NV50_PROG_DEBUG=1.
-Tested with Mesa 10.2.0-devel (git-475f5ff) from 2014-04-30.
-This bug exists for more than year, I first saw it in 2013-02.
-I think that artifacts appear in areas where is big difference in number of
-iterations executed for pixel before breaking from loop.
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1398958145.eFF51a0.22614
-Date: Thu, 1 May 2014 15:29:05 +0000
+--1398958197.E6be57240.22944
+Date: Thu, 1 May 2014 15:29:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] Artifacts in output of fragment program containing not unrolled loops with conditional break"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78161">78161</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NV96] Artifacts in output of fragment program containing not unrolled loops with conditional break
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>gzregozrw&#64;wp.pl
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=98301" name="attach_98301" title="apitrace of simple test program.">attachment 98301</a> <a href="attachment.cgi?id=98301&amp;action=edit" title="apitrace of simple test program.">[details]</a></span>
-apitrace of simple test program.
-
-Problem appear in shaders containing loops with conditional break when loop is
-not unrolled by nouveau. I checked emitted code with ST_DEBUG=tgsi
-NV50_PROG_DEBUG=1.
-Tested with Mesa 10.2.0-devel (git-475f5ff) from 2014-04-30.
-This bug exists for more than year, I first saw it in 2013-02.
-I think that artifacts appear in areas where is big difference in number of
-iterations executed for pixel before breaking from loop.</pre>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NV96] Artifacts in output of fragment program contai=
+ning not unrolled loops with conditional break"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78161#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NV96] Artifacts in output of fragment program contai=
+ning not unrolled loops with conditional break"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78161">bug 78161<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+gzregozrw&#64;wp.pl" title=3D"Grzegorz W=C3=B3jcik &lt;gzregozrw&#64;wp.pl&=
+gt;"> <span class=3D"fn">Grzegorz W=C3=B3jcik</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D98302"=
+ name=3D"attach_98302" title=3D"dmesg">attachment 98302</a> <a href=3D"atta=
+chment.cgi?id=3D98302&amp;action=3Dedit" title=3D"dmesg">[details]</a></spa=
+n>
+dmesg</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1398958145.eFF51a0.22614--
+--1398958197.E6be57240.22944--
 
---===============1084794575==
+--===============0794382685==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -187,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1084794575==--
+--===============0794382685==--
