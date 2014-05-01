@@ -1,93 +1,77 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69827] [NVC1] Uneven, jerky mouse movement,
- increasing CPU usage
-Date: Thu, 01 May 2014 06:21:44 +0000
-Message-ID: <bug-69827-8800-TSCXVHDPkT@http.bugs.freedesktop.org/>
-References: <bug-69827-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v3 0/9] drm/nouveau: support for GK20A, cont'd
+Date: Thu, 1 May 2014 17:11:45 +1000
+Message-ID: <CACAvsv5x6uZcTGUTa3-wBRo0sJ-557sJ_d8r0kscODhr18yzBA@mail.gmail.com>
+References: <1398410396-23338-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1621731419=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69827-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <1398410396-23338-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Fri, Apr 25, 2014 at 5:19 PM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+> Changes since v2:
+> - Enabled software class
+> - Removed unneeded changes to nouveau_accel_init()
+> - Replaced use of architecture-private pfn_to_dma() and dma_to_pfn() with
+>   the portable page_to_phys()/phys_to_page()
+page_to_phys() looks well defined and used everywhere, phys_to_page()
+not so much (including on amd64) :(
 
---===============1621731419==
-Content-Type: multipart/alternative; boundary="1398925304.bB143fa42.22558"; charset="us-ascii"
-
-
---1398925304.bB143fa42.22558
-Date: Thu, 1 May 2014 06:21:44 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=69827
-
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-As always, step 1 is "try the latest". That means kernel 3.14.x, mesa 10.1. I'm
-specifically thinking about commit 7d3428cd4b2ad51af86fdbdf8284ca38fa95e601 in
-the kernel, which fixed some lag issues for a compton user.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1398925304.bB143fa42.22558
-Date: Thu, 1 May 2014 06:21:44 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69827#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69827">bug 69827</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>As always, step 1 is &quot;try the latest&quot;. That means kernel 3.14.x, mesa 10.1. I'm
-specifically thinking about commit 7d3428cd4b2ad51af86fdbdf8284ca38fa95e601 in
-the kernel, which fixed some lag issues for a compton user.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1398925304.bB143fa42.22558--
-
---===============1621731419==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1621731419==--
+> - Fixed incorrect comment/commit log talking about bytes instead of words
+>
+> Hope this looks good! Once this gets merged the next set will be to use this
+> driver on Jetson and Venice2 boards.
+>
+> Cheers,
+>
+> Alexandre Courbot (9):
+>   drm/nouveau/bar: only ioremap BAR3 if it exists
+>   drm/nouveau/bar/nvc0: support chips without BAR3
+>   drm/nouveau/ibus: add GK20A support
+>   drm/nouveau/fb: add GK20A support
+>   drm/nouveau/fifo: add GK20A support
+>   drm/nouveau/graph: enable when using external firmware
+>   drm/nouveau/graph: pad firmware code at load time
+>   drm/nouveau/graph: add GK20A support
+>   drm/nouveau: support for probing GK20A
+>
+>  drivers/gpu/drm/nouveau/Makefile                   |   6 +
+>  drivers/gpu/drm/nouveau/core/engine/device/nve0.c  |  17 +++
+>  drivers/gpu/drm/nouveau/core/engine/fifo/gk20a.c   |  35 +++++
+>  drivers/gpu/drm/nouveau/core/engine/fifo/nve0.h    |   1 +
+>  .../gpu/drm/nouveau/core/engine/graph/ctxgk20a.c   |  53 +++++++
+>  .../gpu/drm/nouveau/core/engine/graph/ctxnvc0.h    |   9 ++
+>  .../gpu/drm/nouveau/core/engine/graph/ctxnve4.c    |  14 +-
+>  drivers/gpu/drm/nouveau/core/engine/graph/gk20a.c  |  47 ++++++
+>  drivers/gpu/drm/nouveau/core/engine/graph/nvc0.c   |  13 +-
+>  drivers/gpu/drm/nouveau/core/engine/graph/nvc0.h   |   2 +
+>  drivers/gpu/drm/nouveau/core/engine/graph/nve4.c   |   4 +-
+>  drivers/gpu/drm/nouveau/core/include/engine/fifo.h |   1 +
+>  .../gpu/drm/nouveau/core/include/engine/graph.h    |   1 +
+>  drivers/gpu/drm/nouveau/core/include/subdev/fb.h   |   1 +
+>  drivers/gpu/drm/nouveau/core/include/subdev/ibus.h |   1 +
+>  drivers/gpu/drm/nouveau/core/subdev/bar/base.c     |   6 +-
+>  drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c     | 114 +++++++-------
+>  drivers/gpu/drm/nouveau/core/subdev/fb/gk20a.c     |  56 +++++++
+>  drivers/gpu/drm/nouveau/core/subdev/fb/priv.h      |   1 +
+>  drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c  | 167 +++++++++++++++++++++
+>  drivers/gpu/drm/nouveau/core/subdev/ibus/gk20a.c   | 103 +++++++++++++
+>  21 files changed, 583 insertions(+), 69 deletions(-)
+>  create mode 100644 drivers/gpu/drm/nouveau/core/engine/fifo/gk20a.c
+>  create mode 100644 drivers/gpu/drm/nouveau/core/engine/graph/ctxgk20a.c
+>  create mode 100644 drivers/gpu/drm/nouveau/core/engine/graph/gk20a.c
+>  create mode 100644 drivers/gpu/drm/nouveau/core/subdev/fb/gk20a.c
+>  create mode 100644 drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
+>  create mode 100644 drivers/gpu/drm/nouveau/core/subdev/ibus/gk20a.c
+>
+> --
+> 1.9.2
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
