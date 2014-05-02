@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78161] [NV96] Artifacts in output of fragment
  program containing not unrolled loops with conditional break
-Date: Fri, 02 May 2014 01:44:32 +0000
-Message-ID: <bug-78161-8800-d52INEvs3N@http.bugs.freedesktop.org/>
+Date: Fri, 02 May 2014 02:01:04 +0000
+Message-ID: <bug-78161-8800-C8OLpWmIKj@http.bugs.freedesktop.org/>
 References: <bug-78161-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1675906964=="
+Content-Type: multipart/mixed; boundary="===============0859140216=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78161-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,76 +21,61 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1675906964==
-Content-Type: multipart/alternative; boundary="1398995072.bdC2Bf1.28612"; charset="us-ascii"
+--===============0859140216==
+Content-Type: multipart/alternative; boundary="1398996063.AE5d11.30777"; charset="us-ascii"
 
 
---1398995072.bdC2Bf1.28612
-Date: Fri, 2 May 2014 01:44:32 +0000
+--1398996063.AE5d11.30777
+Date: Fri, 2 May 2014 02:01:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78161
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Forcing break to not have prefixes doesn't fix things, btw, but _does_ improve
-fps by like 10%+. Weird. Perhaps the prefixes aren't such a great win beyond a
-certain number of instructions. Visually, the results are at least very
-similar, if not identical.
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Fail. Their compiler is a lot smarter than ours. (Note that I'm pretty sure
+their code starts at 0x100, which is why the branch destinations are all off.)
 
-This is the shader if OP_BREAK is added to the noPredList:
+00000000: 10008005 03f80003     mov b32 $r1 0x3f800000
+00000008: 8000000c              interp $r3 v[0x0]
+0000000c: 1000fe10              mov b32 $r4 $r63
+00000010: 10008208              mov b32 $r2 $r1
+00000014: 10008200              mov b32 $r0 $r1
+00000018: 90000615 00000780     rcp f32 $r5 $r3
+00000020: b08009fd 604107c8     set $c0 # g f32 $r4 c1[0x0]
+00000028: 10039003 00000680     (lgu $c0) bra 0x1c8
+00000030: b000080d 04204003     add f32 $r3 $r4 0x42040000
+00000038: 82010a18              interp $r6 v[0x4] $r5
+0000003c: 82020a1c              interp $r7 v[0x8] $r5
+00000040: c0060621 00000780     mul rn f32 $r8 $r3 $r6
+00000048: c02e0e0d 0486563f     mul f32 $r3 $r7 0x486563ee
+00000050: b00d0819 03f8cccf     add f32 $r6 $r4 0x3f8ccccd
+00000058: e000100d 04367003     add f32 $r3 (mul $r8 0x43670000) $r3
+00000060: c0030c0d 00000780     mul rn f32 $r3 $r6 $r3
+00000068: b000060d c0000780     presin f32 $r3 $r3
+00000070: 9000060d a0000780     cos f32 $r3 $r3
+00000078: b08107fd 60c107c8     set $c0 # g f32 $r3 c3[0x4]
+00000080: c0830809 00c00680     (lgu $c0) mul rn f32 $r2 $r4 c3[0xc]
+00000088: 10007e05 0403c680     (lgu $c0) mov b32 $r1 $r63
+00000090: 10007e01 0403c680     (lgu $c0) mov b32 $r0 $r63
+00000098: 10039003 00000680     (lgu $c0) bra 0x1c8
+000000a0: b0000811 03f80003     add f32 $r4 $r4 0x3f800000
+000000a8: b082080d 60c04780     set $r3 l f32 $r4 c3[0x8]
+000000b0: a000060d 04114780     cvt abs u32 $r3 s32 $r3
+000000b8: 303f07fd 640087c8     set $c0 # e u32 $r3 $r63
+000000c0: 10024003 00000700     (geu $c0) bra 0x120
+000000c8: b00d0001 03dccccf     add f32 $r0 $r0 0x3dcccccd
+000000d0: 1000080d 24c0c781     exit ld $r3 b32 c3[0x10]
 
-00000000: 80000000              interp $r0 v[0x0]
-00000004: 90000000              rcp f32 $r0 $r0
-00000008: 1000800d 03f80003     mov b32 $r3 0x3f800000
-00000010: 82010004              interp $r1 v[0x4] $r0
-00000014: 82020000              interp $r0 v[0x8] $r0
-00000018: 10008009 00000003     mov b32 $r2 0x0
-00000020: 40024003 00000000     breakaddr 0x120
-00000028: 10008011 04348003   B mov b32 $r4 0x43480000
-00000030: b00405fd 600187c8     set $c0 # ge f32 $r2 $r4
-00000038: 1000b003 00000100     (e $c0) bra 0x58
-00000040: 10008600              mov b32 $r0 $r3
-00000044: 10008604              mov b32 $r1 $r3
-00000048: 10000609 0403c780     mov b32 $r2 $r3
-00000050: 50000003 00000780     break
-00000058: 10000011 2400c780   B ld $r4 b32 c0[0x0]
-00000060: b00405fd 600107c8     set $c0 # g f32 $r2 $r4
-00000068: 10011003 00000100     (e $c0) bra 0x88
-00000070: 10008600              mov b32 $r0 $r3
-00000074: 10008604              mov b32 $r1 $r3
-00000078: 10000609 0403c780     mov b32 $r2 $r3
-00000080: 50000003 00000780     break
-00000088: c0000211 04367003   B mul f32 $r4 $r1 0x43670000
-00000090: b0000415 04204003     add f32 $r5 $r2 0x42040000
-00000098: c0050811 00000780     mul rn f32 $r4 $r4 $r5
-000000a0: 102e8015 0486563f     mov b32 $r5 0x486563ee
-000000a8: e0050011 00010780     add f32 $r4 (mul $r0 $r5) $r4
-000000b0: b00d0415 03f8cccf     add f32 $r5 $r2 0x3f8ccccd
-000000b8: c0050811 00000780     mul rn f32 $r4 $r4 $r5
-000000c0: b0000811 c0000780     presin f32 $r4 $r4
-000000c8: 90000811 a0000780     cos f32 $r4 $r4
-000000d0: 10088015 03f7ae17     mov b32 $r5 0x3f7ae148
-000000d8: b00509fd 600107c8     set $c0 # g f32 $r4 $r5
-000000e0: 10022003 00000100     (e $c0) bra 0x110
-000000e8: 10008005 00000003     mov b32 $r1 0x0
-000000f0: 1000800d 03f80003     mov b32 $r3 0x3f800000
-000000f8: c00a0409 03ba3d73     mul f32 $r2 $r2 0x3ba3d70a
-00000100: 10000201 0403c780     mov b32 $r0 $r1
-00000108: 50000003 00000780     break
-00000110: b0000409 03f80003   B add f32 $r2 $r2 0x3f800000
-00000118: 10005003 00000780     bra 0x28
-00000120: b00d0001 03dccccf   B add f32 $r0 $r0 0x3dcccccd
-00000128: f0000001 e0000001     exit (never) nop
-
-Next step is to see what the blob compiler does with this.
+So... I guess the next move is to write a horrendously twisted glsl program
+that even their compiler can't avoid breaks on, and see what happens.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1398995072.bdC2Bf1.28612
-Date: Fri, 2 May 2014 01:44:32 +0000
+--1398996063.AE5d11.30777
+Date: Fri, 2 May 2014 02:01:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -104,64 +89,49 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV96] Artifacts in output of fragment program containing not unrolled loops with conditional break"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78161#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78161#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV96] Artifacts in output of fragment program containing not unrolled loops with conditional break"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78161">bug 78161</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Forcing break to not have prefixes doesn't fix things, btw, but _does_ improve
-fps by like 10%+. Weird. Perhaps the prefixes aren't such a great win beyond a
-certain number of instructions. Visually, the results are at least very
-similar, if not identical.
+        <pre>Fail. Their compiler is a lot smarter than ours. (Note that I'm pretty sure
+their code starts at 0x100, which is why the branch destinations are all off.)
 
-This is the shader if OP_BREAK is added to the noPredList:
+00000000: 10008005 03f80003     mov b32 $r1 0x3f800000
+00000008: 8000000c              interp $r3 v[0x0]
+0000000c: 1000fe10              mov b32 $r4 $r63
+00000010: 10008208              mov b32 $r2 $r1
+00000014: 10008200              mov b32 $r0 $r1
+00000018: 90000615 00000780     rcp f32 $r5 $r3
+00000020: b08009fd 604107c8     set $c0 # g f32 $r4 c1[0x0]
+00000028: 10039003 00000680     (lgu $c0) bra 0x1c8
+00000030: b000080d 04204003     add f32 $r3 $r4 0x42040000
+00000038: 82010a18              interp $r6 v[0x4] $r5
+0000003c: 82020a1c              interp $r7 v[0x8] $r5
+00000040: c0060621 00000780     mul rn f32 $r8 $r3 $r6
+00000048: c02e0e0d 0486563f     mul f32 $r3 $r7 0x486563ee
+00000050: b00d0819 03f8cccf     add f32 $r6 $r4 0x3f8ccccd
+00000058: e000100d 04367003     add f32 $r3 (mul $r8 0x43670000) $r3
+00000060: c0030c0d 00000780     mul rn f32 $r3 $r6 $r3
+00000068: b000060d c0000780     presin f32 $r3 $r3
+00000070: 9000060d a0000780     cos f32 $r3 $r3
+00000078: b08107fd 60c107c8     set $c0 # g f32 $r3 c3[0x4]
+00000080: c0830809 00c00680     (lgu $c0) mul rn f32 $r2 $r4 c3[0xc]
+00000088: 10007e05 0403c680     (lgu $c0) mov b32 $r1 $r63
+00000090: 10007e01 0403c680     (lgu $c0) mov b32 $r0 $r63
+00000098: 10039003 00000680     (lgu $c0) bra 0x1c8
+000000a0: b0000811 03f80003     add f32 $r4 $r4 0x3f800000
+000000a8: b082080d 60c04780     set $r3 l f32 $r4 c3[0x8]
+000000b0: a000060d 04114780     cvt abs u32 $r3 s32 $r3
+000000b8: 303f07fd 640087c8     set $c0 # e u32 $r3 $r63
+000000c0: 10024003 00000700     (geu $c0) bra 0x120
+000000c8: b00d0001 03dccccf     add f32 $r0 $r0 0x3dcccccd
+000000d0: 1000080d 24c0c781     exit ld $r3 b32 c3[0x10]
 
-00000000: 80000000              interp $r0 v[0x0]
-00000004: 90000000              rcp f32 $r0 $r0
-00000008: 1000800d 03f80003     mov b32 $r3 0x3f800000
-00000010: 82010004              interp $r1 v[0x4] $r0
-00000014: 82020000              interp $r0 v[0x8] $r0
-00000018: 10008009 00000003     mov b32 $r2 0x0
-00000020: 40024003 00000000     breakaddr 0x120
-00000028: 10008011 04348003   B mov b32 $r4 0x43480000
-00000030: b00405fd 600187c8     set $c0 # ge f32 $r2 $r4
-00000038: 1000b003 00000100     (e $c0) bra 0x58
-00000040: 10008600              mov b32 $r0 $r3
-00000044: 10008604              mov b32 $r1 $r3
-00000048: 10000609 0403c780     mov b32 $r2 $r3
-00000050: 50000003 00000780     break
-00000058: 10000011 2400c780   B ld $r4 b32 c0[0x0]
-00000060: b00405fd 600107c8     set $c0 # g f32 $r2 $r4
-00000068: 10011003 00000100     (e $c0) bra 0x88
-00000070: 10008600              mov b32 $r0 $r3
-00000074: 10008604              mov b32 $r1 $r3
-00000078: 10000609 0403c780     mov b32 $r2 $r3
-00000080: 50000003 00000780     break
-00000088: c0000211 04367003   B mul f32 $r4 $r1 0x43670000
-00000090: b0000415 04204003     add f32 $r5 $r2 0x42040000
-00000098: c0050811 00000780     mul rn f32 $r4 $r4 $r5
-000000a0: 102e8015 0486563f     mov b32 $r5 0x486563ee
-000000a8: e0050011 00010780     add f32 $r4 (mul $r0 $r5) $r4
-000000b0: b00d0415 03f8cccf     add f32 $r5 $r2 0x3f8ccccd
-000000b8: c0050811 00000780     mul rn f32 $r4 $r4 $r5
-000000c0: b0000811 c0000780     presin f32 $r4 $r4
-000000c8: 90000811 a0000780     cos f32 $r4 $r4
-000000d0: 10088015 03f7ae17     mov b32 $r5 0x3f7ae148
-000000d8: b00509fd 600107c8     set $c0 # g f32 $r4 $r5
-000000e0: 10022003 00000100     (e $c0) bra 0x110
-000000e8: 10008005 00000003     mov b32 $r1 0x0
-000000f0: 1000800d 03f80003     mov b32 $r3 0x3f800000
-000000f8: c00a0409 03ba3d73     mul f32 $r2 $r2 0x3ba3d70a
-00000100: 10000201 0403c780     mov b32 $r0 $r1
-00000108: 50000003 00000780     break
-00000110: b0000409 03f80003   B add f32 $r2 $r2 0x3f800000
-00000118: 10005003 00000780     bra 0x28
-00000120: b00d0001 03dccccf   B add f32 $r0 $r0 0x3dcccccd
-00000128: f0000001 e0000001     exit (never) nop
-
-Next step is to see what the blob compiler does with this.</pre>
+So... I guess the next move is to write a horrendously twisted glsl program
+that even their compiler can't avoid breaks on, and see what happens.</pre>
         </div>
       </p>
       <hr>
@@ -173,9 +143,9 @@ Next step is to see what the blob compiler does with this.</pre>
     </body>
 </html>
 
---1398995072.bdC2Bf1.28612--
+--1398996063.AE5d11.30777--
 
---===============1675906964==
+--===============0859140216==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -186,4 +156,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1675906964==--
+--===============0859140216==--
