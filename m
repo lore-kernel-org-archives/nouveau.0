@@ -1,60 +1,57 @@
-From: Alexandre Courbot <acourbot@nvidia.com>
-Subject: [PATCH v4 9/9] drm/nouveau: support for probing GK20A
-Date: Fri, 2 May 2014 18:32:42 +0900
-Message-ID: <1399023162-13159-10-git-send-email-acourbot@nvidia.com>
-References: <1399023162-13159-1-git-send-email-acourbot@nvidia.com>
+From: Sid Boyce <sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
+Subject: Problem with kernels 3.15.0-rc and GF114 [GeForce GTX 560
+ Ti] (rev a1)
+Date: Fri, 02 May 2014 13:29:21 +0100
+Message-ID: <53638FA1.6020200@blueyonder.co.uk>
+Reply-To: sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1399023162-13159-1-git-send-email-acourbot@nvidia.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: gnurou@gmail.com, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Set the correct subdev/engine classes when GK20A (0xea) is probed.
+On the slipstream box I have no problems with 3.14.0 kernel.
+With 3.15.0-rc kernels, in KDE some applications fail to start - e.g 
+kmix, some like thunderbird come up but are not usable, e.g clicking to 
+display a message text, nothing happens and sometimes screens won't switch.
+slipstream:~ # lspci
+01:00.0 VGA compatible controller: NVIDIA Corporation GF114 [GeForce GTX 
+560 Ti] (rev a1)
+slipstream:~ # uname -r
+3.14.0-smp+
 
-Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
----
- drivers/gpu/drm/nouveau/core/engine/device/nve0.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+On the 2 other systems with the same openSUSE 13.2 Milestone 0 distro 
+and identical software levels and packages but different video cards 
+there is no problem - both up and running on vanilla kernel 3.15.0-rc3 
+since Monday.
+sabre:~ # lspci
+01:00.0 VGA compatible controller: NVIDIA Corporation G84 [GeForce 8600 
+GT] (rev a1)
+sabre:~ # uname -r
+3.15.0-rc3-smp+
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/device/nve0.c b/drivers/gpu/drm/nouveau/core/engine/device/nve0.c
-index 9784cbf8a9d2..964c183322a2 100644
---- a/drivers/gpu/drm/nouveau/core/engine/device/nve0.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/device/nve0.c
-@@ -156,6 +156,23 @@ nve0_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_PPP    ] = &nvc0_ppp_oclass;
- 		device->oclass[NVDEV_ENGINE_PERFMON] = &nve0_perfmon_oclass;
- 		break;
-+	case 0xea:
-+		device->cname = "GK20A";
-+		device->oclass[NVDEV_SUBDEV_MC     ] =  nvc3_mc_oclass;
-+		device->oclass[NVDEV_SUBDEV_BUS    ] =  nvc0_bus_oclass;
-+		device->oclass[NVDEV_SUBDEV_TIMER  ] = &gk20a_timer_oclass;
-+		device->oclass[NVDEV_SUBDEV_FB     ] =  gk20a_fb_oclass;
-+		device->oclass[NVDEV_SUBDEV_IBUS   ] = &gk20a_ibus_oclass;
-+		device->oclass[NVDEV_SUBDEV_INSTMEM] = nv50_instmem_oclass;
-+		device->oclass[NVDEV_SUBDEV_VM     ] = &nvc0_vmmgr_oclass;
-+		device->oclass[NVDEV_SUBDEV_BAR    ] = &nvc0_bar_oclass;
-+		device->oclass[NVDEV_ENGINE_DMAOBJ ] = &nvd0_dmaeng_oclass;
-+		device->oclass[NVDEV_ENGINE_FIFO   ] =  gk20a_fifo_oclass;
-+		device->oclass[NVDEV_ENGINE_SW     ] =  nvc0_software_oclass;
-+		device->oclass[NVDEV_ENGINE_GR     ] =  gk20a_graph_oclass;
-+		device->oclass[NVDEV_ENGINE_COPY2  ] = &nve0_copy2_oclass;
-+		device->oclass[NVDEV_ENGINE_PERFMON] = &nve0_perfmon_oclass;
-+		break;
- 	case 0xf0:
- 		device->cname = "GK110";
- 		device->oclass[NVDEV_SUBDEV_VBIOS  ] = &nouveau_bios_oclass;
+tindog:~ # lspci
+01:00.0 VGA compatible controller: NVIDIA Corporation GF119 [GeForce GT 
+610] (rev a1)
+tindog:~ # uname -r
+3.15.0-rc3-smp+
+
+On all systems the kernel config is identical.
+Regards
+Sid.
+
 -- 
-1.9.2
+Sid Boyce ... Hamradio License G3VBV, Licensed Private Pilot
+Emeritus IBM/Amdahl Mainframes and Sun/Fujitsu Servers Tech Support
+Senior Staff Specialist, Cricket Coach
+Microsoft Windows Free Zone - Linux used for all Computing Tasks
