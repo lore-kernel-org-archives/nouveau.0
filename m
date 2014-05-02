@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Fri, 02 May 2014 21:19:07 +0000
-Message-ID: <bug-54700-8800-FsX2KdSK5k@http.bugs.freedesktop.org/>
+Date: Fri, 02 May 2014 23:44:17 +0000
+Message-ID: <bug-54700-8800-52u3RngqpZ@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0769821294=="
+Content-Type: multipart/mixed; boundary="===============0357358866=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0769821294==
-Content-Type: multipart/alternative; boundary="1399065547.5AaaD4.10145"; charset="us-ascii"
+--===============0357358866==
+Content-Type: multipart/alternative; boundary="1399074257.AE7EEb3D4.387"; charset="us-ascii"
 
 
---1399065547.5AaaD4.10145
-Date: Fri, 2 May 2014 21:19:07 +0000
+--1399074257.AE7EEb3D4.387
+Date: Fri, 2 May 2014 23:44:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #65 from nv28m <nv28m-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> ---
-I've wasted a lot of time with the mmio registers to find out why things go
-slow. But it seems it's something else.
+--- Comment #66 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+BTW, interesting. In your VBIOS, it tells us to do
 
-Just loading the nvidia kernel module without starting X is enough to make
-nouveau go fast after kexec.
+0xcbf2: 7a 80 00 10 00 00 00 00 e0                     ZM_REG   R[0x100080] =
+0xe0000000
 
-I did an mmio trace while loading the module, but it only wrote 140 to 0, and
-that was all. I've checked the PCI config space, also nothing interesting.
-
-Any tips how to find out what happens?
+Which is why that bit gets lost on resume (but not on kexec, since init scripts
+don't run, since the adapter is already init'd). Good to know, that means that
+any fixup would have to be made _after_ the bios gets executed... or more
+likely, as part of the COMPUTE_MEM thing (meminit in
+core/subdev/devinit/nv20.c), which gets executed in "init script 5", which
+happens after that "init script 1" which contains the 0x100080 = 0xe0000000
+command. Although then it wouldn't happen on boot, so nevermind. Has to happen
+after the vbios executes.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1399065547.5AaaD4.10145
-Date: Fri, 2 May 2014 21:19:07 +0000
+--1399074257.AE7EEb3D4.387
+Date: Fri, 2 May 2014 23:44:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,23 +66,26 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c65">Comment # 65</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c66">Comment # 66</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:nv28m&#64;freemail.hu" title="nv28m &lt;nv28m&#64;freemail.hu&gt;"> <span class="fn">nv28m</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I've wasted a lot of time with the mmio registers to find out why things go
-slow. But it seems it's something else.
+        <pre>BTW, interesting. In your VBIOS, it tells us to do
 
-Just loading the nvidia kernel module without starting X is enough to make
-nouveau go fast after kexec.
+0xcbf2: 7a 80 00 10 00 00 00 00 e0                     ZM_REG   R[0x100080] =
+0xe0000000
 
-I did an mmio trace while loading the module, but it only wrote 140 to 0, and
-that was all. I've checked the PCI config space, also nothing interesting.
-
-Any tips how to find out what happens?</pre>
+Which is why that bit gets lost on resume (but not on kexec, since init scripts
+don't run, since the adapter is already init'd). Good to know, that means that
+any fixup would have to be made _after_ the bios gets executed... or more
+likely, as part of the COMPUTE_MEM thing (meminit in
+core/subdev/devinit/nv20.c), which gets executed in &quot;init script 5&quot;, which
+happens after that &quot;init script 1&quot; which contains the 0x100080 = 0xe0000000
+command. Although then it wouldn't happen on boot, so nevermind. Has to happen
+after the vbios executes.</pre>
         </div>
       </p>
       <hr>
@@ -91,9 +97,9 @@ Any tips how to find out what happens?</pre>
     </body>
 </html>
 
---1399065547.5AaaD4.10145--
+--1399074257.AE7EEb3D4.387--
 
---===============0769821294==
+--===============0357358866==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +110,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0769821294==--
+--===============0357358866==--
