@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Fri, 02 May 2014 17:28:32 +0000
-Message-ID: <bug-54700-8800-zrlK7XsYZr@http.bugs.freedesktop.org/>
+Date: Fri, 02 May 2014 21:19:07 +0000
+Message-ID: <bug-54700-8800-FsX2KdSK5k@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1151752748=="
+Content-Type: multipart/mixed; boundary="===============0769821294=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,54 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1151752748==
-Content-Type: multipart/alternative; boundary="1399051712.2Db2CbE4.3294"; charset="us-ascii"
+--===============0769821294==
+Content-Type: multipart/alternative; boundary="1399065547.5AaaD4.10145"; charset="us-ascii"
 
 
---1399051712.2Db2CbE4.3294
-Date: Fri, 2 May 2014 17:28:32 +0000
+--1399065547.5AaaD4.10145
+Date: Fri, 2 May 2014 21:19:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #64 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #63)
-> For the first two options I think it could be useful to grep through all
-> those dumps collected over the years and check which cards have this set.
+--- Comment #65 from nv28m <nv28m-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> ---
+I've wasted a lot of time with the mmio registers to find out why things go
+slow. But it seems it's something else.
 
-Yeah, I'll try to have a look later on.
+Just loading the nvidia kernel module without starting X is enough to make
+nouveau go fast after kexec.
 
-> 
-> Option 3 could definately tell if it's only used for a particular memory
-> configuration of this chip, or it's more general (e.g. first 2 options).
+I did an mmio trace while loading the module, but it only wrote 140 to 0, and
+that was all. I've checked the PCI config space, also nothing interesting.
 
-I've fired off a question to NVIDIA, hopefully they'll respond. Sometimes they
-respond ~immediately, other times it takes two months, but so far they haven't
-dropped anything on the floor.
-
-> 
-> By the way I've checked again my earlier claim about being slower after
-> suspend, and it's definately like that. Scrolling is more or less smooth
-> (considering the age of hardware and the resolution used) after kexec-ing
-> from nvidia to nouveau.
-> 
-> But after a suspend it's really "choppy" (same software still running,
-> nothing was changed). The speed is similarly slow after a clean boot too, so
-> it's not a suspend problem. Somewhere the handbrake needs to be released I
-> guess...
-
-Well, you may have just become the resident expert on NV2x cards. You have all
-the tools we have, and you also have the hardware, which is very hard to come
-by (a mobile NV2x). Poke around, let us know :) We hang out on #nouveau on
-irc.freenode.net if you have any questions.
+Any tips how to find out what happens?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1399051712.2Db2CbE4.3294
-Date: Fri, 2 May 2014 17:28:32 +0000
+--1399065547.5AaaD4.10145
+Date: Fri, 2 May 2014 21:19:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -82,42 +63,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c64">Comment # 64</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c65">Comment # 65</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:nv28m&#64;freemail.hu" title="nv28m &lt;nv28m&#64;freemail.hu&gt;"> <span class="fn">nv28m</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=54700#c63">comment #63</a>)
-<span class="quote">&gt; For the first two options I think it could be useful to grep through all
-&gt; those dumps collected over the years and check which cards have this set.</span >
+        <pre>I've wasted a lot of time with the mmio registers to find out why things go
+slow. But it seems it's something else.
 
-Yeah, I'll try to have a look later on.
+Just loading the nvidia kernel module without starting X is enough to make
+nouveau go fast after kexec.
 
-<span class="quote">&gt; 
-&gt; Option 3 could definately tell if it's only used for a particular memory
-&gt; configuration of this chip, or it's more general (e.g. first 2 options).</span >
+I did an mmio trace while loading the module, but it only wrote 140 to 0, and
+that was all. I've checked the PCI config space, also nothing interesting.
 
-I've fired off a question to NVIDIA, hopefully they'll respond. Sometimes they
-respond ~immediately, other times it takes two months, but so far they haven't
-dropped anything on the floor.
-
-<span class="quote">&gt; 
-&gt; By the way I've checked again my earlier claim about being slower after
-&gt; suspend, and it's definately like that. Scrolling is more or less smooth
-&gt; (considering the age of hardware and the resolution used) after kexec-ing
-&gt; from nvidia to nouveau.
-&gt; 
-&gt; But after a suspend it's really &quot;choppy&quot; (same software still running,
-&gt; nothing was changed). The speed is similarly slow after a clean boot too, so
-&gt; it's not a suspend problem. Somewhere the handbrake needs to be released I
-&gt; guess...</span >
-
-Well, you may have just become the resident expert on NV2x cards. You have all
-the tools we have, and you also have the hardware, which is very hard to come
-by (a mobile NV2x). Poke around, let us know :) We hang out on #nouveau on
-irc.freenode.net if you have any questions.</pre>
+Any tips how to find out what happens?</pre>
         </div>
       </p>
       <hr>
@@ -129,9 +91,9 @@ irc.freenode.net if you have any questions.</pre>
     </body>
 </html>
 
---1399051712.2Db2CbE4.3294--
+--1399065547.5AaaD4.10145--
 
---===============1151752748==
+--===============0769821294==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -142,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1151752748==--
+--===============0769821294==--
