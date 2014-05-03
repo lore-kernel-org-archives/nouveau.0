@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54700] Distorted graphics (double cursor) with
- GeForce 4200Go (NV28)
-Date: Sat, 03 May 2014 05:45:54 +0000
-Message-ID: <bug-54700-8800-xTNin7VmTq@http.bugs.freedesktop.org/>
-References: <bug-54700-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 78116] Auto fan speed management doesn't do anything
+ in non critical temperature range (NVC0)
+Date: Sat, 03 May 2014 15:23:45 +0000
+Message-ID: <bug-78116-8800-wGZwkJPgiX@http.bugs.freedesktop.org/>
+References: <bug-78116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0242115009=="
+Content-Type: multipart/mixed; boundary="===============0017290904=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-78116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0242115009==
-Content-Type: multipart/alternative; boundary="1399095954.408C83b4.14724"; charset="us-ascii"
+--===============0017290904==
+Content-Type: multipart/alternative; boundary="1399130625.Bc8F71.662"; charset="us-ascii"
 
 
---1399095954.408C83b4.14724
-Date: Sat, 3 May 2014 05:45:54 +0000
+--1399130625.Bc8F71.662
+Date: Sat, 3 May 2014 15:23:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54700
+https://bugs.freedesktop.org/show_bug.cgi?id=78116
 
---- Comment #68 from nv28m <nv28m-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> ---
-Yes, it was taken after several attempts, that's why it was already set. I've
-made a better dump and sent it in e-mail now. According to this it's set the
-first time it's written to.
+--- Comment #2 from Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> ---
+I'm using Arch Linux so I'm on the latest stable: 3.14.2 (3.14.2-1-ARCH).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1399095954.408C83b4.14724
-Date: Sat, 3 May 2014 05:45:54 +0000
+--1399130625.Bc8F71.662
+Date: Sat, 3 May 2014 15:23:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,17 +53,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c68">Comment # 68</a>
+   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:nv28m&#64;freemail.hu" title="nv28m &lt;nv28m&#64;freemail.hu&gt;"> <span class="fn">nv28m</span></a>
+   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
+              from <span class="vcard"><a class="email" href="mailto:mdop&#64;seznam.cz" title="Marcel Dopita &lt;mdop&#64;seznam.cz&gt;"> <span class="fn">Marcel Dopita</span></a>
 </span></b>
-        <pre>Yes, it was taken after several attempts, that's why it was already set. I've
-made a better dump and sent it in e-mail now. According to this it's set the
-first time it's written to.</pre>
+        <pre>I'm using Arch Linux so I'm on the latest stable: 3.14.2 (3.14.2-1-ARCH).</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +73,9 @@ first time it's written to.</pre>
     </body>
 </html>
 
---1399095954.408C83b4.14724--
+--1399130625.Bc8F71.662--
 
---===============0242115009==
+--===============0017290904==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0242115009==--
+--===============0017290904==--
