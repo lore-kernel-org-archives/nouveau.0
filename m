@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54700] Distorted graphics (double cursor) with
  GeForce 4200Go (NV28)
-Date: Fri, 02 May 2014 23:48:11 +0000
-Message-ID: <bug-54700-8800-gVJVmIdLmK@http.bugs.freedesktop.org/>
+Date: Sat, 03 May 2014 05:45:54 +0000
+Message-ID: <bug-54700-8800-xTNin7VmTq@http.bugs.freedesktop.org/>
 References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0169287387=="
+Content-Type: multipart/mixed; boundary="===============0242115009=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0169287387==
-Content-Type: multipart/alternative; boundary="1399074491.D4063E454.732"; charset="us-ascii"
+--===============0242115009==
+Content-Type: multipart/alternative; boundary="1399095954.408C83b4.14724"; charset="us-ascii"
 
 
---1399074491.D4063E454.732
-Date: Fri, 2 May 2014 23:48:11 +0000
+--1399095954.408C83b4.14724
+Date: Sat, 3 May 2014 05:45:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
---- Comment #67 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Even more interesting, your trace actually has
-
-[0] 1012.956817 MMIO32 R 0x100080 0xe1000000 PFB+0x80 => 0xe1000000
-[0] 1012.956820 MMIO32 W 0x100080 0xe1000000 PFB+0x80 <= 0xe1000000
-
-Which means that it _starts out_ at 0xe1000000. Was this trace done on a clean
-boot, or had the nvidia module already been loaded? The latter makes more
-sense...
+--- Comment #68 from nv28m <nv28m-Y8qEzhMunLyT9ig0jae3mg@public.gmane.org> ---
+Yes, it was taken after several attempts, that's why it was already set. I've
+made a better dump and sent it in e-mail now. According to this it's set the
+first time it's written to.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1399074491.D4063E454.732
-Date: Fri, 2 May 2014 23:48:11 +0000
+--1399095954.408C83b4.14724
+Date: Sat, 3 May 2014 05:45:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,21 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c67">Comment # 67</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c68">Comment # 68</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:nv28m&#64;freemail.hu" title="nv28m &lt;nv28m&#64;freemail.hu&gt;"> <span class="fn">nv28m</span></a>
 </span></b>
-        <pre>Even more interesting, your trace actually has
-
-[0] 1012.956817 MMIO32 R 0x100080 0xe1000000 PFB+0x80 =&gt; 0xe1000000
-[0] 1012.956820 MMIO32 W 0x100080 0xe1000000 PFB+0x80 &lt;= 0xe1000000
-
-Which means that it _starts out_ at 0xe1000000. Was this trace done on a clean
-boot, or had the nvidia module already been loaded? The latter makes more
-sense...</pre>
+        <pre>Yes, it was taken after several attempts, that's why it was already set. I've
+made a better dump and sent it in e-mail now. According to this it's set the
+first time it's written to.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +77,9 @@ sense...</pre>
     </body>
 </html>
 
---1399074491.D4063E454.732--
+--1399095954.408C83b4.14724--
 
---===============0169287387==
+--===============0242115009==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0169287387==--
+--===============0242115009==--
