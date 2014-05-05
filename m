@@ -1,81 +1,164 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH v4 0/9] drm/nouveau: support for GK20A, cont'd
-Date: Tue, 6 May 2014 10:11:27 +1000
-Message-ID: <CACAvsv4k8W_vcG3ygk_NCWttKM_A51BA8aGvK_Nqz_CmRMFjiw@mail.gmail.com>
-References: <1399023162-13159-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 51579] [NVA8] Xv shows black image on ION chipset
+Date: Mon, 05 May 2014 11:36:40 +0000
+Message-ID: <bug-51579-8800-2YLckT1OoY@http.bugs.freedesktop.org/>
+References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <1399023162-13159-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1719387332=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-51579-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, May 2, 2014 at 7:32 PM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
-> Latest patches for GK20A, taking comments received for v3 into account.
->
-> Changes since v3:
-> - use only pfn_to_page() and page_to_pfn() in GK20A's FB. These functions
->   are present on every arch and the physical address to page frame number
->   conversion is also consistently a shift of PAGE_SHIFT. This part will
->   probably be replaced by something nicer in the future anyway.
-> - fixed a warning on 64-bit architectures when printing a dma_addr_t
-> - tested compilation on x86_64 and ensured there was no error! ;)
-> - in graph, always use external firmware if no microcode is linked for the
->   graph class (instead of only relying on the NvGrUseFW parameter).
-Hey Alex,
 
-I've merged all the patches and they'll make it into the merge window for 3.16.
+--===============1719387332==
+Content-Type: multipart/alternative; boundary="1399289800.28ee3.23144"; charset="us-ascii"
 
-Thanks again,
-Ben.
 
->
-> Alexandre Courbot (9):
->   drm/nouveau/bar: only ioremap BAR3 if it exists
->   drm/nouveau/bar/nvc0: support chips without BAR3
->   drm/nouveau/ibus: add GK20A support
->   drm/nouveau/fb: add GK20A support
->   drm/nouveau/fifo: add GK20A support
->   drm/nouveau/graph: enable when using external fw
->   drm/nouveau/graph: pad firmware code at load time
->   drm/nouveau/graph: add GK20A support
->   drm/nouveau: support for probing GK20A
->
->  drivers/gpu/drm/nouveau/Makefile                   |   6 +
->  drivers/gpu/drm/nouveau/core/engine/device/nve0.c  |  17 +++
->  drivers/gpu/drm/nouveau/core/engine/fifo/gk20a.c   |  35 +++++
->  drivers/gpu/drm/nouveau/core/engine/fifo/nve0.h    |   1 +
->  .../gpu/drm/nouveau/core/engine/graph/ctxgk20a.c   |  53 +++++++
->  .../gpu/drm/nouveau/core/engine/graph/ctxnvc0.h    |   9 ++
->  .../gpu/drm/nouveau/core/engine/graph/ctxnve4.c    |  14 +-
->  drivers/gpu/drm/nouveau/core/engine/graph/gk20a.c  |  47 ++++++
->  drivers/gpu/drm/nouveau/core/engine/graph/nvc0.c   |  14 +-
->  drivers/gpu/drm/nouveau/core/engine/graph/nvc0.h   |   2 +
->  drivers/gpu/drm/nouveau/core/engine/graph/nve4.c   |   4 +-
->  drivers/gpu/drm/nouveau/core/include/engine/fifo.h |   1 +
->  .../gpu/drm/nouveau/core/include/engine/graph.h    |   1 +
->  drivers/gpu/drm/nouveau/core/include/subdev/fb.h   |   1 +
->  drivers/gpu/drm/nouveau/core/include/subdev/ibus.h |   1 +
->  drivers/gpu/drm/nouveau/core/subdev/bar/base.c     |   6 +-
->  drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c     | 114 +++++++-------
->  drivers/gpu/drm/nouveau/core/subdev/fb/gk20a.c     |  56 +++++++
->  drivers/gpu/drm/nouveau/core/subdev/fb/priv.h      |   1 +
->  drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c  | 167 +++++++++++++++++++++
->  drivers/gpu/drm/nouveau/core/subdev/ibus/gk20a.c   | 103 +++++++++++++
->  21 files changed, 584 insertions(+), 69 deletions(-)
->  create mode 100644 drivers/gpu/drm/nouveau/core/engine/fifo/gk20a.c
->  create mode 100644 drivers/gpu/drm/nouveau/core/engine/graph/ctxgk20a.c
->  create mode 100644 drivers/gpu/drm/nouveau/core/engine/graph/gk20a.c
->  create mode 100644 drivers/gpu/drm/nouveau/core/subdev/fb/gk20a.c
->  create mode 100644 drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
->  create mode 100644 drivers/gpu/drm/nouveau/core/subdev/ibus/gk20a.c
->
-> --
-> 1.9.2
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+--1399289800.28ee3.23144
+Date: Mon, 5 May 2014 11:36:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=51579
+
+--- Comment #28 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #27)
+> (In reply to comment #26)
+> > (In reply to comment #25)
+> > > I have exaclty the same problem but on different hardware, its a 9400 GT.
+> > > 
+> > > 06:00.0 VGA compatible controller: NVIDIA Corporation C79 [GeForce 9400]
+> > > (rev b1)
+> > 
+> > Actually I'm reasonably sure that this is the same hardware as the original
+> > bug reporter. Can you attach dmesg and xorg logs?
+> 
+> Can I send them to you privately via email?
+
+Please attach them here. Feel free to scrub out the lines that you don't want
+to make public. I mainly want to see the kernel cmdline + nouveau/drm log lines
++ most of the Xorg log would be nice.
+
+> 
+> > > 
+> > > I am using kernel 3.14.1, mesa3d 10.1.1 and xorg-xf86-video-nouveau 1.0.10.
+> > > 
+> > > mplayer -vo xv = black
+> > > mplayer -vo vdpau = black
+> > > mplayer -vo gl = ok
+> > > mplayer -vo gl2 = ok
+> > 
+> > Odd. VDPAU is a lot more like GL than like Xv.
+> 
+> Finally I could get Xv working, but vdpau is still not.
+> 
+> I had a problem with /dev/dri/* permissions, after fixing that, and changing
+> mplayer's configuration as documented in various forums, its still not
+> working.  But now I don't get a black screen, mplayer just stops after a few
+> frames.
+
+Does OpenGL work? What does glxinfo say? How about vdpauinfo? I'm not aware of
+any hangs. (I assume you have the fw installed... if you didn't it wouldn't
+hang, just put up lots of errors.) Have you tried multiple videos? mplayer's
+output would be good too.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1399289800.28ee3.23144
+Date: Mon, 5 May 2014 11:36:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NVA8] Xv shows black image on ION chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579#c28">Comment # 28</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NVA8] Xv shows black image on ION chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579">bug 51579</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=51579#c27">comment #27</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=51579#c26">comment #26</a>)
+&gt; &gt; (In reply to <a href="show_bug.cgi?id=51579#c25">comment #25</a>)
+&gt; &gt; &gt; I have exaclty the same problem but on different hardware, its a 9400 GT.
+&gt; &gt; &gt; 
+&gt; &gt; &gt; 06:00.0 VGA compatible controller: NVIDIA Corporation C79 [GeForce 9400]
+&gt; &gt; &gt; (rev b1)
+&gt; &gt; 
+&gt; &gt; Actually I'm reasonably sure that this is the same hardware as the original
+&gt; &gt; bug reporter. Can you attach dmesg and xorg logs?
+&gt; 
+&gt; Can I send them to you privately via email?</span >
+
+Please attach them here. Feel free to scrub out the lines that you don't want
+to make public. I mainly want to see the kernel cmdline + nouveau/drm log lines
++ most of the Xorg log would be nice.
+
+<span class="quote">&gt; 
+&gt; &gt; &gt; 
+&gt; &gt; &gt; I am using kernel 3.14.1, mesa3d 10.1.1 and xorg-xf86-video-nouveau 1.0.10.
+&gt; &gt; &gt; 
+&gt; &gt; &gt; mplayer -vo xv = black
+&gt; &gt; &gt; mplayer -vo vdpau = black
+&gt; &gt; &gt; mplayer -vo gl = ok
+&gt; &gt; &gt; mplayer -vo gl2 = ok
+&gt; &gt; 
+&gt; &gt; Odd. VDPAU is a lot more like GL than like Xv.
+&gt; 
+&gt; Finally I could get Xv working, but vdpau is still not.
+&gt; 
+&gt; I had a problem with /dev/dri/* permissions, after fixing that, and changing
+&gt; mplayer's configuration as documented in various forums, its still not
+&gt; working.  But now I don't get a black screen, mplayer just stops after a few
+&gt; frames.</span >
+
+Does OpenGL work? What does glxinfo say? How about vdpauinfo? I'm not aware of
+any hangs. (I assume you have the fw installed... if you didn't it wouldn't
+hang, just put up lots of errors.) Have you tried multiple videos? mplayer's
+output would be good too.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1399289800.28ee3.23144--
+
+--===============1719387332==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1719387332==--
