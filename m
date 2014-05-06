@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77333] [NV108] Unable to use nouveau GK208 as
- offloadsink provider
-Date: Tue, 06 May 2014 18:52:57 +0000
-Message-ID: <bug-77333-8800-AuAIooU5CG@http.bugs.freedesktop.org/>
-References: <bug-77333-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73744] [NVA8] Constant lock ups with NVIDIA GeForce
+	8400 GS
+Date: Tue, 06 May 2014 19:50:11 +0000
+Message-ID: <bug-73744-8800-poIqCuYGxa@http.bugs.freedesktop.org/>
+References: <bug-73744-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1231756364=="
+Content-Type: multipart/mixed; boundary="===============1425447579=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77333-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73744-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1231756364==
-Content-Type: multipart/alternative; boundary="1399402377.c6EDE62.7419"; charset="us-ascii"
+--===============1425447579==
+Content-Type: multipart/alternative; boundary="1399405811.BC85D71.23620"; charset="us-ascii"
 
 
---1399402377.c6EDE62.7419
-Date: Tue, 6 May 2014 18:52:57 +0000
+--1399405811.BC85D71.23620
+Date: Tue, 6 May 2014 19:50:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77333
+https://bugs.freedesktop.org/show_bug.cgi?id=73744
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Unable to use nouveau GK208 |[NV108] Unable to use
-                   |as offloadsink provider     |nouveau GK208 as
-                   |                            |offloadsink provider
-
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Oh, also, make sure to grab mesa 10.2-rc1 -- there are a bunch of fixes for
-GK208 in there (although it still won't be perfect).
+--- Comment #18 from grave_123-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org ---
+Hey, I'm still getting this issue to this day with Ubuntu 14.04
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1399402377.c6EDE62.7419
-Date: Tue, 6 May 2014 18:52:57 +0000
+--1399405811.BC85D71.23620
+Date: Tue, 6 May 2014 19:50:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,41 +48,20 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV108] Unable to use nouveau GK208 as offloadsink provider"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77333">bug 77333</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Unable to use nouveau GK208 as offloadsink provider
-           </td>
-           <td>[NV108] Unable to use nouveau GK208 as offloadsink provider
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV108] Unable to use nouveau GK208 as offloadsink provider"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77333#c7">Comment # 7</a>
+   title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV108] Unable to use nouveau GK208 as offloadsink provider"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77333">bug 77333</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NVA8] Constant lock ups with NVIDIA GeForce 8400 GS"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73744">bug 73744</a>
+              from <span class="vcard"><a class="email" href="mailto:grave_123&#64;riseup.net" title="grave_123&#64;riseup.net">grave_123&#64;riseup.net</a>
 </span></b>
-        <pre>Oh, also, make sure to grab mesa 10.2-rc1 -- there are a bunch of fixes for
-GK208 in there (although it still won't be perfect).</pre>
+        <pre>Hey, I'm still getting this issue to this day with Ubuntu 14.04</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +73,9 @@ GK208 in there (although it still won't be perfect).</pre>
     </body>
 </html>
 
---1399402377.c6EDE62.7419--
+--1399405811.BC85D71.23620--
 
---===============1231756364==
+--===============1425447579==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -116,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1231756364==--
+--===============1425447579==--
