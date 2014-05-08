@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78441] [NV46] X does not start under kernel 3.13.x
-Date: Thu, 08 May 2014 14:07:04 +0000
-Message-ID: <bug-78441-8800-RwSEGrHpgk@http.bugs.freedesktop.org/>
+Date: Thu, 08 May 2014 14:09:09 +0000
+Message-ID: <bug-78441-8800-bnfBgHapGb@http.bugs.freedesktop.org/>
 References: <bug-78441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0632319138=="
+Content-Type: multipart/mixed; boundary="===============0665286079=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0632319138==
-Content-Type: multipart/alternative; boundary="1399558024.8505205C1.18391"; charset="us-ascii"
+--===============0665286079==
+Content-Type: multipart/alternative; boundary="1399558148.D8BC471.18864"; charset="us-ascii"
 
 
---1399558024.8505205C1.18391
-Date: Thu, 8 May 2014 14:07:04 +0000
+--1399558148.D8BC471.18864
+Date: Thu, 8 May 2014 14:09:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78441
 
---- Comment #3 from aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org ---
-Created attachment 98693
-  --> https://bugs.freedesktop.org/attachment.cgi?id=98693&action=edit
-output from lspci -nn
+--- Comment #4 from aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org ---
+Booting with nouveau.config=NvMSI=0 didn't change things.  No idea what a
+"bisect" is.  Please advise...
+
+Thanks for the assistance.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1399558024.8505205C1.18391
-Date: Thu, 8 May 2014 14:07:04 +0000
+--1399558148.D8BC471.18864
+Date: Thu, 8 May 2014 14:09:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV46] X does not start under kernel 3.13.x"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78441#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78441#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV46] X does not start under kernel 3.13.x"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78441">bug 78441</a>
               from <span class="vcard"><a class="email" href="mailto:aebenjam&#64;opentext.com" title="aebenjam&#64;opentext.com">aebenjam&#64;opentext.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=98693" name="attach_98693" title="output from lspci -nn">attachment 98693</a> <a href="attachment.cgi?id=98693&amp;action=edit" title="output from lspci -nn">[details]</a></span>
-output from lspci -nn</pre>
+        <pre>Booting with nouveau.config=NvMSI=0 didn't change things.  No idea what a
+&quot;bisect&quot; is.  Please advise...
+
+Thanks for the assistance.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +78,9 @@ output from lspci -nn</pre>
     </body>
 </html>
 
---1399558024.8505205C1.18391--
+--1399558148.D8BC471.18864--
 
---===============0632319138==
+--===============0665286079==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0632319138==--
+--===============0665286079==--
