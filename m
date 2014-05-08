@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51579] [NVA8] Xv shows black image on ION chipset
-Date: Thu, 08 May 2014 11:53:25 +0000
-Message-ID: <bug-51579-8800-bf5ur82ZAL@http.bugs.freedesktop.org/>
-References: <bug-51579-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 78439] New: Display corruption when DP connector is
+	reattached
+Date: Thu, 08 May 2014 13:28:11 +0000
+Message-ID: <bug-78439-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0911307088=="
+Content-Type: multipart/mixed; boundary="===============0127322648=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51579-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,84 +19,57 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0911307088==
-Content-Type: multipart/alternative; boundary="1399550005.Ca0db3.20935"; charset="us-ascii"
+--===============0127322648==
+Content-Type: multipart/alternative; boundary="1399555692.ccBF1.9302"; charset="us-ascii"
 
 
---1399550005.Ca0db3.20935
-Date: Thu, 8 May 2014 11:53:25 +0000
+--1399555692.ccBF1.9302
+Date: Thu, 8 May 2014 13:28:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51579
+https://bugs.freedesktop.org/show_bug.cgi?id=78439
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+          Priority: medium
+            Bug ID: 78439
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Display corruption when DP connector is reattached
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|REOPENED                    |RESOLVED
-         Resolution|---                         |FIXED
+Created attachment 98687
+  --> https://bugs.freedesktop.org/attachment.cgi?id=98687&action=edit
+dmesg
 
---- Comment #30 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #29)
-> (In reply to comment #28)
-> > (In reply to comment #27)
-> > > (In reply to comment #26)
-> > > > (In reply to comment #25)
-> > > > > I am using kernel 3.14.1, mesa3d 10.1.1 and xorg-xf86-video-nouveau 1.0.10.
-> > > > > 
-> > > > > mplayer -vo xv = black
-> > > > > mplayer -vo vdpau = black
-> > > > > mplayer -vo gl = ok
-> > > > > mplayer -vo gl2 = ok
-> > > > 
-> > > > Odd. VDPAU is a lot more like GL than like Xv.
-> > > 
-> > > Finally I could get Xv working, but vdpau is still not.
-> > > 
-> > > I had a problem with /dev/dri/* permissions, after fixing that, and changing
-> > > mplayer's configuration as documented in various forums, its still not
-> > > working.  But now I don't get a black screen, mplayer just stops after a few
-> > > frames.
-> > 
-> > Does OpenGL work? What does glxinfo say? How about vdpauinfo? I'm not aware
-> > of any hangs. (I assume you have the fw installed... if you didn't it
-> > wouldn't hang, just put up lots of errors.) Have you tried multiple videos?
-> > mplayer's output would be good too.
-> 
-> 
-> Sorry, I was not very descriptive, I didn't mean that mplayer hangs, it just
-> stopped after less than a second (no video, just a few audio frames).  So I
-> guess it was decoding, but not able to output any video.
-> 
-> After spending some time, and thanks to your valuable pointers, it is more
-> or less working.
-> 
-> I didn't even have the firmware before, I found out when running vdpauinfo.
-> 
-> Right now it works in about 10% of the cases.  For some files it doesn't
-> work at all.  The ones that work break with some video filters (for example,
-> -vf pp=de).  It this documented somewhere? I would like a list of what works
-> and what doesn't.
+When I unplug and replug DP connector the screen becomes corrupted (until I
+restart X).
 
-vf + vdpau generally don't work. If you're looking for deinterlacing, the
-latest mesa (10.2-rc1) should have support for it (via DEINTERLACE_TEMPORAL),
-you can turn it on with "mplayer -vo vdpau:deint=3" IIRC. I do recall the black
-bars being weird when you do that though, but that is an mplayer-only artifact,
-apparently.
+I attached dmesg file. At 266s I plug DP connector, so that part of dmesg
+corresponds to screen corruption. Then at 386s I restart X, so that part
+corresponds to the working state.
 
-Note that VDPAU is Video Decoding + Presentation. So if you're seeing high cpu
-usage, it's probably just doing the presentation and not the decoding (for
-which you don't need firmware, btw). Make sure you're using the appropriate
-codec (e.g. -vc ffh264vdpau). See
-http://nouveau.freedesktop.org/wiki/VideoAcceleration/#usingvdpau
+I suppose nouveau DDX is doing something wrong because this only happens with
+X. E.g. everything is fine if I start Wayland.
+
+I'm running:
+Linux kernel:        3.14.1
+xf86-video-nouveau:    1.0.10
+xorg-server:        1.15.0
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1399550005.Ca0db3.20935
-Date: Thu, 8 May 2014 11:53:25 +0000
+--1399555692.ccBF1.9302
+Date: Thu, 8 May 2014 13:28:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -105,99 +77,112 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVA8] Xv shows black image on ION chipset"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579">bug 51579</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>REOPENED
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Display corruption when DP connector is reattached"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78439">78439</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Display corruption when DP connector is reattached
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>andrius&#64;stikonas.eu
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVA8] Xv shows black image on ION chipset"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579#c30">Comment # 30</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVA8] Xv shows black image on ION chipset"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579">bug 51579</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=51579#c29">comment #29</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=51579#c28">comment #28</a>)
-&gt; &gt; (In reply to <a href="show_bug.cgi?id=51579#c27">comment #27</a>)
-&gt; &gt; &gt; (In reply to <a href="show_bug.cgi?id=51579#c26">comment #26</a>)
-&gt; &gt; &gt; &gt; (In reply to <a href="show_bug.cgi?id=51579#c25">comment #25</a>)
-&gt; &gt; &gt; &gt; &gt; I am using kernel 3.14.1, mesa3d 10.1.1 and xorg-xf86-video-nouveau 1.0.10.
-&gt; &gt; &gt; &gt; &gt; 
-&gt; &gt; &gt; &gt; &gt; mplayer -vo xv = black
-&gt; &gt; &gt; &gt; &gt; mplayer -vo vdpau = black
-&gt; &gt; &gt; &gt; &gt; mplayer -vo gl = ok
-&gt; &gt; &gt; &gt; &gt; mplayer -vo gl2 = ok
-&gt; &gt; &gt; &gt; 
-&gt; &gt; &gt; &gt; Odd. VDPAU is a lot more like GL than like Xv.
-&gt; &gt; &gt; 
-&gt; &gt; &gt; Finally I could get Xv working, but vdpau is still not.
-&gt; &gt; &gt; 
-&gt; &gt; &gt; I had a problem with /dev/dri/* permissions, after fixing that, and changing
-&gt; &gt; &gt; mplayer's configuration as documented in various forums, its still not
-&gt; &gt; &gt; working.  But now I don't get a black screen, mplayer just stops after a few
-&gt; &gt; &gt; frames.
-&gt; &gt; 
-&gt; &gt; Does OpenGL work? What does glxinfo say? How about vdpauinfo? I'm not aware
-&gt; &gt; of any hangs. (I assume you have the fw installed... if you didn't it
-&gt; &gt; wouldn't hang, just put up lots of errors.) Have you tried multiple videos?
-&gt; &gt; mplayer's output would be good too.
-&gt; 
-&gt; 
-&gt; Sorry, I was not very descriptive, I didn't mean that mplayer hangs, it just
-&gt; stopped after less than a second (no video, just a few audio frames).  So I
-&gt; guess it was decoding, but not able to output any video.
-&gt; 
-&gt; After spending some time, and thanks to your valuable pointers, it is more
-&gt; or less working.
-&gt; 
-&gt; I didn't even have the firmware before, I found out when running vdpauinfo.
-&gt; 
-&gt; Right now it works in about 10% of the cases.  For some files it doesn't
-&gt; work at all.  The ones that work break with some video filters (for example,
-&gt; -vf pp=de).  It this documented somewhere? I would like a list of what works
-&gt; and what doesn't.</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=98687" name="attach_98687" title="dmesg">attachment 98687</a> <a href="attachment.cgi?id=98687&amp;action=edit" title="dmesg">[details]</a></span>
+dmesg
 
-vf + vdpau generally don't work. If you're looking for deinterlacing, the
-latest mesa (10.2-rc1) should have support for it (via DEINTERLACE_TEMPORAL),
-you can turn it on with &quot;mplayer -vo vdpau:deint=3&quot; IIRC. I do recall the black
-bars being weird when you do that though, but that is an mplayer-only artifact,
-apparently.
+When I unplug and replug DP connector the screen becomes corrupted (until I
+restart X).
 
-Note that VDPAU is Video Decoding + Presentation. So if you're seeing high cpu
-usage, it's probably just doing the presentation and not the decoding (for
-which you don't need firmware, btw). Make sure you're using the appropriate
-codec (e.g. -vc ffh264vdpau). See
-<a href="http://nouveau.freedesktop.org/wiki/VideoAcceleration/#usingvdpau">http://nouveau.freedesktop.org/wiki/VideoAcceleration/#usingvdpau</a></pre>
+I attached dmesg file. At 266s I plug DP connector, so that part of dmesg
+corresponds to screen corruption. Then at 386s I restart X, so that part
+corresponds to the working state.
+
+I suppose nouveau DDX is doing something wrong because this only happens with
+X. E.g. everything is fine if I start Wayland.
+
+I'm running:
+Linux kernel:        3.14.1
+xf86-video-nouveau:    1.0.10
+xorg-server:        1.15.0</pre>
         </div>
       </p>
       <hr>
@@ -209,9 +194,9 @@ codec (e.g. -vc ffh264vdpau). See
     </body>
 </html>
 
---1399550005.Ca0db3.20935--
+--1399555692.ccBF1.9302--
 
---===============0911307088==
+--===============0127322648==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -222,4 +207,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0911307088==--
+--===============0127322648==--
