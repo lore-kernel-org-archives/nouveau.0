@@ -1,89 +1,35 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78116] Auto fan speed management doesn't do anything
- in non critical temperature range (NVC0)
-Date: Fri, 09 May 2014 07:31:53 +0000
-Message-ID: <bug-78116-8800-eWzfPOYMM8@http.bugs.freedesktop.org/>
-References: <bug-78116-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] drm/gk20a/fb: fix NULL dereference
+Date: Fri, 9 May 2014 16:57:48 +0900
+Message-ID: <1399622268-16940-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1330345026=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+gk20a_ram_put() can be called with a NULL nouveau_mem in case of error.
+Handle that case the way is it done in other RAM drivers.
 
---===============1330345026==
-Content-Type: multipart/alternative; boundary="1399620713.C5351.15530"; charset="us-ascii"
+Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-
---1399620713.C5351.15530
-Date: Fri, 9 May 2014 07:31:53 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=78116
-
---- Comment #4 from Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> ---
-Yes, manual control works and fan speed does change accordingly.
-
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c b/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
+index 403c88f07b99..7effd1a63458 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
+@@ -36,6 +36,8 @@ gk20a_ram_put(struct nouveau_fb *pfb, struct nouveau_mem **pmem)
+ 	int i;
+ 
+ 	*pmem = NULL;
++	if (unlikely(mem == NULL))
++		return;
+ 
+ 	for (i = 0; i < mem->size; i++) {
+ 		struct page *page;
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1399620713.C5351.15530
-Date: Fri, 9 May 2014 07:31:53 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
-              from <span class="vcard"><a class="email" href="mailto:mdop&#64;seznam.cz" title="Marcel Dopita &lt;mdop&#64;seznam.cz&gt;"> <span class="fn">Marcel Dopita</span></a>
-</span></b>
-        <pre>Yes, manual control works and fan speed does change accordingly.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1399620713.C5351.15530--
-
---===============1330345026==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1330345026==--
+1.9.2
