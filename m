@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78441] [NV46] X does not start under kernel 3.13.x
-Date: Thu, 08 May 2014 14:23:19 +0000
-Message-ID: <bug-78441-8800-9FSdvRnT2e@http.bugs.freedesktop.org/>
-References: <bug-78441-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 78116] Auto fan speed management doesn't do anything
+ in non critical temperature range (NVC0)
+Date: Fri, 09 May 2014 07:31:53 +0000
+Message-ID: <bug-78116-8800-eWzfPOYMM8@http.bugs.freedesktop.org/>
+References: <bug-78116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2114927984=="
+Content-Type: multipart/mixed; boundary="===============1330345026=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-78116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2114927984==
-Content-Type: multipart/alternative; boundary="1399558999.fbFdB0001.22089"; charset="us-ascii"
+--===============1330345026==
+Content-Type: multipart/alternative; boundary="1399620713.C5351.15530"; charset="us-ascii"
 
 
---1399558999.fbFdB0001.22089
-Date: Thu, 8 May 2014 14:23:18 +0000
+--1399620713.C5351.15530
+Date: Fri, 9 May 2014 07:31:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=78441
+https://bugs.freedesktop.org/show_bug.cgi?id=78116
 
---- Comment #6 from aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org ---
-Gah, very sorry - the G86 is from my desktop.  (Read: I'm an idiot.)
-
-The laptop, obviously, shows:  "01:00.0 VGA compatible controller: NVIDIA
-Corporation G72M [Quadro NVS 110M/GeForce Go 7300] (rev a1)"   Very sorry for
-the red herring...
-
-I'll try to find time to try a git bisect, but my experience with compiling
-linux kernels directly dates back to 2.4.x, if not prior, and really I'm a bit
-lost at that level.  ie. I might spend a lot of time with very little to show
-for it.
-
-I'm open to suggestions... and thanks again for the attention.
+--- Comment #4 from Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> ---
+Yes, manual control works and fan speed does change accordingly.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1399558999.fbFdB0001.22089
-Date: Thu, 8 May 2014 14:23:19 +0000
+--1399620713.C5351.15530
+Date: Fri, 9 May 2014 07:31:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,26 +53,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV46] X does not start under kernel 3.13.x"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78441#c6">Comment # 6</a>
+   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV46] X does not start under kernel 3.13.x"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78441">bug 78441</a>
-              from <span class="vcard"><a class="email" href="mailto:aebenjam&#64;opentext.com" title="aebenjam&#64;opentext.com">aebenjam&#64;opentext.com</a>
+   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
+              from <span class="vcard"><a class="email" href="mailto:mdop&#64;seznam.cz" title="Marcel Dopita &lt;mdop&#64;seznam.cz&gt;"> <span class="fn">Marcel Dopita</span></a>
 </span></b>
-        <pre>Gah, very sorry - the G86 is from my desktop.  (Read: I'm an idiot.)
-
-The laptop, obviously, shows:  &quot;01:00.0 VGA compatible controller: NVIDIA
-Corporation G72M [Quadro NVS 110M/GeForce Go 7300] (rev a1)&quot;   Very sorry for
-the red herring...
-
-I'll try to find time to try a git bisect, but my experience with compiling
-linux kernels directly dates back to 2.4.x, if not prior, and really I'm a bit
-lost at that level.  ie. I might spend a lot of time with very little to show
-for it.
-
-I'm open to suggestions... and thanks again for the attention.</pre>
+        <pre>Yes, manual control works and fan speed does change accordingly.</pre>
         </div>
       </p>
       <hr>
@@ -94,9 +73,9 @@ I'm open to suggestions... and thanks again for the attention.</pre>
     </body>
 </html>
 
---1399558999.fbFdB0001.22089--
+--1399620713.C5351.15530--
 
---===============2114927984==
+--===============1330345026==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -107,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2114927984==--
+--===============1330345026==--
