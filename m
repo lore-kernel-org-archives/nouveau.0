@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78543] New: NV28M running at 1/8th GPU clock when
+Subject: [Bug 78544] New: NV28M running at 1/8th GPU clock when
 	using nouveau
-Date: Sat, 10 May 2014 20:28:46 +0000
-Message-ID: <bug-78543-8800@http.bugs.freedesktop.org/>
+Date: Sat, 10 May 2014 20:29:05 +0000
+Message-ID: <bug-78544-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0341398733=="
+Content-Type: multipart/mixed; boundary="===============1821404582=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,19 +19,19 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0341398733==
-Content-Type: multipart/alternative; boundary="1399753726.B4eD8881.5079"; charset="us-ascii"
+--===============1821404582==
+Content-Type: multipart/alternative; boundary="1399753745.b31b1.5118"; charset="us-ascii"
 
 
---1399753726.B4eD8881.5079
-Date: Sat, 10 May 2014 20:28:46 +0000
+--1399753745.b31b1.5118
+Date: Sat, 10 May 2014 20:29:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=78543
+https://bugs.freedesktop.org/show_bug.cgi?id=78544
 
           Priority: medium
-            Bug ID: 78543
+            Bug ID: 78544
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
            Summary: NV28M running at 1/8th GPU clock when using nouveau
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
@@ -183,8 +183,8 @@ if I redirect/not with nouveau?
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1399753726.B4eD8881.5079
-Date: Sat, 10 May 2014 20:28:46 +0000
+--1399753745.b31b1.5118
+Date: Sat, 10 May 2014 20:29:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -204,7 +204,7 @@ Content-Type: text/html; charset="UTF-8"
           <td><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - NV28M running at 1/8th GPU clock when using nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78543">78543</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78544">78544</a>
           </td>
         </tr>
 
@@ -428,9 +428,9 @@ if I redirect/not with nouveau?</pre>
     </body>
 </html>
 
---1399753726.B4eD8881.5079--
+--1399753745.b31b1.5118--
 
---===============0341398733==
+--===============1821404582==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -441,4 +441,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0341398733==--
+--===============1821404582==--
