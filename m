@@ -1,45 +1,90 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH] drm/gk20a/fb: fix NULL dereference
-Date: Sat, 10 May 2014 09:49:29 +1000
-Message-ID: <CACAvsv7vB_xgnOESk_Oy0SmwF8kK+6gGP-+TCSNSiXzguCLB=g@mail.gmail.com>
-References: <1399622268-16940-1-git-send-email-acourbot@nvidia.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nv50: fix setting of texture ms info to be
+	per-stage
+Date: Fri,  9 May 2014 23:19:05 -0400
+Message-ID: <1399691945-26014-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <1399622268-16940-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: "10.1 10.2" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, May 9, 2014 at 5:57 PM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
-> gk20a_ram_put() can be called with a NULL nouveau_mem in case of error.
-> Handle that case the way is it done in other RAM drivers.
-Got it, thanks!
+Different textures may be bound to each slot for each stage. So we need
+to be able to upload ms parameters for each one without stages
+overwriting each other.
 
->
-> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c b/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
-> index 403c88f07b99..7effd1a63458 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
-> @@ -36,6 +36,8 @@ gk20a_ram_put(struct nouveau_fb *pfb, struct nouveau_mem **pmem)
->         int i;
->
->         *pmem = NULL;
-> +       if (unlikely(mem == NULL))
-> +               return;
->
->         for (i = 0; i < mem->size; i++) {
->                 struct page *page;
-> --
-> 1.9.2
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "10.1 10.2" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+---
+ src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp |  4 ++++
+ src/gallium/drivers/nouveau/nv50/nv50_context.h               | 10 +++++-----
+ src/gallium/drivers/nouveau/nv50/nv50_tex.c                   |  2 +-
+ 3 files changed, 10 insertions(+), 6 deletions(-)
+
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp
+index eafc0a7..63db1d7 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp
+@@ -591,6 +591,10 @@ void NV50LoweringPreSSA::loadTexMsInfo(uint32_t off, Value **ms,
+    Value *tmp = new_LValue(func, FILE_GPR);
+    uint8_t b = prog->driver->io.resInfoCBSlot;
+    off += prog->driver->io.suInfoBase;
++   if (prog->getType() > Program::TYPE_VERTEX)
++      off += 16 * 2 * 4;
++   if (prog->getType() > Program::TYPE_GEOMETRY)
++      off += 16 * 2 * 4;
+    *ms_x = bld.mkLoadv(TYPE_U32, bld.mkSymbol(
+                              FILE_MEMORY_CONST, b, TYPE_U32, off + 0), NULL);
+    *ms_y = bld.mkLoadv(TYPE_U32, bld.mkSymbol(
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_context.h b/src/gallium/drivers/nouveau/nv50/nv50_context.h
+index b776dee..3b7cb18 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_context.h
++++ b/src/gallium/drivers/nouveau/nv50/nv50_context.h
+@@ -78,16 +78,16 @@
+ /* 8 user clip planes, at 4 32-bit floats each */
+ #define NV50_CB_AUX_UCP_OFFSET    0x0000
+ #define NV50_CB_AUX_UCP_SIZE      (8 * 4 * 4)
+-/* 256 textures, each with ms_x, ms_y u32 pairs */
++/* 16 textures * 3 shaders, each with ms_x, ms_y u32 pairs */
+ #define NV50_CB_AUX_TEX_MS_OFFSET 0x0080
+-#define NV50_CB_AUX_TEX_MS_SIZE   (256 * 2 * 4)
++#define NV50_CB_AUX_TEX_MS_SIZE   (16 * 3 * 2 * 4)
+ /* For each MS level (4), 8 sets of 32-bit integer pairs sample offsets */
+-#define NV50_CB_AUX_MS_OFFSET     0x880
++#define NV50_CB_AUX_MS_OFFSET     0x200
+ #define NV50_CB_AUX_MS_SIZE       (4 * 8 * 4 * 2)
+ /* Sample position pairs for the current output MS level */
+-#define NV50_CB_AUX_SAMPLE_OFFSET 0x980
++#define NV50_CB_AUX_SAMPLE_OFFSET 0x300
+ #define NV50_CB_AUX_SAMPLE_OFFSET_SIZE (4 * 8 * 2)
+-/* next spot: 0x9c0 */
++/* next spot: 0x340 */
+ /* 4 32-bit floats for the vertex runout, put at the end */
+ #define NV50_CB_AUX_RUNOUT_OFFSET (NV50_CB_AUX_SIZE - 0x10)
+ 
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_tex.c b/src/gallium/drivers/nouveau/nv50/nv50_tex.c
+index 5cfce3a..0d2604e 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_tex.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_tex.c
+@@ -286,7 +286,7 @@ nv50_validate_tic(struct nv50_context *nv50, int s)
+    }
+    if (nv50->num_textures[s]) {
+       BEGIN_NV04(push, NV50_3D(CB_ADDR), 1);
+-      PUSH_DATA (push, (NV50_CB_AUX_TEX_MS_OFFSET << (8 - 2)) | NV50_CB_AUX);
++      PUSH_DATA (push, ((NV50_CB_AUX_TEX_MS_OFFSET + 16 * s * 2 * 4) << (8 - 2)) | NV50_CB_AUX);
+       BEGIN_NI04(push, NV50_3D(CB_DATA(0)), nv50->num_textures[s] * 2);
+       for (i = 0; i < nv50->num_textures[s]; i++) {
+          struct nv50_tic_entry *tic = nv50_tic_entry(nv50->textures[s][i]);
+-- 
+1.8.5.5
