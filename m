@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78116] Auto fan speed management doesn't do anything
  in non critical temperature range (NVC0)
-Date: Sat, 10 May 2014 09:21:37 +0000
-Message-ID: <bug-78116-8800-jTwoZSfX2p@http.bugs.freedesktop.org/>
+Date: Sat, 10 May 2014 13:12:58 +0000
+Message-ID: <bug-78116-8800-bhyslYzaHu@http.bugs.freedesktop.org/>
 References: <bug-78116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1202584016=="
+Content-Type: multipart/mixed; boundary="===============0270644161=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1202584016==
-Content-Type: multipart/alternative; boundary="1399713697.eBE2E02.23282"; charset="us-ascii"
+--===============0270644161==
+Content-Type: multipart/alternative; boundary="1399727578.04e3D41.28360"; charset="us-ascii"
 
 
---1399713697.eBE2E02.23282
-Date: Sat, 10 May 2014 09:21:37 +0000
+--1399727578.04e3D41.28360
+Date: Sat, 10 May 2014 13:12:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78116
 
---- Comment #5 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-(In reply to comment #4)
-> Yes, manual control works and fan speed does change accordingly.
+--- Comment #6 from Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> ---
+Created attachment 98820
+  --> https://bugs.freedesktop.org/attachment.cgi?id=98820&action=edit
+dmesg with PTHERM=debug
 
-Can you load nouveau with the following parameter and send us the kernel logs?
-
-debug="PTHERM=debug"
+Boot with debug parameter, after which I tried case 1b) (switching to manual
+mode, changing pwm1 to 100 and switching back to automatic).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1399713697.eBE2E02.23282
-Date: Sat, 10 May 2014 09:21:37 +0000
+--1399727578.04e3D41.28360
+Date: Sat, 10 May 2014 13:12:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,19 +59,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+              from <span class="vcard"><a class="email" href="mailto:mdop&#64;seznam.cz" title="Marcel Dopita &lt;mdop&#64;seznam.cz&gt;"> <span class="fn">Marcel Dopita</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=78116#c4">comment #4</a>)
-<span class="quote">&gt; Yes, manual control works and fan speed does change accordingly.</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=98820" name="attach_98820" title="dmesg with PTHERM=debug">attachment 98820</a> <a href="attachment.cgi?id=98820&amp;action=edit" title="dmesg with PTHERM=debug">[details]</a></span>
+dmesg with PTHERM=debug
 
-Can you load nouveau with the following parameter and send us the kernel logs?
-
-debug=&quot;PTHERM=debug&quot;</pre>
+Boot with debug parameter, after which I tried case 1b) (switching to manual
+mode, changing pwm1 to 100 and switching back to automatic).</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +82,9 @@ debug=&quot;PTHERM=debug&quot;</pre>
     </body>
 </html>
 
---1399713697.eBE2E02.23282--
+--1399727578.04e3D41.28360--
 
---===============1202584016==
+--===============0270644161==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1202584016==--
+--===============0270644161==--
