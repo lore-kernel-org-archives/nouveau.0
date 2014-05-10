@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78116] Auto fan speed management doesn't do anything
  in non critical temperature range (NVC0)
-Date: Sat, 10 May 2014 20:42:17 +0000
-Message-ID: <bug-78116-8800-qq8nTXFqCc@http.bugs.freedesktop.org/>
+Date: Sat, 10 May 2014 21:00:57 +0000
+Message-ID: <bug-78116-8800-WTClmkce78@http.bugs.freedesktop.org/>
 References: <bug-78116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1276890905=="
+Content-Type: multipart/mixed; boundary="===============0847006585=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1276890905==
-Content-Type: multipart/alternative; boundary="1399754537.aE75C1.7021"; charset="us-ascii"
+--===============0847006585==
+Content-Type: multipart/alternative; boundary="1399755657.D6Ab2.9916"; charset="us-ascii"
 
 
---1399754537.aE75C1.7021
-Date: Sat, 10 May 2014 20:42:17 +0000
+--1399755657.D6Ab2.9916
+Date: Sat, 10 May 2014 21:00:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78116
 
---- Comment #8 from Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> ---
-I already attached my bios to bug 78106 if that's ok.
+--- Comment #9 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+(In reply to comment #8)
+> I already attached my bios to bug 78106 if that's ok.
+
+Great, thanks, I'll have a look at both bugs tomorrow :)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1399754537.aE75C1.7021
-Date: Sat, 10 May 2014 20:42:17 +0000
+--1399755657.D6Ab2.9916
+Date: Sat, 10 May 2014 21:00:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,17 +57,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
-              from <span class="vcard"><a class="email" href="mailto:mdop&#64;seznam.cz" title="Marcel Dopita &lt;mdop&#64;seznam.cz&gt;"> <span class="fn">Marcel Dopita</span></a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>I already attached my bios to <a class="bz_bug_link 
+        <pre>(In reply to <a href="show_bug.cgi?id=78116#c8">comment #8</a>)
+<span class="quote">&gt; I already attached my bios to <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Reported fan rpm is twice the actual value (NVC0)"
-   href="show_bug.cgi?id=78106">bug 78106</a> if that's ok.</pre>
+   href="show_bug.cgi?id=78106">bug 78106</a> if that's ok.</span >
+
+Great, thanks, I'll have a look at both bugs tomorrow :)</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +82,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1399754537.aE75C1.7021--
+--1399755657.D6Ab2.9916--
 
---===============1276890905==
+--===============0847006585==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1276890905==--
+--===============0847006585==--
