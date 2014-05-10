@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78530] Memory corruption on Lenovo t440p with runpm
-Date: Sat, 10 May 2014 18:24:11 +0000
-Message-ID: <bug-78530-8800-hoPhMXJG6e@http.bugs.freedesktop.org/>
+Date: Sat, 10 May 2014 18:25:31 +0000
+Message-ID: <bug-78530-8800-2HtiNDcicV@http.bugs.freedesktop.org/>
 References: <bug-78530-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1130138946=="
+Content-Type: multipart/mixed; boundary="===============0477009479=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78530-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1130138946==
-Content-Type: multipart/alternative; boundary="1399746251.EE5d1.16389"; charset="us-ascii"
+--===============0477009479==
+Content-Type: multipart/alternative; boundary="1399746331.baF3201.16657"; charset="us-ascii"
 
 
---1399746251.EE5d1.16389
-Date: Sat, 10 May 2014 18:24:11 +0000
+--1399746331.baF3201.16657
+Date: Sat, 10 May 2014 18:25:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78530
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Just to confirm -- this happens without bumblebee as well, right?
-
-Does it happen with the blob driver?
+--- Comment #3 from Nikolay Amiantov <nikoamia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This happens even without any drivers at all: just acpi_call to make _PS3, _PS0
+calls.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1399746251.EE5d1.16389
-Date: Sat, 10 May 2014 18:24:11 +0000
+--1399746331.baF3201.16657
+Date: Sat, 10 May 2014 18:25:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +54,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Memory corruption on Lenovo t440p with runpm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78530#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78530#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Memory corruption on Lenovo t440p with runpm"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78530">bug 78530</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:nikoamia&#64;gmail.com" title="Nikolay Amiantov &lt;nikoamia&#64;gmail.com&gt;"> <span class="fn">Nikolay Amiantov</span></a>
 </span></b>
-        <pre>Just to confirm -- this happens without bumblebee as well, right?
-
-Does it happen with the blob driver?</pre>
+        <pre>This happens even without any drivers at all: just acpi_call to make _PS3, _PS0
+calls.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +74,9 @@ Does it happen with the blob driver?</pre>
     </body>
 </html>
 
---1399746251.EE5d1.16389--
+--1399746331.baF3201.16657--
 
---===============1130138946==
+--===============0477009479==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1130138946==--
+--===============0477009479==--
