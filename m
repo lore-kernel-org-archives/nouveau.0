@@ -1,61 +1,59 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH] nv50,
-	nvc0: fix blit 3d path for 1d array textures
-Date: Mon, 12 May 2014 09:21:30 +1000
-Message-ID: <CACAvsv4Ozm_uCPEszuAxtnZiC6PVPUnCZA7Z5urvNPti0E6cRg@mail.gmail.com>
-References: <1399758786-29022-1-git-send-email-imirkin@alum.mit.edu>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] nv50/ir: make sure to reverse cond codes on
+ all the OP_SET variants
+Date: Mon, 12 May 2014 09:21:47 +1000
+Message-ID: <CACAvsv5RiRTczAc63sx70eHvwGzJE77h0FuBvNg58TQU55Azgg@mail.gmail.com>
+References: <1399748766-26374-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1399758786-29022-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "10.2" <mesa-stable@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1399748766-26374-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "10.2 10.1" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Sun, May 11, 2014 at 7:53 AM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
-> Need to adjust coordinates since the shader receives the array index as
-> depth in z, but the TEX instruction expects it to be the second
-> coordinate for a 1D array texture. This fixes fbo-generatemipmap-array.
->
-> Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
-> Cc: "10.2" <mesa-stable@lists.freedesktop.org>
-Reviewed-by: Ben Skeggs <bskeggs@redhat.com>
+On Sun, May 11, 2014 at 5:06 AM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+> Cc: "10.2 10.1" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Reviewed-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
 > ---
->  src/gallium/drivers/nouveau/nv50/nv50_surface.c | 6 ++++++
->  1 file changed, 6 insertions(+)
 >
-> diff --git a/src/gallium/drivers/nouveau/nv50/nv50_surface.c b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-> index 8addefe..23613d8 100644
-> --- a/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-> +++ b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-> @@ -698,6 +698,12 @@ nv50_blitter_make_fp(struct pipe_context *pipe,
->     tc = ureg_DECL_fs_input(
->        ureg, TGSI_SEMANTIC_GENERIC, 0, TGSI_INTERPOLATE_LINEAR);
+> Found this while tracking a regression on nvc0 for my patch which fixes
+> ir_unop_any to emit or's instead of dp3's. (That patch is fine, this code was
+> always broken.)
 >
-> +   if (ptarg == PIPE_TEXTURE_1D_ARRAY) {
-> +      /* Adjust coordinates. Depth is in z, but TEX expects it to be in y. */
-> +      tc = ureg_swizzle(tc, TGSI_SWIZZLE_X, TGSI_SWIZZLE_Z,
-> +                        TGSI_SWIZZLE_Z, TGSI_SWIZZLE_Z);
-> +   }
-> +
->     data = ureg_DECL_temporary(ureg);
+>  src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 >
->     if (tex_s) {
+> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
+> index c89e1c3..cdae3c8 100644
+> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
+> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
+> @@ -187,7 +187,8 @@ LoadPropagation::checkSwapSrc01(Instruction *insn)
+>        return;
+>     }
+>
+> -   if (insn->op == OP_SET)
+> +   if (insn->op == OP_SET || insn->op == OP_SET_AND ||
+> +       insn->op == OP_SET_OR || insn->op == OP_SET_XOR)
+>        insn->asCmp()->setCond = reverseCondCode(insn->asCmp()->setCond);
+>     else
+>     if (insn->op == OP_SLCT)
 > --
 > 1.8.5.5
 >
 > _______________________________________________
-> mesa-dev mailing list
-> mesa-dev@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/mesa-dev
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
