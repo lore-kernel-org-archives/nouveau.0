@@ -1,15 +1,11 @@
-From: Sid Boyce <sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
-Subject: Re: Problem with kernels 3.15.0-rc and GF114 [GeForce,
- GTX 560 Ti] (rev a1) **FIXED**
-Date: Mon, 12 May 2014 01:26:28 +0100
-Message-ID: <53701534.1040200@blueyonder.co.uk>
-References: <mailman.1903.1399051042.25987.nouveau@lists.freedesktop.org>
-Reply-To: sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: [PATCH] drm/nvd7/therm: handle another kind of PWM fans
+Date: Mon, 12 May 2014 19:02:21 +0200
+Message-ID: <1399914141-17660-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <mailman.1903.1399051042.25987.nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,50 +18,23 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Whatever the problem was, kernel 3.15.0-rc5 fixed it.
-I am not in a position to do a git bisect at present.
-Regards
-Sid.
+Signed-off-by: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Tested-by: SaveTheRobots <john.rowley08-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 02/05/14 18:17, nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org wrote:
-> Subject: [Nouveau] Problem with kernels 3.15.0-rc and GF114 [GeForce
-> 	GTX 560 Ti] (rev a1)
-> Message-ID:<53638FA1.6020200-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
-> Content-Type: text/plain; charset=ISO-8859-1; format=flowed
->
-> On the slipstream box I have no problems with 3.14.0 kernel.
-> With 3.15.0-rc kernels, in KDE some applications fail to start - e.g
-> kmix, some like thunderbird come up but are not usable, e.g clicking to
-> display a message text, nothing happens and sometimes screens won't switch.
-> slipstream:~ # lspci
-> 01:00.0 VGA compatible controller: NVIDIA Corporation GF114 [GeForce GTX
-> 560 Ti] (rev a1)
-> slipstream:~ # uname -r
-> 3.14.0-smp+
->
-> On the 2 other systems with the same openSUSE 13.2 Milestone 0 distro
-> and identical software levels and packages but different video cards
-> there is no problem - both up and running on vanilla kernel 3.15.0-rc3
-> since Monday.
-> sabre:~ # lspci
-> 01:00.0 VGA compatible controller: NVIDIA Corporation G84 [GeForce 8600
-> GT] (rev a1)
-> sabre:~ # uname -r
-> 3.15.0-rc3-smp+
->
-> tindog:~ # lspci
-> 01:00.0 VGA compatible controller: NVIDIA Corporation GF119 [GeForce GT
-> 610] (rev a1)
-> tindog:~ # uname -r
-> 3.15.0-rc3-smp+
->
-> On all systems the kernel config is identical.
-> Regards
-> Sid.
-
-
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c b/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
+index 43fec17..bbf117b 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/therm/nvd0.c
+@@ -40,6 +40,7 @@ pwm_info(struct nouveau_therm *therm, int line)
+ 		case 0x00: return 2;
+ 		case 0x19: return 1;
+ 		case 0x1c: return 0;
++		case 0x1e: return 2;
+ 		default:
+ 			break;
+ 		}
 -- 
-Sid Boyce ... Hamradio License G3VBV, Licensed Private Pilot
-Emeritus IBM/Amdahl Mainframes and Sun/Fujitsu Servers Tech Support
-Senior Staff Specialist, Cricket Coach
-Microsoft Windows Free Zone - Linux used for all Computing Tasks
+1.9.2
