@@ -1,14 +1,11 @@
-From: John Rowley <john.rowley08-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/2] device/nvf0: enable video decoding engines on
-	gk110/gk208
-Date: Mon, 12 May 2014 21:34:57 +0000
-Message-ID: <1399930497-6636-2-git-send-email-john.rowley08@gmail.com>
-References: <1399930497-6636-1-git-send-email-john.rowley08@gmail.com>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: [PATCH] therm/fan/tach: default to 2 pulses per revolution
+Date: Mon, 12 May 2014 23:19:07 +0200
+Message-ID: <1399929547-19775-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1399930497-6636-1-git-send-email-john.rowley08-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,55 +16,38 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: John Rowley <john.rowley08-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Only tested on nvf1, was advised to enable on all.
+From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 
-Signed-off-by: John Rowley <john.rowley08-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+I spent some time this weekend trying to find in the vbios the number of
+pulses per revolutions in the vbios but couldn't find it. It would seem
+all my cards have 2 pulses per revolution so let's stick to that until
+further notice.
+
+Thermal table's id 0x48 may indicate this information but it would seem
+that changing the value results in the blob power or clock gating the
+RPM counter... We should ask NVIDIA about that, should be trivial-enough
+for them to answer.
+
+Signed-off-by: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
 ---
- nvkm/engine/device/nve0.c | 6 ------
- 1 file changed, 6 deletions(-)
+ nvkm/subdev/therm/nva3.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/nvkm/engine/device/nve0.c b/nvkm/engine/device/nve0.c
-index 6e72f9c..459099e 100644
---- a/nvkm/engine/device/nve0.c
-+++ b/nvkm/engine/device/nve0.c
-@@ -201,11 +201,9 @@ nve0_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_COPY0  ] = &nve0_copy0_oclass;
- 		device->oclass[NVDEV_ENGINE_COPY1  ] = &nve0_copy1_oclass;
- 		device->oclass[NVDEV_ENGINE_COPY2  ] = &nve0_copy2_oclass;
--#if 0
- 		device->oclass[NVDEV_ENGINE_BSP    ] = &nve0_bsp_oclass;
- 		device->oclass[NVDEV_ENGINE_VP     ] = &nve0_vp_oclass;
- 		device->oclass[NVDEV_ENGINE_PPP    ] = &nvc0_ppp_oclass;
--#endif
- 		device->oclass[NVDEV_ENGINE_PERFMON] = &nvf0_perfmon_oclass;
- 		break;
- 	case 0xf1:
-@@ -236,11 +234,9 @@ nve0_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_COPY0  ] = &nve0_copy0_oclass;
- 		device->oclass[NVDEV_ENGINE_COPY1  ] = &nve0_copy1_oclass;
- 		device->oclass[NVDEV_ENGINE_COPY2  ] = &nve0_copy2_oclass;
--#if 0
- 		device->oclass[NVDEV_ENGINE_BSP    ] = &nve0_bsp_oclass;
- 		device->oclass[NVDEV_ENGINE_VP     ] = &nve0_vp_oclass;
- 		device->oclass[NVDEV_ENGINE_PPP    ] = &nvc0_ppp_oclass;
--#endif
- 		device->oclass[NVDEV_ENGINE_PERFMON] = &nvf0_perfmon_oclass;
- 		break;
- 	case 0x108:
-@@ -271,11 +267,9 @@ nve0_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_ENGINE_COPY0  ] = &nve0_copy0_oclass;
- 		device->oclass[NVDEV_ENGINE_COPY1  ] = &nve0_copy1_oclass;
- 		device->oclass[NVDEV_ENGINE_COPY2  ] = &nve0_copy2_oclass;
--#if 0
- 		device->oclass[NVDEV_ENGINE_BSP    ] = &nve0_bsp_oclass;
- 		device->oclass[NVDEV_ENGINE_VP     ] = &nve0_vp_oclass;
- 		device->oclass[NVDEV_ENGINE_PPP    ] = &nvc0_ppp_oclass;
--#endif
- 		break;
- 	default:
- 		nv_fatal(device, "unknown Kepler chipset\n");
+diff --git a/nvkm/subdev/therm/nva3.c b/nvkm/subdev/therm/nva3.c
+index 3b2c458..0478b2e 100644
+--- a/nvkm/subdev/therm/nva3.c
++++ b/nvkm/subdev/therm/nva3.c
+@@ -36,7 +36,7 @@ nva3_therm_fan_sense(struct nouveau_therm *therm)
+ 	u32 tach = nv_rd32(therm, 0x00e728) & 0x0000ffff;
+ 	u32 ctrl = nv_rd32(therm, 0x00e720);
+ 	if (ctrl & 0x00000001)
+-		return tach * 60;
++		return tach * 60 / 2;
+ 	return -ENODEV;
+ }
+ 
 -- 
 1.9.2
