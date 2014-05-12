@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78570] GT215: Freeze on X startup, 2014.
-Date: Sun, 11 May 2014 23:38:10 +0000
-Message-ID: <bug-78570-8800-KMViD7ZNW5@http.bugs.freedesktop.org/>
-References: <bug-78570-8800@http.bugs.freedesktop.org/>
+From: Sid Boyce <sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
+Subject: Re: Problem with kernels 3.15.0-rc and GF114 [GeForce,
+ GTX 560 Ti] (rev a1) **FIXED**
+Date: Mon, 12 May 2014 01:26:28 +0100
+Message-ID: <53701534.1040200@blueyonder.co.uk>
+References: <mailman.1903.1399051042.25987.nouveau@lists.freedesktop.org>
+Reply-To: sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1565441278=="
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78570-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <mailman.1903.1399051042.25987.nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,75 +22,50 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Whatever the problem was, kernel 3.15.0-rc5 fixed it.
+I am not in a position to do a git bisect at present.
+Regards
+Sid.
 
---===============1565441278==
-Content-Type: multipart/alternative; boundary="1399851490.B8DfAD1.14926"; charset="us-ascii"
+On 02/05/14 18:17, nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org wrote:
+> Subject: [Nouveau] Problem with kernels 3.15.0-rc and GF114 [GeForce
+> 	GTX 560 Ti] (rev a1)
+> Message-ID:<53638FA1.6020200-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
+> Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+>
+> On the slipstream box I have no problems with 3.14.0 kernel.
+> With 3.15.0-rc kernels, in KDE some applications fail to start - e.g
+> kmix, some like thunderbird come up but are not usable, e.g clicking to
+> display a message text, nothing happens and sometimes screens won't switch.
+> slipstream:~ # lspci
+> 01:00.0 VGA compatible controller: NVIDIA Corporation GF114 [GeForce GTX
+> 560 Ti] (rev a1)
+> slipstream:~ # uname -r
+> 3.14.0-smp+
+>
+> On the 2 other systems with the same openSUSE 13.2 Milestone 0 distro
+> and identical software levels and packages but different video cards
+> there is no problem - both up and running on vanilla kernel 3.15.0-rc3
+> since Monday.
+> sabre:~ # lspci
+> 01:00.0 VGA compatible controller: NVIDIA Corporation G84 [GeForce 8600
+> GT] (rev a1)
+> sabre:~ # uname -r
+> 3.15.0-rc3-smp+
+>
+> tindog:~ # lspci
+> 01:00.0 VGA compatible controller: NVIDIA Corporation GF119 [GeForce GT
+> 610] (rev a1)
+> tindog:~ # uname -r
+> 3.15.0-rc3-smp+
+>
+> On all systems the kernel config is identical.
+> Regards
+> Sid.
 
-
---1399851490.B8DfAD1.14926
-Date: Sun, 11 May 2014 23:38:10 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=78570
-
---- Comment #4 from patrick <phix.nay-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I also found this bug but it's been inactive since 2011:
-https://bugs.freedesktop.org/show_bug.cgi?id=43562
 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1399851490.B8DfAD1.14926
-Date: Sun, 11 May 2014 23:38:10 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - GT215: Freeze on X startup, 2014."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78570#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - GT215: Freeze on X startup, 2014."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78570">bug 78570</a>
-              from <span class="vcard"><a class="email" href="mailto:phix.nay&#64;gmail.com" title="patrick &lt;phix.nay&#64;gmail.com&gt;"> <span class="fn">patrick</span></a>
-</span></b>
-        <pre>I also found this bug but it's been inactive since 2011:
-<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - GT215: Freeze on X startup"
-   href="show_bug.cgi?id=43562">https://bugs.freedesktop.org/show_bug.cgi?id=43562</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1399851490.B8DfAD1.14926--
-
---===============1565441278==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1565441278==--
+Sid Boyce ... Hamradio License G3VBV, Licensed Private Pilot
+Emeritus IBM/Amdahl Mainframes and Sun/Fujitsu Servers Tech Support
+Senior Staff Specialist, Cricket Coach
+Microsoft Windows Free Zone - Linux used for all Computing Tasks
