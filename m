@@ -1,8 +1,8 @@
 From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: [RFC PATCH v1 01/16] drm/ttm: add interruptible parameter to
- ttm_eu_reserve_buffers
-Date: Wed, 14 May 2014 16:57:28 +0200
-Message-ID: <20140514145728.21163.80202.stgit@patser>
+Subject: [RFC PATCH v1 03/16] drm/nouveau: add reservation to
+ nouveau_gem_ioctl_cpu_prep
+Date: Wed, 14 May 2014 16:57:40 +0200
+Message-ID: <20140514145740.21163.22977.stgit@patser>
 References: <20140514145134.21163.32350.stgit@patser>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,189 +22,54 @@ To: airlied@linux.ie
 Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-It seems some drivers really want this as a parameter,
-like vmwgfx.
+Apart from some code inside ttm itself and nouveau_bo_vma_del,
+this is the only place where ttm_bo_wait is used without a reservation.
+Fix this so we can remove the fence_lock later on.
+
+After the switch to rcu the reservation lock will be
+removed again.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
 ---
- drivers/gpu/drm/qxl/qxl_release.c        |    2 +-
- drivers/gpu/drm/radeon/radeon_object.c   |    2 +-
- drivers/gpu/drm/radeon/radeon_uvd.c      |    2 +-
- drivers/gpu/drm/radeon/radeon_vm.c       |    2 +-
- drivers/gpu/drm/ttm/ttm_execbuf_util.c   |   22 +++++++++++++---------
- drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c  |    7 ++-----
- drivers/gpu/drm/vmwgfx/vmwgfx_resource.c |    2 +-
- include/drm/ttm/ttm_execbuf_util.h       |    9 +++++----
- 8 files changed, 25 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_gem.c |   22 ++++++++++++++++++----
+ 1 file changed, 18 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/qxl/qxl_release.c b/drivers/gpu/drm/qxl/qxl_release.c
-index 14e776f1d14e..2b43e5deb051 100644
---- a/drivers/gpu/drm/qxl/qxl_release.c
-+++ b/drivers/gpu/drm/qxl/qxl_release.c
-@@ -159,7 +159,7 @@ int qxl_release_reserve_list(struct qxl_release *release, bool no_intr)
- 	if (list_is_singular(&release->bos))
- 		return 0;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index c90c0dc0afe8..6e1c58a880fe 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -886,17 +886,31 @@ nouveau_gem_ioctl_cpu_prep(struct drm_device *dev, void *data,
+ 	struct drm_gem_object *gem;
+ 	struct nouveau_bo *nvbo;
+ 	bool no_wait = !!(req->flags & NOUVEAU_GEM_CPU_PREP_NOWAIT);
+-	int ret = -EINVAL;
++	int ret;
++	struct nouveau_fence *fence = NULL;
  
--	ret = ttm_eu_reserve_buffers(&release->ticket, &release->bos);
-+	ret = ttm_eu_reserve_buffers(&release->ticket, &release->bos, !no_intr);
- 	if (ret)
- 		return ret;
+ 	gem = drm_gem_object_lookup(dev, file_priv, req->handle);
+ 	if (!gem)
+ 		return -ENOENT;
+ 	nvbo = nouveau_gem_object(gem);
  
-diff --git a/drivers/gpu/drm/radeon/radeon_object.c b/drivers/gpu/drm/radeon/radeon_object.c
-index 19bec0dbfa38..51bf80cdce5c 100644
---- a/drivers/gpu/drm/radeon/radeon_object.c
-+++ b/drivers/gpu/drm/radeon/radeon_object.c
-@@ -438,7 +438,7 @@ int radeon_bo_list_validate(struct radeon_device *rdev,
- 	u64 bytes_moved = 0, initial_bytes_moved;
- 	u64 bytes_moved_threshold = radeon_bo_get_threshold_for_moves(rdev);
- 
--	r = ttm_eu_reserve_buffers(ticket, head);
-+	r = ttm_eu_reserve_buffers(ticket, head, true);
- 	if (unlikely(r != 0)) {
- 		return r;
- 	}
-diff --git a/drivers/gpu/drm/radeon/radeon_uvd.c b/drivers/gpu/drm/radeon/radeon_uvd.c
-index 1b65ae2433cd..2f93fef15aab 100644
---- a/drivers/gpu/drm/radeon/radeon_uvd.c
-+++ b/drivers/gpu/drm/radeon/radeon_uvd.c
-@@ -620,7 +620,7 @@ static int radeon_uvd_send_msg(struct radeon_device *rdev,
- 	INIT_LIST_HEAD(&head);
- 	list_add(&tv.head, &head);
- 
--	r = ttm_eu_reserve_buffers(&ticket, &head);
-+	r = ttm_eu_reserve_buffers(&ticket, &head, true);
- 	if (r)
- 		return r;
- 
-diff --git a/drivers/gpu/drm/radeon/radeon_vm.c b/drivers/gpu/drm/radeon/radeon_vm.c
-index 2aae6ce49d32..f4fd72477a71 100644
---- a/drivers/gpu/drm/radeon/radeon_vm.c
-+++ b/drivers/gpu/drm/radeon/radeon_vm.c
-@@ -364,7 +364,7 @@ static int radeon_vm_clear_bo(struct radeon_device *rdev,
-         INIT_LIST_HEAD(&head);
-         list_add(&tv.head, &head);
- 
--        r = ttm_eu_reserve_buffers(&ticket, &head);
-+        r = ttm_eu_reserve_buffers(&ticket, &head, true);
-         if (r)
- 		return r;
- 
-diff --git a/drivers/gpu/drm/ttm/ttm_execbuf_util.c b/drivers/gpu/drm/ttm/ttm_execbuf_util.c
-index e8dac8758528..39a11bbd2bac 100644
---- a/drivers/gpu/drm/ttm/ttm_execbuf_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_execbuf_util.c
-@@ -112,7 +112,7 @@ EXPORT_SYMBOL(ttm_eu_backoff_reservation);
-  */
- 
- int ttm_eu_reserve_buffers(struct ww_acquire_ctx *ticket,
--			   struct list_head *list)
-+			   struct list_head *list, bool intr)
- {
- 	struct ttm_bo_global *glob;
- 	struct ttm_validate_buffer *entry;
-@@ -140,7 +140,7 @@ retry:
- 		if (entry->reserved)
- 			continue;
- 
--		ret = __ttm_bo_reserve(bo, true, (ticket == NULL), true,
-+		ret = __ttm_bo_reserve(bo, intr, (ticket == NULL), true,
- 				       ticket);
- 
- 		if (ret == -EDEADLK) {
-@@ -153,13 +153,17 @@ retry:
- 			ttm_eu_backoff_reservation_locked(list);
- 			spin_unlock(&glob->lru_lock);
- 			ttm_eu_list_ref_sub(list);
--			ret = ww_mutex_lock_slow_interruptible(&bo->resv->lock,
--							       ticket);
--			if (unlikely(ret != 0)) {
--				if (ret == -EINTR)
--					ret = -ERESTARTSYS;
--				goto err_fini;
--			}
+-	spin_lock(&nvbo->bo.bdev->fence_lock);
+-	ret = ttm_bo_wait(&nvbo->bo, true, true, no_wait);
+-	spin_unlock(&nvbo->bo.bdev->fence_lock);
++	ret = ttm_bo_reserve(&nvbo->bo, true, false, false, 0);
++	if (!ret) {
++		spin_lock(&nvbo->bo.bdev->fence_lock);
++		ret = ttm_bo_wait(&nvbo->bo, true, true, true);
++		if (!no_wait && ret)
++			fence = nouveau_fence_ref(nvbo->bo.sync_obj);
++		spin_unlock(&nvbo->bo.bdev->fence_lock);
 +
-+			if (intr) {
-+				ret = ww_mutex_lock_slow_interruptible(&bo->resv->lock,
-+								       ticket);
-+				if (unlikely(ret != 0)) {
-+					if (ret == -EINTR)
-+						ret = -ERESTARTSYS;
-+					goto err_fini;
-+				}
-+			} else
-+				ww_mutex_lock_slow(&bo->resv->lock, ticket);
- 
- 			entry->reserved = true;
- 			if (unlikely(atomic_read(&bo->cpu_writers) > 0)) {
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c b/drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c
-index 87df0b3674fd..5d7d2e00296b 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c
-@@ -2465,7 +2465,7 @@ int vmw_execbuf_process(struct drm_file *file_priv,
- 	if (unlikely(ret != 0))
- 		goto out_err_nores;
- 
--	ret = ttm_eu_reserve_buffers(&ticket, &sw_context->validate_nodes);
-+	ret = ttm_eu_reserve_buffers(&ticket, &sw_context->validate_nodes, true);
- 	if (unlikely(ret != 0))
- 		goto out_err;
- 
-@@ -2655,10 +2655,7 @@ void __vmw_execbuf_release_pinned_bo(struct vmw_private *dev_priv,
- 	query_val.bo = ttm_bo_reference(dev_priv->dummy_query_bo);
- 	list_add_tail(&query_val.head, &validate_list);
- 
--	do {
--		ret = ttm_eu_reserve_buffers(&ticket, &validate_list);
--	} while (ret == -ERESTARTSYS);
--
-+	ret = ttm_eu_reserve_buffers(&ticket, &validate_list, false);
- 	if (unlikely(ret != 0)) {
- 		vmw_execbuf_unpin_panic(dev_priv);
- 		goto out_no_reserve;
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_resource.c b/drivers/gpu/drm/vmwgfx/vmwgfx_resource.c
-index 01d68f0a69dc..873613a16f72 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_resource.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_resource.c
-@@ -1215,7 +1215,7 @@ vmw_resource_check_buffer(struct vmw_resource *res,
- 	INIT_LIST_HEAD(&val_list);
- 	val_buf->bo = ttm_bo_reference(&res->backup->base);
- 	list_add_tail(&val_buf->head, &val_list);
--	ret = ttm_eu_reserve_buffers(NULL, &val_list);
-+	ret = ttm_eu_reserve_buffers(NULL, &val_list, interruptible);
- 	if (unlikely(ret != 0))
- 		goto out_no_reserve;
- 
-diff --git a/include/drm/ttm/ttm_execbuf_util.h b/include/drm/ttm/ttm_execbuf_util.h
-index 16db7d01a336..fd95fd569ca3 100644
---- a/include/drm/ttm/ttm_execbuf_util.h
-+++ b/include/drm/ttm/ttm_execbuf_util.h
-@@ -73,6 +73,7 @@ extern void ttm_eu_backoff_reservation(struct ww_acquire_ctx *ticket,
-  * @ticket:  [out] ww_acquire_ctx filled in by call, or NULL if only
-  *           non-blocking reserves should be tried.
-  * @list:    thread private list of ttm_validate_buffer structs.
-+ * @intr:    should the wait be interruptible
-  *
-  * Tries to reserve bos pointed to by the list entries for validation.
-  * If the function returns 0, all buffers are marked as "unfenced",
-@@ -84,9 +85,9 @@ extern void ttm_eu_backoff_reservation(struct ww_acquire_ctx *ticket,
-  * CPU write reservations to be cleared, and for other threads to
-  * unreserve their buffers.
-  *
-- * This function may return -ERESTART or -EAGAIN if the calling process
-- * receives a signal while waiting. In that case, no buffers on the list
-- * will be reserved upon return.
-+ * If intr is set to true, this function may return -ERESTARTSYS if the
-+ * calling process receives a signal while waiting. In that case, no
-+ * buffers on the list will be reserved upon return.
-  *
-  * Buffers reserved by this function should be unreserved by
-  * a call to either ttm_eu_backoff_reservation() or
-@@ -95,7 +96,7 @@ extern void ttm_eu_backoff_reservation(struct ww_acquire_ctx *ticket,
-  */
- 
- extern int ttm_eu_reserve_buffers(struct ww_acquire_ctx *ticket,
--				  struct list_head *list);
-+				  struct list_head *list, bool intr);
- 
- /**
-  * function ttm_eu_fence_buffer_objects.
++		ttm_bo_unreserve(&nvbo->bo);
++	}
+ 	drm_gem_object_unreference_unlocked(gem);
++
++	if (fence) {
++		ret = nouveau_fence_wait(fence, true, no_wait);
++		nouveau_fence_unref(&fence);
++	}
++
+ 	return ret;
+ }
