@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78748] [NV11] Nouveau fails initializing KMS on
  Geforce2 Go (NV11M)
-Date: Thu, 15 May 2014 18:37:55 +0000
-Message-ID: <bug-78748-8800-4sQWlohpbz@http.bugs.freedesktop.org/>
+Date: Thu, 15 May 2014 18:38:43 +0000
+Message-ID: <bug-78748-8800-B3VMBjIfbz@http.bugs.freedesktop.org/>
 References: <bug-78748-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1057702625=="
+Content-Type: multipart/mixed; boundary="===============0356101287=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78748-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1057702625==
-Content-Type: multipart/alternative; boundary="1400179075.E78BCaBf1.24716"; charset="us-ascii"
+--===============0356101287==
+Content-Type: multipart/alternative; boundary="1400179123.C236861.24984"; charset="us-ascii"
 
 
---1400179075.E78BCaBf1.24716
-Date: Thu, 15 May 2014 18:37:55 +0000
+--1400179123.C236861.24984
+Date: Thu, 15 May 2014 18:38:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78748
 
---- Comment #4 from Ismael <isma.casti-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 99115
-  --> https://bugs.freedesktop.org/attachment.cgi?id=99115&action=edit
-dmesg after first patch (it's a different userland than first log)
+--- Comment #5 from Ismael <isma.casti-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 99116
+  --> https://bugs.freedesktop.org/attachment.cgi?id=99116&action=edit
+patch #1
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1400179075.E78BCaBf1.24716
-Date: Thu, 15 May 2014 18:37:55 +0000
+--1400179123.C236861.24984
+Date: Thu, 15 May 2014 18:38:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV11] Nouveau fails initializing KMS on Geforce2 Go (NV11M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78748#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78748#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV11] Nouveau fails initializing KMS on Geforce2 Go (NV11M)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78748">bug 78748</a>
               from <span class="vcard"><a class="email" href="mailto:isma.casti&#64;gmail.com" title="Ismael &lt;isma.casti&#64;gmail.com&gt;"> <span class="fn">Ismael</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=99115" name="attach_99115" title="dmesg after first patch (it's a different userland than first log)">attachment 99115</a> <a href="attachment.cgi?id=99115&amp;action=edit" title="dmesg after first patch (it's a different userland than first log)">[details]</a></span>
-dmesg after first patch (it's a different userland than first log)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=99116" name="attach_99116" title="patch #1">attachment 99116</a> <a href="attachment.cgi?id=99116&amp;action=edit" title="patch #1">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=78748&amp;attachment=99116'>[review]</a>
+patch #1</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ dmesg after first patch (it's a different userland than first log)</pre>
     </body>
 </html>
 
---1400179075.E78BCaBf1.24716--
+--1400179123.C236861.24984--
 
---===============1057702625==
+--===============0356101287==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1057702625==--
+--===============0356101287==--
