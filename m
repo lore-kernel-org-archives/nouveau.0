@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78748] [NV11] Nouveau fails initializing KMS on
  Geforce2 Go (NV11M)
-Date: Thu, 15 May 2014 17:12:19 +0000
-Message-ID: <bug-78748-8800-2ljZ2xqJYk@http.bugs.freedesktop.org/>
+Date: Thu, 15 May 2014 18:37:55 +0000
+Message-ID: <bug-78748-8800-4sQWlohpbz@http.bugs.freedesktop.org/>
 References: <bug-78748-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0687436776=="
+Content-Type: multipart/mixed; boundary="===============1057702625=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78748-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0687436776==
-Content-Type: multipart/alternative; boundary="1400173939.68F0bd2.330"; charset="us-ascii"
+--===============1057702625==
+Content-Type: multipart/alternative; boundary="1400179075.E78BCaBf1.24716"; charset="us-ascii"
 
 
---1400173939.68F0bd2.330
-Date: Thu, 15 May 2014 17:12:19 +0000
+--1400179075.E78BCaBf1.24716
+Date: Thu, 15 May 2014 18:37:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78748
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-DCB table at 0xd537 version 1.5
-DCB 0: type 0 [ANALOG] I2C 0 heads 0 conntag 0 LOCAL OR 0 maxfreq 350000kHz
-DCB 1: type 4 [???] I2C 1 heads 1 unk00_4 1 conntag 1 LOCAL OR 1
-DCB 2: type 1 [TV] I2C 1 heads 0 unk00_4 1 conntag 2 EXT 0 OR 0
-
-Well that's a little odd... I suspect that throws off some of the logic. Type 4
-is "reserved". Yet, somehow it still detects that there's a LVDS...
-
-nvbios doesn't print the other stuff, so it'll take some more decoding to work
-out what's what... might look at that later.
+--- Comment #4 from Ismael <isma.casti-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 99115
+  --> https://bugs.freedesktop.org/attachment.cgi?id=99115&action=edit
+dmesg after first patch (it's a different userland than first log)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1400173939.68F0bd2.330
-Date: Thu, 15 May 2014 17:12:19 +0000
+--1400179075.E78BCaBf1.24716
+Date: Thu, 15 May 2014 18:37:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,23 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV11] Nouveau fails initializing KMS on Geforce2 Go (NV11M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78748#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78748#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV11] Nouveau fails initializing KMS on Geforce2 Go (NV11M)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78748">bug 78748</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:isma.casti&#64;gmail.com" title="Ismael &lt;isma.casti&#64;gmail.com&gt;"> <span class="fn">Ismael</span></a>
 </span></b>
-        <pre>DCB table at 0xd537 version 1.5
-DCB 0: type 0 [ANALOG] I2C 0 heads 0 conntag 0 LOCAL OR 0 maxfreq 350000kHz
-DCB 1: type 4 [???] I2C 1 heads 1 unk00_4 1 conntag 1 LOCAL OR 1
-DCB 2: type 1 [TV] I2C 1 heads 0 unk00_4 1 conntag 2 EXT 0 OR 0
-
-Well that's a little odd... I suspect that throws off some of the logic. Type 4
-is &quot;reserved&quot;. Yet, somehow it still detects that there's a LVDS...
-
-nvbios doesn't print the other stuff, so it'll take some more decoding to work
-out what's what... might look at that later.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=99115" name="attach_99115" title="dmesg after first patch (it's a different userland than first log)">attachment 99115</a> <a href="attachment.cgi?id=99115&amp;action=edit" title="dmesg after first patch (it's a different userland than first log)">[details]</a></span>
+dmesg after first patch (it's a different userland than first log)</pre>
         </div>
       </p>
       <hr>
@@ -91,9 +76,9 @@ out what's what... might look at that later.</pre>
     </body>
 </html>
 
---1400173939.68F0bd2.330--
+--1400179075.E78BCaBf1.24716--
 
---===============0687436776==
+--===============1057702625==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0687436776==--
+--===============1057702625==--
