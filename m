@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78748] [NV11] Nouveau fails initializing KMS on
  Geforce2 Go (NV11M)
-Date: Thu, 15 May 2014 17:01:14 +0000
-Message-ID: <bug-78748-8800-1qtFQGFv6B@http.bugs.freedesktop.org/>
+Date: Thu, 15 May 2014 17:12:19 +0000
+Message-ID: <bug-78748-8800-2ljZ2xqJYk@http.bugs.freedesktop.org/>
 References: <bug-78748-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1787844919=="
+Content-Type: multipart/mixed; boundary="===============0687436776=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78748-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1787844919==
-Content-Type: multipart/alternative; boundary="1400173273.fBB21Ca2.29819"; charset="us-ascii"
+--===============0687436776==
+Content-Type: multipart/alternative; boundary="1400173939.68F0bd2.330"; charset="us-ascii"
 
 
---1400173273.fBB21Ca2.29819
-Date: Thu, 15 May 2014 17:01:13 +0000
+--1400173939.68F0bd2.330
+Date: Thu, 15 May 2014 17:12:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78748
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+DCB table at 0xd537 version 1.5
+DCB 0: type 0 [ANALOG] I2C 0 heads 0 conntag 0 LOCAL OR 0 maxfreq 350000kHz
+DCB 1: type 4 [???] I2C 1 heads 1 unk00_4 1 conntag 1 LOCAL OR 1
+DCB 2: type 1 [TV] I2C 1 heads 0 unk00_4 1 conntag 2 EXT 0 OR 0
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Nouveau fails initializing  |[NV11] Nouveau fails
-                   |KMS on Geforce2 Go (NV11M)  |initializing KMS on
-                   |                            |Geforce2 Go (NV11M)
+Well that's a little odd... I suspect that throws off some of the logic. Type 4
+is "reserved". Yet, somehow it still detects that there's a LVDS...
+
+nvbios doesn't print the other stuff, so it'll take some more decoding to work
+out what's what... might look at that later.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1400173273.fBB21Ca2.29819
-Date: Thu, 15 May 2014 17:01:13 +0000
+--1400173939.68F0bd2.330
+Date: Thu, 15 May 2014 17:12:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,28 +57,30 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV11] Nouveau fails initializing KMS on Geforce2 Go (NV11M)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78748#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV11] Nouveau fails initializing KMS on Geforce2 Go (NV11M)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78748">bug 78748</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>DCB table at 0xd537 version 1.5
+DCB 0: type 0 [ANALOG] I2C 0 heads 0 conntag 0 LOCAL OR 0 maxfreq 350000kHz
+DCB 1: type 4 [???] I2C 1 heads 1 unk00_4 1 conntag 1 LOCAL OR 1
+DCB 2: type 1 [TV] I2C 1 heads 0 unk00_4 1 conntag 2 EXT 0 OR 0
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Nouveau fails initializing KMS on Geforce2 Go (NV11M)
-           </td>
-           <td>[NV11] Nouveau fails initializing KMS on Geforce2 Go (NV11M)
-           </td>
-         </tr></table>
-      <p>
+Well that's a little odd... I suspect that throws off some of the logic. Type 4
+is &quot;reserved&quot;. Yet, somehow it still detects that there's a LVDS...
+
+nvbios doesn't print the other stuff, so it'll take some more decoding to work
+out what's what... might look at that later.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +91,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1400173273.fBB21Ca2.29819--
+--1400173939.68F0bd2.330--
 
---===============1787844919==
+--===============0687436776==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +104,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1787844919==--
+--===============0687436776==--
