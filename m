@@ -1,327 +1,212 @@
-From: Damien Wyart <damien.wyart@gmail.com>
-Subject: Machine freeze on latest Linus kernel, seems related to nouveau
-Date: Fri, 16 May 2014 10:05:25 +0200
-Message-ID: <CADJQGJe=CmRn0PmofRUFwZEF-Ah=NAnZVpL1uKYTDLd3Oz_OEQ@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] clk: allow config option to enable reclocking
+Date: Fri, 16 May 2014 12:42:45 -0400
+Message-ID: <1400258565-28941-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=90e6ba1efcae448d2004f97fe0cf
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---90e6ba1efcae448d2004f97fe0cf
-Content-Type: text/plain; charset=UTF-8
+Adds a NvReclock boolean option to allow the user to enable (or disable)
+reclocking. All chipsets default to off, except NVAA/NVAC, which are
+reportedly complete.
 
-Hi,
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
 
-I am running the latest kernel from Linus. Once yesterday and once
-today, I got a freeze of my machine. The first time, I could reboot
-with sysrq, but not the second one (completely unresponsive). The
-first time,, there was nothng in the logs, but today, I got some
-traces which I attach to this email.
+Ben, I know you've been saying that reclocking is in a pretty bad state, but I
+do think that there are going to be groups of people for whom the current code
+can work at least a little bit. May as well let them try it. The memory script
+execution is still behind the extra-special flag as well...
 
-I can provide more details if needed ; the card is GeForce 9600 GT and
-the OS Debian Sid.
+Also this provides a way forward to enable reclocking on some chips and leave
+it off for others, by default.
 
-Thanks in advance for any feedback.
+ nvkm/include/subdev/clock.h | 8 +++++---
+ nvkm/subdev/clock/base.c    | 8 ++++++--
+ nvkm/subdev/clock/nv04.c    | 3 ++-
+ nvkm/subdev/clock/nv40.c    | 3 ++-
+ nvkm/subdev/clock/nv50.c    | 2 +-
+ nvkm/subdev/clock/nva3.c    | 3 ++-
+ nvkm/subdev/clock/nvaa.c    | 3 ++-
+ nvkm/subdev/clock/nvc0.c    | 3 ++-
+ nvkm/subdev/clock/nve0.c    | 3 ++-
+ 9 files changed, 24 insertions(+), 12 deletions(-)
 
-Damien Wyart
-
---90e6ba1efcae448d2004f97fe0cf
-Content-Type: text/plain; charset=US-ASCII; name="kernel_bug_16052014.txt"
-Content-Disposition: attachment; filename="kernel_bug_16052014.txt"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_hv97b42t0
-
-TWF5IDE2IDA4OjMwOjI3IGJyb3VldHRlIGtlcm5lbDogQlVHOiB1bmFibGUgdG8gaGFuZGxlIGtl
-cm5lbCBwYWdpbmcgcmVxdWVzdCBhdCBmZmZmYzkwMDE1OTAwMDAwCk1heSAxNiAwODozMDoyNyBi
-cm91ZXR0ZSBrZXJuZWw6IElQOiBbPGZmZmZmZmZmODEyODU2ZDg+XSBpb3dyaXRlMzIrMHgzOC8w
-eDQwCk1heSAxNiAwODozMDoyNyBicm91ZXR0ZSBrZXJuZWw6IFBHRCAxYjg4MGYwNjcgUFVEIDFi
-ODg1MDA2NyBQTUQgYjk3OWUwNjcgUFRFIDAKTWF5IDE2IDA4OjMwOjI3IGJyb3VldHRlIGtlcm5l
-bDogT29wczogMDAwMiBbIzFdIFBSRUVNUFQgU01QIApNYXkgMTYgMDg6MzA6MjcgYnJvdWV0dGUg
-a2VybmVsOiBNb2R1bGVzIGxpbmtlZCBpbjogbmZfY29ubnRyYWNrX2lwdjYgbmZfZGVmcmFnX2lw
-djYgbmZfY29ubnRyYWNrX2lwdjQgbmZfZGVmcmFnX2lwdjQgeHRfZHNjcCB4dF9tYXJrIGNsc19m
-bG93IGNsc19mdyBzY2hfc2ZxIHNjaF9odGIgeHRfaGVscGVyIHh0X2xlbmd0aCBuZl9jb25udHJh
-Y2tfZnRwIG5mX2Nvbm50cmFjayBpcDZ0YWJsZV9tYW5nbGUgaXA2X3RhYmxlcyBpcHRhYmxlX21h
-bmdsZSBpcF90YWJsZXMgeF90YWJsZXMgY3B1ZnJlcV9wb3dlcnNhdmUgY3B1ZnJlcV91c2Vyc3Bh
-Y2UgY3B1ZnJlcV9jb25zZXJ2YXRpdmUgZGVhZGxpbmVfaW9zY2hlZCBiaW5mbXRfbWlzYyBzbmRf
-dXNiX2F1ZGlvIHNuZF91c2JtaWRpX2xpYiBzbmRfaHdkZXAgaGlkX3JvY2NhdF9rb25lcHVyZSBo
-aWRfcm9jY2F0IGhpZF9yb2NjYXRfY29tbW9uIGhpZF9nZW5lcmljIHVzYmhpZCBub3V2ZWF1IHNu
-ZF9oZGFfY29kZWNfcmVhbHRlayBzbmRfaGRhX2NvZGVjX2dlbmVyaWMgc25kX2NhMDEwNiB3bWkg
-c25kX2FjOTdfY29kZWMgdmlkZW8gYWM5N19idXMgc25kX3NlcV9kdW1teSBzbmRfc2VxX21pZGkg
-aTJjX2FsZ29fYml0IHNuZF9zZXFfb3NzIHR0bSBzbmRfc2VxX21pZGlfZXZlbnQgZHJtX2ttc19o
-ZWxwZXIgc25kX3NlcSBkcm0gaTJjX2NvcmUgc25kX3Jhd21pZGkgYmFja2xpZ2h0IHNuZF9zZXFf
-ZGV2aWNlIHNuZF9oZGFfaW50ZWwgc3JfbW9kIGVoY2lfcGNpIHNuZF9oZGFfY29udHJvbGxlciB1
-aGNpX2hjZCBwY3Nwa3IgZWhjaV9oY2QgY2Ryb20gdXNiY29yZSBzbmRfaGRhX2NvZGVjIHNuZF9w
-Y21fb3NzIHNuZF9taXhlcl9vc3MgbnZpZGlhZmIgc25kX3BjbSBzbmRfdGltZXIgdmdhc3RhdGUg
-ZXZkZXYgdXNiX2NvbW1vbiBhY3BpX2NwdWZyZXEgbG9vcCBmdXNlIGF1dG9mczQKTWF5IDE2IDA4
-OjMwOjI3IGJyb3VldHRlIGtlcm5lbDogQ1BVOiAzIFBJRDogMzEyNTMgQ29tbTogcGx1Z2luLWNv
-bnRhaW5lIFRhaW50ZWQ6IFAgICAgICAgICAgIE8gIDMuMTUuMC1yYzUgIzEKTWF5IDE2IDA4OjMw
-OjI3IGJyb3VldHRlIGtlcm5lbDogSGFyZHdhcmUgbmFtZTogU3lzdGVtIG1hbnVmYWN0dXJlciBT
-eXN0ZW0gUHJvZHVjdCBOYW1lL1A2VCBTRSwgQklPUyAwODA4ICAgIDAzLzA4LzIwMTAKTWF5IDE2
-IDA4OjMwOjI3IGJyb3VldHRlIGtlcm5lbDogdGFzazogZmZmZjg4MDBiYWEyZjFjMCB0aTogZmZm
-Zjg4MDE3MWFhMDAwMCB0YXNrLnRpOiBmZmZmODgwMTcxYWEwMDAwCk1heSAxNiAwODozMDoyNyBi
-cm91ZXR0ZSBrZXJuZWw6IFJJUDogMDAxMDpbPGZmZmZmZmZmODEyODU2ZDg+XSAgWzxmZmZmZmZm
-ZjgxMjg1NmQ4Pl0gaW93cml0ZTMyKzB4MzgvMHg0MApNYXkgMTYgMDg6MzA6MjcgYnJvdWV0dGUg
-a2VybmVsOiBSU1A6IDAwMTg6ZmZmZjg4MDE3MWFhMWJhMCAgRUZMQUdTOiAwMDAxMDI5MgpNYXkg
-MTYgMDg6MzA6MjcgYnJvdWV0dGUga2VybmVsOiBSQVg6IGZmZmY4ODAwNTU3Mzc2MDAgUkJYOiBm
-ZmZmODgwMTZkOTM0NjAwIFJDWDogMDAwMDAwMDAwMDAwMDAwMApNYXkgMTYgMDg6MzA6MjcgYnJv
-dWV0dGUga2VybmVsOiBSRFg6IGZmZmZjOTAwMTU5MDAwMDAgUlNJOiBmZmZmYzkwMDE1OTAwMDAw
-IFJESTogMDAwMDAwMDAwMDAwMDAwMApNYXkgMTYgMDg6MzA6MjcgYnJvdWV0dGUga2VybmVsOiBS
-QlA6IGZmZmY4ODAxNzFhYTFiYTggUjA4OiBmZmZmZmZmZmEwNTRkZTYwIFIwOTogMDAwMDAwMDAw
-MDAwMDAwMApNYXkgMTYgMDg6MzA6MjcgYnJvdWV0dGUga2VybmVsOiBSMTA6IDAwMDAwMDAwMDAw
-MDAwMDAgUjExOiAwMDAwMDAwMDAwMDAwMDBmIFIxMjogMDAwMDAwMDAwMDA2MDAwNApNYXkgMTYg
-MDg6MzA6MjcgYnJvdWV0dGUga2VybmVsOiBSMTM6IDAwMDAwMDAwMDAwMDAwMDAgUjE0OiBmZmZm
-ODgwMTcxYWExYmU4IFIxNTogMDAwMDAwMDAwMDAwMDAwMApNYXkgMTYgMDg6MzA6MjcgYnJvdWV0
-dGUga2VybmVsOiBGUzogIDAwMDA3ZjAyMDQ4ZmNhNDAoMDAwMCkgR1M6ZmZmZjg4MDFiZmM2MDAw
-MCgwMDAwKSBrbmxHUzowMDAwMDAwMDAwMDAwMDAwCk1heSAxNiAwODozMDoyNyBicm91ZXR0ZSBr
-ZXJuZWw6IENTOiAgMDAxMCBEUzogMDAwMCBFUzogMDAwMCBDUjA6IDAwMDAwMDAwODAwNTAwMzMK
-TWF5IDE2IDA4OjMwOjI3IGJyb3VldHRlIGtlcm5lbDogQ1IyOiBmZmZmYzkwMDE1OTAwMDAwIENS
-MzogMDAwMDAwMDBiMGVlNTAwMCBDUjQ6IDAwMDAwMDAwMDAwMDA3ZTAKTWF5IDE2IDA4OjMwOjI3
-IGJyb3VldHRlIGtlcm5lbDogU3RhY2s6Ck1heSAxNiAwODozMDoyNyBicm91ZXR0ZSBrZXJuZWw6
-IGZmZmZmZmZmYTA0N2VlM2YgZmZmZjg4MDE3MWFhMWJiOCBmZmZmZmZmZmEwNDdiZjI1IGZmZmY4
-ODAxNzFhYTFjMTgKTWF5IDE2IDA4OjMwOjI3IGJyb3VldHRlIGtlcm5lbDogZmZmZmZmZmZhMDQ3
-YzFjNiAwMTAwMDAwMDcxYWExYmUwIGZmZmZmZmZmYTA1NjFiYjAgMDAwMDAwMDAxZGU4ZDAwMApN
-YXkgMTYgMDg6MzA6MjcgYnJvdWV0dGUga2VybmVsOiBmZmZmODgwMDU1NzM3NjAwIDAwMDAwMDAw
-MDAwMDAwMDAgZmZmZjg4MDBiOTUwMDIwMCBmZmZmODgwMGJiMjYzNDQwCk1heSAxNiAwODozMDoy
-NyBicm91ZXR0ZSBrZXJuZWw6IENhbGwgVHJhY2U6Ck1heSAxNiAwODozMDoyNyBicm91ZXR0ZSBr
-ZXJuZWw6IFs8ZmZmZmZmZmZhMDQ3ZWUzZj5dID8gbm91dmVhdV9iYXJvYmpfd3IzMisweGYvMHgy
-MCBbbm91dmVhdV0KTWF5IDE2IDA4OjMwOjI3IGJyb3VldHRlIGtlcm5lbDogWzxmZmZmZmZmZmEw
-NDdiZjI1Pl0gX25vdXZlYXVfZ3B1b2JqX3dyMzIrMHgyNS8weDMwIFtub3V2ZWF1XQpNYXkgMTYg
-MDg6MzA6MjcgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZmYTA0N2MxYzY+XSBub3V2ZWF1X2dw
-dW9ial9jcmVhdGVfKzB4MWM2LzB4MmMwIFtub3V2ZWF1XQpNYXkgMTYgMDg6MzA6MjcgYnJvdWV0
-dGUga2VybmVsOiBbPGZmZmZmZmZmYTA0N2I0OGY+XSBub3V2ZWF1X2VuZ2N0eF9jcmVhdGVfKzB4
-MjRmLzB4MmEwIFtub3V2ZWF1XQpNYXkgMTYgMDg6MzA6MjcgYnJvdWV0dGUga2VybmVsOiBbPGZm
-ZmZmZmZmYTA0ZjBjM2M+XSBudjUwX2dyYXBoX2NvbnRleHRfY3RvcisweDNjLzB4ODAgW25vdXZl
-YXVdCk1heSAxNiAwODozMDoyNyBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDQ3ZDhhZD5d
-IG5vdXZlYXVfb2JqZWN0X2N0b3IrMHgyZC8weGMwIFtub3V2ZWF1XQpNYXkgMTYgMDg6MzA6Mjcg
-YnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZmYTA0N2UwOWI+XSBub3V2ZWF1X29iamVjdF9uZXcr
-MHhlYi8weDIwMCBbbm91dmVhdV0KTWF5IDE2IDA4OjMwOjI3IGJyb3VldHRlIGtlcm5lbDogWzxm
-ZmZmZmZmZmEwNTA0MzY4Pl0gbm91dmVhdV9hYmkxNl9pb2N0bF9ncm9ial9hbGxvYysweDY4LzB4
-ZTAgW25vdXZlYXVdCk1heSAxNiAwODozMDoyNyBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZh
-MDM2MjhiOD5dIGRybV9pb2N0bCsweDFkOC8weDVkMCBbZHJtXQpNYXkgMTYgMDg6MzA6MjcgYnJv
-dWV0dGUga2VybmVsOiBbPGZmZmZmZmZmYTA1MDQzMDA+XSA/IG5vdXZlYXVfYWJpMTZfaW9jdGxf
-Y2hhbm5lbF9mcmVlKzB4YTAvMHhhMCBbbm91dmVhdV0KTWF5IDE2IDA4OjMwOjI3IGJyb3VldHRl
-IGtlcm5lbDogWzxmZmZmZmZmZjgxMGRlMGQyPl0gPyBkb19tbWFwX3Bnb2ZmKzB4MmMyLzB4Mzkw
-Ck1heSAxNiAwODozMDoyNyBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDRmOWY3OT5dIG5v
-dXZlYXVfZHJtX2lvY3RsKzB4OS8weDEwIFtub3V2ZWF1XQpNYXkgMTYgMDg6MzA6MjcgYnJvdWV0
-dGUga2VybmVsOiBbPGZmZmZmZmZmODExMGI3ZDA+XSBkb192ZnNfaW9jdGwrMHgyZTAvMHg0YzAK
-TWF5IDE2IDA4OjMwOjI3IGJyb3VldHRlIGtlcm5lbDogWzxmZmZmZmZmZjgxMTE1MjQ5Pl0gPyBf
-X2ZnZXQrMHg2OS8weGIwCk1heSAxNiAwODozMDoyNyBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZm
-ZmY4MTEwYmEzMT5dIFN5U19pb2N0bCsweDgxLzB4YTAKTWF5IDE2IDA4OjMwOjI3IGJyb3VldHRl
-IGtlcm5lbDogWzxmZmZmZmZmZjgxNDkxNzIyPl0gc3lzdGVtX2NhbGxfZmFzdHBhdGgrMHgxNi8w
-eDFiCk1heSAxNiAwODozMDoyNyBicm91ZXR0ZSBrZXJuZWw6IENvZGU6IDgxIGZlIDAwIDAwIDAx
-IDAwIDc2IDBiIDBmIGI3IGQ2IDg5IGY4IGVmIGMzIDBmIDFmIDQwIDAwIDU1IDQ4IGM3IGM2IDlh
-IGE5IDU5IDgxIDQ4IDg5IGQ3IDQ4IDg5IGU1IGU4IDFkIGZlIGZmIGZmIDVkIGMzIDBmIDFmIDAw
-IDw4OT4gM2UgYzMgMGYgMWYgNDQgMDAgMDAgNDggODEgZmYgZmYgZmYgMDMgMDAgNzcgMzcgNDgg
-ODEgZmYgMDAgCk1heSAxNiAwODozMDoyNyBicm91ZXR0ZSBrZXJuZWw6IFJJUCAgWzxmZmZmZmZm
-ZjgxMjg1NmQ4Pl0gaW93cml0ZTMyKzB4MzgvMHg0MApNYXkgMTYgMDg6MzA6MjcgYnJvdWV0dGUg
-a2VybmVsOiBSU1AgPGZmZmY4ODAxNzFhYTFiYTA+Ck1heSAxNiAwODozMDoyNyBicm91ZXR0ZSBr
-ZXJuZWw6IENSMjogZmZmZmM5MDAxNTkwMDAwMApNYXkgMTYgMDg6MzA6MjcgYnJvdWV0dGUga2Vy
-bmVsOiAtLS1bIGVuZCB0cmFjZSAzNjY5YWQxY2U4MTViNmNkIF0tLS0KTWF5IDE2IDA4OjMxOjU1
-IGJyb3VldHRlIHBvc3RmaXgvcW1nclszMzYyXTogQjYyNzMzODAwMERGOiBmcm9tPTxsaW51eC1r
-ZXJuZWwtb3duZXJAdmdlci5rZXJuZWwub3JnPiwgc2l6ZT02NzYwLCBucmNwdD0xIChxdWV1ZSBh
-Y3RpdmUpCk1heSAxNiAwODozMTo1NiBicm91ZXR0ZSBwb3N0Zml4L3FtZ3JbMzM2Ml06IDgwMzY1
-MzgwMDBGQjogZnJvbT08bGludXgta2VybmVsLW93bmVyQHZnZXIua2VybmVsLm9yZz4sIHNpemU9
-NDYyOSwgbnJjcHQ9MSAocXVldWUgYWN0aXZlKQpNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2Vy
-bmVsOiBCVUc6IHVuYWJsZSB0byBoYW5kbGUga2VybmVsIHBhZ2luZyByZXF1ZXN0IGF0IGZmZmZj
-OTAwMTU5MDcwMDAKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogSVA6IFs8ZmZmZmZm
-ZmY4MTI4NTZkOD5dIGlvd3JpdGUzMisweDM4LzB4NDAKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRl
-IGtlcm5lbDogUEdEIDFiODgwZjA2NyBQVUQgMWI4ODUwMDY3IFBNRCBiOTc5ZTA2NyBQVEUgMApN
-YXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBPb3BzOiAwMDAyIFsjMl0gUFJFRU1QVCBT
-TVAgCk1heSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IE1vZHVsZXMgbGlua2VkIGluOiBu
-Zl9jb25udHJhY2tfaXB2NiBuZl9kZWZyYWdfaXB2NiBuZl9jb25udHJhY2tfaXB2NCBuZl9kZWZy
-YWdfaXB2NCB4dF9kc2NwIHh0X21hcmsgY2xzX2Zsb3cgY2xzX2Z3IHNjaF9zZnEgc2NoX2h0YiB4
-dF9oZWxwZXIgeHRfbGVuZ3RoIG5mX2Nvbm50cmFja19mdHAgbmZfY29ubnRyYWNrIGlwNnRhYmxl
-X21hbmdsZSBpcDZfdGFibGVzIGlwdGFibGVfbWFuZ2xlIGlwX3RhYmxlcyB4X3RhYmxlcyBjcHVm
-cmVxX3Bvd2Vyc2F2ZSBjcHVmcmVxX3VzZXJzcGFjZSBjcHVmcmVxX2NvbnNlcnZhdGl2ZSBkZWFk
-bGluZV9pb3NjaGVkIGJpbmZtdF9taXNjIHNuZF91c2JfYXVkaW8gc25kX3VzYm1pZGlfbGliIHNu
-ZF9od2RlcCBoaWRfcm9jY2F0X2tvbmVwdXJlIGhpZF9yb2NjYXQgaGlkX3JvY2NhdF9jb21tb24g
-aGlkX2dlbmVyaWMgdXNiaGlkIG5vdXZlYXUgc25kX2hkYV9jb2RlY19yZWFsdGVrIHNuZF9oZGFf
-Y29kZWNfZ2VuZXJpYyBzbmRfY2EwMTA2IHdtaSBzbmRfYWM5N19jb2RlYyB2aWRlbyBhYzk3X2J1
-cyBzbmRfc2VxX2R1bW15IHNuZF9zZXFfbWlkaSBpMmNfYWxnb19iaXQgc25kX3NlcV9vc3MgdHRt
-IHNuZF9zZXFfbWlkaV9ldmVudCBkcm1fa21zX2hlbHBlciBzbmRfc2VxIGRybSBpMmNfY29yZSBz
-bmRfcmF3bWlkaSBiYWNrbGlnaHQgc25kX3NlcV9kZXZpY2Ugc25kX2hkYV9pbnRlbCBzcl9tb2Qg
-ZWhjaV9wY2kgc25kX2hkYV9jb250cm9sbGVyIHVoY2lfaGNkIHBjc3BrciBlaGNpX2hjZCBjZHJv
-bSB1c2Jjb3JlIHNuZF9oZGFfY29kZWMgc25kX3BjbV9vc3Mgc25kX21peGVyX29zcyBudmlkaWFm
-YiBzbmRfcGNtIHNuZF90aW1lciB2Z2FzdGF0ZSBldmRldiB1c2JfY29tbW9uIGFjcGlfY3B1ZnJl
-cSBsb29wIGZ1c2UgYXV0b2ZzNApNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBDUFU6
-IDcgUElEOiAzMTQ1MiBDb21tOiBmaXJlZm94IFRhaW50ZWQ6IFAgICAgICBEICAgIE8gIDMuMTUu
-MC1yYzUgIzEKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogSGFyZHdhcmUgbmFtZTog
-U3lzdGVtIG1hbnVmYWN0dXJlciBTeXN0ZW0gUHJvZHVjdCBOYW1lL1A2VCBTRSwgQklPUyAwODA4
-ICAgIDAzLzA4LzIwMTAKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogdGFzazogZmZm
-Zjg4MDBiYWEyYWQ4MCB0aTogZmZmZjg4MDBhODBkZTAwMCB0YXNrLnRpOiBmZmZmODgwMGE4MGRl
-MDAwCk1heSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFJJUDogMDAxMDpbPGZmZmZmZmZm
-ODEyODU2ZDg+XSAgWzxmZmZmZmZmZjgxMjg1NmQ4Pl0gaW93cml0ZTMyKzB4MzgvMHg0MApNYXkg
-MTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBSU1A6IDAwMTg6ZmZmZjg4MDBhODBkZmE3OCAg
-RUZMQUdTOiAwMDAxMDI5MgpNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBSQVg6IGZm
-ZmY4ODAxYTU0YjRjNjAgUkJYOiBmZmZmODgwMDdjZWE0MDgwIFJDWDogMDAwMDAwMDAwMDAwMDAw
-MApNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBSRFg6IGZmZmZjOTAwMTU5MDcwMDAg
-UlNJOiBmZmZmYzkwMDE1OTA3MDAwIFJESTogMDAwMDAwMDAwMDAwMDAwMApNYXkgMTYgMDg6MzI6
-MTQgYnJvdWV0dGUga2VybmVsOiBSQlA6IGZmZmY4ODAwYTgwZGZhODAgUjA4OiBmZmZmZmZmZmEw
-NTRkZTYwIFIwOTogMDAwMDAwMDAwMDAwMDAwMApNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2Vy
-bmVsOiBSMTA6IDAwMDAwMDAwMDAwMDAwMDAgUjExOiAwMDAwMDAwMDAwMDAwMDBmIFIxMjogMDAw
-MDAwMDAwMDAwMDAwNApNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBSMTM6IDAwMDAw
-MDAwMDAwMDAwMDAgUjE0OiBmZmZmODgwMGE4MGRmYWMwIFIxNTogMDAwMDAwMDAwMDAwMDAwMApN
-YXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBGUzogIDAwMDA3ZjJjMWM4MGY3NDAoMDAw
-MCkgR1M6ZmZmZjg4MDFiZmNlMDAwMCgwMDAwKSBrbmxHUzowMDAwMDAwMDAwMDAwMDAwCk1heSAx
-NiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IENTOiAgMDAxMCBEUzogMDAwMCBFUzogMDAwMCBD
-UjA6IDAwMDAwMDAwODAwNTAwMzMKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogQ1Iy
-OiBmZmZmYzkwMDE1OTA3MDAwIENSMzogMDAwMDAwMDBhMTMwYTAwMCBDUjQ6IDAwMDAwMDAwMDAw
-MDA3ZTAKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogU3RhY2s6Ck1heSAxNiAwODoz
-MjoxNCBicm91ZXR0ZSBrZXJuZWw6IGZmZmZmZmZmYTA0N2VlM2YgZmZmZjg4MDBhODBkZmE5MCBm
-ZmZmZmZmZmEwNDdiZjI1IGZmZmY4ODAwYTgwZGZhZjAKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRl
-IGtlcm5lbDogZmZmZmZmZmZhMDQ3YzFjNiAwMDAwMDAwMGE4MGRmYWI4IGZmZmZmZmZmYTA1NGRj
-ZDAgMDAwMDAwMDAxZGQ4ZDAwMApNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBmZmZm
-ODgwMWE1NGI0YzYwIDAwMDAwMDAwMDAwMDAwMDAgZmZmZjg4MDBhODBkZmI0MCBmZmZmODgwMWI2
-ZTJjODAwCk1heSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IENhbGwgVHJhY2U6Ck1heSAx
-NiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDQ3ZWUzZj5dID8gbm91dmVh
-dV9iYXJvYmpfd3IzMisweGYvMHgyMCBbbm91dmVhdV0KTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRl
-IGtlcm5lbDogWzxmZmZmZmZmZmEwNDdiZjI1Pl0gX25vdXZlYXVfZ3B1b2JqX3dyMzIrMHgyNS8w
-eDMwIFtub3V2ZWF1XQpNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZm
-YTA0N2MxYzY+XSBub3V2ZWF1X2dwdW9ial9jcmVhdGVfKzB4MWM2LzB4MmMwIFtub3V2ZWF1XQpN
-YXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZmYTA0N2MyZjg+XSBfbm91
-dmVhdV9ncHVvYmpfY3RvcisweDM4LzB4NTAgW25vdXZlYXVdCk1heSAxNiAwODozMjoxNCBicm91
-ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDQ3ZDhhZD5dIG5vdXZlYXVfb2JqZWN0X2N0b3IrMHgy
-ZC8weGMwIFtub3V2ZWF1XQpNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZm
-ZmZmYTA0N2MzNTc+XSBub3V2ZWF1X2dwdW9ial9uZXcrMHg0Ny8weDUwIFtub3V2ZWF1XQpNYXkg
-MTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZmYTA0YmNkZDE+XSBub3V2ZWF1
-X3ZtX2dldCsweDFhMS8weDJhMCBbbm91dmVhdV0KTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtl
-cm5lbDogWzxmZmZmZmZmZmEwNTAxNTE5Pl0gbm91dmVhdV9ib192bWFfYWRkKzB4MjkvMHg5MCBb
-bm91dmVhdV0KTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogWzxmZmZmZmZmZmEwNGZi
-NWU4Pl0gbm91dmVhdV9jaGFubmVsX3ByZXArMHgyNzgvMHgzNjAgW25vdXZlYXVdCk1heSAxNiAw
-ODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDQ3ZDk5Nz5dID8gbm91dmVhdV9v
-YmplY3RfcmVmKzB4NTcvMHhjMCBbbm91dmVhdV0KTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtl
-cm5lbDogWzxmZmZmZmZmZmEwNGZiNzA4Pl0gbm91dmVhdV9jaGFubmVsX25ldysweDM4LzB4NmIw
-IFtub3V2ZWF1XQpNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZmODEw
-Njg0NWQ+XSA/IGdldF9wYXJlbnRfaXArMHhkLzB4NTAKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRl
-IGtlcm5lbDogWzxmZmZmZmZmZjgxMGVmNzkzPl0gPyBrbWVtX2NhY2hlX2FsbG9jKzB4ZDMvMHhl
-MApNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZmYTA1MDNmYjA+XSA/
-IG5vdXZlYXVfYWJpMTZfaW9jdGxfY2hhbm5lbF9hbGxvYysweGQwLzB4MzgwIFtub3V2ZWF1XQpN
-YXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZmYTA1MDQwMWU+XSBub3V2
-ZWF1X2FiaTE2X2lvY3RsX2NoYW5uZWxfYWxsb2MrMHgxM2UvMHgzODAgW25vdXZlYXVdCk1heSAx
-NiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDM2MjhiOD5dIGRybV9pb2N0
-bCsweDFkOC8weDVkMCBbZHJtXQpNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZm
-ZmZmZmZmYTA1MDNlZTA+XSA/IG5vdXZlYXVfYWJpMTZfaW9jdGxfc2V0cGFyYW0rMHgxMC8weDEw
-IFtub3V2ZWF1XQpNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZmODEx
-MTc2Mjk+XSA/IG1udHB1dF9ub19leHBpcmUrMHgyOS8weDE3MApNYXkgMTYgMDg6MzI6MTQgYnJv
-dWV0dGUga2VybmVsOiBbPGZmZmZmZmZmYTA0ZjlmNzk+XSBub3V2ZWF1X2RybV9pb2N0bCsweDkv
-MHgxMCBbbm91dmVhdV0KTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogWzxmZmZmZmZm
-ZjgxMTBiN2QwPl0gZG9fdmZzX2lvY3RsKzB4MmUwLzB4NGMwCk1heSAxNiAwODozMjoxNCBicm91
-ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmY4MTEwYmEzMT5dIFN5U19pb2N0bCsweDgxLzB4YTAKTWF5
-IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogWzxmZmZmZmZmZjgxNDkxNzIyPl0gc3lzdGVt
-X2NhbGxfZmFzdHBhdGgrMHgxNi8weDFiCk1heSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6
-IENvZGU6IDgxIGZlIDAwIDAwIDAxIDAwIDc2IDBiIDBmIGI3IGQ2IDg5IGY4IGVmIGMzIDBmIDFm
-IDQwIDAwIDU1IDQ4IGM3IGM2IDlhIGE5IDU5IDgxIDQ4IDg5IGQ3IDQ4IDg5IGU1IGU4IDFkIGZl
-IGZmIGZmIDVkIGMzIDBmIDFmIDAwIDw4OT4gM2UgYzMgMGYgMWYgNDQgMDAgMDAgNDggODEgZmYg
-ZmYgZmYgMDMgMDAgNzcgMzcgNDggODEgZmYgMDAgCk1heSAxNiAwODozMjoxNCBicm91ZXR0ZSBr
-ZXJuZWw6IFJJUCAgWzxmZmZmZmZmZjgxMjg1NmQ4Pl0gaW93cml0ZTMyKzB4MzgvMHg0MApNYXkg
-MTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBSU1AgPGZmZmY4ODAwYTgwZGZhNzg+Ck1heSAx
-NiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IENSMjogZmZmZmM5MDAxNTkwNzAwMApNYXkgMTYg
-MDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiAtLS1bIGVuZCB0cmFjZSAzNjY5YWQxY2U4MTViNmNl
-IF0tLS0KTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogLS0tLS0tLS0tLS0tWyBjdXQg
-aGVyZSBdLS0tLS0tLS0tLS0tCk1heSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFdBUk5J
-Tkc6IENQVTogNyBQSUQ6IDMxNDUyIGF0IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvY29y
-ZS9tbS5jOjI0NiBub3V2ZWF1X21tX2ZpbmkrMHg1OS8weDYwIFtub3V2ZWF1XSgpCk1heSAxNiAw
-ODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IE1vZHVsZXMgbGlua2VkIGluOiBuZl9jb25udHJhY2tf
-aXB2NiBuZl9kZWZyYWdfaXB2NiBuZl9jb25udHJhY2tfaXB2NCBuZl9kZWZyYWdfaXB2NCB4dF9k
-c2NwIHh0X21hcmsgY2xzX2Zsb3cgY2xzX2Z3IHNjaF9zZnEgc2NoX2h0YiB4dF9oZWxwZXIgeHRf
-bGVuZ3RoIG5mX2Nvbm50cmFja19mdHAgbmZfY29ubnRyYWNrIGlwNnRhYmxlX21hbmdsZSBpcDZf
-dGFibGVzIGlwdGFibGVfbWFuZ2xlIGlwX3RhYmxlcyB4X3RhYmxlcyBjcHVmcmVxX3Bvd2Vyc2F2
-ZSBjcHVmcmVxX3VzZXJzcGFjZSBjcHVmcmVxX2NvbnNlcnZhdGl2ZSBkZWFkbGluZV9pb3NjaGVk
-IGJpbmZtdF9taXNjIHNuZF91c2JfYXVkaW8gc25kX3VzYm1pZGlfbGliIHNuZF9od2RlcCBoaWRf
-cm9jY2F0X2tvbmVwdXJlIGhpZF9yb2NjYXQgaGlkX3JvY2NhdF9jb21tb24gaGlkX2dlbmVyaWMg
-dXNiaGlkIG5vdXZlYXUgc25kX2hkYV9jb2RlY19yZWFsdGVrIHNuZF9oZGFfY29kZWNfZ2VuZXJp
-YyBzbmRfY2EwMTA2IHdtaSBzbmRfYWM5N19jb2RlYyB2aWRlbyBhYzk3X2J1cyBzbmRfc2VxX2R1
-bW15IHNuZF9zZXFfbWlkaSBpMmNfYWxnb19iaXQgc25kX3NlcV9vc3MgdHRtIHNuZF9zZXFfbWlk
-aV9ldmVudCBkcm1fa21zX2hlbHBlciBzbmRfc2VxIGRybSBpMmNfY29yZSBzbmRfcmF3bWlkaSBi
-YWNrbGlnaHQgc25kX3NlcV9kZXZpY2Ugc25kX2hkYV9pbnRlbCBzcl9tb2QgZWhjaV9wY2kgc25k
-X2hkYV9jb250cm9sbGVyIHVoY2lfaGNkIHBjc3BrciBlaGNpX2hjZCBjZHJvbSB1c2Jjb3JlIHNu
-ZF9oZGFfY29kZWMgc25kX3BjbV9vc3Mgc25kX21peGVyX29zcyBudmlkaWFmYiBzbmRfcGNtIHNu
-ZF90aW1lciB2Z2FzdGF0ZSBldmRldiB1c2JfY29tbW9uIGFjcGlfY3B1ZnJlcSBsb29wIGZ1c2Ug
-YXV0b2ZzNApNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBDUFU6IDcgUElEOiAzMTQ1
-MiBDb21tOiBmaXJlZm94IFRhaW50ZWQ6IFAgICAgICBEICAgIE8gIDMuMTUuMC1yYzUgIzEKTWF5
-IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogSGFyZHdhcmUgbmFtZTogU3lzdGVtIG1hbnVm
-YWN0dXJlciBTeXN0ZW0gUHJvZHVjdCBOYW1lL1A2VCBTRSwgQklPUyAwODA4ICAgIDAzLzA4LzIw
-MTAKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogMDAwMDAwMDAwMDAwMDAwOSBmZmZm
-ODgwMGE4MGRmNTc4IGZmZmZmZmZmODE0OGI1NjcgMDAwMDAwMDAwMDAwMDAwMApNYXkgMTYgMDg6
-MzI6MTQgYnJvdWV0dGUga2VybmVsOiBmZmZmODgwMGE4MGRmNWIwIGZmZmZmZmZmODEwNDE2MDMg
-ZmZmZjg4MDFiNmUyYzgzOCBmZmZmODgwMWI2ZTJjODAwCk1heSAxNiAwODozMjoxNCBicm91ZXR0
-ZSBrZXJuZWw6IGZmZmY4ODAxYjZlMmM4MzggZmZmZjg4MDFiNmUyYzgzMCAwMDAwMDAwMDAwMDAw
-MDAwIGZmZmY4ODAwYTgwZGY1YzAKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogQ2Fs
-bCBUcmFjZToKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogWzxmZmZmZmZmZjgxNDhi
-NTY3Pl0gZHVtcF9zdGFjaysweDRlLzB4N2EKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5l
-bDogWzxmZmZmZmZmZjgxMDQxNjAzPl0gd2Fybl9zbG93cGF0aF9jb21tb24rMHg3My8weDkwCk1h
-eSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmY4MTA0MTZkNT5dIHdhcm5f
-c2xvd3BhdGhfbnVsbCsweDE1LzB4MjAKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDog
-WzxmZmZmZmZmZmEwNDdkNDU5Pl0gbm91dmVhdV9tbV9maW5pKzB4NTkvMHg2MCBbbm91dmVhdV0K
-TWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogWzxmZmZmZmZmZmEwNGJjMmJjPl0gbm91
-dmVhdV92bV9kZWwrMHg0Yy8weDcwIFtub3V2ZWF1XQpNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUg
-a2VybmVsOiBbPGZmZmZmZmZmYTA0YmNiZWQ+XSBub3V2ZWF1X3ZtX3JlZisweDEzZC8weDE4MCBb
-bm91dmVhdV0KTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogWzxmZmZmZmZmZmEwNGY5
-ZmYwPl0gbm91dmVhdV9jbGlfZGVzdHJveSsweDIwLzB4NTAgW25vdXZlYXVdCk1heSAxNiAwODoz
-MjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDRmYTBjMj5dIG5vdXZlYXVfZHJtX3Bv
-c3RjbG9zZSsweDEyLzB4MzAgW25vdXZlYXVdCk1heSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJu
-ZWw6IFs8ZmZmZmZmZmZhMDM2M2EzYz5dIGRybV9yZWxlYXNlKzB4MzJjLzB4NjMwIFtkcm1dCk1h
-eSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmY4MTBmYjRkNj5dIF9fZnB1
-dCsweGM2LzB4MWQwCk1heSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmY4
-MTBmYjYxOT5dIF9fX19mcHV0KzB4OS8weDEwCk1heSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJu
-ZWw6IFs8ZmZmZmZmZmY4MTA1YjIzND5dIHRhc2tfd29ya19ydW4rMHhiNC8weGQwCk1heSAxNiAw
-ODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmY4MTA0MjZmMD5dIGRvX2V4aXQrMHgy
-NDAvMHg5ODAKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogWzxmZmZmZmZmZjgxMDgx
-Yzc5Pl0gPyBrbXNnX2R1bXArMHhiOS8weGQwCk1heSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJu
-ZWw6IFs8ZmZmZmZmZmY4MTAwNjNkYT5dIG9vcHNfZW5kKzB4NmEvMHhhMApNYXkgMTYgMDg6MzI6
-MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZmODE0ODdlMTM+XSBub19jb250ZXh0KzB4Mjk3
-LzB4MmE0Ck1heSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmY4MTQ4N2U4
-OD5dIF9fYmFkX2FyZWFfbm9zZW1hcGhvcmUrMHg2OC8weDFiZgpNYXkgMTYgMDg6MzI6MTQgYnJv
-dWV0dGUga2VybmVsOiBbPGZmZmZmZmZmODE0ODdmZWQ+XSBiYWRfYXJlYV9ub3NlbWFwaG9yZSsw
-eGUvMHgxMApNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZmODEwMzc1
-M2Y+XSBfX2RvX3BhZ2VfZmF1bHQrMHg3Zi8weDQ5MApNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUg
-a2VybmVsOiBbPGZmZmZmZmZmYTA0N2U4ZGU+XSA/IG52X3ByaW50a18rMHg4ZS8weDFiMCBbbm91
-dmVhdV0KTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogWzxmZmZmZmZmZmEwNDdjZGJl
-Pl0gPyByZWdpb25faGVhZC5pc3JhLjUucGFydC42KzB4MWUvMHg4MCBbbm91dmVhdV0KTWF5IDE2
-IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogWzxmZmZmZmZmZjgxMDM3OThlPl0gZG9fcGFnZV9m
-YXVsdCsweDFlLzB4NzAKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogWzxmZmZmZmZm
-ZjgxNDkxMjYyPl0gcGFnZV9mYXVsdCsweDIyLzB4MzAKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRl
-IGtlcm5lbDogWzxmZmZmZmZmZjgxMjg1NmQ4Pl0gPyBpb3dyaXRlMzIrMHgzOC8weDQwCk1heSAx
-NiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDQ3ZDk5Nz5dID8gbm91dmVh
-dV9vYmplY3RfcmVmKzB4NTcvMHhjMCBbbm91dmVhdV0KTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRl
-IGtlcm5lbDogWzxmZmZmZmZmZmEwNDdlZTNmPl0gPyBub3V2ZWF1X2Jhcm9ial93cjMyKzB4Zi8w
-eDIwIFtub3V2ZWF1XQpNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZm
-YTA0N2JmMjU+XSBfbm91dmVhdV9ncHVvYmpfd3IzMisweDI1LzB4MzAgW25vdXZlYXVdCk1heSAx
-NiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDQ3YzFjNj5dIG5vdXZlYXVf
-Z3B1b2JqX2NyZWF0ZV8rMHgxYzYvMHgyYzAgW25vdXZlYXVdCk1heSAxNiAwODozMjoxNCBicm91
-ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDQ3YzJmOD5dIF9ub3V2ZWF1X2dwdW9ial9jdG9yKzB4
-MzgvMHg1MCBbbm91dmVhdV0KTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogWzxmZmZm
-ZmZmZmEwNDdkOGFkPl0gbm91dmVhdV9vYmplY3RfY3RvcisweDJkLzB4YzAgW25vdXZlYXVdCk1h
-eSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDQ3YzM1Nz5dIG5vdXZl
-YXVfZ3B1b2JqX25ldysweDQ3LzB4NTAgW25vdXZlYXVdCk1heSAxNiAwODozMjoxNCBicm91ZXR0
-ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDRiY2RkMT5dIG5vdXZlYXVfdm1fZ2V0KzB4MWExLzB4MmEw
-IFtub3V2ZWF1XQpNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZmYTA1
-MDE1MTk+XSBub3V2ZWF1X2JvX3ZtYV9hZGQrMHgyOS8weDkwIFtub3V2ZWF1XQpNYXkgMTYgMDg6
-MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZmYTA0ZmI1ZTg+XSBub3V2ZWF1X2NoYW5u
-ZWxfcHJlcCsweDI3OC8weDM2MCBbbm91dmVhdV0KTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtl
-cm5lbDogWzxmZmZmZmZmZmEwNDdkOTk3Pl0gPyBub3V2ZWF1X29iamVjdF9yZWYrMHg1Ny8weGMw
-IFtub3V2ZWF1XQpNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZmYTA0
-ZmI3MDg+XSBub3V2ZWF1X2NoYW5uZWxfbmV3KzB4MzgvMHg2YjAgW25vdXZlYXVdCk1heSAxNiAw
-ODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmY4MTA2ODQ1ZD5dID8gZ2V0X3BhcmVu
-dF9pcCsweGQvMHg1MApNYXkgMTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZm
-ODEwZWY3OTM+XSA/IGttZW1fY2FjaGVfYWxsb2MrMHhkMy8weGUwCk1heSAxNiAwODozMjoxNCBi
-cm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDUwM2ZiMD5dID8gbm91dmVhdV9hYmkxNl9pb2N0
-bF9jaGFubmVsX2FsbG9jKzB4ZDAvMHgzODAgW25vdXZlYXVdCk1heSAxNiAwODozMjoxNCBicm91
-ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDUwNDAxZT5dIG5vdXZlYXVfYWJpMTZfaW9jdGxfY2hh
-bm5lbF9hbGxvYysweDEzZS8weDM4MCBbbm91dmVhdV0KTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRl
-IGtlcm5lbDogWzxmZmZmZmZmZmEwMzYyOGI4Pl0gZHJtX2lvY3RsKzB4MWQ4LzB4NWQwIFtkcm1d
-Ck1heSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmZhMDUwM2VlMD5dID8g
-bm91dmVhdV9hYmkxNl9pb2N0bF9zZXRwYXJhbSsweDEwLzB4MTAgW25vdXZlYXVdCk1heSAxNiAw
-ODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZmZmZmZmY4MTExNzYyOT5dID8gbW50cHV0X25v
-X2V4cGlyZSsweDI5LzB4MTcwCk1heSAxNiAwODozMjoxNCBicm91ZXR0ZSBrZXJuZWw6IFs8ZmZm
-ZmZmZmZhMDRmOWY3OT5dIG5vdXZlYXVfZHJtX2lvY3RsKzB4OS8weDEwIFtub3V2ZWF1XQpNYXkg
-MTYgMDg6MzI6MTQgYnJvdWV0dGUga2VybmVsOiBbPGZmZmZmZmZmODExMGI3ZDA+XSBkb192ZnNf
-aW9jdGwrMHgyZTAvMHg0YzAKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogWzxmZmZm
-ZmZmZjgxMTBiYTMxPl0gU3lTX2lvY3RsKzB4ODEvMHhhMApNYXkgMTYgMDg6MzI6MTQgYnJvdWV0
-dGUga2VybmVsOiBbPGZmZmZmZmZmODE0OTE3MjI+XSBzeXN0ZW1fY2FsbF9mYXN0cGF0aCsweDE2
-LzB4MWIKTWF5IDE2IDA4OjMyOjE0IGJyb3VldHRlIGtlcm5lbDogLS0tWyBlbmQgdHJhY2UgMzY2
-OWFkMWNlODE1YjZjZiBdLS0tCg==
---90e6ba1efcae448d2004f97fe0cf--
+diff --git a/nvkm/include/subdev/clock.h b/nvkm/include/subdev/clock.h
+index 8f4ced7..c01e29c 100644
+--- a/nvkm/include/subdev/clock.h
++++ b/nvkm/include/subdev/clock.h
+@@ -77,6 +77,8 @@ struct nouveau_clock {
+ 	int tstate; /* thermal adjustment (max-) */
+ 	int dstate; /* display adjustment (min+) */
+ 
++	bool allow_reclock;
++
+ 	int  (*read)(struct nouveau_clock *, enum nv_clk_src);
+ 	int  (*calc)(struct nouveau_clock *, struct nouveau_cstate *);
+ 	int  (*prog)(struct nouveau_clock *);
+@@ -106,8 +108,8 @@ struct nouveau_clocks {
+ 	int mdiv;
+ };
+ 
+-#define nouveau_clock_create(p,e,o,i,d)                                        \
+-	nouveau_clock_create_((p), (e), (o), (i), sizeof(**d), (void **)d)
++#define nouveau_clock_create(p,e,o,i,r,d)                                      \
++	nouveau_clock_create_((p), (e), (o), (i), (r), sizeof(**d), (void **)d)
+ #define nouveau_clock_destroy(p) ({                                            \
+ 	struct nouveau_clock *clk = (p);                                       \
+ 	_nouveau_clock_dtor(nv_object(clk));                                   \
+@@ -121,7 +123,7 @@ struct nouveau_clocks {
+ 
+ int  nouveau_clock_create_(struct nouveau_object *, struct nouveau_object *,
+ 			   struct nouveau_oclass *,
+-			   struct nouveau_clocks *, int, void **);
++			   struct nouveau_clocks *, bool, int, void **);
+ void _nouveau_clock_dtor(struct nouveau_object *);
+ int _nouveau_clock_init(struct nouveau_object *);
+ #define _nouveau_clock_fini _nouveau_subdev_fini
+diff --git a/nvkm/subdev/clock/base.c b/nvkm/subdev/clock/base.c
+index dd62bae..80ad9d3 100644
+--- a/nvkm/subdev/clock/base.c
++++ b/nvkm/subdev/clock/base.c
+@@ -346,8 +346,8 @@ nouveau_clock_ustate_update(struct nouveau_clock *clk, int req)
+ 	struct nouveau_pstate *pstate;
+ 	int i = 0;
+ 
+-	/* YKW repellant */
+-	return -ENOSYS;
++	if (!clk->allow_reclock)
++		return -ENOSYS;
+ 
+ 	if (req != -1 && req != -2) {
+ 		list_for_each_entry(pstate, &clk->states, head) {
+@@ -456,6 +456,7 @@ nouveau_clock_create_(struct nouveau_object *parent,
+ 		      struct nouveau_object *engine,
+ 		      struct nouveau_oclass *oclass,
+ 		      struct nouveau_clocks *clocks,
++		      bool allow_reclock,
+ 		      int length, void **object)
+ {
+ 	struct nouveau_device *device = nv_device(parent);
+@@ -478,6 +479,9 @@ nouveau_clock_create_(struct nouveau_object *parent,
+ 		ret = nouveau_pstate_new(clk, idx++);
+ 	} while (ret == 0);
+ 
++	clk->allow_reclock =
++		nouveau_boolopt(device->cfgopt, "NvReclock", allow_reclock);
++
+ 	mode = nouveau_stropt(device->cfgopt, "NvClkMode", &arglen);
+ 	if (mode) {
+ 		if (!strncasecmpz(mode, "disabled", arglen)) {
+diff --git a/nvkm/subdev/clock/nv04.c b/nvkm/subdev/clock/nv04.c
+index b74db6c..eb2d442 100644
+--- a/nvkm/subdev/clock/nv04.c
++++ b/nvkm/subdev/clock/nv04.c
+@@ -82,7 +82,8 @@ nv04_clock_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	struct nv04_clock_priv *priv;
+ 	int ret;
+ 
+-	ret = nouveau_clock_create(parent, engine, oclass, nv04_domain, &priv);
++	ret = nouveau_clock_create(parent, engine, oclass, nv04_domain, false,
++				   &priv);
+ 	*pobject = nv_object(priv);
+ 	if (ret)
+ 		return ret;
+diff --git a/nvkm/subdev/clock/nv40.c b/nvkm/subdev/clock/nv40.c
+index db7346f..651e299 100644
+--- a/nvkm/subdev/clock/nv40.c
++++ b/nvkm/subdev/clock/nv40.c
+@@ -213,7 +213,8 @@ nv40_clock_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	struct nv40_clock_priv *priv;
+ 	int ret;
+ 
+-	ret = nouveau_clock_create(parent, engine, oclass, nv40_domain, &priv);
++	ret = nouveau_clock_create(parent, engine, oclass, nv40_domain, false,
++				   &priv);
+ 	*pobject = nv_object(priv);
+ 	if (ret)
+ 		return ret;
+diff --git a/nvkm/subdev/clock/nv50.c b/nvkm/subdev/clock/nv50.c
+index 250a6d9..8c13277 100644
+--- a/nvkm/subdev/clock/nv50.c
++++ b/nvkm/subdev/clock/nv50.c
+@@ -507,7 +507,7 @@ nv50_clock_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	int ret;
+ 
+ 	ret = nouveau_clock_create(parent, engine, oclass, pclass->domains,
+-				  &priv);
++				   false, &priv);
+ 	*pobject = nv_object(priv);
+ 	if (ret)
+ 		return ret;
+diff --git a/nvkm/subdev/clock/nva3.c b/nvkm/subdev/clock/nva3.c
+index 4f5a137..9fb5835 100644
+--- a/nvkm/subdev/clock/nva3.c
++++ b/nvkm/subdev/clock/nva3.c
+@@ -302,7 +302,8 @@ nva3_clock_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	struct nva3_clock_priv *priv;
+ 	int ret;
+ 
+-	ret = nouveau_clock_create(parent, engine, oclass, nva3_domain, &priv);
++	ret = nouveau_clock_create(parent, engine, oclass, nva3_domain, false,
++				   &priv);
+ 	*pobject = nv_object(priv);
+ 	if (ret)
+ 		return ret;
+diff --git a/nvkm/subdev/clock/nvaa.c b/nvkm/subdev/clock/nvaa.c
+index 7a723b4..6a65fc9 100644
+--- a/nvkm/subdev/clock/nvaa.c
++++ b/nvkm/subdev/clock/nvaa.c
+@@ -421,7 +421,8 @@ nvaa_clock_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	struct nvaa_clock_priv *priv;
+ 	int ret;
+ 
+-	ret = nouveau_clock_create(parent, engine, oclass, nvaa_domains, &priv);
++	ret = nouveau_clock_create(parent, engine, oclass, nvaa_domains, true,
++				   &priv);
+ 	*pobject = nv_object(priv);
+ 	if (ret)
+ 		return ret;
+diff --git a/nvkm/subdev/clock/nvc0.c b/nvkm/subdev/clock/nvc0.c
+index c310572..dbf8517 100644
+--- a/nvkm/subdev/clock/nvc0.c
++++ b/nvkm/subdev/clock/nvc0.c
+@@ -437,7 +437,8 @@ nvc0_clock_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	struct nvc0_clock_priv *priv;
+ 	int ret;
+ 
+-	ret = nouveau_clock_create(parent, engine, oclass, nvc0_domain, &priv);
++	ret = nouveau_clock_create(parent, engine, oclass, nvc0_domain, false,
++				   &priv);
+ 	*pobject = nv_object(priv);
+ 	if (ret)
+ 		return ret;
+diff --git a/nvkm/subdev/clock/nve0.c b/nvkm/subdev/clock/nve0.c
+index d3c37c9..860aa73 100644
+--- a/nvkm/subdev/clock/nve0.c
++++ b/nvkm/subdev/clock/nve0.c
+@@ -473,7 +473,8 @@ nve0_clock_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	struct nve0_clock_priv *priv;
+ 	int ret;
+ 
+-	ret = nouveau_clock_create(parent, engine, oclass, nve0_domain, &priv);
++	ret = nouveau_clock_create(parent, engine, oclass, nve0_domain, false,
++				   &priv);
+ 	*pobject = nv_object(priv);
+ 	if (ret)
+ 		return ret;
+-- 
+1.8.5.5
