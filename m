@@ -1,17 +1,14 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] clk: allow config option to enable reclocking
-Date: Sat, 17 May 2014 14:18:39 +1000
-Message-ID: <CACAvsv7PyNWt8oWf=suszxuOewp_-sRp2xK0fQAD0eopyR20hA@mail.gmail.com>
-References: <1400258565-28941-1-git-send-email-imirkin@alum.mit.edu>
- <CACAvsv5an3rkOtk=rPixGcunadZgRDQsXrEnozO65v8uTwaw3A@mail.gmail.com>
- <CAKb7Uvjk0B-4F+OdydstWp6C52GoGu289V0RkrfBLeURmpD+Bg@mail.gmail.com>
- <CACAvsv7o2Wj7-D0bdB3SBG-TisG-E2PebfSuAWxYCxt6_meiSw@mail.gmail.com>
- <CAKb7Uvj9HG1LBzbjh=Zj-wTyqsrd=xZry+Uae7CJtZ0NyVnfMg@mail.gmail.com>
+From: Damien Wyart <damien.wyart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Machine freeze on latest Linus kernel,
+	seems related to nouveau
+Date: Sat, 17 May 2014 20:13:12 +0200
+Message-ID: <CADJQGJf=G=_w-=1Mj-WfBHf3M2TKaanGcxav3c+cpK3Oq2ELVQ@mail.gmail.com>
+References: <CADJQGJe=CmRn0PmofRUFwZEF-Ah=NAnZVpL1uKYTDLd3Oz_OEQ@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvj9HG1LBzbjh=Zj-wTyqsrd=xZry+Uae7CJtZ0NyVnfMg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CADJQGJe=CmRn0PmofRUFwZEF-Ah=NAnZVpL1uKYTDLd3Oz_OEQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,149 +18,125 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, May 17, 2014 at 2:06 PM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
-> On Fri, May 16, 2014 at 11:54 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->> On 17 May 2014 13:39, "Ilia Mirkin" <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
->>>
->>> On Fri, May 16, 2014 at 11:17 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->>> > On 17 May 2014 02:43, "Ilia Mirkin" <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
->>> >>
->>> >> Adds a NvReclock boolean option to allow the user to enable (or
->>> >> disable)
->>> >> reclocking. All chipsets default to off, except NVAA/NVAC, which are
->>> >> reportedly complete.
->>> > Hey Ilia,
->>> >
->>> > I think I've expressed my thoughts on this previously via IRC, but let
->>> > me
->>> > stick them here too so there's a record of the current state...
->>> >
->>> > For nvaa/nvac, yes, let's enable it by default. It should, apparently,
->>> > be
->>> > good enough that it has a decent chance of working.  It's not like we're
->>> > attempting anything automatic yet, so, this won't break anything for
->>> > people
->>> > who aren't trying..
->>> >
->>> > I'm on the fence about Kepler. It actually might work to some extent in
->>> > a
->>> > decent number of cases already, there's potentially some severe issues
->>> > even
->>> > with engine clocks on some  boards that I'm aware of, so it's not just a
->>> > memory reclocking worry here.
->>> >
->>> > That said, it has a good chance of working for some people. So.
->>> > Thoughts?
->>> > I'm also talking making "NvMemExec" default on here too.  Again, causing
->>> > a
->>> > fuck-up will still require direct user action.
->>> >
->>> > For the rest (Hm, except maybe nv40, a lot will probably be ok..)
->>> > There's
->>> > *very* little chance memory reclocking will work, even on the systems
->>> > where
->>> > it used to. The code is far less complete, as it was broken in general,
->>> > and
->>> > I haven't yet had the time to *properly* reverse engineer the sequence
->>> > needed to stably reclock memory.  Kepler is the only implementation
->>> > where
->>> > that's even been started.  Tl;dr - unless you're working on the code for
->>> > Tesla/Fermi, there's zero point even trying it. So, the block should
->>> > stay.
->>>
->>> Meh. It works on my G98, for one of the perf levels. I'm sure there
->>> are lots of tesla's where it totally wouldn't work, but as long as it
->>> works on some of them, why not let people try?
->> Because we don't even *try* to handle timing changes, which, for the vast
->> majority perflvl changes, will not end well.
->>
->> This is more than a "mere" bug or slight bit of missing handling. It's a
->> *very* important chunk of the process that's simply missing.
->>
->> This is the difference between the Kepler code. Kepler might work, this
->> probably will not, unless you're very very lucky.
->>
->>>
->>> >
->>> > Personally, as you know, I'm more comfortable leaving it developer-only
->>> > still (except nvaa/nvac) until it at least works on all our own boards
->>> > without any major known missing bits..  But yeah, for the ones mentioned
->>> > above, I guess it's a possibility if people *really* want...
->>>
->>> I'm of the opposite opinion... if it works on _some_ of our boards, we
->>> should let people play with it. Why lock it away? Unless there's a
->>> real danger of it bricking the card. I've never heard of our code
->>> doing that, and given the way that you were RE'ing this stuff, I doubt
->>> that there's anything we can do (within reason) to brick the card.
->> This is why I'm "Hmm, maybe" on Kepler's code.  Again, the rest isn't even
->> expected to work at all yet.  I'm surprised it did for you.. Were the clocks
->> you chose close to the boot clocks by chance?
->
-> Yep, they were.
-;)
+Hi;
 
->
->>
->>>
->>> >
->>> > I can only envision that if we allow this even just in the places it's
->>> > known
->>> > to be partially broken, certain sensationalist, er, people, will feel
->>> > the
->>> > need to test and complain about how broken it all really is... And then
->>> > retest on a regular basis, despite there having been *zero* work done
->>> > because no-one has the time, and then complain about the exact same
->>> > thing
->>> > AGAIN! (WHOA.. I'm done ranting now :p)
->>>
->>> I would prefer to avoid our decisions being directed by a small number
->>> of loud complaining users, and instead to try to do things that will
->>> serve the real users. Those complaints are only as loud as you think
->>> they are -- you can also think of them as an automated tester that
->>> puts its results into prose.
->> Yes, this was more of a rant than an argument against the idea.
->>
->> Prior to 3.13, we allowed people to try
->>> reclocking on nv40 and nv50, and I didn't see some huge quantity of
->>> complaints about how it didn't work perfectly. Perhaps you saw those
->>> at first, but I think the expectation by now is that it won't work.
->>> Especially if it's behind a config option.
->> Yes, but now, the code is lacking the huge chunk of functionality and
->> probably won't work.  Nv40 is probably in a similar state to before,
->> however. So, again with the "maybe" there too.
->>
->>>
->>> I have no idea what NvMemExec _really_ is doing, so I left it alone. I
->>> assume that the majority of what my patch enables is actually engine
->>> reclocking, not memory reclocking. So to get both, people would have
->>> to flip both flags? Or is there more to it?
->> I use it during development to allow independent testing or engine clock
->> code without the more faulty memory code causing problems. The option
->> prevents the memory recording scripts from being executed.
->
-> OK, so it really should be getting enabled in order for reclocking to
-> "work". If you're really sure that it won't work for the majority of
-> tesla cases --fine. I definitely know that it _used_ to work before
-> 3.13 too, e.g. some ~nva8 user needed to clock it up to get video
-> decoding engines to be fast enough.
->
-> So... fine. Let's do the full enable for nvaa, override-able enable
-> for nv40, nve0 (including defaulting NvMemExec to on if NvReclock is
-> set), and leave nv50/nva3/nvc0 alone.
->
-> Thoughts?
-Let's just go full enable (so, make the -ENOSYS >= 0x50 || < 0xe0) on
-nv40/nvaa/nve0 implementations.  IIRC the default clock mode is
-"disabled" still, so, nothing bad will happen unless people try it.
+After further tests, I can reproduce the problem on 3.14.4 also,
+mainly by visiting the following URL with Firefox (29.0.1) :
+http://lavieestmaloptimisee.blogspot.fr/
 
-And yes, I'd vote for just making NvMemExec default "true" everywhere.
- The option should stay though, it's useful for development/debugging.
+Firefox becomes unresponsive and I get some messages in the kernel log :
 
-Ben.
+May 17 20:01:36 brouette kernel: BUG: unable to handle kernel paging
+request at ffffc90015300000
+May 17 20:01:36 brouette kernel: IP: [<ffffffff8127ff38>] iowrite32+0x38/0x40
+May 17 20:01:36 brouette kernel: PGD 1b880f067 PUD 1b8850067 PMD 1b6cfd067 PTE 0
+May 17 20:01:36 brouette kernel: Oops: 0002 [#1] PREEMPT SMP
+May 17 20:01:36 brouette kernel: Modules linked in: usb_storage
+nf_conntrack_ipv6 nf_defrag_ipv6 nf_conntrack_ipv4 nf_defrag_ipv4
+xt_dscp xt_mark cls_flow cls_fw sch_sfq sch_htb xt_helper xt_length
+nf_conntrack_ftp nf_conntrack ip6table_mangle ip6_tables
+iptable_mangle ip_tables x_tables cpufreq_powersave cpufreq_userspace
+cpufreq_conservative deadline_iosched binfmt_misc hid_roccat_konepure
+hid_roccat hid_roccat_common hid_generic snd_usb_audio snd_usbmidi_lib
+usbhid snd_hwdep nouveau snd_hda_codec_realtek snd_hda_codec_generic
+wmi snd_ca0106 video i2c_algo_bit snd_ac97_codec ac97_bus
+snd_seq_dummy snd_seq_midi snd_seq_oss ttm snd_seq_midi_event
+drm_kms_helper snd_seq drm i2c_core backlight snd_rawmidi
+snd_hda_intel snd_hda_codec snd_seq_device sr_mod snd_pcm_oss pcspkr
+cdrom nvidiafb snd_mixer_oss vgastate snd_pcm snd_timer ehci_pci
+uhci_hcd ehci_hcd usbcore evdev usb_common acpi_cpufreq loop fuse
+autofs4
+May 17 20:01:36 brouette kernel: CPU: 1 PID: 12671 Comm:
+plugin-containe Tainted: P           O 3.14.4 #1
+May 17 20:01:36 brouette kernel: Hardware name: System manufacturer
+System Product Name/P6T SE, BIOS 0808    03/08/2010
+May 17 20:01:36 brouette kernel: task: ffff8800ba42a160 ti:
+ffff8801ac584000 task.ti: ffff8801ac584000
+May 17 20:01:36 brouette kernel: RIP: 0010:[<ffffffff8127ff38>]
+[<ffffffff8127ff38>] iowrite32+0x38/0x40
+May 17 20:01:36 brouette kernel: RSP: 0018:ffff8801ac585b90  EFLAGS: 00010292
+May 17 20:01:36 brouette kernel: RAX: ffff8800813e65a0 RBX:
+ffff8801b5aed600 RCX: 0000000000000000
+May 17 20:01:36 brouette kernel: RDX: ffffc90015300000 RSI:
+ffffc90015300000 RDI: 0000000000000000
+May 17 20:01:36 brouette kernel: RBP: ffff8801ac585b98 R08:
+ffffffffa0423100 R09: 0000000000000000
+May 17 20:01:36 brouette kernel: R10: 0000000000000000 R11:
+000000000000000f R12: 0000000000060004
+May 17 20:01:36 brouette kernel: R13: 0000000000000000 R14:
+ffff8801ac585bd8 R15: 0000000000000000
+May 17 20:01:36 brouette kernel: FS:  00007f1767d15a40(0000)
+GS:ffff8801bfc20000(0000) knlGS:0000000000000000
+May 17 20:01:36 brouette kernel: CS:  0010 DS: 0000 ES: 0000 CR0:
+0000000080050033
+May 17 20:01:36 brouette kernel: CR2: ffffc90015300000 CR3:
+000000019d752000 CR4: 00000000000007e0
+May 17 20:01:36 brouette kernel: Stack:
+May 17 20:01:36 brouette kernel: ffffffffa036be6f ffff8801ac585ba8
+ffffffffa0368f25 ffff8801ac585c08
+May 17 20:01:36 brouette kernel: ffffffffa03691c6 0100000077359400
+ffffffffa0443ff0 000000001de8d000
+May 17 20:01:36 brouette kernel: ffff8800813e65a0 0000000000000000
+ffff8801b5aed700 ffff880165e83740
+May 17 20:01:36 brouette kernel: Call Trace:
+May 17 20:01:36 brouette kernel: [<ffffffffa036be6f>] ?
+nouveau_barobj_wr32+0xf/0x20 [nouveau]
+May 17 20:01:36 brouette kernel: [<ffffffffa0368f25>]
+_nouveau_gpuobj_wr32+0x25/0x30 [nouveau]
+May 17 20:01:36 brouette kernel: [<ffffffffa03691c6>]
+nouveau_gpuobj_create_+0x1c6/0x2c0 [nouveau]
+May 17 20:01:36 brouette kernel: [<ffffffffa036848f>]
+nouveau_engctx_create_+0x24f/0x2a0 [nouveau]
+May 17 20:01:36 brouette kernel: [<ffffffffa03daddc>]
+nv50_graph_context_ctor+0x3c/0x80 [nouveau]
+May 17 20:01:36 brouette kernel: [<ffffffffa036a8ad>]
+nouveau_object_ctor+0x2d/0xc0 [nouveau]
+May 17 20:01:36 brouette kernel: [<ffffffffa036b09b>]
+nouveau_object_new+0xeb/0x200 [nouveau]
+May 17 20:01:36 brouette kernel: [<ffffffffa03edc1b>]
+nouveau_abi16_ioctl_grobj_alloc+0x6b/0xe0 [nouveau]
+May 17 20:01:36 brouette kernel: [<ffffffffa0253a62>]
+drm_ioctl+0x4c2/0x5f0 [drm]
+May 17 20:01:36 brouette kernel: [<ffffffff810dbcb2>] ?
+do_mmap_pgoff+0x2c2/0x380
+May 17 20:01:36 brouette kernel: [<ffffffffa03e3799>]
+nouveau_drm_ioctl+0x9/0x10 [nouveau]
+May 17 20:01:36 brouette kernel: [<ffffffff81109850>] do_vfs_ioctl+0x2e0/0x4c0
+May 17 20:01:36 brouette kernel: [<ffffffff81113239>] ? __fget+0x69/0xb0
+May 17 20:01:36 brouette kernel: [<ffffffff81109ab1>] SyS_ioctl+0x81/0xa0
+May 17 20:01:36 brouette kernel: [<ffffffff81482f62>]
+system_call_fastpath+0x16/0x1b
+May 17 20:01:36 brouette kernel: Code: 81 fe 00 00 01 00 76 0b 0f b7
+d6 89 f8 ef c3 0f 1f 40 00 55 48 c7 c6 e1 9e 58 81 48 89 d7 48 89 e5
+e8 1d fe ff ff 5d c3 0f 1f 00 <89> 3e c3 0f 1f 44 00 00 48 81 ff ff ff
+03 00 77 37 48 81 ff 00
+May 17 20:01:36 brouette kernel: RIP  [<ffffffff8127ff38>] iowrite32+0x38/0x40
+May 17 20:01:36 brouette kernel: RSP <ffff8801ac585b90>
+May 17 20:01:36 brouette kernel: CR2: ffffc90015300000
+May 17 20:01:36 brouette kernel: ---[ end trace e4c3bdfb0b08f505 ]---
 
+Thanks in advance for any help.
+
+Best
+
+Damien Wyart
+
+On Fri, May 16, 2014 at 10:05 AM, Damien Wyart <damien.wyart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> Hi,
 >
->   -ilia
+> I am running the latest kernel from Linus. Once yesterday and once
+> today, I got a freeze of my machine. The first time, I could reboot
+> with sysrq, but not the second one (completely unresponsive). The
+> first time,, there was nothng in the logs, but today, I got some
+> traces which I attach to this email.
+>
+> I can provide more details if needed ; the card is GeForce 9600 GT and
+> the OS Debian Sid.
+>
+> Thanks in advance for any feedback.
+>
+> Damien Wyart
