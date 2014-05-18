@@ -1,110 +1,87 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] nv50,nvc0: fix 3d blits with mipmap levels
-Date: Sun, 18 May 2014 00:23:05 -0400
-Message-ID: <1400386985-30852-1-git-send-email-imirkin@alum.mit.edu>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 1/2] fb: default NvMemExec to on,
+	turning it off is used for debugging only
+Date: Sun, 18 May 2014 01:04:15 -0400
+Message-ID: <1400389456-2273-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: nouveau@lists.freedesktop.org, "10.2" <mesa-stable@lists.freedesktop.org>, mesa-dev@lists.freedesktop.org
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Make sure to normalize the z coordinates as well as the x/y ones when
-there are mipmaps present. Fixes 3d mipmap generation, which now uses
-the blit path.
-
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "10.2" <mesa-stable@lists.freedesktop.org>
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 ---
 
-Did a full piglit run on nva8 and nve7 without regressions. The cubemap array
-mipmap generation test still fails, but that will require more careful
-investigation -- the output image seems identical to that which passes on my
-snb.
+Hope I understood you correctly wrt the mem exec stuff.
 
- src/gallium/drivers/nouveau/nv50/nv50_surface.c | 16 ++++++++++------
- src/gallium/drivers/nouveau/nvc0/nvc0_surface.c | 14 +++++++++-----
- 2 files changed, 19 insertions(+), 11 deletions(-)
+ nvkm/subdev/fb/ramnv50.c | 2 +-
+ nvkm/subdev/fb/ramnva3.c | 2 +-
+ nvkm/subdev/fb/ramnvc0.c | 2 +-
+ nvkm/subdev/fb/ramnve0.c | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_surface.c b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-index d02f5fe..1f37527 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-@@ -1142,6 +1142,12 @@ nv50_blit_3d(struct nv50_context *nv50, const struct pipe_blit_info *info)
-    y0 *= (float)(1 << nv50_miptree(src)->ms_y);
-    y1 *= (float)(1 << nv50_miptree(src)->ms_y);
+diff --git a/nvkm/subdev/fb/ramnv50.c b/nvkm/subdev/fb/ramnv50.c
+index ef91b6e..e5d12c2 100644
+--- a/nvkm/subdev/fb/ramnv50.c
++++ b/nvkm/subdev/fb/ramnv50.c
+@@ -211,7 +211,7 @@ nv50_ram_prog(struct nouveau_fb *pfb)
+ 	struct nv50_ram *ram = (void *)pfb->ram;
+ 	struct nv50_ramseq *hwsq = &ram->hwsq;
  
-+   /* XXX: multiply by 6 for cube arrays ? */
-+   dz = (float)info->src.box.depth / (float)info->dst.box.depth;
-+   z = (float)info->src.box.z;
-+   if (nv50_miptree(src)->layout_3d)
-+      z += 0.5f * dz;
-+
-    if (src->last_level > 0) {
-       /* If there are mip maps, GPU always assumes normalized coordinates. */
-       const unsigned l = info->src.level;
-@@ -1151,14 +1157,12 @@ nv50_blit_3d(struct nv50_context *nv50, const struct pipe_blit_info *info)
-       x1 /= fh;
-       y0 /= fv;
-       y1 /= fv;
-+      if (nv50_miptree(src)->layout_3d) {
-+         z /= u_minify(src->depth0, l);
-+         dz /= u_minify(src->depth0, l);
-+      }
-    }
+-	ram_exec(hwsq, nouveau_boolopt(device->cfgopt, "NvMemExec", false));
++	ram_exec(hwsq, nouveau_boolopt(device->cfgopt, "NvMemExec", true));
+ 	return 0;
+ }
  
--   /* XXX: multiply by 6 for cube arrays ? */
--   dz = (float)info->src.box.depth / (float)info->dst.box.depth;
--   z = (float)info->src.box.z;
--   if (nv50_miptree(src)->layout_3d)
--      z += 0.5f * dz;
--
-    BEGIN_NV04(push, NV50_3D(VIEWPORT_TRANSFORM_EN), 1);
-    PUSH_DATA (push, 0);
-    BEGIN_NV04(push, NV50_3D(VIEW_VOLUME_CLIP_CTRL), 1);
-diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c b/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-index d11dbb2..6b7c30c 100644
---- a/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-+++ b/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-@@ -913,6 +913,11 @@ nvc0_blit_3d(struct nvc0_context *nvc0, const struct pipe_blit_info *info)
-    y0 *= (float)(1 << nv50_miptree(src)->ms_y);
-    y1 *= (float)(1 << nv50_miptree(src)->ms_y);
+diff --git a/nvkm/subdev/fb/ramnva3.c b/nvkm/subdev/fb/ramnva3.c
+index 6eb97f1..8076fb1 100644
+--- a/nvkm/subdev/fb/ramnva3.c
++++ b/nvkm/subdev/fb/ramnva3.c
+@@ -309,7 +309,7 @@ nva3_ram_prog(struct nouveau_fb *pfb)
+ 	struct nouveau_device *device = nv_device(pfb);
+ 	struct nva3_ram *ram = (void *)pfb->ram;
+ 	struct nva3_ramfuc *fuc = &ram->fuc;
+-	ram_exec(fuc, nouveau_boolopt(device->cfgopt, "NvMemExec", false));
++	ram_exec(fuc, nouveau_boolopt(device->cfgopt, "NvMemExec", true));
+ 	return 0;
+ }
  
-+   dz = (float)info->src.box.depth / (float)info->dst.box.depth;
-+   z = (float)info->src.box.z;
-+   if (nv50_miptree(src)->layout_3d)
-+      z += 0.5f * dz;
-+
-    if (src->last_level > 0) {
-       /* If there are mip maps, GPU always assumes normalized coordinates. */
-       const unsigned l = info->src.level;
-@@ -922,13 +927,12 @@ nvc0_blit_3d(struct nvc0_context *nvc0, const struct pipe_blit_info *info)
-       x1 /= fh;
-       y0 /= fv;
-       y1 /= fv;
-+      if (nv50_miptree(src)->layout_3d) {
-+         z /= u_minify(src->depth0, l);
-+         dz /= u_minify(src->depth0, l);
-+      }
-    }
+diff --git a/nvkm/subdev/fb/ramnvc0.c b/nvkm/subdev/fb/ramnvc0.c
+index 8edc922..5a6a502 100644
+--- a/nvkm/subdev/fb/ramnvc0.c
++++ b/nvkm/subdev/fb/ramnvc0.c
+@@ -408,7 +408,7 @@ nvc0_ram_prog(struct nouveau_fb *pfb)
+ 	struct nouveau_device *device = nv_device(pfb);
+ 	struct nvc0_ram *ram = (void *)pfb->ram;
+ 	struct nvc0_ramfuc *fuc = &ram->fuc;
+-	ram_exec(fuc, nouveau_boolopt(device->cfgopt, "NvMemExec", false));
++	ram_exec(fuc, nouveau_boolopt(device->cfgopt, "NvMemExec", true));
+ 	return 0;
+ }
  
--   dz = (float)info->src.box.depth / (float)info->dst.box.depth;
--   z = (float)info->src.box.z;
--   if (nv50_miptree(src)->layout_3d)
--      z += 0.5f * dz;
--
-    IMMED_NVC0(push, NVC0_3D(VIEWPORT_TRANSFORM_EN), 0);
-    IMMED_NVC0(push, NVC0_3D(VIEW_VOLUME_CLIP_CTRL), 0x2 |
-               NVC0_3D_VIEW_VOLUME_CLIP_CTRL_DEPTH_RANGE_0_1);
+diff --git a/nvkm/subdev/fb/ramnve0.c b/nvkm/subdev/fb/ramnve0.c
+index 1675219..84c7efb 100644
+--- a/nvkm/subdev/fb/ramnve0.c
++++ b/nvkm/subdev/fb/ramnve0.c
+@@ -1111,7 +1111,7 @@ nve0_ram_prog(struct nouveau_fb *pfb)
+ 	struct nouveau_device *device = nv_device(pfb);
+ 	struct nve0_ram *ram = (void *)pfb->ram;
+ 	struct nve0_ramfuc *fuc = &ram->fuc;
+-	ram_exec(fuc, nouveau_boolopt(device->cfgopt, "NvMemExec", false));
++	ram_exec(fuc, nouveau_boolopt(device->cfgopt, "NvMemExec", true));
+ 	return (ram->base.next == &ram->base.xition);
+ }
+ 
 -- 
 1.8.5.5
