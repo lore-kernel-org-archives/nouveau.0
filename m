@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78863] [NV92] errors when starts gnome-shell -
- INVALID_VALUE class 0x8297 mthd 0x0e04 data 0xfebf0000
-Date: Sun, 18 May 2014 17:04:10 +0000
-Message-ID: <bug-78863-8800-8kqqOBVbgI@http.bugs.freedesktop.org/>
-References: <bug-78863-8800@http.bugs.freedesktop.org/>
+From: Sergei Antonov <saproj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: OpenArena artifacts since version bump to 1.1.1
+Date: Sun, 18 May 2014 19:51:42 +0200
+Message-ID: <CABikg9ydS+cU9Teu1tKJ1=Q1Kxs+ygKgjybsFCMHqmB3U2UFiA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2116818958=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78863-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,111 +15,21 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Hello!
+I'm using NVIDIA GeForce GT 640M. And beginning with this commit:
 
---===============2116818958==
-Content-Type: multipart/alternative; boundary="1400432649.b5F1d231.14016"; charset="us-ascii"
+    commit 142c21b8d493318551932eee2e9d98ff14b473da
+    Author: Christoph Bumiller <e0425955-oe7qfRrRQffzPE21tAIdciO7C/xPubJB@public.gmane.org>
+    Date:   Wed Mar 27 22:25:52 2013 +0100
+    drm/nouveau/drm: bump the driver version to 1.1.1 to report new features
 
+till the latest kernel 3.15-rc5 OpenArena game looks like this:
+  http://s3.postimg.org/wif3fbcvn/image.jpg
+  http://s27.postimg.org/md9olgr8z/image.jpg
 
---1400432649.b5F1d231.14016
-Date: Sun, 18 May 2014 17:04:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Is it a known bug? What can I do to fix it?
 
-https://bugs.freedesktop.org/show_bug.cgi?id=78863
-
---- Comment #4 from mattia.b89 <mattia.b89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #3)
-> (In reply to comment #2)
-> > probably I have that issue/artifact: sometime, portion of a window isn't
-> > drawed but because simply gray 
-> > 
-> > mesa-10.1.3-1
-> 
-> Can you check if this still happens with mesa 10.2-rc3? This should have the
-> clamping logic I mentioned above. (Except in the 3d blit path, but I'm
-> hoping that's not the issue.)
-> 
-
-at the moment I can't try, but when I can I'll do it !
-
-> > 
-> > I don't have "lookup" command and I don't find how to get it....teach it to
-> > me
-> 
-> lookup is from envytools. You shouldn't need to use it, unless you're
-> interested in nouveau dev. That was just to decode the errors.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1400432649.b5F1d231.14016
-Date: Sun, 18 May 2014 17:04:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV92] errors when starts gnome-shell - INVALID_VALUE class 0x8297 mthd 0x0e04 data 0xfebf0000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78863#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV92] errors when starts gnome-shell - INVALID_VALUE class 0x8297 mthd 0x0e04 data 0xfebf0000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78863">bug 78863</a>
-              from <span class="vcard"><a class="email" href="mailto:mattia.b89&#64;gmail.com" title="mattia.b89 &lt;mattia.b89&#64;gmail.com&gt;"> <span class="fn">mattia.b89</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=78863#c3">comment #3</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=78863#c2">comment #2</a>)
-&gt; &gt; probably I have that issue/artifact: sometime, portion of a window isn't
-&gt; &gt; drawed but because simply gray 
-&gt; &gt; 
-&gt; &gt; mesa-10.1.3-1
-&gt; 
-&gt; Can you check if this still happens with mesa 10.2-rc3? This should have the
-&gt; clamping logic I mentioned above. (Except in the 3d blit path, but I'm
-&gt; hoping that's not the issue.)
-&gt; </span >
-
-at the moment I can't try, but when I can I'll do it !
-
-<span class="quote">&gt; &gt; 
-&gt; &gt; I don't have &quot;lookup&quot; command and I don't find how to get it....teach it to
-&gt; &gt; me
-&gt; 
-&gt; lookup is from envytools. You shouldn't need to use it, unless you're
-&gt; interested in nouveau dev. That was just to decode the errors.</span ></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1400432649.b5F1d231.14016--
-
---===============2116818958==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============2116818958==--
+Using Mesa version 10.0.3.
