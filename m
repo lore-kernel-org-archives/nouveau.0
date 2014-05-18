@@ -1,10 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78863] New: [nv50] errors when starts gnome-shell
-Date: Sun, 18 May 2014 14:32:09 +0000
-Message-ID: <bug-78863-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 78863] [NV92] errors when starts gnome-shell -
+ INVALID_VALUE class 0x8297 mthd 0x0e04 data 0xfebf0000
+Date: Sun, 18 May 2014 14:51:31 +0000
+Message-ID: <bug-78863-8800-QwuQn3Rr62@http.bugs.freedesktop.org/>
+References: <bug-78863-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0639749884=="
+Content-Type: multipart/mixed; boundary="===============0793711208=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-78863-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,56 +21,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0639749884==
-Content-Type: multipart/alternative; boundary="1400423529.acaF1.13060"; charset="us-ascii"
+--===============0793711208==
+Content-Type: multipart/alternative; boundary="1400424691.AB3aD202.17750"; charset="us-ascii"
 
 
---1400423529.acaF1.13060
-Date: Sun, 18 May 2014 14:32:09 +0000
+--1400424691.AB3aD202.17750
+Date: Sun, 18 May 2014 14:51:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78863
 
-          Priority: medium
-            Bug ID: 78863
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [nv50] errors when starts gnome-shell
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: minor
-    Classification: Unclassified
-                OS: All
-          Reporter: mattia.b89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Created attachment 99275
-  --> https://bugs.freedesktop.org/attachment.cgi?id=99275&action=edit
-log from dmesg
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[nv50] errors when starts   |[NV92] errors when starts
+                   |gnome-shell                 |gnome-shell - INVALID_VALUE
+                   |                            |class 0x8297 mthd 0x0e04
+                   |                            |data 0xfebf0000
 
-I get these two non-fatal errors with gnome-shell:
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Are there any rendering issues, or just these errors?
 
-[  164.903589] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR INVALID_VALUE
-[  164.903603] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x003f92b000
-gnome-shell[1242]] subc 3 class 0x8297 mthd 0x0e04 data 0xfebf0000
-[  164.903616] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR INVALID_VALUE
-[  164.903622] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x003f92b000
-gnome-shell[1242]] subc 3 class 0x8297 mthd 0x0e08 data 0xffc70000
+$ lookup -a 92 -d NV01_SUBCHAN -- -v obj-class NV84_3D e04 0xfebf0000
+SCISSOR_HORIZ[0] => { MIN = 0 | MAX = 65215 }
+$ lookup -a 92 -d NV01_SUBCHAN -- -v obj-class NV84_3D e08 0xfebf0000
+SCISSOR_VERT[0] => { MIN = 0 | MAX = 65215 }
 
-my configuration:
-x86_64 archlinux kernel-3.14.2-1
-xf86-video-nouveau-1.0.10-2
-gnome-shell-3.12.2-1
+Those indeed appear to be invalid. I thought I had a thing clamping the
+value... What version of mesa are you using?
+
+Hm, looks like the clamping is missing on the blit_3d path, but that'd only be
+an issue if someone had specified negative scissor bounds... hopefully the
+upper layers disallow that.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1400423529.acaF1.13060
-Date: Sun, 18 May 2014 14:32:09 +0000
+--1400424691.AB3aD202.17750
+Date: Sun, 18 May 2014 14:51:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -75,111 +69,52 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [nv50] errors when starts gnome-shell"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78863">78863</a>
-          </td>
-        </tr>
+   title="NEW --- - [NV92] errors when starts gnome-shell - INVALID_VALUE class 0x8297 mthd 0x0e04 data 0xfebf0000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78863">bug 78863</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[nv50] errors when starts gnome-shell
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>minor
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>mattia.b89&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[nv50] errors when starts gnome-shell
+           </td>
+           <td>[NV92] errors when starts gnome-shell - INVALID_VALUE class 0x8297 mthd 0x0e04 data 0xfebf0000
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=99275" name="attach_99275" title="log from dmesg">attachment 99275</a> <a href="attachment.cgi?id=99275&amp;action=edit" title="log from dmesg">[details]</a></span>
-log from dmesg
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV92] errors when starts gnome-shell - INVALID_VALUE class 0x8297 mthd 0x0e04 data 0xfebf0000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78863#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV92] errors when starts gnome-shell - INVALID_VALUE class 0x8297 mthd 0x0e04 data 0xfebf0000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78863">bug 78863</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Are there any rendering issues, or just these errors?
 
-I get these two non-fatal errors with gnome-shell:
+$ lookup -a 92 -d NV01_SUBCHAN -- -v obj-class NV84_3D e04 0xfebf0000
+SCISSOR_HORIZ[0] =&gt; { MIN = 0 | MAX = 65215 }
+$ lookup -a 92 -d NV01_SUBCHAN -- -v obj-class NV84_3D e08 0xfebf0000
+SCISSOR_VERT[0] =&gt; { MIN = 0 | MAX = 65215 }
 
-[  164.903589] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR INVALID_VALUE
-[  164.903603] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x003f92b000
-gnome-shell[1242]] subc 3 class 0x8297 mthd 0x0e04 data 0xfebf0000
-[  164.903616] nouveau E[  PGRAPH][0000:01:00.0] DATA_ERROR INVALID_VALUE
-[  164.903622] nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x003f92b000
-gnome-shell[1242]] subc 3 class 0x8297 mthd 0x0e08 data 0xffc70000
+Those indeed appear to be invalid. I thought I had a thing clamping the
+value... What version of mesa are you using?
 
-my configuration:
-x86_64 archlinux kernel-3.14.2-1
-xf86-video-nouveau-1.0.10-2
-gnome-shell-3.12.2-1</pre>
+Hm, looks like the clamping is missing on the blit_3d path, but that'd only be
+an issue if someone had specified negative scissor bounds... hopefully the
+upper layers disallow that.</pre>
         </div>
       </p>
       <hr>
@@ -191,9 +126,9 @@ gnome-shell-3.12.2-1</pre>
     </body>
 </html>
 
---1400423529.acaF1.13060--
+--1400424691.AB3aD202.17750--
 
---===============0639749884==
+--===============0793711208==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -204,4 +139,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0639749884==--
+--===============0793711208==--
