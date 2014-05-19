@@ -1,60 +1,36 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH] nvc0: maxwell has a new video engine,
- don't return a decoder object
-Date: Sun, 18 May 2014 21:09:09 -0400
-Message-ID: <CAKb7UvjbaR6Ez04kAeewF=8JxhLiXKgfapdWmbPLqzvVXEP1Zw@mail.gmail.com>
-References: <1400422577-9426-1-git-send-email-imirkin@alum.mit.edu>
- <CACAvsv5s+-ygyHg24KJb3RoqDP8t01QZo17L5ewTo65KxNs7NQ@mail.gmail.com>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 0/2] drm/gk20a: FB fixes
+Date: Mon, 19 May 2014 15:51:06 +0900
+Message-ID: <1400482268-4971-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <CACAvsv5s+-ygyHg24KJb3RoqDP8t01QZo17L5ewTo65KxNs7NQ@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Ben Skeggs <skeggsb@gmail.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Maarten Lankhorst <maarten.lankhorst@ubuntu.com>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, May 18, 2014 at 9:06 PM, Ben Skeggs <skeggsb@gmail.com> wrote:
-> On Mon, May 19, 2014 at 12:16 AM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
->> Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
->> ---
->>  src/gallium/drivers/nouveau/nvc0/nvc0_video.c | 3 +++
->>  1 file changed, 3 insertions(+)
->>
->> diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_video.c b/src/gallium/drivers/nouveau/nvc0/nvc0_video.c
->> index 5871f59..c9ab13a 100644
->> --- a/src/gallium/drivers/nouveau/nvc0/nvc0_video.c
->> +++ b/src/gallium/drivers/nouveau/nvc0/nvc0_video.c
->> @@ -77,6 +77,9 @@ nvc0_create_decoder(struct pipe_context *context,
->>     if (getenv("XVMC_VL"))
->>         return vl_create_decoder(context, templ);
->>
->> +   if (screen->device->chipset >= 0x110)
->> +      return NULL;
-> Is that really necessary?  It'll already fail because it tries to
-> create kepler's classes.
+Fix a very shameful memory leak and a compilation error due to the use of
+non-exported CMA functions. The workaround for the latter is not really elegant
+(replace the CMA functions by a runtime failure if we are compiled as a
+module), but is temporary and still an improvement over the current situation
+(compile error).
 
-Good point. I guess not then -- the regular teardown should handle any
-issues. I'll drop that patch.
+Alexandre Courbot (2):
+  drm/gk20a/fb: fix huge memory leak
+  drm/gk20a/fb: fix compile error whith CMA and module
 
->
->> +
->>     if (templ->entrypoint != PIPE_VIDEO_ENTRYPOINT_BITSTREAM) {
->>        debug_printf("%x\n", templ->entrypoint);
->>        return NULL;
->> --
->> 1.8.5.5
->>
->> _______________________________________________
->> mesa-dev mailing list
->> mesa-dev@lists.freedesktop.org
->> http://lists.freedesktop.org/mailman/listinfo/mesa-dev
+ drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c | 95 ++++++++++++++++-------
+ 1 file changed, 67 insertions(+), 28 deletions(-)
+
+-- 
+1.9.2
