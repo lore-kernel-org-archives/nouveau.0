@@ -1,23 +1,14 @@
-From: =?ISO-8859-1?Q?Christian_K=F6nig?= <deathsimple@vodafone.de>
-Subject: Re: [RFC PATCH v1 08/16] drm/radeon: use common fence implementation
- for fences
-Date: Mon, 19 May 2014 16:25:19 +0200
-Message-ID: <537A144F.1070909@vodafone.de>
-References: <20140514145134.21163.32350.stgit@patser>
- <20140514145809.21163.64947.stgit@patser> <53738BCC.2070809@vodafone.de>
- <5374131D.4010906@canonical.com> <53748702.6070606@vodafone.de>
- <53748AFA.8010109@canonical.com> <53748BFD.1050608@vodafone.de>
- <5374BB4A.6070102@canonical.com> <5374BEE2.4060608@vodafone.de>
- <5374CC9A.9090905@canonical.com> <5374E1B5.2020408@vodafone.de>
- <5374E410.1080203@canonical.com> <5374E792.4070607@vodafone.de>
- <5379BA04.8000901@canonical.com> <5379C06D.3050507@vodafone.de>
- <5379D8AD.1000904@canonical.com> <5379F96C.1060806@vodafone.de>
- <537A08BC.7060501@canonical.com>
+From: Stephen Warren <swarren@wwwdotorg.org>
+Subject: Re: [PATCH 2/5] ARM: tegra: of: add GK20A device tree binding
+Date: Mon, 19 May 2014 15:14:56 -0600
+Message-ID: <537A7450.5030904@wwwdotorg.org>
+References: <1400491450-19223-1-git-send-email-acourbot@nvidia.com>
+ <1400491450-19223-3-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <537A08BC.7060501@canonical.com>
+In-Reply-To: <1400491450-19223-3-git-send-email-acourbot@nvidia.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
@@ -27,128 +18,49 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: dri-devel-bounces@lists.freedesktop.org
 Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Maarten Lankhorst <maarten.lankhorst@canonical.com>, airlied@linux.ie
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+To: Alexandre Courbot <acourbot@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>, Thierry Reding <thierry.reding@gmail.com>
+Cc: linux-tegra@vger.kernel.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, gnurou@gmail.com
 List-Id: nouveau.vger.kernel.org
 
-Am 19.05.2014 15:35, schrieb Maarten Lankhorst:
-> op 19-05-14 14:30, Christian K=F6nig schreef:
->> Am 19.05.2014 12:10, schrieb Maarten Lankhorst:
->>> op 19-05-14 10:27, Christian K=F6nig schreef:
->>>> Am 19.05.2014 10:00, schrieb Maarten Lankhorst:
->>>> [SNIP]
->>>> The problem here is that the whole approach collides with the way =
+On 05/19/2014 03:24 AM, Alexandre Courbot wrote:
+> Add the device tree binding documentation for the GK20A GPU used in
+> Tegra K1 SoCs.
 
->>>> we do reset handling from a conceptual point of view. Every IOCTL =
+A few minor nits, but otherwise,
+Acked-by: Stephen Warren <swarren@nvidia.com>
 
->>>> or other call chain into the driver is protected by the read side =
+> diff --git a/Documentation/devicetree/bindings/gpu/nvidia,gk20a.txt b/Documentation/devicetree/bindings/gpu/nvidia,gk20a.txt
 
->>>> of the exclusive_lock semaphore. So in the case of a GPU lockup we =
+> +Required properties:
+> +- compatible: "nvidia,<chip>-<gpu>"
+> +  Currently recognized values:
+> +  - nvidia,tegra124-gk20a
+> +- reg: Physical base address and length of the controller's registers.
+> +  Must contain two entries:
+> +  - first entry for bar0
+> +  - second entry for bar1
+> +- interrupts: The interrupt outputs from the controller.
 
->>>> can take the write side of the semaphore and so make sure that we =
+To be consistent with the clocks and resets properties, it'd be nice to
+reword that as:
 
->>>> have nobody else accessing the hardware or internal driver =
+interrupts: Must contain an entry for each entry in interrupt-names.
 
->>>> structures only changed at init time.
->>>>
->>>> Leaking a drivers IRQ context into another driver as well as =
+> +- interrupt-names: Must include the following entries:
 
->>>> calling into a driver in atomic context is just a quite uncommon =
+... and add the following here:
 
->>>> approach and should be considered very carefully.
->>>>
->>>> I would rather vote for a completely synchronous interface only =
+See ../interrupt-controller/interrupts.txt
 
->>>> allowing blocking waits and checks if a fence is signaled from not =
+> +/ {
 
->>>> atomic context.
->>>>
->>>> If a driver needs to avoid blocking it should just use a workqueue =
+No need to wrap a root node around this in the example.
 
->>>> and checking a fence outside your own driver is probably be better =
+> +	gpu@0,57000000 {
+...
+> +	};
+> +
 
->>>> done in a bottom halve handler anyway.
->>>
->>> Except that you might want to do something like
->>> fence_is_signaled() in another driver to check whether you need to
->>> defer, or can submit the batch buffer immediately, saving a bunch of
->>> context switches. Running the is_signaled atomic is really useful here
->>> because it means you can't do too many scary things in your is_signaled
->>> handler.
->>
->> This is indeed a nice optimization, but nothing more. If you want to =
+Extra blank line here.
 
->> provide a is_signalled interface for atomic context then this should =
-
->> be optional, not mandatory.
-> See below.
->>> In case of enable_signaling it was the only sane solution, because
->>> fence_signal can be called from irq context, and any calls after =
-
->>> that to
->>> fence_add_callback and fence_wait aren't allowed to do anything, so
->>> fence_enable_sw_signaling and the default wait implementation must be
->>> atomic. fence_wait itself doesn't have to be, so it's easy to grab
->>> exclusive_lock there.
->>
->> I don't think you understood my point here: Completely drop =
-
->> enable_signaling, it's unnecessary and only complicates the interface.
->>
->> We purposely avoided exactly this paradigm in the past and I haven't =
-
->> seen any good argument to start with it now.
->
-> In the common case a lot more fences will be emitted than will be =
-
-> waited on.
-> This means it makes sense to delay signaling a fence with fence_signal =
-
-> for
-> as long as possible. But when a fence user wants to work with a fence
-> some way is needed to ensure that the fence will complete. This is the =
-
-> idea
-> behind .enable_signaling, it tells the fence driver to call =
-
-> fence_signal on
-> the fence 'soon' because there are now waiters for it.
->
-> The atomic .signaled is optional, and can be set to NULL, but there is
-> no guarantee that fence_is_signaled will ever return true in that case,
-> unless fence_enable_sw_signaling is called (which calls =
-
-> .enable_signaling).
->
-> Providing a custom wait function is optional in the interface, if the =
-
-> default wait
-> function is used all waiters are signaled when fence_signal is called.
->
-> Removing enable_signaling would only make sense if fence_signal was =
-
-> removed too,
-> but that would mean that fence_is_signaled could no longer exist in =
-
-> the core fence
-> code, and would mean completely rewriting the interface.
->
-And this is what I'm suggesting here.
-
-We have avoided quite hard adding any form of those callbacks in the =
-
-past and I don't really see a reason why that would have changed. For =
-
-example see the discussion here: =
-
-http://lists.freedesktop.org/archives/dri-devel/2012-May/022388.html
-
-Jerome and Dave rejected my approach for handling the sub allocator =
-
-through a callback for exactly the same reason. And that was even for =
-
-call chains inside the same driver, you're suggesting this for cross =
-
-driver synchronization.
-
-Christian.
+> +};
