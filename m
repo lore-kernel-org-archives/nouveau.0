@@ -1,15 +1,12 @@
-From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Subject: Re: RFC: Fixing nv30 fbo attachments
-Date: Wed, 21 May 2014 00:20:07 +0200
-Message-ID: <CAAxE2A6bWR7Sc+-WiFm1abRLZtXP0esTKBGuCjPq-B2QU=ZexA@mail.gmail.com>
-References: <CAKb7UvgWickCwgdCa-HzwrGeJTkJbNaq0=6TeqOSLUssJ6pmog@mail.gmail.com>
- <CAAxE2A6n37vZ324dH-jmJ7W5grGj73_85rcvegpr-rOwQJ3xDw@mail.gmail.com>
- <CAKb7Uvgcok0dfihR+9bAv=KagwHCQgSDK7nALfWksMHt5JQcHA@mail.gmail.com>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH 00/12] Cherry-pick nv50/nvc0 patches from
+	gallium-nine
+Date: Tue, 20 May 2014 19:39:54 -0400
+Message-ID: <1400629206-4447-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7Uvgcok0dfihR+9bAv=KagwHCQgSDK7nALfWksMHt5JQcHA@mail.gmail.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
  <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
@@ -19,69 +16,47 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
  <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: mesa-dev-bounces@lists.freedesktop.org
 Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBNYXkgMjAsIDIwMTQgYXQgMTE6MDQgUE0sIElsaWEgTWlya2luIDxpbWlya2luQGFs
-dW0ubWl0LmVkdT4gd3JvdGU6Cj4gT24gVHVlLCBNYXkgMjAsIDIwMTQgYXQgNDo1MSBQTSwgTWFy
-ZWsgT2zFocOhayA8bWFyYWVvQGdtYWlsLmNvbT4gd3JvdGU6Cj4+IE9uIFR1ZSwgTWF5IDIwLCAy
-MDE0IGF0IDk6NTggUE0sIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6
-Cj4+PiBIZWxsbywKPj4+Cj4+PiBJIGF0dGVtcHRlZCBkb2luZyB0aGlzIGEgd2hpbGUgYmFjaywg
-YmVmb3JlIEkgcmVhbGx5IHVuZGVyc3Rvb2Qgd2hhdAo+Pj4gd2FzIGdvaW5nIG9uLiBJIGdvdCBz
-b21lIGFkdmljZSB0aGF0IHdlbnQgdG90YWxseSBvdmVyIG15IGhlYWQsIGFuZCBJCj4+PiBkcm9w
-cGVkIHRoZSBpc3N1ZS4gSSB0aGluayBJJ20gbXVjaCBiZXR0ZXItcHJlcGFyZWQgdG8gdGFja2xl
-IHRoZQo+Pj4gaXNzdWUgdGhpcyB0aW1lIGFyb3VuZC4KPj4+Cj4+PiBUbyByZWNhcCwgbnYzMCAo
-YW5kIG52NDApIGh3IGNhbid0IGhhbmRsZSBjZXJ0YWluIGNvbG9yL2RlcHRoIGZvcm1hdAo+Pj4g
-Y29tYmluYXRpb25zLiBTcGVjaWZpY2FsbHksIGEgMTYtYml0IGNvbG9yIGZvcm1hdCBtdXN0IGJl
-IHBhaXJlZCB3aXRoCj4+PiBhIDE2LWJpdCBkZXB0aCBmb3JtYXQsIGFuZCBhIDMyLWJpdCBjb2xv
-ciBmb3JtYXQgbXVzdCBiZSBwYWlyZWQgd2l0aCBhCj4+PiAzMi1iaXQgZGVwdGggZm9ybWF0ICh3
-ZWxsLCBaMjRTOCkuIFRoaXMgSFcgYWxzbyBjYW4ndCBoYW5kbGUgZGlmZmVyZW50Cj4+PiBwZXIt
-YXR0YWNobWVudCBzaXplcywgYW5kIGFsc28gdGhlICJsaW5lYXJpdHkiIG9mIGFsbCB0aGUgYXR0
-YWNobWVudHMKPj4+IG11c3QgYmUgdGhlIHNhbWUuIChXaGV0aGVyIGEgc3VyZmFjZSBpcyBsaW5l
-YXIgb3Igbm90IGlzIF9nZW5lcmFsbHlfCj4+PiBkaWN0YXRlZCBieSBpdHMgdy9oLCBidXQgbm90
-IGFsd2F5cyAtLSBQT1QgdGV4dHVyZXMgY2FuIHNvbWV0aW1lcyBlbmQKPj4+IHVwIGFsbG9jYXRl
-ZCBsaW5lYXJseSBieSBlLmcuIHRoZSBkZHgsIG9yIHNvbWV0aGluZyBlbHNlLikgVGhlCj4+PiBk
-aWZmZXJlbnQgc2l6ZXMgYXJlIGhhbmRsZWQgYnkgbm90IGV4cG9zaW5nIEFSQl9mYm8uIEhvd2V2
-ZXIgdGhlIHJlc3QKPj4+IG9mIHRoZSBjYXNlcyByZW1haW4uCj4+Pgo+Pj4gTm93IHRoYXQgSSBr
-aW5kYSB1bmRlcnN0YW5kIGhvdyB0aGluZ3MgYXJlIHN0cnVjdHVyZWQsIEkgd2FzIHRoaW5raW5n
-Cj4+PiBvZiBkb2luZyB0aGUgZm9sbG93aW5nOgo+Pj4KPj4+IFdoZW4gcmVuZGVyaW5nIChpLmUu
-IGRyYXdfdmJvICYgY28pIGFuZCB0aGUgZmJvIGhhcyBjaGFuZ2VkIChhbmQgaGFzCj4+PiBvbmUg
-b2YgdGhlIHByb2JsZW1zIGFib3ZlKSwgSSB3b3VsZCBpbnN0ZWFkIHB1dCBpbiBhIHRlbXBvcmFy
-eSB0ZXh0dXJlCj4+PiBhcyB0aGUgZGVwdGggYXR0YWNobWVudC4gQmVmb3JlIGFjdHVhbGx5IGRy
-YXdpbmcsIEkgd291bGQgYmxpdCBmcm9tCj4+PiB0aGUgcmVhbCB0YXJnZXQgdGV4dHVyZSBpbnRv
-IHRoZSB0ZW1wb3JhcnkgdGV4dHVyZSwgYW5kIHRoZW4gd2hlbgo+Pj4gcmVuZGVyaW5nIGlzIGRv
-bmUsIGJsaXQgYmFjayBmcm9tIHRoZSB0ZW1wIHRleHR1cmUgYmFjayBpbnRvIHRoZQo+Pj4gdGFy
-Z2V0LiBUaGlzIGRlYWxzIHdpdGggdGhlIHRhcmdldCB0ZXh0dXJlIGdldHRpbmcgbW9kaWZpZWQg
-YmV0d2Vlbgo+Pj4gZHJhd3Mgd2l0aCB2YXJpb3VzIGJsaXRzL21hcHBpbmcvd2hhdGV2ZXIuCj4+
-Pgo+Pj4gVGhpcyBtZWFucyB0aGF0IHlvdSdsbCBvbmx5IGdldCAxNiBiaXRzIG9mIGRlcHRoIGV2
-ZW4gaWYgeW91IGFzayBmb3IKPj4+IDI0IHdpdGggYSAxNi1iaXQgY29sb3IgZm9ybWF0LCBidXQg
-dGhlIGFsdGVybmF0aXZlIHNlZW1zIHRvbwo+Pj4gY29tcGxleC9jb3N0bHkuCj4+Pgo+Pj4gU28g
-dGhlcmUgYXJlIGEgZmV3IHF1ZXN0aW9ucyBmcm9tIHRoaXMgYXBwcm9hY2g6Cj4+Pgo+Pj4gMS4g
-V2hlcmUgZG8gSSBnZXQgdGhlIHRlbXBvcmFyeSB0ZXh0dXJlIGZyb20/IChBbmQgbW9yZSBpbXBv
-cnRhbnRseSAtLQo+Pj4gd2hlbi4uLiB3aGF0IGhhcHBlbnMgaWYgYWxsb2NhdGlvbiBmYWlscz8p
-Cj4+Pgo+Pj4gMi4gSGF2aW5nIHRvIGJsaXQgdGhlIGRlcHRoIHRleHR1cmUgYmFjayBhbmQgZm9y
-dGggb24gZXZlcnkgZHJhdyBzZWVtcwo+Pj4gX3JlYWxseV8gd2FzdGVmdWwuLi4gYW55dGhpbmcg
-SSBjYW4gZG8gYWJvdXQgdGhhdD8KPj4KPj4gWW91IGNhbiBkbyB0aGF0IGluIHNldF9mcmFtZWJ1
-ZmZlcl9zdGF0ZS4gV2hlbiBiaW5kaW5nLCBibGl0IHRvIGEKPj4gZGVwdGggYnVmZmVyIHdoaWNo
-IG1hdGNoZXMgdGhlIGNvbG9yYnVmZmVyIGZvcm1hdC4gV2hlbiB1bmJpbmRpbmcsCj4+IGJsaXQg
-YmFjay4KPgo+IHNldF9mcmFtZWJ1ZmZlcl9zdGF0ZSBkb2Vzbid0IGFsbG93IGFuIGVycm9yIHRv
-IGJlIHJldHVybmVkLiBTaG91bGQgSQo+IGp1c3QgcHJpbnQgYSB3YXJuaW5nIGFuZCBtb3ZlIG9u
-PwoKWWVzLCBiZWNhdXNlIHlvdSBoYXZlIG5vIG90aGVyIGNob2ljZS4KCj4KPiBJIGd1ZXNzIEkn
-bSBzdGlsbCBub3QgMTAwJSBvbiBhbGwgdGhlIHRlcm1pbm9sb2d5IC0tIHdoYXQgZG8geW91IG1l
-YW4KPiBleGFjdGx5IGJ5IGJpbmQvdW5iaW5kPyBEbyB5b3UgbWVhbiB0aGUgdHJhbnNmZXJfbWFw
-L3VubWFwIHN0dWZmPyBTbwo+IGJhc2ljYWxseSBJIHdvdWxkIGJsaXQgb25jZSBvbiBzZXRfZnJh
-bWVidWZmZXJfc3RhdGUsIGFuZCB0aGVuIGJsaXQKPiBiYWNrIGFuZCBmb3J0aCBvbiByZXNvdXJj
-ZSBtYXAvdW5tYXAsIGFuZCBvbmx5IGV2ZXIgcmVuZGVyIHRvIHRoZQo+ICJ0ZW1wb3JhcnkiIGJ1
-ZmZlciB3aXRob3V0IHdvcnJ5aW5nIGFib3V0IGJsaXR0aW5nIHdpaGxlIHJlbmRlcmluZz8KCiJi
-aW5kIiBpcyB3aGVuIGEgYnVmZmVyIGlzIHNldCwgInVuYmluZCIgaXMgd2hlbiB0aGUgYnVmZmVy
-IGlzIHVuc2V0LgpzZXRfZnJhbWVidWZmZXJfc3RhdGUgdW5iaW5kcyB0aGUgY3VycmVudCBmcmFt
-ZWJ1ZmZlciBhbmQgYmluZHMgYSBuZXcKb25lLgoKdHJhbnNmZXJfbWFwL3VubWFwIG11c3QgdXNl
-IHRoZSByZXNvdXJjZSB3aGljaCBjb250YWlucyB0aGUgbGF0ZXN0CmRhdGEsIHRoZXJlIGlzIG5v
-IGRvdWJ0IGFib3V0IHRoYXQuCgpJZiB0aGVyZSBhcmUgbm8gdHJhbnNmZXJzLCB5b3Ugb25seSBo
-YXZlIHRvIGRvIHRoZSBibGl0cyBiZXR3ZWVuCjMyLWJpdCBhbmQgMTYtYml0IGluIHNldF9mcmFt
-ZWJ1ZmZlcl9zdGF0ZSwgYmVjYXVzZSB0aGF0J3MgdGhlIG9ubHkKcGxhY2Ugd2hlcmUgdGhlIGZy
-YW1lYnVmZmVyIGlzIGNoYW5nZWQuCgpNYXJlawpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9tZXNhLWRldgo=
+I went through the gallium-nine tree and picked out nouveau patches that are
+general bug-fixes. The first bunch I'd like to also get into 10.2. I've
+reviewed all of them and they make sense to me, but sending them out for
+public review as well in case there are any objections.
+
+Unless I hear objections, I'd like to push this by Friday.
+
+Christoph Bumiller (11):
+  nv50,nvc0: always pull out bufctx on context destruction
+  nv50: setup scissors on clear_render_target/depth_stencil
+  nv50,nvc0: set constbufs dirty on pipe context switch
+  nv50/ir/tgsi: TGSI_OPCODE_POW replicates its result
+  nv50/ir/opt: fix constant folding with saturate modifier
+  nv50/ir: fix lowering of predicated instructions (without defs)
+  nv50/ir/tgsi: optimize KIL
+  nv50,nvc0: handle guard band defines
+  nv50,nvc0: allow 15,16,30 bpp display formats
+  nvc0: use PRIxPTR for sizeof()
+  nvc0: assert that we have vertex elements state
+
+Joakim Sindholt (1):
+  nv50: count wrapped textures towards the tex_obj count
+
+ .../drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp    | 11 ++++++++++-
+ .../nouveau/codegen/nv50_ir_lowering_nv50.cpp        |  5 ++++-
+ .../drivers/nouveau/codegen/nv50_ir_peephole.cpp     |  4 +++-
+ src/gallium/drivers/nouveau/nv50/nv50_context.c      |  7 ++-----
+ src/gallium/drivers/nouveau/nv50/nv50_formats.c      |  8 ++++----
+ src/gallium/drivers/nouveau/nv50/nv50_miptree.c      |  2 ++
+ src/gallium/drivers/nouveau/nv50/nv50_screen.c       | 10 ++++++++--
+ .../drivers/nouveau/nv50/nv50_state_validate.c       |  4 ++++
+ src/gallium/drivers/nouveau/nv50/nv50_surface.c      | 20 ++++++++++++++++++--
+ src/gallium/drivers/nouveau/nvc0/nvc0_context.c      |  9 +++++----
+ src/gallium/drivers/nouveau/nvc0/nvc0_program.c      |  2 +-
+ src/gallium/drivers/nouveau/nvc0/nvc0_screen.c       | 10 ++++++++--
+ .../drivers/nouveau/nvc0/nvc0_state_validate.c       |  1 +
+ src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c          |  1 +
+ 14 files changed, 71 insertions(+), 23 deletions(-)
+
+-- 
+1.8.5.5
