@@ -1,75 +1,88 @@
-From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Subject: Re: RFC: Fixing nv30 fbo attachments
-Date: Tue, 20 May 2014 22:51:15 +0200
-Message-ID: <CAAxE2A6n37vZ324dH-jmJ7W5grGj73_85rcvegpr-rOwQJ3xDw@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [Mesa-dev] RFC: Fixing nv30 fbo attachments
+Date: Tue, 20 May 2014 17:04:01 -0400
+Message-ID: <CAKb7Uvgcok0dfihR+9bAv=KagwHCQgSDK7nALfWksMHt5JQcHA@mail.gmail.com>
 References: <CAKb7UvgWickCwgdCa-HzwrGeJTkJbNaq0=6TeqOSLUssJ6pmog@mail.gmail.com>
+ <CAAxE2A6n37vZ324dH-jmJ7W5grGj73_85rcvegpr-rOwQJ3xDw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7UvgWickCwgdCa-HzwrGeJTkJbNaq0=6TeqOSLUssJ6pmog@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAAxE2A6n37vZ324dH-jmJ7W5grGj73_85rcvegpr-rOwQJ3xDw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, May 20, 2014 at 9:58 PM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
-> Hello,
->
-> I attempted doing this a while back, before I really understood what
-> was going on. I got some advice that went totally over my head, and I
-> dropped the issue. I think I'm much better-prepared to tackle the
-> issue this time around.
->
-> To recap, nv30 (and nv40) hw can't handle certain color/depth format
-> combinations. Specifically, a 16-bit color format must be paired with
-> a 16-bit depth format, and a 32-bit color format must be paired with a
-> 32-bit depth format (well, Z24S8). This HW also can't handle different
-> per-attachment sizes, and also the "linearity" of all the attachments
-> must be the same. (Whether a surface is linear or not is _generally_
-> dictated by its w/h, but not always -- POT textures can sometimes end
-> up allocated linearly by e.g. the ddx, or something else.) The
-> different sizes are handled by not exposing ARB_fbo. However the rest
-> of the cases remain.
->
-> Now that I kinda understand how things are structured, I was thinking
-> of doing the following:
->
-> When rendering (i.e. draw_vbo & co) and the fbo has changed (and has
-> one of the problems above), I would instead put in a temporary texture
-> as the depth attachment. Before actually drawing, I would blit from
-> the real target texture into the temporary texture, and then when
-> rendering is done, blit back from the temp texture back into the
-> target. This deals with the target texture getting modified between
-> draws with various blits/mapping/whatever.
->
-> This means that you'll only get 16 bits of depth even if you ask for
-> 24 with a 16-bit color format, but the alternative seems too
-> complex/costly.
->
-> So there are a few questions from this approach:
->
-> 1. Where do I get the temporary texture from? (And more importantly --
-> when... what happens if allocation fails?)
->
-> 2. Having to blit the depth texture back and forth on every draw seems
-> _really_ wasteful... anything I can do about that?
-
-You can do that in set_framebuffer_state. When binding, blit to a
-depth buffer which matches the colorbuffer format. When unbinding,
-blit back.
-
-You can also drop support for 16-bit formats.
-
-What about rendering to R16F, RG16F, and RGBA16F? Does R16F have to be
-coupled with a 16-bit depth buffer too?
-
-Marek
+T24gVHVlLCBNYXkgMjAsIDIwMTQgYXQgNDo1MSBQTSwgTWFyZWsgT2zFocOhayA8bWFyYWVvQGdt
+YWlsLmNvbT4gd3JvdGU6Cj4gT24gVHVlLCBNYXkgMjAsIDIwMTQgYXQgOTo1OCBQTSwgSWxpYSBN
+aXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cm90ZToKPj4gSGVsbG8sCj4+Cj4+IEkgYXR0
+ZW1wdGVkIGRvaW5nIHRoaXMgYSB3aGlsZSBiYWNrLCBiZWZvcmUgSSByZWFsbHkgdW5kZXJzdG9v
+ZCB3aGF0Cj4+IHdhcyBnb2luZyBvbi4gSSBnb3Qgc29tZSBhZHZpY2UgdGhhdCB3ZW50IHRvdGFs
+bHkgb3ZlciBteSBoZWFkLCBhbmQgSQo+PiBkcm9wcGVkIHRoZSBpc3N1ZS4gSSB0aGluayBJJ20g
+bXVjaCBiZXR0ZXItcHJlcGFyZWQgdG8gdGFja2xlIHRoZQo+PiBpc3N1ZSB0aGlzIHRpbWUgYXJv
+dW5kLgo+Pgo+PiBUbyByZWNhcCwgbnYzMCAoYW5kIG52NDApIGh3IGNhbid0IGhhbmRsZSBjZXJ0
+YWluIGNvbG9yL2RlcHRoIGZvcm1hdAo+PiBjb21iaW5hdGlvbnMuIFNwZWNpZmljYWxseSwgYSAx
+Ni1iaXQgY29sb3IgZm9ybWF0IG11c3QgYmUgcGFpcmVkIHdpdGgKPj4gYSAxNi1iaXQgZGVwdGgg
+Zm9ybWF0LCBhbmQgYSAzMi1iaXQgY29sb3IgZm9ybWF0IG11c3QgYmUgcGFpcmVkIHdpdGggYQo+
+PiAzMi1iaXQgZGVwdGggZm9ybWF0ICh3ZWxsLCBaMjRTOCkuIFRoaXMgSFcgYWxzbyBjYW4ndCBo
+YW5kbGUgZGlmZmVyZW50Cj4+IHBlci1hdHRhY2htZW50IHNpemVzLCBhbmQgYWxzbyB0aGUgImxp
+bmVhcml0eSIgb2YgYWxsIHRoZSBhdHRhY2htZW50cwo+PiBtdXN0IGJlIHRoZSBzYW1lLiAoV2hl
+dGhlciBhIHN1cmZhY2UgaXMgbGluZWFyIG9yIG5vdCBpcyBfZ2VuZXJhbGx5Xwo+PiBkaWN0YXRl
+ZCBieSBpdHMgdy9oLCBidXQgbm90IGFsd2F5cyAtLSBQT1QgdGV4dHVyZXMgY2FuIHNvbWV0aW1l
+cyBlbmQKPj4gdXAgYWxsb2NhdGVkIGxpbmVhcmx5IGJ5IGUuZy4gdGhlIGRkeCwgb3Igc29tZXRo
+aW5nIGVsc2UuKSBUaGUKPj4gZGlmZmVyZW50IHNpemVzIGFyZSBoYW5kbGVkIGJ5IG5vdCBleHBv
+c2luZyBBUkJfZmJvLiBIb3dldmVyIHRoZSByZXN0Cj4+IG9mIHRoZSBjYXNlcyByZW1haW4uCj4+
+Cj4+IE5vdyB0aGF0IEkga2luZGEgdW5kZXJzdGFuZCBob3cgdGhpbmdzIGFyZSBzdHJ1Y3R1cmVk
+LCBJIHdhcyB0aGlua2luZwo+PiBvZiBkb2luZyB0aGUgZm9sbG93aW5nOgo+Pgo+PiBXaGVuIHJl
+bmRlcmluZyAoaS5lLiBkcmF3X3ZibyAmIGNvKSBhbmQgdGhlIGZibyBoYXMgY2hhbmdlZCAoYW5k
+IGhhcwo+PiBvbmUgb2YgdGhlIHByb2JsZW1zIGFib3ZlKSwgSSB3b3VsZCBpbnN0ZWFkIHB1dCBp
+biBhIHRlbXBvcmFyeSB0ZXh0dXJlCj4+IGFzIHRoZSBkZXB0aCBhdHRhY2htZW50LiBCZWZvcmUg
+YWN0dWFsbHkgZHJhd2luZywgSSB3b3VsZCBibGl0IGZyb20KPj4gdGhlIHJlYWwgdGFyZ2V0IHRl
+eHR1cmUgaW50byB0aGUgdGVtcG9yYXJ5IHRleHR1cmUsIGFuZCB0aGVuIHdoZW4KPj4gcmVuZGVy
+aW5nIGlzIGRvbmUsIGJsaXQgYmFjayBmcm9tIHRoZSB0ZW1wIHRleHR1cmUgYmFjayBpbnRvIHRo
+ZQo+PiB0YXJnZXQuIFRoaXMgZGVhbHMgd2l0aCB0aGUgdGFyZ2V0IHRleHR1cmUgZ2V0dGluZyBt
+b2RpZmllZCBiZXR3ZWVuCj4+IGRyYXdzIHdpdGggdmFyaW91cyBibGl0cy9tYXBwaW5nL3doYXRl
+dmVyLgo+Pgo+PiBUaGlzIG1lYW5zIHRoYXQgeW91J2xsIG9ubHkgZ2V0IDE2IGJpdHMgb2YgZGVw
+dGggZXZlbiBpZiB5b3UgYXNrIGZvcgo+PiAyNCB3aXRoIGEgMTYtYml0IGNvbG9yIGZvcm1hdCwg
+YnV0IHRoZSBhbHRlcm5hdGl2ZSBzZWVtcyB0b28KPj4gY29tcGxleC9jb3N0bHkuCj4+Cj4+IFNv
+IHRoZXJlIGFyZSBhIGZldyBxdWVzdGlvbnMgZnJvbSB0aGlzIGFwcHJvYWNoOgo+Pgo+PiAxLiBX
+aGVyZSBkbyBJIGdldCB0aGUgdGVtcG9yYXJ5IHRleHR1cmUgZnJvbT8gKEFuZCBtb3JlIGltcG9y
+dGFudGx5IC0tCj4+IHdoZW4uLi4gd2hhdCBoYXBwZW5zIGlmIGFsbG9jYXRpb24gZmFpbHM/KQo+
+Pgo+PiAyLiBIYXZpbmcgdG8gYmxpdCB0aGUgZGVwdGggdGV4dHVyZSBiYWNrIGFuZCBmb3J0aCBv
+biBldmVyeSBkcmF3IHNlZW1zCj4+IF9yZWFsbHlfIHdhc3RlZnVsLi4uIGFueXRoaW5nIEkgY2Fu
+IGRvIGFib3V0IHRoYXQ/Cj4KPiBZb3UgY2FuIGRvIHRoYXQgaW4gc2V0X2ZyYW1lYnVmZmVyX3N0
+YXRlLiBXaGVuIGJpbmRpbmcsIGJsaXQgdG8gYQo+IGRlcHRoIGJ1ZmZlciB3aGljaCBtYXRjaGVz
+IHRoZSBjb2xvcmJ1ZmZlciBmb3JtYXQuIFdoZW4gdW5iaW5kaW5nLAo+IGJsaXQgYmFjay4KCnNl
+dF9mcmFtZWJ1ZmZlcl9zdGF0ZSBkb2Vzbid0IGFsbG93IGFuIGVycm9yIHRvIGJlIHJldHVybmVk
+LiBTaG91bGQgSQpqdXN0IHByaW50IGEgd2FybmluZyBhbmQgbW92ZSBvbj8KCkkgZ3Vlc3MgSSdt
+IHN0aWxsIG5vdCAxMDAlIG9uIGFsbCB0aGUgdGVybWlub2xvZ3kgLS0gd2hhdCBkbyB5b3UgbWVh
+bgpleGFjdGx5IGJ5IGJpbmQvdW5iaW5kPyBEbyB5b3UgbWVhbiB0aGUgdHJhbnNmZXJfbWFwL3Vu
+bWFwIHN0dWZmPyBTbwpiYXNpY2FsbHkgSSB3b3VsZCBibGl0IG9uY2Ugb24gc2V0X2ZyYW1lYnVm
+ZmVyX3N0YXRlLCBhbmQgdGhlbiBibGl0CmJhY2sgYW5kIGZvcnRoIG9uIHJlc291cmNlIG1hcC91
+bm1hcCwgYW5kIG9ubHkgZXZlciByZW5kZXIgdG8gdGhlCiJ0ZW1wb3JhcnkiIGJ1ZmZlciB3aXRo
+b3V0IHdvcnJ5aW5nIGFib3V0IGJsaXR0aW5nIHdpaGxlIHJlbmRlcmluZz8KCj4KPiBZb3UgY2Fu
+IGFsc28gZHJvcCBzdXBwb3J0IGZvciAxNi1iaXQgZm9ybWF0cy4KCkkgYXNzdW1lZCB0aGF0IHRo
+ZXNlIHdlcmUgcmVxdWlyZWQgYnkgc29tZSBHTCB2ZXJzaW9uLi4uIEkgYWxzbwpwcmVzdW1lIHRo
+YXQgaXQncyBmYXN0ZXIgdG8gdXNlIHRoZXNlLiBCVFcsIHdoZW4gSSBzYXkgMTYtYml0LCBJIG1l
+YW4KbGlrZSBCNUc2UjUgb3IgQjVHNVI1WDEsIG5vdCBSMTYqLgoKPgo+IFdoYXQgYWJvdXQgcmVu
+ZGVyaW5nIHRvIFIxNkYsIFJHMTZGLCBhbmQgUkdCQTE2Rj8gRG9lcyBSMTZGIGhhdmUgdG8gYmUK
+PiBjb3VwbGVkIHdpdGggYSAxNi1iaXQgZGVwdGggYnVmZmVyIHRvbz8KCkdvb29vZCBxdWVzdGlv
+bi4gSSBhc3N1bWUgdGhleSB3YW50IGEgMzItYml0IGRlcHRoIGJ1ZmZlci4gQWx0aG91Z2ggSQpi
+ZWxpZXZlIHRob3NlIGFyZSBhY3R1YWxseSBkaXNhYmxlZCBmb3Igbm93IChha2EgZm9yZXZlciwg
+dW5sZXNzCnNvbWVvbmUgY2FyZXMgZW5vdWdoIHRvIHR1cm4gdGhlbSBvbiksIGV2ZW4gdGhvdWdo
+IGl0IGRvZXMgbG9vayBsaWtlCnRoZXJlJ3MgSFcgc3VwcG9ydCBmb3IgUjE2RzE2QjE2QTE2X0ZM
+T0FUIGFuZCBSMzIgdmVyc2lvbnMuIE9yIHBlcmhhcHMKdGhleSdyZSBkaXNhYmxlZCBiZWNhdXNl
+IHRoZXkgY2FuJ3QgYmUgdXNlZCBpbiBjb25qdW5jdGlvbiB3aXRoIGRlcHRoPwpOb3QgZmFtaWxp
+YXIgZW5vdWdoIHdpdGggdGhlIGh3IHJlc3RyaWN0aW9ucywgc29ycnkuCgogIC1pbGlhCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
