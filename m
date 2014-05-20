@@ -1,7 +1,8 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 10/12] nvc0: use PRIxPTR for sizeof()
-Date: Tue, 20 May 2014 19:40:04 -0400
-Message-ID: <1400629206-4447-11-git-send-email-imirkin@alum.mit.edu>
+Subject: [PATCH 11/12] nvc0: assert that we have vertex elements
+	state
+Date: Tue, 20 May 2014 19:40:05 -0400
+Message-ID: <1400629206-4447-12-git-send-email-imirkin@alum.mit.edu>
 References: <1400629206-4447-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -25,21 +26,20 @@ From: Christoph Bumiller <christoph.bumiller-D4IDLmZPRBc@public.gmane.org>
 
 Reviewed-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 ---
- src/gallium/drivers/nouveau/nvc0/nvc0_program.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_program.c b/src/gallium/drivers/nouveau/nvc0/nvc0_program.c
-index 1d59fc4..8724cc5 100644
---- a/src/gallium/drivers/nouveau/nvc0/nvc0_program.c
-+++ b/src/gallium/drivers/nouveau/nvc0/nvc0_program.c
-@@ -512,7 +512,7 @@ nvc0_program_dump(struct nvc0_program *prog)
+diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c b/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c
+index c58d6da..83d406d 100644
+--- a/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c
++++ b/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c
+@@ -423,6 +423,7 @@ nvc0_vertex_arrays_validate(struct nvc0_context *nvc0)
  
-    if (prog->type != PIPE_SHADER_COMPUTE) {
-       for (pos = 0; pos < sizeof(prog->hdr) / sizeof(prog->hdr[0]); ++pos)
--         debug_printf("HDR[%02lx] = 0x%08x\n",
-+         debug_printf("HDR[%02"PRIxPTR"] = 0x%08x\n",
-                       pos * sizeof(prog->hdr[0]), prog->hdr[pos]);
-    }
-    debug_printf("shader binary code (0x%x bytes):", prog->code_size);
+    nouveau_bufctx_reset(nvc0->bufctx_3d, NVC0_BIND_VTX);
+ 
++   assert(vertex);
+    if (unlikely(vertex->need_conversion) ||
+        unlikely(nvc0->vertprog->vp.edgeflag < PIPE_MAX_ATTRIBS)) {
+       vbo_mode = 3;
 -- 
 1.8.5.5
