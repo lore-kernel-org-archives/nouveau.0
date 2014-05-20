@@ -1,62 +1,75 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 00/12] Cherry-pick nv50/nvc0 patches from
-	gallium-nine
-Date: Tue, 20 May 2014 19:39:54 -0400
-Message-ID: <1400629206-4447-1-git-send-email-imirkin@alum.mit.edu>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 01/12] nv50,
+	nvc0: always pull out bufctx on context destruction
+Date: Tue, 20 May 2014 19:39:55 -0400
+Message-ID: <1400629206-4447-2-git-send-email-imirkin@alum.mit.edu>
+References: <1400629206-4447-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1400629206-4447-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "10.2" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Christoph Bumiller <christoph.bumiller-D4IDLmZPRBc@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-I went through the gallium-nine tree and picked out nouveau patches that are
-general bug-fixes. The first bunch I'd like to also get into 10.2. I've
-reviewed all of them and they make sense to me, but sending them out for
-public review as well in case there are any objections.
+From: Christoph Bumiller <christoph.bumiller-D4IDLmZPRBc@public.gmane.org>
 
-Unless I hear objections, I'd like to push this by Friday.
+Reviewed-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "10.2" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+---
+ src/gallium/drivers/nouveau/nv50/nv50_context.c | 7 ++-----
+ src/gallium/drivers/nouveau/nvc0/nvc0_context.c | 9 +++++----
+ 2 files changed, 7 insertions(+), 9 deletions(-)
 
-Christoph Bumiller (11):
-  nv50,nvc0: always pull out bufctx on context destruction
-  nv50: setup scissors on clear_render_target/depth_stencil
-  nv50,nvc0: set constbufs dirty on pipe context switch
-  nv50/ir/tgsi: TGSI_OPCODE_POW replicates its result
-  nv50/ir/opt: fix constant folding with saturate modifier
-  nv50/ir: fix lowering of predicated instructions (without defs)
-  nv50/ir/tgsi: optimize KIL
-  nv50,nvc0: handle guard band defines
-  nv50,nvc0: allow 15,16,30 bpp display formats
-  nvc0: use PRIxPTR for sizeof()
-  nvc0: assert that we have vertex elements state
-
-Joakim Sindholt (1):
-  nv50: count wrapped textures towards the tex_obj count
-
- .../drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp    | 11 ++++++++++-
- .../nouveau/codegen/nv50_ir_lowering_nv50.cpp        |  5 ++++-
- .../drivers/nouveau/codegen/nv50_ir_peephole.cpp     |  4 +++-
- src/gallium/drivers/nouveau/nv50/nv50_context.c      |  7 ++-----
- src/gallium/drivers/nouveau/nv50/nv50_formats.c      |  8 ++++----
- src/gallium/drivers/nouveau/nv50/nv50_miptree.c      |  2 ++
- src/gallium/drivers/nouveau/nv50/nv50_screen.c       | 10 ++++++++--
- .../drivers/nouveau/nv50/nv50_state_validate.c       |  4 ++++
- src/gallium/drivers/nouveau/nv50/nv50_surface.c      | 20 ++++++++++++++++++--
- src/gallium/drivers/nouveau/nvc0/nvc0_context.c      |  9 +++++----
- src/gallium/drivers/nouveau/nvc0/nvc0_program.c      |  2 +-
- src/gallium/drivers/nouveau/nvc0/nvc0_screen.c       | 10 ++++++++--
- .../drivers/nouveau/nvc0/nvc0_state_validate.c       |  1 +
- src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c          |  1 +
- 14 files changed, 71 insertions(+), 23 deletions(-)
-
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_context.c b/src/gallium/drivers/nouveau/nv50/nv50_context.c
+index 52e14bf..f844592 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_context.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_context.c
+@@ -122,12 +122,9 @@ nv50_destroy(struct pipe_context *pipe)
+ {
+    struct nv50_context *nv50 = nv50_context(pipe);
+ 
+-   if (nv50_context_screen(nv50)->cur_ctx == nv50) {
+-      nv50->base.pushbuf->kick_notify = NULL;
++   if (nv50_context_screen(nv50)->cur_ctx == nv50)
+       nv50_context_screen(nv50)->cur_ctx = NULL;
+-      nouveau_pushbuf_bufctx(nv50->base.pushbuf, NULL);
+-   }
+-   /* need to flush before destroying the bufctx */
++   nouveau_pushbuf_bufctx(nv50->base.pushbuf, NULL);
+    nouveau_pushbuf_kick(nv50->base.pushbuf, nv50->base.pushbuf->channel);
+ 
+    nv50_context_unreference_resources(nv50);
+diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_context.c b/src/gallium/drivers/nouveau/nvc0/nvc0_context.c
+index 83c8c34..e5040c4 100644
+--- a/src/gallium/drivers/nouveau/nvc0/nvc0_context.c
++++ b/src/gallium/drivers/nouveau/nvc0/nvc0_context.c
+@@ -123,11 +123,12 @@ nvc0_destroy(struct pipe_context *pipe)
+ {
+    struct nvc0_context *nvc0 = nvc0_context(pipe);
+ 
+-   if (nvc0->screen->cur_ctx == nvc0) {
+-      nvc0->base.pushbuf->kick_notify = NULL;
++   if (nvc0->screen->cur_ctx == nvc0)
+       nvc0->screen->cur_ctx = NULL;
+-      nouveau_pushbuf_bufctx(nvc0->base.pushbuf, NULL);
+-   }
++   /* Unset bufctx, we don't want to revalidate any resources after the flush.
++    * Other contexts will always set their bufctx again on action calls.
++    */
++   nouveau_pushbuf_bufctx(nvc0->base.pushbuf, NULL);
+    nouveau_pushbuf_kick(nvc0->base.pushbuf, nvc0->base.pushbuf->channel);
+ 
+    nvc0_context_unreference_resources(nvc0);
 -- 
 1.8.5.5
