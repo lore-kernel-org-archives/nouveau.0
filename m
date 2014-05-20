@@ -1,45 +1,48 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 11/12] nvc0: assert that we have vertex elements
-	state
-Date: Tue, 20 May 2014 19:40:05 -0400
-Message-ID: <1400629206-4447-12-git-send-email-imirkin@alum.mit.edu>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH 12/12] nv50: count wrapped textures towards the
+	tex_obj count
+Date: Tue, 20 May 2014 19:40:06 -0400
+Message-ID: <1400629206-4447-13-git-send-email-imirkin@alum.mit.edu>
 References: <1400629206-4447-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1400629206-4447-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Christoph Bumiller <christoph.bumiller-D4IDLmZPRBc@public.gmane.org>
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <1400629206-4447-1-git-send-email-imirkin@alum.mit.edu>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-From: Christoph Bumiller <christoph.bumiller-D4IDLmZPRBc@public.gmane.org>
+From: Joakim Sindholt <opensource@zhasha.com>
 
-Reviewed-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+But don't count their size towards the allocated memory, since that
+belongs to whoever created it.
+
+Reviewed-by: Ilia Mirkin <imirkin@alum.mit.edu>
 ---
- src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c | 1 +
- 1 file changed, 1 insertion(+)
+ src/gallium/drivers/nouveau/nv50/nv50_miptree.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c b/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c
-index c58d6da..83d406d 100644
---- a/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c
-+++ b/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c
-@@ -423,6 +423,7 @@ nvc0_vertex_arrays_validate(struct nvc0_context *nvc0)
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_miptree.c b/src/gallium/drivers/nouveau/nv50/nv50_miptree.c
+index 513d8f9..4c55179 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_miptree.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_miptree.c
+@@ -404,6 +404,8 @@ nv50_miptree_from_handle(struct pipe_screen *pscreen,
+    mt->level[0].offset = 0;
+    mt->level[0].tile_mode = mt->base.bo->config.nv50.tile_mode;
  
-    nouveau_bufctx_reset(nvc0->bufctx_3d, NVC0_BIND_VTX);
- 
-+   assert(vertex);
-    if (unlikely(vertex->need_conversion) ||
-        unlikely(nvc0->vertprog->vp.edgeflag < PIPE_MAX_ATTRIBS)) {
-       vbo_mode = 3;
++   NOUVEAU_DRV_STAT(nouveau_screen(pscreen), tex_obj_current_count, 1);
++
+    /* no need to adjust bo reference count */
+    return &mt->base.base;
+ }
 -- 
 1.8.5.5
