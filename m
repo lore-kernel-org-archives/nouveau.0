@@ -1,14 +1,11 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: About Using "nVidia Open Source Driver" on MIPS
-	Computer
-Date: Tue, 20 May 2014 10:41:41 -0400
-Message-ID: <CAKb7UviQTnLiSkax+hK+3HZZ5daq-VCwuiMmcbnSX12gvqrbRQ@mail.gmail.com>
-References: <CACGcVE2hDJk3qLaAhyXFqnzvFJz3CkSGqQyNmqpH6dZs859Sqg@mail.gmail.com>
+Subject: RFC: Fixing nv30 fbo attachments
+Date: Tue, 20 May 2014 15:58:57 -0400
+Message-ID: <CAKb7UvgWickCwgdCa-HzwrGeJTkJbNaq0=6TeqOSLUssJ6pmog@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACGcVE2hDJk3qLaAhyXFqnzvFJz3CkSGqQyNmqpH6dZs859Sqg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,54 +15,51 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Zhiqiang Liu <gavin.liuzq-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, May 20, 2014 at 10:33 AM, Zhiqiang Liu <gavin.liuzq-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> Hello, Gurus, recently I got a MIPS computer installed with Linux
-> OS(Fedora), unfortunately there is no driver for the graphics
-> card, so it cannot perform 3D acceleration. Since I happen to have a nVidia
-> graphics card at hand (it is GeForce 9500GT, somewhat old), I want to apply
-> this card on this computer, so my questions are:
->
-> 1. Is it possible to make a nVidia graphics driver for this MIPS computer
-> from current open source driver, i.e, transplant current
-> X86-based driver to MIPs-based driver?
+Hello,
 
-What about the current driver is x86-based? nouveau works on ppc,
-should also work on mips. I'm sure there will be issues, anything
-outside of x86 doesn't get a huge amount of testing...
+I attempted doing this a while back, before I really understood what
+was going on. I got some advice that went totally over my head, and I
+dropped the issue. I think I'm much better-prepared to tackle the
+issue this time around.
 
-> 2. If it is possible to do so, then what and where should I start with? what
-> parts of the driver I'll have to modify? and are there any
-> architecture-specific parts, e.g, parts implemented by X86 assembly language
-> or something else HW dependent?
+To recap, nv30 (and nv40) hw can't handle certain color/depth format
+combinations. Specifically, a 16-bit color format must be paired with
+a 16-bit depth format, and a 32-bit color format must be paired with a
+32-bit depth format (well, Z24S8). This HW also can't handle different
+per-attachment sizes, and also the "linearity" of all the attachments
+must be the same. (Whether a surface is linear or not is _generally_
+dictated by its w/h, but not always -- POT textures can sometimes end
+up allocated linearly by e.g. the ddx, or something else.) The
+different sizes are handled by not exposing ARB_fbo. However the rest
+of the cases remain.
 
-Plug it in and see if it works :) It probably won't, but it'll be
-interesting to see where the failures happen. If possible, configure
-your kernel for 4K pages -- non-4K page size has been an area with
-problems in the past.
+Now that I kinda understand how things are structured, I was thinking
+of doing the following:
 
-> 3. What skills do you think I must have to do this job? I am skillful at C
-> programming in Linux, and have much experience on HW designing, should I
-> grasp OpenGL for this work?
-> 4. To make a workable driver with 3D acceleration, which modules' source
-> codes should I download? I have downloaded a file named
-> "xf86-video-nouveau-1.0.10.zip", is it right?
+When rendering (i.e. draw_vbo & co) and the fbo has changed (and has
+one of the problems above), I would instead put in a temporary texture
+as the depth attachment. Before actually drawing, I would blit from
+the real target texture into the temporary texture, and then when
+rendering is done, blit back from the temp texture back into the
+target. This deals with the target texture getting modified between
+draws with various blits/mapping/whatever.
 
-Nouveau is made up of several parts. First, it is a KMS driver in the
-linux kernel (the module would be called 'nouveau'). If that doesn't
-work, you won't be able to use any of the other pieces. Then there is
-the user-space stack, which is the DDX for Xorg (xf86-video-nouveau)
-and the 3D driver, which is part of mesa. Take a look at
-http://nouveau.freedesktop.org/wiki/InstallNouveau/ if you plan on
-building from source and don't have a lot of experience doing so.
-There is nothing x86-specific in any of these bits (sure, there are a
-couple of SSE2-based optimizations in the ddx and mesa drivers,
-relating to video stuff, but they're completely optional and should
-fall back on non-sse versions if sse isn't available).
+This means that you'll only get 16 bits of depth even if you ask for
+24 with a 16-bit color format, but the alternative seems too
+complex/costly.
 
-Good luck,
+So there are a few questions from this approach:
+
+1. Where do I get the temporary texture from? (And more importantly --
+when... what happens if allocation fails?)
+
+2. Having to blit the depth texture back and forth on every draw seems
+_really_ wasteful... anything I can do about that?
+
+Thanks,
 
   -ilia
