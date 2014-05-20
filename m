@@ -1,8 +1,8 @@
 From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 02/12] nv50: setup scissors on
-	clear_render_target/depth_stencil
-Date: Tue, 20 May 2014 19:39:56 -0400
-Message-ID: <1400629206-4447-3-git-send-email-imirkin@alum.mit.edu>
+Subject: [PATCH 03/12] nv50,
+	nvc0: set constbufs dirty on pipe context switch
+Date: Tue, 20 May 2014 19:39:57 -0400
+Message-ID: <1400629206-4447-4-git-send-email-imirkin@alum.mit.edu>
 References: <1400629206-4447-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -19,69 +19,44 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
 Errors-To: mesa-dev-bounces@lists.freedesktop.org
 Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
 To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: "10.2" <mesa-stable@lists.freedesktop.org>
+Cc: "10.2" <mesa-stable@lists.freedesktop.org>, Christoph Bumiller <christoph.bumiller@speed.at>
 List-Id: nouveau.vger.kernel.org
 
-From: Christoph Bumiller <e0425955@student.tuwien.ac.at>
+From: Christoph Bumiller <christoph.bumiller@speed.at>
 
-[imirkin: add logic to also clear the "regular" scissors]
 Reviewed-by: Ilia Mirkin <imirkin@alum.mit.edu>
 Cc: "10.2" <mesa-stable@lists.freedesktop.org>
 ---
- src/gallium/drivers/nouveau/nv50/nv50_surface.c | 20 ++++++++++++++++++--
- 1 file changed, 18 insertions(+), 2 deletions(-)
+ src/gallium/drivers/nouveau/nv50/nv50_state_validate.c | 4 ++++
+ src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c | 1 +
+ 2 files changed, 5 insertions(+)
 
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_surface.c b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-index 1f37527..6e68fb8 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
-@@ -288,6 +288,14 @@ nv50_clear_render_target(struct pipe_context *pipe,
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c b/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
+index 18451c7..1dcb961 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
+@@ -400,6 +400,10 @@ nv50_switch_pipe_context(struct nv50_context *ctx_to)
+    ctx_to->viewports_dirty = ~0;
+    ctx_to->scissors_dirty = ~0;
  
-    PUSH_REFN(push, bo, mt->base.domain | NOUVEAU_BO_WR);
- 
-+   BEGIN_NV04(push, NV50_3D(SCREEN_SCISSOR_HORIZ), 2);
-+   PUSH_DATA (push, ( width << 16) | dstx);
-+   PUSH_DATA (push, (height << 16) | dsty);
-+   BEGIN_NV04(push, NV50_3D(SCISSOR_HORIZ(0)), 2);
-+   PUSH_DATA (push, 8192 << 16);
-+   PUSH_DATA (push, 8192 << 16);
-+   nv50->scissors_dirty |= 1;
++   ctx_to->constbuf_dirty[0] =
++   ctx_to->constbuf_dirty[1] =
++   ctx_to->constbuf_dirty[2] = (1 << NV50_MAX_PIPE_CONSTBUFS) - 1;
 +
-    BEGIN_NV04(push, NV50_3D(RT_CONTROL), 1);
-    PUSH_DATA (push, 1);
-    BEGIN_NV04(push, NV50_3D(RT_ADDRESS_HIGH(0)), 5);
-@@ -325,7 +333,7 @@ nv50_clear_render_target(struct pipe_context *pipe,
-                  (z << NV50_3D_CLEAR_BUFFERS_LAYER__SHIFT));
+    if (!ctx_to->vertex)
+       ctx_to->dirty &= ~(NV50_NEW_VERTEX | NV50_NEW_ARRAYS);
+ 
+diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c b/src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c
+index 40016fc..dcec910 100644
+--- a/src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c
++++ b/src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c
+@@ -531,6 +531,7 @@ nvc0_switch_pipe_context(struct nvc0_context *ctx_to)
+    for (s = 0; s < 5; ++s) {
+       ctx_to->samplers_dirty[s] = ~0;
+       ctx_to->textures_dirty[s] = ~0;
++      ctx_to->constbuf_dirty[s] = (1 << NVC0_MAX_PIPE_CONSTBUFS) - 1;
     }
  
--   nv50->dirty |= NV50_NEW_FRAMEBUFFER;
-+   nv50->dirty |= NV50_NEW_FRAMEBUFFER | NV50_NEW_SCISSOR;
- }
- 
- static void
-@@ -364,6 +372,14 @@ nv50_clear_depth_stencil(struct pipe_context *pipe,
- 
-    PUSH_REFN(push, bo, mt->base.domain | NOUVEAU_BO_WR);
- 
-+   BEGIN_NV04(push, NV50_3D(SCREEN_SCISSOR_HORIZ), 2);
-+   PUSH_DATA (push, ( width << 16) | dstx);
-+   PUSH_DATA (push, (height << 16) | dsty);
-+   BEGIN_NV04(push, NV50_3D(SCISSOR_HORIZ(0)), 2);
-+   PUSH_DATA (push, 8192 << 16);
-+   PUSH_DATA (push, 8192 << 16);
-+   nv50->scissors_dirty |= 1;
-+
-    BEGIN_NV04(push, NV50_3D(ZETA_ADDRESS_HIGH), 5);
-    PUSH_DATAh(push, bo->offset + sf->offset);
-    PUSH_DATA (push, bo->offset + sf->offset);
-@@ -390,7 +406,7 @@ nv50_clear_depth_stencil(struct pipe_context *pipe,
-                  (z << NV50_3D_CLEAR_BUFFERS_LAYER__SHIFT));
-    }
- 
--   nv50->dirty |= NV50_NEW_FRAMEBUFFER;
-+   nv50->dirty |= NV50_NEW_FRAMEBUFFER | NV50_NEW_SCISSOR;
- }
- 
- void
+    if (!ctx_to->vertex)
 -- 
 1.8.5.5
