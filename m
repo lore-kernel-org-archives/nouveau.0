@@ -1,75 +1,87 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 01/12] nv50,
-	nvc0: always pull out bufctx on context destruction
-Date: Tue, 20 May 2014 19:39:55 -0400
-Message-ID: <1400629206-4447-2-git-send-email-imirkin@alum.mit.edu>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH 02/12] nv50: setup scissors on
+	clear_render_target/depth_stencil
+Date: Tue, 20 May 2014 19:39:56 -0400
+Message-ID: <1400629206-4447-3-git-send-email-imirkin@alum.mit.edu>
 References: <1400629206-4447-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1400629206-4447-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: "10.2" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Christoph Bumiller <christoph.bumiller-D4IDLmZPRBc@public.gmane.org>
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <1400629206-4447-1-git-send-email-imirkin@alum.mit.edu>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: "10.2" <mesa-stable@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-From: Christoph Bumiller <christoph.bumiller-D4IDLmZPRBc@public.gmane.org>
+From: Christoph Bumiller <e0425955@student.tuwien.ac.at>
 
-Reviewed-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "10.2" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+[imirkin: add logic to also clear the "regular" scissors]
+Reviewed-by: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: "10.2" <mesa-stable@lists.freedesktop.org>
 ---
- src/gallium/drivers/nouveau/nv50/nv50_context.c | 7 ++-----
- src/gallium/drivers/nouveau/nvc0/nvc0_context.c | 9 +++++----
- 2 files changed, 7 insertions(+), 9 deletions(-)
+ src/gallium/drivers/nouveau/nv50/nv50_surface.c | 20 ++++++++++++++++++--
+ 1 file changed, 18 insertions(+), 2 deletions(-)
 
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_context.c b/src/gallium/drivers/nouveau/nv50/nv50_context.c
-index 52e14bf..f844592 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_context.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_context.c
-@@ -122,12 +122,9 @@ nv50_destroy(struct pipe_context *pipe)
- {
-    struct nv50_context *nv50 = nv50_context(pipe);
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_surface.c b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
+index 1f37527..6e68fb8 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_surface.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_surface.c
+@@ -288,6 +288,14 @@ nv50_clear_render_target(struct pipe_context *pipe,
  
--   if (nv50_context_screen(nv50)->cur_ctx == nv50) {
--      nv50->base.pushbuf->kick_notify = NULL;
-+   if (nv50_context_screen(nv50)->cur_ctx == nv50)
-       nv50_context_screen(nv50)->cur_ctx = NULL;
--      nouveau_pushbuf_bufctx(nv50->base.pushbuf, NULL);
--   }
--   /* need to flush before destroying the bufctx */
-+   nouveau_pushbuf_bufctx(nv50->base.pushbuf, NULL);
-    nouveau_pushbuf_kick(nv50->base.pushbuf, nv50->base.pushbuf->channel);
+    PUSH_REFN(push, bo, mt->base.domain | NOUVEAU_BO_WR);
  
-    nv50_context_unreference_resources(nv50);
-diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_context.c b/src/gallium/drivers/nouveau/nvc0/nvc0_context.c
-index 83c8c34..e5040c4 100644
---- a/src/gallium/drivers/nouveau/nvc0/nvc0_context.c
-+++ b/src/gallium/drivers/nouveau/nvc0/nvc0_context.c
-@@ -123,11 +123,12 @@ nvc0_destroy(struct pipe_context *pipe)
- {
-    struct nvc0_context *nvc0 = nvc0_context(pipe);
++   BEGIN_NV04(push, NV50_3D(SCREEN_SCISSOR_HORIZ), 2);
++   PUSH_DATA (push, ( width << 16) | dstx);
++   PUSH_DATA (push, (height << 16) | dsty);
++   BEGIN_NV04(push, NV50_3D(SCISSOR_HORIZ(0)), 2);
++   PUSH_DATA (push, 8192 << 16);
++   PUSH_DATA (push, 8192 << 16);
++   nv50->scissors_dirty |= 1;
++
+    BEGIN_NV04(push, NV50_3D(RT_CONTROL), 1);
+    PUSH_DATA (push, 1);
+    BEGIN_NV04(push, NV50_3D(RT_ADDRESS_HIGH(0)), 5);
+@@ -325,7 +333,7 @@ nv50_clear_render_target(struct pipe_context *pipe,
+                  (z << NV50_3D_CLEAR_BUFFERS_LAYER__SHIFT));
+    }
  
--   if (nvc0->screen->cur_ctx == nvc0) {
--      nvc0->base.pushbuf->kick_notify = NULL;
-+   if (nvc0->screen->cur_ctx == nvc0)
-       nvc0->screen->cur_ctx = NULL;
--      nouveau_pushbuf_bufctx(nvc0->base.pushbuf, NULL);
--   }
-+   /* Unset bufctx, we don't want to revalidate any resources after the flush.
-+    * Other contexts will always set their bufctx again on action calls.
-+    */
-+   nouveau_pushbuf_bufctx(nvc0->base.pushbuf, NULL);
-    nouveau_pushbuf_kick(nvc0->base.pushbuf, nvc0->base.pushbuf->channel);
+-   nv50->dirty |= NV50_NEW_FRAMEBUFFER;
++   nv50->dirty |= NV50_NEW_FRAMEBUFFER | NV50_NEW_SCISSOR;
+ }
  
-    nvc0_context_unreference_resources(nvc0);
+ static void
+@@ -364,6 +372,14 @@ nv50_clear_depth_stencil(struct pipe_context *pipe,
+ 
+    PUSH_REFN(push, bo, mt->base.domain | NOUVEAU_BO_WR);
+ 
++   BEGIN_NV04(push, NV50_3D(SCREEN_SCISSOR_HORIZ), 2);
++   PUSH_DATA (push, ( width << 16) | dstx);
++   PUSH_DATA (push, (height << 16) | dsty);
++   BEGIN_NV04(push, NV50_3D(SCISSOR_HORIZ(0)), 2);
++   PUSH_DATA (push, 8192 << 16);
++   PUSH_DATA (push, 8192 << 16);
++   nv50->scissors_dirty |= 1;
++
+    BEGIN_NV04(push, NV50_3D(ZETA_ADDRESS_HIGH), 5);
+    PUSH_DATAh(push, bo->offset + sf->offset);
+    PUSH_DATA (push, bo->offset + sf->offset);
+@@ -390,7 +406,7 @@ nv50_clear_depth_stencil(struct pipe_context *pipe,
+                  (z << NV50_3D_CLEAR_BUFFERS_LAYER__SHIFT));
+    }
+ 
+-   nv50->dirty |= NV50_NEW_FRAMEBUFFER;
++   nv50->dirty |= NV50_NEW_FRAMEBUFFER | NV50_NEW_SCISSOR;
+ }
+ 
+ void
 -- 
 1.8.5.5
