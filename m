@@ -1,62 +1,58 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 03/12] nv50,
-	nvc0: set constbufs dirty on pipe context switch
-Date: Tue, 20 May 2014 19:39:57 -0400
-Message-ID: <1400629206-4447-4-git-send-email-imirkin@alum.mit.edu>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 04/12] nv50/ir/tgsi: TGSI_OPCODE_POW replicates
+	its result
+Date: Tue, 20 May 2014 19:39:58 -0400
+Message-ID: <1400629206-4447-5-git-send-email-imirkin@alum.mit.edu>
 References: <1400629206-4447-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1400629206-4447-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: "10.2" <mesa-stable@lists.freedesktop.org>, Christoph Bumiller <christoph.bumiller@speed.at>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1400629206-4447-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "10.2" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Christoph Bumiller <christoph.bumiller-D4IDLmZPRBc@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-From: Christoph Bumiller <christoph.bumiller@speed.at>
+From: Christoph Bumiller <christoph.bumiller-D4IDLmZPRBc@public.gmane.org>
 
-Reviewed-by: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "10.2" <mesa-stable@lists.freedesktop.org>
+Reviewed-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "10.2" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 ---
- src/gallium/drivers/nouveau/nv50/nv50_state_validate.c | 4 ++++
- src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c | 1 +
- 2 files changed, 5 insertions(+)
+ src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c b/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
-index 18451c7..1dcb961 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_state_validate.c
-@@ -400,6 +400,10 @@ nv50_switch_pipe_context(struct nv50_context *ctx_to)
-    ctx_to->viewports_dirty = ~0;
-    ctx_to->scissors_dirty = ~0;
- 
-+   ctx_to->constbuf_dirty[0] =
-+   ctx_to->constbuf_dirty[1] =
-+   ctx_to->constbuf_dirty[2] = (1 << NV50_MAX_PIPE_CONSTBUFS) - 1;
-+
-    if (!ctx_to->vertex)
-       ctx_to->dirty &= ~(NV50_NEW_VERTEX | NV50_NEW_ARRAYS);
- 
-diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c b/src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c
-index 40016fc..dcec910 100644
---- a/src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c
-+++ b/src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c
-@@ -531,6 +531,7 @@ nvc0_switch_pipe_context(struct nvc0_context *ctx_to)
-    for (s = 0; s < 5; ++s) {
-       ctx_to->samplers_dirty[s] = ~0;
-       ctx_to->textures_dirty[s] = ~0;
-+      ctx_to->constbuf_dirty[s] = (1 << NVC0_MAX_PIPE_CONSTBUFS) - 1;
-    }
- 
-    if (!ctx_to->vertex)
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+index 3e44bf9..e24be51 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+@@ -2199,7 +2199,6 @@ Converter::handleInstruction(const struct tgsi_full_instruction *insn)
+    case TGSI_OPCODE_IMUL_HI:
+    case TGSI_OPCODE_UMUL_HI:
+    case TGSI_OPCODE_OR:
+-   case TGSI_OPCODE_POW:
+    case TGSI_OPCODE_SHL:
+    case TGSI_OPCODE_ISHR:
+    case TGSI_OPCODE_USHR:
+@@ -2254,6 +2253,11 @@ Converter::handleInstruction(const struct tgsi_full_instruction *insn)
+       FOR_EACH_DST_ENABLED_CHANNEL(0, c, tgsi)
+          mkOp1(OP_MOV, TYPE_U32, dst0[c], fetchSrc(0, c));
+       break;
++   case TGSI_OPCODE_POW:
++      val0 = mkOp2v(op, TYPE_F32, getScratch(), fetchSrc(0, 0), fetchSrc(1, 0));
++      FOR_EACH_DST_ENABLED_CHANNEL(0, c, tgsi)
++         mkOp1(OP_MOV, TYPE_F32, dst0[c], val0);
++      break;
+    case TGSI_OPCODE_EX2:
+    case TGSI_OPCODE_LG2:
+       val0 = mkOp1(op, TYPE_F32, getScratch(), fetchSrc(0, 0))->getDef(0);
 -- 
 1.8.5.5
