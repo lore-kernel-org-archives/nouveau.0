@@ -1,106 +1,115 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: RFC: Fixing nv30 fbo attachments
-Date: Tue, 20 May 2014 21:05:19 -0400
-Message-ID: <CAKb7Uvh5YAnN9Oi6mm4_ku+=259cw2A4zaidW5MctApK0nssLw@mail.gmail.com>
-References: <CAKb7UvgWickCwgdCa-HzwrGeJTkJbNaq0=6TeqOSLUssJ6pmog@mail.gmail.com>
- <CAAxE2A6n37vZ324dH-jmJ7W5grGj73_85rcvegpr-rOwQJ3xDw@mail.gmail.com>
- <CAKb7Uvgcok0dfihR+9bAv=KagwHCQgSDK7nALfWksMHt5JQcHA@mail.gmail.com>
- <CAAxE2A6bWR7Sc+-WiFm1abRLZtXP0esTKBGuCjPq-B2QU=ZexA@mail.gmail.com>
- <CAKb7UvgKBQg5uM9f3ADVM9_oYaOf0gOY4HAPNpL9+SMFtTfAsA@mail.gmail.com>
- <CAAxE2A4ACNrMLvb8q2Q6PWq-AfFZeCy7d0Gwrzi3v3Fx_y7BaQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 78439] [NVC1] Display corruption when DP connector
+ is reattached
+Date: Wed, 21 May 2014 09:39:37 +0000
+Message-ID: <bug-78439-8800-tjA26S5OYN@http.bugs.freedesktop.org/>
+References: <bug-78439-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <CAAxE2A4ACNrMLvb8q2Q6PWq-AfFZeCy7d0Gwrzi3v3Fx_y7BaQ@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0270553226=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-78439-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q2FuIHlvdSBub3QgcmVuZGVyIHRvIGEgdGV4dHVyZSBidWZmZXI/IFRoYXQgbWlnaHQgbm90IGJl
-IHN1cHBvcnRlZCBieQpudjMwIGFjdHVhbGx5LgoKT24gVHVlLCBNYXkgMjAsIDIwMTQgYXQgODo0
-OSBQTSwgTWFyZWsgT2zFocOhayA8bWFyYWVvQGdtYWlsLmNvbT4gd3JvdGU6Cj4gQVJCX2J1ZmZl
-cl9zdG9yYWdlIGRvZXNuJ3QgaGF2ZSBhbnl0aGluZyB0byBkbyB3aXRoIGZyYW1lYnVmZmVycy4K
-Pgo+IE1hcmVrCj4KPiBPbiBXZWQsIE1heSAyMSwgMjAxNCBhdCAyOjI3IEFNLCBJbGlhIE1pcmtp
-biA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+PiBPbiBUdWUsIE1heSAyMCwgMjAxNCBh
-dCA2OjIwIFBNLCBNYXJlayBPbMWhw6FrIDxtYXJhZW9AZ21haWwuY29tPiB3cm90ZToKPj4+IE9u
-IFR1ZSwgTWF5IDIwLCAyMDE0IGF0IDExOjA0IFBNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVt
-Lm1pdC5lZHU+IHdyb3RlOgo+Pj4+IE9uIFR1ZSwgTWF5IDIwLCAyMDE0IGF0IDQ6NTEgUE0sIE1h
-cmVrIE9sxaHDoWsgPG1hcmFlb0BnbWFpbC5jb20+IHdyb3RlOgo+Pj4+PiBPbiBUdWUsIE1heSAy
-MCwgMjAxNCBhdCA5OjU4IFBNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdy
-b3RlOgo+Pj4+Pj4gSGVsbG8sCj4+Pj4+Pgo+Pj4+Pj4gSSBhdHRlbXB0ZWQgZG9pbmcgdGhpcyBh
-IHdoaWxlIGJhY2ssIGJlZm9yZSBJIHJlYWxseSB1bmRlcnN0b29kIHdoYXQKPj4+Pj4+IHdhcyBn
-b2luZyBvbi4gSSBnb3Qgc29tZSBhZHZpY2UgdGhhdCB3ZW50IHRvdGFsbHkgb3ZlciBteSBoZWFk
-LCBhbmQgSQo+Pj4+Pj4gZHJvcHBlZCB0aGUgaXNzdWUuIEkgdGhpbmsgSSdtIG11Y2ggYmV0dGVy
-LXByZXBhcmVkIHRvIHRhY2tsZSB0aGUKPj4+Pj4+IGlzc3VlIHRoaXMgdGltZSBhcm91bmQuCj4+
-Pj4+Pgo+Pj4+Pj4gVG8gcmVjYXAsIG52MzAgKGFuZCBudjQwKSBodyBjYW4ndCBoYW5kbGUgY2Vy
-dGFpbiBjb2xvci9kZXB0aCBmb3JtYXQKPj4+Pj4+IGNvbWJpbmF0aW9ucy4gU3BlY2lmaWNhbGx5
-LCBhIDE2LWJpdCBjb2xvciBmb3JtYXQgbXVzdCBiZSBwYWlyZWQgd2l0aAo+Pj4+Pj4gYSAxNi1i
-aXQgZGVwdGggZm9ybWF0LCBhbmQgYSAzMi1iaXQgY29sb3IgZm9ybWF0IG11c3QgYmUgcGFpcmVk
-IHdpdGggYQo+Pj4+Pj4gMzItYml0IGRlcHRoIGZvcm1hdCAod2VsbCwgWjI0UzgpLiBUaGlzIEhX
-IGFsc28gY2FuJ3QgaGFuZGxlIGRpZmZlcmVudAo+Pj4+Pj4gcGVyLWF0dGFjaG1lbnQgc2l6ZXMs
-IGFuZCBhbHNvIHRoZSAibGluZWFyaXR5IiBvZiBhbGwgdGhlIGF0dGFjaG1lbnRzCj4+Pj4+PiBt
-dXN0IGJlIHRoZSBzYW1lLiAoV2hldGhlciBhIHN1cmZhY2UgaXMgbGluZWFyIG9yIG5vdCBpcyBf
-Z2VuZXJhbGx5Xwo+Pj4+Pj4gZGljdGF0ZWQgYnkgaXRzIHcvaCwgYnV0IG5vdCBhbHdheXMgLS0g
-UE9UIHRleHR1cmVzIGNhbiBzb21ldGltZXMgZW5kCj4+Pj4+PiB1cCBhbGxvY2F0ZWQgbGluZWFy
-bHkgYnkgZS5nLiB0aGUgZGR4LCBvciBzb21ldGhpbmcgZWxzZS4pIFRoZQo+Pj4+Pj4gZGlmZmVy
-ZW50IHNpemVzIGFyZSBoYW5kbGVkIGJ5IG5vdCBleHBvc2luZyBBUkJfZmJvLiBIb3dldmVyIHRo
-ZSByZXN0Cj4+Pj4+PiBvZiB0aGUgY2FzZXMgcmVtYWluLgo+Pj4+Pj4KPj4+Pj4+IE5vdyB0aGF0
-IEkga2luZGEgdW5kZXJzdGFuZCBob3cgdGhpbmdzIGFyZSBzdHJ1Y3R1cmVkLCBJIHdhcyB0aGlu
-a2luZwo+Pj4+Pj4gb2YgZG9pbmcgdGhlIGZvbGxvd2luZzoKPj4+Pj4+Cj4+Pj4+PiBXaGVuIHJl
-bmRlcmluZyAoaS5lLiBkcmF3X3ZibyAmIGNvKSBhbmQgdGhlIGZibyBoYXMgY2hhbmdlZCAoYW5k
-IGhhcwo+Pj4+Pj4gb25lIG9mIHRoZSBwcm9ibGVtcyBhYm92ZSksIEkgd291bGQgaW5zdGVhZCBw
-dXQgaW4gYSB0ZW1wb3JhcnkgdGV4dHVyZQo+Pj4+Pj4gYXMgdGhlIGRlcHRoIGF0dGFjaG1lbnQu
-IEJlZm9yZSBhY3R1YWxseSBkcmF3aW5nLCBJIHdvdWxkIGJsaXQgZnJvbQo+Pj4+Pj4gdGhlIHJl
-YWwgdGFyZ2V0IHRleHR1cmUgaW50byB0aGUgdGVtcG9yYXJ5IHRleHR1cmUsIGFuZCB0aGVuIHdo
-ZW4KPj4+Pj4+IHJlbmRlcmluZyBpcyBkb25lLCBibGl0IGJhY2sgZnJvbSB0aGUgdGVtcCB0ZXh0
-dXJlIGJhY2sgaW50byB0aGUKPj4+Pj4+IHRhcmdldC4gVGhpcyBkZWFscyB3aXRoIHRoZSB0YXJn
-ZXQgdGV4dHVyZSBnZXR0aW5nIG1vZGlmaWVkIGJldHdlZW4KPj4+Pj4+IGRyYXdzIHdpdGggdmFy
-aW91cyBibGl0cy9tYXBwaW5nL3doYXRldmVyLgo+Pj4+Pj4KPj4+Pj4+IFRoaXMgbWVhbnMgdGhh
-dCB5b3UnbGwgb25seSBnZXQgMTYgYml0cyBvZiBkZXB0aCBldmVuIGlmIHlvdSBhc2sgZm9yCj4+
-Pj4+PiAyNCB3aXRoIGEgMTYtYml0IGNvbG9yIGZvcm1hdCwgYnV0IHRoZSBhbHRlcm5hdGl2ZSBz
-ZWVtcyB0b28KPj4+Pj4+IGNvbXBsZXgvY29zdGx5Lgo+Pj4+Pj4KPj4+Pj4+IFNvIHRoZXJlIGFy
-ZSBhIGZldyBxdWVzdGlvbnMgZnJvbSB0aGlzIGFwcHJvYWNoOgo+Pj4+Pj4KPj4+Pj4+IDEuIFdo
-ZXJlIGRvIEkgZ2V0IHRoZSB0ZW1wb3JhcnkgdGV4dHVyZSBmcm9tPyAoQW5kIG1vcmUgaW1wb3J0
-YW50bHkgLS0KPj4+Pj4+IHdoZW4uLi4gd2hhdCBoYXBwZW5zIGlmIGFsbG9jYXRpb24gZmFpbHM/
-KQo+Pj4+Pj4KPj4+Pj4+IDIuIEhhdmluZyB0byBibGl0IHRoZSBkZXB0aCB0ZXh0dXJlIGJhY2sg
-YW5kIGZvcnRoIG9uIGV2ZXJ5IGRyYXcgc2VlbXMKPj4+Pj4+IF9yZWFsbHlfIHdhc3RlZnVsLi4u
-IGFueXRoaW5nIEkgY2FuIGRvIGFib3V0IHRoYXQ/Cj4+Pj4+Cj4+Pj4+IFlvdSBjYW4gZG8gdGhh
-dCBpbiBzZXRfZnJhbWVidWZmZXJfc3RhdGUuIFdoZW4gYmluZGluZywgYmxpdCB0byBhCj4+Pj4+
-IGRlcHRoIGJ1ZmZlciB3aGljaCBtYXRjaGVzIHRoZSBjb2xvcmJ1ZmZlciBmb3JtYXQuIFdoZW4g
-dW5iaW5kaW5nLAo+Pj4+PiBibGl0IGJhY2suCj4+Pj4KPj4+PiBzZXRfZnJhbWVidWZmZXJfc3Rh
-dGUgZG9lc24ndCBhbGxvdyBhbiBlcnJvciB0byBiZSByZXR1cm5lZC4gU2hvdWxkIEkKPj4+PiBq
-dXN0IHByaW50IGEgd2FybmluZyBhbmQgbW92ZSBvbj8KPj4+Cj4+PiBZZXMsIGJlY2F1c2UgeW91
-IGhhdmUgbm8gb3RoZXIgY2hvaWNlLgo+Pj4KPj4+Pgo+Pj4+IEkgZ3Vlc3MgSSdtIHN0aWxsIG5v
-dCAxMDAlIG9uIGFsbCB0aGUgdGVybWlub2xvZ3kgLS0gd2hhdCBkbyB5b3UgbWVhbgo+Pj4+IGV4
-YWN0bHkgYnkgYmluZC91bmJpbmQ/IERvIHlvdSBtZWFuIHRoZSB0cmFuc2Zlcl9tYXAvdW5tYXAg
-c3R1ZmY/IFNvCj4+Pj4gYmFzaWNhbGx5IEkgd291bGQgYmxpdCBvbmNlIG9uIHNldF9mcmFtZWJ1
-ZmZlcl9zdGF0ZSwgYW5kIHRoZW4gYmxpdAo+Pj4+IGJhY2sgYW5kIGZvcnRoIG9uIHJlc291cmNl
-IG1hcC91bm1hcCwgYW5kIG9ubHkgZXZlciByZW5kZXIgdG8gdGhlCj4+Pj4gInRlbXBvcmFyeSIg
-YnVmZmVyIHdpdGhvdXQgd29ycnlpbmcgYWJvdXQgYmxpdHRpbmcgd2lobGUgcmVuZGVyaW5nPwo+
-Pj4KPj4+ICJiaW5kIiBpcyB3aGVuIGEgYnVmZmVyIGlzIHNldCwgInVuYmluZCIgaXMgd2hlbiB0
-aGUgYnVmZmVyIGlzIHVuc2V0Lgo+Pj4gc2V0X2ZyYW1lYnVmZmVyX3N0YXRlIHVuYmluZHMgdGhl
-IGN1cnJlbnQgZnJhbWVidWZmZXIgYW5kIGJpbmRzIGEgbmV3Cj4+PiBvbmUuCj4+Pgo+Pj4gdHJh
-bnNmZXJfbWFwL3VubWFwIG11c3QgdXNlIHRoZSByZXNvdXJjZSB3aGljaCBjb250YWlucyB0aGUg
-bGF0ZXN0Cj4+PiBkYXRhLCB0aGVyZSBpcyBubyBkb3VidCBhYm91dCB0aGF0Lgo+Pj4KPj4+IElm
-IHRoZXJlIGFyZSBubyB0cmFuc2ZlcnMsIHlvdSBvbmx5IGhhdmUgdG8gZG8gdGhlIGJsaXRzIGJl
-dHdlZW4KPj4+IDMyLWJpdCBhbmQgMTYtYml0IGluIHNldF9mcmFtZWJ1ZmZlcl9zdGF0ZSwgYmVj
-YXVzZSB0aGF0J3MgdGhlIG9ubHkKPj4+IHBsYWNlIHdoZXJlIHRoZSBmcmFtZWJ1ZmZlciBpcyBj
-aGFuZ2VkLgo+Pgo+PiBPSywgSSBzZWUuIFRoYXQgbWFrZXMgc2Vuc2UsIEkgdGhpbmsuIFNvIEkg
-anVzdCBoYXZlIHRvIGJlIGNhcmVmdWwKPj4gd2l0aCB0aGUgdHJhbnNmZXJzIHRvIG1ha2Ugc3Vy
-ZSB0byBibGl0IHRoaW5ncyBiYWNrIGZpcnN0IChvciBtYXliZSBJCj4+IGRvbid0IGV2ZW4gaGF2
-ZSB0byBkbyB0aGF0LCBoYXZlbid0IGNoZWNrZWQgdGhlIHRyYW5zZmVyIGFwaSksIHNpbWlsYXIK
-Pj4gZm9yIGJsaXQuIEFuZCBJJ2xsIG5lZWQgdG8gdHVybiBvZmYgQVJCX2J1ZmZlcl9zdG9yYWdl
-Lgo+Pgo+PiAgIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2
-Cg==
+
+--===============0270553226==
+Content-Type: multipart/alternative; boundary="1400665176.EF7CfA1.19779"; charset="us-ascii"
+
+
+--1400665176.EF7CfA1.19779
+Date: Wed, 21 May 2014 09:39:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D78439
+
+--- Comment #4 from Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> ---
+I can't test with suspend to RAM. My laptop only partially suspends and the=
+n it
+is stuck in that state.
+
+I tried it with suspend to disk. The laptop also fails to suspend, however =
+this
+time it aborts the suspend and returns to the working state with no screen
+corruption. Moreover, the corruption is completely gone till the next reboo=
+t,
+i.e. I can reattach connector and the display is still fine.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1400665176.EF7CfA1.19779
+Date: Wed, 21 May 2014 09:39:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
+ched"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439#c4">Comment=
+ # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
+ched"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439">bug 78439<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+andrius&#64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;sti=
+konas.eu&gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
+</span></b>
+        <pre>I can't test with suspend to RAM. My laptop only partially sus=
+pends and then it
+is stuck in that state.
+
+I tried it with suspend to disk. The laptop also fails to suspend, however =
+this
+time it aborts the suspend and returns to the working state with no screen
+corruption. Moreover, the corruption is completely gone till the next reboo=
+t,
+i.e. I can reattach connector and the display is still fine.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1400665176.EF7CfA1.19779--
+
+--===============0270553226==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0270553226==--
