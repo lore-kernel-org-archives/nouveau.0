@@ -1,13 +1,19 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78439] [NVC1] Display corruption when DP connector
- is reattached
-Date: Wed, 21 May 2014 09:39:37 +0000
-Message-ID: <bug-78439-8800-tjA26S5OYN@http.bugs.freedesktop.org/>
-References: <bug-78439-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Mesa-dev] RFC: Fixing nv30 fbo attachments
+Date: Wed, 21 May 2014 11:48:13 +0200
+Message-ID: <CAAxE2A6qu_4vnv8Rdq9K65cno50-uJ+pj6xVLYJq+FWxu+gZYA@mail.gmail.com>
+References: <CAKb7UvgWickCwgdCa-HzwrGeJTkJbNaq0=6TeqOSLUssJ6pmog@mail.gmail.com>
+ <CAAxE2A6n37vZ324dH-jmJ7W5grGj73_85rcvegpr-rOwQJ3xDw@mail.gmail.com>
+ <CAKb7Uvgcok0dfihR+9bAv=KagwHCQgSDK7nALfWksMHt5JQcHA@mail.gmail.com>
+ <CAAxE2A6bWR7Sc+-WiFm1abRLZtXP0esTKBGuCjPq-B2QU=ZexA@mail.gmail.com>
+ <CAKb7UvgKBQg5uM9f3ADVM9_oYaOf0gOY4HAPNpL9+SMFtTfAsA@mail.gmail.com>
+ <CAAxE2A4ACNrMLvb8q2Q6PWq-AfFZeCy7d0Gwrzi3v3Fx_y7BaQ@mail.gmail.com>
+ <CAKb7Uvh5YAnN9Oi6mm4_ku+=259cw2A4zaidW5MctApK0nssLw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0270553226=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78439-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvh5YAnN9Oi6mm4_ku+=259cw2A4zaidW5MctApK0nssLw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,99 +23,88 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0270553226==
-Content-Type: multipart/alternative; boundary="1400665176.EF7CfA1.19779"; charset="us-ascii"
-
-
---1400665176.EF7CfA1.19779
-Date: Wed, 21 May 2014 09:39:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D78439
-
---- Comment #4 from Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> ---
-I can't test with suspend to RAM. My laptop only partially suspends and the=
-n it
-is stuck in that state.
-
-I tried it with suspend to disk. The laptop also fails to suspend, however =
-this
-time it aborts the suspend and returns to the working state with no screen
-corruption. Moreover, the corruption is completely gone till the next reboo=
-t,
-i.e. I can reattach connector and the display is still fine.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1400665176.EF7CfA1.19779
-Date: Wed, 21 May 2014 09:39:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
-ched"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
-ched"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439">bug 78439<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-andrius&#64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;sti=
-konas.eu&gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
-</span></b>
-        <pre>I can't test with suspend to RAM. My laptop only partially sus=
-pends and then it
-is stuck in that state.
-
-I tried it with suspend to disk. The laptop also fails to suspend, however =
-this
-time it aborts the suspend and returns to the working state with no screen
-corruption. Moreover, the corruption is completely gone till the next reboo=
-t,
-i.e. I can reattach connector and the display is still fine.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1400665176.EF7CfA1.19779--
-
---===============0270553226==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0270553226==--
+Tm90IGluIE9wZW5HTC4KCk1hcmVrCgpPbiBXZWQsIE1heSAyMSwgMjAxNCBhdCAzOjA1IEFNLCBJ
+bGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+IENhbiB5b3Ugbm90IHJl
+bmRlciB0byBhIHRleHR1cmUgYnVmZmVyPyBUaGF0IG1pZ2h0IG5vdCBiZSBzdXBwb3J0ZWQgYnkK
+PiBudjMwIGFjdHVhbGx5Lgo+Cj4gT24gVHVlLCBNYXkgMjAsIDIwMTQgYXQgODo0OSBQTSwgTWFy
+ZWsgT2zFocOhayA8bWFyYWVvQGdtYWlsLmNvbT4gd3JvdGU6Cj4+IEFSQl9idWZmZXJfc3RvcmFn
+ZSBkb2Vzbid0IGhhdmUgYW55dGhpbmcgdG8gZG8gd2l0aCBmcmFtZWJ1ZmZlcnMuCj4+Cj4+IE1h
+cmVrCj4+Cj4+IE9uIFdlZCwgTWF5IDIxLCAyMDE0IGF0IDI6MjcgQU0sIElsaWEgTWlya2luIDxp
+bWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4+PiBPbiBUdWUsIE1heSAyMCwgMjAxNCBhdCA2
+OjIwIFBNLCBNYXJlayBPbMWhw6FrIDxtYXJhZW9AZ21haWwuY29tPiB3cm90ZToKPj4+PiBPbiBU
+dWUsIE1heSAyMCwgMjAxNCBhdCAxMTowNCBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5t
+aXQuZWR1PiB3cm90ZToKPj4+Pj4gT24gVHVlLCBNYXkgMjAsIDIwMTQgYXQgNDo1MSBQTSwgTWFy
+ZWsgT2zFocOhayA8bWFyYWVvQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pj4+PiBPbiBUdWUsIE1heSAy
+MCwgMjAxNCBhdCA5OjU4IFBNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdy
+b3RlOgo+Pj4+Pj4+IEhlbGxvLAo+Pj4+Pj4+Cj4+Pj4+Pj4gSSBhdHRlbXB0ZWQgZG9pbmcgdGhp
+cyBhIHdoaWxlIGJhY2ssIGJlZm9yZSBJIHJlYWxseSB1bmRlcnN0b29kIHdoYXQKPj4+Pj4+PiB3
+YXMgZ29pbmcgb24uIEkgZ290IHNvbWUgYWR2aWNlIHRoYXQgd2VudCB0b3RhbGx5IG92ZXIgbXkg
+aGVhZCwgYW5kIEkKPj4+Pj4+PiBkcm9wcGVkIHRoZSBpc3N1ZS4gSSB0aGluayBJJ20gbXVjaCBi
+ZXR0ZXItcHJlcGFyZWQgdG8gdGFja2xlIHRoZQo+Pj4+Pj4+IGlzc3VlIHRoaXMgdGltZSBhcm91
+bmQuCj4+Pj4+Pj4KPj4+Pj4+PiBUbyByZWNhcCwgbnYzMCAoYW5kIG52NDApIGh3IGNhbid0IGhh
+bmRsZSBjZXJ0YWluIGNvbG9yL2RlcHRoIGZvcm1hdAo+Pj4+Pj4+IGNvbWJpbmF0aW9ucy4gU3Bl
+Y2lmaWNhbGx5LCBhIDE2LWJpdCBjb2xvciBmb3JtYXQgbXVzdCBiZSBwYWlyZWQgd2l0aAo+Pj4+
+Pj4+IGEgMTYtYml0IGRlcHRoIGZvcm1hdCwgYW5kIGEgMzItYml0IGNvbG9yIGZvcm1hdCBtdXN0
+IGJlIHBhaXJlZCB3aXRoIGEKPj4+Pj4+PiAzMi1iaXQgZGVwdGggZm9ybWF0ICh3ZWxsLCBaMjRT
+OCkuIFRoaXMgSFcgYWxzbyBjYW4ndCBoYW5kbGUgZGlmZmVyZW50Cj4+Pj4+Pj4gcGVyLWF0dGFj
+aG1lbnQgc2l6ZXMsIGFuZCBhbHNvIHRoZSAibGluZWFyaXR5IiBvZiBhbGwgdGhlIGF0dGFjaG1l
+bnRzCj4+Pj4+Pj4gbXVzdCBiZSB0aGUgc2FtZS4gKFdoZXRoZXIgYSBzdXJmYWNlIGlzIGxpbmVh
+ciBvciBub3QgaXMgX2dlbmVyYWxseV8KPj4+Pj4+PiBkaWN0YXRlZCBieSBpdHMgdy9oLCBidXQg
+bm90IGFsd2F5cyAtLSBQT1QgdGV4dHVyZXMgY2FuIHNvbWV0aW1lcyBlbmQKPj4+Pj4+PiB1cCBh
+bGxvY2F0ZWQgbGluZWFybHkgYnkgZS5nLiB0aGUgZGR4LCBvciBzb21ldGhpbmcgZWxzZS4pIFRo
+ZQo+Pj4+Pj4+IGRpZmZlcmVudCBzaXplcyBhcmUgaGFuZGxlZCBieSBub3QgZXhwb3NpbmcgQVJC
+X2Ziby4gSG93ZXZlciB0aGUgcmVzdAo+Pj4+Pj4+IG9mIHRoZSBjYXNlcyByZW1haW4uCj4+Pj4+
+Pj4KPj4+Pj4+PiBOb3cgdGhhdCBJIGtpbmRhIHVuZGVyc3RhbmQgaG93IHRoaW5ncyBhcmUgc3Ry
+dWN0dXJlZCwgSSB3YXMgdGhpbmtpbmcKPj4+Pj4+PiBvZiBkb2luZyB0aGUgZm9sbG93aW5nOgo+
+Pj4+Pj4+Cj4+Pj4+Pj4gV2hlbiByZW5kZXJpbmcgKGkuZS4gZHJhd192Ym8gJiBjbykgYW5kIHRo
+ZSBmYm8gaGFzIGNoYW5nZWQgKGFuZCBoYXMKPj4+Pj4+PiBvbmUgb2YgdGhlIHByb2JsZW1zIGFi
+b3ZlKSwgSSB3b3VsZCBpbnN0ZWFkIHB1dCBpbiBhIHRlbXBvcmFyeSB0ZXh0dXJlCj4+Pj4+Pj4g
+YXMgdGhlIGRlcHRoIGF0dGFjaG1lbnQuIEJlZm9yZSBhY3R1YWxseSBkcmF3aW5nLCBJIHdvdWxk
+IGJsaXQgZnJvbQo+Pj4+Pj4+IHRoZSByZWFsIHRhcmdldCB0ZXh0dXJlIGludG8gdGhlIHRlbXBv
+cmFyeSB0ZXh0dXJlLCBhbmQgdGhlbiB3aGVuCj4+Pj4+Pj4gcmVuZGVyaW5nIGlzIGRvbmUsIGJs
+aXQgYmFjayBmcm9tIHRoZSB0ZW1wIHRleHR1cmUgYmFjayBpbnRvIHRoZQo+Pj4+Pj4+IHRhcmdl
+dC4gVGhpcyBkZWFscyB3aXRoIHRoZSB0YXJnZXQgdGV4dHVyZSBnZXR0aW5nIG1vZGlmaWVkIGJl
+dHdlZW4KPj4+Pj4+PiBkcmF3cyB3aXRoIHZhcmlvdXMgYmxpdHMvbWFwcGluZy93aGF0ZXZlci4K
+Pj4+Pj4+Pgo+Pj4+Pj4+IFRoaXMgbWVhbnMgdGhhdCB5b3UnbGwgb25seSBnZXQgMTYgYml0cyBv
+ZiBkZXB0aCBldmVuIGlmIHlvdSBhc2sgZm9yCj4+Pj4+Pj4gMjQgd2l0aCBhIDE2LWJpdCBjb2xv
+ciBmb3JtYXQsIGJ1dCB0aGUgYWx0ZXJuYXRpdmUgc2VlbXMgdG9vCj4+Pj4+Pj4gY29tcGxleC9j
+b3N0bHkuCj4+Pj4+Pj4KPj4+Pj4+PiBTbyB0aGVyZSBhcmUgYSBmZXcgcXVlc3Rpb25zIGZyb20g
+dGhpcyBhcHByb2FjaDoKPj4+Pj4+Pgo+Pj4+Pj4+IDEuIFdoZXJlIGRvIEkgZ2V0IHRoZSB0ZW1w
+b3JhcnkgdGV4dHVyZSBmcm9tPyAoQW5kIG1vcmUgaW1wb3J0YW50bHkgLS0KPj4+Pj4+PiB3aGVu
+Li4uIHdoYXQgaGFwcGVucyBpZiBhbGxvY2F0aW9uIGZhaWxzPykKPj4+Pj4+Pgo+Pj4+Pj4+IDIu
+IEhhdmluZyB0byBibGl0IHRoZSBkZXB0aCB0ZXh0dXJlIGJhY2sgYW5kIGZvcnRoIG9uIGV2ZXJ5
+IGRyYXcgc2VlbXMKPj4+Pj4+PiBfcmVhbGx5XyB3YXN0ZWZ1bC4uLiBhbnl0aGluZyBJIGNhbiBk
+byBhYm91dCB0aGF0Pwo+Pj4+Pj4KPj4+Pj4+IFlvdSBjYW4gZG8gdGhhdCBpbiBzZXRfZnJhbWVi
+dWZmZXJfc3RhdGUuIFdoZW4gYmluZGluZywgYmxpdCB0byBhCj4+Pj4+PiBkZXB0aCBidWZmZXIg
+d2hpY2ggbWF0Y2hlcyB0aGUgY29sb3JidWZmZXIgZm9ybWF0LiBXaGVuIHVuYmluZGluZywKPj4+
+Pj4+IGJsaXQgYmFjay4KPj4+Pj4KPj4+Pj4gc2V0X2ZyYW1lYnVmZmVyX3N0YXRlIGRvZXNuJ3Qg
+YWxsb3cgYW4gZXJyb3IgdG8gYmUgcmV0dXJuZWQuIFNob3VsZCBJCj4+Pj4+IGp1c3QgcHJpbnQg
+YSB3YXJuaW5nIGFuZCBtb3ZlIG9uPwo+Pj4+Cj4+Pj4gWWVzLCBiZWNhdXNlIHlvdSBoYXZlIG5v
+IG90aGVyIGNob2ljZS4KPj4+Pgo+Pj4+Pgo+Pj4+PiBJIGd1ZXNzIEknbSBzdGlsbCBub3QgMTAw
+JSBvbiBhbGwgdGhlIHRlcm1pbm9sb2d5IC0tIHdoYXQgZG8geW91IG1lYW4KPj4+Pj4gZXhhY3Rs
+eSBieSBiaW5kL3VuYmluZD8gRG8geW91IG1lYW4gdGhlIHRyYW5zZmVyX21hcC91bm1hcCBzdHVm
+Zj8gU28KPj4+Pj4gYmFzaWNhbGx5IEkgd291bGQgYmxpdCBvbmNlIG9uIHNldF9mcmFtZWJ1ZmZl
+cl9zdGF0ZSwgYW5kIHRoZW4gYmxpdAo+Pj4+PiBiYWNrIGFuZCBmb3J0aCBvbiByZXNvdXJjZSBt
+YXAvdW5tYXAsIGFuZCBvbmx5IGV2ZXIgcmVuZGVyIHRvIHRoZQo+Pj4+PiAidGVtcG9yYXJ5IiBi
+dWZmZXIgd2l0aG91dCB3b3JyeWluZyBhYm91dCBibGl0dGluZyB3aWhsZSByZW5kZXJpbmc/Cj4+
+Pj4KPj4+PiAiYmluZCIgaXMgd2hlbiBhIGJ1ZmZlciBpcyBzZXQsICJ1bmJpbmQiIGlzIHdoZW4g
+dGhlIGJ1ZmZlciBpcyB1bnNldC4KPj4+PiBzZXRfZnJhbWVidWZmZXJfc3RhdGUgdW5iaW5kcyB0
+aGUgY3VycmVudCBmcmFtZWJ1ZmZlciBhbmQgYmluZHMgYSBuZXcKPj4+PiBvbmUuCj4+Pj4KPj4+
+PiB0cmFuc2Zlcl9tYXAvdW5tYXAgbXVzdCB1c2UgdGhlIHJlc291cmNlIHdoaWNoIGNvbnRhaW5z
+IHRoZSBsYXRlc3QKPj4+PiBkYXRhLCB0aGVyZSBpcyBubyBkb3VidCBhYm91dCB0aGF0Lgo+Pj4+
+Cj4+Pj4gSWYgdGhlcmUgYXJlIG5vIHRyYW5zZmVycywgeW91IG9ubHkgaGF2ZSB0byBkbyB0aGUg
+YmxpdHMgYmV0d2Vlbgo+Pj4+IDMyLWJpdCBhbmQgMTYtYml0IGluIHNldF9mcmFtZWJ1ZmZlcl9z
+dGF0ZSwgYmVjYXVzZSB0aGF0J3MgdGhlIG9ubHkKPj4+PiBwbGFjZSB3aGVyZSB0aGUgZnJhbWVi
+dWZmZXIgaXMgY2hhbmdlZC4KPj4+Cj4+PiBPSywgSSBzZWUuIFRoYXQgbWFrZXMgc2Vuc2UsIEkg
+dGhpbmsuIFNvIEkganVzdCBoYXZlIHRvIGJlIGNhcmVmdWwKPj4+IHdpdGggdGhlIHRyYW5zZmVy
+cyB0byBtYWtlIHN1cmUgdG8gYmxpdCB0aGluZ3MgYmFjayBmaXJzdCAob3IgbWF5YmUgSQo+Pj4g
+ZG9uJ3QgZXZlbiBoYXZlIHRvIGRvIHRoYXQsIGhhdmVuJ3QgY2hlY2tlZCB0aGUgdHJhbnNmZXIg
+YXBpKSwgc2ltaWxhcgo+Pj4gZm9yIGJsaXQuIEFuZCBJJ2xsIG5lZWQgdG8gdHVybiBvZmYgQVJC
+X2J1ZmZlcl9zdG9yYWdlLgo+Pj4KPj4+ICAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUK
