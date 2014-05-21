@@ -1,89 +1,95 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78439] [NVC1] Display corruption when DP connector
- is reattached
-Date: Wed, 21 May 2014 00:17:37 +0000
-Message-ID: <bug-78439-8800-eDcdbX8d7T@http.bugs.freedesktop.org/>
-References: <bug-78439-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: Re: RFC: Fixing nv30 fbo attachments
+Date: Tue, 20 May 2014 20:27:29 -0400
+Message-ID: <CAKb7UvgKBQg5uM9f3ADVM9_oYaOf0gOY4HAPNpL9+SMFtTfAsA@mail.gmail.com>
+References: <CAKb7UvgWickCwgdCa-HzwrGeJTkJbNaq0=6TeqOSLUssJ6pmog@mail.gmail.com>
+ <CAAxE2A6n37vZ324dH-jmJ7W5grGj73_85rcvegpr-rOwQJ3xDw@mail.gmail.com>
+ <CAKb7Uvgcok0dfihR+9bAv=KagwHCQgSDK7nALfWksMHt5JQcHA@mail.gmail.com>
+ <CAAxE2A6bWR7Sc+-WiFm1abRLZtXP0esTKBGuCjPq-B2QU=ZexA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1461584459=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78439-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <CAAxE2A6bWR7Sc+-WiFm1abRLZtXP0esTKBGuCjPq-B2QU=ZexA@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
+Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1461584459==
-Content-Type: multipart/alternative; boundary="1400631457.60efE6f42.18914"; charset="us-ascii"
-
-
---1400631457.60efE6f42.18914
-Date: Wed, 21 May 2014 00:17:37 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=78439
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Does it fix itself if you do a suspend/resume cycle?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1400631457.60efE6f42.18914
-Date: Wed, 21 May 2014 00:17:37 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] Display corruption when DP connector is reattached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78439#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC1] Display corruption when DP connector is reattached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78439">bug 78439</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Does it fix itself if you do a suspend/resume cycle?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1400631457.60efE6f42.18914--
-
---===============1461584459==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1461584459==--
+T24gVHVlLCBNYXkgMjAsIDIwMTQgYXQgNjoyMCBQTSwgTWFyZWsgT2zFocOhayA8bWFyYWVvQGdt
+YWlsLmNvbT4gd3JvdGU6Cj4gT24gVHVlLCBNYXkgMjAsIDIwMTQgYXQgMTE6MDQgUE0sIElsaWEg
+TWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4+IE9uIFR1ZSwgTWF5IDIwLCAy
+MDE0IGF0IDQ6NTEgUE0sIE1hcmVrIE9sxaHDoWsgPG1hcmFlb0BnbWFpbC5jb20+IHdyb3RlOgo+
+Pj4gT24gVHVlLCBNYXkgMjAsIDIwMTQgYXQgOTo1OCBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5A
+YWx1bS5taXQuZWR1PiB3cm90ZToKPj4+PiBIZWxsbywKPj4+Pgo+Pj4+IEkgYXR0ZW1wdGVkIGRv
+aW5nIHRoaXMgYSB3aGlsZSBiYWNrLCBiZWZvcmUgSSByZWFsbHkgdW5kZXJzdG9vZCB3aGF0Cj4+
+Pj4gd2FzIGdvaW5nIG9uLiBJIGdvdCBzb21lIGFkdmljZSB0aGF0IHdlbnQgdG90YWxseSBvdmVy
+IG15IGhlYWQsIGFuZCBJCj4+Pj4gZHJvcHBlZCB0aGUgaXNzdWUuIEkgdGhpbmsgSSdtIG11Y2gg
+YmV0dGVyLXByZXBhcmVkIHRvIHRhY2tsZSB0aGUKPj4+PiBpc3N1ZSB0aGlzIHRpbWUgYXJvdW5k
+Lgo+Pj4+Cj4+Pj4gVG8gcmVjYXAsIG52MzAgKGFuZCBudjQwKSBodyBjYW4ndCBoYW5kbGUgY2Vy
+dGFpbiBjb2xvci9kZXB0aCBmb3JtYXQKPj4+PiBjb21iaW5hdGlvbnMuIFNwZWNpZmljYWxseSwg
+YSAxNi1iaXQgY29sb3IgZm9ybWF0IG11c3QgYmUgcGFpcmVkIHdpdGgKPj4+PiBhIDE2LWJpdCBk
+ZXB0aCBmb3JtYXQsIGFuZCBhIDMyLWJpdCBjb2xvciBmb3JtYXQgbXVzdCBiZSBwYWlyZWQgd2l0
+aCBhCj4+Pj4gMzItYml0IGRlcHRoIGZvcm1hdCAod2VsbCwgWjI0UzgpLiBUaGlzIEhXIGFsc28g
+Y2FuJ3QgaGFuZGxlIGRpZmZlcmVudAo+Pj4+IHBlci1hdHRhY2htZW50IHNpemVzLCBhbmQgYWxz
+byB0aGUgImxpbmVhcml0eSIgb2YgYWxsIHRoZSBhdHRhY2htZW50cwo+Pj4+IG11c3QgYmUgdGhl
+IHNhbWUuIChXaGV0aGVyIGEgc3VyZmFjZSBpcyBsaW5lYXIgb3Igbm90IGlzIF9nZW5lcmFsbHlf
+Cj4+Pj4gZGljdGF0ZWQgYnkgaXRzIHcvaCwgYnV0IG5vdCBhbHdheXMgLS0gUE9UIHRleHR1cmVz
+IGNhbiBzb21ldGltZXMgZW5kCj4+Pj4gdXAgYWxsb2NhdGVkIGxpbmVhcmx5IGJ5IGUuZy4gdGhl
+IGRkeCwgb3Igc29tZXRoaW5nIGVsc2UuKSBUaGUKPj4+PiBkaWZmZXJlbnQgc2l6ZXMgYXJlIGhh
+bmRsZWQgYnkgbm90IGV4cG9zaW5nIEFSQl9mYm8uIEhvd2V2ZXIgdGhlIHJlc3QKPj4+PiBvZiB0
+aGUgY2FzZXMgcmVtYWluLgo+Pj4+Cj4+Pj4gTm93IHRoYXQgSSBraW5kYSB1bmRlcnN0YW5kIGhv
+dyB0aGluZ3MgYXJlIHN0cnVjdHVyZWQsIEkgd2FzIHRoaW5raW5nCj4+Pj4gb2YgZG9pbmcgdGhl
+IGZvbGxvd2luZzoKPj4+Pgo+Pj4+IFdoZW4gcmVuZGVyaW5nIChpLmUuIGRyYXdfdmJvICYgY28p
+IGFuZCB0aGUgZmJvIGhhcyBjaGFuZ2VkIChhbmQgaGFzCj4+Pj4gb25lIG9mIHRoZSBwcm9ibGVt
+cyBhYm92ZSksIEkgd291bGQgaW5zdGVhZCBwdXQgaW4gYSB0ZW1wb3JhcnkgdGV4dHVyZQo+Pj4+
+IGFzIHRoZSBkZXB0aCBhdHRhY2htZW50LiBCZWZvcmUgYWN0dWFsbHkgZHJhd2luZywgSSB3b3Vs
+ZCBibGl0IGZyb20KPj4+PiB0aGUgcmVhbCB0YXJnZXQgdGV4dHVyZSBpbnRvIHRoZSB0ZW1wb3Jh
+cnkgdGV4dHVyZSwgYW5kIHRoZW4gd2hlbgo+Pj4+IHJlbmRlcmluZyBpcyBkb25lLCBibGl0IGJh
+Y2sgZnJvbSB0aGUgdGVtcCB0ZXh0dXJlIGJhY2sgaW50byB0aGUKPj4+PiB0YXJnZXQuIFRoaXMg
+ZGVhbHMgd2l0aCB0aGUgdGFyZ2V0IHRleHR1cmUgZ2V0dGluZyBtb2RpZmllZCBiZXR3ZWVuCj4+
+Pj4gZHJhd3Mgd2l0aCB2YXJpb3VzIGJsaXRzL21hcHBpbmcvd2hhdGV2ZXIuCj4+Pj4KPj4+PiBU
+aGlzIG1lYW5zIHRoYXQgeW91J2xsIG9ubHkgZ2V0IDE2IGJpdHMgb2YgZGVwdGggZXZlbiBpZiB5
+b3UgYXNrIGZvcgo+Pj4+IDI0IHdpdGggYSAxNi1iaXQgY29sb3IgZm9ybWF0LCBidXQgdGhlIGFs
+dGVybmF0aXZlIHNlZW1zIHRvbwo+Pj4+IGNvbXBsZXgvY29zdGx5Lgo+Pj4+Cj4+Pj4gU28gdGhl
+cmUgYXJlIGEgZmV3IHF1ZXN0aW9ucyBmcm9tIHRoaXMgYXBwcm9hY2g6Cj4+Pj4KPj4+PiAxLiBX
+aGVyZSBkbyBJIGdldCB0aGUgdGVtcG9yYXJ5IHRleHR1cmUgZnJvbT8gKEFuZCBtb3JlIGltcG9y
+dGFudGx5IC0tCj4+Pj4gd2hlbi4uLiB3aGF0IGhhcHBlbnMgaWYgYWxsb2NhdGlvbiBmYWlscz8p
+Cj4+Pj4KPj4+PiAyLiBIYXZpbmcgdG8gYmxpdCB0aGUgZGVwdGggdGV4dHVyZSBiYWNrIGFuZCBm
+b3J0aCBvbiBldmVyeSBkcmF3IHNlZW1zCj4+Pj4gX3JlYWxseV8gd2FzdGVmdWwuLi4gYW55dGhp
+bmcgSSBjYW4gZG8gYWJvdXQgdGhhdD8KPj4+Cj4+PiBZb3UgY2FuIGRvIHRoYXQgaW4gc2V0X2Zy
+YW1lYnVmZmVyX3N0YXRlLiBXaGVuIGJpbmRpbmcsIGJsaXQgdG8gYQo+Pj4gZGVwdGggYnVmZmVy
+IHdoaWNoIG1hdGNoZXMgdGhlIGNvbG9yYnVmZmVyIGZvcm1hdC4gV2hlbiB1bmJpbmRpbmcsCj4+
+PiBibGl0IGJhY2suCj4+Cj4+IHNldF9mcmFtZWJ1ZmZlcl9zdGF0ZSBkb2Vzbid0IGFsbG93IGFu
+IGVycm9yIHRvIGJlIHJldHVybmVkLiBTaG91bGQgSQo+PiBqdXN0IHByaW50IGEgd2FybmluZyBh
+bmQgbW92ZSBvbj8KPgo+IFllcywgYmVjYXVzZSB5b3UgaGF2ZSBubyBvdGhlciBjaG9pY2UuCj4K
+Pj4KPj4gSSBndWVzcyBJJ20gc3RpbGwgbm90IDEwMCUgb24gYWxsIHRoZSB0ZXJtaW5vbG9neSAt
+LSB3aGF0IGRvIHlvdSBtZWFuCj4+IGV4YWN0bHkgYnkgYmluZC91bmJpbmQ/IERvIHlvdSBtZWFu
+IHRoZSB0cmFuc2Zlcl9tYXAvdW5tYXAgc3R1ZmY/IFNvCj4+IGJhc2ljYWxseSBJIHdvdWxkIGJs
+aXQgb25jZSBvbiBzZXRfZnJhbWVidWZmZXJfc3RhdGUsIGFuZCB0aGVuIGJsaXQKPj4gYmFjayBh
+bmQgZm9ydGggb24gcmVzb3VyY2UgbWFwL3VubWFwLCBhbmQgb25seSBldmVyIHJlbmRlciB0byB0
+aGUKPj4gInRlbXBvcmFyeSIgYnVmZmVyIHdpdGhvdXQgd29ycnlpbmcgYWJvdXQgYmxpdHRpbmcg
+d2lobGUgcmVuZGVyaW5nPwo+Cj4gImJpbmQiIGlzIHdoZW4gYSBidWZmZXIgaXMgc2V0LCAidW5i
+aW5kIiBpcyB3aGVuIHRoZSBidWZmZXIgaXMgdW5zZXQuCj4gc2V0X2ZyYW1lYnVmZmVyX3N0YXRl
+IHVuYmluZHMgdGhlIGN1cnJlbnQgZnJhbWVidWZmZXIgYW5kIGJpbmRzIGEgbmV3Cj4gb25lLgo+
+Cj4gdHJhbnNmZXJfbWFwL3VubWFwIG11c3QgdXNlIHRoZSByZXNvdXJjZSB3aGljaCBjb250YWlu
+cyB0aGUgbGF0ZXN0Cj4gZGF0YSwgdGhlcmUgaXMgbm8gZG91YnQgYWJvdXQgdGhhdC4KPgo+IElm
+IHRoZXJlIGFyZSBubyB0cmFuc2ZlcnMsIHlvdSBvbmx5IGhhdmUgdG8gZG8gdGhlIGJsaXRzIGJl
+dHdlZW4KPiAzMi1iaXQgYW5kIDE2LWJpdCBpbiBzZXRfZnJhbWVidWZmZXJfc3RhdGUsIGJlY2F1
+c2UgdGhhdCdzIHRoZSBvbmx5Cj4gcGxhY2Ugd2hlcmUgdGhlIGZyYW1lYnVmZmVyIGlzIGNoYW5n
+ZWQuCgpPSywgSSBzZWUuIFRoYXQgbWFrZXMgc2Vuc2UsIEkgdGhpbmsuIFNvIEkganVzdCBoYXZl
+IHRvIGJlIGNhcmVmdWwKd2l0aCB0aGUgdHJhbnNmZXJzIHRvIG1ha2Ugc3VyZSB0byBibGl0IHRo
+aW5ncyBiYWNrIGZpcnN0IChvciBtYXliZSBJCmRvbid0IGV2ZW4gaGF2ZSB0byBkbyB0aGF0LCBo
+YXZlbid0IGNoZWNrZWQgdGhlIHRyYW5zZmVyIGFwaSksIHNpbWlsYXIKZm9yIGJsaXQuIEFuZCBJ
+J2xsIG5lZWQgdG8gdHVybiBvZmYgQVJCX2J1ZmZlcl9zdG9yYWdlLgoKICAtaWxpYQpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwptZXNhLWRldiBtYWlsaW5n
+IGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
