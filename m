@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78116] Auto fan speed management doesn't do anything
- in non critical temperature range (NVC0)
-Date: Wed, 21 May 2014 12:35:48 +0000
-Message-ID: <bug-78116-8800-dYcHaN3ch6@http.bugs.freedesktop.org/>
-References: <bug-78116-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77003] [NV50] Fan speed to high with Kernel versions
+ 3.13.x - Nvidia GeForce GTS 240 (NV92)
+Date: Wed, 21 May 2014 12:36:28 +0000
+Message-ID: <bug-77003-8800-UtmTlWmdVM@http.bugs.freedesktop.org/>
+References: <bug-77003-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0235926593=="
+Content-Type: multipart/mixed; boundary="===============0652854937=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-77003-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0235926593==
-Content-Type: multipart/alternative; boundary="1400675748.6c0D2.31085"; charset="us-ascii"
+--===============0652854937==
+Content-Type: multipart/alternative; boundary="1400675788.bA0E2.31309"; charset="us-ascii"
 
 
---1400675748.6c0D2.31085
-Date: Wed, 21 May 2014 12:35:48 +0000
+--1400675788.bA0E2.31309
+Date: Wed, 21 May 2014 12:36:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=78116
+https://bugs.freedesktop.org/show_bug.cgi?id=77003
 
---- Comment #10 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-(In reply to comment #9)
-> (In reply to comment #8)
-> > I already attached my bios to bug 78106 if that's ok.
-> 
-> Great, thanks, I'll have a look at both bugs tomorrow :)
-
-I can't reproduce the bug, but I'll send you a patch for us to get more
-visibility on what's going wrong. Sorry for being so slow :s
+--- Comment #7 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+Any news on this?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1400675748.6c0D2.31085
-Date: Wed, 21 May 2014 12:35:48 +0000
+--1400675788.bA0E2.31309
+Date: Wed, 21 May 2014 12:36:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,25 +53,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c10">Comment # 10</a>
+   title="NEW --- - [NV50] Fan speed to high with Kernel versions 3.13.x - Nvidia GeForce GTS 240 (NV92)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77003#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
+   title="NEW --- - [NV50] Fan speed to high with Kernel versions 3.13.x - Nvidia GeForce GTS 240 (NV92)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77003">bug 77003</a>
               from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=78116#c9">comment #9</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=78116#c8">comment #8</a>)
-&gt; &gt; I already attached my bios to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Reported fan rpm is twice the actual value (NVC0)"
-   href="show_bug.cgi?id=78106">bug 78106</a> if that's ok.
-&gt; 
-&gt; Great, thanks, I'll have a look at both bugs tomorrow :)</span >
-
-I can't reproduce the bug, but I'll send you a patch for us to get more
-visibility on what's going wrong. Sorry for being so slow :s</pre>
+        <pre>Any news on this?</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +73,9 @@ visibility on what's going wrong. Sorry for being so slow :s</pre>
     </body>
 </html>
 
---1400675748.6c0D2.31085--
+--1400675788.bA0E2.31309--
 
---===============0235926593==
+--===============0652854937==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0235926593==--
+--===============0652854937==--
