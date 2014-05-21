@@ -1,48 +1,89 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 12/12] nv50: count wrapped textures towards the
-	tex_obj count
-Date: Tue, 20 May 2014 19:40:06 -0400
-Message-ID: <1400629206-4447-13-git-send-email-imirkin@alum.mit.edu>
-References: <1400629206-4447-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 78439] [NVC1] Display corruption when DP connector
+ is reattached
+Date: Wed, 21 May 2014 00:17:37 +0000
+Message-ID: <bug-78439-8800-eDcdbX8d7T@http.bugs.freedesktop.org/>
+References: <bug-78439-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1400629206-4447-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1461584459=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-78439-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-From: Joakim Sindholt <opensource@zhasha.com>
 
-But don't count their size towards the allocated memory, since that
-belongs to whoever created it.
+--===============1461584459==
+Content-Type: multipart/alternative; boundary="1400631457.60efE6f42.18914"; charset="us-ascii"
 
-Reviewed-by: Ilia Mirkin <imirkin@alum.mit.edu>
----
- src/gallium/drivers/nouveau/nv50/nv50_miptree.c | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/src/gallium/drivers/nouveau/nv50/nv50_miptree.c b/src/gallium/drivers/nouveau/nv50/nv50_miptree.c
-index 513d8f9..4c55179 100644
---- a/src/gallium/drivers/nouveau/nv50/nv50_miptree.c
-+++ b/src/gallium/drivers/nouveau/nv50/nv50_miptree.c
-@@ -404,6 +404,8 @@ nv50_miptree_from_handle(struct pipe_screen *pscreen,
-    mt->level[0].offset = 0;
-    mt->level[0].tile_mode = mt->base.bo->config.nv50.tile_mode;
- 
-+   NOUVEAU_DRV_STAT(nouveau_screen(pscreen), tex_obj_current_count, 1);
-+
-    /* no need to adjust bo reference count */
-    return &mt->base.base;
- }
+--1400631457.60efE6f42.18914
+Date: Wed, 21 May 2014 00:17:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=78439
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Does it fix itself if you do a suspend/resume cycle?
+
 -- 
-1.8.5.5
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1400631457.60efE6f42.18914
+Date: Wed, 21 May 2014 00:17:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC1] Display corruption when DP connector is reattached"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78439#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC1] Display corruption when DP connector is reattached"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78439">bug 78439</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Does it fix itself if you do a suspend/resume cycle?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1400631457.60efE6f42.18914--
+
+--===============1461584459==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1461584459==--
