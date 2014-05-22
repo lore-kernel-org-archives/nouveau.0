@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78863] [NV92] errors when starts gnome-shell -
- INVALID_VALUE class 0x8297 mthd 0x0e04 data 0xfebf0000
-Date: Thu, 22 May 2014 08:03:20 +0000
-Message-ID: <bug-78863-8800-kPYYlh4hZV@http.bugs.freedesktop.org/>
-References: <bug-78863-8800@http.bugs.freedesktop.org/>
+From: Daniel Melo Jorge da Cunha <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: nouveau_object_new beginner question
+Date: Thu, 22 May 2014 10:37:50 -0400
+Message-ID: <CANbfre7VJESGRGj117npShqdk2kH6eoBecftwcX5WN-0uVP6UQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1433525678=="
+Content-Type: multipart/mixed; boundary="===============1572290595=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78863-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,67 +14,43 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+--===============1572290595==
+Content-Type: multipart/alternative; boundary=f46d044400e4ad474904f9fe0e3b
 
---===============1433525678==
-Content-Type: multipart/alternative; boundary="1400745799.84bA1.14669"; charset="us-ascii"
+--f46d044400e4ad474904f9fe0e3b
+Content-Type: text/plain; charset=UTF-8
 
+I'm sorry for this beginner question but I can't understand.
+File ../nouveau/nouveau.c, function nouveau_object_new.
+Assuming data has content. First, obj->data = obj + 1. This is perfect
+after the memcpy call.
+But when: *(struct nouveau_object **)obj->data = obj;
+I can't understand because now obj and obj->data has the same address,
+while previously obj->data pointed exactly to the contents of data.
+What am I missing?
+Thanks in advance.
 
---1400745799.84bA1.14669
-Date: Thu, 22 May 2014 08:03:19 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+--f46d044400e4ad474904f9fe0e3b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=78863
+<div dir=3D"ltr"><div><div><div><div><div><div><div><div>I&#39;m sorry for =
+this beginner question but I can&#39;t understand.<br></div>File ../nouveau=
+/nouveau.c, function nouveau_object_new.<br></div>Assuming data has content=
+. First, obj-&gt;data =3D obj + 1. This is perfect<br>
+</div>after the memcpy call.<br></div>But when<code>: *(struct nouveau_obje=
+ct **)obj-&gt;data =3D obj;<br></code></div><code>I can&#39;t understand be=
+cause now obj and obj-&gt;data has the same address,<br></code></div><code>=
+while previously obj-&gt;data pointed exactly to the contents of data.<br>
+</code></div><code>What am I missing?<br></code></div><code>Thanks in advan=
+ce.<br></code></div>
 
---- Comment #5 from mattia.b89 <mattia.b89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-with mesa-10.1.4-1
-the issue remain
+--f46d044400e4ad474904f9fe0e3b--
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1400745799.84bA1.14669
-Date: Thu, 22 May 2014 08:03:19 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV92] errors when starts gnome-shell - INVALID_VALUE class 0x8297 mthd 0x0e04 data 0xfebf0000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78863#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV92] errors when starts gnome-shell - INVALID_VALUE class 0x8297 mthd 0x0e04 data 0xfebf0000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78863">bug 78863</a>
-              from <span class="vcard"><a class="email" href="mailto:mattia.b89&#64;gmail.com" title="mattia.b89 &lt;mattia.b89&#64;gmail.com&gt;"> <span class="fn">mattia.b89</span></a>
-</span></b>
-        <pre>with mesa-10.1.4-1
-the issue remain</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1400745799.84bA1.14669--
-
---===============1433525678==
+--===============1572290595==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +61,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1433525678==--
+--===============1572290595==--
