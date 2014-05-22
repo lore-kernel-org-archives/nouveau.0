@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 77599] Video failed on resume from suspend - G94 /
  GeForce 9600 GT, 10de:0622
-Date: Thu, 22 May 2014 16:32:43 +0000
-Message-ID: <bug-77599-8800-MgLUPHk4Bw@http.bugs.freedesktop.org/>
+Date: Thu, 22 May 2014 16:34:10 +0000
+Message-ID: <bug-77599-8800-CgXwaQSRSK@http.bugs.freedesktop.org/>
 References: <bug-77599-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0896515650=="
+Content-Type: multipart/mixed; boundary="===============1708530871=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-77599-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0896515650==
-Content-Type: multipart/alternative; boundary="1400776363.445371.19147"; charset="us-ascii"
+--===============1708530871==
+Content-Type: multipart/alternative; boundary="1400776450.7A2D72.19480"; charset="us-ascii"
 
 
---1400776363.445371.19147
-Date: Thu, 22 May 2014 16:32:43 +0000
+--1400776450.7A2D72.19480
+Date: Thu, 22 May 2014 16:34:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=77599
 
---- Comment #3 from Adam Williamson <awilliam-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
-I'm still hitting this fairly regularly with 3.15rc5. If 3.15 goes out like
-this, it'll be a noticeable regression from 3.14.
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you bisect?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1400776363.445371.19147
-Date: Thu, 22 May 2014 16:32:43 +0000
+--1400776450.7A2D72.19480
+Date: Thu, 22 May 2014 16:34:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77599#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77599#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=77599">bug 77599</a>
-              from <span class="vcard"><a class="email" href="mailto:awilliam&#64;redhat.com" title="Adam Williamson &lt;awilliam&#64;redhat.com&gt;"> <span class="fn">Adam Williamson</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I'm still hitting this fairly regularly with 3.15rc5. If 3.15 goes out like
-this, it'll be a noticeable regression from 3.14.</pre>
+        <pre>Can you bisect?</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +73,9 @@ this, it'll be a noticeable regression from 3.14.</pre>
     </body>
 </html>
 
---1400776363.445371.19147--
+--1400776450.7A2D72.19480--
 
---===============0896515650==
+--===============1708530871==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0896515650==--
+--===============1708530871==--
