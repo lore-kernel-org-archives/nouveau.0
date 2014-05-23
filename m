@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78441] [NV46] X does not start under kernel 3.13.x
-Date: Fri, 23 May 2014 19:34:41 +0000
-Message-ID: <bug-78441-8800-mYdy1I5OSE@http.bugs.freedesktop.org/>
+Date: Fri, 23 May 2014 19:44:59 +0000
+Message-ID: <bug-78441-8800-altzPrg5m2@http.bugs.freedesktop.org/>
 References: <bug-78441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1290562153=="
+Content-Type: multipart/mixed; boundary="===============0137844371=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,38 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1290562153==
-Content-Type: multipart/alternative; boundary="1400873681.f5a6Ebc1.27535"; charset="us-ascii"
+--===============0137844371==
+Content-Type: multipart/alternative; boundary="1400874298.7DAFA1.29863"; charset="us-ascii"
 
 
---1400873681.f5a6Ebc1.27535
-Date: Fri, 23 May 2014 19:34:40 +0000
+--1400874298.7DAFA1.29863
+Date: Fri, 23 May 2014 19:44:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78441
 
---- Comment #7 from aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org ---
-Not sure that it's helpful, but I tried with the latest kernel (provided by
-Fedora 19 - 3.14.4-100.fc19.i686) and it still failed to start the X session. 
-I noticed, on the console while shutting down, that I was seeing messages:
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #7)
+> Not sure that it's helpful, but I tried with the latest kernel (provided by
+> Fedora 19 - 3.14.4-100.fc19.i686) and it still failed to start the X
+> session.  I noticed, on the console while shutting down, that I was seeing
+> messages:
+> 
+> E[Xorg[609]] failed to idle channel 0xcccc0001 [Xorg[609]]
+> E[Xorg[609]] failed to idle channel 0xcccc0000 [Xorg[609]] 
 
-E[Xorg[609]] failed to idle channel 0xcccc0001 [Xorg[609]]
-E[Xorg[609]] failed to idle channel 0xcccc0000 [Xorg[609]] 
+This is an indication that the GPU hung.
 
-Not sure if that's useful to indicate what's going on.  It also took awhile for
-it to finally shut down.
-
-But, flipped back to 3.12.11-201.fc19.i686 and I'm up and running fine.
-
-Adam
+This is not the sort of thing that'll just fix itself... a bisect would
+probably identify the offending commit, which would probably be enough to
+figure out what the issue is. I scanned through all the nouveau commits between
+3.12 and 3.13, and nothing jumped out as possibly causing this, but a lot of
+times there are completely unintended effects.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1400873681.f5a6Ebc1.27535
-Date: Fri, 23 May 2014 19:34:41 +0000
+--1400874298.7DAFA1.29863
+Date: Fri, 23 May 2014 19:44:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,26 +68,29 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV46] X does not start under kernel 3.13.x"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78441#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78441#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV46] X does not start under kernel 3.13.x"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78441">bug 78441</a>
-              from <span class="vcard"><a class="email" href="mailto:aebenjam&#64;opentext.com" title="aebenjam&#64;opentext.com">aebenjam&#64;opentext.com</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Not sure that it's helpful, but I tried with the latest kernel (provided by
-Fedora 19 - 3.14.4-100.fc19.i686) and it still failed to start the X session. 
-I noticed, on the console while shutting down, that I was seeing messages:
+        <pre>(In reply to <a href="show_bug.cgi?id=78441#c7">comment #7</a>)
+<span class="quote">&gt; Not sure that it's helpful, but I tried with the latest kernel (provided by
+&gt; Fedora 19 - 3.14.4-100.fc19.i686) and it still failed to start the X
+&gt; session.  I noticed, on the console while shutting down, that I was seeing
+&gt; messages:
+&gt; 
+&gt; E[Xorg[609]] failed to idle channel 0xcccc0001 [Xorg[609]]
+&gt; E[Xorg[609]] failed to idle channel 0xcccc0000 [Xorg[609]] </span >
 
-E[Xorg[609]] failed to idle channel 0xcccc0001 [Xorg[609]]
-E[Xorg[609]] failed to idle channel 0xcccc0000 [Xorg[609]] 
+This is an indication that the GPU hung.
 
-Not sure if that's useful to indicate what's going on.  It also took awhile for
-it to finally shut down.
-
-But, flipped back to 3.12.11-201.fc19.i686 and I'm up and running fine.
-
-Adam</pre>
+This is not the sort of thing that'll just fix itself... a bisect would
+probably identify the offending commit, which would probably be enough to
+figure out what the issue is. I scanned through all the nouveau commits between
+3.12 and 3.13, and nothing jumped out as possibly causing this, but a lot of
+times there are completely unintended effects.</pre>
         </div>
       </p>
       <hr>
@@ -96,9 +102,9 @@ Adam</pre>
     </body>
 </html>
 
---1400873681.f5a6Ebc1.27535--
+--1400874298.7DAFA1.29863--
 
---===============1290562153==
+--===============0137844371==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -109,4 +115,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1290562153==--
+--===============0137844371==--
