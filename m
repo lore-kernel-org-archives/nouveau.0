@@ -1,96 +1,92 @@
-From: Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH 2/4] drm/ttm: introduce dma cache sync helpers
-Date: Fri, 23 May 2014 09:31:59 +0200
-Message-ID: <20140523073159.GE6310@ulmo>
-References: <1400483458-9648-1-git-send-email-acourbot@nvidia.com>
- <1400483458-9648-3-git-send-email-acourbot@nvidia.com>
- <20140519083355.GA7138@ulmo>
- <CAAVeFuKCx677Uxcu3XNLkU+er-GBAxqdj_hUDUXHwUN+CS5EsA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 74992] [NVAA] gnome-shell freezes with vram_list
+ validate fail, texture traps
+Date: Fri, 23 May 2014 09:02:10 +0000
+Message-ID: <bug-74992-8800-AzFL3rpwtw@http.bugs.freedesktop.org/>
+References: <bug-74992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1444988969=="
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAAVeFuKCx677Uxcu3XNLkU+er-GBAxqdj_hUDUXHwUN+CS5EsA@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Alexandre Courbot <gnurou@gmail.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0342942248=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-74992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1444988969==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="hwvH6HDNit2nSK4j"
-Content-Disposition: inline
+--===============0342942248==
+Content-Type: multipart/alternative; boundary="1400835730.ED5C3.11175"; charset="us-ascii"
 
 
---hwvH6HDNit2nSK4j
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+--1400835730.ED5C3.11175
+Date: Fri, 23 May 2014 09:02:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, May 23, 2014 at 02:49:40PM +0900, Alexandre Courbot wrote:
-> On Mon, May 19, 2014 at 5:33 PM, Thierry Reding
-> <thierry.reding@gmail.com> wrote:
-> > On Mon, May 19, 2014 at 04:10:56PM +0900, Alexandre Courbot wrote:
-> >> From: Lucas Stach <dev@lynxeye.de>
-> >>
-> >> On arches with non-coherent PCI,
-> >
-> > I guess since this applies to gk20a
-> >
-> >> we need to flush caches ourselfes at
-> >
-> > "ourselves". Or perhaps even reword to something like: "..., caches need
-> > to be flushed and invalidated explicitly", since dma_sync_for_cpu() does
-> > invalidate rather than flush.
->=20
-> Rephrased as "On arches for which access to GPU memory is non-coherent, c=
-aches
-> need to be flushed and invalidated explicitly at the appropriate places."
+https://bugs.freedesktop.org/show_bug.cgi?id=74992
 
-Nit: s/arches/architectures/
+--- Comment #6 from Roman Himmes <himmes-E3oo0Ac41WQ@public.gmane.org> ---
+Created attachment 99622
+  --> https://bugs.freedesktop.org/attachment.cgi?id=99622&action=edit
+Kernel log
 
-Thierry
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
---hwvH6HDNit2nSK4j
-Content-Type: application/pgp-signature
+--1400835730.ED5C3.11175
+Date: Fri, 23 May 2014 09:02:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVAA] gnome-shell freezes with vram_list validate fail, texture traps"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74992#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVAA] gnome-shell freezes with vram_list validate fail, texture traps"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74992">bug 74992</a>
+              from <span class="vcard"><a class="email" href="mailto:himmes&#64;idev.de" title="Roman Himmes &lt;himmes&#64;idev.de&gt;"> <span class="fn">Roman Himmes</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=99622" name="attach_99622" title="Kernel log">attachment 99622</a> <a href="attachment.cgi?id=99622&amp;action=edit" title="Kernel log">[details]</a></span>
+Kernel log</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
 
-iQIcBAEBAgAGBQJTfvlvAAoJEN0jrNd/PrOhQiIP/AiDx9oH1hs0VSq3AYwSSkYz
-g+yR5eXTlIoC0hIdR5/N39iTcZHbXkf8Y5J8hijMZA8DiqdUMzSEnORZEkvOdefP
-lv2KJqEcYG/KiH4+nrtUirbPNv5S6QqBbOcSi8dmbtLGN/WcxWrqBLDpfK4yZ5LH
-glVn476lkN+srnNN8Ml+BQJOc26Yjzke34+2s7zMmMVcXX+5s3YtygKZ+ATxaiKJ
-O2xrgCCqlSbRyvy3LWuQtfs41yLuusOHa3dDgCM2ii5c5ki+qCrgVlD3dNhn/sFL
-ala1EzQXKpyeuaMdBz1Iy4kJ0oWFRBMqDFjRS84RYvWKg+bmIeDVgidpipXUOkjQ
-5ViqLfAP6QyPzbzkk6pPSRHQsdO6U8gRzEwPz+ndoTSLDfn1iYm4SnHNTe3sU8B3
-jRf4MrLh4HTXbkJmuLbaaw9xoLxChipxjIDs7X9HD3UxDuArtfFwi1nOeVokoMkO
-AGftjvho/qB12Ejmjj0M93B7tYwsfuEa4rP+TCw033bKetaay7Ki8Sj9oPWGSYiG
-JBh6KuKHRb8QH7SO9aeUnAgEa9zAnzLKKATXBitaawoZHuSmQm2pdkBf6WZWTf0e
-wGL4wGLfHK8HcS4qOASChx5Nfst4kTL3xs/tpJ4osL9gP70spTwvTvPAi5jExR46
-+EZwQZgjAjnZv3VLSmXm
-=frga
------END PGP SIGNATURE-----
+--1400835730.ED5C3.11175--
 
---hwvH6HDNit2nSK4j--
-
---===============1444988969==
+--===============0342942248==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Content-Disposition: inline
 
 _______________________________________________
-dri-devel mailing list
-dri-devel@lists.freedesktop.org
-http://lists.freedesktop.org/mailman/listinfo/dri-devel
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1444988969==--
+--===============0342942248==--
