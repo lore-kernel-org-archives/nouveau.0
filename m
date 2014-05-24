@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78441] [NV46] X does not start under kernel 3.13.x
-Date: Fri, 23 May 2014 19:44:59 +0000
-Message-ID: <bug-78441-8800-altzPrg5m2@http.bugs.freedesktop.org/>
-References: <bug-78441-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 78116] Auto fan speed management doesn't do anything
+ in non critical temperature range (NVC0)
+Date: Sat, 24 May 2014 04:41:02 +0000
+Message-ID: <bug-78116-8800-pwnudPRD91@http.bugs.freedesktop.org/>
+References: <bug-78116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0137844371=="
+Content-Type: multipart/mixed; boundary="===============1988060769=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-78116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,41 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0137844371==
-Content-Type: multipart/alternative; boundary="1400874298.7DAFA1.29863"; charset="us-ascii"
+--===============1988060769==
+Content-Type: multipart/alternative; boundary="1400906462.8DFA4F822.30299"; charset="us-ascii"
 
 
---1400874298.7DAFA1.29863
-Date: Fri, 23 May 2014 19:44:58 +0000
+--1400906462.8DFA4F822.30299
+Date: Sat, 24 May 2014 04:41:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=78441
+https://bugs.freedesktop.org/show_bug.cgi?id=78116
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #7)
-> Not sure that it's helpful, but I tried with the latest kernel (provided by
-> Fedora 19 - 3.14.4-100.fc19.i686) and it still failed to start the X
-> session.  I noticed, on the console while shutting down, that I was seeing
-> messages:
+--- Comment #14 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+(In reply to comment #13)
+> Seems that my old card - GTX 260 doesn't support manual mode nor does it
+> report any temperature/fan speed. 
 > 
-> E[Xorg[609]] failed to idle channel 0xcccc0001 [Xorg[609]]
-> E[Xorg[609]] failed to idle channel 0xcccc0000 [Xorg[609]] 
+> [    0.491166] nouveau  [  PTHERM][0000:01:00.0] FAN control: none / external
+> [    0.491175] nouveau  [  PTHERM][0000:01:00.0] fan management: automatic
+> [    0.491179] nouveau  [  PTHERM][0000:01:00.0] internal sensor: yes
 
-This is an indication that the GPU hung.
-
-This is not the sort of thing that'll just fix itself... a bisect would
-probably identify the offending commit, which would probably be enough to
-figure out what the issue is. I scanned through all the nouveau commits between
-3.12 and 3.13, and nothing jumped out as possibly causing this, but a lot of
-times there are completely unintended effects.
+It doesn't surprise me. However, it should find an external temperature sensor
+and fan management chip (the ADT7473), can you confirm that or paste your logs
+here?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1400874298.7DAFA1.29863
-Date: Fri, 23 May 2014 19:44:58 +0000
+--1400906462.8DFA4F822.30299
+Date: Sat, 24 May 2014 04:41:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,30 +63,25 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV46] X does not start under kernel 3.13.x"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78441#c8">Comment # 8</a>
+   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV46] X does not start under kernel 3.13.x"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78441">bug 78441</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=78441#c7">comment #7</a>)
-<span class="quote">&gt; Not sure that it's helpful, but I tried with the latest kernel (provided by
-&gt; Fedora 19 - 3.14.4-100.fc19.i686) and it still failed to start the X
-&gt; session.  I noticed, on the console while shutting down, that I was seeing
-&gt; messages:
+        <pre>(In reply to <a href="show_bug.cgi?id=78116#c13">comment #13</a>)
+<span class="quote">&gt; Seems that my old card - GTX 260 doesn't support manual mode nor does it
+&gt; report any temperature/fan speed. 
 &gt; 
-&gt; E[Xorg[609]] failed to idle channel 0xcccc0001 [Xorg[609]]
-&gt; E[Xorg[609]] failed to idle channel 0xcccc0000 [Xorg[609]] </span >
+&gt; [    0.491166] nouveau  [  PTHERM][0000:01:00.0] FAN control: none / external
+&gt; [    0.491175] nouveau  [  PTHERM][0000:01:00.0] fan management: automatic
+&gt; [    0.491179] nouveau  [  PTHERM][0000:01:00.0] internal sensor: yes</span >
 
-This is an indication that the GPU hung.
-
-This is not the sort of thing that'll just fix itself... a bisect would
-probably identify the offending commit, which would probably be enough to
-figure out what the issue is. I scanned through all the nouveau commits between
-3.12 and 3.13, and nothing jumped out as possibly causing this, but a lot of
-times there are completely unintended effects.</pre>
+It doesn't surprise me. However, it should find an external temperature sensor
+and fan management chip (the ADT7473), can you confirm that or paste your logs
+here?</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +93,9 @@ times there are completely unintended effects.</pre>
     </body>
 </html>
 
---1400874298.7DAFA1.29863--
+--1400906462.8DFA4F822.30299--
 
---===============0137844371==
+--===============1988060769==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +106,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0137844371==--
+--===============1988060769==--
