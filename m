@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76483] [NV50, bisected,
- RFC patch] xset dpms force {on, off} does not work over DP
-Date: Sat, 24 May 2014 09:29:31 +0000
-Message-ID: <bug-76483-8800-Pc0XKMKDns@http.bugs.freedesktop.org/>
-References: <bug-76483-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74992] [NVAA] gnome-shell freezes with vram_list
+ validate fail, texture traps
+Date: Sat, 24 May 2014 12:15:33 +0000
+Message-ID: <bug-74992-8800-VSk3Bz9Ees@http.bugs.freedesktop.org/>
+References: <bug-74992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1892467578=="
+Content-Type: multipart/mixed; boundary="===============0999793093=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76483-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-74992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,91 +21,114 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1892467578==
-Content-Type: multipart/alternative; boundary="1400923771.CD213.12633"; charset="us-ascii"
+--===============0999793093==
+Content-Type: multipart/alternative; boundary="1400933733.001d2.9277"; charset="us-ascii"
 
 
---1400923771.CD213.12633
-Date: Sat, 24 May 2014 09:29:31 +0000
+--1400933733.001d2.9277
+Date: Sat, 24 May 2014 12:15:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76483
+https://bugs.freedesktop.org/show_bug.cgi?id=3D74992
 
---- Comment #4 from Randy Andy <gugelhuepf-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-(In reply to comment #1)
-> Ah yes, I've been aware of this issue for a while, it just hasn't made it to
-> the top of the list yet.  I'll try and address it for the 3.15 cycle, and
-> backport the fixes to earlier kernels if possible.
+--- Comment #8 from Martin Luke=C5=A1 <martin.meridius-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+So I resigned on using Nouveau and went back to nVidia, specially its 304xx
+version on Arch Linux.=20
 
-Thanks for your work, Ben.
+local/lib32-libcl 1.1-1
+local/lib32-libvdpau 0.7-2
+local/lib32-nvidia-304xx-libgl 304.121-2
+local/lib32-nvidia-304xx-utils 304.121-2
+local/lib32-opencl-nvidia 337.19-1
+local/libcl 1.1-3
+local/libvdpau 0.7-1
+local/nvidia-304xx 304.121-3
+local/nvidia-304xx-libgl 304.121-2
+local/nvidia-304xx-utils 304.121-2
+local/opencl-nvidia 337.19-1
 
-A little feedback from my side.
 
-I tried this yesterday with the 3.15.0-rc6 Kernel, but this misbehaviour
-regarding the none working power management is still the same with my 
-NVIDIA Corporation GT200GL [Quadro FX 4800] (rev a1) with NV50 Chipset(NVA0).
+I'm also using these Mesa libs:
+local/glu 9.0.0-2
+local/lib32-glu 9.0.0-2
+local/lib32-mesa 10.1.3-1
+local/lib32-mesa-demos 8.1.0-3
+local/mesa 10.1.3-1
+local/mesa-demos 8.1.0-2
 
-So it would be great to get this functionality asap ;-)
-
-Regards, Andy.
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1400923771.CD213.12633
-Date: Sat, 24 May 2014 09:29:31 +0000
+--1400933733.001d2.9277
+Date: Sat, 24 May 2014 12:15:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - [NVAA] gnome-shell freezes with vram_list validate fa=
+il, texture traps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D74992#c8">Comment=
+ # 8</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483">bug 76483</a>
-              from <span class="vcard"><a class="email" href="mailto:gugelhuepf&#64;googlemail.com" title="Randy Andy &lt;gugelhuepf&#64;googlemail.com&gt;"> <span class="fn">Randy Andy</span></a>
+   title=3D"NEW --- - [NVAA] gnome-shell freezes with vram_list validate fa=
+il, texture traps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D74992">bug 74992<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+martin.meridius&#64;gmail.com" title=3D"Martin Luke=C5=A1 &lt;martin.meridi=
+us&#64;gmail.com&gt;"> <span class=3D"fn">Martin Luke=C5=A1</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=76483#c1">comment #1</a>)
-<span class="quote">&gt; Ah yes, I've been aware of this issue for a while, it just hasn't made it to
-&gt; the top of the list yet.  I'll try and address it for the 3.15 cycle, and
-&gt; backport the fixes to earlier kernels if possible.</span >
+        <pre>So I resigned on using Nouveau and went back to nVidia, specia=
+lly its 304xx
+version on Arch Linux.=20
 
-Thanks for your work, Ben.
+local/lib32-libcl 1.1-1
+local/lib32-libvdpau 0.7-2
+local/lib32-nvidia-304xx-libgl 304.121-2
+local/lib32-nvidia-304xx-utils 304.121-2
+local/lib32-opencl-nvidia 337.19-1
+local/libcl 1.1-3
+local/libvdpau 0.7-1
+local/nvidia-304xx 304.121-3
+local/nvidia-304xx-libgl 304.121-2
+local/nvidia-304xx-utils 304.121-2
+local/opencl-nvidia 337.19-1
 
-A little feedback from my side.
 
-I tried this yesterday with the 3.15.0-rc6 Kernel, but this misbehaviour
-regarding the none working power management is still the same with my 
-NVIDIA Corporation GT200GL [Quadro FX 4800] (rev a1) with NV50 Chipset(NVA0).
-
-So it would be great to get this functionality asap ;-)
-
-Regards, Andy.</pre>
+I'm also using these Mesa libs:
+local/glu 9.0.0-2
+local/lib32-glu 9.0.0-2
+local/lib32-mesa 10.1.3-1
+local/lib32-mesa-demos 8.1.0-3
+local/mesa 10.1.3-1
+local/mesa-demos 8.1.0-2</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1400923771.CD213.12633--
+--1400933733.001d2.9277--
 
---===============1892467578==
+--===============0999793093==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -116,4 +139,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1892467578==--
+--===============0999793093==--
