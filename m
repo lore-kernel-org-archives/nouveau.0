@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Sun, 25 May 2014 11:21:25 +0000
-Message-ID: <bug-70354-8800-SPyND3WFh9@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 79204] [NV50] No reported temperature/fan speed on
+	GTX260
+Date: Sun, 25 May 2014 13:31:17 +0000
+Message-ID: <bug-79204-8800-0Wtx91Vny2@http.bugs.freedesktop.org/>
+References: <bug-79204-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2125766812=="
+Content-Type: multipart/mixed; boundary="===============0312916719=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-79204-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2125766812==
-Content-Type: multipart/alternative; boundary="1401016885.d8AEba3.17348"; charset="us-ascii"
+--===============0312916719==
+Content-Type: multipart/alternative; boundary="1401024677.bd24ca72.6652"; charset="us-ascii"
 
 
---1401016885.d8AEba3.17348
-Date: Sun, 25 May 2014 11:21:25 +0000
+--1401024677.bd24ca72.6652
+Date: Sun, 25 May 2014 13:31:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
+https://bugs.freedesktop.org/show_bug.cgi?id=79204
 
---- Comment #28 from Paul Bredbury <brebs-vRdzynncJC4@public.gmane.org> ---
-Seems fixed with kernel 3.15-rc6, and in bootloader:
+--- Comment #3 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+Created attachment 99767
+  --> https://bugs.freedesktop.org/attachment.cgi?id=99767&action=edit
+drm/nouveau/i2c: bump the i2c delay for the adt7473
 
-rcutree.rcu_idle_gp_delay=1
+Your card has an external sensor, but it doesn't answer to requests. This may
+be due to us driving the communication too fast. Please try this patch that
+halves the communication baudrate with your adt7473.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401016885.d8AEba3.17348
-Date: Sun, 25 May 2014 11:21:25 +0000
+--1401024677.bd24ca72.6652
+Date: Sun, 25 May 2014 13:31:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,17 +59,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c28">Comment # 28</a>
+   title="NEW --- - [NV50] No reported temperature/fan speed on GTX260"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79204#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-              from <span class="vcard"><a class="email" href="mailto:brebs&#64;sent.com" title="Paul Bredbury &lt;brebs&#64;sent.com&gt;"> <span class="fn">Paul Bredbury</span></a>
+   title="NEW --- - [NV50] No reported temperature/fan speed on GTX260"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79204">bug 79204</a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>Seems fixed with kernel 3.15-rc6, and in bootloader:
+        <pre>Created <span class=""><a href="attachment.cgi?id=99767" name="attach_99767" title="drm/nouveau/i2c: bump the i2c delay for the adt7473">attachment 99767</a> <a href="attachment.cgi?id=99767&amp;action=edit" title="drm/nouveau/i2c: bump the i2c delay for the adt7473">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=79204&amp;attachment=99767'>[review]</a>
+drm/nouveau/i2c: bump the i2c delay for the adt7473
 
-rcutree.rcu_idle_gp_delay=1</pre>
+Your card has an external sensor, but it doesn't answer to requests. This may
+be due to us driving the communication too fast. Please try this patch that
+halves the communication baudrate with your adt7473.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +84,9 @@ rcutree.rcu_idle_gp_delay=1</pre>
     </body>
 </html>
 
---1401016885.d8AEba3.17348--
+--1401024677.bd24ca72.6652--
 
---===============2125766812==
+--===============0312916719==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2125766812==--
+--===============0312916719==--
