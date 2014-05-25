@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76319] [NVE6] MMIO FAULT, black screen on QHD+ K2100M
-Date: Sat, 24 May 2014 12:47:01 +0000
-Message-ID: <bug-76319-8800-fU6W1Xo4pP@http.bugs.freedesktop.org/>
-References: <bug-76319-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 79204] New: [NV50] No reported temperature/fan speed
+	on GTX260
+Date: Sun, 25 May 2014 10:15:26 +0000
+Message-ID: <bug-79204-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1423939607=="
+Content-Type: multipart/mixed; boundary="===============2109045375=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +19,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1423939607==
-Content-Type: multipart/alternative; boundary="1400935621.4F7d02.15852"; charset="us-ascii"
+--===============2109045375==
+Content-Type: multipart/alternative; boundary="1401012926.Ea2D1.6914"; charset="us-ascii"
 
 
---1400935621.4F7d02.15852
-Date: Sat, 24 May 2014 12:47:01 +0000
+--1401012926.Ea2D1.6914
+Date: Sun, 25 May 2014 10:15:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76319
+https://bugs.freedesktop.org/show_bug.cgi?id=79204
 
---- Comment #11 from Andrew G. Dunn <andrew.g.dunn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Did other bugs get created from this report? Comment 1 indicated there were
-many issues.
+          Priority: medium
+            Bug ID: 79204
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [NV50] No reported temperature/fan speed on GTX260
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-Are you now using F20 with the rawhide kernel?
+Created attachment 99756
+  --> https://bugs.freedesktop.org/attachment.cgi?id=99756&action=edit
+dmesg debug
+
+Nouveau doesn't report any temperature nor fan speed when using GTX260
+(Gigabyte N26-896H-B). 
+Reporting this because of discussion in bug 78116 as I didn't notice the fan
+management chip (the ADT7473) in logs.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1400935621.4F7d02.15852
-Date: Sat, 24 May 2014 12:47:01 +0000
+--1401012926.Ea2D1.6914
+Date: Sun, 25 May 2014 10:15:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,23 +67,105 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50] No reported temperature/fan speed on GTX260"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79204">79204</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NV50] No reported temperature/fan speed on GTX260
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mdop&#64;seznam.cz
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE6] MMIO FAULT, black screen on QHD+ K2100M"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76319#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE6] MMIO FAULT, black screen on QHD+ K2100M"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76319">bug 76319</a>
-              from <span class="vcard"><a class="email" href="mailto:andrew.g.dunn&#64;gmail.com" title="Andrew G. Dunn &lt;andrew.g.dunn&#64;gmail.com&gt;"> <span class="fn">Andrew G. Dunn</span></a>
-</span></b>
-        <pre>Did other bugs get created from this report? <a href="show_bug.cgi?id=76319#c1">Comment 1</a> indicated there were
-many issues.
+        <pre>Created <span class=""><a href="attachment.cgi?id=99756" name="attach_99756" title="dmesg debug">attachment 99756</a> <a href="attachment.cgi?id=99756&amp;action=edit" title="dmesg debug">[details]</a></span>
+dmesg debug
 
-Are you now using F20 with the rawhide kernel?</pre>
+Nouveau doesn't report any temperature nor fan speed when using GTX260
+(Gigabyte N26-896H-B). 
+Reporting this because of discussion in <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="show_bug.cgi?id=78116">bug 78116</a> as I didn't notice the fan
+management chip (the ADT7473) in logs.</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +177,9 @@ Are you now using F20 with the rawhide kernel?</pre>
     </body>
 </html>
 
---1400935621.4F7d02.15852--
+--1401012926.Ea2D1.6914--
 
---===============1423939607==
+--===============2109045375==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +190,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1423939607==--
+--===============2109045375==--
