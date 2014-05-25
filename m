@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79204] [NV50] No reported temperature/fan speed on
-	GTX260
-Date: Sun, 25 May 2014 18:13:52 +0000
-Message-ID: <bug-79204-8800-Z8EnTwooom@http.bugs.freedesktop.org/>
-References: <bug-79204-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 78116] Auto fan speed management doesn't do anything
+ in non critical temperature range (NVC0)
+Date: Sun, 25 May 2014 18:53:35 +0000
+Message-ID: <bug-78116-8800-9Ci1Sz6nDG@http.bugs.freedesktop.org/>
+References: <bug-78116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0705159455=="
+Content-Type: multipart/mixed; boundary="===============0782806301=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79204-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-78116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0705159455==
-Content-Type: multipart/alternative; boundary="1401041632.fb057882.1026"; charset="us-ascii"
+--===============0782806301==
+Content-Type: multipart/alternative; boundary="1401044014.f5bF52.10983"; charset="us-ascii"
 
 
---1401041632.fb057882.1026
-Date: Sun, 25 May 2014 18:13:52 +0000
+--1401044014.f5bF52.10983
+Date: Sun, 25 May 2014 18:53:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=79204
+https://bugs.freedesktop.org/show_bug.cgi?id=78116
 
---- Comment #5 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-(In reply to comment #4)
-> Created attachment 99785 [details]
-> sensors (after patch)
-> 
-> Seems that it's reporting accurate values. The temperature seems right and
-> does change, it has single fan which is adjustable and correctly responds to
-> pwm1 changes after switching to manual mode.
+--- Comment #19 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+Created attachment 99790
+  --> https://bugs.freedesktop.org/attachment.cgi?id=99790&action=edit
+Please patch -p1 < additional_debug.patch
 
-Great, I'll send the patch to the ML! Thanks for testing!
+Hmm, seems like the problem is not where I thought it was. Let's see what's the
+output with this patch applied!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401041632.fb057882.1026
-Date: Sun, 25 May 2014 18:13:52 +0000
+--1401044014.f5bF52.10983
+Date: Sun, 25 May 2014 18:53:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,23 +58,19 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50] No reported temperature/fan speed on GTX260"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79204#c5">Comment # 5</a>
+   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50] No reported temperature/fan speed on GTX260"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79204">bug 79204</a>
+   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
               from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=79204#c4">comment #4</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=99785" name="attach_99785" title="sensors (after patch)">attachment 99785</a> <a href="attachment.cgi?id=99785&amp;action=edit" title="sensors (after patch)">[details]</a></span>
-&gt; sensors (after patch)
-&gt; 
-&gt; Seems that it's reporting accurate values. The temperature seems right and
-&gt; does change, it has single fan which is adjustable and correctly responds to
-&gt; pwm1 changes after switching to manual mode.</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=99790" name="attach_99790" title="Please patch -p1 &lt; additional_debug.patch">attachment 99790</a> <a href="attachment.cgi?id=99790&amp;action=edit" title="Please patch -p1 &lt; additional_debug.patch">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=78116&amp;attachment=99790'>[review]</a>
+Please patch -p1 &lt; additional_debug.patch
 
-Great, I'll send the patch to the ML! Thanks for testing!</pre>
+Hmm, seems like the problem is not where I thought it was. Let's see what's the
+output with this patch applied!</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +82,9 @@ Great, I'll send the patch to the ML! Thanks for testing!</pre>
     </body>
 </html>
 
---1401041632.fb057882.1026--
+--1401044014.f5bF52.10983--
 
---===============0705159455==
+--===============0782806301==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0705159455==--
+--===============0782806301==--
