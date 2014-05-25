@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79204] New: [NV50] No reported temperature/fan speed
-	on GTX260
-Date: Sun, 25 May 2014 10:15:26 +0000
-Message-ID: <bug-79204-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 79204] [NV50] No reported temperature/fan speed on
+	GTX260
+Date: Sun, 25 May 2014 10:15:44 +0000
+Message-ID: <bug-79204-8800-6vbMqHe3fR@http.bugs.freedesktop.org/>
+References: <bug-79204-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2109045375=="
+Content-Type: multipart/mixed; boundary="===============1710136563=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-79204-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,47 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2109045375==
-Content-Type: multipart/alternative; boundary="1401012926.Ea2D1.6914"; charset="us-ascii"
+--===============1710136563==
+Content-Type: multipart/alternative; boundary="1401012944.cAbf3.6914"; charset="us-ascii"
 
 
---1401012926.Ea2D1.6914
-Date: Sun, 25 May 2014 10:15:26 +0000
+--1401012944.cAbf3.6914
+Date: Sun, 25 May 2014 10:15:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=79204
 
-          Priority: medium
-            Bug ID: 79204
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NV50] No reported temperature/fan speed on GTX260
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
-
-Created attachment 99756
-  --> https://bugs.freedesktop.org/attachment.cgi?id=99756&action=edit
-dmesg debug
-
-Nouveau doesn't report any temperature nor fan speed when using GTX260
-(Gigabyte N26-896H-B). 
-Reporting this because of discussion in bug 78116 as I didn't notice the fan
-management chip (the ADT7473) in logs.
+--- Comment #1 from Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> ---
+Created attachment 99757
+  --> https://bugs.freedesktop.org/attachment.cgi?id=99757&action=edit
+sensors
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401012926.Ea2D1.6914
-Date: Sun, 25 May 2014 10:15:26 +0000
+--1401012944.cAbf3.6914
+Date: Sun, 25 May 2014 10:15:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,105 +50,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV50] No reported temperature/fan speed on GTX260"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79204">79204</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NV50] No reported temperature/fan speed on GTX260
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>mdop&#64;seznam.cz
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=99756" name="attach_99756" title="dmesg debug">attachment 99756</a> <a href="attachment.cgi?id=99756&amp;action=edit" title="dmesg debug">[details]</a></span>
-dmesg debug
-
-Nouveau doesn't report any temperature nor fan speed when using GTX260
-(Gigabyte N26-896H-B). 
-Reporting this because of discussion in <a class="bz_bug_link 
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
-   href="show_bug.cgi?id=78116">bug 78116</a> as I didn't notice the fan
-management chip (the ADT7473) in logs.</pre>
+   title="NEW --- - [NV50] No reported temperature/fan speed on GTX260"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79204#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50] No reported temperature/fan speed on GTX260"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79204">bug 79204</a>
+              from <span class="vcard"><a class="email" href="mailto:mdop&#64;seznam.cz" title="Marcel Dopita &lt;mdop&#64;seznam.cz&gt;"> <span class="fn">Marcel Dopita</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=99757" name="attach_99757" title="sensors">attachment 99757</a> <a href="attachment.cgi?id=99757&amp;action=edit" title="sensors">[details]</a></span>
+sensors</pre>
         </div>
       </p>
       <hr>
@@ -177,9 +76,9 @@ management chip (the ADT7473) in logs.</pre>
     </body>
 </html>
 
---1401012926.Ea2D1.6914--
+--1401012944.cAbf3.6914--
 
---===============2109045375==
+--===============1710136563==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -190,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2109045375==--
+--===============1710136563==--
