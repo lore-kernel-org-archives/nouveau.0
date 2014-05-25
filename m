@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79211] [VP4.2] Video playback using vdpau unusably
-	slow
-Date: Sun, 25 May 2014 13:57:36 +0000
-Message-ID: <bug-79211-8800-cZv3rj1Fvt@http.bugs.freedesktop.org/>
-References: <bug-79211-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 78116] Auto fan speed management doesn't do anything
+ in non critical temperature range (NVC0)
+Date: Sun, 25 May 2014 14:55:25 +0000
+Message-ID: <bug-78116-8800-HoIZyGNX1I@http.bugs.freedesktop.org/>
+References: <bug-78116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2112000239=="
+Content-Type: multipart/mixed; boundary="===============1103841871=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79211-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-78116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2112000239==
-Content-Type: multipart/alternative; boundary="1401026256.dfAA155.11398"; charset="us-ascii"
+--===============1103841871==
+Content-Type: multipart/alternative; boundary="1401029725.A5C54Fa2.21832"; charset="us-ascii"
 
 
---1401026256.dfAA155.11398
-Date: Sun, 25 May 2014 13:57:36 +0000
+--1401029725.A5C54Fa2.21832
+Date: Sun, 25 May 2014 14:55:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=79211
+https://bugs.freedesktop.org/show_bug.cgi?id=78116
 
---- Comment #2 from Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> ---
-Created attachment 99770
-  --> https://bugs.freedesktop.org/attachment.cgi?id=99770&action=edit
-vlc log
+--- Comment #16 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+(In reply to comment #15)
+> I put logs into separate bug 79204 not to clutter this not related issue.
+
+Perfect!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401026256.dfAA155.11398
-Date: Sun, 25 May 2014 13:57:36 +0000
+--1401029725.A5C54Fa2.21832
+Date: Sun, 25 May 2014 14:55:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +56,21 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [VP4.2] Video playback using vdpau unusably slow"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79211#c2">Comment # 2</a>
+   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [VP4.2] Video playback using vdpau unusably slow"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79211">bug 79211</a>
-              from <span class="vcard"><a class="email" href="mailto:mdop&#64;seznam.cz" title="Marcel Dopita &lt;mdop&#64;seznam.cz&gt;"> <span class="fn">Marcel Dopita</span></a>
+   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=99770" name="attach_99770" title="vlc log">attachment 99770</a> <a href="attachment.cgi?id=99770&amp;action=edit" title="vlc log">[details]</a></span>
-vlc log</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=78116#c15">comment #15</a>)
+<span class="quote">&gt; I put logs into separate <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50] No reported temperature/fan speed on GTX260"
+   href="show_bug.cgi?id=79204">bug 79204</a> not to clutter this not related issue.</span >
+
+Perfect!</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +82,9 @@ vlc log</pre>
     </body>
 </html>
 
---1401026256.dfAA155.11398--
+--1401029725.A5C54Fa2.21832--
 
---===============2112000239==
+--===============1103841871==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2112000239==--
+--===============1103841871==--
