@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78116] Auto fan speed management doesn't do anything
- in non critical temperature range (NVC0)
-Date: Sun, 25 May 2014 22:35:21 +0000
-Message-ID: <bug-78116-8800-jlA39pmLLN@http.bugs.freedesktop.org/>
-References: <bug-78116-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: [PATCH] drm/nouveau/i2c: bump the i2c delay for the
+	adt7473
+Date: Mon, 26 May 2014 00:42:13 +0200
+Message-ID: <1401057733-14778-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0683194343=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,70 +19,27 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0683194343==
-Content-Type: multipart/alternative; boundary="1401057321.fA3BcBbf2.2480"; charset="us-ascii"
-
-
---1401057321.fA3BcBbf2.2480
-Date: Sun, 25 May 2014 22:35:21 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=78116
-
---- Comment #21 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-Could you try using a 3.15-rcX kernel instead of a 3.14?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1401057321.fA3BcBbf2.2480
-Date: Sun, 25 May 2014 22:35:21 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c21">Comment # 21</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
-</span></b>
-        <pre>Could you try using a 3.15-rcX kernel instead of a 3.14?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1401057321.fA3BcBbf2.2480--
-
---===============0683194343==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0683194343==--
+U29tZSBhZHQ3NDczIGNhbid0IG1hbmFnZSB0aGUgMjDCtXMgZGVsYXkgd2UgdXNlIGZvciB0aGUg
+Yml0YmFuZ2luZywgYnVtcGluZyBpdAp0byA0MMK1cyBzZWVtIHRvIGRvIHRoZSB0cmljay4KClNp
+Z25lZC1vZmYtYnk6IE1hcnRpbiBQZXJlcyA8bWFydGluLnBlcmVzQGZyZWUuZnI+ClRlc3RlZC1i
+eTogTWFyY2VsIERvcGl0YSA8bWRvcEBzZXpuYW0uY3o+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvY29yZS9zdWJkZXYvdGhlcm0vaWMuYyB8IDYgKysrLS0tCiAxIGZpbGUgY2hhbmdlZCwg
+MyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L2NvcmUvc3ViZGV2L3RoZXJtL2ljLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9jb3JlL3N1YmRldi90aGVybS9pYy5jCmluZGV4IDc2MTBmYzUuLmNhOWFkOWZkNCAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvdGhlcm0vaWMuYwor
+KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1YmRldi90aGVybS9pYy5jCkBAIC02
+MCw5ICs2MCw5IEBAIHN0YXRpYyBzdHJ1Y3Qgbm91dmVhdV9pMmNfYm9hcmRfaW5mbwogbnZfYm9h
+cmRfaW5mb3NbXSA9IHsKIAl7IHsgSTJDX0JPQVJEX0lORk8oInc4M2w3ODV0cyIsIDB4MmQpIH0s
+IDAgfSwKIAl7IHsgSTJDX0JPQVJEX0lORk8oInc4Mzc4MWQiLCAweDJkKSB9LCAwICB9LAotCXsg
+eyBJMkNfQk9BUkRfSU5GTygiYWR0NzQ3MyIsIDB4MmUpIH0sIDIwICB9LAotCXsgeyBJMkNfQk9B
+UkRfSU5GTygiYWR0NzQ3MyIsIDB4MmQpIH0sIDIwICB9LAotCXsgeyBJMkNfQk9BUkRfSU5GTygi
+YWR0NzQ3MyIsIDB4MmMpIH0sIDIwICB9LAorCXsgeyBJMkNfQk9BUkRfSU5GTygiYWR0NzQ3MyIs
+IDB4MmUpIH0sIDQwICB9LAorCXsgeyBJMkNfQk9BUkRfSU5GTygiYWR0NzQ3MyIsIDB4MmQpIH0s
+IDQwICB9LAorCXsgeyBJMkNfQk9BUkRfSU5GTygiYWR0NzQ3MyIsIDB4MmMpIH0sIDQwICB9LAog
+CXsgeyBJMkNfQk9BUkRfSU5GTygiZjc1Mzc1IiwgMHgyZSkgfSwgMCAgfSwKIAl7IHsgSTJDX0JP
+QVJEX0lORk8oImxtOTkiLCAweDRjKSB9LCAwICB9LAogCXsgeyBJMkNfQk9BUkRfSU5GTygibG05
+MCIsIDB4NGMpIH0sIDAgIH0sCi0tIAoxLjkuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
