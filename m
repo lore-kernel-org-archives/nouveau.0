@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78116] Auto fan speed management doesn't do anything
  in non critical temperature range (NVC0)
-Date: Sun, 25 May 2014 14:57:45 +0000
-Message-ID: <bug-78116-8800-CT1Ygos4Rp@http.bugs.freedesktop.org/>
+Date: Sun, 25 May 2014 16:19:51 +0000
+Message-ID: <bug-78116-8800-DQRCWVqruS@http.bugs.freedesktop.org/>
 References: <bug-78116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1064052184=="
+Content-Type: multipart/mixed; boundary="===============0500254557=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1064052184==
-Content-Type: multipart/alternative; boundary="1401029865.D8B22F702.22639"; charset="us-ascii"
+--===============0500254557==
+Content-Type: multipart/alternative; boundary="1401034791.D4bb4cf1.8011"; charset="us-ascii"
 
 
---1401029865.D8B22F702.22639
-Date: Sun, 25 May 2014 14:57:45 +0000
+--1401034791.D4bb4cf1.8011
+Date: Sun, 25 May 2014 16:19:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78116
 
---- Comment #17 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-Created attachment 99775
-  --> https://bugs.freedesktop.org/attachment.cgi?id=99775&action=edit
-drm/nouveau/therm/fan: add debug information in fan_update()
+--- Comment #18 from Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> ---
+Created attachment 99782
+  --> https://bugs.freedesktop.org/attachment.cgi?id=99782&action=edit
+dmesg test after patch
 
-Please add this patch and send me the dmesg output (add the debug info for
-ptherm).
+I had to modify the patch a bit as in my source there were goto's instead of
+returns (I'm not sure what's newer, I used the source in Arch Build System).
+However it applied correctly as I checked.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401029865.D8B22F702.22639
-Date: Sun, 25 May 2014 14:57:45 +0000
+--1401034791.D4bb4cf1.8011
+Date: Sun, 25 May 2014 16:19:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,18 +60,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c17">Comment # 17</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+              from <span class="vcard"><a class="email" href="mailto:mdop&#64;seznam.cz" title="Marcel Dopita &lt;mdop&#64;seznam.cz&gt;"> <span class="fn">Marcel Dopita</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=99775" name="attach_99775" title="drm/nouveau/therm/fan: add debug information in fan_update()">attachment 99775</a> <a href="attachment.cgi?id=99775&amp;action=edit" title="drm/nouveau/therm/fan: add debug information in fan_update()">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=78116&amp;attachment=99775'>[review]</a>
-drm/nouveau/therm/fan: add debug information in fan_update()
+        <pre>Created <span class=""><a href="attachment.cgi?id=99782" name="attach_99782" title="dmesg test after patch">attachment 99782</a> <a href="attachment.cgi?id=99782&amp;action=edit" title="dmesg test after patch">[details]</a></span>
+dmesg test after patch
 
-Please add this patch and send me the dmesg output (add the debug info for
-ptherm).</pre>
+I had to modify the patch a bit as in my source there were goto's instead of
+returns (I'm not sure what's newer, I used the source in Arch Build System).
+However it applied correctly as I checked.</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +84,9 @@ ptherm).</pre>
     </body>
 </html>
 
---1401029865.D8B22F702.22639--
+--1401034791.D4bb4cf1.8011--
 
---===============1064052184==
+--===============0500254557==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1064052184==--
+--===============0500254557==--
