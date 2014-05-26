@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78116] Auto fan speed management doesn't do anything
  in non critical temperature range (NVC0)
-Date: Mon, 26 May 2014 21:00:02 +0000
-Message-ID: <bug-78116-8800-0QbZsTYe1T@http.bugs.freedesktop.org/>
+Date: Mon, 26 May 2014 21:07:39 +0000
+Message-ID: <bug-78116-8800-je0MT326ut@http.bugs.freedesktop.org/>
 References: <bug-78116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1577516694=="
+Content-Type: multipart/mixed; boundary="===============1872967396=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1577516694==
-Content-Type: multipart/alternative; boundary="1401138002.bAf211.26619"; charset="us-ascii"
+--===============1872967396==
+Content-Type: multipart/alternative; boundary="1401138459.Ecf1Dd2.27594"; charset="us-ascii"
 
 
---1401138002.bAf211.26619
-Date: Mon, 26 May 2014 21:00:02 +0000
+--1401138459.Ecf1Dd2.27594
+Date: Mon, 26 May 2014 21:07:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78116
 
---- Comment #25 from Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> ---
-Yep, switch it to appropriate state, please (I'm not sure if resolved is right
-as it already was fixed in rc). I will recheck it once stable is out. Thanks
-Martin
+Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #26 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+Closing this bug as fixed then!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401138002.bAf211.26619
-Date: Mon, 26 May 2014 21:00:02 +0000
+--1401138459.Ecf1Dd2.27594
+Date: Mon, 26 May 2014 21:07:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +55,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c25">Comment # 25</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c26">Comment # 26</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
-              from <span class="vcard"><a class="email" href="mailto:mdop&#64;seznam.cz" title="Marcel Dopita &lt;mdop&#64;seznam.cz&gt;"> <span class="fn">Marcel Dopita</span></a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>Yep, switch it to appropriate state, please (I'm not sure if resolved is right
-as it already was fixed in rc). I will recheck it once stable is out. Thanks
-Martin</pre>
+        <pre>Closing this bug as fixed then!</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +108,9 @@ Martin</pre>
     </body>
 </html>
 
---1401138002.bAf211.26619--
+--1401138459.Ecf1Dd2.27594--
 
---===============1577516694==
+--===============1872967396==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1577516694==--
+--===============1872967396==--
