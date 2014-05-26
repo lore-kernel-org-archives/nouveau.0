@@ -1,18 +1,12 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [RFC] drm/nouveau: disable caching for VRAM BOs on ARM
-Date: Mon, 26 May 2014 18:58:18 +0900
-Message-ID: <CAAVeFuKHc3mexegZjgvRwdVKMwrzXp1nZLF=-kmMMKMsHya0eg@mail.gmail.com>
-References: <1400492771-9746-1-git-send-email-acourbot@nvidia.com>
- <1400493433.8467.24.camel@weser.hi.pengutronix.de>
- <5379D7A0.3050509@nvidia.com>
- <1400494582.8467.28.camel@weser.hi.pengutronix.de>
- <CAAVeFuLKTjaZPSxNSK3nEG+XK+mMmPDDq85qMF-EHp3bGwVJYA@mail.gmail.com>
- <1400837055.4921.4.camel@weser.hi.pengutronix.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 76319] [NVE6] MMIO FAULT, black screen on QHD+ K2100M
+Date: Mon, 26 May 2014 12:36:21 +0000
+Message-ID: <bug-76319-8800-cd9YAVKcWq@http.bugs.freedesktop.org/>
+References: <bug-76319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1641501714=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1400837055.4921.4.camel-WzVe3FnzCwFR6QfukMTsflXZhhPuCNm+@public.gmane.org>
+In-Reply-To: <bug-76319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,60 +16,114 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
-Cc: Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, May 23, 2014 at 6:24 PM, Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org> wrote:
->> The best way to solve this issue would be to not use the BAR at all
->> since the memory behind these objects can be directly accessed by the
->> CPU. As such it would better be mapped using ttm_bo_kmap_ttm()
->> instead. But right now this is clearly not how nouveau_bo.c is written
->> and it does not look like this can easily be done. :/
->
-> Yeah, it sounds like we want this shortcut for stolen VRAM
-> implementations.
 
-Tried playing a bit with nouveau_bo and the following hack allows a
-simple Mesa program to run to completion... once (second time leads to
-a kernel panic):
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c
-b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index f00ae18003f1..6317d30a8e1d 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -538,7 +538,6 @@ nouveau_bo_init_mem_type(struct ttm_bo_device
-*bdev, uint32_t type,
-                man->available_caching = TTM_PL_MASK_CACHING;
-                man->default_caching = TTM_PL_FLAG_CACHED;
-                break;
--       case TTM_PL_VRAM:
-                if (nv_device(drm->device)->card_type >= NV_50) {
-                        man->func = &nouveau_vram_manager;
-                        man->io_reserve_fastpath = false;
-@@ -556,6 +555,7 @@ nouveau_bo_init_mem_type(struct ttm_bo_device
-*bdev, uint32_t type,
-                man->default_caching = TTM_PL_FLAG_WC;
- #endif
-                break;
-+       case TTM_PL_VRAM:
-        case TTM_PL_TT:
-                if (nv_device(drm->device)->card_type >= NV_50)
-                        man->func = &nouveau_gart_manager;
-@@ -1297,6 +1297,7 @@ nouveau_ttm_io_mem_reserve(struct ttm_bo_device
-*bdev, struct ttm_mem_reg *mem)
-                        break;
-                /* fallthrough, tiled memory */
-        case TTM_PL_VRAM:
-+               break;
-                mem->bus.offset = mem->start << PAGE_SHIFT;
-                mem->bus.base = nv_device_resource_start(nouveau_dev(dev), 1);
-                mem->bus.is_iomem = true;
+--===============1641501714==
+Content-Type: multipart/alternative; boundary="1401107780.27E50E42.18474"; charset="us-ascii"
 
 
-Of course it won't go very far this way, but I wonder if the principle
-is not what we would want to do for UMA devices? Not using the vram
-manager at all, and strictly rely on TT placements for BOs. We will
-need to add extra handling for things like tiled memory. Does that
-look like the right direction?
+--1401107780.27E50E42.18474
+Date: Mon, 26 May 2014 12:36:20 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=76319
+
+--- Comment #12 from D. Moens <d-bugzilla-vUpi/VKO0VA@public.gmane.org> ---
+I did file bug 76585 and 76990 too.
+
+As there was no reply (no hard feelings) to my invitation for further
+testing/developing (comment #8, paragraph 5), I have currently fallen back to
+the nvidia binary blob.
+
+
+Binary blob advantages (tested) :
+- suspend/resume works
+
+BB possible advantages (not tested) :
+- performance
+- stability
+
+BB disadvantages :
+- closed source
+- no display in VT's
+- switching between VT's required to restore screen display after screen power
+off
+- closed source
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1401107780.27E50E42.18474
+Date: Mon, 26 May 2014 12:36:20 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE6] MMIO FAULT, black screen on QHD+ K2100M"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76319#c12">Comment # 12</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE6] MMIO FAULT, black screen on QHD+ K2100M"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76319">bug 76319</a>
+              from <span class="vcard"><a class="email" href="mailto:d-bugzilla&#64;moens.cc" title="D. Moens &lt;d-bugzilla&#64;moens.cc&gt;"> <span class="fn">D. Moens</span></a>
+</span></b>
+        <pre>I did file <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE6] kernel oops and Xorg crash when resuming after suspend"
+   href="show_bug.cgi?id=76585">bug 76585</a> and 76990 too.
+
+As there was no reply (no hard feelings) to my invitation for further
+testing/developing (<a href="show_bug.cgi?id=76319#c8">comment #8</a>, paragraph 5), I have currently fallen back to
+the nvidia binary blob.
+
+
+Binary blob advantages (tested) :
+- suspend/resume works
+
+BB possible advantages (not tested) :
+- performance
+- stability
+
+BB disadvantages :
+- closed source
+- no display in VT's
+- switching between VT's required to restore screen display after screen power
+off
+- closed source</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1401107780.27E50E42.18474--
+
+--===============1641501714==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1641501714==--
