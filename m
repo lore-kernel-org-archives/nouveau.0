@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79266] [NVC1] GT 430 / GF108 sluggish,
- unstable performance and blue tint with vdpau
-Date: Mon, 26 May 2014 18:47:02 +0000
-Message-ID: <bug-79266-8800-A0hwdw9cYT@http.bugs.freedesktop.org/>
-References: <bug-79266-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 78116] Auto fan speed management doesn't do anything
+ in non critical temperature range (NVC0)
+Date: Mon, 26 May 2014 18:51:12 +0000
+Message-ID: <bug-78116-8800-o4Jh2Ov6qr@http.bugs.freedesktop.org/>
+References: <bug-78116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0938852086=="
+Content-Type: multipart/mixed; boundary="===============0894220249=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79266-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-78116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0938852086==
-Content-Type: multipart/alternative; boundary="1401130022.DAaBD4EA2.4567"; charset="us-ascii"
+--===============0894220249==
+Content-Type: multipart/alternative; boundary="1401130271.Dd831312.5413"; charset="us-ascii"
 
 
---1401130022.DAaBD4EA2.4567
-Date: Mon, 26 May 2014 18:47:02 +0000
+--1401130271.Dd831312.5413
+Date: Mon, 26 May 2014 18:51:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=79266
+https://bugs.freedesktop.org/show_bug.cgi?id=78116
 
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Briefly adding to what Emil said (which I agree with all of):
+--- Comment #23 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #22)
+> (In reply to comment #21)
+> > Could you try using a 3.15-rcX kernel instead of a 3.14?
+> 
+> It works correctly under 3.15-rc7 (fan starts at lowest pwm1 value and
+> re-sets after re-enabling auto mode) so I guess that it resolves this issue.
 
-The one-frame-at-a-time thing... is that flash only, or does it happen
-elsewhere? If it's flash-only, I'm inclined to discount it as a flash bug.
-Flash has _tons_ of bugs in the video functionality, they only test it directly
-with the nvidia implementation, and when it works there they stop. We do not
-aim to be bug-for-bug compatible with the nvidia impl.
+Most likely fixed with the following
 
-If the one-frame-at-a-time thing happens elsewhere too, that most probably
-points to an interrupt delivery problem. An easy thing to try would be to
-disable MSI (boot with nouveau.config=NvMSI=0) which was added with kernel
-3.13. If the issue was happening before 3.13, it's something else.
+commit dcd9262b3baf881285e9e0fd5459d54723cc992e
+Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Date:   Mon Mar 24 13:34:47 2014 +1000
+
+    drm/nouveau/therm: check for sensor presence with requested mode, not
+current
+
+
+perhaps we can forward it to linus-stable ?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401130022.DAaBD4EA2.4567
-Date: Mon, 26 May 2014 18:47:02 +0000
+--1401130271.Dd831312.5413
+Date: Mon, 26 May 2014 18:51:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,26 +70,32 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] GT 430 / GF108 sluggish, unstable performance and blue tint with vdpau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79266#c9">Comment # 9</a>
+   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c23">Comment # 23</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC1] GT 430 / GF108 sluggish, unstable performance and blue tint with vdpau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79266">bug 79266</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Briefly adding to what Emil said (which I agree with all of):
+        <pre>(In reply to <a href="show_bug.cgi?id=78116#c22">comment #22</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=78116#c21">comment #21</a>)
+&gt; &gt; Could you try using a 3.15-rcX kernel instead of a 3.14?
+&gt; 
+&gt; It works correctly under 3.15-rc7 (fan starts at lowest pwm1 value and
+&gt; re-sets after re-enabling auto mode) so I guess that it resolves this issue.</span >
 
-The one-frame-at-a-time thing... is that flash only, or does it happen
-elsewhere? If it's flash-only, I'm inclined to discount it as a flash bug.
-Flash has _tons_ of bugs in the video functionality, they only test it directly
-with the nvidia implementation, and when it works there they stop. We do not
-aim to be bug-for-bug compatible with the nvidia impl.
+Most likely fixed with the following
 
-If the one-frame-at-a-time thing happens elsewhere too, that most probably
-points to an interrupt delivery problem. An easy thing to try would be to
-disable MSI (boot with nouveau.config=NvMSI=0) which was added with kernel
-3.13. If the issue was happening before 3.13, it's something else.</pre>
+commit dcd9262b3baf881285e9e0fd5459d54723cc992e
+Author: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
+Date:   Mon Mar 24 13:34:47 2014 +1000
+
+    drm/nouveau/therm: check for sensor presence with requested mode, not
+current
+
+
+perhaps we can forward it to linus-stable ?</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +107,9 @@ disable MSI (boot with nouveau.config=NvMSI=0) which was added with kernel
     </body>
 </html>
 
---1401130022.DAaBD4EA2.4567--
+--1401130271.Dd831312.5413--
 
---===============0938852086==
+--===============0894220249==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0938852086==--
+--===============0894220249==--
