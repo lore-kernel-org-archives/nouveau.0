@@ -1,21 +1,18 @@
-From: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [RFC] drm/nouveau: disable caching for VRAM BOs on ARM
-Date: Mon, 26 May 2014 11:21:35 +0200
-Message-ID: <1401096095.4829.16.camel@weser.hi.pengutronix.de>
+Date: Mon, 26 May 2014 18:58:18 +0900
+Message-ID: <CAAVeFuKHc3mexegZjgvRwdVKMwrzXp1nZLF=-kmMMKMsHya0eg@mail.gmail.com>
 References: <1400492771-9746-1-git-send-email-acourbot@nvidia.com>
  <1400493433.8467.24.camel@weser.hi.pengutronix.de>
  <5379D7A0.3050509@nvidia.com>
  <1400494582.8467.28.camel@weser.hi.pengutronix.de>
  <CAAVeFuLKTjaZPSxNSK3nEG+XK+mMmPDDq85qMF-EHp3bGwVJYA@mail.gmail.com>
  <1400837055.4921.4.camel@weser.hi.pengutronix.de>
- <537F1853.7050800@nvidia.com>
- <1400839186.4921.17.camel@weser.hi.pengutronix.de>
- <537F5DED.8050702@nvidia.com> <5382E324.5090108@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5382E324.5090108-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <1400837055.4921.4.camel-WzVe3FnzCwFR6QfukMTsflXZhhPuCNm+@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -25,78 +22,60 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Terje =?ISO-8859-1?Q?Bergstr=F6m?= <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
 Cc: Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-QW0gTW9udGFnLCBkZW4gMjYuMDUuMjAxNCwgMDk6NDUgKzAzMDAgc2NocmllYiBUZXJqZSBCZXJn
-c3Ryw7ZtOgo+IE9uIDIzLjA1LjIwMTQgMTc6NDAsIEFsZXggQ291cmJvdCB3cm90ZToKPiA+IE9u
-IDA1LzIzLzIwMTQgMDY6NTkgUE0sIEx1Y2FzIFN0YWNoIHdyb3RlOgo+ID4gU28gYWZ0ZXIgY2hl
-Y2tpbmcgd2l0aCBtb3JlIGtub3dsZWRnZWFibGUgcGVvcGxlLCBpdCB0dXJucyBvdXQgdGhpcyBp
-cyAKPiA+IHRoZSBleHBlY3RlZCBiZWhhdmlvciBvbiBBUk0gYW5kIEJBUiByZWdpb25zIHNob3Vs
-ZCBiZSBtYXBwZWQgdW5jYWNoZWQgCj4gPiBvbiBHSzIwQS4gQWxsIHRoZSBtb3JlIHJlYXNvbnMg
-dG8gYXZvaWQgdXNpbmcgdGhlIEJBUiBhdCBhbGwuCj4gCj4gVGhpcyBpcyBhY3R1YWxseSBzcGVj
-aWZpYyB0byBUZWdyYS4KPiAKPiA+PiBZb3UgbWF5IHdhbnQgdG8gbWFrZSB5b3Vyc2VsZiBhd2Fy
-ZSBvZiBhbGwgdGhlIHF1aXJrcyByZXF1aXJlZCBmb3IKPiA+PiBzaGFyaW5nIG1lbW9yeSBiZXR3
-ZWVuIHRoZSBHUFUgYW5kIENQVSBvbiBhbiBBUk0gaG9zdC4gSSB0aGluayB0aGVyZSBhcmUKPiA+
-PiBmYXIgbW9yZSBpbnZvbHZlZCB0aGFuIHdoYXQgeW91IHNlZSBub3cgYW5kIHdyaXRpbmcgYW4g
-cmVwbGFjZW1lbnQgZm9yCj4gPj4gVFRNIHdpbGwgbm90IGJlIGFuIGVhc3kgdGFzay4KPiA+Pgo+
-ID4+IERvaW5nIGF3YXkgd2l0aCB0aGUgY29uY2VwdCBvZiB0d28gbWVtb3J5IGFyZWFzIHdpbGwg
-bm90IGdldCB5b3UgdG8gYQo+ID4+IHNpbmdsZSB1bmlmaWVkIGFkZHJlc3Mgc3BhY2UuIFlvdSB3
-b3VsZCBoYXZlIHRvIGRlYWwgd2l0aCB0aGluZ3MgbGlrZQo+ID4+IG5vdCBiZWluZyBhYmxlIHRv
-IGNoYW5nZSB0aGUgY2FjaGluZyBzdGF0ZSBvZiBwYWdlcyBpbiB0aGUgc3lzdGVtcwo+ID4+IGxv
-d21lbSB5b3Vyc2VsZi4gWW91IHdpbGwgc3RpbGwgaGF2ZSB0byBkZWFsIHdpdGggcmVtYXBwaW5n
-IHBhZ2VzIHRoYXQKPiA+PiBhcmVuJ3QgY3VycmVudGx5IHZpc2libGUgdG8gdGhlIENQVSAob2sg
-dGhpcyBpcyBub3QgYW4gaXNzdWUgb24gSmV0c29uCj4gPj4gcmlnaHQgbm93IGFzIGl0IG9ubHkg
-aGFzIDJHQiBvZiBSQU0pLCBiZWNhdXNlIGl0J3MgaW4gc3lzdGVtcyBoaWdobWVtLAo+ID4+IG9y
-IGV2ZW4gaW4gYSBkaWZmZXJlbnQgTFBBRSBhcmVhLgo+ID4+Cj4gPj4gWW91IHJlYWxseSB3YW50
-IHRvIGJlIHN1cmUgeW91IGFyZSBhd2FyZSBvZiBhbGwgdGhlIGNvbnNlcXVlbmNlcyBvZgo+ID4+
-IHRoaXMsIGJlZm9yZSBjb25zaWRlcmluZyB0aGlzIHRhc2suCj4gPiAKPiA+IFllcCwgdGhhdCdz
-IHdoeSBJIGFtIHNlZWtpbmcgYWR2aWNlIGhlcmUuIE15IGZpcnN0IGhvcGUgaXMgdGhhdCB3aXRo
-IGEgCj4gPiBmZXcgdHdlYWtzIHdlIHdpbGwgYmUgYWJsZSB0byBrZWVwIHVzaW5nIFRUTSBhbmQg
-dGhlIGN1cnJlbnQgbm91dmVhdV9ibyAKPiA+IGltcGxlbWVudGF0aW9uLiBCdXQgdW5sZXNzIEkg
-bWlzc2VkIHNvbWV0aGluZyB0aGlzIGlzIG5vdCBnb2luZyB0byBiZSBlYXN5Lgo+ID4gCj4gPiBX
-ZSBjYW4gYWxzbyB1c2Ugc29tZXRoaW5nIGxpa2UgdGhlIHBhdGNoIEkgb3JpZ2luYWxseSBzZW50
-IHRvIG1ha2UgaXQgCj4gPiB3b3JrLCBhbHRob3VnaCBub3Qgd2l0aCBnb29kIHBlcmZvcm1hbmNl
-LCBvbiBHSzIwQS4gTm90IHZlcnkgZ3JhY2VmdWwsIAo+ID4gYnV0IGl0IHdpbGwgYWxsb3cgYXBw
-bGljYXRpb25zIHRvIHJ1bi4KPiA+IAo+ID4gSW4gdGhlIGxvbmcgcnVuIHRob3VnaCwgd2Ugd2ls
-bCB3YW50IHRvIGFjaGlldmUgYmV0dGVyIHBlcmZvcm1hbmNlLCBhbmQgCj4gPiBpdCBzZWVtcyBs
-aWtlIGEgQk8gaW1wbGVtZW50YXRpb24gdGFyZ2V0ZWQgYXQgVU1BIGRldmljZXMgd291bGQgYWxz
-byBiZSAKPiA+IGJlbmVmaWNpYWwgdG8gcXVpdGUgYSBmZXcgZGVza3RvcCBHUFVzLiBTbyBhcyB0
-cmlja3kgYXMgaXQgbWF5IGJlIEknbSAKPiA+IGludGVyZXN0ZWQgaW4gZ2F0aGVyaW5nIHRob3Vn
-aHRzIGFuZCB3aHkgbm90IGdpdmluZyBpdCBhIGZpcnN0IHRyeSB3aXRoIAo+ID4gR0syMEEsIGV2
-ZW4gaWYgaXQgaW1wb3NlcyBzb21lIGxpbWl0YXRpb25zIGxpa2UgaGF2aW5nIGJ1ZmZlcnMgaW4g
-bG93bWVtIAo+ID4gaW4gYSBmaXJzdCB0aW1lICh3ZSBjYW4gcHJvYmFibHkgbGl2ZSB3aXRoIHRo
-aXMgb25lIGZvciBhIHNob3J0IHdoaWxlLCAKPiA+IGFuZCA2NCBiaXRzIHdpbGwgYWxzbyBiZSBj
-b21pbmcgdG8gdGhlIHJlc2N1ZSA6KSkKPiAKPiBJIGRvbid0IHRoaW5rIGxvd21lbSBvciBMUEFF
-IGlzIGFueSBwcm9ibGVtLCBpZiB0aGUgbWVtb3J5IG1hbmFnZXIgaXMKPiBkZXNpZ25lZCB3aXRo
-IHRoYXQgaW4gbWluZC4gVmFzdCBtYWpvcml0eSBvZiB0aGUgYnVmZmVycyBrZXJuZWwKPiBhbGxv
-Y2F0ZXMgZG8gbm90IG5lZWQgdG8gYmUgdG91Y2hlZCBpbiBrZXJuZWwgc3BhY2UuCj4gCj4gQWN0
-dWFsbHkgSSBjYW4ndCB0aGluayBvZiBhbnkgYnVmZmVycyB0aGF0IHdlIGFsbG9jYXRlIG9uIGJl
-aGFsZiBvZiB1c2VyCj4gc3BhY2UgdGhhdCB3b3VsZCBuZWVkIHRvIGJlIHBlcm1hbmVudGx5IG1h
-cHBlZCBhbHNvIHRvIGtlcm5lbC4gSW4gY2FzZQo+IG9yIHJlbG9jcyBvbmx5IHB1c2ggYnVmZmVy
-IG5lZWRzIHRvIGJlIHRlbXBvcmFyaWx5IG1hcHBlZCB0byBrZXJuZWwuCj4gCj4gVWx0aW1hdGVs
-eSBldmVuIHJlbG9jcyBhcmUgbm90IG5lY2Vzc2FyeSBpZiB3ZSBleHBvc2UgR1BVIHZpcnR1YWwK
-PiBhZGRyZXNzZXMgZGlyZWN0bHkgdG8gdXNlciBzcGFjZS4gQnV0IHRoYXQncyBhbm90aGVyIHRv
-cGljLgo+IApOb3V2ZWF1IGFscmVhZHkgZXhwb3NlcyBjb25zdGFudCB2aXJ0dWFsIGFkZHJlc3Nl
-cyB0byB1c2Vyc3BhY2UgYW5kCnNraXBzIHRoZSBwdXNoYnVmIHBhdGNoaW5nIHdoZW4gdGhlIHBy
-ZXN1bWVkIG9mZnNldCBmcm9tIHVzZXJzcGFjZSBpcwp0aGUgc2FtZSBhcyB3aGF0IHRoZSBrZXJu
-ZWwgdGhpbmtzIGl0IHNob3VsZCBiZS4KClRoZSBwcm9ibGVtIHdpdGggbG93bWVtIG9uIEFSTSBp
-cyB0aGF0IHlvdSBjYW4ndCB1bm1hcCB0aG9zZSBwYWdlcyBmcm9tCnRoZSBrZXJuZWwgY2FjaGVk
-IG1hcHBpbmcuIFNvIGlmIHlvdSBhbGxvYyBhIHBhZ2UsIGdpdmUgaXQgdG8gdXNlcnNwYWNlCmFu
-ZCB1c2Vyc3BhY2UgZGVjaWRlcyB0byBtYXAgdGhlIHBhZ2UgV0MgeW91IGp1c3QgcHJvZHVjZWQg
-YSBjb25mbGljdGluZwptYXBwaW5nLCB3aGljaCBtYXkgeWllbGQgdW5kZWZpbmVkIHJlc3VsdHMg
-b24gQVJNdjcuIFlvdSBtYXkgdGhpbmsgdGhpcwppcyBub3QgYSBwcm9ibGVtIGFzIHlvdSBhcmUg
-bm90IHRvdWNoaW5nIHRoZSBrZXJuZWwgY2FjaGVkIG1hcHBpbmcsIGJ1dAppbiBmYWN0IGl0IGlz
-LiBUaGUgQ1BVcyBwcmVmZXRjaGVyIGNhbiBzdGlsbCBhY2Nlc3MgdGhpcyBtYXBwaW5nLgoKQWx0
-aG91Z2ggaXQgd29uJ3Qgd2FuZGVyIG92ZXIgYSBwYWdlIGJvdW5kYXJ5IGZvciBhdXRvbWF0aWMg
-cHJlZmV0Y2hpbmcKaXQgbWF5IHN0aWxsIGRvIHRoaXMgd2hlbiBleHBsaWNpdGx5IGluc3RydWN0
-ZWQgdG8gZG8gc28gYnkgY29kZSwgd2hpY2gKbWF5IGhhcHBlbiBmb3IgZXhhbXBsZSBpZiB5b3Vy
-IHBhZ2UgaGFwcGVucyB0byBiZSBuZWFyIGEga2VybmVsIGxpc3QsCndoZXJlIHRoZSBsaXN0IHRy
-YXZlcnNhbCBjb2RlIGluY2x1ZGVzIGV4cGxpY2l0IHByZWZldGNoIGluc3RydWN0aW9ucy4KClJl
-Z2FyZHMsCkx1Y2FzCgotLSAKUGVuZ3V0cm9uaXggZS5LLiAgICAgICAgICAgICB8IEx1Y2FzIFN0
-YWNoICAgICAgICAgICAgICAgICB8CkluZHVzdHJpYWwgTGludXggU29sdXRpb25zICAgfCBodHRw
-Oi8vd3d3LnBlbmd1dHJvbml4LmRlLyAgfAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+On Fri, May 23, 2014 at 6:24 PM, Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org> wrote:
+>> The best way to solve this issue would be to not use the BAR at all
+>> since the memory behind these objects can be directly accessed by the
+>> CPU. As such it would better be mapped using ttm_bo_kmap_ttm()
+>> instead. But right now this is clearly not how nouveau_bo.c is written
+>> and it does not look like this can easily be done. :/
+>
+> Yeah, it sounds like we want this shortcut for stolen VRAM
+> implementations.
+
+Tried playing a bit with nouveau_bo and the following hack allows a
+simple Mesa program to run to completion... once (second time leads to
+a kernel panic):
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c
+b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index f00ae18003f1..6317d30a8e1d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -538,7 +538,6 @@ nouveau_bo_init_mem_type(struct ttm_bo_device
+*bdev, uint32_t type,
+                man->available_caching = TTM_PL_MASK_CACHING;
+                man->default_caching = TTM_PL_FLAG_CACHED;
+                break;
+-       case TTM_PL_VRAM:
+                if (nv_device(drm->device)->card_type >= NV_50) {
+                        man->func = &nouveau_vram_manager;
+                        man->io_reserve_fastpath = false;
+@@ -556,6 +555,7 @@ nouveau_bo_init_mem_type(struct ttm_bo_device
+*bdev, uint32_t type,
+                man->default_caching = TTM_PL_FLAG_WC;
+ #endif
+                break;
++       case TTM_PL_VRAM:
+        case TTM_PL_TT:
+                if (nv_device(drm->device)->card_type >= NV_50)
+                        man->func = &nouveau_gart_manager;
+@@ -1297,6 +1297,7 @@ nouveau_ttm_io_mem_reserve(struct ttm_bo_device
+*bdev, struct ttm_mem_reg *mem)
+                        break;
+                /* fallthrough, tiled memory */
+        case TTM_PL_VRAM:
++               break;
+                mem->bus.offset = mem->start << PAGE_SHIFT;
+                mem->bus.base = nv_device_resource_start(nouveau_dev(dev), 1);
+                mem->bus.is_iomem = true;
+
+
+Of course it won't go very far this way, but I wonder if the principle
+is not what we would want to do for UMA devices? Not using the vram
+manager at all, and strictly rely on TT placements for BOs. We will
+need to add extra handling for things like tiled memory. Does that
+look like the right direction?
