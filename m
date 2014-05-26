@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 79266] [NVC1] GT 430 / GF108 sluggish,
  unstable performance and blue tint with vdpau
-Date: Mon, 26 May 2014 17:42:54 +0000
-Message-ID: <bug-79266-8800-UDe3Soxduo@http.bugs.freedesktop.org/>
+Date: Mon, 26 May 2014 18:35:01 +0000
+Message-ID: <bug-79266-8800-ljGCrRpje0@http.bugs.freedesktop.org/>
 References: <bug-79266-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1431929027=="
+Content-Type: multipart/mixed; boundary="===============0419162797=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-79266-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,41 +21,69 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1431929027==
-Content-Type: multipart/alternative; boundary="1401126173.3C8D0dC11.23695"; charset="us-ascii"
+--===============0419162797==
+Content-Type: multipart/alternative; boundary="1401129300.0FdCd3fd2.2512"; charset="us-ascii"
 
 
---1401126173.3C8D0dC11.23695
-Date: Mon, 26 May 2014 17:42:53 +0000
+--1401129300.0FdCd3fd2.2512
+Date: Mon, 26 May 2014 18:35:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=79266
 
---- Comment #7 from C0NPAQ <afasdfsdfaa-NltIWcMOmWn1P9xLtpHBDw@public.gmane.org> ---
-I am sorry if I reacted harshly. I am not aware of your organization structure. 
+--- Comment #8 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+C0NPAQ
 
-However, I would intuitively expect that you would leave the bug open, and
-eventually more people will find it and report the same problem. Thereby it
-will become clear if all GT430 are affected or if it is due to a hardware
-combination. At some point a developer would have to have a closer look at the
-issue and reproduce it with the same graphics card chipset at least.
+I can see some frustration/anxiety in your replies. Please step back for a
+second and check with what Ilia is saying. Thank you.
 
-I honestly have no clue but I guess it is some memory access violation, buffer
-overflow issue within the card that causes the weird behavior, like 1 byte
-offset in some register then the colors get weird and the video only plays if
-the mouse is moved around and such. Possibly because the driver assumes the
-wrong chipset. 
+With that said, here is my interpretation + some tips:
 
-Someone who knows this stuff just has to look at it, test it, that's all you
-can really do.
+ * blue tint - irrc flash has an issue with blue tint with vdpau for which the
+wrapper library added a workaround (enable_flash_uv_swap). Check if the
+detection code [1] is not miss-behaving on your system/setup.
+
+ * flashplayer crashes randomly regardless of the OS + driver combo on my
+system :'(
+
+ * You're missing the firmware required for vdpau to work properly with
+nouveau. Install the nouveau-fw package from AUR or follow the instructions [2]
+to do it manually.
+
+ * Use only the recommended options when using mplayer + vdpau. If that does
+not work provide a link to a sample which people can test against.
+
+ * GL/VDAPU may be slow. As mentioned there is no reclocking at the moment,
+making some things (tearing) even more annoying.
+
+ * "I just tried wine and it did not run either" - now that is a bit too vague.
+I would give some specific examples - running wine v.XXX, under distro YYY. I
+get XXX output in console etc...
+
+From the above you can see three different topics (vdpau, gl and performance),
+and possibly even more bugs.
+
+_Please_ keep them separate as things are easy to find/work on when you do not
+have one massive blob that covers everything (divide and concur).
+
+Don't take this the wrong way, but if you insist that these issues are due to a
+single bug, then you are either delusional or far more knowledgeable in GL,
+VDPAU and nouveau intrinsics than nearly everyone that has ever worked on
+nouveau.
+
+
+[1]
+http://cgit.freedesktop.org/~aplattner/libvdpau/tree/src/vdpau_wrapper.c#n300
+[2] http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware
+[3] http://nouveau.freedesktop.org/wiki/VideoAcceleration/#usingvdpau
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401126173.3C8D0dC11.23695
-Date: Mon, 26 May 2014 17:42:53 +0000
+--1401129300.0FdCd3fd2.2512
+Date: Mon, 26 May 2014 18:35:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,29 +97,57 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] GT 430 / GF108 sluggish, unstable performance and blue tint with vdpau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79266#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79266#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] GT 430 / GF108 sluggish, unstable performance and blue tint with vdpau"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=79266">bug 79266</a>
-              from <span class="vcard"><a class="email" href="mailto:afasdfsdfaa&#64;master.ms" title="C0NPAQ &lt;afasdfsdfaa&#64;master.ms&gt;"> <span class="fn">C0NPAQ</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>I am sorry if I reacted harshly. I am not aware of your organization structure. 
+        <pre>C0NPAQ
 
-However, I would intuitively expect that you would leave the bug open, and
-eventually more people will find it and report the same problem. Thereby it
-will become clear if all GT430 are affected or if it is due to a hardware
-combination. At some point a developer would have to have a closer look at the
-issue and reproduce it with the same graphics card chipset at least.
+I can see some frustration/anxiety in your replies. Please step back for a
+second and check with what Ilia is saying. Thank you.
 
-I honestly have no clue but I guess it is some memory access violation, buffer
-overflow issue within the card that causes the weird behavior, like 1 byte
-offset in some register then the colors get weird and the video only plays if
-the mouse is moved around and such. Possibly because the driver assumes the
-wrong chipset. 
+With that said, here is my interpretation + some tips:
 
-Someone who knows this stuff just has to look at it, test it, that's all you
-can really do.</pre>
+ * blue tint - irrc flash has an issue with blue tint with vdpau for which the
+wrapper library added a workaround (enable_flash_uv_swap). Check if the
+detection code [1] is not miss-behaving on your system/setup.
+
+ * flashplayer crashes randomly regardless of the OS + driver combo on my
+system :'(
+
+ * You're missing the firmware required for vdpau to work properly with
+nouveau. Install the nouveau-fw package from AUR or follow the instructions [2]
+to do it manually.
+
+ * Use only the recommended options when using mplayer + vdpau. If that does
+not work provide a link to a sample which people can test against.
+
+ * GL/VDAPU may be slow. As mentioned there is no reclocking at the moment,
+making some things (tearing) even more annoying.
+
+ * &quot;I just tried wine and it did not run either&quot; - now that is a bit too vague.
+I would give some specific examples - running wine v.XXX, under distro YYY. I
+get XXX output in console etc...
+
+From the above you can see three different topics (vdpau, gl and performance),
+and possibly even more bugs.
+
+_Please_ keep them separate as things are easy to find/work on when you do not
+have one massive blob that covers everything (divide and concur).
+
+Don't take this the wrong way, but if you insist that these issues are due to a
+single bug, then you are either delusional or far more knowledgeable in GL,
+VDPAU and nouveau intrinsics than nearly everyone that has ever worked on
+nouveau.
+
+
+[1]
+<a href="http://cgit.freedesktop.org/~aplattner/libvdpau/tree/src/vdpau_wrapper.c#n300">http://cgit.freedesktop.org/~aplattner/libvdpau/tree/src/vdpau_wrapper.c#n300</a>
+[2] <a href="http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware">http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware</a>
+[3] <a href="http://nouveau.freedesktop.org/wiki/VideoAcceleration/#usingvdpau">http://nouveau.freedesktop.org/wiki/VideoAcceleration/#usingvdpau</a></pre>
         </div>
       </p>
       <hr>
@@ -103,9 +159,9 @@ can really do.</pre>
     </body>
 </html>
 
---1401126173.3C8D0dC11.23695--
+--1401129300.0FdCd3fd2.2512--
 
---===============1431929027==
+--===============0419162797==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -116,4 +172,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1431929027==--
+--===============0419162797==--
