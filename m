@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78116] Auto fan speed management doesn't do anything
- in non critical temperature range (NVC0)
-Date: Mon, 26 May 2014 17:19:53 +0000
-Message-ID: <bug-78116-8800-6kKUMN5ouw@http.bugs.freedesktop.org/>
-References: <bug-78116-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 79266] [NVC1] GT 430 / GF108 sluggish,
+ unstable performance and blue tint with vdpau
+Date: Mon, 26 May 2014 17:42:54 +0000
+Message-ID: <bug-79266-8800-UDe3Soxduo@http.bugs.freedesktop.org/>
+References: <bug-79266-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2017140170=="
+Content-Type: multipart/mixed; boundary="===============1431929027=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-79266-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2017140170==
-Content-Type: multipart/alternative; boundary="1401124793.A86245DE1.18686"; charset="us-ascii"
+--===============1431929027==
+Content-Type: multipart/alternative; boundary="1401126173.3C8D0dC11.23695"; charset="us-ascii"
 
 
---1401124793.A86245DE1.18686
-Date: Mon, 26 May 2014 17:19:53 +0000
+--1401126173.3C8D0dC11.23695
+Date: Mon, 26 May 2014 17:42:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=78116
+https://bugs.freedesktop.org/show_bug.cgi?id=79266
 
---- Comment #22 from Marcel Dopita <mdop-9Vj9tDbzfuSlVyrhU4qvOw@public.gmane.org> ---
-(In reply to comment #21)
-> Could you try using a 3.15-rcX kernel instead of a 3.14?
+--- Comment #7 from C0NPAQ <afasdfsdfaa-NltIWcMOmWn1P9xLtpHBDw@public.gmane.org> ---
+I am sorry if I reacted harshly. I am not aware of your organization structure. 
 
-It works correctly under 3.15-rc7 (fan starts at lowest pwm1 value and re-sets
-after re-enabling auto mode) so I guess that it resolves this issue.
+However, I would intuitively expect that you would leave the bug open, and
+eventually more people will find it and report the same problem. Thereby it
+will become clear if all GT430 are affected or if it is due to a hardware
+combination. At some point a developer would have to have a closer look at the
+issue and reproduce it with the same graphics card chipset at least.
+
+I honestly have no clue but I guess it is some memory access violation, buffer
+overflow issue within the card that causes the weird behavior, like 1 byte
+offset in some register then the colors get weird and the video only plays if
+the mouse is moved around and such. Possibly because the driver assumes the
+wrong chipset. 
+
+Someone who knows this stuff just has to look at it, test it, that's all you
+can really do.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401124793.A86245DE1.18686
-Date: Mon, 26 May 2014 17:19:53 +0000
+--1401126173.3C8D0dC11.23695
+Date: Mon, 26 May 2014 17:42:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,19 +68,30 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116#c22">Comment # 22</a>
+   title="NEW --- - [NVC1] GT 430 / GF108 sluggish, unstable performance and blue tint with vdpau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79266#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Auto fan speed management doesn't do anything in non critical temperature range (NVC0)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78116">bug 78116</a>
-              from <span class="vcard"><a class="email" href="mailto:mdop&#64;seznam.cz" title="Marcel Dopita &lt;mdop&#64;seznam.cz&gt;"> <span class="fn">Marcel Dopita</span></a>
+   title="NEW --- - [NVC1] GT 430 / GF108 sluggish, unstable performance and blue tint with vdpau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79266">bug 79266</a>
+              from <span class="vcard"><a class="email" href="mailto:afasdfsdfaa&#64;master.ms" title="C0NPAQ &lt;afasdfsdfaa&#64;master.ms&gt;"> <span class="fn">C0NPAQ</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=78116#c21">comment #21</a>)
-<span class="quote">&gt; Could you try using a 3.15-rcX kernel instead of a 3.14?</span >
+        <pre>I am sorry if I reacted harshly. I am not aware of your organization structure. 
 
-It works correctly under 3.15-rc7 (fan starts at lowest pwm1 value and re-sets
-after re-enabling auto mode) so I guess that it resolves this issue.</pre>
+However, I would intuitively expect that you would leave the bug open, and
+eventually more people will find it and report the same problem. Thereby it
+will become clear if all GT430 are affected or if it is due to a hardware
+combination. At some point a developer would have to have a closer look at the
+issue and reproduce it with the same graphics card chipset at least.
+
+I honestly have no clue but I guess it is some memory access violation, buffer
+overflow issue within the card that causes the weird behavior, like 1 byte
+offset in some register then the colors get weird and the video only plays if
+the mouse is moved around and such. Possibly because the driver assumes the
+wrong chipset. 
+
+Someone who knows this stuff just has to look at it, test it, that's all you
+can really do.</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +103,9 @@ after re-enabling auto mode) so I guess that it resolves this issue.</pre>
     </body>
 </html>
 
---1401124793.A86245DE1.18686--
+--1401126173.3C8D0dC11.23695--
 
---===============2017140170==
+--===============1431929027==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2017140170==--
+--===============1431929027==--
