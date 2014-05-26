@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 79266] [NVC1] GT 430 / GF108 sluggish,
  unstable performance and blue tint with vdpau
-Date: Mon, 26 May 2014 18:35:01 +0000
-Message-ID: <bug-79266-8800-ljGCrRpje0@http.bugs.freedesktop.org/>
+Date: Mon, 26 May 2014 18:47:02 +0000
+Message-ID: <bug-79266-8800-A0hwdw9cYT@http.bugs.freedesktop.org/>
 References: <bug-79266-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0419162797=="
+Content-Type: multipart/mixed; boundary="===============0938852086=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-79266-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,69 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0419162797==
-Content-Type: multipart/alternative; boundary="1401129300.0FdCd3fd2.2512"; charset="us-ascii"
+--===============0938852086==
+Content-Type: multipart/alternative; boundary="1401130022.DAaBD4EA2.4567"; charset="us-ascii"
 
 
---1401129300.0FdCd3fd2.2512
-Date: Mon, 26 May 2014 18:35:00 +0000
+--1401130022.DAaBD4EA2.4567
+Date: Mon, 26 May 2014 18:47:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=79266
 
---- Comment #8 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-C0NPAQ
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Briefly adding to what Emil said (which I agree with all of):
 
-I can see some frustration/anxiety in your replies. Please step back for a
-second and check with what Ilia is saying. Thank you.
+The one-frame-at-a-time thing... is that flash only, or does it happen
+elsewhere? If it's flash-only, I'm inclined to discount it as a flash bug.
+Flash has _tons_ of bugs in the video functionality, they only test it directly
+with the nvidia implementation, and when it works there they stop. We do not
+aim to be bug-for-bug compatible with the nvidia impl.
 
-With that said, here is my interpretation + some tips:
-
- * blue tint - irrc flash has an issue with blue tint with vdpau for which the
-wrapper library added a workaround (enable_flash_uv_swap). Check if the
-detection code [1] is not miss-behaving on your system/setup.
-
- * flashplayer crashes randomly regardless of the OS + driver combo on my
-system :'(
-
- * You're missing the firmware required for vdpau to work properly with
-nouveau. Install the nouveau-fw package from AUR or follow the instructions [2]
-to do it manually.
-
- * Use only the recommended options when using mplayer + vdpau. If that does
-not work provide a link to a sample which people can test against.
-
- * GL/VDAPU may be slow. As mentioned there is no reclocking at the moment,
-making some things (tearing) even more annoying.
-
- * "I just tried wine and it did not run either" - now that is a bit too vague.
-I would give some specific examples - running wine v.XXX, under distro YYY. I
-get XXX output in console etc...
-
-From the above you can see three different topics (vdpau, gl and performance),
-and possibly even more bugs.
-
-_Please_ keep them separate as things are easy to find/work on when you do not
-have one massive blob that covers everything (divide and concur).
-
-Don't take this the wrong way, but if you insist that these issues are due to a
-single bug, then you are either delusional or far more knowledgeable in GL,
-VDPAU and nouveau intrinsics than nearly everyone that has ever worked on
-nouveau.
-
-
-[1]
-http://cgit.freedesktop.org/~aplattner/libvdpau/tree/src/vdpau_wrapper.c#n300
-[2] http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware
-[3] http://nouveau.freedesktop.org/wiki/VideoAcceleration/#usingvdpau
+If the one-frame-at-a-time thing happens elsewhere too, that most probably
+points to an interrupt delivery problem. An easy thing to try would be to
+disable MSI (boot with nouveau.config=NvMSI=0) which was added with kernel
+3.13. If the issue was happening before 3.13, it's something else.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401129300.0FdCd3fd2.2512
-Date: Mon, 26 May 2014 18:35:00 +0000
+--1401130022.DAaBD4EA2.4567
+Date: Mon, 26 May 2014 18:47:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -97,57 +65,25 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] GT 430 / GF108 sluggish, unstable performance and blue tint with vdpau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79266#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79266#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] GT 430 / GF108 sluggish, unstable performance and blue tint with vdpau"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=79266">bug 79266</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>C0NPAQ
+        <pre>Briefly adding to what Emil said (which I agree with all of):
 
-I can see some frustration/anxiety in your replies. Please step back for a
-second and check with what Ilia is saying. Thank you.
+The one-frame-at-a-time thing... is that flash only, or does it happen
+elsewhere? If it's flash-only, I'm inclined to discount it as a flash bug.
+Flash has _tons_ of bugs in the video functionality, they only test it directly
+with the nvidia implementation, and when it works there they stop. We do not
+aim to be bug-for-bug compatible with the nvidia impl.
 
-With that said, here is my interpretation + some tips:
-
- * blue tint - irrc flash has an issue with blue tint with vdpau for which the
-wrapper library added a workaround (enable_flash_uv_swap). Check if the
-detection code [1] is not miss-behaving on your system/setup.
-
- * flashplayer crashes randomly regardless of the OS + driver combo on my
-system :'(
-
- * You're missing the firmware required for vdpau to work properly with
-nouveau. Install the nouveau-fw package from AUR or follow the instructions [2]
-to do it manually.
-
- * Use only the recommended options when using mplayer + vdpau. If that does
-not work provide a link to a sample which people can test against.
-
- * GL/VDAPU may be slow. As mentioned there is no reclocking at the moment,
-making some things (tearing) even more annoying.
-
- * &quot;I just tried wine and it did not run either&quot; - now that is a bit too vague.
-I would give some specific examples - running wine v.XXX, under distro YYY. I
-get XXX output in console etc...
-
-From the above you can see three different topics (vdpau, gl and performance),
-and possibly even more bugs.
-
-_Please_ keep them separate as things are easy to find/work on when you do not
-have one massive blob that covers everything (divide and concur).
-
-Don't take this the wrong way, but if you insist that these issues are due to a
-single bug, then you are either delusional or far more knowledgeable in GL,
-VDPAU and nouveau intrinsics than nearly everyone that has ever worked on
-nouveau.
-
-
-[1]
-<a href="http://cgit.freedesktop.org/~aplattner/libvdpau/tree/src/vdpau_wrapper.c#n300">http://cgit.freedesktop.org/~aplattner/libvdpau/tree/src/vdpau_wrapper.c#n300</a>
-[2] <a href="http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware">http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware</a>
-[3] <a href="http://nouveau.freedesktop.org/wiki/VideoAcceleration/#usingvdpau">http://nouveau.freedesktop.org/wiki/VideoAcceleration/#usingvdpau</a></pre>
+If the one-frame-at-a-time thing happens elsewhere too, that most probably
+points to an interrupt delivery problem. An easy thing to try would be to
+disable MSI (boot with nouveau.config=NvMSI=0) which was added with kernel
+3.13. If the issue was happening before 3.13, it's something else.</pre>
         </div>
       </p>
       <hr>
@@ -159,9 +95,9 @@ nouveau.
     </body>
 </html>
 
---1401129300.0FdCd3fd2.2512--
+--1401130022.DAaBD4EA2.4567--
 
---===============0419162797==
+--===============0938852086==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -172,4 +108,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0419162797==--
+--===============0938852086==--
