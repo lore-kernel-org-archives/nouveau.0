@@ -1,214 +1,137 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH V3] nvc0: implement clear_buffer
-Date: Mon, 26 May 2014 21:47:14 -0400
-Message-ID: <CAKb7Uvha0uc_mdG+Sc1TLhAEW0wLw5khkSz7Y8CDgoa-OfQaog@mail.gmail.com>
-References: <1401149941-26705-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Nouveau] [RFC] drm/nouveau: disable caching for VRAM BOs on ARM
+Date: Tue, 27 May 2014 11:42:16 +0900
+Message-ID: <CAAVeFuJNXH+EN6XekdfKnEzbz8n=LFSQBpKKbiOgsQ3cRyXrtw@mail.gmail.com>
+References: <1400492771-9746-1-git-send-email-acourbot@nvidia.com>
+ <1400493433.8467.24.camel@weser.hi.pengutronix.de> <5379D7A0.3050509@nvidia.com>
+ <1400494582.8467.28.camel@weser.hi.pengutronix.de> <CAAVeFuLKTjaZPSxNSK3nEG+XK+mMmPDDq85qMF-EHp3bGwVJYA@mail.gmail.com>
+ <1400837055.4921.4.camel@weser.hi.pengutronix.de> <537F1853.7050800@nvidia.com>
+ <1400839186.4921.17.camel@weser.hi.pengutronix.de> <537F5DED.8050702@nvidia.com>
+ <5382E324.5090108@nvidia.com> <1401096095.4829.16.camel@weser.hi.pengutronix.de>
+ <CAAVeFuKfPKZy81ZO9Wbdtv6gzsCzEF=iJbqOVKPecPqZSnMVUQ@mail.gmail.com> <CACP_E++Kh467jPAWOngBxCyc+tscKgnRDBH+i324a6DQQDV1Nw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1401149941-26705-1-git-send-email-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <CACP_E++Kh467jPAWOngBxCyc+tscKgnRDBH+i324a6DQQDV1Nw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: =?UTF-8?Q?St=C3=A9phane_Marchesin?= <stephane.marchesin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>, =?UTF-8?Q?Terje_Bergstr=C3=B6m?= <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Made a few very minor changes to it and pushed out as
-http://cgit.freedesktop.org/mesa/mesa/commit/?id=a26e2bc2e3578b50bd581c8f8d8e3c428c85158f
+On Tue, May 27, 2014 at 10:07 AM, St=C3=A9phane Marchesin
+<stephane.marchesin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On Mon, May 26, 2014 at 5:02 PM, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>=
+ wrote:
+>> On Mon, May 26, 2014 at 6:21 PM, Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org=
+> wrote:
+>>> Am Montag, den 26.05.2014, 09:45 +0300 schrieb Terje Bergstr=C3=B6m=
+:
+>>>> On 23.05.2014 17:40, Alex Courbot wrote:
+>>>> > On 05/23/2014 06:59 PM, Lucas Stach wrote:
+>>>> > So after checking with more knowledgeable people, it turns out t=
+his is
+>>>> > the expected behavior on ARM and BAR regions should be mapped un=
+cached
+>>>> > on GK20A. All the more reasons to avoid using the BAR at all.
+>>>>
+>>>> This is actually specific to Tegra.
+>>>>
+>>>> >> You may want to make yourself aware of all the quirks required =
+for
+>>>> >> sharing memory between the GPU and CPU on an ARM host. I think =
+there are
+>>>> >> far more involved than what you see now and writing an replacem=
+ent for
+>>>> >> TTM will not be an easy task.
+>>>> >>
+>>>> >> Doing away with the concept of two memory areas will not get yo=
+u to a
+>>>> >> single unified address space. You would have to deal with thing=
+s like
+>>>> >> not being able to change the caching state of pages in the syst=
+ems
+>>>> >> lowmem yourself. You will still have to deal with remapping pag=
+es that
+>>>> >> aren't currently visible to the CPU (ok this is not an issue on=
+ Jetson
+>>>> >> right now as it only has 2GB of RAM), because it's in systems h=
+ighmem,
+>>>> >> or even in a different LPAE area.
+>>>> >>
+>>>> >> You really want to be sure you are aware of all the consequence=
+s of
+>>>> >> this, before considering this task.
+>>>> >
+>>>> > Yep, that's why I am seeking advice here. My first hope is that =
+with a
+>>>> > few tweaks we will be able to keep using TTM and the current nou=
+veau_bo
+>>>> > implementation. But unless I missed something this is not going =
+to be easy.
+>>>> >
+>>>> > We can also use something like the patch I originally sent to ma=
+ke it
+>>>> > work, although not with good performance, on GK20A. Not very gra=
+ceful,
+>>>> > but it will allow applications to run.
+>>>> >
+>>>> > In the long run though, we will want to achieve better performan=
+ce, and
+>>>> > it seems like a BO implementation targeted at UMA devices would =
+also be
+>>>> > beneficial to quite a few desktop GPUs. So as tricky as it may b=
+e I'm
+>>>> > interested in gathering thoughts and why not giving it a first t=
+ry with
+>>>> > GK20A, even if it imposes some limitations like having buffers i=
+n lowmem
+>>>> > in a first time (we can probably live with this one for a short =
+while,
+>>>> > and 64 bits will also be coming to the rescue :))
+>>>>
+>>>> I don't think lowmem or LPAE is any problem, if the memory manager=
+ is
+>>>> designed with that in mind. Vast majority of the buffers kernel
+>>>> allocates do not need to be touched in kernel space.
+>>>>
+>>>> Actually I can't think of any buffers that we allocate on behalf o=
+f user
+>>>> space that would need to be permanently mapped also to kernel. In =
+case
+>>>> or relocs only push buffer needs to be temporarily mapped to kerne=
+l.
+>>>>
+>>>> Ultimately even relocs are not necessary if we expose GPU virtual
+>>>> addresses directly to user space. But that's another topic.
+>>>>
+>>> Nouveau already exposes constant virtual addresses to userspace and
+>>> skips the pushbuf patching when the presumed offset from userspace =
+is
+>>> the same as what the kernel thinks it should be.
+>>>
+>>> The problem with lowmem on ARM is that you can't unmap those pages =
+from
+>>> the kernel cached mapping. So if you alloc a page, give it to users=
+pace
+>>> and userspace decides to map the page WC you just produced a confli=
+cting
+>>> mapping, which may yield undefined results on ARMv7. You may think =
+this
+>>> is not a problem as you are not touching the kernel cached mapping,=
+ but
+>>> in fact it is. The CPUs prefetcher can still access this mapping.
+>>
+>> Why would this memory be mapped into the kernel?
+>
+> On ARM the kernel keeps a linear mapping of lowmem using sections
+> (ARM's version of huge pages). This is always cached, and because the
+> sections are not 4k, it's a pain to remove parts of it. See
+> arch/arm/mm/mmu.c
 
-On Mon, May 26, 2014 at 8:19 PM, Tobias Klausmann
-<tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> wrote:
-> v2:
->  - change patch name to "nvc0: implement clear_buffer"
->  - rename nvc0_clear_buffer_rgb32 -> nvc0_clear_buffer_cpu and make it work for
->    all formats
->  - remove superfluous fenciing in nvc0_clear_buffer_cpu
->  - coding style fixes
-> v3:
->  - more coding style fixes
->  - nvc0_clear_buffer() - don't mark the framebuffer dirty for if we don't touch
->    the GPU
->
-> Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-> ---
->  src/gallium/drivers/nouveau/nvc0/nvc0_surface.c | 151 ++++++++++++++++++++++++
->  1 file changed, 151 insertions(+)
->
-> diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c b/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-> index 6b7c30c..3572193 100644
-> --- a/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-> +++ b/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-> @@ -345,6 +345,156 @@ nvc0_clear_render_target(struct pipe_context *pipe,
->  }
->
->  static void
-> +nvc0_clear_buffer_cpu(struct pipe_context *pipe,
-> +                      struct pipe_resource *res,
-> +                      unsigned offset, unsigned size,
-> +                      const void *data, int data_size)
-> +{
-> +   struct nv04_resource *buf = nv04_resource(res);
-> +   struct pipe_transfer *pt;
-> +   struct pipe_box box;
-> +   unsigned elements, i;
-> +
-> +   elements = size / data_size;
-> +
-> +   u_box_1d(0, size, &box);
-> +
-> +   uint8_t *map = buf->vtbl->transfer_map(pipe, res, 0, PIPE_TRANSFER_WRITE,
-> +                                          &box, &pt);
-> +
-> +   for (i = 0; i < elements; ++i)
-> +      memcpy(&map[i*data_size], data, data_size);
-> +
-> +   buf->vtbl->transfer_unmap(pipe, pt);
-> +}
-> +
-> +static void
-> +nvc0_clear_buffer(struct pipe_context *pipe,
-> +                  struct pipe_resource *res,
-> +                  unsigned offset, unsigned size,
-> +                  const void *data, int data_size)
-> +{
-> +   struct nvc0_context *nvc0 = nvc0_context(pipe);
-> +   struct nouveau_pushbuf *push = nvc0->base.pushbuf;
-> +   struct nv04_resource *buf = nv04_resource(res);
-> +   union pipe_color_union color;
-> +   enum pipe_format dst_fmt;
-> +   unsigned width, height, elements;
-> +
-> +   assert(res->target == PIPE_BUFFER);
-> +   assert(nouveau_bo_memtype(buf->bo) == 0);
-> +
-> +   switch (data_size) {
-> +   case 16:
-> +      dst_fmt = PIPE_FORMAT_R32G32B32A32_UINT;
-> +      memcpy(&color.ui, data, 16);
-> +      break;
-> +   case 12:
-> +      /*
-> +       * dst_fmt = PIPE_FORMAT_R32G32B32_UINT;
-> +       * memcpy(&color.ui, data, 12);
-> +       * memset(&color.ui[3], 0, 4);
-> +       * break;
-> +       */
-> +   case 8:
-> +      dst_fmt = PIPE_FORMAT_R32G32_UINT;
-> +      memcpy(&color.ui, data, 8);
-> +      memset(&color.ui[2], 0, 8);
-> +      break;
-> +   case 4:
-> +      dst_fmt = PIPE_FORMAT_R32_UINT;
-> +      memcpy(&color.ui, data, 4);
-> +      memset(&color.ui[1], 0, 12);
-> +      break;
-> +   case 2:
-> +      dst_fmt = PIPE_FORMAT_R16_UINT;
-> +      color.ui[0] = util_cpu_to_le32(
-> +            util_le16_to_cpu(*(unsigned short *)data));
-> +      memset(&color.ui[1], 0, 12);
-> +      break;
-> +   case 1:
-> +      dst_fmt = PIPE_FORMAT_R8_UINT;
-> +      color.ui[0] = util_cpu_to_le32(*(unsigned char *)data);
-> +      memset(&color.ui[1], 0, 12);
-> +      break;
-> +   default:
-> +      assert(!"Unsupported element size");
-> +      return;
-> +   }
-> +
-> +   assert(size % data_size == 0);
-> +
-> +   if (data_size == 12) {
-> +      /* TODO: Find a way to do this with the GPU! */
-> +      nvc0_clear_buffer_cpu(pipe, res, offset, size, data, data_size);
-> +      return;
-> +   }
-> +
-> +   elements = size / data_size;
-> +
-> +   height = (elements + 16383) / 16384;
-> +
-> +   width = elements / height;
-> +
-> +   if (!PUSH_SPACE(push, 40))
-> +      return;
-> +
-> +   PUSH_REFN (push, buf->bo, buf->domain | NOUVEAU_BO_WR);
-> +
-> +   BEGIN_NVC0(push, NVC0_3D(CLEAR_COLOR(0)), 4);
-> +   PUSH_DATAf(push, color.f[0]);
-> +   PUSH_DATAf(push, color.f[1]);
-> +   PUSH_DATAf(push, color.f[2]);
-> +   PUSH_DATAf(push, color.f[3]);
-> +   BEGIN_NVC0(push, NVC0_3D(SCREEN_SCISSOR_HORIZ), 2);
-> +   PUSH_DATA (push, width << 16);
-> +   PUSH_DATA (push, height << 16);
-> +
-> +   IMMED_NVC0(push, NVC0_3D(RT_CONTROL), 1);
-> +
-> +   BEGIN_NVC0(push, NVC0_3D(RT_ADDRESS_HIGH(0)), 9);
-> +   PUSH_DATAh(push, buf->address + offset);
-> +   PUSH_DATA (push, buf->address + offset);
-> +
-> +   PUSH_DATA (push, width * data_size);
-> +   PUSH_DATA (push, height);
-> +
-> +   PUSH_DATA (push, nvc0_format_table[dst_fmt].rt);
-> +   PUSH_DATA (push, 1 << 12);
-> +   PUSH_DATA (push, 1);
-> +   PUSH_DATA (push, 0);
-> +   PUSH_DATA (push, 0);
-> +
-> +   IMMED_NVC0(push, NVC0_3D(ZETA_ENABLE), 0);
-> +
-> +   IMMED_NVC0(push, NVC0_3D(CLEAR_BUFFERS), 0x3c);
-> +
-> +   if (width * height != elements) {
-> +      offset += width * height * data_size;
-> +      width = elements - width * height;
-> +      height = 1;
-> +
-> +      BEGIN_NVC0(push, NVC0_3D(SCREEN_SCISSOR_HORIZ), 2);
-> +      PUSH_DATA (push, width << 16);
-> +      PUSH_DATA (push, height << 16);
-> +
-> +      BEGIN_NVC0(push, NVC0_3D(RT_ADDRESS_HIGH(0)), 2);
-> +      PUSH_DATAh(push, buf->address + offset);
-> +      PUSH_DATA (push, buf->address + offset);
-> +
-> +      BEGIN_NVC0(push, NVC0_3D(RT_HORIZ(0)), 2);
-> +      PUSH_DATA (push, width * data_size);
-> +      PUSH_DATA (push, height);
-> +
-> +      IMMED_NVC0(push, NVC0_3D(CLEAR_BUFFERS), 0x3c);
-> +   }
-> +
-> +   nouveau_fence_ref(nvc0->screen->base.fence.current, &buf->fence);
-> +   nouveau_fence_ref(nvc0->screen->base.fence.current, &buf->fence_wr);
-> +   nvc0->dirty |= NVC0_NEW_FRAMEBUFFER;
-> +}
-> +
-> +static void
->  nvc0_clear_depth_stencil(struct pipe_context *pipe,
->                           struct pipe_surface *dst,
->                           unsigned clear_flags,
-> @@ -1363,4 +1513,5 @@ nvc0_init_surface_functions(struct nvc0_context *nvc0)
->     pipe->flush_resource = nvc0_flush_resource;
->     pipe->clear_render_target = nvc0_clear_render_target;
->     pipe->clear_depth_stencil = nvc0_clear_depth_stencil;
-> +   pipe->clear_buffer = nvc0_clear_buffer;
->  }
-> --
-> 1.8.4.5
->
+Ah, are we talking about the directly-mapped low memory region
+starting at PAGE_OFFSET? Ok, it makes sense now, thanks.
+
+But it seems to me that such different mappings can also happen in
+many other scenarios as well, don't they? How is the issue handled in
+these cases?
