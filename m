@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79204] [NV50] No reported temperature/fan speed on
-	GTX260
-Date: Tue, 27 May 2014 08:59:33 +0000
-Message-ID: <bug-79204-8800-v0xj0GL3qb@http.bugs.freedesktop.org/>
-References: <bug-79204-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH] bios: fix a potential NULL deref in the PROM
+ shadowing function
+Date: Tue, 27 May 2014 11:15:57 +0200
+Message-ID: <538457CD.5080208@free.fr>
+References: <1396555961-2252-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0982644713=="
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79204-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1396555961-2252-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,113 +19,38 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Le 03/04/2014 22:12, Martin Peres a =E9crit :
+> Reported-by: Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
+> Signed-off-by: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+> ---
+>   nvkm/subdev/bios/base.c | 9 +++++----
+>   1 file changed, 5 insertions(+), 4 deletions(-)
+>
+> diff --git a/nvkm/subdev/bios/base.c b/nvkm/subdev/bios/base.c
+> index 3de7d81..5f8643d 100644
+> --- a/nvkm/subdev/bios/base.c
+> +++ b/nvkm/subdev/bios/base.c
+> @@ -183,10 +183,11 @@ nouveau_bios_shadow_prom(struct nouveau_bios *bios)
+>   		goto out;
+>
+>   	bios->data =3D kmalloc(bios->size, GFP_KERNEL);
+> -	if (bios->data) {
+> -		for (i =3D 0; i < bios->size; i +=3D 4)
+> -			((u32 *)bios->data)[i/4] =3D nv_rd32(bios, 0x300000 + i);
+> -	}
+> +	if (!bios->data)
+> +		goto out;
+> +
+> +	for (i =3D 0; i < bios->size; i +=3D 4)
+> +		((u32 *)bios->data)[i/4] =3D nv_rd32(bios, 0x300000 + i);
+>
+>   	/* check the PCI record header */
+>   	pcir =3D nv_ro16(bios, 0x0018);
+>
 
---===============0982644713==
-Content-Type: multipart/alternative; boundary="1401181173.AFAcFb2d2.15160"; charset="us-ascii"
+This patch never got reviewed or pushed. It should also be sent as a fix =
 
-
---1401181173.AFAcFb2d2.15160
-Date: Tue, 27 May 2014 08:59:33 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=79204
-
-Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #6 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-Patch merged in Darktama's tree:
-http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=74eec65d8f8041ead74cf301ed7baa115178aae6
-
-Thanks again for reporting this bug!
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1401181173.AFAcFb2d2.15160
-Date: Tue, 27 May 2014 08:59:33 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV50] No reported temperature/fan speed on GTX260"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79204">bug 79204</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV50] No reported temperature/fan speed on GTX260"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79204#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV50] No reported temperature/fan speed on GTX260"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79204">bug 79204</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
-</span></b>
-        <pre>Patch merged in Darktama's tree:
-<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=74eec65d8f8041ead74cf301ed7baa115178aae6">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=74eec65d8f8041ead74cf301ed7baa115178aae6</a>
-
-Thanks again for reporting this bug!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1401181173.AFAcFb2d2.15160--
-
---===============0982644713==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0982644713==--
+for the next 3.15 rc, if possible.
