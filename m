@@ -1,98 +1,89 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH v2 2/2] nvc0: use SM35 ISA with GK20A
-Date: Tue, 27 May 2014 11:49:24 -0400
-Message-ID: <CAKb7Uvg65NzSSQKxs2ovUEr7aUeX3mm__dov8qve_3epaqG6Fg@mail.gmail.com>
-References: <1401166783-24086-1-git-send-email-acourbot@nvidia.com>
-	<1401174182-2182-3-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 67878] [NV98] [BISECTED] Hardware freeze after
+ resume from suspend
+Date: Tue, 27 May 2014 16:07:10 +0000
+Message-ID: <bug-67878-8800-1eqI6CXU4j@http.bugs.freedesktop.org/>
+References: <bug-67878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <1401174182-2182-3-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Ken Adams <KAdams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0747280188=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, May 27, 2014 at 3:03 AM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
-> GK20A is mostly compatible with GK104, but uses the SM35 ISA. Use
-> the GK110 path when this chip is detected.
->
-> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
-Reviewed-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+--===============0747280188==
+Content-Type: multipart/alternative; boundary="1401206830.eeaFE4.6192"; charset="us-ascii"
 
-> ---
->  src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h      |  2 +-
->  src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nvc0.cpp |  2 +-
->  .../drivers/nouveau/codegen/nv50_ir_target_nvc0.cpp       | 15 ++++++++++-----
->  3 files changed, 12 insertions(+), 7 deletions(-)
->
-> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-> index bbb89d97932e..f829aac0bcc2 100644
-> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-> @@ -91,7 +91,7 @@ struct nv50_ir_prog_symbol
->  #define NVISA_GF100_CHIPSET_C0 0xc0
->  #define NVISA_GF100_CHIPSET_D0 0xd0
->  #define NVISA_GK104_CHIPSET    0xe0
-> -#define NVISA_GK110_CHIPSET    0xf0
-> +#define NVISA_GK20A_CHIPSET    0xea
->  #define NVISA_GM107_CHIPSET    0x110
->
->  struct nv50_ir_prog_info
-> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nvc0.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nvc0.cpp
-> index b1f76cf80432..f69e6a183e19 100644
-> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nvc0.cpp
-> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nvc0.cpp
-> @@ -3027,7 +3027,7 @@ TargetNVC0::createCodeEmitterNVC0(Program::Type type)
->  CodeEmitter *
->  TargetNVC0::getCodeEmitter(Program::Type type)
->  {
-> -   if (chipset >= NVISA_GK110_CHIPSET)
-> +   if (chipset >= NVISA_GK20A_CHIPSET)
->        return createCodeEmitterGK110(type);
->     return createCodeEmitterNVC0(type);
->  }
-> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nvc0.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nvc0.cpp
-> index 064e7a2c63f9..963b6e47ddfc 100644
-> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nvc0.cpp
-> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nvc0.cpp
-> @@ -49,9 +49,12 @@ TargetNVC0::getBuiltinCode(const uint32_t **code, uint32_t *size) const
->  {
->     switch (chipset & ~0xf) {
->     case 0xe0:
-> -      *code = (const uint32_t *)&gk104_builtin_code[0];
-> -      *size = sizeof(gk104_builtin_code);
-> -      break;
-> +      if (chipset < NVISA_GK20A_CHIPSET) {
-> +         *code = (const uint32_t *)&gk104_builtin_code[0];
-> +         *size = sizeof(gk104_builtin_code);
-> +         break;
-> +      }
-> +      /* fall-through for GK20A */
->     case 0xf0:
->     case 0x100:
->        *code = (const uint32_t *)&gk110_builtin_code[0];
-> @@ -71,7 +74,9 @@ TargetNVC0::getBuiltinOffset(int builtin) const
->
->     switch (chipset & ~0xf) {
->     case 0xe0:
-> -      return gk104_builtin_offsets[builtin];
-> +      if (chipset < NVISA_GK20A_CHIPSET)
-> +         return gk104_builtin_offsets[builtin];
-> +      /* fall-through for GK20A */
->     case 0xf0:
->     case 0x100:
->        return gk110_builtin_offsets[builtin];
-> @@ -235,7 +240,7 @@ TargetNVC0::getFileSize(DataFile file) const
->  {
->     switch (file) {
->     case FILE_NULL:          return 0;
-> -   case FILE_GPR:           return (chipset >= NVISA_GK110_CHIPSET) ? 255 : 63;
-> +   case FILE_GPR:           return (chipset >= NVISA_GK20A_CHIPSET) ? 255 : 63;
->     case FILE_PREDICATE:     return 7;
->     case FILE_FLAGS:         return 1;
->     case FILE_ADDRESS:       return 0;
-> --
-> 1.9.3
->
+
+--1401206830.eeaFE4.6192
+Date: Tue, 27 May 2014 16:07:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=67878
+
+--- Comment #42 from Jochen <jf-Jn17RpidJxba5EbDDlwbIw@public.gmane.org> ---
+Ilia, I don't know how to do that.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1401206830.eeaFE4.6192
+Date: Tue, 27 May 2014 16:07:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV98] [BISECTED] Hardware freeze after resume from suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c42">Comment # 42</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV98] [BISECTED] Hardware freeze after resume from suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">bug 67878</a>
+              from <span class="vcard"><a class="email" href="mailto:jf&#64;fahrner.name" title="Jochen &lt;jf&#64;fahrner.name&gt;"> <span class="fn">Jochen</span></a>
+</span></b>
+        <pre>Ilia, I don't know how to do that.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1401206830.eeaFE4.6192--
+
+--===============0747280188==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0747280188==--
