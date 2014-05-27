@@ -1,130 +1,99 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67878] [NV98] [BISECTED] Hardware freeze after
- resume from suspend
-Date: Tue, 27 May 2014 15:33:47 +0000
-Message-ID: <bug-67878-8800-1izrZvLOZs@http.bugs.freedesktop.org/>
-References: <bug-67878-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH 1/2] nvc0: add GK20A 3D class
+Date: Tue, 27 May 2014 11:48:34 -0400
+Message-ID: <CAKb7Uvj=MSm0Sc+acwOUc9MfGz=GZ0+KfpXtXpzEOMCdK9OjZQ@mail.gmail.com>
+References: <1401166783-24086-1-git-send-email-acourbot@nvidia.com>
+	<1401166783-24086-2-git-send-email-acourbot@nvidia.com>
+	<CAKb7Uvjvo=9u-mSH01AHidOBS_6cE88kpy+H=QoJQprtLekvKg@mail.gmail.com>
+	<53843236.4030508@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0160434012=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <53843236.4030508-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Tue, May 27, 2014 at 2:35 AM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+> On 05/27/2014 02:29 PM, Ilia Mirkin wrote:
+>>
+>> On Tue, May 27, 2014 at 12:59 AM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>> wrote:
+>>>
+>>> GK20A is mostly compatible with GK104, but features a new 3D
+>>> class. Add it to the relevant header and use it when GK20A is
+>>> detected.
+>>>
+>>> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>>> ---
+>>>   src/gallium/drivers/nouveau/nv_object.xml.h    | 1 +
+>>>   src/gallium/drivers/nouveau/nvc0/nvc0_screen.c | 9 ++++++++-
+>>>   2 files changed, 9 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/src/gallium/drivers/nouveau/nv_object.xml.h
+>>> b/src/gallium/drivers/nouveau/nv_object.xml.h
+>>> index 4c93e6564838..0a0e187dc028 100644
+>>> --- a/src/gallium/drivers/nouveau/nv_object.xml.h
+>>> +++ b/src/gallium/drivers/nouveau/nv_object.xml.h
+>>> @@ -190,6 +190,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+>>> SOFTWARE.
+>>>   #define NVC8_3D_CLASS
+>>> 0x00009297
+>>>   #define NVE4_3D_CLASS
+>>> 0x0000a097
+>>>   #define NVF0_3D_CLASS
+>>> 0x0000a197
+>>> +#define NVEA_3D_CLASS
+>>> 0x0000a297
+>>>   #define GM107_3D_CLASS
+>>> 0x0000b097
+>>>   #define NV50_2D_CLASS
+>>> 0x0000502d
+>>>   #define NVC0_2D_CLASS
+>>> 0x0000902d
+>>> diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+>>> b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+>>> index cccfe2bba23d..95e5ef81cd79 100644
+>>> --- a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+>>> +++ b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+>>> @@ -702,7 +702,14 @@ nvc0_screen_create(struct nouveau_device *dev)
+>>>         obj_class = NVF0_3D_CLASS;
+>>>         break;
+>>>      case 0xe0:
+>>> -      obj_class = NVE4_3D_CLASS;
+>>> +      switch (dev->chipset) {
+>>> +      case 0xea:
+>>> +         obj_class = NVEA_3D_CLASS;
+>>
+>>
+>> Again, would be nice to be consistent with the way you set the ISA...
+>> perhaps change this to a >= as well? But I guess the two could be
+>> disconnected. Up to you, just thought I'd bring it up.
+>
+>
+> Right below we have the following being done:
+>
+>      switch (dev->chipset) {
+>       case 0xc8:
+>          obj_class = NVC8_3D_CLASS;
+>          break;
+>       case 0xc1:
+>          obj_class = NVC1_3D_CLASS;
+>          break;
+>       default:
+>          obj_class = NVC0_3D_CLASS;
+>          break;
+>       }
+>
+> Shouldn't we try to be consistent with this more local example instead?
 
---===============0160434012==
-Content-Type: multipart/alternative; boundary="1401204827.8d6eC4.32145"; charset="us-ascii"
+Which is why I didn't insist. The situation with nvcx is a little
+different -- nvc8 (GF110) and nvc1 (GF108) are special, but e.g. nvce
+(GF114) and nvcf (GF116) want the nvc0 class. OTOH you're using >=
+0xea as the metric for selecting SM35, so I was just pointing out the
+inconsistency. Of course there needn't be a 1:1 mapping between these
+things, and the likelihood of another 0xex chipset being released is
+fairly low. So:
 
-
---1401204827.8d6eC4.32145
-Date: Tue, 27 May 2014 15:33:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D67878
-
---- Comment #41 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #40)
-> I hit this bug upon upgrade from Ubuntu 12.04 to 14.04. I can confirm
-> nouveau is working in Ubuntu kernel 3.7.10 and it freezes on resume in
-> 3.13.0.
-> My hardware:
->=20
-> 02:00.0 VGA compatible controller: NVIDIA Corporation C79 [GeForce 9400M]
-> (rev b1) (prog-if 00 [VGA controller])
-> 	Subsystem: Apple Inc. MacBook5,1
-
-Did you verify that the same commit is responsible? If not, please do a bis=
-ect
-(you can cheat and just assume this is the same issue and test the commit a=
-nd
-its parent). If it's the same commit, please let us know. If not, open a
-separate issue.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1401204827.8d6eC4.32145
-Date: Tue, 27 May 2014 15:33:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NV98] [BISECTED] Hardware freeze after resume from s=
-uspend"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D67878#c41">Commen=
-t # 41</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NV98] [BISECTED] Hardware freeze after resume from s=
-uspend"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D67878">bug 67878<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to <a href=3D"show_bug.cgi?id=3D67878#c40">comment #=
-40</a>)
-<span class=3D"quote">&gt; I hit this bug upon upgrade from Ubuntu 12.04 to=
- 14.04. I can confirm
-&gt; nouveau is working in Ubuntu kernel 3.7.10 and it freezes on resume in
-&gt; 3.13.0.
-&gt; My hardware:
-&gt;=20
-&gt; 02:00.0 VGA compatible controller: NVIDIA Corporation C79 [GeForce 940=
-0M]
-&gt; (rev b1) (prog-if 00 [VGA controller])
-&gt; 	Subsystem: Apple Inc. MacBook5,1</span >
-
-Did you verify that the same commit is responsible? If not, please do a bis=
-ect
-(you can cheat and just assume this is the same issue and test the commit a=
-nd
-its parent). If it's the same commit, please let us know. If not, open a
-separate issue.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1401204827.8d6eC4.32145--
-
---===============0160434012==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0160434012==--
+Reviewed-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
