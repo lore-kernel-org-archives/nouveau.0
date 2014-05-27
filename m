@@ -1,106 +1,205 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [RFC] drm/nouveau: disable caching for VRAM BOs on ARM
-Date: Tue, 27 May 2014 09:02:33 +0900
-Message-ID: <CAAVeFuKfPKZy81ZO9Wbdtv6gzsCzEF=iJbqOVKPecPqZSnMVUQ@mail.gmail.com>
-References: <1400492771-9746-1-git-send-email-acourbot@nvidia.com>
- <1400493433.8467.24.camel@weser.hi.pengutronix.de>
- <5379D7A0.3050509@nvidia.com>
- <1400494582.8467.28.camel@weser.hi.pengutronix.de>
- <CAAVeFuLKTjaZPSxNSK3nEG+XK+mMmPDDq85qMF-EHp3bGwVJYA@mail.gmail.com>
- <1400837055.4921.4.camel@weser.hi.pengutronix.de>
- <537F1853.7050800@nvidia.com>
- <1400839186.4921.17.camel@weser.hi.pengutronix.de>
- <537F5DED.8050702@nvidia.com> <5382E324.5090108@nvidia.com>
- <1401096095.4829.16.camel@weser.hi.pengutronix.de>
+From: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
+Subject: [PATCH V3] nvc0: implement clear_buffer
+Date: Tue, 27 May 2014 02:19:01 +0200
+Message-ID: <1401149941-26705-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1401096095.4829.16.camel-WzVe3FnzCwFR6QfukMTsflXZhhPuCNm+@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
-Cc: =?UTF-8?Q?Terje_Bergstr=C3=B6m?= <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: nouveau@lists.freedesktop.org, mesa-dev@lists.freedesktop.org, imirkin@alum.mit.edu
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBNYXkgMjYsIDIwMTQgYXQgNjoyMSBQTSwgTHVjYXMgU3RhY2ggPGwuc3RhY2hAcGVu
-Z3V0cm9uaXguZGU+IHdyb3RlOgo+IEFtIE1vbnRhZywgZGVuIDI2LjA1LjIwMTQsIDA5OjQ1ICsw
-MzAwIHNjaHJpZWIgVGVyamUgQmVyZ3N0csO2bToKPj4gT24gMjMuMDUuMjAxNCAxNzo0MCwgQWxl
-eCBDb3VyYm90IHdyb3RlOgo+PiA+IE9uIDA1LzIzLzIwMTQgMDY6NTkgUE0sIEx1Y2FzIFN0YWNo
-IHdyb3RlOgo+PiA+IFNvIGFmdGVyIGNoZWNraW5nIHdpdGggbW9yZSBrbm93bGVkZ2VhYmxlIHBl
-b3BsZSwgaXQgdHVybnMgb3V0IHRoaXMgaXMKPj4gPiB0aGUgZXhwZWN0ZWQgYmVoYXZpb3Igb24g
-QVJNIGFuZCBCQVIgcmVnaW9ucyBzaG91bGQgYmUgbWFwcGVkIHVuY2FjaGVkCj4+ID4gb24gR0sy
-MEEuIEFsbCB0aGUgbW9yZSByZWFzb25zIHRvIGF2b2lkIHVzaW5nIHRoZSBCQVIgYXQgYWxsLgo+
-Pgo+PiBUaGlzIGlzIGFjdHVhbGx5IHNwZWNpZmljIHRvIFRlZ3JhLgo+Pgo+PiA+PiBZb3UgbWF5
-IHdhbnQgdG8gbWFrZSB5b3Vyc2VsZiBhd2FyZSBvZiBhbGwgdGhlIHF1aXJrcyByZXF1aXJlZCBm
-b3IKPj4gPj4gc2hhcmluZyBtZW1vcnkgYmV0d2VlbiB0aGUgR1BVIGFuZCBDUFUgb24gYW4gQVJN
-IGhvc3QuIEkgdGhpbmsgdGhlcmUgYXJlCj4+ID4+IGZhciBtb3JlIGludm9sdmVkIHRoYW4gd2hh
-dCB5b3Ugc2VlIG5vdyBhbmQgd3JpdGluZyBhbiByZXBsYWNlbWVudCBmb3IKPj4gPj4gVFRNIHdp
-bGwgbm90IGJlIGFuIGVhc3kgdGFzay4KPj4gPj4KPj4gPj4gRG9pbmcgYXdheSB3aXRoIHRoZSBj
-b25jZXB0IG9mIHR3byBtZW1vcnkgYXJlYXMgd2lsbCBub3QgZ2V0IHlvdSB0byBhCj4+ID4+IHNp
-bmdsZSB1bmlmaWVkIGFkZHJlc3Mgc3BhY2UuIFlvdSB3b3VsZCBoYXZlIHRvIGRlYWwgd2l0aCB0
-aGluZ3MgbGlrZQo+PiA+PiBub3QgYmVpbmcgYWJsZSB0byBjaGFuZ2UgdGhlIGNhY2hpbmcgc3Rh
-dGUgb2YgcGFnZXMgaW4gdGhlIHN5c3RlbXMKPj4gPj4gbG93bWVtIHlvdXJzZWxmLiBZb3Ugd2ls
-bCBzdGlsbCBoYXZlIHRvIGRlYWwgd2l0aCByZW1hcHBpbmcgcGFnZXMgdGhhdAo+PiA+PiBhcmVu
-J3QgY3VycmVudGx5IHZpc2libGUgdG8gdGhlIENQVSAob2sgdGhpcyBpcyBub3QgYW4gaXNzdWUg
-b24gSmV0c29uCj4+ID4+IHJpZ2h0IG5vdyBhcyBpdCBvbmx5IGhhcyAyR0Igb2YgUkFNKSwgYmVj
-YXVzZSBpdCdzIGluIHN5c3RlbXMgaGlnaG1lbSwKPj4gPj4gb3IgZXZlbiBpbiBhIGRpZmZlcmVu
-dCBMUEFFIGFyZWEuCj4+ID4+Cj4+ID4+IFlvdSByZWFsbHkgd2FudCB0byBiZSBzdXJlIHlvdSBh
-cmUgYXdhcmUgb2YgYWxsIHRoZSBjb25zZXF1ZW5jZXMgb2YKPj4gPj4gdGhpcywgYmVmb3JlIGNv
-bnNpZGVyaW5nIHRoaXMgdGFzay4KPj4gPgo+PiA+IFllcCwgdGhhdCdzIHdoeSBJIGFtIHNlZWtp
-bmcgYWR2aWNlIGhlcmUuIE15IGZpcnN0IGhvcGUgaXMgdGhhdCB3aXRoIGEKPj4gPiBmZXcgdHdl
-YWtzIHdlIHdpbGwgYmUgYWJsZSB0byBrZWVwIHVzaW5nIFRUTSBhbmQgdGhlIGN1cnJlbnQgbm91
-dmVhdV9ibwo+PiA+IGltcGxlbWVudGF0aW9uLiBCdXQgdW5sZXNzIEkgbWlzc2VkIHNvbWV0aGlu
-ZyB0aGlzIGlzIG5vdCBnb2luZyB0byBiZSBlYXN5Lgo+PiA+Cj4+ID4gV2UgY2FuIGFsc28gdXNl
-IHNvbWV0aGluZyBsaWtlIHRoZSBwYXRjaCBJIG9yaWdpbmFsbHkgc2VudCB0byBtYWtlIGl0Cj4+
-ID4gd29yaywgYWx0aG91Z2ggbm90IHdpdGggZ29vZCBwZXJmb3JtYW5jZSwgb24gR0syMEEuIE5v
-dCB2ZXJ5IGdyYWNlZnVsLAo+PiA+IGJ1dCBpdCB3aWxsIGFsbG93IGFwcGxpY2F0aW9ucyB0byBy
-dW4uCj4+ID4KPj4gPiBJbiB0aGUgbG9uZyBydW4gdGhvdWdoLCB3ZSB3aWxsIHdhbnQgdG8gYWNo
-aWV2ZSBiZXR0ZXIgcGVyZm9ybWFuY2UsIGFuZAo+PiA+IGl0IHNlZW1zIGxpa2UgYSBCTyBpbXBs
-ZW1lbnRhdGlvbiB0YXJnZXRlZCBhdCBVTUEgZGV2aWNlcyB3b3VsZCBhbHNvIGJlCj4+ID4gYmVu
-ZWZpY2lhbCB0byBxdWl0ZSBhIGZldyBkZXNrdG9wIEdQVXMuIFNvIGFzIHRyaWNreSBhcyBpdCBt
-YXkgYmUgSSdtCj4+ID4gaW50ZXJlc3RlZCBpbiBnYXRoZXJpbmcgdGhvdWdodHMgYW5kIHdoeSBu
-b3QgZ2l2aW5nIGl0IGEgZmlyc3QgdHJ5IHdpdGgKPj4gPiBHSzIwQSwgZXZlbiBpZiBpdCBpbXBv
-c2VzIHNvbWUgbGltaXRhdGlvbnMgbGlrZSBoYXZpbmcgYnVmZmVycyBpbiBsb3dtZW0KPj4gPiBp
-biBhIGZpcnN0IHRpbWUgKHdlIGNhbiBwcm9iYWJseSBsaXZlIHdpdGggdGhpcyBvbmUgZm9yIGEg
-c2hvcnQgd2hpbGUsCj4+ID4gYW5kIDY0IGJpdHMgd2lsbCBhbHNvIGJlIGNvbWluZyB0byB0aGUg
-cmVzY3VlIDopKQo+Pgo+PiBJIGRvbid0IHRoaW5rIGxvd21lbSBvciBMUEFFIGlzIGFueSBwcm9i
-bGVtLCBpZiB0aGUgbWVtb3J5IG1hbmFnZXIgaXMKPj4gZGVzaWduZWQgd2l0aCB0aGF0IGluIG1p
-bmQuIFZhc3QgbWFqb3JpdHkgb2YgdGhlIGJ1ZmZlcnMga2VybmVsCj4+IGFsbG9jYXRlcyBkbyBu
-b3QgbmVlZCB0byBiZSB0b3VjaGVkIGluIGtlcm5lbCBzcGFjZS4KPj4KPj4gQWN0dWFsbHkgSSBj
-YW4ndCB0aGluayBvZiBhbnkgYnVmZmVycyB0aGF0IHdlIGFsbG9jYXRlIG9uIGJlaGFsZiBvZiB1
-c2VyCj4+IHNwYWNlIHRoYXQgd291bGQgbmVlZCB0byBiZSBwZXJtYW5lbnRseSBtYXBwZWQgYWxz
-byB0byBrZXJuZWwuIEluIGNhc2UKPj4gb3IgcmVsb2NzIG9ubHkgcHVzaCBidWZmZXIgbmVlZHMg
-dG8gYmUgdGVtcG9yYXJpbHkgbWFwcGVkIHRvIGtlcm5lbC4KPj4KPj4gVWx0aW1hdGVseSBldmVu
-IHJlbG9jcyBhcmUgbm90IG5lY2Vzc2FyeSBpZiB3ZSBleHBvc2UgR1BVIHZpcnR1YWwKPj4gYWRk
-cmVzc2VzIGRpcmVjdGx5IHRvIHVzZXIgc3BhY2UuIEJ1dCB0aGF0J3MgYW5vdGhlciB0b3BpYy4K
-Pj4KPiBOb3V2ZWF1IGFscmVhZHkgZXhwb3NlcyBjb25zdGFudCB2aXJ0dWFsIGFkZHJlc3NlcyB0
-byB1c2Vyc3BhY2UgYW5kCj4gc2tpcHMgdGhlIHB1c2hidWYgcGF0Y2hpbmcgd2hlbiB0aGUgcHJl
-c3VtZWQgb2Zmc2V0IGZyb20gdXNlcnNwYWNlIGlzCj4gdGhlIHNhbWUgYXMgd2hhdCB0aGUga2Vy
-bmVsIHRoaW5rcyBpdCBzaG91bGQgYmUuCj4KPiBUaGUgcHJvYmxlbSB3aXRoIGxvd21lbSBvbiBB
-Uk0gaXMgdGhhdCB5b3UgY2FuJ3QgdW5tYXAgdGhvc2UgcGFnZXMgZnJvbQo+IHRoZSBrZXJuZWwg
-Y2FjaGVkIG1hcHBpbmcuIFNvIGlmIHlvdSBhbGxvYyBhIHBhZ2UsIGdpdmUgaXQgdG8gdXNlcnNw
-YWNlCj4gYW5kIHVzZXJzcGFjZSBkZWNpZGVzIHRvIG1hcCB0aGUgcGFnZSBXQyB5b3UganVzdCBw
-cm9kdWNlZCBhIGNvbmZsaWN0aW5nCj4gbWFwcGluZywgd2hpY2ggbWF5IHlpZWxkIHVuZGVmaW5l
-ZCByZXN1bHRzIG9uIEFSTXY3LiBZb3UgbWF5IHRoaW5rIHRoaXMKPiBpcyBub3QgYSBwcm9ibGVt
-IGFzIHlvdSBhcmUgbm90IHRvdWNoaW5nIHRoZSBrZXJuZWwgY2FjaGVkIG1hcHBpbmcsIGJ1dAo+
-IGluIGZhY3QgaXQgaXMuIFRoZSBDUFVzIHByZWZldGNoZXIgY2FuIHN0aWxsIGFjY2VzcyB0aGlz
-IG1hcHBpbmcuCgpXaHkgd291bGQgdGhpcyBtZW1vcnkgYmUgbWFwcGVkIGludG8gdGhlIGtlcm5l
-bD8gQUZBSUNUIE5vdXZlYXUgb25seQptYXBzIGZlbmNlcyBhbmQgKHNvbWVob3cpIFBCcyBpbnRv
-IHRoZSBrZXJuZWwuIE90aGVyIEJPcyBhcmUgbm90Cm1hcHBlZCB1bmxlc3MgSSBtaXNzZWQgc29t
-ZXRoaW5nLiBPciBhcmUgeW91IHRhbGtpbmcgYWJvdXQgVlJBTQphbGxvY2F0ZWQgYnkgZG1hX2Fs
-bG9jXyooKT8gV2UgcHJldmVudCB0aGlzIGZyb20gaGFwcGVuaW5nIGJ5IHVzaW5nCnRoZSBDTUEg
-YWxsb2NhdG9yICh3aGljaCBkb2Vzbid0IGNyZWF0ZSBhIGttYXApIGRpcmVjdGx5LCB3aGljaCBo
-YXMKaXRzIG93biBwcm9ibGVtcyAoY2Fubm90IGNvbXBpbGUgTm91dmVhdSBhcyBhIG1vZHVsZSBh
-bmQgdXNlIHRoZXNlCmFsbG9jYXRvcnMpLiBJbiB0aGUgZnV0dXJlIHdlIHBsYW4gdG8gdXNlIHRo
-ZSBpb21tdSB0byBwcmVzZW50IHNwYXJzZQptZW1vcnkgcGFnZXMgaW4gYSB3YXkgdGhlIEdQVSBs
-aWtlcy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+v2:
+ - change patch name to "nvc0: implement clear_buffer"
+ - rename nvc0_clear_buffer_rgb32 -> nvc0_clear_buffer_cpu and make it work for
+   all formats
+ - remove superfluous fenciing in nvc0_clear_buffer_cpu
+ - coding style fixes
+v3:
+ - more coding style fixes
+ - nvc0_clear_buffer() - don't mark the framebuffer dirty for if we don't touch
+   the GPU
+   
+Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
+---
+ src/gallium/drivers/nouveau/nvc0/nvc0_surface.c | 151 ++++++++++++++++++++++++
+ 1 file changed, 151 insertions(+)
+
+diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c b/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
+index 6b7c30c..3572193 100644
+--- a/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
++++ b/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
+@@ -345,6 +345,156 @@ nvc0_clear_render_target(struct pipe_context *pipe,
+ }
+ 
+ static void
++nvc0_clear_buffer_cpu(struct pipe_context *pipe,
++                      struct pipe_resource *res,
++                      unsigned offset, unsigned size,
++                      const void *data, int data_size)
++{
++   struct nv04_resource *buf = nv04_resource(res);
++   struct pipe_transfer *pt;
++   struct pipe_box box;
++   unsigned elements, i;
++
++   elements = size / data_size;
++
++   u_box_1d(0, size, &box);
++
++   uint8_t *map = buf->vtbl->transfer_map(pipe, res, 0, PIPE_TRANSFER_WRITE,
++                                          &box, &pt);
++
++   for (i = 0; i < elements; ++i)
++      memcpy(&map[i*data_size], data, data_size);
++
++   buf->vtbl->transfer_unmap(pipe, pt);
++}
++
++static void
++nvc0_clear_buffer(struct pipe_context *pipe,
++                  struct pipe_resource *res,
++                  unsigned offset, unsigned size,
++                  const void *data, int data_size)
++{
++   struct nvc0_context *nvc0 = nvc0_context(pipe);
++   struct nouveau_pushbuf *push = nvc0->base.pushbuf;
++   struct nv04_resource *buf = nv04_resource(res);
++   union pipe_color_union color;
++   enum pipe_format dst_fmt;
++   unsigned width, height, elements;
++
++   assert(res->target == PIPE_BUFFER);
++   assert(nouveau_bo_memtype(buf->bo) == 0);
++
++   switch (data_size) {
++   case 16:
++      dst_fmt = PIPE_FORMAT_R32G32B32A32_UINT;
++      memcpy(&color.ui, data, 16);
++      break;
++   case 12:
++      /*
++       * dst_fmt = PIPE_FORMAT_R32G32B32_UINT;
++       * memcpy(&color.ui, data, 12);
++       * memset(&color.ui[3], 0, 4);
++       * break;
++       */
++   case 8:
++      dst_fmt = PIPE_FORMAT_R32G32_UINT;
++      memcpy(&color.ui, data, 8);
++      memset(&color.ui[2], 0, 8);
++      break;
++   case 4:
++      dst_fmt = PIPE_FORMAT_R32_UINT;
++      memcpy(&color.ui, data, 4);
++      memset(&color.ui[1], 0, 12);
++      break;
++   case 2:
++      dst_fmt = PIPE_FORMAT_R16_UINT;
++      color.ui[0] = util_cpu_to_le32(
++            util_le16_to_cpu(*(unsigned short *)data));
++      memset(&color.ui[1], 0, 12);
++      break;
++   case 1:
++      dst_fmt = PIPE_FORMAT_R8_UINT;
++      color.ui[0] = util_cpu_to_le32(*(unsigned char *)data);
++      memset(&color.ui[1], 0, 12);
++      break;
++   default:
++      assert(!"Unsupported element size");
++      return;
++   }
++
++   assert(size % data_size == 0);
++
++   if (data_size == 12) {
++      /* TODO: Find a way to do this with the GPU! */
++      nvc0_clear_buffer_cpu(pipe, res, offset, size, data, data_size);
++      return;
++   }
++
++   elements = size / data_size;
++
++   height = (elements + 16383) / 16384;
++
++   width = elements / height;
++
++   if (!PUSH_SPACE(push, 40))
++      return;
++
++   PUSH_REFN (push, buf->bo, buf->domain | NOUVEAU_BO_WR);
++
++   BEGIN_NVC0(push, NVC0_3D(CLEAR_COLOR(0)), 4);
++   PUSH_DATAf(push, color.f[0]);
++   PUSH_DATAf(push, color.f[1]);
++   PUSH_DATAf(push, color.f[2]);
++   PUSH_DATAf(push, color.f[3]);
++   BEGIN_NVC0(push, NVC0_3D(SCREEN_SCISSOR_HORIZ), 2);
++   PUSH_DATA (push, width << 16);
++   PUSH_DATA (push, height << 16);
++
++   IMMED_NVC0(push, NVC0_3D(RT_CONTROL), 1);
++
++   BEGIN_NVC0(push, NVC0_3D(RT_ADDRESS_HIGH(0)), 9);
++   PUSH_DATAh(push, buf->address + offset);
++   PUSH_DATA (push, buf->address + offset);
++
++   PUSH_DATA (push, width * data_size);
++   PUSH_DATA (push, height);
++
++   PUSH_DATA (push, nvc0_format_table[dst_fmt].rt);
++   PUSH_DATA (push, 1 << 12);
++   PUSH_DATA (push, 1);
++   PUSH_DATA (push, 0);
++   PUSH_DATA (push, 0);
++
++   IMMED_NVC0(push, NVC0_3D(ZETA_ENABLE), 0);
++
++   IMMED_NVC0(push, NVC0_3D(CLEAR_BUFFERS), 0x3c);
++
++   if (width * height != elements) {
++      offset += width * height * data_size;
++      width = elements - width * height;
++      height = 1;
++
++      BEGIN_NVC0(push, NVC0_3D(SCREEN_SCISSOR_HORIZ), 2);
++      PUSH_DATA (push, width << 16);
++      PUSH_DATA (push, height << 16);
++
++      BEGIN_NVC0(push, NVC0_3D(RT_ADDRESS_HIGH(0)), 2);
++      PUSH_DATAh(push, buf->address + offset);
++      PUSH_DATA (push, buf->address + offset);
++
++      BEGIN_NVC0(push, NVC0_3D(RT_HORIZ(0)), 2);
++      PUSH_DATA (push, width * data_size);
++      PUSH_DATA (push, height);
++
++      IMMED_NVC0(push, NVC0_3D(CLEAR_BUFFERS), 0x3c);
++   }
++
++   nouveau_fence_ref(nvc0->screen->base.fence.current, &buf->fence);
++   nouveau_fence_ref(nvc0->screen->base.fence.current, &buf->fence_wr);
++   nvc0->dirty |= NVC0_NEW_FRAMEBUFFER;
++}
++
++static void
+ nvc0_clear_depth_stencil(struct pipe_context *pipe,
+                          struct pipe_surface *dst,
+                          unsigned clear_flags,
+@@ -1363,4 +1513,5 @@ nvc0_init_surface_functions(struct nvc0_context *nvc0)
+    pipe->flush_resource = nvc0_flush_resource;
+    pipe->clear_render_target = nvc0_clear_render_target;
+    pipe->clear_depth_stencil = nvc0_clear_depth_stencil;
++   pipe->clear_buffer = nvc0_clear_buffer;
+ }
+-- 
+1.8.4.5
