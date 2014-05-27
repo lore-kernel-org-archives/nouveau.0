@@ -1,101 +1,130 @@
-From: Alexandre Courbot <acourbot@nvidia.com>
-Subject: [PATCH v2 2/2] nvc0: use SM35 ISA with GK20A
-Date: Tue, 27 May 2014 16:03:02 +0900
-Message-ID: <1401174182-2182-3-git-send-email-acourbot@nvidia.com>
-References: <1401166783-24086-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 79204] [NV50] No reported temperature/fan speed on
+	GTX260
+Date: Tue, 27 May 2014 08:59:33 +0000
+Message-ID: <bug-79204-8800-v0xj0GL3qb@http.bugs.freedesktop.org/>
+References: <bug-79204-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1401166783-24086-1-git-send-email-acourbot@nvidia.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>, Ken Adams <KAdams@nvidia.com>, Terje Bergstrom <tbergstrom@nvidia.com>, Thierry Reding <treding@nvidia.com>
-Cc: linux-tegra@vger.kernel.org, nouveau@lists.freedesktop.org, gnurou@gmail.com, mesa-dev@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0982644713=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-79204-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-GK20A is mostly compatible with GK104, but uses the SM35 ISA. Use
-the GK110 path when this chip is detected.
 
-Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
----
- src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h      |  2 +-
- src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nvc0.cpp |  2 +-
- .../drivers/nouveau/codegen/nv50_ir_target_nvc0.cpp       | 15 ++++++++++-----
- 3 files changed, 12 insertions(+), 7 deletions(-)
+--===============0982644713==
+Content-Type: multipart/alternative; boundary="1401181173.AFAcFb2d2.15160"; charset="us-ascii"
 
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-index bbb89d97932e..f829aac0bcc2 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-@@ -91,7 +91,7 @@ struct nv50_ir_prog_symbol
- #define NVISA_GF100_CHIPSET_C0 0xc0
- #define NVISA_GF100_CHIPSET_D0 0xd0
- #define NVISA_GK104_CHIPSET    0xe0
--#define NVISA_GK110_CHIPSET    0xf0
-+#define NVISA_GK20A_CHIPSET    0xea
- #define NVISA_GM107_CHIPSET    0x110
- 
- struct nv50_ir_prog_info
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nvc0.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nvc0.cpp
-index b1f76cf80432..f69e6a183e19 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nvc0.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_nvc0.cpp
-@@ -3027,7 +3027,7 @@ TargetNVC0::createCodeEmitterNVC0(Program::Type type)
- CodeEmitter *
- TargetNVC0::getCodeEmitter(Program::Type type)
- {
--   if (chipset >= NVISA_GK110_CHIPSET)
-+   if (chipset >= NVISA_GK20A_CHIPSET)
-       return createCodeEmitterGK110(type);
-    return createCodeEmitterNVC0(type);
- }
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nvc0.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nvc0.cpp
-index 064e7a2c63f9..963b6e47ddfc 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nvc0.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nvc0.cpp
-@@ -49,9 +49,12 @@ TargetNVC0::getBuiltinCode(const uint32_t **code, uint32_t *size) const
- {
-    switch (chipset & ~0xf) {
-    case 0xe0:
--      *code = (const uint32_t *)&gk104_builtin_code[0];
--      *size = sizeof(gk104_builtin_code);
--      break;
-+      if (chipset < NVISA_GK20A_CHIPSET) {
-+         *code = (const uint32_t *)&gk104_builtin_code[0];
-+         *size = sizeof(gk104_builtin_code);
-+         break;
-+      }
-+      /* fall-through for GK20A */
-    case 0xf0:
-    case 0x100:
-       *code = (const uint32_t *)&gk110_builtin_code[0];
-@@ -71,7 +74,9 @@ TargetNVC0::getBuiltinOffset(int builtin) const
- 
-    switch (chipset & ~0xf) {
-    case 0xe0:
--      return gk104_builtin_offsets[builtin];
-+      if (chipset < NVISA_GK20A_CHIPSET)
-+         return gk104_builtin_offsets[builtin];
-+      /* fall-through for GK20A */
-    case 0xf0:
-    case 0x100:
-       return gk110_builtin_offsets[builtin];
-@@ -235,7 +240,7 @@ TargetNVC0::getFileSize(DataFile file) const
- {
-    switch (file) {
-    case FILE_NULL:          return 0;
--   case FILE_GPR:           return (chipset >= NVISA_GK110_CHIPSET) ? 255 : 63;
-+   case FILE_GPR:           return (chipset >= NVISA_GK20A_CHIPSET) ? 255 : 63;
-    case FILE_PREDICATE:     return 7;
-    case FILE_FLAGS:         return 1;
-    case FILE_ADDRESS:       return 0;
+
+--1401181173.AFAcFb2d2.15160
+Date: Tue, 27 May 2014 08:59:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=79204
+
+Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #6 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+Patch merged in Darktama's tree:
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=74eec65d8f8041ead74cf301ed7baa115178aae6
+
+Thanks again for reporting this bug!
+
 -- 
-1.9.3
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1401181173.AFAcFb2d2.15160
+Date: Tue, 27 May 2014 08:59:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV50] No reported temperature/fan speed on GTX260"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79204">bug 79204</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV50] No reported temperature/fan speed on GTX260"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79204#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV50] No reported temperature/fan speed on GTX260"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79204">bug 79204</a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+</span></b>
+        <pre>Patch merged in Darktama's tree:
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=74eec65d8f8041ead74cf301ed7baa115178aae6">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=74eec65d8f8041ead74cf301ed7baa115178aae6</a>
+
+Thanks again for reporting this bug!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1401181173.AFAcFb2d2.15160--
+
+--===============0982644713==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0982644713==--
