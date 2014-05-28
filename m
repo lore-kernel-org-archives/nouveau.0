@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75761] weston-launch no output - black screen
-Date: Wed, 28 May 2014 18:27:46 +0000
-Message-ID: <bug-75761-8800-EmRdVuZMmV@http.bugs.freedesktop.org/>
+Date: Wed, 28 May 2014 18:57:37 +0000
+Message-ID: <bug-75761-8800-rbfmjLMzAq@http.bugs.freedesktop.org/>
 References: <bug-75761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0242150972=="
+Content-Type: multipart/mixed; boundary="===============0021584458=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,32 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0242150972==
-Content-Type: multipart/alternative; boundary="1401301666.0c3a54.32698"; charset="us-ascii"
+--===============0021584458==
+Content-Type: multipart/alternative; boundary="1401303456.80C2AED4.7134"; charset="us-ascii"
 
 
---1401301666.0c3a54.32698
-Date: Wed, 28 May 2014 18:27:46 +0000
+--1401303456.80C2AED4.7134
+Date: Wed, 28 May 2014 18:57:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75761
 
---- Comment #24 from Lubosz Sarnecki <lubosz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Since Weston and Wayland 1.5.0 were released today, I wanted to ask about the
-status of this bug.
+--- Comment #25 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #24)
+> Since Weston and Wayland 1.5.0 were released today, I wanted to ask about
+> the status of this bug.
+> 
+> Does the patch which causes the regression have enough legitimacy to stay
+> and break Weston?
 
-Does the patch which causes the regression have enough legitimacy to stay and
-break Weston?
+It seems like a pretty correct fix, at first blush. And was necessary for
+something else, IIRC.
 
-Does someone understand the problem on a large scale?
+> 
+> Does someone understand the problem on a large scale?
+
+It'll take someone with KMS API and Wayland experience to work out what's going
+on. Probably would have to get a Wayland developer involved to figure this one
+out.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401301666.0c3a54.32698
-Date: Wed, 28 May 2014 18:27:46 +0000
+--1401303456.80C2AED4.7134
+Date: Wed, 28 May 2014 18:57:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,20 +68,29 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - weston-launch no output - black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c24">Comment # 24</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c25">Comment # 25</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - weston-launch no output - black screen"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
-              from <span class="vcard"><a class="email" href="mailto:lubosz&#64;gmail.com" title="Lubosz Sarnecki &lt;lubosz&#64;gmail.com&gt;"> <span class="fn">Lubosz Sarnecki</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Since Weston and Wayland 1.5.0 were released today, I wanted to ask about the
-status of this bug.
+        <pre>(In reply to <a href="show_bug.cgi?id=75761#c24">comment #24</a>)
+<span class="quote">&gt; Since Weston and Wayland 1.5.0 were released today, I wanted to ask about
+&gt; the status of this bug.
+&gt; 
+&gt; Does the patch which causes the regression have enough legitimacy to stay
+&gt; and break Weston?</span >
 
-Does the patch which causes the regression have enough legitimacy to stay and
-break Weston?
+It seems like a pretty correct fix, at first blush. And was necessary for
+something else, IIRC.
 
-Does someone understand the problem on a large scale?</pre>
+<span class="quote">&gt; 
+&gt; Does someone understand the problem on a large scale?</span >
+
+It'll take someone with KMS API and Wayland experience to work out what's going
+on. Probably would have to get a Wayland developer involved to figure this one
+out.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +102,9 @@ Does someone understand the problem on a large scale?</pre>
     </body>
 </html>
 
---1401301666.0c3a54.32698--
+--1401303456.80C2AED4.7134--
 
---===============0242150972==
+--===============0021584458==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +115,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0242150972==--
+--===============0021584458==--
