@@ -1,7 +1,7 @@
-From: =?ISO-8859-1?Q?=22C=2E_Bergstr=F6m=22?= <cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org>
-Subject: [OT]  JOB - AMD drivers
-Date: Thu, 29 May 2014 19:53:09 +0700
-Message-ID: <53872DB5.8080305@pathscale.com>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: Add constant folding for new opcodes
+Date: Thu, 29 May 2014 21:43:32 +0200
+Message-ID: <53878DE4.4010005@mni.thm.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
@@ -15,21 +15,21 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Hi,
+please review the following 4 patches:
 
-Apologies for the cross post here, but thought maybe someone might be 
-tired of NV bs and willing to try something new..
+1b1cfc6 nvc0/ir: Handle OP_BFIND when folding constant expressions
+d2d2727 nvc0/ir: Handle OP_POPCNT when folding constant expressions
+86a1ee6 nvc0/ir: Handle reverse subop for OP_EXTBF when folding constant 
+expressions
+84563bf nvc0/ir: clear subop when folding constant expressions
 
-PathScale is in need of 1-2 kernel devs who are interested to help 
-improve the AMD open source drivers for compute workloads. If you're 
-passionate or interested to improve AMD drivers ping me offlist. In the 
-near future we specifically want to work on Hawaii dGPU support as well 
-as APU. Depending on benchmark results we may also need to improve the 
-memory manager to better support cards with 4G+ of on-board ram.
+src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp | 39 
++++++++++++++++++++++++++++++++++++++--
+1 file changed, 37 insertions(+), 2 deletions(-)
 
-Details: full/part time depending on availability
-Location: Remote with flexible schedule
-
-Contact: cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org
+Thanks,
+Tobias Klausmann
