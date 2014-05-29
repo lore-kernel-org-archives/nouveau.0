@@ -1,66 +1,54 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH 4/4] nvc0/ir: Handle OP_BFIND when folding
-	constant expressions
-Date: Thu, 29 May 2014 15:58:14 -0400
-Message-ID: <CAKb7Uvi=BOPomYXdE=X8=dnPwTAb30ZKquOZGztCmvvQDESggQ@mail.gmail.com>
-References: <53878DE4.4010005@mni.thm.de>
- <1401392636-17704-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
- <1401392636-17704-4-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] bios: fix a potential NULL deref in the PROM
+ shadowing function
+Date: Fri, 30 May 2014 09:39:58 +1000
+Message-ID: <CACAvsv6SaRYhEp1QkWe_9H+XB1h8HQztZi-PP8FioE-1M2eAQA@mail.gmail.com>
+References: <1396555961-2252-1-git-send-email-martin.peres@free.fr>
+ <538457CD.5080208@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1401392636-17704-4-git-send-email-tobias.johannes.klausmann@mni.thm.de>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <538457CD.5080208-GANU6spQydw@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-How did you test this? I'm like 99% sure it's wrong. (But I'm avoiding
-saying how it's wrong so that you don't just fix it to match what I
-say, but instead work it out yourself by doing the tests that you
-should have been doing in the first place. Or prove me wrong.)
-
-On Thu, May 29, 2014 at 3:43 PM, Tobias Klausmann
-<tobias.johannes.klausmann@mni.thm.de> wrote:
-> Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
-> ---
->  src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->
-> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
-> index 68b9a6d..a56756c 100644
-> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
-> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
-> @@ -556,6 +556,20 @@ ConstantFolding::expr(Instruction *i,
->        }
->        break;
->     }
-> +   case OP_BFIND: {
-> +      int shift = 0;
-> +      if (i->subOp == NV50_IR_SUBOP_BFIND_SAMT)
-> +         shift = 32 - (b->data.u32 & 0xff);
-> +      switch (i->dType) {
-> +      case TYPE_S32:
-> +         res.data.s32 = util_last_bit_signed(a->data.s32 >> shift)- 1; break;
-> +      case TYPE_U32:
-> +         res.data.u32 = util_last_bit(a->data.u32 >> shift) -1; break;
-> +      default:
-> +         return;
-> +      }
-> +      break;
-> +   }
->     default:
->        return;
->     }
-> --
-> 1.8.4.5
->
+T24gVHVlLCBNYXkgMjcsIDIwMTQgYXQgNzoxNSBQTSwgTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVy
+ZXNAZnJlZS5mcj4gd3JvdGU6Cj4gTGUgMDMvMDQvMjAxNCAyMjoxMiwgTWFydGluIFBlcmVzIGEg
+w6ljcml0IDoKPgo+PiBSZXBvcnRlZC1ieTogRGFuIENhcnBlbnRlciA8ZGFuLmNhcnBlbnRlckBv
+cmFjbGUuY29tPgo+PiBTaWduZWQtb2ZmLWJ5OiBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0Bm
+cmVlLmZyPgo+PiAtLS0KPj4gICBudmttL3N1YmRldi9iaW9zL2Jhc2UuYyB8IDkgKysrKystLS0t
+Cj4+ICAgMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKPj4K
+Pj4gZGlmZiAtLWdpdCBhL252a20vc3ViZGV2L2Jpb3MvYmFzZS5jIGIvbnZrbS9zdWJkZXYvYmlv
+cy9iYXNlLmMKPj4gaW5kZXggM2RlN2Q4MS4uNWY4NjQzZCAxMDA2NDQKPj4gLS0tIGEvbnZrbS9z
+dWJkZXYvYmlvcy9iYXNlLmMKPj4gKysrIGIvbnZrbS9zdWJkZXYvYmlvcy9iYXNlLmMKPj4gQEAg
+LTE4MywxMCArMTgzLDExIEBAIG5vdXZlYXVfYmlvc19zaGFkb3dfcHJvbShzdHJ1Y3Qgbm91dmVh
+dV9iaW9zICpiaW9zKQo+PiAgICAgICAgICAgICAgICAgZ290byBvdXQ7Cj4+Cj4+ICAgICAgICAg
+Ymlvcy0+ZGF0YSA9IGttYWxsb2MoYmlvcy0+c2l6ZSwgR0ZQX0tFUk5FTCk7Cj4+IC0gICAgICAg
+aWYgKGJpb3MtPmRhdGEpIHsKPj4gLSAgICAgICAgICAgICAgIGZvciAoaSA9IDA7IGkgPCBiaW9z
+LT5zaXplOyBpICs9IDQpCj4+IC0gICAgICAgICAgICAgICAgICAgICAgICgodTMyICopYmlvcy0+
+ZGF0YSlbaS80XSA9IG52X3JkMzIoYmlvcywgMHgzMDAwMDAKPj4gKyBpKTsKPj4gLSAgICAgICB9
+Cj4+ICsgICAgICAgaWYgKCFiaW9zLT5kYXRhKQo+PiArICAgICAgICAgICAgICAgZ290byBvdXQ7
+Cj4+ICsKPj4gKyAgICAgICBmb3IgKGkgPSAwOyBpIDwgYmlvcy0+c2l6ZTsgaSArPSA0KQo+PiAr
+ICAgICAgICAgICAgICAgKCh1MzIgKiliaW9zLT5kYXRhKVtpLzRdID0gbnZfcmQzMihiaW9zLCAw
+eDMwMDAwMCArIGkpOwo+Pgo+PiAgICAgICAgIC8qIGNoZWNrIHRoZSBQQ0kgcmVjb3JkIGhlYWRl
+ciAqLwo+PiAgICAgICAgIHBjaXIgPSBudl9ybzE2KGJpb3MsIDB4MDAxOCk7Cj4+Cj4KPiBUaGlz
+IHBhdGNoIG5ldmVyIGdvdCByZXZpZXdlZCBvciBwdXNoZWQuIEl0IHNob3VsZCBhbHNvIGJlIHNl
+bnQgYXMgYSBmaXggZm9yCj4gdGhlIG5leHQgMy4xNSByYywgaWYgcG9zc2libGUuCkFwb2xvZ2ll
+cywgdGhpcyB3YXMgaW5kZWVkIG92ZXJsb29rZWQuICBJJ3ZlIG1lcmdlZCBpdC4gIFRoYW5rcy4K
+Cj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5v
+dXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRw
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
+bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
