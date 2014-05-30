@@ -1,11 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79462] New: [NVC0/Codegen] Shader compilation falis
- in spill logic
-Date: Fri, 30 May 2014 18:44:00 +0000
-Message-ID: <bug-79462-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 78441] [NV46] X does not start under kernel 3.13.x
+Date: Fri, 30 May 2014 19:43:40 +0000
+Message-ID: <bug-78441-8800-3hyTodbbrb@http.bugs.freedesktop.org/>
+References: <bug-78441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1492208214=="
+Content-Type: multipart/mixed; boundary="===============1602188018=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-78441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,77 +20,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1492208214==
-Content-Type: multipart/alternative; boundary="1401475439.0bADa0AD0.13512"; charset="us-ascii"
+--===============1602188018==
+Content-Type: multipart/alternative; boundary="1401479020.CC8FD4E1.24359"; charset="us-ascii"
 
 
---1401475439.0bADa0AD0.13512
-Date: Fri, 30 May 2014 18:43:59 +0000
+--1401479020.CC8FD4E1.24359
+Date: Fri, 30 May 2014 19:43:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=79462
+https://bugs.freedesktop.org/show_bug.cgi?id=78441
 
-          Priority: medium
-            Bug ID: 79462
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NVC0/Codegen] Shader compilation falis in spill logic
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: unspecified
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
+--- Comment #9 from aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org ---
+So, I'm not sure about doing a bisect, but you can download the source RPMs for
+the two versions kernel-3.12.11-201.fc19 and kernel-3.13.4-100.fc19 which Red
+Hat released, here:
 
-Created attachment 100179
-  --> https://bugs.freedesktop.org/attachment.cgi?id=100179&action=edit
-failing tgsi shader
+http://koji.fedoraproject.org/koji/buildinfo?buildID=498402
 
-The attached shader fails in the RA step, when inserting spill code:
+and
 
-nv50_ir::SpillCodeInserter::run (this=0x7ffffffec0c0, lst=std::list)
-    at codegen/nv50_ir_ra.cpp:1561
-1561             while (!dval->uses.empty()) {
+http://koji.fedoraproject.org/koji/buildinfo?buildID=499637
 
-Easily reproduced with nouveau_compiler -a c0. Apparently this shader is
-generated as part of the d3d9 st, with skyrimlauncher, when it's trying to
-detect the graphics card.
+You can download the .src.rpm easily and then diff the nouveau trees.  I can
+attach that diff if you like.
 
-dval is null, which means that something out there isn't an lvalue. Or, in this
-case, apparently a null value??
+Thing is I'm not enough of a developer to (easily) take that any further.  I'm
+happy to help, but otherwise I'm an IT geek and out of my depth trying to work
+on video drivers.  Sorry.
 
-(gdb) p *defi
-$4 = {_vptr.Instruction = 0x86e570, next = 0x0, prev = 0x0, id = -1, serial =
-27, op = nv50_ir::OP_SPLIT, 
-  dType = nv50_ir::TYPE_B128, sType = nv50_ir::TYPE_B128, cc = nv50_ir::CC_TR,
-rnd = nv50_ir::ROUND_N, 
-  cache = nv50_ir::CACHE_CA, subOp = 0, encSize = 0, saturate = 0, join = 0,
-fixed = 0, terminator = 0, 
-  ftz = 0, dnz = 0, ipa = 0, lanes = 15, perPatch = 0, exit = 0, mask = 0,
-postFactor = 0 '\000', 
-  predSrc = -1 '\377', flagsDef = -1 '\377', flagsSrc = -1 '\377', sched = 0,
-bb = 0x0, 
-  defs = std::deque with 4 elements = {{value = 0x0, origin = 0x0, insn =
-0x200}, {value = 0x85ce30, 
-      origin = 0x7ffff71a0698 <main_arena+88>, insn = 0x9e5e40}, {value = 0x0,
-origin = 0x0, 
-      insn = 0x9e5e40}, {value = 0x0, origin = 0x0, insn = 0x9e5e40}}, 
-  srcs = std::deque with 1 elements = {{mod = {bits = 0 '\000'}, indirect =
-"\377\377", 
-      swizzle = 0 '\000', usedAsPtr = false, value = 0x0, insn = 0x200}}}
+Let me know if I can assist further.  Otherwise, for the moment, I'm stuck on a
+3.12.x kernel.  :(
 
-Note that the second def isn't null but the others are? Perhaps this happens as
-part of dead code elimination? Need to investigate more.
+Adam
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401475439.0bADa0AD0.13512
-Date: Fri, 30 May 2014 18:43:59 +0000
+--1401479020.CC8FD4E1.24359
+Date: Fri, 30 May 2014 19:43:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -97,127 +67,40 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC0/Codegen] Shader compilation falis in spill logic"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79462">79462</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVC0/Codegen] Shader compilation falis in spill logic
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>imirkin&#64;alum.mit.edu
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=100179" name="attach_100179" title="failing tgsi shader">attachment 100179</a> <a href="attachment.cgi?id=100179&amp;action=edit" title="failing tgsi shader">[details]</a></span>
-failing tgsi shader
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV46] X does not start under kernel 3.13.x"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78441#c9">Comment # 9</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV46] X does not start under kernel 3.13.x"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78441">bug 78441</a>
+              from <span class="vcard"><a class="email" href="mailto:aebenjam&#64;opentext.com" title="aebenjam&#64;opentext.com">aebenjam&#64;opentext.com</a>
+</span></b>
+        <pre>So, I'm not sure about doing a bisect, but you can download the source RPMs for
+the two versions kernel-3.12.11-201.fc19 and kernel-3.13.4-100.fc19 which Red
+Hat released, here:
 
-The attached shader fails in the RA step, when inserting spill code:
+<a href="http://koji.fedoraproject.org/koji/buildinfo?buildID=498402">http://koji.fedoraproject.org/koji/buildinfo?buildID=498402</a>
 
-nv50_ir::SpillCodeInserter::run (this=0x7ffffffec0c0, lst=std::list)
-    at codegen/nv50_ir_ra.cpp:1561
-1561             while (!dval-&gt;uses.empty()) {
+and
 
-Easily reproduced with nouveau_compiler -a c0. Apparently this shader is
-generated as part of the d3d9 st, with skyrimlauncher, when it's trying to
-detect the graphics card.
+<a href="http://koji.fedoraproject.org/koji/buildinfo?buildID=499637">http://koji.fedoraproject.org/koji/buildinfo?buildID=499637</a>
 
-dval is null, which means that something out there isn't an lvalue. Or, in this
-case, apparently a null value??
+You can download the .src.rpm easily and then diff the nouveau trees.  I can
+attach that diff if you like.
 
-(gdb) p *defi
-$4 = {_vptr.Instruction = 0x86e570, next = 0x0, prev = 0x0, id = -1, serial =
-27, op = nv50_ir::OP_SPLIT, 
-  dType = nv50_ir::TYPE_B128, sType = nv50_ir::TYPE_B128, cc = nv50_ir::CC_TR,
-rnd = nv50_ir::ROUND_N, 
-  cache = nv50_ir::CACHE_CA, subOp = 0, encSize = 0, saturate = 0, join = 0,
-fixed = 0, terminator = 0, 
-  ftz = 0, dnz = 0, ipa = 0, lanes = 15, perPatch = 0, exit = 0, mask = 0,
-postFactor = 0 '\000', 
-  predSrc = -1 '\377', flagsDef = -1 '\377', flagsSrc = -1 '\377', sched = 0,
-bb = 0x0, 
-  defs = std::deque with 4 elements = {{value = 0x0, origin = 0x0, insn =
-0x200}, {value = 0x85ce30, 
-      origin = 0x7ffff71a0698 &lt;main_arena+88&gt;, insn = 0x9e5e40}, {value = 0x0,
-origin = 0x0, 
-      insn = 0x9e5e40}, {value = 0x0, origin = 0x0, insn = 0x9e5e40}}, 
-  srcs = std::deque with 1 elements = {{mod = {bits = 0 '\000'}, indirect =
-&quot;\377\377&quot;, 
-      swizzle = 0 '\000', usedAsPtr = false, value = 0x0, insn = 0x200}}}
+Thing is I'm not enough of a developer to (easily) take that any further.  I'm
+happy to help, but otherwise I'm an IT geek and out of my depth trying to work
+on video drivers.  Sorry.
 
-Note that the second def isn't null but the others are? Perhaps this happens as
-part of dead code elimination? Need to investigate more.</pre>
+Let me know if I can assist further.  Otherwise, for the moment, I'm stuck on a
+3.12.x kernel.  :(
+
+Adam</pre>
         </div>
       </p>
       <hr>
@@ -229,9 +112,9 @@ part of dead code elimination? Need to investigate more.</pre>
     </body>
 </html>
 
---1401475439.0bADa0AD0.13512--
+--1401479020.CC8FD4E1.24359--
 
---===============1492208214==
+--===============1602188018==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -242,4 +125,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1492208214==--
+--===============1602188018==--
