@@ -1,11 +1,12 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] drm/gk20a/fb: use dma_alloc_coherent() for VRAM
-Date: Fri, 30 May 2014 15:47:00 +0900
-Message-ID: <1401432420-29477-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75761] weston-launch no output - black screen
+Date: Fri, 30 May 2014 09:18:36 +0000
+Message-ID: <bug-75761-8800-u4O8wyoaAT@http.bugs.freedesktop.org/>
+References: <bug-75761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0826058552=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,182 +16,111 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ken Adams <KAdams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-GK20A's RAM driver was using CMA functions in order to allocate VRAM.
-This is wrong because these functions are not exported, which causes
-compilation to fail when CMA is enabled and Nouveau is built as a
-module. On top of that the driver was leaking (or rather bleeding)
-memory.
 
-dma_alloc_coherent() will also use CMA when needed but has the
-advantage of being properly exported. It creates a permanent kernel
-mapping, but experiment revealed that the lowmem mapping is actually
-reused, and this mapping can also be taken advantage of to implement
-faster instmem. We lose the ability to allocate memory at finer
-granularity, but that's what CMA is here for and it also simplifies the
-driver.
+--===============0826058552==
+Content-Type: multipart/alternative; boundary="1401441516.AC2cF7d4.9703"; charset="us-ascii"
 
-This driver is to be replaced by an IOMMU-based one in the future ;
-until then, its current form will allow it to do its job.
 
-Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
----
- drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c | 97 ++++++++++-------------
- 1 file changed, 42 insertions(+), 55 deletions(-)
+--1401441516.AC2cF7d4.9703
+Date: Fri, 30 May 2014 09:18:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c b/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
-index 7effd1a63458..10cdcf8b8a7f 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/fb/ramgk20a.c
-@@ -24,32 +24,32 @@
- 
- #include <subdev/fb.h>
- 
--#include <linux/mm.h>
- #include <linux/types.h>
--#include <linux/dma-contiguous.h>
-+#include <linux/mm.h>
-+#include <linux/dma-mapping.h>
-+
-+struct gk20a_mem {
-+	struct nouveau_mem base;
-+	void *cpuaddr;
-+	dma_addr_t handle;
-+};
-+#define to_gk20a_mem(m) container_of(m, struct gk20a_mem, base)
- 
- static void
- gk20a_ram_put(struct nouveau_fb *pfb, struct nouveau_mem **pmem)
- {
- 	struct device *dev = nv_device_base(nv_device(pfb));
--	struct nouveau_mem *mem = *pmem;
--	int i;
-+	struct gk20a_mem *mem = to_gk20a_mem(*pmem);
- 
- 	*pmem = NULL;
- 	if (unlikely(mem == NULL))
- 		return;
- 
--	for (i = 0; i < mem->size; i++) {
--		struct page *page;
--
--		if (mem->pages[i] == 0)
--			break;
-+	if (likely(mem->cpuaddr))
-+		dma_free_coherent(dev, mem->base.size << PAGE_SHIFT,
-+				  mem->cpuaddr, mem->handle);
- 
--		page = pfn_to_page(mem->pages[i] >> PAGE_SHIFT);
--		dma_release_from_contiguous(dev, page, 1);
--	}
--
--	kfree(mem->pages);
-+	kfree(mem->base.pages);
- 	kfree(mem);
- }
- 
-@@ -58,11 +58,9 @@ gk20a_ram_get(struct nouveau_fb *pfb, u64 size, u32 align, u32 ncmin,
- 	     u32 memtype, struct nouveau_mem **pmem)
- {
- 	struct device *dev = nv_device_base(nv_device(pfb));
--	struct nouveau_mem *mem;
--	int type = memtype & 0xff;
--	dma_addr_t dma_addr;
--	int npages;
--	int order;
-+	struct gk20a_mem *mem;
-+	u32 type = memtype & 0xff;
-+	u32 npages, order;
- 	int i;
- 
- 	nv_debug(pfb, "%s: size: %llx align: %x, ncmin: %x\n", __func__, size,
-@@ -80,59 +78,48 @@ gk20a_ram_get(struct nouveau_fb *pfb, u64 size, u32 align, u32 ncmin,
- 	order = fls(align);
- 	if ((align & (align - 1)) == 0)
- 		order--;
-+	align = BIT(order);
- 
--	ncmin >>= PAGE_SHIFT;
--	/*
--	 * allocate pages by chunks of "align" size, otherwise we may leave
--	 * holes in the contiguous memory area.
--	 */
--	if (ncmin == 0)
--		ncmin = npages;
--	else if (align > ncmin)
--		ncmin = align;
-+	/* ensure returned address is correctly aligned */
-+	npages = max(align, npages);
- 
- 	mem = kzalloc(sizeof(*mem), GFP_KERNEL);
- 	if (!mem)
- 		return -ENOMEM;
- 
--	mem->size = npages;
--	mem->memtype = type;
-+	mem->base.size = npages;
-+	mem->base.memtype = type;
- 
--	mem->pages = kzalloc(sizeof(dma_addr_t) * npages, GFP_KERNEL);
--	if (!mem) {
-+	mem->base.pages = kzalloc(sizeof(dma_addr_t) * npages, GFP_KERNEL);
-+	if (!mem->base.pages) {
- 		kfree(mem);
- 		return -ENOMEM;
- 	}
- 
--	while (npages) {
--		struct page *pages;
--		int pos = 0;
--
--		/* don't overflow in case size is not a multiple of ncmin */
--		if (ncmin > npages)
--			ncmin = npages;
--
--		pages = dma_alloc_from_contiguous(dev, ncmin, order);
--		if (!pages) {
--			gk20a_ram_put(pfb, &mem);
--			return -ENOMEM;
--		}
-+	*pmem = &mem->base;
- 
--		dma_addr = (dma_addr_t)(page_to_pfn(pages) << PAGE_SHIFT);
-+	mem->cpuaddr = dma_alloc_coherent(dev, npages << PAGE_SHIFT,
-+					  &mem->handle, GFP_KERNEL);
-+	if (!mem->cpuaddr) {
-+		nv_error(pfb, "%s: cannot allocate memory!\n", __func__);
-+		gk20a_ram_put(pfb, pmem);
-+		return -ENOMEM;
-+	}
- 
--		nv_debug(pfb, "  alloc count: %x, order: %x, addr: %pad\n", ncmin,
--			 order, &dma_addr);
-+	align <<= PAGE_SHIFT;
- 
--		for (i = 0; i < ncmin; i++)
--			mem->pages[pos + i] = dma_addr + (PAGE_SIZE * i);
-+	/* alignment check */
-+	if (unlikely(mem->handle & (align - 1)))
-+		nv_warn(pfb, "memory not aligned as requested: %pad (0x%x)\n",
-+			&mem->handle, align);
- 
--		pos += ncmin;
--		npages -= ncmin;
--	}
-+	nv_debug(pfb, "alloc size: 0x%x, align: 0x%x, paddr: %pad, vaddr: %p\n",
-+		 npages << PAGE_SHIFT, align, &mem->handle, mem->cpuaddr);
- 
--	mem->offset = (u64)mem->pages[0];
-+	for (i = 0; i < npages; i++)
-+		mem->base.pages[i] = mem->handle + (PAGE_SIZE * i);
- 
--	*pmem = mem;
-+	mem->base.offset = (u64)mem->base.pages[0];
- 
- 	return 0;
- }
+https://bugs.freedesktop.org/show_bug.cgi?id=75761
+
+--- Comment #26 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+What did the -1 as crtc mean?
+
+I'm not sure how this is weston-specific, though. Weston programs a pageflip on
+a certain crtc, and then relies on that particular crtc to send back a pageflip
+event as requested.
+
+So if that's the culprit, is Nouveau on some particular hardware sending back
+pageflip events on the wrong crtc? Or maybe mixing up crtcs so that no event
+gets sent?
+
+This would be easy to test by adding a weston_log("got pageflip event\n") to
+src/compositor-drm.c:745, in function page_flip_handler(), and another in line
+723 in vblank_handler(). The vblank_handler should be unused atm. I think.
+
+If Weston never gets the pageflip event, its repaint loop would be stuck, which
+would explain the symptoms. A side effect would be that clients would never get
+frame callbacks, which means that e.g. weston-simple-shm would not be consuming
+any CPU. Normally it should take at least few percent of one core. Otherwise
+everything would seem to just work, since Weston does not hang but only not
+repaint.
+
 -- 
-1.9.3
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1401441516.AC2cF7d4.9703
+Date: Fri, 30 May 2014 09:18:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - weston-launch no output - black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c26">Comment # 26</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - weston-launch no output - black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
+              from <span class="vcard"><a class="email" href="mailto:ppaalanen&#64;gmail.com" title="Pekka Paalanen &lt;ppaalanen&#64;gmail.com&gt;"> <span class="fn">Pekka Paalanen</span></a>
+</span></b>
+        <pre>What did the -1 as crtc mean?
+
+I'm not sure how this is weston-specific, though. Weston programs a pageflip on
+a certain crtc, and then relies on that particular crtc to send back a pageflip
+event as requested.
+
+So if that's the culprit, is Nouveau on some particular hardware sending back
+pageflip events on the wrong crtc? Or maybe mixing up crtcs so that no event
+gets sent?
+
+This would be easy to test by adding a weston_log(&quot;got pageflip event\n&quot;) to
+src/compositor-drm.c:745, in function page_flip_handler(), and another in line
+723 in vblank_handler(). The vblank_handler should be unused atm. I think.
+
+If Weston never gets the pageflip event, its repaint loop would be stuck, which
+would explain the symptoms. A side effect would be that clients would never get
+frame callbacks, which means that e.g. weston-simple-shm would not be consuming
+any CPU. Normally it should take at least few percent of one core. Otherwise
+everything would seem to just work, since Weston does not hang but only not
+repaint.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1401441516.AC2cF7d4.9703--
+
+--===============0826058552==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0826058552==--
