@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 74062] [NVE4] Artifacts in 3D games.
-Date: Sat, 31 May 2014 02:39:53 +0000
-Message-ID: <bug-74062-8800-Kj4M6R6jiA@http.bugs.freedesktop.org/>
+Date: Sat, 31 May 2014 03:03:58 +0000
+Message-ID: <bug-74062-8800-eNcm1BAit9@http.bugs.freedesktop.org/>
 References: <bug-74062-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0657602531=="
+Content-Type: multipart/mixed; boundary="===============2072368540=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-74062-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,32 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0657602531==
-Content-Type: multipart/alternative; boundary="1401503993.300fd0.8681"; charset="us-ascii"
+--===============2072368540==
+Content-Type: multipart/alternative; boundary="1401505437.f62De811.13757"; charset="us-ascii"
 
 
---1401503993.300fd0.8681
-Date: Sat, 31 May 2014 02:39:53 +0000
+--1401505437.f62De811.13757
+Date: Sat, 31 May 2014 03:03:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=74062
 
---- Comment #11 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
-Created attachment 100185
-  --> https://bugs.freedesktop.org/attachment.cgi?id=100185&action=edit
-demonstrating more clearly the bug with glxgears
+--- Comment #12 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Wild guess - perhaps it's LTCG related ?
 
-The bug being demonstrated with glxgears and resizing it to various window
-sizes so how the artifacts change can be seen. Note that the artifacts
-completely disappear when the scene rendering is smaller than a certain size.
+You can easily check if that's the case my setting compressed = false in
+nvc0_miptree.c:nvc0_miptree_create.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401503993.300fd0.8681
-Date: Sat, 31 May 2014 02:39:53 +0000
+--1401505437.f62De811.13757
+Date: Sat, 31 May 2014 03:03:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,19 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] Artifacts in 3D games."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] Artifacts in 3D games."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=74062">bug 74062</a>
-              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=100185" name="attach_100185" title="demonstrating more clearly the bug with glxgears">attachment 100185</a> <a href="attachment.cgi?id=100185&amp;action=edit" title="demonstrating more clearly the bug with glxgears">[details]</a></span>
-demonstrating more clearly the bug with glxgears
+        <pre>Wild guess - perhaps it's LTCG related ?
 
-The bug being demonstrated with glxgears and resizing it to various window
-sizes so how the artifacts change can be seen. Note that the artifacts
-completely disappear when the scene rendering is smaller than a certain size.</pre>
+You can easily check if that's the case my setting compressed = false in
+nvc0_miptree.c:nvc0_miptree_create.</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +78,9 @@ completely disappear when the scene rendering is smaller than a certain size.</p
     </body>
 </html>
 
---1401503993.300fd0.8681--
+--1401505437.f62De811.13757--
 
---===============0657602531==
+--===============2072368540==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +91,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0657602531==--
+--===============2072368540==--
