@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75761] weston-launch no output - black screen
-Date: Sat, 31 May 2014 08:32:23 +0000
-Message-ID: <bug-75761-8800-CbGxaVCLPW@http.bugs.freedesktop.org/>
+Date: Sat, 31 May 2014 11:49:32 +0000
+Message-ID: <bug-75761-8800-HyHpryz4Z6@http.bugs.freedesktop.org/>
 References: <bug-75761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2074194472=="
+Content-Type: multipart/mixed; boundary="===============0986042932=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,40 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2074194472==
-Content-Type: multipart/alternative; boundary="1401525143.166F4.23869"; charset="us-ascii"
+--===============0986042932==
+Content-Type: multipart/alternative; boundary="1401536972.225E4.8917"; charset="us-ascii"
 
 
---1401525143.166F4.23869
-Date: Sat, 31 May 2014 08:32:23 +0000
+--1401536972.225E4.8917
+Date: Sat, 31 May 2014 11:49:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75761
 
---- Comment #29 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hmm, a third remote possibility came to mind. If the timestamp delivered with
-the DRM pageflip event does not advance, I suppose Weston's fade-in animation
-might not advance either and therefore it never fades in. However this is hard
-for me to believe, as I think it would have caused problems with Xorg, too...
-wouldn't it?
+--- Comment #30 from nerdopolis1-H+0wwilmMs3R7s880joybQ@public.gmane.org ---
+The only interesting thing that I can find in the dmesg logs is this:
 
-Or maybe Xorg is only looking at the vblank counters, and you'd actually need a
-program using GLX_OML_sync_control to even see the timestamps?
 
-One could check the timestamps by:
-weston_log("%s: time %u.%06u frame %u\n", __func__, sec, usec, frame);
-in compositor-drm.c page_flip_handler() function.
-
-Mm, I'd like to see a weston log with that when you have the black screen
-problem.
+[    1.509268] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    1.509269] [drm] No driver support for vblank timestamp query.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401525143.166F4.23869
-Date: Sat, 31 May 2014 08:32:23 +0000
+--1401536972.225E4.8917
+Date: Sat, 31 May 2014 11:49:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,28 +57,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - weston-launch no output - black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c29">Comment # 29</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c30">Comment # 30</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - weston-launch no output - black screen"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
-              from <span class="vcard"><a class="email" href="mailto:ppaalanen&#64;gmail.com" title="Pekka Paalanen &lt;ppaalanen&#64;gmail.com&gt;"> <span class="fn">Pekka Paalanen</span></a>
+              from <span class="vcard"><a class="email" href="mailto:nerdopolis1&#64;verizon.net" title="nerdopolis1&#64;verizon.net">nerdopolis1&#64;verizon.net</a>
 </span></b>
-        <pre>Hmm, a third remote possibility came to mind. If the timestamp delivered with
-the DRM pageflip event does not advance, I suppose Weston's fade-in animation
-might not advance either and therefore it never fades in. However this is hard
-for me to believe, as I think it would have caused problems with Xorg, too...
-wouldn't it?
+        <pre>The only interesting thing that I can find in the dmesg logs is this:
 
-Or maybe Xorg is only looking at the vblank counters, and you'd actually need a
-program using GLX_OML_sync_control to even see the timestamps?
 
-One could check the timestamps by:
-weston_log(&quot;%s: time %u.%06u frame %u\n&quot;, __func__, sec, usec, frame);
-in compositor-drm.c page_flip_handler() function.
-
-Mm, I'd like to see a weston log with that when you have the black screen
-problem.</pre>
+[    1.509268] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    1.509269] [drm] No driver support for vblank timestamp query.</pre>
         </div>
       </p>
       <hr>
@@ -100,9 +80,9 @@ problem.</pre>
     </body>
 </html>
 
---1401525143.166F4.23869--
+--1401536972.225E4.8917--
 
---===============2074194472==
+--===============0986042932==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -113,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2074194472==--
+--===============0986042932==--
