@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75761] weston-launch no output - black screen
-Date: Sat, 31 May 2014 11:49:32 +0000
-Message-ID: <bug-75761-8800-HyHpryz4Z6@http.bugs.freedesktop.org/>
+Date: Sat, 31 May 2014 12:29:14 +0000
+Message-ID: <bug-75761-8800-VGsCDtkoA4@http.bugs.freedesktop.org/>
 References: <bug-75761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0986042932=="
+Content-Type: multipart/mixed; boundary="===============1671803188=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0986042932==
-Content-Type: multipart/alternative; boundary="1401536972.225E4.8917"; charset="us-ascii"
+--===============1671803188==
+Content-Type: multipart/alternative; boundary="1401539354.EfDC06e4.17337"; charset="us-ascii"
 
 
---1401536972.225E4.8917
-Date: Sat, 31 May 2014 11:49:32 +0000
+--1401539354.EfDC06e4.17337
+Date: Sat, 31 May 2014 12:29:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75761
 
---- Comment #30 from nerdopolis1-H+0wwilmMs3R7s880joybQ@public.gmane.org ---
-The only interesting thing that I can find in the dmesg logs is this:
-
-
-[    1.509268] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
-[    1.509269] [drm] No driver support for vblank timestamp query.
+--- Comment #31 from nerdopolis1-H+0wwilmMs3R7s880joybQ@public.gmane.org ---
+Created attachment 100199
+  --> https://bugs.freedesktop.org/attachment.cgi?id=100199&action=edit
+weston log with pixman
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401536972.225E4.8917
-Date: Sat, 31 May 2014 11:49:32 +0000
+--1401539354.EfDC06e4.17337
+Date: Sat, 31 May 2014 12:29:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,18 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - weston-launch no output - black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c30">Comment # 30</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c31">Comment # 31</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - weston-launch no output - black screen"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
               from <span class="vcard"><a class="email" href="mailto:nerdopolis1&#64;verizon.net" title="nerdopolis1&#64;verizon.net">nerdopolis1&#64;verizon.net</a>
 </span></b>
-        <pre>The only interesting thing that I can find in the dmesg logs is this:
-
-
-[    1.509268] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
-[    1.509269] [drm] No driver support for vblank timestamp query.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=100199" name="attach_100199" title="weston log with pixman">attachment 100199</a> <a href="attachment.cgi?id=100199&amp;action=edit" title="weston log with pixman">[details]</a></span>
+weston log with pixman</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +75,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1401536972.225E4.8917--
+--1401539354.EfDC06e4.17337--
 
---===============0986042932==
+--===============1671803188==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -93,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0986042932==--
+--===============1671803188==--
