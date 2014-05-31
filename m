@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75761] weston-launch no output - black screen
-Date: Sat, 31 May 2014 12:29:14 +0000
-Message-ID: <bug-75761-8800-VGsCDtkoA4@http.bugs.freedesktop.org/>
-References: <bug-75761-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74062] [NVE4] Artifacts in 3D games.
+Date: Sat, 31 May 2014 18:47:32 +0000
+Message-ID: <bug-74062-8800-4q6FE6D0Es@http.bugs.freedesktop.org/>
+References: <bug-74062-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1671803188=="
+Content-Type: multipart/mixed; boundary="===============0960702005=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-74062-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1671803188==
-Content-Type: multipart/alternative; boundary="1401539354.EfDC06e4.17337"; charset="us-ascii"
+--===============0960702005==
+Content-Type: multipart/alternative; boundary="1401562051.BdCfE7bB0.4250"; charset="us-ascii"
 
 
---1401539354.EfDC06e4.17337
-Date: Sat, 31 May 2014 12:29:14 +0000
+--1401562051.BdCfE7bB0.4250
+Date: Sat, 31 May 2014 18:47:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75761
+https://bugs.freedesktop.org/show_bug.cgi?id=74062
 
---- Comment #31 from nerdopolis1-H+0wwilmMs3R7s880joybQ@public.gmane.org ---
-Created attachment 100199
-  --> https://bugs.freedesktop.org/attachment.cgi?id=100199&action=edit
-weston log with pixman
+--- Comment #13 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
+(In reply to comment #12)
+> Wild guess - perhaps it's LTCG related ?
+> 
+> You can easily check if that's the case my setting compressed = false in
+> nvc0_miptree.c:nvc0_miptree_create.
+
+Seems like, I just did what you suggested and all artifacts are gone now (just
+had to restart any OpenGL program after installing). So I confirm this
+workaround works for me.
+Thanks Emil.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401539354.EfDC06e4.17337
-Date: Sat, 31 May 2014 12:29:14 +0000
+--1401562051.BdCfE7bB0.4250
+Date: Sat, 31 May 2014 18:47:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,17 +60,25 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - weston-launch no output - black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c31">Comment # 31</a>
+          bz_status_NEW "
+   title="NEW --- - [NVE4] Artifacts in 3D games."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062#c13">Comment # 13</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - weston-launch no output - black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
-              from <span class="vcard"><a class="email" href="mailto:nerdopolis1&#64;verizon.net" title="nerdopolis1&#64;verizon.net">nerdopolis1&#64;verizon.net</a>
+          bz_status_NEW "
+   title="NEW --- - [NVE4] Artifacts in 3D games."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062">bug 74062</a>
+              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=100199" name="attach_100199" title="weston log with pixman">attachment 100199</a> <a href="attachment.cgi?id=100199&amp;action=edit" title="weston log with pixman">[details]</a></span>
-weston log with pixman</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=74062#c12">comment #12</a>)
+<span class="quote">&gt; Wild guess - perhaps it's LTCG related ?
+&gt; 
+&gt; You can easily check if that's the case my setting compressed = false in
+&gt; nvc0_miptree.c:nvc0_miptree_create.</span >
+
+Seems like, I just did what you suggested and all artifacts are gone now (just
+had to restart any OpenGL program after installing). So I confirm this
+workaround works for me.
+Thanks Emil.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +90,9 @@ weston log with pixman</pre>
     </body>
 </html>
 
---1401539354.EfDC06e4.17337--
+--1401562051.BdCfE7bB0.4250--
 
---===============1671803188==
+--===============0960702005==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1671803188==--
+--===============0960702005==--
