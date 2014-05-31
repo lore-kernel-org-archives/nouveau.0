@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75761] weston-launch no output - black screen
-Date: Sat, 31 May 2014 03:41:53 +0000
-Message-ID: <bug-75761-8800-yKtXwfrJSW@http.bugs.freedesktop.org/>
+Date: Sat, 31 May 2014 08:23:03 +0000
+Message-ID: <bug-75761-8800-OUMsfNB03P@http.bugs.freedesktop.org/>
 References: <bug-75761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0131976088=="
+Content-Type: multipart/mixed; boundary="===============0052639870=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,93 +20,124 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0131976088==
-Content-Type: multipart/alternative; boundary="1401507713.Fa2b4.22388"; charset="us-ascii"
+--===============0052639870==
+Content-Type: multipart/alternative; boundary="1401524583.603DB4.21637"; charset="us-ascii"
 
 
---1401507713.Fa2b4.22388
-Date: Sat, 31 May 2014 03:41:53 +0000
+--1401524583.603DB4.21637
+Date: Sat, 31 May 2014 08:23:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75761
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75761
 
---- Comment #27 from nerdopolis1-H+0wwilmMs3R7s880joybQ@public.gmane.org ---
-I pulled out my old Dell desktop with a Pentium 4 processor, and AGB Nvidia
-card (NV36), and it does the same thing. Mark45 on Phoronix said this issue
-affected all 3 of his Nvidia cards when he tried to use my Wayland Live CD.
+--- Comment #28 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I wonder if there are two different bugs in play here.
 
-I added the "got pageflip event" lines as suggested, and it seems that they
-appear multiple times in the log, and seem to keep going until I tty switch,
-but the screen is still black. Using a vanilla Ubuntu kernel, and passing
-nouveau.config=NvMSI=0 did not work for me, or for Mark45 on any of his Nvidia
-cards.
+If you do get the vblank events right, like it sounds that Nerdopolis does
+indeed get, then does reverting the blamed nouveau kernel patch make any
+difference? I would be surprised if it does make a difference.
 
-Weston-desktop-shell starts fine, and I also tried weston-simple-shm, which did
-not appear, but it did run.  
+This other bug would be, that when Weston changes the video mode, it does n=
+ot
+call drmModeCrtcSetGamma. IIRC Michel D=C3=A4nzer told me, that not calling=
+ that may
+lead to black output, if the color translations tables are all zero due not
+being explicitly set. So the main question here is, does Weston change the
+video mode, or does it use the mode that is already set for fbcon?
 
-It can't be a mesa issue, as Weston is using pixman here in this case...
+Weston code base already has a call to drmModeCrtcSetGamma(), but it is used
+only for color managed outputs I think. Yet, it is an example of how to call
+it, so if someone having this problem could test that, it would be very use=
+ful.
+If missing this call is indeed the problem, I think it should be a new West=
+on
+bug report, as the Nouveau patch blamed here should not make a difference
+AFAIU.
 
-I wish I had tested this sooner, but I wasn't sure if my results on the older
-desktop would reflect on newer Nvidia hardware.
+One more note: if you test reverting the blamed Nouveau patch, make sure yo=
+ur
+*both* kernels with and without are built by you and launched the same way,=
+ to
+make sure that the fbcon video mode is really the same on both. If the fbcon
+video mode is different, then that could mask the drmModeCrtcSetGamma issue.
 
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401507713.Fa2b4.22388
-Date: Sat, 31 May 2014 03:41:53 +0000
+--1401524583.603DB4.21637
+Date: Sat, 31 May 2014 08:23:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_REOPENED "
-   title="REOPENED --- - weston-launch no output - black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c27">Comment # 27</a>
-              on <a class="bz_bug_link 
+   title=3D"REOPENED --- - weston-launch no output - black screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75761#c28">Commen=
+t # 28</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_REOPENED "
-   title="REOPENED --- - weston-launch no output - black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
-              from <span class="vcard"><a class="email" href="mailto:nerdopolis1&#64;verizon.net" title="nerdopolis1&#64;verizon.net">nerdopolis1&#64;verizon.net</a>
+   title=3D"REOPENED --- - weston-launch no output - black screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75761">bug 75761<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ppaalanen&#64;gmail.com" title=3D"Pekka Paalanen &lt;ppaalanen&#64;gmail.co=
+m&gt;"> <span class=3D"fn">Pekka Paalanen</span></a>
 </span></b>
-        <pre>I pulled out my old Dell desktop with a Pentium 4 processor, and AGB Nvidia
-card (NV36), and it does the same thing. Mark45 on Phoronix said this issue
-affected all 3 of his Nvidia cards when he tried to use my Wayland Live CD.
+        <pre>I wonder if there are two different bugs in play here.
 
-I added the &quot;got pageflip event&quot; lines as suggested, and it seems that they
-appear multiple times in the log, and seem to keep going until I tty switch,
-but the screen is still black. Using a vanilla Ubuntu kernel, and passing
-nouveau.config=NvMSI=0 did not work for me, or for Mark45 on any of his Nvidia
-cards.
+If you do get the vblank events right, like it sounds that Nerdopolis does
+indeed get, then does reverting the blamed nouveau kernel patch make any
+difference? I would be surprised if it does make a difference.
 
-Weston-desktop-shell starts fine, and I also tried weston-simple-shm, which did
-not appear, but it did run.  
+This other bug would be, that when Weston changes the video mode, it does n=
+ot
+call drmModeCrtcSetGamma. IIRC Michel D=C3=A4nzer told me, that not calling=
+ that may
+lead to black output, if the color translations tables are all zero due not
+being explicitly set. So the main question here is, does Weston change the
+video mode, or does it use the mode that is already set for fbcon?
 
-It can't be a mesa issue, as Weston is using pixman here in this case...
+Weston code base already has a call to drmModeCrtcSetGamma(), but it is used
+only for color managed outputs I think. Yet, it is an example of how to call
+it, so if someone having this problem could test that, it would be very use=
+ful.
+If missing this call is indeed the problem, I think it should be a new West=
+on
+bug report, as the Nouveau patch blamed here should not make a difference
+AFAIU.
 
-I wish I had tested this sooner, but I wasn't sure if my results on the older
-desktop would reflect on newer Nvidia hardware.</pre>
+One more note: if you test reverting the blamed Nouveau patch, make sure yo=
+ur
+*both* kernels with and without are built by you and launched the same way,=
+ to
+make sure that the fbcon video mode is really the same on both. If the fbcon
+video mode is different, then that could mask the drmModeCrtcSetGamma issue=
+.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1401507713.Fa2b4.22388--
+--1401524583.603DB4.21637--
 
---===============0131976088==
+--===============0052639870==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -117,4 +148,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0131976088==--
+--===============0052639870==--
