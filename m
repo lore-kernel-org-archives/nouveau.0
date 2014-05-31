@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75761] weston-launch no output - black screen
-Date: Sat, 31 May 2014 08:23:03 +0000
-Message-ID: <bug-75761-8800-OUMsfNB03P@http.bugs.freedesktop.org/>
+Date: Sat, 31 May 2014 08:32:23 +0000
+Message-ID: <bug-75761-8800-CbGxaVCLPW@http.bugs.freedesktop.org/>
 References: <bug-75761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0052639870=="
+Content-Type: multipart/mixed; boundary="===============2074194472=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,124 +20,89 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0052639870==
-Content-Type: multipart/alternative; boundary="1401524583.603DB4.21637"; charset="us-ascii"
+--===============2074194472==
+Content-Type: multipart/alternative; boundary="1401525143.166F4.23869"; charset="us-ascii"
 
 
---1401524583.603DB4.21637
-Date: Sat, 31 May 2014 08:23:03 +0000
+--1401525143.166F4.23869
+Date: Sat, 31 May 2014 08:32:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75761
+https://bugs.freedesktop.org/show_bug.cgi?id=75761
 
---- Comment #28 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I wonder if there are two different bugs in play here.
+--- Comment #29 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hmm, a third remote possibility came to mind. If the timestamp delivered with
+the DRM pageflip event does not advance, I suppose Weston's fade-in animation
+might not advance either and therefore it never fades in. However this is hard
+for me to believe, as I think it would have caused problems with Xorg, too...
+wouldn't it?
 
-If you do get the vblank events right, like it sounds that Nerdopolis does
-indeed get, then does reverting the blamed nouveau kernel patch make any
-difference? I would be surprised if it does make a difference.
+Or maybe Xorg is only looking at the vblank counters, and you'd actually need a
+program using GLX_OML_sync_control to even see the timestamps?
 
-This other bug would be, that when Weston changes the video mode, it does n=
-ot
-call drmModeCrtcSetGamma. IIRC Michel D=C3=A4nzer told me, that not calling=
- that may
-lead to black output, if the color translations tables are all zero due not
-being explicitly set. So the main question here is, does Weston change the
-video mode, or does it use the mode that is already set for fbcon?
+One could check the timestamps by:
+weston_log("%s: time %u.%06u frame %u\n", __func__, sec, usec, frame);
+in compositor-drm.c page_flip_handler() function.
 
-Weston code base already has a call to drmModeCrtcSetGamma(), but it is used
-only for color managed outputs I think. Yet, it is an example of how to call
-it, so if someone having this problem could test that, it would be very use=
-ful.
-If missing this call is indeed the problem, I think it should be a new West=
-on
-bug report, as the Nouveau patch blamed here should not make a difference
-AFAIU.
+Mm, I'd like to see a weston log with that when you have the black screen
+problem.
 
-One more note: if you test reverting the blamed Nouveau patch, make sure yo=
-ur
-*both* kernels with and without are built by you and launched the same way,=
- to
-make sure that the fbcon video mode is really the same on both. If the fbcon
-video mode is different, then that could mask the drmModeCrtcSetGamma issue.
-
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401524583.603DB4.21637
-Date: Sat, 31 May 2014 08:23:03 +0000
+--1401525143.166F4.23869
+Date: Sat, 31 May 2014 08:32:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_REOPENED "
-   title=3D"REOPENED --- - weston-launch no output - black screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75761#c28">Commen=
-t # 28</a>
-              on <a class=3D"bz_bug_link=20
+   title="REOPENED --- - weston-launch no output - black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c29">Comment # 29</a>
+              on <a class="bz_bug_link 
           bz_status_REOPENED "
-   title=3D"REOPENED --- - weston-launch no output - black screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75761">bug 75761<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ppaalanen&#64;gmail.com" title=3D"Pekka Paalanen &lt;ppaalanen&#64;gmail.co=
-m&gt;"> <span class=3D"fn">Pekka Paalanen</span></a>
+   title="REOPENED --- - weston-launch no output - black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
+              from <span class="vcard"><a class="email" href="mailto:ppaalanen&#64;gmail.com" title="Pekka Paalanen &lt;ppaalanen&#64;gmail.com&gt;"> <span class="fn">Pekka Paalanen</span></a>
 </span></b>
-        <pre>I wonder if there are two different bugs in play here.
+        <pre>Hmm, a third remote possibility came to mind. If the timestamp delivered with
+the DRM pageflip event does not advance, I suppose Weston's fade-in animation
+might not advance either and therefore it never fades in. However this is hard
+for me to believe, as I think it would have caused problems with Xorg, too...
+wouldn't it?
 
-If you do get the vblank events right, like it sounds that Nerdopolis does
-indeed get, then does reverting the blamed nouveau kernel patch make any
-difference? I would be surprised if it does make a difference.
+Or maybe Xorg is only looking at the vblank counters, and you'd actually need a
+program using GLX_OML_sync_control to even see the timestamps?
 
-This other bug would be, that when Weston changes the video mode, it does n=
-ot
-call drmModeCrtcSetGamma. IIRC Michel D=C3=A4nzer told me, that not calling=
- that may
-lead to black output, if the color translations tables are all zero due not
-being explicitly set. So the main question here is, does Weston change the
-video mode, or does it use the mode that is already set for fbcon?
+One could check the timestamps by:
+weston_log(&quot;%s: time %u.%06u frame %u\n&quot;, __func__, sec, usec, frame);
+in compositor-drm.c page_flip_handler() function.
 
-Weston code base already has a call to drmModeCrtcSetGamma(), but it is used
-only for color managed outputs I think. Yet, it is an example of how to call
-it, so if someone having this problem could test that, it would be very use=
-ful.
-If missing this call is indeed the problem, I think it should be a new West=
-on
-bug report, as the Nouveau patch blamed here should not make a difference
-AFAIU.
-
-One more note: if you test reverting the blamed Nouveau patch, make sure yo=
-ur
-*both* kernels with and without are built by you and launched the same way,=
- to
-make sure that the fbcon video mode is really the same on both. If the fbcon
-video mode is different, then that could mask the drmModeCrtcSetGamma issue=
-.</pre>
+Mm, I'd like to see a weston log with that when you have the black screen
+problem.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1401524583.603DB4.21637--
+--1401525143.166F4.23869--
 
---===============0052639870==
+--===============2074194472==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +113,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0052639870==--
+--===============2074194472==--
