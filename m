@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74062] [NVE4] Artifacts in 3D games.
-Date: Sat, 31 May 2014 18:47:32 +0000
-Message-ID: <bug-74062-8800-4q6FE6D0Es@http.bugs.freedesktop.org/>
-References: <bug-74062-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75761] weston-launch no output - black screen
+Date: Sun, 01 Jun 2014 10:15:47 +0000
+Message-ID: <bug-75761-8800-j79VY3PGYM@http.bugs.freedesktop.org/>
+References: <bug-75761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0960702005=="
+Content-Type: multipart/mixed; boundary="===============1592575399=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74062-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +20,62 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0960702005==
-Content-Type: multipart/alternative; boundary="1401562051.BdCfE7bB0.4250"; charset="us-ascii"
+--===============1592575399==
+Content-Type: multipart/alternative; boundary="1401617747.2bcc5.18099"; charset="us-ascii"
 
 
---1401562051.BdCfE7bB0.4250
-Date: Sat, 31 May 2014 18:47:31 +0000
+--1401617747.2bcc5.18099
+Date: Sun, 1 Jun 2014 10:15:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=74062
+https://bugs.freedesktop.org/show_bug.cgi?id=75761
 
---- Comment #13 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
-(In reply to comment #12)
-> Wild guess - perhaps it's LTCG related ?
-> 
-> You can easily check if that's the case my setting compressed = false in
-> nvc0_miptree.c:nvc0_miptree_create.
+--- Comment #32 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #31)
+> Created attachment 100199 [details]
+> weston log with pixman
 
-Seems like, I just did what you suggested and all artifacts are gone now (just
-had to restart any OpenGL program after installing). So I confirm this
-workaround works for me.
-Thanks Emil.
+Something is seriously wrong here:
+[09:58:29.402] queueing pageflip failed: Permission denied
+
+But I see you have another weston session afterwards, which seems to run, but:
+[12:26:36.371] page_flip_handler: time 0.000000 frame 603
+[12:26:36.371] got pageflip event
+[12:26:36.388] page_flip_handler: time 0.000000 frame 603
+[12:26:36.388] got pageflip event
+[12:26:36.404] page_flip_handler: time 0.000000 frame 603
+[12:26:36.404] got pageflip event
+[12:26:36.421] page_flip_handler: time 0.000000 frame 603
+[12:26:36.421] got pageflip event
+[12:26:36.437] page_flip_handler: time 0.000000 frame 603
+[12:26:36.438] got pageflip event
+[12:26:36.454] page_flip_handler: time 0.000000 frame 603
+
+That means that the kernel DRM driver does not provide timestamps and it does
+not even advance the vblank counter(?) if I understood right.
+
+So at least for you, the problem is that the kernel DRM does not report proper
+pageflip timestamps. I would consider this as a kernel driver bug, but if the
+kernel developers insist, I suppose we could also hack around it in Weston by
+providing fake timestamps, disabling the Presentation extension (somewhat
+similar X11 Present, not yet merged) and yelling loudly. But I'd rather the
+driver got fixed.
+
+As far as I see, bad timestamps are enough to make Weston stay black (fade-in
+animation not advancing), yet appear to work just fine. So at least we (Weston
+devs) should detect when the kernel driver is faulty, and abort Weston.
+
+Weston, and also the intention in Wayland, is to rely on the proper pageflip
+timestamps from the kernel for timing... well, everything visual, so we really
+would like it to work.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401562051.BdCfE7bB0.4250
-Date: Sat, 31 May 2014 18:47:31 +0000
+--1401617747.2bcc5.18099
+Date: Sun, 1 Jun 2014 10:15:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,25 +87,52 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE4] Artifacts in 3D games."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062#c13">Comment # 13</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - weston-launch no output - black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c32">Comment # 32</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE4] Artifacts in 3D games."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062">bug 74062</a>
-              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
+          bz_status_REOPENED "
+   title="REOPENED --- - weston-launch no output - black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
+              from <span class="vcard"><a class="email" href="mailto:ppaalanen&#64;gmail.com" title="Pekka Paalanen &lt;ppaalanen&#64;gmail.com&gt;"> <span class="fn">Pekka Paalanen</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=74062#c12">comment #12</a>)
-<span class="quote">&gt; Wild guess - perhaps it's LTCG related ?
-&gt; 
-&gt; You can easily check if that's the case my setting compressed = false in
-&gt; nvc0_miptree.c:nvc0_miptree_create.</span >
+        <pre>(In reply to <a href="show_bug.cgi?id=75761#c31">comment #31</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=100199" name="attach_100199" title="weston log with pixman">attachment 100199</a> <a href="attachment.cgi?id=100199&amp;action=edit" title="weston log with pixman">[details]</a></span>
+&gt; weston log with pixman</span >
 
-Seems like, I just did what you suggested and all artifacts are gone now (just
-had to restart any OpenGL program after installing). So I confirm this
-workaround works for me.
-Thanks Emil.</pre>
+Something is seriously wrong here:
+[09:58:29.402] queueing pageflip failed: Permission denied
+
+But I see you have another weston session afterwards, which seems to run, but:
+[12:26:36.371] page_flip_handler: time 0.000000 frame 603
+[12:26:36.371] got pageflip event
+[12:26:36.388] page_flip_handler: time 0.000000 frame 603
+[12:26:36.388] got pageflip event
+[12:26:36.404] page_flip_handler: time 0.000000 frame 603
+[12:26:36.404] got pageflip event
+[12:26:36.421] page_flip_handler: time 0.000000 frame 603
+[12:26:36.421] got pageflip event
+[12:26:36.437] page_flip_handler: time 0.000000 frame 603
+[12:26:36.438] got pageflip event
+[12:26:36.454] page_flip_handler: time 0.000000 frame 603
+
+That means that the kernel DRM driver does not provide timestamps and it does
+not even advance the vblank counter(?) if I understood right.
+
+So at least for you, the problem is that the kernel DRM does not report proper
+pageflip timestamps. I would consider this as a kernel driver bug, but if the
+kernel developers insist, I suppose we could also hack around it in Weston by
+providing fake timestamps, disabling the Presentation extension (somewhat
+similar X11 Present, not yet merged) and yelling loudly. But I'd rather the
+driver got fixed.
+
+As far as I see, bad timestamps are enough to make Weston stay black (fade-in
+animation not advancing), yet appear to work just fine. So at least we (Weston
+devs) should detect when the kernel driver is faulty, and abort Weston.
+
+Weston, and also the intention in Wayland, is to rely on the proper pageflip
+timestamps from the kernel for timing... well, everything visual, so we really
+would like it to work.</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +144,9 @@ Thanks Emil.</pre>
     </body>
 </html>
 
---1401562051.BdCfE7bB0.4250--
+--1401617747.2bcc5.18099--
 
---===============0960702005==
+--===============1592575399==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +157,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0960702005==--
+--===============1592575399==--
