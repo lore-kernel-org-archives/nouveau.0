@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75761] weston-launch no output - black screen
-Date: Sun, 01 Jun 2014 10:29:04 +0000
-Message-ID: <bug-75761-8800-69OTzEsVbm@http.bugs.freedesktop.org/>
+Date: Sun, 01 Jun 2014 12:59:00 +0000
+Message-ID: <bug-75761-8800-Rhi1OYwCVN@http.bugs.freedesktop.org/>
 References: <bug-75761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0484205493=="
+Content-Type: multipart/mixed; boundary="===============0676436436=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,26 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0484205493==
-Content-Type: multipart/alternative; boundary="1401618544.1c5DBF5.21474"; charset="us-ascii"
+--===============0676436436==
+Content-Type: multipart/alternative; boundary="1401627540.5Edba2B4.29052"; charset="us-ascii"
 
 
---1401618544.1c5DBF5.21474
-Date: Sun, 1 Jun 2014 10:29:04 +0000
+--1401627540.5Edba2B4.29052
+Date: Sun, 1 Jun 2014 12:59:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75761
 
---- Comment #33 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I filed bug #79502 for adding the detection to Weston.
+--- Comment #34 from nerdopolis1-H+0wwilmMs3R7s880joybQ@public.gmane.org ---
+Just an FYI, I think the
+
+[09:58:29.402] queueing pageflip failed: Permission denied
+
+came from when I killed the previous Weston session, to have the
+waylandloginmanager reload Weston after I recompiled it with the diag lines on
+my live session. I was in another TTY
+
+That was the only time I ever seen that happen so far
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401618544.1c5DBF5.21474
-Date: Sun, 1 Jun 2014 10:29:04 +0000
+--1401627540.5Edba2B4.29052
+Date: Sun, 1 Jun 2014 12:59:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,17 +61,22 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - weston-launch no output - black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c33">Comment # 33</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c34">Comment # 34</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - weston-launch no output - black screen"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
-              from <span class="vcard"><a class="email" href="mailto:ppaalanen&#64;gmail.com" title="Pekka Paalanen &lt;ppaalanen&#64;gmail.com&gt;"> <span class="fn">Pekka Paalanen</span></a>
+              from <span class="vcard"><a class="email" href="mailto:nerdopolis1&#64;verizon.net" title="nerdopolis1&#64;verizon.net">nerdopolis1&#64;verizon.net</a>
 </span></b>
-        <pre>I filed <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Weston needs to detect when DRM pageflip timestamps are not supported"
-   href="show_bug.cgi?id=79502">bug #79502</a> for adding the detection to Weston.</pre>
+        <pre>Just an FYI, I think the
+
+[09:58:29.402] queueing pageflip failed: Permission denied
+
+came from when I killed the previous Weston session, to have the
+waylandloginmanager reload Weston after I recompiled it with the diag lines on
+my live session. I was in another TTY
+
+That was the only time I ever seen that happen so far</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +88,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1401618544.1c5DBF5.21474--
+--1401627540.5Edba2B4.29052--
 
---===============0484205493==
+--===============0676436436==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0484205493==--
+--===============0676436436==--
