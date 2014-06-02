@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 79532] [NV50] errors with DMA PUSHER and idle channel
-Date: Mon, 02 Jun 2014 11:31:20 +0000
-Message-ID: <bug-79532-8800-INKv1pVCuv@http.bugs.freedesktop.org/>
+Date: Mon, 02 Jun 2014 12:52:28 +0000
+Message-ID: <bug-79532-8800-0LfFUwQXFI@http.bugs.freedesktop.org/>
 References: <bug-79532-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1774821405=="
+Content-Type: multipart/mixed; boundary="===============2056652544=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-79532-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,33 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1774821405==
-Content-Type: multipart/alternative; boundary="1401708679.c3dA1.28217"; charset="us-ascii"
+--===============2056652544==
+Content-Type: multipart/alternative; boundary="1401713548.C74FfE7D0.13534"; charset="us-ascii"
 
 
---1401708679.c3dA1.28217
-Date: Mon, 2 Jun 2014 11:31:19 +0000
+--1401713548.C74FfE7D0.13534
+Date: Mon, 2 Jun 2014 12:52:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=79532
 
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Quick look at the timestamps indicate that there is a long time between the
-system startup and the issue. Perhaps you can take a look into what exactly is
-causing the problem.
-
-[  114.802767] systemd-journald[120] ...
-[ 1340.694566] nouveau E[   PFIFO] ...
-[ 2965.025771] nouveau E[   PFIFO] ...
-...
+--- Comment #2 from mattia.b89 <mattia.b89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+yes, it happens some time after the login without any trace in the journal or
+dmesg
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401708679.c3dA1.28217
-Date: Mon, 2 Jun 2014 11:31:19 +0000
+--1401713548.C74FfE7D0.13534
+Date: Mon, 2 Jun 2014 12:52:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,21 +54,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV50] errors with DMA PUSHER and idle channel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79532#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79532#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV50] errors with DMA PUSHER and idle channel"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=79532">bug 79532</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:mattia.b89&#64;gmail.com" title="mattia.b89 &lt;mattia.b89&#64;gmail.com&gt;"> <span class="fn">mattia.b89</span></a>
 </span></b>
-        <pre>Quick look at the timestamps indicate that there is a long time between the
-system startup and the issue. Perhaps you can take a look into what exactly is
-causing the problem.
-
-[  114.802767] systemd-journald[120] ...
-[ 1340.694566] nouveau E[   PFIFO] ...
-[ 2965.025771] nouveau E[   PFIFO] ...
-...</pre>
+        <pre>yes, it happens some time after the login without any trace in the journal or
+dmesg</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +74,9 @@ causing the problem.
     </body>
 </html>
 
---1401708679.c3dA1.28217--
+--1401713548.C74FfE7D0.13534--
 
---===============1774821405==
+--===============2056652544==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1774821405==--
+--===============2056652544==--
