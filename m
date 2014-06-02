@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79532] [NV50] errors with DMA PUSHER and idle channel
-Date: Mon, 02 Jun 2014 12:52:28 +0000
-Message-ID: <bug-79532-8800-0LfFUwQXFI@http.bugs.freedesktop.org/>
-References: <bug-79532-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72978] [NV92] nouveau E[ PFIFO][0000:01:00.0]
+	CACHE_ERROR
+Date: Mon, 02 Jun 2014 13:01:54 +0000
+Message-ID: <bug-72978-8800-fM9maXIv96@http.bugs.freedesktop.org/>
+References: <bug-72978-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2056652544=="
+Content-Type: multipart/mixed; boundary="===============0466393509=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79532-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72978-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2056652544==
-Content-Type: multipart/alternative; boundary="1401713548.C74FfE7D0.13534"; charset="us-ascii"
+--===============0466393509==
+Content-Type: multipart/alternative; boundary="1401714114.cf3D2.15318"; charset="us-ascii"
 
 
---1401713548.C74FfE7D0.13534
-Date: Mon, 2 Jun 2014 12:52:28 +0000
+--1401714114.cf3D2.15318
+Date: Mon, 2 Jun 2014 13:01:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=79532
+https://bugs.freedesktop.org/show_bug.cgi?id=72978
 
---- Comment #2 from mattia.b89 <mattia.b89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-yes, it happens some time after the login without any trace in the journal or
-dmesg
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+
+
+*** This bug has been marked as a duplicate of bug 70390 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401713548.C74FfE7D0.13534
-Date: Mon, 2 Jun 2014 12:52:28 +0000
+--1401714114.cf3D2.15318
+Date: Mon, 2 Jun 2014 13:01:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -48,21 +57,53 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NV92] nouveau E[ PFIFO][0000:01:00.0] CACHE_ERROR"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72978">bug 72978</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV50] errors with DMA PUSHER and idle channel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79532#c2">Comment # 2</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NV92] nouveau E[ PFIFO][0000:01:00.0] CACHE_ERROR"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72978#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV50] errors with DMA PUSHER and idle channel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79532">bug 79532</a>
-              from <span class="vcard"><a class="email" href="mailto:mattia.b89&#64;gmail.com" title="mattia.b89 &lt;mattia.b89&#64;gmail.com&gt;"> <span class="fn">mattia.b89</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NV92] nouveau E[ PFIFO][0000:01:00.0] CACHE_ERROR"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72978">bug 72978</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>yes, it happens some time after the login without any trace in the journal or
-dmesg</pre>
+        <pre>
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV84] Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
+   href="show_bug.cgi?id=70390">bug 70390</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +115,9 @@ dmesg</pre>
     </body>
 </html>
 
---1401713548.C74FfE7D0.13534--
+--1401714114.cf3D2.15318--
 
---===============2056652544==
+--===============0466393509==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +128,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2056652544==--
+--===============0466393509==--
