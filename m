@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70390] [NV84] Repeated system crashes under graphics
- load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]
-Date: Mon, 02 Jun 2014 13:01:54 +0000
-Message-ID: <bug-70390-8800-54qMcLrimc@http.bugs.freedesktop.org/>
-References: <bug-70390-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 79532] [NV50] errors with DMA PUSHER and idle channel
+Date: Mon, 02 Jun 2014 13:02:16 +0000
+Message-ID: <bug-79532-8800-zPD81gkq2l@http.bugs.freedesktop.org/>
+References: <bug-79532-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2072413093=="
+Content-Type: multipart/mixed; boundary="===============1746306888=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70390-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-79532-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2072413093==
-Content-Type: multipart/alternative; boundary="1401714114.c17c9.15318"; charset="us-ascii"
+--===============1746306888==
+Content-Type: multipart/alternative; boundary="1401714135.AadEca12.15318"; charset="us-ascii"
 
 
---1401714114.c17c9.15318
-Date: Mon, 2 Jun 2014 13:01:54 +0000
+--1401714135.AadEca12.15318
+Date: Mon, 2 Jun 2014 13:02:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70390
+https://bugs.freedesktop.org/show_bug.cgi?id=79532
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |mikhail.v.gavrilov-Re5JQEeQqe8@public.gmane.org
-                   |                            |m
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
 
---- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-*** Bug 72978 has been marked as a duplicate of this bug. ***
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+
+
+*** This bug has been marked as a duplicate of bug 70390 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401714114.c17c9.15318
-Date: Mon, 2 Jun 2014 13:01:54 +0000
+--1401714135.AadEca12.15318
+Date: Mon, 2 Jun 2014 13:02:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,9 +59,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV84] Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70390">bug 70390</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NV50] errors with DMA PUSHER and idle channel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79532">bug 79532</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -70,29 +71,38 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>mikhail.v.gavrilov&#64;gmail.com
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV84] Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70390#c21">Comment # 21</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NV50] errors with DMA PUSHER and idle channel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79532#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV84] Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70390">bug 70390</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NV50] errors with DMA PUSHER and idle channel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79532">bug 79532</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [NV92] nouveau E[ PFIFO][0000:01:00.0] CACHE_ERROR"
-   href="show_bug.cgi?id=72978">Bug 72978</a> has been marked as a duplicate of this bug. ***</pre>
+        <pre>
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV84] Repeated system crashes under graphics load, E[PFIFO] DMA_PUSHER and lots of E[PGRAPH]"
+   href="show_bug.cgi?id=70390">bug 70390</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -104,9 +114,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1401714114.c17c9.15318--
+--1401714135.AadEca12.15318--
 
---===============2072413093==
+--===============1746306888==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -117,4 +127,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2072413093==--
+--===============1746306888==--
