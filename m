@@ -1,80 +1,53 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH v2 3/4] nvc0/ir: Handle OP_BFIND when folding
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH v2 1/4] nvc0/ir: clear subop when folding
 	constant expressions
-Date: Tue, 3 Jun 2014 17:05:08 -0400
-Message-ID: <CAKb7UvhyoxxoRKmSct+Rau5hGsgcaOUsWk5OmGWpgrmiy718xQ@mail.gmail.com>
+Date: Tue, 3 Jun 2014 17:06:08 -0400
+Message-ID: <CAKb7Uvh85MNDVfuZ6d4hy_wEhLamcV0ptxdCWFL2FteBwHCYOQ@mail.gmail.com>
 References: <1401829084-4499-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
- <1401829084-4499-4-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+ <1401829084-4499-2-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1401829084-4499-4-git-send-email-tobias.johannes.klausmann@mni.thm.de>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1401829084-4499-2-git-send-email-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 On Tue, Jun 3, 2014 at 4:58 PM, Tobias Klausmann
-<tobias.johannes.klausmann@mni.thm.de> wrote:
-> Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
+<tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> wrote:
+> Some operations (e.g. OP_MUL/OP_MAD/OP_EXTBF might have a subop set.
+> After folding, make sure that it is cleared
+>
+> Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+
+Reviewed-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+
 > ---
->  .../drivers/nouveau/codegen/nv50_ir_peephole.cpp       | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+>  src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp | 1 +
+>  1 file changed, 1 insertion(+)
 >
 > diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
-> index a214ffc..c497335 100644
+> index 1a2c2e6..58092f4 100644
 > --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
 > +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
-> @@ -948,6 +948,24 @@ ConstantFolding::opnd(Instruction *i, ImmediateValue &imm0, int s)
->     case OP_EX2:
->        unary(i, imm0);
->        break;
-> +   case OP_BFIND: {
-> +      int32_t res;
-> +      switch (i->dType) {
-> +      case TYPE_S32:
-> +         res = util_last_bit_signed(imm0.reg.data.s32) - 1; break;
-
-The style elsewhere is to do
-
-case TYPE_S32: foo; break;
-
-if it fits. Otherwise put the break on a separate line.
-
-> +      case TYPE_U32:
-> +         res = util_last_bit(imm0.reg.data.u32) -1; break;
-
-Missing space between "-" and "1".
-
-> +      default:
-> +         return;
-> +      }
-> +      if ((i->subOp ==  NV50_IR_SUBOP_BFIND_SAMT) && (res >= 0))
-
-No need for the extra parens. && comes after ==.
-
-> +         res = 31 - res;
-> +      i->setSrc(0, new_ImmediateValue(i->bb->getProgram(), (uint32_t)res));
-
-Why the typecast?
-
-> +      i->setSrc(1, NULL);
-> +      i->op = OP_MOV;
-> +      i->subOp = 0;
-> +      break;
-> +   }
->     default:
->        return;
+> @@ -563,6 +563,7 @@ ConstantFolding::expr(Instruction *i,
+>     } else {
+>        i->op = i->saturate ? OP_SAT : OP_MOV; /* SAT handled by unary() */
 >     }
+> +   i->subOp = 0;
+>  }
+>
+>  void
 > --
 > 1.8.4.5
 >
