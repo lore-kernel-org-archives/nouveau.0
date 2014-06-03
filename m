@@ -1,8 +1,7 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: [PATCH v3 3/4] nvc0/ir: Handle OP_BFIND when folding
-	constant expressions
-Date: Wed,  4 Jun 2014 00:35:49 +0200
-Message-ID: <1401834950-20257-4-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH v3 0/4] Constant folding of new Instructions
+Date: Tue, 3 Jun 2014 18:44:50 -0400
+Message-ID: <CAKb7UviEM67FzYwQiv4oXvqP2MmYYmR9JqzpQFZSGbfNpyEz-Q@mail.gmail.com>
 References: <1401834950-20257-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -18,43 +17,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
+To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
----
-V3: Use BuildUtil for the Immediate instead of a type conversion
+Series is Reviewed-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 
- .../drivers/nouveau/codegen/nv50_ir_peephole.cpp        | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+There are a few minor formatting items that I'll take care of before
+pushing this out later tonight... take a look at the changes I made
+for the future :)
 
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
-index 538e745..e4d91d7 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
-@@ -944,6 +944,23 @@ ConstantFolding::opnd(Instruction *i, ImmediateValue &imm0, int s)
-    case OP_EX2:
-       unary(i, imm0);
-       break;
-+   case OP_BFIND: {
-+      int32_t res;
-+      switch (i->dType) {
-+      case TYPE_S32: res = util_last_bit_signed(imm0.reg.data.s32) - 1; break;
-+      case TYPE_U32: res = util_last_bit(imm0.reg.data.u32) - 1; break;
-+      default:
-+         return;
-+      }
-+      if (i->subOp ==  NV50_IR_SUBOP_BFIND_SAMT && res >= 0)
-+         res = 31 - res;
-+      bld.setPosition(i, false); /* make sure bld is init'ed */
-+      i->setSrc(0, bld.mkImm(res));
-+      i->setSrc(1, NULL);
-+      i->op = OP_MOV;
-+      i->subOp = 0;
-+      break;
-+   }
-    default:
-       return;
-    }
--- 
-1.8.4.5
+On Tue, Jun 3, 2014 at 6:35 PM, Tobias Klausmann
+<tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> wrote:
+> Yet another try for constant folding of Instructions for nvc0.
+>
+> Please Review this again! (Hopefully the last time ;-) )
+>
+>
+> Tobias Klausmann (4):
+>   nvc0/ir: clear subop when folding constant expressions
+>   nvc0/ir: Handle reverse subop for OP_EXTBF when folding constant
+>     expressions
+>   nvc0/ir: Handle OP_BFIND when folding constant expressions
+>   nvc0/ir: Handle OP_POPCNT when folding constant expressions
+>
+>  .../drivers/nouveau/codegen/nv50_ir_peephole.cpp   | 41 ++++++++++++++++++++--
+>  1 file changed, 39 insertions(+), 2 deletions(-)
+>
+> --
+> 1.8.4.5
+>
