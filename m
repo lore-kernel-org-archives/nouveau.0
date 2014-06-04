@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79611] New: [NVC0] TRAP ch 4 [0x003fa28000 bzflag]
-Date: Wed, 04 Jun 2014 02:33:24 +0000
-Message-ID: <bug-79611-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 79611] [NVC0] TRAP ch 4 [0x003fa28000 bzflag]
+Date: Wed, 04 Jun 2014 02:40:13 +0000
+Message-ID: <bug-79611-8800-VhjvRHIsFx@http.bugs.freedesktop.org/>
+References: <bug-79611-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2133145260=="
+Content-Type: multipart/mixed; boundary="===============0453609382=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-79611-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,49 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2133145260==
-Content-Type: multipart/alternative; boundary="1401849204.14DCcdfF0.28035"; charset="us-ascii"
+--===============0453609382==
+Content-Type: multipart/alternative; boundary="1401849613.AEE5A1.29677"; charset="us-ascii"
 
 
---1401849204.14DCcdfF0.28035
-Date: Wed, 4 Jun 2014 02:33:24 +0000
+--1401849613.AEE5A1.29677
+Date: Wed, 4 Jun 2014 02:40:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=79611
 
-          Priority: medium
-            Bug ID: 79611
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NVC0] TRAP ch 4 [0x003fa28000 bzflag]
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org
-               URL: http://bzflag.org/downloads
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: 10.1
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Did this happen with earlier versions of mesa? If you can reproduce at will, an
+apitrace would be nice. (30 mins would be ridiculous though.) I'm not aware of
+any opcode emission bugs with nvc0 cards.
 
-Created attachment 100377
-  --> https://bugs.freedesktop.org/attachment.cgi?id=100377&action=edit
-dmesg of nouveau before during and after the crash
+Another thing to try would be to make a debug mesa build, and run the game with
+NV50_PROG_OPTIMIZE=0 -- that turns off all shader code optimizations, which
+would make it even less likely to hit a "weird" instruction emission situation.
 
-Pro-longed play of BZFlag or joining a very popular room for < 30mins where
-there are a lot of explosions will cause nouveau to crash. There is brief
-jitter followed by a prompt coredump.Attached is the dmesg log and the game for
-use as a test case.
-
-I am using the latest 3.14.4 kernel with mesa 10.1 on Arch.
+This might also be some vram corruption/buffer copy issues/something else
+unrelated to opcode emission...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1401849204.14DCcdfF0.28035
-Date: Wed, 4 Jun 2014 02:33:24 +0000
+--1401849613.AEE5A1.29677
+Date: Wed, 4 Jun 2014 02:40:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,104 +56,29 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC0] TRAP ch 4 [0x003fa28000 bzflag]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79611">79611</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVC0] TRAP ch 4 [0x003fa28000 bzflag]
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>anonymous&#64;dodgeit.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>URL</th>
-          <td>http://bzflag.org/downloads
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>10.1
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=100377" name="attach_100377" title="dmesg of nouveau before during and after the crash">attachment 100377</a> <a href="attachment.cgi?id=100377&amp;action=edit" title="dmesg of nouveau before during and after the crash">[details]</a></span>
-dmesg of nouveau before during and after the crash
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC0] TRAP ch 4 [0x003fa28000 bzflag]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79611#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC0] TRAP ch 4 [0x003fa28000 bzflag]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79611">bug 79611</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Did this happen with earlier versions of mesa? If you can reproduce at will, an
+apitrace would be nice. (30 mins would be ridiculous though.) I'm not aware of
+any opcode emission bugs with nvc0 cards.
 
-Pro-longed play of BZFlag or joining a very popular room for &lt; 30mins where
-there are a lot of explosions will cause nouveau to crash. There is brief
-jitter followed by a prompt coredump.Attached is the dmesg log and the game for
-use as a test case.
+Another thing to try would be to make a debug mesa build, and run the game with
+NV50_PROG_OPTIMIZE=0 -- that turns off all shader code optimizations, which
+would make it even less likely to hit a &quot;weird&quot; instruction emission situation.
 
-I am using the latest 3.14.4 kernel with mesa 10.1 on Arch.</pre>
+This might also be some vram corruption/buffer copy issues/something else
+unrelated to opcode emission...</pre>
         </div>
       </p>
       <hr>
@@ -177,9 +90,9 @@ I am using the latest 3.14.4 kernel with mesa 10.1 on Arch.</pre>
     </body>
 </html>
 
---1401849204.14DCcdfF0.28035--
+--1401849613.AEE5A1.29677--
 
---===============2133145260==
+--===============0453609382==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -190,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2133145260==--
+--===============0453609382==--
