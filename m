@@ -1,11 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79701] New: [NVA0] GPU lockup when playing video
-	with VDPAU
-Date: Thu, 05 Jun 2014 19:40:50 +0000
-Message-ID: <bug-79701-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Proper gl_SampleMask output
+Date: Thu, 5 Jun 2014 18:06:30 -0400
+Message-ID: <CAKb7UvgMJ=2v+fA3B2X=pX7Fn==fDdoL6WnQyW9ncZp7WD-OLQ@mail.gmail.com>
+References: <CAKb7Uvi55tkS2kAR6J=s0e0p8em0-d6dWsT1=RCVHEeHrX=2UQ@mail.gmail.com>
+ <CAKb7UvizRHC2pByjyQEFk9gd=r4=sZms78uBL=_CNbg3XOBkAg@mail.gmail.com>
+ <20140430160255.GC8948@parker.nvidia.com>
+ <CAKb7UvgctF61LoemFELsJAWUZF2MprmHUX87913R__6T5Ghjow@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0338855939=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvgctF61LoemFELsJAWUZF2MprmHUX87913R__6T5Ghjow-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,348 +20,184 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Hi Andy,
 
---===============0338855939==
-Content-Type: multipart/alternative; boundary="1401997250.8BF8E1C1.21026"; charset="us-ascii"
+Recently someone submitted a new test for sample mask output which
+actually makes it seem like the steps I had outlined were already
+sufficient for it to work, and there's probably something else going
+wrong, causing the original test to fail. But do let me know if you
+happened to find some missing bit.
+
+Thanks,
+
+  -ilia
 
 
---1401997250.8BF8E1C1.21026
-Date: Thu, 5 Jun 2014 19:40:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=79701
-
-          Priority: medium
-            Bug ID: 79701
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NVA0] GPU lockup when playing video with VDPAU
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: support.intranet-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
-
-Created attachment 100486
-  --> https://bugs.freedesktop.org/attachment.cgi?id=100486&action=edit
-dmesg after the GPU lock up
-
-Hello,
-I installed the vdpau mesa drivers for ubuntu trusty, extracted the firmware
-from the blob and tried playing a video with mplayer. It played ok for a few
-minutes (albeit with noticeable artifacts), then the gpu locked up - I could
-only switch to a vt and reboot. The video codec is H264 - MPEG-4 AVC (part 10),
-1920x802.
-
-$ ls /lib/firmware/nouveau
-nv84_bsp  nv84_bsp-h264  nv84_vp  nv84_vp-h264-1  nv84_vp-h264-2 
-nv84_vp-mpeg12  nv84_vp-vc1-1  nv84_vp-vc1-2  nv84_vp-vc1-3  nv84_xuc00f 
-nv84_xuc103
-
-$ vdpauinfo
-display: :0   screen: 0
-API version: 1
-Information string: G3DVL VDPAU Driver Shared Library version 1.0
-
-Video surface:
-
-name   width height types
--------------------------------------------
-420     8192  8192  NV12 YV12 
-422     8192  8192  UYVY YUYV 
-444     8192  8192  Y8U8V8A8 V8U8Y8A8 
-
-Decoder capabilities:
-
-name               level macbs width height
--------------------------------------------
-MPEG1                 0 16384  2048  2048
-MPEG2_SIMPLE          3 16384  2048  2048
-MPEG2_MAIN            3 16384  2048  2048
-H264_BASELINE        41 16384  2048  2048
-H264_MAIN            41 16384  2048  2048
-H264_HIGH            41 16384  2048  2048
-
-Output surface:
-
-name              width height nat types
-----------------------------------------------------
-B8G8R8A8          8192  8192    y  NV12 YV12 UYVY YUYV Y8U8V8A8 V8U8Y8A8 
-R8G8B8A8          8192  8192    y  NV12 YV12 UYVY YUYV Y8U8V8A8 V8U8Y8A8 
-R10G10B10A2       8192  8192    y  NV12 YV12 UYVY YUYV Y8U8V8A8 V8U8Y8A8 
-B10G10R10A2       8192  8192    y  NV12 YV12 UYVY YUYV Y8U8V8A8 V8U8Y8A8 
-
-Bitmap surface:
-
-name              width height
-------------------------------
-B8G8R8A8          8192  8192
-R8G8B8A8          8192  8192
-R10G10B10A2       8192  8192
-B10G10R10A2       8192  8192
-A8                8192  8192
-
-Video mixer:
-
-feature name                    sup
-------------------------------------
-DEINTERLACE_TEMPORAL             y
-DEINTERLACE_TEMPORAL_SPATIAL     -
-INVERSE_TELECINE                 -
-NOISE_REDUCTION                  y
-SHARPNESS                        y
-LUMA_KEY                         -
-HIGH QUALITY SCALING - L1        -
-HIGH QUALITY SCALING - L2        -
-HIGH QUALITY SCALING - L3        -
-HIGH QUALITY SCALING - L4        -
-HIGH QUALITY SCALING - L5        -
-HIGH QUALITY SCALING - L6        -
-HIGH QUALITY SCALING - L7        -
-HIGH QUALITY SCALING - L8        -
-HIGH QUALITY SCALING - L9        -
-
-parameter name                  sup      min      max
------------------------------------------------------
-VIDEO_SURFACE_WIDTH              y        48     2048
-VIDEO_SURFACE_HEIGHT             y        48     2048
-CHROMA_TYPE                      y  
-LAYERS                           y         0        4
-
-attribute name                  sup      min      max
------------------------------------------------------
-BACKGROUND_COLOR                 y  
-CSC_MATRIX                       y  
-NOISE_REDUCTION_LEVEL            y      0.00     1.00
-SHARPNESS_LEVEL                  y     -1.00     1.00
-LUMA_KEY_MIN_LUMA                y  
-LUMA_KEY_MAX_LUMA                y
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1401997250.8BF8E1C1.21026
-Date: Thu, 5 Jun 2014 19:40:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA0] GPU lockup when playing video with VDPAU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79701">79701</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVA0] GPU lockup when playing video with VDPAU
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>support.intranet&#64;libero.it
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=100486" name="attach_100486" title="dmesg after the GPU lock up">attachment 100486</a> <a href="attachment.cgi?id=100486&amp;action=edit" title="dmesg after the GPU lock up">[details]</a></span>
-dmesg after the GPU lock up
-
-Hello,
-I installed the vdpau mesa drivers for ubuntu trusty, extracted the firmware
-from the blob and tried playing a video with mplayer. It played ok for a few
-minutes (albeit with noticeable artifacts), then the gpu locked up - I could
-only switch to a vt and reboot. The video codec is H264 - MPEG-4 AVC (part 10),
-1920x802.
-
-$ ls /lib/firmware/nouveau
-nv84_bsp  nv84_bsp-h264  nv84_vp  nv84_vp-h264-1  nv84_vp-h264-2 
-nv84_vp-mpeg12  nv84_vp-vc1-1  nv84_vp-vc1-2  nv84_vp-vc1-3  nv84_xuc00f 
-nv84_xuc103
-
-$ vdpauinfo
-display: :0   screen: 0
-API version: 1
-Information string: G3DVL VDPAU Driver Shared Library version 1.0
-
-Video surface:
-
-name   width height types
--------------------------------------------
-420     8192  8192  NV12 YV12 
-422     8192  8192  UYVY YUYV 
-444     8192  8192  Y8U8V8A8 V8U8Y8A8 
-
-Decoder capabilities:
-
-name               level macbs width height
--------------------------------------------
-MPEG1                 0 16384  2048  2048
-MPEG2_SIMPLE          3 16384  2048  2048
-MPEG2_MAIN            3 16384  2048  2048
-H264_BASELINE        41 16384  2048  2048
-H264_MAIN            41 16384  2048  2048
-H264_HIGH            41 16384  2048  2048
-
-Output surface:
-
-name              width height nat types
-----------------------------------------------------
-B8G8R8A8          8192  8192    y  NV12 YV12 UYVY YUYV Y8U8V8A8 V8U8Y8A8 
-R8G8B8A8          8192  8192    y  NV12 YV12 UYVY YUYV Y8U8V8A8 V8U8Y8A8 
-R10G10B10A2       8192  8192    y  NV12 YV12 UYVY YUYV Y8U8V8A8 V8U8Y8A8 
-B10G10R10A2       8192  8192    y  NV12 YV12 UYVY YUYV Y8U8V8A8 V8U8Y8A8 
-
-Bitmap surface:
-
-name              width height
-------------------------------
-B8G8R8A8          8192  8192
-R8G8B8A8          8192  8192
-R10G10B10A2       8192  8192
-B10G10R10A2       8192  8192
-A8                8192  8192
-
-Video mixer:
-
-feature name                    sup
-------------------------------------
-DEINTERLACE_TEMPORAL             y
-DEINTERLACE_TEMPORAL_SPATIAL     -
-INVERSE_TELECINE                 -
-NOISE_REDUCTION                  y
-SHARPNESS                        y
-LUMA_KEY                         -
-HIGH QUALITY SCALING - L1        -
-HIGH QUALITY SCALING - L2        -
-HIGH QUALITY SCALING - L3        -
-HIGH QUALITY SCALING - L4        -
-HIGH QUALITY SCALING - L5        -
-HIGH QUALITY SCALING - L6        -
-HIGH QUALITY SCALING - L7        -
-HIGH QUALITY SCALING - L8        -
-HIGH QUALITY SCALING - L9        -
-
-parameter name                  sup      min      max
------------------------------------------------------
-VIDEO_SURFACE_WIDTH              y        48     2048
-VIDEO_SURFACE_HEIGHT             y        48     2048
-CHROMA_TYPE                      y  
-LAYERS                           y         0        4
-
-attribute name                  sup      min      max
------------------------------------------------------
-BACKGROUND_COLOR                 y  
-CSC_MATRIX                       y  
-NOISE_REDUCTION_LEVEL            y      0.00     1.00
-SHARPNESS_LEVEL                  y     -1.00     1.00
-LUMA_KEY_MIN_LUMA                y  
-LUMA_KEY_MAX_LUMA                y</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1401997250.8BF8E1C1.21026--
-
---===============0338855939==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0338855939==--
+On Wed, Apr 30, 2014 at 12:10 PM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+> Great, thanks! I've looked at a bunch more shaders (unrelated to this)
+> in the meanwhile, and I'm pretty sure the extra FMA business is
+> totally unrelated to the issue at hand. It appears that the NVIDIA
+> driver generates shaders that are capable of transforming the output
+> coordinates arbitrarily, whereas mesa-generated shaders (and by
+> extension, nouveau's) only put in the specific needs -- e.g. if it
+> only needs to be able to invert Y, then only the Y coordinate will be
+> affected by the FMA.
+>
+> On Wed, Apr 30, 2014 at 12:02 PM, Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+>> Hi Ilia.  I'll take a look and see what I can find out.
+>>
+>> Thanks,
+>> - Andy
+>>
+>>
+>> On Wed, Apr 23, 2014 at 05:03:17PM -0700, Ilia Mirkin wrote:
+>>> On Wed, Apr 23, 2014 at 6:22 PM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+>>> > Hello,
+>>> >
+>>> > I've been trying to add ARB_sample_shading support to nouveau, and am
+>>> > being defeated by the gl_SampleMask tests. Everything else works fine.
+>>> > (And naturally the tests pass with the proprietary driver.) I'm trying
+>>> > to do this for both GT21x, as well as GF100+.
+>>> >
+>>> > In the GT21x case, it seems like the low bit of method 0x1928 needs to
+>>> > be set (as well as the second-to-lowest bit), for GF100+, the low bit
+>>> > of the last dword of the shader header needs to be set.
+>>> >
+>>> > But exactly which register is the output supposed to go into? It looks
+>>> > like with the proprietary driver, r0..r3 get the first color output,
+>>> > and r4 gets the sample mask. However the way that things are set up
+>>> > with nouveau, r4..r7 get the first color output (and that part works
+>>> > fine). But where should the sample mask go at the end of the fragment
+>>> > program? r0? r8? (I've tried all of those with minimal effect.)
+>>> > Perhaps there's more configuration that I'm missing regarding the
+>>> > sample mask? Also, how does this interact with the frag depth (which
+>>> > also gets implicitly assigned based on color outputs)?
+>>>
+>>> As a clarification to the r0..r3 vs r4..r7 for first color output,
+>>> I've changed things around to ensure that the first color output ends
+>>> up in r0..r3 in the nouveau shader too. The shader generated by
+>>> nouveau is:
+>>>
+>>> HDR[00] = 0x00021462
+>>> HDR[04] = 0x00000000
+>>> HDR[08] = 0x00000000
+>>> HDR[0c] = 0x00000000
+>>> HDR[10] = 0x00000000
+>>> HDR[14] = 0xf0000000
+>>> HDR[18] = 0x00000000
+>>> HDR[1c] = 0x00000000
+>>> HDR[20] = 0x00000000
+>>> HDR[24] = 0x00000000
+>>> HDR[28] = 0x00000000
+>>> HDR[2c] = 0x00000000
+>>> HDR[30] = 0x00000000
+>>> HDR[34] = 0x00000000
+>>> HDR[38] = 0x00000000
+>>> HDR[3c] = 0x00000000
+>>> HDR[40] = 0x00000000
+>>> HDR[44] = 0x00000000
+>>> HDR[48] = 0x0000000f
+>>> HDR[4c] = 0x00000001
+>>> shader binary code (0x80 bytes):
+>>> 42e04237 22804280 fff01c00 c07e0070 fff05c00 c07e0074 10009de4 28004000
+>>> 00105c00 30044000 01201c84 14060000 04001c02 10408102 05205c84 14060000
+>>> 720042e7 22e20042 04105c02 10040404 04011c83 68000000 0000dde2 18fe0000
+>>> 00001de2 18000000 0c005de4 28000000 00009de2 18000000 00001de7 80000000
+>>>
+>>> which, with "nvdisas -b SM30 -raw" decodes to
+>>>
+>>>         /*0008*/                IPA.PASS R0, a[0x70], RZ;
+>>>         /*0010*/                IPA.PASS R1, a[0x74], RZ;
+>>>         /*0018*/                MOV R2, c[0x0][0x4];
+>>>         /*0020*/                FFMA R1, R1, c[0x0][0x0], R2;
+>>>         /*0028*/                F2I.S32.F32.TRUNC R0, R0;
+>>>         /*0030*/                IMUL32I.U32.U32 R0, R0, 0x10204081;
+>>>         /*0038*/                F2I.S32.F32.TRUNC R1, R1;
+>>>         /*0048*/                IMUL32I.U32.U32 R1, R1, 0x1010101;
+>>>         /*0050*/                LOP.XOR R4, R0, R1;
+>>>         /*0058*/                MOV32I R3, 0x3f800000;
+>>>         /*0060*/                MOV32I R0, 0x0;
+>>>         /*0068*/                MOV R1, R3;
+>>>         /*0070*/                MOV32I R2, 0x0;
+>>>         /*0078*/                EXIT ;
+>>>
+>>> While the proprietary-driver-generated shader is: [the output is of
+>>> quad-word-writes, so the right-most dword is the first of 4... so you
+>>> have to read it right-to-left]
+>>>
+>>> --816-- w 27:0x0430, 0x00000000,0x00000000,0x00000000,0x00001462
+>>> --816-- w 27:0x0440, 0x00000000,0x00000000,0xb0000000,0x00000000
+>>> --816-- w 27:0x0450, 0x00000000,0x00000000,0x00000000,0x00000000
+>>> --816-- w 27:0x0460, 0x00000000,0x00000000,0x00000000,0x00000000
+>>> --816-- w 27:0x0470, 0x00000001,0x0000000f,0x00000000,0x00000000
+>>> --816-- w 27:0x0480, 0xc07e0074,0xfff05c00,0x22324232,0xa0423047
+>>> --816-- w 27:0x0490, 0xc07e0070,0xfff01c00,0x2800403c,0x10009de4
+>>> --816-- w 27:0x04a0, 0x3004803c,0x30105c40,0x2800403c,0x0000dde4
+>>> --816-- w 27:0x04b0, 0x14860000,0x05201c84,0x3006803c,0x20009c40
+>>> --816-- w 27:0x04c0, 0x14860000,0x09205c84,0x22004280,0x42304247
+>>> --816-- w 27:0x04d0, 0x28000000,0xfc001de4,0x10040404,0x04009ca2
+>>> --816-- w 27:0x04e0, 0x18fe0000,0x00005de2,0x10408102,0x0410dca2
+>>> --816-- w 27:0x04f0, 0x28000000,0xfc009de4,0x68000000,0x08311c83
+>>> --816-- w 27:0x0500, 0x28000000,0x0400dde4,0x20000000,0x0002e047
+>>> --816-- w 27:0x0510, 0x4003ffff,0xe0001de7,0x80000000,0x00001de7
+>>> --816-- w 27:0x0520, 0x40000000,0x00001de4,0x40000000,0x00001de4
+>>> --816-- w 27:0x0530, 0x40000000,0x00001de4,0x40000000,0x00001de4
+>>>
+>>> Which decodes to:
+>>>
+>>>         /*0008*/                IPA.PASS R1, a[0x74], RZ;
+>>>         /*0010*/                MOV R2, c[0x0][0xf04];
+>>>         /*0018*/                IPA.PASS R0, a[0x70], RZ;
+>>>         /*0020*/                MOV R3, c[0x0][0xf00];
+>>>         /*0028*/                FFMA.FTZ R1, R1, R2, c[0x0][0xf0c];
+>>>         /*0030*/                FFMA.FTZ R2, R0, R3, c[0x0][0xf08];
+>>>         /*0038*/                F2I.FTZ.S32.F32.TRUNC R0, R1;
+>>>         /*0048*/                F2I.FTZ.S32.F32.TRUNC R1, R2;
+>>>         /*0050*/                IMUL32I R2, R0, 0x1010101;
+>>>         /*0058*/                MOV R0, RZ;
+>>>         /*0060*/                IMUL32I R3, R1, 0x10204081;
+>>>         /*0068*/                MOV32I R1, 0x3f800000;
+>>>         /*0070*/                LOP.XOR R4, R3, R2;
+>>>         /*0078*/                MOV R2, RZ;
+>>>         /*0088*/                MOV R3, R1;
+>>>         /*0090*/                EXIT ;
+>>>
+>>> (Not sure why the nouveau shader only has 1 FMA, but that's the input
+>>> shader we get from Gallium. I highly doubt this is the source of the
+>>> error, since it has nothing to do with sample masks, but my question
+>>> about sample mask output still stands even if its :) )
+>>>
+>>> Oh, and for completeness, the input GLSL shader is:
+>>>
+>>> "#version 130\n"
+>>> "#extension GL_ARB_sample_shading : enable\n"
+>>> "out vec4 out_color;\n"
+>>> "void main()\n"
+>>> "{\n"
+>>>   /* For 128x128 image size, below formula produces a bit
+>>>    * pattern where no two bits of gl_SampleMask[0] are
+>>>    * correlated.
+>>>    */
+>>> "  gl_SampleMask[0] = (int(gl_FragCoord.x) * 0x10204081) ^\n"
+>>> "                     (int(gl_FragCoord.y) * 0x01010101);\n"
+>>> "  out_color = vec4(0.0, 1.0, 0.0, 1.0);\n"
+>>> "}\n";
+>>>
+>>> >
+>>> > Any insight into this would be hugely helpful. In case you feel like
+>>> > taking a look at the actual code, these are my commits:
+>>> > https://github.com/imirkin/mesa/commits/sample_shading . Note that
+>>> > some bits of the sample mask were already there for nvc0 (like setting
+>>> > the shader header bit), thus don't appear in my change.
+>>> >
+>>> > Thanks,
+>>> >
+>>> >   -ilia
+>>> _______________________________________________
+>>> Nouveau mailing list
+>>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>>> http://lists.freedesktop.org/mailman/listinfo/nouveau
