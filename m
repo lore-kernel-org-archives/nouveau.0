@@ -1,7 +1,7 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] drm/gk208/gr: add missing registers to grctx init
-Date: Sat,  7 Jun 2014 15:39:45 -0400
-Message-ID: <1402169985-32242-1-git-send-email-imirkin@alum.mit.edu>
+Subject: [RFC PATCH] drm/gk208/gr: adjust a couple of init values
+Date: Sat,  7 Jun 2014 15:48:17 -0400
+Message-ID: <1402170497-32354-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -18,35 +18,59 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This fixes hangs on GK208 which happen instantaneously on trying to use a
-geometry shader.
-
 Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org # v3.14+
 ---
 
-ctxnvf0 also writes to these registers (although slightly diff values), so I
-think this is right. So I guess trap 4 is whatever this 406 subengine is...
+MMIO32 R 0x17e91c 0x0b040a0b PMFB_BROADCAST.SUBP_BROADCAST.UNK11C => 0xb040a0b
+MMIO32 R 0x17e920 0x00090c03 PMFB_BROADCAST.SUBP_BROADCAST.UNK120 => 0x90c03
+MMIO32 W 0x17e91c 0x0b030a0c PMFB_BROADCAST.SUBP_BROADCAST.UNK11C <= 0xb030a0c
+MMIO32 W 0x17e920 0x00090d08 PMFB_BROADCAST.SUBP_BROADCAST.UNK120 <= 0x90d08
 
- drivers/gpu/drm/nouveau/core/engine/graph/ctxnv108.c | 2 ++
- 1 file changed, 2 insertions(+)
+And then later when it writes these values into memory,
+
+MMIO32 R 0x17e91c 0x0b030a0c PMFB_BROADCAST.SUBP_BROADCAST.UNK11C => 0xb030a0c
+MMIO32 R 0x17e920 0x00090d08 PMFB_BROADCAST.SUBP_BROADCAST.UNK120 => 0x90d08
+RAMIN32 1b5080 7fce1080 <= 17e91c
+RAMIN32 1b5084 7fce1084 <= b030a0c
+MMIO32 W 0x070000 0x00000001 PFIFO_FLUSH.FLUSH_CTRL <= { TRIGGER }
+MMIO32 R 0x070000 0x00000000 PFIFO_FLUSH.FLUSH_CTRL => { 0 }
+RAMIN32 1b5088 7fce1088 <= 17e920
+RAMIN32 1b508c 7fce108c <= 90d08
+
+So perhaps the mmio_list needs to grow a mask option (and have it store the
+mask)? Not sure what any of this means, and doing this didn't fix
+anything. So... this is more informational than to be applied
+necessarily. Although the values that 337.25 writes on the GK208 I was testing
+on (GT630, 10de:1284) were different than what you were writing in (at least
+for the first reg).
+
+ drivers/gpu/drm/nouveau/core/engine/graph/ctxnv108.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/core/engine/graph/ctxnv108.c b/drivers/gpu/drm/nouveau/core/engine/graph/ctxnv108.c
-index 48351b4..8de4a42 100644
+index 8de4a42..b0bc5db 100644
 --- a/drivers/gpu/drm/nouveau/core/engine/graph/ctxnv108.c
 +++ b/drivers/gpu/drm/nouveau/core/engine/graph/ctxnv108.c
-@@ -545,10 +545,12 @@ nv108_grctx_generate_mods(struct nvc0_graph_priv *priv, struct nvc0_grctx *info)
- 	mmio_list(0x408010, 0x80000000,  0, 0);
- 	mmio_list(0x419004, 0x00000000,  8, 1);
- 	mmio_list(0x419008, 0x00000000,  0, 0);
-+	mmio_list(0x4064cc, 0x80000000,  0, 0);
- 	mmio_list(0x408004, 0x00000000,  8, 0);
- 	mmio_list(0x408008, 0x80000030,  0, 0);
- 	mmio_list(0x418808, 0x00000000,  8, 0);
- 	mmio_list(0x41880c, 0x80000030,  0, 0);
-+	mmio_list(0x4064c8, 0x00c20200,  0, 0);
- 	mmio_list(0x418810, 0x80000000, 12, 2);
- 	mmio_list(0x419848, 0x10000000, 12, 2);
+@@ -537,6 +537,7 @@ nv108_grctx_generate_mods(struct nvc0_graph_priv *priv, struct nvc0_grctx *info)
+ 	u32 magic[GPC_MAX][2];
+ 	u32 offset;
+ 	int gpc;
++	u32 r17e91c, r17e920;
  
+ 	mmio_data(0x003000, 0x0100, NV_MEM_ACCESS_RW | NV_MEM_ACCESS_SYS);
+ 	mmio_data(0x008000, 0x0100, NV_MEM_ACCESS_RW | NV_MEM_ACCESS_SYS);
+@@ -571,8 +572,10 @@ nv108_grctx_generate_mods(struct nvc0_graph_priv *priv, struct nvc0_grctx *info)
+ 		offset += 0x07ff * priv->tpc_nr[gpc];
+ 	}
+ 
+-	mmio_list(0x17e91c, 0x0b040a0b, 0, 0);
+-	mmio_list(0x17e920, 0x00090d08, 0, 0);
++	r17e91c = nv_rd32(priv, 0x17e91c);
++	r17e920 = nv_rd32(priv, 0x17e920);
++	mmio_list(0x17e91c, (r17e91c & ~0x000f000f) | 0x0003000c, 0, 0);
++	mmio_list(0x17e920, (r17e920 & ~0x00000f0f) | 0x00000d08, 0, 0);
+ }
+ 
+ struct nouveau_oclass *
 -- 
 1.8.5.5
