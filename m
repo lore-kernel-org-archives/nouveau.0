@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78441] [NV46] MSI doesn't work
-Date: Sat, 07 Jun 2014 17:26:21 +0000
-Message-ID: <bug-78441-8800-AEXRgk7JtY@http.bugs.freedesktop.org/>
+Date: Sat, 07 Jun 2014 17:29:03 +0000
+Message-ID: <bug-78441-8800-3G1kgsahME@http.bugs.freedesktop.org/>
 References: <bug-78441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1751018689=="
+Content-Type: multipart/mixed; boundary="===============1732413609=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,43 +20,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1751018689==
-Content-Type: multipart/alternative; boundary="1402161980.fC03F61.4243"; charset="us-ascii"
+--===============1732413609==
+Content-Type: multipart/alternative; boundary="1402162143.4da1d6B1.4942"; charset="us-ascii"
 
 
---1402161980.fC03F61.4243
-Date: Sat, 7 Jun 2014 17:26:20 +0000
+--1402162143.4da1d6B1.4942
+Date: Sat, 7 Jun 2014 17:29:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78441
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|[NV46] X does not start     |[NV46] MSI doesn't work
-                   |under kernel 3.13.x         |
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-http://en.wikipedia.org/wiki/Message_Signaled_Interrupts
+--- Comment #15 from aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org ---
+Okay, I'm glad the bisect helped, then.  Took a fair bit of time - had to start
+from a clean O/S build on a new HD because I was hitting unrelated bugs with
+LVM which leading me to "skip" a lot of tries.  Things went much faster after I
+installed on bare partitions.
 
-It's a non-critical feature. Support for using MSI on nvidia cards was added in
-kernel 3.13, which was why I had suggested trying to disable it.
+Thanks again for the help,
 
-I guess the rearm register must be somewhere else, or something extra needs to
-be done...
-
-OTOH, it's very interesting that you bisected it to that particular commit.
-It's not the commit that turns on MSI, but rather a commit that fixes MSI for
-some situations, making it more reliable. But apparently not for you...
+Adam
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1402161980.fC03F61.4243
-Date: Sat, 7 Jun 2014 17:26:20 +0000
+--1402162143.4da1d6B1.4942
+Date: Sat, 7 Jun 2014 17:29:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,11 +61,11 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:aebenjam&#64;opentext.com" title="aebenjam&#64;opentext.com">aebenjam&#64;opentext.com</a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV46] MSI doesn't work"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV46] MSI doesn't work"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78441">bug 78441</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -79,35 +76,40 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NV46] X does not start under kernel 3.13.x
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>[NV46] MSI doesn't work
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV46] MSI doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78441#c14">Comment # 14</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV46] MSI doesn't work"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78441#c15">Comment # 15</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV46] MSI doesn't work"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV46] MSI doesn't work"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78441">bug 78441</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:aebenjam&#64;opentext.com" title="aebenjam&#64;opentext.com">aebenjam&#64;opentext.com</a>
 </span></b>
-        <pre><a href="http://en.wikipedia.org/wiki/Message_Signaled_Interrupts">http://en.wikipedia.org/wiki/Message_Signaled_Interrupts</a>
+        <pre>Okay, I'm glad the bisect helped, then.  Took a fair bit of time - had to start
+from a clean O/S build on a new HD because I was hitting unrelated bugs with
+LVM which leading me to &quot;skip&quot; a lot of tries.  Things went much faster after I
+installed on bare partitions.
 
-It's a non-critical feature. Support for using MSI on nvidia cards was added in
-kernel 3.13, which was why I had suggested trying to disable it.
+Thanks again for the help,
 
-I guess the rearm register must be somewhere else, or something extra needs to
-be done...
-
-OTOH, it's very interesting that you bisected it to that particular commit.
-It's not the commit that turns on MSI, but rather a commit that fixes MSI for
-some situations, making it more reliable. But apparently not for you...</pre>
+Adam</pre>
         </div>
       </p>
       <hr>
@@ -119,9 +121,9 @@ some situations, making it more reliable. But apparently not for you...</pre>
     </body>
 </html>
 
---1402161980.fC03F61.4243--
+--1402162143.4da1d6B1.4942--
 
---===============1751018689==
+--===============1732413609==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +134,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1751018689==--
+--===============1732413609==--
