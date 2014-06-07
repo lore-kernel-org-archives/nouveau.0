@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78441] [NV46] X does not start under kernel 3.13.x
-Date: Sat, 07 Jun 2014 12:40:23 +0000
-Message-ID: <bug-78441-8800-iUdg0J6JrK@http.bugs.freedesktop.org/>
+Date: Sat, 07 Jun 2014 16:12:05 +0000
+Message-ID: <bug-78441-8800-kEnI4XxjTS@http.bugs.freedesktop.org/>
 References: <bug-78441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0783096663=="
+Content-Type: multipart/mixed; boundary="===============0424254061=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,36 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0783096663==
-Content-Type: multipart/alternative; boundary="1402144822.8de72751.4378"; charset="us-ascii"
+--===============0424254061==
+Content-Type: multipart/alternative; boundary="1402157524.EB4816C1.22791"; charset="us-ascii"
 
 
---1402144822.8de72751.4378
-Date: Sat, 7 Jun 2014 12:40:22 +0000
+--1402157524.EB4816C1.22791
+Date: Sat, 7 Jun 2014 16:12:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=78441
 
---- Comment #11 from aebenjam-gGaKbNYk6w1Wk0Htik3J/w@public.gmane.org ---
-3c792a15ec799c27d634b102b605f3ec32c033c3 is the first bad commit
-commit 3c792a15ec799c27d634b102b605f3ec32c033c3
-Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Date:   Fri Oct 11 14:56:39 2013 +1000
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Very interesting. And you said that booting the latest kernel with
 
-    drm/nouveau/mc: fetch NV_PMC_INTR again after re-arming MSI
+nouveau.config=NvMSI=0
 
-    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-
-:040000 040000 4ddfe2602412ff37217b60b8a28c7594db6e1cf2
-206d1ce23e7d756a88db9da9965e70da9150ac0b M      drivers
+didn't help? Can you provide a boot log from a (recent) kernel booted with MSI
+disabled as per above? Just want to make sure that the parameter is being
+applied properly.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1402144822.8de72751.4378
-Date: Sat, 7 Jun 2014 12:40:22 +0000
+--1402157524.EB4816C1.22791
+Date: Sat, 7 Jun 2014 16:12:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,24 +59,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV46] X does not start under kernel 3.13.x"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78441#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78441#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV46] X does not start under kernel 3.13.x"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=78441">bug 78441</a>
-              from <span class="vcard"><a class="email" href="mailto:aebenjam&#64;opentext.com" title="aebenjam&#64;opentext.com">aebenjam&#64;opentext.com</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>3c792a15ec799c27d634b102b605f3ec32c033c3 is the first bad commit
-commit 3c792a15ec799c27d634b102b605f3ec32c033c3
-Author: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
-Date:   Fri Oct 11 14:56:39 2013 +1000
+        <pre>Very interesting. And you said that booting the latest kernel with
 
-    drm/nouveau/mc: fetch NV_PMC_INTR again after re-arming MSI
+nouveau.config=NvMSI=0
 
-    Signed-off-by: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
-
-:040000 040000 4ddfe2602412ff37217b60b8a28c7594db6e1cf2
-206d1ce23e7d756a88db9da9965e70da9150ac0b M      drivers</pre>
+didn't help? Can you provide a boot log from a (recent) kernel booted with MSI
+disabled as per above? Just want to make sure that the parameter is being
+applied properly.</pre>
         </div>
       </p>
       <hr>
@@ -92,9 +84,9 @@ Date:   Fri Oct 11 14:56:39 2013 +1000
     </body>
 </html>
 
---1402144822.8de72751.4378--
+--1402157524.EB4816C1.22791--
 
---===============0783096663==
+--===============0424254061==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0783096663==--
+--===============0424254061==--
