@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 79823] [NV30/gallium] Mozilla apps freeze on startup
  with nouveau-dri-10.2.1 libs on dual-screen
-Date: Mon, 09 Jun 2014 16:04:53 +0000
-Message-ID: <bug-79823-8800-Ry2h5wBNnp@http.bugs.freedesktop.org/>
+Date: Mon, 09 Jun 2014 16:14:23 +0000
+Message-ID: <bug-79823-8800-XimrK9IpUS@http.bugs.freedesktop.org/>
 References: <bug-79823-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1781748601=="
+Content-Type: multipart/mixed; boundary="===============1480653688=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-79823-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,116 +21,87 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1781748601==
-Content-Type: multipart/alternative; boundary="1402329893.DC1f8A1.7240"; charset="us-ascii"
+--===============1480653688==
+Content-Type: multipart/alternative; boundary="1402330462.1AF3fafE0.9211"; charset="us-ascii"
 
 
---1402329893.DC1f8A1.7240
-Date: Mon, 9 Jun 2014 16:04:53 +0000
+--1402330462.1AF3fafE0.9211
+Date: Mon, 9 Jun 2014 16:14:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D79823
+https://bugs.freedesktop.org/show_bug.cgi?id=79823
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #5 from Natrio <natrio-cmBhpYW9OiY@public.gmane.org> ---
 (In reply to comment #3)
-> (In reply to comment #2)
-> > (In reply to comment #1)
-> > > There haven't been too many changes between 10.1 and 10.2 to the nv30
-> > > driver. Mind doing a bisect? It seems reasonable to restrict it to
-> > > src/gallium/drivers/nouveau/nv30.
-> > I've never done a bisect before, but I have an strace log from mozilla =
-start
-> > =E2=80=93 with and without freeze. The freeze log is so big (9MB), but =
-if it helps,
-> > I will post it tomorrow.
->=20
 > strace log is not that useful. It's probably sitting around waiting for
-> something to happen, which never happens. Bisecting is fairly easy... the=
-re
+> something to happen, which never happens. Bisecting is fairly easy... there
 > are a bunch of guides online. I'd recommend installing into some scratch
 > location and using LD_LIBRARY_PATH to pick up your new lib, so that you
 > don't mess up your system install.
+It's not exactly "sitting around and waiting", it cycling around (up to 100%
+CPU used) and keeps repeating the same action, probably with nouveau-dri
+library.
 
-Oh, and you can find some build instructions at
-http://nouveau.freedesktop.org/wiki/InstallNouveau/#mesa
+(In reply to comment #4)
+> Oh, and you can find some build instructions at
+> http://nouveau.freedesktop.org/wiki/InstallNouveau/#mesa
+Thank you, I will try to do it.
 
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1402329893.DC1f8A1.7240
-Date: Mon, 9 Jun 2014 16:04:53 +0000
+--1402330462.1AF3fafE0.9211
+Date: Mon, 9 Jun 2014 16:14:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - [NV30/gallium] Mozilla apps freeze on startup with no=
-uveau-dri-10.2.1 libs on dual-screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D79823#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - [NV30/gallium] Mozilla apps freeze on startup with no=
-uveau-dri-10.2.1 libs on dual-screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D79823">bug 79823<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
+              from <span class="vcard"><a class="email" href="mailto:natrio&#64;list.ru" title="Natrio &lt;natrio&#64;list.ru&gt;"> <span class="fn">Natrio</span></a>
 </span></b>
-        <pre>(In reply to <a href=3D"show_bug.cgi?id=3D79823#c3">comment #3=
-</a>)
-<span class=3D"quote">&gt; (In reply to <a href=3D"show_bug.cgi?id=3D79823#=
-c2">comment #2</a>)
-&gt; &gt; (In reply to <a href=3D"show_bug.cgi?id=3D79823#c1">comment #1</a=
->)
-&gt; &gt; &gt; There haven't been too many changes between 10.1 and 10.2 to=
- the nv30
-&gt; &gt; &gt; driver. Mind doing a bisect? It seems reasonable to restrict=
- it to
-&gt; &gt; &gt; src/gallium/drivers/nouveau/nv30.
-&gt; &gt; I've never done a bisect before, but I have an strace log from mo=
-zilla start
-&gt; &gt; =E2=80=93 with and without freeze. The freeze log is so big (9MB)=
-, but if it helps,
-&gt; &gt; I will post it tomorrow.
-&gt;=20
-&gt; strace log is not that useful. It's probably sitting around waiting for
-&gt; something to happen, which never happens. Bisecting is fairly easy... =
-there
-&gt; are a bunch of guides online. I'd recommend installing into some scrat=
-ch
+        <pre>(In reply to <a href="show_bug.cgi?id=79823#c3">comment #3</a>)
+<span class="quote">&gt; strace log is not that useful. It's probably sitting around waiting for
+&gt; something to happen, which never happens. Bisecting is fairly easy... there
+&gt; are a bunch of guides online. I'd recommend installing into some scratch
 &gt; location and using LD_LIBRARY_PATH to pick up your new lib, so that you
 &gt; don't mess up your system install.</span >
+It's not exactly &quot;sitting around and waiting&quot;, it cycling around (up to 100%
+CPU used) and keeps repeating the same action, probably with nouveau-dri
+library.
 
-Oh, and you can find some build instructions at
-<a href=3D"http://nouveau.freedesktop.org/wiki/InstallNouveau/#mesa">http:/=
-/nouveau.freedesktop.org/wiki/InstallNouveau/#mesa</a></pre>
+(In reply to <a href="show_bug.cgi?id=79823#c4">comment #4</a>)
+<span class="quote">&gt; Oh, and you can find some build instructions at
+&gt; <a href="http://nouveau.freedesktop.org/wiki/InstallNouveau/#mesa">http://nouveau.freedesktop.org/wiki/InstallNouveau/#mesa</a></span >
+Thank you, I will try to do it.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1402329893.DC1f8A1.7240--
+--1402330462.1AF3fafE0.9211--
 
---===============1781748601==
+--===============1480653688==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -141,4 +112,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1781748601==--
+--===============1480653688==--
