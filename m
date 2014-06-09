@@ -1,10 +1,10 @@
-From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Subject: lockdep splat while exiting PRIME
-Date: Sun, 08 Jun 2014 15:29:45 +0200
-Message-ID: <1545835.7YpYcIvGmb@al>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 79820] New: Strange readout on fan1_input when
+	pwm1_min < 33
+Date: Mon, 09 Jun 2014 08:35:18 +0000
+Message-ID: <bug-79820-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1414907772=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,75 +15,250 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
 
-While trying PRIME, I got a lockdep warning after exiting glxgears. Is
-it harmful? The command was:
+--===============1414907772==
+Content-Type: multipart/alternative; boundary="1402302918.5Ca0F3cD1.3698"; charset="us-ascii"
 
-    DRI_PRIME=1 glxgears
 
-Offload provider is a GT425M (NVC0), output sink is an Intel i5-460M.
+--1402302918.5Ca0F3cD1.3698
+Date: Mon, 9 Jun 2014 08:35:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Kind regards,
-Peter
+https://bugs.freedesktop.org/show_bug.cgi?id=3D79820
 
-dmesg:
-=============================================
-[ INFO: possible recursive locking detected ]
-3.15.0-rc8-custom-00058-gd2cfd31 #1 Tainted: G           O 
----------------------------------------------
-X/25827 is trying to acquire lock:
- (&dev->struct_mutex){+.+.+.}, at: [<ffffffffa008ebb6>] i915_gem_unmap_dma_buf+0x36/0xd0 [i915]
+          Priority: medium
+            Bug ID: 79820
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Strange readout on fan1_input when pwm1_min < 33
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: freedesk.apriori-w1QkCcy0X+BxKfgMtfWJuA@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-but task is already holding lock:
- (&dev->struct_mutex){+.+.+.}, at: [<ffffffffa00055c5>] drm_gem_object_handle_unreference_unlocked+0x105/0x130 [drm]
+Created attachment 100705
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D100705&action=3Dedit
+jountalctl -b -k|grep nouveau
 
-other info that might help us debug this:
- Possible unsafe locking scenario:
-       CPU0
-       ----
-  lock(&dev->struct_mutex);
-  lock(&dev->struct_mutex);
+When running the drivers from kernel 3.15.0, pwm1_min seems to default to 3=
+5. I
+noticed that this yields reported ~2k RPM in fan1_input for my card. Since =
+the
+fan runs at ~1k RPM in idle when running the NVIDIA blob, I tried lowering
+pwm1_min and noticed odd results.
 
- *** DEADLOCK ***
- May be due to missing lock nesting notation
-1 lock held by X/25827:
- #0:  (&dev->struct_mutex){+.+.+.}, at: [<ffffffffa00055c5>] drm_gem_object_handle_unreference_unlocked+0x105/0x130 [drm]
+Lowering pwm1_min to 32 is fine and gives me a readout of ~1.8k RPM. Howeve=
+r,
+after that, I see weird output values:
 
-stack backtrace:
-CPU: 1 PID: 25827 Comm: X Tainted: G           O  3.15.0-rc8-custom-00058-gd2cfd31 #1
-Hardware name: CLEVO CO.                        B7130                           /B7130                           , BIOS 6.00 08/27/2010
- ffffffff822588a0 ffff880230767ae0 ffffffff815f14da ffff880226594260
- ffff880230767bb0 ffffffff810a1461 0000000030767bc0 ffff880226594288
- ffff880230767b00 ffff880226594ae0 0000000000464232 0000000000000001
-Call Trace:
- [<ffffffff815f14da>] dump_stack+0x4e/0x7a
- [<ffffffff810a1461>] __lock_acquire+0x19d1/0x1ab0
- [<ffffffff810a1d75>] lock_acquire+0x95/0x130
- [<ffffffffa008ebb6>] ? i915_gem_unmap_dma_buf+0x36/0xd0 [i915]
- [<ffffffffa008ebb6>] ? i915_gem_unmap_dma_buf+0x36/0xd0 [i915]
- [<ffffffff815f57f5>] mutex_lock_nested+0x65/0x400
- [<ffffffffa008ebb6>] ? i915_gem_unmap_dma_buf+0x36/0xd0 [i915]
- [<ffffffffa008ebb6>] i915_gem_unmap_dma_buf+0x36/0xd0 [i915]
- [<ffffffff8141eb4c>] dma_buf_unmap_attachment+0x4c/0x70
- [<ffffffffa001beb2>] drm_prime_gem_destroy+0x22/0x40 [drm]
- [<ffffffffa07aa4de>] nouveau_gem_object_del+0x3e/0x60 [nouveau]
- [<ffffffffa000504a>] drm_gem_object_free+0x2a/0x40 [drm]
- [<ffffffffa00055e8>] drm_gem_object_handle_unreference_unlocked+0x128/0x130 [drm]
- [<ffffffffa00056aa>] drm_gem_handle_delete+0xba/0x110 [drm]
- [<ffffffffa0005dc5>] drm_gem_close_ioctl+0x25/0x30 [drm]
- [<ffffffffa0003a80>] drm_ioctl+0x1e0/0x5f0 [drm]
- [<ffffffffa0005da0>] ? drm_gem_handle_create+0x40/0x40 [drm]
- [<ffffffff815f8bbd>] ? _raw_spin_unlock_irqrestore+0x5d/0x80
- [<ffffffff8109f6bd>] ? trace_hardirqs_on_caller+0x15d/0x200
- [<ffffffff8109f76d>] ? trace_hardirqs_on+0xd/0x10
- [<ffffffff815f8ba2>] ? _raw_spin_unlock_irqrestore+0x42/0x80
- [<ffffffffa07a2175>] nouveau_drm_ioctl+0x65/0xa0 [nouveau]
- [<ffffffff811a7fb0>] do_vfs_ioctl+0x2f0/0x4f0
- [<ffffffff811b320c>] ? __fget+0xac/0xf0
- [<ffffffff811b3165>] ? __fget+0x5/0xf0
- [<ffffffff811a8231>] SyS_ioctl+0x81/0xa0
- [<ffffffff816015d2>] system_call_fastpath+0x16/0x1b
+31 ~ 4.5k
+30 ~ 9k
+29 ~ 5k
+28 ~ 22k (sic)
+27 ~ 75k (sic)
+26 ~ 400k (sic)
+
+At no time was my computer lifting up from the ground though, and even with=
+ the
+reported 4.5k it seems that the fan did not actually speed up.
+
+Additional background: It seems my fan is only supported as of Linux 3.15.0.
+Before that, the fan ran at 100% and dmesg showed =C2=ABFAN control: none /
+external=C2=BB. On IRC I was informed that a new fan has been added to 3.15=
+, and
+indeed it seems to be recognized now (many thanks for that!).
+
+I=E2=80=99m attaching my dmesg and my vbios in case it helps. Note though t=
+hat
+nvagetbios reported a warning when dumping the BIOS:
+
+> No extraction method specified (using -s extraction_method). Defaulting t=
+o PRAMIN.
+> Attempt to extract the vbios from card 0 (nve6) using PRAMIN
+> Invalid signature(0x55aa). You may want to try another retrieval method.
+
+Let me know if there=E2=80=99s additional information I could supply.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1402302918.5Ca0F3cD1.3698
+Date: Mon, 9 Jun 2014 08:35:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - Strange readout on fan1_input when pwm1_min &lt; 33"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D79820">79820</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Strange readout on fan1_input when pwm1_min &lt; 33
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>freedesk.apriori&#64;spamgourmet.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D100705=
+" name=3D"attach_100705" title=3D"jountalctl -b -k|grep nouveau">attachment=
+ 100705</a> <a href=3D"attachment.cgi?id=3D100705&amp;action=3Dedit" title=
+=3D"jountalctl -b -k|grep nouveau">[details]</a></span>
+jountalctl -b -k|grep nouveau
+
+When running the drivers from kernel 3.15.0, pwm1_min seems to default to 3=
+5. I
+noticed that this yields reported ~2k RPM in fan1_input for my card. Since =
+the
+fan runs at ~1k RPM in idle when running the NVIDIA blob, I tried lowering
+pwm1_min and noticed odd results.
+
+Lowering pwm1_min to 32 is fine and gives me a readout of ~1.8k RPM. Howeve=
+r,
+after that, I see weird output values:
+
+31 ~ 4.5k
+30 ~ 9k
+29 ~ 5k
+28 ~ 22k (sic)
+27 ~ 75k (sic)
+26 ~ 400k (sic)
+
+At no time was my computer lifting up from the ground though, and even with=
+ the
+reported 4.5k it seems that the fan did not actually speed up.
+
+Additional background: It seems my fan is only supported as of Linux 3.15.0.
+Before that, the fan ran at 100% and dmesg showed =C2=ABFAN control: none /
+external=C2=BB. On IRC I was informed that a new fan has been added to 3.15=
+, and
+indeed it seems to be recognized now (many thanks for that!).
+
+I=E2=80=99m attaching my dmesg and my vbios in case it helps. Note though t=
+hat
+nvagetbios reported a warning when dumping the BIOS:
+
+<span class=3D"quote">&gt; No extraction method specified (using -s extract=
+ion_method). Defaulting to PRAMIN.
+&gt; Attempt to extract the vbios from card 0 (nve6) using PRAMIN
+&gt; Invalid signature(0x55aa). You may want to try another retrieval metho=
+d.</span >
+
+Let me know if there=E2=80=99s additional information I could supply.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1402302918.5Ca0F3cD1.3698--
+
+--===============1414907772==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1414907772==--
