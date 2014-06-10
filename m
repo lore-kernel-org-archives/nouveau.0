@@ -1,11 +1,12 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: [PATCH] drm/nouveau/doc: update the thermal documentation
-Date: Mon,  9 Jun 2014 20:38:36 +0200
-Message-ID: <1402339116-19868-1-git-send-email-martin.peres@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75761] weston-launch no output - black screen
+Date: Tue, 10 Jun 2014 01:28:27 +0000
+Message-ID: <bug-75761-8800-xbsBS5nefd@http.bugs.freedesktop.org/>
+References: <bug-75761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1906984922=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,41 +19,88 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Changes:
- - Change the maintainer's address (the labri address will expire soon);
- - Drop the note about not all families supporting all fan modes;
- - Add a note about the reported RPM not being accurate when driven outside
-   the vbios-defined PWM range.
 
-Signed-off-by: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
----
- Documentation/thermal/nouveau_thermal | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+--===============1906984922==
+Content-Type: multipart/alternative; boundary="1402363707.f8b436d5.23564"; charset="us-ascii"
 
-diff --git a/Documentation/thermal/nouveau_thermal b/Documentation/thermal/nouveau_thermal
-index efceb78..60bc293 100644
---- a/Documentation/thermal/nouveau_thermal
-+++ b/Documentation/thermal/nouveau_thermal
-@@ -4,7 +4,7 @@ Kernel driver nouveau
- Supported chips:
- * NV43+
- 
--Authors: Martin Peres (mupuf) <martin.peres-BktLLJ5BOkI@public.gmane.org>
-+Authors: Martin Peres (mupuf) <martin.peres-GANU6spQydw@public.gmane.org>
- 
- Description
- ---------
-@@ -68,8 +68,9 @@ Your fan can be driven in different modes:
- 
- NOTE: Be sure to use the manual mode if you want to drive the fan speed manually
- 
--NOTE2: Not all fan management modes may be supported on all chipsets. We are
--working on it.
-+NOTE2: When operating in manual mode outside the vbios-defined
-+[PWM_min, PWM_max] range, the reported fan speed (RPM) may not be accurate
-+depending on your hardware.
- 
- Bug reports
- ---------
+
+--1402363707.f8b436d5.23564
+Date: Tue, 10 Jun 2014 01:28:27 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=75761
+
+--- Comment #35 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+A few pageflip-related commits landed in the repo:
+
+http://cgit.freedesktop.org/~darktama/nouveau/
+
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=ff527544b0048d41a56097a66ff954fb9b0a2c75
+
+Seems related to what was going on here. Give it a shot... (you'll need to
+build it against the latest drm-next tree from
+http://cgit.freedesktop.org/~airlied/linux/log/?h=drm-next). Or try to apply
+the patches to whatever kernel tree you're on -- should probably work.
+
 -- 
-1.9.3
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1402363707.f8b436d5.23564
+Date: Tue, 10 Jun 2014 01:28:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - weston-launch no output - black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c35">Comment # 35</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - weston-launch no output - black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>A few pageflip-related commits landed in the repo:
+
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/">http://cgit.freedesktop.org/~darktama/nouveau/</a>
+
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=ff527544b0048d41a56097a66ff954fb9b0a2c75">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=ff527544b0048d41a56097a66ff954fb9b0a2c75</a>
+
+Seems related to what was going on here. Give it a shot... (you'll need to
+build it against the latest drm-next tree from
+<a href="http://cgit.freedesktop.org/~airlied/linux/log/?h=drm-next">http://cgit.freedesktop.org/~airlied/linux/log/?h=drm-next</a>). Or try to apply
+the patches to whatever kernel tree you're on -- should probably work.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1402363707.f8b436d5.23564--
+
+--===============1906984922==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1906984922==--
