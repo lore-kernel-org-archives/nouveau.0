@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79823] [NV30/gallium] Mozilla apps freeze on startup
- with nouveau-dri-10.2.1 libs on dual-screen
-Date: Wed, 11 Jun 2014 10:05:20 +0000
-Message-ID: <bug-79823-8800-DxBbH3aDnK@http.bugs.freedesktop.org/>
-References: <bug-79823-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 79912] Nouveau unuseable with 3 monitors and a
+	geforce GTX 670
+Date: Wed, 11 Jun 2014 11:21:33 +0000
+Message-ID: <bug-79912-8800-nULFP5xuBp@http.bugs.freedesktop.org/>
+References: <bug-79912-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0311329948=="
+Content-Type: multipart/mixed; boundary="===============1996742089=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79823-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-79912-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0311329948==
-Content-Type: multipart/alternative; boundary="1402481120.0Eb4B0.19471"; charset="us-ascii"
+--===============1996742089==
+Content-Type: multipart/alternative; boundary="1402485692.d24f3F31.1181"; charset="us-ascii"
 
 
---1402481120.0Eb4B0.19471
-Date: Wed, 11 Jun 2014 10:05:20 +0000
+--1402485692.d24f3F31.1181
+Date: Wed, 11 Jun 2014 11:21:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=79823
+https://bugs.freedesktop.org/show_bug.cgi?id=79912
 
---- Comment #9 from Natrio <natrio-cmBhpYW9OiY@public.gmane.org> ---
-Bisecting not finished yet, but I think about that:
-http://cgit.freedesktop.org/mesa/mesa/commit/?id=507f0230d4ca2238c818006499e21abb4c133203
+--- Comment #2 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+Purple screen + extremely slow? You simply hit the memory bandwidth limit :s
+
+It will be fixed by reclocking memory, efforts towards this goal are underway
+but won't be finished any time soon :s You may want to stick with the
+proprietary driver :s
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1402481120.0Eb4B0.19471
-Date: Wed, 11 Jun 2014 10:05:20 +0000
+--1402485692.d24f3F31.1181
+Date: Wed, 11 Jun 2014 11:21:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +57,19 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823#c9">Comment # 9</a>
+   title="NEW --- - Nouveau unuseable with 3 monitors and a geforce GTX 670"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79912#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
-              from <span class="vcard"><a class="email" href="mailto:natrio&#64;list.ru" title="Natrio &lt;natrio&#64;list.ru&gt;"> <span class="fn">Natrio</span></a>
+   title="NEW --- - Nouveau unuseable with 3 monitors and a geforce GTX 670"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79912">bug 79912</a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>Bisecting not finished yet, but I think about that:
-<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=507f0230d4ca2238c818006499e21abb4c133203">http://cgit.freedesktop.org/mesa/mesa/commit/?id=507f0230d4ca2238c818006499e21abb4c133203</a></pre>
+        <pre>Purple screen + extremely slow? You simply hit the memory bandwidth limit :s
+
+It will be fixed by reclocking memory, efforts towards this goal are underway
+but won't be finished any time soon :s You may want to stick with the
+proprietary driver :s</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +81,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1402481120.0Eb4B0.19471--
+--1402485692.d24f3F31.1181--
 
---===============0311329948==
+--===============1996742089==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0311329948==--
+--===============1996742089==--
