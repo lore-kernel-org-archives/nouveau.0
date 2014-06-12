@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76483] [NV50, bisected,
- RFC patch] xset dpms force {on, off} does not work over DP
-Date: Thu, 12 Jun 2014 14:20:20 +0000
-Message-ID: <bug-76483-8800-MjeCKpc4RW@http.bugs.freedesktop.org/>
-References: <bug-76483-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 76732] Kworker using 100% CPU
+Date: Thu, 12 Jun 2014 14:27:08 +0000
+Message-ID: <bug-76732-8800-JbtU0Vb0XH@http.bugs.freedesktop.org/>
+References: <bug-76732-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0795376100=="
+Content-Type: multipart/mixed; boundary="===============0311485019=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76483-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-76732-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +20,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0795376100==
-Content-Type: multipart/alternative; boundary="1402582820.E4c53.27847"; charset="us-ascii"
+--===============0311485019==
+Content-Type: multipart/alternative; boundary="1402583228.ccB273.29378"; charset="us-ascii"
 
 
---1402582820.E4c53.27847
-Date: Thu, 12 Jun 2014 14:20:20 +0000
+--1402583228.ccB273.29378
+Date: Thu, 12 Jun 2014 14:27:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76483
+https://bugs.freedesktop.org/show_bug.cgi?id=76732
 
---- Comment #7 from Randy Andy <gugelhuepf-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-(In reply to comment #5)
-> There is a substantial DP rework bound for 3.16. Can you give
-> http://cgit.freedesktop.org/~airlied/linux/log/?h=drm-next a shot? It should
-> add proper support for DPMS.
+--- Comment #43 from Dale Hamel <daleha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+So, the new kernel linked above definitely fixes the problem.
 
-Forget to mention,
+Hotplug now works flawlessly!
 
-my monitor is connected via DVI and I have the same problem.
-Is the rework you mentioned also valid for the DVI output, so is it worth fo me
-to giv it a trial?
+Unfortunately it introduces a fairly minor bug with X11 that seems to cause my
+modelines to be invalid. I'm running on a retina macbook pro, and I normally
+downscale the resolution by 50% so that i can actually read text on it, but my
+xrandr lines in xinitrc now cause it to hang:
 
-Nevertheless thanks for your work and best regards, Andy.
+xrandr --newmode  "1440x900_60.00"  106.50  1440 1528 1672 1904  900 903 909
+934 -hsync +vsync
+xrandr --addmode $monitor 1440x900_60.00
+xrandr --output $monitor --mode 1440x900_60.00
+
+I'll check to see if these modelines are just invalid, or if this is just some
+bug related to xrandr. It's clearly got something to do with the kernel though,
+since it's no longer working.
+
+Great work to all the devs who refactored this! One step closer to converting
+my office to use linux on their MBPs :)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1402582820.E4c53.27847
-Date: Thu, 12 Jun 2014 14:20:20 +0000
+--1402583228.ccB273.29378
+Date: Thu, 12 Jun 2014 14:27:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,26 +71,34 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483#c7">Comment # 7</a>
+   title="NEW --- - Kworker using 100% CPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732#c43">Comment # 43</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483">bug 76483</a>
-              from <span class="vcard"><a class="email" href="mailto:gugelhuepf&#64;googlemail.com" title="Randy Andy &lt;gugelhuepf&#64;googlemail.com&gt;"> <span class="fn">Randy Andy</span></a>
+   title="NEW --- - Kworker using 100% CPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76732">bug 76732</a>
+              from <span class="vcard"><a class="email" href="mailto:daleha&#64;gmail.com" title="Dale Hamel &lt;daleha&#64;gmail.com&gt;"> <span class="fn">Dale Hamel</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=76483#c5">comment #5</a>)
-<span class="quote">&gt; There is a substantial DP rework bound for 3.16. Can you give
-&gt; <a href="http://cgit.freedesktop.org/~airlied/linux/log/?h=drm-next">http://cgit.freedesktop.org/~airlied/linux/log/?h=drm-next</a> a shot? It should
-&gt; add proper support for DPMS.</span >
+        <pre>So, the new kernel linked above definitely fixes the problem.
 
-Forget to mention,
+Hotplug now works flawlessly!
 
-my monitor is connected via DVI and I have the same problem.
-Is the rework you mentioned also valid for the DVI output, so is it worth fo me
-to giv it a trial?
+Unfortunately it introduces a fairly minor bug with X11 that seems to cause my
+modelines to be invalid. I'm running on a retina macbook pro, and I normally
+downscale the resolution by 50% so that i can actually read text on it, but my
+xrandr lines in xinitrc now cause it to hang:
 
-Nevertheless thanks for your work and best regards, Andy.</pre>
+xrandr --newmode  &quot;1440x900_60.00&quot;  106.50  1440 1528 1672 1904  900 903 909
+934 -hsync +vsync
+xrandr --addmode $monitor 1440x900_60.00
+xrandr --output $monitor --mode 1440x900_60.00
+
+I'll check to see if these modelines are just invalid, or if this is just some
+bug related to xrandr. It's clearly got something to do with the kernel though,
+since it's no longer working.
+
+Great work to all the devs who refactored this! One step closer to converting
+my office to use linux on their MBPs :)</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +110,9 @@ Nevertheless thanks for your work and best regards, Andy.</pre>
     </body>
 </html>
 
---1402582820.E4c53.27847--
+--1402583228.ccB273.29378--
 
---===============0795376100==
+--===============0311485019==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +123,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0795376100==--
+--===============0311485019==--
