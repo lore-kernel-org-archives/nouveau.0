@@ -1,13 +1,18 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78439] [NVC1] Display corruption when DP connector
- is reattached
-Date: Thu, 12 Jun 2014 13:30:54 +0000
-Message-ID: <bug-78439-8800-iuJrob7UT7@http.bugs.freedesktop.org/>
-References: <bug-78439-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 4/4] drm/nouveau: introduce CPU cache flushing
+	macro
+Date: Thu, 12 Jun 2014 22:50:01 +0900
+Message-ID: <CAAVeFuJYe5wVH_gTok80hT=4GbwhYq4C9c7S5No_V11qjs3brQ@mail.gmail.com>
+References: <1400483458-9648-1-git-send-email-acourbot@nvidia.com>
+ <1400483458-9648-5-git-send-email-acourbot@nvidia.com>
+ <20140519090202.GC7138@ulmo>
+ <1400491331.8467.8.camel@weser.hi.pengutronix.de>
+ <CAAVeFu+KZ9AqB5ji5-AA+qzEFDWd7y0=J1eSEPqQ-OyhmXufig@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0450671651=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78439-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAAVeFu+KZ9AqB5ji5-AA+qzEFDWd7y0=J1eSEPqQ-OyhmXufig-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,87 +22,131 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Mon, Jun 9, 2014 at 7:41 PM, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On Mon, May 19, 2014 at 6:22 PM, Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org> wrote:
+>> Am Montag, den 19.05.2014, 11:02 +0200 schrieb Thierry Reding:
+>>> On Mon, May 19, 2014 at 04:10:58PM +0900, Alexandre Courbot wrote:
+>>> > Some architectures (e.g. ARM) need the CPU buffers to be explicitely
+>>> > flushed for a memory write to take effect. Not doing so results in
+>>> > synchronization issues, especially after writing to BOs.
+>>>
+>>> It seems to me that the above is generally true for all architectures,
+>>> not just ARM.
+>>>
+>> No, on PCI coherent arches, like x86 and some PowerPCs, the GPU will
+>> snoop the CPU caches and therefore an explicit cache flush is not
+>> required.
+>>
+>>> Also: s/explicitely/explicitly/
+>>>
+>>> > This patch introduces a macro that flushes the caches on ARM and
+>>> > translates to a no-op on other architectures, and uses it when
+>>> > writing to in-memory BOs. It will also be useful for implementations of
+>>> > instmem that access shared memory directly instead of going through
+>>> > PRAMIN.
+>>>
+>>> Presumably instmem can access shared memory on all architectures, so
+>>> this doesn't seem like a property of the architecture but rather of the
+>>> memory pool backing the instmem.
+>>>
+>>> In that case I wonder if this shouldn't be moved into an operation that
+>>> is implemented by the backing memory pool and be a noop where the cache
+>>> doesn't need explicit flushing.
+>>>
+>>> > diff --git a/drivers/gpu/drm/nouveau/core/os.h b/drivers/gpu/drm/nouveau/core/os.h
+>>> > index d0ced94ca54c..274b4460bb03 100644
+>>> > --- a/drivers/gpu/drm/nouveau/core/os.h
+>>> > +++ b/drivers/gpu/drm/nouveau/core/os.h
+>>> > @@ -38,4 +38,21 @@
+>>> >  #endif /* def __BIG_ENDIAN else */
+>>> >  #endif /* !ioread32_native */
+>>> >
+>>> > +#if defined(__arm__)
+>>> > +
+>>> > +#define nv_cpu_cache_flush_area(va, size)  \
+>>> > +do {                                               \
+>>> > +   phys_addr_t pa = virt_to_phys(va);      \
+>>> > +   __cpuc_flush_dcache_area(va, size);     \
+>>> > +   outer_flush_range(pa, pa + size);       \
+>>> > +} while (0)
+>>>
+>>> Couldn't this be a static inline function?
+>>>
+>>> > diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+>>> [...]
+>>> > index 0886f47e5244..b9c9729c5733 100644
+>>> > --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+>>> > +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+>>> > @@ -437,8 +437,10 @@ nouveau_bo_wr16(struct nouveau_bo *nvbo, unsigned index, u16 val)
+>>> >     mem = &mem[index];
+>>> >     if (is_iomem)
+>>> >             iowrite16_native(val, (void __force __iomem *)mem);
+>>> > -   else
+>>> > +   else {
+>>> >             *mem = val;
+>>> > +           nv_cpu_cache_flush_area(mem, 2);
+>>> > +   }
+>>> >  }
+>>> >
+>>> >  u32
+>>> > @@ -461,8 +463,10 @@ nouveau_bo_wr32(struct nouveau_bo *nvbo, unsigned index, u32 val)
+>>> >     mem = &mem[index];
+>>> >     if (is_iomem)
+>>> >             iowrite32_native(val, (void __force __iomem *)mem);
+>>> > -   else
+>>> > +   else {
+>>> >             *mem = val;
+>>> > +           nv_cpu_cache_flush_area(mem, 4);
+>>> > +   }
+>>>
+>>> This looks rather like a sledgehammer to me. Effectively this turns nvbo
+>>> into an uncached buffer. With additional overhead of constantly flushing
+>>> caches. Wouldn't it make more sense to locate the places where these are
+>>> called and flush the cache after all the writes have completed?
+>>>
+>> I don't think the explicit flushing for those things makes sense. I
+>> think it is a lot more effective to just map the BOs write-combined on
+>> PCI non-coherent arches. This way any writes will be buffered. Reads
+>> will be slow, but I don't think nouveau is reading back a lot from those
+>> buffers.
+>> Using the write-combining buffer doesn't need any additional
+>> synchronization as it will get flushed on pushbuf kickoff anyways.
+>
+> I tried to go that way, and something interesting happened.
+>
+> What I did: remove this patch and instead set the following caching
+> parameters for the TTM_PL_TT case in nouveau_bo_init_mem_type():
+>
+>     man->available_caching = TTM_PL_FLAG_UNCACHED | TTM_PL_FLAG_WC;
+>     man->default_caching = TTM_PL_FLAG_WC;
+>
+> What happened: no runtime errors as what happened when caching is
+> enabled. However, many of the vertex and texture buffers seem to be
+> partially corrupted. In glmark2 the 3d models had many vertices (but
+> not all) at the wrong position. Note that not all the scenes ended up
+> being corrupted - in particular, when two consecutive scenes used the
+> same model, the second instance would be uncorrupted.
+>
+> Forcing the caching to TTM_PL_FLAG_UNCACHED led to the same result.
+> What is interesting is that while data like vertices and textures got
+> corrupted, pushbuffers and shader programs seem to be just fine, as I
+> could not see any runtime error.
 
---===============0450671651==
-Content-Type: multipart/alternative; boundary="1402579854.4B681.17756"; charset="us-ascii"
+An interesting fact: if I change ttm_bo_kmap_ttm() such as kernel
+mappings of BOs are always performed write-combined, and leave the
+TTM_PL_TT default caching to TTM_PL_FLAG_CACHED so user-space mappings
+remain cached, the corruptions just vanish. It seems to be the fact of
+setting user-space mappings to anything non-cached that leads to this
+puzzling behavior. Certainly some subtlety of ARM mappings are getting
+over my head here.
 
+If we need to implement different policies for kernel and user-space
+mappings, this might complicate things a bit, especially since support
+needs to be in TTM and not only Nouveau. I will submit a RFC tomorrow
+if I don't hear better ideas by then.
 
---1402579854.4B681.17756
-Date: Thu, 12 Jun 2014 13:30:54 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D78439
-
---- Comment #7 from Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> ---
-Created attachment 100920
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D100920&action=3Dedit
-dmesg (drm-next for 3.16)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1402579854.4B681.17756
-Date: Thu, 12 Jun 2014 13:30:54 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
-ched"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
-ched"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439">bug 78439<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-andrius&#64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;sti=
-konas.eu&gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D100920=
-" name=3D"attach_100920" title=3D"dmesg (drm-next for 3.16)">attachment 100=
-920</a> <a href=3D"attachment.cgi?id=3D100920&amp;action=3Dedit" title=3D"d=
-mesg (drm-next for 3.16)">[details]</a></span>
-dmesg (drm-next for 3.16)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1402579854.4B681.17756--
-
---===============0450671651==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0450671651==--
+Alex.
