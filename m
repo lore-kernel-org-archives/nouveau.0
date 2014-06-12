@@ -1,13 +1,19 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78439] [NVC1] Display corruption when DP connector
- is reattached
-Date: Thu, 12 Jun 2014 15:17:50 +0000
-Message-ID: <bug-78439-8800-L9EYFD54U9@http.bugs.freedesktop.org/>
-References: <bug-78439-8800@http.bugs.freedesktop.org/>
+From: Roy Spliet <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org>
+Subject: Re: [PATCH 4/4] drm/nouveau: introduce CPU cache flushing
+ macro
+Date: Thu, 12 Jun 2014 20:15:21 +0200
+Message-ID: <5399EE39.2000905@nimrod-online.com>
+References: <1400483458-9648-1-git-send-email-acourbot@nvidia.com>
+ <1400483458-9648-5-git-send-email-acourbot@nvidia.com>
+ <20140519090202.GC7138@ulmo>
+ <1400491331.8467.8.camel@weser.hi.pengutronix.de>
+ <CAAVeFu+KZ9AqB5ji5-AA+qzEFDWd7y0=J1eSEPqQ-OyhmXufig@mail.gmail.com>
+ <CAAVeFuJYe5wVH_gTok80hT=4GbwhYq4C9c7S5No_V11qjs3brQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0897441678=="
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78439-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAAVeFuJYe5wVH_gTok80hT=4GbwhYq4C9c7S5No_V11qjs3brQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,117 +26,139 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Perhaps a bit late, but here's some random pointers I recall from my 
+previous experience: on ARM, caching policy of different mappings of the 
+same physical memory object must always correspond perfectly. If the 
+userspace mapping is uncached, so should the kernel mapping be. If the 
+memory is allocated using get_(zeroed_)page(), by default the caching 
+policy for the pointer returned is WRITE_ALLOC on SMP systems.
+One useful tool for debugging cache problems is the pagewalk api's 
+(mm/pagewalk.c), which will help you find the raw page table entry (and 
+thus it's caching properties) for a virtual memory address.
 
---===============0897441678==
-Content-Type: multipart/alternative; boundary="1402586270.6AeA21.7724"; charset="us-ascii"
+Roy
 
-
---1402586270.6AeA21.7724
-Date: Thu, 12 Jun 2014 15:17:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D78439
-
-Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #100923|0                           |1
-        is obsolete|                            |
-
---- Comment #10 from Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> ---
-Created attachment 100924
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D100924&action=3Dedit
-dmesg (3.16) with debug info
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1402586270.6AeA21.7724
-Date: Thu, 12 Jun 2014 15:17:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:andrius&#=
-64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;stikonas.eu&=
-gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
-ched"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439">bug 78439<=
-/a>
-        <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #100923 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
-ched"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439#c10">Commen=
-t # 10</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
-ched"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439">bug 78439<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-andrius&#64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;sti=
-konas.eu&gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D100924=
-" name=3D"attach_100924" title=3D"dmesg (3.16) with debug info">attachment =
-100924</a> <a href=3D"attachment.cgi?id=3D100924&amp;action=3Dedit" title=
-=3D"dmesg (3.16) with debug info">[details]</a></span>
-dmesg (3.16) with debug info</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1402586270.6AeA21.7724--
-
---===============0897441678==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0897441678==--
+op 12-06-14 15:50, Alexandre Courbot schreef:
+> On Mon, Jun 9, 2014 at 7:41 PM, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> On Mon, May 19, 2014 at 6:22 PM, Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org> wrote:
+>>> Am Montag, den 19.05.2014, 11:02 +0200 schrieb Thierry Reding:
+>>>> On Mon, May 19, 2014 at 04:10:58PM +0900, Alexandre Courbot wrote:
+>>>>> Some architectures (e.g. ARM) need the CPU buffers to be explicitely
+>>>>> flushed for a memory write to take effect. Not doing so results in
+>>>>> synchronization issues, especially after writing to BOs.
+>>>> It seems to me that the above is generally true for all architectures,
+>>>> not just ARM.
+>>>>
+>>> No, on PCI coherent arches, like x86 and some PowerPCs, the GPU will
+>>> snoop the CPU caches and therefore an explicit cache flush is not
+>>> required.
+>>>
+>>>> Also: s/explicitely/explicitly/
+>>>>
+>>>>> This patch introduces a macro that flushes the caches on ARM and
+>>>>> translates to a no-op on other architectures, and uses it when
+>>>>> writing to in-memory BOs. It will also be useful for implementations of
+>>>>> instmem that access shared memory directly instead of going through
+>>>>> PRAMIN.
+>>>> Presumably instmem can access shared memory on all architectures, so
+>>>> this doesn't seem like a property of the architecture but rather of the
+>>>> memory pool backing the instmem.
+>>>>
+>>>> In that case I wonder if this shouldn't be moved into an operation that
+>>>> is implemented by the backing memory pool and be a noop where the cache
+>>>> doesn't need explicit flushing.
+>>>>
+>>>>> diff --git a/drivers/gpu/drm/nouveau/core/os.h b/drivers/gpu/drm/nouveau/core/os.h
+>>>>> index d0ced94ca54c..274b4460bb03 100644
+>>>>> --- a/drivers/gpu/drm/nouveau/core/os.h
+>>>>> +++ b/drivers/gpu/drm/nouveau/core/os.h
+>>>>> @@ -38,4 +38,21 @@
+>>>>>   #endif /* def __BIG_ENDIAN else */
+>>>>>   #endif /* !ioread32_native */
+>>>>>
+>>>>> +#if defined(__arm__)
+>>>>> +
+>>>>> +#define nv_cpu_cache_flush_area(va, size)  \
+>>>>> +do {                                               \
+>>>>> +   phys_addr_t pa = virt_to_phys(va);      \
+>>>>> +   __cpuc_flush_dcache_area(va, size);     \
+>>>>> +   outer_flush_range(pa, pa + size);       \
+>>>>> +} while (0)
+>>>> Couldn't this be a static inline function?
+>>>>
+>>>>> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+>>>> [...]
+>>>>> index 0886f47e5244..b9c9729c5733 100644
+>>>>> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+>>>>> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+>>>>> @@ -437,8 +437,10 @@ nouveau_bo_wr16(struct nouveau_bo *nvbo, unsigned index, u16 val)
+>>>>>      mem = &mem[index];
+>>>>>      if (is_iomem)
+>>>>>              iowrite16_native(val, (void __force __iomem *)mem);
+>>>>> -   else
+>>>>> +   else {
+>>>>>              *mem = val;
+>>>>> +           nv_cpu_cache_flush_area(mem, 2);
+>>>>> +   }
+>>>>>   }
+>>>>>
+>>>>>   u32
+>>>>> @@ -461,8 +463,10 @@ nouveau_bo_wr32(struct nouveau_bo *nvbo, unsigned index, u32 val)
+>>>>>      mem = &mem[index];
+>>>>>      if (is_iomem)
+>>>>>              iowrite32_native(val, (void __force __iomem *)mem);
+>>>>> -   else
+>>>>> +   else {
+>>>>>              *mem = val;
+>>>>> +           nv_cpu_cache_flush_area(mem, 4);
+>>>>> +   }
+>>>> This looks rather like a sledgehammer to me. Effectively this turns nvbo
+>>>> into an uncached buffer. With additional overhead of constantly flushing
+>>>> caches. Wouldn't it make more sense to locate the places where these are
+>>>> called and flush the cache after all the writes have completed?
+>>>>
+>>> I don't think the explicit flushing for those things makes sense. I
+>>> think it is a lot more effective to just map the BOs write-combined on
+>>> PCI non-coherent arches. This way any writes will be buffered. Reads
+>>> will be slow, but I don't think nouveau is reading back a lot from those
+>>> buffers.
+>>> Using the write-combining buffer doesn't need any additional
+>>> synchronization as it will get flushed on pushbuf kickoff anyways.
+>> I tried to go that way, and something interesting happened.
+>>
+>> What I did: remove this patch and instead set the following caching
+>> parameters for the TTM_PL_TT case in nouveau_bo_init_mem_type():
+>>
+>>      man->available_caching = TTM_PL_FLAG_UNCACHED | TTM_PL_FLAG_WC;
+>>      man->default_caching = TTM_PL_FLAG_WC;
+>>
+>> What happened: no runtime errors as what happened when caching is
+>> enabled. However, many of the vertex and texture buffers seem to be
+>> partially corrupted. In glmark2 the 3d models had many vertices (but
+>> not all) at the wrong position. Note that not all the scenes ended up
+>> being corrupted - in particular, when two consecutive scenes used the
+>> same model, the second instance would be uncorrupted.
+>>
+>> Forcing the caching to TTM_PL_FLAG_UNCACHED led to the same result.
+>> What is interesting is that while data like vertices and textures got
+>> corrupted, pushbuffers and shader programs seem to be just fine, as I
+>> could not see any runtime error.
+> An interesting fact: if I change ttm_bo_kmap_ttm() such as kernel
+> mappings of BOs are always performed write-combined, and leave the
+> TTM_PL_TT default caching to TTM_PL_FLAG_CACHED so user-space mappings
+> remain cached, the corruptions just vanish. It seems to be the fact of
+> setting user-space mappings to anything non-cached that leads to this
+> puzzling behavior. Certainly some subtlety of ARM mappings are getting
+> over my head here.
+>
+> If we need to implement different policies for kernel and user-space
+> mappings, this might complicate things a bit, especially since support
+> needs to be in TTM and not only Nouveau. I will submit a RFC tomorrow
+> if I don't hear better ideas by then.
+>
+> Alex.
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>
