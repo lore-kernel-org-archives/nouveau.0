@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78439] [NVC1] Display corruption when DP connector
  is reattached
-Date: Thu, 12 Jun 2014 14:44:35 +0000
-Message-ID: <bug-78439-8800-0wAGJB0ZzT@http.bugs.freedesktop.org/>
+Date: Thu, 12 Jun 2014 14:59:38 +0000
+Message-ID: <bug-78439-8800-sNRss64F4z@http.bugs.freedesktop.org/>
 References: <bug-78439-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1389238591=="
+Content-Type: multipart/mixed; boundary="===============1307137460=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78439-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,65 +21,108 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1389238591==
-Content-Type: multipart/alternative; boundary="1402584275.abCEe6aE2.32509"; charset="us-ascii"
+--===============1307137460==
+Content-Type: multipart/alternative; boundary="1402585178.4fE73BEF1.2540"; charset="us-ascii"
 
 
---1402584275.abCEe6aE2.32509
-Date: Thu, 12 Jun 2014 14:44:35 +0000
+--1402585178.4fE73BEF1.2540
+Date: Thu, 12 Jun 2014 14:59:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=78439
+https://bugs.freedesktop.org/show_bug.cgi?id=3D78439
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-That's unfortunate... would you mind providing a dmesg from a boot with
+Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> changed:
 
-nouveau.debug=PDISP=trace,VBIOS=trace,I2C=trace,DRM=trace
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #100920|0                           |1
+        is obsolete|                            |
 
--- 
+--- Comment #9 from Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> ---
+Created attachment 100923
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D100923&action=3Dedit
+dmesg (3.16) with debug info
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1402584275.abCEe6aE2.32509
-Date: Thu, 12 Jun 2014 14:44:35 +0000
+--1402585178.4fE73BEF1.2540
+Date: Thu, 12 Jun 2014 14:59:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:andrius&#=
+64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;stikonas.eu&=
+gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
+</span> changed
+              <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
+ched"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439">bug 78439<=
+/a>
+        <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #100920 is obsolete</=
+td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NVC1] Display corruption when DP connector is reattached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78439#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
+ched"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439#c9">Comment=
+ # 9</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NVC1] Display corruption when DP connector is reattached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78439">bug 78439</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
+ched"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439">bug 78439<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+andrius&#64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;sti=
+konas.eu&gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
 </span></b>
-        <pre>That's unfortunate... would you mind providing a dmesg from a boot with
-
-nouveau.debug=PDISP=trace,VBIOS=trace,I2C=trace,DRM=trace</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D100923=
+" name=3D"attach_100923" title=3D"dmesg (3.16) with debug info">attachment =
+100923</a> <a href=3D"attachment.cgi?id=3D100923&amp;action=3Dedit" title=
+=3D"dmesg (3.16) with debug info">[details]</a></span>
+dmesg (3.16) with debug info</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1402584275.abCEe6aE2.32509--
+--1402585178.4fE73BEF1.2540--
 
---===============1389238591==
+--===============1307137460==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +133,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1389238591==--
+--===============1307137460==--
