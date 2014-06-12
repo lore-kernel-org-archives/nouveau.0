@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78439] [NVC1] Display corruption when DP connector
  is reattached
-Date: Thu, 12 Jun 2014 14:59:38 +0000
-Message-ID: <bug-78439-8800-sNRss64F4z@http.bugs.freedesktop.org/>
+Date: Thu, 12 Jun 2014 15:17:50 +0000
+Message-ID: <bug-78439-8800-L9EYFD54U9@http.bugs.freedesktop.org/>
 References: <bug-78439-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1307137460=="
+Content-Type: multipart/mixed; boundary="===============0897441678=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78439-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1307137460==
-Content-Type: multipart/alternative; boundary="1402585178.4fE73BEF1.2540"; charset="us-ascii"
+--===============0897441678==
+Content-Type: multipart/alternative; boundary="1402586270.6AeA21.7724"; charset="us-ascii"
 
 
---1402585178.4fE73BEF1.2540
-Date: Thu, 12 Jun 2014 14:59:38 +0000
+--1402586270.6AeA21.7724
+Date: Thu, 12 Jun 2014 15:17:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -37,20 +37,20 @@ Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #100920|0                           |1
+ Attachment #100923|0                           |1
         is obsolete|                            |
 
---- Comment #9 from Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> ---
-Created attachment 100923
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D100923&action=3Dedit
+--- Comment #10 from Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> ---
+Created attachment 100924
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D100924&action=3Dedit
 dmesg (3.16) with debug info
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1402585178.4fE73BEF1.2540
-Date: Thu, 12 Jun 2014 14:59:38 +0000
+--1402586270.6AeA21.7724
+Date: Thu, 12 Jun 2014 15:17:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,7 +78,7 @@ ched"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Attachment #100920 is obsolete</=
+           <td style=3D"text-align:right;">Attachment #100923 is obsolete</=
 td>
            <td>
                &nbsp;
@@ -92,8 +92,8 @@ td>
           bz_status_NEW "
    title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
 ched"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439#c9">Comment=
- # 9</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439#c10">Commen=
+t # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
@@ -104,9 +104,9 @@ ched"
 andrius&#64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;sti=
 konas.eu&gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D100923=
-" name=3D"attach_100923" title=3D"dmesg (3.16) with debug info">attachment =
-100923</a> <a href=3D"attachment.cgi?id=3D100923&amp;action=3Dedit" title=
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D100924=
+" name=3D"attach_100924" title=3D"dmesg (3.16) with debug info">attachment =
+100924</a> <a href=3D"attachment.cgi?id=3D100924&amp;action=3Dedit" title=
 =3D"dmesg (3.16) with debug info">[details]</a></span>
 dmesg (3.16) with debug info</pre>
         </div>
@@ -120,9 +120,9 @@ dmesg (3.16) with debug info</pre>
     </body>
 </html>
 
---1402585178.4fE73BEF1.2540--
+--1402586270.6AeA21.7724--
 
---===============1307137460==
+--===============0897441678==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -133,4 +133,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1307137460==--
+--===============0897441678==--
