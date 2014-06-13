@@ -1,10 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79988] Suspend to ram doesn't work since Linux 3.15
-Date: Fri, 13 Jun 2014 15:17:59 +0000
-Message-ID: <bug-79988-8800-vLBpl5emJe@http.bugs.freedesktop.org/>
+Subject: [Bug 79988] [NVC1] Suspend to ram doesn't work since
+	Linux 3.15
+Date: Fri, 13 Jun 2014 15:20:15 +0000
+Message-ID: <bug-79988-8800-glX30JAvOx@http.bugs.freedesktop.org/>
 References: <bug-79988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1845832169=="
+Content-Type: multipart/mixed; boundary="===============0274706260=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-79988-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1845832169==
-Content-Type: multipart/alternative; boundary="1402672679.6Bf236054.30556"; charset="us-ascii"
+--===============0274706260==
+Content-Type: multipart/alternative; boundary="1402672814.B7a365Bc1.31165"; charset="us-ascii"
 
 
---1402672679.6Bf236054.30556
-Date: Fri, 13 Jun 2014 15:17:59 +0000
+--1402672814.B7a365Bc1.31165
+Date: Fri, 13 Jun 2014 15:20:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=79988
 
-Tom Li <biergaizi-IGUgQLVVQiRCV4ILt04nZQ@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Suspend to ram doesn't work |Suspend to ram doesn't work
-                   |since Linux 3.15.           |since Linux 3.15
+            Summary|Suspend to ram doesn't work |[NVC1] Suspend to ram
+                   |since Linux 3.15            |doesn't work since Linux
+                   |                            |3.15
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1402672679.6Bf236054.30556
-Date: Fri, 13 Jun 2014 15:17:59 +0000
+--1402672814.B7a365Bc1.31165
+Date: Fri, 13 Jun 2014 15:20:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,11 +53,11 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:biergaizi&#64;member.fsf.org" title="Tom Li &lt;biergaizi&#64;member.fsf.org&gt;"> <span class="fn">Tom Li</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Suspend to ram doesn't work since Linux 3.15"
+   title="NEW --- - [NVC1] Suspend to ram doesn't work since Linux 3.15"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=79988">bug 79988</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -67,9 +69,9 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>Suspend to ram doesn't work since Linux 3.15.
-           </td>
            <td>Suspend to ram doesn't work since Linux 3.15
+           </td>
+           <td>[NVC1] Suspend to ram doesn't work since Linux 3.15
            </td>
          </tr></table>
       <p>
@@ -83,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1402672679.6Bf236054.30556--
+--1402672814.B7a365Bc1.31165--
 
---===============1845832169==
+--===============0274706260==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1845832169==--
+--===============0274706260==--
