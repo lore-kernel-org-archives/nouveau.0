@@ -1,91 +1,54 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79971] 3.15.0-11819-gc1fdb2d: oops
-Date: Fri, 13 Jun 2014 08:28:37 +0000
-Message-ID: <bug-79971-8800-HPlTCylboz@http.bugs.freedesktop.org/>
-References: <bug-79971-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v2 0/3] drm/nouveau: support for probing platform devices
+Date: Fri, 13 Jun 2014 18:52:43 +0900
+Message-ID: <1402653166-8441-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1821596350=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79971-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+This series adds support for probing platform devices on Nouveau, as well as
+the DT bindings for GK20A. It doesn't enable the GPU yet on Tegra boards since
+a few extra things need to be supported before that.
 
---===============1821596350==
-Content-Type: multipart/alternative; boundary="1402648117.11DdEF0e1.9035"; charset="us-ascii"
+Thanks to the input received for v1, this version is more self-contained and
+shares less stuff between nouveau_drm and nouveau_platform. The major change
+is that nouveau_platform is now a module of its own. The main reason for this
+is that it allows us to register/unregister the driver from the module init
+functions instead of parasiting the ones of nouveau_drm. It also makes it
+simpler to build Nouveau without platform support at all.
 
+Changes since v1:
+* Moved the platform device driver to its own module. This allows it to be more
+  self-contained and saves us the need to export too many functions from
+  nouveau_drm and nouveau_platform.
+* Register the DRM device without using the platform helpers, which is made
+  possible by drm_dev_set_unique(). This allows us to catch and register the
+  DRM device during platform probe.
+* Fixed the clock names in the DT bindings.
+* Removed the patches enabling GK20A on Venice2 and Jetson TK1 as support
+  is not complete yet.
 
---1402648117.11DdEF0e1.9035
-Date: Fri, 13 Jun 2014 08:28:37 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Alexandre Courbot (2):
+  drm/nouveau: support for probing platform devices
+  ARM: tegra: of: add GK20A device tree binding
 
-https://bugs.freedesktop.org/show_bug.cgi?id=79971
+Thierry Reding (1):
+  ARM: tegra: add GK20A GPU to Tegra124 DT
 
---- Comment #3 from Arkadiusz Miskiewicz <arekm-evZBlRFTdvA@public.gmane.org> ---
-Created attachment 100966
-  --> https://bugs.freedesktop.org/attachment.cgi?id=100966&action=edit
-dmesg from working 3.15.0
+ .../devicetree/bindings/gpu/nvidia,gk20a.txt       |  43 +++++
+ arch/arm/boot/dts/tegra124.dtsi                    |  15 ++
+ drivers/gpu/drm/nouveau/Kconfig                    |   8 +
+ drivers/gpu/drm/nouveau/Makefile                   |   3 +
+ drivers/gpu/drm/nouveau/nouveau_drm.c              |  56 +++++--
+ drivers/gpu/drm/nouveau/nouveau_drm.h              |   3 +
+ drivers/gpu/drm/nouveau/nouveau_platform.c         | 182 +++++++++++++++++++++
+ 7 files changed, 299 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpu/nvidia,gk20a.txt
+ create mode 100644 drivers/gpu/drm/nouveau/nouveau_platform.c
 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1402648117.11DdEF0e1.9035
-Date: Fri, 13 Jun 2014 08:28:37 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - 3.15.0-11819-gc1fdb2d: oops"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79971#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - 3.15.0-11819-gc1fdb2d: oops"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79971">bug 79971</a>
-              from <span class="vcard"><a class="email" href="mailto:arekm&#64;maven.pl" title="Arkadiusz Miskiewicz &lt;arekm&#64;maven.pl&gt;"> <span class="fn">Arkadiusz Miskiewicz</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=100966" name="attach_100966" title="dmesg from working 3.15.0">attachment 100966</a> <a href="attachment.cgi?id=100966&amp;action=edit" title="dmesg from working 3.15.0">[details]</a></span>
-dmesg from working 3.15.0</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1402648117.11DdEF0e1.9035--
-
---===============1821596350==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1821596350==--
+2.0.0
