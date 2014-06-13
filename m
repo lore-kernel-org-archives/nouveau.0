@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79988] New: Suspend to ram stoped to work
-Date: Fri, 13 Jun 2014 15:16:36 +0000
-Message-ID: <bug-79988-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 79988] Suspend to ram doesn't work since Linux 3.15.
+Date: Fri, 13 Jun 2014 15:17:50 +0000
+Message-ID: <bug-79988-8800-65iZWhf4ZQ@http.bugs.freedesktop.org/>
+References: <bug-79988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0954434630=="
+Content-Type: multipart/mixed; boundary="===============2063215650=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-79988-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,72 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0954434630==
-Content-Type: multipart/alternative; boundary="1402672596.ecd36Eb1.30281"; charset="us-ascii"
+--===============2063215650==
+Content-Type: multipart/alternative; boundary="1402672669.b31A1.30556"; charset="us-ascii"
 
 
---1402672596.ecd36Eb1.30281
-Date: Fri, 13 Jun 2014 15:16:36 +0000
+--1402672669.b31A1.30556
+Date: Fri, 13 Jun 2014 15:17:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=79988
 
-          Priority: medium
-            Bug ID: 79988
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Suspend to ram stoped to work
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: 7.6 (2010.12)
-         Component: Driver/nouveau
-           Product: xorg
+Tom Li <biergaizi-IGUgQLVVQiRCV4ILt04nZQ@public.gmane.org> changed:
 
-Created attachment 100983
-  --> https://bugs.freedesktop.org/attachment.cgi?id=100983&action=edit
-/var/log/messages
-
-I use suse 13.1
-xorg 7.6.1
-mesa 10.2.1
-
-Since kernel 3.15, suspend to ram don't work.
-
-I seem to suspend and come back directly
-
-I get this messages
-
-nouveau  [     DRM] suspending display...
-nouveau  [     DRM] unpinning framebuffer(s)...
-nouveau  [     DRM] evicting buffers...
-nouveau  [     DRM] waiting for kernel channels to go idle...
-nouveau  [     DRM] suspending client object trees...
-nouveau  [     DRM] suspending kernel object tree...
-nouveau E[   PDISP][0000:01:00.0][0xc000857c][ffff880445675dc0] fini timeout,
-0xc2061008
-nouveau E[   PDISP][0000:01:00.0][0xc000857c][ffff880445675dc0] failed suspend,
--16
-nouveau E[     DRM] 0xd1500000:0xd15c7c00 suspend failed with -16
-nouveau E[     DRM] 0xdddddddd:0xd1500000 suspend failed with -16
-nouveau E[     DRM] 0xffffffff:0xdddddddd suspend failed with -16
-nouveau E[     DRM] 0xffffffff:0xffffffff suspend failed with -16
-nouveau  [     DRM] resuming display...
-pci_pm_suspend(): nouveau_pmops_suspend+0x0/0xb0 [nouveau] returns -16
-dpm_run_callback(): pci_pm_suspend+0x0/0x140 returns -16
-PM: Device 0000:01:00.0 failed to suspend async: error -16
-PM: Some devices failed to suspend, or early wake event detected
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Suspend to ram stoped to    |Suspend to ram doesn't work
+                   |work                        |since Linux 3.15.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1402672596.ecd36Eb1.30281
-Date: Fri, 13 Jun 2014 15:16:36 +0000
+--1402672669.b31A1.30556
+Date: Fri, 13 Jun 2014 15:17:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -91,128 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:biergaizi&#64;member.fsf.org" title="Tom Li &lt;biergaizi&#64;member.fsf.org&gt;"> <span class="fn">Tom Li</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Suspend to ram stoped to work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79988">79988</a>
-          </td>
-        </tr>
+   title="NEW --- - Suspend to ram doesn't work since Linux 3.15."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79988">bug 79988</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Suspend to ram stoped to work
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>marccollin7379&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>7.6 (2010.12)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Suspend to ram stoped to work
+           </td>
+           <td>Suspend to ram doesn't work since Linux 3.15.
+           </td>
+         </tr></table>
       <p>
-        <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=100983" name="attach_100983" title="/var/log/messages">attachment 100983</a> <a href="attachment.cgi?id=100983&amp;action=edit" title="/var/log/messages">[details]</a></span>
-/var/log/messages
-
-I use suse 13.1
-xorg 7.6.1
-mesa 10.2.1
-
-Since kernel 3.15, suspend to ram don't work.
-
-I seem to suspend and come back directly
-
-I get this messages
-
-nouveau  [     DRM] suspending display...
-nouveau  [     DRM] unpinning framebuffer(s)...
-nouveau  [     DRM] evicting buffers...
-nouveau  [     DRM] waiting for kernel channels to go idle...
-nouveau  [     DRM] suspending client object trees...
-nouveau  [     DRM] suspending kernel object tree...
-nouveau E[   PDISP][0000:01:00.0][0xc000857c][ffff880445675dc0] fini timeout,
-0xc2061008
-nouveau E[   PDISP][0000:01:00.0][0xc000857c][ffff880445675dc0] failed suspend,
--16
-nouveau E[     DRM] 0xd1500000:0xd15c7c00 suspend failed with -16
-nouveau E[     DRM] 0xdddddddd:0xd1500000 suspend failed with -16
-nouveau E[     DRM] 0xffffffff:0xdddddddd suspend failed with -16
-nouveau E[     DRM] 0xffffffff:0xffffffff suspend failed with -16
-nouveau  [     DRM] resuming display...
-pci_pm_suspend(): nouveau_pmops_suspend+0x0/0xb0 [nouveau] returns -16
-dpm_run_callback(): pci_pm_suspend+0x0/0x140 returns -16
-PM: Device 0000:01:00.0 failed to suspend async: error -16
-PM: Some devices failed to suspend, or early wake event detected</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -223,9 +83,9 @@ PM: Some devices failed to suspend, or early wake event detected</pre>
     </body>
 </html>
 
---1402672596.ecd36Eb1.30281--
+--1402672669.b31A1.30556--
 
---===============0954434630==
+--===============2063215650==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -236,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0954434630==--
+--===============2063215650==--
