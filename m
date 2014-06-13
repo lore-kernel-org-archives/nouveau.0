@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79988] Suspend to ram doesn't work since Linux 3.15.
-Date: Fri, 13 Jun 2014 15:17:50 +0000
-Message-ID: <bug-79988-8800-65iZWhf4ZQ@http.bugs.freedesktop.org/>
+Subject: [Bug 79988] Suspend to ram doesn't work since Linux 3.15
+Date: Fri, 13 Jun 2014 15:17:59 +0000
+Message-ID: <bug-79988-8800-vLBpl5emJe@http.bugs.freedesktop.org/>
 References: <bug-79988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2063215650=="
+Content-Type: multipart/mixed; boundary="===============1845832169=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-79988-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2063215650==
-Content-Type: multipart/alternative; boundary="1402672669.b31A1.30556"; charset="us-ascii"
+--===============1845832169==
+Content-Type: multipart/alternative; boundary="1402672679.6Bf236054.30556"; charset="us-ascii"
 
 
---1402672669.b31A1.30556
-Date: Fri, 13 Jun 2014 15:17:49 +0000
+--1402672679.6Bf236054.30556
+Date: Fri, 13 Jun 2014 15:17:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,15 +35,15 @@ Tom Li <biergaizi-IGUgQLVVQiRCV4ILt04nZQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Suspend to ram stoped to    |Suspend to ram doesn't work
-                   |work                        |since Linux 3.15.
+            Summary|Suspend to ram doesn't work |Suspend to ram doesn't work
+                   |since Linux 3.15.           |since Linux 3.15
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1402672669.b31A1.30556
-Date: Fri, 13 Jun 2014 15:17:49 +0000
+--1402672679.6Bf236054.30556
+Date: Fri, 13 Jun 2014 15:17:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,7 +55,7 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Suspend to ram doesn't work since Linux 3.15."
+   title="NEW --- - Suspend to ram doesn't work since Linux 3.15"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=79988">bug 79988</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -67,9 +67,9 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>Suspend to ram stoped to work
-           </td>
            <td>Suspend to ram doesn't work since Linux 3.15.
+           </td>
+           <td>Suspend to ram doesn't work since Linux 3.15
            </td>
          </tr></table>
       <p>
@@ -83,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1402672669.b31A1.30556--
+--1402672679.6Bf236054.30556--
 
---===============2063215650==
+--===============1845832169==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2063215650==--
+--===============1845832169==--
