@@ -1,14 +1,12 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: [PATCH 3/3] nv50/ir: Remove NV50_SEMANTIC_VIEWPORTINDEX
-	and its last consumer
-Date: Sat, 14 Jun 2014 16:41:10 +0200
-Message-ID: <1402756870-2207-4-git-send-email-tobias.johannes.klausmann@mni.thm.de>
-References: <1402756870-2207-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70388] [NV34] failed to idle channel 0xcccc0000
+Date: Sat, 14 Jun 2014 15:10:58 +0000
+Message-ID: <bug-70388-8800-YCkxs2Hfth@http.bugs.freedesktop.org/>
+References: <bug-70388-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1891011752=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1402756870-2207-1-git-send-email-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+In-Reply-To: <bug-70388-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,40 +16,77 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-We use TGSI_SEMANTIC_VIEWPORT_INDEX for nvc0 now as well.
 
-Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
----
- src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h        | 1 -
- src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp | 1 -
- 2 files changed, 2 deletions(-)
+--===============1891011752==
+Content-Type: multipart/alternative; boundary="1402758657.cB7D8B50.29306"; charset="us-ascii"
 
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-index f829aac..c885c8c 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-@@ -70,7 +70,6 @@ struct nv50_ir_varying
- #endif
- 
- #define NV50_SEMANTIC_CLIPDISTANCE  (TGSI_SEMANTIC_COUNT + 0)
--#define NV50_SEMANTIC_VIEWPORTINDEX (TGSI_SEMANTIC_COUNT + 4)
- #define NV50_SEMANTIC_TESSFACTOR    (TGSI_SEMANTIC_COUNT + 7)
- #define NV50_SEMANTIC_TESSCOORD     (TGSI_SEMANTIC_COUNT + 8)
- #define NV50_SEMANTIC_COUNT         (TGSI_SEMANTIC_COUNT + 10)
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp
-index abadc7f..7e314aa 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp
-@@ -538,7 +538,6 @@ recordLocation(uint16_t *locs, uint8_t *masks,
-    case TGSI_SEMANTIC_VERTEXID: locs[SV_VERTEX_ID] = addr; break;
-    case TGSI_SEMANTIC_PRIMID: locs[SV_PRIMITIVE_ID] = addr; break;
-    case TGSI_SEMANTIC_LAYER: locs[SV_LAYER] = addr; break;
--   case NV50_SEMANTIC_VIEWPORTINDEX: locs[SV_VIEWPORT_INDEX] = addr; break;
-    default:
-       break;
-    }
+
+--1402758657.cB7D8B50.29306
+Date: Sat, 14 Jun 2014 15:10:57 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=70388
+
+--- Comment #18 from Rostislav Krasny <rosti.bsd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Any progress? More than six months have passed since the last message in this
+bug report. In that time NVidia has published some of their specifications. Did
+it help you to understand how NV34 works and how to fix this critical bug?
+
 -- 
-1.8.4.5
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1402758657.cB7D8B50.29306
+Date: Sat, 14 Jun 2014 15:10:57 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV34] failed to idle channel 0xcccc0000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388#c18">Comment # 18</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV34] failed to idle channel 0xcccc0000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388">bug 70388</a>
+              from <span class="vcard"><a class="email" href="mailto:rosti.bsd&#64;gmail.com" title="Rostislav Krasny &lt;rosti.bsd&#64;gmail.com&gt;"> <span class="fn">Rostislav Krasny</span></a>
+</span></b>
+        <pre>Any progress? More than six months have passed since the last message in this
+bug report. In that time NVidia has published some of their specifications. Did
+it help you to understand how NV34 works and how to fix this critical bug?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1402758657.cB7D8B50.29306--
+
+--===============1891011752==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1891011752==--
