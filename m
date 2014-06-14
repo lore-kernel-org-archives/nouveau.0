@@ -1,13 +1,11 @@
 From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: [PATCH 2/3] nvc0: mark scissor in nvc0_clear_{}
-Date: Sat, 14 Jun 2014 16:41:09 +0200
-Message-ID: <1402756870-2207-3-git-send-email-tobias.johannes.klausmann@mni.thm.de>
-References: <1402756870-2207-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+Subject: [PATCH 0/3] ARB_viewport_array for nvc0
+Date: Sat, 14 Jun 2014 16:41:07 +0200
+Message-ID: <1402756870-2207-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1402756870-2207-1-git-send-email-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,38 +18,24 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
----
- src/gallium/drivers/nouveau/nvc0/nvc0_surface.c | 3 +++
- 1 file changed, 3 insertions(+)
+This patch-series implements the ARB_viewport_array for nvc0 and does
+a little house-cleanig afterwords.
 
-diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c b/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-index c28ec6d..72227b8 100644
---- a/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-+++ b/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-@@ -298,6 +298,7 @@ nvc0_clear_render_target(struct pipe_context *pipe,
-    BEGIN_NVC0(push, NVC0_3D(SCREEN_SCISSOR_HORIZ), 2);
-    PUSH_DATA (push, ( width << 16) | dstx);
-    PUSH_DATA (push, (height << 16) | dsty);
-+   nvc0->scissors_dirty |= 1;
- 
-    BEGIN_NVC0(push, NVC0_3D(RT_CONTROL), 1);
-    PUSH_DATA (push, 1);
-@@ -447,6 +448,7 @@ nvc0_clear_buffer(struct pipe_context *pipe,
-    BEGIN_NVC0(push, NVC0_3D(SCREEN_SCISSOR_HORIZ), 2);
-    PUSH_DATA (push, width << 16);
-    PUSH_DATA (push, height << 16);
-+   nvc0->scissors_dirty |= 1;
- 
-    IMMED_NVC0(push, NVC0_3D(RT_CONTROL), 1);
- 
-@@ -521,6 +523,7 @@ nvc0_clear_depth_stencil(struct pipe_context *pipe,
- 	BEGIN_NVC0(push, NVC0_3D(SCREEN_SCISSOR_HORIZ), 2);
- 	PUSH_DATA (push, ( width << 16) | dstx);
- 	PUSH_DATA (push, (height << 16) | dsty);
-+	nvc0->scissors_dirty |= 1;
- 
- 	BEGIN_NVC0(push, NVC0_3D(ZETA_ADDRESS_HIGH), 5);
- 	PUSH_DATAh(push, mt->base.address + sf->offset);
+Tobias Klausmann (3):
+  nvc0: implement multiple viewports/scissors, enable ARB_viewport_array
+  nvc0: mark scissor in nvc0_clear_{}
+  nv50/ir: Remove NV50_SEMANTIC_VIEWPORTINDEX and its last consumer
+
+ .../drivers/nouveau/codegen/nv50_ir_driver.h       |   1 -
+ .../nouveau/codegen/nv50_ir_target_nv50.cpp        |   1 -
+ src/gallium/drivers/nouveau/nvc0/nvc0_context.h    |   7 +-
+ src/gallium/drivers/nouveau/nvc0/nvc0_program.c    |   2 +-
+ src/gallium/drivers/nouveau/nvc0/nvc0_screen.c     |  20 ++--
+ src/gallium/drivers/nouveau/nvc0/nvc0_screen.h     |   3 +
+ src/gallium/drivers/nouveau/nvc0/nvc0_state.c      |  27 ++++-
+ .../drivers/nouveau/nvc0/nvc0_state_validate.c     | 121 +++++++++++++--------
+ src/gallium/drivers/nouveau/nvc0/nvc0_surface.c    |   3 +
+ 9 files changed, 120 insertions(+), 65 deletions(-)
+
 -- 
 1.8.4.5
