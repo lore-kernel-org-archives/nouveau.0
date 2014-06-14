@@ -1,66 +1,63 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH 2/3] nvc0: mark scissor in nvc0_clear_{}
-Date: Sat, 14 Jun 2014 11:46:46 -0400
-Message-ID: <CAKb7UvgfWjJUeWj5WcvNQ41kJALyuJzR-29xn-6Ns+2hQaYjjw@mail.gmail.com>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: Re: [PATCH 3/3] nv50/ir: Remove
+ NV50_SEMANTIC_VIEWPORTINDEX and its last consumer
+Date: Sat, 14 Jun 2014 11:48:41 -0400
+Message-ID: <CAKb7Uvhac3RxrHieyJYJ-brWqxjdBeKBk-GNWQfWfYR57xqGSQ@mail.gmail.com>
 References: <1402756870-2207-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
- <1402756870-2207-3-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+ <1402756870-2207-4-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1402756870-2207-3-git-send-email-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <1402756870-2207-4-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
 On Sat, Jun 14, 2014 at 10:41 AM, Tobias Klausmann
-<tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> wrote:
-> Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+<tobias.johannes.klausmann@mni.thm.de> wrote:
+> We use TGSI_SEMANTIC_VIEWPORT_INDEX for nvc0 now as well.
+>
+> Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
 > ---
->  src/gallium/drivers/nouveau/nvc0/nvc0_surface.c | 3 +++
->  1 file changed, 3 insertions(+)
+>  src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h        | 1 -
+>  src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp | 1 -
+>  2 files changed, 2 deletions(-)
 >
-> diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c b/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-> index c28ec6d..72227b8 100644
-> --- a/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-> +++ b/src/gallium/drivers/nouveau/nvc0/nvc0_surface.c
-> @@ -298,6 +298,7 @@ nvc0_clear_render_target(struct pipe_context *pipe,
->     BEGIN_NVC0(push, NVC0_3D(SCREEN_SCISSOR_HORIZ), 2);
->     PUSH_DATA (push, ( width << 16) | dstx);
->     PUSH_DATA (push, (height << 16) | dsty);
-> +   nvc0->scissors_dirty |= 1;
+> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
+> index f829aac..c885c8c 100644
+> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
+> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
+> @@ -70,7 +70,6 @@ struct nv50_ir_varying
+>  #endif
+>
+>  #define NV50_SEMANTIC_CLIPDISTANCE  (TGSI_SEMANTIC_COUNT + 0)
+> -#define NV50_SEMANTIC_VIEWPORTINDEX (TGSI_SEMANTIC_COUNT + 4)
+>  #define NV50_SEMANTIC_TESSFACTOR    (TGSI_SEMANTIC_COUNT + 7)
+>  #define NV50_SEMANTIC_TESSCOORD     (TGSI_SEMANTIC_COUNT + 8)
+>  #define NV50_SEMANTIC_COUNT         (TGSI_SEMANTIC_COUNT + 10)
+> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp
+> index abadc7f..7e314aa 100644
+> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp
+> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp
+> @@ -538,7 +538,6 @@ recordLocation(uint16_t *locs, uint8_t *masks,
+>     case TGSI_SEMANTIC_VERTEXID: locs[SV_VERTEX_ID] = addr; break;
+>     case TGSI_SEMANTIC_PRIMID: locs[SV_PRIMITIVE_ID] = addr; break;
+>     case TGSI_SEMANTIC_LAYER: locs[SV_LAYER] = addr; break;
+> -   case NV50_SEMANTIC_VIEWPORTINDEX: locs[SV_VIEWPORT_INDEX] = addr; break;
 
-Can you explain why these changes are needed? You don't modify the
-scissor here (only the screen scissor)...
+I know this goes against what I said earlier, but actually do you mind
+flipping this over to TGSI_SEMANTIC_VIEWPORT_INDEX -- I suspect when
+ARB_fragment_layer_viewport is implemented, layer/viewport might be
+system values in the fragment shader.
 
->
->     BEGIN_NVC0(push, NVC0_3D(RT_CONTROL), 1);
->     PUSH_DATA (push, 1);
-> @@ -447,6 +448,7 @@ nvc0_clear_buffer(struct pipe_context *pipe,
->     BEGIN_NVC0(push, NVC0_3D(SCREEN_SCISSOR_HORIZ), 2);
->     PUSH_DATA (push, width << 16);
->     PUSH_DATA (push, height << 16);
-> +   nvc0->scissors_dirty |= 1;
->
->     IMMED_NVC0(push, NVC0_3D(RT_CONTROL), 1);
->
-> @@ -521,6 +523,7 @@ nvc0_clear_depth_stencil(struct pipe_context *pipe,
->         BEGIN_NVC0(push, NVC0_3D(SCREEN_SCISSOR_HORIZ), 2);
->         PUSH_DATA (push, ( width << 16) | dstx);
->         PUSH_DATA (push, (height << 16) | dsty);
-> +       nvc0->scissors_dirty |= 1;
->
->         BEGIN_NVC0(push, NVC0_3D(ZETA_ADDRESS_HIGH), 5);
->         PUSH_DATAh(push, mt->base.address + sf->offset);
-> --
-> 1.8.4.5
->
+  -ilia
